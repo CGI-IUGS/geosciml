@@ -29,36 +29,82 @@ Copyright (c) 2004 CSIRO - see https://www.seegrid.csiro.au/twiki/bin/view/Xmml/
 	<import namespace="http://www.opengis.net/gml" schemaLocation="http://schemas.opengis.net/gml/3.1.0/base/dictionary.xsd"/>
 	<include schemaLocation="./procedures.xsd"/>
 	<!-- ====================================================================== -->
-	<complexType name="RSDefinitionPropertyType">
-		<sequence minOccurs="0">
-			<choice>
-				<element ref="xmml:TupleDefinition"/>
-				<element ref="xmml:AxisDefinition"/>
-			</choice>
-		</sequence>
-		<attributeGroup ref="gml:AssociationAttributeGroup"/>
-	</complexType>
-	<!-- ====================================================================== -->
-	<complexType name="AxisDefinitionPropertyType">
-		<sequence minOccurs="0">
-			<element ref="xmml:AxisDefinition"/>
-		</sequence>
-		<attributeGroup ref="gml:AssociationAttributeGroup"/>
-	</complexType>
-	<!-- ====================================================================== -->
-	<element name="TupleDefinition" type="xmml:TupleDefinitionType" abstract="true" substitutionGroup="gml:Definition">
+	<element name="PropertyDefinition" type="gml:DefinitionType" substitutionGroup="gml:Definition">
 		<annotation>
-			<documentation>Description of a set of properties or a compound property, with scales, 
-      that are the subject of a measurement, observation or assignment.  
-      This is typically used as the "reference system" defining the components of a tuple.  </documentation>
+			<documentation>Use the generic gml:DefinitionType for basic property definitions, 
+			gml:description may be used for a more extensive description of the semantics, with a link to a definitive version (if available).  
+			gml:name should be used for the "short name" or label.  
+</documentation>
 		</annotation>
 	</element>
-	<!-- ====== -->
-	<complexType name="TupleDefinitionType" abstract="true">
+	<!-- ====================================================================== -->
+	<complexType name="PropertyDefinitionPropertyType">
+		<sequence minOccurs="0">
+			<element ref="xmml:PropertyDefinition"/>
+		</sequence>
+		<attributeGroup ref="gml:AssociationAttributeGroup"/>
+	</complexType>
+	<!-- ====================================================================== -->
+	<element name="ConstrainedPropertyDefinition" type="xmml:ConstrainedPropertyDefinitionType" substitutionGroup="xmml:PropertyDefinition">
 		<annotation>
-			<documentation>Description of a set of properties with their scales that are the subject of a 
-      measurement, observation or assignment.  
-      This is typically used as the "reference system" defining the components of a tuple.  
+			<documentation>Description of a scalar property defined by adding constraints to a property previously defined elsewhere.</documentation>
+		</annotation>
+	</element>
+	<!-- ........................................ -->
+	<complexType name="ConstrainedPropertyDefinitionType">
+		<annotation>
+			<documentation>A scalar property defined by adding constraints to an existing property.  
+      </documentation>
+		</annotation>
+		<complexContent>
+			<extension base="gml:DefinitionType">
+				<sequence>
+					<element name="baseProperty" type="xmml:PropertyDefinitionPropertyType">
+						<annotation>
+							<documentation>Property that forms the basis for generating a set of more refined properties; e.g. Chemical Composition, Radiance</documentation>
+						</annotation>
+					</element>
+					<group ref="xmml:singleConstraint" maxOccurs="unbounded"/>
+				</sequence>
+			</extension>
+		</complexContent>
+	</complexType>
+	<!-- ====================================================================== -->
+	<group name="singleConstraint">
+		<annotation>
+			<documentation>Constraints expressed in fully explicit form. 
+        The base property is associated with each value or interval in turn</documentation>
+		</annotation>
+		<choice>
+			<element name="categoryConstraint" type="xmml:SoftTypedCategoryType">
+				<annotation>
+					<documentation>A value from a classification that constrains the base property; e.g. Chemical Species</documentation>
+				</annotation>
+			</element>
+			<element name="measureConstraint" type="xmml:SoftTypedMeasureType">
+				<annotation>
+					<documentation>A numeric value of some property that constrains the base property; e.g. Wavelength</documentation>
+				</annotation>
+			</element>
+			<element name="intervalConstraint" type="xmml:SoftTypedMeasureIntervalType">
+				<annotation>
+					<documentation>An interval or range of some property that constrains the base property; e.g. Wavelength band</documentation>
+				</annotation>
+			</element>
+		</choice>
+	</group>
+	<!-- ====================================================================== -->
+	<!-- ====================================================================== -->
+	<element name="CompoundPropertyDefinition" type="xmml:CompoundPropertyDefinitionType" abstract="true" substitutionGroup="xmml:PropertyDefinition">
+		<annotation>
+			<documentation>Description of a set of properties or a compound property, 
+      that are the subject of a measurement, observation or assignment.   </documentation>
+		</annotation>
+	</element>
+	<!-- ........................................ -->
+	<complexType name="CompoundPropertyDefinitionType" abstract="true">
+		<annotation>
+			<documentation>Description of a set of properties.  
       A property set may defined as either
       1. a set of explicitly enumerated components which may or may not be related to one another
       2. a base property convolved with a set of constraints
@@ -79,32 +125,40 @@ Copyright (c) 2004 CSIRO - see https://www.seegrid.csiro.au/twiki/bin/view/Xmml/
 		</complexContent>
 	</complexType>
 	<!-- ====================================================================== -->
-	<element name="SeriesTupleDefinition" type="xmml:SeriesTupleDefinitionType" substitutionGroup="xmml:TupleDefinition"/>
-	<complexType name="SeriesTupleDefinitionType">
+	<element name="CompositePropertyDefinition" type="xmml:CompositePropertyDefinitionType" substitutionGroup="xmml:CompoundPropertyDefinition">
+		<annotation>
+			<documentation>A Composite Property Definition is composed from arbitrary base properties. </documentation>
+		</annotation>
+	</element>
+	<!-- ........................................ -->
+	<complexType name="CompositePropertyDefinitionType">
 		<complexContent>
-			<extension base="gml:DefinitionType">
+			<extension base="xmml:CompoundPropertyDefinitionType">
 				<sequence>
-					<element name="baseProperty" type="gml:StringOrRefType">
+					<element name="component" type="xmml:PropertyDefinitionPropertyType" maxOccurs="unbounded"/>
+				</sequence>
+			</extension>
+		</complexContent>
+	</complexType>
+	<!-- ====================================================================== -->
+	<element name="PropertySeriesDefinition" type="xmml:PropertySeriesDefinitionType" substitutionGroup="xmml:CompoundPropertyDefinition">
+		<annotation>
+			<documentation>A Series is derived from a common baseProperty (e.g. Chemical Concentration) with one or more constraint lists (e.g. Chemical Species). </documentation>
+		</annotation>
+	</element>
+	<!-- ........................................ -->
+	<complexType name="PropertySeriesDefinitionType">
+		<complexContent>
+			<extension base="xmml:CompoundPropertyDefinitionType">
+				<sequence>
+					<element name="baseProperty" type="xmml:PropertyDefinitionPropertyType">
 						<annotation>
 							<documentation>Property that forms the basis for generating a set of more refined properties; e.g. Chemical Composition, Radiance</documentation>
 						</annotation>
 					</element>
-					<choice>
+					<group ref="xmml:constraintLists" maxOccurs="unbounded">
 						<annotation>
 							<documentation>A set of values of some secondary property that constraints the baseProperty to generate a property set.  If more than one set of constraints are possible, then these are applied simultaneously to generate </documentation>
-						</annotation>
-						<group ref="xmml:constraintLists" maxOccurs="unbounded"/>
-					</choice>
-					<element ref="xmml:representation">
-						<annotation>
-							<documentation>When the (baseProperty with constraints) method is chosen, 
-                then a single scale applies to all components of the set</documentation>
-						</annotation>
-					</element>
-					<group ref="xmml:quality">
-						<annotation>
-							<documentation>When the (baseProperty with constraints) method is chosen, 
-                then a single quality and observation procedure applies to all components of the set</documentation>
 						</annotation>
 					</group>
 				</sequence>
@@ -112,23 +166,100 @@ Copyright (c) 2004 CSIRO - see https://www.seegrid.csiro.au/twiki/bin/view/Xmml/
 		</complexContent>
 	</complexType>
 	<!-- ====================================================================== -->
-	<element name="ComponentTupleDefinition" type="xmml:ComponentTupleDefinitionType" substitutionGroup="xmml:TupleDefinition"/>
-	<complexType name="ComponentTupleDefinitionType">
+	<group name="constraintLists">
+		<choice>
+			<annotation>
+				<documentation>Constraint sets expressed in compact form. 
+        The base property is associated with each value or interval in turn</documentation>
+			</annotation>
+			<element name="categoryConstraintList" type="xmml:SoftTypedCategoryListType">
+				<annotation>
+					<documentation>A list of values from a classification ; e.g. Chemical Species</documentation>
+				</annotation>
+			</element>
+			<element name="measureConstraintList" type="xmml:SoftTypedMeasureListType">
+				<annotation>
+					<documentation>A list of numeric values of some property; e.g. Wavelength</documentation>
+				</annotation>
+			</element>
+			<element name="intervalConstraintList" type="xmml:SoftTypedMeasureListType">
+				<annotation>
+					<documentation>A list of *pairs* of numeric values each defining an interval of some property; e.g. Wavelength band</documentation>
+				</annotation>
+			</element>
+			<element name="measureConstraintSequence" type="string">
+				<annotation>
+					<documentation>A set of numeric values of some property; e.g. Wavelength, expressed as a regular sequence (incomplete)</documentation>
+				</annotation>
+			</element>
+			<element name="intervalConstraintSequence" type="string">
+				<annotation>
+					<documentation>A set of *pairs* of numeric values of some property; e.g. Wavelength band, expressed as a regular sequence (incomplete)</documentation>
+				</annotation>
+			</element>
+		</choice>
+	</group>
+	<!-- ====================================================================== -->
+	<!-- ====================================================================== -->
+	<element name="AbstractRSDefinition" type="gml:DefinitionType" abstract="true" substitutionGroup="gml:Definition">
+		<annotation>
+			<documentation>Abstract element used as head of a substitution group for axis and record definitions</documentation>
+		</annotation>
+	</element>
+	<!-- ====================================================================== -->
+	<complexType name="RSDefinitionPropertyType">
+		<sequence minOccurs="0">
+			<element ref="xmml:AbstractRSDefinition"/>
+		</sequence>
+		<attributeGroup ref="gml:AssociationAttributeGroup"/>
+	</complexType>
+	<!-- ====================================================================== -->
+	<element name="AxisDefinition" type="xmml:AxisDefinitionType" substitutionGroup="xmml:AbstractRSDefinition">
+		<annotation>
+			<documentation>Description of a scalar property with its representation and scale and (optional) quality indicators</documentation>
+		</annotation>
+	</element>
+	<!-- ........................................ -->
+	<complexType name="AxisDefinitionType">
+		<annotation>
+			<documentation>Description of a scalar property with its representation and scale and (optional) quality indicators.</documentation>
+		</annotation>
 		<complexContent>
 			<extension base="gml:DefinitionType">
 				<sequence>
-					<element name="component" maxOccurs="unbounded">
-						<complexType>
-							<sequence minOccurs="0">
-								<choice>
-									<element ref="xmml:AxisDefinition"/>
-									<element ref="xmml:TupleDefinition"/>
-								</choice>
-							</sequence>
-							<attributeGroup ref="gml:AssociationAttributeGroup"/>
-						</complexType>
-					</element>
+					<element name="property" type="xmml:PropertyDefinitionPropertyType"/>
+					<element ref="xmml:representation"/>
+					<group ref="xmml:quality"/>
 				</sequence>
+			</extension>
+		</complexContent>
+	</complexType>
+	<!-- ====================================================================== -->
+	<complexType name="AxisDefinitionPropertyType">
+		<sequence minOccurs="0">
+			<element ref="xmml:AxisDefinition"/>
+		</sequence>
+		<attributeGroup ref="gml:AssociationAttributeGroup"/>
+	</complexType>
+	<!-- ====================================================================== -->
+	<!-- ====================================================================== -->
+	<element name="RecordDefinition" type="xmml:RecordDefinitionType" substitutionGroup="xmml:AbstractRSDefinition">
+		<annotation>
+			<documentation>A Record Definition is composed from arbitrary base axes, which may be records. </documentation>
+		</annotation>
+	</element>
+	<!-- ........................................ -->
+	<complexType name="RecordDefinitionType">
+		<complexContent>
+			<extension base="gml:DefinitionType">
+				<sequence>
+					<element name="component" type="xmml:RSDefinitionPropertyType" maxOccurs="unbounded"/>
+				</sequence>
+				<attribute name="dimension" type="positiveInteger">
+					<annotation>
+						<documentation>The number of components in the tuple</documentation>
+					</annotation>
+				</attribute>
 			</extension>
 		</complexContent>
 	</complexType>
@@ -138,11 +269,13 @@ Copyright (c) 2004 CSIRO - see https://www.seegrid.csiro.au/twiki/bin/view/Xmml/
 	<element name="representation" type="xmml:RepresentationType">
 		<annotation>
 			<documentation> 
-			this reuses components from XML Schema to describe the "value-space" in terms of a base type and facets,  
-            or a composite such as a union.  
+			this uses components copied from XML Schema to describe the "value-space" in terms of 
+			a base type and facets, or a composite such as a union.  
             
-            For numeric types this will normally indicate integer, double etc and (optionally) facets to describe one or more intervals or a precision. 
-            For textual types this will normally indicate string, token etc and (optionally) facets will indicate a pattern, enumeration, length etc.  
+            For numeric types this will normally indicate integer, double etc and (optionally) facets 
+            to describe one or more intervals or a precision. 
+            For textual types this will normally indicate string, token etc and (optionally) facets 
+            will indicate a pattern, enumeration, length etc.  
             </documentation>
 		</annotation>
 	</element>
@@ -152,10 +285,10 @@ Copyright (c) 2004 CSIRO - see https://www.seegrid.csiro.au/twiki/bin/view/Xmml/
 			<element name="Number">
 				<complexType>
 					<sequence>
-						<element name="minInclusive" type="st:facet" minOccurs="0"/>
-						<element name="minExclusive" type="st:facet" minOccurs="0"/>
-						<element name="maxInclusive" type="st:facet" minOccurs="0"/>
-						<element name="maxExclusive" type="st:facet" minOccurs="0"/>
+						<element ref="st:minInclusive" minOccurs="0"/>
+						<element ref="st:minExclusive" minOccurs="0"/>
+						<element ref="st:maxInclusive" minOccurs="0"/>
+						<element ref="st:maxExclusive" minOccurs="0"/>
 						<element ref="gml:unitOfMeasure"/>
 					</sequence>
 				</complexType>
@@ -163,8 +296,8 @@ Copyright (c) 2004 CSIRO - see https://www.seegrid.csiro.au/twiki/bin/view/Xmml/
 			<element name="Word">
 				<complexType>
 					<choice>
-						<element name="pattern" type="st:noFixedFacet"/>
-						<element name="enumeration" type="st:noFixedFacet" maxOccurs="unbounded"/>
+						<element ref="st:pattern"/>
+						<element ref="st:enumeration" maxOccurs="unbounded"/>
 						<element name="classification" type="gml:StringOrRefType"/>
 					</choice>
 				</complexType>
@@ -172,7 +305,7 @@ Copyright (c) 2004 CSIRO - see https://www.seegrid.csiro.au/twiki/bin/view/Xmml/
 			<element name="Boolean">
 				<complexType>
 					<sequence>
-						<element name="enumeration" type="st:noFixedFacet" minOccurs="2" maxOccurs="2"/>
+						<element ref="st:enumeration" minOccurs="2" maxOccurs="2"/>
 					</sequence>
 				</complexType>
 			</element>
@@ -220,104 +353,5 @@ Copyright (c) 2004 CSIRO - see https://www.seegrid.csiro.au/twiki/bin/view/Xmml/
 			</element>
 		</sequence>
 	</group>
-	<!-- ====================================================================== -->
-	<group name="singleConstraints">
-		<choice>
-			<annotation>
-				<documentation>Constraint sets expressed in fully explicit form. 
-        The base property is associated with each value or interval in turn</documentation>
-			</annotation>
-			<element name="categoryConstraint" type="xmml:SoftTypedCategoryType">
-				<annotation>
-					<documentation>A value from a classification that constrains the base property; e.g. Chemical Species</documentation>
-				</annotation>
-			</element>
-			<element name="measureConstraint" type="xmml:SoftTypedMeasureType">
-				<annotation>
-					<documentation>A numeric value of some property that constrains the base property; e.g. Wavelength</documentation>
-				</annotation>
-			</element>
-			<element name="intervalConstraint" type="xmml:SoftTypedMeasureIntervalType">
-				<annotation>
-					<documentation>An interval or range of some property that constrains the base property; e.g. Wavelength band</documentation>
-				</annotation>
-			</element>
-		</choice>
-	</group>
-	<!-- ====================================================================== -->
-	<group name="constraintLists">
-		<choice>
-			<annotation>
-				<documentation>Constraint sets expressed in compact form. 
-        The base property is associated with each value or interval in turn</documentation>
-			</annotation>
-			<element name="categoryConstraintList" type="xmml:SoftTypedCategoryListType">
-				<annotation>
-					<documentation>A list of values from a classification ; e.g. Chemical Species</documentation>
-				</annotation>
-			</element>
-			<element name="measureConstraintList" type="xmml:SoftTypedMeasureListType">
-				<annotation>
-					<documentation>A list of numeric values of some property; e.g. Wavelength</documentation>
-				</annotation>
-			</element>
-			<element name="intervalConstraintList" type="xmml:SoftTypedMeasureListType">
-				<annotation>
-					<documentation>A list of *pairs* of numeric values each defining an interval of some property; e.g. Wavelength band</documentation>
-				</annotation>
-			</element>
-			<element name="measureConstraintSequence" type="string">
-				<annotation>
-					<documentation>A set of numeric values of some property; e.g. Wavelength, expressed as a regular sequence (incomplete)</documentation>
-				</annotation>
-			</element>
-			<element name="intervalConstraintSequence" type="string">
-				<annotation>
-					<documentation>A set of *pairs* of numeric values of some property; e.g. Wavelength band, expressed as a regular sequence (incomplete)</documentation>
-				</annotation>
-			</element>
-		</choice>
-	</group>
-	<!-- ====================================================================== -->
-	<element name="AxisDefinition" type="xmml:AxisDefinitionType" substitutionGroup="gml:Definition">
-		<annotation>
-			<documentation>Description of a scalar property</documentation>
-		</annotation>
-	</element>
-	<!-- ====================================================================== -->
-	<complexType name="AxisDefinitionType">
-		<annotation>
-			<documentation>A scalar property and the value-space used to express instances.  
-      gml:description may be used for a more extensive description of the semantics, with a link to a definitive version (if available).  
-      gml:name should be used for the "short name" or label.  
-      </documentation>
-		</annotation>
-		<complexContent>
-			<extension base="gml:DefinitionType">
-				<sequence>
-					<element name="derivation" minOccurs="0">
-						<complexType>
-							<choice>
-								<element name="ConstrainedProperty">
-									<complexType>
-										<sequence>
-											<element name="baseProperty" type="gml:StringOrRefType">
-												<annotation>
-													<documentation>Property that forms the basis for generating a set of more refined properties; e.g. Chemical Composition, Radiance</documentation>
-												</annotation>
-											</element>
-											<group ref="xmml:singleConstraints" maxOccurs="unbounded"/>
-										</sequence>
-									</complexType>
-								</element>
-							</choice>
-						</complexType>
-					</element>
-					<element ref="xmml:representation"/>
-					<group ref="xmml:quality"/>
-				</sequence>
-			</extension>
-		</complexContent>
-	</complexType>
 	<!-- ====================================================================== -->
 </schema>
