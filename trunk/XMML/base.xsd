@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<schema xmlns:gml="http://www.opengis.net/gml" xmlns:cil="urn:oasis:names:tc:ciq:xsdschema:xCIL:2.0" xmlns:nal="urn:oasis:names:tc:ciq:xsdschema:xNAL:2.0" xmlns:al="urn:oasis:names:tc:ciq:xsdschema:xAL:2.0" xmlns:nl="urn:oasis:names:tc:ciq:xsdschema:xNL:2.0" xmlns:smXML="http://www.isotc211.org/smXML" xmlns="http://www.w3.org/2001/XMLSchema" xmlns:xmml="http://www.opengis.net/xmml" targetNamespace="http://www.opengis.net/xmml" elementFormDefault="qualified" attributeFormDefault="unqualified" version="pre-release">
+<schema xmlns:gml="http://www.opengis.net/gml" xmlns:smXML="http://www.isotc211.org/smXML" xmlns="http://www.w3.org/2001/XMLSchema" xmlns:xmml="http://www.opengis.net/xmml" targetNamespace="http://www.opengis.net/xmml" elementFormDefault="qualified" attributeFormDefault="unqualified" version="pre-release">
 	<annotation>
 		<documentation>base.xsd
 
@@ -9,13 +9,13 @@ Copyright © 2005 CSIRO - see https://www.seegrid.csiro.au/twiki/bin/view/Xmml/L
 	</annotation>
 	<!-- ====================================================================== -->
 	<!-- bring in other schemas -->
-	<import namespace="http://www.opengis.net/gml" schemaLocation="../gml/3.1.1/base/geometryBasic0d1d.xsd"/>
-	<!--	-->
+	<import namespace="http://www.opengis.net/gml" schemaLocation="./gml4base.xsd"/>
+	<!--	
 	<import namespace="http://www.isotc211.org/smXML" schemaLocation="./smXML4xmml.xsd">
 		<annotation>
 			<documentation>ISO/TC 211 metadata schema</documentation>
 		</annotation>
-	</import>
+	</import>-->
 	<include schemaLocation="./basicTypes.xsd"/>
 	<include schemaLocation="../enumerations/LUTmaintenance.xsd"/>
 	<!-- ====================================================================== -->
@@ -84,8 +84,8 @@ Copyright © 2005 CSIRO - see https://www.seegrid.csiro.au/twiki/bin/view/Xmml/L
 	<!-- ==================================================== -->
 	<group name="Party">
 		<choice>
-			<!--			-->
-			<element ref="smXML:CI_ResponsibleParty"/>
+			<!--		
+			<element ref="smXML:CI_ResponsibleParty"/>	-->
 			<element name="SimpleParty" type="gml:StringOrRefType"/>
 		</choice>
 	</group>
@@ -112,12 +112,12 @@ Copyright © 2005 CSIRO - see https://www.seegrid.csiro.au/twiki/bin/view/Xmml/L
 		</annotation>
 		<sequence minOccurs="0">
 			<choice>
-				<!--				-->
+				<!--			
 				<element ref="smXML:CI_Citation">
 					<annotation>
 						<documentation>ISO 19139 component for Citations</documentation>
 					</annotation>
-				</element>
+				</element>	-->
 				<element ref="xmml:SimpleCitation"/>
 			</choice>
 		</sequence>
