@@ -9,7 +9,7 @@ Copyright © 2005 CSIRO - see https://www.seegrid.csiro.au/twiki/bin/view/Xmml/L
 	</annotation>
 	<!-- ====================================================================== -->
 	<!-- bring in other schemas -->
-	<import namespace="http://www.opengis.net/gml" schemaLocation="./gml4procedure.xsd"/>
+	<import namespace="http://www.opengis.net/gml" schemaLocation="./gml4procedureEvent.xsd"/>
 	<include schemaLocation="./procedures.xsd"/>
 	<include schemaLocation="./event.xsd"/>
 	<!-- =========================================================== -->
@@ -27,7 +27,8 @@ Copyright © 2005 CSIRO - see https://www.seegrid.csiro.au/twiki/bin/view/Xmml/L
 		<complexContent>
 			<extension base="xmml:EventType">
 				<sequence>
-					<element ref="xmml:procedureUsed"/>
+					<element name="location" type="gml:GeometryPropertyType" nillable="true"/>
+					<element name="procedureUsed" type="xmml:ProcedurePropertyType"/>
 					<element name="source" type="gml:StringOrRefType" minOccurs="0" maxOccurs="unbounded">
 						<annotation>
 							<documentation>Reference to input (if not implied by context)</documentation>
