@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- edited with XMLSPY v5 U (http://www.xmlspy.com) by Robert Cheung (CSIRO) -->
+<schema targetNamespace="http://www.opengis.net/xmml" xmlns="http://www.w3.org/2001/XMLSchema" xmlns:gml="http://www.opengis.net/gml" xmlns:xmml="http://www.opengis.net/xmml" elementFormDefault="qualified" attributeFormDefault="unqualified" version="pre-release">
+	<annotation>
+		<documentation>
+surfaces.xsd
+
+A GML conformant schema 
+for various surface features acting as geological boundaries
+
+SJDC  2004-03-15
+
+Copyright (c) 2004 CSIRO - see https://www.seegrid.csiro.au/twiki/bin/view/Xmml/LegalNotices#Software_Notice
+</documentation>
+	</annotation>
+	<!-- ====================================================================== -->
+	<!-- bring in other schemas -->
+	<include schemaLocation="./surfaces.xsd"/>
+	<!-- ====================================================================== -->
+	<element name="Boundary" type="xmml:BoundaryType" substitutionGroup="xmml:SurfaceFeature"/>
+	<complexType name="BoundaryType">
+		<annotation>
+			<documentation>Add unitBounded property to point to stratigraphic unit bounded by the surface</documentation>
+		</annotation>
+		<complexContent>
+			<extension base="xmml:SurfacedFeatureType">
+				<sequence>
+					<element name="unitBounded" type="xmml:ObjectBoundedType" minOccurs="0" maxOccurs="unbounded">
+						<annotation>
+							<documentation>Pointer to stratigraphic unit bounding by the surface</documentation>
+						</annotation>
+					</element>
+				</sequence>
+			</extension>
+		</complexContent>
+	</complexType>
+	<!-- ====================================================================== -->
+	<complexType name="ObjectBoundedType">
+		<annotation>
+			<documentation>Pointers to another object bounded by this geometry, with an indication of which side the bound is oriented. </documentation>
+		</annotation>
+		<complexContent>
+			<extension base="gml:ReferenceType">
+				<attribute name="orientation" type="gml:SignType" default="+"/>
+			</extension>
+		</complexContent>
+	</complexType>
+	<!-- ====================================================================== -->
+	<element name="ModelDomainBoundary" type="xmml:ModelDomainBoundaryType" substitutionGroup="xmml:Boundary"/>
+	<complexType name="ModelDomainBoundaryType">
+		<annotation>
+			<documentation>Currently a vacuous extension.  What other properties should a model domain boundary have?</documentation>
+		</annotation>
+		<complexContent>
+			<extension base="xmml:BoundaryType"/>
+		</complexContent>
+	</complexType>
+	<!-- ====================================================================== -->
+	<element name="Fault" type="xmml:FaultType" substitutionGroup="xmml:Boundary"/>
+	<complexType name="FaultType">
+		<annotation>
+			<documentation>Currently a vacuous extension.  What other properties should a fault have?</documentation>
+		</annotation>
+		<complexContent>
+			<extension base="xmml:BoundaryType"/>
+		</complexContent>
+	</complexType>
+	<!-- ====================================================================== -->
+	<element name="IntrusiveContact" type="xmml:IntrusiveContactType" substitutionGroup="xmml:Boundary"/>
+	<complexType name="IntrusiveContactType">
+		<annotation>
+			<documentation>Currently a vacuous extension.  What additional properties should an intrusive contact have?</documentation>
+		</annotation>
+		<complexContent>
+			<extension base="xmml:BoundaryType"/>
+		</complexContent>
+	</complexType>
+	<!-- ====================================================================== -->
+	<element name="StratigraphicContact" type="xmml:StratigraphicContactType" substitutionGroup="xmml:Boundary"/>
+	<complexType name="StratigraphicContactType">
+		<annotation>
+			<documentation>Currently a vacuous extension.  What additional properties should a stratigraphic contact have?</documentation>
+		</annotation>
+		<complexContent>
+			<extension base="xmml:BoundaryType"/>
+		</complexContent>
+	</complexType>
+	<!-- ====================================================================== -->
+	<element name="Unconformity" type="xmml:UnconformityType" substitutionGroup="xmml:Boundary"/>
+	<complexType name="UnconformityType">
+		<annotation>
+			<documentation>Currently a vacuous extension.  What additional properties should an unconformity have?</documentation>
+		</annotation>
+		<complexContent>
+			<extension base="xmml:BoundaryType"/>
+		</complexContent>
+	</complexType>
+	<!-- ====================================================================== -->
+</schema>

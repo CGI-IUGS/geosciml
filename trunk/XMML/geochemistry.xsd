@@ -1,0 +1,309 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<schema targetNamespace="http://www.opengis.net/xmml" xmlns:xmml="http://www.opengis.net/xmml" xmlns="http://www.w3.org/2001/XMLSchema" xmlns:gml="http://www.opengis.net/gml" xmlns:xlink="http://www.w3.org/1999/xlink" elementFormDefault="qualified" attributeFormDefault="unqualified" version="pre-release">
+	<annotation>
+		<documentation>
+geochemistry.xsd
+
+A GML conformant schema 
+for geochemistry
+
+2003-07-19
+
+Copyright (c) 2004 CSIRO - see https://www.seegrid.csiro.au/twiki/bin/view/Xmml/LegalNotices#Software_Notice
+</documentation>
+	</annotation>
+	<!-- ====================================================================== -->
+	<!-- bring in other schemas -->
+	<include schemaLocation="./commonFeatures.xsd"/>
+	<include schemaLocation="./observation.xsd"/>
+	<include schemaLocation="../enumerations/LUTgeochemistry.xsd"/>
+	<!-- ====================================================================== -->
+	<group name="geochemResultChoice">
+		<choice>
+			<element ref="xmml:result"/>
+			<element ref="xmml:noResult"/>
+		</choice>
+	</group>
+	<element name="specimen" type="xmml:SpecimenPropertyType" substitutionGroup="xmml:subject"/>
+	<!-- ====================================================================== -->
+	<element name="GeochemMeasurement" type="xmml:GeochemMeasurementType" substitutionGroup="xmml:Observation"/>
+	<!-- -->
+	<complexType name="GeochemMeasurementBaseType">
+		<annotation>
+			<documentation>Restrict generic measurement type:
+         suppress observedProperty
+         specimen in place of "subject"
+         only numeric or no-result
+</documentation>
+		</annotation>
+		<complexContent>
+			<restriction base="xmml:ObservationType">
+				<sequence>
+					<group ref="gml:StandardObjectProperties"/>
+					<group ref="xmml:StandardSupportProperties"/>
+					<element ref="xmml:relatedFeature" minOccurs="0" maxOccurs="unbounded"/>
+					<element ref="gml:position"/>
+					<element ref="xmml:specimen" minOccurs="0"/>
+					<group ref="xmml:geochemResultChoice"/>
+					<group ref="xmml:pqr"/>
+				</sequence>
+			</restriction>
+		</complexContent>
+	</complexType>
+	<!-- -->
+	<complexType name="GeochemMeasurementType">
+		<annotation>
+			<documentation>Extend with 
+        analyte (in place of observedProperty)
+        purpose
+      </documentation>
+		</annotation>
+		<complexContent>
+			<extension base="xmml:GeochemMeasurementBaseType">
+				<sequence>
+					<element name="analyte" type="xmml:analyteCode"/>
+					<element ref="xmml:purpose" minOccurs="0"/>
+				</sequence>
+				<attribute name="seqNo" type="integer" use="optional"/>
+			</extension>
+		</complexContent>
+	</complexType>
+	<!-- ======================================================================  <element name="geochemMeasurementProperty" type="xmml:GeochemMeasurementPropertyType" substitutionGroup="om:observationProperty"/> -->
+	<!--  <complexType name="GeochemMeasurementPropertyType">
+    <complexContent>
+      <restriction base="om:ObservationPropertyType">
+        <sequence>
+          <element ref="xmml:GeochemMeasurement" minOccurs="0"/>
+        </sequence>
+        <attributeGroup ref="gml:AssociationAttributeGroup"/>
+      </restriction>
+    </complexContent>
+  </complexType> -->
+	<!-- components of observation Collections  <element name="geochemMeasurementMember" type="xmml:GeochemMeasurementPropertyType" substitutionGroup="om:observationMember"/> -->
+	<!-- ======================================================================  <element name="geochemMeasurementMembers" type="xmml:GeochemMeasurementArrayPropertyType" substitutionGroup="om:observationMembers"/> -->
+	<!-- ======  <complexType name="GeochemMeasurementArrayPropertyType">
+    <complexContent>
+      <restriction base="om:ObservationArrayPropertyType">
+        <sequence>
+          <element ref="xmml:GeochemMeasurement" minOccurs="0" maxOccurs="unbounded"/>
+        </sequence>
+      </restriction>
+    </complexContent>
+  </complexType> -->
+	<!-- ====================================================================== -->
+	<element name="GeochemRequest" type="xmml:GeochemRequestType"/>
+	<!-- -->
+	<complexType name="GeochemRequestType">
+		<annotation>
+			<documentation>
+      Add "purpose" to the generic request
+      </documentation>
+		</annotation>
+		<complexContent>
+			<extension base="xmml:ObservationType">
+				<sequence>
+					<element ref="xmml:purpose" minOccurs="0"/>
+					<!-- element ref="xmml:purpose" default="normal" minOccurs="0"/ 
+          XMl Spy will not validate this
+          -->
+				</sequence>
+			</extension>
+		</complexContent>
+	</complexType>
+	<!-- ====================================================================== -->
+	<element name="GeochemSpecimen" type="xmml:SpecimenType" substitutionGroup="xmml:Specimen"/>
+	<!-- ====================================================================== -->
+	<element name="SamplingProcedure" type="xmml:SamplingProcedureType" substitutionGroup="xmml:Procedure">
+		<annotation>
+			<documentation>description of a sampling method for a geochemistry specimen</documentation>
+		</annotation>
+	</element>
+	<!-- ====== -->
+	<element name="samplingMethod" type="xmml:sampleCollectionTypes" substitutionGroup="xmml:procedureCode"/>
+	<!-- ====== -->
+	<complexType name="SamplingProcedureType">
+		<complexContent>
+			<extension base="xmml:ProcedureType">
+				<sequence>
+					<element name="operator" type="xmml:PartyPropertyType" minOccurs="0"/>
+				</sequence>
+			</extension>
+		</complexContent>
+	</complexType>
+	<!-- ====================================================================== -->
+	<element name="sampledUsing" type="xmml:SamplingProcedurePropertyType">
+		<annotation>
+			<documentation>contains or points to a description of a sampling method for a geochemistry specimen</documentation>
+		</annotation>
+	</element>
+	<!-- ====== -->
+	<complexType name="SamplingProcedurePropertyType">
+		<sequence>
+			<element ref="xmml:SamplingProcedure" minOccurs="0"/>
+		</sequence>
+		<attributeGroup ref="gml:AssociationAttributeGroup"/>
+	</complexType>
+	<!-- ====================================================================== -->
+	<element name="SpecimenPrep" type="xmml:SpecimenPrepType" substitutionGroup="xmml:Procedure">
+		<annotation>
+			<documentation>description of a preparation method for a geochemistry specimen</documentation>
+		</annotation>
+	</element>
+	<!-- ====== -->
+	<complexType name="SpecimenPrepType">
+		<complexContent>
+			<extension base="xmml:ProcedureType">
+				<sequence>
+					<element name="jobNumber" type="token" minOccurs="0"/>
+				</sequence>
+			</extension>
+		</complexContent>
+	</complexType>
+	<!-- ====================================================================== -->
+	<element name="preparedUsing" type="xmml:SpecimenPrepPropertyType">
+		<annotation>
+			<documentation>contains or points to a description of a preparation method for a geochemistry specimen</documentation>
+		</annotation>
+	</element>
+	<!-- ====== -->
+	<complexType name="SpecimenPrepPropertyType">
+		<sequence>
+			<element ref="xmml:SpecimenPrep" minOccurs="0"/>
+		</sequence>
+		<attributeGroup ref="gml:AssociationAttributeGroup"/>
+	</complexType>
+	<!-- ====================================================================== -->
+	<element name="GeochemProcedure" type="xmml:GeochemProcedureType" substitutionGroup="xmml:Procedure">
+		<annotation>
+			<documentation>description of an assay method</documentation>
+		</annotation>
+	</element>
+	<element name="assayCode" type="token" substitutionGroup="xmml:procedureCode"/>
+	<!-- ====== -->
+	<complexType name="GeochemProcedureType">
+		<annotation>
+			<documentation/>
+		</annotation>
+		<complexContent>
+			<extension base="xmml:ProcedureType">
+				<sequence>
+					<element name="operator" type="xmml:PartyPropertyType" minOccurs="0"/>
+				</sequence>
+			</extension>
+		</complexContent>
+	</complexType>
+	<!-- ====================================================================== -->
+	<element name="assayUsing" type="xmml:GeochemProcedurePropertyType">
+		<annotation>
+			<documentation>This element contains or points to a description of an assay method</documentation>
+		</annotation>
+	</element>
+	<!-- ====== -->
+	<complexType name="GeochemProcedurePropertyType">
+		<sequence>
+			<element ref="xmml:GeochemProcedure" minOccurs="0"/>
+		</sequence>
+		<attributeGroup ref="gml:AssociationAttributeGroup"/>
+	</complexType>
+	<!-- ====================================================================== -->
+	<element name="AssaySuite" type="xmml:AssaySuiteDefinitionType" substitutionGroup="gml:Definition">
+		<annotation>
+			<documentation>description of an assay suite, which includes one or more Assay definitions</documentation>
+		</annotation>
+	</element>
+	<!-- ====== -->
+	<complexType name="AssaySuiteDefinitionType">
+		<annotation>
+			<documentation/>
+		</annotation>
+		<complexContent>
+			<extension base="gml:DefinitionType">
+				<sequence>
+					<element name="component" minOccurs="0" maxOccurs="unbounded">
+						<complexType>
+							<sequence>
+								<element name="Assay" type="xmml:AssayDefinitionType" minOccurs="0"/>
+							</sequence>
+							<attributeGroup ref="gml:AssociationAttributeGroup"/>
+						</complexType>
+					</element>
+				</sequence>
+			</extension>
+		</complexContent>
+	</complexType>
+	<!-- ====================================================================== -->
+	<element name="Assay" type="xmml:AssayDefinitionType" substitutionGroup="gml:Definition">
+		<annotation>
+			<documentation>description of an assay</documentation>
+		</annotation>
+	</element>
+	<!-- ====================================================================== -->
+	<complexType name="AssayDefinitionType">
+		<annotation>
+			<documentation/>
+		</annotation>
+		<complexContent>
+			<extension base="gml:DefinitionType">
+				<sequence>
+					<element name="analyte" type="xmml:analyteCode"/>
+					<element ref="gml:unitOfMeasure"/>
+				</sequence>
+			</extension>
+		</complexContent>
+	</complexType>
+	<!-- ====================================================================== -->
+	<!-- code lists -->
+	<!-- ====================================================================== -->
+	<element name="prepCode" type="token" substitutionGroup="xmml:procedureCode"/>
+	<element name="samplingCode" type="token" substitutionGroup="xmml:procedureCode"/>
+	<!-- ====================================================================== -->
+	<simpleType name="sampleCollectionTypes">
+		<restriction base="token">
+			<enumeration value="Drill"/>
+			<enumeration value="Stream"/>
+			<enumeration value="Lag"/>
+		</restriction>
+	</simpleType>
+	<element name="WMCsample" type="xmml:WMCsampleCode" substitutionGroup="xmml:samplingCode"/>
+	<!-- ====== -->
+	<simpleType name="WMCsampleCode">
+		<restriction base="token">
+			<enumeration value="STAND">
+				<annotation>
+					<documentation>Standard</documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="DSPLIT"/>
+			<enumeration value="P"/>
+		</restriction>
+	</simpleType>
+	<!-- ====================================================================== -->
+	<element name="purpose" type="token"/>
+	<element name="WMCpurpose" type="xmml:QAQCPurposeWMC" substitutionGroup="xmml:purpose"/>
+	<!-- ====== -->
+	<simpleType name="QAQCPurposeWMC">
+		<annotation>
+			<documentation>
+    Codes for WMC QAQC measurements.
+    
+    QS - internal standard or blank
+    SD - site duplicate - i.e. splits from drill core, proximate specimen for surface samples
+    RS - repeat sample for seasonal effects - surface sampling
+    C - check assay - same prep, different lab
+    D - lab duplicate - split prior to pulverising, same lab
+    R - lab replicate - split after pulverising, same lab
+    
+    </documentation>
+		</annotation>
+		<restriction base="token">
+			<enumeration value="normal"/>
+			<enumeration value="QS"/>
+			<enumeration value="SD"/>
+			<enumeration value="RS"/>
+			<enumeration value="C"/>
+			<enumeration value="D"/>
+			<enumeration value="R"/>
+		</restriction>
+	</simpleType>
+	<!-- ====================================================================== -->
+</schema>

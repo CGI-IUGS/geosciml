@@ -1,0 +1,150 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- edited with XMLSPY v2004 rel. 3 U (http://www.xmlspy.com) by Robert Cheung (CSIRO Division of Exploration and Mining) -->
+<schema targetNamespace="http://www.opengis.net/xmml" xmlns:xmml="http://www.opengis.net/xmml" xmlns:gml="http://www.opengis.net/gml" xmlns="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified" attributeFormDefault="unqualified" version="pre-release">
+	<annotation>
+		<documentation>
+sloppyTopology.xsd
+
+A GML conformant schema 
+which supports the definition of "regions" via the sloppy-topology approach
+
+SJDC  2003-10-22
+
+Copyright (c) 2004 CSIRO - see https://www.seegrid.csiro.au/twiki/bin/view/Xmml/LegalNotices#Software_Notice
+</documentation>
+	</annotation>
+	<!-- ====================================================================== -->
+	<!-- bring in other schemas -->
+	<import namespace="http://www.opengis.net/gml" schemaLocation="../gml/base/feature.xsd"/>
+	<include schemaLocation="./boundaries.xsd"/>
+	<include schemaLocation="./solids.xsd"/>
+	<!-- ====================================================================== -->
+	<element name="Region" type="xmml:RegionType" substitutionGroup="xmml:Feature">
+		<annotation>
+			<documentation>A Region only has a static pointer to the stratigraphic unit that it contains. </documentation>
+		</annotation>
+	</element>
+	<!-- ====== -->
+	<complexType name="RegionType">
+		<annotation>
+			<documentation>Add pointer to the stratigraphic unit that it contains. </documentation>
+		</annotation>
+		<complexContent>
+			<extension base="xmml:SolidFeatureType">
+				<sequence>
+					<element name="unitContained" type="xmml:ObjectBoundedType"/>
+				</sequence>
+			</extension>
+		</complexContent>
+	</complexType>
+	<!-- ====================================================================== -->
+	<complexType name="ArrayOfRegionsPropertyType">
+		<annotation>
+			<documentation>Provides for a list of regions</documentation>
+		</annotation>
+		<sequence>
+			<element ref="xmml:Region" maxOccurs="unbounded"/>
+		</sequence>
+	</complexType>
+	<!-- ======================================================================-->
+	<complexType name="ArrayOfSurfacesPropertyType">
+		<annotation>
+			<documentation>Provides for a list of surfaces</documentation>
+		</annotation>
+		<sequence>
+			<element ref="xmml:SurfaceFeature" maxOccurs="unbounded"/>
+		</sequence>
+	</complexType>
+	<!-- ======================================================================-->
+	<element name="RockUnit" type="gml:DefinitionType"/>
+	<!-- ======================================================================-->
+	<complexType name="ArrayOfRockUnitPropertyType">
+		<annotation>
+			<documentation>Provides for a list of rockUnit references</documentation>
+		</annotation>
+		<sequence>
+			<element ref="xmml:RockUnit" maxOccurs="unbounded"/>
+		</sequence>
+	</complexType>
+	<!-- ====================================================================== -->
+	<element name="GeologicalEvent" type="xmml:GeologicalEventType" substitutionGroup="xmml:Event">
+		<annotation>
+			<documentation>A geological event produces one or more geological features. </documentation>
+		</annotation>
+	</element>
+	<!-- ====== -->
+	<complexType name="GeologicalEventType">
+		<annotation>
+			<documentation> </documentation>
+		</annotation>
+		<complexContent>
+			<restriction base="xmml:EventType">
+				<sequence>
+					<group ref="gml:StandardObjectProperties"/>
+					<element name="product" type="gml:StringOrRefType" maxOccurs="unbounded"/>
+					<element name="precedingEvent" type="gml:StringOrRefType" minOccurs="0"/>
+				</sequence>
+			</restriction>
+		</complexContent>
+	</complexType>
+	<!-- ====================================================================== -->
+	<element name="GeologicalHistory" type="xmml:GeologicalHistoryType" substitutionGroup="xmml:Event">
+		<annotation>
+			<documentation>A Geological History contains one or more Geological Events. </documentation>
+		</annotation>
+	</element>
+	<!-- ====== -->
+	<complexType name="GeologicalHistoryBaseType">
+		<annotation>
+			<documentation> </documentation>
+		</annotation>
+		<complexContent>
+			<restriction base="xmml:EventType">
+				<sequence>
+					<group ref="gml:StandardObjectProperties"/>
+					<element name="when" type="gml:TimePrimitivePropertyType"/>
+				</sequence>
+			</restriction>
+		</complexContent>
+	</complexType>
+	<complexType name="GeologicalHistoryType">
+		<annotation>
+			<documentation> </documentation>
+		</annotation>
+		<complexContent>
+			<extension base="xmml:GeologicalHistoryBaseType">
+				<sequence>
+					<element name="member" maxOccurs="unbounded">
+						<complexType>
+							<sequence minOccurs="0">
+								<element ref="xmml:GeologicalEvent"/>
+							</sequence>
+							<attributeGroup ref="gml:AssociationAttributeGroup"/>
+						</complexType>
+					</element>
+				</sequence>
+			</extension>
+		</complexContent>
+	</complexType>
+	<!-- ====================================================================== -->
+	<element name="SloppyTopologyModel" type="xmml:SloppyTopologyModelType"/>
+	<!-- ====== -->
+	<complexType name="SloppyTopologyModelType">
+		<annotation>
+			<documentation>Encapsulates a entire sloppyTopologyModel</documentation>
+		</annotation>
+		<sequence>
+			<element name="surfaces" type="xmml:ArrayOfSurfacesPropertyType"/>
+			<element name="regions" type="xmml:ArrayOfRegionsPropertyType"/>
+			<element name="rockUnits" type="xmml:ArrayOfRockUnitPropertyType"/>
+			<element name="geologicalHistory">
+				<complexType>
+					<sequence>
+						<element ref="xmml:GeologicalHistory"/>
+					</sequence>
+				</complexType>
+			</element>
+		</sequence>
+	</complexType>
+	<!-- ====================================================================== -->
+</schema>

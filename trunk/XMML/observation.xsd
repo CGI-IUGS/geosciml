@@ -1,0 +1,180 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<schema targetNamespace="http://www.opengis.net/xmml" xmlns:xmml="http://www.opengis.net/xmml" xmlns="http://www.w3.org/2001/XMLSchema" xmlns:gml="http://www.opengis.net/gml" xmlns:xlink="http://www.w3.org/1999/xlink" elementFormDefault="qualified" attributeFormDefault="unqualified" version="pre-release">
+	<annotation>
+		<documentation>
+observation.xsd
+
+An implementation of the OandM model for XMML
+
+2004-04-21
+
+Copyright (c) 2004 CSIRO - see https://www.seegrid.csiro.au/twiki/bin/view/Xmml/LegalNotices#Software_Notice
+</documentation>
+	</annotation>
+	<!-- ====================================================================== -->
+	<!-- bring in other schemas -->
+	<include schemaLocation="./feature.xsd"/>
+	<include schemaLocation="./procedures.xsd"/>
+	<!-- ====================================================================== -->
+	<!-- ===== Feature types ====== -->
+	<!-- ====================================================================== -->
+	<element name="Observation" type="xmml:ObservationType" substitutionGroup="xmml:Feature">
+		<annotation>
+			<documentation>Generic Observation event</documentation>
+		</annotation>
+	</element>
+	<!-- ====== -->
+	<complexType name="ObservationType">
+		<annotation>
+			<documentation>Generic Observation event.   
+      Note that, in the context of an observation the mandatory "position" is the one deemed by the data provider to be most "representative" for use in spatial analysis. This location will normally relate to the location of the target or subject of the observation, rather than the location of the sensor or instrucment which may be sensing a phenomenon remotely. This location may be complemented by an extensive location which may be associated with the target or subject of the observation. 
+      </documentation>
+		</annotation>
+		<complexContent>
+			<extension base="xmml:PositionedFeatureType">
+				<sequence>
+					<element ref="xmml:subject">
+						<annotation>
+							<documentation>the Feature regarding which the observations are being made, sometimes called the target of the observation, such as a specimen, station, tract, mountain, etc. </documentation>
+						</annotation>
+					</element>
+					<element name="observedProperty" type="gml:DictionaryEntryType" minOccurs="0">
+						<annotation>
+							<documentation>Description of the property or phenomenon whose value is being described or estimated through observation, such as "wavelength", "grass-species", "power", "intensity in the waveband x-y", etc. It is this feature property that provides the (semantic) type of the observation. Note that the description of the phenomenon may be quite specific and constrained. In general the precise details of the constraints describing the observe properties require attention to the procedure used in making the observation: e.g. an optical sensor typically has a wavelength-dependent response. This optional property may be provided for client convenience, to allow comparison between and aggregation of observations of the same property made using different procedures.</documentation>
+						</annotation>
+					</element>
+					<group ref="xmml:resultChoice">
+						<annotation>
+							<documentation>a choice of a measure, boolean, code, count, geometry or time-object, etc</documentation>
+						</annotation>
+					</group>
+					<element ref="xmml:quality" minOccurs="0"/>
+					<element name="procedureTime" type="gml:TimePrimitivePropertyType">
+						<annotation>
+							<documentation>The Time when the observation occurred.  </documentation>
+						</annotation>
+					</element>
+					<element name="responsible" type="xmml:PartyPropertyType" minOccurs="0">
+						<annotation>
+							<documentation>Person or organisation responsible for the observation</documentation>
+						</annotation>
+					</element>
+					<element ref="xmml:procedureUsed">
+						<annotation>
+							<documentation>Procedure or instrument used for the act of observation. 
+							If the procedure involves reprocessing an earlier observation, then the identity of the source observation(s) should be recorded as a relatedFeature - use xlink:role to record the nature of the relationship (e.g. source measurement)</documentation>
+						</annotation>
+					</element>
+					<element ref="xmml:reference" minOccurs="0"/>
+				</sequence>
+			</extension>
+		</complexContent>
+	</complexType>
+	<!-- ====== -->
+	<element name="resultMeasure" type="gml:MeasureType">
+		<annotation>
+			<documentation>Holds a measure as a simple (literal) value</documentation>
+		</annotation>
+	</element>
+	<element name="resultBoolean" type="boolean">
+		<annotation>
+			<documentation>Holds a boolean as a simple (literal) value</documentation>
+		</annotation>
+	</element>
+	<element name="resultCode" type="xmml:TokenWithAuthorityType">
+		<annotation>
+			<documentation>Holds a code as a simple (literal) value</documentation>
+		</annotation>
+	</element>
+	<element name="resultCount" type="integer">
+		<annotation>
+			<documentation>Holds an integer as a simple (literal) value</documentation>
+		</annotation>
+	</element>
+	<element name="resultNTuple" type="xmml:NumericOrNullTupleType">
+		<annotation>
+			<documentation>Holds a numeric tuple as a simple (literal) value</documentation>
+		</annotation>
+	</element>
+	<element name="resultTuple" type="xmml:TupleType">
+		<annotation>
+			<documentation>Holds a general tuple as a simple (literal) value</documentation>
+		</annotation>
+	</element>
+	<element name="resultGeometry" type="gml:GeometryPropertyType">
+		<annotation>
+			<documentation>Holds or points to a gml:_Geometry</documentation>
+		</annotation>
+	</element>
+	<element name="resultTime" type="gml:TimePrimitivePropertyType">
+		<annotation>
+			<documentation>Holds or points to a gml:_TimePrimitive</documentation>
+		</annotation>
+	</element>
+	<element name="resultObject" type="gml:AssociationType">
+		<annotation>
+			<documentation>The most general form for holding a "result", which may be any Object (including valueObjects) or may simply carry a link to the result</documentation>
+		</annotation>
+	</element>
+	<element name="noResult" type="gml:NullType">
+		<annotation>
+			<documentation>Holds a null as a simple (literal) value</documentation>
+		</annotation>
+	</element>
+	<!-- ====== -->
+	<group name="resultChoice">
+		<choice>
+			<element ref="xmml:resultMeasure"/>
+			<element ref="xmml:resultBoolean"/>
+			<element ref="xmml:resultCode"/>
+			<element ref="xmml:resultCount"/>
+			<element ref="xmml:resultNTuple"/>
+			<element ref="xmml:resultTuple"/>
+			<element ref="xmml:resultGeometry"/>
+			<element ref="xmml:resultTime"/>
+			<element ref="xmml:resultObject"/>
+			<element ref="xmml:noResult"/>
+		</choice>
+	</group>
+	<!-- =================================================================== -->
+	<element name="ObservationCollection" type="xmml:ObservationCollectionType" substitutionGroup="xmml:Feature"/>
+	<!-- ====== -->
+	<complexType name="ObservationCollectionType">
+		<complexContent>
+			<extension base="xmml:BoundedFeatureType">
+				<sequence>
+					<element name="observationMember" type="xmml:ObservationPropertyType" minOccurs="0" maxOccurs="unbounded"/>
+					<element name="observationMembers" type="xmml:ObservationArrayPropertyType" minOccurs="0"/>
+				</sequence>
+			</extension>
+		</complexContent>
+	</complexType>
+	<!-- =================================================================== -->
+	<!-- ====================================================================== -->
+	<!-- ====================================================================== -->
+	<!-- ===== Properties used by specialised feature types ======= -->
+	<!-- ====================================================================== -->
+	<element name="previousObservation" type="xmml:ObservationPropertyType"/>
+	<element name="relatedObservation" type="xmml:ObservationPropertyType"/>
+	<!-- ====== -->
+	<complexType name="ObservationPropertyType">
+		<sequence>
+			<choice minOccurs="0">
+				<element ref="xmml:Observation"/>
+				<element ref="xmml:ObservationCollection"/>
+			</choice>
+		</sequence>
+		<attributeGroup ref="gml:AssociationAttributeGroup"/>
+	</complexType>
+	<!-- ============================================================== -->
+	<complexType name="ObservationArrayPropertyType">
+		<sequence>
+			<element ref="xmml:Observation" minOccurs="0" maxOccurs="unbounded"/>
+		</sequence>
+	</complexType>
+	<!-- ============================================================== -->
+	<!-- ===================================================================  -->
+	<element name="subject" type="gml:FeaturePropertyType"/>
+	<element name="target" type="gml:FeaturePropertyType" substitutionGroup="xmml:subject"/>
+	<!-- ====================================================================== -->
+</schema>

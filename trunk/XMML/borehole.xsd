@@ -1,0 +1,203 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<schema targetNamespace="http://www.opengis.net/xmml" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:xmml="http://www.opengis.net/xmml" xmlns:gml="http://www.opengis.net/gml" xmlns="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified" attributeFormDefault="unqualified" version="pre-release">
+	<annotation>
+		<documentation>
+borehole.xsd
+
+A GML conformant schema 
+for borehole descriptions with logs
+
+? suppress SurveyLog - this can be included in "logs" instead of "shape"
+? restrict shape representation to Linestring and Curve/segments/LineStringSegments only
+
+SJDC  2004-02-23
+
+Copyright (c) 2004 CSIRO - see https://www.seegrid.csiro.au/twiki/bin/view/Xmml/LegalNotices#Software_Notice
+</documentation>
+	</annotation>
+	<!-- ====================================================================== -->
+	<!-- bring in other schemas -->
+	<import namespace="http://www.opengis.net/gml" schemaLocation="../gml/base/direction.xsd"/>
+	<include schemaLocation="./commonFeatures.xsd"/>
+	<include schemaLocation="./coverage.xsd"/>
+	<include schemaLocation="../enumerations/LUTsampling.xsd"/>
+	<!-- ====================================================================== -->
+	<element name="Borehole" type="xmml:BoreholeType" substitutionGroup="xmml:Feature">
+		<annotation>
+			<documentation>An exploration well, borehole or drillhole, with logs.  </documentation>
+		</annotation>
+	</element>
+	<!-- ====================================================================== -->
+	<complexType name="BoreholeType">
+		<annotation>
+			<documentation>An exploration well, borehole or drillhole, with logs.  
+      1. A borehole or well will often have several externally assigned identifiers or names, for example given by the driller, the logging contractor, the resource company, regulators, etc
+      2. The value of the "position" property will normally be the collar-location, but may be any other representative position. N.B. The detailed geometry, including location, is given by the value of the *shape* property. </documentation>
+		</annotation>
+		<complexContent>
+			<extension base="xmml:PositionedFeatureType">
+				<sequence>
+					<element name="drilledUsing" type="xmml:DrillProcedurePropertyType" minOccurs="0">
+						<annotation>
+							<documentation>This element contains or points to a description of a drilling method</documentation>
+						</annotation>
+					</element>
+					<element name="collarDiameter" type="gml:MeasureType" minOccurs="0">
+						<annotation>
+							<documentation>The diameter of the borehole. </documentation>
+						</annotation>
+					</element>
+					<element name="length" type="gml:MeasureType" minOccurs="0">
+						<annotation>
+							<documentation>The total length of the borehole. This is normally measured as arc-length along the (axis of) the hole. This property is provided for convenience and does not override the value implied by the "shape" property. </documentation>
+						</annotation>
+					</element>
+					<element name="shape" type="xmml:BoreholeShapeType">
+						<annotation>
+							<documentation>Description of the curve tracing the axis of the hole. </documentation>
+						</annotation>
+					</element>
+					<element name="log" type="xmml:LogPropertyType" minOccurs="0" maxOccurs="unbounded">
+						<annotation>
+							<documentation>Contains a set of observations on the borehole, recorded as a log.</documentation>
+						</annotation>
+					</element>
+					<element ref="xmml:relatedObservation" minOccurs="0" maxOccurs="unbounded">
+						<annotation>
+							<documentation>Pointers to or in-band observations associated with the Borehole</documentation>
+						</annotation>
+					</element>
+				</sequence>
+			</extension>
+		</complexContent>
+	</complexType>
+	<!-- ====================================================================== -->
+	<element name="collarLocation" type="gml:PointPropertyType" substitutionGroup="gml:position">
+		<annotation>
+			<documentation>The location of the wellhead or collar. 
+      Deprecated - use gml:position for this information.</documentation>
+		</annotation>
+	</element>
+	<!-- ====================================================================== -->
+	<element name="DrillProcedure" type="xmml:DrillProcedureType" substitutionGroup="xmml:Procedure">
+		<annotation>
+			<documentation>description of a drilling procedure. </documentation>
+		</annotation>
+	</element>
+	<complexType name="DrillProcedureType">
+		<annotation>
+			<documentation/>
+		</annotation>
+		<complexContent>
+			<extension base="xmml:ProcedureType">
+				<sequence>
+					<element name="operator" type="xmml:PartyPropertyType" minOccurs="0"/>
+				</sequence>
+			</extension>
+		</complexContent>
+	</complexType>
+	<!-- ====================================================================== -->
+	<element name="drillCode" type="xmml:drillCodes" substitutionGroup="xmml:procedureCode">
+		<annotation>
+			<documentation>Drilling procedure type.</documentation>
+		</annotation>
+	</element>
+	<!-- ====================================================================== -->
+	<complexType name="DrillProcedurePropertyType">
+		<complexContent>
+			<restriction base="xmml:ProcedurePropertyType">
+				<sequence>
+					<element ref="xmml:DrillProcedure" minOccurs="0"/>
+				</sequence>
+				<attributeGroup ref="gml:AssociationAttributeGroup"/>
+			</restriction>
+		</complexContent>
+	</complexType>
+	<!-- ====================================================================== -->
+	<complexType name="BoreholeShapeType">
+		<annotation>
+			<documentation>By value or by reference - standard GML Property model</documentation>
+		</annotation>
+		<sequence minOccurs="0">
+			<choice>
+				<element ref="xmml:BoreholeSurvey"/>
+				<element ref="gml:_Curve"/>
+			</choice>
+		</sequence>
+		<attributeGroup ref="gml:AssociationAttributeGroup"/>
+	</complexType>
+	<!-- ====================================================================== -->
+	<element name="BoreholeSurvey" type="xmml:BoreholeSurveyType"/>
+	<!-- ====================================================================== -->
+	<complexType name="BoreholeSurveyType">
+		<annotation>
+			<documentation>BoreholeSurvey carries an id, so can be used as the target of a reference. This is useful so that the survey defines a 1-D CRS used for indexing information along the borehole. </documentation>
+		</annotation>
+		<complexContent>
+			<extension base="gml:AbstractGMLType">
+				<sequence>
+					<element name="origin" type="gml:PointPropertyType">
+						<annotation>
+							<documentation>A borehole survey is expressed as a set of offset/direction pairs. The offset is relative to an origin, which is typically the borehole collar. The "by reference" form should normally be used if this is the case, pointing to the value of gml:position above. </documentation>
+						</annotation>
+					</element>
+					<choice>
+						<sequence>
+							<element name="offsets" type="gml:MeasureListType"/>
+							<element name="azimuths" type="gml:MeasureListType"/>
+							<element name="inclinations" type="gml:MeasureListType"/>
+						</sequence>
+						<element name="surveyTable">
+							<annotation>
+								<documentation>Compact form of the same information provided in row form embedded in a single element</documentation>
+							</annotation>
+							<complexType>
+								<simpleContent>
+									<restriction base="xmml:NumericTupleType">
+										<attribute name="dimension" fixed="3"/>
+										<attribute name="axisLabels" fixed="offset azimuth inclination"/>
+									</restriction>
+								</simpleContent>
+							</complexType>
+						</element>
+						<element ref="gml:direction">
+							<annotation>
+								<documentation>A simple direction relative to the origin.</documentation>
+							</annotation>
+						</element>
+					</choice>
+				</sequence>
+			</extension>
+		</complexContent>
+	</complexType>
+	<!-- ====================================================================== -->
+	<complexType name="LogPropertyType">
+		<sequence minOccurs="0">
+			<choice>
+				<element ref="xmml:ContinuousLog"/>
+				<element ref="xmml:IntervalLog"/>
+				<element ref="xmml:PointLog"/>
+			</choice>
+		</sequence>
+		<attributeGroup ref="gml:AssociationAttributeGroup"/>
+	</complexType>
+	<!-- ====================================================================== -->
+	<element name="PointLog" type="xmml:PointSetCoverageType" substitutionGroup="xmml:PointSetCoverage">
+		<annotation>
+			<documentation>A log over a collection of point locations</documentation>
+		</annotation>
+	</element>
+	<!-- ====================================================================== -->
+	<element name="IntervalLog" type="xmml:IntervalSetCoverageType" substitutionGroup="xmml:IntervalSetCoverage">
+		<annotation>
+			<documentation>A log over a collection of intervals</documentation>
+		</annotation>
+	</element>
+	<!-- ====================================================================== -->
+	<element name="ContinuousLog" type="xmml:RectifiedGridCoverageType" substitutionGroup="xmml:RectifiedGridCoverage">
+		<annotation>
+			<documentation>A log over a collection of regularly spaced locations</documentation>
+		</annotation>
+	</element>
+	<!-- ====================================================================== -->
+</schema>

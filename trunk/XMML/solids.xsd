@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<schema targetNamespace="http://www.opengis.net/xmml" xmlns="http://www.w3.org/2001/XMLSchema" xmlns:gml="http://www.opengis.net/gml" xmlns:xmml="http://www.opengis.net/xmml" elementFormDefault="qualified" attributeFormDefault="unqualified" version="pre-release">
+	<annotation>
+		<documentation>
+solids.xsd
+
+A GML conformant schema 
+for various features with solid geometry relevant to geology
+
+2004-02-04
+
+Copyright (c) 2004 CSIRO - see https://www.seegrid.csiro.au/twiki/bin/view/Xmml/LegalNotices#Software_Notice
+</documentation>
+	</annotation>
+	<!-- ====================================================================== -->
+	<!-- bring in other schemas -->
+	<include schemaLocation="./geometry.xsd"/>
+	<include schemaLocation="./observation.xsd"/>
+	<include schemaLocation="../enumerations/LUTportrayal.xsd"/>
+	<!-- ====================================================================== -->
+	<element name="SolidFeature" type="xmml:SolidFeatureType" substitutionGroup="xmml:Feature">
+		<annotation>
+			<documentation>A basic feature having just a solid shape. </documentation>
+		</annotation>
+	</element>
+	<!-- ====== -->
+	<complexType name="SolidFeatureType">
+		<annotation>
+			<documentation>Add featureType property for soft-typing. 
+      </documentation>
+		</annotation>
+		<complexContent>
+			<extension base="xmml:SolidedFeatureType">
+				<sequence>
+					<element name="featureType" type="token" minOccurs="0"/>
+				</sequence>
+			</extension>
+		</complexContent>
+	</complexType>
+	<complexType name="SolidedFeatureType">
+		<annotation>
+			<documentation>Add nodes and shape properties. </documentation>
+		</annotation>
+		<complexContent>
+			<extension base="xmml:BoundedFeatureType">
+				<sequence>
+					<element ref="xmml:nodes" minOccurs="0"/>
+					<element name="shape" type="gml:SolidPropertyType"/>
+				</sequence>
+			</extension>
+		</complexContent>
+	</complexType>
+	<!-- ====================================================================== -->
+	<element name="SolidWithProperties" type="xmml:SolidWithPropertiesType" substitutionGroup="xmml:SolidFeature">
+		<annotation>
+			<documentation>A basic feature having just a solid shape and some soft-typed properties. </documentation>
+		</annotation>
+	</element>
+	<!-- ====== -->
+	<complexType name="SolidWithPropertiesType">
+		<annotation>
+			<documentation> Add generic properties and observations. </documentation>
+		</annotation>
+		<complexContent>
+			<extension base="xmml:SolidFeatureType">
+				<sequence>
+					<group ref="xmml:property" minOccurs="0" maxOccurs="unbounded"/>
+					<element ref="xmml:relatedObservation" minOccurs="0" maxOccurs="unbounded"/>
+				</sequence>
+			</extension>
+		</complexContent>
+	</complexType>
+	<!-- ====================================================================== -->
+	<element name="ColouredSolid" type="xmml:ColouredSolidType" substitutionGroup="xmml:SolidFeature">
+		<annotation>
+			<documentation>A basic feature having a solid shape and default colour. </documentation>
+		</annotation>
+	</element>
+	<!-- ====== -->
+	<complexType name="ColouredSolidType">
+		<annotation>
+			<documentation>Add a defaultColour property. </documentation>
+		</annotation>
+		<complexContent>
+			<extension base="xmml:SolidFeatureType">
+				<sequence>
+					<element name="defaultColour" type="xmml:colour"/>
+				</sequence>
+			</extension>
+		</complexContent>
+	</complexType>
+	<!-- ====================================================================== -->
+</schema>

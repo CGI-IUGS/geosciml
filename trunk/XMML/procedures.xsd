@@ -1,0 +1,225 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<schema targetNamespace="http://www.opengis.net/xmml" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:gml="http://www.opengis.net/gml" xmlns="http://www.w3.org/2001/XMLSchema" xmlns:xmml="http://www.opengis.net/xmml" elementFormDefault="qualified" attributeFormDefault="unqualified" version="pre-release">
+	<annotation>
+		<documentation>
+procedures.xsd
+
+Components to describe procedures used in exploration and mining activities.
+
+2004-04-21
+
+Copyright (c) 2004 CSIRO - see https://www.seegrid.csiro.au/twiki/bin/view/Xmml/LegalNotices#Software_Notice
+</documentation>
+	</annotation>
+	<!-- ====================================================================== -->
+	<!-- bring in other schemas -->
+	<import namespace="http://www.opengis.net/gml" schemaLocation="../gml/base/temporal.xsd"/>
+	<include schemaLocation="./base.xsd"/>
+	<include schemaLocation="../enumerations/LUTgeodesy.xsd"/>
+	<!-- ====================================================================== -->
+	<!-- ===== Object types ====== -->
+	<!-- ====================================================================== -->
+	<element name="instrumentCode" type="token" substitutionGroup="xmml:procedureCode"/>
+	<!-- ====================================================================== -->
+	<element name="Instrument" type="xmml:InstrumentType" substitutionGroup="xmml:Procedure"/>
+	<!-- ====== -->
+	<complexType name="InstrumentBaseType" abstract="true">
+		<annotation>
+			<documentation>Substitute instrumentCode for procedureCode</documentation>
+		</annotation>
+		<complexContent>
+			<restriction base="xmml:ProcedureType">
+				<sequence>
+					<group ref="gml:StandardObjectProperties"/>
+					<element ref="xmml:instrumentCode">
+						<annotation>
+							<documentation>A code that indicates the type of instrument</documentation>
+						</annotation>
+					</element>
+				</sequence>
+			</restriction>
+		</complexContent>
+	</complexType>
+	<complexType name="InstrumentType">
+		<annotation>
+			<documentation>Add one or more instrument serial numbers, in order to identify specific instances or stations</documentation>
+		</annotation>
+		<complexContent>
+			<extension base="xmml:InstrumentBaseType">
+				<sequence>
+					<element name="serialNumber" type="gml:CodeType" minOccurs="0" maxOccurs="unbounded"/>
+				</sequence>
+			</extension>
+		</complexContent>
+	</complexType>
+	<!-- ====================================================================== -->
+	<element name="procedureCode" type="token">
+		<annotation>
+			<documentation>Code for the particular procedure type.  
+    Head of substitution group, and usually replaced by a code type for the specific procedure which uses a controlled list.  </documentation>
+		</annotation>
+	</element>
+	<!-- ====================================================================== -->
+	<element name="Procedure" type="xmml:ProcedureType" substitutionGroup="gml:_GML">
+		<annotation>
+			<documentation>It might be convenient if Procedure were direclty substitutable for gml:_MetaData</documentation>
+		</annotation>
+	</element>
+	<!-- ====== -->
+	<complexType name="ProcedureType">
+		<annotation>
+			<documentation>Use gml:description element to describe the procedure or link to a definitive description.  
+     			use procedureCode to indicate member of list if possible</documentation>
+		</annotation>
+		<complexContent>
+			<extension base="gml:AbstractGMLType">
+				<sequence>
+					<element ref="xmml:procedureCode"/>
+				</sequence>
+			</extension>
+		</complexContent>
+	</complexType>
+	<!-- ====================================================================== -->
+	<element name="ProcedureEvent" type="xmml:ProcedureEventType" substitutionGroup="xmml:Event">
+		<annotation>
+			<documentation>Description of an event involving a procedure.  </documentation>
+		</annotation>
+	</element>
+	<!-- ====================================================================== -->
+	<complexType name="ProcedureEventType">
+		<annotation>
+			<documentation>Description of an event involving a procedure.  </documentation>
+		</annotation>
+		<complexContent>
+			<extension base="xmml:EventType">
+				<sequence>
+					<element ref="xmml:procedureCode"/>
+				</sequence>
+			</extension>
+		</complexContent>
+	</complexType>
+	<!-- ====================================================================== -->
+	<element name="SurveyProcedure" type="xmml:SurveyProcedureType" substitutionGroup="xmml:Procedure"/>
+	<element name="locationMethod" type="xmml:positionMethodType" substitutionGroup="xmml:procedureCode"/>
+	<!-- ====== -->
+	<complexType name="SurveyProcedureBaseType" abstract="true">
+		<annotation>
+			<documentation>Restrict code to be locationMethod</documentation>
+		</annotation>
+		<complexContent>
+			<restriction base="xmml:ProcedureType">
+				<sequence>
+					<group ref="gml:StandardObjectProperties"/>
+					<element ref="xmml:locationMethod"/>
+				</sequence>
+			</restriction>
+		</complexContent>
+	</complexType>
+	<complexType name="SurveyProcedureType">
+		<annotation>
+			<documentation/>
+		</annotation>
+		<complexContent>
+			<extension base="xmml:SurveyProcedureBaseType">
+				<sequence>
+					<element name="locationAccuracy" type="gml:MeasureType" minOccurs="0"/>
+					<element name="elevationMethod" type="xmml:elevationMethodType" minOccurs="0"/>
+					<element name="elevationAccuracy" type="gml:MeasureType" minOccurs="0"/>
+					<element name="projection" type="xmml:projections" minOccurs="0"/>
+					<element name="geodeticDatum" type="xmml:gDatums" minOccurs="0"/>
+					<element name="elevationDatum" type="xmml:vDatums" minOccurs="0"/>
+					<element name="operator" type="xmml:PartyPropertyType" minOccurs="0">
+						<annotation>
+							<documentation>Note than in other contexts the "operator" is not embedded in the procedure description. Maybe needs a tweak later?</documentation>
+						</annotation>
+					</element>
+				</sequence>
+			</extension>
+		</complexContent>
+	</complexType>
+	<!-- ====================================================================== -->
+	<!-- ====================================================================== -->
+	<element name="instrumentUsed" type="xmml:InstrumentPropertyType" substitutionGroup="xmml:procedureUsed"/>
+	<!-- ====== -->
+	<complexType name="InstrumentPropertyType">
+		<complexContent>
+			<restriction base="xmml:ProcedurePropertyType">
+				<sequence>
+					<element ref="xmml:Instrument" minOccurs="0"/>
+				</sequence>
+				<attributeGroup ref="gml:AssociationAttributeGroup"/>
+			</restriction>
+		</complexContent>
+	</complexType>
+	<!-- ====================================================================== -->
+	<element name="processingHistory" type="xmml:ProcedureEventPropertyType">
+		<annotation>
+			<documentation>Processing steps - (set of) procedure events</documentation>
+		</annotation>
+	</element>
+	<!-- ====== -->
+	<complexType name="ProcedureEventPropertyType">
+		<sequence>
+			<element ref="xmml:ProcedureEvent" minOccurs="0"/>
+		</sequence>
+		<attributeGroup ref="gml:AssociationAttributeGroup"/>
+	</complexType>
+	<!-- ====================================================================== -->
+	<element name="action" type="xmml:ProcedurePropertyType"/>
+	<element name="procedureUsed" type="xmml:ProcedurePropertyType" substitutionGroup="xmml:action"/>
+	<element name="procedureMember" type="xmml:ProcedurePropertyType" substitutionGroup="xmml:action"/>
+	<!-- ====== -->
+	<complexType name="ProcedurePropertyType">
+		<sequence>
+			<element ref="xmml:Procedure" minOccurs="0"/>
+		</sequence>
+		<attributeGroup ref="gml:AssociationAttributeGroup"/>
+	</complexType>
+	<!-- ====================================================================== -->
+	<element name="procedureMembers" type="xmml:ProcedureArrayPropertyType"/>
+	<!-- ====== -->
+	<complexType name="ProcedureArrayPropertyType">
+		<sequence>
+			<element ref="xmml:Procedure" minOccurs="0" maxOccurs="unbounded"/>
+		</sequence>
+	</complexType>
+	<!-- ====================================================================== -->
+	<element name="surveyProcedureUsed" type="xmml:SurveyProcedurePropertyType"/>
+	<!-- ====== -->
+	<complexType name="SurveyProcedurePropertyType">
+		<complexContent>
+			<restriction base="xmml:ProcedurePropertyType">
+				<sequence>
+					<element ref="xmml:SurveyProcedure" minOccurs="0"/>
+				</sequence>
+			</restriction>
+		</complexContent>
+	</complexType>
+	<!-- ====================================================================== -->
+	<group name="pqr">
+		<sequence>
+			<annotation>
+				<documentation>Utility group of properties from which data quality can be inferred. 
+        At least one of these should normally be present.</documentation>
+			</annotation>
+			<element ref="xmml:quality" minOccurs="0">
+				<annotation>
+					<documentation>An indication of the quality of value or result.  
+          This quality is specific to the individual feature.  
+          Systematic effects that are a consequence of the _procedure_ should be described in the description of the procedure instead. </documentation>
+				</annotation>
+			</element>
+			<element ref="xmml:processingHistory" minOccurs="0" maxOccurs="unbounded">
+				<annotation>
+					<documentation>Processing steps - (set of) procedure events</documentation>
+				</annotation>
+			</element>
+			<element ref="xmml:reference" minOccurs="0">
+				<annotation>
+					<documentation>Reference to documentation giving more complete explanation of procedure and/or quality.</documentation>
+				</annotation>
+			</element>
+		</sequence>
+	</group>
+	<!-- ====================================================================== -->
+</schema>

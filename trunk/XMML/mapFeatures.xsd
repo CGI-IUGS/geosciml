@@ -1,0 +1,138 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<schema targetNamespace="http://www.opengis.net/xmml" xmlns="http://www.w3.org/2001/XMLSchema" xmlns:gml="http://www.opengis.net/gml" xmlns:xmml="http://www.opengis.net/xmml" xmlns:xlink="http://www.w3.org/1999/xlink" elementFormDefault="qualified" attributeFormDefault="unqualified" version="pre-release">
+	<annotation>
+		<documentation>
+mapFeatures.xsd
+
+A GML conformant schema 
+for map features, each having
+   * (optionally) several versions of its shape recorded, corresponding to different scales
+   * zero or more versions of its shape as intersected by some surface (e.g. map surface, flitch levels)
+
+SJDC  2003-11-25
+
+Copyright (c) 2004 CSIRO - see https://www.seegrid.csiro.au/twiki/bin/view/Xmml/LegalNotices#Software_Notice
+</documentation>
+	</annotation>
+	<!-- ====================================================================== -->
+	<!-- bring in other schemas -->
+	<include schemaLocation="./points.xsd"/>
+	<include schemaLocation="./curves.xsd"/>
+	<include schemaLocation="./surfaces.xsd"/>
+	<include schemaLocation="./solids.xsd"/>
+	<!-- ====================================================================== -->
+	<!-- ====================================================================== -->
+	<element name="MappedPositionFeature" type="xmml:MappedPositionFeatureType" substitutionGroup="xmml:Feature">
+		<annotation>
+			<documentation>A basic feature having one or more versions of its position recorded. </documentation>
+		</annotation>
+	</element>
+	<!-- ====== -->
+	<complexType name="MappedPositionFeatureType">
+		<annotation>
+			<documentation>Add optional/additional position properties. </documentation>
+		</annotation>
+		<complexContent>
+			<extension base="xmml:PositionFeatureType">
+				<sequence>
+					<element ref="gml:position" minOccurs="0" maxOccurs="unbounded">
+						<annotation>
+							<documentation>Record multiple shapes corresponding to (e.g.) different scales if required.  
+              The scale may be recorded in a metaDataProperty on the geometry.  </documentation>
+						</annotation>
+					</element>
+				</sequence>
+			</extension>
+		</complexContent>
+	</complexType>
+	<!-- ====================================================================== -->
+	<!-- ====================================================================== -->
+	<element name="MappedCurveFeature" type="xmml:MappedCurveFeatureType" substitutionGroup="xmml:Feature">
+		<annotation>
+			<documentation>A basic feature having one or more versions of its curve shape recorded. </documentation>
+		</annotation>
+	</element>
+	<!-- ====== -->
+	<complexType name="MappedCurveFeatureType">
+		<annotation>
+			<documentation>Add optional/additional shape properties. </documentation>
+		</annotation>
+		<complexContent>
+			<extension base="xmml:CurveFeatureType">
+				<sequence>
+					<element name="shape" type="gml:CurvePropertyType" minOccurs="0" maxOccurs="unbounded">
+						<annotation>
+							<documentation>Record multiple shapes corresponding to (e.g.) different scales if required.  
+              The scale may be recorded in a metaDataProperty on the geometry.  </documentation>
+						</annotation>
+					</element>
+					<element name="piercingPoint" type="xmml:PointsInSurfacePropertyType" minOccurs="0" maxOccurs="unbounded">
+						<annotation>
+							<documentation>A point corresponding to the intersection of the curve with a specified surface (e.g. map, specified level). </documentation>
+						</annotation>
+					</element>
+				</sequence>
+			</extension>
+		</complexContent>
+	</complexType>
+	<!-- ====================================================================== -->
+	<element name="MappedSurfaceFeature" type="xmml:MappedSurfaceFeatureType" substitutionGroup="xmml:Feature">
+		<annotation>
+			<documentation>A basic feature having one or more versions of its surface shape recorded. </documentation>
+		</annotation>
+	</element>
+	<!-- ====================================================================== -->
+	<complexType name="MappedSurfaceFeatureType">
+		<annotation>
+			<documentation>Add optional/additional shape properties. </documentation>
+		</annotation>
+		<complexContent>
+			<extension base="xmml:SurfaceFeatureType">
+				<sequence>
+					<element name="shape" type="gml:SurfacePropertyType" minOccurs="0" maxOccurs="unbounded">
+						<annotation>
+							<documentation>Record multiple shapes corresponding to (e.g.) different scales if required.  
+              The scale may be recorded in a metaDataProperty on the geometry.  </documentation>
+						</annotation>
+					</element>
+					<element name="trace" type="xmml:CurvesInSurfacePropertyType" minOccurs="0" maxOccurs="unbounded">
+						<annotation>
+							<documentation>A curve corresponding to the intersection of the surface with a specified surface (e.g. map, specified level). </documentation>
+						</annotation>
+					</element>
+				</sequence>
+			</extension>
+		</complexContent>
+	</complexType>
+	<!-- ====================================================================== -->
+	<element name="MappedSolidFeature" type="xmml:MappedSolidFeatureType" substitutionGroup="xmml:Feature">
+		<annotation>
+			<documentation>A basic feature having one or more versions of its solid shape recorded. </documentation>
+		</annotation>
+	</element>
+	<!-- ====== -->
+	<complexType name="MappedSolidFeatureType">
+		<annotation>
+			<documentation>Add optional/additional shape properties. </documentation>
+		</annotation>
+		<complexContent>
+			<extension base="xmml:SolidFeatureType">
+				<sequence>
+					<element name="shape" type="gml:SolidPropertyType" minOccurs="0" maxOccurs="unbounded">
+						<annotation>
+							<documentation>Record multiple shapes corresponding to (e.g.) different scales if required.  
+              The scale may be recorded in a metaDataProperty on the geometry.  </documentation>
+						</annotation>
+					</element>
+					<element name="trace" type="xmml:SurfacesInSurfacePropertyType" minOccurs="0" maxOccurs="unbounded">
+						<annotation>
+							<documentation>A surface corresponding to the intersection of the solid with a specified surface (e.g. map, specified level). </documentation>
+						</annotation>
+					</element>
+				</sequence>
+			</extension>
+		</complexContent>
+	</complexType>
+	<!-- ====================================================================== -->
+	<!-- ====================================================================== -->
+</schema>

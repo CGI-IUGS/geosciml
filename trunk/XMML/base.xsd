@@ -1,0 +1,868 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<schema targetNamespace="http://www.opengis.net/xmml" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:gml="http://www.opengis.net/gml" xmlns:cil="urn:oasis:names:tc:ciq:xsdschema:xCIL:2.0" xmlns:nal="urn:oasis:names:tc:ciq:xsdschema:xNAL:2.0" xmlns:al="urn:oasis:names:tc:ciq:xsdschema:xAL:2.0" xmlns:nl="urn:oasis:names:tc:ciq:xsdschema:xNL:2.0" xmlns="http://www.w3.org/2001/XMLSchema" xmlns:xmml="http://www.opengis.net/xmml" elementFormDefault="qualified" attributeFormDefault="unqualified" version="pre-release">
+	<annotation>
+		<documentation>
+base.xsd
+
+Some base components required in various places in XMML
+
+2004-04-21
+
+Copyright (c) 2004 CSIRO - see https://www.seegrid.csiro.au/twiki/bin/view/Xmml/LegalNotices#Software_Notice
+</documentation>
+	</annotation>
+	<!-- ====================================================================== -->
+	<!-- bring in other schemas -->
+	<import namespace="http://www.opengis.net/gml" schemaLocation="../gml/base/feature.xsd"/>
+	<import namespace="urn:oasis:names:tc:ciq:xsdschema:xCIL:2.0" schemaLocation="../oasis/OASIS-CIQ/SCHEMA/W3C-Schemas/xCIL.xsd">
+		<annotation>
+			<documentation>Names, addresses, organisations, contacts</documentation>
+		</annotation>
+	</import>
+	<import namespace="urn:oasis:names:tc:ciq:xsdschema:xNAL:2.0" schemaLocation="../oasis/OASIS-CIQ/SCHEMA/W3C-Schemas/xNAL.xsd">
+		<annotation>
+			<documentation>Names, addresses, organisations</documentation>
+		</annotation>
+	</import>
+	<import namespace="urn:oasis:names:tc:ciq:xsdschema:xNL:2.0" schemaLocation="../oasis/OASIS-CIQ/SCHEMA/W3C-Schemas/xNL.xsd">
+		<annotation>
+			<documentation>Names</documentation>
+		</annotation>
+	</import>
+	<import namespace="urn:oasis:names:tc:ciq:xsdschema:xAL:2.0" schemaLocation="../oasis/OASIS-CIQ/SCHEMA/W3C-Schemas/xAL.xsd">
+		<annotation>
+			<documentation>addresses</documentation>
+		</annotation>
+	</import>
+	<include schemaLocation="../enumerations/LUTmaintenance.xsd"/>
+	<!-- ====================================================================== -->
+	<!-- ====================================================================== -->
+	<complexType name="GeneralPropertyType">
+		<annotation>
+			<documentation>  A pattern for GML properties.  Restricts the cardinality of Objects contained in the association to a maximum of one, and provides for a choice of a Null element.  An instance of this type can contain an element representing an Object or an exception (Null), or serve as a pointer to a remote Object.  
+</documentation>
+		</annotation>
+		<choice minOccurs="0">
+			<element ref="gml:_Object"/>
+			<element ref="gml:Null"/>
+		</choice>
+		<attributeGroup ref="gml:AssociationAttributeGroup"/>
+	</complexType>
+	<!-- =========================================================== -->
+	<!-- ================================================================== -->
+	<!-- ===== Some useful property components ====== -->
+	<!-- ====================================================================== -->
+	<element name="support" type="gml:AssociationType">
+		<annotation>
+			<documentation>A place to attach components that are required to be listed someplace in order that they can be "used" by-reference elsewhere in (usually) the same instance document. </documentation>
+		</annotation>
+	</element>
+	<!-- ===================================================== -->
+	<element name="comment" type="gml:StringOrRefType">
+		<annotation>
+			<documentation>Container for commentary that may not be strictly part of a "description". </documentation>
+		</annotation>
+	</element>
+	<!-- ===================================================== -->
+	<group name="StandardSupportProperties">
+		<sequence>
+			<element ref="xmml:support" minOccurs="0" maxOccurs="unbounded"/>
+			<element ref="xmml:comment" minOccurs="0" maxOccurs="unbounded"/>
+		</sequence>
+	</group>
+	<!-- ===================================================== -->
+	<!-- ===================================================== -->
+	<element name="Event" type="xmml:EventType" substitutionGroup="gml:_GML"/>
+	<!-- ====================================================================== -->
+	<complexType name="EventType">
+		<annotation>
+			<documentation>Description of an event, particularly that causes transformation, creation or destruction of a feature.  
+      The event may be transport or administrative.  
+      Use gml:description to describe the nature of the event or action, or to point to a description of it.  
+      Use xmml:reference (substitutable for gml:metaDataProperty) to provide a pointer to a citation for the event.
+      Specialised event types may be derived from this type. </documentation>
+		</annotation>
+		<complexContent>
+			<extension base="gml:AbstractGMLType">
+				<sequence>
+					<element name="when" type="gml:TimePrimitivePropertyType">
+						<annotation>
+							<documentation>The Time when the event occurred.  This may be given 
+              * in absolute terms as a TimeInstant or TimePeriod
+              * in approximate terms or relative to an absolute position using the indeterminatePosition attribute
+              * or using a TimeTopology element (TimeEdge or TimeNode), which provides the option of giving a time relative to other edges or nodes, either directly (gml) or indirectly (xmml) </documentation>
+						</annotation>
+					</element>
+					<element name="responsible" type="xmml:PartyPropertyType" minOccurs="0">
+						<annotation>
+							<documentation>Person or organisation responsible for the action, if applicable</documentation>
+						</annotation>
+					</element>
+					<element name="source" type="gml:StringOrRefType" minOccurs="0" maxOccurs="unbounded">
+						<annotation>
+							<documentation>Reference to input (if not implied by context)</documentation>
+						</annotation>
+					</element>
+					<element name="product" type="gml:StringOrRefType" minOccurs="0" maxOccurs="unbounded">
+						<annotation>
+							<documentation>Reference to result (if not implied by context)</documentation>
+						</annotation>
+					</element>
+					<element name="precedingEvent" type="gml:StringOrRefType" minOccurs="0" maxOccurs="unbounded">
+						<annotation>
+							<documentation>Description of or pointer to preceding event(s)</documentation>
+						</annotation>
+					</element>
+					<element name="followingEvent" type="gml:StringOrRefType" minOccurs="0" maxOccurs="unbounded">
+						<annotation>
+							<documentation>Description of or pointer to following event(s)</documentation>
+						</annotation>
+					</element>
+				</sequence>
+			</extension>
+		</complexContent>
+	</complexType>
+	<!-- ====================================================================== -->
+	<!-- === Objects and properties associated with people, organisations, etc ======== -->
+	<!-- ====================================================================== -->
+	<element name="actor" type="xmml:PartyPropertyType">
+		<annotation>
+			<documentation>A generic property whose value is the description of a party, company, person, etc.</documentation>
+		</annotation>
+	</element>
+	<!-- ====================================================================== -->
+	<complexType name="PartyPropertyType">
+		<sequence minOccurs="0">
+			<group ref="xmml:Party"/>
+		</sequence>
+		<attributeGroup ref="gml:AssociationAttributeGroup"/>
+	</complexType>
+	<!-- ==================================================== -->
+	<group name="Party">
+		<choice>
+			<element ref="nl:xNL">
+				<annotation>
+					<documentation>Contains one or more names (xNL syntax)</documentation>
+				</annotation>
+			</element>
+			<element ref="nal:xNAL">
+				<annotation>
+					<documentation>Contains one or more Records, each of which contains one or more names (xNL syntax) followed by one or more addresses (xAL syntax)</documentation>
+				</annotation>
+			</element>
+			<element ref="cil:xCIL">
+				<annotation>
+					<documentation>Contains one or more sets of CustomerDetails, each of which contains a customer ID, one name (xNL syntax), zero or more addresses (xAL syntax), followed by optional organisation or personal information (hobbies, religion, etc)</documentation>
+				</annotation>
+			</element>
+			<element ref="xmml:Party"/>
+			<element ref="xmml:Company"/>
+			<element ref="xmml:Person"/>
+		</choice>
+	</group>
+	<!-- ====================================================================== -->
+	<element name="Party" type="xmml:PartyType"/>
+	<!-- ====================================================================== -->
+	<complexType name="PartyType">
+		<complexContent>
+			<extension base="cil:Record">
+				<attribute name="id" type="ID"/>
+			</extension>
+		</complexContent>
+	</complexType>
+	<!-- ====================================================================== -->
+	<element name="Company" type="xmml:CompanyType"/>
+	<!-- ====================================================================== -->
+	<complexType name="CompanyType">
+		<sequence>
+			<element name="companyName" type="nl:OrganisationNameDetails"/>
+			<element name="location" type="al:AddressDetails"/>
+		</sequence>
+		<attribute name="id" type="ID" use="required"/>
+	</complexType>
+	<!-- ==================================================== -->
+	<element name="Person" type="xmml:PersonType"/>
+	<!-- ====================================================================== -->
+	<complexType name="PersonType">
+		<sequence>
+			<element name="personName" type="nl:PersonName"/>
+			<element name="location" type="al:AddressDetails"/>
+		</sequence>
+		<attribute name="id" type="ID" use="required"/>
+	</complexType>
+	<!-- ==================================================== -->
+	<!-- ==== Common metadata components ==== -->
+	<!-- ====================================================================== -->
+	<!-- ==== Generic metadata types ==== -->
+	<!-- ====================================================================== -->
+	<complexType name="ElementOnlyMetaDataType" abstract="true" mixed="false">
+		<annotation>
+			<documentation>mixed="false", so this can serve as the basis for element-only MetaData elements</documentation>
+		</annotation>
+		<complexContent mixed="false">
+			<restriction base="gml:AbstractMetaDataType"/>
+		</complexContent>
+	</complexType>
+	<!-- ====================================================================== -->
+	<complexType name="TextMetaDataType" abstract="false">
+		<annotation>
+			<documentation>Vacuous extension of a mixed type, resulting in just a text element.  For unstructured metadata.</documentation>
+		</annotation>
+		<complexContent>
+			<extension base="gml:AbstractMetaDataType"/>
+		</complexContent>
+	</complexType>
+	<!-- ====================================================================== -->
+	<!-- ==== Concrete metadata elements ==== -->
+	<!-- ====================================================================== -->
+	<element name="AccessRestrictions" type="xmml:TextMetaDataType" substitutionGroup="gml:_MetaData">
+		<annotation>
+			<documentation>This element is used to note any access restrictions, as a text description.  It is substitutable for gml:_MetaData, so may appear as the value of a gml:metaDataProperty on most objects and features.</documentation>
+		</annotation>
+	</element>
+	<!-- ====================================================================== -->
+	<element name="UseRestrictions" type="xmml:TextMetaDataType" substitutionGroup="gml:_MetaData">
+		<annotation>
+			<documentation>This element is used to note any restrictions on the use of this information, encoded as a text description.  It is substitutable for gml:_MetaData, so may appear as the value of a gml:metaDataProperty on most objects and features.</documentation>
+		</annotation>
+	</element>
+	<!-- ====================================================================== -->
+	<element name="RecordEvent" type="xmml:RecordEventType" substitutionGroup="gml:_MetaData">
+		<annotation>
+			<documentation>An event in the life of a database record.  It is substitutable for gml:_MetaData, so may appear as the value of a gml:metaDataProperty on most objects and features.</documentation>
+		</annotation>
+	</element>
+	<!-- ====== -->
+	<complexType name="RecordEventType">
+		<annotation>
+			<documentation>An event in the life of a database record.
+			Follows xmml:Event pattern, but derivation designed to fit into Metadata substitution groups</documentation>
+		</annotation>
+		<complexContent>
+			<extension base="xmml:ElementOnlyMetaDataType">
+				<sequence>
+					<element name="when" type="gml:TimePrimitivePropertyType">
+						<annotation>
+							<documentation>The time/date when the record was created, updated, etc, encoded in ISO 8610 format as simpleContent.</documentation>
+						</annotation>
+					</element>
+					<element name="responsible" type="xmml:PartyPropertyType">
+						<annotation>
+							<documentation>Person or organisation responsible for the action</documentation>
+						</annotation>
+					</element>
+					<element name="action" type="xmml:recordActionCodeType">
+						<annotation>
+							<documentation>created, updated, etc</documentation>
+						</annotation>
+					</element>
+				</sequence>
+			</extension>
+		</complexContent>
+	</complexType>
+	<!-- ====================================================================== -->
+	<element name="recordStatus">
+		<annotation>
+			<documentation>Contains or refers to a description of event in the life of a database record</documentation>
+		</annotation>
+		<complexType>
+			<sequence>
+				<element ref="xmml:RecordEvent" minOccurs="0"/>
+			</sequence>
+			<attributeGroup ref="gml:AssociationAttributeGroup"/>
+		</complexType>
+	</element>
+	<!-- ====================================================================== -->
+	<element name="SimpleCitation" type="xmml:TextMetaDataType" substitutionGroup="gml:_MetaData">
+		<annotation>
+			<documentation>This element is used to record the details of an external source of information, such as a scholarly paper, technical report, or other publication, where the details are encoded as a text description.  It is substitutable for gml:_MetaData, so may appear as the value of a gml:metaDataProperty on most objects and features.</documentation>
+		</annotation>
+	</element>
+	<!-- ====================================================================== -->
+	<element name="reference" type="xmml:CitationPropertyType" substitutionGroup="gml:metaDataProperty">
+		<annotation>
+			<documentation>Holds or points to a Citation.  
+      If a URN for the cited work is known then this should appear as the value of a href attribute on the reference element.  
+      There are several systems available for assigning URN's to bibliographic resources - see review here: 
+          http://www.nla.gov.au/initiatives/persistence/PIcontents.html
+      Probably the best developed is DOI, described here: http://www.doi.org/
+      also see http://www.crossref.org/01company/15doi_info.html
+      Note that the DOI/crossref service is free to users, but not to publishers.       
+      
+      xmml:reference is substitutable for gml:metaDataProperty, so may appear as a property of most objects and features
+    </documentation>
+		</annotation>
+	</element>
+	<!-- ====================================================================== -->
+	<complexType name="CitationPropertyType">
+		<annotation>
+			<documentation>Holds or points to a Citation.  
+			Additional versions of "Citation" will be added to choice group in due course.     </documentation>
+		</annotation>
+		<complexContent>
+			<restriction base="gml:MetaDataPropertyType">
+				<choice>
+					<element ref="xmml:SimpleCitation" minOccurs="0"/>
+				</choice>
+				<attributeGroup ref="gml:AssociationAttributeGroup"/>
+			</restriction>
+		</complexContent>
+	</complexType>
+	<!-- ====================================================================== -->
+	<!-- ===== Some generic elements and datatypes ====== -->
+	<!-- ====================================================================== -->
+	<simpleType name="Flag">
+		<restriction base="boolean">
+			<enumeration value="true"/>
+		</restriction>
+	</simpleType>
+	<!-- ====================================================================== -->
+	<element name="quality" type="xmml:QualityType">
+		<annotation>
+			<documentation>
+    Intended to store information concerning the quality of the value.  
+    An attribute "method" allows the user to indicate what kind of quality indicator this is: absolute limits, SD, 95% confidence, qualitative code, etc.  </documentation>
+		</annotation>
+	</element>
+	<!-- ====================================================================== -->
+	<complexType name="QualityType">
+		<choice>
+			<element name="Description" type="gml:StringOrRefType">
+				<annotation>
+					<documentation>Descriptive assessment of data quality</documentation>
+				</annotation>
+			</element>
+			<element name="Rank" type="gml:CodeType">
+				<annotation>
+					<documentation>Qualitative assessment of data quality</documentation>
+				</annotation>
+			</element>
+			<element name="Error" type="gml:MeasureType">
+				<annotation>
+					<documentation>Used for error measurements requiring one quantity</documentation>
+				</annotation>
+			</element>
+			<element name="Bounds">
+				<annotation>
+					<documentation>Used for error measurements requiring two quantities on the same scale</documentation>
+				</annotation>
+				<complexType>
+					<simpleContent>
+						<restriction base="gml:MeasureListType">
+							<length value="2"/>
+						</restriction>
+					</simpleContent>
+				</complexType>
+			</element>
+			<element name="Errors" type="gml:MeasureListType">
+				<annotation>
+					<documentation>Used for error measurements requiring multiple quantities on the same scale</documentation>
+				</annotation>
+			</element>
+		</choice>
+		<attribute name="method" type="anyURI" use="optional"/>
+	</complexType>
+	<!-- ====================================================================== -->
+	<!-- ===== Soft-typed values and lists ====== -->
+	<!-- ====================================================================== -->
+	<!-- ====================================================================== -->
+	<simpleType name="CountOrNullType">
+		<annotation>
+			<documentation>Union of the XML Schema nonNegativeInteger type and the GML Nulltype.  An element which uses this type may have content which is either a Count or a value from Nulltype</documentation>
+		</annotation>
+		<union memberTypes="gml:NullEnumeration nonNegativeInteger anyURI"/>
+	</simpleType>
+	<!-- =========================================================== -->
+	<simpleType name="CountOrNullListType">
+		<annotation>
+			<documentation>XML List based on the union type defined above.  An element declared with this type contains a space-separated list of Counts with null values interspersed as needed</documentation>
+		</annotation>
+		<list itemType="xmml:CountOrNullType"/>
+	</simpleType>
+	<!-- =========================================================== -->
+	<simpleType name="CountListType">
+		<annotation>
+			<documentation>XML List based on XML Schema nonNegativeInteger type.  An element of this type contains a space-separated list of Counts</documentation>
+		</annotation>
+		<list itemType="nonNegativeInteger"/>
+	</simpleType>
+	<!-- =========================================================== -->
+	<!-- ====================================================================== -->
+	<complexType name="SoftTypedBooleanType">
+		<annotation>
+			<documentation>A boolean value, representing a description of the phenomenon identified by the property attribute. </documentation>
+		</annotation>
+		<simpleContent>
+			<extension base="boolean">
+				<attribute name="property" type="anyURI">
+					<annotation>
+						<documentation>This attribute holds a reference to or label for the property being described. </documentation>
+					</annotation>
+				</attribute>
+			</extension>
+		</simpleContent>
+	</complexType>
+	<!-- ====================================================================== -->
+	<complexType name="SoftTypedBooleanListType">
+		<annotation>
+			<documentation>A list of boolean values, representing a set of descriptions of the phenomenon identified by the property attribute. </documentation>
+		</annotation>
+		<simpleContent>
+			<extension base="gml:booleanList">
+				<attribute name="property" type="anyURI">
+					<annotation>
+						<documentation>This attribute holds a reference to or label for the property being described. </documentation>
+					</annotation>
+				</attribute>
+				<attribute name="count" type="nonNegativeInteger" use="optional"/>
+			</extension>
+		</simpleContent>
+	</complexType>
+	<!-- ====================================================================== -->
+	<complexType name="SoftTypedBooleanOrNullListType">
+		<annotation>
+			<documentation>A list of boolean values or nulls, representing a set of descriptions of the phenomenon identified by the property attribute. </documentation>
+		</annotation>
+		<simpleContent>
+			<extension base="gml:booleanOrNullList">
+				<attribute name="property" type="anyURI">
+					<annotation>
+						<documentation>This attribute holds a reference to or label for the property being described. </documentation>
+					</annotation>
+				</attribute>
+				<attribute name="count" type="nonNegativeInteger" use="optional"/>
+			</extension>
+		</simpleContent>
+	</complexType>
+	<!-- ====================================================================== -->
+	<!-- ====================================================================== -->
+	<complexType name="SoftTypedCategoryType">
+		<annotation>
+			<documentation>A text value, taken from a value space identified by the value of the (optional) codeSpace attribute, and representing a description of the phenomenon identified by the property attribute. </documentation>
+		</annotation>
+		<simpleContent>
+			<extension base="xmml:TokenWithAuthorityType">
+				<attribute name="property" type="anyURI">
+					<annotation>
+						<documentation>This attribute holds a reference to or label for the property being described.  
+            This will usually refer to a classification or phenomenon described on a nominal scale, 
+            such as lithology type, material colour.  </documentation>
+					</annotation>
+				</attribute>
+			</extension>
+		</simpleContent>
+	</complexType>
+	<!-- ====================================================================== -->
+	<complexType name="SoftTypedCategoryListType">
+		<annotation>
+			<documentation>A list of text values, taken from a value space identified by the value of the (optional) codeSpace attribute, and representing a set of descriptions of the phenomenon identified by the property attribute. </documentation>
+		</annotation>
+		<simpleContent>
+			<extension base="xmml:TokenListWithAuthorityType">
+				<attribute name="property" type="anyURI">
+					<annotation>
+						<documentation>This attribute holds a reference to or label for the property being described.  
+            This will usually refer to a classification or phenomenon described on a nominal scale, 
+            such as lithology type, material colour.  </documentation>
+					</annotation>
+				</attribute>
+				<attribute name="count" type="nonNegativeInteger" use="optional"/>
+			</extension>
+		</simpleContent>
+	</complexType>
+	<!-- ====================================================================== -->
+	<!-- ====================================================================== -->
+	<complexType name="SoftTypedCountType">
+		<annotation>
+			<documentation>A numeric value, representing a description of the phenomenon identified by the property attribute. </documentation>
+		</annotation>
+		<simpleContent>
+			<extension base="nonNegativeInteger">
+				<attribute name="property" type="anyURI">
+					<annotation>
+						<documentation>This attribute holds a reference to or label for the property being described. </documentation>
+					</annotation>
+				</attribute>
+			</extension>
+		</simpleContent>
+	</complexType>
+	<!-- ====================================================================== -->
+	<complexType name="SoftTypedCountListType">
+		<annotation>
+			<documentation>A list of numeric values, representing a set of descriptions of the phenomenon identified by the property attribute. </documentation>
+		</annotation>
+		<simpleContent>
+			<extension base="xmml:CountListType">
+				<attribute name="property" type="anyURI">
+					<annotation>
+						<documentation>This attribute holds a reference to or label for the property being described. </documentation>
+					</annotation>
+				</attribute>
+				<attribute name="count" type="nonNegativeInteger" use="optional"/>
+			</extension>
+		</simpleContent>
+	</complexType>
+	<!-- ====================================================================== -->
+	<complexType name="SoftTypedCountOrNullListType">
+		<annotation>
+			<documentation>A list of numeric values or nulls, representing a set of descriptions of the phenomenon identified by the property attribute. </documentation>
+		</annotation>
+		<simpleContent>
+			<extension base="xmml:CountOrNullListType">
+				<attribute name="property" type="anyURI">
+					<annotation>
+						<documentation>This attribute holds a reference to or label for the property being described. </documentation>
+					</annotation>
+				</attribute>
+				<attribute name="count" type="nonNegativeInteger" use="optional"/>
+			</extension>
+		</simpleContent>
+	</complexType>
+	<!-- ====================================================================== -->
+	<complexType name="SoftTypedCountIntervalType">
+		<annotation>
+			<documentation>A pair of numeric values, representing an interval of the phenomenon identified by the property attribute. </documentation>
+		</annotation>
+		<simpleContent>
+			<restriction base="xmml:SoftTypedCountOrNullListType">
+				<length value="2"/>
+				<attribute name="count" type="nonNegativeInteger" use="prohibited"/>
+			</restriction>
+		</simpleContent>
+	</complexType>
+	<!-- ====================================================================== -->
+	<!-- ====================================================================== -->
+	<complexType name="SoftTypedMeasureType">
+		<annotation>
+			<documentation>A numeric value, expressed using the scale indicated by the value of the (mandatory) uom attribute, attribute, and representing a description of the phenomenon identified by the property attribute. </documentation>
+		</annotation>
+		<simpleContent>
+			<extension base="gml:MeasureType">
+				<attribute name="property" type="anyURI">
+					<annotation>
+						<documentation>This attribute holds a reference to or label for the property being described.  
+            This will usually refer to a measure described on a ratio or interval scale, 
+            such as temperature, wavelength, concentration.  </documentation>
+					</annotation>
+				</attribute>
+			</extension>
+		</simpleContent>
+	</complexType>
+	<!-- ====================================================================== -->
+	<complexType name="SoftTypedMeasureListType">
+		<annotation>
+			<documentation>A list of numeric values, expressed using the scale indicated by the value of the (mandatory) uom attribute, attribute, and representing a set of descriptions of the phenomenon identified by the property attribute. </documentation>
+		</annotation>
+		<simpleContent>
+			<extension base="gml:MeasureListType">
+				<attribute name="property" type="anyURI">
+					<annotation>
+						<documentation>This attribute holds a reference to or label for the property being described.  
+            This will usually refer to a measure described on a ratio or interval scale, 
+            such as temperature, wavelength, concentration.  </documentation>
+					</annotation>
+				</attribute>
+				<attribute name="count" type="nonNegativeInteger" use="optional"/>
+			</extension>
+		</simpleContent>
+	</complexType>
+	<!-- ====================================================================== -->
+	<complexType name="SoftTypedMeasureOrNullListType">
+		<annotation>
+			<documentation>A list of numeric values or nulls, expressed using the scale indicated by the value of the (mandatory) uom attribute, attribute, and representing a set of descriptions of the phenomenon identified by the property attribute. </documentation>
+		</annotation>
+		<simpleContent>
+			<extension base="gml:MeasureOrNullListType">
+				<attribute name="property" type="anyURI">
+					<annotation>
+						<documentation>This attribute holds a reference to or label for the property being described.  
+            This will usually refer to a measure described on a ratio or interval scale, 
+            such as temperature, wavelength, concentration.  </documentation>
+					</annotation>
+				</attribute>
+				<attribute name="count" type="nonNegativeInteger" use="optional"/>
+			</extension>
+		</simpleContent>
+	</complexType>
+	<!-- ====================================================================== -->
+	<complexType name="SoftTypedMeasureIntervalType">
+		<annotation>
+			<documentation>A pair of numeric values, expressed using the scale indicated by the value of the (mandatory) uom attribute, attribute, and representing an interval of the phenomenon identified by the property attribute. </documentation>
+		</annotation>
+		<simpleContent>
+			<restriction base="xmml:SoftTypedMeasureOrNullListType">
+				<length value="2"/>
+				<attribute name="count" type="nonNegativeInteger" use="prohibited"/>
+			</restriction>
+		</simpleContent>
+	</complexType>
+	<!-- =================================================================== -->
+	<!-- =================================================================== -->
+	<group name="property">
+		<choice>
+			<element name="booleanProperty" type="xmml:SoftTypedBooleanType"/>
+			<element name="categoryProperty" type="xmml:SoftTypedCategoryType"/>
+			<element name="countProperty" type="xmml:SoftTypedCountType"/>
+			<element name="numericProperty" type="xmml:SoftTypedMeasureType"/>
+			<element name="objectProperty" type="gml:AssociationType"/>
+			<!-- <element name="temporalProperty" type="xmml:SoftTypedTimeObjectType"/> -->
+		</choice>
+	</group>
+	<!-- ====================================================================== -->
+	<!-- ===== Numeric tuples and tables ====== -->
+	<!-- ====================================================================== -->
+	<complexType name="NumericTupleType">
+		<annotation>
+			<documentation>A set of numeric values, representing a tuple.  
+      Generalises the approach used for gml:DirectPositionType, replacing "srsName" with "RS". 
+      This allows a tuple to be recorded in compact form, as a whitespace-separated list of doubles.</documentation>
+		</annotation>
+		<simpleContent>
+			<extension base="gml:doubleList">
+				<attribute name="RS" type="anyURI" use="optional">
+					<annotation>
+						<documentation>Pointer to definition of the reference system for the tuple.  
+            The RS description should indicate the semantics/label and units of measure for each component, 
+            and the order in which the components appear in the tuple.  
+            RS may be ommitted, in which case it is the same as the previous value in the current context or document.</documentation>
+					</annotation>
+				</attribute>
+				<attribute name="dimension" type="positiveInteger" use="optional">
+					<annotation>
+						<documentation>The number of components in the tuple</documentation>
+					</annotation>
+				</attribute>
+				<attributeGroup ref="gml:SRSInformationGroup">
+					<annotation>
+						<documentation>Optionally include the axis-names and axis-labels as lists</documentation>
+					</annotation>
+				</attributeGroup>
+			</extension>
+		</simpleContent>
+	</complexType>
+	<!-- ====================================================================== -->
+	<complexType name="NumericOrNullTupleType">
+		<annotation>
+			<documentation>A set of numeric or Null values, representing a tuple.  
+      Generalises the approach used for gml:DirectPositionType, replacing "srsName" with "RS". 
+      This allows a tuple to be recorded in compact form, as a whitespace-separated list of doubles.</documentation>
+		</annotation>
+		<simpleContent>
+			<extension base="gml:doubleOrNullList">
+				<attribute name="RS" type="anyURI" use="optional">
+					<annotation>
+						<documentation>Pointer to definition of the reference system for the tuple.  
+            The RS description should indicate the semantics/label and units of measure for each component, 
+            and the order in which the components appear in the tuple.  
+            RS may be ommitted, in which case it is the same as the previous value in the current context or document.</documentation>
+					</annotation>
+				</attribute>
+				<attribute name="dimension" type="positiveInteger" use="optional">
+					<annotation>
+						<documentation>The number of components in the tuple</documentation>
+					</annotation>
+				</attribute>
+				<attributeGroup ref="gml:SRSInformationGroup">
+					<annotation>
+						<documentation>Optionally include the axis-names and axis-labels as lists</documentation>
+					</annotation>
+				</attributeGroup>
+			</extension>
+		</simpleContent>
+	</complexType>
+	<!-- ====================================================================== -->
+	<complexType name="NumericTupleListType">
+		<annotation>
+			<documentation>A set of numeric values, representing a list of tuples or a table.  
+      This allows a table of values to be recorded in compact form, as a whitespace-separated list of doubles. 
+      Tuple components increment fastest, followed by tuple instances, so if you think of this as a table in which the rows are tuples, then the representation is left-to-right followed by down the table.  
+       
+      To assist direct inspection of the data, good practice is to use 
+         * linefeed between tuples, and 
+         * tab between components in a tuple.
+      However any whitespace character sequence is a valid separator between items. </documentation>
+		</annotation>
+		<simpleContent>
+			<extension base="gml:doubleList">
+				<attribute name="RS" type="anyURI" use="optional">
+					<annotation>
+						<documentation>Pointer to definition of the reference system for the tuple.  
+            The RS description should indicate the semantics/label and units of measure for each component, 
+            and the order in which the components appear in the tuple.  
+            RS may be ommitted, in which case it is the same as the previous value in the current context or document.</documentation>
+					</annotation>
+				</attribute>
+				<attribute name="dimension" type="positiveInteger" use="optional">
+					<annotation>
+						<documentation>The number of components in the tuple. Should this be mandatory?</documentation>
+					</annotation>
+				</attribute>
+				<attributeGroup ref="gml:SRSInformationGroup">
+					<annotation>
+						<documentation>Optionally include the axis-names and axis-labels as lists</documentation>
+					</annotation>
+				</attributeGroup>
+				<attribute name="tupleCount" type="nonNegativeInteger" use="optional">
+					<annotation>
+						<documentation>The number of tuples in the list</documentation>
+					</annotation>
+				</attribute>
+			</extension>
+		</simpleContent>
+	</complexType>
+	<!-- ====================================================================== -->
+	<complexType name="NumericOrNullTupleListType">
+		<annotation>
+			<documentation>A set of numeric or Null values, representing a list of tuples or a table.  
+      This allows a table of values to be recorded in compact form, as a whitespace-separated list of doubles. 
+      Tuple components increment fastest, followed by tuple instances, so if you think of this as a table in which the rows are tuples, then the representation is left-to-right followed by down the table.  
+       
+      To assist direct inspection of the data, good practice is to use 
+         * linefeed between tuples, and 
+         * tab between components in a tuple.
+      However any whitespace character sequence is a valid separator between items. </documentation>
+		</annotation>
+		<simpleContent>
+			<extension base="gml:doubleOrNullList">
+				<attribute name="RS" type="anyURI" use="optional">
+					<annotation>
+						<documentation>Pointer to definition of the reference system for the tuple.  
+            The RS description should indicate the semantics/label and units of measure for each component, 
+            and the order in which the components appear in the tuple.  
+            RS may be ommitted, in which case it is the same as the previous value in the current context or document.</documentation>
+					</annotation>
+				</attribute>
+				<attribute name="dimension" type="positiveInteger" use="optional">
+					<annotation>
+						<documentation>The number of components in the tuple. Should this be mandatory?</documentation>
+					</annotation>
+				</attribute>
+				<attributeGroup ref="gml:SRSInformationGroup">
+					<annotation>
+						<documentation>Optionally include the axis-names and axis-labels as lists</documentation>
+					</annotation>
+				</attributeGroup>
+				<attribute name="tupleCount" type="nonNegativeInteger" use="optional">
+					<annotation>
+						<documentation>The number of tuples in the list</documentation>
+					</annotation>
+				</attribute>
+			</extension>
+		</simpleContent>
+	</complexType>
+	<!-- ====================================================================== -->
+	<!-- ===== General tuples and tables ====== -->
+	<!-- ====================================================================== -->
+	<complexType name="TupleType">
+		<annotation>
+			<documentation>A set of values, representing a tuple.  
+      Generalises the approach used for xmml:NumericTupleType. 
+      This allows a tuple to be recorded in compact form, as a list of tokens.
+      Note that XML "token" may contain embedded single spaces, so item separators should be tabs, linefeeds, or two or more consecutive spaces.  
+</documentation>
+		</annotation>
+		<simpleContent>
+			<extension base="xmml:tokenListType">
+				<attribute name="RS" type="anyURI" use="optional">
+					<annotation>
+						<documentation>Pointer to definition of the reference system for the tuple.  
+            The RS description should indicate the semantics/label and 
+            units of measure or value-space (if appropriate) for each component, 
+            and the order in which the components appear in the tuple.  
+            RS may be ommitted, in which case it is the same as the previous value in the current context or document.</documentation>
+					</annotation>
+				</attribute>
+				<attribute name="dimension" type="positiveInteger" use="optional">
+					<annotation>
+						<documentation>The number of components in the tuple</documentation>
+					</annotation>
+				</attribute>
+				<attributeGroup ref="gml:SRSInformationGroup">
+					<annotation>
+						<documentation>Optionally include the axis-names and axis-labels as lists</documentation>
+					</annotation>
+				</attributeGroup>
+			</extension>
+		</simpleContent>
+	</complexType>
+	<!-- ====================================================================== -->
+	<complexType name="TupleListType">
+		<annotation>
+			<documentation>A set of values, representing a list of tuples or a table.  
+      This allows a table of values to be recorded in compact form, as a list of tokens. 
+      Note that XML "token" may contain embedded single spaces, so item separators should be tabs, linefeeds, or two or more consecutive spaces.  
+      Tuple components increment fastest, followed by tuple instances, so if you think of this as a table in which the rows are tuples, then the representation is left-to-right followed by down the table.  
+       
+      To assist direct inspection of the data, good practice is to use 
+         * linefeed between tuples, and 
+         * tab between components in a tuple.
+      However any whitespace character sequence is a valid separator between items. </documentation>
+		</annotation>
+		<simpleContent>
+			<extension base="xmml:tokenListType">
+				<attribute name="RS" type="anyURI" use="optional">
+					<annotation>
+						<documentation>Pointer to definition of the reference system for the tuple.  The RS description should indicate the semantics/label and units of measure for each component, and the order in which the components appear in the tuple.  RS may be ommitted, in which case it is the same as the previous value in the current context or document.</documentation>
+					</annotation>
+				</attribute>
+				<attribute name="dimension" type="positiveInteger" use="optional">
+					<annotation>
+						<documentation>The number of components in the tuple.  Should this be mandatory?</documentation>
+					</annotation>
+				</attribute>
+				<attributeGroup ref="gml:SRSInformationGroup">
+					<annotation>
+						<documentation>Optionally include the axis-names and axis-labels as lists</documentation>
+					</annotation>
+				</attributeGroup>
+				<attribute name="tupleCount" type="nonNegativeInteger" use="optional">
+					<annotation>
+						<documentation>The number of tuples in the list</documentation>
+					</annotation>
+				</attribute>
+			</extension>
+		</simpleContent>
+	</complexType>
+	<!-- ====================================================================== -->
+	<!-- ====================================================================== -->
+	<!-- ====================================================================== -->
+	<!-- ===== Some additional list types ====== -->
+	<!-- ====================================================================== -->
+	<simpleType name="refListType">
+		<list itemType="anyURI"/>
+	</simpleType>
+	<!-- ====================================================================== -->
+	<simpleType name="tokenListType">
+		<annotation>
+			<documentation>Token is the set of strings that do not contain the line feed (#xA) nor tab (#x9) characters, that have no leading or trailing spaces (#x20) and that have no internal sequences of two or more spaces.  
+This is more general than Name, which must start with an alpha or underscore.  
+However, when appearing in a list context, internal spaces are interpreted as item separators.  
+Tokens may be represented in a list using line feed, tab, or spaces as separators.  
+</documentation>
+		</annotation>
+		<list itemType="token"/>
+	</simpleType>
+	<!-- ====================================================================== -->
+	<complexType name="TokenWithAuthorityType">
+		<annotation>
+			<documentation>Extension of token which also carries a codeSpace attribute. </documentation>
+		</annotation>
+		<simpleContent>
+			<extension base="token">
+				<attribute name="codeSpace" type="anyURI" use="optional"/>
+			</extension>
+		</simpleContent>
+	</complexType>
+	<!-- ====================================================================== -->
+	<complexType name="TokenListWithAuthorityType">
+		<annotation>
+			<documentation>Extension of TokenList which also carries a codeSpace attribute. </documentation>
+		</annotation>
+		<simpleContent>
+			<extension base="xmml:tokenListType">
+				<attribute name="codeSpace" type="anyURI" use="optional"/>
+			</extension>
+		</simpleContent>
+	</complexType>
+	<!-- ====================================================================== -->
+</schema>

@@ -1,0 +1,157 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<schema targetNamespace="http://www.opengis.net/xmml" xmlns:xmml="http://www.opengis.net/xmml" xmlns="http://www.w3.org/2001/XMLSchema" xmlns:gml="http://www.opengis.net/gml" xmlns:xlink="http://www.w3.org/1999/xlink" elementFormDefault="qualified" attributeFormDefault="unqualified" version="pre-release">
+	<annotation>
+		<documentation>
+axis.xsd
+
+Description of data item, can be used as a "column heading" or for typing a value.  
+This supports the embedding of schema-level information within an instance.  
+Very experimental.  
+Needs to be harmonised properly with OM phenomenon.xsd.  
+
+2003-03-28
+
+Copyright (c) 2004 CSIRO - see https://www.seegrid.csiro.au/twiki/bin/view/Xmml/LegalNotices#Software_Notice
+</documentation>
+	</annotation>
+	<!-- ====================================================================== -->
+	<!-- bring in other schemas -->
+	<import namespace="http://www.w3.org/2001/XMLSchema" schemaLocation="http://www.w3.org/2001/XMLSchema.xsd"/>
+	<import namespace="http://www.opengis.net/gml" schemaLocation="../gml/base/gmlBase.xsd"/>
+	<include schemaLocation="./base.xsd"/>
+	<include schemaLocation="./values.xsd"/>
+	<!-- ====================================================================== -->
+	<!-- ====================================================================== -->
+	<element name="Axis" type="xmml:AxisType" substitutionGroup="gml:Definition"/>
+	<!-- ====== -->
+	<complexType name="AxisType">
+		<annotation>
+			<documentation>Description of a data item or column heading.</documentation>
+		</annotation>
+		<complexContent>
+			<extension base="gml:DefinitionType">
+				<choice>
+					<group ref="xmml:QAtomProperties"/>
+					<element name="component" type="xmml:QAtomType" minOccurs="2" maxOccurs="unbounded">
+						<annotation>
+							<documentation>This element describes a component axis within a composite.</documentation>
+						</annotation>
+					</element>
+					<group ref="xmml:TAtomProperties"/>
+				</choice>
+				<attribute name="componentCount" type="positiveInteger" use="optional" default="1"/>
+			</extension>
+		</complexContent>
+	</complexType>
+	<!-- ====================================================================== -->
+	<complexType name="QAtomType">
+		<annotation>
+			<documentation>Description of a scalar quantity data item or column heading.</documentation>
+		</annotation>
+		<complexContent>
+			<extension base="gml:DefinitionType">
+				<sequence>
+					<group ref="xmml:QAtomProperties"/>
+				</sequence>
+			</extension>
+		</complexContent>
+	</complexType>
+	<!-- ====================================================================== -->
+	<group name="QAtomProperties">
+		<sequence>
+			<element ref="gml:unitOfMeasure"/>
+			<group ref="xmml:doubleFacets" minOccurs="0" maxOccurs="unbounded"/>
+			<element name="uncertainty" type="xmml:QType" minOccurs="0"/>
+			<element name="determinedUsing" type="gml:StringOrRefType" minOccurs="0"/>
+			<element name="when" type="gml:TimePrimitivePropertyType" minOccurs="0"/>
+		</sequence>
+	</group>
+	<!-- ====================================================================== -->
+	<complexType name="TAtomType">
+		<annotation>
+			<documentation>Description of a text data item or column heading.</documentation>
+		</annotation>
+		<complexContent>
+			<extension base="gml:DefinitionType">
+				<sequence>
+					<group ref="xmml:QAtomProperties"/>
+				</sequence>
+			</extension>
+		</complexContent>
+	</complexType>
+	<!-- ====================================================================== -->
+	<group name="TAtomProperties">
+		<sequence>
+			<element name="codeSpace" type="gml:ReferenceType" minOccurs="0"/>
+			<group ref="xmml:stringFacets" minOccurs="0" maxOccurs="unbounded"/>
+			<element name="uncertainty" type="gml:StringOrRefType" minOccurs="0"/>
+			<element name="determinedUsing" type="gml:StringOrRefType" minOccurs="0"/>
+			<element name="when" type="gml:TimePrimitivePropertyType" minOccurs="0"/>
+		</sequence>
+	</group>
+	<!-- ====================================================================== -->
+	<simpleType name="ScalarQuantityTypes">
+		<restriction base="NCName">
+			<enumeration value="double"/>
+			<enumeration value="integer"/>
+			<enumeration value="Name"/>
+		</restriction>
+	</simpleType>
+	<!-- ====================================================================== -->
+	<complexType name="AxisPropertyType">
+		<sequence minOccurs="0">
+			<element ref="xmml:Axis"/>
+		</sequence>
+		<attributeGroup ref="gml:AssociationAttributeGroup"/>
+	</complexType>
+	<!-- ====================================================================== -->
+	<group name="allFacets">
+		<choice>
+			<group ref="facets"/>
+			<element name="codeSpace" type="anyURI"/>
+		</choice>
+	</group>
+	<!-- ====================================================================== -->
+	<group name="doubleFacets">
+		<choice>
+			<element ref="minExclusive"/>
+			<element ref="minInclusive"/>
+			<element ref="maxExclusive"/>
+			<element ref="maxInclusive"/>
+			<element ref="enumeration"/>
+			<element ref="whiteSpace"/>
+			<element ref="pattern"/>
+		</choice>
+	</group>
+	<!-- ====================================================================== -->
+	<group name="stringFacets">
+		<choice>
+			<element ref="length"/>
+			<element ref="minLength"/>
+			<element ref="maxLength"/>
+			<element ref="enumeration"/>
+			<element ref="whiteSpace"/>
+			<element ref="pattern"/>
+		</choice>
+	</group>
+	<!-- ====================================================================== -->
+	<!-- <element name="Examples">
+    <annotation>
+      <documentation>Dummy element to test schema validation only</documentation>
+    </annotation>
+    <complexType>
+      <sequence>
+        <element name="axisDefinitions" minOccurs="0">
+          <complexType>
+            <sequence>
+              <element ref="xmml:Axis" maxOccurs="unbounded"/>
+            </sequence>
+          </complexType>
+        </element>
+        <element ref="xmml:nodes" minOccurs="0"/>
+        <element ref="xmml:values" maxOccurs="unbounded"/>
+      </sequence>
+    </complexType>
+  </element> -->
+	<!-- =========================================================== -->
+</schema>

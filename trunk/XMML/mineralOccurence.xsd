@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<schema targetNamespace="http://www.opengis.net/xmml" xmlns="http://www.w3.org/2001/XMLSchema" xmlns:gml="http://www.opengis.net/gml" xmlns:xmml="http://www.opengis.net/xmml" xmlns:xlink="http://www.w3.org/1999/xlink" elementFormDefault="qualified" attributeFormDefault="unqualified" version="pre-release">
+	<annotation>
+		<documentation>
+mineralOccurence.xsd
+
+A GML conformant schema 
+for mineral occurences
+
+2003-10-23
+
+Copyright (c) 2004 CSIRO - see https://www.seegrid.csiro.au/twiki/bin/view/Xmml/LegalNotices#Software_Notice
+</documentation>
+	</annotation>
+	<!-- ====================================================================== -->
+	<!-- bring in other schemas -->
+	<include schemaLocation="./geometry.xsd"/>
+	<include schemaLocation="./commonFeatures.xsd"/>
+	<include schemaLocation="../enumerations/LUTmineral.xsd"/>
+	<include schemaLocation="../enumerations/LUTgeography.xsd"/>
+	<include schemaLocation="../enumerations/LUTgeodesy.xsd"/>
+	<!-- ====================================================================== -->
+	<element name="MineralOccurence" type="xmml:MineralOccurenceType" substitutionGroup="gml:_Feature"/>
+	<!-- ====================================================================== -->
+	<complexType name="MineralOccurenceType">
+		<annotation>
+			<documentation/>
+		</annotation>
+		<complexContent>
+			<extension base="xmml:PositionedFeatureType">
+				<sequence>
+					<element ref="xmml:projLocation"/>
+					<element name="locationMethod" type="xmml:positionMethodType"/>
+					<element name="locationPrecision" type="gml:MeasureType"/>
+					<element ref="xmml:state"/>
+					<element name="country" type="xmml:ISOCountry3Char"/>
+					<element name="depositGroup" type="token" minOccurs="0"/>
+					<element name="commodity" type="xmml:commodityCodeType" maxOccurs="unbounded"/>
+					<element name="depositType" type="xmml:mineralDepositType"/>
+					<element name="class" type="xmml:mineralOccurenceClassType"/>
+					<element name="mineStatus" type="xmml:mineStatusType"/>
+				</sequence>
+			</extension>
+		</complexContent>
+	</complexType>
+	<!-- ====================================================================== -->
+	<element name="state" type="token"/>
+	<element name="ausState" type="xmml:ANZLICStates" substitutionGroup="xmml:state"/>
+	<!-- ====================================================================== -->
+</schema>

@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<schema targetNamespace="http://www.opengis.net/xmml" xmlns="http://www.w3.org/2001/XMLSchema" xmlns:gml="http://www.opengis.net/gml" xmlns:xmml="http://www.opengis.net/xmml" xmlns:xlink="http://www.w3.org/1999/xlink" elementFormDefault="qualified" attributeFormDefault="unqualified" version="pre-release">
+	<annotation>
+		<documentation>
+points.xsd
+
+A GML conformant schema 
+for located values
+
+2004-02-04
+
+Copyright (c) 2004 CSIRO - see https://www.seegrid.csiro.au/twiki/bin/view/Xmml/LegalNotices#Software_Notice
+</documentation>
+	</annotation>
+	<!-- ====================================================================== -->
+	<!-- bring in other schemas -->
+	<include schemaLocation="./observation.xsd"/>
+	<include schemaLocation="./geometry.xsd"/>
+	<include schemaLocation="../enumerations/LUTportrayal.xsd"/>
+	<!-- ====================================================================== -->
+	<!-- ====================================================================== -->
+	<element name="PositionFeature" type="xmml:PositionFeatureType" substitutionGroup="xmml:Feature">
+		<annotation>
+			<documentation>A basic feature having just a position. </documentation>
+		</annotation>
+	</element>
+	<!-- ====== -->
+	<complexType name="PositionFeatureType">
+		<annotation>
+			<documentation>Add featureType property for soft-typing. </documentation>
+		</annotation>
+		<complexContent>
+			<extension base="xmml:PositionedFeatureType">
+				<sequence>
+					<element name="featureType" type="token" minOccurs="0"/>
+				</sequence>
+			</extension>
+		</complexContent>
+	</complexType>
+	<!-- ====================================================================== -->
+	<element name="PositionWithProperties" type="xmml:PositionWithPropertiesType" substitutionGroup="xmml:PositionFeature">
+		<annotation>
+			<documentation>A basic feature having just a location and some soft-typed properties. </documentation>
+		</annotation>
+	</element>
+	<!-- ====================================================================== -->
+	<complexType name="PositionWithPropertiesType">
+		<annotation>
+			<documentation> Add generic properties and observations. </documentation>
+		</annotation>
+		<complexContent>
+			<extension base="xmml:PositionFeatureType">
+				<sequence>
+					<group ref="xmml:property" minOccurs="0" maxOccurs="unbounded"/>
+					<element ref="xmml:relatedObservation" minOccurs="0" maxOccurs="unbounded"/>
+				</sequence>
+			</extension>
+		</complexContent>
+	</complexType>
+	<!-- ====================================================================== -->
+	<element name="ColouredPosition" type="xmml:ColouredPositionType" substitutionGroup="xmml:PositionFeature">
+		<annotation>
+			<documentation>A basic feature having a location and default colour. </documentation>
+		</annotation>
+	</element>
+	<!-- ====== -->
+	<complexType name="ColouredPositionType">
+		<annotation>
+			<documentation>Add a defaultColour property. </documentation>
+		</annotation>
+		<complexContent>
+			<extension base="xmml:PositionFeatureType">
+				<sequence>
+					<element name="defaultColour" type="xmml:colour"/>
+				</sequence>
+			</extension>
+		</complexContent>
+	</complexType>
+	<!-- ====================================================================== -->
+</schema>
