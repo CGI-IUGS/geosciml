@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!-- edited with XMLSPY v5 rel. 4 U (http://www.xmlspy.com) by Marcus Sen (british Geological Survey) -->
-<schema targetNamespace="http://www.opengis.net/xmml" xmlns="http://www.w3.org/2001/XMLSchema" xmlns:gml="http://www.opengis.net/gml" xmlns:xmml="http://www.opengis.net/xmml" xmlns:xlink="http://www.w3.org/1999/xlink" elementFormDefault="qualified" attributeFormDefault="unqualified" version="pre-release">
+<schema targetNamespace="http://www.opengis.net/xmml" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:xmml="http://www.opengis.net/xmml" xmlns:gml="http://www.opengis.net/gml" xmlns="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified" attributeFormDefault="unqualified" version="pre-release">
 	<annotation>
 		<documentation source="xw:CoveragesInXmml">
 coverage.xsd
@@ -15,7 +15,7 @@ Copyright (c) 2004 CSIRO - see https://www.seegrid.csiro.au/twiki/bin/view/Xmml/
 	</annotation>
 	<!-- ====================================================================== -->
 	<!-- bring in other schemas -->
-	<import namespace="http://www.opengis.net/gml" schemaLocation="../gml/base/grids.xsd"/>
+	<import namespace="http://www.opengis.net/gml" schemaLocation="./gml4coverage.xsd"/>
 	<include schemaLocation="./geometry.xsd"/>
 	<include schemaLocation="./referenceSystems.xsd"/>
 	<include schemaLocation="./observation.xsd"/>
@@ -73,22 +73,27 @@ N.B. Temporal domains still to be implemented.</documentation>
 			<choice>
 				<element ref="xmml:RecordList">
 					<annotation>
-						<documentation>Values in the range represented in record or band-interleaved order</documentation>
+						<documentation>Values in the range represented as vectors in band-interleaved order</documentation>
+					</annotation>
+				</element>
+				<element ref="xmml:ValueList">
+					<annotation>
+						<documentation>Values in the range represented as Objects or structured values</documentation>
 					</annotation>
 				</element>
 				<element ref="xmml:TableByRecord">
 					<annotation>
-						<documentation>Values in the range represented in record or band-interleaved order</documentation>
+						<documentation>Values in the range represented as a table in band-interleaved order</documentation>
 					</annotation>
 				</element>
 				<element ref="xmml:BandList">
 					<annotation>
-						<documentation>Values in the range represented in component or band-sequential order</documentation>
+						<documentation>Values in the range represented as vectors in component or band-sequential order</documentation>
 					</annotation>
 				</element>
 				<element ref="xmml:TableByBand">
 					<annotation>
-						<documentation>Values in the range represented in component or band-sequential order</documentation>
+						<documentation>Values in the range represented as a table in component or band-sequential order</documentation>
 					</annotation>
 				</element>
 				<element ref="xmml:File">
@@ -103,7 +108,7 @@ N.B. Temporal domains still to be implemented.</documentation>
 	<!-- =========================================================== -->
 	<element name="RecordList" type="xmml:RecordListType">
 		<annotation>
-			<documentation>Values in the range represented in record or band-interleaved order</documentation>
+			<documentation>Values in the range represented as vectors in band-interleaved order</documentation>
 		</annotation>
 	</element>
 	<!-- =========================================================== -->
@@ -122,9 +127,31 @@ N.B. Temporal domains still to be implemented.</documentation>
 		</choice>
 	</complexType>
 	<!-- =========================================================== -->
+	<element name="ValueList" type="xmml:ValueListType">
+		<annotation>
+			<documentation>Values in the range represented as Objects or structured values</documentation>
+		</annotation>
+	</element>
+	<!-- =========================================================== -->
+	<complexType name="ValueListType">
+		<sequence>
+			<element name="member" maxOccurs="unbounded">
+				<complexType>
+					<sequence minOccurs="0">
+						<choice>
+							<element ref="gml:_Value"/>
+							<element ref="gml:_GML"/>
+						</choice>
+					</sequence>
+					<attributeGroup ref="gml:AssociationAttributeGroup"/>
+				</complexType>
+			</element>
+		</sequence>
+	</complexType>
+	<!-- =========================================================== -->
 	<element name="TableByRecord" type="xmml:TableByRecordType">
 		<annotation>
-			<documentation>Values in the range represented in record or band-interleaved order</documentation>
+			<documentation>Values in the range represented as a table in band-interleaved order</documentation>
 		</annotation>
 	</element>
 	<!-- =========================================================== -->
@@ -145,7 +172,7 @@ N.B. Temporal domains still to be implemented.</documentation>
 	<!-- =========================================================== -->
 	<element name="BandList" type="xmml:BandListType">
 		<annotation>
-			<documentation>Values in the range represented in component or band-sequential order</documentation>
+			<documentation>Values in the range represented as vectors in component or band-sequential order</documentation>
 		</annotation>
 	</element>
 	<!-- =========================================================== -->
@@ -190,7 +217,7 @@ N.B. Temporal domains still to be implemented.</documentation>
 	<!-- =========================================================== -->
 	<element name="TableByBand" type="xmml:TableByBandType">
 		<annotation>
-			<documentation>Values in the range represented in band-sequential order</documentation>
+			<documentation>Values in the range represented as a table in component or band-sequential order</documentation>
 		</annotation>
 	</element>
 	<!-- =========================================================== -->
@@ -319,13 +346,15 @@ N.B. Temporal domains still to be implemented.</documentation>
 	<!-- =========================================================== -->
 	<simpleType name="IncrementOrder">
 		<annotation>
-			<documentation>The enumeration value here indicates the incrementation order  to be used on the first 2 axes, i.e. "+x-y" means that the points on the first axis are to be traversed from lowest to highest and  the points on the second axis are to be traversed from highest to lowest. The points on all other axes (if any) beyond the first 2 are assumed to increment from lowest to highest.</documentation>
+			<documentation>The enumeration value here indicates the incrementation order  to be used on the first 2 axes, i.e. "+x-y" means that the points on the first axis are to be traversed from lowest to highest and  the points on the second axis are to be traversed from highest to lowest. The points on all other axes (if any) beyond the first 2 are assumed to increment from lowest to highest.
+XXXXXXXXXXXXXXX need to make this more comprehensive
+</documentation>
 		</annotation>
 		<restriction base="string">
 			<enumeration value="+x+y"/>
 			<enumeration value="+y+x"/>
 			<enumeration value="+x-y"/>
-			<enumeration value="-x-y"/>
+			<enumeration value="-y-x"/>
 		</restriction>
 	</simpleType>
 	<!-- =========================================================== -->
