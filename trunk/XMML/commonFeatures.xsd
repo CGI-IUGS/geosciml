@@ -89,7 +89,7 @@ Copyright (c) 2004 CSIRO - see https://www.seegrid.csiro.au/twiki/bin/view/Xmml/
 		</complexContent>
 	</complexType>
 	<!-- ====================================================================== -->
-		<!-- ====================================================================== -->
+	<!-- ====================================================================== -->
 	<element name="Station" type="xmml:StationType" substitutionGroup="xmml:Feature"/>
 	<!-- ====== -->
 	<complexType name="StationType">
@@ -116,40 +116,44 @@ Copyright (c) 2004 CSIRO - see https://www.seegrid.csiro.au/twiki/bin/view/Xmml/
 	<!-- ====================================================================== -->
 	<element name="Tenement" type="xmml:TenementType" substitutionGroup="gml:_Feature">
 		<annotation>
-			<documentation>Mining or exploration lease.</documentation>
+			<documentation>Mining or exploration lease, known as a ?? in some jurisdictions.</documentation>
 		</annotation>
 	</element>
 	<!-- ====== -->
 	<complexType name="TenementType">
 		<complexContent>
-			<extension base="xmml:FeatureType">
+			<extension base="xmml:BoundedFeatureType">
 				<sequence>
-					<element name="tenementType" type="token">
+					<element name="shape" type="gml:SurfacePropertyType" nillable="true">
 						<annotation>
-							<documentation>The type of lease or tenement: e.g. mineral-exploration, oil-exploration, mining, oil-production</documentation>
+							<documentation>Outline of tenement</documentation>
 						</annotation>
 					</element>
-					<element name="tenementCode" type="xmml:TokenWithAuthorityType">
+					<element name="identifier" type="gml:CodeType">
 						<annotation>
-							<documentation>The code or serial number of the tenement, assigned by the appropriate statutory authority.  
-              The gml:name element could be used to record this, but this is a more explicit label.  
+							<documentation>The identifier for the tenement, assigned by the appropriate statutory authority.  
+              The gml:name element could be used to record this, but this is more explicit and mandatory.  
               gml:name may be used to store alternative names, such as those assigned by the operator or lease holder. </documentation>
 						</annotation>
 					</element>
-					<element name="shape" type="gml:SurfacePropertyType" minOccurs="0"/>
-					<element name="grantor" type="xmml:PartyPropertyType">
+					<element name="adminstrator" type="xmml:PartyPropertyType">
 						<annotation>
 							<documentation>The statutory agency that grants the mining or exploration lease.</documentation>
 						</annotation>
 					</element>
-					<element name="holder" type="xmml:PartyPropertyType">
+					<element name="owner" type="xmml:PartyPropertyType">
 						<annotation>
 							<documentation>The legal entity that holds the mining or exploration lease.</documentation>
 						</annotation>
 					</element>
-					<element name="valid" type="gml:TimePeriodPropertyType">
+					<element name="dateOfApplication" type="date"/>
+					<element name="dateGranted" type="date"/>
+					<element name="dateExpires" type="date"/>
+					<element name="leaseStatus" type="token"/>
+					<element name="recordStatus" type="xmml:RecordEventPropertyType"/>
+					<element name="tenementType" type="token">
 						<annotation>
-							<documentation>The period of validity of the lease for this holder.</documentation>
+							<documentation>The type of lease or tenement: e.g. mineral-exploration, oil-exploration, mining, oil-production</documentation>
 						</annotation>
 					</element>
 					<element name="rights" type="gml:StringOrRefType" minOccurs="0">
