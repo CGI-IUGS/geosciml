@@ -7,17 +7,14 @@ borehole.xsd
 A GML conformant schema 
 for borehole descriptions with logs
 
-? suppress SurveyLog - this can be included in "logs" instead of "shape"
-? restrict shape representation to Linestring and Curve/segments/LineStringSegments only
-
-SJDC  2004-02-23
+SJDC  2004-11-24
 
 Copyright © 2004 CSIRO - see https://www.seegrid.csiro.au/twiki/bin/view/Xmml/LegalNotices#Software_Notice
 </documentation>
 	</annotation>
 	<!-- ====================================================================== -->
 	<!-- bring in other schemas -->
-	<import namespace="http://www.opengis.net/gml" schemaLocation="http://schemas.opengis.net/gml/3.1.0/base/direction.xsd"/>
+	<import namespace="http://www.opengis.net/gml" schemaLocation="https://www.seegrid.csiro.au/subversion/gml/3.1.1/base/geometryPrimitives.xsd"/>
 	<include schemaLocation="./commonFeatures.xsd"/>
 	<include schemaLocation="./coverage.xsd"/>
 	<include schemaLocation="../enumerations/LUTsampling.xsd"/>
@@ -37,9 +34,9 @@ Copyright © 2004 CSIRO - see https://www.seegrid.csiro.au/twiki/bin/view/Xmml/L
 		<complexContent>
 			<extension base="xmml:PositionedFeatureType">
 				<sequence>
-					<element name="drilledUsing" type="xmml:DrillProcedurePropertyType" minOccurs="0">
+					<element name="drilled" type="xmml:ProcedureEventPropertyType" minOccurs="0">
 						<annotation>
-							<documentation>This element contains or points to a description of a drilling method</documentation>
+							<documentation>This element contains or points to a description of a drilling event</documentation>
 						</annotation>
 					</element>
 					<element name="collarDiameter" type="gml:MeasureType" minOccurs="0">
@@ -52,7 +49,7 @@ Copyright © 2004 CSIRO - see https://www.seegrid.csiro.au/twiki/bin/view/Xmml/L
 							<documentation>The total length of the borehole. This is normally measured as arc-length along the (axis of) the hole. This property is provided for convenience and does not override the value implied by the "shape" property. </documentation>
 						</annotation>
 					</element>
-					<element name="shape" type="xmml:BoreholeShapeType">
+					<element name="shape" type="xmml:BoreholeShapePropertyType">
 						<annotation>
 							<documentation>Description of the curve tracing the axis of the hole. </documentation>
 						</annotation>
@@ -79,52 +76,22 @@ Copyright © 2004 CSIRO - see https://www.seegrid.csiro.au/twiki/bin/view/Xmml/L
 		</annotation>
 	</element>
 	<!-- ====================================================================== -->
-	<element name="DrillProcedure" type="xmml:DrillProcedureType" substitutionGroup="xmml:Procedure">
-		<annotation>
-			<documentation>description of a drilling procedure. </documentation>
-		</annotation>
-	</element>
-	<complexType name="DrillProcedureType">
-		<annotation>
-			<documentation/>
-		</annotation>
-		<complexContent>
-			<extension base="xmml:ProcedureType">
-				<sequence>
-					<element name="operator" type="xmml:PartyPropertyType" minOccurs="0"/>
-				</sequence>
-			</extension>
-		</complexContent>
-	</complexType>
-	<!-- ====================================================================== -->
 	<element name="drillCode" type="xmml:drillCodes" substitutionGroup="xmml:method">
 		<annotation>
 			<documentation>Drilling procedure type.</documentation>
 		</annotation>
 	</element>
 	<!-- ====================================================================== -->
-	<complexType name="DrillProcedurePropertyType">
-		<complexContent>
-			<restriction base="xmml:ProcedurePropertyType">
-				<sequence>
-					<element ref="xmml:DrillProcedure" minOccurs="0"/>
-				</sequence>
-				<attributeGroup ref="gml:AssociationAttributeGroup"/>
-			</restriction>
-		</complexContent>
-	</complexType>
-	<!-- ====================================================================== -->
-	<complexType name="BoreholeShapeType">
+	<complexType name="BoreholeShapePropertyType">
 		<annotation>
 			<documentation>By value or by reference - standard GML Property model</documentation>
 		</annotation>
 		<sequence minOccurs="0">
 			<choice>
 				<element ref="xmml:SimpleBoreholeShape"/>
-				<element ref="xmml:SurveyTable"/>
 				<element ref="xmml:BoreholeSurvey"/>
-				<element name="BoreholeSurveyLog" type="xmml:PointSetCoverageType"/>
-				<element ref="gml:_Curve"/>
+				<element ref="gml:LineString"/>
+				<element ref="gml:Curve"/>
 			</choice>
 		</sequence>
 		<attributeGroup ref="gml:AssociationAttributeGroup"/>
@@ -147,8 +114,7 @@ Copyright © 2004 CSIRO - see https://www.seegrid.csiro.au/twiki/bin/view/Xmml/L
 						</annotation>
 					</element>
 					<element name="offsets" type="gml:MeasureListType"/>
-					<element name="azimuths" type="gml:MeasureListType"/>
-					<element name="inclinations" type="gml:MeasureListType"/>
+					<element name="vectors" type="gml:DirectPositionListType"/>
 				</sequence>
 			</extension>
 		</complexContent>
@@ -169,7 +135,7 @@ Copyright © 2004 CSIRO - see https://www.seegrid.csiro.au/twiki/bin/view/Xmml/L
 							This is equivalent to a degenerate survey with only one observation.  </documentation>
 						</annotation>
 					</element>
-					<element ref="gml:vector">
+					<element name="direction" type="gml:VectorType">
 						<annotation>
 							<documentation>A simple direction relative to the origin.</documentation>
 						</annotation>
@@ -180,37 +146,6 @@ Copyright © 2004 CSIRO - see https://www.seegrid.csiro.au/twiki/bin/view/Xmml/L
 	</complexType>
 	<!-- ====================================================================== -->
 	<!-- ====================================================================== -->
-	<element name="SurveyTable" type="xmml:SurveyTableType"/>
-	<!-- ====================================================================== -->
-	<complexType name="SurveyTableType">
-		<annotation>
-			<documentation>SurveyTable carries an id, so can be used as the target of a reference. This is useful so that the survey defines a 1-D CRS used for indexing information along the borehole. </documentation>
-		</annotation>
-		<complexContent>
-			<extension base="gml:AbstractGMLType">
-				<sequence>
-					<element name="origin" type="gml:PointPropertyType">
-						<annotation>
-							<documentation>A borehole survey is expressed as a set of offset/direction records. The offset is relative to an origin, which is typically the borehole collar. The "by reference" form should normally be used if this is the case, pointing to the value of gml:position above. </documentation>
-						</annotation>
-					</element>
-					<element name="surveyTable">
-						<annotation>
-							<documentation>Compact form of the same information provided in row form embedded in a single element</documentation>
-						</annotation>
-						<complexType>
-							<simpleContent>
-								<restriction base="xmml:NumericTupleType">
-									<attribute name="dimension" fixed="3"/>
-									<attribute name="axisLabels" fixed="offset azimuth inclination"/>
-								</restriction>
-							</simpleContent>
-						</complexType>
-					</element>
-				</sequence>
-			</extension>
-		</complexContent>
-	</complexType>
 	<!-- ====================================================================== -->
 	<complexType name="LogPropertyType">
 		<sequence minOccurs="0">
