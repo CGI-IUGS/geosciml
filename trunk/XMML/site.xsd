@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<schema xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:gml="http://www.opengis.net/gml" xmlns="http://www.w3.org/2001/XMLSchema" xmlns:xmml="http://www.opengis.net/xmml" targetNamespace="http://www.opengis.net/xmml" elementFormDefault="qualified" attributeFormDefault="unqualified" version="pre-release">
+<schema xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:gml="http://www.opengis.net/gml" xmlns="http://www.w3.org/2001/XMLSchema" xmlns:xmml="http://www.opengis.net/xmml" targetNamespace="http://www.opengis.net/xmml" elementFormDefault="qualified"
+        attributeFormDefault="unqualified" version="pre-release">
 	<annotation>
-		<documentation>
-site.xsd
+		<documentation>site.xsd
 
 Site provides a set of feature types that are used primarily for making observations: 
 Station (0-D)
@@ -12,8 +12,7 @@ ZoneOfInterest (3-D)
 
 In many cases the properties of interest vary within the site, so may be represented as a coverage associated with the site. 
 
-Copyright (c) 2005 CSIRO - see https://www.seegrid.csiro.au/twiki/bin/view/Xmml/LegalNotices#Software_Notice
-</documentation>
+Copyright (c) 2005 CSIRO - see https://www.seegrid.csiro.au/twiki/bin/view/Xmml/LegalNotices#Software_Notice</documentation>
 	</annotation>
 	<!-- ====================================================================== -->
 	<!-- bring in other schemas -->
@@ -193,6 +192,19 @@ Copyright (c) 2005 CSIRO - see https://www.seegrid.csiro.au/twiki/bin/view/Xmml/
 			</choice>
 		</sequence>
 		<attributeGroup ref="gml:AssociationAttributeGroup"/>
+		<attribute name="unionSemantics">
+			<annotation>
+				<documentation>optional XML attribute implements UML Union discriminator</documentation>
+			</annotation>
+			<simpleType>
+				<restriction base="string">
+					<enumeration value="continuousLog"/>
+					<enumeration value="intervalLog"/>
+					<enumeration value="pointLog"/>
+					<enumeration value="curveSurvey"/>
+				</restriction>
+			</simpleType>
+		</attribute>
 	</complexType>
 	<!-- ====================================================================== -->
 	<element name="PointLog" type="xmml:PointSetCoverageType" substitutionGroup="xmml:PointSetCoverage">
@@ -214,19 +226,27 @@ Copyright (c) 2005 CSIRO - see https://www.seegrid.csiro.au/twiki/bin/view/Xmml/
 	</element>
 	<!-- ====================================================================== -->
 	<!-- ====================================================================== -->
-	<group name="Shape1D">
-		<choice>
-			<element ref="gml:Curve"/>
-			<element ref="gml:LineString"/>
-			<element ref="xmml:Line"/>
-		</choice>
-	</group>
-	<!-- .................. -->
 	<complexType name="Shape1DPropertyType">
 		<sequence minOccurs="0">
-			<group ref="xmml:Shape1D"/>
+			<choice>
+				<element ref="gml:Curve"/>
+				<element ref="gml:LineString"/>
+				<element ref="xmml:Line"/>
+			</choice>
 		</sequence>
 		<attributeGroup ref="gml:AssociationAttributeGroup"/>
+		<attribute name="unionSemantics">
+			<annotation>
+				<documentation>optional XML attribute implements UML Union discriminator</documentation>
+			</annotation>
+			<simpleType>
+				<restriction base="string">
+					<enumeration value="curveShape"/>
+					<enumeration value="lineStringShape"/>
+					<enumeration value="lineShape"/>
+				</restriction>
+			</simpleType>
+		</attribute>
 	</complexType>
 	<!-- ====================================================================== -->
 	<element name="Specimen" type="xmml:SpecimenType" substitutionGroup="xmml:Feature"/>
