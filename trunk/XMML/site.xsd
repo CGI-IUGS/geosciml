@@ -5,12 +5,12 @@
 		<documentation>site.xsd
 
 Site provides a set of feature types that are used primarily for making observations: 
-Station (0-D)
+Site is the top of the hierarchy
+Station (0-D) and Specimen are described in this document
+
 Section, Interval, Traverse, Flightline, Borehole (1-D)
 AreaOfInterest (2-D)
-ZoneOfInterest (3-D)
-
-In many cases the properties of interest vary within the site, so may be represented as a coverage associated with the site. 
+ZoneOfInterest (3-D) are all described in section.xsd
 
 Copyright (c) 2005 CSIRO - see https://www.seegrid.csiro.au/twiki/bin/view/Xmml/LegalNotices#Software_Notice</documentation>
 	</annotation>
@@ -18,9 +18,7 @@ Copyright (c) 2005 CSIRO - see https://www.seegrid.csiro.au/twiki/bin/view/Xmml/
 	<!-- bring in other schemas -->
 	<import namespace="http://www.opengis.net/gml" schemaLocation="./gml4site.xsd"/>
 	<include schemaLocation="./feature.xsd"/>
-	<include schemaLocation="./geometry.xsd"/>
 	<include schemaLocation="./observation.xsd"/>
-	<include schemaLocation="./coverage.xsd"/>
 	<include schemaLocation="../enumerations/LUTgeography.xsd"/>
 	<!-- ====================================================================== -->
 	<!-- ===== Feature types in Site hierarchy ====== -->
@@ -84,171 +82,6 @@ Copyright (c) 2005 CSIRO - see https://www.seegrid.csiro.au/twiki/bin/view/Xmml/
 		<attributeGroup ref="gml:AssociationAttributeGroup"/>
 	</complexType>
 	<!-- ====================================================================== -->
-	<element name="Section" type="xmml:SectionType" substitutionGroup="xmml:Site"/>
-	<!-- .................. -->
-	<complexType name="SectionType">
-		<annotation>
-			<documentation>A "Section" is an identified 1-D spatial feature. 
-		It may be revisited for various purposes, in particular to retrieve multiple specimens or make repeated or complementary observations.</documentation>
-		</annotation>
-		<complexContent>
-			<extension base="xmml:SiteType">
-				<sequence>
-					<element name="begin" type="gml:PointPropertyType"/>
-					<element name="end" type="gml:PointPropertyType"/>
-					<element name="length" type="gml:MeasureType"/>
-					<element name="shape" type="xmml:Shape1DPropertyType"/>
-					<element name="member" type="xmml:IntervalPropertyType" minOccurs="0" maxOccurs="unbounded"/>
-					<element name="log" type="xmml:LogPropertyType" minOccurs="0" maxOccurs="unbounded"/>
-				</sequence>
-			</extension>
-		</complexContent>
-	</complexType>
-	<!-- .................. -->
-	<complexType name="SectionPropertyType">
-		<sequence minOccurs="0">
-			<element ref="xmml:Section"/>
-		</sequence>
-		<attributeGroup ref="gml:AssociationAttributeGroup"/>
-	</complexType>
-	<!-- ====================================================================== -->
-	<element name="Interval" type="xmml:SectionType" substitutionGroup="xmml:Section"/>
-	<!-- .................. -->
-	<complexType name="IntervalPropertyType">
-		<sequence minOccurs="0">
-			<element ref="xmml:Interval"/>
-		</sequence>
-		<attributeGroup ref="gml:AssociationAttributeGroup"/>
-	</complexType>
-	<!-- ====================================================================== -->
-	<element name="CurveSurvey" type="xmml:CurveSurveyType" substitutionGroup="xmml:Coverage">
-		<annotation>
-			<documentation>A coverage whose domain is a collection of direct positions, and whose range is a set of direction vectors</documentation>
-		</annotation>
-	</element>
-	<!-- .................. -->
-	<complexType name="CurveSurveyType">
-		<annotation>
-			<documentation>A discrete coverage type whose domain is defined by a collection of positions, and whose range is a set of direction vectors, coverageFunction implicitly linear</documentation>
-		</annotation>
-		<complexContent>
-			<restriction base="xmml:CoverageType">
-				<sequence>
-					<group ref="gml:StandardObjectProperties"/>
-					<element ref="gml:boundedBy"/>
-					<group ref="xmml:StandardSupportProperties"/>
-					<group ref="xmml:ExtendedFeatureProperties"/>
-					<element ref="xmml:offsets"/>
-					<element ref="xmml:directions"/>
-				</sequence>
-			</restriction>
-		</complexContent>
-	</complexType>
-	<!-- .................. -->
-	<complexType name="CurveSurveyPropertyType">
-		<sequence minOccurs="0">
-			<element ref="xmml:CurveSurvey"/>
-		</sequence>
-		<attributeGroup ref="gml:AssociationAttributeGroup"/>
-	</complexType>
-	<!-- ====================================================================== -->
-	<element name="offsets" type="xmml:MultiPosDomainType" substitutionGroup="xmml:domain"/>
-	<!-- ====================================================================== -->
-	<element name="directions" type="xmml:DirectionsRangeType" substitutionGroup="xmml:range"/>
-	<!-- .................. -->
-	<complexType name="DirectionsRangeType">
-		<complexContent>
-			<restriction base="xmml:RangeType">
-				<sequence>
-					<element name="ListOfVectors" type="xmml:ListOfVectorsType"/>
-				</sequence>
-			</restriction>
-		</complexContent>
-	</complexType>
-	<!-- .................. -->
-	<complexType name="ListOfVectorsType">
-		<complexContent>
-			<restriction base="xmml:ListOfRecordsType">
-				<sequence>
-					<element name="rangeParameters" type="xmml:RSDefinitionPropertyType">
-						<annotation>
-							<documentation>In this context, the rangeParameters property will merely identify the CRS for the vectors</documentation>
-						</annotation>
-					</element>
-					<element ref="gml:vector" maxOccurs="unbounded"/>
-				</sequence>
-			</restriction>
-		</complexContent>
-	</complexType>
-	<!-- =========================================================== -->
-	<!-- ====================================================================== -->
-	<complexType name="LogPropertyType">
-		<sequence minOccurs="0">
-			<choice>
-				<element ref="xmml:ContinuousLog"/>
-				<element ref="xmml:IntervalLog"/>
-				<element ref="xmml:PointLog"/>
-				<element ref="xmml:CurveSurvey"/>
-			</choice>
-		</sequence>
-		<attributeGroup ref="gml:AssociationAttributeGroup"/>
-		<attribute name="unionSemantics">
-			<annotation>
-				<documentation>optional XML attribute implements UML Union discriminator</documentation>
-			</annotation>
-			<simpleType>
-				<restriction base="string">
-					<enumeration value="continuousLog"/>
-					<enumeration value="intervalLog"/>
-					<enumeration value="pointLog"/>
-					<enumeration value="curveSurvey"/>
-				</restriction>
-			</simpleType>
-		</attribute>
-	</complexType>
-	<!-- ====================================================================== -->
-	<element name="PointLog" type="xmml:PointSetCoverageType" substitutionGroup="xmml:PointSetCoverage">
-		<annotation>
-			<documentation>A log over a collection of point locations</documentation>
-		</annotation>
-	</element>
-	<!-- ====================================================================== -->
-	<element name="IntervalLog" type="xmml:IntervalSetCoverageType" substitutionGroup="xmml:IntervalSetCoverage">
-		<annotation>
-			<documentation>A log over a collection of intervals</documentation>
-		</annotation>
-	</element>
-	<!-- ====================================================================== -->
-	<element name="ContinuousLog" type="xmml:RectifiedGridCoverageType" substitutionGroup="xmml:RectifiedGridCoverage">
-		<annotation>
-			<documentation>A log over a collection of regularly spaced locations</documentation>
-		</annotation>
-	</element>
-	<!-- ====================================================================== -->
-	<!-- ====================================================================== -->
-	<complexType name="Shape1DPropertyType">
-		<sequence minOccurs="0">
-			<choice>
-				<element ref="gml:Curve"/>
-				<element ref="gml:LineString"/>
-				<element ref="xmml:Line"/>
-			</choice>
-		</sequence>
-		<attributeGroup ref="gml:AssociationAttributeGroup"/>
-		<attribute name="unionSemantics">
-			<annotation>
-				<documentation>optional XML attribute implements UML Union discriminator</documentation>
-			</annotation>
-			<simpleType>
-				<restriction base="string">
-					<enumeration value="curveShape"/>
-					<enumeration value="lineStringShape"/>
-					<enumeration value="lineShape"/>
-				</restriction>
-			</simpleType>
-		</attribute>
-	</complexType>
-	<!-- ====================================================================== -->
 	<element name="Specimen" type="xmml:SpecimenType" substitutionGroup="xmml:Feature"/>
 	<!-- .................. -->
 	<complexType name="SpecimenType">
@@ -274,9 +107,10 @@ Copyright (c) 2005 CSIRO - see https://www.seegrid.csiro.au/twiki/bin/view/Xmml/
 		<complexContent>
 			<extension base="xmml:FeatureType">
 				<sequence>
+					<element name="location" type="gml:GeometryPropertyType" nillable="true"/>
 					<element name="sampledAt" type="xmml:SitePropertyType" minOccurs="0">
 						<annotation>
-							<documentation>Pointer to the station from which the specimen was obtained</documentation>
+							<documentation>Pointer to the station, section, etc from which the specimen was obtained</documentation>
 						</annotation>
 					</element>
 					<element name="material" type="gml:CodeType">
