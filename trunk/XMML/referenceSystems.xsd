@@ -25,13 +25,12 @@ For the moment I will comment out the necessary pieces.  </documentation>
     </annotation>
   </import>
   -->
-	<!--
-  <import namespace="http://www.w3.org/2001/XMLSchema" schemaLocation="../W3C/schemas/XMLSchema.xsd">
-    <annotation>
-      <documentation>Here I try to import from a local source instead, but XML Spy still overrides the import and gets confused.  </documentation>
-    </annotation>
-  </import>
-  -->
+	<!--   -->
+	<import namespace="http://www.w3.org/2001/XMLSchema" schemaLocation="http://www.w3.org/2001/XMLSchema">
+		<annotation>
+			<documentation>Here I import the schema-for-schemas. (Spy has an entrypointing to a local copy in MainCatalog.xml)  </documentation>
+		</annotation>
+	</import>
 	<import namespace="http://www.opengis.net/gml" schemaLocation="http://schemas.opengis.net/gml/3.1.0/base/dictionary.xsd"/>
 	<include schemaLocation="./procedures.xsd"/>
 	<!-- ====================================================================== -->
@@ -140,25 +139,33 @@ For the moment I will comment out the necessary pieces.  </documentation>
 	</complexType>
 	<!-- ====================================================================== -->
 	<group name="scale">
-		<sequence>
-			<choice>
-				<element ref="gml:unitOfMeasure">
-					<annotation>
-						<documentation>Use this element to indicate an unit of measure for numeric values.  </documentation>
-					</annotation>
-				</element>
-				<element name="classification" type="gml:StringOrRefType">
-					<annotation>
-						<documentation>Use this element to indicate an informally or externally described classification scheme for textual values.  </documentation>
-					</annotation>
-				</element>
-			</choice>
-		</sequence>
+		<choice>
+			<element ref="gml:unitOfMeasure">
+				<annotation>
+					<documentation>Use this element to indicate an unit of measure for numeric values.  </documentation>
+				</annotation>
+			</element>
+			<element name="classification" type="gml:StringOrRefType">
+				<annotation>
+					<documentation>Use this element to indicate an informally or externally described classification scheme for textual values.  </documentation>
+				</annotation>
+			</element>
+		</choice>
 	</group>
 	<!-- ====================================================================== -->
-	<element name="representation">
+	<complexType name="RepresentationType">
+		<complexContent>
+			<extension base="topLevelSimpleType">
+				<sequence>
+					<group ref="xmml:scale" minOccurs="0"/>
+				</sequence>
+			</extension>
+		</complexContent>
+	</complexType>
+	<!-- ====================================================================== -->
+	<element name="representation" type="xmml:RepresentationType">
 		<annotation>
-			<documentation> this should reuse components from XML Schema to describe the "value-space" in terms of a base type and facets,  
+			<documentation> this reuses components from XML Schema to describe the "value-space" in terms of a base type and facets,  
             or a composite such as a union.  
             
             For numeric types this will normally indicate integer, double etc and (optionally) facets to describe one or more intervals or a precision. 
@@ -169,27 +176,132 @@ For the moment I will comment out the necessary pieces.  </documentation>
             
 	But currently validators mostly barf when trying to import the S4S </documentation>
 		</annotation>
+	</element>
+	<!-- 
 		<complexType>
-			<sequence>
-				<element name="scale" type="string" minOccurs="0"/>
-				<element name="minInclusive" type="string" minOccurs="0"/>
-				<element name="minExclusive" type="string" minOccurs="0"/>
-				<element name="maxInclusive" type="string" minOccurs="0"/>
-				<element name="maxExclusive" type="string" minOccurs="0"/>
+			<choice>
+				<element ref="simpleType"/>
+				<element name="Number">
+					<complexType>
+						<sequence>
+							<element ref="gml:unitOfMeasure"/>
+							<element ref="minInclusive" minOccurs="0"/>
+							<element ref="minExclusive" minOccurs="0"/>
+							<element ref="maxInclusive" minOccurs="0"/>
+							<element ref="maxExclusive" minOccurs="0"/>
+						</sequence>
+					</complexType>
+				</element>
+				<element name="Word">
+					<complexType>
+						<choice>
+							<element name="codeSpace" type="anyURI"/>
+							<element ref="pattern"/>
+							<element ref="enumeration" maxOccurs="unbounded"/>
+						</choice>
+					</complexType>
+				</element>
+				<element name="Boolean">
+					<complexType>
+						<sequence>
+							<element ref="enumeration" minOccurs="2" maxOccurs="2"/>
+						</sequence>
+					</complexType>
+				</element>
+			</choice>
+		</complexType>
+	</element> -->
+	<!-- ====================================================================== -->
+	<!-- === Components from S4S (XML Schema "schema for schemas") ===== -->
+	<!--
+	<complexType name="openAttrs">
+		<annotation>
+			<documentation>
+       This type is extended by almost all schema types
+       to allow attributes from other namespaces to be
+       added to user schemas.
+     </documentation>
+		</annotation>
+		<complexContent>
+			<restriction base="anyType">
+				<anyAttribute namespace="##other" processContents="lax"/>
+			</restriction>
+		</complexContent>
+	</complexType>
+	<complexType name="annotated">
+		<annotation>
+			<documentation>
+       This type is extended by all types which allow annotation
+       other than &lt;schema&gt; itself
+     </documentation>
+		</annotation>
+		<complexContent>
+			<extension base="xmml:openAttrs">
+				<sequence>
+					<element ref="xmml:annotation" minOccurs="0"/>
+				</sequence>
+				<attribute name="id" type="ID"/>
+			</extension>
+		</complexContent>
+	</complexType>
+<complexType name="facet">
+		<complexContent>
+			<extension base="xmml:annotated">
+				<attribute name="value" use="required"/>
+				<attribute name="fixed" type="boolean" use="optional" default="false"/>
+			</extension>
+		</complexContent>
+	</complexType>
+	<complexType name="noFixedFacet">
+		<complexContent>
+			<restriction base="xmml:facet">
+				<sequence>
+					<element ref="xmml:annotation" minOccurs="0"/>
+				</sequence>
+				<attribute name="fixed" use="prohibited"/>
+			</restriction>
+		</complexContent>
+	</complexType>
+	<element name="appinfo" id="appinfo">
+		<annotation>
+			<documentation source="http://www.w3.org/TR/xmlschema-1/#element-appinfo"/>
+		</annotation>
+		<complexType mixed="true">
+			<sequence minOccurs="0" maxOccurs="unbounded">
+				<any processContents="lax"/>
 			</sequence>
-			<attribute name="type" type="xmml:componentType" use="required"/>
+			<attribute name="source" type="anyURI"/>
 		</complexType>
 	</element>
-	<simpleType name="componentType">
-		<restriction base="NCName">
-			<enumeration value="measure"/>
-			<enumeration value="decimal"/>
-			<enumeration value="integer"/>
-			<enumeration value="count"/>
-			<enumeration value="code"/>
-			<enumeration value="boolean"/>
-		</restriction>
-	</simpleType>
+	<element name="documentation" id="documentation">
+		<annotation>
+			<documentation source="http://www.w3.org/TR/xmlschema-1/#element-documentation"/>
+		</annotation>
+		<complexType mixed="true">
+			<sequence minOccurs="0" maxOccurs="unbounded">
+				<any processContents="lax"/>
+			</sequence>
+			<attribute name="source" type="anyURI"/>
+			<attribute ref="xml:lang"/>
+		</complexType>
+	</element>
+		<element name="annotation" id="annotation">
+		<annotation>
+			<documentation source="http://www.w3.org/TR/xmlschema-1/#element-annotation"/>
+		</annotation>
+		<complexType>
+			<complexContent>
+				<extension base="xmml:openAttrs">
+					<choice minOccurs="0" maxOccurs="unbounded">
+						<element ref="xmml:appinfo"/>
+						<element ref="xmml:documentation"/>
+					</choice>
+					<attribute name="id" type="ID"/>
+				</extension>
+			</complexContent>
+		</complexType>
+	</element>
+-->
 	<!-- ====================================================================== -->
 	<group name="quality">
 		<sequence>
@@ -280,17 +392,24 @@ For the moment I will comment out the necessary pieces.  </documentation>
 		<complexContent>
 			<extension base="gml:DefinitionType">
 				<sequence>
-					<choice>
-						<element name="isBaseProperty" type="xmml:Flag"/>
-						<sequence>
-							<element name="baseProperty" type="gml:StringOrRefType">
-								<annotation>
-									<documentation>Property that forms the basis for generating a set of more refined properties; e.g. Chemical Composition, Radiance</documentation>
-								</annotation>
-							</element>
-							<group ref="xmml:singleConstraints" maxOccurs="unbounded"/>
-						</sequence>
-					</choice>
+					<element name="derivation" minOccurs="0">
+						<complexType>
+							<choice>
+								<element name="ConstrainedProperty">
+									<complexType>
+										<sequence>
+											<element name="baseProperty" type="gml:StringOrRefType">
+												<annotation>
+													<documentation>Property that forms the basis for generating a set of more refined properties; e.g. Chemical Composition, Radiance</documentation>
+												</annotation>
+											</element>
+											<group ref="xmml:singleConstraints" maxOccurs="unbounded"/>
+										</sequence>
+									</complexType>
+								</element>
+							</choice>
+						</complexType>
+					</element>
 					<element ref="xmml:representation"/>
 					<group ref="xmml:quality"/>
 				</sequence>
