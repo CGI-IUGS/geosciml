@@ -11,32 +11,11 @@ Copyright © 2004 CSIRO - see https://www.seegrid.csiro.au/twiki/bin/view/Xmml/L
 	</annotation>
 	<!-- ====================================================================== -->
 	<!-- bring in other schemas -->
-	<import namespace="http://www.opengis.net/gml" schemaLocation="../gml/3.1.1/base/temporal.xsd"/>
-	<include schemaLocation="./base.xsd"/>
+	<import namespace="http://www.opengis.net/gml" schemaLocation="./gml4procedure.xsd"/>
 	<include schemaLocation="./procedures.xsd"/>
 	<!-- ====================================================================== -->
 	<!-- =========================================================== -->
 	<!-- ===================================================== -->
-	<element name="Event" type="xmml:EventType" substitutionGroup="gml:_GML"/>
-	<!-- ====================================================================== -->
-	<complexType name="EventType">
-		<annotation>
-			<documentation>Description of an event, particularly that causes transformation, creation or destruction of a feature.  
-      The event may be transport or administrative.  
-      Use gml:description to describe the nature of the event or action, or to point to a description of it.  
-      Use xmml:reference (substitutable for gml:metaDataProperty) to provide a pointer to a citation for the event.
-      Specialised event types may be derived from this type. </documentation>
-		</annotation>
-		<complexContent>
-			<extension base="gml:AbstractGMLType">
-				<sequence>
-					<group ref="xmml:StandardSupportProperties"/>
-					<group ref="xmml:EventProperties"/>
-				</sequence>
-			</extension>
-		</complexContent>
-	</complexType>
-	<!-- ====================================================================== -->
 	<group name="EventProperties">
 		<sequence>
 			<element name="eventTime" type="gml:TimeGeometricPrimitivePropertyType">
@@ -67,13 +46,34 @@ Copyright © 2004 CSIRO - see https://www.seegrid.csiro.au/twiki/bin/view/Xmml/L
 		</sequence>
 	</group>
 	<!-- ====================================================================== -->
+	<element name="Event" type="xmml:EventType" substitutionGroup="gml:_GML"/>
+	<!-- ====================================================================== -->
+	<complexType name="EventType">
+		<annotation>
+			<documentation>Description of an event, particularly that causes transformation, creation or destruction of a feature.  
+      The event may be transport or administrative.  
+      Use gml:description to describe the nature of the event or action, or to point to a description of it.  
+      Use xmml:reference (substitutable for gml:metaDataProperty) to provide a pointer to a citation for the event.
+      Specialised event types may be derived from this type. </documentation>
+		</annotation>
+		<complexContent>
+			<extension base="gml:AbstractGMLType">
+				<sequence>
+					<group ref="xmml:StandardSupportProperties"/>
+					<group ref="xmml:EventProperties"/>
+				</sequence>
+			</extension>
+		</complexContent>
+	</complexType>
+	<!-- ====================================================================== -->
+	<!-- === Specialised event types related to record-keeping === -->
 	<!-- ====================================================================== -->
 	<element name="RecordEvent" type="xmml:RecordEventType">
 		<annotation>
 			<documentation>An event in the life of a database record. </documentation>
 		</annotation>
 	</element>
-	<!-- ====== -->
+	<!-- ...................... -->
 	<complexType name="RecordEventType">
 		<annotation>
 			<documentation>An event in the life of a database record.
@@ -91,7 +91,7 @@ Copyright © 2004 CSIRO - see https://www.seegrid.csiro.au/twiki/bin/view/Xmml/L
 			</extension>
 		</complexContent>
 	</complexType>
-	<!-- ====== -->
+	<!-- ...................... -->
 	<complexType name="RecordEventPropertyType">
 		<sequence minOccurs="0">
 			<element ref="xmml:RecordEvent"/>
@@ -135,7 +135,7 @@ Copyright © 2004 CSIRO - see https://www.seegrid.csiro.au/twiki/bin/view/Xmml/L
 	<!-- ====================================================================== -->
 	<element name="processingStep" type="xmml:ProcedureEventPropertyType">
 		<annotation>
-			<documentation>Processing steps - (set of) procedure events</documentation>
+			<documentation>Processing steps = (set of) procedure events</documentation>
 		</annotation>
 	</element>
 	<!-- ...................... -->

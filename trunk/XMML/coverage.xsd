@@ -20,6 +20,7 @@ Copyright (c) 2004 CSIRO - see https://www.seegrid.csiro.au/twiki/bin/view/Xmml/
 	<include schemaLocation="./temporal.xsd"/>
 	<include schemaLocation="./referenceSystems.xsd"/>
 	<include schemaLocation="./observation.xsd"/>
+	<include schemaLocation="./feature.xsd"/>
 	<!-- ====================================================================== -->
 	<complexType name="CoveragePropertyType">
 		<sequence>
@@ -37,7 +38,7 @@ Copyright (c) 2004 CSIRO - see https://www.seegrid.csiro.au/twiki/bin/view/Xmml/
 		<complexContent>
 			<extension base="xmml:FeatureType">
 				<sequence>
-					<element ref="xmml:domain"/>
+					<element ref="xmml:abstractDomain"/>
 					<element ref="xmml:abstractRange"/>
 					<element ref="xmml:coverageFunction" minOccurs="0"/>
 				</sequence>
@@ -46,7 +47,19 @@ Copyright (c) 2004 CSIRO - see https://www.seegrid.csiro.au/twiki/bin/view/Xmml/
 		</complexContent>
 	</complexType>
 	<!-- =========================================================== -->
-	<element name="domain" type="xmml:DomainType"/>
+	<element name="abstractDomain" type="anyType" abstract="true">
+		<annotation>
+			<documentation>The spatiotemporal domain of a coverage.  
+  Typically 
+  * a geometry collection, 
+  * an implicit geometry (e.g. a grid), 
+  * an explicit or implicit collection of time instances or periods
+
+N.B. Temporal domains still to be implemented.</documentation>
+		</annotation>	
+	</element>
+	<!-- =========================================================== -->
+	<element name="domain" type="xmml:DomainType" substitutionGroup="xmml:abstractDomain"/>
 	<!-- =========================================================== -->
 	<complexType name="DomainType">
 		<annotation>
@@ -58,16 +71,20 @@ Copyright (c) 2004 CSIRO - see https://www.seegrid.csiro.au/twiki/bin/view/Xmml/
 
 N.B. Temporal domains still to be implemented.</documentation>
 		</annotation>
-		<sequence minOccurs="0">
-			<choice>
-				<element ref="gml:_Geometry"/>
-				<element ref="gml:_TimeObject"/>
-			</choice>
-		</sequence>
-		<attributeGroup ref="gml:AssociationAttributeGroup"/>
+		<complexContent>
+			<restriction base="anyType">
+				<sequence minOccurs="0">
+					<choice>
+						<element ref="gml:_Geometry"/>
+						<element ref="gml:_TimeObject"/>
+					</choice>
+				</sequence>
+				<attributeGroup ref="gml:AssociationAttributeGroup"/>
+			</restriction>
+		</complexContent>
 	</complexType>
 	<!-- =========================================================== -->
-	<element name="abstractRange" type="anyType"/>
+	<element name="abstractRange" type="anyType" abstract="true"/>
 	<!-- =========================================================== -->
 	<element name="range" type="xmml:RangeType" substitutionGroup="xmml:abstractRange"/>
 	<!-- =========================================================== -->
@@ -504,14 +521,14 @@ XXXXXXXXXXXXXXX need to make this more comprehensive
 		</complexContent>
 	</complexType>
 	<!-- ====================================================================== -->
-	<element name="pointSetDomain" type="xmml:PointSetDomainType" substitutionGroup="xmml:domain"/>
+	<element name="pointSetDomain" type="xmml:PointSetDomainType" substitutionGroup="xmml:abstractDomain"/>
 	<!-- ====================================================================== -->
 	<complexType name="PointSetDomainType">
 		<annotation>
 			<documentation>Need to add MultiInstant ...</documentation>
 		</annotation>
 		<complexContent>
-			<restriction base="xmml:DomainType">
+			<restriction base="anyType">
 				<sequence minOccurs="0">
 					<choice>
 						<element ref="gml:MultiPoint"/>
@@ -523,11 +540,11 @@ XXXXXXXXXXXXXXX need to make this more comprehensive
 	</complexType>
 	<!-- =========================================================== -->
 	<!-- ====================================================================== -->
-	<element name="multiPosDomain" type="xmml:MultiPosDomainType" substitutionGroup="xmml:domain"/>
+	<element name="multiPosDomain" type="xmml:MultiPosDomainType" substitutionGroup="xmml:abstractDomain"/>
 	<!-- ====================================================================== -->
 	<complexType name="MultiPosDomainType">
 		<complexContent>
-			<restriction base="xmml:DomainType">
+			<restriction base="anyType">
 				<sequence minOccurs="0">
 					<choice>
 						<element ref="xmml:MultiPos"/>
@@ -563,14 +580,14 @@ XXXXXXXXXXXXXXX need to make this more comprehensive
 		</complexContent>
 	</complexType>
 	<!-- ====================================================================== -->
-	<element name="intervalSetDomain" type="xmml:IntervalSetDomainType" substitutionGroup="xmml:domain"/>
+	<element name="intervalSetDomain" type="xmml:IntervalSetDomainType" substitutionGroup="xmml:abstractDomain"/>
 	<!-- ====================================================================== -->
 	<complexType name="IntervalSetDomainType">
 		<annotation>
 			<documentation>Need to add MultiPeriod ...</documentation>
 		</annotation>
 		<complexContent>
-			<restriction base="xmml:DomainType">
+			<restriction base="anyType">
 				<sequence minOccurs="0">
 					<choice>
 						<element ref="xmml:MultiInterval"/>
@@ -599,14 +616,14 @@ XXXXXXXXXXXXXXX need to make this more comprehensive
 		</complexContent>
 	</complexType>
 	<!-- =========================================================== -->
-	<element name="rectifiedGridDomain" type="xmml:RectifiedGridDomainType" substitutionGroup="xmml:domain"/>
+	<element name="rectifiedGridDomain" type="xmml:RectifiedGridDomainType" substitutionGroup="xmml:abstractDomain"/>
 	<!-- =========================================================== -->
 	<complexType name="RectifiedGridDomainType">
 		<annotation>
 			<documentation>Need to add TemporalGrid ...</documentation>
 		</annotation>
 		<complexContent>
-			<restriction base="xmml:DomainType">
+			<restriction base="anyType">
 				<sequence minOccurs="0">
 					<choice>
 						<element ref="gml:RectifiedGrid"/>
@@ -635,10 +652,10 @@ XXXXXXXXXXXXXXX need to make this more comprehensive
 		</complexContent>
 	</complexType>
 	<!-- =========================================================== -->
-	<element name="curveDomain" type="xmml:CurveDomainType" substitutionGroup="xmml:domain"/>
+	<element name="curveDomain" type="xmml:CurveDomainType" substitutionGroup="xmml:abstractDomain"/>
 	<complexType name="CurveDomainType">
 		<complexContent>
-			<restriction base="xmml:DomainType">
+			<restriction base="anyType">
 				<sequence minOccurs="0">
 					<choice>
 						<element ref="gml:MultiCurve"/>
@@ -667,10 +684,10 @@ XXXXXXXXXXXXXXX need to make this more comprehensive
 		</complexContent>
 	</complexType>
 	<!-- =========================================================== -->
-	<element name="tinDomain" type="xmml:TinDomainType" substitutionGroup="xmml:domain"/>
+	<element name="tinDomain" type="xmml:TinDomainType" substitutionGroup="xmml:abstractDomain"/>
 	<complexType name="TinDomainType">
 		<complexContent>
-			<restriction base="xmml:DomainType">
+			<restriction base="anyType">
 				<sequence minOccurs="0">
 					<choice>
 						<element ref="gml:Tin"/>
@@ -699,10 +716,10 @@ XXXXXXXXXXXXXXX need to make this more comprehensive
 		</complexContent>
 	</complexType>
 	<!-- =========================================================== -->
-	<element name="timeComplexDomain" type="xmml:TimeComplexDomainType" substitutionGroup="xmml:domain"/>
+	<element name="timeComplexDomain" type="xmml:TimeComplexDomainType" substitutionGroup="xmml:abstractDomain"/>
 	<complexType name="TimeComplexDomainType">
 		<complexContent>
-			<restriction base="xmml:DomainType">
+			<restriction base="anyType">
 				<sequence minOccurs="0">
 					<choice>
 						<element ref="xmml:TimeGeometricComplex"/>
@@ -731,10 +748,10 @@ XXXXXXXXXXXXXXX need to make this more comprehensive
 		</complexContent>
 	</complexType>
 	<!-- =========================================================== -->
-	<element name="timeGridDomain" type="xmml:TimeGridDomainType" substitutionGroup="xmml:domain"/>
+	<element name="timeGridDomain" type="xmml:TimeGridDomainType" substitutionGroup="xmml:abstractDomain"/>
 	<complexType name="TimeGridDomainType">
 		<complexContent>
-			<restriction base="xmml:DomainType">
+			<restriction base="anyType">
 				<sequence minOccurs="0">
 					<choice>
 						<element ref="xmml:TimeGrid"/>

@@ -101,49 +101,28 @@ Copyright © 2004 CSIRO - see https://www.seegrid.csiro.au/twiki/bin/view/Xmml/L
 	<!-- ====================================================================== -->
 	<complexType name="BoreholeSurveyType">
 		<annotation>
-			<documentation>BoreholeSurvey carries an id, so can be used as the target of a reference. This is useful so that the survey defines a 1-D CRS used for indexing information along the borehole. 
+			<documentation>A borehole survey is expressed as a set of offset/direction records. 
+			The offset is typically relative to the borehole collar. 
+			The direction is often recorded as an azimuth and inclination. 
+			
+			In the XMML representation this is encoded as a log. 
+			The domain is the set of positions, parameterised as 1-D position relative to the local origin (i.e. "offset") - the position of the origin is a sufficient specification of the SRS for offset. 
+			The range is a set of vectors, parameterised relative to the specified CRS.  
+			
+			BoreholeSurvey carries an id, so can be used as the target of a reference. This is useful so that the survey defines a 1-D CRS used for indexing information along the borehole. 
 			
 			Should harmonise this with PointSetCoverage ...</documentation>
 		</annotation>
 		<complexContent>
 			<extension base="gml:AbstractGMLType">
 				<sequence>
-					<element name="origin" type="gml:PointPropertyType">
-						<annotation>
-							<documentation>A borehole survey is expressed as a set of offset/direction records. The offset is relative to an origin, which is typically the borehole collar. The "by reference" form should normally be used if this is the case, pointing to the value of gml:position above. </documentation>
-						</annotation>
-					</element>
-					<element name="offsets" type="gml:MeasureListType"/>
-					<element name="vectors" type="gml:DirectPositionListType"/>
+					<element name="offsets" type="gml:DirectPositionListType"/>
+					<element name="vectors" type="xmml:VectorListType"/>
 				</sequence>
 			</extension>
 		</complexContent>
 	</complexType>
 	<!-- ====================================================================== -->
-	<element name="SimpleBoreholeShape" type="xmml:SimpleBoreholeShapeType"/>
-	<!-- ====================================================================== -->
-	<complexType name="SimpleBoreholeShapeType">
-		<annotation>
-			<documentation>SimpleBoreholeShape carries an id, so can be used as the target of a reference. This is useful so that the survey defines a 1-D CRS used for indexing information along the borehole. </documentation>
-		</annotation>
-		<complexContent>
-			<extension base="gml:AbstractGMLType">
-				<sequence>
-					<element name="origin" type="gml:PointPropertyType">
-						<annotation>
-							<documentation>Simple Shape is expressed as an origin and direction. 
-							This is equivalent to a degenerate survey with only one observation.  </documentation>
-						</annotation>
-					</element>
-					<element name="direction" type="gml:VectorType">
-						<annotation>
-							<documentation>A simple direction relative to the origin.</documentation>
-						</annotation>
-					</element>
-				</sequence>
-			</extension>
-		</complexContent>
-	</complexType>
 	<!-- ====================================================================== -->
 	<!-- ====================================================================== -->
 	<!-- ====================================================================== -->
