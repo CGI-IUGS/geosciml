@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<schema targetNamespace="http://www.opengis.net/xmml" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:gml="http://www.opengis.net/gml" xmlns="http://www.w3.org/2001/XMLSchema" xmlns:xmml="http://www.opengis.net/xmml" elementFormDefault="qualified" attributeFormDefault="unqualified" version="pre-release">
+<schema targetNamespace="http://www.opengis.net/xmml" elementFormDefault="qualified" attributeFormDefault="unqualified" version="pre-release" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:gml="http://www.opengis.net/gml" xmlns="http://www.w3.org/2001/XMLSchema" xmlns:xmml="http://www.opengis.net/xmml">
 	<annotation>
 		<documentation>
 geochemistry.xsd
@@ -7,7 +7,7 @@ geochemistry.xsd
 A GML conformant schema 
 for geochemistry
 
-2004-05-20
+2004-06-30
 
 Copyright © 2004 CSIRO - see https://www.seegrid.csiro.au/twiki/bin/view/Xmml/LegalNotices#Software_Notice
 </documentation>
@@ -34,6 +34,7 @@ Copyright © 2004 CSIRO - see https://www.seegrid.csiro.au/twiki/bin/view/Xmml/L
          			suppress "observedProperty" - chemicalConcentration is implied
          			enforce only only measure or no-result in resultChoice
          
+					 Use "subject" property to link to the specimen or other feature on which the measurement was made
         			For other documentation, see observation.xsd
 			</documentation>
 		</annotation>
@@ -81,40 +82,63 @@ Copyright © 2004 CSIRO - see https://www.seegrid.csiro.au/twiki/bin/view/Xmml/L
 		<attributeGroup ref="gml:AssociationAttributeGroup"/>
 	</complexType>
 	<!-- ====================================================================== -->
-	<element name="GeochemSample" type="xmml:GeochemSampleType" substitutionGroup="xmml:Feature"/>
+	<element name="GeochemSpecimen" type="xmml:GeochemSpecimenType" substitutionGroup="xmml:Specimen"/>
 	<!-- -->
-	<complexType name="GeochemSampleType">
+	<complexType name="GeochemSpecimenType">
+		<annotation>
+			<documentation>Basic geochemistry specimen feature type. 
+				Adds the following properties to the generic specimen:
+					material - e.g. drill cutting, calcrete, pulp
+				Use the (optional) "related Observation" property to link specimen to observations and measurements made on it
+				If no fractionation is described by processingStep properties, then whole rock analysis is implied
+			</documentation>
+		</annotation>
 		<complexContent>
 			<extension base="xmml:SpecimenType">
 				<sequence>
-					<choice minOccurs="0">
-						<annotation>
-							<documentation>Models for recording geochemistry results related to this specimen;
+					<element name="material" type="string"/>
+				</sequence>
+			</extension>
+		</complexContent>
+	</complexType>
+	<!-- ====================================================================== -->
+	<element name="GeochemSample" type="xmml:GeochemSampleType" substitutionGroup="xmml:Feature"/>
+	<!-- -->
+	<complexType name="GeochemSampleType">
+		<annotation>
+			<documentation>Geochemistry sample - specimen description + analyte results. 
+			If no results are being reported, then use GeochemSpecimen. 
+			</documentation>
+		</annotation>
+		<complexContent>
+			<extension base="xmml:GeochemSpecimenType">
+				<choice>
+					<annotation>
+						<documentation>Models for recording geochemistry results related to this specimen;
 							Choose one of:
 								a tuple of numbers, defined by an associated tuple definition
 								a set of soft-typed measured
 								a set of related assay measurements</documentation>
+					</annotation>
+					<element name="analyteSuiteResult" type="xmml:NumericOrNullTupleType">
+						<annotation>
+							<documentation>Suite of analyte values, expressed as a tuple; tuple definition is provided out-of-band and identified by the value of the RS (reference system) attribute</documentation>
 						</annotation>
-						<element name="analyteSuiteResult" type="xmml:NumericOrNullTupleType">
-							<annotation>
-								<documentation>Suite of analyte values, expressed as a tuple; tuple definition is provided out-of-band and identified by the value of the RS (reference system) attribute</documentation>
-							</annotation>
-						</element>
-						<element name="analyteComponentResult" type="xmml:SoftTypedMeasureResultType" maxOccurs="unbounded">
-							<annotation>
-								<documentation>Analyte component value, expressed as a soft-typed measure; the value of the "property" attribute identifies the analyte; the value of the uom attribute indicates the units of measure; the value of the metadata attribute may be used to indicate the procedure or full description of the observation.</documentation>
-							</annotation>
-						</element>
-						<element name="analyteComponentMeasurement" type="xmml:GeochemMeasurementPropertyType" maxOccurs="unbounded">
-							<annotation>
-								<documentation>Description of a measurement of a geochem analyte;
+					</element>
+					<element name="analyteComponentResult" type="xmml:SoftTypedMeasureResultType" maxOccurs="unbounded">
+						<annotation>
+							<documentation>Analyte component value, expressed as a soft-typed measure; the value of the "property" attribute identifies the analyte; the value of the uom attribute indicates the units of measure; the value of the metadata attribute may be used to indicate the procedure or full description of the observation.</documentation>
+						</annotation>
+					</element>
+					<element name="analyteComponentMeasurement" type="xmml:GeochemMeasurementPropertyType" maxOccurs="unbounded">
+						<annotation>
+							<documentation>Description of a measurement of a geochem analyte;
 								Following the standard GML property pattern, the description of the measurement may be
 								- embedded inline, or 
 								- stored elsewhere and identifed by the value of an xlink:href attribute on the property element.</documentation>
-							</annotation>
-						</element>
-					</choice>
-				</sequence>
+						</annotation>
+					</element>
+				</choice>
 			</extension>
 		</complexContent>
 	</complexType>
@@ -127,13 +151,20 @@ Copyright © 2004 CSIRO - see https://www.seegrid.csiro.au/twiki/bin/view/Xmml/L
 	<!-- ====== -->
 	<complexType name="AssayProcedureType">
 		<annotation>
-			<documentation/>
+			<documentation>Adds the following assay-specific properties to generic procedure:
+				lowerDetectionLimit
+				upperDetectionLimit
+				secondUpperDetectionLimit
+				
+				*** Note: this should be harmonised with adx:AnalyteProcedure ***
+			</documentation>
 		</annotation>
 		<complexContent>
 			<extension base="xmml:ProcedureType">
 				<sequence>
-					<element name="lowerLimitOfDetection" type="gml:MeasureType"/>
-					<element name="upperLimitOfDetection" type="gml:MeasureType" minOccurs="0"/>
+					<element name="lowerDetectionLimit" type="gml:MeasureType"/>
+					<element name="upperDetectionLimit" type="gml:MeasureType"/>
+					<element name="secondUpperDetectionLimit" type="gml:MeasureType" minOccurs="0"/>
 				</sequence>
 			</extension>
 		</complexContent>
@@ -187,8 +218,6 @@ Copyright © 2004 CSIRO - see https://www.seegrid.csiro.au/twiki/bin/view/Xmml/L
 			</extension>
 		</complexContent>
 	</complexType>
-	<!-- ====================================================================== -->
-	<element name="GeochemSpecimen" type="xmml:SpecimenType" substitutionGroup="xmml:Specimen"/>
 	<!-- ====================================================================== -->
 	<element name="samplingMethod" type="xmml:sampleCollectionTypes" substitutionGroup="xmml:method"/>
 	<!-- ====================================================================== -->
