@@ -128,8 +128,8 @@ Copyright (c) 2004 CSIRO - see https://www.seegrid.csiro.au/twiki/bin/view/Xmml/
 		<complexContent>
 			<extension base="gml:AbstractGMLType">
 				<sequence>
-					<element name="estimatedPosition" type="gsml:TimePositionEstimatePropertyType" maxOccurs="unbounded"/>
-					<element name="prototype" type="gsml:StratotypePropertyType" minOccurs="0" maxOccurs="unbounded"/>
+					<element name="ageEstimate" type="gsml:DateMeasurementPropertyType" maxOccurs="unbounded"/>
+					<element name="prototype" type="gsml:StratotypePropertyType" maxOccurs="unbounded"/>
 				</sequence>
 			</extension>
 		</complexContent>
@@ -176,6 +176,11 @@ Copyright (c) 2004 CSIRO - see https://www.seegrid.csiro.au/twiki/bin/view/Xmml/
 				<sequence>
 					<element ref="gml:position"/>
 					<element name="event" type="gsml:StratigraphicEventPropertyType"/>
+					<element name="relatedObservation" type="gsml:DateMeasurementPropertyType" minOccurs="0" maxOccurs="unbounded">
+						<annotation>
+							<documentation>A variety of observations may be made on specimens from the stratotype; currently only tme estimate is allowed for. </documentation>
+						</annotation>
+					</element>
 					<element name="status" type="token"/>
 					<element ref="xmml:reference"/>
 				</sequence>
@@ -193,13 +198,13 @@ Copyright (c) 2004 CSIRO - see https://www.seegrid.csiro.au/twiki/bin/view/Xmml/
 	<!-- ====================================================================== -->
 	<!-- ===== Time estimates ====== -->
 	<!-- ====================================================================== -->
-	<element name="TimePositionEstimate" type="gsml:TimePositionEstimateType">
+	<element name="DateMeasurement" type="gsml:DateMeasurementType">
 		<annotation>
 			<documentation>An observation resulting in an estimate of a time position.</documentation>
 		</annotation>
 	</element>
 	<!-- ===================================== -->
-	<complexType name="TimePositionEstimateType">
+	<complexType name="DateMeasurementType">
 		<annotation>
 			<documentation>An observation resulting in an estimate of a time position.
 			Model after OandM pattern.</documentation>
@@ -242,10 +247,11 @@ Copyright (c) 2004 CSIRO - see https://www.seegrid.csiro.au/twiki/bin/view/Xmml/
 	<!-- ================================================================== -->
 	<element name="geochronologyProcedure" type="gsml:geochronologyProcedureCode" substitutionGroup="xmml:method"/>
 	<!-- ================================================================== -->
-	<complexType name="TimePositionEstimatePropertyType">
+	<complexType name="DateMeasurementPropertyType">
 		<sequence>
-			<element ref="gsml:TimePositionEstimate"/>
+			<element ref="gsml:DateMeasurement" minOccurs="0"/>
 		</sequence>
+		<attributeGroup ref="gml:AssociationAttributeGroup"/>
 	</complexType>
 	<!-- ================================================================== -->
 </schema>
