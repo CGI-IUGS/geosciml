@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<schema targetNamespace="http://www.opengis.net/xmml" elementFormDefault="qualified" attributeFormDefault="unqualified" version="pre-release" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:xmml="http://www.opengis.net/xmml" xmlns:gml="http://www.opengis.net/gml" xmlns="http://www.w3.org/2001/XMLSchema">
+<schema xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:xmml="http://www.opengis.net/xmml" xmlns:gml="http://www.opengis.net/gml" xmlns="http://www.w3.org/2001/XMLSchema" targetNamespace="http://www.opengis.net/xmml" elementFormDefault="qualified" attributeFormDefault="unqualified" version="pre-release">
 	<annotation>
 		<documentation>
 borehole.xsd
@@ -7,17 +7,15 @@ borehole.xsd
 A GML conformant schema 
 for borehole descriptions with logs
 
-SJDC  2004-11-24
-
-Copyright © 2004 CSIRO - see https://www.seegrid.csiro.au/twiki/bin/view/Xmml/LegalNotices#Software_Notice
+Copyright © 2005 CSIRO - see https://www.seegrid.csiro.au/twiki/bin/view/Xmml/LegalNotices#Software_Notice
 </documentation>
 	</annotation>
 	<!-- ====================================================================== -->
 	<!-- bring in other schemas -->
-	<import namespace="http://www.opengis.net/gml" schemaLocation="https://www.seegrid.csiro.au/subversion/xmml/trunk/gml/3.1.1/base/geometryPrimitives.xsd"/>
-	<include schemaLocation="./commonFeatures.xsd"/>
-	<include schemaLocation="./coverage.xsd"/>
-	<include schemaLocation="../enumerations/LUTsampling.xsd"/>
+	<import namespace="http://www.opengis.net/gml" schemaLocation="./gml4borehole.xsd"/>
+	<include schemaLocation="./site.xsd"/>
+	<include schemaLocation="./procedures.xsd"/>
+	<include schemaLocation="./enumerations/LUTsampling.xsd"/>
 	<!-- ====================================================================== -->
 	<element name="Borehole" type="xmml:BoreholeType" substitutionGroup="xmml:Feature">
 		<annotation>
@@ -32,7 +30,7 @@ Copyright © 2004 CSIRO - see https://www.seegrid.csiro.au/twiki/bin/view/Xmml/L
       2. The value of the "position" property will normally be the collar-location, but may be any other representative position. N.B. The detailed geometry, including location, is given by the value of the *shape* property. </documentation>
 		</annotation>
 		<complexContent>
-			<extension base="xmml:PositionedFeatureType">
+			<extension base="xmml:SectionType">
 				<sequence>
 					<element name="drilled" type="xmml:ProcedureEventPropertyType" minOccurs="0">
 						<annotation>
@@ -44,37 +42,10 @@ Copyright © 2004 CSIRO - see https://www.seegrid.csiro.au/twiki/bin/view/Xmml/L
 							<documentation>The diameter of the borehole. </documentation>
 						</annotation>
 					</element>
-					<element name="length" type="gml:MeasureType" minOccurs="0">
-						<annotation>
-							<documentation>The total length of the borehole. This is normally measured as arc-length along the (axis of) the hole. This property is provided for convenience and does not override the value implied by the "shape" property. </documentation>
-						</annotation>
-					</element>
-					<element name="shape" type="xmml:BoreholeShapePropertyType">
-						<annotation>
-							<documentation>Description of the curve tracing the axis of the hole. </documentation>
-						</annotation>
-					</element>
-					<element name="log" type="xmml:LogPropertyType" minOccurs="0" maxOccurs="unbounded">
-						<annotation>
-							<documentation>Contains a set of observations on the borehole, recorded as a log.</documentation>
-						</annotation>
-					</element>
-					<element ref="xmml:relatedObservation" minOccurs="0" maxOccurs="unbounded">
-						<annotation>
-							<documentation>Pointers to or in-band observations associated with the Borehole</documentation>
-						</annotation>
-					</element>
 				</sequence>
 			</extension>
 		</complexContent>
 	</complexType>
-	<!-- ====================================================================== -->
-	<element name="collarLocation" type="gml:PointPropertyType" substitutionGroup="gml:position">
-		<annotation>
-			<documentation>The location of the wellhead or collar. 
-      Deprecated - use gml:position for this information.</documentation>
-		</annotation>
-	</element>
 	<!-- ====================================================================== -->
 	<element name="drillCode" type="xmml:drillCodes" substitutionGroup="xmml:method">
 		<annotation>
@@ -82,77 +53,6 @@ Copyright © 2004 CSIRO - see https://www.seegrid.csiro.au/twiki/bin/view/Xmml/L
 		</annotation>
 	</element>
 	<!-- ====================================================================== -->
-	<complexType name="BoreholeShapePropertyType">
-		<annotation>
-			<documentation>By value or by reference - standard GML Property model</documentation>
-		</annotation>
-		<sequence minOccurs="0">
-			<choice>
-				<element ref="xmml:SimpleBoreholeShape"/>
-				<element ref="xmml:BoreholeSurvey"/>
-				<element ref="gml:LineString"/>
-				<element ref="gml:Curve"/>
-			</choice>
-		</sequence>
-		<attributeGroup ref="gml:AssociationAttributeGroup"/>
-	</complexType>
 	<!-- ====================================================================== -->
-	<element name="BoreholeSurvey" type="xmml:BoreholeSurveyType"/>
-	<!-- ====================================================================== -->
-	<complexType name="BoreholeSurveyType">
-		<annotation>
-			<documentation>A borehole survey is expressed as a set of offset/direction records. 
-			The offset is typically relative to the borehole collar. 
-			The direction is often recorded as an azimuth and inclination. 
-			
-			In the XMML representation this is encoded as a log. 
-			The domain is the set of positions, parameterised as 1-D position relative to the local origin (i.e. "offset") - the position of the origin is a sufficient specification of the SRS for offset. 
-			The range is a set of vectors, parameterised relative to the specified CRS.  
-			
-			BoreholeSurvey carries an id, so can be used as the target of a reference. This is useful so that the survey defines a 1-D CRS used for indexing information along the borehole. 
-			
-			Should harmonise this with PointSetCoverage ...</documentation>
-		</annotation>
-		<complexContent>
-			<extension base="gml:AbstractGMLType">
-				<sequence>
-					<element name="offsets" type="gml:DirectPositionListType"/>
-					<element name="vectors" type="xmml:VectorListType"/>
-				</sequence>
-			</extension>
-		</complexContent>
-	</complexType>
-	<!-- ====================================================================== -->
-	<!-- ====================================================================== -->
-	<!-- ====================================================================== -->
-	<!-- ====================================================================== -->
-	<complexType name="LogPropertyType">
-		<sequence minOccurs="0">
-			<choice>
-				<element ref="xmml:ContinuousLog"/>
-				<element ref="xmml:IntervalLog"/>
-				<element ref="xmml:PointLog"/>
-			</choice>
-		</sequence>
-		<attributeGroup ref="gml:AssociationAttributeGroup"/>
-	</complexType>
-	<!-- ====================================================================== -->
-	<element name="PointLog" type="xmml:PointSetCoverageType" substitutionGroup="xmml:PointSetCoverage">
-		<annotation>
-			<documentation>A log over a collection of point locations</documentation>
-		</annotation>
-	</element>
-	<!-- ====================================================================== -->
-	<element name="IntervalLog" type="xmml:IntervalSetCoverageType" substitutionGroup="xmml:IntervalSetCoverage">
-		<annotation>
-			<documentation>A log over a collection of intervals</documentation>
-		</annotation>
-	</element>
-	<!-- ====================================================================== -->
-	<element name="ContinuousLog" type="xmml:RectifiedGridCoverageType" substitutionGroup="xmml:RectifiedGridCoverage">
-		<annotation>
-			<documentation>A log over a collection of regularly spaced locations</documentation>
-		</annotation>
-	</element>
 	<!-- ====================================================================== -->
 </schema>

@@ -6,7 +6,7 @@ site.xsd
 
 Site provides a set of feature types that are used primarily for making observations: 
 Station (0-D)
-Section, Traverse, Flightline, Borehole (1-D)
+Section, Interval, Traverse, Flightline, Borehole (1-D)
 AreaOfInterest (2-D)
 ZoneOfInterest (3-D)
 
@@ -182,6 +182,37 @@ Copyright (c) 2005 CSIRO - see https://www.seegrid.csiro.au/twiki/bin/view/Xmml/
 		</complexContent>
 	</complexType>
 	<!-- =========================================================== -->
+	<!-- ====================================================================== -->
+	<complexType name="LogPropertyType">
+		<sequence minOccurs="0">
+			<choice>
+				<element ref="xmml:ContinuousLog"/>
+				<element ref="xmml:IntervalLog"/>
+				<element ref="xmml:PointLog"/>
+				<element ref="xmml:CurveSurvey"/>
+			</choice>
+		</sequence>
+		<attributeGroup ref="gml:AssociationAttributeGroup"/>
+	</complexType>
+	<!-- ====================================================================== -->
+	<element name="PointLog" type="xmml:PointSetCoverageType" substitutionGroup="xmml:PointSetCoverage">
+		<annotation>
+			<documentation>A log over a collection of point locations</documentation>
+		</annotation>
+	</element>
+	<!-- ====================================================================== -->
+	<element name="IntervalLog" type="xmml:IntervalSetCoverageType" substitutionGroup="xmml:IntervalSetCoverage">
+		<annotation>
+			<documentation>A log over a collection of intervals</documentation>
+		</annotation>
+	</element>
+	<!-- ====================================================================== -->
+	<element name="ContinuousLog" type="xmml:RectifiedGridCoverageType" substitutionGroup="xmml:RectifiedGridCoverage">
+		<annotation>
+			<documentation>A log over a collection of regularly spaced locations</documentation>
+		</annotation>
+	</element>
+	<!-- ====================================================================== -->
 	<!-- ====================================================================== -->
 	<group name="Shape1D">
 		<choice>
