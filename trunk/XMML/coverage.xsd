@@ -74,37 +74,37 @@ N.B. Temporal domains still to be implemented.</documentation>
 		</annotation>
 		<sequence>
 			<choice>
-				<element ref="xmml:BandList">
+				<element name="ListOfBands" type="xmml:ListOfBandsType">
 					<annotation>
 						<documentation>Values in the range represented as vectors in property- component- or band-sequential order - i.e. values for all samples in domain for one component of range, followed by values for all samples in domain for next component, etc</documentation>
 					</annotation>
 				</element>
-				<element ref="xmml:TableByBand">
+				<element name="TableByBand" type="xmml:TableByBandType">
 					<annotation>
 						<documentation>Values in the range represented as a table in property- component or band-sequential order - i.e. values for all samples in domain for one component of range, followed by values for all samples in domain for next component, etc</documentation>
 					</annotation>
 				</element>
-				<element ref="xmml:RecordList">
+				<element name="ListOfRecords" type="xmml:ListOfRecordsType">
 					<annotation>
 						<documentation>Values in the range represented as tuples in band-interleaved (property- or component-interleaved) order - i.e. values for all components of range for one sample in domain, followed by values for all components of range for next sample in domain, etc</documentation>
 					</annotation>
 				</element>
-				<element ref="xmml:TableByRecord">
+				<element name="TableByRecord" type="xmml:TableByRecordType">
 					<annotation>
 						<documentation>Values in the range represented as a table in band-interleaved (property- or component-interleaved) order - i.e. values for all components of range for one sample in domain, followed by values for all components of range for next sample in domain, etc</documentation>
 					</annotation>
 				</element>
-				<element ref="xmml:ObjectList">
+				<element name="ListOfObjects" type="xmml:ListOfObjectsType">
 					<annotation>
 						<documentation>Values in the range represented as Objects or structured values - following the standard GML Property pattern, the "member" property may carry a link to an out-of-line object. </documentation>
 					</annotation>
 				</element>
-				<element ref="xmml:DescriptionList">
+				<element name="ListOfDescriptions" type="xmml:ListOfDescriptionsType">
 					<annotation>
 						<documentation>Values in the range represented as text.</documentation>
 					</annotation>
 				</element>
-				<element ref="xmml:File">
+				<element name="File" type="xmml:FileType">
 					<annotation>
 						<documentation>A reference to an external source for the data, together with a description of how that external source is structured
 </documentation>
@@ -120,13 +120,7 @@ N.B. Temporal domains still to be implemented.</documentation>
 		</annotation>
 	</element>
 	<!-- =========================================================== -->
-	<element name="BandList" type="xmml:BandListType">
-		<annotation>
-			<documentation>Values in the range represented as vectors in component or band-sequential order</documentation>
-		</annotation>
-	</element>
-	<!-- =========================================================== -->
-	<complexType name="BandListType">
+	<complexType name="ListOfBandsType">
 		<annotation>
 			<documentation>A set of lists, each representing a single component of the range.  
           The complete set is the range in "band-sequential" order.  </documentation>
@@ -141,12 +135,25 @@ N.B. Temporal domains still to be implemented.</documentation>
 				</element>
 				<element name="categoryList" type="xmml:SoftTypedCategoryListType">
 					<annotation>
-						<documentation>A list of text values representing a single property, being the set of values in one component of the range.  </documentation>
+						<documentation>A list of text values representing a single property, being the set of values in one component of the range.  
+						
+						HTML character entities may be used to escape embedded whitespace within a list item to prevent interpretation as a list item separator. 
+						See http://www.w3.org/TR/REC-html40/sgml/entities.html. 
+						For example &#160; represents a non-breaking space. 
+						
+						Alternatively, use the "descriptionList" structure provided below. 
+						</documentation>
 					</annotation>
 				</element>
 				<element name="countList" type="xmml:SoftTypedCountOrNullListType">
 					<annotation>
 						<documentation>A list of text values representing a single property, being the set of values in one component of the range.  </documentation>
+					</annotation>
+				</element>
+				<element name="descriptionList" type="xmml:ListOfDescriptionsType">
+					<annotation>
+						<documentation>A list of text values representing a single property, being the set of values in one component of the range.  
+						The values may include embedded whitespace. </documentation>
 					</annotation>
 				</element>
 				<element name="measureList" type="xmml:SoftTypedMeasureOrNullListType">
@@ -168,12 +175,6 @@ N.B. Temporal domains still to be implemented.</documentation>
 		</attribute>
 	</complexType>
 	<!-- =========================================================== -->
-	<element name="TableByBand" type="xmml:TableByBandType">
-		<annotation>
-			<documentation>Values in the range represented as a table in component or band-sequential order</documentation>
-		</annotation>
-	</element>
-	<!-- =========================================================== -->
 	<complexType name="TableByBandType">
 		<sequence>
 			<element ref="xmml:rangeParameters"/>
@@ -192,13 +193,7 @@ N.B. Temporal domains still to be implemented.</documentation>
 		</sequence>
 	</complexType>
 	<!-- =========================================================== -->
-	<element name="RecordList" type="xmml:RecordListType">
-		<annotation>
-			<documentation>Values in the range represented as vectors in band-interleaved order - blah</documentation>
-		</annotation>
-	</element>
-	<!-- =========================================================== -->
-	<complexType name="RecordListType">
+	<complexType name="ListOfRecordsType">
 		<sequence>
 			<element ref="xmml:rangeParameters"/>
 			<choice>
@@ -215,12 +210,6 @@ N.B. Temporal domains still to be implemented.</documentation>
 			</choice>
 		</sequence>
 	</complexType>
-	<!-- =========================================================== -->
-	<element name="TableByRecord" type="xmml:TableByRecordType">
-		<annotation>
-			<documentation>Values in the range represented as a table in band-interleaved order</documentation>
-		</annotation>
-	</element>
 	<!-- =========================================================== -->
 	<complexType name="TableByRecordType">
 		<sequence>
@@ -240,13 +229,7 @@ N.B. Temporal domains still to be implemented.</documentation>
 		</sequence>
 	</complexType>
 	<!-- =========================================================== -->
-	<element name="ObjectList" type="xmml:ObjectListType">
-		<annotation>
-			<documentation>Values in the range represented as Objects or structured values</documentation>
-		</annotation>
-	</element>
-	<!-- =========================================================== -->
-	<complexType name="ObjectListType">
+	<complexType name="ListOfObjectsType">
 		<sequence>
 			<element name="member" maxOccurs="unbounded">
 				<complexType>
@@ -259,13 +242,7 @@ N.B. Temporal domains still to be implemented.</documentation>
 		</sequence>
 	</complexType>
 	<!-- =========================================================== -->
-	<element name="DescriptionList" type="xmml:DescriptionListType">
-		<annotation>
-			<documentation>Values in the range represented as text</documentation>
-		</annotation>
-	</element>
-	<!-- =========================================================== -->
-	<complexType name="DescriptionListType">
+	<complexType name="ListOfDescriptionsType">
 		<sequence>
 			<element ref="gml:description" maxOccurs="unbounded"/>
 		</sequence>
@@ -275,13 +252,6 @@ N.B. Temporal domains still to be implemented.</documentation>
 			</annotation>
 		</attribute>
 	</complexType>
-	<!-- =========================================================== -->
-	<element name="File" type="xmml:FileType">
-		<annotation>
-			<documentation>A reference to an external source for the data, together with a description of how that external source is structured
-</documentation>
-		</annotation>
-	</element>
 	<!-- =========================================================== -->
 	<complexType name="FileType">
 		<sequence>
