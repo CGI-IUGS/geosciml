@@ -113,33 +113,17 @@ Copyright © 2004 CSIRO - see https://www.seegrid.csiro.au/twiki/bin/view/Xmml/L
 		</annotation>
 		<complexContent>
 			<extension base="xmml:GeochemSpecimenType">
-				<choice>
+				<sequence>
 					<annotation>
-						<documentation>Models for recording geochemistry results related to this specimen;
-							Choose one of:
-								a tuple of numbers, defined by an associated tuple definition
-								a set of soft-typed measured
-								a set of related assay measurements</documentation>
+						<documentation>Record geochemistry results related to this specimen;
+							as a set of soft-typed measures</documentation>
 					</annotation>
-<!--					<element name="analyteSuiteResult" type="xmml:NumericOrNullTupleType">
-						<annotation>
-							<documentation>Suite of analyte values, expressed as a tuple; tuple definition is provided out-of-band and identified by the value of the RS (reference system) attribute</documentation>
-						</annotation>
-					</element> -->
 					<element name="analyteComponentResult" type="xmml:SoftTypedMeasureType" maxOccurs="unbounded">
 						<annotation>
 							<documentation>Analyte component value, expressed as a soft-typed measure; the value of the "property" attribute identifies the analyte; the value of the uom attribute indicates the units of measure; the value of the metadata attribute may be used to indicate the procedure or full description of the observation.</documentation>
 						</annotation>
 					</element>
-<!-- 					<element name="analyteComponentMeasurement" type="xmml:GeochemMeasurementPropertyType" maxOccurs="unbounded">
-						<annotation>
-							<documentation>Description of a measurement of a geochem analyte;
-								Following the standard GML property pattern, the description of the measurement may be
-								- embedded inline, or 
-								- stored elsewhere and identifed by the value of an xlink:href attribute on the property element.</documentation>
-						</annotation>
-					</element> -->
-				</choice>
+				</sequence>
 			</extension>
 		</complexContent>
 	</complexType>
