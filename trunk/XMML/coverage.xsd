@@ -75,6 +75,11 @@ N.B. Temporal domains still to be implemented.</documentation>
 		</annotation>
 		<sequence>
 			<choice>
+				<element name="Band" type="xmml:BandType">
+					<annotation>
+						<documentation>Values in the range represented as a vector.</documentation>
+					</annotation>
+				</element>
 				<element name="ListOfBands" type="xmml:ListOfBandsType">
 					<annotation>
 						<documentation>Values in the range represented as vectors in property- component- or band-sequential order - i.e. values for all samples in domain for one component of range, followed by values for all samples in domain for next component, etc</documentation>
@@ -176,6 +181,62 @@ N.B. Temporal domains still to be implemented.</documentation>
 				<documentation>The band count</documentation>
 			</annotation>
 		</attribute>
+	</complexType>
+	<!-- =========================================================== -->
+	<element name="rangeParameter" type="xmml:AxisDefinitionPropertyType">
+		<annotation>
+			<documentation>Container for description of range axis</documentation>
+		</annotation>
+	</element>
+	<!-- =========================================================== -->
+	<complexType name="BandType">
+		<annotation>
+			<documentation>A list, representing the values in a scalar-valued range.  
+          The complete set is the range in "band-sequential" order.  </documentation>
+		</annotation>
+		<sequence>
+			<element ref="xmml:rangeParameter" minOccurs="0"/>
+			<choice>
+				<element name="booleanList" type="xmml:SoftTypedBooleanOrNullListType">
+					<annotation>
+						<documentation>A list of text values representing a single property, being the set of values in one component of the range.  </documentation>
+					</annotation>
+				</element>
+				<element name="categoryList" type="xmml:SoftTypedCategoryListType">
+					<annotation>
+						<documentation>A list of text values representing a single property, being the set of values in one component of the range.  
+						
+						HTML character entities may be used to escape embedded whitespace within a list item to prevent interpretation as a list item separator. 
+						See http://www.w3.org/TR/REC-html40/sgml/entities.html. 
+						For example &#160; represents a non-breaking space. 
+						
+						Alternatively, use the "descriptionList" structure provided below. 
+						</documentation>
+					</annotation>
+				</element>
+				<element name="countList" type="xmml:SoftTypedCountOrNullListType">
+					<annotation>
+						<documentation>A list of text values representing a single property, being the set of values in one component of the range.  </documentation>
+					</annotation>
+				</element>
+				<element name="descriptionList" type="xmml:ListOfDescriptionsType">
+					<annotation>
+						<documentation>A list of text values representing a single property, being the set of values in one component of the range.  
+						The values may include embedded whitespace. </documentation>
+					</annotation>
+				</element>
+				<element name="measureList" type="xmml:SoftTypedMeasureOrNullListType">
+					<annotation>
+						<documentation>A list of numeric values representing a single property, being the set of values in one component of the range.  </documentation>
+					</annotation>
+				</element>
+				<element name="referenceList" type="xmml:refListType">
+					<annotation>
+						<documentation>A list of URI's, being the a set of references to (possibly complex) values in one component of the range.  </documentation>
+					</annotation>
+				</element>
+			</choice>
+		</sequence>
 	</complexType>
 	<!-- =========================================================== -->
 	<complexType name="TableByBandType">

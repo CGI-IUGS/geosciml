@@ -36,10 +36,19 @@ For the moment I will comment out the necessary pieces.  </documentation>
 	<include schemaLocation="./procedures.xsd"/>
 	<!-- ====================================================================== -->
 	<complexType name="RSDefinitionPropertyType">
-		<choice minOccurs="0">
-			<element ref="xmml:TupleDefinition"/>
+		<sequence minOccurs="0">
+			<choice>
+				<element ref="xmml:TupleDefinition"/>
+				<element ref="xmml:AxisDefinition"/>
+			</choice>
+		</sequence>
+		<attributeGroup ref="gml:AssociationAttributeGroup"/>
+	</complexType>
+	<!-- ====================================================================== -->
+	<complexType name="AxisDefinitionPropertyType">
+		<sequence minOccurs="0">
 			<element ref="xmml:AxisDefinition"/>
-		</choice>
+		</sequence>
 		<attributeGroup ref="gml:AssociationAttributeGroup"/>
 	</complexType>
 	<!-- ====================================================================== -->
