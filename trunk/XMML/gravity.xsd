@@ -73,8 +73,7 @@ Copyright (c) 2004 CSIRO - see https://www.seegrid.csiro.au/twiki/bin/view/Xmml/
 			<restriction base="xmml:ObservationType">
 				<sequence>
 					<group ref="gml:StandardObjectProperties"/>
-					<group ref="xmml:StandardSupportProperties"/>
-					<element ref="xmml:relatedFeature" minOccurs="0" maxOccurs="unbounded"/>
+					<group ref="xmml:ExtendedFeatureProperties"/>
 					<element ref="gml:position"/>
 					<element ref="xmml:measurementStation"/>
 					<choice>
@@ -144,7 +143,7 @@ Copyright (c) 2004 CSIRO - see https://www.seegrid.csiro.au/twiki/bin/view/Xmml/
 					<element name="confidence" type="token"/>
 					<element name="reliability" type="xmml:gravityMeasurementReliabilityType"/>
 					<element name="status" type="xmml:observationStatusType"/>
-					<element ref="xmml:recordStatus" minOccurs="0" maxOccurs="unbounded"/>
+					<element name="recordStatus" type="xmml:RecordEventPropertyType" minOccurs="0" maxOccurs="unbounded"/>
 				</sequence>
 			</extension>
 		</complexContent>
