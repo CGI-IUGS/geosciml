@@ -19,13 +19,6 @@ Copyright © 2004 CSIRO - see https://www.seegrid.csiro.au/twiki/bin/view/Xmml/L
 	<include schemaLocation="./observation.xsd"/>
 	<include schemaLocation="../enumerations/LUTgeochemistry.xsd"/>
 	<!-- ====================================================================== -->
-	<group name="geochemResultChoice">
-		<choice>
-			<element ref="xmml:resultMeasure"/>
-			<element ref="xmml:noResult"/>
-		</choice>
-	</group>
-	<!-- ====================================================================== -->
 	<element name="GeochemMeasurement" type="xmml:GeochemMeasurementType" substitutionGroup="xmml:Observation"/>
 	<!-- -->
 	<complexType name="GeochemMeasurementBaseType">
@@ -43,14 +36,16 @@ Copyright © 2004 CSIRO - see https://www.seegrid.csiro.au/twiki/bin/view/Xmml/L
 			<restriction base="xmml:ObservationType">
 				<sequence>
 					<group ref="gml:StandardObjectProperties"/>
+					<group ref="xmml:StandardSupportProperties"/>
 					<group ref="xmml:ExtendedFeatureProperties"/>
 					<element ref="xmml:relatedFeature" minOccurs="0" maxOccurs="unbounded"/>
 					<element ref="gml:position"/>
+					<element ref="xmml:positionMethod" minOccurs="0"/>
 					<element ref="xmml:subject"/>
-					<group ref="xmml:geochemResultChoice"/>
+					<element ref="xmml:abstractResultMeasure"/>
 					<element ref="xmml:quality" minOccurs="0" maxOccurs="unbounded"/>
-					<element name="procedureTime" type="gml:TimePrimitivePropertyType"/>
-					<element name="responsible" type="xmml:PartyPropertyType"/>
+					<element ref="xmml:procedureTime"/>
+					<element ref="xmml:responsible"/>
 					<element ref="xmml:procedureUsed"/>
 					<element ref="xmml:reference" minOccurs="0"/>
 				</sequence>
@@ -117,13 +112,13 @@ Copyright © 2004 CSIRO - see https://www.seegrid.csiro.au/twiki/bin/view/Xmml/L
 					<annotation>
 						<documentation>Models for recording geochemistry results related to this specimen;
 							Choose one of:
-								a tuple of numbers, defined by an associated tuple definition
+								a record of numbers, defined by an associated record definition
 								a set of soft-typed measured
 								a set of related assay measurements</documentation>
 					</annotation>
-					<element name="analyteSuiteResult" type="xmml:NumericOrNullTupleType">
+					<element name="analyteSuiteResult" type="xmml:NumericOrNullRecordType">
 						<annotation>
-							<documentation>Suite of analyte values, expressed as a tuple; tuple definition is provided out-of-band and identified by the value of the RS (reference system) attribute</documentation>
+							<documentation>Suite of analyte values, expressed as a record; record definition is provided out-of-band and identified by the value of the RS (reference system) attribute</documentation>
 						</annotation>
 					</element>
 					<element name="analyteComponentResult" type="xmml:SoftTypedMeasureType" maxOccurs="unbounded">

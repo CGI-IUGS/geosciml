@@ -62,6 +62,7 @@ Copyright © 2004 CSIRO - see https://www.seegrid.csiro.au/twiki/bin/view/Xmml/L
 		<sequence>
 			<element ref="xmml:support" minOccurs="0" maxOccurs="unbounded"/>
 			<element ref="xmml:comment" minOccurs="0" maxOccurs="unbounded"/>
+			<element ref="xmml:reference" minOccurs="0"/>
 		</sequence>
 	</group>
 	<!-- ===================================================== -->
@@ -138,7 +139,7 @@ Copyright © 2004 CSIRO - see https://www.seegrid.csiro.au/twiki/bin/view/Xmml/L
 	<!-- ==================================================== -->
 	<group name="Party">
 		<choice>
-			<!--
+			<!--		-->
 			<element ref="nl:xNL">
 				<annotation>
 					<documentation>Contains one or more names (xNL syntax)</documentation>
@@ -154,11 +155,9 @@ Copyright © 2004 CSIRO - see https://www.seegrid.csiro.au/twiki/bin/view/Xmml/L
 					<documentation>Contains one or more sets of CustomerDetails, each of which contains a customer ID, one name (xNL syntax), zero or more addresses (xAL syntax), followed by optional organisation or personal information (hobbies, religion, etc)</documentation>
 				</annotation>
 			</element>
-
 			<element ref="xmml:Party"/>
 			<element ref="xmml:Company"/>
 			<element ref="xmml:Person"/>
-		-->
 			<element ref="smXML:CI_ResponsibleParty"/>
 			<element name="SimpleParty" type="gml:StringOrRefType"/>
 		</choice>

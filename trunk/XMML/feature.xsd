@@ -6,8 +6,6 @@ feature.xsd
 
 A few variations on the basic feature and feature collection types for XMML
 
-2004-08-23
-
 Copyright (c) 2004 CSIRO - see https://www.seegrid.csiro.au/twiki/bin/view/Xmml/LegalNotices#Software_Notice
 </documentation>
 	</annotation>
@@ -30,7 +28,7 @@ Copyright (c) 2004 CSIRO - see https://www.seegrid.csiro.au/twiki/bin/view/Xmml/
 			<documentation>A generic feature for XMML.  </documentation>
 		</annotation>
 	</element>
-	<!-- ====== -->
+	<!-- ...................... -->
 	<complexType name="FeatureType">
 		<annotation>
 			<documentation>Extend with 
@@ -52,12 +50,12 @@ Copyright (c) 2004 CSIRO - see https://www.seegrid.csiro.au/twiki/bin/view/Xmml/
 		</complexContent>
 	</complexType>
 	<!-- ====================================================================== -->
-	<element name="_BoundedFeature" type="xmml:BoundedFeatureType" abstract="true" substitutionGroup="xmml:Feature">
+	<element name="AbstractBoundedFeature" type="xmml:BoundedFeatureType" abstract="true" substitutionGroup="xmml:Feature">
 		<annotation>
 			<documentation>A generic feature for XMML, with bounding box mandatory.  </documentation>
 		</annotation>
 	</element>
-	<!-- ====== -->
+	<!-- ...................... -->
 	<complexType name="BoundedFeatureType">
 		<annotation>
 			<documentation>enforce boundedBy property</documentation>
@@ -89,12 +87,12 @@ Copyright (c) 2004 CSIRO - see https://www.seegrid.csiro.au/twiki/bin/view/Xmml/
 		</complexContent>
 	</complexType>
 	<!-- ======================================================================   -->
-	<element name="_PositionedFeature" type="xmml:PositionedFeatureType" abstract="true" substitutionGroup="xmml:Feature">
+	<element name="AbstractPositionedFeature" type="xmml:PositionedFeatureType" abstract="true" substitutionGroup="xmml:Feature">
 		<annotation>
 			<documentation>A generic feature for XMML, with position.  </documentation>
 		</annotation>
 	</element>
-	<!-- ====== -->
+	<!-- ...................... -->
 	<complexType name="PositionedFeatureType">
 		<annotation>
 			<documentation>     
@@ -117,8 +115,7 @@ Copyright (c) 2004 CSIRO - see https://www.seegrid.csiro.au/twiki/bin/view/Xmml/
 			<documentation>A generic concrete bag of features for XMML.  </documentation>
 		</annotation>
 	</element>
-	<!-- ====================================================================== -->
-	<!-- ====================================================================== -->
+	<!-- ...................... -->
 	<complexType name="FeatureCollectionType">
 		<annotation>
 			<documentation>Extend with collection composition properties</documentation>
@@ -126,8 +123,7 @@ Copyright (c) 2004 CSIRO - see https://www.seegrid.csiro.au/twiki/bin/view/Xmml/
 		<complexContent>
 			<extension base="xmml:BoundedFeatureType">
 				<sequence>
-					<element ref="gml:featureMember" minOccurs="0" maxOccurs="unbounded"/>
-					<element ref="gml:featureMembers" minOccurs="0"/>
+					<element name="featureMember" type="gml:FeaturePropertyType" minOccurs="0" maxOccurs="unbounded"/>
 				</sequence>
 			</extension>
 		</complexContent>
@@ -146,15 +142,17 @@ Copyright (c) 2004 CSIRO - see https://www.seegrid.csiro.au/twiki/bin/view/Xmml/
 	<!-- ===================================================== -->
 	<!-- === Specialised location properties === -->
 	<!-- ===================================================== -->
-	<element name="place">
-		<complexType>
-			<choice minOccurs="0">
+	<element name="place" type="xmml:LocationPropertyType"/>
+	<!-- ...................... -->
+	<complexType name="LocationPropertyType">
+		<sequence minOccurs="0">
+			<choice>
 				<element ref="gml:LocationKeyWord"/>
 				<element ref="gml:LocationString"/>
 			</choice>
-			<attributeGroup ref="gml:AssociationAttributeGroup"/>
-		</complexType>
-	</element>
+		</sequence>
+		<attributeGroup ref="gml:AssociationAttributeGroup"/>
+	</complexType>
 	<!-- ===================================================== -->
 	<element name="geogPosition" type="gml:PointPropertyType">
 		<annotation>
@@ -174,12 +172,16 @@ Copyright (c) 2004 CSIRO - see https://www.seegrid.csiro.au/twiki/bin/view/Xmml/
       The mapsheet may be given as a URN on a link, or using the xmml:Mapsheet element, which records it as a code/codeSpace pair.  </documentation>
 		</annotation>
 	</element>
-	<!-- ===================================================== -->
+	<!-- ...................... -->
 	<complexType name="MapsheetPropertyType">
-		<sequence>
-			<element ref="xmml:Mapsheet" minOccurs="0"/>
-		</sequence>
-		<attributeGroup ref="gml:AssociationAttributeGroup"/>
+		<complexContent>
+			<restriction base="xmml:LocationPropertyType">
+				<sequence minOccurs="0">
+					<element ref="xmml:Mapsheet"/>
+				</sequence>
+				<attributeGroup ref="gml:AssociationAttributeGroup"/>
+			</restriction>
+		</complexContent>
 	</complexType>
 	<!-- ====================================================================== -->
 	<element name="Mapsheet" type="gml:CodeType" substitutionGroup="gml:LocationKeyWord"/>

@@ -248,6 +248,36 @@ Copyright © 2004 CSIRO - see https://www.seegrid.csiro.au/twiki/bin/view/Xmml/L
 		</simpleContent>
 	</complexType>
 	<!-- ====================================================================== -->
+	<complexType name="MeasureListType">
+		<annotation>
+			<documentation>A list of numeric values, expressed using the scale indicated by the value of the (mandatory) uom attribute. </documentation>
+		</annotation>
+		<simpleContent>
+			<extension base="gml:MeasureListType">
+				<!-- <attribute name="originalUom" type="gml:UomIdentifier" use="optional"> -->
+				<attribute name="originalUom" type="anyURI" use="optional">
+					<annotation>
+						<documentation>When the value reported has been converted from the stored units (for example, raio values converted from ppm to a number), this attribute may be used to record  the original units of measure.</documentation>
+					</annotation>
+				</attribute>
+				<attributeGroup ref="xmml:simpleContentStandardAttributes"/>
+				<attribute name="count" type="nonNegativeInteger" use="optional"/>
+			</extension>
+		</simpleContent>
+	</complexType>
+	<!-- ====================================================================== -->
+	<complexType name="MeasureIntervalType">
+		<annotation>
+			<documentation>A pair of numeric values, expressed using the scale indicated by the value of the (mandatory) uom attribute, attribute, and representing an interval of the phenomenon identified by the property attribute. </documentation>
+		</annotation>
+		<simpleContent>
+			<restriction base="xmml:MeasureListType">
+				<length value="2"/>
+				<attribute name="count" type="nonNegativeInteger" use="prohibited"/>
+			</restriction>
+		</simpleContent>
+	</complexType>
+	<!-- ====================================================================== -->
 	<complexType name="SoftTypedMeasureType">
 		<annotation>
 			<documentation>A numeric value, expressed using the scale indicated by the value of the (mandatory) uom attribute, attribute, and representing a description of the phenomenon identified by the property attribute. </documentation>

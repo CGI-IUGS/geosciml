@@ -7,8 +7,6 @@ geochemistry.xsd
 A GML conformant schema 
 for geochemistry
 
-2004-06-30
-
 Copyright © 2004 CSIRO - see https://www.seegrid.csiro.au/twiki/bin/view/Xmml/LegalNotices#Software_Notice
 </documentation>
 	</annotation>
@@ -20,11 +18,11 @@ Copyright © 2004 CSIRO - see https://www.seegrid.csiro.au/twiki/bin/view/Xmml/L
 	<include schemaLocation="../enumerations/LUTgeochemistry.xsd"/>
 	<!-- ====================================================================== -->
 	<element name="GeochemMeasurement" type="xmml:GeochemMeasurementType" substitutionGroup="xmml:Observation"/>
-	<!-- -->
+	<!-- ...................... -->
 	<complexType name="GeochemMeasurementBaseType">
 		<annotation>
 			<documentation>Specialisation of generic measurement type
-			First apply restriction:
+			Apply restriction:
          			suppress "observedProperty" - chemicalConcentration is implied
          
 					 Use "subject" property to link to the specimen or other feature on which the measurement was made
@@ -40,17 +38,16 @@ Copyright © 2004 CSIRO - see https://www.seegrid.csiro.au/twiki/bin/view/Xmml/L
 					<element ref="gml:position"/>
 					<element ref="xmml:positionMethod" minOccurs="0"/>
 					<element ref="xmml:subject"/>
-					<element ref="xmml:resultMeasure"/>
+					<element ref="xmml:abstractResultMeasure"/>
 					<element ref="xmml:quality" minOccurs="0" maxOccurs="unbounded"/>
 					<element ref="xmml:procedureTime"/>
 					<element ref="xmml:responsible"/>
 					<element ref="xmml:procedureUsed"/>
-					<element ref="xmml:reference" minOccurs="0"/>
 				</sequence>
 			</restriction>
 		</complexContent>
 	</complexType>
-	<!-- -->
+	<!-- ...................... -->
 	<complexType name="GeochemMeasurementType">
 		<annotation>
 			<documentation>Extend with 
@@ -70,14 +67,14 @@ Copyright © 2004 CSIRO - see https://www.seegrid.csiro.au/twiki/bin/view/Xmml/L
 	</complexType>
 	<!-- ====================================================================== -->
 	<complexType name="GeochemMeasurementPropertyType">
-		<sequence>
-			<element ref="xmml:GeochemMeasurement" minOccurs="0"/>
+		<sequence minOccurs="0">
+			<element ref="xmml:GeochemMeasurement"/>
 		</sequence>
 		<attributeGroup ref="gml:AssociationAttributeGroup"/>
 	</complexType>
 	<!-- ====================================================================== -->
 	<element name="GeochemSpecimen" type="xmml:GeochemSpecimenType" substitutionGroup="xmml:Specimen"/>
-	<!-- -->
+	<!-- ...................... -->
 	<complexType name="GeochemSpecimenType">
 		<annotation>
 			<documentation>Basic geochemistry specimen feature type. 
@@ -97,7 +94,7 @@ Copyright © 2004 CSIRO - see https://www.seegrid.csiro.au/twiki/bin/view/Xmml/L
 	</complexType>
 	<!-- ====================================================================== -->
 	<element name="GeochemSample" type="xmml:GeochemSampleType" substitutionGroup="xmml:Feature"/>
-	<!-- -->
+	<!-- ...................... -->
 	<complexType name="GeochemSampleType">
 		<annotation>
 			<documentation>Geochemistry sample - specimen description + analyte results. 
@@ -126,7 +123,7 @@ Copyright © 2004 CSIRO - see https://www.seegrid.csiro.au/twiki/bin/view/Xmml/L
 			<documentation>description of an assay method</documentation>
 		</annotation>
 	</element>
-	<!-- ====== -->
+	<!-- ...................... -->
 	<complexType name="AssayProcedureType">
 		<annotation>
 			<documentation>Adds the following assay-specific properties to generic procedure:
@@ -141,24 +138,38 @@ Copyright © 2004 CSIRO - see https://www.seegrid.csiro.au/twiki/bin/view/Xmml/L
 		<complexContent>
 			<extension base="xmml:ProcedureType">
 				<sequence>
-					<element name="analyte" type="xmml:analyteCode"/>
-					<element name="lowerDetectionLimit" type="gml:MeasureType"/>
-					<element name="upperDetectionLimit" type="gml:MeasureType" minOccurs="0"/>
-					<element name="secondUpperDetectionLimit" type="gml:MeasureType" minOccurs="0"/>
+					<element name="analyteDetails" minOccurs="0" maxOccurs="unbounded">
+						<complexType>
+							<sequence>
+								<element ref="xmml:AnalyteSensitivity"/>
+							</sequence>
+						</complexType>
+					</element>
 				</sequence>
 			</extension>
 		</complexContent>
 	</complexType>
+	<!-- ...................... -->
+	<element name="AnalyteSensitivity">
+		<complexType>
+			<sequence>
+				<element name="analyte" type="xmml:analyteCode"/>
+				<element name="lowerDetectionLimit" type="gml:MeasureType" nillable="true"/>
+				<element name="upperDetectionLimit" type="gml:MeasureType" minOccurs="0"/>
+				<element name="secondUpperDetectionLimit" type="gml:MeasureType" minOccurs="0"/>
+			</sequence>
+		</complexType>
+	</element>
 	<!-- ====================================================================== -->
 	<complexType name="AssayProcedurePropertyType">
-		<sequence>
-			<element ref="xmml:AssayProcedure" minOccurs="0"/>
+		<sequence minOccurs="0">
+			<element ref="xmml:AssayProcedure"/>
 		</sequence>
 		<attributeGroup ref="gml:AssociationAttributeGroup"/>
 	</complexType>
 	<!-- ====================================================================== -->
 	<element name="GeochemRequest" type="xmml:GeochemRequestType"/>
-	<!-- -->
+	<!-- ...................... -->
 	<complexType name="GeochemRequestType">
 		<annotation>
 			<documentation>
@@ -185,7 +196,7 @@ Copyright © 2004 CSIRO - see https://www.seegrid.csiro.au/twiki/bin/view/Xmml/L
 			<documentation>description of an assay suite, which includes one or more Assay definitions</documentation>
 		</annotation>
 	</element>
-	<!-- ====== -->
+	<!-- ...................... -->
 	<complexType name="AssaySuiteDefinitionType">
 		<annotation>
 			<documentation/>
@@ -195,8 +206,8 @@ Copyright © 2004 CSIRO - see https://www.seegrid.csiro.au/twiki/bin/view/Xmml/L
 				<sequence>
 					<element name="component" minOccurs="0" maxOccurs="unbounded">
 						<complexType>
-							<sequence>
-								<element name="Assay" type="xmml:AssayDefinitionType" minOccurs="0"/>
+							<sequence minOccurs="0">
+								<element name="Assay" type="xmml:AssayDefinitionType"/>
 							</sequence>
 							<attributeGroup ref="gml:AssociationAttributeGroup"/>
 						</complexType>
@@ -211,7 +222,7 @@ Copyright © 2004 CSIRO - see https://www.seegrid.csiro.au/twiki/bin/view/Xmml/L
 			<documentation>description of an assay</documentation>
 		</annotation>
 	</element>
-	<!-- ====================================================================== -->
+	<!-- ...................... -->
 	<complexType name="AssayDefinitionType">
 		<annotation>
 			<documentation>
@@ -239,8 +250,9 @@ Copyright © 2004 CSIRO - see https://www.seegrid.csiro.au/twiki/bin/view/Xmml/L
 			<enumeration value="Lag"/>
 		</restriction>
 	</simpleType>
+	<!-- ====================================================================== -->
 	<element name="WMCsample" type="xmml:WMCsampleCode" substitutionGroup="xmml:samplingMethod"/>
-	<!-- ====== -->
+	<!-- ...................... -->
 	<simpleType name="WMCsampleCode">
 		<restriction base="token">
 			<enumeration value="STAND">
@@ -255,7 +267,7 @@ Copyright © 2004 CSIRO - see https://www.seegrid.csiro.au/twiki/bin/view/Xmml/L
 	<!-- ====================================================================== -->
 	<element name="purpose" type="token"/>
 	<element name="WMCpurpose" type="xmml:QAQCPurposeWMC" substitutionGroup="xmml:purpose"/>
-	<!-- ====== -->
+	<!-- ...................... -->
 	<simpleType name="QAQCPurposeWMC">
 		<annotation>
 			<documentation>
