@@ -27,41 +27,41 @@ Copyright (c) 2004 CSIRO - see https://www.seegrid.csiro.au/twiki/bin/view/Xmml/
 		</annotation>
 	</import>
 	<import namespace="http://www.opengis.net/gml" schemaLocation="./gml4rs.xsd"/>
-	<include schemaLocation="./procedures.xsd"/>
+	<include schemaLocation="./procedure.xsd"/>
 	<!-- ====================================================================== -->
-	<element name="PropertyDefinition" type="gml:DefinitionType" substitutionGroup="gml:Definition">
+	<element name="PhenomenonDefinition" type="gml:DefinitionType" substitutionGroup="gml:Definition">
 		<annotation>
-			<documentation>Use the generic gml:DefinitionType for basic property definitions, 
+			<documentation>Use the generic gml:DefinitionType for basic Phenomenon definitions, 
 			gml:description may be used for a more extensive description of the semantics, with a link to a definitive version (if available).  
 			gml:name should be used for the "short name" or label.  
 </documentation>
 		</annotation>
 	</element>
 	<!-- ====================================================================== -->
-	<complexType name="PropertyDefinitionPropertyType">
+	<complexType name="PhenomenonDefinitionPropertyType">
 		<sequence minOccurs="0">
-			<element ref="xmml:PropertyDefinition"/>
+			<element ref="xmml:PhenomenonDefinition"/>
 		</sequence>
 		<attributeGroup ref="gml:AssociationAttributeGroup"/>
 	</complexType>
 	<!-- ====================================================================== -->
-	<element name="ConstrainedProperty" type="xmml:ConstrainedPropertyType" substitutionGroup="xmml:PropertyDefinition">
+	<element name="ConstrainedPhenomenon" type="xmml:ConstrainedPhenomenonType" substitutionGroup="xmml:PhenomenonDefinition">
 		<annotation>
-			<documentation>Description of a scalar property defined by adding constraints to a property previously defined elsewhere.</documentation>
+			<documentation>Description of a scalar Phenomenon defined by adding constraints to a property previously defined elsewhere.</documentation>
 		</annotation>
 	</element>
 	<!-- ........................................ -->
-	<complexType name="ConstrainedPropertyType">
+	<complexType name="ConstrainedPhenomenonType">
 		<annotation>
-			<documentation>A scalar property defined by adding constraints to an existing property.  
+			<documentation>A scalar Phenomenon defined by adding constraints to an existing property.  
       </documentation>
 		</annotation>
 		<complexContent>
 			<extension base="gml:DefinitionType">
 				<sequence>
-					<element name="baseProperty" type="xmml:PropertyDefinitionPropertyType">
+					<element name="basePhenomenon" type="xmml:PhenomenonDefinitionPropertyType">
 						<annotation>
-							<documentation>Property that forms the basis for generating a set of more refined properties; e.g. Chemical Composition, Radiance</documentation>
+							<documentation>Property that forms the basis for generating a set of more refined Phenomena; e.g. Chemical Composition, Radiance</documentation>
 						</annotation>
 					</element>
 					<group ref="xmml:singleConstraint" maxOccurs="unbounded"/>
@@ -73,39 +73,39 @@ Copyright (c) 2004 CSIRO - see https://www.seegrid.csiro.au/twiki/bin/view/Xmml/
 	<group name="singleConstraint">
 		<annotation>
 			<documentation>Constraints expressed in fully explicit form. 
-        The base property is associated with each value or interval in turn</documentation>
+        The base Phenomenon is associated with each value or interval in turn</documentation>
 		</annotation>
 		<choice>
 			<element name="categoryConstraint" type="xmml:SoftTypedCategoryType">
 				<annotation>
-					<documentation>A value from a classification that constrains the base property; e.g. Chemical Species</documentation>
+					<documentation>A value from a classification that constrains the base Phenomenon; e.g. Chemical Species</documentation>
 				</annotation>
 			</element>
 			<element name="measureConstraint" type="xmml:SoftTypedMeasureType">
 				<annotation>
-					<documentation>A numeric value of some property that constrains the base property; e.g. Wavelength</documentation>
+					<documentation>A numeric value of some property that constrains the base Phenomenon; e.g. Wavelength</documentation>
 				</annotation>
 			</element>
 			<element name="intervalConstraint" type="xmml:SoftTypedMeasureIntervalType">
 				<annotation>
-					<documentation>An interval or range of some property that constrains the base property; e.g. Wavelength band</documentation>
+					<documentation>An interval or range of some property that constrains the base Phenomenon; e.g. Wavelength band</documentation>
 				</annotation>
 			</element>
 		</choice>
 	</group>
 	<!-- ====================================================================== -->
 	<!-- ====================================================================== -->
-	<element name="CompoundProperty" type="xmml:CompoundPropertyType" abstract="true" substitutionGroup="xmml:PropertyDefinition">
+	<element name="CompoundPhenomenon" type="xmml:CompoundPhenomenonType" abstract="true" substitutionGroup="xmml:PhenomenonDefinition">
 		<annotation>
-			<documentation>Description of a set of properties or a compound property, 
+			<documentation>Description of a set of properties or a compound Phenomenon, 
       that are the subject of a measurement, observation or assignment.   </documentation>
 		</annotation>
 	</element>
 	<!-- ........................................ -->
-	<complexType name="CompoundPropertyType" abstract="true">
+	<complexType name="CompoundPhenomenonType" abstract="true">
 		<annotation>
-			<documentation>Description of a set of properties.  
-      A property set may defined as either
+			<documentation>Description of a set of Phenomena.  
+      A Phenomenon set may defined as either
       1. a set of explicitly enumerated components which may or may not be related to one another
       2. a base property convolved with a set of constraints
       The set of  constraints may be either
@@ -125,40 +125,41 @@ Copyright (c) 2004 CSIRO - see https://www.seegrid.csiro.au/twiki/bin/view/Xmml/
 		</complexContent>
 	</complexType>
 	<!-- ====================================================================== -->
-	<element name="CompositeProperty" type="xmml:CompositePropertyType" substitutionGroup="xmml:CompoundProperty">
+	<element name="CompositePhenomenon" type="xmml:CompositePhenomenonType" substitutionGroup="xmml:CompoundPhenomenon">
 		<annotation>
-			<documentation>A Composite Property Definition is composed from arbitrary base properties. </documentation>
+			<documentation>A Composite Phenomenon Definition is composed from arbitrary base Phenomena. </documentation>
 		</annotation>
 	</element>
 	<!-- ........................................ -->
-	<complexType name="CompositePropertyType">
+	<complexType name="CompositePhenomenonType">
 		<complexContent>
-			<extension base="xmml:CompoundPropertyType">
+			<extension base="xmml:CompoundPhenomenonType">
 				<sequence>
-					<element name="component" type="xmml:PropertyDefinitionPropertyType" maxOccurs="unbounded"/>
+					<element name="component" type="xmml:PhenomenonDefinitionPropertyType" maxOccurs="unbounded"/>
 				</sequence>
 			</extension>
 		</complexContent>
 	</complexType>
 	<!-- ====================================================================== -->
-	<element name="PropertySeries" type="xmml:PropertySeriesType" substitutionGroup="xmml:CompoundProperty">
+	<element name="PhenomenonSeries" type="xmml:PhenomenonSeriesType" substitutionGroup="xmml:CompoundPhenomenon">
 		<annotation>
-			<documentation>A Series is derived from a common baseProperty (e.g. Chemical Concentration) with one or more constraint lists (e.g. Chemical Species). </documentation>
+			<documentation>A Series is derived from a common basePhenomenon (e.g. Chemical Concentration) with one or more constraint lists (e.g. Chemical Species). </documentation>
 		</annotation>
 	</element>
 	<!-- ........................................ -->
-	<complexType name="PropertySeriesType">
+	<complexType name="PhenomenonSeriesType">
 		<complexContent>
-			<extension base="xmml:CompoundPropertyType">
+			<extension base="xmml:CompoundPhenomenonType">
 				<sequence>
-					<element name="baseProperty" type="xmml:PropertyDefinitionPropertyType">
+					<element name="basePhenomenon" type="xmml:PhenomenonDefinitionPropertyType">
 						<annotation>
-							<documentation>Property that forms the basis for generating a set of more refined properties; e.g. Chemical Composition, Radiance</documentation>
+							<documentation>Phenomenon that forms the basis for generating a set of more refined Phenomena; e.g. Chemical Composition, Radiance</documentation>
 						</annotation>
 					</element>
 					<group ref="xmml:constraintLists" maxOccurs="unbounded">
 						<annotation>
-							<documentation>A set of values of some secondary property that constraints the baseProperty to generate a property set.  If more than one set of constraints are possible, then these are applied simultaneously to generate </documentation>
+							<documentation>A set of values of some secondary property that constraints the basePhenomenon to generate a Phenomenon set.  
+							If more than one set of constraints are possible, then these are applied simultaneously to generate </documentation>
 						</annotation>
 					</group>
 				</sequence>
@@ -227,7 +228,7 @@ Copyright (c) 2004 CSIRO - see https://www.seegrid.csiro.au/twiki/bin/view/Xmml/
 		<complexContent>
 			<extension base="gml:DefinitionType">
 				<sequence>
-					<element name="property" type="xmml:PropertyDefinitionPropertyType"/>
+					<element name="property" type="xmml:PhenomenonDefinitionPropertyType"/>
 					<element ref="xmml:representation"/>
 					<element ref="xmml:procedureUsed" minOccurs="0"/>
 					<element ref="xmml:quality" minOccurs="0" maxOccurs="unbounded">
