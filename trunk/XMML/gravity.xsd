@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<schema targetNamespace="http://www.opengis.net/xmml" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:gml="http://www.opengis.net/gml" xmlns="http://www.w3.org/2001/XMLSchema" xmlns:xmml="http://www.opengis.net/xmml" elementFormDefault="qualified" attributeFormDefault="unqualified" version="pre-release">
+<schema targetNamespace="http://www.opengis.net/xmml" elementFormDefault="qualified" attributeFormDefault="unqualified" version="pre-release" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:gml="http://www.opengis.net/gml" xmlns="http://www.w3.org/2001/XMLSchema" xmlns:xmml="http://www.opengis.net/xmml">
 	<annotation>
 		<documentation>gravity.xsd
 
@@ -23,24 +23,38 @@ Copyright (c) 2004 CSIRO - see https://www.seegrid.csiro.au/twiki/bin/view/Xmml/
 		</annotation>
 	</element>
 	<!-- ====== -->
-	<complexType name="GravityMeasurementType">
+	<complexType name="GravityMeasurementBaseType">
 		<annotation>
-			<documentation>Use this simple content model for a "basic" gravity measurement, with result, time and meter only.      </documentation>
+			<documentation>Brief form of "basic" gravity measurement, with result, time and meter only.      
+			Uses xmml:Observation as a pattern, not a root. 
+			First restrict the content model of PositionedFeature.</documentation>
 		</annotation>
 		<complexContent>
-			<restriction base="xmml:ObservationType">
+			<restriction base="xmml:PositionedFeatureType">
 				<sequence>
 					<element ref="gml:description" minOccurs="0"/>
 					<element ref="gml:name" maxOccurs="unbounded"/>
 					<element ref="gml:position"/>
+				</sequence>
+			</restriction>
+		</complexContent>
+	</complexType>
+	<!-- ====================================================================== -->
+	<complexType name="GravityMeasurementType">
+		<annotation>
+			<documentation>Add result, time and meter only.      </documentation>
+		</annotation>
+		<complexContent>
+			<extension base="xmml:GravityMeasurementBaseType">
+				<sequence>
 					<choice>
 						<element ref="xmml:resultMeasure"/>
 						<element ref="xmml:noResult"/>
 					</choice>
-					<element name="when" type="gml:TimePrimitivePropertyType"/>
+					<element name="procedureTime" type="gml:TimePrimitivePropertyType"/>
 					<element ref="xmml:procedureUsed"/>
 				</sequence>
-			</restriction>
+			</extension>
 		</complexContent>
 	</complexType>
 	<!-- ====================================================================== -->
@@ -52,7 +66,8 @@ Copyright (c) 2004 CSIRO - see https://www.seegrid.csiro.au/twiki/bin/view/Xmml/
 	<!-- ====== -->
 	<complexType name="CompleteGravityMeasurementBaseType">
 		<annotation>
-			<documentation>Enforce xmml:result from amongst resultChoice; xmml:measurementStation in place of xmml:subject</documentation>
+			<documentation>This time the specialised Measurement type is derived from xmml:Observation.
+			Enforce xmml:result from amongst resultChoice; xmml:measurementStation in place of xmml:subject</documentation>
 		</annotation>
 		<complexContent>
 			<restriction base="xmml:ObservationType">
@@ -66,7 +81,8 @@ Copyright (c) 2004 CSIRO - see https://www.seegrid.csiro.au/twiki/bin/view/Xmml/
 						<element ref="xmml:resultMeasure"/>
 						<element ref="xmml:noResult"/>
 					</choice>
-					<element name="when" type="gml:TimePrimitivePropertyType"/>
+					<element ref="xmml:quality"/>
+					<element name="procedureTime" type="gml:TimePrimitivePropertyType"/>
 					<element name="responsible" type="xmml:PartyPropertyType" minOccurs="0"/>
 					<element ref="xmml:procedureUsed"/>
 				</sequence>
@@ -116,7 +132,6 @@ Copyright (c) 2004 CSIRO - see https://www.seegrid.csiro.au/twiki/bin/view/Xmml/
 		<complexContent>
 			<extension base="xmml:CompleteGravityMeasurementBaseType">
 				<sequence>
-					<element ref="xmml:quality"/>
 					<element name="gravityDatum" type="token"/>
 					<element name="gravityCalcDate" type="gml:TimePrimitivePropertyType"/>
 					<element name="meterHeightOffset" type="gml:MeasureType"/>
