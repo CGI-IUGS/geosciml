@@ -1,211 +1,213 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <schema targetNamespace="http://www.opengis.net/xmml" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:gml="http://www.opengis.net/gml" xmlns="http://www.w3.org/2001/XMLSchema" xmlns:xmml="http://www.opengis.net/xmml" elementFormDefault="qualified" attributeFormDefault="unqualified" version="pre-release">
-  <annotation>
-    <appinfo source="urn:opengis:specification:gml:schema-xsd:gmlBase:v3.00">
-      <sch:title>Schematron validation</sch:title>
-      <sch:ns prefix="gml" uri="http://www.opengis.net/gml"/>
-      <sch:ns prefix="xlink" uri="http://www.w3.org/1999/xlink"/>
-    </appinfo>
-    <documentation>
+	<annotation>
+		<appinfo source="urn:opengis:specification:gml:schema-xsd:gmlBase:v3.00">
+			<sch:title>Schematron validation</sch:title>
+			<sch:ns prefix="gml" uri="http://www.opengis.net/gml"/>
+			<sch:ns prefix="xlink" uri="http://www.w3.org/1999/xlink"/>
+		</appinfo>
+		<documentation>
 values.xsd
 
 Some basic components for datatypes and values
 
 2003-03-25
 </documentation>
-  </annotation>
-  <!-- ====================================================================== -->
-  <!-- bring in other schemas -->
-  <import namespace="http://www.opengis.net/gml" schemaLocation="./geometryAndTime.xsd"/>
-  <!-- ====================================================================== -->
-  <element name="Value" abstract="true">
-    <annotation><documentation>Abstract anyType element, to serve as substitution group head.</documentation></annotation>
-  </element>
-  <!-- ====================================================================== -->
-  <element name="Q" type="xmml:QType" substitutionGroup="xmml:Value">
-    <annotation>
-      <documentation>Generic number tuple.  Soft-typing using axis attribute, or inherited from container element.</documentation>
-    </annotation>
-  </element>
-  <!-- ====== -->
-  <complexType name="QType">
-    <simpleContent>
-      <extension base="gml:doubleList">
-        <attribute name="id" type="ID"/>
-        <attribute name="length" type="nonNegativeInteger" use="optional"/>
-        <attribute name="axis" type="anyURI" use="optional"/>
-      </extension>
-    </simpleContent>
-  </complexType>
-  <!-- =========================================================== -->
-  <element name="Q1" type="xmml:Q1Type" substitutionGroup="xmml:Q"/>
-  <!-- ====== -->
-  <complexType name="Q1Type">
-    <simpleContent>
-      <restriction base="xmml:QType">
-        <length value="1"/>
-        <attribute name="length" type="nonNegativeInteger" use="optional" fixed="1"/>
-      </restriction>
-    </simpleContent>
-  </complexType>
-  <!-- =========================================================== -->
-  <element name="Q2" type="xmml:Q2Type" substitutionGroup="xmml:Q"/>
-  <!-- ====== -->
-  <complexType name="Q2Type">
-    <simpleContent>
-      <restriction base="xmml:QType">
-        <length value="2"/>
-        <attribute name="length" type="nonNegativeInteger" use="optional" fixed="2"/>
-      </restriction>
-    </simpleContent>
-  </complexType>
-  <!-- =========================================================== -->
-  <element name="Q3" type="xmml:Q3Type" substitutionGroup="xmml:Q"/>
-  <!-- ====== -->
-  <complexType name="Q3Type">
-    <simpleContent>
-      <restriction base="xmml:QType">
-        <length value="3"/>
-        <attribute name="length" type="nonNegativeInteger" use="optional" fixed="3"/>
-      </restriction>
-    </simpleContent>
-  </complexType>
-  <!-- =========================================================== -->
-  <element name="Q6" type="xmml:Q6Type" substitutionGroup="xmml:Q"/>
-  <!-- ====== -->
-  <complexType name="Q6Type">
-    <simpleContent>
-      <restriction base="xmml:QType">
-        <length value="6"/>
-        <attribute name="length" type="nonNegativeInteger" use="optional" fixed="6"/>
-      </restriction>
-    </simpleContent>
-  </complexType>
-  <!-- =========================================================== -->
-  <element name="I" type="xmml:IType"  substitutionGroup="xmml:Value">
-    <annotation>
-      <documentation>Generic integer tuple.  Soft-typing using axis attribute, or inherited from container element.</documentation>
-    </annotation>
-  </element>
-  <!-- ====== -->
-  <complexType name="IType">
-    <simpleContent>
-      <extension base="gml:integerList">
-        <attribute name="id" type="ID"/>
-        <attribute name="length" type="nonNegativeInteger" use="optional"/>
-        <attribute name="axis" type="anyURI" use="optional"/>
-      </extension>
-    </simpleContent>
-  </complexType>
-  <!-- =========================================================== -->
-  <element name="I1" type="xmml:I1Type" substitutionGroup="xmml:I"/>
-  <!-- ====== -->
-  <complexType name="I1Type">
-    <simpleContent>
-      <restriction base="xmml:IType">
-        <length value="1"/>
-        <attribute name="length" type="nonNegativeInteger" use="optional" fixed="1"/>
-      </restriction>
-    </simpleContent>
-  </complexType>
-  <!-- =========================================================== -->
-  <element name="T" type="xmml:TType"  substitutionGroup="xmml:Value">
-    <annotation>
-      <documentation>Generic text tuple.  Soft-typing using axis attribute, or inherited from container element.</documentation>
-    </annotation>
-  </element>
-  <!-- ====== -->
-  <complexType name="TType">
-    <simpleContent>
-      <extension base="gml:NameList">
-        <attribute name="id" type="ID"/>
-        <attribute name="length" type="nonNegativeInteger" use="optional"/>
-        <attribute name="axis" type="anyURI" use="optional"/>
-      </extension>
-    </simpleContent>
-  </complexType>
-  <!-- =========================================================== -->
-  <element name="T1" type="xmml:T1Type" substitutionGroup="xmml:T"/>
-  <!-- ====== -->
-  <complexType name="T1Type">
-    <simpleContent>
-      <restriction base="xmml:TType">
-        <length value="1"/>
-        <attribute name="length" type="nonNegativeInteger" use="optional" fixed="1"/>
-      </restriction>
-    </simpleContent>
-  </complexType>
-  <!-- ====== -->
-  <group name="value">
-    <choice>
-      <element ref="xmml:Q"/>
-      <element ref="xmml:I"/>
-      <element ref="xmml:T"/>
-      <element ref="gml:Null"/>
-    </choice>
-  </group>
-  <!-- =========================================================== -->
-  <element name="ListOfValues" type="xmml:ListOfValuesType">
-    <annotation>
-      <appinfo>
-        <sch:pattern name="Check components are homogeneous">
-          <sch:rule context="xmml:values">
-            <sch:assert test="count(*) = count(*[name() = name(../*[1])])">All components of <sch:name/> must be of the same type - need to fix this to allow for Nulls mixed into the stream</sch:assert>
-          </sch:rule>
-        </sch:pattern>
-      </appinfo>
-    </annotation>
-  </element>
-  <!-- ====== -->
-  <complexType name="ListOfValuesType">
-    <sequence maxOccurs="unbounded">
-      <group ref="xmml:value"/>
-    </sequence>
-    <attribute name="id" type="ID"/>
-    <attribute name="length" type="nonNegativeInteger" use="optional"/>
-    <attribute name="member" type="QName" use="optional"/>
-    <attribute name="memberLength" type="nonNegativeInteger" use="optional"/>
-    <attribute name="axis" type="anyURI"/>
-  </complexType>
-  <!-- =========================================================== -->
-  <element name="ListOfQ" type="xmml:ListOfQType" substitutionGroup="xmml:ListOfValues"/>
-  <!-- ====== -->
-  <complexType name="ListOfQType">
-    <complexContent>
-      <restriction base="xmml:ListOfValuesType">
-        <sequence maxOccurs="unbounded">
-          <choice>
-            <element ref="xmml:Q"/>
-            <element ref="gml:Null"/>
-          </choice>
-        </sequence>
-        <attribute name="id" type="ID"/>
-        <attribute name="length" type="nonNegativeInteger" use="optional"/>
-        <attribute name="member" type="QName" use="optional" fixed="xmml:Q"/>
-        <attribute name="memberLength" type="nonNegativeInteger" use="optional"/>
-        <attribute name="axis" type="anyURI"/>
-      </restriction>
-    </complexContent>
-  </complexType>
-  <!-- =========================================================== -->
-  <element name="ListOfQ1" type="xmml:ListOfQ1Type" substitutionGroup="xmml:ListOfQ"/>
-  <!-- ====== -->
-  <complexType name="ListOfQ1Type">
-    <complexContent>
-      <restriction base="xmml:ListOfQType">
-        <sequence maxOccurs="unbounded">
-          <choice>
-            <element ref="xmml:Q1"/>
-            <element ref="gml:Null"/>
-          </choice>
-        </sequence>
-        <attribute name="id" type="ID"/>
-        <attribute name="length" type="nonNegativeInteger" use="optional"/>
-        <attribute name="member" type="QName" use="optional" fixed="xmml:Q1"/>
-        <attribute name="memberLength" type="nonNegativeInteger" use="optional" fixed="1"/>
-        <attribute name="axis" type="anyURI"/>
-      </restriction>
-    </complexContent>
-  </complexType>
-  <!-- =========================================================== -->
+	</annotation>
+	<!-- ====================================================================== -->
+	<!-- bring in other schemas -->
+	<import namespace="http://www.opengis.net/gml" schemaLocation="./geometryAndTime.xsd"/>
+	<!-- ====================================================================== -->
+	<element name="Value" abstract="true">
+		<annotation>
+			<documentation>Abstract anyType element, to serve as substitution group head.</documentation>
+		</annotation>
+	</element>
+	<!-- ====================================================================== -->
+	<element name="Q" type="xmml:QType" substitutionGroup="xmml:Value">
+		<annotation>
+			<documentation>Generic number tuple.  Soft-typing using axis attribute, or inherited from container element.</documentation>
+		</annotation>
+	</element>
+	<!-- ====== -->
+	<complexType name="QType">
+		<simpleContent>
+			<extension base="gml:doubleList">
+				<attribute name="id" type="ID"/>
+				<attribute name="length" type="nonNegativeInteger" use="optional"/>
+				<attribute name="axis" type="anyURI" use="optional"/>
+			</extension>
+		</simpleContent>
+	</complexType>
+	<!-- =========================================================== -->
+	<element name="Q1" type="xmml:Q1Type" substitutionGroup="xmml:Q"/>
+	<!-- ====== -->
+	<complexType name="Q1Type">
+		<simpleContent>
+			<restriction base="xmml:QType">
+				<length value="1"/>
+				<attribute name="length" type="nonNegativeInteger" use="optional" fixed="1"/>
+			</restriction>
+		</simpleContent>
+	</complexType>
+	<!-- =========================================================== -->
+	<element name="Q2" type="xmml:Q2Type" substitutionGroup="xmml:Q"/>
+	<!-- ====== -->
+	<complexType name="Q2Type">
+		<simpleContent>
+			<restriction base="xmml:QType">
+				<length value="2"/>
+				<attribute name="length" type="nonNegativeInteger" use="optional" fixed="2"/>
+			</restriction>
+		</simpleContent>
+	</complexType>
+	<!-- =========================================================== -->
+	<element name="Q3" type="xmml:Q3Type" substitutionGroup="xmml:Q"/>
+	<!-- ====== -->
+	<complexType name="Q3Type">
+		<simpleContent>
+			<restriction base="xmml:QType">
+				<length value="3"/>
+				<attribute name="length" type="nonNegativeInteger" use="optional" fixed="3"/>
+			</restriction>
+		</simpleContent>
+	</complexType>
+	<!-- =========================================================== -->
+	<element name="Q6" type="xmml:Q6Type" substitutionGroup="xmml:Q"/>
+	<!-- ====== -->
+	<complexType name="Q6Type">
+		<simpleContent>
+			<restriction base="xmml:QType">
+				<length value="6"/>
+				<attribute name="length" type="nonNegativeInteger" use="optional" fixed="6"/>
+			</restriction>
+		</simpleContent>
+	</complexType>
+	<!-- =========================================================== -->
+	<element name="I" type="xmml:IType" substitutionGroup="xmml:Value">
+		<annotation>
+			<documentation>Generic integer tuple.  Soft-typing using axis attribute, or inherited from container element.</documentation>
+		</annotation>
+	</element>
+	<!-- ====== -->
+	<complexType name="IType">
+		<simpleContent>
+			<extension base="gml:integerList">
+				<attribute name="id" type="ID"/>
+				<attribute name="length" type="nonNegativeInteger" use="optional"/>
+				<attribute name="axis" type="anyURI" use="optional"/>
+			</extension>
+		</simpleContent>
+	</complexType>
+	<!-- =========================================================== -->
+	<element name="I1" type="xmml:I1Type" substitutionGroup="xmml:I"/>
+	<!-- ====== -->
+	<complexType name="I1Type">
+		<simpleContent>
+			<restriction base="xmml:IType">
+				<length value="1"/>
+				<attribute name="length" type="nonNegativeInteger" use="optional" fixed="1"/>
+			</restriction>
+		</simpleContent>
+	</complexType>
+	<!-- =========================================================== -->
+	<element name="T" type="xmml:TType" substitutionGroup="xmml:Value">
+		<annotation>
+			<documentation>Generic text tuple.  Soft-typing using axis attribute, or inherited from container element.</documentation>
+		</annotation>
+	</element>
+	<!-- ====== -->
+	<complexType name="TType">
+		<simpleContent>
+			<extension base="gml:NameList">
+				<attribute name="id" type="ID"/>
+				<attribute name="length" type="nonNegativeInteger" use="optional"/>
+				<attribute name="axis" type="anyURI" use="optional"/>
+			</extension>
+		</simpleContent>
+	</complexType>
+	<!-- =========================================================== -->
+	<element name="T1" type="xmml:T1Type" substitutionGroup="xmml:T"/>
+	<!-- ====== -->
+	<complexType name="T1Type">
+		<simpleContent>
+			<restriction base="xmml:TType">
+				<length value="1"/>
+				<attribute name="length" type="nonNegativeInteger" use="optional" fixed="1"/>
+			</restriction>
+		</simpleContent>
+	</complexType>
+	<!-- ====== -->
+	<group name="value">
+		<choice>
+			<element ref="xmml:Q"/>
+			<element ref="xmml:I"/>
+			<element ref="xmml:T"/>
+			<element ref="gml:Null"/>
+		</choice>
+	</group>
+	<!-- =========================================================== -->
+	<element name="ListOfValues" type="xmml:ListOfValuesType">
+		<annotation>
+			<appinfo>
+				<sch:pattern name="Check components are homogeneous">
+					<sch:rule context="xmml:values">
+						<sch:assert test="count(*) = count(*[name() = name(../*[1])])">All components of <sch:name/> must be of the same type - need to fix this to allow for Nulls mixed into the stream</sch:assert>
+					</sch:rule>
+				</sch:pattern>
+			</appinfo>
+		</annotation>
+	</element>
+	<!-- ====== -->
+	<complexType name="ListOfValuesType">
+		<sequence maxOccurs="unbounded">
+			<group ref="xmml:value"/>
+		</sequence>
+		<attribute name="id" type="ID"/>
+		<attribute name="length" type="nonNegativeInteger" use="optional"/>
+		<attribute name="member" type="QName" use="optional"/>
+		<attribute name="memberLength" type="nonNegativeInteger" use="optional"/>
+		<attribute name="axis" type="anyURI"/>
+	</complexType>
+	<!-- =========================================================== -->
+	<element name="ListOfQ" type="xmml:ListOfQType" substitutionGroup="xmml:ListOfValues"/>
+	<!-- ====== -->
+	<complexType name="ListOfQType">
+		<complexContent>
+			<restriction base="xmml:ListOfValuesType">
+				<sequence maxOccurs="unbounded">
+					<choice>
+						<element ref="xmml:Q"/>
+						<element ref="gml:Null"/>
+					</choice>
+				</sequence>
+				<attribute name="id" type="ID"/>
+				<attribute name="length" type="nonNegativeInteger" use="optional"/>
+				<attribute name="member" type="QName" use="optional" fixed="xmml:Q"/>
+				<attribute name="memberLength" type="nonNegativeInteger" use="optional"/>
+				<attribute name="axis" type="anyURI"/>
+			</restriction>
+		</complexContent>
+	</complexType>
+	<!-- =========================================================== -->
+	<element name="ListOfQ1" type="xmml:ListOfQ1Type" substitutionGroup="xmml:ListOfQ"/>
+	<!-- ====== -->
+	<complexType name="ListOfQ1Type">
+		<complexContent>
+			<restriction base="xmml:ListOfQType">
+				<sequence maxOccurs="unbounded">
+					<choice>
+						<element ref="xmml:Q1"/>
+						<element ref="gml:Null"/>
+					</choice>
+				</sequence>
+				<attribute name="id" type="ID"/>
+				<attribute name="length" type="nonNegativeInteger" use="optional"/>
+				<attribute name="member" type="QName" use="optional" fixed="xmml:Q1"/>
+				<attribute name="memberLength" type="nonNegativeInteger" use="optional" fixed="1"/>
+				<attribute name="axis" type="anyURI"/>
+			</restriction>
+		</complexContent>
+	</complexType>
+	<!-- =========================================================== -->
 </schema>

@@ -17,35 +17,15 @@ Copyright (c) 2004 CSIRO - see https://www.seegrid.csiro.au/twiki/bin/view/Xmml/
 	<include schemaLocation="./base.xsd"/>
 	<include schemaLocation="../enumerations/LUTgeodesy.xsd"/>
 	<!-- ====================================================================== -->
-	<!-- ===== Object types ====== -->
-	<!-- ====================================================================== -->
-	<element name="instrumentCode" type="token" substitutionGroup="xmml:procedureCode"/>
 	<!-- ====================================================================== -->
 	<element name="Instrument" type="xmml:InstrumentType" substitutionGroup="xmml:Procedure"/>
 	<!-- ====== -->
-	<complexType name="InstrumentBaseType" abstract="true">
-		<annotation>
-			<documentation>Substitute instrumentCode for procedureCode</documentation>
-		</annotation>
-		<complexContent>
-			<restriction base="xmml:ProcedureType">
-				<sequence>
-					<group ref="gml:StandardObjectProperties"/>
-					<element ref="xmml:instrumentCode">
-						<annotation>
-							<documentation>A code that indicates the type of instrument</documentation>
-						</annotation>
-					</element>
-				</sequence>
-			</restriction>
-		</complexContent>
-	</complexType>
 	<complexType name="InstrumentType">
 		<annotation>
 			<documentation>Add one or more instrument serial numbers, in order to identify specific instances or stations</documentation>
 		</annotation>
 		<complexContent>
-			<extension base="xmml:InstrumentBaseType">
+			<extension base="xmml:ProcedureType">
 				<sequence>
 					<element name="serialNumber" type="gml:CodeType" minOccurs="0" maxOccurs="unbounded"/>
 				</sequence>
@@ -53,7 +33,7 @@ Copyright (c) 2004 CSIRO - see https://www.seegrid.csiro.au/twiki/bin/view/Xmml/
 		</complexContent>
 	</complexType>
 	<!-- ====================================================================== -->
-	<element name="procedureCode" type="token">
+	<element name="method" type="token">
 		<annotation>
 			<documentation>Code for the particular procedure type.  
     Head of substitution group, and usually replaced by a code type for the specific procedure which uses a controlled list.  </documentation>
@@ -69,12 +49,12 @@ Copyright (c) 2004 CSIRO - see https://www.seegrid.csiro.au/twiki/bin/view/Xmml/
 	<complexType name="ProcedureType">
 		<annotation>
 			<documentation>Use gml:description element to describe the procedure or link to a definitive description.  
-     			use procedureCode to indicate member of list if possible</documentation>
+     			use method to indicate member of list if possible</documentation>
 		</annotation>
 		<complexContent>
 			<extension base="gml:AbstractGMLType">
 				<sequence>
-					<element ref="xmml:procedureCode"/>
+					<element ref="xmml:method"/>
 				</sequence>
 			</extension>
 		</complexContent>
@@ -85,6 +65,7 @@ Copyright (c) 2004 CSIRO - see https://www.seegrid.csiro.au/twiki/bin/view/Xmml/
 			<documentation>Description of an event involving a procedure.  </documentation>
 		</annotation>
 	</element>
+	<!-- ===== Object types ====== -->
 	<!-- ====================================================================== -->
 	<complexType name="ProcedureEventType">
 		<annotation>
@@ -93,14 +74,14 @@ Copyright (c) 2004 CSIRO - see https://www.seegrid.csiro.au/twiki/bin/view/Xmml/
 		<complexContent>
 			<extension base="xmml:EventType">
 				<sequence>
-					<element ref="xmml:procedureCode"/>
+					<element ref="xmml:method"/>
 				</sequence>
 			</extension>
 		</complexContent>
 	</complexType>
 	<!-- ====================================================================== -->
 	<element name="SurveyProcedure" type="xmml:SurveyProcedureType" substitutionGroup="xmml:Procedure"/>
-	<element name="locationMethod" type="xmml:positionMethodType" substitutionGroup="xmml:procedureCode"/>
+	<element name="positionMethod" type="xmml:positionMethodType" substitutionGroup="xmml:method"/>
 	<!-- ====== -->
 	<complexType name="SurveyProcedureBaseType" abstract="true">
 		<annotation>
@@ -110,7 +91,7 @@ Copyright (c) 2004 CSIRO - see https://www.seegrid.csiro.au/twiki/bin/view/Xmml/
 			<restriction base="xmml:ProcedureType">
 				<sequence>
 					<group ref="gml:StandardObjectProperties"/>
-					<element ref="xmml:locationMethod"/>
+					<element ref="xmml:positionMethod"/>
 				</sequence>
 			</restriction>
 		</complexContent>
@@ -152,7 +133,7 @@ Copyright (c) 2004 CSIRO - see https://www.seegrid.csiro.au/twiki/bin/view/Xmml/
 		</complexContent>
 	</complexType>
 	<!-- ====================================================================== -->
-	<element name="processingHistory" type="xmml:ProcedureEventPropertyType">
+	<element name="processingStep" type="xmml:ProcedureEventPropertyType">
 		<annotation>
 			<documentation>Processing steps - (set of) procedure events</documentation>
 		</annotation>
@@ -209,7 +190,7 @@ Copyright (c) 2004 CSIRO - see https://www.seegrid.csiro.au/twiki/bin/view/Xmml/
           Systematic effects that are a consequence of the _procedure_ should be described in the description of the procedure instead. </documentation>
 				</annotation>
 			</element>
-			<element ref="xmml:processingHistory" minOccurs="0" maxOccurs="unbounded">
+			<element ref="xmml:processingStep" minOccurs="0" maxOccurs="unbounded">
 				<annotation>
 					<documentation>Processing steps - (set of) procedure events</documentation>
 				</annotation>

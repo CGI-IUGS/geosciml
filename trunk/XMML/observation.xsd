@@ -58,7 +58,7 @@ Copyright (c) 2004 CSIRO - see https://www.seegrid.csiro.au/twiki/bin/view/Xmml/
 							<documentation>The Time when the observation occurred.  </documentation>
 						</annotation>
 					</element>
-					<element name="responsible" type="xmml:PartyPropertyType" minOccurs="0">
+					<element name="responsible" type="xmml:PartyPropertyType">
 						<annotation>
 							<documentation>Person or organisation responsible for the observation</documentation>
 						</annotation>
@@ -122,7 +122,7 @@ Copyright (c) 2004 CSIRO - see https://www.seegrid.csiro.au/twiki/bin/view/Xmml/
 	</element>
 	<element name="noResult" type="gml:NullType">
 		<annotation>
-			<documentation>Holds a null as a simple (literal) value</documentation>
+			<documentation>Holds a value Null as a simple (literal) value</documentation>
 		</annotation>
 	</element>
 	<!-- ====== -->
@@ -158,6 +158,14 @@ Copyright (c) 2004 CSIRO - see https://www.seegrid.csiro.au/twiki/bin/view/Xmml/
 	<!-- ====================================================================== -->
 	<!-- ===== Properties used by specialised feature types ======= -->
 	<!-- ====================================================================== -->
+	<element name="subject" type="gml:FeaturePropertyType">
+		<annotation>
+			<documentation>the Feature regarding which the observations are being made, 
+			sometimes called the target of the observation, such as a specimen, station, tract, mountain, etc. 
+			This element is declared global, so that it may act as the head of a substitution group for more specialised versions of the subject property
+</documentation>
+		</annotation>
+	</element>
 	<element name="previousObservation" type="xmml:ObservationPropertyType"/>
 	<element name="relatedObservation" type="xmml:ObservationPropertyType"/>
 	<!-- ====== -->
@@ -178,7 +186,5 @@ Copyright (c) 2004 CSIRO - see https://www.seegrid.csiro.au/twiki/bin/view/Xmml/
 	</complexType>
 	<!-- ============================================================== -->
 	<!-- ===================================================================  -->
-	<element name="subject" type="gml:FeaturePropertyType"/>
-	<element name="target" type="gml:FeaturePropertyType" substitutionGroup="xmml:subject"/>
 	<!-- ====================================================================== -->
 </schema>

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<schema targetNamespace="http://www.opengis.net/xmml" elementFormDefault="qualified" attributeFormDefault="unqualified" version="pre-release" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:gml="http://www.opengis.net/gml" xmlns="http://www.w3.org/2001/XMLSchema" xmlns:xmml="http://www.opengis.net/xmml">
+<schema targetNamespace="http://www.opengis.net/xmml" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:gml="http://www.opengis.net/gml" xmlns="http://www.w3.org/2001/XMLSchema" xmlns:xmml="http://www.opengis.net/xmml" elementFormDefault="qualified" attributeFormDefault="unqualified" version="pre-release">
 	<annotation>
 		<documentation>
 commonFeatures.xsd
@@ -13,8 +13,7 @@ Copyright (c) 2004 CSIRO - see https://www.seegrid.csiro.au/twiki/bin/view/Xmml/
 	</annotation>
 	<!-- ====================================================================== -->
 	<!-- bring in other schemas -->
-	<include schemaLocation="./feature.xsd"/>
-	<include schemaLocation="./procedures.xsd"/>
+	<include schemaLocation="./observation.xsd"/>
 	<include schemaLocation="../enumerations/LUTgeography.xsd"/>
 	<!-- ====================================================================== -->
 	<!-- ===== Feature types ====== -->
@@ -26,8 +25,13 @@ Copyright (c) 2004 CSIRO - see https://www.seegrid.csiro.au/twiki/bin/view/Xmml/
 			<documentation>Description of unit of activity</documentation>
 		</annotation>
 		<complexContent>
-			<extension base="xmml:FeatureType">
+			<extension base="xmml:PositionedFeatureType">
 				<sequence>
+					<element ref="xmml:map" minOccurs="0" maxOccurs="unbounded">
+						<annotation>
+							<documentation>map sheet designators if needed</documentation>
+						</annotation>
+					</element>
 					<element name="operator" type="xmml:PartyPropertyType" maxOccurs="unbounded">
 						<annotation>
 							<documentation>The party with primary responsibility for work undertaken in the course of the project</documentation>
@@ -43,11 +47,6 @@ Copyright (c) 2004 CSIRO - see https://www.seegrid.csiro.au/twiki/bin/view/Xmml/
 							<documentation>Period of activity of project</documentation>
 						</annotation>
 					</element>
-					<group ref="xmml:location" minOccurs="0" maxOccurs="unbounded">
-						<annotation>
-							<documentation>locators, including map sheet designators if needed</documentation>
-						</annotation>
-					</group>
 				</sequence>
 			</extension>
 		</complexContent>
@@ -57,20 +56,25 @@ Copyright (c) 2004 CSIRO - see https://www.seegrid.csiro.au/twiki/bin/view/Xmml/
 	<!-- -->
 	<complexType name="SpecimenType">
 		<annotation>
-			<documentation>A located object on which measurements may be made.</documentation>
+			<documentation>A located object on which measurements may be made.
+			
+			Note that if this specimen is a "processed" version of another (e.g. by grinding, seiving, etc) then 
+			the predecessor (if known) may be recorded as a relatedFeature
+			
+			Related observations may also be recorded using the relatedFeature property. </documentation>
 		</annotation>
 		<complexContent>
 			<extension base="xmml:PositionedFeatureType">
 				<sequence>
-					<element ref="xmml:sourceSpecimen" minOccurs="0">
-						<annotation>
-							<documentation>The predecessor from which this specimen was derived by crushing, splitting, seiving, etc.</documentation>
-						</annotation>
-					</element>
-					<element ref="xmml:procedureUsed" minOccurs="0" maxOccurs="unbounded">
+					<element ref="xmml:processingStep" minOccurs="0" maxOccurs="unbounded">
 						<annotation>
 							<documentation>One or more procedures may have been applied to a specimen.  
             May contain collection, sampling and preparation procedures</documentation>
+						</annotation>
+					</element>
+					<element name="relatedObservation" type="xmml:ObservationPropertyType" minOccurs="0" maxOccurs="unbounded">
+						<annotation>
+							<documentation>An observation on the specimen</documentation>
 						</annotation>
 					</element>
 				</sequence>
@@ -153,6 +157,17 @@ Copyright (c) 2004 CSIRO - see https://www.seegrid.csiro.au/twiki/bin/view/Xmml/
 		</complexContent>
 	</complexType>
 	<!-- ====================================================================== -->
+	<element name="relatedTenement" type="xmml:TenementPropertyType"/>
+	<element name="tenementDetails" type="xmml:TenementPropertyType"/>
+	<!-- ====== -->
+	<complexType name="TenementPropertyType">
+		<sequence>
+			<element ref="xmml:Tenement" minOccurs="0"/>
+		</sequence>
+		<attributeGroup ref="gml:AssociationAttributeGroup"/>
+	</complexType>
+	<!-- ====================================================================== -->
+	<!-- ====================================================================== -->
 	<!-- ===== Properties used by specialised feature types ======= -->
 	<!-- ====================================================================== -->
 	<element name="parentProject" type="xmml:ProjectPropertyType"/>
@@ -187,20 +202,10 @@ Copyright (c) 2004 CSIRO - see https://www.seegrid.csiro.au/twiki/bin/view/Xmml/
 		<attributeGroup ref="gml:AssociationAttributeGroup"/>
 	</complexType>
 	<!-- ====================================================================== -->
-	<element name="relatedTenement" type="xmml:TenementPropertyType"/>
-	<element name="tenementDetails" type="xmml:TenementPropertyType"/>
-	<!-- ====== -->
-	<complexType name="TenementPropertyType">
-		<sequence>
-			<element ref="xmml:Tenement" minOccurs="0"/>
-		</sequence>
-		<attributeGroup ref="gml:AssociationAttributeGroup"/>
-	</complexType>
-	<!-- ====================================================================== -->
 	<!-- ====== Specialised MetaData ======== -->
 	<!-- ====================================================================== -->
 	<!-- ====================================================================== -->
-	<element name="ReportingMetaData" type="xmml:ReportingMetaDataType" substitutionGroup="gml:_MetaData"/>
+	<element name="ReportingMetaData" type="xmml:ReportingMetaDataType"/>
 	<!-- ====== -->
 	<complexType name="ReportingMetaDataType">
 		<complexContent>

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<schema targetNamespace="http://www.opengis.net/xmml" xmlns:xmml="http://www.opengis.net/xmml" xmlns="http://www.w3.org/2001/XMLSchema" xmlns:nl="urn:oasis:names:tc:ciq:xsdschema:xNL:2.0" xmlns:al="urn:oasis:names:tc:ciq:xsdschema:xAL:2.0" xmlns:nal="urn:oasis:names:tc:ciq:xsdschema:xNAL:2.0" xmlns:cil="urn:oasis:names:tc:ciq:xsdschema:xCIL:2.0" xmlns:gml="http://www.opengis.net/gml" xmlns:xlink="http://www.w3.org/1999/xlink" elementFormDefault="qualified" attributeFormDefault="unqualified" version="pre-release">
+<schema targetNamespace="http://www.opengis.net/xmml" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:gml="http://www.opengis.net/gml" xmlns:cil="urn:oasis:names:tc:ciq:xsdschema:xCIL:2.0" xmlns:nal="urn:oasis:names:tc:ciq:xsdschema:xNAL:2.0" xmlns:al="urn:oasis:names:tc:ciq:xsdschema:xAL:2.0" xmlns:nl="urn:oasis:names:tc:ciq:xsdschema:xNL:2.0" xmlns="http://www.w3.org/2001/XMLSchema" xmlns:xmml="http://www.opengis.net/xmml" elementFormDefault="qualified" attributeFormDefault="unqualified" version="pre-release">
 	<annotation>
 		<documentation>
 base.xsd
@@ -8,7 +8,7 @@ Some base components required in various places in XMML
 
 2004-04-21
 
-Copyright (c) 2004 CSIRO - see https://www.seegrid.csiro.au/twiki/bin/view/Xmml/LegalNotices#Software_Notice
+Copyright © 2004 CSIRO - see https://www.seegrid.csiro.au/twiki/bin/view/Xmml/LegalNotices#Software_Notice
 </documentation>
 	</annotation>
 	<!-- ====================================================================== -->
@@ -36,18 +36,6 @@ Copyright (c) 2004 CSIRO - see https://www.seegrid.csiro.au/twiki/bin/view/Xmml/
 	</import>
 	<include schemaLocation="../enumerations/LUTmaintenance.xsd"/>
 	<!-- ====================================================================== -->
-	<!-- ====================================================================== -->
-	<complexType name="GeneralPropertyType">
-		<annotation>
-			<documentation>  A pattern for GML properties.  Restricts the cardinality of Objects contained in the association to a maximum of one, and provides for a choice of a Null element.  An instance of this type can contain an element representing an Object or an exception (Null), or serve as a pointer to a remote Object.  
-</documentation>
-		</annotation>
-		<choice minOccurs="0">
-			<element ref="gml:_Object"/>
-			<element ref="gml:Null"/>
-		</choice>
-		<attributeGroup ref="gml:AssociationAttributeGroup"/>
-	</complexType>
 	<!-- =========================================================== -->
 	<!-- ================================================================== -->
 	<!-- ===== Some useful property components ====== -->
@@ -193,41 +181,42 @@ Copyright (c) 2004 CSIRO - see https://www.seegrid.csiro.au/twiki/bin/view/Xmml/
 	<!-- ==================================================== -->
 	<!-- ==== Common metadata components ==== -->
 	<!-- ====================================================================== -->
+	<!-- ====================================================================== -->
+	<!-- ====================================================================== -->
 	<!-- ==== Generic metadata types ==== -->
+	<!-- ====================================================================== -->
+	<element name="_MetaData" abstract="true"/>
 	<!-- ====================================================================== -->
 	<complexType name="ElementOnlyMetaDataType" abstract="true" mixed="false">
 		<annotation>
 			<documentation>mixed="false", so this can serve as the basis for element-only MetaData elements</documentation>
 		</annotation>
-		<complexContent mixed="false">
-			<restriction base="gml:AbstractMetaDataType"/>
-		</complexContent>
 	</complexType>
 	<!-- ====================================================================== -->
 	<complexType name="TextMetaDataType" abstract="false">
 		<annotation>
-			<documentation>Vacuous extension of a mixed type, resulting in just a text element.  For unstructured metadata.</documentation>
+			<documentation>Vacuous extension of a string, resulting in just a text element.  For unstructured metadata.</documentation>
 		</annotation>
-		<complexContent>
-			<extension base="gml:AbstractMetaDataType"/>
-		</complexContent>
+		<simpleContent>
+			<extension base="string"/>
+		</simpleContent>
 	</complexType>
 	<!-- ====================================================================== -->
 	<!-- ==== Concrete metadata elements ==== -->
 	<!-- ====================================================================== -->
-	<element name="AccessRestrictions" type="xmml:TextMetaDataType" substitutionGroup="gml:_MetaData">
+	<element name="AccessRestrictions" type="xmml:TextMetaDataType">
 		<annotation>
 			<documentation>This element is used to note any access restrictions, as a text description.  It is substitutable for gml:_MetaData, so may appear as the value of a gml:metaDataProperty on most objects and features.</documentation>
 		</annotation>
 	</element>
 	<!-- ====================================================================== -->
-	<element name="UseRestrictions" type="xmml:TextMetaDataType" substitutionGroup="gml:_MetaData">
+	<element name="UseRestrictions" type="xmml:TextMetaDataType">
 		<annotation>
 			<documentation>This element is used to note any restrictions on the use of this information, encoded as a text description.  It is substitutable for gml:_MetaData, so may appear as the value of a gml:metaDataProperty on most objects and features.</documentation>
 		</annotation>
 	</element>
 	<!-- ====================================================================== -->
-	<element name="RecordEvent" type="xmml:RecordEventType" substitutionGroup="gml:_MetaData">
+	<element name="RecordEvent" type="xmml:RecordEventType">
 		<annotation>
 			<documentation>An event in the life of a database record.  It is substitutable for gml:_MetaData, so may appear as the value of a gml:metaDataProperty on most objects and features.</documentation>
 		</annotation>
@@ -273,7 +262,7 @@ Copyright (c) 2004 CSIRO - see https://www.seegrid.csiro.au/twiki/bin/view/Xmml/
 		</complexType>
 	</element>
 	<!-- ====================================================================== -->
-	<element name="SimpleCitation" type="xmml:TextMetaDataType" substitutionGroup="gml:_MetaData">
+	<element name="SimpleCitation" type="xmml:TextMetaDataType">
 		<annotation>
 			<documentation>This element is used to record the details of an external source of information, such as a scholarly paper, technical report, or other publication, where the details are encoded as a text description.  It is substitutable for gml:_MetaData, so may appear as the value of a gml:metaDataProperty on most objects and features.</documentation>
 		</annotation>
@@ -299,14 +288,10 @@ Copyright (c) 2004 CSIRO - see https://www.seegrid.csiro.au/twiki/bin/view/Xmml/
 			<documentation>Holds or points to a Citation.  
 			Additional versions of "Citation" will be added to choice group in due course.     </documentation>
 		</annotation>
-		<complexContent>
-			<restriction base="gml:MetaDataPropertyType">
-				<choice>
-					<element ref="xmml:SimpleCitation" minOccurs="0"/>
-				</choice>
-				<attributeGroup ref="gml:AssociationAttributeGroup"/>
-			</restriction>
-		</complexContent>
+		<choice>
+			<element ref="xmml:SimpleCitation" minOccurs="0"/>
+		</choice>
+		<attributeGroup ref="gml:AssociationAttributeGroup"/>
 	</complexType>
 	<!-- ====================================================================== -->
 	<!-- ===== Some generic elements and datatypes ====== -->
@@ -326,6 +311,9 @@ Copyright (c) 2004 CSIRO - see https://www.seegrid.csiro.au/twiki/bin/view/Xmml/
 	</element>
 	<!-- ====================================================================== -->
 	<complexType name="QualityType">
+		<annotation>
+			<documentation>This needs harmonisation with ISO 19113/19114/19115 etc</documentation>
+		</annotation>
 		<choice>
 			<element name="Description" type="gml:StringOrRefType">
 				<annotation>
@@ -368,14 +356,14 @@ Copyright (c) 2004 CSIRO - see https://www.seegrid.csiro.au/twiki/bin/view/Xmml/
 	<!-- ====================================================================== -->
 	<simpleType name="CountOrNullType">
 		<annotation>
-			<documentation>Union of the XML Schema nonNegativeInteger type and the GML Nulltype.  An element which uses this type may have content which is either a Count or a value from Nulltype</documentation>
+			<documentation>Union of the XML Schema nonNegativeInteger type and the GML ValueNullType.  An element which uses this type may have content which is either a Count or a value from ValueNullType</documentation>
 		</annotation>
 		<union memberTypes="gml:NullEnumeration nonNegativeInteger anyURI"/>
 	</simpleType>
 	<!-- =========================================================== -->
 	<simpleType name="CountOrNullListType">
 		<annotation>
-			<documentation>XML List based on the union type defined above.  An element declared with this type contains a space-separated list of Counts with null values interspersed as needed</documentation>
+			<documentation>XML List based on the union type defined above.  An element declared with this type contains a space-separated list of Counts with Null values interspersed as needed</documentation>
 		</annotation>
 		<list itemType="xmml:CountOrNullType"/>
 	</simpleType>
@@ -421,7 +409,7 @@ Copyright (c) 2004 CSIRO - see https://www.seegrid.csiro.au/twiki/bin/view/Xmml/
 	<!-- ====================================================================== -->
 	<complexType name="SoftTypedBooleanOrNullListType">
 		<annotation>
-			<documentation>A list of boolean values or nulls, representing a set of descriptions of the phenomenon identified by the property attribute. </documentation>
+			<documentation>A list of boolean values or Nulls, representing a set of descriptions of the phenomenon identified by the property attribute. </documentation>
 		</annotation>
 		<simpleContent>
 			<extension base="gml:booleanOrNullList">
@@ -505,7 +493,7 @@ Copyright (c) 2004 CSIRO - see https://www.seegrid.csiro.au/twiki/bin/view/Xmml/
 	<!-- ====================================================================== -->
 	<complexType name="SoftTypedCountOrNullListType">
 		<annotation>
-			<documentation>A list of numeric values or nulls, representing a set of descriptions of the phenomenon identified by the property attribute. </documentation>
+			<documentation>A list of numeric values or Nulls, representing a set of descriptions of the phenomenon identified by the property attribute. </documentation>
 		</annotation>
 		<simpleContent>
 			<extension base="xmml:CountOrNullListType">
@@ -569,7 +557,7 @@ Copyright (c) 2004 CSIRO - see https://www.seegrid.csiro.au/twiki/bin/view/Xmml/
 	<!-- ====================================================================== -->
 	<complexType name="SoftTypedMeasureOrNullListType">
 		<annotation>
-			<documentation>A list of numeric values or nulls, expressed using the scale indicated by the value of the (mandatory) uom attribute, attribute, and representing a set of descriptions of the phenomenon identified by the property attribute. </documentation>
+			<documentation>A list of numeric values or Nulls, expressed using the scale indicated by the value of the (mandatory) uom attribute, attribute, and representing a set of descriptions of the phenomenon identified by the property attribute. </documentation>
 		</annotation>
 		<simpleContent>
 			<extension base="gml:MeasureOrNullListType">

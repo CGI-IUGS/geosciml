@@ -9,7 +9,7 @@ for geochemistry
 
 2004-05-20
 
-Copyright (c) 2004 CSIRO - see https://www.seegrid.csiro.au/twiki/bin/view/Xmml/LegalNotices#Software_Notice
+Copyright © 2004 CSIRO - see https://www.seegrid.csiro.au/twiki/bin/view/Xmml/LegalNotices#Software_Notice
 </documentation>
 	</annotation>
 	<!-- ====================================================================== -->
@@ -24,7 +24,6 @@ Copyright (c) 2004 CSIRO - see https://www.seegrid.csiro.au/twiki/bin/view/Xmml/
 			<element ref="xmml:noResult"/>
 		</choice>
 	</group>
-	<element name="subjectSpecimen" type="xmml:SpecimenPropertyType" substitutionGroup="xmml:subject"/>
 	<!-- ====================================================================== -->
 	<element name="GeochemMeasurement" type="xmml:GeochemMeasurementType" substitutionGroup="xmml:Observation"/>
 	<!-- -->
@@ -33,8 +32,7 @@ Copyright (c) 2004 CSIRO - see https://www.seegrid.csiro.au/twiki/bin/view/Xmml/
 			<documentation>Specialisation of generic observation type
 			First apply restriction:
          			suppress "observedProperty" - chemicalConcentration is implied
-         			replace "subject" with "subjectSpecimen"
-         			only measure or no-result
+         			enforce only only measure or no-result in resultChoice
          
         			For other documentation, see observation.xsd
 			</documentation>
@@ -46,11 +44,11 @@ Copyright (c) 2004 CSIRO - see https://www.seegrid.csiro.au/twiki/bin/view/Xmml/
 					<group ref="xmml:StandardSupportProperties"/>
 					<element ref="xmml:relatedFeature" minOccurs="0" maxOccurs="unbounded"/>
 					<element ref="gml:position"/>
-					<element ref="xmml:subjectSpecimen" minOccurs="0"/>
+					<element ref="xmml:subject"/>
 					<group ref="xmml:geochemResultChoice"/>
 					<element ref="xmml:quality" minOccurs="0" maxOccurs="unbounded"/>
 					<element name="procedureTime" type="gml:TimePrimitivePropertyType"/>
-					<element name="responsible" type="xmml:PartyPropertyType" minOccurs="0"/>
+					<element name="responsible" type="xmml:PartyPropertyType"/>
 					<element ref="xmml:procedureUsed"/>
 					<element ref="xmml:reference" minOccurs="0"/>
 				</sequence>
@@ -76,17 +74,76 @@ Copyright (c) 2004 CSIRO - see https://www.seegrid.csiro.au/twiki/bin/view/Xmml/
 		</complexContent>
 	</complexType>
 	<!-- ====================================================================== -->
+	<complexType name="GeochemMeasurementPropertyType">
+		<sequence>
+			<element ref="xmml:GeochemMeasurement" minOccurs="0"/>
+		</sequence>
+		<attributeGroup ref="gml:AssociationAttributeGroup"/>
+	</complexType>
+	<!-- ====================================================================== -->
 	<element name="GeochemSample" type="xmml:GeochemSampleType" substitutionGroup="xmml:Feature"/>
 	<!-- -->
 	<complexType name="GeochemSampleType">
 		<complexContent>
-			<extension base="xmml:PositionedFeatureType">
-				<choice>
-					<element name="suite" type="xmml:NumericTupleType"/>
-					<element name="concentration" type="xmml:SoftTypedMeasureType" maxOccurs="unbounded"/>
-				</choice>
+			<extension base="xmml:SpecimenType">
+				<sequence>
+					<choice minOccurs="0">
+						<annotation>
+							<documentation>Models for recording geochemistry results related to this specimen;
+							Choose one of:
+								a tuple of numbers, defined by an associated tuple definition
+								a set of soft-typed measured
+								a set of related assay measurements</documentation>
+						</annotation>
+						<element name="analyteSuiteResult" type="xmml:NumericOrNullTupleType">
+							<annotation>
+								<documentation>Suite of analyte values, expressed as a tuple; tuple definition is provided out-of-band and identified by the value of the RS (reference system) attribute</documentation>
+							</annotation>
+						</element>
+						<element name="analyteComponentResult" type="xmml:SoftTypedMeasureType" maxOccurs="unbounded">
+							<annotation>
+								<documentation>Analyte component value, expressed as a soft-typed measure; the value of the "property" attribute identifies the analyte; the value of the uom attribute indicates the units of measure.</documentation>
+							</annotation>
+						</element>
+						<element name="analyteComponentMeasurement" type="xmml:GeochemMeasurementPropertyType" maxOccurs="unbounded">
+							<annotation>
+								<documentation>Description of a measurement of a geochem analyte;
+								Following the standard GML property pattern, the description of the measurement may be
+								- embedded inline, or 
+								- stored elsewhere and identifed by the value of an xlink:href attribute on the property element.</documentation>
+							</annotation>
+						</element>
+					</choice>
+				</sequence>
 			</extension>
 		</complexContent>
+	</complexType>
+	<!-- ====================================================================== -->
+	<element name="AssayProcedure" type="xmml:AssayProcedureType" substitutionGroup="xmml:Procedure">
+		<annotation>
+			<documentation>description of an assay method</documentation>
+		</annotation>
+	</element>
+	<!-- ====== -->
+	<complexType name="AssayProcedureType">
+		<annotation>
+			<documentation/>
+		</annotation>
+		<complexContent>
+			<extension base="xmml:ProcedureType">
+				<sequence>
+					<element name="lowerLimitOfDetection" type="gml:MeasureType"/>
+					<element name="upperLimitOfDetection" type="gml:MeasureType" minOccurs="0"/>
+				</sequence>
+			</extension>
+		</complexContent>
+	</complexType>
+	<!-- ====================================================================== -->
+	<complexType name="AssayProcedurePropertyType">
+		<sequence>
+			<element ref="xmml:AssayProcedure" minOccurs="0"/>
+		</sequence>
+		<attributeGroup ref="gml:AssociationAttributeGroup"/>
 	</complexType>
 	<!-- ======================================================================  <element name="geochemMeasurementProperty" type="xmml:GeochemMeasurementPropertyType" substitutionGroup="om:observationProperty"/> -->
 	<!--  <complexType name="GeochemMeasurementPropertyType">
@@ -133,98 +190,8 @@ Copyright (c) 2004 CSIRO - see https://www.seegrid.csiro.au/twiki/bin/view/Xmml/
 	<!-- ====================================================================== -->
 	<element name="GeochemSpecimen" type="xmml:SpecimenType" substitutionGroup="xmml:Specimen"/>
 	<!-- ====================================================================== -->
-	<element name="SamplingProcedure" type="xmml:SamplingProcedureType" substitutionGroup="xmml:Procedure">
-		<annotation>
-			<documentation>description of a sampling method for a geochemistry specimen</documentation>
-		</annotation>
-	</element>
-	<!-- ====== -->
-	<element name="samplingMethod" type="xmml:sampleCollectionTypes" substitutionGroup="xmml:procedureCode"/>
-	<!-- ====== -->
-	<complexType name="SamplingProcedureType">
-		<complexContent>
-			<extension base="xmml:ProcedureType">
-				<sequence>
-					<element name="operator" type="xmml:PartyPropertyType" minOccurs="0"/>
-				</sequence>
-			</extension>
-		</complexContent>
-	</complexType>
+	<element name="samplingMethod" type="xmml:sampleCollectionTypes" substitutionGroup="xmml:method"/>
 	<!-- ====================================================================== -->
-	<element name="sampledUsing" type="xmml:SamplingProcedurePropertyType">
-		<annotation>
-			<documentation>contains or points to a description of a sampling method for a geochemistry specimen</documentation>
-		</annotation>
-	</element>
-	<!-- ====== -->
-	<complexType name="SamplingProcedurePropertyType">
-		<sequence>
-			<element ref="xmml:SamplingProcedure" minOccurs="0"/>
-		</sequence>
-		<attributeGroup ref="gml:AssociationAttributeGroup"/>
-	</complexType>
-	<!-- ====================================================================== -->
-	<element name="SpecimenPrep" type="xmml:SpecimenPrepType" substitutionGroup="xmml:Procedure">
-		<annotation>
-			<documentation>description of a preparation method for a geochemistry specimen</documentation>
-		</annotation>
-	</element>
-	<!-- ====== -->
-	<complexType name="SpecimenPrepType">
-		<complexContent>
-			<extension base="xmml:ProcedureType">
-				<sequence>
-					<element name="jobNumber" type="token" minOccurs="0"/>
-				</sequence>
-			</extension>
-		</complexContent>
-	</complexType>
-	<!-- ====================================================================== -->
-	<element name="preparedUsing" type="xmml:SpecimenPrepPropertyType">
-		<annotation>
-			<documentation>contains or points to a description of a preparation method for a geochemistry specimen</documentation>
-		</annotation>
-	</element>
-	<!-- ====== -->
-	<complexType name="SpecimenPrepPropertyType">
-		<sequence>
-			<element ref="xmml:SpecimenPrep" minOccurs="0"/>
-		</sequence>
-		<attributeGroup ref="gml:AssociationAttributeGroup"/>
-	</complexType>
-	<!-- ====================================================================== -->
-	<element name="GeochemProcedure" type="xmml:GeochemProcedureType" substitutionGroup="xmml:Procedure">
-		<annotation>
-			<documentation>description of an assay method</documentation>
-		</annotation>
-	</element>
-	<element name="assayCode" type="token" substitutionGroup="xmml:procedureCode"/>
-	<!-- ====== -->
-	<complexType name="GeochemProcedureType">
-		<annotation>
-			<documentation/>
-		</annotation>
-		<complexContent>
-			<extension base="xmml:ProcedureType">
-				<sequence>
-					<element name="operator" type="xmml:PartyPropertyType" minOccurs="0"/>
-				</sequence>
-			</extension>
-		</complexContent>
-	</complexType>
-	<!-- ====================================================================== -->
-	<element name="assayUsing" type="xmml:GeochemProcedurePropertyType">
-		<annotation>
-			<documentation>This element contains or points to a description of an assay method</documentation>
-		</annotation>
-	</element>
-	<!-- ====== -->
-	<complexType name="GeochemProcedurePropertyType">
-		<sequence>
-			<element ref="xmml:GeochemProcedure" minOccurs="0"/>
-		</sequence>
-		<attributeGroup ref="gml:AssociationAttributeGroup"/>
-	</complexType>
 	<!-- ====================================================================== -->
 	<element name="AssaySuite" type="xmml:AssaySuiteDefinitionType" substitutionGroup="gml:Definition">
 		<annotation>
@@ -274,8 +241,7 @@ Copyright (c) 2004 CSIRO - see https://www.seegrid.csiro.au/twiki/bin/view/Xmml/
 	<!-- ====================================================================== -->
 	<!-- code lists -->
 	<!-- ====================================================================== -->
-	<element name="prepCode" type="token" substitutionGroup="xmml:procedureCode"/>
-	<element name="samplingCode" type="token" substitutionGroup="xmml:procedureCode"/>
+	<element name="preparationMethod" type="token" substitutionGroup="xmml:method"/>
 	<!-- ====================================================================== -->
 	<simpleType name="sampleCollectionTypes">
 		<restriction base="token">
@@ -284,7 +250,7 @@ Copyright (c) 2004 CSIRO - see https://www.seegrid.csiro.au/twiki/bin/view/Xmml/
 			<enumeration value="Lag"/>
 		</restriction>
 	</simpleType>
-	<element name="WMCsample" type="xmml:WMCsampleCode" substitutionGroup="xmml:samplingCode"/>
+	<element name="WMCsample" type="xmml:WMCsampleCode" substitutionGroup="xmml:samplingMethod"/>
 	<!-- ====== -->
 	<simpleType name="WMCsampleCode">
 		<restriction base="token">
