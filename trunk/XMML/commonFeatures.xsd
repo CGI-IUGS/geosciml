@@ -13,7 +13,7 @@ Copyright (c) 2004 CSIRO - see https://www.seegrid.csiro.au/twiki/bin/view/Xmml/
 	</annotation>
 	<!-- ====================================================================== -->
 	<!-- bring in other schemas -->
-	<import namespace="http://www.opengis.net/gml" schemaLocation="../gml/3.1.1/base/feature.xsd"/>
+	<import namespace="http://www.opengis.net/gml" schemaLocation="https://www.seegrid.csiro.au/subversion/gml/3.1.1/base/feature.xsd"/>
 	<include schemaLocation="./observation.xsd"/>
 	<include schemaLocation="../enumerations/LUTgeography.xsd"/>
 	<!-- ====================================================================== -->
@@ -59,6 +59,8 @@ Copyright (c) 2004 CSIRO - see https://www.seegrid.csiro.au/twiki/bin/view/Xmml/
 		<annotation>
 			<documentation>A located object on which measurements may be made.
 			
+			A "Station" from where the specimen was obtained may be recorded using the samplingStation property. 
+						
 			A basic material classification is provided using the "material" property. 
 			Its value may be relatively generic (rock, pulp) or may reflect a detailed classification (calcrete, adamellite, biotite-schist). 
 			In the latter case it is wise to use the codeSpace attribute to provide a link to the classification scheme/vocabulary used. 
@@ -76,6 +78,11 @@ Copyright (c) 2004 CSIRO - see https://www.seegrid.csiro.au/twiki/bin/view/Xmml/
 		<complexContent>
 			<extension base="xmml:PositionedFeatureType">
 				<sequence>
+					<element name="samplingStation" type="xmml:StationPropertyType" minOccurs="0">
+						<annotation>
+							<documentation>Pointer to the station from which the specimen was obtained</documentation>
+						</annotation>
+					</element>
 					<element name="material" type="gml:CodeType">
 						<annotation>
 							<documentation>Material type, usually taken from a controlled vocabulary

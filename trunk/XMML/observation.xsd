@@ -34,11 +34,11 @@ Copyright (c) 2004 CSIRO - see https://www.seegrid.csiro.au/twiki/bin/view/Xmml/
 	<complexType name="ResultMeasureType">
 		<simpleContent>
 			<extension base="xmml:MeasureType">
-				<attribute name="relativeMeasure" type="xmml:RelativeMeasureType" default="equals"/>
+				<attribute name="relativeMeasure" type="xmml:RelativeMeasureCode" default="equals"/>
 			</extension>
 		</simpleContent>
 	</complexType>
-	<simpleType name="RelativeMeasureType">
+	<simpleType name="RelativeMeasureCode">
 		<annotation>
 			<documentation xml:lang="en">This enumerated data type specifies values for relative measures.</documentation>
 		</annotation>
@@ -97,7 +97,16 @@ Copyright (c) 2004 CSIRO - see https://www.seegrid.csiro.au/twiki/bin/view/Xmml/
 			<documentation>Holds a general record as a simple (literal) value</documentation>
 		</annotation>
 	</element>
-	<element name="resultGeometry" type="gml:GeometryPropertyType" substitutionGroup="xmml:abstractResult" nillable="true">
+	<element name="resultPosition" type="gml:DirectPositionType" substitutionGroup="xmml:abstractResult" nillable="true">
+		<annotation>
+			<documentation>Holds a direct position as a simple (literal) value</documentation>
+		</annotation>
+	</element>
+		<element name="resultVector" type="gml:VectorType" substitutionGroup="xmml:abstractResult" nillable="true">
+		<annotation>
+			<documentation>Holds a spatial vector as a simple (literal) value</documentation>
+		</annotation>
+	</element>	<element name="resultGeometry" type="gml:GeometryPropertyType" substitutionGroup="xmml:abstractResult" nillable="true">
 		<annotation>
 			<documentation>Holds or points to a gml:_Geometry</documentation>
 		</annotation>
