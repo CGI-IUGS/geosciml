@@ -1,27 +1,24 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<schema targetNamespace="http://www.opengis.net/xmml" elementFormDefault="qualified" attributeFormDefault="unqualified" version="pre-release" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:gml="http://www.opengis.net/gml" xmlns="http://www.w3.org/2001/XMLSchema" xmlns:xmml="http://www.opengis.net/xmml">
+<schema targetNamespace="http://www.opengis.net/xmml" elementFormDefault="qualified" attributeFormDefault="unqualified" version="pre-release" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:gml="http://www.opengis.net/gml"
+        xmlns="http://www.w3.org/2001/XMLSchema" xmlns:xmml="http://www.opengis.net/xmml">
 	<annotation>
-		<documentation>
-commonFeatures.xsd
+		<documentation>commonFeatures.xsd
 
 Some common feature types for XMML
 
-2004-06-30
-
-Copyright (c) 2004 CSIRO - see https://www.seegrid.csiro.au/twiki/bin/view/Xmml/LegalNotices#Software_Notice
-</documentation>
+Copyright (c) 2005 CSIRO - see https://www.seegrid.csiro.au/twiki/bin/view/Xmml/LegalNotices#Software_Notice</documentation>
 	</annotation>
 	<!-- ====================================================================== -->
 	<!-- bring in other schemas -->
 	<import namespace="http://www.opengis.net/gml" schemaLocation="../gml/3.1.1/base/feature.xsd"/>
-	<include schemaLocation="./observation.xsd"/>
+	<include schemaLocation="./event.xsd"/>
 	<include schemaLocation="./feature.xsd"/>
 	<include schemaLocation="../enumerations/LUTgeography.xsd"/>
 	<!-- ====================================================================== -->
 	<!-- ===== Feature types ====== -->
 	<!-- ====================================================================== -->
 	<element name="Project" type="xmml:ProjectType" substitutionGroup="xmml:Feature"/>
-	<!-- ====== -->
+	<!-- .................. -->
 	<complexType name="ProjectType">
 		<annotation>
 			<documentation>Description of unit of activity</documentation>
@@ -48,58 +45,17 @@ Copyright (c) 2004 CSIRO - see https://www.seegrid.csiro.au/twiki/bin/view/Xmml/
 			</extension>
 		</complexContent>
 	</complexType>
-	<!-- ====================================================================== -->
-	<element name="Specimen" type="xmml:SpecimenType" substitutionGroup="xmml:Feature"/>
-	<!-- -->
-	<complexType name="SpecimenType">
-		<annotation>
-			<documentation>A located object on which measurements may be made.
-			
-			A "Station" from where the specimen was obtained may be recorded using the samplingStation property. 
-						
-			A basic material classification is provided using the "material" property. 
-			Its value may be relatively generic (rock, pulp) or may reflect a detailed classification (calcrete, adamellite, biotite-schist). 
-			In the latter case it is wise to use the codeSpace attribute to provide a link to the classification scheme/vocabulary used. 
-			
-			Note that if this specimen is a "processed" version of another (e.g. by grinding, seiving, etc) then 
-			the predecessor (if known) may be recorded as a relatedFeature
-			
-			If this specimen has been processed from an "original" specimen, 
-			as collected in the field or as supplied to the lab, 
-			but results should be reported regarding the original, 
-			then the original may be indicated using the reportingSpecimen property.
-			
-			Related observations may also be recorded using the relatedFeature property. </documentation>
-		</annotation>
-		<complexContent>
-			<extension base="xmml:FeatureType">
-				<sequence>
-					<element name="samplingSite" type="xmml:SitePropertyType" minOccurs="0">
-						<annotation>
-							<documentation>Pointer to the station from which the specimen was obtained</documentation>
-						</annotation>
-					</element>
-					<element name="material" type="gml:CodeType">
-						<annotation>
-							<documentation>Material type, usually taken from a controlled vocabulary
-					Specialised domains may choose to fix the vocabulary to be used</documentation>
-						</annotation>
-					</element>
-					<element name="reportingSpecimen" type="gml:ReferenceType" minOccurs="0"/>
-					<element ref="xmml:processingStep" minOccurs="0" maxOccurs="unbounded">
-						<annotation>
-							<documentation>One or more procedures may have been applied to a specimen.  
-            May contain collection, sampling and preparation procedures</documentation>
-						</annotation>
-					</element>
-					<element name="relatedObservation" type="xmml:ObservationPropertyType" minOccurs="0" maxOccurs="unbounded">
-						<annotation>
-							<documentation>An observation on the specimen</documentation>
-						</annotation>
-					</element>
-				</sequence>
-			</extension>
-		</complexContent>
+	<!-- .................. -->
+	<!--
+	<element name="parentProject" type="xmml:ProjectPropertyType"/>
+	<element name="projectDetails" type="xmml:ProjectPropertyType"/>
+	<element name="relatedProject" type="xmml:ProjectPropertyType"/>
+	-->
+	<complexType name="ProjectPropertyType">
+		<sequence minOccurs="0">
+			<element ref="xmml:Project"/>
+		</sequence>
+		<attributeGroup ref="gml:AssociationAttributeGroup"/>
 	</complexType>
 	<!-- ====================================================================== -->
 	<!-- ====================================================================== -->
@@ -108,7 +64,7 @@ Copyright (c) 2004 CSIRO - see https://www.seegrid.csiro.au/twiki/bin/view/Xmml/
 			<documentation>Mining or exploration lease, known as a license area in some jurisdictions.</documentation>
 		</annotation>
 	</element>
-	<!-- ====== -->
+	<!-- .................. -->
 	<complexType name="TenementType">
 		<complexContent>
 			<extension base="xmml:FeatureType">
@@ -122,7 +78,7 @@ Copyright (c) 2004 CSIRO - see https://www.seegrid.csiro.au/twiki/bin/view/Xmml/
 						<annotation>
 							<documentation>The identifier for the tenement, assigned by the appropriate statutory authority.  
               The gml:name element could be used to record this, but this is more explicit and mandatory.  
-              gml:name may be used to store alternative names, such as those assigned by the operator or lease holder. </documentation>
+              gml:name may be used to store alternative names, such as those assigned by the operator or lease holder.</documentation>
 						</annotation>
 					</element>
 					<element name="adminstrator" type="xmml:PartyPropertyType">
@@ -154,9 +110,10 @@ Copyright (c) 2004 CSIRO - see https://www.seegrid.csiro.au/twiki/bin/view/Xmml/
 			</extension>
 		</complexContent>
 	</complexType>
-	<!-- ====================================================================== -->
+	<!--
 	<element name="relatedTenement" type="xmml:TenementPropertyType"/>
 	<element name="tenementDetails" type="xmml:TenementPropertyType"/>
+	-->
 	<!-- ====== -->
 	<complexType name="TenementPropertyType">
 		<sequence minOccurs="0">
@@ -166,33 +123,7 @@ Copyright (c) 2004 CSIRO - see https://www.seegrid.csiro.au/twiki/bin/view/Xmml/
 	</complexType>
 	<!-- ====================================================================== -->
 	<!-- ====================================================================== -->
-	<!-- ===== Properties used by specialised feature types ======= -->
-	<!-- ====================================================================== -->
-	<element name="parentProject" type="xmml:ProjectPropertyType"/>
-	<element name="projectDetails" type="xmml:ProjectPropertyType"/>
-	<element name="relatedProject" type="xmml:ProjectPropertyType"/>
-	<!-- ====== -->
-	<complexType name="ProjectPropertyType">
-		<sequence minOccurs="0">
-			<element ref="xmml:Project"/>
-		</sequence>
-		<attributeGroup ref="gml:AssociationAttributeGroup"/>
-	</complexType>
-	<!-- ====================================================================== -->
-	<element name="referenceSpecimen" type="xmml:SpecimenPropertyType"/>
-	<element name="relatedSpecimen" type="xmml:SpecimenPropertyType"/>
-	<element name="sourceSpecimen" type="xmml:SpecimenPropertyType"/>
-	<element name="associatedSpecimen" type="xmml:SpecimenPropertyType"/>
-	<!-- ====== -->
-	<complexType name="SpecimenPropertyType">
-		<sequence minOccurs="0">
-			<element ref="xmml:Specimen" />
-		</sequence>
-		<attributeGroup ref="gml:AssociationAttributeGroup"/>
-	</complexType>
-	<!-- ====================================================================== -->
 	<!-- ====== Specialised MetaData ======== -->
-	<!-- ====================================================================== -->
 	<!-- ====================================================================== -->
 	<element name="ReportingMetaData" type="xmml:ReportingMetaDataType"/>
 	<!-- ====== -->
@@ -200,82 +131,11 @@ Copyright (c) 2004 CSIRO - see https://www.seegrid.csiro.au/twiki/bin/view/Xmml/
 		<complexContent>
 			<extension base="xmml:ElementOnlyMetaDataType">
 				<sequence>
-					<element ref="xmml:projectDetails"/>
-					<element ref="xmml:tenementDetails" maxOccurs="unbounded"/>
+					<element name="projectDetails" type="xmml:ProjectPropertyType"/>
+					<element name="tenementDetails" type="xmml:TenementPropertyType" maxOccurs="unbounded"/>
 				</sequence>
 			</extension>
 		</complexContent>
 	</complexType>
 	<!-- ====================================================================== -->
-		<!-- ====================================================================== -->
-	<!-- ===== Feature types in Site hierarchy ====== -->
-	<!-- ====================================================================== -->
-	<element name="Site" type="xmml:SiteType" abstract="true" substitutionGroup="xmml:Feature"/>
-	<!-- ====== -->
-	<complexType name="SiteType">
-		<annotation>
-			<documentation>A "Site" is a feature used primarily for taking observations. </documentation>
-		</annotation>
-		<complexContent>
-			<extension base="xmml:FeatureType">
-				<sequence>
-					<element name="surveyDetails" type="xmml:SurveyProcedurePropertyType" minOccurs="0">
-						<annotation>
-							<documentation>Description of, or link to, the procedure used in determining the position of the site.  
-              For complex procedures, such as when elevation and position are determined separately, may be disaggregated. </documentation>
-						</annotation>
-					</element>
-					<element  ref="xmml:associatedSpecimen" minOccurs="0" maxOccurs="unbounded"/>
-					<element  ref="xmml:relatedObservation" minOccurs="0" maxOccurs="unbounded"/>
-				</sequence>
-			</extension>
-		</complexContent>
-	</complexType>
-	<!-- ====================================================================== -->
-	<element name="relatedSite" type="xmml:SitePropertyType"/>
-	<!-- ====== -->
-	<complexType name="SitePropertyType">
-		<sequence minOccurs="0">
-			<element ref="xmml:Site"/>
-		</sequence>
-		<attributeGroup ref="gml:AssociationAttributeGroup"/>
-	</complexType>
-	<!-- ====================================================================== -->
-	<!-- ====================================================================== -->
-	<element name="Station" type="xmml:StationType" substitutionGroup="xmml:Feature"/>
-	<!-- ====== -->
-	<complexType name="StationType">
-		<annotation>
-			<documentation>A "Station" is an identified position. 
-		It may be revisited for various purposes, in particular to retrieve multiple specimens or make repeated or complementary observations. 
-		The position property of the station provides the value of the position property of observations an specimens associated with the station. 
-		By using the Station feature, this position information and any metadata associated with it may be encoded in one place, i.e. normalised, and then re-used _by reference_ on other feature instances associated with it. 
-		 </documentation>
-		</annotation>
-		<complexContent>
-			<extension base="xmml:SiteType">
-				<sequence>
-					<element  ref="gml:position"/>
-					<element name="elevation" type="gml:DirectPositionType" minOccurs="0">
-						<annotation>
-							<documentation>Use the srsName attribute to record the elevation datum</documentation>
-						</annotation>
-					</element>
-				</sequence>
-			</extension>
-		</complexContent>
-	</complexType>
-	<!-- ====================================================================== -->
-	<!-- ====================================================================== -->
-	<element name="referenceStation" type="xmml:StationPropertyType"/>
-	<element name="relatedStation" type="xmml:StationPropertyType"/>
-	<!-- ====== -->
-	<complexType name="StationPropertyType">
-		<sequence minOccurs="0">
-			<element ref="xmml:Station"/>
-		</sequence>
-		<attributeGroup ref="gml:AssociationAttributeGroup"/>
-	</complexType>
-	<!-- ====================================================================== -->
-
 </schema>
