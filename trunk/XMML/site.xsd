@@ -108,6 +108,7 @@ Copyright (c) 2005 CSIRO - see https://www.seegrid.csiro.au/twiki/bin/view/Xmml/
 			<extension base="xmml:FeatureType">
 				<sequence>
 					<element name="location" type="gml:GeometryPropertyType" nillable="true"/>
+					<element name="locationMethod" type="gml:StringOrRefType" minOccurs="0"/>
 					<element name="sampledAt" type="xmml:SitePropertyType" minOccurs="0">
 						<annotation>
 							<documentation>Pointer to the station, section, etc from which the specimen was obtained</documentation>
@@ -119,7 +120,18 @@ Copyright (c) 2005 CSIRO - see https://www.seegrid.csiro.au/twiki/bin/view/Xmml/
 					Specialised domains may choose to fix the vocabulary to be used</documentation>
 						</annotation>
 					</element>
-					<element name="reportingSpecimen" type="gml:ReferenceType" minOccurs="0"/>
+					<element name="mass" type="gml:MeasureType" nillable="true">
+						<annotation>
+							<documentation>The mass of the specimen</documentation>
+						</annotation>
+					</element>
+					<element name="reportingSpecimen" type="gml:ReferenceType" minOccurs="0">
+						<annotation>
+							<documentation>A related specimen for which results from this specimen should be reported. 
+					Typically this will be the source specimen from which this specimen was obtained, by application of some additional specimen preapration, fractionation, etc. 
+					This property provides a convenient place to record this fact so that when reports are being prepared, all values associated with the original specimen can be easily assembled.</documentation>
+						</annotation>
+					</element>
 					<element name="processingStep" type="xmml:ProcedureEventPropertyType" minOccurs="0" maxOccurs="unbounded">
 						<annotation>
 							<documentation>One or more procedures may have been applied to a specimen.  
