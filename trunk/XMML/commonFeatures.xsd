@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<schema targetNamespace="http://www.opengis.net/xmml" elementFormDefault="qualified" attributeFormDefault="unqualified" version="pre-release" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:gml="http://www.opengis.net/gml"
-        xmlns="http://www.w3.org/2001/XMLSchema" xmlns:xmml="http://www.opengis.net/xmml">
+<schema xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:gml="http://www.opengis.net/gml" xmlns="http://www.w3.org/2001/XMLSchema" xmlns:xmml="http://www.opengis.net/xmml" targetNamespace="http://www.opengis.net/xmml" elementFormDefault="qualified" attributeFormDefault="unqualified" version="pre-release">
 	<annotation>
 		<documentation>commonFeatures.xsd
 
@@ -24,21 +23,21 @@ Copyright (c) 2005 CSIRO - see https://www.seegrid.csiro.au/twiki/bin/view/Xmml/
 			<documentation>Description of unit of activity</documentation>
 		</annotation>
 		<complexContent>
-			<extension base="xmml:FeatureType">
+			<extension base="xmml:EventType">
 				<sequence>
-					<element name="operator" type="xmml:PartyPropertyType" maxOccurs="unbounded">
-						<annotation>
-							<documentation>The party with primary responsibility for work undertaken in the course of the project</documentation>
-						</annotation>
-					</element>
 					<element name="purpose" type="gml:StringOrRefType" minOccurs="0">
 						<annotation>
 							<documentation>Description of purpose or goal of project</documentation>
 						</annotation>
 					</element>
-					<element name="active" type="gml:TimePeriodPropertyType">
+					<element name="operator" type="xmml:PartyPropertyType" maxOccurs="unbounded">
 						<annotation>
-							<documentation>Period of activity of project</documentation>
+							<documentation>The party with primary responsibility for work undertaken in the course of the project</documentation>
+						</annotation>
+					</element>
+					<element name="sponsor" type="xmml:PartyPropertyType" minOccurs="0" maxOccurs="unbounded">
+						<annotation>
+							<documentation>The party with primary responsibility for work undertaken in the course of the project</documentation>
 						</annotation>
 					</element>
 				</sequence>
@@ -91,16 +90,21 @@ Copyright (c) 2005 CSIRO - see https://www.seegrid.csiro.au/twiki/bin/view/Xmml/
 							<documentation>The legal entity that holds the mining or exploration lease.</documentation>
 						</annotation>
 					</element>
+					<element name="operator" type="xmml:PartyPropertyType">
+						<annotation>
+							<documentation>The legal entity that operates the mining or exploration lease on behalf of the owner. If this is the same as the owner, then use xlink:href="../owner"</documentation>
+						</annotation>
+					</element>
 					<element name="dateOfApplication" type="date"/>
 					<element name="dateGranted" type="date"/>
 					<element name="dateExpires" type="date"/>
-					<element name="leaseStatus" type="token"/>
-					<element name="recordStatus" type="xmml:RecordEventPropertyType"/>
 					<element name="tenementType" type="token">
 						<annotation>
 							<documentation>The type of lease or tenement: e.g. mineral-exploration, oil-exploration, mining, oil-production</documentation>
 						</annotation>
 					</element>
+					<element name="leaseStatus" type="token"/>
+					<element name="recordStatus" type="xmml:RecordEventPropertyType"/>
 					<element name="rights" type="gml:StringOrRefType" minOccurs="0">
 						<annotation>
 							<documentation>A description of or link to the rights associated with this lease or tenement.</documentation>

@@ -23,23 +23,33 @@ Copyright © 2005 CSIRO - see https://www.seegrid.csiro.au/twiki/bin/view/Xmml/L
 	<!-- ================================================================== -->
 	<!-- ===== Some useful property components ====== -->
 	<!-- ====================================================================== -->
-	<element name="support" type="gml:AssociationType">
-		<annotation>
-			<documentation>A place to attach components that are required to be listed someplace in order that they can be "used" by-reference elsewhere in (usually) the same instance document.</documentation>
-		</annotation>
-	</element>
 	<!-- ===================================================== -->
-	<element name="comment" type="gml:StringOrRefType">
-		<annotation>
-			<documentation>Container for commentary that may not be strictly part of a "description".</documentation>
-		</annotation>
-	</element>
 	<!-- ===================================================== -->
 	<group name="StandardSupportProperties">
 		<sequence>
-			<element ref="xmml:support" minOccurs="0" maxOccurs="unbounded"/>
-			<element ref="xmml:comment" minOccurs="0" maxOccurs="unbounded"/>
-			<element ref="xmml:reference" minOccurs="0"/>
+			<element name="support" type="gml:AssociationType" minOccurs="0" maxOccurs="unbounded">
+				<annotation>
+					<documentation>A place to attach components that are required to be listed someplace in order that they can be "used" by-reference elsewhere in (usually) the same instance document.</documentation>
+				</annotation>
+			</element>
+			<element name="comment" type="gml:StringOrRefType" minOccurs="0" maxOccurs="unbounded">
+				<annotation>
+					<documentation>Container for commentary that may not be strictly part of a "description".</documentation>
+				</annotation>
+			</element>
+			<element name="reference" type="xmml:CitationPropertyType" minOccurs="0">
+				<annotation>
+					<documentation>Holds or points to a Citation.  
+      If a URN for the cited work is known then this should appear as the value of a href attribute on the reference element.  
+      There are several systems available for assigning URN's to bibliographic resources - see review here: 
+          http://www.nla.gov.au/initiatives/persistence/PIcontents.html
+      Probably the best developed is DOI, described here: http://www.doi.org/
+      also see http://www.crossref.org/01company/15doi_info.html
+      Note that the DOI/crossref service is free to users, but not to publishers.       
+      
+      xmml:reference is substitutable for gml:metaDataProperty, so may appear as a property of most objects and features</documentation>
+				</annotation>
+			</element>
 		</sequence>
 	</group>
 	<!-- ===================================================== -->
@@ -53,11 +63,11 @@ Copyright © 2005 CSIRO - see https://www.seegrid.csiro.au/twiki/bin/view/Xmml/L
 	<!-- ====================================================================== -->
 	<!-- === Objects and properties associated with people, organisations, etc ======== -->
 	<!-- ====================================================================== -->
-	<element name="actor" type="xmml:PartyPropertyType">
+	<!-- <element name="actor" type="xmml:PartyPropertyType">
 		<annotation>
 			<documentation>A generic property whose value is the description of a party, company, person, etc.</documentation>
 		</annotation>
-	</element>
+	</element> -->
 	<!-- ====================================================================== -->
 	<element name="responsible" type="xmml:PartyPropertyType">
 		<annotation>
@@ -92,20 +102,6 @@ Copyright © 2005 CSIRO - see https://www.seegrid.csiro.au/twiki/bin/view/Xmml/L
 			<documentation>This element is used to record the details of an external source of information, such as a scholarly paper, technical report, or other publication, where the details are encoded as a text description.  It is substitutable for gml:_MetaData, so may appear as the value of a gml:metaDataProperty on most objects and features.
 			
 			Was type="xmml:TextMetaDataType" substitutionGroup="gml:_MetaData"</documentation>
-		</annotation>
-	</element>
-	<!-- ====================================================================== -->
-	<element name="reference" type="xmml:CitationPropertyType">
-		<annotation>
-			<documentation>Holds or points to a Citation.  
-      If a URN for the cited work is known then this should appear as the value of a href attribute on the reference element.  
-      There are several systems available for assigning URN's to bibliographic resources - see review here: 
-          http://www.nla.gov.au/initiatives/persistence/PIcontents.html
-      Probably the best developed is DOI, described here: http://www.doi.org/
-      also see http://www.crossref.org/01company/15doi_info.html
-      Note that the DOI/crossref service is free to users, but not to publishers.       
-      
-      xmml:reference is substitutable for gml:metaDataProperty, so may appear as a property of most objects and features</documentation>
 		</annotation>
 	</element>
 	<!-- ====================================================================== -->
