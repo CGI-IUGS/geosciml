@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<schema targetNamespace="http://www.opengis.net/xmml" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:gml="http://www.opengis.net/gml" xmlns="http://www.w3.org/2001/XMLSchema" xmlns:xsd="http://www.opengis.net/xmml/xsd" xmlns:xmml="http://www.opengis.net/xmml" elementFormDefault="qualified" attributeFormDefault="unqualified" version="pre-release">
+<schema targetNamespace="http://www.opengis.net/xmml" xmlns:xmml="http://www.opengis.net/xmml" xmlns:xsd="http://www.opengis.net/xmml/xsd" xmlns="http://www.w3.org/2001/XMLSchema" xmlns:gml="http://www.opengis.net/gml" xmlns:xlink="http://www.w3.org/1999/xlink" elementFormDefault="qualified" attributeFormDefault="unqualified" version="pre-release">
 	<annotation>
 		<documentation>
 referenceSystems.xsd
@@ -8,7 +8,7 @@ A GML conformant schema
 for definitions of properties and property sets
 used for soft-typing of property elements
 
-SJDC  2003-11-14
+SJDC  2004-05-20
 
 Copyright (c) 2004 CSIRO - see https://www.seegrid.csiro.au/twiki/bin/view/Xmml/LegalNotices#Software_Notice
 </documentation>
@@ -32,7 +32,7 @@ For the moment I will comment out the necessary pieces.  </documentation>
     </annotation>
   </import>
   -->
-	<include schemaLocation="./base.xsd"/>
+	<include schemaLocation="./procedures.xsd"/>
 	<!-- ====================================================================== -->
 	<complexType name="TupleDefinitionPropertyType">
 		<sequence>
@@ -82,6 +82,12 @@ For the moment I will comment out the necessary pieces.  </documentation>
 							<annotation>
 								<documentation>When the (baseProperty with constraints) method is chosen, 
                 then a single scale applies to all components of the set</documentation>
+							</annotation>
+						</group>
+						<group ref="xmml:quality">
+							<annotation>
+								<documentation>When the (baseProperty with constraints) method is chosen, 
+                then a single quality and observation procedure applies to all components of the set</documentation>
 							</annotation>
 						</group>
 					</sequence>
@@ -134,6 +140,21 @@ For the moment I will comment out the necessary pieces.  </documentation>
         </annotation>
       </element>
       -->
+		</sequence>
+	</group>
+	<!-- ====================================================================== -->
+	<group name="quality">
+		<sequence>
+			<element ref="xmml:quality" minOccurs="0" maxOccurs="unbounded">
+				<annotation>
+					<documentation>One or more quality elements record systematic measure of reliability</documentation>
+				</annotation>
+			</element>
+			<element ref="xmml:procedureUsed" minOccurs="0">
+				<annotation>
+					<documentation>Description of procedure or instrument used. </documentation>
+				</annotation>
+			</element>
 		</sequence>
 	</group>
 	<!-- ====================================================================== -->
@@ -223,6 +244,7 @@ For the moment I will comment out the necessary pieces.  </documentation>
 						</sequence>
 					</choice>
 					<group ref="xmml:scale"/>
+					<group ref="xmml:quality"/>
 				</sequence>
 			</extension>
 		</complexContent>
