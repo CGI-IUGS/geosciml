@@ -13,13 +13,13 @@ Copyright © 2004 CSIRO - see https://www.seegrid.csiro.au/twiki/bin/view/Xmml/L
 	</annotation>
 	<!-- ====================================================================== -->
 	<!-- bring in other schemas -->
-	<import namespace="http://www.opengis.net/gml" schemaLocation="https://www.seegrid.csiro.au/subversion/xmml/trunk/gml/3.1.1/base/feature.xsd"/>
+	<import namespace="http://www.opengis.net/gml" schemaLocation="../gml/3.1.1/base/feature.xsd"/>
 	<import namespace="http://www.isotc211.org/smXML" schemaLocation="./smXML4xmml.xsd">
 		<annotation>
 			<documentation>ISO/TC 211 metadata schema</documentation>
 		</annotation>
 	</import>
-	<import namespace="urn:oasis:names:tc:ciq:xsdschema:xCIL:2.0" schemaLocation="https://www.seegrid.csiro.au/subversion/xmml/trunk/oasis/OASIS-CIQ/xCIL.xsd">
+	<!-- <import namespace="urn:oasis:names:tc:ciq:xsdschema:xCIL:2.0" schemaLocation="https://www.seegrid.csiro.au/subversion/xmml/trunk/oasis/OASIS-CIQ/xCIL.xsd">
 		<annotation>
 			<documentation>Names, addresses, organisations, contacts</documentation>
 		</annotation>
@@ -38,7 +38,7 @@ Copyright © 2004 CSIRO - see https://www.seegrid.csiro.au/twiki/bin/view/Xmml/L
 		<annotation>
 			<documentation>addresses</documentation>
 		</annotation>
-	</import>
+	</import> -->
 	<include schemaLocation="./basicTypes.xsd"/>
 	<include schemaLocation="../enumerations/LUTmaintenance.xsd"/>
 	<!-- ====================================================================== -->
@@ -73,56 +73,6 @@ Copyright © 2004 CSIRO - see https://www.seegrid.csiro.au/twiki/bin/view/Xmml/L
 			<element ref="gml:name" maxOccurs="unbounded"/>
 		</sequence>
 	</group>
-	<!-- ===================================================== -->
-	<element name="Event" type="xmml:EventType" substitutionGroup="gml:_GML"/>
-	<!-- ====================================================================== -->
-	<complexType name="EventType">
-		<annotation>
-			<documentation>Description of an event, particularly that causes transformation, creation or destruction of a feature.  
-      The event may be transport or administrative.  
-      Use gml:description to describe the nature of the event or action, or to point to a description of it.  
-      Use xmml:reference (substitutable for gml:metaDataProperty) to provide a pointer to a citation for the event.
-      Specialised event types may be derived from this type. </documentation>
-		</annotation>
-		<complexContent>
-			<extension base="gml:AbstractGMLType">
-				<sequence>
-					<group ref="xmml:StandardSupportProperties"/>
-					<group ref="xmml:EventProperties"/>
-				</sequence>
-			</extension>
-		</complexContent>
-	</complexType>
-	<!-- ====================================================================== -->
-	<group name="EventProperties">
-		<sequence>
-			<element name="eventTime" type="gml:TimeGeometricPrimitivePropertyType">
-				<annotation>
-					<documentation>The Time when the event occurred.  This may be given 
-              * in absolute terms as a TimeInstant or TimePeriod
-              * in approximate terms or relative to an absolute position using the indeterminatePosition attribute
-              * or using a TimeTopology element (TimeEdge or TimeNode), which provides the option of giving a time relative to other edges or nodes, either directly (gml) or indirectly (xmml) </documentation>
-				</annotation>
-			</element>
-			<element name="responsible" type="xmml:PartyPropertyType" minOccurs="0" maxOccurs="unbounded">
-				<annotation>
-					<documentation>Person or organisation responsible for the event, if applicable. 
-					The nature of the responsibility (i.e. the role of the party with respect to the event) may be indicated using the xlink:href attribute. 
-					Examples of roles are operator, sponsor, requestor, provider, processor, etc.</documentation>
-				</annotation>
-			</element>
-			<element name="precedingEvent" type="gml:StringOrRefType" minOccurs="0" maxOccurs="unbounded">
-				<annotation>
-					<documentation>Description of, or pointer to, preceding event(s)</documentation>
-				</annotation>
-			</element>
-			<element name="followingEvent" type="gml:StringOrRefType" minOccurs="0" maxOccurs="unbounded">
-				<annotation>
-					<documentation>Description of, or pointer to, following event(s)</documentation>
-				</annotation>
-			</element>
-		</sequence>
-	</group>
 	<!-- ====================================================================== -->
 	<!-- === Objects and properties associated with people, organisations, etc ======== -->
 	<!-- ====================================================================== -->
@@ -147,7 +97,7 @@ Copyright © 2004 CSIRO - see https://www.seegrid.csiro.au/twiki/bin/view/Xmml/L
 	<!-- ==================================================== -->
 	<group name="Party">
 		<choice>
-			<!--		-->
+			<!--	
 			<element ref="nl:xNL">
 				<annotation>
 					<documentation>Contains one or more names (xNL syntax)</documentation>
@@ -165,41 +115,41 @@ Copyright © 2004 CSIRO - see https://www.seegrid.csiro.au/twiki/bin/view/Xmml/L
 			</element>
 			<element ref="xmml:Party"/>
 			<element ref="xmml:Company"/>
-			<element ref="xmml:Person"/>
+			<element ref="xmml:Person"/>	-->
 			<element ref="smXML:CI_ResponsibleParty"/>
 			<element name="SimpleParty" type="gml:StringOrRefType"/>
 		</choice>
 	</group>
-	<!-- ====================================================================== -->
-	<element name="Party" type="xmml:PartyType"/>
-	<!-- ====================================================================== -->
+	<!-- ======================================================================
+	<element name="Party" type="xmml:PartyType"/> -->
+	<!-- ======================================================================
 	<complexType name="PartyType">
 		<complexContent>
 			<extension base="cil:Record">
 				<attribute name="id" type="ID" use="required"/>
 			</extension>
 		</complexContent>
-	</complexType>
-	<!-- ====================================================================== -->
-	<element name="Company" type="xmml:CompanyType"/>
-	<!-- ====================================================================== -->
+	</complexType> -->
+	<!-- ======================================================================
+	<element name="Company" type="xmml:CompanyType"/> -->
+	<!-- ======================================================================
 	<complexType name="CompanyType">
 		<sequence>
 			<element name="companyName" type="nl:OrganisationNameDetails"/>
 			<element name="location" type="al:AddressDetails"/>
 		</sequence>
 		<attribute name="id" type="ID" use="required"/>
-	</complexType>
-	<!-- ==================================================== -->
-	<element name="Person" type="xmml:PersonType"/>
-	<!-- ====================================================================== -->
+	</complexType> -->
+	<!-- ====================================================
+	<element name="Person" type="xmml:PersonType"/> -->
+	<!-- ======================================================================
 	<complexType name="PersonType">
 		<sequence>
 			<element name="personName" type="nl:PersonName"/>
 			<element name="location" type="al:AddressDetails"/>
 		</sequence>
 		<attribute name="id" type="ID" use="required"/>
-	</complexType>
+	</complexType> -->
 	<!-- ==================================================== -->
 	<!-- ==== Common metadata components ==== -->
 	<!-- ====================================================================== -->
@@ -207,38 +157,6 @@ Copyright © 2004 CSIRO - see https://www.seegrid.csiro.au/twiki/bin/view/Xmml/L
 	<!-- ==== Concrete metadata elements ==== -->
 	<!-- ====================================================================== -->
 	<!-- use ISO 19139 components smXML:MD_Constraints for use and access restrictions, etc -->
-	<!-- ====================================================================== -->
-	<element name="RecordEvent" type="xmml:RecordEventType">
-		<annotation>
-			<documentation>An event in the life of a database record. </documentation>
-		</annotation>
-	</element>
-	<!-- ====== -->
-	<complexType name="RecordEventType">
-		<annotation>
-			<documentation>An event in the life of a database record.
-			Follows xmml:Event pattern, but derivation designed to fit into Metadata substitution groups</documentation>
-		</annotation>
-		<complexContent>
-			<extension base="xmml:EventType">
-				<sequence>
-					<element name="action" type="xmml:recordActionCodeType">
-						<annotation>
-							<documentation>created, updated, etc</documentation>
-						</annotation>
-					</element>
-				</sequence>
-			</extension>
-		</complexContent>
-	</complexType>
-	<!-- ====== -->
-	<complexType name="RecordEventPropertyType">
-		<sequence minOccurs="0">
-			<element ref="xmml:RecordEvent"/>
-		</sequence>
-		<attributeGroup ref="gml:AssociationAttributeGroup"/>
-		<attribute name="about" type="anyURI" use="optional"/>
-	</complexType>
 	<!-- ====================================================================== -->
 	<element name="SimpleCitation" type="string">
 		<annotation>
