@@ -75,7 +75,7 @@ N.B. Temporal domains still to be implemented.</documentation>
 		<annotation>
 			<documentation>Choice of representations of values in the coverage range. In general, the range will describe a composite property. The components of the composite values at sample locations may be described one component or band at a time over the whole domain (BandList or TableByBand), composite value or record for each sample location at a time (RecordList or TableByRecord) or in an external file (File) or as a list of Objects (ObjectList). 
 			
-			Text values including whitespace require "special treatment" where these are recorded within the list types: e.g. use &#26; (non-breaking-space) which is not interpreted as "whitespace" when the list is converted into items. 
+			Text values including whitespace require "special treatment" where these are recorded within the list types: e.g. use &#160; (non-breaking-space) which is not interpreted as "whitespace" when the list is converted into items. 
 			
 			The base type "anyType" is not strictly needed - all concrete types are implicitly "restrictions" of WXS "anyType", but making this explicit appear to make Xerces happier. </documentation>
 		</annotation>
@@ -131,6 +131,65 @@ N.B. Temporal domains still to be implemented.</documentation>
 	</complexType>
 	<!-- =========================================================== -->
 	<!-- === Types used in range content choices === -->
+	<!-- =========================================================== -->
+	<element name="Band" type="xmml:BandType">
+		<annotation>
+			<documentation>A list, representing the values in a scalar-valued range. </documentation>
+		</annotation>
+	</element>
+	<!-- =========================================================== -->
+	<complexType name="BandType">
+		<annotation>
+			<documentation>A list, representing the values in a scalar-valued range. </documentation>
+		</annotation>
+		<sequence>
+			<element name="rangeParameter" type="xmml:AxisDefinitionPropertyType" minOccurs="0">
+				<annotation>
+					<documentation>Container for description of range axis</documentation>
+				</annotation>
+			</element>
+			<choice>
+				<element name="booleanList" type="xmml:SoftTypedBooleanOrNullListType">
+					<annotation>
+						<documentation>A list of text values representing a single property, being the set of values in one component of the range.  </documentation>
+					</annotation>
+				</element>
+				<element name="categoryList" type="xmml:SoftTypedCategoryListType">
+					<annotation>
+						<documentation>A list of text values representing a single property, being the set of values in one component of the range.  
+						
+						HTML character entities may be used to escape embedded whitespace within a list item to prevent interpretation as a list item separator. 
+						See http://www.w3.org/TR/REC-html40/sgml/entities.html. 
+						For example &#160; represents a non-breaking space. 
+						
+						Alternatively, use the "descriptionList" structure provided below. 
+						</documentation>
+					</annotation>
+				</element>
+				<element name="countList" type="xmml:SoftTypedCountOrNullListType">
+					<annotation>
+						<documentation>A list of text values representing a single property, being the set of values in one component of the range.  </documentation>
+					</annotation>
+				</element>
+				<element name="descriptionList" type="xmml:ListOfDescriptionsType">
+					<annotation>
+						<documentation>A list of text values representing a single property, being the set of values in one component of the range.  
+						The values may include embedded whitespace. </documentation>
+					</annotation>
+				</element>
+				<element name="measureList" type="xmml:SoftTypedMeasureOrNullListType">
+					<annotation>
+						<documentation>A list of numeric values representing a single property, being the set of values in one component of the range.  </documentation>
+					</annotation>
+				</element>
+				<element name="referenceList" type="xmml:refListType">
+					<annotation>
+						<documentation>A list of URI's, being the a set of references to (possibly complex) values in one component of the range.  </documentation>
+					</annotation>
+				</element>
+			</choice>
+		</sequence>
+	</complexType>
 	<!-- =========================================================== -->
 	<element name="rangeParameters" type="xmml:RSDefinitionPropertyType">
 		<annotation>
@@ -192,63 +251,6 @@ N.B. Temporal domains still to be implemented.</documentation>
 			</annotation>
 		</attribute>
 	</complexType>
-	<!-- =========================================================== -->
-	<element name="rangeParameter" type="xmml:AxisDefinitionPropertyType">
-		<annotation>
-			<documentation>Container for description of range axis</documentation>
-		</annotation>
-	</element>
-	<!-- =========================================================== -->
-	<complexType name="BandType">
-		<annotation>
-			<documentation>A list, representing the values in a scalar-valued range.  
-          The complete set is the range in "band-sequential" order.  </documentation>
-		</annotation>
-		<sequence>
-			<element ref="xmml:rangeParameter" minOccurs="0"/>
-			<choice>
-				<element name="booleanList" type="xmml:SoftTypedBooleanOrNullListType">
-					<annotation>
-						<documentation>A list of text values representing a single property, being the set of values in one component of the range.  </documentation>
-					</annotation>
-				</element>
-				<element name="categoryList" type="xmml:SoftTypedCategoryListType">
-					<annotation>
-						<documentation>A list of text values representing a single property, being the set of values in one component of the range.  
-						
-						HTML character entities may be used to escape embedded whitespace within a list item to prevent interpretation as a list item separator. 
-						See http://www.w3.org/TR/REC-html40/sgml/entities.html. 
-						For example &#160; represents a non-breaking space. 
-						
-						Alternatively, use the "descriptionList" structure provided below. 
-						</documentation>
-					</annotation>
-				</element>
-				<element name="countList" type="xmml:SoftTypedCountOrNullListType">
-					<annotation>
-						<documentation>A list of text values representing a single property, being the set of values in one component of the range.  </documentation>
-					</annotation>
-				</element>
-				<element name="descriptionList" type="xmml:ListOfDescriptionsType">
-					<annotation>
-						<documentation>A list of text values representing a single property, being the set of values in one component of the range.  
-						The values may include embedded whitespace. </documentation>
-					</annotation>
-				</element>
-				<element name="measureList" type="xmml:SoftTypedMeasureOrNullListType">
-					<annotation>
-						<documentation>A list of numeric values representing a single property, being the set of values in one component of the range.  </documentation>
-					</annotation>
-				</element>
-				<element name="referenceList" type="xmml:refListType">
-					<annotation>
-						<documentation>A list of URI's, being the a set of references to (possibly complex) values in one component of the range.  </documentation>
-					</annotation>
-				</element>
-			</choice>
-		</sequence>
-	</complexType>
-	<!-- =========================================================== -->
 	<complexType name="TableByBandType">
 		<sequence>
 			<element ref="xmml:rangeParameters"/>
