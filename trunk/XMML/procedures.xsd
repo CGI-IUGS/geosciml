@@ -6,7 +6,7 @@ procedures.xsd
 
 Components to describe procedures used in exploration and mining activities.
 
-2004-06-30
+2004-07-05
 
 Copyright (c) 2004 CSIRO - see https://www.seegrid.csiro.au/twiki/bin/view/Xmml/LegalNotices#Software_Notice
 </documentation>
@@ -86,6 +86,16 @@ Copyright (c) 2004 CSIRO - see https://www.seegrid.csiro.au/twiki/bin/view/Xmml/
 			<extension base="xmml:EventType">
 				<sequence>
 					<element ref="xmml:method"/>
+					<element name="source" type="gml:StringOrRefType" minOccurs="0" maxOccurs="unbounded">
+						<annotation>
+							<documentation>Reference to input (if not implied by context)</documentation>
+						</annotation>
+					</element>
+					<element name="product" type="gml:StringOrRefType" minOccurs="0" maxOccurs="unbounded">
+						<annotation>
+							<documentation>Reference to result (if not implied by context)</documentation>
+						</annotation>
+					</element>
 				</sequence>
 			</extension>
 		</complexContent>
@@ -96,7 +106,7 @@ Copyright (c) 2004 CSIRO - see https://www.seegrid.csiro.au/twiki/bin/view/Xmml/
 	<!-- ====== -->
 	<complexType name="SurveyProcedureBaseType" abstract="true">
 		<annotation>
-			<documentation>Restrict code to be locationMethod</documentation>
+			<documentation>Restrict method to be positionMethod</documentation>
 		</annotation>
 		<complexContent>
 			<restriction base="xmml:ProcedureType">
