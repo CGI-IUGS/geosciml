@@ -35,6 +35,7 @@ Copyright © 2004 CSIRO - see https://www.seegrid.csiro.au/twiki/bin/view/Xmml/L
 			<restriction base="xmml:MeasurementType">
 				<sequence>
 					<group ref="gml:StandardObjectProperties"/>
+					<group ref="xmml:StandardSupportProperties"/>
 					<group ref="xmml:ExtendedFeatureProperties"/>
 					<element ref="xmml:relatedFeature" minOccurs="0" maxOccurs="unbounded"/>
 					<element ref="gml:position"/>
@@ -155,28 +156,6 @@ Copyright © 2004 CSIRO - see https://www.seegrid.csiro.au/twiki/bin/view/Xmml/L
 		</sequence>
 		<attributeGroup ref="gml:AssociationAttributeGroup"/>
 	</complexType>
-	<!-- ======================================================================  <element name="geochemMeasurementProperty" type="xmml:GeochemMeasurementPropertyType" substitutionGroup="om:observationProperty"/> -->
-	<!--  <complexType name="GeochemMeasurementPropertyType">
-    <complexContent>
-      <restriction base="om:ObservationPropertyType">
-        <sequence>
-          <element ref="xmml:GeochemMeasurement" minOccurs="0"/>
-        </sequence>
-        <attributeGroup ref="gml:AssociationAttributeGroup"/>
-      </restriction>
-    </complexContent>
-  </complexType> -->
-	<!-- components of observation Collections  <element name="geochemMeasurementMember" type="xmml:GeochemMeasurementPropertyType" substitutionGroup="om:observationMember"/> -->
-	<!-- ======================================================================  <element name="geochemMeasurementMembers" type="xmml:GeochemMeasurementArrayPropertyType" substitutionGroup="om:observationMembers"/> -->
-	<!-- ======  <complexType name="GeochemMeasurementArrayPropertyType">
-    <complexContent>
-      <restriction base="om:ObservationArrayPropertyType">
-        <sequence>
-          <element ref="xmml:GeochemMeasurement" minOccurs="0" maxOccurs="unbounded"/>
-        </sequence>
-      </restriction>
-    </complexContent>
-  </complexType> -->
 	<!-- ====================================================================== -->
 	<element name="GeochemRequest" type="xmml:GeochemRequestType"/>
 	<!-- -->
@@ -235,7 +214,9 @@ Copyright © 2004 CSIRO - see https://www.seegrid.csiro.au/twiki/bin/view/Xmml/L
 	<!-- ====================================================================== -->
 	<complexType name="AssayDefinitionType">
 		<annotation>
-			<documentation/>
+			<documentation>
+							*** Note: this must be harmonised with xmml:AxisDefinition ***
+</documentation>
 		</annotation>
 		<complexContent>
 			<extension base="gml:DefinitionType">

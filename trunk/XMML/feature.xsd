@@ -6,7 +6,7 @@ feature.xsd
 
 A few variations on the basic feature and feature collection types for XMML
 
-2004-07-05
+2004-08-23
 
 Copyright (c) 2004 CSIRO - see https://www.seegrid.csiro.au/twiki/bin/view/Xmml/LegalNotices#Software_Notice
 </documentation>
@@ -21,7 +21,6 @@ Copyright (c) 2004 CSIRO - see https://www.seegrid.csiro.au/twiki/bin/view/Xmml/
 	<group name="ExtendedFeatureProperties">
 		<sequence>
 			<element ref="xmml:place" minOccurs="0"/>
-			<group ref="xmml:StandardSupportProperties"/>
 			<element ref="xmml:relatedFeature" minOccurs="0" maxOccurs="unbounded"/>
 		</sequence>
 	</group>
@@ -46,6 +45,7 @@ Copyright (c) 2004 CSIRO - see https://www.seegrid.csiro.au/twiki/bin/view/Xmml/
 		<complexContent>
 			<extension base="gml:AbstractFeatureType">
 				<sequence>
+					<group ref="xmml:StandardSupportProperties"/>
 					<group ref="xmml:ExtendedFeatureProperties"/>
 				</sequence>
 			</extension>
@@ -67,6 +67,7 @@ Copyright (c) 2004 CSIRO - see https://www.seegrid.csiro.au/twiki/bin/view/Xmml/
 				<sequence>
 					<group ref="gml:StandardObjectProperties"/>
 					<element ref="gml:boundedBy"/>
+					<group ref="xmml:StandardSupportProperties"/>
 					<group ref="xmml:ExtendedFeatureProperties"/>
 				</sequence>
 			</restriction>
@@ -81,6 +82,7 @@ Copyright (c) 2004 CSIRO - see https://www.seegrid.csiro.au/twiki/bin/view/Xmml/
 			<restriction base="xmml:FeatureType">
 				<sequence>
 					<group ref="gml:StandardObjectProperties"/>
+					<group ref="xmml:StandardSupportProperties"/>
 					<group ref="xmml:ExtendedFeatureProperties"/>
 				</sequence>
 			</restriction>
