@@ -200,14 +200,24 @@ N.B. Temporal domains still to be implemented.</documentation>
 		<sequence>
 			<element ref="xmml:rangeParameters"/>
 			<choice>
-				<element name="tuple" type="xmml:TupleType" maxOccurs="unbounded">
+				<element name="record" type="xmml:TupleType" maxOccurs="unbounded">
 					<annotation>
 						<documentation>A list of general tuples, each being one multi-component range value in "band-interleaved" order. </documentation>
 					</annotation>
 				</element>
-				<element name="nTuple" type="xmml:NumericOrNullTupleType" maxOccurs="unbounded">
+				<element name="tuple" type="xmml:TupleType" maxOccurs="unbounded">
+					<annotation>
+						<documentation>Element name preserved for backward compatibility</documentation>
+					</annotation>
+				</element>
+				<element name="nRecord" type="xmml:NumericOrNullTupleType" maxOccurs="unbounded">
 					<annotation>
 						<documentation>A list of numeric tuples, each being one multi-component range value in "band-interleaved" order. </documentation>
+					</annotation>
+				</element>
+				<element name="nTuple" type="xmml:NumericOrNullTupleType" maxOccurs="unbounded">
+					<annotation>
+						<documentation>Element name preserved for backward compatibility </documentation>
 					</annotation>
 				</element>
 			</choice>
