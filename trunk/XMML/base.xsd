@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<schema targetNamespace="http://www.opengis.net/xmml" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:gml="http://www.opengis.net/gml" xmlns:cil="urn:oasis:names:tc:ciq:xsdschema:xCIL:2.0" xmlns:nal="urn:oasis:names:tc:ciq:xsdschema:xNAL:2.0" xmlns:al="urn:oasis:names:tc:ciq:xsdschema:xAL:2.0" xmlns:nl="urn:oasis:names:tc:ciq:xsdschema:xNL:2.0" xmlns="http://www.w3.org/2001/XMLSchema" xmlns:xmml="http://www.opengis.net/xmml" elementFormDefault="qualified" attributeFormDefault="unqualified" version="pre-release">
+<schema targetNamespace="http://www.opengis.net/xmml" elementFormDefault="qualified" attributeFormDefault="unqualified" version="pre-release" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:gml="http://www.opengis.net/gml" xmlns:cil="urn:oasis:names:tc:ciq:xsdschema:xCIL:2.0" xmlns:nal="urn:oasis:names:tc:ciq:xsdschema:xNAL:2.0" xmlns:al="urn:oasis:names:tc:ciq:xsdschema:xAL:2.0" xmlns:nl="urn:oasis:names:tc:ciq:xsdschema:xNL:2.0" xmlns="http://www.w3.org/2001/XMLSchema" xmlns:xmml="http://www.opengis.net/xmml">
 	<annotation>
 		<documentation>
 base.xsd
 
 Some base components required in various places in XMML
 
-2004-04-21
+2004-07-05
 
 Copyright © 2004 CSIRO - see https://www.seegrid.csiro.au/twiki/bin/view/Xmml/LegalNotices#Software_Notice
 </documentation>
@@ -73,43 +73,41 @@ Copyright © 2004 CSIRO - see https://www.seegrid.csiro.au/twiki/bin/view/Xmml/L
 		<complexContent>
 			<extension base="gml:AbstractGMLType">
 				<sequence>
-					<element name="when" type="gml:TimePrimitivePropertyType">
-						<annotation>
-							<documentation>The Time when the event occurred.  This may be given 
-              * in absolute terms as a TimeInstant or TimePeriod
-              * in approximate terms or relative to an absolute position using the indeterminatePosition attribute
-              * or using a TimeTopology element (TimeEdge or TimeNode), which provides the option of giving a time relative to other edges or nodes, either directly (gml) or indirectly (xmml) </documentation>
-						</annotation>
-					</element>
-					<element name="responsible" type="xmml:PartyPropertyType" minOccurs="0">
-						<annotation>
-							<documentation>Person or organisation responsible for the action, if applicable</documentation>
-						</annotation>
-					</element>
-					<element name="source" type="gml:StringOrRefType" minOccurs="0" maxOccurs="unbounded">
-						<annotation>
-							<documentation>Reference to input (if not implied by context)</documentation>
-						</annotation>
-					</element>
-					<element name="product" type="gml:StringOrRefType" minOccurs="0" maxOccurs="unbounded">
-						<annotation>
-							<documentation>Reference to result (if not implied by context)</documentation>
-						</annotation>
-					</element>
-					<element name="precedingEvent" type="gml:StringOrRefType" minOccurs="0" maxOccurs="unbounded">
-						<annotation>
-							<documentation>Description of or pointer to preceding event(s)</documentation>
-						</annotation>
-					</element>
-					<element name="followingEvent" type="gml:StringOrRefType" minOccurs="0" maxOccurs="unbounded">
-						<annotation>
-							<documentation>Description of or pointer to following event(s)</documentation>
-						</annotation>
-					</element>
+					<group ref="xmml:eventProperties"/>
 				</sequence>
 			</extension>
 		</complexContent>
 	</complexType>
+	<!-- ====================================================================== -->
+	<group name="eventProperties">
+		<sequence>
+			<element name="eventTime" type="gml:TimePrimitivePropertyType">
+				<annotation>
+					<documentation>The Time when the event occurred.  This may be given 
+              * in absolute terms as a TimeInstant or TimePeriod
+              * in approximate terms or relative to an absolute position using the indeterminatePosition attribute
+              * or using a TimeTopology element (TimeEdge or TimeNode), which provides the option of giving a time relative to other edges or nodes, either directly (gml) or indirectly (xmml) </documentation>
+				</annotation>
+			</element>
+			<element name="responsibleParty" type="xmml:PartyPropertyType" minOccurs="0" maxOccurs="unbounded">
+				<annotation>
+					<documentation>Person or organisation responsible for the event, if applicable. 
+					The nature of the responsibility (i.e. the role of the party with respect to the event) may be indicated using the xlink:href attribute. 
+					Examples of roles are operator, sponsor, requestor, provider, processor, etc.</documentation>
+				</annotation>
+			</element>
+			<element name="precedingEvent" type="gml:StringOrRefType" minOccurs="0" maxOccurs="unbounded">
+				<annotation>
+					<documentation>Description of, or pointer to, preceding event(s)</documentation>
+				</annotation>
+			</element>
+			<element name="followingEvent" type="gml:StringOrRefType" minOccurs="0" maxOccurs="unbounded">
+				<annotation>
+					<documentation>Description of, or pointer to, following event(s)</documentation>
+				</annotation>
+			</element>
+		</sequence>
+	</group>
 	<!-- ====================================================================== -->
 	<!-- === Objects and properties associated with people, organisations, etc ======== -->
 	<!-- ====================================================================== -->
@@ -146,6 +144,7 @@ Copyright © 2004 CSIRO - see https://www.seegrid.csiro.au/twiki/bin/view/Xmml/L
 			<element ref="xmml:Party"/>
 			<element ref="xmml:Company"/>
 			<element ref="xmml:Person"/>
+			<element name="SimpleParty" type="gml:StringOrRefType"/>
 		</choice>
 	</group>
 	<!-- ====================================================================== -->
@@ -217,7 +216,7 @@ Copyright © 2004 CSIRO - see https://www.seegrid.csiro.au/twiki/bin/view/Xmml/L
 		</annotation>
 	</element>
 	<!-- ====================================================================== -->
-	<element name="RecordEvent" type="xmml:RecordEventType">
+	<element name="RecordEvent" type="xmml:RecordEventType" substitutionGroup="gml:_MetaData">
 		<annotation>
 			<documentation>An event in the life of a database record.  It is substitutable for gml:_MetaData, so may appear as the value of a gml:metaDataProperty on most objects and features.</documentation>
 		</annotation>
@@ -231,37 +230,28 @@ Copyright © 2004 CSIRO - see https://www.seegrid.csiro.au/twiki/bin/view/Xmml/L
 		<complexContent>
 			<extension base="xmml:ElementOnlyMetaDataType">
 				<sequence>
-					<element name="when" type="gml:TimePrimitivePropertyType">
-						<annotation>
-							<documentation>The time/date when the record was created, updated, etc, encoded in ISO 8610 format as simpleContent.</documentation>
-						</annotation>
-					</element>
-					<element name="responsible" type="xmml:PartyPropertyType">
-						<annotation>
-							<documentation>Person or organisation responsible for the action</documentation>
-						</annotation>
-					</element>
 					<element name="action" type="xmml:recordActionCodeType">
 						<annotation>
 							<documentation>created, updated, etc</documentation>
 						</annotation>
 					</element>
+					<group ref="xmml:eventProperties"/>
 				</sequence>
 			</extension>
 		</complexContent>
 	</complexType>
-	<!-- ====================================================================== -->
-	<element name="recordStatus">
-		<annotation>
-			<documentation>Contains or refers to a description of event in the life of a database record</documentation>
-		</annotation>
-		<complexType>
-			<sequence>
-				<element ref="xmml:RecordEvent" minOccurs="0"/>
-			</sequence>
-			<attributeGroup ref="gml:AssociationAttributeGroup"/>
-		</complexType>
-	</element>
+	<!-- ====== -->
+	<complexType name="RecordEventPropertyType">
+		<complexContent>
+			<restriction base="gml:MetaDataPropertyType">
+				<sequence minOccurs="0">
+					<element ref="xmml:RecordEvent"/>
+				</sequence>
+				<attributeGroup ref="gml:AssociationAttributeGroup"/>
+				<attribute name="about" type="anyURI" use="optional"/>
+			</restriction>
+		</complexContent>
+	</complexType>
 	<!-- ====================================================================== -->
 	<element name="SimpleCitation" type="xmml:TextMetaDataType" substitutionGroup="gml:_MetaData">
 		<annotation>
