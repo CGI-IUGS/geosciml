@@ -185,32 +185,33 @@ Copyright © 2004 CSIRO - see https://www.seegrid.csiro.au/twiki/bin/view/Xmml/L
 	<!-- ====================================================================== -->
 	<!-- ==== Generic metadata types ==== -->
 	<!-- ====================================================================== -->
-	<element name="_MetaData" abstract="true"/>
-	<!-- ====================================================================== -->
 	<complexType name="ElementOnlyMetaDataType" abstract="true" mixed="false">
 		<annotation>
 			<documentation>mixed="false", so this can serve as the basis for element-only MetaData elements</documentation>
 		</annotation>
+		<complexContent mixed="false">
+			<restriction base="gml:AbstractMetaDataType"/>
+		</complexContent>
 	</complexType>
 	<!-- ====================================================================== -->
 	<complexType name="TextMetaDataType" abstract="false">
 		<annotation>
-			<documentation>Vacuous extension of a string, resulting in just a text element.  For unstructured metadata.</documentation>
+			<documentation>Vacuous extension of a mixed type, resulting in just a text element.  For unstructured metadata.</documentation>
 		</annotation>
-		<simpleContent>
-			<extension base="string"/>
-		</simpleContent>
+		<complexContent>
+			<extension base="gml:AbstractMetaDataType"/>
+		</complexContent>
 	</complexType>
 	<!-- ====================================================================== -->
 	<!-- ==== Concrete metadata elements ==== -->
 	<!-- ====================================================================== -->
-	<element name="AccessRestrictions" type="xmml:TextMetaDataType">
+	<element name="AccessRestrictions" type="xmml:TextMetaDataType" substitutionGroup="gml:_MetaData">
 		<annotation>
 			<documentation>This element is used to note any access restrictions, as a text description.  It is substitutable for gml:_MetaData, so may appear as the value of a gml:metaDataProperty on most objects and features.</documentation>
 		</annotation>
 	</element>
 	<!-- ====================================================================== -->
-	<element name="UseRestrictions" type="xmml:TextMetaDataType">
+	<element name="UseRestrictions" type="xmml:TextMetaDataType" substitutionGroup="gml:_MetaData">
 		<annotation>
 			<documentation>This element is used to note any restrictions on the use of this information, encoded as a text description.  It is substitutable for gml:_MetaData, so may appear as the value of a gml:metaDataProperty on most objects and features.</documentation>
 		</annotation>
@@ -262,7 +263,7 @@ Copyright © 2004 CSIRO - see https://www.seegrid.csiro.au/twiki/bin/view/Xmml/L
 		</complexType>
 	</element>
 	<!-- ====================================================================== -->
-	<element name="SimpleCitation" type="xmml:TextMetaDataType">
+	<element name="SimpleCitation" type="xmml:TextMetaDataType" substitutionGroup="gml:_MetaData">
 		<annotation>
 			<documentation>This element is used to record the details of an external source of information, such as a scholarly paper, technical report, or other publication, where the details are encoded as a text description.  It is substitutable for gml:_MetaData, so may appear as the value of a gml:metaDataProperty on most objects and features.</documentation>
 		</annotation>
