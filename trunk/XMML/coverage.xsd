@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!-- edited with XMLSPY v5 rel. 4 U (http://www.xmlspy.com) by Marcus Sen (british Geological Survey) -->
-<schema targetNamespace="http://www.opengis.net/xmml" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:xmml="http://www.opengis.net/xmml" xmlns:gml="http://www.opengis.net/gml" xmlns="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified" attributeFormDefault="unqualified" version="pre-release">
+<schema targetNamespace="http://www.opengis.net/xmml" elementFormDefault="qualified" attributeFormDefault="unqualified" version="pre-release" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:xmml="http://www.opengis.net/xmml" xmlns:gml="http://www.opengis.net/gml" xmlns="http://www.w3.org/2001/XMLSchema">
 	<annotation>
 		<documentation source="xw:CoveragesInXmml">
 coverage.xsd
@@ -71,35 +71,35 @@ N.B. Temporal domains still to be implemented.</documentation>
 	<complexType name="RangeType">
 		<sequence>
 			<choice>
-				<element ref="xmml:RecordList">
-					<annotation>
-						<documentation>Values in the range represented as vectors in band-interleaved order</documentation>
-					</annotation>
-				</element>
-				<element ref="xmml:ValueList">
-					<annotation>
-						<documentation>Values in the range represented as Objects or structured values</documentation>
-					</annotation>
-				</element>
-				<element ref="xmml:TableByRecord">
-					<annotation>
-						<documentation>Values in the range represented as a table in band-interleaved order</documentation>
-					</annotation>
-				</element>
-				<element ref="xmml:BandList">
-					<annotation>
-						<documentation>Values in the range represented as vectors in component or band-sequential order</documentation>
-					</annotation>
-				</element>
-				<element ref="xmml:TableByBand">
-					<annotation>
-						<documentation>Values in the range represented as a table in component or band-sequential order</documentation>
-					</annotation>
-				</element>
 				<element ref="xmml:File">
 					<annotation>
 						<documentation>A reference to an external source for the data, together with a description of how that external source is structured
 </documentation>
+					</annotation>
+				</element>
+				<element ref="xmml:RecordList">
+					<annotation>
+						<documentation>Values in the range represented as tuples in band-interleaved (property- or component-interleaved) order</documentation>
+					</annotation>
+				</element>
+				<element ref="xmml:TableByRecord">
+					<annotation>
+						<documentation>Values in the range represented as a table in band-interleaved (property- or component-interleaved) order</documentation>
+					</annotation>
+				</element>
+				<element ref="xmml:BandList">
+					<annotation>
+						<documentation>Values in the range represented as vectors in property- component- or band-sequential order</documentation>
+					</annotation>
+				</element>
+				<element ref="xmml:TableByBand">
+					<annotation>
+						<documentation>Values in the range represented as a table in property- component or band-sequential order</documentation>
+					</annotation>
+				</element>
+				<element ref="xmml:ObjectList">
+					<annotation>
+						<documentation>Values in the range represented as Objects or structured values - </documentation>
 					</annotation>
 				</element>
 			</choice>
@@ -127,21 +127,18 @@ N.B. Temporal domains still to be implemented.</documentation>
 		</choice>
 	</complexType>
 	<!-- =========================================================== -->
-	<element name="ValueList" type="xmml:ValueListType">
+	<element name="ObjectList" type="xmml:ObjectListType">
 		<annotation>
 			<documentation>Values in the range represented as Objects or structured values</documentation>
 		</annotation>
 	</element>
 	<!-- =========================================================== -->
-	<complexType name="ValueListType">
+	<complexType name="ObjectListType">
 		<sequence>
 			<element name="member" maxOccurs="unbounded">
 				<complexType>
 					<sequence minOccurs="0">
-						<choice>
-							<element ref="gml:_Value"/>
 							<element ref="gml:_GML"/>
-						</choice>
 					</sequence>
 					<attributeGroup ref="gml:AssociationAttributeGroup"/>
 				</complexType>
