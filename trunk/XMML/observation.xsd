@@ -9,8 +9,8 @@ Copyright (c) 2005 CSIRO - see https://www.seegrid.csiro.au/twiki/bin/view/Xmml/
 	</annotation>
 	<!-- ====================================================================== -->
 	<!-- bring in other schemas -->
-	<import namespace="http://www.opengis.net/gml" schemaLocation="../gml/3.1.1/base/feature.xsd"/>
-	<include schemaLocation="./event.xsd"/>
+	<import namespace="http://www.opengis.net/gml" schemaLocation="./gml4observation.xsd"/>
+	<include schemaLocation="./procedureEvent.xsd"/>
 	<!-- ====================================================================== -->
 	<!-- === hierarchy of "result" property elements for observations === -->
 	<!-- ====================================================================== -->
@@ -43,7 +43,7 @@ Copyright (c) 2005 CSIRO - see https://www.seegrid.csiro.au/twiki/bin/view/Xmml/
 			<documentation>Head of Observation substitution group</documentation>
 		</annotation>
 	</element>
-	<!-- ...................... -->
+	<!-- ...................... 
 	<complexType name="ObservationBaseType">
 		<annotation>
 			<documentation>Suppress precedingEvent, followingEvent, source and product</documentation>
@@ -59,15 +59,18 @@ Copyright (c) 2005 CSIRO - see https://www.seegrid.csiro.au/twiki/bin/view/Xmml/
 				</sequence>
 			</restriction>
 		</complexContent>
-	</complexType>
+	</complexType>-->
 	<!-- ...................... -->
 	<complexType name="ObservationType">
 		<annotation>
 			<documentation>Base type for Observations. 
-			Concrete Observation types must extend this with a property "result" of the appropriate type.</documentation>
+			Earlier versions used ObservationBaseType which suppressed preceding/following events, source/product. 
+			However, these are needed to record processing chains, so have been reinstated. 
+
+			Concrete Observation types must extend this type with a "result" of the appropriate type.</documentation>
 		</annotation>
 		<complexContent>
-			<extension base="xmml:ObservationBaseType">
+			<extension base="xmml:ProcedureEventType">
 				<sequence>
 					<element name="subject" type="xmml:ObservationSubjectPropertyType">
 						<annotation>
@@ -88,7 +91,7 @@ Copyright (c) 2005 CSIRO - see https://www.seegrid.csiro.au/twiki/bin/view/Xmml/
 					<!-- 
 					<element name="result" type="anyType">
 						<annotation>
-							<documentation>This is a placeholder - concrete types must replace this with a "result" property of the correct type. </documentation>
+							<documentation>This is a placeholder - concrete types must replace (restrict) this with a "result" property of the correct type. </documentation>
 						</annotation>
 					</element>
 					-->

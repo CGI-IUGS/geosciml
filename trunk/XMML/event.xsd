@@ -11,8 +11,8 @@ Copyright © 2005 CSIRO - see https://www.seegrid.csiro.au/twiki/bin/view/Xmml/L
 	</annotation>
 	<!-- ====================================================================== -->
 	<!-- bring in other schemas -->
-	<import namespace="http://www.opengis.net/gml" schemaLocation="./gml4procedure.xsd"/>
-	<include schemaLocation="./procedures.xsd"/>
+	<import namespace="http://www.opengis.net/gml" schemaLocation="./gml4event.xsd"/>
+	<include schemaLocation="./base.xsd"/>
 	<!-- ====================================================================== -->
 	<!-- =========================================================== -->
 	<!-- ===================================================== -->
@@ -28,13 +28,6 @@ Copyright © 2005 CSIRO - see https://www.seegrid.csiro.au/twiki/bin/view/Xmml/L
 				</annotation>
 				
 			</element>
-			<element name="responsible" type="xmml:PartyPropertyType" minOccurs="0" maxOccurs="unbounded">
-				<annotation>
-					<documentation>Person or organisation responsible for the event, if applicable. 
-					The nature of the responsibility (i.e. the role of the party with respect to the event) may be indicated using the xlink:href attribute. 
-					Examples of roles are operator, sponsor, requestor, provider, processor, etc.</documentation>
-				</annotation>
-			</element>
 			<element name="precedingEvent" type="gml:StringOrRefType" minOccurs="0" maxOccurs="unbounded">
 				<annotation>
 					<documentation>Description of, or pointer to, preceding event(s)</documentation>
@@ -43,6 +36,13 @@ Copyright © 2005 CSIRO - see https://www.seegrid.csiro.au/twiki/bin/view/Xmml/L
 			<element name="followingEvent" type="gml:StringOrRefType" minOccurs="0" maxOccurs="unbounded">
 				<annotation>
 					<documentation>Description of, or pointer to, following event(s)</documentation>
+				</annotation>
+			</element>
+			<element name="responsible" type="xmml:PartyPropertyType" minOccurs="0" maxOccurs="unbounded">
+				<annotation>
+					<documentation>Person or organisation responsible for the event, if applicable. 
+					The nature of the responsibility (i.e. the role of the party with respect to the event) may be indicated using the xlink:href attribute. 
+					Examples of roles are operator, sponsor, requestor, provider, processor, etc.</documentation>
 				</annotation>
 			</element>
 		</sequence>
@@ -109,72 +109,6 @@ Copyright © 2005 CSIRO - see https://www.seegrid.csiro.au/twiki/bin/view/Xmml/L
 		<attributeGroup ref="gml:AssociationAttributeGroup"/>
 		<attribute name="about" type="anyURI" use="optional"/>
 	</complexType>
-	<!-- ====================================================================== -->
-	<!-- === Specialised event types involving procedures === -->
-	<!-- ====================================================================== -->
-	<element name="ProcedureEvent" type="xmml:ProcedureEventType" substitutionGroup="xmml:Event">
-		<annotation>
-			<documentation>Description of an event involving a procedure.  </documentation>
-		</annotation>
-	</element>
-	<!-- ...................... -->
-	<complexType name="ProcedureEventType">
-		<annotation>
-			<documentation>Description of an event involving a procedure.  </documentation>
-		</annotation>
-		<complexContent>
-			<extension base="xmml:EventType">
-				<sequence>
-					<element ref="xmml:procedureUsed"/>
-					<element name="source" type="gml:StringOrRefType" minOccurs="0" maxOccurs="unbounded">
-						<annotation>
-							<documentation>Reference to input (if not implied by context)</documentation>
-						</annotation>
-					</element>
-					<element name="product" type="gml:StringOrRefType" minOccurs="0" maxOccurs="unbounded">
-						<annotation>
-							<documentation>Reference to result (if not implied by context)</documentation>
-						</annotation>
-					</element>
-				</sequence>
-			</extension>
-		</complexContent>
-	</complexType>
-	<!-- ====================================================================== -->
-	<!-- === Global property elements involving procedure events === -->
-	<!-- ====================================================================== -->
-	<complexType name="ProcedureEventPropertyType">
-		<sequence minOccurs="0">
-			<element ref="xmml:ProcedureEvent"/>
-		</sequence>
-		<attributeGroup ref="gml:AssociationAttributeGroup"/>
-	</complexType>
-	<!-- ====================================================================== -->
-	<group name="pqr">
-		<sequence>
-			<annotation>
-				<documentation>Utility group of properties from which data quality can be inferred. 
-        At least one of these should normally be present.</documentation>
-			</annotation>
-			<element name="quality" type="xmml:QualityPropertyType" minOccurs="0">
-				<annotation>
-					<documentation>An indication of the quality of value or result.  
-          This quality is specific to the individual feature.  
-          Systematic effects that are a consequence of the _procedure_ should be described in the description of the procedure instead. </documentation>
-				</annotation>
-			</element>
-			<element name="processingStep" type="xmml:ProcedureEventPropertyType" minOccurs="0" maxOccurs="unbounded">
-				<annotation>
-					<documentation>Processing steps - (set of) procedure events</documentation>
-				</annotation>
-			</element>
-			<element name="reference" type="xmml:CitationPropertyType" minOccurs="0">
-				<annotation>
-					<documentation>Reference to documentation giving more complete explanation of procedure and/or quality.</documentation>
-				</annotation>
-			</element>
-		</sequence>
-	</group>
 	<!-- ====================================================================== -->
 	<!-- ====================================================================== -->
 </schema>
