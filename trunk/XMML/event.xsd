@@ -12,7 +12,7 @@ Copyright © 2005 CSIRO - see https://www.seegrid.csiro.au/twiki/bin/view/Xmml/L
 	<!-- ====================================================================== -->
 	<!-- bring in other schemas -->
 	<import namespace="http://www.opengis.net/gml" schemaLocation="./gml4event.xsd"/>
-	<include schemaLocation="./base.xsd"/>
+	<include schemaLocation="./feature.xsd"/>
 	<!-- ====================================================================== -->
 	<!-- =========================================================== -->
 	<!-- ===================================================== -->
@@ -56,7 +56,7 @@ Copyright © 2005 CSIRO - see https://www.seegrid.csiro.au/twiki/bin/view/Xmml/L
 	</complexType>
 
 	<!-- ====================================================================== -->
-	<element name="Event" type="xmml:EventType" substitutionGroup="gml:_GML"/>
+	<element name="Event" type="xmml:EventType" substitutionGroup="xmml:Feature"/>
 	<!-- ====================================================================== -->
 	<complexType name="EventType">
 		<annotation>
@@ -67,9 +67,8 @@ Copyright © 2005 CSIRO - see https://www.seegrid.csiro.au/twiki/bin/view/Xmml/L
       Specialised event types may be derived from this type. </documentation>
 		</annotation>
 		<complexContent>
-			<extension base="gml:AbstractGMLType">
+			<extension base="xmml:FeatureType">
 				<sequence>
-					<group ref="xmml:StandardSupportProperties"/>
 					<group ref="xmml:EventProperties"/>
 				</sequence>
 			</extension>
