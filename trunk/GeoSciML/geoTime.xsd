@@ -14,9 +14,9 @@ Copyright (c) 2005 CSIRO - see https://www.seegrid.csiro.au/twiki/bin/view/Xmml/
 	<include schemaLocation="../enumerations/LUTstratigraphy.xsd"/>
 	<!-- ================================================================== -->
 	<!-- ================================================================== -->
-	<element name="GeologicalTimeScale" type="gsml:GeologicalTimeScaleType" substitutionGroup="gsml:TimeOrdinalReferenceSystem"/>
+	<element name="GeologicTimeScale" type="gsml:GeologicTimeScaleType" substitutionGroup="gsml:TimeOrdinalReferenceSystem"/>
 	<!-- .................. -->
-	<complexType name="GeologicalTimeScaleType" final="#all">
+	<complexType name="GeologicTimeScaleType" final="#all">
 		<annotation>
 			<documentation xml:lang="en">
 			</documentation>
@@ -147,7 +147,7 @@ However, if the hierarchy is represented by links carried on the "member" proper
 			<extension base="gsml:TimeOrdinalEraType">
 				<sequence>
 					<element name="rank" type="gsml:GeochronEraRank"/>
-					<element name="stratotype" type="gsml:StratigraphicSectionPropertyType" minOccurs="0"/>
+					<element name="stratotype" type="gsml:StratigraphicSectionPropertyType" minOccurs="0" maxOccurs="unbounded"/>
 					<group ref="xmml:StandardSupportProperties"/>
 				</sequence>
 			</extension>
@@ -164,7 +164,7 @@ However, if the hierarchy is represented by links carried on the "member" proper
 		<complexContent>
 			<extension base="gsml:TimeOrdinalEraBoundaryType">
 				<sequence>
-					<element name="stratotype" type="gsml:StratigraphicPointPropertyType"/>
+					<element name="stratotype" type="gsml:StratigraphicPointPropertyType" maxOccurs="unbounded"/>
 					<group ref="xmml:StandardSupportProperties"/>
 				</sequence>
 			</extension>
@@ -172,9 +172,9 @@ However, if the hierarchy is represented by links carried on the "member" proper
 	</complexType>
 	<!-- ================================================================== -->
 	<!-- ====================================================================== -->
-	<element name="NumericalBoundary" type="gsml:NumericalBoundaryType" substitutionGroup="gsml:TimeOrdinalEraBoundary"/>
+	<element name="NumericBoundary" type="gsml:NumericBoundaryType" substitutionGroup="gsml:TimeOrdinalEraBoundary"/>
 	<!-- .................. -->
-	<complexType name="NumericalBoundaryType">
+	<complexType name="NumericBoundaryType">
 		<annotation>
 			<documentation>An extension of the GML TimeOrdinalEraBoundary, with an additional status property.</documentation>
 		</annotation>
