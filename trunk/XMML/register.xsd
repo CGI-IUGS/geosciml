@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<schema targetNamespace="http://www.opengis.net/xmml" elementFormDefault="qualified" version="pre-release" xmlns:gml="http://www.opengis.net/gml" xmlns="http://www.w3.org/2001/XMLSchema" xmlns:xmml="http://www.opengis.net/xmml">
+	<annotation>
+		<documentation>
+			Components to support lists of definitions.  
+			
+Copyright (c) 2004 CSIRO - see https://www.seegrid.csiro.au/twiki/bin/view/Xmml/LegalNotices#Software_Notice
+		</documentation>
+	</annotation>
+	<!-- ========================================================
+       includes and imports
+	======================================================== -->
+	<import namespace="http://www.opengis.net/gml" schemaLocation="../gml/base/dictionary.xsd"/>
+	<include schemaLocation="./base.xsd"/>
+	<!-- ===================================================== -->
+	<!-- ===================================================== -->
+	<!-- === Dictionary and Definition components === -->
+	<!-- ===================================================== -->
+	<element name="RegisteredItem" type="xmml:RegisteredItemType" substitutionGroup="gml:Definition"/>
+	<!-- ===================================================== -->
+	<complexType name="RegisteredItemType">
+		<annotation>
+			<documentation>A registered item can be included in or referenced by a dictionary. 
+			The "name" elements shall provide one or more brief terms for which this is the definition.  
+			The "definition" element shall hold the definition whenever only text is needed, or may point to a more exhaustive definition available elsewhere using a xlink:href attribute following the standard GML property pattern. In this latter mode, the definition in this context essentially "repackages" a definition from another context, and thus acts as a "redirection".  
+			The "description" element may be used to provide additional informative information. 
+			The "prototype" element may be used to indicate an instance that serves as the type example for the concept being defined.  
+
+			The gml:id attribute is required - it must be possible to reference this definition in this context using this handle.  </documentation>
+		</annotation>
+		<complexContent>
+			<extension base="gml:DefinitionType">
+				<sequence>
+					<element name="definition" type="xmml:DefinitionType"/>
+					<element name="prototype" type="gml:ReferenceType" minOccurs="0"/>
+					<element name="fieldOfApplication" type="gml:StringOrRefType" minOccurs="0" maxOccurs="unbounded"/>
+					<element name="status" type="token"/>
+				</sequence>
+			</extension>
+		</complexContent>
+	</complexType>
+	<!-- ===================================================== -->
+	<complexType name="DefinitionType">
+		<annotation>
+			<documentation>
+			The "definition" element shall hold the definition whenever only text is needed, or may point to a more exhaustive definition available elsewhere using a xlink:href attribute following the standard GML property pattern. In this latter mode, the definition in this context essentially "repackages" a definition from another context, and thus acts as a "redirection".  
+			The "source" attribute identifies the source authority for the definition, when available. </documentation>
+		</annotation>
+		<simpleContent>
+			<extension base="gml:StringOrRefType">
+				<attribute name="source" type="anyURI" use="optional"/>
+			</extension>
+		</simpleContent>
+	</complexType>
+	<!-- ===================================================== -->
+	<element name="item" type="xmml:ItemPropertyType" substitutionGroup="gml:dictionaryEntry"/>
+	<!-- ===================================================== -->
+	<complexType name="ItemPropertyType">
+		<complexContent>
+			<restriction base="gml:DictionaryEntryType">
+				<sequence>
+					<element ref="xmml:RegisteredItem" minOccurs="0"/>
+				</sequence>
+				<attributeGroup ref="gml:AssociationAttributeGroup"/>
+			</restriction>
+		</complexContent>
+	</complexType>
+	<!-- ===================================================== -->
+	<!-- ===================================================== -->
+	<element name="Register" type="xmml:RegisterType" substitutionGroup="gml:Dictionary"/>
+	<!-- ===================================================== -->
+	<complexType name="RegisterType">
+		<annotation>
+			<documentation>A non-abstract bag that is specialized for use as a dictionary which contains a set of definitions. These definitions are referenced from other places, in the same and different XML documents. In this restricted type, the inherited optional "description" element can be used for a description of this dictionary. The inherited optional "name" element can be used for the name(s) of this dictionary. The inherited "metaDataProperty" elements can be used to reference or contain more information about this dictionary. The inherited required gml:id attribute allows the dictionary to be referenced using this handle. </documentation>
+		</annotation>
+		<complexContent>
+			<restriction base="gml:DictionaryType">
+				<sequence>
+					<element ref="gml:metaDataProperty" minOccurs="0" maxOccurs="unbounded"/>
+					<element ref="gml:description" minOccurs="0"/>
+					<element ref="gml:name" maxOccurs="unbounded"/>
+					<element ref="xmml:item" maxOccurs="unbounded">
+						<annotation>
+							<documentation>An entry in this dictionary. The content of an entry can itself be a lower level dictionary or definition collection. This element follows the standard GML property model, so the value may be provided directly or by reference. Note that if the value is provided by reference, this definition does not carry a handle (gml:id) in this context, so does not allow external references to this specific entry in this context. When used in this way the referenced definition will usually be in a dictionary in the same XML document. </documentation>
+						</annotation>
+					</element>
+				</sequence>
+			</restriction>
+		</complexContent>
+	</complexType>
+	<!-- ===================================================== -->
+</schema>
