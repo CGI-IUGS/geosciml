@@ -1,0 +1,447 @@
+<!-- ======================================================================= -->
+<!-- Experimental DTD for geoscientific reports in the DGSM. 
+     Marcus Sen -->
+<!-- v3.3
+     Added number attribute to chapter, section and appendix elements.
+     Added metadata containing *info sub-elements to para and *list
+     elements.  Later added level attribute on section elements (without
+     changing DTD version number) -->
+<!-- v3.2
+     Added key attribute to indexterm. -->
+<!-- v3.1
+     Commented out Oracle table attributes of indexterm element.
+     Simplified figure and table elements moving completely away from
+     DocBook to a fit-for-purpose model.
+     Added notations.
+     Noticed metadata *info elements were at inconsistent positions w.r.t
+     parent element in DocBook.  Decided to make them all consistently at
+     start of parent element in this DTD.
+     Also changed *info elements to mixed content to make it easier to
+     insert and edit them in WorX. -->
+<!-- ======================================================================= -->
+<!-- ======================================================================= -->
+<!-- Assorted parameter entities for convenience -->
+<!-- ======================================================================= -->
+<!ENTITY % lists "itemizedlist | orderedlist">
+<!ENTITY % block.layout.els " %lists; | equation | literallayout | screen | informaltable">
+<!ENTITY % std.block.els "para | figure | table | %lists;">
+<!ENTITY % std.inline.els " subscript | superscript | inlineequation | emphasis
+| indexterm | link | anchor ">
+<!ENTITY % simple.inline.els "simemphasis | subscript | superscript">
+<!-- ======================================================================= -->
+<!-- book is the top level element.  Within book the main text is contained
+     in preface, chapter and appendix elements.  There may be several
+     preface elements for things such as Foreword, Preface, Summary and any
+     other major text sections that come before the main chapters.  The bulk
+     of the book text is contained in a number of chapter elements.
+     Supplementary material, including Appendices and Enclosures, after the
+     main chapters are contained in appendix elements.
+
+     toc, lot and index elements contain the usual navigational sections of
+     the book; Table of Contents, List of Titles (for Figures, Tables, and
+     any other formal items) and Index.  These may be generated 
+     automatically from markup in the main text of the book.
+
+     glossary and bibliography elements contain the same parts of the book
+     (bibliography being the References section) with a list of items 
+     manually compiled but with cross-references to markup in the main text.
+
+     dedication and colophon elements contain these common minor pieces of
+     front and back matter.
+-->
+<!-- ======================================================================= -->
+<!ELEMENT book (bookinfo?, (title, subtitle?, titleabbrev?)?, (dedication | toc | lot | glossary | bibliography | preface | chapter | appendix | index | colophon)*)>
+<!ATTLIST book
+id ID #IMPLIED
+>
+<!ELEMENT title (#PCDATA | %simple.inline.els;)*>
+<!ATTLIST title
+id ID #IMPLIED
+>
+<!ELEMENT subtitle (#PCDATA | %simple.inline.els;)*>
+<!ATTLIST subtitle
+id ID #IMPLIED
+>
+<!ELEMENT titleabbrev (#PCDATA)>
+<!ATTLIST titleabbrev
+id ID #IMPLIED
+>
+<!--
+     chapter, preface and appendix elements are where almost all the
+     book/report content lies and they share a similar structure.  They all
+     have the standard title elements and *info elements for metadata.
+
+     Their main content can include certain standard block elements and 
+     section elements.  The standard block elements deal with paragraphs, 
+     lists, figures, tables etc.  The section elements subdivide the 
+     content.
+-->
+<!-- Chapters of the book are put in chapter elements! -->
+<!ELEMENT chapter (chapterinfo?, title, subtitle?, titleabbrev?, (((%std.block.els;)+, section*) | section+))>
+<!ATTLIST chapter
+id ID #IMPLIED
+number CDATA #IMPLIED
+>
+<!-- Prefaces, Forewords and Summaries are put in preface elements. -->
+<!ELEMENT preface (prefaceinfo?, title, subtitle?, titleabbrev?, (((%std.block.els;)+, section*) | section+))>
+<!ATTLIST preface
+id ID #IMPLIED
+>
+<!-- Appendices and Enclosures are put in appendix elements. -->
+<!ELEMENT appendix (appendixinfo?, title, subtitle?, titleabbrev?, (((%std.block.els;)+, section*) | section+))>
+<!ATTLIST appendix
+id ID #IMPLIED
+number CDATA #IMPLIED
+>
+<!--
+     section elements are used to subdivide logically the content of any of 
+     the above major divisions of a book and have a similar structure.  
+     They may contain standard block elements or further section elements 
+     which subdivide the parent section.  (Nesting too deeply may lead to
+     problems.)
+-->
+<!ELEMENT section (sectioninfo?, title, subtitle?, titleabbrev?, (((%std.block.els;)+, section*) | section+))>
+<!ATTLIST section
+id ID #IMPLIED
+number CDATA #IMPLIED
+level CDATA #IMPLIED
+>
+<!-- ======================================================================= -->
+<!-- Major block level elements. -->
+<!-- Paragraphs, Figures and Tables.  -->
+<!-- ======================================================================= -->
+<!-- Paragraphs -->
+<!ELEMENT para (#PCDATA | parainfo | %std.inline.els; | %block.layout.els;)*>
+<!ATTLIST para
+id ID #IMPLIED
+>
+<!-- Figures -->
+<!ELEMENT figure (figureinfo?, title, titleabbrev?, caption?, imageobject+)>
+<!ATTLIST figure
+id ID #IMPLIED
+float (0 | 1) "1"
+>
+<!-- Tables -->
+<!-- Currently just using images which will be contained in mediaobject.
+     tgroup is currently a dummy placeholder for the full DocBook table
+     model. -->
+<!ELEMENT table (tableinfo?, title, titleabbrev?, caption?, (imageobject | tgroup)+)>
+<!ATTLIST table
+id ID #IMPLIED
+>
+<!ELEMENT tgroup (#PCDATA)>
+<!ATTLIST tgroup
+id ID #IMPLIED
+>
+<!-- ======================================================================= -->
+<!-- Lists -->
+<!-- These may be lists inside paragraphs or be lists of paragraphs. -->
+<!-- ======================================================================= -->
+<!ELEMENT itemizedlist (listinfo?, listitem+)>
+<!ATTLIST itemizedlist
+id ID #IMPLIED
+>
+<!ELEMENT orderedlist (listinfo?, listitem+)>
+<!ATTLIST orderedlist
+id ID #IMPLIED
+>
+<!ELEMENT listitem (#PCDATA | %std.inline.els; | %lists; | para)*>
+<!ATTLIST listitem
+id ID #IMPLIED
+>
+<!-- ======================================================================= -->
+<!-- Block layout elements -->
+<!-- These elements are to allow laying out text in formats like columns
+     etc.  informaltable is for text laid out like tables, literallayout and
+     screen should preserve spacing and linebreaks so that special layout
+     can be manually specified. Contents of screen elements should be
+     rendered in a monospace font, literallayout elements do not require any
+     font change. -->
+<!-- ======================================================================= -->
+<!ELEMENT informaltable (mediaobject | tgroup)+>
+<!ATTLIST informaltable
+id ID #IMPLIED
+>
+<!ELEMENT literallayout (#PCDATA)>
+<!ATTLIST literallayout
+id ID #IMPLIED
+>
+<!ELEMENT screen (#PCDATA)>
+<!ATTLIST screen
+id ID #IMPLIED
+>
+<!-- Equations -->
+<!ELEMENT equation (title, titleabbrev?, (eqncontent | mediaobject))>
+<!ATTLIST equation
+id ID #IMPLIED
+>
+<!ELEMENT eqncontent (#PCDATA | subscript | superscript | indexterm | link | anchor)*>
+<!ATTLIST eqncontent
+id ID #IMPLIED
+>
+<!-- ======================================================================= -->
+<!-- Images. Dropped audioobject and videoobject from DocBook definitions of
+     mediaobjects. A single mediaobject is just one object, if there are 
+     several imageobjects they are alternatives e.g. at different
+     resolutions for output in different situations.  textobject can be used
+     if graphics can't be displayed. -->
+<!-- ======================================================================= -->
+<!ELEMENT mediaobject (objectinfo?, (imageobject), (imageobject | textobject)*, caption?)>
+<!ATTLIST mediaobject
+id ID #IMPLIED
+>
+<!ELEMENT inlinemediaobject (objectinfo?, (imageobject), (imageobject | textobject)*, caption?)>
+<!ATTLIST inlinemediaobject
+id ID #IMPLIED
+>
+<!ELEMENT imageobject (objectinfo?, imagedata+)>
+<!ATTLIST imageobject
+id ID #IMPLIED
+>
+<!ELEMENT imagedata EMPTY>
+<!ATTLIST imagedata
+id ID #IMPLIED
+entityref ENTITY #IMPLIED
+dataformat CDATA #IMPLIED
+role CDATA #IMPLIED
+width CDATA #IMPLIED
+depth CDATA #IMPLIED
+>
+<!ELEMENT textobject (objectinfo?, para+)>
+<!ATTLIST textobject
+id ID #IMPLIED
+>
+<!ELEMENT caption (para+)>
+<!ATTLIST caption
+id ID #IMPLIED
+>
+<!-- ======================================================================= -->
+<!-- Miscellaneous Inline Elements -->
+<!-- ======================================================================= -->
+<!ELEMENT emphasis (#PCDATA | subscript | superscript | inlineequation | indexterm | link | anchor)*>
+<!ELEMENT simemphasis (#PCDATA | subscript | superscript)*>
+<!ELEMENT inlineequation (eqncontent | inlinemediaobject)>
+<!ATTLIST inlineequation
+id ID #IMPLIED
+>
+<!ELEMENT subscript (#PCDATA | subscript | superscript)*>
+<!ELEMENT superscript (#PCDATA | subscript | superscript)*>
+<!-- ======================================================================= -->
+<!-- Metadata container elements -->
+<!-- ======================================================================= -->
+<!-- bookinfo is a meta data container for book elements.
+Removed lots of elements I don't think I'll use.
+Added acknowledgements.
+Added infosource but maybe this should be included in something else?
+Made authorgroup the container for all authors, editors, collaborators and
+othercredits including people and organisations.
+Need to add identifier for Discovery Metadata, docutype for "memoir" etc.,
+polygon for ? and maybe area for shapefile reference.
+Changed *info elements to mixed content to allow easier insertion and editing in WorX.
+-->
+<!ELEMENT bookinfo (#PCDATA | legalnotice | indexterm | abstract | authorgroup | copyright | pubdate | edition | isbn | issn | publisher)*>
+<!ATTLIST bookinfo
+id ID #IMPLIED
+>
+<!ELEMENT chapterinfo (#PCDATA | indexterm | abstract | authorgroup)*>
+<!ATTLIST chapterinfo
+id ID #IMPLIED
+>
+<!ELEMENT sectioninfo (#PCDATA | indexterm)*>
+<!ATTLIST sectioninfo
+id ID #IMPLIED
+>
+<!ELEMENT prefaceinfo (#PCDATA | indexterm | authorgroup)*>
+<!ATTLIST prefaceinfo
+id ID #IMPLIED
+>
+<!ELEMENT appendixinfo (#PCDATA | indexterm | authorgroup)*>
+<!ATTLIST appendixinfo
+id ID #IMPLIED
+>
+<!ELEMENT figureinfo (#PCDATA | indexterm)*>
+<!ATTLIST figureinfo
+id ID #IMPLIED
+>
+<!ELEMENT tableinfo (#PCDATA | indexterm)*>
+<!ATTLIST tableinfo
+id ID #IMPLIED
+>
+<!ELEMENT parainfo (#PCDATA | indexterm)*>
+<!ATTLIST parainfo
+id ID #IMPLIED
+>
+<!ELEMENT listinfo (#PCDATA | indexterm)*>
+<!ATTLIST listinfo
+id ID #IMPLIED
+>
+<!ELEMENT objectinfo (#PCDATA | legalnotice | indexterm | authorgroup | copyright)*>
+<!ATTLIST objectinfo
+id ID #IMPLIED
+>
+<!-- I can't think of any really useful metadata for index elements I'll
+     just leave this as general text, incompatible with DocBook -->
+<!ELEMENT indexinfo (#PCDATA)>
+<!ATTLIST indexinfo
+id ID #IMPLIED
+>
+<!-- ======================================================================= -->
+<!-- Assorted structured data elements. -->
+<!-- ======================================================================= -->
+<!-- Person related elements -->
+<!ENTITY % person.ident.mix "honorific|firstname|surname|lineage|othername
+|affiliation|authorblurb|contrib">
+<!ELEMENT honorific (#PCDATA)>
+<!ELEMENT firstname (#PCDATA)>
+<!ELEMENT surname (#PCDATA)>
+<!ELEMENT lineage (#PCDATA)>
+<!ELEMENT othername (#PCDATA)>
+<!-- affiliation simplification incompatible with DocBook, #PCDATA must be
+replaced by some other sub-elements to make it compatible. -->
+<!ELEMENT affiliation (#PCDATA | address)*>
+<!ELEMENT authorblurb (title?, para+)>
+<!ELEMENT contrib (#PCDATA)>
+<!-- Address related elements -->
+<!ELEMENT address (#PCDATA | %person.ident.mix; | street | pob | postcode | city | state | country | phone | fax | email | otheraddr)*>
+<!ATTLIST address
+id ID #IMPLIED
+>
+<!ELEMENT street (#PCDATA)>
+<!ELEMENT pob (#PCDATA)>
+<!ELEMENT postcode (#PCDATA)>
+<!ELEMENT city (#PCDATA)>
+<!ELEMENT state (#PCDATA)>
+<!ELEMENT country (#PCDATA)>
+<!ELEMENT phone (#PCDATA)>
+<!ELEMENT fax (#PCDATA)>
+<!ELEMENT email (#PCDATA)>
+<!ELEMENT otheraddr (#PCDATA)>
+<!-- others -->
+<!ELEMENT legalnotice (title?, para+)>
+<!ELEMENT abstract (title?, para+)>
+<!ELEMENT copyright (year+, holder*)>
+<!ELEMENT year (#PCDATA)>
+<!ELEMENT holder (#PCDATA)>
+<!ELEMENT pubdate (#PCDATA)>
+<!ELEMENT edition (#PCDATA)>
+<!ELEMENT isbn (#PCDATA)>
+<!ELEMENT issn (#PCDATA)>
+<!ELEMENT publisher (publishername, address*)>
+<!ELEMENT publishername (#PCDATA)>
+<!-- I've removed the collab element from authorgroup as its definition
+     seemed peculiar. -->
+<!ELEMENT authorgroup (author | editor | corpauthor | othercredit)+>
+<!ELEMENT author (%person.ident.mix;)+>
+<!ELEMENT editor (%person.ident.mix;)+>
+<!-- No real breakdown of fields for a corporate author -->
+<!ELEMENT corpauthor (#PCDATA)>
+<!ELEMENT othercredit (%person.ident.mix;)+>
+<!-- ======================================================================= -->
+<!-- Navigational sections of book -->
+<!-- ======================================================================= -->
+<!-- Table of contents -->
+<!-- DocBook has tocfront and tocback elements but the definition in the 
+     Guide seems inconsistent with the DTD spec? -->
+<!ELEMENT toc ((title, subtitle?, titleabbrev?)?, tocchap*)>
+<!ATTLIST toc
+id ID #IMPLIED
+>
+<!-- This is not the proper definition of tocchap, just a placeholder until
+     specified properly. -->
+<!ELEMENT tocchap (#PCDATA)>
+<!ATTLIST tocchap
+id ID #IMPLIED
+>
+<!-- List of titles (Figures, Plates, Tables etc.) -->
+<!ELEMENT lot ((title, subtitle?, titleabbrev?)?, lotentry*)>
+<!ATTLIST lot
+id ID #IMPLIED
+>
+<!ELEMENT lotentry (#PCDATA | %std.inline.els;)*>
+<!ATTLIST lotentry
+id ID #IMPLIED
+>
+<!-- Indexes -->
+<!ELEMENT index (indexinfo?, (title, subtitle?, titleabbrev?)?, indexentry*)>
+<!ATTLIST index
+id ID #IMPLIED
+>
+<!-- This simplified indexentry definition is incompatible with DocBook -->
+<!ELEMENT indexentry (#PCDATA)>
+<!ATTLIST indexentry
+id ID #IMPLIED
+>
+<!-- ======================================================================= -->
+<!-- Reference sections of book -->
+<!-- ======================================================================= -->
+<!-- Glossaries -->
+<!ELEMENT glossary ((title, subtitle?, titleabbrev?)?, glossentry*)>
+<!ATTLIST glossary
+id ID #IMPLIED
+>
+<!-- This is not the proper definition of glossentry, just a placeholder
+     until it's specified properly -->
+<!ELEMENT glossentry (#PCDATA)>
+<!ATTLIST glossentry
+id ID #IMPLIED
+>
+<!-- Bibliographic references -->
+<!ELEMENT bibliography ((title, subtitle?, titleabbrev?)? | (%std.block.els;)? | (biblioentry | bibliomixed)*)>
+<!ATTLIST bibliography
+id ID #IMPLIED
+>
+<!-- biblioentry should be broken down into components tbd -->
+<!ELEMENT biblioentry ((%simple.inline.els;)*)>
+<!ATTLIST biblioentry
+id ID #IMPLIED
+>
+<!ELEMENT bibliomixed ((%simple.inline.els;)*)>
+<!ATTLIST bibliomixed
+id ID #IMPLIED
+>
+<!-- ======================================================================= -->
+<!-- Miscellaneous front and back-matter -->
+<!-- ======================================================================= -->
+<!ELEMENT dedication ((title, subtitle?, titleabbrev?)?, para+)>
+<!ATTLIST dedication
+id ID #IMPLIED
+>
+<!ELEMENT colophon ((title, subtitle?, titleabbrev?)?, para+)>
+<!ATTLIST colophon
+id ID #IMPLIED
+>
+<!-- ======================================================================= -->
+<!-- Indexing and Cross-Referencing Elements -->
+<!-- ======================================================================= -->
+<!ELEMENT indexterm (#PCDATA | %simple.inline.els;)*>
+<!ATTLIST indexterm
+id ID #IMPLIED
+linkend IDREF #IMPLIED
+scheme CDATA #REQUIRED
+value CDATA #IMPLIED
+key CDATA #IMPLIED
+>
+<!-- Commented out database link attributes for the moment as WorX's habit of inserting lots
+       of empty attributes makes XML source hard to read.
+          datadic CDATA #IMPLIED
+          pk1 CDATA #IMPLIED
+          pk2 CDATA #IMPLIED
+          pk3 CDATA #IMPLIED
+          pk4 CDATA #IMPLIED
+-->
+<!ELEMENT link (#PCDATA | %std.inline.els;)*>
+<!ATTLIST link
+id ID #IMPLIED
+linkend IDREF #REQUIRED
+type (figref | tableref | bibref | other) #REQUIRED
+>
+<!ELEMENT anchor EMPTY>
+<!ATTLIST anchor
+id ID #IMPLIED
+>
+<!-- ======================================================================= -->
+<!-- Notations -->
+<!-- ======================================================================= -->
+<!NOTATION gif SYSTEM "gif">
+<!NOTATION jpg SYSTEM "jpg">
+<!NOTATION pdf SYSTEM "pdf">

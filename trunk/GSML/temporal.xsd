@@ -1,0 +1,233 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<schema targetNamespace="http://www.opengis.net/GeoSciML" elementFormDefault="qualified" attributeFormDefault="unqualified" version="pre-release" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:gml="http://www.opengis.net/gml" xmlns="http://www.w3.org/2001/XMLSchema" xmlns:gsml="http://www.opengis.net/GeoSciML" xmlns:xmml="http://www.opengis.net/xmml">
+	<annotation>
+		<documentation>
+temporal.xsd
+
+Some specialised temporal components for XMML
+
+2004-05-17
+2004-06-09 - TimeNode -> StratNode, moved to GeoTime.xsd
+
+Copyright (c) 2004 CSIRO - see https://www.seegrid.csiro.au/twiki/bin/view/Xmml/LegalNotices#Software_Notice
+</documentation>
+	</annotation>
+	<!-- ====================================================================== -->
+	<!-- bring in other schemas -->
+	<import namespace="http://www.opengis.net/gml" schemaLocation="../gml/base/temporalTopology.xsd"/>
+	<import namespace="http://www.opengis.net/xmml" schemaLocation="../XMML/procedures.xsd"/>
+	<!-- ================================================================== -->
+	<!-- ====================================================================== -->
+	<!-- ===== Time topology primitive with indirect relative positions ====== -->
+	<!-- ================================================================== -->
+	<element name="TimeNode" type="gsml:TimeNodeType" substitutionGroup="gml:TimeNode"/>
+	<!-- ===================================== -->
+	<complexType name="TimeNodeType">
+		<annotation>
+			<documentation>A variation of the GML TimeNode, which adds 
+			0..* estimatedPosition properties to record observations related to the position of this node</documentation>
+		</annotation>
+		<complexContent>
+			<extension base="gml:TimeNodeType">
+				<sequence>
+					<element name="estimatedPosition" type="gsml:TimePositionEstimatePropertyType" minOccurs="0" maxOccurs="unbounded"/>
+					<group ref="xmml:StandardSupportProperties"/>
+				</sequence>
+			</extension>
+		</complexContent>
+	</complexType>
+	<!-- ================================================================== -->
+	<!-- ===== Time estimates ====== -->
+	<!-- ====================================================================== -->
+	<element name="TimePositionEstimate" type="gsml:TimePositionEstimateType">
+		<annotation>
+			<documentation>An observation resulting in an estimate of a time position.</documentation>
+		</annotation>
+	</element>
+	<!-- ===================================== -->
+	<complexType name="TimePositionEstimateType">
+		<annotation>
+			<documentation>An observation resulting in an estimate of a time position.
+			Model after OandM pattern.</documentation>
+		</annotation>
+		<complexContent>
+			<extension base="gml:AbstractFeatureType">
+				<sequence>
+					<element name="subject" type="gml:FeaturePropertyType">
+						<annotation>
+							<documentation>The feature (e.g. specimen) on which the observations or measurements are made.</documentation>
+						</annotation>
+					</element>
+					<element name="result" type="gml:TimePositionType">
+						<annotation>
+							<documentation>The result of the observation.</documentation>
+						</annotation>
+					</element>
+					<element ref="xmml:quality" minOccurs="0"/>
+					<element name="procedureTime" type="gml:TimePrimitivePropertyType">
+						<annotation>
+							<documentation>The Time when the observation occurred.  </documentation>
+						</annotation>
+					</element>
+					<element name="responsible" type="xmml:PartyPropertyType" minOccurs="0">
+						<annotation>
+							<documentation>Person or organisation responsible for the observation</documentation>
+						</annotation>
+					</element>
+					<element ref="xmml:procedureUsed">
+						<annotation>
+							<documentation>Procedure or instrument used for the act of observation</documentation>
+						</annotation>
+					</element>
+					<element ref="xmml:reference" minOccurs="0"/>
+					<group ref="xmml:StandardSupportProperties"/>
+				</sequence>
+			</extension>
+		</complexContent>
+	</complexType>
+	<!-- ================================================================== -->
+	<complexType name="TimePositionEstimatePropertyType">
+		<sequence>
+			<element ref="gsml:TimePositionEstimate"/>
+		</sequence>
+	</complexType>
+	<!-- ====================================================================== -->
+	<!-- ===== Time geometric complexes ====== -->
+	<!-- ================================================================== -->
+	<element name="TimeGeometricComplex" type="gsml:TimeGeometricComplexType" substitutionGroup="gml:_TimeComplex">
+		<annotation>
+			<documentation>a set of TimeInstants and TimePeriods</documentation>
+		</annotation>
+	</element>
+	<!-- ===================================== -->
+	<complexType name="TimeGeometricComplexType">
+		<complexContent>
+			<extension base="gml:AbstractTimeComplexType">
+				<sequence maxOccurs="unbounded">
+					<choice>
+						<element name="primitivePos" type="gml:TimePositionType">
+							<annotation>
+								<documentation>Simple-content time position</documentation>
+							</annotation>
+						</element>
+						<element name="primitive" type="gml:TimeGeometricPrimitivePropertyType">
+							<annotation>
+								<documentation>Reference to an identified time primitive</documentation>
+							</annotation>
+						</element>
+					</choice>
+				</sequence>
+			</extension>
+		</complexContent>
+	</complexType>
+	<!-- =========================================================== -->
+	<element name="TimeGrid" type="gsml:TimeGridType" substitutionGroup="gml:_TimeComplex">
+		<annotation>
+			<documentation>A set of uniformly spaced time instants described using an implicit notation</documentation>
+		</annotation>
+	</element>
+	<!-- ================================================================== -->
+	<complexType name="TimeGridType">
+		<annotation>
+			<documentation>Regular "grid" of time-points.  
+      Follow pattern of (ISO 19123) spatial grids: 
+  these have (dimension,axisName,extent(,origin,offsetVector))
+  For temporal case, dimension is fixed (1), axisName is fixed ("time")</documentation>
+		</annotation>
+		<complexContent>
+			<extension base="gml:AbstractTimeComplexType">
+				<sequence>
+					<element name="extent" type="gsml:TimeGridExtentType"/>
+					<choice>
+						<element name="originPos" type="gml:TimePositionType">
+							<annotation>
+								<documentation>Simple-content time position</documentation>
+							</annotation>
+						</element>
+						<element name="origin" type="gml:TimeInstantPropertyType">
+							<annotation>
+								<documentation>Reference to an identified time instant</documentation>
+							</annotation>
+						</element>
+					</choice>
+					<choice>
+						<element name="offsetDuration" type="duration">
+							<annotation>
+								<documentation>XML Schema built-in simple type for duration: e.g. 
+                P1Y (1 year) 
+                P1M (1 month) 
+                P1DT12H (1 day 12 hours) 
+                PT5M (5 minutes) 
+                PT0.007S (7 milliseconds)</documentation>
+							</annotation>
+						</element>
+						<element name="offsetInterval" type="gml:TimeIntervalLengthType">
+							<annotation>
+								<documentation>representation of the ISO 11404 model of a time interval length: e.g. 
+                value=1, unit="year"  
+                value=1, unit="other:month" (or see next)
+                value=1, unit="year" radix="12" factor="1" (1/12 year)
+                value=1.5, unit="day"  
+                value=36, unit="hour" 
+                value=5, unit="minute"  
+                value=7, unit="second" radix="10" factor="3" (7 milliseconds)</documentation>
+							</annotation>
+						</element>
+					</choice>
+				</sequence>
+			</extension>
+		</complexContent>
+	</complexType>
+	<!-- =========================================================== -->
+	<complexType name="TimeGridExtentType">
+		<choice>
+			<element name="SeriesEnvelope">
+				<annotation>
+					<documentation>Grid extent specified in grid coordinates - i.e. 2 integers</documentation>
+				</annotation>
+				<complexType>
+					<sequence>
+						<element name="low" type="integer"/>
+						<element name="high" type="integer"/>
+					</sequence>
+				</complexType>
+			</element>
+			<element ref="gml:TimePeriod">
+				<annotation>
+					<documentation>Grid extent specified as a time-period, with begin and end time positions</documentation>
+				</annotation>
+			</element>
+		</choice>
+	</complexType>
+	<!-- ================================================================== -->
+	<element name="TimePeriodGrid" type="gsml:TimePeriodGridType" substitutionGroup="gml:_TimeComplex">
+		<annotation>
+			<documentation>A set of uniformly spaced time periods described using an implicit notation</documentation>
+		</annotation>
+	</element>
+	<!-- ================================================================== -->
+	<complexType name="TimePeriodGridType">
+		<annotation>
+			<documentation>Extend time instant grid with window size property</documentation>
+		</annotation>
+		<complexContent>
+			<extension base="gsml:TimeGridType">
+				<sequence>
+					<choice>
+						<element name="windowDuration" type="duration">
+							<annotation>
+								<documentation>XML Schema built-in simple type for duration</documentation>
+							</annotation>
+						</element>
+						<element name="windowInterval" type="gml:TimeIntervalLengthType">
+							<annotation>
+								<documentation>representation of the ISO 11404 model of a time interval length</documentation>
+							</annotation>
+						</element>
+					</choice>
+				</sequence>
+			</extension>
+		</complexContent>
+	</complexType>
+	<!-- ================================================================== -->
+</schema>
