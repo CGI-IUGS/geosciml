@@ -1,15 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!-- edited with XMLSPY v5 rel. 4 U (http://www.xmlspy.com) by Marcus Sen (british Geological Survey) -->
-<schema targetNamespace="http://www.opengis.net/xmml" elementFormDefault="qualified" attributeFormDefault="unqualified" version="pre-release" xmlns="http://www.w3.org/2001/XMLSchema" xmlns:gml="http://www.opengis.net/gml" xmlns:xmml="http://www.opengis.net/xmml">
+<schema xmlns="http://www.w3.org/2001/XMLSchema" xmlns:gml="http://www.opengis.net/gml" xmlns:xmml="http://www.opengis.net/xmml" targetNamespace="http://www.opengis.net/xmml" elementFormDefault="qualified" attributeFormDefault="unqualified"
+        version="pre-release">
 	<annotation>
-		<documentation>
-geometry.xsd
+		<documentation>geometry.xsd
 
 A GML conformant schema 
 for specialised geometries for geoscience
 
-Copyright (c) 2005 CSIRO - see https://www.seegrid.csiro.au/twiki/bin/view/Xmml/LegalNotices#Software_Notice
-</documentation>
+Copyright (c) 2005 CSIRO - see https://www.seegrid.csiro.au/twiki/bin/view/Xmml/LegalNotices#Software_Notice</documentation>
 	</annotation>
 	<!-- ====================================================================== -->
 	<!-- bring in other schemas -->
@@ -22,16 +21,16 @@ Copyright (c) 2005 CSIRO - see https://www.seegrid.csiro.au/twiki/bin/view/Xmml/
 	<!-- ======================================================= -->
 	<complexType name="MultiPosType">
 		<annotation>
-			<documentation>
-				A MultiPos is defined by a list of direct positions recorded in a posList element
-			</documentation>
+			<documentation>A MultiPos is defined by a list of direct positions</documentation>
 		</annotation>
 		<complexContent>
 			<extension base="gml:AbstractGeometricAggregateType">
-				<choice>
-					<element ref="gml:posList"/>
-					<element ref="gml:pos" maxOccurs="unbounded"/>
-				</choice>
+				<sequence>
+					<choice>
+						<element name="pos" type="gml:DirectPosition" maxOccurs="unbounded"/>
+						<element name="posList" type="gml:DirectPositionList"/>
+					</choice>
+				</sequence>
 			</extension>
 		</complexContent>
 	</complexType>
@@ -41,14 +40,32 @@ Copyright (c) 2005 CSIRO - see https://www.seegrid.csiro.au/twiki/bin/view/Xmml/
 	<!-- ====================================================================== -->
 	<!-- === Parameterised Lines === -->
 	<!-- ====================================================================== -->
-	<element name="Line" type="xmml:LineType"/>
 	<!-- ====================================================================== -->
-	<complexType name="LineType">
+	<element name="_Line" type="xmml:AbstractLineType" abstract="true" substitutionGroup="gml:_Curve">
+		<annotation>
+			<documentation>The "_Line" element is the abstract head of the substituition group for all elements representing (infinite) Lines.</documentation>
+		</annotation>
+	</element>
+	<!-- ============================================================== -->
+	<complexType name="AbstractLineType" abstract="true">
+		<annotation>
+			<documentation>An abstraction of a line to support the different levels of complexity. 
+      The line can always be viewed as a geometric primitive, i.e. is logically continuous.</documentation>
+		</annotation>
+		<complexContent>
+			<extension base="gml:AbstractCurveType"/>
+		</complexContent>
+	</complexType>
+	<!-- ============================================================== -->
+	<element name="LineByVector" type="xmml:LineByVectorType" substitutionGroup="xmml:_Line"/>
+	<element name="Line" type="xmml:LineByVectorType" substitutionGroup="xmml:_Line"/>
+	<!-- ====================================================================== -->
+	<complexType name="LineByVectorType">
 		<annotation>
 			<documentation>Line carries an id, so can be used as the target of a reference. This is useful so that the survey defines a 1-D CRS used for indexing information along the borehole.</documentation>
 		</annotation>
 		<complexContent>
-			<extension base="gml:AbstractCurveType">
+			<extension base="xmml:AbstractLineType">
 				<sequence>
 					<element name="origin" type="gml:PointPropertyType">
 						<annotation>
@@ -92,8 +109,8 @@ Copyright (c) 2005 CSIRO - see https://www.seegrid.csiro.au/twiki/bin/view/Xmml/
 		<complexContent>
 			<extension base="xmml:AbstractPlaneType">
 				<sequence>
-					<element name="containedPoint" type="gml:DirectPositionType"/>
-					<element name="normalVector" type="gml:VectorType"/>
+					<element name="containedPoint" type="gml:PointPropertyType"/>
+					<element name="normal" type="gml:VectorType"/>
 				</sequence>
 			</extension>
 		</complexContent>
@@ -113,37 +130,28 @@ Copyright (c) 2005 CSIRO - see https://www.seegrid.csiro.au/twiki/bin/view/Xmml/
 	<!-- =========================================================== -->
 	<!-- === Intervals === -->
 	<!-- =========================================================== -->
-	<element name="Interval" type="xmml:IntervalType" substitutionGroup="gml:_Geometry"/>
+	<element name="Interval" type="xmml:IntervalType" substitutionGroup="gml:_GeometricPrimitive"/>
 	<!-- =========================================================== -->
 	<complexType name="IntervalType">
 		<annotation>
 			<documentation>Interval defines an extent using a pair of positions defining opposite corners in arbitrary dimensions.</documentation>
 		</annotation>
 		<complexContent>
-			<extension base="gml:AbstractGeometryType">
+			<extension base="gml:AbstractGeometricPrimitiveType">
 				<sequence>
-					<group ref="xmml:posProperty" minOccurs="2" maxOccurs="2"/>
+					<element name="lowerBound" type="gml:PointPropertyType"/>
+					<element name="upperBound" type="gml:PointPropertyType"/>
 				</sequence>
 			</extension>
 		</complexContent>
 	</complexType>
 	<!-- =========================================================== -->
-	<element name="intervalMember" type="xmml:IntervalPropertyType"/>
-	<element name="intervalProperty" type="xmml:IntervalPropertyType"/>
 	<!-- =========================================================== -->
 	<complexType name="IntervalPropertyType">
 		<sequence minOccurs="0">
 			<element ref="xmml:Interval"/>
 		</sequence>
 		<attributeGroup ref="gml:AssociationAttributeGroup"/>
-	</complexType>
-	<!-- =========================================================== -->
-	<element name="intervalMembers" type="xmml:IntervalArrayPropertyType"/>
-	<!-- =========================================================== -->
-	<complexType name="IntervalArrayPropertyType">
-		<sequence minOccurs="0" maxOccurs="unbounded">
-			<element ref="xmml:Interval"/>
-		</sequence>
 	</complexType>
 	<!-- =========================================================== -->
 	<element name="MultiInterval" type="xmml:MultiIntervalType" substitutionGroup="gml:_GeometricAggregate"/>
@@ -155,8 +163,7 @@ Copyright (c) 2005 CSIRO - see https://www.seegrid.csiro.au/twiki/bin/view/Xmml/
 		<complexContent>
 			<extension base="gml:AbstractGeometricAggregateType">
 				<sequence>
-					<element ref="xmml:intervalMember" minOccurs="0" maxOccurs="unbounded"/>
-					<element ref="xmml:intervalMembers" minOccurs="0"/>
+					<element name="member" type="xmml:IntervalPropertyType" minOccurs="0" maxOccurs="unbounded"/>
 				</sequence>
 			</extension>
 		</complexContent>
@@ -224,7 +231,7 @@ Copyright (c) 2005 CSIRO - see https://www.seegrid.csiro.au/twiki/bin/view/Xmml/
 	<!-- =========================================================== -->
 	<element name="nodes" type="gml:PointArrayPropertyType">
 		<annotation>
-			<documentation>A place to attach a set of nodes that are required to be listed someplace, in order that they can be "used" by-reference elsewhere, for example to build a complex geometry that may be the "shape" of a feature.  Since they are to be used "by-reference" they require handles - hence the use of gml:Point primitives rather than the handle-less gml:pos and gml:posList.  </documentation>
+			<documentation>A place to attach a set of nodes that are required to be listed someplace, in order that they can be "used" by-reference elsewhere, for example to build a complex geometry that may be the "shape" of a feature.  Since they are to be used "by-reference" they require handles - hence the use of gml:Point primitives rather than the handle-less gml:pos and gml:posList.</documentation>
 		</annotation>
 	</element>
 	<!-- ====================================================================== -->

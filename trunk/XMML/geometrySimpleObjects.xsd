@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!-- edited with XMLSPY v5 rel. 4 U (http://www.xmlspy.com) by Marcus Sen (british Geological Survey) -->
-<schema targetNamespace="http://www.opengis.net/xmml" elementFormDefault="qualified" attributeFormDefault="unqualified" version="pre-release" xmlns="http://www.w3.org/2001/XMLSchema" xmlns:gml="http://www.opengis.net/gml" xmlns:xmml="http://www.opengis.net/xmml">
+<schema xmlns="http://www.w3.org/2001/XMLSchema" xmlns:gml="http://www.opengis.net/gml" xmlns:xmml="http://www.opengis.net/xmml" targetNamespace="http://www.opengis.net/xmml" elementFormDefault="qualified" attributeFormDefault="unqualified" version="pre-release">
 	<annotation>
 		<documentation>
 geometry.xsd
@@ -20,7 +20,19 @@ Copyright (c) 2005 CSIRO - see https://www.seegrid.csiro.au/twiki/bin/view/Xmml/
 	<!-- =========================================================== -->
 	<!-- === Solids === -->
 	<!-- =========================================================== -->
-	<element name="Hexahedron" type="xmml:HexahedronType" substitutionGroup="gml:_Solid">
+	<element name="SimpleSolid" type="xmml:SimpleSolidType" substitutionGroup="gml:_Solid">
+		<annotation>
+			<documentation>Head of substitution group for primitive Solids with simple descriptions. </documentation>
+		</annotation>
+	</element>
+	<!-- =========================================================== -->
+	<complexType name="SimpleSolid" abstract="true">
+		<complexContent>
+			<extension base="gml:AbstractSolidType"/>
+		</complexContent>
+	</complexType>
+	<!-- =========================================================== -->
+	<element name="Hexahedron" type="xmml:HexahedronType" substitutionGroup="xmml:SimpleSolid">
 		<annotation>
 			<documentation>The "Hexahedron" element is a simple solid with eight vertices and six sides. </documentation>
 		</annotation>
@@ -29,11 +41,6 @@ Copyright (c) 2005 CSIRO - see https://www.seegrid.csiro.au/twiki/bin/view/Xmml/
 	<complexType name="HexahedronType">
 		<annotation>
 			<documentation>The "Hexahedron" element is a simple solid with eight vertices and six sides.  
-      The vertices may be
-      1.  indicated using a set of attributes whose values are identifiers for points described elsewhere
-      or as a mixture of
-      2.  described inline as direct positions using the gml:pos element, 
-      3.  described inline as gml:Point using the pointRep element (if it is required to give the vertices gml:id's), or by reference to other gml:Points using the pointRep element in the by-reference mode (if Points with id's are already available). 
 Relative to a right-handed coordinate system the vertex sequence is      
    7____6
   / |       / |
@@ -56,16 +63,13 @@ For cases where the face order is used implicitly, then the faces are defined wi
 		<complexContent>
 			<extension base="gml:AbstractSolidType">
 				<sequence>
-					<choice>
-						<element ref="xmml:exterior8Points"/>
-						<group ref="xmml:posProperty" minOccurs="8" maxOccurs="8"/>
-					</choice>
+					<element name="exteriorVertex" type="gml:PointPropertyType" minOccurs="8" maxOccurs="8"/>
 				</sequence>
 			</extension>
 		</complexContent>
 	</complexType>
 	<!-- =========================================================== -->
-	<element name="Wedge" type="xmml:WedgeType" substitutionGroup="gml:_Solid">
+	<element name="Wedge" type="xmml:WedgeType" substitutionGroup="xmml:SimpleSolid">
 		<annotation>
 			<documentation>The "Wedge" element is a simple solid with six vertices and five sides. </documentation>
 		</annotation>
@@ -74,11 +78,6 @@ For cases where the face order is used implicitly, then the faces are defined wi
 	<complexType name="WedgeType">
 		<annotation>
 			<documentation>The "Wedge" element is a simple solid with six vertices and five sides.  
-      The vertices may be
-      1.  indicated using a set of attributes whose values are identifiers for points described elsewhere
-      or as a mixture of
-      2.  described inline as direct positions using the gml:pos element, 
-      3.  described inline as gml:Point using the pointRep element (if it is required to give the vertices gml:id's), or by reference to other gml:Points using the pointRep element in the by-reference mode (if Points with id's are already available). 
 Relative to a right-handed coordinate system the vertex sequence is      
       5
     /  | \
@@ -99,15 +98,14 @@ For cases where the face order is used implicitly, then the faces are defined wi
 		</annotation>
 		<complexContent>
 			<extension base="gml:AbstractSolidType">
-				<choice>
-					<element ref="xmml:exterior6Points"/>
-					<group ref="xmml:posProperty" minOccurs="6" maxOccurs="6"/>
-				</choice>
+				<sequence>
+					<element name="exteriorVertex" type="gml:PointPropertyType" minOccurs="6" maxOccurs="6"/>
+				</sequence>
 			</extension>
 		</complexContent>
 	</complexType>
 	<!-- =========================================================== -->
-	<element name="Pyramid" type="xmml:PyramidType" substitutionGroup="gml:_Solid">
+	<element name="Pyramid" type="xmml:PyramidType" substitutionGroup="xmml:SimpleSolid">
 		<annotation>
 			<documentation>The "Pyramid" element is a simple solid with five vertices and five sides. </documentation>
 		</annotation>
@@ -116,11 +114,6 @@ For cases where the face order is used implicitly, then the faces are defined wi
 	<complexType name="PyramidType">
 		<annotation>
 			<documentation>The "Pyramid" element is a simple solid with five vertices and five sides.  
-      The vertices may be
-      1.  indicated using a set of attributes whose values are identifiers for points described elsewhere
-      or as a mixture of
-      2.  described inline as direct positions using the gml:pos element, 
-      3.  described inline as gml:Point using the pointRep element (if it is required to give the vertices gml:id's), or by reference to other gml:Points using the pointRep element in the by-reference mode (if Points with id's are already available). 
 Relative to a right-handed coordinate system the vertex sequence is      
      4
     //\\ 
@@ -140,15 +133,14 @@ For cases where the face order is used implicitly, then the faces are defined wi
 		</annotation>
 		<complexContent>
 			<extension base="gml:AbstractSolidType">
-				<choice>
-					<element ref="xmml:exterior5Points"/>
-					<group ref="xmml:posProperty" minOccurs="5" maxOccurs="5"/>
-				</choice>
+				<sequence>
+					<element name="exteriorVertex" type="gml:PointPropertyType" minOccurs="5" maxOccurs="5"/>
+				</sequence>
 			</extension>
 		</complexContent>
 	</complexType>
 	<!-- ============================================================== -->
-	<element name="Tetrahedron" type="xmml:TetrahedronType" substitutionGroup="gml:_Solid">
+	<element name="Tetrahedron" type="xmml:TetrahedronType" substitutionGroup="xmml:SimpleSolid">
 		<annotation>
 			<documentation>The "TetrahedronP" element is a simple solid with four vertices and four sides.  </documentation>
 		</annotation>
@@ -157,11 +149,6 @@ For cases where the face order is used implicitly, then the faces are defined wi
 	<complexType name="TetrahedronType">
 		<annotation>
 			<documentation>The "Tetrahedron" element is a simple solid with four vertices and four sides.  
-      The vertices may be
-      1.  indicated using a set of attributes whose values are identifiers for points described elsewhere
-      or as a mixture of
-      2.  described inline as direct positions using the gml:pos element, 
-      3.  described inline as gml:Point using the pointRep element (if it is required to give the vertices gml:id's), or by reference to other gml:Points using the pointRep element in the by-reference mode (if Points with id's are already available). 
 Relative to a right-handed coordinate system the vertex sequence is      
       3
    /   |  \
@@ -180,10 +167,9 @@ Relative to a right-handed coordinate system the vertex sequence is
 		</annotation>
 		<complexContent>
 			<extension base="gml:AbstractSolidType">
-				<choice>
-					<element ref="xmml:exterior4Points"/>
-					<group ref="xmml:posProperty" minOccurs="4" maxOccurs="4"/>
-				</choice>
+				<sequence>
+					<element name="exteriorVertex" type="gml:PointPropertyType" minOccurs="4" maxOccurs="4"/>
+				</sequence>
 			</extension>
 		</complexContent>
 	</complexType>
