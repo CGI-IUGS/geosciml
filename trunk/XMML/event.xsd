@@ -1,0 +1,176 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<schema targetNamespace="http://www.opengis.net/xmml" elementFormDefault="qualified" attributeFormDefault="unqualified" version="pre-release" xmlns:gml="http://www.opengis.net/gml" xmlns:cil="urn:oasis:names:tc:ciq:xsdschema:xCIL:2.0" xmlns:nal="urn:oasis:names:tc:ciq:xsdschema:xNAL:2.0" xmlns:al="urn:oasis:names:tc:ciq:xsdschema:xAL:2.0" xmlns:nl="urn:oasis:names:tc:ciq:xsdschema:xNL:2.0" xmlns:smXML="http://www.isotc211.org/smXML" xmlns="http://www.w3.org/2001/XMLSchema" xmlns:xmml="http://www.opengis.net/xmml">
+	<annotation>
+		<documentation>
+event.xsd
+
+Components required to establish the top-level of the xmml:Event substitution group
+
+Copyright © 2004 CSIRO - see https://www.seegrid.csiro.au/twiki/bin/view/Xmml/LegalNotices#Software_Notice
+</documentation>
+	</annotation>
+	<!-- ====================================================================== -->
+	<!-- bring in other schemas -->
+	<import namespace="http://www.opengis.net/gml" schemaLocation="../gml/3.1.1/base/temporal.xsd"/>
+	<include schemaLocation="./base.xsd"/>
+	<include schemaLocation="./procedures.xsd"/>
+	<!-- ====================================================================== -->
+	<!-- =========================================================== -->
+	<!-- ===================================================== -->
+	<element name="Event" type="xmml:EventType" substitutionGroup="gml:_GML"/>
+	<!-- ====================================================================== -->
+	<complexType name="EventType">
+		<annotation>
+			<documentation>Description of an event, particularly that causes transformation, creation or destruction of a feature.  
+      The event may be transport or administrative.  
+      Use gml:description to describe the nature of the event or action, or to point to a description of it.  
+      Use xmml:reference (substitutable for gml:metaDataProperty) to provide a pointer to a citation for the event.
+      Specialised event types may be derived from this type. </documentation>
+		</annotation>
+		<complexContent>
+			<extension base="gml:AbstractGMLType">
+				<sequence>
+					<group ref="xmml:StandardSupportProperties"/>
+					<group ref="xmml:EventProperties"/>
+				</sequence>
+			</extension>
+		</complexContent>
+	</complexType>
+	<!-- ====================================================================== -->
+	<group name="EventProperties">
+		<sequence>
+			<element name="eventTime" type="gml:TimeGeometricPrimitivePropertyType">
+				<annotation>
+					<documentation>The Time when the event occurred.  This may be given 
+              * in absolute terms as a TimeInstant or TimePeriod
+              * in approximate terms or relative to an absolute position using the indeterminatePosition attribute
+              * or using a TimeTopology element (TimeEdge or TimeNode), which provides the option of giving a time relative to other edges or nodes, either directly (gml) or indirectly (xmml) </documentation>
+				</annotation>
+			</element>
+			<element name="responsible" type="xmml:PartyPropertyType" minOccurs="0" maxOccurs="unbounded">
+				<annotation>
+					<documentation>Person or organisation responsible for the event, if applicable. 
+					The nature of the responsibility (i.e. the role of the party with respect to the event) may be indicated using the xlink:href attribute. 
+					Examples of roles are operator, sponsor, requestor, provider, processor, etc.</documentation>
+				</annotation>
+			</element>
+			<element name="precedingEvent" type="gml:StringOrRefType" minOccurs="0" maxOccurs="unbounded">
+				<annotation>
+					<documentation>Description of, or pointer to, preceding event(s)</documentation>
+				</annotation>
+			</element>
+			<element name="followingEvent" type="gml:StringOrRefType" minOccurs="0" maxOccurs="unbounded">
+				<annotation>
+					<documentation>Description of, or pointer to, following event(s)</documentation>
+				</annotation>
+			</element>
+		</sequence>
+	</group>
+	<!-- ====================================================================== -->
+	<!-- ====================================================================== -->
+	<element name="RecordEvent" type="xmml:RecordEventType">
+		<annotation>
+			<documentation>An event in the life of a database record. </documentation>
+		</annotation>
+	</element>
+	<!-- ====== -->
+	<complexType name="RecordEventType">
+		<annotation>
+			<documentation>An event in the life of a database record.
+			Follows xmml:Event pattern, but derivation designed to fit into Metadata substitution groups</documentation>
+		</annotation>
+		<complexContent>
+			<extension base="xmml:EventType">
+				<sequence>
+					<element name="action" type="xmml:recordActionCodeType">
+						<annotation>
+							<documentation>created, updated, etc</documentation>
+						</annotation>
+					</element>
+				</sequence>
+			</extension>
+		</complexContent>
+	</complexType>
+	<!-- ====== -->
+	<complexType name="RecordEventPropertyType">
+		<sequence minOccurs="0">
+			<element ref="xmml:RecordEvent"/>
+		</sequence>
+		<attributeGroup ref="gml:AssociationAttributeGroup"/>
+		<attribute name="about" type="anyURI" use="optional"/>
+	</complexType>
+	<!-- ====================================================================== -->
+	<!-- === Specialised event types involving procedures === -->
+	<!-- ====================================================================== -->
+	<element name="ProcedureEvent" type="xmml:ProcedureEventType" substitutionGroup="xmml:Event">
+		<annotation>
+			<documentation>Description of an event involving a procedure.  </documentation>
+		</annotation>
+	</element>
+	<!-- ...................... -->
+	<complexType name="ProcedureEventType">
+		<annotation>
+			<documentation>Description of an event involving a procedure.  </documentation>
+		</annotation>
+		<complexContent>
+			<extension base="xmml:EventType">
+				<sequence>
+					<element ref="xmml:procedureUsed"/>
+					<element name="source" type="gml:StringOrRefType" minOccurs="0" maxOccurs="unbounded">
+						<annotation>
+							<documentation>Reference to input (if not implied by context)</documentation>
+						</annotation>
+					</element>
+					<element name="product" type="gml:StringOrRefType" minOccurs="0" maxOccurs="unbounded">
+						<annotation>
+							<documentation>Reference to result (if not implied by context)</documentation>
+						</annotation>
+					</element>
+				</sequence>
+			</extension>
+		</complexContent>
+	</complexType>
+	<!-- ====================================================================== -->
+	<!-- === Global property elements involving procedure events === -->
+	<!-- ====================================================================== -->
+	<element name="processingStep" type="xmml:ProcedureEventPropertyType">
+		<annotation>
+			<documentation>Processing steps - (set of) procedure events</documentation>
+		</annotation>
+	</element>
+	<!-- ...................... -->
+	<complexType name="ProcedureEventPropertyType">
+		<sequence minOccurs="0">
+			<element ref="xmml:ProcedureEvent"/>
+		</sequence>
+		<attributeGroup ref="gml:AssociationAttributeGroup"/>
+	</complexType>
+	<!-- ====================================================================== -->
+	<group name="pqr">
+		<sequence>
+			<annotation>
+				<documentation>Utility group of properties from which data quality can be inferred. 
+        At least one of these should normally be present.</documentation>
+			</annotation>
+			<element ref="xmml:quality" minOccurs="0">
+				<annotation>
+					<documentation>An indication of the quality of value or result.  
+          This quality is specific to the individual feature.  
+          Systematic effects that are a consequence of the _procedure_ should be described in the description of the procedure instead. </documentation>
+				</annotation>
+			</element>
+			<element ref="xmml:processingStep" minOccurs="0" maxOccurs="unbounded">
+				<annotation>
+					<documentation>Processing steps - (set of) procedure events</documentation>
+				</annotation>
+			</element>
+			<element ref="xmml:reference" minOccurs="0">
+				<annotation>
+					<documentation>Reference to documentation giving more complete explanation of procedure and/or quality.</documentation>
+				</annotation>
+			</element>
+		</sequence>
+	</group>
+	<!-- ====================================================================== -->
+	<!-- ====================================================================== -->
+</schema>

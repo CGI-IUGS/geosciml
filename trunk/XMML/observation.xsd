@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<schema targetNamespace="http://www.opengis.net/xmml" elementFormDefault="qualified" attributeFormDefault="unqualified" version="pre-release" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:gml="http://www.opengis.net/gml" xmlns="http://www.w3.org/2001/XMLSchema" xmlns:xmml="http://www.opengis.net/xmml">
+<schema xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:gml="http://www.opengis.net/gml" xmlns="http://www.w3.org/2001/XMLSchema" xmlns:xmml="http://www.opengis.net/xmml" targetNamespace="http://www.opengis.net/xmml" elementFormDefault="qualified" attributeFormDefault="unqualified" version="pre-release">
 	<annotation>
 		<documentation>
 observation.xsd
@@ -11,9 +11,8 @@ Copyright (c) 2004 CSIRO - see https://www.seegrid.csiro.au/twiki/bin/view/Xmml/
 	</annotation>
 	<!-- ====================================================================== -->
 	<!-- bring in other schemas -->
-	<import namespace="http://www.opengis.net/gml" schemaLocation="https://www.seegrid.csiro.au/subversion/xmml/trunk/gml/3.1.1/base/feature.xsd"/>
-	<include schemaLocation="./feature.xsd"/>
-	<include schemaLocation="./procedures.xsd"/>
+	<import namespace="http://www.opengis.net/gml" schemaLocation="../gml/3.1.1/base/feature.xsd"/>
+	<include schemaLocation="./event.xsd"/>
 	<!-- ====================================================================== -->
 	<!-- === hierarchy of "result" property elements for observations === -->
 	<!-- ====================================================================== -->
@@ -102,11 +101,12 @@ Copyright (c) 2004 CSIRO - see https://www.seegrid.csiro.au/twiki/bin/view/Xmml/
 			<documentation>Holds a direct position as a simple (literal) value</documentation>
 		</annotation>
 	</element>
-		<element name="resultVector" type="gml:VectorType" substitutionGroup="xmml:abstractResult" nillable="true">
+	<element name="resultVector" type="gml:VectorType" substitutionGroup="xmml:abstractResult" nillable="true">
 		<annotation>
 			<documentation>Holds a spatial vector as a simple (literal) value</documentation>
 		</annotation>
-	</element>	<element name="resultGeometry" type="gml:GeometryPropertyType" substitutionGroup="xmml:abstractResult" nillable="true">
+	</element>
+	<element name="resultGeometry" type="gml:GeometryPropertyType" substitutionGroup="xmml:abstractResult" nillable="true">
 		<annotation>
 			<documentation>Holds or points to a gml:_Geometry</documentation>
 		</annotation>
@@ -156,28 +156,37 @@ Copyright (c) 2004 CSIRO - see https://www.seegrid.csiro.au/twiki/bin/view/Xmml/
 		</annotation>
 	</element>
 	<!-- ====================================================================== -->
-	<element name="procedureTime" type="gml:TimePositionType" nillable="true">
-		<annotation>
-			<documentation>The Time when the observation occurred.  </documentation>
-		</annotation>
-	</element>
-	<!-- ====================================================================== -->
 	<!-- ===== Feature types for Observations ====== -->
 	<!-- ====================================================================== -->
-	<element name="Observation" type="xmml:ObservationType" substitutionGroup="xmml:Feature">
+	<element name="Observation" type="xmml:ObservationType" substitutionGroup="xmml:Event">
 		<annotation>
 			<documentation>Generic Observation event</documentation>
 		</annotation>
 	</element>
 	<!-- ...................... -->
-	<complexType name="ObservationType">
+	<complexType name="ObservationBaseType">
 		<annotation>
-			<documentation>Generic Observation event.   
-      Note that, in the context of an observation the mandatory "position" is the one deemed by the data provider to be most "representative" for use in spatial analysis. This location will normally relate to the location of the target or subject of the observation, rather than the location of the sensor or instrucment which may be sensing a phenomenon remotely. This location may be complemented by an extensive location which may be associated with the target or subject of the observation. 
-      </documentation>
+			<documentation>Suppress precedingEvent, followingEvent, source and product</documentation>
 		</annotation>
 		<complexContent>
-			<extension base="xmml:PositionedFeatureType">
+			<restriction base="xmml:ProcedureEventType">
+				<sequence>
+					<group ref="gml:StandardObjectProperties"/>
+					<group ref="xmml:StandardSupportProperties"/>
+					<element name="eventTime" type="gml:TimeGeometricPrimitivePropertyType"/>
+					<element name="responsible" type="xmml:PartyPropertyType" minOccurs="0"/>
+					<element ref="xmml:procedureUsed"/>
+				</sequence>
+			</restriction>
+		</complexContent>
+	</complexType>
+	<!-- ...................... -->
+	<complexType name="ObservationType">
+		<annotation>
+			<documentation>Generic Observation event.   </documentation>
+		</annotation>
+		<complexContent>
+			<extension base="xmml:ObservationBaseType">
 				<sequence>
 					<element ref="xmml:subject">
 						<annotation>
@@ -197,22 +206,6 @@ Copyright (c) 2004 CSIRO - see https://www.seegrid.csiro.au/twiki/bin/view/Xmml/
 					<element ref="xmml:quality" minOccurs="0" maxOccurs="unbounded">
 						<annotation>
 							<documentation>Allow multiple quality measures if required.</documentation>
-						</annotation>
-					</element>
-					<element ref="xmml:procedureTime">
-						<annotation>
-							<documentation>The Time when the observation occurred.  </documentation>
-						</annotation>
-					</element>
-					<element ref="xmml:responsible">
-						<annotation>
-							<documentation>Person or organisation responsible for the observation</documentation>
-						</annotation>
-					</element>
-					<element ref="xmml:procedureUsed">
-						<annotation>
-							<documentation>Procedure or instrument used for the act of observation. 
-							If the procedure involves reprocessing an earlier observation, then the identity of the source observation(s) should be recorded as a relatedFeature - use xlink:role to record the nature of the relationship (e.g. source measurement)</documentation>
 						</annotation>
 					</element>
 				</sequence>
@@ -237,17 +230,13 @@ Specialised from generic observation by restricting the result to be numeric.
 				<sequence>
 					<group ref="gml:StandardObjectProperties"/>
 					<group ref="xmml:StandardSupportProperties"/>
-					<group ref="xmml:ExtendedFeatureProperties"/>
-					<element ref="xmml:relatedFeature" minOccurs="0" maxOccurs="unbounded"/>
-					<element ref="gml:position"/>
-					<element ref="xmml:positionMethod" minOccurs="0"/>
+					<element name="eventTime" type="gml:TimeGeometricPrimitivePropertyType"/>
+					<element name="responsible" type="xmml:PartyPropertyType" minOccurs="0"/>
+					<element ref="xmml:procedureUsed"/>
 					<element ref="xmml:subject"/>
 					<element ref="xmml:observedProperty" minOccurs="0"/>
 					<element ref="xmml:abstractResultMeasure"/>
 					<element ref="xmml:quality" minOccurs="0" maxOccurs="unbounded"/>
-					<element ref="xmml:procedureTime"/>
-					<element ref="xmml:responsible"/>
-					<element ref="xmml:procedureUsed"/>
 				</sequence>
 			</restriction>
 		</complexContent>
@@ -271,11 +260,11 @@ Specialised from generic observation by restricting the result to be numeric.
 	<!-- =================================================================== -->
 	<!-- ===== Observation collection ======= -->
 	<!-- ====================================================================== -->
-	<element name="ObservationCollection" type="xmml:ObservationCollectionType" substitutionGroup="xmml:Feature"/>
+	<element name="ObservationCollection" type="xmml:ObservationCollectionType" substitutionGroup="gml:_GML"/>
 	<!-- ...................... -->
 	<complexType name="ObservationCollectionType">
 		<complexContent>
-			<extension base="xmml:BoundedFeatureType">
+			<extension base="gml:AbstractGMLType">
 				<sequence>
 					<element name="observationMember" type="xmml:ObservationPropertyType" minOccurs="0" maxOccurs="unbounded"/>
 				</sequence>

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<schema targetNamespace="http://www.opengis.net/xmml" elementFormDefault="qualified" attributeFormDefault="unqualified" version="pre-release" xmlns:xmml="http://www.opengis.net/xmml" xmlns="http://www.w3.org/2001/XMLSchema" xmlns:gml="http://www.opengis.net/gml" xmlns:xlink="http://www.w3.org/1999/xlink">
+<schema xmlns:xmml="http://www.opengis.net/xmml" xmlns="http://www.w3.org/2001/XMLSchema" xmlns:gml="http://www.opengis.net/gml" xmlns:xlink="http://www.w3.org/1999/xlink" targetNamespace="http://www.opengis.net/xmml" elementFormDefault="qualified" attributeFormDefault="unqualified" version="pre-release">
 	<annotation>
 		<documentation>
 procedures.xsd
@@ -17,7 +17,7 @@ Copyright (c) 2004 CSIRO - see https://www.seegrid.csiro.au/twiki/bin/view/Xmml/
 	<!-- ====================================================================== -->
 	<!-- === Standard property elements used in Procedure feature types === -->
 	<!-- ====================================================================== -->
-	<element name="method" type="token">
+	<element name="method" type="string">
 		<annotation>
 			<documentation>Code for the particular procedure type.  
     Head of substitution group, and usually replaced by a code type for the specific procedure which uses a controlled list.  </documentation>
@@ -94,7 +94,7 @@ Copyright (c) 2004 CSIRO - see https://www.seegrid.csiro.au/twiki/bin/view/Xmml/
 		<complexContent>
 			<restriction base="xmml:ProcedureType">
 				<sequence>
-					<group ref="xmml:StandardDefinitionProperties"/>
+					<group ref="gml:StandardDefinitionProperties"/>
 					<group ref="xmml:StandardSupportProperties"/>
 					<element ref="xmml:positionMethod"/>
 					<element ref="xmml:quality" minOccurs="0"/>
@@ -163,77 +163,5 @@ Copyright (c) 2004 CSIRO - see https://www.seegrid.csiro.au/twiki/bin/view/Xmml/
 			</restriction>
 		</complexContent>
 	</complexType>
-	<!-- ====================================================================== -->
-	<!-- === Specialised event types involving procedures === -->
-	<!-- ====================================================================== -->
-	<element name="ProcedureEvent" type="xmml:ProcedureEventType" substitutionGroup="xmml:Event">
-		<annotation>
-			<documentation>Description of an event involving a procedure.  </documentation>
-		</annotation>
-	</element>
-	<!-- ...................... -->
-	<complexType name="ProcedureEventType">
-		<annotation>
-			<documentation>Description of an event involving a procedure.  </documentation>
-		</annotation>
-		<complexContent>
-			<extension base="xmml:EventType">
-				<sequence>
-					<element ref="xmml:method"/>
-					<element name="source" type="gml:StringOrRefType" minOccurs="0" maxOccurs="unbounded">
-						<annotation>
-							<documentation>Reference to input (if not implied by context)</documentation>
-						</annotation>
-					</element>
-					<element name="product" type="gml:StringOrRefType" minOccurs="0" maxOccurs="unbounded">
-						<annotation>
-							<documentation>Reference to result (if not implied by context)</documentation>
-						</annotation>
-					</element>
-				</sequence>
-			</extension>
-		</complexContent>
-	</complexType>
-	<!-- ====================================================================== -->
-	<!-- === Global property elements involving procedure events === -->
-	<!-- ====================================================================== -->
-	<element name="processingStep" type="xmml:ProcedureEventPropertyType">
-		<annotation>
-			<documentation>Processing steps - (set of) procedure events</documentation>
-		</annotation>
-	</element>
-	<!-- ...................... -->
-	<complexType name="ProcedureEventPropertyType">
-		<sequence minOccurs="0">
-			<element ref="xmml:ProcedureEvent"/>
-		</sequence>
-		<attributeGroup ref="gml:AssociationAttributeGroup"/>
-	</complexType>
-	<!-- ====================================================================== -->
-	<group name="pqr">
-		<sequence>
-			<annotation>
-				<documentation>Utility group of properties from which data quality can be inferred. 
-        At least one of these should normally be present.</documentation>
-			</annotation>
-			<element ref="xmml:quality" minOccurs="0">
-				<annotation>
-					<documentation>An indication of the quality of value or result.  
-          This quality is specific to the individual feature.  
-          Systematic effects that are a consequence of the _procedure_ should be described in the description of the procedure instead. </documentation>
-				</annotation>
-			</element>
-			<element ref="xmml:processingStep" minOccurs="0" maxOccurs="unbounded">
-				<annotation>
-					<documentation>Processing steps - (set of) procedure events</documentation>
-				</annotation>
-			</element>
-			<element ref="xmml:reference" minOccurs="0">
-				<annotation>
-					<documentation>Reference to documentation giving more complete explanation of procedure and/or quality.</documentation>
-				</annotation>
-			</element>
-		</sequence>
-	</group>
 	<!-- ====================================================================== -->
 </schema>
