@@ -19,7 +19,7 @@ Copyright © 2004 CSIRO - see https://www.seegrid.csiro.au/twiki/bin/view/Xmml/L
 	<attributeGroup name="simpleContentStandardAttributes">
 		<attribute name="nilReason" type="gml:NullType" use="optional"/>
 		<attribute name="metadata" type="anyURI" use="optional"/>
-		<attribute name="metadataType" type="xmml:simpleContentMetadataType" use="optional"/>
+		<attribute name="metadataRole" type="xmml:simpleContentMetadataType" use="optional"/>
 	</attributeGroup>
 	<!-- ===================================================== -->
 	<simpleType name="simpleContentMetadataType">
@@ -28,22 +28,22 @@ Copyright © 2004 CSIRO - see https://www.seegrid.csiro.au/twiki/bin/view/Xmml/L
 	<!-- ===================================================== -->
 	<simpleType name="observationRelatedRoles">
 		<annotation>
-			<documentation>This type provides a set of standard tokens indicating that the metadata is related to various descriptors related to the observation process</documentation>
+			<documentation>This type provides a set of standard tokens indicating that the metadata concerns various descriptors related to the observation process</documentation>
 		</annotation>
 		<restriction base="token">
 			<enumeration value="observationEvent">
 				<annotation>
-					<documentation> </documentation>
+					<documentation>Details of the observation or measurement event that led to the determination of the reported value</documentation>
 				</annotation>
 			</enumeration>
 			<enumeration value="observationProcedure">
 				<annotation>
-					<documentation> </documentation>
+					<documentation>Details of the generic procedure used to determine the reported value</documentation>
 				</annotation>
 			</enumeration>
 			<enumeration value="observationResponsibleParty">
 				<annotation>
-					<documentation>laboratory etc</documentation>
+					<documentation>Identity or details realted to the party responsible for making the observation</documentation>
 				</annotation>
 			</enumeration>
 		</restriction>
