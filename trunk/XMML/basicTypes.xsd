@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<schema targetNamespace="http://www.opengis.net/xmml" xmlns:gml="http://www.opengis.net/gml" xmlns="http://www.w3.org/2001/XMLSchema" xmlns:xmml="http://www.opengis.net/xmml" elementFormDefault="qualified" attributeFormDefault="unqualified" version="pre-release">
+<schema targetNamespace="http://www.opengis.net/xmml" elementFormDefault="qualified" attributeFormDefault="unqualified" version="pre-release" xmlns:gml="http://www.opengis.net/gml" xmlns="http://www.w3.org/2001/XMLSchema" xmlns:xmml="http://www.opengis.net/xmml">
 	<annotation>
 		<documentation>
 basicTypes.xsd
@@ -117,7 +117,6 @@ Copyright © 2004 CSIRO - see https://www.seegrid.csiro.au/twiki/bin/view/Xmml/L
             such as lithology type, material colour.  </documentation>
 					</annotation>
 				</attribute>
-				<attributeGroup ref="xmml:simpleContentStandardAttributes"/>
 			</extension>
 		</simpleContent>
 	</complexType>
@@ -135,8 +134,6 @@ Copyright © 2004 CSIRO - see https://www.seegrid.csiro.au/twiki/bin/view/Xmml/L
             such as lithology type, material colour.  </documentation>
 					</annotation>
 				</attribute>
-				<attributeGroup ref="xmml:simpleContentStandardAttributes"/>
-				<attribute name="count" type="nonNegativeInteger" use="optional"/>
 			</extension>
 		</simpleContent>
 	</complexType>
@@ -240,6 +237,11 @@ Copyright © 2004 CSIRO - see https://www.seegrid.csiro.au/twiki/bin/view/Xmml/L
 		</annotation>
 		<simpleContent>
 			<extension base="gml:MeasureType">
+				<attribute name="originalUom" type="gml:UomIdentifier" use="optional">
+					<annotation>
+						<documentation>When the value reported has been converted from the stored units (for example, raio values converted from ppm to a number), this attribute may be used to record  the original units of measure.</documentation>
+					</annotation>
+				</attribute>
 				<attributeGroup ref="xmml:simpleContentStandardAttributes"/>
 			</extension>
 		</simpleContent>
@@ -579,6 +581,7 @@ Tokens may be represented in a list using line feed, tab, or spaces as separator
 			<extension base="xmml:tokenListType">
 				<attribute name="codeSpace" type="anyURI" use="optional"/>
 				<attributeGroup ref="xmml:simpleContentStandardAttributes"/>
+				<attribute name="count" type="nonNegativeInteger" use="optional"/>
 			</extension>
 		</simpleContent>
 	</complexType>
