@@ -6,7 +6,7 @@ event.xsd
 
 Components required to establish the top-level of the xmml:Event substitution group
 
-Copyright © 2004 CSIRO - see https://www.seegrid.csiro.au/twiki/bin/view/Xmml/LegalNotices#Software_Notice
+Copyright © 2005 CSIRO - see https://www.seegrid.csiro.au/twiki/bin/view/Xmml/LegalNotices#Software_Notice
 </documentation>
 	</annotation>
 	<!-- ====================================================================== -->
@@ -68,7 +68,7 @@ Copyright © 2004 CSIRO - see https://www.seegrid.csiro.au/twiki/bin/view/Xmml/L
 	<!-- ====================================================================== -->
 	<!-- === Specialised event types related to record-keeping === -->
 	<!-- ====================================================================== -->
-	<element name="RecordEvent" type="xmml:RecordEventType">
+	<element name="RecordEvent" type="xmml:RecordEventType" substitutionGroup="xmml:Event">
 		<annotation>
 			<documentation>An event in the life of a database record. </documentation>
 		</annotation>
@@ -133,12 +133,6 @@ Copyright © 2004 CSIRO - see https://www.seegrid.csiro.au/twiki/bin/view/Xmml/L
 	<!-- ====================================================================== -->
 	<!-- === Global property elements involving procedure events === -->
 	<!-- ====================================================================== -->
-	<element name="processingStep" type="xmml:ProcedureEventPropertyType">
-		<annotation>
-			<documentation>Processing steps = (set of) procedure events</documentation>
-		</annotation>
-	</element>
-	<!-- ...................... -->
 	<complexType name="ProcedureEventPropertyType">
 		<sequence minOccurs="0">
 			<element ref="xmml:ProcedureEvent"/>
@@ -152,7 +146,7 @@ Copyright © 2004 CSIRO - see https://www.seegrid.csiro.au/twiki/bin/view/Xmml/L
 				<documentation>Utility group of properties from which data quality can be inferred. 
         At least one of these should normally be present.</documentation>
 			</annotation>
-			<element ref="xmml:quality" minOccurs="0">
+			<element name="quality" type="xmml:QualityPropertyType" minOccurs="0">
 				<annotation>
 					<documentation>An indication of the quality of value or result.  
           This quality is specific to the individual feature.  
