@@ -1,15 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!-- edited with XMLSPY v5 rel. 4 U (http://www.xmlspy.com) by Marcus Sen (british Geological Survey) -->
-<schema xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:xmml="http://www.opengis.net/xmml" xmlns:gml="http://www.opengis.net/gml" xmlns="http://www.w3.org/2001/XMLSchema" targetNamespace="http://www.opengis.net/xmml" elementFormDefault="qualified" attributeFormDefault="unqualified" version="pre-release">
+<schema xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:xmml="http://www.opengis.net/xmml" xmlns:gml="http://www.opengis.net/gml" xmlns="http://www.w3.org/2001/XMLSchema" targetNamespace="http://www.opengis.net/xmml" elementFormDefault="qualified"
+        attributeFormDefault="unqualified" version="pre-release">
 	<annotation>
-		<documentation source="xw:CoveragesInXmml">
-coverage.xsd
+		<documentation source="xw:CoveragesInXmml">coverage.xsd
 
 A GML conformant schema 
 for coverages - modified from GML coverages
 
-Copyright (c) 2005 CSIRO - see https://www.seegrid.csiro.au/twiki/bin/view/Xmml/LegalNotices#Software_Notice
-</documentation>
+Copyright (c) 2005 CSIRO - see https://www.seegrid.csiro.au/twiki/bin/view/Xmml/LegalNotices#Software_Notice</documentation>
 	</annotation>
 	<!-- ====================================================================== -->
 	<!-- bring in other schemas -->
@@ -21,82 +20,51 @@ Copyright (c) 2005 CSIRO - see https://www.seegrid.csiro.au/twiki/bin/view/Xmml/
 	<!-- ====================================================================== -->
 	<complexType name="CoveragePropertyType">
 		<sequence>
-			<element ref="xmml:Coverage" minOccurs="0"/>
+			<element ref="xmml:AbstractCoverage" minOccurs="0"/>
 		</sequence>
 		<attributeGroup ref="gml:AssociationAttributeGroup"/>
 	</complexType>
 	<!-- =========================================================== -->
-	<element name="Coverage" type="xmml:CoverageType" abstract="false" substitutionGroup="gml:_Feature"/>
-	<!-- =========================================================== -->
-	<complexType name="CoverageType" abstract="false">
+	<element name="AbstractCoverage" type="xmml:AbstractCoverageType" abstract="true" substitutionGroup="gml:_Feature"/>
+	<!-- ...... -->
+	<complexType name="AbstractCoverageType" abstract="true">
 		<annotation>
-			<documentation>A coverage is a set of attribute values (its range) associated to position within a bounded space (its domain). This coverage uses a single coverage function to associate an element from the domain with an element from its range.  This definition conforms to ISO 19123.  Note that coverage is a GML feature.</documentation>
+			<documentation>A coverage is a set of attribute values (its range) associated to position within a bounded space (its domain). 
+			This coverage uses a single coverage function to associate an element from the domain with an element from its range.  
+			This definition conforms to ISO 19123.  Note that coverage is a GML feature.
+			
+			The content model for concrete (instantiable) coverages MUST extend AbstractCoverageType with a suitable domain property.</documentation>
 		</annotation>
 		<complexContent>
 			<extension base="xmml:FeatureType">
 				<sequence>
-					<element ref="xmml:abstractDomain">
-						<annotation>
-							<documentation>Must be replaced by a member of its substitution group when instantiated</documentation>
-						</annotation>
-					</element>
-					<element ref="xmml:abstractRange">
-						<annotation>
-							<documentation>Must be replaced by a member of its substitution group when instantiated</documentation>
-						</annotation>
-					</element>
 					<element ref="xmml:coverageFunction" minOccurs="0">
 						<annotation>
 							<documentation>Describes the mapping function between the elements in the domain and the elements in the range. Typically a sequence function.</documentation>
 						</annotation>
 					</element>
+					<element ref="xmml:range">
+						<annotation>
+							<documentation>Contains a representation of the values in the coverage</documentation>
+						</annotation>
+					</element>
+					<!--
+					<element ref="xmml:domain">
+						<annotation>
+							<documentation>Concrete coverage types must add a domain element of the appropriate type.</documentation>
+						</annotation>
+					</element>
+					-->
 				</sequence>
 				<attribute name="dimension" type="positiveInteger" use="optional"/>
 			</extension>
 		</complexContent>
 	</complexType>
+	<!-- ===========================================================
+	<element name="abstractRange" type="anyType" abstract="true"/> -->
 	<!-- =========================================================== -->
-	<element name="abstractDomain" type="anyType" abstract="true">
-		<annotation>
-			<documentation>The spatiotemporal domain of a coverage.  
-  Typically 
-  * a geometry collection, 
-  * an implicit geometry (e.g. a grid), 
-  * an explicit or implicit collection of time instances or periods
-
-N.B. Temporal domains still to be implemented.</documentation>
-		</annotation>
-	</element>
-	<!-- =========================================================== -->
-	<element name="domain" type="xmml:DomainType" substitutionGroup="xmml:abstractDomain"/>
-	<!-- =========================================================== -->
-	<complexType name="DomainType">
-		<annotation>
-			<documentation>The spatiotemporal domain of a coverage.  
-  Typically 
-  * a geometry collection, 
-  * an implicit geometry (e.g. a grid), 
-  * an explicit or implicit collection of time instances or periods
-
-N.B. Temporal domains still to be implemented.</documentation>
-		</annotation>
-		<complexContent>
-			<restriction base="anyType">
-				<sequence minOccurs="0">
-					<choice>
-						<element ref="gml:_Geometry"/>
-						<element ref="gml:_TimeObject"/>
-					</choice>
-				</sequence>
-				<attributeGroup ref="gml:AssociationAttributeGroup"/>
-			</restriction>
-		</complexContent>
-	</complexType>
-	<!-- =========================================================== -->
-	<element name="abstractRange" type="anyType" abstract="true"/>
-	<!-- =========================================================== -->
-	<element name="range" type="xmml:RangeType" substitutionGroup="xmml:abstractRange"/>
-	<!-- =========================================================== -->
+	<element name="range" type="xmml:RangeType"/>
+	<!-- ...... -->
 	<complexType name="RangeType">
 		<annotation>
 			<documentation>Choice of representations of values in the coverage range. 
@@ -107,71 +75,40 @@ N.B. Temporal domains still to be implemented.</documentation>
 			If the latter method is used, the set of Bands must be captured in a set of Coverages. 
 			The fact that these share a common domain may be indicated by use of the GML xlink:href pattern to re-use a single domain description. 
 			
-			The base type "anyType" is not strictly needed - all concrete types are implicitly "restrictions" of WXS "anyType", but making this explicit appear to make Xerces happier. </documentation>
+			The base type "anyType" is not strictly needed - all concrete types are implicitly "restrictions" of WXS "anyType", but making this explicit appear to make Xerces happier.</documentation>
 		</annotation>
-		<complexContent>
-			<restriction base="anyType">
-				<sequence>
-					<choice>
-						<element name="ListOfRecords" type="xmml:ListOfRecordsType">
-							<annotation>
-								<documentation>Values in the range represented as record in band-interleaved (property- or component-interleaved) order - i.e. values for all components of range for one sample in domain, followed by values for all components of range for next sample in domain, etc</documentation>
-							</annotation>
-						</element>
-						<element name="Band" type="xmml:BandType">
-							<annotation>
-								<documentation>Values in the range represented as a vector.</documentation>
-							</annotation>
-						</element>
-						<element name="File" type="xmml:FileType">
-							<annotation>
-								<documentation>A reference to an external source for the data, together with a description of how that external source is structured
-</documentation>
-							</annotation>
-						</element>
-						<!--						<element name="ListOfBands" type="xmml:ListOfBandsType">
-							<annotation>
-								<documentation>Values in the range represented as vectors in property- component- or band-sequential order - i.e. values for all samples in domain for one component of range, followed by values for all samples in domain for next component, etc</documentation>
-							</annotation>
-						</element>
-						<element name="TableByBand" type="xmml:TableByBandType">
-							<annotation>
-								<documentation>Values in the range represented as a table in property- component or band-sequential order - i.e. values for all samples in domain for one component of range, followed by values for all samples in domain for next component, etc</documentation>
-							</annotation>
-						</element>
-						<element name="TableByRecord" type="xmml:TableByRecordType">
-							<annotation>
-								<documentation>Values in the range represented as a table in band-interleaved (property- or component-interleaved) order - i.e. values for all components of range for one sample in domain, followed by values for all components of range for next sample in domain, etc</documentation>
-							</annotation>
-						</element>
-						<element name="ListOfObjects" type="xmml:ListOfObjectsType">
-							<annotation>
-								<documentation>Values in the range represented as Objects or structured values - following the standard GML Property pattern, the "member" property may carry a link to an out-of-line object. </documentation>
-							</annotation>
-						</element>
-						<element name="ListOfDescriptions" type="xmml:ListOfDescriptionsType">
-							<annotation>
-								<documentation>Values in the range represented as text.</documentation>
-							</annotation>
-						</element>
--->
-					</choice>
-				</sequence>
-			</restriction>
-		</complexContent>
+		<sequence>
+			<choice>
+				<element ref="xmml:ListOfRecords">
+					<annotation>
+						<documentation>Values in the range represented as record in band-interleaved (property- or component-interleaved) order - i.e. values for all components of range for one sample in domain, followed by values for all components of range for next sample in domain, etc</documentation>
+					</annotation>
+				</element>
+				<element ref="xmml:Band">
+					<annotation>
+						<documentation>Values in the range represented as a vector.</documentation>
+					</annotation>
+				</element>
+				<element ref="xmml:File">
+					<annotation>
+						<documentation>A reference to an external source for the data, together with a description of how that external source is structured</documentation>
+					</annotation>
+				</element>
+			</choice>
+		</sequence>
 	</complexType>
 	<!-- =========================================================== -->
 	<!-- === Types used in range content choices === -->
 	<!-- =========================================================== -->
 	<element name="Band" type="xmml:BandType">
 		<annotation>
-			<documentation>A list, representing the values in a scalar-valued range. </documentation>
+			<documentation>Values in the range represented as a vector.</documentation>
 		</annotation>
 	</element>
-	<!-- =========================================================== -->
+	<!-- ...... -->
 	<complexType name="BandType">
 		<annotation>
-			<documentation>A list, representing the values in a scalar-valued range. </documentation>
+			<documentation>A list, representing the values in a scalar-valued range.</documentation>
 		</annotation>
 		<sequence>
 			<element name="rangeParameter" type="xmml:AxisDefinitionPropertyType">
@@ -192,16 +129,15 @@ N.B. Temporal domains still to be implemented.</documentation>
 						
 						HTML character entities may be used to escape embedded whitespace within a list item to prevent interpretation as a list item separator. 
 						See http://www.w3.org/TR/REC-html40/sgml/entities.html. 
-						For example &#160; represents a non-breaking space. 
+						For example &#xA0; represents a non-breaking space. 
 						
 						categoryList is normally used for values taken from a controlled vocabulary. 
-						For unconstrained text, use descriptionList. 
-						</documentation>
+						For unconstrained text, use descriptionList.</documentation>
 				</annotation>
 			</element>
 			<element name="countList" type="gml:integerOrNullList">
 				<annotation>
-					<documentation>A list of integers describing a single property, being the set of values in one component of the range.  </documentation>
+					<documentation>A list of integers describing a single property, being the set of values in one component of the range.</documentation>
 				</annotation>
 			</element>
 			<element name="descriptionList" type="xmml:ListOfDescriptionsType">
@@ -210,23 +146,28 @@ N.B. Temporal domains still to be implemented.</documentation>
 						
 						HTML character entities may be used to escape embedded whitespace within a list item to prevent interpretation as a list item separator. 
 						See http://www.w3.org/TR/REC-html40/sgml/entities.html. 
-						For example &#160; represents a non-breaking space. 
-						</documentation>
+						For example &#xA0; represents a non-breaking space.</documentation>
 				</annotation>
 			</element>
 			<element name="measureList" type="gml:MeasureOrNullListType">
 				<annotation>
-					<documentation>A list of numeric values describing a single property, being the set of values in one component of the range.  </documentation>
+					<documentation>A list of numeric values describing a single property, being the set of values in one component of the range.</documentation>
 				</annotation>
 			</element>
 			<element name="referenceList" type="xmml:refListType">
 				<annotation>
-					<documentation>A list of URI's, being the a set of references to (possibly complex) values in one component of the range.  </documentation>
+					<documentation>A list of URI's, being the a set of references to (possibly complex) values in one component of the range.</documentation>
 				</annotation>
 			</element>
 		</choice>
 	</group>
 	<!-- =========================================================== -->
+	<element name="ListOfRecords" type="xmml:ListOfRecordsType">
+		<annotation>
+			<documentation>Values in the range represented as record in band-interleaved (property- or component-interleaved) order - i.e. values for all components of range for one sample in domain, followed by values for all components of range for next sample in domain, etc</documentation>
+		</annotation>
+	</element>
+	<!-- ...................... -->
 	<complexType name="ListOfRecordsType">
 		<sequence>
 			<element name="rangeParameters" type="xmml:RSDefinitionPropertyType">
@@ -244,12 +185,12 @@ N.B. Temporal domains still to be implemented.</documentation>
 			<element name="nValue" type="gml:MeasureType" maxOccurs="unbounded"/>
 			<element name="record" type="xmml:RecordType" maxOccurs="unbounded">
 				<annotation>
-					<documentation>A list of general tuples, each being one multi-component range value in "band-interleaved" order. </documentation>
+					<documentation>A list of general tuples, each being one multi-component range value in "band-interleaved" order.</documentation>
 				</annotation>
 			</element>
 			<element name="nRecord" type="xmml:NumericOrNullRecordType" maxOccurs="unbounded">
 				<annotation>
-					<documentation>A list of numeric tuples, each being one multi-component range value in "band-interleaved" order. </documentation>
+					<documentation>A list of numeric tuples, each being one multi-component range value in "band-interleaved" order.</documentation>
 				</annotation>
 			</element>
 			<element ref="gml:vector" maxOccurs="unbounded"/>
@@ -270,11 +211,17 @@ N.B. Temporal domains still to be implemented.</documentation>
 		</sequence>
 		<attribute name="property" type="anyURI">
 			<annotation>
-				<documentation>This attribute holds a reference to or label for the property being described. </documentation>
+				<documentation>This attribute holds a reference to or label for the property being described.</documentation>
 			</annotation>
 		</attribute>
 	</complexType>
 	<!-- =========================================================== -->
+	<element name="File" type="xmml:FileType">
+		<annotation>
+			<documentation>A reference to an external source for the data, together with a description of how that external source is structured</documentation>
+		</annotation>
+	</element>
+	<!-- ...................... -->
 	<complexType name="FileType">
 		<sequence>
 			<element name="rangeParameters" type="xmml:RSDefinitionPropertyType">
@@ -300,129 +247,12 @@ N.B. Temporal domains still to be implemented.</documentation>
 	</simpleType>
 	<!-- =========================================================== -->
 	<!-- =========================================================== -->
-	<!-- =========================================================== -->
-	<!-- =========================================================== -->
-	<!--
-	<complexType name="ListOfBandsType">
-		<annotation>
-			<documentation>A set of lists, each representing a single component of the range.  
-          The complete set is the range in "band-sequential" order.  </documentation>
-		</annotation>
-		<sequence>
-			<element ref="xmml:rangeParameters" minOccurs="0"/>
-			<choice maxOccurs="unbounded">
-				<element name="booleanList" type="xmml:SoftTypedBooleanOrNullListType">
-					<annotation>
-						<documentation>A list of text values representing a single property, being the set of values in one component of the range.  </documentation>
-					</annotation>
-				</element>
-				<element name="categoryList" type="xmml:SoftTypedCategoryListType">
-					<annotation>
-						<documentation>A list of text values representing a single property, being the set of values in one component of the range.  
-						
-						HTML character entities may be used to escape embedded whitespace within a list item to prevent interpretation as a list item separator. 
-						See http://www.w3.org/TR/REC-html40/sgml/entities.html. 
-						For example &#160; represents a non-breaking space. 
-						
-						Alternatively, use the "descriptionList" structure provided below. 
-						</documentation>
-					</annotation>
-				</element>
-				<element name="countList" type="xmml:SoftTypedCountOrNullListType">
-					<annotation>
-						<documentation>A list of text values representing a single property, being the set of values in one component of the range.  </documentation>
-					</annotation>
-				</element>
-				<element name="descriptionList" type="xmml:ListOfDescriptionsType">
-					<annotation>
-						<documentation>A list of text values representing a single property, being the set of values in one component of the range.  
-						The values may include embedded whitespace. </documentation>
-					</annotation>
-				</element>
-				<element name="measureList" type="xmml:SoftTypedMeasureOrNullListType">
-					<annotation>
-						<documentation>A list of numeric values representing a single property, being the set of values in one component of the range.  </documentation>
-					</annotation>
-				</element>
-				<element name="referenceList" type="xmml:refListType">
-					<annotation>
-						<documentation>A list of URI's, being the a set of references to (possibly complex) values in one component of the range.  </documentation>
-					</annotation>
-				</element>
-			</choice>
-		</sequence>
-		<attribute name="dimension" type="positiveInteger" use="optional">
-			<annotation>
-				<documentation>The band count</documentation>
-			</annotation>
-		</attribute>
-	</complexType>
--->
-	<!-- =========================================================== -->
-	<!--
-	<complexType name="TableByBandType">
-		<sequence>
-			<element ref="xmml:rangeParameters"/>
-			<choice>
-				<element name="table" type="xmml:RecordListType">
-					<annotation>
-						<documentation>A list of general values, being the set of multi-component range values in "band-sequential " order. </documentation>
-					</annotation>
-				</element>
-				<element name="nTable" type="xmml:NumericOrNullRecordListType">
-					<annotation>
-						<documentation>A list of numeric values, being the set of multi-component range values in "band-sequential " order. </documentation>
-					</annotation>
-				</element>
-			</choice>
-		</sequence>
-	</complexType>
--->
-	<!-- =========================================================== -->
-	<!--
-	<complexType name="TableByRecordType">
-		<sequence>
-			<element ref="xmml:rangeParameters"/>
-			<choice>
-				<element name="table" type="xmml:RecordListType">
-					<annotation>
-						<documentation>A list of general values, being the set of multi-component range values in "band-interleaved" order. </documentation>
-					</annotation>
-				</element>
-				<element name="nTable" type="xmml:NumericOrNullRecordListType">
-					<annotation>
-						<documentation>A list of numeric values, being the set of multi-component range values in "band-interleaved" order. </documentation>
-					</annotation>
-				</element>
-			</choice>
-		</sequence>
-	</complexType>
--->
-	<!-- =========================================================== -->
-	<!--
-		<complexType name="ListOfObjectsType">
-		<sequence>
-				<element name="member" maxOccurs="unbounded">
-					<complexType>
-						<sequence minOccurs="0">
-							<element ref="gml:_GML"/>
-						</sequence>
-						<attributeGroup ref="gml:AssociationAttributeGroup"/>
-					</complexType>
-				</element>
-		</sequence>
-	</complexType>
--->
-	<!-- =========================================================== -->
-	<!-- =========================================================== -->
 	<element name="coverageFunction" type="xmml:CoverageFunctionType"/>
-	<!-- =========================================================== -->
+	<!-- ...... -->
 	<complexType name="CoverageFunctionType">
 		<annotation>
-			<documentation>
-      The function or rule which defines the map from members of the domainSet to the range.  
-      More functions will be added to this list
-    </documentation>
+			<documentation>The function or rule which defines the map from members of the domainSet to the range.  
+      More functions will be added to this list</documentation>
 		</annotation>
 		<choice>
 			<element ref="xmml:MappingRule"/>
@@ -434,12 +264,12 @@ N.B. Temporal domains still to be implemented.</documentation>
 	<!-- =========================================================== -->
 	<element name="MappingRule" type="gml:StringOrRefType">
 		<annotation>
-			<documentation>Description of a rule for associating members from the domainSet with members of the rangeSet.  </documentation>
+			<documentation>Description of a rule for associating members from the domainSet with members of the rangeSet.</documentation>
 		</annotation>
 	</element>
 	<!-- =========================================================== -->
 	<element name="GridFunction" type="xmml:GridFunctionType"/>
-	<!-- =========================================================== -->
+	<!-- ...... -->
 	<complexType name="GridFunctionType">
 		<annotation>
 			<documentation>Defines how values in the domain are mapped to the range set. The start point and the sequencing rule are specified here.</documentation>
@@ -452,17 +282,17 @@ N.B. Temporal domains still to be implemented.</documentation>
 			</element>
 			<element name="startPoint" type="gml:integerList" minOccurs="0">
 				<annotation>
-					<documentation>Index position of the first grid post.  If absent the startPoint is equal to the value of gridEnvelope::low from the grid definition.  </documentation>
+					<documentation>Index position of the first grid post.  If absent the startPoint is equal to the value of gridEnvelope::low from the grid definition.</documentation>
 				</annotation>
 			</element>
 		</sequence>
 	</complexType>
 	<!-- =========================================================== -->
 	<element name="IndexMap" type="xmml:IndexMapType" substitutionGroup="xmml:GridFunction"/>
-	<!-- =========================================================== -->
+	<!-- ...... -->
 	<complexType name="IndexMapType">
 		<annotation>
-			<documentation>Exends GridFunctionType with a lookUpTable.  This contains a list of indexes of members within the rangeSet corresponding with the members of the domainSet.  The domainSet is traversed in list order if it is enumerated explicitly, or in the order specified by a SequenceRule if the domain is an implicit set.    The length of the lookUpTable corresponds with the length of the subset of the domainSet for which the coverage is defined.  </documentation>
+			<documentation>Exends GridFunctionType with a lookUpTable.  This contains a list of indexes of members within the rangeSet corresponding with the members of the domainSet.  The domainSet is traversed in list order if it is enumerated explicitly, or in the order specified by a SequenceRule if the domain is an implicit set.    The length of the lookUpTable corresponds with the length of the subset of the domainSet for which the coverage is defined.</documentation>
 		</annotation>
 		<complexContent>
 			<extension base="xmml:GridFunctionType">
@@ -498,8 +328,7 @@ N.B. Temporal domains still to be implemented.</documentation>
 	<simpleType name="IncrementOrder">
 		<annotation>
 			<documentation>The enumeration value here indicates the incrementation order  to be used on the first 2 axes, i.e. "+x-y" means that the points on the first axis are to be traversed from lowest to highest and  the points on the second axis are to be traversed from highest to lowest. The points on all other axes (if any) beyond the first 2 are assumed to increment from lowest to highest.
-XXXXXXXXXXXXXXX need to make this more comprehensive
-</documentation>
+XXXXXXXXXXXXXXX need to make this more comprehensive</documentation>
 		</annotation>
 		<restriction base="string">
 			<enumeration value="+x+y"/>
@@ -509,312 +338,266 @@ XXXXXXXXXXXXXXX need to make this more comprehensive
 		</restriction>
 	</simpleType>
 	<!-- =========================================================== -->
-	<!-- === a specialised metadata element describing the method of acquisition of the range components === -->
 	<!-- =========================================================== -->
-	<!--
-	<element name="MethodList" type="xmml:MethodListType">
+	<!-- ===========================================================
+	<element name="abstractDomain" type="anyType" abstract="true">
 		<annotation>
-			<documentation>Description of the method used to acquire the values in each component
-      This model is a little clumsy. Maybe better to have the "Procedure" objects as direct MetaData elements?</documentation>
+			<documentation>The spatiotemporal domain of a coverage.  
+  Typically 
+  * a geometry collection, 
+  * an implicit geometry (e.g. a grid), 
+  * an explicit or implicit collection of time instances or periods
+
+N.B. Temporal domains still to be implemented.</documentation>
+		</annotation>
+	</element> -->
+	<!-- =========================================================== -->
+	<element name="domain" type="xmml:DomainType"/>
+	<!-- ...... -->
+	<complexType name="DomainType">
+		<annotation>
+			<documentation>Generic model for spatiotemporal domain of a coverage.  
+  Typically 
+  * a geometry collection, 
+  * an implicit geometry (e.g. a grid), 
+  * an explicit or implicit collection of time instances or periods
+
+N.B. Temporal domains still to be implemented.</documentation>
+		</annotation>
+		<sequence minOccurs="0">
+			<choice>
+				<element ref="gml:_Geometry"/>
+				<element ref="gml:_TimeObject"/>
+			</choice>
+		</sequence>
+		<attributeGroup ref="gml:AssociationAttributeGroup"/>
+	</complexType>
+	<!-- ====================================================================== -->
+	<element name="Coverage" type="xmml:CoverageType" substitutionGroup="xmml:AbstractCoverage">
+		<annotation>
+			<documentation>A coverage with a general spatio-temporal domain</documentation>
 		</annotation>
 	</element>
--->
-	<!-- =========================================================== -->
-	<!--
-	<complexType name="MethodListType">
+	<!-- ...... -->
+	<complexType name="CoverageType">
+		<annotation>
+			<documentation>A generic coverage type</documentation>
+		</annotation>
 		<complexContent>
-			<extension base="xmml:ElementOnlyMetaDataType">
+			<extension base="xmml:AbstractCoverageType">
 				<sequence>
-					<group ref="xmml:pqr" maxOccurs="unbounded"/>
+					<element ref="xmml:domain"/>
 				</sequence>
-				<attribute name="dimension" type="positiveInteger">
-					<annotation>
-						<documentation>The number of components (bands) in the range</documentation>
-					</annotation>
-				</attribute>
 			</extension>
 		</complexContent>
 	</complexType>
--->
-	<!-- =========================================================== -->
 	<!-- ====================================================================== -->
-	<element name="PointSetCoverage" type="xmml:PointSetCoverageType" substitutionGroup="xmml:Coverage">
+	<!-- ====================================================================== -->
+	<element name="pointSetDomain" type="xmml:PointSetDomainType"/>
+	<!-- ...... -->
+	<complexType name="PointSetDomainType">
+		<annotation>
+			<documentation>Need to add MultiInstant ...</documentation>
+		</annotation>
+		<sequence minOccurs="0">
+			<element ref="gml:MultiPoint"/>
+		</sequence>
+		<attributeGroup ref="gml:AssociationAttributeGroup"/>
+	</complexType>
+	<!-- ====================================================================== -->
+	<!-- =========================================================== -->
+	<element name="PointSetCoverage" type="xmml:PointSetCoverageType" substitutionGroup="xmml:AbstractCoverage">
 		<annotation>
 			<documentation>A coverage whose domain is a collection of point locations</documentation>
 		</annotation>
 	</element>
-	<!-- ====================================================================== -->
+	<!-- ...... -->
 	<complexType name="PointSetCoverageType">
 		<annotation>
 			<documentation>A discrete coverage type whose domain is defined by a collection of point locations</documentation>
 		</annotation>
 		<complexContent>
-			<restriction base="xmml:CoverageType">
+			<extension base="xmml:AbstractCoverageType">
 				<sequence>
-					<group ref="gml:StandardObjectProperties"/>
-					<element ref="gml:boundedBy"/>
-					<group ref="xmml:StandardSupportProperties"/>
-					<group ref="xmml:ExtendedFeatureProperties"/>
 					<element ref="xmml:pointSetDomain"/>
-					<element ref="xmml:range"/>
-					<element ref="xmml:coverageFunction" minOccurs="0"/>
 				</sequence>
-			</restriction>
+			</extension>
 		</complexContent>
 	</complexType>
 	<!-- ====================================================================== -->
-	<element name="pointSetDomain" type="xmml:PointSetDomainType" substitutionGroup="xmml:abstractDomain"/>
 	<!-- ====================================================================== -->
-	<complexType name="PointSetDomainType">
-		<annotation>
-			<documentation>Need to add MultiInstant ...</documentation>
-		</annotation>
-		<complexContent>
-			<restriction base="anyType">
-				<sequence minOccurs="0">
-					<element ref="gml:MultiPoint"/>
-				</sequence>
-				<attributeGroup ref="gml:AssociationAttributeGroup"/>
-			</restriction>
-		</complexContent>
+	<element name="multiPosDomain" type="xmml:MultiPosDomainType"/>
+	<!-- ...... -->
+	<complexType name="MultiPosDomainType">
+		<sequence minOccurs="0">
+			<element ref="xmml:MultiPos"/>
+		</sequence>
+		<attributeGroup ref="gml:AssociationAttributeGroup"/>
 	</complexType>
 	<!-- =========================================================== -->
-	<!-- ====================================================================== -->
-	<element name="MultiPosCoverage" type="xmml:MultiPosCoverageType" substitutionGroup="xmml:Coverage">
+	<element name="MultiPosCoverage" type="xmml:MultiPosCoverageType" substitutionGroup="xmml:AbstractCoverage">
 		<annotation>
 			<documentation>A coverage whose domain is a collection of direct positions</documentation>
 		</annotation>
 	</element>
-	<!-- ====================================================================== -->
+	<!-- ...... -->
 	<complexType name="MultiPosCoverageType">
 		<annotation>
 			<documentation>A discrete coverage type whose domain is defined by a collection of point locations</documentation>
 		</annotation>
 		<complexContent>
-			<restriction base="xmml:CoverageType">
+			<extension base="xmml:AbstractCoverageType">
 				<sequence>
-					<group ref="gml:StandardObjectProperties"/>
-					<element ref="gml:boundedBy"/>
-					<group ref="xmml:StandardSupportProperties"/>
-					<group ref="xmml:ExtendedFeatureProperties"/>
 					<element ref="xmml:multiPosDomain"/>
-					<element ref="xmml:range"/>
-					<element ref="xmml:coverageFunction" minOccurs="0"/>
 				</sequence>
-			</restriction>
+			</extension>
 		</complexContent>
 	</complexType>
 	<!-- ====================================================================== -->
-	<element name="multiPosDomain" type="xmml:MultiPosDomainType" substitutionGroup="xmml:abstractDomain"/>
 	<!-- ====================================================================== -->
-	<complexType name="MultiPosDomainType">
-		<complexContent>
-			<restriction base="anyType">
-				<sequence minOccurs="0">
-					<element ref="xmml:MultiPos"/>
-				</sequence>
-				<attributeGroup ref="gml:AssociationAttributeGroup"/>
-			</restriction>
-		</complexContent>
+	<element name="intervalSetDomain" type="xmml:IntervalSetDomainType"/>
+	<!-- ...... -->
+	<complexType name="IntervalSetDomainType">
+		<annotation>
+			<documentation>Need to add MultiPeriod ...</documentation>
+		</annotation>
+		<sequence minOccurs="0">
+			<element ref="xmml:MultiGInterval"/>
+		</sequence>
+		<attributeGroup ref="gml:AssociationAttributeGroup"/>
 	</complexType>
-	<!-- =========================================================== -->
-	<!-- =========================================================== -->
 	<!-- ====================================================================== -->
-	<element name="IntervalSetCoverage" type="xmml:IntervalSetCoverageType" substitutionGroup="xmml:Coverage">
+	<element name="IntervalSetCoverage" type="xmml:IntervalSetCoverageType" substitutionGroup="xmml:AbstractCoverage">
 		<annotation>
 			<documentation>A coverage whose domain is a collection of envelopes or intervals</documentation>
 		</annotation>
 	</element>
-	<!-- ====================================================================== -->
+	<!-- ...... -->
 	<complexType name="IntervalSetCoverageType">
 		<annotation>
 			<documentation>A discrete coverage type whose domain is defined by a collection of intervals</documentation>
 		</annotation>
 		<complexContent>
-			<restriction base="xmml:CoverageType">
+			<extension base="xmml:AbstractCoverageType">
 				<sequence>
-					<group ref="gml:StandardObjectProperties"/>
-					<element ref="gml:boundedBy"/>
-					<group ref="xmml:StandardSupportProperties"/>
-					<group ref="xmml:ExtendedFeatureProperties"/>
 					<element ref="xmml:intervalSetDomain"/>
-					<element ref="xmml:range"/>
-					<element ref="xmml:coverageFunction" minOccurs="0"/>
 				</sequence>
-			</restriction>
-		</complexContent>
-	</complexType>
-	<!-- ====================================================================== -->
-	<element name="intervalSetDomain" type="xmml:IntervalSetDomainType" substitutionGroup="xmml:abstractDomain"/>
-	<!-- ====================================================================== -->
-	<complexType name="IntervalSetDomainType">
-		<annotation>
-			<documentation>Need to add MultiPeriod ...</documentation>
-		</annotation>
-		<complexContent>
-			<restriction base="anyType">
-				<sequence minOccurs="0">
-					<element ref="xmml:MultiGInterval"/>
-				</sequence>
-				<attributeGroup ref="gml:AssociationAttributeGroup"/>
-			</restriction>
+			</extension>
 		</complexContent>
 	</complexType>
 	<!-- ====================================================================== -->
 	<!-- =========================================================== -->
-	<element name="RectifiedGridCoverage" type="xmml:RectifiedGridCoverageType" substitutionGroup="xmml:Coverage"/>
-	<!-- =========================================================== -->
-	<complexType name="RectifiedGridCoverageType">
-		<complexContent>
-			<restriction base="xmml:CoverageType">
-				<sequence>
-					<group ref="gml:StandardObjectProperties"/>
-					<element ref="gml:boundedBy"/>
-					<group ref="xmml:StandardSupportProperties"/>
-					<group ref="xmml:ExtendedFeatureProperties"/>
-					<element ref="xmml:rectifiedGridDomain"/>
-					<element ref="xmml:range"/>
-					<element ref="xmml:coverageFunction" minOccurs="0"/>
-				</sequence>
-			</restriction>
-		</complexContent>
-	</complexType>
-	<!-- =========================================================== -->
-	<element name="rectifiedGridDomain" type="xmml:RectifiedGridDomainType" substitutionGroup="xmml:abstractDomain"/>
-	<!-- =========================================================== -->
+	<element name="rectifiedGridDomain" type="xmml:RectifiedGridDomainType"/>
+	<!-- ...... -->
 	<complexType name="RectifiedGridDomainType">
 		<annotation>
 			<documentation>Need to add TemporalGrid ...</documentation>
 		</annotation>
+		<sequence minOccurs="0">
+			<element ref="gml:RectifiedGrid"/>
+		</sequence>
+		<attributeGroup ref="gml:AssociationAttributeGroup"/>
+	</complexType>
+	<!-- =========================================================== -->
+	<element name="RectifiedGridCoverage" type="xmml:RectifiedGridCoverageType" substitutionGroup="xmml:AbstractCoverage"/>
+	<!-- ...... -->
+	<complexType name="RectifiedGridCoverageType">
 		<complexContent>
-			<restriction base="anyType">
-				<sequence minOccurs="0">
-					<element ref="gml:RectifiedGrid"/>
+			<extension base="xmml:AbstractCoverageType">
+				<sequence>
+					<element ref="xmml:rectifiedGridDomain"/>
 				</sequence>
-				<attributeGroup ref="gml:AssociationAttributeGroup"/>
-			</restriction>
+			</extension>
 		</complexContent>
 	</complexType>
 	<!-- =========================================================== -->
 	<!-- =========================================================== -->
-	<element name="CurveCoverage" type="xmml:CurveCoverageType" substitutionGroup="xmml:Coverage"/>
+	<element name="curveDomain" type="xmml:CurveDomainType"/>
+	<!-- ...... -->
+	<complexType name="CurveDomainType">
+		<sequence minOccurs="0">
+			<element ref="gml:MultiCurve"/>
+		</sequence>
+		<attributeGroup ref="gml:AssociationAttributeGroup"/>
+	</complexType>
+	<!-- ====================================================================== -->
+	<element name="CurveCoverage" type="xmml:CurveCoverageType" substitutionGroup="xmml:AbstractCoverage"/>
+	<!-- ...... -->
 	<complexType name="CurveCoverageType">
 		<complexContent>
-			<restriction base="xmml:CoverageType">
+			<extension base="xmml:AbstractCoverageType">
 				<sequence>
-					<group ref="gml:StandardObjectProperties"/>
-					<element ref="gml:boundedBy"/>
-					<group ref="xmml:StandardSupportProperties"/>
-					<group ref="xmml:ExtendedFeatureProperties"/>
 					<element ref="xmml:curveDomain"/>
-					<element ref="xmml:range"/>
-					<element ref="xmml:coverageFunction" minOccurs="0"/>
 				</sequence>
-			</restriction>
+			</extension>
 		</complexContent>
 	</complexType>
 	<!-- =========================================================== -->
-	<element name="curveDomain" type="xmml:CurveDomainType" substitutionGroup="xmml:abstractDomain"/>
-	<complexType name="CurveDomainType">
-		<complexContent>
-			<restriction base="anyType">
-				<sequence minOccurs="0">
-					<element ref="gml:MultiCurve"/>
-				</sequence>
-				<attributeGroup ref="gml:AssociationAttributeGroup"/>
-			</restriction>
-		</complexContent>
+	<!-- =========================================================== -->
+	<element name="tinDomain" type="xmml:TinDomainType"/>
+	<!-- ...... -->
+	<complexType name="TinDomainType">
+		<sequence minOccurs="0">
+			<element ref="gml:Tin"/>
+		</sequence>
+		<attributeGroup ref="gml:AssociationAttributeGroup"/>
 	</complexType>
 	<!-- ====================================================================== -->
-	<!-- =========================================================== -->
-	<element name="TinCoverage" type="xmml:TinCoverageType" substitutionGroup="xmml:Coverage"/>
+	<element name="TinCoverage" type="xmml:TinCoverageType" substitutionGroup="xmml:AbstractCoverage"/>
+	<!-- ...... -->
 	<complexType name="TinCoverageType">
 		<complexContent>
-			<restriction base="xmml:CoverageType">
+			<extension base="xmml:AbstractCoverageType">
 				<sequence>
-					<group ref="gml:StandardObjectProperties"/>
-					<element ref="gml:boundedBy"/>
-					<group ref="xmml:StandardSupportProperties"/>
-					<group ref="xmml:ExtendedFeatureProperties"/>
 					<element ref="xmml:tinDomain"/>
-					<element ref="xmml:range"/>
-					<element ref="xmml:coverageFunction" minOccurs="0"/>
 				</sequence>
-			</restriction>
+			</extension>
 		</complexContent>
 	</complexType>
 	<!-- =========================================================== -->
-	<element name="tinDomain" type="xmml:TinDomainType" substitutionGroup="xmml:abstractDomain"/>
-	<complexType name="TinDomainType">
-		<complexContent>
-			<restriction base="anyType">
-				<sequence minOccurs="0">
-					<element ref="gml:Tin"/>
-				</sequence>
-				<attributeGroup ref="gml:AssociationAttributeGroup"/>
-			</restriction>
-		</complexContent>
+	<!-- =========================================================== -->
+	<element name="timeComplexDomain" type="xmml:TimeComplexDomainType"/>
+	<!-- ...... -->
+	<complexType name="TimeComplexDomainType">
+		<sequence minOccurs="0">
+			<element ref="xmml:TimeGeometricComplex"/>
+		</sequence>
+		<attributeGroup ref="gml:AssociationAttributeGroup"/>
 	</complexType>
 	<!-- ====================================================================== -->
-	<!-- =========================================================== -->
-	<element name="TimeComplexCoverage" type="xmml:TimeComplexCoverageType" substitutionGroup="xmml:Coverage"/>
+	<element name="TimeComplexCoverage" type="xmml:TimeComplexCoverageType" substitutionGroup="xmml:AbstractCoverage"/>
+	<!-- ...... -->
 	<complexType name="TimeComplexCoverageType">
 		<complexContent>
-			<restriction base="xmml:CoverageType">
+			<extension base="xmml:AbstractCoverageType">
 				<sequence>
-					<group ref="gml:StandardObjectProperties"/>
-					<element ref="gml:boundedBy"/>
-					<group ref="xmml:StandardSupportProperties"/>
-					<group ref="xmml:ExtendedFeatureProperties"/>
 					<element ref="xmml:timeComplexDomain"/>
-					<element ref="xmml:range"/>
-					<element ref="xmml:coverageFunction" minOccurs="0"/>
 				</sequence>
-			</restriction>
+			</extension>
 		</complexContent>
 	</complexType>
 	<!-- =========================================================== -->
-	<element name="timeComplexDomain" type="xmml:TimeComplexDomainType" substitutionGroup="xmml:abstractDomain"/>
-	<complexType name="TimeComplexDomainType">
-		<complexContent>
-			<restriction base="anyType">
-				<sequence minOccurs="0">
-					<element ref="xmml:TimeGeometricComplex"/>
-				</sequence>
-				<attributeGroup ref="gml:AssociationAttributeGroup"/>
-			</restriction>
-		</complexContent>
+	<!-- =========================================================== -->
+	<element name="timeGridDomain" type="xmml:TimeGridDomainType"/>
+	<!-- ...... -->
+	<complexType name="TimeGridDomainType">
+		<sequence minOccurs="0">
+			<element ref="xmml:TimeGrid"/>
+		</sequence>
+		<attributeGroup ref="gml:AssociationAttributeGroup"/>
 	</complexType>
 	<!-- ====================================================================== -->
-	<!-- =========================================================== -->
-	<element name="TimeGridCoverage" type="xmml:TimeGridCoverageType" substitutionGroup="xmml:Coverage"/>
+	<element name="TimeGridCoverage" type="xmml:TimeGridCoverageType" substitutionGroup="xmml:AbstractCoverage"/>
+	<!-- ...... -->
 	<complexType name="TimeGridCoverageType">
 		<complexContent>
-			<restriction base="xmml:CoverageType">
+			<extension base="xmml:AbstractCoverageType">
 				<sequence>
-					<group ref="gml:StandardObjectProperties"/>
-					<element ref="gml:boundedBy"/>
-					<group ref="xmml:StandardSupportProperties"/>
-					<group ref="xmml:ExtendedFeatureProperties"/>
 					<element ref="xmml:timeGridDomain"/>
-					<element ref="xmml:range"/>
-					<element ref="xmml:coverageFunction" minOccurs="0"/>
 				</sequence>
-			</restriction>
+			</extension>
 		</complexContent>
 	</complexType>
 	<!-- =========================================================== -->
-	<element name="timeGridDomain" type="xmml:TimeGridDomainType" substitutionGroup="xmml:abstractDomain"/>
-	<complexType name="TimeGridDomainType">
-		<complexContent>
-			<restriction base="anyType">
-				<sequence minOccurs="0">
-					<element ref="xmml:TimeGrid"/>
-				</sequence>
-				<attributeGroup ref="gml:AssociationAttributeGroup"/>
-			</restriction>
-		</complexContent>
-	</complexType>
-	<!-- ====================================================================== -->
 	<!-- ====================================================================== -->
 </schema>
