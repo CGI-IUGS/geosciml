@@ -217,9 +217,9 @@ Copyright © 2004 CSIRO - see https://www.seegrid.csiro.au/twiki/bin/view/Xmml/L
 		</annotation>
 	</element>
 	<!-- ====================================================================== -->
-	<element name="RecordEvent" type="xmml:RecordEventType" substitutionGroup="gml:_MetaData">
+	<element name="RecordEvent" type="xmml:RecordEventType">
 		<annotation>
-			<documentation>An event in the life of a database record.  It is substitutable for gml:_MetaData, so may appear as the value of a gml:metaDataProperty on most objects and features.</documentation>
+			<documentation>An event in the life of a database record. </documentation>
 		</annotation>
 	</element>
 	<!-- ====== -->
@@ -229,14 +229,13 @@ Copyright © 2004 CSIRO - see https://www.seegrid.csiro.au/twiki/bin/view/Xmml/L
 			Follows xmml:Event pattern, but derivation designed to fit into Metadata substitution groups</documentation>
 		</annotation>
 		<complexContent>
-			<extension base="xmml:ElementOnlyMetaDataType">
+			<extension base="xmml:EventType">
 				<sequence>
 					<element name="action" type="xmml:recordActionCodeType">
 						<annotation>
 							<documentation>created, updated, etc</documentation>
 						</annotation>
 					</element>
-					<group ref="xmml:eventProperties"/>
 				</sequence>
 			</extension>
 		</complexContent>
