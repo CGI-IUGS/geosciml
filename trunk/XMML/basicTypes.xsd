@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<schema targetNamespace="http://www.opengis.net/xmml" elementFormDefault="qualified" attributeFormDefault="unqualified" version="pre-release" xmlns:gml="http://www.opengis.net/gml" xmlns="http://www.w3.org/2001/XMLSchema" xmlns:xmml="http://www.opengis.net/xmml">
+<schema xmlns:gml="http://www.opengis.net/gml" xmlns="http://www.w3.org/2001/XMLSchema" xmlns:xmml="http://www.opengis.net/xmml" targetNamespace="http://www.opengis.net/xmml" elementFormDefault="qualified" attributeFormDefault="unqualified" version="pre-release">
 	<annotation>
 		<documentation>
 basicTypes.xsd
@@ -30,7 +30,7 @@ Copyright © 2004 CSIRO - see https://www.seegrid.csiro.au/twiki/bin/view/Xmml/L
 		<annotation>
 			<documentation>This type provides a set of standard tokens indicating that the metadata concerns various descriptors related to the observation process</documentation>
 		</annotation>
-		<restriction base="token">
+		<restriction base="string">
 			<enumeration value="observationEvent">
 				<annotation>
 					<documentation>Details of the observation or measurement event that led to the determination of the reported value</documentation>
@@ -109,7 +109,7 @@ Copyright © 2004 CSIRO - see https://www.seegrid.csiro.au/twiki/bin/view/Xmml/L
 			<documentation>A text value, taken from a value space identified by the value of the (optional) codeSpace attribute, and representing a description of the phenomenon identified by the property attribute. </documentation>
 		</annotation>
 		<simpleContent>
-			<extension base="xmml:TokenWithAuthorityType">
+			<extension base="xmml:CodeWithAuthorityType">
 				<attribute name="property" type="anyURI">
 					<annotation>
 						<documentation>This attribute holds a reference to or label for the property being described.  
@@ -126,7 +126,7 @@ Copyright © 2004 CSIRO - see https://www.seegrid.csiro.au/twiki/bin/view/Xmml/L
 			<documentation>A list of text values, taken from a value space identified by the value of the (optional) codeSpace attribute, and representing a set of descriptions of the phenomenon identified by the property attribute. </documentation>
 		</annotation>
 		<simpleContent>
-			<extension base="xmml:TokenListWithAuthorityType">
+			<extension base="xmml:CodeListWithAuthorityType">
 				<attribute name="property" type="anyURI">
 					<annotation>
 						<documentation>This attribute holds a reference to or label for the property being described.  
@@ -581,35 +581,34 @@ Copyright © 2004 CSIRO - see https://www.seegrid.csiro.au/twiki/bin/view/Xmml/L
 		<list itemType="anyURI"/>
 	</simpleType>
 	<!-- ====================================================================== -->
-	<simpleType name="tokenListType">
+	<simpleType name="stringListType">
 		<annotation>
-			<documentation>Token is the set of strings that do not contain the line feed (#xA) nor tab (#x9) characters, that have no leading or trailing spaces (#x20) and that have no internal sequences of two or more spaces.  
-This is more general than Name, which must start with an alpha or underscore.  
-However, when appearing in a list context, internal spaces are interpreted as item separators.  
-Tokens may be represented in a list using line feed, tab, or spaces as separators.  
+			<documentation>
+When appearing in a list context, internal whitespace is interpreted as an item separator.  
+Strings may be represented in a list by escaping spaces as a (non-breaking space) entity.  
 </documentation>
 		</annotation>
-		<list itemType="token"/>
+		<list itemType="string"/>
 	</simpleType>
 	<!-- ====================================================================== -->
-	<complexType name="TokenWithAuthorityType">
+	<complexType name="CodeWithAuthorityType">
 		<annotation>
 			<documentation>Extension of token which also carries a codeSpace attribute. </documentation>
 		</annotation>
 		<simpleContent>
-			<extension base="token">
+			<extension base="string">
 				<attribute name="codeSpace" type="anyURI" use="optional"/>
 				<attributeGroup ref="xmml:simpleContentStandardAttributes"/>
 			</extension>
 		</simpleContent>
 	</complexType>
 	<!-- ====================================================================== -->
-	<complexType name="TokenListWithAuthorityType">
+	<complexType name="CodeListWithAuthorityType">
 		<annotation>
-			<documentation>Extension of TokenList which also carries a codeSpace attribute. </documentation>
+			<documentation>Extension of stringList which also carries a codeSpace attribute. </documentation>
 		</annotation>
 		<simpleContent>
-			<extension base="xmml:tokenListType">
+			<extension base="xmml:stringListType">
 				<attribute name="codeSpace" type="anyURI" use="optional"/>
 				<attributeGroup ref="xmml:simpleContentStandardAttributes"/>
 				<attribute name="count" type="nonNegativeInteger" use="optional"/>

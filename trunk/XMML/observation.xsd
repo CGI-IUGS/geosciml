@@ -36,100 +36,12 @@ Copyright (c) 2005 CSIRO - see https://www.seegrid.csiro.au/twiki/bin/view/Xmml/
 		</restriction>
 	</simpleType>
 	<!-- ............ -->
-	<group name="resultMeasureChoice">
-		<choice>
-			<element name="resultMeasure" type="xmml:ResultMeasureType" nillable="true">
-				<annotation>
-					<documentation>Holds a  measure as a simple (literal) scaled value with an (optional) relativeMeasure attribute</documentation>
-				</annotation>
-			</element>
-			<element name="resultMeasureInterval" type="xmml:MeasureIntervalType" nillable="true">
-				<annotation>
-					<documentation>Describes a measure interval as a pair of simple (literal) values using the same scale</documentation>
-				</annotation>
-			</element>
-		</choice>
-	</group>
-	<!-- ================================================================== -->
-	<element name="resultBoolean" type="boolean" nillable="true">
-		<annotation>
-			<documentation>Holds a boolean as a simple (literal) value</documentation>
-		</annotation>
-	</element>
-	<!-- ............ -->
-	<element name="resultCode" type="xmml:TokenWithAuthorityType" nillable="true">
-		<annotation>
-			<documentation>Holds a code as a simple (literal) value</documentation>
-		</annotation>
-	</element>
-	<!-- ............ -->
-	<element name="resultCount" type="xmml:CountType" nillable="true">
-		<annotation>
-			<documentation>Holds an integer as a simple (literal) value</documentation>
-		</annotation>
-	</element>
-	<!-- ............ -->
-	<element name="resultNRecord" type="xmml:NumericOrNullRecordType" nillable="true">
-		<annotation>
-			<documentation>Holds a numeric record as a simple (literal) value</documentation>
-		</annotation>
-	</element>
-	<!-- ............ -->
-	<element name="resultRecord" type="xmml:RecordType" nillable="true">
-		<annotation>
-			<documentation>Holds a general record as a simple (literal) value</documentation>
-		</annotation>
-	</element>
-	<!-- ............ -->
-	<element name="resultPosition" type="gml:DirectPositionType" nillable="true">
-		<annotation>
-			<documentation>Holds a direct position as a simple (literal) value</documentation>
-		</annotation>
-	</element>
-	<!-- ............ -->
-	<element name="resultVector" type="gml:VectorType" nillable="true">
-		<annotation>
-			<documentation>Holds a spatial vector as a simple (literal) value</documentation>
-		</annotation>
-	</element>
-	<!-- ............ -->
-	<element name="resultGeometry" type="gml:GeometryPropertyType" nillable="true">
-		<annotation>
-			<documentation>Holds or points to a gml:_Geometry</documentation>
-		</annotation>
-	</element>
-	<!-- ............ -->
-	<element name="resultTime" type="gml:TimePrimitivePropertyType" nillable="true">
-		<annotation>
-			<documentation>Holds or points to a gml:_TimePrimitive</documentation>
-		</annotation>
-	</element>
-	<!-- ............ -->
-	<element name="resultObject" type="gml:AssociationType" nillable="true">
-		<annotation>
-			<documentation>The most general form for holding a "result", which may be any Object (including valueObjects) or may simply carry a link to the result</documentation>
-		</annotation>
-	</element>
 	<!-- ====================================================================== -->
-	<group name="resultChoice">
-		<choice>
-			<group ref="xmml:resultMeasureChoice"/>
-			<element ref="xmml:resultBoolean"/>
-			<element ref="xmml:resultCode"/>
-			<element ref="xmml:resultCount"/>
-			<element ref="xmml:resultNRecord"/>
-			<element ref="xmml:resultRecord"/>
-			<element ref="xmml:resultGeometry"/>
-			<element ref="xmml:resultTime"/>
-			<element ref="xmml:resultObject"/>
-		</choice>
-	</group>
+	<!-- ===== Object types for Observations ====== -->
 	<!-- ====================================================================== -->
-	<!-- ===== Feature types for Observations ====== -->
-	<!-- ====================================================================== -->
-	<element name="Observation" type="xmml:ObservationType" substitutionGroup="xmml:Event">
+	<element name="Observation" type="xmml:ObservationType" abstract="true" substitutionGroup="xmml:ProcedureEvent">
 		<annotation>
-			<documentation>Generic Observation event</documentation>
+			<documentation>Head of Observation substitution group</documentation>
 		</annotation>
 	</element>
 	<!-- ...................... -->
@@ -152,7 +64,8 @@ Copyright (c) 2005 CSIRO - see https://www.seegrid.csiro.au/twiki/bin/view/Xmml/
 	<!-- ...................... -->
 	<complexType name="ObservationType">
 		<annotation>
-			<documentation>Generic Observation event.</documentation>
+			<documentation>Base type for Observations. 
+			Concrete Observation types must extend this with a property "result" of the appropriate type.</documentation>
 		</annotation>
 		<complexContent>
 			<extension base="xmml:ObservationBaseType">
@@ -169,16 +82,18 @@ Copyright (c) 2005 CSIRO - see https://www.seegrid.csiro.au/twiki/bin/view/Xmml/
 							<documentation>Description of the property or phenomenon whose value is being described or estimated through observation, such as "wavelength", "grass-species", "power", "intensity in the waveband x-y", etc. It is this feature property that provides the (semantic) type of the observation. Note that the description of the phenomenon may be quite specific and constrained. In general the precise details of the constraints describing the observe properties require attention to the procedure used in making the observation: e.g. an optical sensor typically has a wavelength-dependent response. This optional property may be provided for client convenience, to allow comparison between and aggregation of observations of the same property made using different procedures.</documentation>
 						</annotation>
 					</element>
-					<group ref="xmml:resultChoice">
-						<annotation>
-							<documentation>a choice of a measure, boolean, code, count, geometry or time-object, etc</documentation>
-						</annotation>
-					</group>
 					<element ref="xmml:quality" minOccurs="0" maxOccurs="unbounded">
 						<annotation>
 							<documentation>Allow multiple quality measures if required.</documentation>
 						</annotation>
 					</element>
+					<!-- 
+					<element name="result" type="anyType">
+						<annotation>
+							<documentation>This is a placeholder - concrete types must replace this with a "result" property of the correct type. </documentation>
+						</annotation>
+					</element>
+					-->
 				</sequence>
 			</extension>
 		</complexContent>
@@ -186,38 +101,49 @@ Copyright (c) 2005 CSIRO - see https://www.seegrid.csiro.au/twiki/bin/view/Xmml/
 	<!-- ====================================================================== -->
 	<element name="Measurement" type="xmml:MeasurementType" substitutionGroup="xmml:Observation">
 		<annotation>
-			<documentation>Generic Measurement event</documentation>
+			<documentation>Measurement event</documentation>
 		</annotation>
 	</element>
 	<!-- ...................... -->
 	<complexType name="MeasurementType">
 		<annotation>
-			<documentation>Generic Measurement event.   
-Specialised from generic observation by restricting the result to be numeric.</documentation>
+			<documentation>Measurement event.   
+			carries one or two "result" properties of type "ResultMeasureType".
+			If two are present, then these must use the realtiveMeasure attribute to indicate a range.</documentation>
 		</annotation>
 		<complexContent>
-			<restriction base="xmml:ObservationType">
+			<extension base="xmml:ObservationType">
 				<sequence>
-					<group ref="gml:StandardObjectProperties"/>
-					<group ref="xmml:StandardSupportProperties"/>
-					<element name="eventTime" type="gml:TimeGeometricPrimitivePropertyType"/>
-					<element name="responsible" type="xmml:PartyPropertyType" minOccurs="0"/>
-					<element name="procedureUsed" type="xmml:ProcedurePropertyType"/>
-					<element name="subject" type="gml:FeaturePropertyType"/>
-					<element name="observedProperty" type="gml:DictionaryEntryType" minOccurs="0"/>
-					<group ref="xmml:resultMeasureChoice"/>
-					<element ref="xmml:quality" minOccurs="0" maxOccurs="unbounded"/>
+					<element name="result" type="xmml:ResultMeasureType" maxOccurs="2"/>
 				</sequence>
-			</restriction>
+			</extension>
 		</complexContent>
 	</complexType>
 	<!-- ====================================================================== -->
+	<element name="CategoryObservation" type="xmml:CategoryObservationType" substitutionGroup="xmml:Observation">
+		<annotation>
+			<documentation>Observation, in which the result is a textual value from a controlled vocabulary</documentation>
+		</annotation>
+	</element>
+	<!-- ...................... -->
+	<complexType name="CategoryObservationType">
+		<annotation>
+			<documentation>Observation, in which the result is a textual value from a controlled vocabulary</documentation>
+		</annotation>
+		<complexContent>
+			<extension base="xmml:ObservationType">
+				<sequence>
+					<element name="result" type="xmml:CodeWithAuthorityType"/>
+				</sequence>
+			</extension>
+		</complexContent>
+	</complexType>
 	<!-- ====================================================================== -->
 	<!-- ===== Properties used by specialised feature types ======= -->
 	<!-- ====================================================================== -->
-	<element name="previousObservation" type="xmml:ObservationPropertyType"/>
+	<!-- 	<element name="previousObservation" type="xmml:ObservationPropertyType"/>
 	<element name="relatedObservation" type="xmml:ObservationPropertyType"/>
-	<!-- ...................... -->
+...................... -->
 	<complexType name="ObservationPropertyType">
 		<sequence minOccurs="0">
 			<choice>
@@ -242,11 +168,90 @@ Specialised from generic observation by restricting the result to be numeric.</d
 		</complexContent>
 	</complexType>
 	<!-- ===================================================================  -->
-	<group name="SoftProperties">
+	<!-- <group name="SoftProperties">
 		<sequence>
 			<group ref="xmml:property" minOccurs="0" maxOccurs="unbounded"/>
-			<element ref="xmml:relatedObservation" minOccurs="0" maxOccurs="unbounded"/>
+			<element name="xmml:relatedObservation" minOccurs="0" maxOccurs="unbounded"/>
 		</sequence>
 	</group>
-	<!-- ====================================================================== -->
+	====================================================================== -->
+	<!--
+	<group name="resultMeasureChoice">
+		<choice>
+			<element name="resultMeasure" type="xmml:ResultMeasureType" nillable="true">
+				<annotation>
+					<documentation>Holds a  measure as a simple (literal) scaled value with an (optional) relativeMeasure attribute</documentation>
+				</annotation>
+			</element>
+			<element name="resultMeasureInterval" type="xmml:MeasureIntervalType" nillable="true">
+				<annotation>
+					<documentation>Describes a measure interval as a pair of simple (literal) values using the same scale</documentation>
+				</annotation>
+			</element>
+		</choice>
+	</group>
+	<element name="resultBoolean" type="boolean" nillable="true">
+		<annotation>
+			<documentation>Holds a boolean as a simple (literal) value</documentation>
+		</annotation>
+	</element>
+	<element name="resultCode" type="xmml:TokenWithAuthorityType" nillable="true">
+		<annotation>
+			<documentation>Holds a code as a simple (literal) value</documentation>
+		</annotation>
+	</element>
+	<element name="resultCount" type="xmml:CountType" nillable="true">
+		<annotation>
+			<documentation>Holds an integer as a simple (literal) value</documentation>
+		</annotation>
+	</element>
+	<element name="resultNRecord" type="xmml:NumericOrNullRecordType" nillable="true">
+		<annotation>
+			<documentation>Holds a numeric record as a simple (literal) value</documentation>
+		</annotation>
+	</element>
+	<element name="resultRecord" type="xmml:RecordType" nillable="true">
+		<annotation>
+			<documentation>Holds a general record as a simple (literal) value</documentation>
+		</annotation>
+	</element>
+	<element name="resultPosition" type="gml:DirectPositionType" nillable="true">
+		<annotation>
+			<documentation>Holds a direct position as a simple (literal) value</documentation>
+		</annotation>
+	</element>
+	<element name="resultVector" type="gml:VectorType" nillable="true">
+		<annotation>
+			<documentation>Holds a spatial vector as a simple (literal) value</documentation>
+		</annotation>
+	</element>
+	<element name="resultGeometry" type="gml:GeometryPropertyType" nillable="true">
+		<annotation>
+			<documentation>Holds or points to a gml:_Geometry</documentation>
+		</annotation>
+	</element>
+	<element name="resultTime" type="gml:TimePrimitivePropertyType" nillable="true">
+		<annotation>
+			<documentation>Holds or points to a gml:_TimePrimitive</documentation>
+		</annotation>
+	</element>
+	<element name="resultObject" type="gml:AssociationType" nillable="true">
+		<annotation>
+			<documentation>The most general form for holding a "result", which may be any Object (including valueObjects) or may simply carry a link to the result</documentation>
+		</annotation>
+	</element>
+	<group name="resultChoice">
+		<choice>
+			<group ref="xmml:resultMeasureChoice"/>
+			<element ref="xmml:resultBoolean"/>
+			<element ref="xmml:resultCode"/>
+			<element ref="xmml:resultCount"/>
+			<element ref="xmml:resultNRecord"/>
+			<element ref="xmml:resultRecord"/>
+			<element ref="xmml:resultGeometry"/>
+			<element ref="xmml:resultTime"/>
+			<element ref="xmml:resultObject"/>
+		</choice>
+	</group>
+-->
 </schema>
