@@ -1,44 +1,23 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<schema targetNamespace="http://www.opengis.net/xmml" elementFormDefault="qualified" attributeFormDefault="unqualified" version="pre-release" xmlns:gml="http://www.opengis.net/gml" xmlns:cil="urn:oasis:names:tc:ciq:xsdschema:xCIL:2.0" xmlns:nal="urn:oasis:names:tc:ciq:xsdschema:xNAL:2.0" xmlns:al="urn:oasis:names:tc:ciq:xsdschema:xAL:2.0" xmlns:nl="urn:oasis:names:tc:ciq:xsdschema:xNL:2.0" xmlns:smXML="http://www.isotc211.org/smXML" xmlns="http://www.w3.org/2001/XMLSchema" xmlns:xmml="http://www.opengis.net/xmml">
+<schema xmlns:gml="http://www.opengis.net/gml" xmlns:cil="urn:oasis:names:tc:ciq:xsdschema:xCIL:2.0" xmlns:nal="urn:oasis:names:tc:ciq:xsdschema:xNAL:2.0" xmlns:al="urn:oasis:names:tc:ciq:xsdschema:xAL:2.0"
+        xmlns:nl="urn:oasis:names:tc:ciq:xsdschema:xNL:2.0" xmlns:smXML="http://www.isotc211.org/smXML" xmlns="http://www.w3.org/2001/XMLSchema" xmlns:xmml="http://www.opengis.net/xmml" targetNamespace="http://www.opengis.net/xmml"
+        elementFormDefault="qualified" attributeFormDefault="unqualified" version="pre-release">
 	<annotation>
-		<documentation>
-base.xsd
+		<documentation>base.xsd
 
 Some base components required in various places in XMML
 
-2004-07-05
-
-Copyright © 2004 CSIRO - see https://www.seegrid.csiro.au/twiki/bin/view/Xmml/LegalNotices#Software_Notice
-</documentation>
+Copyright © 2005 CSIRO - see https://www.seegrid.csiro.au/twiki/bin/view/Xmml/LegalNotices#Software_Notice</documentation>
 	</annotation>
 	<!-- ====================================================================== -->
 	<!-- bring in other schemas -->
-	<import namespace="http://www.opengis.net/gml" schemaLocation="../gml/3.1.1/base/feature.xsd"/>
+	<import namespace="http://www.opengis.net/gml" schemaLocation="../gml/3.1.1/base/geometryBasic0d1d.xsd"/>
+	<!--	-->
 	<import namespace="http://www.isotc211.org/smXML" schemaLocation="./smXML4xmml.xsd">
 		<annotation>
 			<documentation>ISO/TC 211 metadata schema</documentation>
 		</annotation>
 	</import>
-	<!-- <import namespace="urn:oasis:names:tc:ciq:xsdschema:xCIL:2.0" schemaLocation="https://www.seegrid.csiro.au/subversion/xmml/trunk/oasis/OASIS-CIQ/xCIL.xsd">
-		<annotation>
-			<documentation>Names, addresses, organisations, contacts</documentation>
-		</annotation>
-	</import>
-	<import namespace="urn:oasis:names:tc:ciq:xsdschema:xNAL:2.0" schemaLocation="https://www.seegrid.csiro.au/subversion/xmml/trunk/oasis/OASIS-CIQ/xNAL.xsd">
-		<annotation>
-			<documentation>Names, addresses, organisations</documentation>
-		</annotation>
-	</import>
-	<import namespace="urn:oasis:names:tc:ciq:xsdschema:xNL:2.0" schemaLocation="https://www.seegrid.csiro.au/subversion/xmml/trunk/oasis/OASIS-CIQ/xNL.xsd">
-		<annotation>
-			<documentation>Names</documentation>
-		</annotation>
-	</import>
-	<import namespace="urn:oasis:names:tc:ciq:xsdschema:xAL:2.0" schemaLocation="https://www.seegrid.csiro.au/subversion/xmml/trunk/oasis/OASIS-CIQ/xAL.xsd">
-		<annotation>
-			<documentation>addresses</documentation>
-		</annotation>
-	</import> -->
 	<include schemaLocation="./basicTypes.xsd"/>
 	<include schemaLocation="../enumerations/LUTmaintenance.xsd"/>
 	<!-- ====================================================================== -->
@@ -48,13 +27,13 @@ Copyright © 2004 CSIRO - see https://www.seegrid.csiro.au/twiki/bin/view/Xmml/L
 	<!-- ====================================================================== -->
 	<element name="support" type="gml:AssociationType">
 		<annotation>
-			<documentation>A place to attach components that are required to be listed someplace in order that they can be "used" by-reference elsewhere in (usually) the same instance document. </documentation>
+			<documentation>A place to attach components that are required to be listed someplace in order that they can be "used" by-reference elsewhere in (usually) the same instance document.</documentation>
 		</annotation>
 	</element>
 	<!-- ===================================================== -->
 	<element name="comment" type="gml:StringOrRefType">
 		<annotation>
-			<documentation>Container for commentary that may not be strictly part of a "description". </documentation>
+			<documentation>Container for commentary that may not be strictly part of a "description".</documentation>
 		</annotation>
 	</element>
 	<!-- ===================================================== -->
@@ -97,59 +76,11 @@ Copyright © 2004 CSIRO - see https://www.seegrid.csiro.au/twiki/bin/view/Xmml/L
 	<!-- ==================================================== -->
 	<group name="Party">
 		<choice>
-			<!--	
-			<element ref="nl:xNL">
-				<annotation>
-					<documentation>Contains one or more names (xNL syntax)</documentation>
-				</annotation>
-			</element>
-			<element ref="nal:xNAL">
-				<annotation>
-					<documentation>Contains one or more Records, each of which contains one or more names (xNL syntax) followed by one or more addresses (xAL syntax)</documentation>
-				</annotation>
-			</element>
-			<element ref="cil:xCIL">
-				<annotation>
-					<documentation>Contains one or more sets of CustomerDetails, each of which contains a customer ID, one name (xNL syntax), zero or more addresses (xAL syntax), followed by optional organisation or personal information (hobbies, religion, etc)</documentation>
-				</annotation>
-			</element>
-			<element ref="xmml:Party"/>
-			<element ref="xmml:Company"/>
-			<element ref="xmml:Person"/>	-->
+			<!--			-->
 			<element ref="smXML:CI_ResponsibleParty"/>
 			<element name="SimpleParty" type="gml:StringOrRefType"/>
 		</choice>
 	</group>
-	<!-- ======================================================================
-	<element name="Party" type="xmml:PartyType"/> -->
-	<!-- ======================================================================
-	<complexType name="PartyType">
-		<complexContent>
-			<extension base="cil:Record">
-				<attribute name="id" type="ID" use="required"/>
-			</extension>
-		</complexContent>
-	</complexType> -->
-	<!-- ======================================================================
-	<element name="Company" type="xmml:CompanyType"/> -->
-	<!-- ======================================================================
-	<complexType name="CompanyType">
-		<sequence>
-			<element name="companyName" type="nl:OrganisationNameDetails"/>
-			<element name="location" type="al:AddressDetails"/>
-		</sequence>
-		<attribute name="id" type="ID" use="required"/>
-	</complexType> -->
-	<!-- ====================================================
-	<element name="Person" type="xmml:PersonType"/> -->
-	<!-- ======================================================================
-	<complexType name="PersonType">
-		<sequence>
-			<element name="personName" type="nl:PersonName"/>
-			<element name="location" type="al:AddressDetails"/>
-		</sequence>
-		<attribute name="id" type="ID" use="required"/>
-	</complexType> -->
 	<!-- ==================================================== -->
 	<!-- ==== Common metadata components ==== -->
 	<!-- ====================================================================== -->
@@ -162,7 +93,7 @@ Copyright © 2004 CSIRO - see https://www.seegrid.csiro.au/twiki/bin/view/Xmml/L
 		<annotation>
 			<documentation>This element is used to record the details of an external source of information, such as a scholarly paper, technical report, or other publication, where the details are encoded as a text description.  It is substitutable for gml:_MetaData, so may appear as the value of a gml:metaDataProperty on most objects and features.
 			
-			Was type="xmml:TextMetaDataType" substitutionGroup="gml:_MetaData" </documentation>
+			Was type="xmml:TextMetaDataType" substitutionGroup="gml:_MetaData"</documentation>
 		</annotation>
 	</element>
 	<!-- ====================================================================== -->
@@ -176,18 +107,18 @@ Copyright © 2004 CSIRO - see https://www.seegrid.csiro.au/twiki/bin/view/Xmml/L
       also see http://www.crossref.org/01company/15doi_info.html
       Note that the DOI/crossref service is free to users, but not to publishers.       
       
-      xmml:reference is substitutable for gml:metaDataProperty, so may appear as a property of most objects and features
-    </documentation>
+      xmml:reference is substitutable for gml:metaDataProperty, so may appear as a property of most objects and features</documentation>
 		</annotation>
 	</element>
 	<!-- ====================================================================== -->
 	<complexType name="CitationPropertyType">
 		<annotation>
 			<documentation>Holds or points to a Citation.  
-			Additional versions of "Citation" will be added to choice group in due course.     </documentation>
+			Additional versions of "Citation" will be added to choice group in due course.</documentation>
 		</annotation>
 		<sequence minOccurs="0">
 			<choice>
+				<!--				-->
 				<element ref="smXML:CI_Citation">
 					<annotation>
 						<documentation>ISO 19139 component for Citations</documentation>
@@ -209,9 +140,8 @@ Copyright © 2004 CSIRO - see https://www.seegrid.csiro.au/twiki/bin/view/Xmml/L
 	<!-- ====================================================================== -->
 	<element name="quality" type="xmml:QualityPropertyType">
 		<annotation>
-			<documentation>
-    Intended to store information concerning the quality of the value.  
-    An attribute "method" allows the user to indicate what kind of quality indicator this is: absolute limits, SD, 95% confidence, qualitative code, etc.  </documentation>
+			<documentation>Intended to store information concerning the quality of the value.  
+    An attribute "method" allows the user to indicate what kind of quality indicator this is: absolute limits, SD, 95% confidence, qualitative code, etc.</documentation>
 		</annotation>
 	</element>
 	<!-- ====================================================================== -->
