@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<schema targetNamespace="http://www.opengis.net/xmml" elementFormDefault="qualified" attributeFormDefault="unqualified" version="pre-release" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:gml="http://www.opengis.net/gml" xmlns="http://www.w3.org/2001/XMLSchema" xmlns:xmml="http://www.opengis.net/xmml">
+<schema xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:gml="http://www.opengis.net/gml" xmlns="http://www.w3.org/2001/XMLSchema" xmlns:xmml="http://www.opengis.net/xmml" targetNamespace="http://www.opengis.net/xmml" elementFormDefault="qualified" attributeFormDefault="unqualified" version="pre-release">
 	<annotation>
 		<documentation>
 geochemistry.xsd
@@ -13,9 +13,7 @@ Copyright © 2004 CSIRO - see https://www.seegrid.csiro.au/twiki/bin/view/Xmml/L
 	<!-- ====================================================================== -->
 	<!-- bring in other schemas -->
 	<import namespace="http://www.opengis.net/gml" schemaLocation="https://www.seegrid.csiro.au/subversion/xmml/trunk/gml/3.1.1/base/feature.xsd"/>
-	<include schemaLocation="./commonFeatures.xsd"/>
-	<include schemaLocation="./observation.xsd"/>
-	<include schemaLocation="./referenceSystems.xsd"/>
+	<include schemaLocation="./site.xsd"/>
 	<include schemaLocation="../enumerations/LUTgeochemistry.xsd"/>
 	<!-- ====================================================================== -->
 	<element name="GeochemMeasurement" type="xmml:GeochemMeasurementType" substitutionGroup="xmml:Observation"/>
@@ -24,9 +22,9 @@ Copyright © 2004 CSIRO - see https://www.seegrid.csiro.au/twiki/bin/view/Xmml/L
 		<annotation>
 			<documentation>Specialisation of generic measurement type
 			Apply restriction:
-         			suppress "observedProperty" - chemicalConcentration is implied
-         
-					 Use "subject" property to link to the specimen or other feature on which the measurement was made
+         			suppress "observedProperty" - value is "fixed" as "chemicalConcentration"
+         			         
+					N.B. Use "subject" property to link to the specimen or other feature on which the measurement was made
         			For other documentation, see observation.xsd
 			</documentation>
 		</annotation>
@@ -35,15 +33,12 @@ Copyright © 2004 CSIRO - see https://www.seegrid.csiro.au/twiki/bin/view/Xmml/L
 				<sequence>
 					<group ref="gml:StandardObjectProperties"/>
 					<group ref="xmml:StandardSupportProperties"/>
-					<group ref="xmml:ExtendedFeatureProperties"/>
-					<element ref="gml:position"/>
-					<element ref="xmml:positionMethod" minOccurs="0"/>
-					<element ref="xmml:subject"/>
-					<element ref="xmml:abstractResultMeasure"/>
+					<element name="eventTime" type="gml:TimeGeometricPrimitivePropertyType"/>
+					<element name="responsible" type="xmml:PartyPropertyType" minOccurs="0"/>
+					<element name="procedureUsed" type="xmml:ProcedurePropertyType"/>
+					<element name="subject" type="gml:FeaturePropertyType"/>
 					<element ref="xmml:quality" minOccurs="0" maxOccurs="unbounded"/>
-					<element ref="xmml:procedureTime"/>
-					<element ref="xmml:responsible"/>
-					<element ref="xmml:procedureUsed"/>
+					<element name="result" type="xmml:ResultMeasureType" maxOccurs="2"/>
 				</sequence>
 			</restriction>
 		</complexContent>
@@ -52,7 +47,7 @@ Copyright © 2004 CSIRO - see https://www.seegrid.csiro.au/twiki/bin/view/Xmml/L
 	<complexType name="GeochemMeasurementType">
 		<annotation>
 			<documentation>Extend with 
-        			analyte (in place of observedProperty)
+        			analyte (specializes the "chemicalConcentration" observedProperty)
         			purpose (optional)
       			</documentation>
 		</annotation>
@@ -178,34 +173,12 @@ Copyright © 2004 CSIRO - see https://www.seegrid.csiro.au/twiki/bin/view/Xmml/L
 		<complexContent>
 			<extension base="xmml:AxisDefinitionType">
 				<sequence>
-				<element name="lowerDetectionLimit" type="gml:MeasureType" nillable="true"/>
-				<element name="upperDetectionLimit" type="gml:MeasureType" minOccurs="0"/>
+					<element name="lowerDetectionLimit" type="gml:MeasureType" nillable="true"/>
+					<element name="upperDetectionLimit" type="gml:MeasureType" minOccurs="0"/>
 				</sequence>
 			</extension>
 		</complexContent>
 	</complexType>
-	<!-- ====================================================================== -->
-	<element name="GeochemRequest" type="xmml:GeochemRequestType"/>
-	<!-- ...................... -->
-	<complexType name="GeochemRequestType">
-		<annotation>
-			<documentation>
-      Add "purpose" to the generic request
-      </documentation>
-		</annotation>
-		<complexContent>
-			<extension base="xmml:ObservationType">
-				<sequence>
-					<element ref="xmml:purpose" minOccurs="0"/>
-					<!-- element ref="xmml:purpose" default="normal" minOccurs="0"/ 
-          XMl Spy will not validate this
-          -->
-				</sequence>
-			</extension>
-		</complexContent>
-	</complexType>
-	<!-- ====================================================================== -->
-	<element name="samplingMethod" type="xmml:sampleCollectionTypes" substitutionGroup="xmml:method"/>
 	<!-- ====================================================================== -->
 	<!-- ====================================================================== -->
 	<element name="AssaySuite" type="xmml:AssaySuiteDefinitionType" substitutionGroup="gml:Definition">
@@ -258,20 +231,22 @@ Copyright © 2004 CSIRO - see https://www.seegrid.csiro.au/twiki/bin/view/Xmml/L
 	<!-- ====================================================================== -->
 	<!-- code lists -->
 	<!-- ====================================================================== -->
-	<element name="preparationMethod" type="token" substitutionGroup="xmml:method"/>
-	<!-- ====================================================================== -->
 	<simpleType name="sampleCollectionTypes">
-		<restriction base="token">
+		<annotation>
+			<documentation>A restricted method type</documentation>
+		</annotation>
+		<restriction base="string">
 			<enumeration value="Drill"/>
 			<enumeration value="Stream"/>
 			<enumeration value="Lag"/>
 		</restriction>
 	</simpleType>
 	<!-- ====================================================================== -->
-	<element name="WMCsample" type="xmml:WMCsampleCode" substitutionGroup="xmml:samplingMethod"/>
-	<!-- ...................... -->
 	<simpleType name="WMCsampleCode">
-		<restriction base="token">
+		<annotation>
+			<documentation>A restricted method type</documentation>
+		</annotation>
+		<restriction base="string">
 			<enumeration value="STAND">
 				<annotation>
 					<documentation>Standard</documentation>
@@ -282,7 +257,7 @@ Copyright © 2004 CSIRO - see https://www.seegrid.csiro.au/twiki/bin/view/Xmml/L
 		</restriction>
 	</simpleType>
 	<!-- ====================================================================== -->
-	<element name="purpose" type="token"/>
+	<element name="purpose" type="string"/>
 	<element name="WMCpurpose" type="xmml:QAQCPurposeWMC" substitutionGroup="xmml:purpose"/>
 	<!-- ...................... -->
 	<simpleType name="QAQCPurposeWMC">
@@ -299,7 +274,7 @@ Copyright © 2004 CSIRO - see https://www.seegrid.csiro.au/twiki/bin/view/Xmml/L
     
     </documentation>
 		</annotation>
-		<restriction base="token">
+		<restriction base="string">
 			<enumeration value="normal"/>
 			<enumeration value="QS"/>
 			<enumeration value="SD"/>
