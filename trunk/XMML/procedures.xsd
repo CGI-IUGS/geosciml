@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<schema targetNamespace="http://www.opengis.net/xmml" xmlns:xmml="http://www.opengis.net/xmml" xmlns="http://www.w3.org/2001/XMLSchema" xmlns:gml="http://www.opengis.net/gml" xmlns:xlink="http://www.w3.org/1999/xlink" elementFormDefault="qualified" attributeFormDefault="unqualified" version="pre-release">
+<schema targetNamespace="http://www.opengis.net/xmml" elementFormDefault="qualified" attributeFormDefault="unqualified" version="pre-release" xmlns:xmml="http://www.opengis.net/xmml" xmlns="http://www.w3.org/2001/XMLSchema" xmlns:gml="http://www.opengis.net/gml" xmlns:xlink="http://www.w3.org/1999/xlink">
 	<annotation>
 		<documentation>
 procedures.xsd
 
 Components to describe procedures used in exploration and mining activities.
 
-2004-04-21
+2004-06-30
 
 Copyright (c) 2004 CSIRO - see https://www.seegrid.csiro.au/twiki/bin/view/Xmml/LegalNotices#Software_Notice
 </documentation>
@@ -17,6 +17,17 @@ Copyright (c) 2004 CSIRO - see https://www.seegrid.csiro.au/twiki/bin/view/Xmml/
 	<include schemaLocation="./base.xsd"/>
 	<include schemaLocation="../enumerations/LUTgeodesy.xsd"/>
 	<!-- ====================================================================== -->
+	<!-- ====================================================================== -->
+	<element name="CalculationProcedure" type="xmml:CalculationProcedureType" substitutionGroup="xmml:Procedure"/>
+	<!-- ====== -->
+	<complexType name="CalculationProcedureType">
+		<annotation>
+			<documentation>Use the "description" property to record the details of the calculation</documentation>
+		</annotation>
+		<complexContent>
+			<extension base="xmml:ProcedureType"/>
+		</complexContent>
+	</complexType>
 	<!-- ====================================================================== -->
 	<element name="Instrument" type="xmml:InstrumentType" substitutionGroup="xmml:Procedure"/>
 	<!-- ====== -->
