@@ -12,11 +12,12 @@ Copyright © 2004 CSIRO - see https://www.seegrid.csiro.au/twiki/bin/view/Xmml/L
 	</annotation>
 	<!-- ====================================================================== -->
 	<!-- bring in other schemas -->
-	<import namespace="http://www.opengis.net/gml" schemaLocation="https://www.seegrid.csiro.au/subversion/xmml/trunk/gml/3.1.1/base/feature.xsd"/>
+	<import namespace="http://www.opengis.net/gml" schemaLocation="./gml4geochemistry.xsd"/>
 	<include schemaLocation="./site.xsd"/>
+	<include schemaLocation="./referenceSystems.xsd"/>
 	<include schemaLocation="../enumerations/LUTgeochemistry.xsd"/>
 	<!-- ====================================================================== -->
-	<element name="GeochemMeasurement" type="xmml:GeochemMeasurementType" substitutionGroup="xmml:Observation"/>
+	<element name="GeochemMeasurement" type="xmml:GeochemMeasurementType" substitutionGroup="xmml:Measurement"/>
 	<!-- ...................... -->
 	<complexType name="GeochemMeasurementBaseType">
 		<annotation>
@@ -32,13 +33,17 @@ Copyright © 2004 CSIRO - see https://www.seegrid.csiro.au/twiki/bin/view/Xmml/L
 			<restriction base="xmml:MeasurementType">
 				<sequence>
 					<group ref="gml:StandardObjectProperties"/>
+					<element ref="gml:boundedBy" minOccurs="0"/>
 					<group ref="xmml:StandardSupportProperties"/>
-					<element name="eventTime" type="gml:TimeGeometricPrimitivePropertyType"/>
-					<element name="responsible" type="xmml:PartyPropertyType" minOccurs="0"/>
+					<group ref="xmml:ExtendedFeatureProperties"/>
+					<group ref="xmml:EventProperties"/>
+					<element name="location" type="gml:GeometryPropertyType" nillable="true"/>
 					<element name="procedureUsed" type="xmml:ProcedurePropertyType"/>
-					<element name="subject" type="gml:FeaturePropertyType"/>
+					<element name="source" type="gml:StringOrRefType" minOccurs="0" maxOccurs="unbounded"/>
+					<element name="product" type="gml:StringOrRefType" minOccurs="0" maxOccurs="unbounded"/>
+					<element name="subject" type="xmml:ObservationSubjectPropertyType"/>
 					<element ref="xmml:quality" minOccurs="0" maxOccurs="unbounded"/>
-					<element name="result" type="xmml:ResultMeasureType" maxOccurs="2"/>
+					<element name="result" type="xmml:ResultMeasureType"/>
 				</sequence>
 			</restriction>
 		</complexContent>
