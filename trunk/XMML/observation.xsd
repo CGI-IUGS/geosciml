@@ -6,7 +6,7 @@ observation.xsd
 
 An implementation of the OandM model for XMML
 
-2004-04-21
+2004-08-12
 
 Copyright (c) 2004 CSIRO - see https://www.seegrid.csiro.au/twiki/bin/view/Xmml/LegalNotices#Software_Notice
 </documentation>
@@ -138,6 +138,46 @@ Copyright (c) 2004 CSIRO - see https://www.seegrid.csiro.au/twiki/bin/view/Xmml/
 			<element ref="xmml:resultGeometry"/>
 			<element ref="xmml:resultTime"/>
 			<element ref="xmml:resultObject"/>
+			<element ref="xmml:noResult"/>
+		</choice>
+	</group>
+	<!-- ====================================================================== -->
+	<!-- ====================================================================== -->
+	<element name="Measurement" type="xmml:MeasurementType" substitutionGroup="xmml:Observation">
+		<annotation>
+			<documentation>Generic Measurement event</documentation>
+		</annotation>
+	</element>
+	<!-- ====== -->
+	<complexType name="MeasurementType">
+		<annotation>
+			<documentation>Generic Measurement event.   
+Specialised from generic observation by restricting the result to be numeric.
+      </documentation>
+		</annotation>
+		<complexContent>
+			<restriction base="xmml:ObservationType">
+				<sequence>
+					<group ref="gml:StandardObjectProperties"/>
+					<group ref="xmml:ExtendedFeatureProperties"/>
+					<element ref="xmml:relatedFeature" minOccurs="0" maxOccurs="unbounded"/>
+					<element ref="gml:position"/>
+					<element ref="xmml:subject"/>
+					<element name="observedProperty" type="gml:DictionaryEntryType" minOccurs="0"/>
+					<group ref="xmml:resultMeasureChoice"/>
+					<element ref="xmml:quality" minOccurs="0" maxOccurs="unbounded"/>
+					<element name="procedureTime" type="gml:TimePrimitivePropertyType"/>
+					<element name="responsible" type="xmml:PartyPropertyType"/>
+					<element ref="xmml:procedureUsed"/>
+					<element ref="xmml:reference" minOccurs="0"/>
+				</sequence>
+			</restriction>
+		</complexContent>
+	</complexType>
+	<!-- ====== -->
+	<group name="resultMeasureChoice">
+		<choice>
+			<element ref="xmml:resultMeasure"/>
 			<element ref="xmml:noResult"/>
 		</choice>
 	</group>
