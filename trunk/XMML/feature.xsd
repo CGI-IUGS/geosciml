@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<schema targetNamespace="http://www.opengis.net/xmml" xmlns:xmml="http://www.opengis.net/xmml" xmlns="http://www.w3.org/2001/XMLSchema" xmlns:gml="http://www.opengis.net/gml" xmlns:xlink="http://www.w3.org/1999/xlink" elementFormDefault="qualified" attributeFormDefault="unqualified" version="pre-release">
+<schema targetNamespace="http://www.opengis.net/xmml" elementFormDefault="qualified" attributeFormDefault="unqualified" version="pre-release" xmlns:xmml="http://www.opengis.net/xmml" xmlns="http://www.w3.org/2001/XMLSchema" xmlns:gml="http://www.opengis.net/gml" xmlns:xlink="http://www.w3.org/1999/xlink">
 	<annotation>
 		<documentation>
 feature.xsd
 
 A few variations on the basic feature and feature collection types for XMML
 
-2003-10-23 
+2004-07-05
 
 Copyright (c) 2004 CSIRO - see https://www.seegrid.csiro.au/twiki/bin/view/Xmml/LegalNotices#Software_Notice
 </documentation>
@@ -18,6 +18,14 @@ Copyright (c) 2004 CSIRO - see https://www.seegrid.csiro.au/twiki/bin/view/Xmml/
 	<!-- ====================================================================== -->
 	<!-- === A few variations on the basic feature and feature collection types === -->
 	<!-- ====================================================================== -->
+	<group name="ExtendedFeatureProperties">
+		<sequence>
+			<element ref="xmml:place" minOccurs="0"/>
+			<group ref="xmml:StandardSupportProperties"/>
+			<element ref="xmml:relatedFeature" minOccurs="0" maxOccurs="unbounded"/>
+		</sequence>
+	</group>
+	<!-- ====================================================================== -->
 	<element name="Feature" type="xmml:FeatureType" substitutionGroup="gml:_Feature">
 		<annotation>
 			<documentation>A generic feature for XMML.  </documentation>
@@ -27,9 +35,10 @@ Copyright (c) 2004 CSIRO - see https://www.seegrid.csiro.au/twiki/bin/view/Xmml/
 	<complexType name="FeatureType">
 		<annotation>
 			<documentation>Extend with 
+	  place - location given as keyword or string, e.g. mapsheet name/code
       support - definitions, geometries, etc that may be used in the document
-      relatedFeature - assert a relationship with another feature.  
       comment - additional comments that are not strictly part of the feature description
+      relatedFeature - assert a relationship with another feature.  
       
       Note, however, that features derived from this base may have additional more specific geometry properties, which may be more suitable for specific operations.    
   </documentation>
@@ -37,8 +46,7 @@ Copyright (c) 2004 CSIRO - see https://www.seegrid.csiro.au/twiki/bin/view/Xmml/
 		<complexContent>
 			<extension base="gml:AbstractFeatureType">
 				<sequence>
-					<group ref="xmml:StandardSupportProperties"/>
-					<element ref="xmml:relatedFeature" minOccurs="0" maxOccurs="unbounded"/>
+					<group ref="xmml:ExtendedFeatureProperties"/>
 				</sequence>
 			</extension>
 		</complexContent>
@@ -59,8 +67,7 @@ Copyright (c) 2004 CSIRO - see https://www.seegrid.csiro.au/twiki/bin/view/Xmml/
 				<sequence>
 					<group ref="gml:StandardObjectProperties"/>
 					<element ref="gml:boundedBy"/>
-					<group ref="xmml:StandardSupportProperties"/>
-					<element ref="xmml:relatedFeature" minOccurs="0" maxOccurs="unbounded"/>
+					<group ref="xmml:ExtendedFeatureProperties"/>
 				</sequence>
 			</restriction>
 		</complexContent>
@@ -74,8 +81,7 @@ Copyright (c) 2004 CSIRO - see https://www.seegrid.csiro.au/twiki/bin/view/Xmml/
 			<restriction base="xmml:FeatureType">
 				<sequence>
 					<group ref="gml:StandardObjectProperties"/>
-					<group ref="xmml:StandardSupportProperties"/>
-					<element ref="xmml:relatedFeature" minOccurs="0" maxOccurs="unbounded"/>
+					<group ref="xmml:ExtendedFeatureProperties"/>
 				</sequence>
 			</restriction>
 		</complexContent>
