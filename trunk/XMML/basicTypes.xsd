@@ -6,7 +6,7 @@ basicTypes.xsd
 
 Some basic types required in various places in XMML
 
-2004-07-08
+2004-08-10
 
 Copyright © 2004 CSIRO - see https://www.seegrid.csiro.au/twiki/bin/view/Xmml/LegalNotices#Software_Notice
 </documentation>
@@ -14,14 +14,22 @@ Copyright © 2004 CSIRO - see https://www.seegrid.csiro.au/twiki/bin/view/Xmml/L
 	<!-- ====================================================================== -->
 	<!-- bring in other schemas -->
 	<import namespace="http://www.opengis.net/gml" schemaLocation="http://schemas.opengis.net/gml/3.1.0/base/geometryBasic0d1d.xsd"/>
+	<include schemaLocation="../enumerations/LUTother.xsd"/>
 	<!-- ===================================================== -->
 	<attributeGroup name="simpleContentStandardAttributes">
-		<attribute name="exception" type="gml:NullType" use="optional"/>
+		<attribute name="nilReason" type="gml:NullType" use="optional"/>
 		<attribute name="metadata" type="anyURI" use="optional"/>
 		<attribute name="metadataType" type="xmml:simpleContentMetadataType" use="optional"/>
 	</attributeGroup>
 	<!-- ===================================================== -->
 	<simpleType name="simpleContentMetadataType">
+		<union memberTypes="xmml:observationRelatedRoles xmml:other"/>
+	</simpleType>
+	<!-- ===================================================== -->
+	<simpleType name="observationRelatedRoles">
+		<annotation>
+			<documentation>This type provides a set of standard tokens indicating that the metadata is related to various descriptors related to the observation process</documentation>
+		</annotation>
 		<restriction base="token">
 			<enumeration value="observationEvent">
 				<annotation>
@@ -134,21 +142,29 @@ Copyright © 2004 CSIRO - see https://www.seegrid.csiro.au/twiki/bin/view/Xmml/L
 	</complexType>
 	<!-- ====================================================================== -->
 	<!-- ====================================================================== -->
-	<simpleType name="CountOrNullType">
+	<complexType name="CountType">
+		<simpleContent>
+			<extension base="nonNegativeInteger">
+				<attributeGroup ref="xmml:simpleContentStandardAttributes"/>
+			</extension>
+		</simpleContent>
+	</complexType>
+	<!-- ====================================================================== -->
+	<simpleType name="nonNegativeIntegerOrNullType">
 		<annotation>
 			<documentation>Union of the XML Schema nonNegativeInteger type and the GML ValueNullType.  An element which uses this type may have content which is either a Count or a value from ValueNullType</documentation>
 		</annotation>
 		<union memberTypes="gml:NullEnumeration nonNegativeInteger anyURI"/>
 	</simpleType>
 	<!-- =========================================================== -->
-	<simpleType name="CountOrNullListType">
+	<simpleType name="nonNegativeIntegerOrNullListType">
 		<annotation>
 			<documentation>XML List based on the union type defined above.  An element declared with this type contains a space-separated list of Counts with Null values interspersed as needed</documentation>
 		</annotation>
-		<list itemType="xmml:CountOrNullType"/>
+		<list itemType="xmml:nonNegativeIntegerOrNullType"/>
 	</simpleType>
 	<!-- =========================================================== -->
-	<simpleType name="CountListType">
+	<simpleType name="nonNegativeIntegerListType">
 		<annotation>
 			<documentation>XML List based on XML Schema nonNegativeInteger type.  An element of this type contains a space-separated list of Counts</documentation>
 		</annotation>
@@ -161,13 +177,12 @@ Copyright © 2004 CSIRO - see https://www.seegrid.csiro.au/twiki/bin/view/Xmml/L
 			<documentation>A numeric value, representing a description of the phenomenon identified by the property attribute. </documentation>
 		</annotation>
 		<simpleContent>
-			<extension base="nonNegativeInteger">
+			<extension base="xmml:CountType">
 				<attribute name="property" type="anyURI">
 					<annotation>
 						<documentation>This attribute holds a reference to or label for the property being described. </documentation>
 					</annotation>
 				</attribute>
-				<attributeGroup ref="xmml:simpleContentStandardAttributes"/>
 			</extension>
 		</simpleContent>
 	</complexType>
@@ -177,7 +192,7 @@ Copyright © 2004 CSIRO - see https://www.seegrid.csiro.au/twiki/bin/view/Xmml/L
 			<documentation>A list of numeric values, representing a set of descriptions of the phenomenon identified by the property attribute. </documentation>
 		</annotation>
 		<simpleContent>
-			<extension base="xmml:CountListType">
+			<extension base="xmml:nonNegativeIntegerListType">
 				<attribute name="property" type="anyURI">
 					<annotation>
 						<documentation>This attribute holds a reference to or label for the property being described. </documentation>
@@ -194,7 +209,7 @@ Copyright © 2004 CSIRO - see https://www.seegrid.csiro.au/twiki/bin/view/Xmml/L
 			<documentation>A list of numeric values or Nulls, representing a set of descriptions of the phenomenon identified by the property attribute. </documentation>
 		</annotation>
 		<simpleContent>
-			<extension base="xmml:CountOrNullListType">
+			<extension base="xmml:nonNegativeIntegerOrNullListType">
 				<attribute name="property" type="anyURI">
 					<annotation>
 						<documentation>This attribute holds a reference to or label for the property being described. </documentation>
@@ -219,12 +234,23 @@ Copyright © 2004 CSIRO - see https://www.seegrid.csiro.au/twiki/bin/view/Xmml/L
 	</complexType>
 	<!-- ====================================================================== -->
 	<!-- ====================================================================== -->
+	<complexType name="MeasureType">
+		<annotation>
+			<documentation>A numeric value, expressed using the scale indicated by the value of the (mandatory) uom attribute. </documentation>
+		</annotation>
+		<simpleContent>
+			<extension base="gml:MeasureType">
+				<attributeGroup ref="xmml:simpleContentStandardAttributes"/>
+			</extension>
+		</simpleContent>
+	</complexType>
+	<!-- ====================================================================== -->
 	<complexType name="SoftTypedMeasureType">
 		<annotation>
 			<documentation>A numeric value, expressed using the scale indicated by the value of the (mandatory) uom attribute, attribute, and representing a description of the phenomenon identified by the property attribute. </documentation>
 		</annotation>
 		<simpleContent>
-			<extension base="gml:MeasureType">
+			<extension base="xmml:MeasureType">
 				<attribute name="property" type="anyURI">
 					<annotation>
 						<documentation>This attribute holds a reference to or label for the property being described.  
@@ -232,7 +258,6 @@ Copyright © 2004 CSIRO - see https://www.seegrid.csiro.au/twiki/bin/view/Xmml/L
             such as temperature, wavelength, concentration.  </documentation>
 					</annotation>
 				</attribute>
-				<attributeGroup ref="xmml:simpleContentStandardAttributes"/>
 			</extension>
 		</simpleContent>
 	</complexType>
@@ -541,6 +566,7 @@ Tokens may be represented in a list using line feed, tab, or spaces as separator
 		<simpleContent>
 			<extension base="token">
 				<attribute name="codeSpace" type="anyURI" use="optional"/>
+				<attributeGroup ref="xmml:simpleContentStandardAttributes"/>
 			</extension>
 		</simpleContent>
 	</complexType>
@@ -552,6 +578,7 @@ Tokens may be represented in a list using line feed, tab, or spaces as separator
 		<simpleContent>
 			<extension base="xmml:tokenListType">
 				<attribute name="codeSpace" type="anyURI" use="optional"/>
+				<attributeGroup ref="xmml:simpleContentStandardAttributes"/>
 			</extension>
 		</simpleContent>
 	</complexType>

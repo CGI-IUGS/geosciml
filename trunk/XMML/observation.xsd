@@ -76,10 +76,18 @@ Copyright (c) 2004 CSIRO - see https://www.seegrid.csiro.au/twiki/bin/view/Xmml/
 		</complexContent>
 	</complexType>
 	<!-- ====== -->
-	<element name="resultMeasure" type="gml:MeasureType">
+   <element name="position" type="gml:PointPropertyType" nillable="true"/>
+	<element name="resultMeasure" nillable="true">
 		<annotation>
 			<documentation>Holds a measure as a simple (literal) value</documentation>
 		</annotation>
+		<complexType>
+			<simpleContent>
+				<extension base="gml:MeasureType">
+					<attribute name="nilReason" type="gml:NullEnumeration" use="optional"/>
+				</extension>
+			</simpleContent>
+		</complexType>
 	</element>
 	<element name="resultBoolean" type="boolean">
 		<annotation>
