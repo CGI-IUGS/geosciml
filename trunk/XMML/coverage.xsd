@@ -17,6 +17,7 @@ Copyright (c) 2004 CSIRO - see https://www.seegrid.csiro.au/twiki/bin/view/Xmml/
 	<!-- bring in other schemas -->
 	<import namespace="http://www.opengis.net/gml" schemaLocation="./gml4coverage.xsd"/>
 	<include schemaLocation="./geometry.xsd"/>
+	<include schemaLocation="./temporal.xsd"/>
 	<include schemaLocation="./referenceSystems.xsd"/>
 	<include schemaLocation="./observation.xsd"/>
 	<!-- ====================================================================== -->
@@ -113,6 +114,8 @@ N.B. Temporal domains still to be implemented.</documentation>
 			</choice>
 		</sequence>
 	</complexType>
+	<!-- =========================================================== -->
+	<!-- === Types used in range content choices === -->
 	<!-- =========================================================== -->
 	<element name="rangeParameters" type="xmml:RSDefinitionPropertyType">
 		<annotation>
@@ -588,6 +591,68 @@ XXXXXXXXXXXXXXX need to make this more comprehensive
 				<sequence minOccurs="0">
 					<choice>
 						<element ref="gml:Tin"/>
+					</choice>
+				</sequence>
+				<attributeGroup ref="gml:AssociationAttributeGroup"/>
+			</restriction>
+		</complexContent>
+	</complexType>
+	<!-- ====================================================================== -->
+	<!-- =========================================================== -->
+	<element name="TimeComplexCoverage" type="xmml:TimeComplexCoverageType" substitutionGroup="xmml:Coverage"/>
+	<complexType name="TimeComplexCoverageType">
+		<complexContent>
+			<restriction base="xmml:CoverageType">
+				<sequence>
+					<group ref="gml:StandardObjectProperties"/>
+					<element ref="gml:boundedBy"/>
+					<group ref="xmml:ExtendedFeatureProperties"/>
+					<element ref="xmml:timeComplexDomain"/>
+					<element ref="xmml:range"/>
+					<element ref="xmml:coverageFunction" minOccurs="0"/>
+				</sequence>
+			</restriction>
+		</complexContent>
+	</complexType>
+	<!-- =========================================================== -->
+	<element name="timeComplexDomain" type="xmml:TimeComplexDomainType" substitutionGroup="xmml:domain"/>
+	<complexType name="TimeComplexDomainType">
+		<complexContent>
+			<restriction base="xmml:DomainType">
+				<sequence minOccurs="0">
+					<choice>
+						<element ref="xmml:TimeGeometricComplex"/>
+					</choice>
+				</sequence>
+				<attributeGroup ref="gml:AssociationAttributeGroup"/>
+			</restriction>
+		</complexContent>
+	</complexType>
+	<!-- ====================================================================== -->
+	<!-- =========================================================== -->
+	<element name="TimeGridCoverage" type="xmml:TimeGridCoverageType" substitutionGroup="xmml:Coverage"/>
+	<complexType name="TimeGridCoverageType">
+		<complexContent>
+			<restriction base="xmml:CoverageType">
+				<sequence>
+					<group ref="gml:StandardObjectProperties"/>
+					<element ref="gml:boundedBy"/>
+					<group ref="xmml:ExtendedFeatureProperties"/>
+					<element ref="xmml:timeGridDomain"/>
+					<element ref="xmml:range"/>
+					<element ref="xmml:coverageFunction" minOccurs="0"/>
+				</sequence>
+			</restriction>
+		</complexContent>
+	</complexType>
+	<!-- =========================================================== -->
+	<element name="timeGridDomain" type="xmml:TimeGridDomainType" substitutionGroup="xmml:domain"/>
+	<complexType name="TimeGridDomainType">
+		<complexContent>
+			<restriction base="xmml:DomainType">
+				<sequence minOccurs="0">
+					<choice>
+						<element ref="xmml:TimeGrid"/>
 					</choice>
 				</sequence>
 				<attributeGroup ref="gml:AssociationAttributeGroup"/>
