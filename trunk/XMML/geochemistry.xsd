@@ -15,6 +15,7 @@ Copyright © 2004 CSIRO - see https://www.seegrid.csiro.au/twiki/bin/view/Xmml/L
 	<import namespace="http://www.opengis.net/gml" schemaLocation="http://schemas.opengis.net/gml/3.1.0/base/feature.xsd"/>
 	<include schemaLocation="./commonFeatures.xsd"/>
 	<include schemaLocation="./observation.xsd"/>
+	<include schemaLocation="./referenceSystems.xsd"/>
 	<include schemaLocation="../enumerations/LUTgeochemistry.xsd"/>
 	<!-- ====================================================================== -->
 	<element name="GeochemMeasurement" type="xmml:GeochemMeasurementType" substitutionGroup="xmml:Observation"/>
@@ -73,10 +74,10 @@ Copyright © 2004 CSIRO - see https://www.seegrid.csiro.au/twiki/bin/view/Xmml/L
 		<attributeGroup ref="gml:AssociationAttributeGroup"/>
 	</complexType>
 	<!-- ====================================================================== -->
-	<element name="GeochemSpecimen" type="xmml:GeochemSpecimenType" substitutionGroup="xmml:Specimen"></element>
+	<element name="GeochemSpecimen" type="xmml:GeochemSpecimenType" substitutionGroup="xmml:Specimen"/>
 	<!-- ...................... -->
 	<complexType name="GeochemSpecimenType">
-			<annotation>
+		<annotation>
 			<documentation>Basic geochemistry specimen feature type. 
 				Currently this is a vacuous extension of the generic Specimen. 
 				Use the (optional) "related Observation" property to link specimen to observations and measurements made on it
@@ -164,6 +165,24 @@ Copyright © 2004 CSIRO - see https://www.seegrid.csiro.au/twiki/bin/view/Xmml/L
 			<element ref="xmml:AssayProcedure"/>
 		</sequence>
 		<attributeGroup ref="gml:AssociationAttributeGroup"/>
+	</complexType>
+	<!-- ====================================================================== -->
+	<!-- ====================================================================== -->
+	<element name="ChemAxisDefinition" type="xmml:ChemAxisDefinitionType" substitutionGroup="xmml:AxisDefinition">
+		<annotation>
+			<documentation>Specialised AxisDefinition with sensitivity information added</documentation>
+		</annotation>
+	</element>
+	<!-- ........................................ -->
+	<complexType name="ChemAxisDefinitionType">
+		<complexContent>
+			<extension base="xmml:AxisDefinitionType">
+				<sequence>
+				<element name="lowerDetectionLimit" type="gml:MeasureType" nillable="true"/>
+				<element name="upperDetectionLimit" type="gml:MeasureType" minOccurs="0"/>
+				</sequence>
+			</extension>
+		</complexContent>
 	</complexType>
 	<!-- ====================================================================== -->
 	<element name="GeochemRequest" type="xmml:GeochemRequestType"/>

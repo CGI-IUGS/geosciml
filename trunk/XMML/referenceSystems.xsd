@@ -45,13 +45,13 @@ Copyright (c) 2004 CSIRO - see https://www.seegrid.csiro.au/twiki/bin/view/Xmml/
 		<attributeGroup ref="gml:AssociationAttributeGroup"/>
 	</complexType>
 	<!-- ====================================================================== -->
-	<element name="ConstrainedPropertyDefinition" type="xmml:ConstrainedPropertyDefinitionType" substitutionGroup="xmml:PropertyDefinition">
+	<element name="ConstrainedProperty" type="xmml:ConstrainedPropertyType" substitutionGroup="xmml:PropertyDefinition">
 		<annotation>
 			<documentation>Description of a scalar property defined by adding constraints to a property previously defined elsewhere.</documentation>
 		</annotation>
 	</element>
 	<!-- ........................................ -->
-	<complexType name="ConstrainedPropertyDefinitionType">
+	<complexType name="ConstrainedPropertyType">
 		<annotation>
 			<documentation>A scalar property defined by adding constraints to an existing property.  
       </documentation>
@@ -95,14 +95,14 @@ Copyright (c) 2004 CSIRO - see https://www.seegrid.csiro.au/twiki/bin/view/Xmml/
 	</group>
 	<!-- ====================================================================== -->
 	<!-- ====================================================================== -->
-	<element name="CompoundPropertyDefinition" type="xmml:CompoundPropertyDefinitionType" abstract="true" substitutionGroup="xmml:PropertyDefinition">
+	<element name="CompoundProperty" type="xmml:CompoundPropertyType" abstract="true" substitutionGroup="xmml:PropertyDefinition">
 		<annotation>
 			<documentation>Description of a set of properties or a compound property, 
       that are the subject of a measurement, observation or assignment.   </documentation>
 		</annotation>
 	</element>
 	<!-- ........................................ -->
-	<complexType name="CompoundPropertyDefinitionType" abstract="true">
+	<complexType name="CompoundPropertyType" abstract="true">
 		<annotation>
 			<documentation>Description of a set of properties.  
       A property set may defined as either
@@ -125,15 +125,15 @@ Copyright (c) 2004 CSIRO - see https://www.seegrid.csiro.au/twiki/bin/view/Xmml/
 		</complexContent>
 	</complexType>
 	<!-- ====================================================================== -->
-	<element name="CompositePropertyDefinition" type="xmml:CompositePropertyDefinitionType" substitutionGroup="xmml:CompoundPropertyDefinition">
+	<element name="CompositeProperty" type="xmml:CompositePropertyType" substitutionGroup="xmml:CompoundProperty">
 		<annotation>
 			<documentation>A Composite Property Definition is composed from arbitrary base properties. </documentation>
 		</annotation>
 	</element>
 	<!-- ........................................ -->
-	<complexType name="CompositePropertyDefinitionType">
+	<complexType name="CompositePropertyType">
 		<complexContent>
-			<extension base="xmml:CompoundPropertyDefinitionType">
+			<extension base="xmml:CompoundPropertyType">
 				<sequence>
 					<element name="component" type="xmml:PropertyDefinitionPropertyType" maxOccurs="unbounded"/>
 				</sequence>
@@ -141,15 +141,15 @@ Copyright (c) 2004 CSIRO - see https://www.seegrid.csiro.au/twiki/bin/view/Xmml/
 		</complexContent>
 	</complexType>
 	<!-- ====================================================================== -->
-	<element name="PropertySeriesDefinition" type="xmml:PropertySeriesDefinitionType" substitutionGroup="xmml:CompoundPropertyDefinition">
+	<element name="PropertySeries" type="xmml:PropertySeriesType" substitutionGroup="xmml:CompoundProperty">
 		<annotation>
 			<documentation>A Series is derived from a common baseProperty (e.g. Chemical Concentration) with one or more constraint lists (e.g. Chemical Species). </documentation>
 		</annotation>
 	</element>
 	<!-- ........................................ -->
-	<complexType name="PropertySeriesDefinitionType">
+	<complexType name="PropertySeriesType">
 		<complexContent>
-			<extension base="xmml:CompoundPropertyDefinitionType">
+			<extension base="xmml:CompoundPropertyType">
 				<sequence>
 					<element name="baseProperty" type="xmml:PropertyDefinitionPropertyType">
 						<annotation>
@@ -229,7 +229,12 @@ Copyright (c) 2004 CSIRO - see https://www.seegrid.csiro.au/twiki/bin/view/Xmml/
 				<sequence>
 					<element name="property" type="xmml:PropertyDefinitionPropertyType"/>
 					<element ref="xmml:representation"/>
-					<group ref="xmml:quality"/>
+					<element ref="xmml:procedureUsed" minOccurs="0"/>
+					<element ref="xmml:quality" minOccurs="0" maxOccurs="unbounded">
+						<annotation>
+							<documentation>One or more quality elements record systematic measure of reliability</documentation>
+						</annotation>
+					</element>
 				</sequence>
 			</extension>
 		</complexContent>
@@ -285,27 +290,45 @@ Copyright (c) 2004 CSIRO - see https://www.seegrid.csiro.au/twiki/bin/view/Xmml/
 			<element name="Number">
 				<complexType>
 					<sequence>
-						<element ref="st:minInclusive" minOccurs="0"/>
-						<element ref="st:minExclusive" minOccurs="0"/>
-						<element ref="st:maxInclusive" minOccurs="0"/>
-						<element ref="st:maxExclusive" minOccurs="0"/>
+						<element name="restriction" minOccurs="0">
+							<complexType>
+								<sequence>
+									<element ref="st:minInclusive" minOccurs="0"/>
+									<element ref="st:minExclusive" minOccurs="0"/>
+									<element ref="st:maxInclusive" minOccurs="0"/>
+									<element ref="st:maxExclusive" minOccurs="0"/>
+								</sequence>
+							</complexType>
+						</element>
 						<element ref="gml:unitOfMeasure"/>
 					</sequence>
 				</complexType>
 			</element>
 			<element name="Word">
 				<complexType>
-					<choice>
-						<element ref="st:pattern"/>
-						<element ref="st:enumeration" maxOccurs="unbounded"/>
+					<sequence>
+						<element name="restriction" minOccurs="0">
+							<complexType>
+								<choice>
+									<element ref="st:pattern"/>
+									<element ref="st:enumeration" maxOccurs="unbounded"/>
+								</choice>
+							</complexType>
+						</element>
 						<element name="classification" type="gml:StringOrRefType"/>
-					</choice>
+					</sequence>
 				</complexType>
 			</element>
 			<element name="Boolean">
 				<complexType>
 					<sequence>
-						<element ref="st:enumeration" minOccurs="2" maxOccurs="2"/>
+						<element name="restriction">
+							<complexType>
+								<sequence>
+									<element ref="st:enumeration" minOccurs="2" maxOccurs="2"/>
+								</sequence>
+							</complexType>
+						</element>
 					</sequence>
 				</complexType>
 			</element>
@@ -322,7 +345,7 @@ Copyright (c) 2004 CSIRO - see https://www.seegrid.csiro.au/twiki/bin/view/Xmml/
 			</element>
 		</choice>
 	</complexType>
-	<!-- ...... -->
+	<!-- ......  ...... -->
 	<group name="scale">
 		<choice>
 			<element ref="gml:unitOfMeasure">
@@ -337,21 +360,6 @@ Copyright (c) 2004 CSIRO - see https://www.seegrid.csiro.au/twiki/bin/view/Xmml/
 			</element>
 			<element name="noScale" type="boolean" fixed="true"/>
 		</choice>
-	</group>
-	<!-- ====================================================================== -->
-	<group name="quality">
-		<sequence>
-			<element ref="xmml:quality" minOccurs="0" maxOccurs="unbounded">
-				<annotation>
-					<documentation>One or more quality elements record systematic measure of reliability</documentation>
-				</annotation>
-			</element>
-			<element ref="xmml:procedureUsed" minOccurs="0">
-				<annotation>
-					<documentation>Description of procedure or instrument used. </documentation>
-				</annotation>
-			</element>
-		</sequence>
 	</group>
 	<!-- ====================================================================== -->
 </schema>
