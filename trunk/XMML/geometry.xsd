@@ -8,14 +8,12 @@ geometry.xsd
 A GML conformant schema 
 for specialised geometries for geoscience
 
-2004-01-20
-
-Copyright (c) 2004 CSIRO - see https://www.seegrid.csiro.au/twiki/bin/view/Xmml/LegalNotices#Software_Notice
+Copyright (c) 2005 CSIRO - see https://www.seegrid.csiro.au/twiki/bin/view/Xmml/LegalNotices#Software_Notice
 </documentation>
 	</annotation>
 	<!-- ====================================================================== -->
 	<!-- bring in other schemas -->
-	<import namespace="http://www.opengis.net/gml" schemaLocation="https://www.seegrid.csiro.au/subversion/xmml/trunk/gml/3.1.1/base/geometryComplexes.xsd"/>
+	<import namespace="http://www.opengis.net/gml" schemaLocation="../gml/3.1.1/base/geometryComplexes.xsd"/>
 	<!-- ====================================================================== -->
 	<!-- ====================================================================== -->
 	<!-- === Compact form of multi-position.  === -->
@@ -38,7 +36,34 @@ Copyright (c) 2004 CSIRO - see https://www.seegrid.csiro.au/twiki/bin/view/Xmml/
 		</complexContent>
 	</complexType>
 	<!-- ====================================================================== -->
+	<!-- ====================================================================== -->
 	<!-- === Geometric primitives === -->
+	<!-- ====================================================================== -->
+	<!-- === Parameterised Lines === -->
+	<!-- ====================================================================== -->
+	<element name="Line" type="xmml:LineType"/>
+	<!-- ====================================================================== -->
+	<complexType name="LineType">
+		<annotation>
+			<documentation>Line carries an id, so can be used as the target of a reference. This is useful so that the survey defines a 1-D CRS used for indexing information along the borehole.</documentation>
+		</annotation>
+		<complexContent>
+			<extension base="gml:AbstractCurveType">
+				<sequence>
+					<element name="origin" type="gml:PointPropertyType">
+						<annotation>
+							<documentation>Line is expressed as an origin and direction.</documentation>
+						</annotation>
+					</element>
+					<element name="direction" type="gml:VectorType">
+						<annotation>
+							<documentation>A simple direction relative to the origin.</documentation>
+						</annotation>
+					</element>
+				</sequence>
+			</extension>
+		</complexContent>
+	</complexType>
 	<!-- ====================================================================== -->
 	<!-- === Parameterised Planes === -->
 	<!-- ====================================================================== -->
@@ -74,131 +99,6 @@ Copyright (c) 2004 CSIRO - see https://www.seegrid.csiro.au/twiki/bin/view/Xmml/
 		</complexContent>
 	</complexType>
 	<!-- ====================================================================== -->
-	<!-- === Geometry objects representing the intersection of  === -->
-	<!-- === a higher-order geometry object with a surface === -->
-	<!-- ====================================================================== -->
-	<complexType name="GeometrysInSurfacePropertyType">
-		<annotation>
-			<documentation>Container for a set of geometries lying within a specified surface, representing the intersection of a geometry with the surface. </documentation>
-		</annotation>
-		<sequence minOccurs="0">
-			<element ref="xmml:GeometrysInSurface"/>
-		</sequence>
-		<attributeGroup ref="gml:AssociationAttributeGroup"/>
-	</complexType>
-	<!-- ====================================================================== -->
-	<element name="GeometrysInSurface" type="xmml:GeometrysInSurfaceType"/>
-	<!-- ====================================================================== -->
-	<complexType name="GeometrysInSurfaceType">
-		<annotation>
-			<documentation>Convenience object representing a set of shapes lying completely within the specified surface. </documentation>
-		</annotation>
-		<complexContent>
-			<extension base="gml:AbstractGeometryType">
-				<sequence>
-					<element name="shape" type="gml:MultiGeometryPropertyType"/>
-					<element name="containingSurface" type="gml:SurfacePropertyType"/>
-				</sequence>
-			</extension>
-		</complexContent>
-	</complexType>
-	<!-- ====================================================================== -->
-	<complexType name="PointsInSurfacePropertyType">
-		<annotation>
-			<documentation>Container for a set of points lying within a specified surface, representing the intersection of a curve with the surface. </documentation>
-		</annotation>
-		<sequence minOccurs="0">
-			<element ref="xmml:PointsInSurface"/>
-		</sequence>
-		<attributeGroup ref="gml:AssociationAttributeGroup"/>
-	</complexType>
-	<!-- ====================================================================== -->
-	<element name="PointsInSurface" type="xmml:PointsInSurfaceType"/>
-	<!-- ====================================================================== -->
-	<complexType name="PointsInSurfaceType">
-		<annotation>
-			<documentation>Convenience object representing a set of shapes lying completely within the specified surface. </documentation>
-		</annotation>
-		<complexContent>
-			<extension base="gml:AbstractGeometryType">
-				<sequence>
-					<element name="shape" type="gml:MultiPointPropertyType"/>
-					<element name="containingSurface" type="gml:SurfacePropertyType"/>
-				</sequence>
-			</extension>
-		</complexContent>
-	</complexType>
-	<!-- ====================================================================== -->
-	<complexType name="CurvesInSurfacePropertyType">
-		<annotation>
-			<documentation>Container for a set of curves lying within a specified surface, representing the intersection of a surface with the surface.</documentation>
-		</annotation>
-		<sequence minOccurs="0">
-			<element ref="xmml:CurvesInSurface"/>
-		</sequence>
-		<attributeGroup ref="gml:AssociationAttributeGroup"/>
-	</complexType>
-	<!-- ====================================================================== -->
-	<element name="CurvesInSurface" type="xmml:CurvesInSurfaceType"/>
-	<!-- ====================================================================== -->
-	<complexType name="CurvesInSurfaceType">
-		<annotation>
-			<documentation>Convenience object representing a set of shapes lying completely within the specified surface. </documentation>
-		</annotation>
-		<complexContent>
-			<extension base="gml:AbstractGeometryType">
-				<sequence>
-					<element name="shape" type="gml:MultiCurvePropertyType"/>
-					<element name="containingSurface" type="gml:SurfacePropertyType"/>
-				</sequence>
-			</extension>
-		</complexContent>
-	</complexType>
-	<!-- ====================================================================== -->
-	<complexType name="SurfacesInSurfacePropertyType">
-		<annotation>
-			<documentation>Container for a set of surface (patches) lying within a specified surface, representing the intersection of a solid with the surface. </documentation>
-		</annotation>
-		<sequence minOccurs="0">
-			<element ref="xmml:SurfacesInSurface"/>
-		</sequence>
-		<attributeGroup ref="gml:AssociationAttributeGroup"/>
-	</complexType>
-	<!-- ====================================================================== -->
-	<element name="SurfacesInSurface" type="xmml:SurfacesInSurfaceType"/>
-	<!-- ====================================================================== -->
-	<complexType name="SurfacesInSurfaceType">
-		<annotation>
-			<documentation>Convenience object representing a set of shapes lying completely within the specified surface. </documentation>
-		</annotation>
-		<complexContent>
-			<extension base="gml:AbstractGeometryType">
-				<sequence>
-					<element name="shape" type="gml:CompositeSurfacePropertyType"/>
-					<element name="containingSurface" type="gml:SurfacePropertyType"/>
-				</sequence>
-			</extension>
-		</complexContent>
-	</complexType>
-	<!-- ====================================================================== -->
-	<!-- === Compact triangulated surface encoding === -->
-	<!-- ====================================================================== -->
-	<element name="TriSurface" type="xmml:TriSurfaceType" substitutionGroup="gml:Surface">
-		<annotation>
-			<documentation>More flexible, and potentially more compact version of a set of triangles, directly derived by restricting the general composite provided by GML, allowing either gml:Triangle or xmml:Triangle as members</documentation>
-		</annotation>
-	</element>
-	<!-- ====================================================================== -->
-	<complexType name="TriSurfaceType">
-		<complexContent>
-			<restriction base="gml:SurfaceType">
-				<sequence>
-					<group ref="gml:StandardObjectProperties"/>
-					<element ref="xmml:triPatches"/>
-				</sequence>
-			</restriction>
-		</complexContent>
-	</complexType>
 	<!-- ====================================================================== -->
 	<!-- === Convenience content-model group for nodes, recorded either as direct positions or Points === -->
 	<!-- =========================================================== -->
@@ -262,316 +162,6 @@ Copyright (c) 2004 CSIRO - see https://www.seegrid.csiro.au/twiki/bin/view/Xmml/
 		</complexContent>
 	</complexType>
 	<!-- =========================================================== -->
-	<!-- === Solids === -->
-	<!-- =========================================================== -->
-	<element name="Hexahedron" type="xmml:HexahedronType" substitutionGroup="gml:_Solid">
-		<annotation>
-			<documentation>The "Hexahedron" element is a simple solid with eight vertices and six sides. </documentation>
-		</annotation>
-	</element>
-	<!-- =========================================================== -->
-	<complexType name="HexahedronType">
-		<annotation>
-			<documentation>The "Hexahedron" element is a simple solid with eight vertices and six sides.  
-      The vertices may be
-      1.  indicated using a set of attributes whose values are identifiers for points described elsewhere
-      or as a mixture of
-      2.  described inline as direct positions using the gml:pos element, 
-      3.  described inline as gml:Point using the pointRep element (if it is required to give the vertices gml:id's), or by reference to other gml:Points using the pointRep element in the by-reference mode (if Points with id's are already available). 
-Relative to a right-handed coordinate system the vertex sequence is      
-   7____6
-  / |       / |
-4____5  |
-|  3  _  |  2
-| /        | /
-0____1
-
-For cases where the face order is used implicitly, then the faces are defined with the following vertices
-
-0 - 0 1 5 4
-1 - 1 2 6 5
-2 - 2 3 7 6
-3 - 3 0 4 7
-4 - 0 3 2 1
-5 - 7 4 5 6
-
-      </documentation>
-		</annotation>
-		<complexContent>
-			<extension base="gml:AbstractSolidType">
-				<sequence>
-					<choice>
-						<element ref="xmml:exterior8Points"/>
-						<group ref="xmml:posProperty" minOccurs="8" maxOccurs="8"/>
-					</choice>
-				</sequence>
-			</extension>
-		</complexContent>
-	</complexType>
-	<!-- =========================================================== -->
-	<element name="Wedge" type="xmml:WedgeType" substitutionGroup="gml:_Solid">
-		<annotation>
-			<documentation>The "Wedge" element is a simple solid with six vertices and five sides. </documentation>
-		</annotation>
-	</element>
-	<!-- =========================================================== -->
-	<complexType name="WedgeType">
-		<annotation>
-			<documentation>The "Wedge" element is a simple solid with six vertices and five sides.  
-      The vertices may be
-      1.  indicated using a set of attributes whose values are identifiers for points described elsewhere
-      or as a mixture of
-      2.  described inline as direct positions using the gml:pos element, 
-      3.  described inline as gml:Point using the pointRep element (if it is required to give the vertices gml:id's), or by reference to other gml:Points using the pointRep element in the by-reference mode (if Points with id's are already available). 
-Relative to a right-handed coordinate system the vertex sequence is      
-      5
-    /  | \
-   /  4  \
- 3 / -\- 2
-  |/     \  | 
- 0____1
-
-For cases where the face order is used implicitly, then the faces are defined with the following vertices
-
-0 - 0 1 4
-1 - 1 2 5 4
-2 - 2 3 5
-3 - 3 0 4 5
-4 - 0 3 2 1
-
-      </documentation>
-		</annotation>
-		<complexContent>
-			<extension base="gml:AbstractSolidType">
-				<choice>
-					<element ref="xmml:exterior6Points"/>
-					<group ref="xmml:posProperty" minOccurs="6" maxOccurs="6"/>
-				</choice>
-			</extension>
-		</complexContent>
-	</complexType>
-	<!-- =========================================================== -->
-	<element name="Pyramid" type="xmml:PyramidType" substitutionGroup="gml:_Solid">
-		<annotation>
-			<documentation>The "Pyramid" element is a simple solid with five vertices and five sides. </documentation>
-		</annotation>
-	</element>
-	<!-- =========================================================== -->
-	<complexType name="PyramidType">
-		<annotation>
-			<documentation>The "Pyramid" element is a simple solid with five vertices and five sides.  
-      The vertices may be
-      1.  indicated using a set of attributes whose values are identifiers for points described elsewhere
-      or as a mixture of
-      2.  described inline as direct positions using the gml:pos element, 
-      3.  described inline as gml:Point using the pointRep element (if it is required to give the vertices gml:id's), or by reference to other gml:Points using the pointRep element in the by-reference mode (if Points with id's are already available). 
-Relative to a right-handed coordinate system the vertex sequence is      
-     4
-    //\\ 
- 3 / -\- 2
-  |/     \  | 
- 0____1
-
-For cases where the face order is used implicitly, then the faces are defined with the following vertices
-
-0 - 0 1 4
-1 - 1 2 4
-2 - 2 3 4
-3 - 3 0 4 
-4 - 0 3 2 1
-
-      </documentation>
-		</annotation>
-		<complexContent>
-			<extension base="gml:AbstractSolidType">
-				<choice>
-					<element ref="xmml:exterior5Points"/>
-					<group ref="xmml:posProperty" minOccurs="5" maxOccurs="5"/>
-				</choice>
-			</extension>
-		</complexContent>
-	</complexType>
-	<!-- ============================================================== -->
-	<element name="Tetrahedron" type="xmml:TetrahedronType" substitutionGroup="gml:_Solid">
-		<annotation>
-			<documentation>The "TetrahedronP" element is a simple solid with four vertices and four sides.  </documentation>
-		</annotation>
-	</element>
-	<!-- =========================================================== -->
-	<complexType name="TetrahedronType">
-		<annotation>
-			<documentation>The "Tetrahedron" element is a simple solid with four vertices and four sides.  
-      The vertices may be
-      1.  indicated using a set of attributes whose values are identifiers for points described elsewhere
-      or as a mixture of
-      2.  described inline as direct positions using the gml:pos element, 
-      3.  described inline as gml:Point using the pointRep element (if it is required to give the vertices gml:id's), or by reference to other gml:Points using the pointRep element in the by-reference mode (if Points with id's are already available). 
-Relative to a right-handed coordinate system the vertex sequence is      
-      3
-   /   |  \
- 2- -| - -1
-   \   |   /
-      0
-      
- For cases where the face order is used implicitly, then the faces are defined with the following vertices 
-
-1 - 1 2 3
-2 - 2 0 3
-0 - 0 1 3
-3 - 0 2 1  
-
-      </documentation>
-		</annotation>
-		<complexContent>
-			<extension base="gml:AbstractSolidType">
-				<choice>
-					<element ref="xmml:exterior4Points"/>
-					<group ref="xmml:posProperty" minOccurs="4" maxOccurs="4"/>
-				</choice>
-			</extension>
-		</complexContent>
-	</complexType>
-	<!-- ====================================================================== -->
-	<!-- === Surface patches === -->
-	<!-- ====================================================================== -->
-	<element name="Triangle" type="xmml:ThreeNodeRefSurfacePatchType" substitutionGroup="gml:_SurfacePatch">
-		<annotation>
-			<documentation>Represents a triangle as a surface with an 
-      outer boundary defined by references to three Points. 
-      Note that this is a polygon (subtype) with no inner boundaries. 
-      Relative to a right-handed coordinate system the vertex sequence is counter-clockwise around the positive normal vector
-      A
-       |
- 0__| __2
-   \   |   /
-    \    /
-      1
-</documentation>
-		</annotation>
-	</element>
-	<!-- ====================================================================== -->
-	<complexType name="ThreeNodeRefSurfacePatchType">
-		<complexContent>
-			<extension base="gml:AbstractSurfacePatchType">
-				<sequence>
-					<element ref="xmml:exterior3Points"/>
-				</sequence>
-				<attribute name="interpolation" type="gml:SurfaceInterpolationType" fixed="planar"/>
-			</extension>
-		</complexContent>
-	</complexType>
-	<!-- ====================================================================== -->
-	<element name="Quadrilateral" type="xmml:FourNodeRefSurfacePatchType" substitutionGroup="gml:_SurfacePatch">
-		<annotation>
-			<documentation>Represents a quadrilateral as a surface with an 
-      outer boundary defined by references to four Points. 
-      The points must be co-planar.  
-      Note that this is a polygon (subtype) with no inner boundaries. 
-      Relative to a right-handed coordinate system the vertex sequence is counter-clockwise around the positive normal vector
-      A
-       |
- 0__| __3
-  |    |     |
-  |_____|
- 1         2
-</documentation>
-		</annotation>
-	</element>
-	<!-- ====================================================================== -->
-	<complexType name="FourNodeRefSurfacePatchType">
-		<complexContent>
-			<extension base="gml:AbstractSurfacePatchType">
-				<sequence>
-					<element ref="xmml:exterior4Points"/>
-				</sequence>
-				<attribute name="interpolation" type="gml:SurfaceInterpolationType" fixed="planar"/>
-			</extension>
-		</complexContent>
-	</complexType>
-	<!-- ====================================================================== -->
-	<!-- === Rings === -->
-	<!-- ====================================================================== -->
-	<element name="TriangleRing" type="xmml:TriangleRingType" substitutionGroup="gml:LinearRing">
-		<annotation>
-			<documentation>Triangle ring - a LinearRing with 4 vertices.
-      The initial and final vertices must be coincident.</documentation>
-		</annotation>
-	</element>
-	<!-- ====================================================================== -->
-	<complexType name="TriangleRingType">
-		<complexContent>
-			<restriction base="gml:LinearRingType">
-				<sequence>
-					<group ref="gml:StandardObjectProperties"/>
-					<group ref="xmml:posProperty" minOccurs="4" maxOccurs="4"/>
-				</sequence>
-				<attribute name="srsName" type="anyURI" use="optional"/>
-				<attribute ref="gml:id" use="optional"/>
-			</restriction>
-		</complexContent>
-	</complexType>
-	<!-- ====================================================================== -->
-	<element name="QuadrilateralRing" type="xmml:QuadrilateralRingType" substitutionGroup="gml:LinearRing">
-		<annotation>
-			<documentation>Quadrilateral ring - a LinearRing with 5 vertices.
-      The initial and final vertices must be coincident.</documentation>
-		</annotation>
-	</element>
-	<!-- ====================================================================== -->
-	<complexType name="QuadrilateralRingType">
-		<complexContent>
-			<restriction base="gml:LinearRingType">
-				<sequence>
-					<group ref="gml:StandardObjectProperties"/>
-					<group ref="xmml:posProperty" minOccurs="5" maxOccurs="5"/>
-				</sequence>
-				<attribute name="srsName" type="anyURI" use="optional"/>
-				<attribute ref="gml:id" use="optional"/>
-			</restriction>
-		</complexContent>
-	</complexType>
-	<!-- ====================================================================== -->
-	<!-- === Specialised components used by geometries === -->
-	<!-- ====================================================================== -->
-	<!-- === properties === -->
-	<!-- ====================================================================== -->
-	<element name="triPatches" type="xmml:TriArrayPropertyType" substitutionGroup="gml:patches">
-		<annotation>
-			<documentation>triMembers contains triangles, each of which is described using either the gml or xmml forms.</documentation>
-		</annotation>
-	</element>
-	<!-- ====================================================================== -->
-	<complexType name="TriArrayPropertyType">
-		<complexContent>
-			<restriction base="gml:SurfacePatchArrayPropertyType">
-				<sequence>
-					<choice minOccurs="0" maxOccurs="unbounded">
-						<element ref="gml:Triangle"/>
-						<element ref="xmml:Triangle"/>
-					</choice>
-				</sequence>
-			</restriction>
-		</complexContent>
-	</complexType>
-	<!-- =========================================================== -->
-	<element name="quadPatches" type="xmml:QuadArrayPropertyType" substitutionGroup="gml:patches">
-		<annotation>
-			<documentation>quadMembers contains quadrilateral patches, each of which is described using either the gml or xmml forms.</documentation>
-		</annotation>
-	</element>
-	<!-- ====================================================================== -->
-	<complexType name="QuadArrayPropertyType">
-		<complexContent>
-			<restriction base="gml:SurfacePatchArrayPropertyType">
-				<sequence>
-					<choice minOccurs="0" maxOccurs="unbounded">
-						<element ref="gml:Rectangle"/>
-						<element ref="xmml:Quadrilateral"/>
-					</choice>
-				</sequence>
-			</restriction>
-		</complexContent>
-	</complexType>
 	<!-- =========================================================== -->
 	<element name="exterior3Points">
 		<complexType>
@@ -629,30 +219,6 @@ Relative to a right-handed coordinate system the vertex sequence is
 		</complexType>
 	</element>
 	<!-- =========================================================== -->
-	<!-- 
-How to implement a triangulated-surface
-using geometryPrimitives.xsd
-    Surface/patches/Triangle*/exterior/LinearRing/pos*
-using xmml-geometry, vertices represented locally 
-    TriSurface/triPatches/gml:Triangle*/exterior/LinearRing/pos*
-or if Points described elsewhere
-     TriSurface/triPatches/xmml:Triangle*/exterior3Points (has references to vertex id's)
-     
-How to implement a hexahedron:
-using geometryPrimitives.xsd
-    Solid/exterior/Surface/patches/Rectangle*/exterior/LinearRing
-same pattern vertices represented locally 
-    Hexahedron/exterior/HexahedralSurface/quadPatches/gml:Rectangle*/exterior/LinearRing/pos*
-or by reference
-    Hexahedron/exterior/HexahedralSurface/quadPatches/xmml:Rectangle*/exterior4Points
-    
-more compact patterns, ** require a fixed vertex sequence**: 
-vertices represented locally
-     Hexahedron/pos[8]
-or by reference
-     Hexahedron/exterior8Points
- 
-  -->
 	<!-- =========================================================== -->
 	<!-- === Convenience properties === -->
 	<!-- =========================================================== -->
