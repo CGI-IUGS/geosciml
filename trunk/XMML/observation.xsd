@@ -38,7 +38,7 @@ Copyright (c) 2005 CSIRO - see https://www.seegrid.csiro.au/twiki/bin/view/Xmml/
 	<!-- ====================================================================== -->
 	<!-- ===== Object types for Observations ====== -->
 	<!-- ====================================================================== -->
-	<element name="Observation" type="xmml:ObservationType" abstract="true" substitutionGroup="xmml:ProcedureEvent">
+	<element name="AbstractObservation" type="xmml:AbstractObservationType" abstract="true" substitutionGroup="xmml:ProcedureEvent">
 		<annotation>
 			<documentation>Head of Observation substitution group</documentation>
 		</annotation>
@@ -61,7 +61,7 @@ Copyright (c) 2005 CSIRO - see https://www.seegrid.csiro.au/twiki/bin/view/Xmml/
 		</complexContent>
 	</complexType>-->
 	<!-- ...................... -->
-	<complexType name="ObservationType">
+	<complexType name="AbstractObservationType">
 		<annotation>
 			<documentation>Base type for Observations. 
 			Earlier versions used ObservationBaseType which suppressed preceding/following events, source/product. 
@@ -114,7 +114,27 @@ Copyright (c) 2005 CSIRO - see https://www.seegrid.csiro.au/twiki/bin/view/Xmml/
 		</choice>
 	</group>
 	<!-- ====================================================================== -->
-	<element name="Measurement" type="xmml:MeasurementType" substitutionGroup="xmml:Observation">
+	<element name="Observation" type="xmml:ObservationType" substitutionGroup="xmml:AbstractObservation">
+		<annotation>
+			<documentation>Generic Observation event</documentation>
+		</annotation>
+	</element>
+	<!-- ...................... -->
+	<complexType name="ObservationType">
+		<annotation>
+			<documentation>Observation event.   
+			carries a generic  "result" properties of type "anyType".</documentation>
+		</annotation>
+		<complexContent>
+			<extension base="xmml:AbstractObservationType">
+				<sequence>
+					<element name="result" type="anyType"/>
+				</sequence>
+			</extension>
+		</complexContent>
+	</complexType>
+	<!-- ====================================================================== -->
+	<element name="Measurement" type="xmml:MeasurementType" substitutionGroup="xmml:AbstractObservation">
 		<annotation>
 			<documentation>Measurement event</documentation>
 		</annotation>
@@ -123,19 +143,40 @@ Copyright (c) 2005 CSIRO - see https://www.seegrid.csiro.au/twiki/bin/view/Xmml/
 	<complexType name="MeasurementType">
 		<annotation>
 			<documentation>Measurement event.   
-			carries one or two "result" properties of type "ResultMeasureType".
-			If two are present, then these must use the realtiveMeasure attribute to indicate a range.</documentation>
+			carries one "result" properties of type "ResultMeasureType".</documentation>
 		</annotation>
 		<complexContent>
-			<extension base="xmml:ObservationType">
+			<extension base="xmml:AbstractObservationType">
 				<sequence>
-					<element name="result" type="xmml:ResultMeasureType" maxOccurs="2"/>
+					<element name="result" type="xmml:ResultMeasureType"/>
 				</sequence>
 			</extension>
 		</complexContent>
 	</complexType>
 	<!-- ====================================================================== -->
-	<element name="CategoryObservation" type="xmml:CategoryObservationType" substitutionGroup="xmml:Observation">
+	<element name="RangeMeasurement" type="xmml:RangeMeasurementType" substitutionGroup="xmml:Measurement">
+		<annotation>
+			<documentation>Range Measurement event</documentation>
+		</annotation>
+	</element>
+	<!-- ...................... -->
+	<complexType name="RangeMeasurementType">
+		<annotation>
+			<documentation>Range Measurement event.   
+			adds an additional "result" properties of type "ResultMeasureType".
+			The values of the relativeMeasure attributes on the two results must specify a range. 
+			</documentation>
+		</annotation>
+		<complexContent>
+			<extension base="xmml:MeasurementType">
+				<sequence>
+					<element name="result" type="xmml:ResultMeasureType"/>
+				</sequence>
+			</extension>
+		</complexContent>
+	</complexType>
+	<!-- ====================================================================== -->
+	<element name="CategoryObservation" type="xmml:CategoryObservationType" substitutionGroup="xmml:AbstractObservation">
 		<annotation>
 			<documentation>Observation, in which the result is a textual value from a controlled vocabulary</documentation>
 		</annotation>
@@ -146,7 +187,7 @@ Copyright (c) 2005 CSIRO - see https://www.seegrid.csiro.au/twiki/bin/view/Xmml/
 			<documentation>Observation, in which the result is a textual value from a controlled vocabulary</documentation>
 		</annotation>
 		<complexContent>
-			<extension base="xmml:ObservationType">
+			<extension base="xmml:AbstractObservationType">
 				<sequence>
 					<element name="result" type="xmml:CodeWithAuthorityType"/>
 				</sequence>
@@ -162,7 +203,7 @@ Copyright (c) 2005 CSIRO - see https://www.seegrid.csiro.au/twiki/bin/view/Xmml/
 	<complexType name="ObservationPropertyType">
 		<sequence minOccurs="0">
 			<choice>
-				<element ref="xmml:Observation"/>
+				<element ref="xmml:AbstractObservation"/>
 				<element ref="xmml:ObservationCollection"/>
 			</choice>
 		</sequence>
