@@ -142,8 +142,8 @@ Copyright (c) 2004 CSIRO - see https://www.seegrid.csiro.au/twiki/bin/view/Xmml/
 	<!-- ===================================================== -->
 	<!-- === Specialised location properties === -->
 	<!-- ===================================================== -->
-	<element name="place" type="xmml:LocationPropertyType"/>
-	<!-- ...................... -->
+	<element name="place" type="gml:CodeType"/>
+	<!-- ......................
 	<complexType name="LocationPropertyType">
 		<sequence minOccurs="0">
 			<choice>
@@ -152,7 +152,7 @@ Copyright (c) 2004 CSIRO - see https://www.seegrid.csiro.au/twiki/bin/view/Xmml/
 			</choice>
 		</sequence>
 		<attributeGroup ref="gml:AssociationAttributeGroup"/>
-	</complexType>
+	</complexType> -->
 	<!-- ===================================================== -->
 	<element name="geogPosition" type="gml:PointPropertyType">
 		<annotation>
@@ -165,14 +165,14 @@ Copyright (c) 2004 CSIRO - see https://www.seegrid.csiro.au/twiki/bin/view/Xmml/
 			<documentation>property used to record location as a point within a projected coordinate reference system</documentation>
 		</annotation>
 	</element>
-	<!-- ===================================================== -->
+	<!-- =====================================================
 	<element name="map" type="xmml:MapsheetPropertyType">
 		<annotation>
 			<documentation>Indicates the mapsheet within which a feature is located.  
       The mapsheet may be given as a URN on a link, or using the xmml:Mapsheet element, which records it as a code/codeSpace pair.  </documentation>
 		</annotation>
-	</element>
-	<!-- ...................... -->
+	</element> -->
+	<!-- ......................
 	<complexType name="MapsheetPropertyType">
 		<complexContent>
 			<restriction base="xmml:LocationPropertyType">
@@ -182,8 +182,8 @@ Copyright (c) 2004 CSIRO - see https://www.seegrid.csiro.au/twiki/bin/view/Xmml/
 				<attributeGroup ref="gml:AssociationAttributeGroup"/>
 			</restriction>
 		</complexContent>
-	</complexType>
+	</complexType> -->
 	<!-- ====================================================================== -->
-	<element name="Mapsheet" type="gml:CodeType" substitutionGroup="gml:LocationKeyWord"/>
+	<element name="mapsheet" type="gml:CodeType" substitutionGroup="xmml:place"/>
 	<!-- ====================================================================== -->
 </schema>
