@@ -8,7 +8,7 @@ coverage.xsd
 A GML conformant schema 
 for coverages - modified from GML coverages
 
-2004-06-05
+2004-07-05
 
 Copyright (c) 2004 CSIRO - see https://www.seegrid.csiro.au/twiki/bin/view/Xmml/LegalNotices#Software_Notice
 </documentation>
@@ -69,103 +69,56 @@ N.B. Temporal domains still to be implemented.</documentation>
 	<element name="range" type="xmml:RangeType"/>
 	<!-- =========================================================== -->
 	<complexType name="RangeType">
+		<annotation>
+			<documentation>Choice of representations of values in the coverage range. In general, the range will describe a composite property. The components of the composite values at sample locations may be described one component or band at a time over the whole domain (BandList or TableByBand), composite value or record for each sample location at a time (RecordList or TableByRecord) or in an external file (File) or as a list of Objects (ObjectList). Text values including whitespace require "special treatment" in </documentation>
+		</annotation>
 		<sequence>
 			<choice>
+				<element ref="xmml:BandList">
+					<annotation>
+						<documentation>Values in the range represented as vectors in property- component- or band-sequential order - i.e. values for all samples in domain for one component of range, followed by values for all samples in domain for next component, etc</documentation>
+					</annotation>
+				</element>
+				<element ref="xmml:TableByBand">
+					<annotation>
+						<documentation>Values in the range represented as a table in property- component or band-sequential order - i.e. values for all samples in domain for one component of range, followed by values for all samples in domain for next component, etc</documentation>
+					</annotation>
+				</element>
+				<element ref="xmml:RecordList">
+					<annotation>
+						<documentation>Values in the range represented as tuples in band-interleaved (property- or component-interleaved) order - i.e. values for all components of range for one sample in domain, followed by values for all components of range for next sample in domain, etc</documentation>
+					</annotation>
+				</element>
+				<element ref="xmml:TableByRecord">
+					<annotation>
+						<documentation>Values in the range represented as a table in band-interleaved (property- or component-interleaved) order - i.e. values for all components of range for one sample in domain, followed by values for all components of range for next sample in domain, etc</documentation>
+					</annotation>
+				</element>
+				<element ref="xmml:ObjectList">
+					<annotation>
+						<documentation>Values in the range represented as Objects or structured values - following the standard GML Property pattern, the "member" property may carry a link to an out-of-line object. </documentation>
+					</annotation>
+				</element>
+				<element ref="xmml:DescriptionList">
+					<annotation>
+						<documentation>Values in the range represented as text.</documentation>
+					</annotation>
+				</element>
 				<element ref="xmml:File">
 					<annotation>
 						<documentation>A reference to an external source for the data, together with a description of how that external source is structured
 </documentation>
 					</annotation>
 				</element>
-				<element ref="xmml:RecordList">
-					<annotation>
-						<documentation>Values in the range represented as tuples in band-interleaved (property- or component-interleaved) order</documentation>
-					</annotation>
-				</element>
-				<element ref="xmml:TableByRecord">
-					<annotation>
-						<documentation>Values in the range represented as a table in band-interleaved (property- or component-interleaved) order</documentation>
-					</annotation>
-				</element>
-				<element ref="xmml:BandList">
-					<annotation>
-						<documentation>Values in the range represented as vectors in property- component- or band-sequential order</documentation>
-					</annotation>
-				</element>
-				<element ref="xmml:TableByBand">
-					<annotation>
-						<documentation>Values in the range represented as a table in property- component or band-sequential order</documentation>
-					</annotation>
-				</element>
-				<element ref="xmml:ObjectList">
-					<annotation>
-						<documentation>Values in the range represented as Objects or structured values - </documentation>
-					</annotation>
-				</element>
 			</choice>
 		</sequence>
 	</complexType>
 	<!-- =========================================================== -->
-	<element name="RecordList" type="xmml:RecordListType">
+	<element name="rangeParameters" type="xmml:RSDefinitionPropertyType">
 		<annotation>
-			<documentation>Values in the range represented as vectors in band-interleaved order</documentation>
+			<documentation>Container for description of component axes</documentation>
 		</annotation>
 	</element>
-	<!-- =========================================================== -->
-	<complexType name="RecordListType">
-		<choice>
-			<element name="tuple" type="xmml:TupleType" maxOccurs="unbounded">
-				<annotation>
-					<documentation>A list of general tuples, each being one multi-component range value in "band-interleaved" order. </documentation>
-				</annotation>
-			</element>
-			<element name="nTuple" type="xmml:NumericOrNullTupleType" maxOccurs="unbounded">
-				<annotation>
-					<documentation>A list of numeric tuples, each being one multi-component range value in "band-interleaved" order. </documentation>
-				</annotation>
-			</element>
-		</choice>
-	</complexType>
-	<!-- =========================================================== -->
-	<element name="ObjectList" type="xmml:ObjectListType">
-		<annotation>
-			<documentation>Values in the range represented as Objects or structured values</documentation>
-		</annotation>
-	</element>
-	<!-- =========================================================== -->
-	<complexType name="ObjectListType">
-		<sequence>
-			<element name="member" maxOccurs="unbounded">
-				<complexType>
-					<sequence minOccurs="0">
-							<element ref="gml:_GML"/>
-					</sequence>
-					<attributeGroup ref="gml:AssociationAttributeGroup"/>
-				</complexType>
-			</element>
-		</sequence>
-	</complexType>
-	<!-- =========================================================== -->
-	<element name="TableByRecord" type="xmml:TableByRecordType">
-		<annotation>
-			<documentation>Values in the range represented as a table in band-interleaved order</documentation>
-		</annotation>
-	</element>
-	<!-- =========================================================== -->
-	<complexType name="TableByRecordType">
-		<choice>
-			<element name="table" type="xmml:TupleListType">
-				<annotation>
-					<documentation>A list of general values, being the set of multi-component range values in "band-interleaved" order. </documentation>
-				</annotation>
-			</element>
-			<element name="nTable" type="xmml:NumericOrNullTupleListType">
-				<annotation>
-					<documentation>A list of numeric values, being the set of multi-component range values in "band-interleaved" order. </documentation>
-				</annotation>
-			</element>
-		</choice>
-	</complexType>
 	<!-- =========================================================== -->
 	<element name="BandList" type="xmml:BandListType">
 		<annotation>
@@ -178,33 +131,36 @@ N.B. Temporal domains still to be implemented.</documentation>
 			<documentation>A set of lists, each representing a single component of the range.  
           The complete set is the range in "band-sequential" order.  </documentation>
 		</annotation>
-		<choice maxOccurs="unbounded">
-			<element name="booleanList" type="xmml:SoftTypedBooleanOrNullListType">
-				<annotation>
-					<documentation>A list of text values representing a single property, being the set of values in one component of the range.  </documentation>
-				</annotation>
-			</element>
-			<element name="categoryList" type="xmml:SoftTypedCategoryListType">
-				<annotation>
-					<documentation>A list of text values representing a single property, being the set of values in one component of the range.  </documentation>
-				</annotation>
-			</element>
-			<element name="countList" type="xmml:SoftTypedCountOrNullListType">
-				<annotation>
-					<documentation>A list of text values representing a single property, being the set of values in one component of the range.  </documentation>
-				</annotation>
-			</element>
-			<element name="measureList" type="xmml:SoftTypedMeasureOrNullListType">
-				<annotation>
-					<documentation>A list of numeric values representing a single property, being the set of values in one component of the range.  </documentation>
-				</annotation>
-			</element>
-			<element name="referenceList" type="xmml:refListType">
-				<annotation>
-					<documentation>A list of URI's, being the a set of references to (possibly complex) values in one component of the range.  </documentation>
-				</annotation>
-			</element>
-		</choice>
+		<sequence>
+			<element ref="xmml:rangeParameters" minOccurs="0"/>
+			<choice maxOccurs="unbounded">
+				<element name="booleanList" type="xmml:SoftTypedBooleanOrNullListType">
+					<annotation>
+						<documentation>A list of text values representing a single property, being the set of values in one component of the range.  </documentation>
+					</annotation>
+				</element>
+				<element name="categoryList" type="xmml:SoftTypedCategoryListType">
+					<annotation>
+						<documentation>A list of text values representing a single property, being the set of values in one component of the range.  </documentation>
+					</annotation>
+				</element>
+				<element name="countList" type="xmml:SoftTypedCountOrNullListType">
+					<annotation>
+						<documentation>A list of text values representing a single property, being the set of values in one component of the range.  </documentation>
+					</annotation>
+				</element>
+				<element name="measureList" type="xmml:SoftTypedMeasureOrNullListType">
+					<annotation>
+						<documentation>A list of numeric values representing a single property, being the set of values in one component of the range.  </documentation>
+					</annotation>
+				</element>
+				<element name="referenceList" type="xmml:refListType">
+					<annotation>
+						<documentation>A list of URI's, being the a set of references to (possibly complex) values in one component of the range.  </documentation>
+					</annotation>
+				</element>
+			</choice>
+		</sequence>
 		<attribute name="dimension" type="positiveInteger" use="optional">
 			<annotation>
 				<documentation>The band count</documentation>
@@ -219,18 +175,105 @@ N.B. Temporal domains still to be implemented.</documentation>
 	</element>
 	<!-- =========================================================== -->
 	<complexType name="TableByBandType">
-		<choice>
-			<element name="table" type="xmml:TupleListType">
-				<annotation>
-					<documentation>A list of general values, being the set of multi-component range values in "band-sequential " order. </documentation>
-				</annotation>
+		<sequence>
+			<element ref="xmml:rangeParameters"/>
+			<choice>
+				<element name="table" type="xmml:TupleListType">
+					<annotation>
+						<documentation>A list of general values, being the set of multi-component range values in "band-sequential " order. </documentation>
+					</annotation>
+				</element>
+				<element name="nTable" type="xmml:NumericOrNullTupleListType">
+					<annotation>
+						<documentation>A list of numeric values, being the set of multi-component range values in "band-sequential " order. </documentation>
+					</annotation>
+				</element>
+			</choice>
+		</sequence>
+	</complexType>
+	<!-- =========================================================== -->
+	<element name="RecordList" type="xmml:RecordListType">
+		<annotation>
+			<documentation>Values in the range represented as vectors in band-interleaved order - blah</documentation>
+		</annotation>
+	</element>
+	<!-- =========================================================== -->
+	<complexType name="RecordListType">
+		<sequence>
+			<element ref="xmml:rangeParameters"/>
+			<choice>
+				<element name="tuple" type="xmml:TupleType" maxOccurs="unbounded">
+					<annotation>
+						<documentation>A list of general tuples, each being one multi-component range value in "band-interleaved" order. </documentation>
+					</annotation>
+				</element>
+				<element name="nTuple" type="xmml:NumericOrNullTupleType" maxOccurs="unbounded">
+					<annotation>
+						<documentation>A list of numeric tuples, each being one multi-component range value in "band-interleaved" order. </documentation>
+					</annotation>
+				</element>
+			</choice>
+		</sequence>
+	</complexType>
+	<!-- =========================================================== -->
+	<element name="TableByRecord" type="xmml:TableByRecordType">
+		<annotation>
+			<documentation>Values in the range represented as a table in band-interleaved order</documentation>
+		</annotation>
+	</element>
+	<!-- =========================================================== -->
+	<complexType name="TableByRecordType">
+		<sequence>
+			<element ref="xmml:rangeParameters"/>
+			<choice>
+				<element name="table" type="xmml:TupleListType">
+					<annotation>
+						<documentation>A list of general values, being the set of multi-component range values in "band-interleaved" order. </documentation>
+					</annotation>
+				</element>
+				<element name="nTable" type="xmml:NumericOrNullTupleListType">
+					<annotation>
+						<documentation>A list of numeric values, being the set of multi-component range values in "band-interleaved" order. </documentation>
+					</annotation>
+				</element>
+			</choice>
+		</sequence>
+	</complexType>
+	<!-- =========================================================== -->
+	<element name="ObjectList" type="xmml:ObjectListType">
+		<annotation>
+			<documentation>Values in the range represented as Objects or structured values</documentation>
+		</annotation>
+	</element>
+	<!-- =========================================================== -->
+	<complexType name="ObjectListType">
+		<sequence>
+			<element name="member" maxOccurs="unbounded">
+				<complexType>
+					<sequence minOccurs="0">
+						<element ref="gml:_GML"/>
+					</sequence>
+					<attributeGroup ref="gml:AssociationAttributeGroup"/>
+				</complexType>
 			</element>
-			<element name="nTable" type="xmml:NumericOrNullTupleListType">
-				<annotation>
-					<documentation>A list of numeric values, being the set of multi-component range values in "band-sequential " order. </documentation>
-				</annotation>
-			</element>
-		</choice>
+		</sequence>
+	</complexType>
+	<!-- =========================================================== -->
+	<element name="DescriptionList" type="xmml:DescriptionListType">
+		<annotation>
+			<documentation>Values in the range represented as text</documentation>
+		</annotation>
+	</element>
+	<!-- =========================================================== -->
+	<complexType name="DescriptionListType">
+		<sequence>
+			<element ref="gml:description" maxOccurs="unbounded"/>
+		</sequence>
+		<attribute name="property" type="anyURI">
+			<annotation>
+				<documentation>This attribute holds a reference to or label for the property being described. </documentation>
+			</annotation>
+		</attribute>
 	</complexType>
 	<!-- =========================================================== -->
 	<element name="File" type="xmml:FileType">
@@ -242,7 +285,7 @@ N.B. Temporal domains still to be implemented.</documentation>
 	<!-- =========================================================== -->
 	<complexType name="FileType">
 		<sequence>
-			<element name="rangeParameters" type="xmml:TupleDefinitionPropertyType"/>
+			<element ref="xmml:rangeParameters"/>
 			<element name="fileName" type="anyURI"/>
 			<element name="fileStructure" type="xmml:FileValueModelType"/>
 			<element name="mimeType" type="anyURI" minOccurs="0"/>
@@ -395,8 +438,7 @@ XXXXXXXXXXXXXXX need to make this more comprehensive
 				<sequence>
 					<group ref="gml:StandardObjectProperties"/>
 					<element ref="gml:boundedBy"/>
-					<group ref="xmml:StandardSupportProperties"/>
-					<element ref="xmml:relatedFeature" minOccurs="0" maxOccurs="unbounded"/>
+					<group ref="xmml:ExtendedFeatureProperties"/>
 					<element ref="xmml:pointSetDomain"/>
 					<element ref="xmml:range"/>
 					<element ref="xmml:coverageFunction" minOccurs="0"/>
@@ -459,8 +501,7 @@ XXXXXXXXXXXXXXX need to make this more comprehensive
 				<sequence>
 					<group ref="gml:StandardObjectProperties"/>
 					<element ref="gml:boundedBy"/>
-					<group ref="xmml:StandardSupportProperties"/>
-					<element ref="xmml:relatedFeature" minOccurs="0" maxOccurs="unbounded"/>
+					<group ref="xmml:ExtendedFeatureProperties"/>
 					<element ref="xmml:intervalSetDomain"/>
 					<element ref="xmml:range"/>
 					<element ref="xmml:coverageFunction" minOccurs="0"/>
@@ -495,8 +536,7 @@ XXXXXXXXXXXXXXX need to make this more comprehensive
 				<sequence>
 					<group ref="gml:StandardObjectProperties"/>
 					<element ref="gml:boundedBy"/>
-					<group ref="xmml:StandardSupportProperties"/>
-					<element ref="xmml:relatedFeature" minOccurs="0" maxOccurs="unbounded"/>
+					<group ref="xmml:ExtendedFeatureProperties"/>
 					<element ref="xmml:rectifiedGridDomain"/>
 					<element ref="xmml:range"/>
 					<element ref="xmml:coverageFunction" minOccurs="0"/>
@@ -531,8 +571,7 @@ XXXXXXXXXXXXXXX need to make this more comprehensive
 				<sequence>
 					<group ref="gml:StandardObjectProperties"/>
 					<element ref="gml:boundedBy"/>
-					<group ref="xmml:StandardSupportProperties"/>
-					<element ref="xmml:relatedFeature" minOccurs="0" maxOccurs="unbounded"/>
+					<group ref="xmml:ExtendedFeatureProperties"/>
 					<element ref="xmml:curveDomain"/>
 					<element ref="xmml:range"/>
 					<element ref="xmml:coverageFunction" minOccurs="0"/>
@@ -563,8 +602,7 @@ XXXXXXXXXXXXXXX need to make this more comprehensive
 				<sequence>
 					<group ref="gml:StandardObjectProperties"/>
 					<element ref="gml:boundedBy"/>
-					<group ref="xmml:StandardSupportProperties"/>
-					<element ref="xmml:relatedFeature" minOccurs="0" maxOccurs="unbounded"/>
+					<group ref="xmml:ExtendedFeatureProperties"/>
 					<element ref="xmml:tinDomain"/>
 					<element ref="xmml:range"/>
 					<element ref="xmml:coverageFunction" minOccurs="0"/>
