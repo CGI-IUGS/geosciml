@@ -42,7 +42,7 @@ For the moment I will comment out the necessary pieces.  </documentation>
 		<attributeGroup ref="gml:AssociationAttributeGroup"/>
 	</complexType>
 	<!-- ====================================================================== -->
-	<element name="TupleDefinition" type="xmml:TupleDefinitionType" substitutionGroup="gml:Definition">
+	<element name="TupleDefinition" type="xmml:TupleDefinitionType" abstract="true" substitutionGroup="gml:Definition">
 		<annotation>
 			<documentation>Description of a set of properties or a compound property, with scales, 
       that are the subject of a measurement, observation or assignment.  
@@ -50,7 +50,7 @@ For the moment I will comment out the necessary pieces.  </documentation>
 		</annotation>
 	</element>
 	<!-- ====== -->
-	<complexType name="TupleDefinitionType">
+	<complexType name="TupleDefinitionType" abstract="true">
 		<annotation>
 			<documentation>Description of a set of properties with their scales that are the subject of a 
       measurement, observation or assignment.  
@@ -66,7 +66,53 @@ For the moment I will comment out the necessary pieces.  </documentation>
 		</annotation>
 		<complexContent>
 			<extension base="gml:DefinitionType">
-				<choice>
+				<attribute name="dimension" type="positiveInteger">
+					<annotation>
+						<documentation>The number of components in the tuple</documentation>
+					</annotation>
+				</attribute>
+			</extension>
+		</complexContent>
+	</complexType>
+	<!-- ====================================================================== -->
+	<element name="SequenceTupleDefinition" type="xmml:SequenceTupleDefinitionType" substitutionGroup="xmml:TupleDefinition"/>
+	<complexType name="SequenceTupleDefinitionType">
+		<complexContent>
+			<extension base="gml:DefinitionType">
+				<sequence>
+					<element name="baseProperty" type="gml:StringOrRefType">
+						<annotation>
+							<documentation>Property that forms the basis for generating a set of more refined properties; e.g. Chemical Composition, Radiance</documentation>
+						</annotation>
+					</element>
+					<choice>
+						<annotation>
+							<documentation>A set of values of some secondary property that constraints the baseProperty to generate a property set.  If more than one set of constraints are possible, then these are applied simultaneously to generate </documentation>
+						</annotation>
+						<group ref="xmml:constraintLists" maxOccurs="unbounded"/>
+					</choice>
+					<element ref="xmml:representation">
+						<annotation>
+							<documentation>When the (baseProperty with constraints) method is chosen, 
+                then a single scale applies to all components of the set</documentation>
+						</annotation>
+					</element>
+					<group ref="xmml:quality">
+						<annotation>
+							<documentation>When the (baseProperty with constraints) method is chosen, 
+                then a single quality and observation procedure applies to all components of the set</documentation>
+						</annotation>
+					</group>
+				</sequence>
+			</extension>
+		</complexContent>
+	</complexType>
+	<!-- ====================================================================== -->
+	<element name="ComponentTupleDefinition" type="xmml:ComponentTupleDefinitionType" substitutionGroup="xmml:TupleDefinition"/>
+	<complexType name="ComponentTupleDefinitionType">
+		<complexContent>
+			<extension base="gml:DefinitionType">
+				<sequence>
 					<element name="component" maxOccurs="unbounded">
 						<complexType>
 							<sequence minOccurs="0">
@@ -78,37 +124,7 @@ For the moment I will comment out the necessary pieces.  </documentation>
 							<attributeGroup ref="gml:AssociationAttributeGroup"/>
 						</complexType>
 					</element>
-					<sequence>
-						<element name="baseProperty" type="gml:StringOrRefType">
-							<annotation>
-								<documentation>Property that forms the basis for generating a set of more refined properties; e.g. Chemical Composition, Radiance</documentation>
-							</annotation>
-						</element>
-						<choice>
-							<annotation>
-								<documentation>A set of values of some secondary property that constraints the baseProperty to generate a property set.  If more than one set of constraints are possible, then these are applied simultaneously to generate </documentation>
-							</annotation>
-							<group ref="xmml:constraintLists" maxOccurs="unbounded"/>
-						</choice>
-						<element ref="xmml:representation">
-							<annotation>
-								<documentation>When the (baseProperty with constraints) method is chosen, 
-                then a single scale applies to all components of the set</documentation>
-							</annotation>
-						</element>
-						<group ref="xmml:quality">
-							<annotation>
-								<documentation>When the (baseProperty with constraints) method is chosen, 
-                then a single quality and observation procedure applies to all components of the set</documentation>
-							</annotation>
-						</group>
-					</sequence>
-				</choice>
-				<attribute name="dimension" type="positiveInteger">
-					<annotation>
-						<documentation>The number of components in the tuple</documentation>
-					</annotation>
-				</attribute>
+				</sequence>
 			</extension>
 		</complexContent>
 	</complexType>
