@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<schema targetNamespace="http://www.opengis.net/xmml" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:gml="http://www.opengis.net/gml" xmlns="http://www.w3.org/2001/XMLSchema" xmlns:xmml="http://www.opengis.net/xmml" elementFormDefault="qualified" attributeFormDefault="unqualified" version="pre-release">
+<schema targetNamespace="http://www.opengis.net/xmml" elementFormDefault="qualified" attributeFormDefault="unqualified" version="pre-release" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:gml="http://www.opengis.net/gml" xmlns="http://www.w3.org/2001/XMLSchema" xmlns:xmml="http://www.opengis.net/xmml">
 	<annotation>
 		<documentation>
 observation.xsd
@@ -39,7 +39,7 @@ Copyright (c) 2004 CSIRO - see https://www.seegrid.csiro.au/twiki/bin/view/Xmml/
 							<documentation>the Feature regarding which the observations are being made, sometimes called the target of the observation, such as a specimen, station, tract, mountain, etc. </documentation>
 						</annotation>
 					</element>
-					<element name="observedProperty" type="gml:DictionaryEntryType" minOccurs="0">
+					<element ref="xmml:observedProperty" minOccurs="0">
 						<annotation>
 							<documentation>Description of the property or phenomenon whose value is being described or estimated through observation, such as "wavelength", "grass-species", "power", "intensity in the waveband x-y", etc. It is this feature property that provides the (semantic) type of the observation. Note that the description of the phenomenon may be quite specific and constrained. In general the precise details of the constraints describing the observe properties require attention to the procedure used in making the observation: e.g. an optical sensor typically has a wavelength-dependent response. This optional property may be provided for client convenience, to allow comparison between and aggregation of observations of the same property made using different procedures.</documentation>
 						</annotation>
@@ -54,12 +54,12 @@ Copyright (c) 2004 CSIRO - see https://www.seegrid.csiro.au/twiki/bin/view/Xmml/
 							<documentation>Allow multiple quality measures if required.</documentation>
 						</annotation>
 					</element>
-					<element name="procedureTime" type="gml:TimePrimitivePropertyType">
+					<element ref="xmml:procedureTime">
 						<annotation>
 							<documentation>The Time when the observation occurred.  </documentation>
 						</annotation>
 					</element>
-					<element name="responsible" type="xmml:PartyPropertyType">
+					<element ref="xmml:responsible">
 						<annotation>
 							<documentation>Person or organisation responsible for the observation</documentation>
 						</annotation>
@@ -76,47 +76,55 @@ Copyright (c) 2004 CSIRO - see https://www.seegrid.csiro.au/twiki/bin/view/Xmml/
 		</complexContent>
 	</complexType>
 	<!-- ====== -->
-	<element name="resultMeasure" type="xmml:MeasureType" nillable="true">
+	<element name="observedProperty" type="gml:DictionaryEntryType">
+		<annotation>
+			<documentation>Description of the property or phenomenon whose value is being described or estimated through observation, such as "wavelength", "grass-species", "power", "intensity in the waveband x-y", etc. It is this feature property that provides the (semantic) type of the observation. Note that the description of the phenomenon may be quite specific and constrained. In general the precise details of the constraints describing the observe properties require attention to the procedure used in making the observation: e.g. an optical sensor typically has a wavelength-dependent response. This optional property may be provided for client convenience, to allow comparison between and aggregation of observations of the same property made using different procedures.</documentation>
+		</annotation>
+	</element>
+	<!-- ====== -->
+	<element name="abstractResult" type="anyType" abstract="true"/>
+	<!-- ............ -->
+	<element name="resultMeasure" type="xmml:MeasureType" substitutionGroup="xmml:abstractResult" nillable="true">
 		<annotation>
 			<documentation>Holds a measure as a simple (literal) value</documentation>
 		</annotation>
 	</element>
-	<element name="resultBoolean" type="boolean" nillable="true">
+	<element name="resultBoolean" type="boolean" substitutionGroup="xmml:abstractResult" nillable="true">
 		<annotation>
 			<documentation>Holds a boolean as a simple (literal) value</documentation>
 		</annotation>
 	</element>
-	<element name="resultCode" type="xmml:TokenWithAuthorityType" nillable="true">
+	<element name="resultCode" type="xmml:TokenWithAuthorityType" substitutionGroup="xmml:abstractResult" nillable="true">
 		<annotation>
 			<documentation>Holds a code as a simple (literal) value</documentation>
 		</annotation>
 	</element>
-	<element name="resultCount" type="xmml:CountType" nillable="true">
+	<element name="resultCount" type="xmml:CountType" substitutionGroup="xmml:abstractResult" nillable="true">
 		<annotation>
 			<documentation>Holds an integer as a simple (literal) value</documentation>
 		</annotation>
 	</element>
-	<element name="resultNTuple" type="xmml:NumericOrNullTupleType" nillable="true">
+	<element name="resultNRecord" type="xmml:NumericOrNullRecordType" substitutionGroup="xmml:abstractResult" nillable="true">
 		<annotation>
-			<documentation>Holds a numeric tuple as a simple (literal) value</documentation>
+			<documentation>Holds a numeric Record as a simple (literal) value</documentation>
 		</annotation>
 	</element>
-	<element name="resultTuple" type="xmml:TupleType" nillable="true">
+	<element name="resultRecord" type="xmml:RecordType" substitutionGroup="xmml:abstractResult" nillable="true">
 		<annotation>
-			<documentation>Holds a general tuple as a simple (literal) value</documentation>
+			<documentation>Holds a general Record as a simple (literal) value</documentation>
 		</annotation>
 	</element>
-	<element name="resultGeometry" type="gml:GeometryPropertyType" nillable="true">
+	<element name="resultGeometry" type="gml:GeometryPropertyType" substitutionGroup="xmml:abstractResult" nillable="true">
 		<annotation>
 			<documentation>Holds or points to a gml:_Geometry</documentation>
 		</annotation>
 	</element>
-	<element name="resultTime" type="gml:TimePrimitivePropertyType" nillable="true">
+	<element name="resultTime" type="gml:TimePrimitivePropertyType" substitutionGroup="xmml:abstractResult" nillable="true">
 		<annotation>
 			<documentation>Holds or points to a gml:_TimePrimitive</documentation>
 		</annotation>
 	</element>
-	<element name="resultObject" type="gml:AssociationType" nillable="true">
+	<element name="resultObject" type="gml:AssociationType" substitutionGroup="xmml:abstractResult" nillable="true">
 		<annotation>
 			<documentation>The most general form for holding a "result", which may be any Object (including valueObjects) or may simply carry a link to the result</documentation>
 		</annotation>
@@ -133,14 +141,19 @@ Copyright (c) 2004 CSIRO - see https://www.seegrid.csiro.au/twiki/bin/view/Xmml/
 			<element ref="xmml:resultBoolean"/>
 			<element ref="xmml:resultCode"/>
 			<element ref="xmml:resultCount"/>
-			<element ref="xmml:resultNTuple"/>
-			<element ref="xmml:resultTuple"/>
+			<element ref="xmml:resultNRecord"/>
+			<element ref="xmml:resultRecord"/>
 			<element ref="xmml:resultGeometry"/>
 			<element ref="xmml:resultTime"/>
 			<element ref="xmml:resultObject"/>
 		</choice>
 	</group>
 	<!-- ====================================================================== -->
+	<element name="procedureTime" type="gml:TimeGeometricPrimitivePropertyType">
+		<annotation>
+			<documentation>The Time when the observation occurred.  </documentation>
+		</annotation>
+	</element>
 	<!-- ====================================================================== -->
 	<element name="Measurement" type="xmml:MeasurementType" substitutionGroup="xmml:Observation">
 		<annotation>
@@ -162,12 +175,13 @@ Specialised from generic observation by restricting the result to be numeric.
 					<group ref="xmml:ExtendedFeatureProperties"/>
 					<element ref="xmml:relatedFeature" minOccurs="0" maxOccurs="unbounded"/>
 					<element ref="gml:position"/>
+					<element ref="xmml:positionMethod" minOccurs="0"/>
 					<element ref="xmml:subject"/>
-					<element name="observedProperty" type="gml:DictionaryEntryType" minOccurs="0"/>
+					<element ref="xmml:observedProperty" minOccurs="0"/>
 					<element ref="xmml:resultMeasure"/>
 					<element ref="xmml:quality" minOccurs="0" maxOccurs="unbounded"/>
-					<element name="procedureTime" type="gml:TimePrimitivePropertyType"/>
-					<element name="responsible" type="xmml:PartyPropertyType"/>
+					<element ref="xmml:procedureTime"/>
+					<element ref="xmml:responsible"/>
 					<element ref="xmml:procedureUsed"/>
 					<element ref="xmml:reference" minOccurs="0"/>
 				</sequence>

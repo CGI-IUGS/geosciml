@@ -328,27 +328,27 @@ Copyright © 2004 CSIRO - see https://www.seegrid.csiro.au/twiki/bin/view/Xmml/L
 		</choice>
 	</group>
 	<!-- ====================================================================== -->
-	<!-- ===== Numeric tuples and tables ====== -->
+	<!-- ===== Numeric Records and tables ====== -->
 	<!-- ====================================================================== -->
-	<complexType name="NumericTupleType">
+	<complexType name="NumericRecordType">
 		<annotation>
-			<documentation>A set of numeric values, representing a tuple.  
+			<documentation>A set of numeric values, representing a record.  
       Generalises the approach used for gml:DirectPositionType, replacing "srsName" with "RS". 
-      This allows a tuple to be recorded in compact form, as a whitespace-separated list of doubles.</documentation>
+      This allows a record composed of numeric components to be recorded in compact form, as a whitespace-separated list of doubles.</documentation>
 		</annotation>
 		<simpleContent>
 			<extension base="gml:doubleList">
 				<attribute name="RS" type="anyURI" use="optional">
 					<annotation>
-						<documentation>Pointer to definition of the reference system for the tuple.  
+						<documentation>Pointer to definition of the reference system for the record.  
             The RS description should indicate the semantics/label and units of measure for each component, 
-            and the order in which the components appear in the tuple.  
+            and the order in which the components appear in the Record.  
             RS may be ommitted, in which case it is the same as the previous value in the current context or document.</documentation>
 					</annotation>
 				</attribute>
 				<attribute name="dimension" type="positiveInteger" use="optional">
 					<annotation>
-						<documentation>The number of components in the tuple</documentation>
+						<documentation>The number of components in the Record</documentation>
 					</annotation>
 				</attribute>
 				<attributeGroup ref="gml:SRSInformationGroup">
@@ -360,25 +360,25 @@ Copyright © 2004 CSIRO - see https://www.seegrid.csiro.au/twiki/bin/view/Xmml/L
 		</simpleContent>
 	</complexType>
 	<!-- ====================================================================== -->
-	<complexType name="NumericOrNullTupleType">
+	<complexType name="NumericOrNullRecordType">
 		<annotation>
-			<documentation>A set of numeric or Null values, representing a tuple.  
+			<documentation>A set of numeric or Null values, representing a Record.  
       Generalises the approach used for gml:DirectPositionType, replacing "srsName" with "RS". 
-      This allows a tuple to be recorded in compact form, as a whitespace-separated list of doubles.</documentation>
+      This allows a Record to be recorded in compact form, as a whitespace-separated list of doubles.</documentation>
 		</annotation>
 		<simpleContent>
 			<extension base="gml:doubleOrNullList">
 				<attribute name="RS" type="anyURI" use="optional">
 					<annotation>
-						<documentation>Pointer to definition of the reference system for the tuple.  
+						<documentation>Pointer to definition of the reference system for the Record.  
             The RS description should indicate the semantics/label and units of measure for each component, 
-            and the order in which the components appear in the tuple.  
+            and the order in which the components appear in the Record.  
             RS may be ommitted, in which case it is the same as the previous value in the current context or document.</documentation>
 					</annotation>
 				</attribute>
 				<attribute name="dimension" type="positiveInteger" use="optional">
 					<annotation>
-						<documentation>The number of components in the tuple</documentation>
+						<documentation>The number of components in the Record</documentation>
 					</annotation>
 				</attribute>
 				<attributeGroup ref="gml:SRSInformationGroup">
@@ -390,30 +390,30 @@ Copyright © 2004 CSIRO - see https://www.seegrid.csiro.au/twiki/bin/view/Xmml/L
 		</simpleContent>
 	</complexType>
 	<!-- ====================================================================== -->
-	<complexType name="NumericTupleListType">
+	<complexType name="NumericRecordListType">
 		<annotation>
-			<documentation>A set of numeric values, representing a list of tuples or a table.  
+			<documentation>A set of numeric values, representing a list of Records or a table.  
       This allows a table of values to be recorded in compact form, as a whitespace-separated list of doubles. 
-      Tuple components increment fastest, followed by tuple instances, so if you think of this as a table in which the rows are tuples, then the representation is left-to-right followed by down the table.  
+      Record components increment fastest, followed by Record instances, so if you think of this as a table in which the rows are Records, then the representation is left-to-right followed by down the table.  
        
       To assist direct inspection of the data, good practice is to use 
-         * linefeed between tuples, and 
-         * tab between components in a tuple.
+         * linefeed between Records, and 
+         * tab between components in a Record.
       However any whitespace character sequence is a valid separator between items. </documentation>
 		</annotation>
 		<simpleContent>
 			<extension base="gml:doubleList">
 				<attribute name="RS" type="anyURI" use="optional">
 					<annotation>
-						<documentation>Pointer to definition of the reference system for the tuple.  
+						<documentation>Pointer to definition of the reference system for the Record.  
             The RS description should indicate the semantics/label and units of measure for each component, 
-            and the order in which the components appear in the tuple.  
+            and the order in which the components appear in the Record.  
             RS may be ommitted, in which case it is the same as the previous value in the current context or document.</documentation>
 					</annotation>
 				</attribute>
 				<attribute name="dimension" type="positiveInteger" use="optional">
 					<annotation>
-						<documentation>The number of components in the tuple. Should this be mandatory?</documentation>
+						<documentation>The number of components in the Record. Should this be mandatory?</documentation>
 					</annotation>
 				</attribute>
 				<attributeGroup ref="gml:SRSInformationGroup">
@@ -421,39 +421,39 @@ Copyright © 2004 CSIRO - see https://www.seegrid.csiro.au/twiki/bin/view/Xmml/L
 						<documentation>Optionally include the axis-names and axis-labels as lists</documentation>
 					</annotation>
 				</attributeGroup>
-				<attribute name="tupleCount" type="nonNegativeInteger" use="optional">
+				<attribute name="recordCount" type="nonNegativeInteger" use="optional">
 					<annotation>
-						<documentation>The number of tuples in the list</documentation>
+						<documentation>The number of Records in the list</documentation>
 					</annotation>
 				</attribute>
 			</extension>
 		</simpleContent>
 	</complexType>
 	<!-- ====================================================================== -->
-	<complexType name="NumericOrNullTupleListType">
+	<complexType name="NumericOrNullRecordListType">
 		<annotation>
-			<documentation>A set of numeric or Null values, representing a list of tuples or a table.  
+			<documentation>A set of numeric or Null values, representing a list of Records or a table.  
       This allows a table of values to be recorded in compact form, as a whitespace-separated list of doubles. 
-      Tuple components increment fastest, followed by tuple instances, so if you think of this as a table in which the rows are tuples, then the representation is left-to-right followed by down the table.  
+      Record components increment fastest, followed by Record instances, so if you think of this as a table in which the rows are Records, then the representation is left-to-right followed by down the table.  
        
       To assist direct inspection of the data, good practice is to use 
-         * linefeed between tuples, and 
-         * tab between components in a tuple.
+         * linefeed between Records, and 
+         * tab between components in a Record.
       However any whitespace character sequence is a valid separator between items. </documentation>
 		</annotation>
 		<simpleContent>
 			<extension base="gml:doubleOrNullList">
 				<attribute name="RS" type="anyURI" use="optional">
 					<annotation>
-						<documentation>Pointer to definition of the reference system for the tuple.  
+						<documentation>Pointer to definition of the reference system for the Record.  
             The RS description should indicate the semantics/label and units of measure for each component, 
-            and the order in which the components appear in the tuple.  
+            and the order in which the components appear in the Record.  
             RS may be ommitted, in which case it is the same as the previous value in the current context or document.</documentation>
 					</annotation>
 				</attribute>
 				<attribute name="dimension" type="positiveInteger" use="optional">
 					<annotation>
-						<documentation>The number of components in the tuple. Should this be mandatory?</documentation>
+						<documentation>The number of components in the Record. Should this be mandatory?</documentation>
 					</annotation>
 				</attribute>
 				<attributeGroup ref="gml:SRSInformationGroup">
@@ -461,22 +461,22 @@ Copyright © 2004 CSIRO - see https://www.seegrid.csiro.au/twiki/bin/view/Xmml/L
 						<documentation>Optionally include the axis-names and axis-labels as lists</documentation>
 					</annotation>
 				</attributeGroup>
-				<attribute name="tupleCount" type="nonNegativeInteger" use="optional">
+				<attribute name="recordCount" type="nonNegativeInteger" use="optional">
 					<annotation>
-						<documentation>The number of tuples in the list</documentation>
+						<documentation>The number of Records in the list</documentation>
 					</annotation>
 				</attribute>
 			</extension>
 		</simpleContent>
 	</complexType>
 	<!-- ====================================================================== -->
-	<!-- ===== General tuples and tables ====== -->
+	<!-- ===== General Records and tables ====== -->
 	<!-- ====================================================================== -->
-	<complexType name="TupleType">
+	<complexType name="RecordType">
 		<annotation>
-			<documentation>A set of values, representing a tuple.  
-      Generalises the approach used for xmml:NumericTupleType. 
-      This allows a tuple to be recorded in compact form, as a list of tokens.
+			<documentation>A set of values, representing a Record.  
+      Generalises the approach used for xmml:NumericRecordType. 
+      This allows a Record to be recorded in compact form, as a list of tokens.
       Note that XML "token" may contain embedded single spaces, so item separators should be tabs, linefeeds, or two or more consecutive spaces.  
 </documentation>
 		</annotation>
@@ -484,16 +484,16 @@ Copyright © 2004 CSIRO - see https://www.seegrid.csiro.au/twiki/bin/view/Xmml/L
 			<extension base="xmml:tokenListType">
 				<attribute name="RS" type="anyURI" use="optional">
 					<annotation>
-						<documentation>Pointer to definition of the reference system for the tuple.  
+						<documentation>Pointer to definition of the reference system for the Record.  
             The RS description should indicate the semantics/label and 
             units of measure or value-space (if appropriate) for each component, 
-            and the order in which the components appear in the tuple.  
+            and the order in which the components appear in the Record.  
             RS may be ommitted, in which case it is the same as the previous value in the current context or document.</documentation>
 					</annotation>
 				</attribute>
 				<attribute name="dimension" type="positiveInteger" use="optional">
 					<annotation>
-						<documentation>The number of components in the tuple</documentation>
+						<documentation>The number of components in the Record</documentation>
 					</annotation>
 				</attribute>
 				<attributeGroup ref="gml:SRSInformationGroup">
@@ -505,28 +505,28 @@ Copyright © 2004 CSIRO - see https://www.seegrid.csiro.au/twiki/bin/view/Xmml/L
 		</simpleContent>
 	</complexType>
 	<!-- ====================================================================== -->
-	<complexType name="TupleListType">
+	<complexType name="RecordListType">
 		<annotation>
-			<documentation>A set of values, representing a list of tuples or a table.  
+			<documentation>A set of values, representing a list of Records or a table.  
       This allows a table of values to be recorded in compact form, as a list of tokens. 
       Note that XML "token" may contain embedded single spaces, so item separators should be tabs, linefeeds, or two or more consecutive spaces.  
-      Tuple components increment fastest, followed by tuple instances, so if you think of this as a table in which the rows are tuples, then the representation is left-to-right followed by down the table.  
+      Record components increment fastest, followed by Record instances, so if you think of this as a table in which the rows are Records, then the representation is left-to-right followed by down the table.  
        
       To assist direct inspection of the data, good practice is to use 
-         * linefeed between tuples, and 
-         * tab between components in a tuple.
+         * linefeed between Records, and 
+         * tab between components in a Record.
       However any whitespace character sequence is a valid separator between items. </documentation>
 		</annotation>
 		<simpleContent>
 			<extension base="xmml:tokenListType">
 				<attribute name="RS" type="anyURI" use="optional">
 					<annotation>
-						<documentation>Pointer to definition of the reference system for the tuple.  The RS description should indicate the semantics/label and units of measure for each component, and the order in which the components appear in the tuple.  RS may be ommitted, in which case it is the same as the previous value in the current context or document.</documentation>
+						<documentation>Pointer to definition of the reference system for the Record.  The RS description should indicate the semantics/label and units of measure for each component, and the order in which the components appear in the Record.  RS may be ommitted, in which case it is the same as the previous value in the current context or document.</documentation>
 					</annotation>
 				</attribute>
 				<attribute name="dimension" type="positiveInteger" use="optional">
 					<annotation>
-						<documentation>The number of components in the tuple.  Should this be mandatory?</documentation>
+						<documentation>The number of components in the Record.  Should this be mandatory?</documentation>
 					</annotation>
 				</attribute>
 				<attributeGroup ref="gml:SRSInformationGroup">
@@ -534,9 +534,9 @@ Copyright © 2004 CSIRO - see https://www.seegrid.csiro.au/twiki/bin/view/Xmml/L
 						<documentation>Optionally include the axis-names and axis-labels as lists</documentation>
 					</annotation>
 				</attributeGroup>
-				<attribute name="tupleCount" type="nonNegativeInteger" use="optional">
+				<attribute name="recordCount" type="nonNegativeInteger" use="optional">
 					<annotation>
-						<documentation>The number of tuples in the list</documentation>
+						<documentation>The number of Records in the list</documentation>
 					</annotation>
 				</attribute>
 			</extension>

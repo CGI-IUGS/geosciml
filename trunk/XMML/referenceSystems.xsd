@@ -15,20 +15,19 @@ Copyright (c) 2004 CSIRO - see https://www.seegrid.csiro.au/twiki/bin/view/Xmml/
 	</annotation>
 	<!-- ====================================================================== -->
 	<!-- bring in other schemas -->
-	<!--
-  <import namespace="http://www.w3.org/2001/XMLSchema" schemaLocation="http://www.w3.org/2001/XMLSchema.xsd">
-    <annotation>
-      <documentation> Import the components declared in the XSD "schema for schemas" so that we can use them here.  
-However, XML Spy overrrides the schemaLocation directive withi its own internal version, and gets confused about redeclartions, etc.  
-Need to solve this.  
-For the moment I will comment out the necessary pieces.  </documentation>
-    </annotation>
-  </import>
-  -->
-	<!--   -->
+	<!--  
 	<import namespace="http://www.w3.org/2001/XMLSchema" schemaLocation="http://www.w3.org/2001/XMLSchema">
 		<annotation>
-			<documentation>Here I import the schema-for-schemas. (Spy has an entrypointing to a local copy in MainCatalog.xml)  </documentation>
+			<documentation>Import the schema-for-schemas. (Spy has an entry pointing to a local copy in MainCatalog.xml)  
+Validation problems with the S4S so relevant components copied instead </documentation>
+		</annotation>
+	</import> -->
+	<import namespace="http://www.w3.org/XML/1998/namespace" schemaLocation="http://www.w3.org/XML/1998/namespace">
+		<annotation>
+			<documentation>
+       Get access to the xml: attribute groups for xml:lang
+       as declared on 'schema' and 'documentation' below
+     </documentation>
 		</annotation>
 	</import>
 	<import namespace="http://www.opengis.net/gml" schemaLocation="http://schemas.opengis.net/gml/3.1.0/base/dictionary.xsd"/>
@@ -153,15 +152,6 @@ For the moment I will comment out the necessary pieces.  </documentation>
 		</choice>
 	</group>
 	<!-- ====================================================================== -->
-	<complexType name="RepresentationType">
-		<complexContent>
-			<extension base="topLevelSimpleType">
-				<sequence>
-					<group ref="xmml:scale" minOccurs="0"/>
-				</sequence>
-			</extension>
-		</complexContent>
-	</complexType>
 	<!-- ====================================================================== -->
 	<element name="representation" type="xmml:RepresentationType">
 		<annotation>
@@ -177,43 +167,53 @@ For the moment I will comment out the necessary pieces.  </documentation>
 	But currently validators mostly barf when trying to import the S4S </documentation>
 		</annotation>
 	</element>
-	<!-- 
-		<complexType>
-			<choice>
-				<element ref="simpleType"/>
-				<element name="Number">
-					<complexType>
-						<sequence>
-							<element ref="gml:unitOfMeasure"/>
-							<element ref="minInclusive" minOccurs="0"/>
-							<element ref="minExclusive" minOccurs="0"/>
-							<element ref="maxInclusive" minOccurs="0"/>
-							<element ref="maxExclusive" minOccurs="0"/>
-						</sequence>
-					</complexType>
-				</element>
-				<element name="Word">
-					<complexType>
-						<choice>
-							<element name="codeSpace" type="anyURI"/>
-							<element ref="pattern"/>
-							<element ref="enumeration" maxOccurs="unbounded"/>
-						</choice>
-					</complexType>
-				</element>
-				<element name="Boolean">
-					<complexType>
-						<sequence>
-							<element ref="enumeration" minOccurs="2" maxOccurs="2"/>
-						</sequence>
-					</complexType>
-				</element>
-			</choice>
-		</complexType>
-	</element> -->
 	<!-- ====================================================================== -->
+	<!-- 
+<complexType name="RepresentationType">
+		<complexContent>
+			<extension base="topLevelSimpleType">
+				<sequence>
+					<group ref="xmml:scale"/>
+				</sequence>
+			</extension>
+		</complexContent>
+	</complexType>
+-->
+	<!-- ...... -->
+	<complexType name="RepresentationType">
+		<choice>
+			<element name="Number">
+				<complexType>
+					<sequence>
+						<element ref="gml:unitOfMeasure"/>
+						<element name="minInclusive" type="xmml:facet" minOccurs="0"/>
+						<element name="minExclusive" type="xmml:facet" minOccurs="0"/>
+						<element name="maxInclusive" type="xmml:facet" minOccurs="0"/>
+						<element name="maxExclusive" type="xmml:facet" minOccurs="0"/>
+					</sequence>
+				</complexType>
+			</element>
+			<element name="Word">
+				<complexType>
+					<choice>
+						<element name="classification" type="gml:StringOrRefType"/>
+						<element name="pattern" type="xmml:noFixedFacet"/>
+						<element name="enumeration" type="xmml:noFixedFacet" maxOccurs="unbounded"/>
+					</choice>
+				</complexType>
+			</element>
+			<element name="Boolean">
+				<complexType>
+					<sequence>
+						<element name="enumeration" type="xmml:noFixedFacet" minOccurs="2" maxOccurs="2"/>
+					</sequence>
+				</complexType>
+			</element>
+		</choice>
+	</complexType>
+	<!-- ...... -->
 	<!-- === Components from S4S (XML Schema "schema for schemas") ===== -->
-	<!--
+	<!-- ...... -->
 	<complexType name="openAttrs">
 		<annotation>
 			<documentation>
@@ -244,7 +244,7 @@ For the moment I will comment out the necessary pieces.  </documentation>
 			</extension>
 		</complexContent>
 	</complexType>
-<complexType name="facet">
+	<complexType name="facet">
 		<complexContent>
 			<extension base="xmml:annotated">
 				<attribute name="value" use="required"/>
@@ -285,7 +285,7 @@ For the moment I will comment out the necessary pieces.  </documentation>
 			<attribute ref="xml:lang"/>
 		</complexType>
 	</element>
-		<element name="annotation" id="annotation">
+	<element name="annotation" id="annotation">
 		<annotation>
 			<documentation source="http://www.w3.org/TR/xmlschema-1/#element-annotation"/>
 		</annotation>
@@ -301,7 +301,6 @@ For the moment I will comment out the necessary pieces.  </documentation>
 			</complexContent>
 		</complexType>
 	</element>
--->
 	<!-- ====================================================================== -->
 	<group name="quality">
 		<sequence>
