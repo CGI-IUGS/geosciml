@@ -1,13 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<schema xmlns:xmml="http://www.opengis.net/xmml" xmlns="http://www.w3.org/2001/XMLSchema" xmlns:gml="http://www.opengis.net/gml" xmlns:xlink="http://www.w3.org/1999/xlink" targetNamespace="http://www.opengis.net/xmml" elementFormDefault="qualified" attributeFormDefault="unqualified" version="pre-release">
+<schema xmlns:xmml="http://www.opengis.net/xmml" xmlns="http://www.w3.org/2001/XMLSchema" xmlns:gml="http://www.opengis.net/gml" xmlns:xlink="http://www.w3.org/1999/xlink" targetNamespace="http://www.opengis.net/xmml" elementFormDefault="qualified"
+        attributeFormDefault="unqualified" version="pre-release">
 	<annotation>
-		<documentation>
-procedures.xsd
+		<documentation>procedures.xsd
 
 Components to describe procedures used in exploration and mining activities.
 
-Copyright (c) 2005 CSIRO - see https://www.seegrid.csiro.au/twiki/bin/view/Xmml/LegalNotices#Software_Notice
-</documentation>
+Copyright (c) 2005 CSIRO - see https://www.seegrid.csiro.au/twiki/bin/view/Xmml/LegalNotices#Software_Notice</documentation>
 	</annotation>
 	<!-- ====================================================================== -->
 	<!-- bring in other schemas -->
@@ -72,6 +71,13 @@ Copyright (c) 2005 CSIRO - see https://www.seegrid.csiro.au/twiki/bin/view/Xmml/
 			<extension base="xmml:ProcedureType"/>
 		</complexContent>
 	</complexType>
+	<!-- ...................... -->
+	<complexType name="CalculationProcedurePropertyType">
+		<sequence minOccurs="0">
+			<element ref="xmml:CalculationProcedure"/>
+		</sequence>
+		<attributeGroup ref="gml:AssociationAttributeGroup"/>
+	</complexType>
 	<!-- ====================================================================== -->
 	<!-- ====================================================================== -->
 	<element name="Instrument" type="xmml:InstrumentType" substitutionGroup="xmml:Procedure"/>
@@ -90,17 +96,11 @@ Copyright (c) 2005 CSIRO - see https://www.seegrid.csiro.au/twiki/bin/view/Xmml/
 	</complexType>
 	<!-- ...................... -->
 	<complexType name="InstrumentPropertyType">
-		<complexContent>
-			<restriction base="xmml:ProcedurePropertyType">
-				<sequence minOccurs="0">
-					<element ref="xmml:Instrument"/>
-				</sequence>
-				<attributeGroup ref="gml:AssociationAttributeGroup"/>
-			</restriction>
-		</complexContent>
+		<sequence minOccurs="0">
+			<element ref="xmml:Instrument"/>
+		</sequence>
+		<attributeGroup ref="gml:AssociationAttributeGroup"/>
 	</complexType>
-	<!-- ...................... -->
-	<element name="instrumentUsed" type="xmml:InstrumentPropertyType" substitutionGroup="xmml:procedureUsed"/>
 	<!-- ====================================================================== -->
 	<!-- ====================================================================== -->
 	<element name="SurveyProcedure" type="xmml:SurveyProcedureType" substitutionGroup="xmml:Procedure"/>
@@ -145,15 +145,10 @@ Copyright (c) 2005 CSIRO - see https://www.seegrid.csiro.au/twiki/bin/view/Xmml/
 	</complexType>
 	<!-- ...................... -->
 	<complexType name="SurveyProcedurePropertyType">
-		<complexContent>
-			<restriction base="xmml:ProcedurePropertyType">
-				<sequence minOccurs="0">
-					<element ref="xmml:SurveyProcedure"/>
-				</sequence>
-			</restriction>
-		</complexContent>
+		<sequence minOccurs="0">
+			<element ref="xmml:SurveyProcedure"/>
+		</sequence>
+		<attributeGroup ref="gml:AssociationAttributeGroup"/>
 	</complexType>
-	<!-- ...................... -->
-	<element name="surveyProcedureUsed" type="xmml:SurveyProcedurePropertyType"/>
 	<!-- ====================================================================== -->
 </schema>
