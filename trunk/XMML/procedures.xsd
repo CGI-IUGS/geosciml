@@ -26,9 +26,9 @@ Copyright (c) 2004 CSIRO - see https://www.seegrid.csiro.au/twiki/bin/view/Xmml/
 	<!-- ====================================================================== -->
 	<!-- === Generic Procedure type === -->
 	<!-- ====================================================================== -->
-	<element name="Procedure" type="xmml:ProcedureType" substitutionGroup="gml:_GML">
+	<element name="Procedure" type="xmml:ProcedureType" substitutionGroup="gml:Definition">
 		<annotation>
-			<documentation>It might be convenient if Procedure were direclty substitutable for gml:_MetaData</documentation>
+			<documentation>Procedures may be listed in a Dictionary (i.e. lightweight registry)</documentation>
 		</annotation>
 	</element>
 	<!-- ...................... -->
@@ -38,11 +38,19 @@ Copyright (c) 2004 CSIRO - see https://www.seegrid.csiro.au/twiki/bin/view/Xmml/
      			use method to indicate member of list if possible</documentation>
 		</annotation>
 		<complexContent>
-			<extension base="gml:AbstractGMLType">
+			<extension base="gml:DefinitionType">
 				<sequence>
 					<group ref="xmml:StandardSupportProperties"/>
-					<element ref="xmml:method"/>
-					<element ref="xmml:quality" minOccurs="0"/>
+					<element ref="xmml:method">
+						<annotation>
+							<documentation>Usually an item from a list or registry of procedures, methods, instrument-types, etc.</documentation>
+						</annotation>
+					</element>
+					<element ref="xmml:quality" minOccurs="0">
+						<annotation>
+							<documentation>Quality associated systematically with this procedure.</documentation>
+						</annotation>
+					</element>
 				</sequence>
 			</extension>
 		</complexContent>
@@ -86,7 +94,7 @@ Copyright (c) 2004 CSIRO - see https://www.seegrid.csiro.au/twiki/bin/view/Xmml/
 		<complexContent>
 			<restriction base="xmml:ProcedureType">
 				<sequence>
-					<group ref="gml:StandardObjectProperties"/>
+					<group ref="gml:StandardDefinitionProperties"/>
 					<group ref="xmml:StandardSupportProperties"/>
 					<element ref="xmml:positionMethod"/>
 					<element ref="xmml:quality" minOccurs="0"/>
