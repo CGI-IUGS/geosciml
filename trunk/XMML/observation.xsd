@@ -76,55 +76,47 @@ Copyright (c) 2004 CSIRO - see https://www.seegrid.csiro.au/twiki/bin/view/Xmml/
 		</complexContent>
 	</complexType>
 	<!-- ====== -->
-   <element name="position" type="gml:PointPropertyType" nillable="true"/>
-	<element name="resultMeasure" nillable="true">
+	<element name="resultMeasure" type="xmml:MeasureType" nillable="true">
 		<annotation>
 			<documentation>Holds a measure as a simple (literal) value</documentation>
 		</annotation>
-		<complexType>
-			<simpleContent>
-				<extension base="gml:MeasureType">
-					<attribute name="nilReason" type="gml:NullEnumeration" use="optional"/>
-				</extension>
-			</simpleContent>
-		</complexType>
 	</element>
-	<element name="resultBoolean" type="boolean">
+	<element name="resultBoolean" type="boolean" nillable="true">
 		<annotation>
 			<documentation>Holds a boolean as a simple (literal) value</documentation>
 		</annotation>
 	</element>
-	<element name="resultCode" type="xmml:TokenWithAuthorityType">
+	<element name="resultCode" type="xmml:TokenWithAuthorityType" nillable="true">
 		<annotation>
 			<documentation>Holds a code as a simple (literal) value</documentation>
 		</annotation>
 	</element>
-	<element name="resultCount" type="integer">
+	<element name="resultCount" type="xmml:CountType" nillable="true">
 		<annotation>
 			<documentation>Holds an integer as a simple (literal) value</documentation>
 		</annotation>
 	</element>
-	<element name="resultNTuple" type="xmml:NumericOrNullTupleType">
+	<element name="resultNTuple" type="xmml:NumericOrNullTupleType" nillable="true">
 		<annotation>
 			<documentation>Holds a numeric tuple as a simple (literal) value</documentation>
 		</annotation>
 	</element>
-	<element name="resultTuple" type="xmml:TupleType">
+	<element name="resultTuple" type="xmml:TupleType" nillable="true">
 		<annotation>
 			<documentation>Holds a general tuple as a simple (literal) value</documentation>
 		</annotation>
 	</element>
-	<element name="resultGeometry" type="gml:GeometryPropertyType">
+	<element name="resultGeometry" type="gml:GeometryPropertyType" nillable="true">
 		<annotation>
 			<documentation>Holds or points to a gml:_Geometry</documentation>
 		</annotation>
 	</element>
-	<element name="resultTime" type="gml:TimePrimitivePropertyType">
+	<element name="resultTime" type="gml:TimePrimitivePropertyType" nillable="true">
 		<annotation>
 			<documentation>Holds or points to a gml:_TimePrimitive</documentation>
 		</annotation>
 	</element>
-	<element name="resultObject" type="gml:AssociationType">
+	<element name="resultObject" type="gml:AssociationType" nillable="true">
 		<annotation>
 			<documentation>The most general form for holding a "result", which may be any Object (including valueObjects) or may simply carry a link to the result</documentation>
 		</annotation>
