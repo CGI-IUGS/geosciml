@@ -59,6 +59,10 @@ Copyright (c) 2004 CSIRO - see https://www.seegrid.csiro.au/twiki/bin/view/Xmml/
 		<annotation>
 			<documentation>A located object on which measurements may be made.
 			
+			A basic material classification is provided using the "material" property. 
+			Its value may be relatively generic (rock, pulp) or may reflect a detailed classification (calcrete, adamellite, biotite-schist). 
+			In the latter case it is wise to use the codeSpace attribute to provide a link to the classification scheme/vocabulary used. 
+			
 			Note that if this specimen is a "processed" version of another (e.g. by grinding, seiving, etc) then 
 			the predecessor (if known) may be recorded as a relatedFeature
 			
@@ -72,6 +76,12 @@ Copyright (c) 2004 CSIRO - see https://www.seegrid.csiro.au/twiki/bin/view/Xmml/
 		<complexContent>
 			<extension base="xmml:PositionedFeatureType">
 				<sequence>
+					<element name="material" type="gml:CodeType">
+						<annotation>
+							<documentation>Material type, usually taken from a controlled vocabulary
+					Specialised domains may choose to fix the vocabulary to be used</documentation>
+						</annotation>
+					</element>
 					<element name="reportingSpecimen" type="gml:ReferenceType" minOccurs="0"/>
 					<element ref="xmml:processingStep" minOccurs="0" maxOccurs="unbounded">
 						<annotation>

@@ -73,22 +73,20 @@ Copyright © 2004 CSIRO - see https://www.seegrid.csiro.au/twiki/bin/view/Xmml/L
 		<attributeGroup ref="gml:AssociationAttributeGroup"/>
 	</complexType>
 	<!-- ====================================================================== -->
-	<element name="GeochemSpecimen" type="xmml:GeochemSpecimenType" substitutionGroup="xmml:Specimen"/>
+	<element name="GeochemSpecimen" type="xmml:GeochemSpecimenType" substitutionGroup="xmml:Specimen"></element>
 	<!-- ...................... -->
 	<complexType name="GeochemSpecimenType">
-		<annotation>
+			<annotation>
 			<documentation>Basic geochemistry specimen feature type. 
-				Adds the following properties to the generic specimen:
-					material - e.g. drill cutting, calcrete, pulp
+				Currently this is a vacuous extension of the generic Specimen. 
 				Use the (optional) "related Observation" property to link specimen to observations and measurements made on it
+				
 				If no fractionation is described by processingStep properties, then whole rock analysis is implied
 			</documentation>
 		</annotation>
 		<complexContent>
 			<extension base="xmml:SpecimenType">
-				<sequence>
-					<element name="material" type="string"/>
-				</sequence>
+				<sequence/>
 			</extension>
 		</complexContent>
 	</complexType>
