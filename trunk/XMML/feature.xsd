@@ -11,14 +11,15 @@ Copyright (c) 2004 CSIRO - see https://www.seegrid.csiro.au/twiki/bin/view/Xmml/
 	</annotation>
 	<!-- ====================================================================== -->
 	<!-- bring in other schemas -->
-	<import namespace="http://www.opengis.net/gml" schemaLocation="https://www.seegrid.csiro.au/subversion/xmml/trunk/gml/3.1.1/base/feature.xsd"/>
-	<include schemaLocation="./procedures.xsd"/>
+	<import namespace="http://www.opengis.net/gml" schemaLocation="../gml/3.1.1/base/feature.xsd"/>
+	<include schemaLocation="./base.xsd"/>
 	<!-- ====================================================================== -->
 	<!-- === A few variations on the basic feature and feature collection types === -->
 	<!-- ====================================================================== -->
 	<group name="ExtendedFeatureProperties">
 		<sequence>
-			<element ref="xmml:place" minOccurs="0"/>
+			<element ref="xmml:place" minOccurs="0" maxOccurs="unbounded"/>
+			<element name="country" type="gml:CodeType" minOccurs="0"/>
 			<element ref="xmml:relatedFeature" minOccurs="0" maxOccurs="unbounded"/>
 		</sequence>
 	</group>
@@ -50,66 +51,6 @@ Copyright (c) 2004 CSIRO - see https://www.seegrid.csiro.au/twiki/bin/view/Xmml/
 		</complexContent>
 	</complexType>
 	<!-- ====================================================================== -->
-	<element name="AbstractBoundedFeature" type="xmml:BoundedFeatureType" abstract="true" substitutionGroup="xmml:Feature">
-		<annotation>
-			<documentation>A generic feature for XMML, with bounding box mandatory.  </documentation>
-		</annotation>
-	</element>
-	<!-- ...................... -->
-	<complexType name="BoundedFeatureType">
-		<annotation>
-			<documentation>enforce boundedBy property</documentation>
-		</annotation>
-		<complexContent>
-			<restriction base="xmml:FeatureType">
-				<sequence>
-					<group ref="gml:StandardObjectProperties"/>
-					<element ref="gml:boundedBy"/>
-					<group ref="xmml:StandardSupportProperties"/>
-					<group ref="xmml:ExtendedFeatureProperties"/>
-				</sequence>
-			</restriction>
-		</complexContent>
-	</complexType>
-	<!-- ====== -->
-	<complexType name="NonBoundedFeatureType">
-		<annotation>
-			<documentation>suppress boundedBy property</documentation>
-		</annotation>
-		<complexContent>
-			<restriction base="xmml:FeatureType">
-				<sequence>
-					<group ref="gml:StandardObjectProperties"/>
-					<group ref="xmml:StandardSupportProperties"/>
-					<group ref="xmml:ExtendedFeatureProperties"/>
-				</sequence>
-			</restriction>
-		</complexContent>
-	</complexType>
-	<!-- ======================================================================   -->
-	<element name="AbstractPositionedFeature" type="xmml:PositionedFeatureType" abstract="true" substitutionGroup="xmml:Feature">
-		<annotation>
-			<documentation>A generic feature for XMML, with position.  </documentation>
-		</annotation>
-	</element>
-	<!-- ...................... -->
-	<complexType name="PositionedFeatureType">
-		<annotation>
-			<documentation>     
-      add position - the one recommended, by the data provider, for portrayal and spatial analysis.  
-      add optional location (keyword or string) and positionMethod
-</documentation>
-		</annotation>
-		<complexContent>
-			<extension base="xmml:NonBoundedFeatureType">
-				<sequence>
-					<element ref="gml:position"/>
-					<element ref="xmml:positionMethod" minOccurs="0"/>
-				</sequence>
-			</extension>
-		</complexContent>
-	</complexType>
-	<!-- ====================================================================== -->
 	<element name="FeatureCollection" type="xmml:FeatureCollectionType" substitutionGroup="gml:_Feature">
 		<annotation>
 			<documentation>A generic concrete bag of features for XMML.  </documentation>
@@ -121,7 +62,7 @@ Copyright (c) 2004 CSIRO - see https://www.seegrid.csiro.au/twiki/bin/view/Xmml/
 			<documentation>Extend with collection composition properties</documentation>
 		</annotation>
 		<complexContent>
-			<extension base="xmml:BoundedFeatureType">
+			<extension base="xmml:FeatureType">
 				<sequence>
 					<element name="featureMember" type="gml:FeaturePropertyType" minOccurs="0" maxOccurs="unbounded"/>
 				</sequence>
@@ -143,17 +84,9 @@ Copyright (c) 2004 CSIRO - see https://www.seegrid.csiro.au/twiki/bin/view/Xmml/
 	<!-- === Specialised location properties === -->
 	<!-- ===================================================== -->
 	<element name="place" type="gml:CodeType"/>
-	<!-- ......................
-	<complexType name="LocationPropertyType">
-		<sequence minOccurs="0">
-			<choice>
-				<element ref="gml:LocationKeyWord"/>
-				<element ref="gml:LocationString"/>
-			</choice>
-		</sequence>
-		<attributeGroup ref="gml:AssociationAttributeGroup"/>
-	</complexType> -->
 	<!-- ===================================================== -->
+	<element name="mapsheet" type="gml:CodeType" substitutionGroup="xmml:place"/>
+	<!-- ====================================================================== -->
 	<element name="geogPosition" type="gml:PointPropertyType">
 		<annotation>
 			<documentation>property used to record location as a point within a geographic coordinate reference system</documentation>
@@ -165,25 +98,66 @@ Copyright (c) 2004 CSIRO - see https://www.seegrid.csiro.au/twiki/bin/view/Xmml/
 			<documentation>property used to record location as a point within a projected coordinate reference system</documentation>
 		</annotation>
 	</element>
-	<!-- =====================================================
-	<element name="map" type="xmml:MapsheetPropertyType">
+	<!-- ====================================================================== -->
+	<!-- PositionedFeature and BoundedFeature have been removed. These feature-types are a throw-back to the old geometry-centric abstraction and do not belong in a conceptual feature-type hierarchy. If position and bounds are required on a feature-type, they should be introduced locally. -->
+		<!-- ======================================================================
+	<element name="AbstractBoundedFeature" type="xmml:BoundedFeatureType" abstract="true" substitutionGroup="xmml:Feature">
 		<annotation>
-			<documentation>Indicates the mapsheet within which a feature is located.  
-      The mapsheet may be given as a URN on a link, or using the xmml:Mapsheet element, which records it as a code/codeSpace pair.  </documentation>
+			<documentation>A generic feature for XMML, with bounding box mandatory.  </documentation>
 		</annotation>
 	</element> -->
 	<!-- ......................
-	<complexType name="MapsheetPropertyType">
+	<complexType name="BoundedFeatureType">
+		<annotation>
+			<documentation>enforce boundedBy property</documentation>
+		</annotation>
 		<complexContent>
-			<restriction base="xmml:LocationPropertyType">
-				<sequence minOccurs="0">
-					<element ref="xmml:Mapsheet"/>
+			<restriction base="xmml:FeatureType">
+				<sequence>
+					<group ref="gml:StandardObjectProperties"/>
+					<element ref="gml:boundedBy"/>
+					<group ref="xmml:StandardSupportProperties"/>
+					<group ref="xmml:ExtendedFeatureProperties"/>
 				</sequence>
-				<attributeGroup ref="gml:AssociationAttributeGroup"/>
 			</restriction>
 		</complexContent>
 	</complexType> -->
-	<!-- ====================================================================== -->
-	<element name="mapsheet" type="gml:CodeType" substitutionGroup="xmml:place"/>
-	<!-- ====================================================================== -->
+	<!-- ======
+	<complexType name="NonBoundedFeatureType">
+		<annotation>
+			<documentation>suppress boundedBy property</documentation>
+		</annotation>
+		<complexContent>
+			<restriction base="xmml:FeatureType">
+				<sequence>
+					<group ref="gml:StandardObjectProperties"/>
+					<group ref="xmml:StandardSupportProperties"/>
+					<group ref="xmml:ExtendedFeatureProperties"/>
+				</sequence>
+			</restriction>
+		</complexContent>
+	</complexType> -->
+	<!-- ======================================================================
+	<element name="AbstractPositionedFeature" type="xmml:PositionedFeatureType" abstract="true" substitutionGroup="xmml:Feature">
+		<annotation>
+			<documentation>A generic feature for XMML, with position.  </documentation>
+		</annotation>
+	</element>   -->
+	<!-- ......................
+	<complexType name="PositionedFeatureType">
+		<annotation>
+			<documentation>     
+      add position - the one recommended, by the data provider, for portrayal and spatial analysis.  
+      add optional location (keyword or string) and positionMethod
+</documentation>
+		</annotation>
+		<complexContent>
+			<extension base="xmml:NonBoundedFeatureType">
+				<sequence>
+					<element ref="gml:position"/>
+					<element ref="xmml:positionMethod" minOccurs="0"/>
+				</sequence>
+			</extension>
+		</complexContent>
+	</complexType> -->
 </schema>
