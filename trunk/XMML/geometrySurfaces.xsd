@@ -19,7 +19,7 @@ Copyright (c) 2005 CSIRO - see https://www.seegrid.csiro.au/twiki/bin/view/Xmml/
 	<!-- ====================================================================== -->
 	<!-- === Compact triangulated surface encoding === -->
 	<!-- ====================================================================== -->
-	<element name="TriSurface" type="xmml:TriSurfaceType" substitutionGroup="gml:Surface">
+	<element name="TriSurface" type="xmml:TriSurfaceType" substitutionGroup="gml:_Surface">
 		<annotation>
 			<documentation>More flexible, and potentially more compact version of a set of triangles, directly derived by restricting the general composite provided by GML, allowing either gml:Triangle or xmml:Triangle as members</documentation>
 		</annotation>
@@ -27,12 +27,11 @@ Copyright (c) 2005 CSIRO - see https://www.seegrid.csiro.au/twiki/bin/view/Xmml/
 	<!-- ====================================================================== -->
 	<complexType name="TriSurfaceType">
 		<complexContent>
-			<restriction base="gml:SurfaceType">
+			<extension base="gml:AbstractSurfaceType">
 				<sequence>
-					<group ref="gml:StandardObjectProperties"/>
-					<element ref="xmml:triPatches"/>
+					<element name="patch" type="xmml:TrianglePropertyType" minOccurs="0" maxOccurs="unbounded"/>
 				</sequence>
-			</restriction>
+			</extension>
 		</complexContent>
 	</complexType>
 	<!-- ====================================================================== -->
@@ -53,7 +52,7 @@ Copyright (c) 2005 CSIRO - see https://www.seegrid.csiro.au/twiki/bin/view/Xmml/
       1</documentation>
 		</annotation>
 	</element>
-	<!-- ====================================================================== -->
+	<!-- ... -->
 	<complexType name="ThreeVertexSurfacePatchType">
 		<complexContent>
 			<extension base="gml:AbstractSurfacePatchType">
@@ -63,6 +62,13 @@ Copyright (c) 2005 CSIRO - see https://www.seegrid.csiro.au/twiki/bin/view/Xmml/
 				<attribute name="interpolation" type="gml:SurfaceInterpolationType" fixed="planar"/>
 			</extension>
 		</complexContent>
+	</complexType>
+	<!-- ====================================================================== -->
+	<complexType name="TrianglePropertyType">
+		<sequence minOccurs="0">
+			<element ref="xmml:Triangle"/>
+		</sequence>
+		<attributeGroup ref="gml:AssociationAttributeGroup"/>
 	</complexType>
 	<!-- ====================================================================== -->
 	<element name="Quadrilateral" type="xmml:FourVertexSurfacePatchType" substitutionGroup="gml:_SurfacePatch">
@@ -80,7 +86,7 @@ Copyright (c) 2005 CSIRO - see https://www.seegrid.csiro.au/twiki/bin/view/Xmml/
  1         2</documentation>
 		</annotation>
 	</element>
-	<!-- ====================================================================== -->
+	<!-- ... -->
 	<complexType name="FourVertexSurfacePatchType">
 		<complexContent>
 			<extension base="gml:AbstractSurfacePatchType">
@@ -90,6 +96,13 @@ Copyright (c) 2005 CSIRO - see https://www.seegrid.csiro.au/twiki/bin/view/Xmml/
 				<attribute name="interpolation" type="gml:SurfaceInterpolationType" fixed="planar"/>
 			</extension>
 		</complexContent>
+	</complexType>
+	<!-- ====================================================================== -->
+	<complexType name="QuadrilateralPropertyType">
+		<sequence minOccurs="0">
+			<element ref="xmml:Quadrilateral"/>
+		</sequence>
+		<attributeGroup ref="gml:AssociationAttributeGroup"/>
 	</complexType>
 	<!-- ====================================================================== -->
 	<!-- === Rings === -->
