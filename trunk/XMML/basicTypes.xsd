@@ -13,7 +13,7 @@ Copyright © 2004 CSIRO - see https://www.seegrid.csiro.au/twiki/bin/view/Xmml/L
 	</annotation>
 	<!-- ====================================================================== -->
 	<!-- bring in other schemas -->
-	<import namespace="http://www.opengis.net/gml" schemaLocation="http://schemas.opengis.net/gml/3.1.0/base/geometryBasic0d1d.xsd"/>
+	<import namespace="http://www.opengis.net/gml" schemaLocation="https://www.seegrid.csiro.au/subversion/gml/3.1.1/base/geometryBasic0d1d.xsd"/>
 	<include schemaLocation="../enumerations/LUTother.xsd"/>
 	<!-- ===================================================== -->
 	<attributeGroup name="simpleContentStandardAttributes">
@@ -237,7 +237,6 @@ Copyright © 2004 CSIRO - see https://www.seegrid.csiro.au/twiki/bin/view/Xmml/L
 		</annotation>
 		<simpleContent>
 			<extension base="gml:MeasureType">
-				<!-- <attribute name="originalUom" type="gml:UomIdentifier" use="optional"> -->
 				<attribute name="originalUom" type="anyURI" use="optional">
 					<annotation>
 						<documentation>When the value reported has been converted from the stored units (for example, raio values converted from ppm to a number), this attribute may be used to record  the original units of measure.</documentation>
@@ -245,6 +244,7 @@ Copyright © 2004 CSIRO - see https://www.seegrid.csiro.au/twiki/bin/view/Xmml/L
 				</attribute>
 				<attributeGroup ref="xmml:simpleContentStandardAttributes"/>
 			</extension>
+			<!-- <attribute name="originalUom" type="gml:UomIdentifier" use="optional"> -->
 		</simpleContent>
 	</complexType>
 	<!-- ====================================================================== -->
@@ -254,7 +254,6 @@ Copyright © 2004 CSIRO - see https://www.seegrid.csiro.au/twiki/bin/view/Xmml/L
 		</annotation>
 		<simpleContent>
 			<extension base="gml:MeasureListType">
-				<!-- <attribute name="originalUom" type="gml:UomIdentifier" use="optional"> -->
 				<attribute name="originalUom" type="anyURI" use="optional">
 					<annotation>
 						<documentation>When the value reported has been converted from the stored units (for example, raio values converted from ppm to a number), this attribute may be used to record  the original units of measure.</documentation>
@@ -263,6 +262,7 @@ Copyright © 2004 CSIRO - see https://www.seegrid.csiro.au/twiki/bin/view/Xmml/L
 				<attributeGroup ref="xmml:simpleContentStandardAttributes"/>
 				<attribute name="count" type="nonNegativeInteger" use="optional"/>
 			</extension>
+			<!-- <attribute name="originalUom" type="gml:UomIdentifier" use="optional"> -->
 		</simpleContent>
 	</complexType>
 	<!-- ====================================================================== -->
@@ -349,11 +349,11 @@ Copyright © 2004 CSIRO - see https://www.seegrid.csiro.au/twiki/bin/view/Xmml/L
 	<!-- =================================================================== -->
 	<group name="property">
 		<choice>
-			<element name="booleanProperty" type="xmml:SoftTypedBooleanType"/>
-			<element name="categoryProperty" type="xmml:SoftTypedCategoryType"/>
-			<element name="countProperty" type="xmml:SoftTypedCountType"/>
-			<element name="numericProperty" type="xmml:SoftTypedMeasureType"/>
-			<element name="objectProperty" type="gml:AssociationType"/>
+			<element name="booleanProperty" type="xmml:SoftTypedBooleanType" nillable="true"/>
+			<element name="categoryProperty" type="xmml:SoftTypedCategoryType" nillable="true"/>
+			<element name="countProperty" type="xmml:SoftTypedCountType" nillable="true"/>
+			<element name="measureProperty" type="xmml:SoftTypedMeasureType" nillable="true"/>
+			<element name="objectProperty" type="gml:AssociationType" nillable="true"/>
 			<!-- <element name="temporalProperty" type="xmml:SoftTypedTimeObjectType"/> -->
 		</choice>
 	</group>
@@ -511,7 +511,7 @@ Copyright © 2004 CSIRO - see https://www.seegrid.csiro.au/twiki/bin/view/Xmml/L
 </documentation>
 		</annotation>
 		<simpleContent>
-			<extension base="xmml:tokenListType">
+			<extension base="gml:NameList">
 				<attribute name="RS" type="anyURI" use="optional">
 					<annotation>
 						<documentation>Pointer to definition of the reference system for the Record.  
@@ -548,7 +548,7 @@ Copyright © 2004 CSIRO - see https://www.seegrid.csiro.au/twiki/bin/view/Xmml/L
       However any whitespace character sequence is a valid separator between items. </documentation>
 		</annotation>
 		<simpleContent>
-			<extension base="xmml:tokenListType">
+			<extension base="gml:NameList">
 				<attribute name="RS" type="anyURI" use="optional">
 					<annotation>
 						<documentation>Pointer to definition of the reference system for the Record.  The RS description should indicate the semantics/label and units of measure for each component, and the order in which the components appear in the Record.  RS may be ommitted, in which case it is the same as the previous value in the current context or document.</documentation>

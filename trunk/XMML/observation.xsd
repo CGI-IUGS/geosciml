@@ -11,7 +11,7 @@ Copyright (c) 2004 CSIRO - see https://www.seegrid.csiro.au/twiki/bin/view/Xmml/
 	</annotation>
 	<!-- ====================================================================== -->
 	<!-- bring in other schemas -->
-	<import namespace="http://www.opengis.net/gml" schemaLocation="http://schemas.opengis.net/gml/3.1.0/base/feature.xsd"/>
+	<import namespace="http://www.opengis.net/gml" schemaLocation="https://www.seegrid.csiro.au/subversion/gml/3.1.1/base/feature.xsd"/>
 	<include schemaLocation="./feature.xsd"/>
 	<include schemaLocation="./procedures.xsd"/>
 	<!-- ====================================================================== -->
@@ -20,19 +20,9 @@ Copyright (c) 2004 CSIRO - see https://www.seegrid.csiro.au/twiki/bin/view/Xmml/
 	<element name="abstractResult" type="anyType" abstract="true"/>
 	<!-- ............ -->
 	<element name="abstractResultMeasure" type="anyType" abstract="true" substitutionGroup="xmml:abstractResult"/>
-	<element name="resultMeasureExact" type="xmml:MeasureType" substitutionGroup="xmml:abstractResultMeasure" nillable="true">
+	<element name="resultMeasure" type="xmml:ResultMeasureType" substitutionGroup="xmml:abstractResultMeasure" nillable="true">
 		<annotation>
-			<documentation>Holds an exact  measure as a simple (literal) value</documentation>
-		</annotation>
-	</element>
-	<element name="resultMeasureLessThan" type="xmml:MeasureType" substitutionGroup="xmml:abstractResultMeasure" nillable="true">
-		<annotation>
-			<documentation>Holds a  measure corresponding to the top of an unbounded interval, as a simple (literal) value</documentation>
-		</annotation>
-	</element>
-	<element name="resultMeasureGreaterThan" type="xmml:MeasureType" substitutionGroup="xmml:abstractResultMeasure" nillable="true">
-		<annotation>
-			<documentation>Holds a  measure corresponding to the bottom of an unbounded interval, as a simple (literal) value</documentation>
+			<documentation>Holds a  measure as a simple (literal) scaled value with an (optional) relativeMeasure attribute</documentation>
 		</annotation>
 	</element>
 	<element name="resultMeasureInterval" type="xmml:MeasureIntervalType" substitutionGroup="xmml:abstractResultMeasure" nillable="true">
@@ -40,6 +30,46 @@ Copyright (c) 2004 CSIRO - see https://www.seegrid.csiro.au/twiki/bin/view/Xmml/
 			<documentation>Describes a measure interval as a pair of simple (literal) values using the same scale</documentation>
 		</annotation>
 	</element>
+	<!-- ............ -->
+	<complexType name="ResultMeasureType">
+		<simpleContent>
+			<extension base="xmml:MeasureType">
+				<attribute name="relativeMeasure" type="xmml:RelativeMeasureType" default="equals"/>
+			</extension>
+		</simpleContent>
+	</complexType>
+	<simpleType name="RelativeMeasureType">
+		<annotation>
+			<documentation xml:lang="en">This enumerated data type specifies values for relative measures.</documentation>
+		</annotation>
+		<restriction base="string">
+			<enumeration value="lessThan"/>
+			<enumeration value="lessThanOrEquals"/>
+			<enumeration value="equals"/>
+			<enumeration value="greaterThanOrEquals"/>
+			<enumeration value="greaterThan"/>
+		</restriction>
+	</simpleType>
+	<!-- ............ -->
+	<element name="resultMeasureExact" type="xmml:MeasureType" substitutionGroup="xmml:abstractResultMeasure" nillable="true">
+		<annotation>
+			<appinfo>deprecated - use resultMeasure instead</appinfo>
+			<documentation>Holds an exact  measure as a simple (literal) value</documentation>
+		</annotation>
+	</element>
+	<element name="resultMeasureLessThan" type="xmml:MeasureType" substitutionGroup="xmml:abstractResultMeasure" nillable="true">
+		<annotation>
+			<appinfo>deprecated - use resultMeasure relativeMeasure="lessThan" instead</appinfo>
+			<documentation>Holds a  measure corresponding to the top of an unbounded interval, as a simple (literal) value</documentation>
+		</annotation>
+	</element>
+	<element name="resultMeasureGreaterThan" type="xmml:MeasureType" substitutionGroup="xmml:abstractResultMeasure" nillable="true">
+		<annotation>
+			<appinfo>deprecated - use resultMeasure relativeMeasure="greaterThan" instead</appinfo>
+			<documentation>Holds a  measure corresponding to the bottom of an unbounded interval, as a simple (literal) value</documentation>
+		</annotation>
+	</element>
+	<!-- ================================================================== -->
 	<!-- ............ -->
 	<element name="resultBoolean" type="boolean" substitutionGroup="xmml:abstractResult" nillable="true">
 		<annotation>
@@ -116,7 +146,7 @@ Copyright (c) 2004 CSIRO - see https://www.seegrid.csiro.au/twiki/bin/view/Xmml/
 		</annotation>
 	</element>
 	<!-- ====================================================================== -->
-	<element name="procedureTime" type="gml:TimeGeometricPrimitivePropertyType">
+	<element name="procedureTime" type="gml:TimePositionType">
 		<annotation>
 			<documentation>The Time when the observation occurred.  </documentation>
 		</annotation>
@@ -159,7 +189,7 @@ Copyright (c) 2004 CSIRO - see https://www.seegrid.csiro.au/twiki/bin/view/Xmml/
 							<documentation>Allow multiple quality measures if required.</documentation>
 						</annotation>
 					</element>
-					<element ref="xmml:procedureTime">
+					<element ref="xmml:procedureTime" nillable="true">
 						<annotation>
 							<documentation>The Time when the observation occurred.  </documentation>
 						</annotation>
@@ -243,5 +273,11 @@ Specialised from generic observation by restricting the result to be numeric.
 		</complexContent>
 	</complexType>
 	<!-- ===================================================================  -->
+	<group name="SoftProperties">
+		<sequence>
+			<group ref="xmml:property" minOccurs="0" maxOccurs="unbounded"/>
+			<element ref="xmml:relatedObservation" minOccurs="0" maxOccurs="unbounded"/>
+		</sequence>
+	</group>
 	<!-- ====================================================================== -->
 </schema>

@@ -15,7 +15,7 @@ Copyright (c) 2004 CSIRO - see https://www.seegrid.csiro.au/twiki/bin/view/Xmml/
 	</annotation>
 	<!-- ====================================================================== -->
 	<!-- bring in other schemas -->
-	<import namespace="http://www.opengis.net/gml" schemaLocation="http://schemas.opengis.net/gml/3.1.0/base/geometryComplexes.xsd"/>
+	<import namespace="http://www.opengis.net/gml" schemaLocation="https://www.seegrid.csiro.au/subversion/gml/3.1.1/base/geometryComplexes.xsd"/>
 	<!-- ====================================================================== -->
 	<!-- ====================================================================== -->
 	<!-- === Compact form of multi-position.  === -->
@@ -211,14 +211,13 @@ Copyright (c) 2004 CSIRO - see https://www.seegrid.csiro.au/twiki/bin/view/Xmml/
 	<!-- ====================================================================== -->
 	<!-- === Geometric objects defined using their vertices only, implicit topology === -->
 	<!-- =========================================================== -->
-	<!-- === Envelopes and Intervals === -->
+	<!-- === Intervals === -->
 	<!-- =========================================================== -->
-	<element name="Envelope" type="xmml:EnvelopeType" substitutionGroup="gml:_Geometry"/>
-	<element name="Interval" type="xmml:EnvelopeType" substitutionGroup="xmml:Envelope"/>
+	<element name="Interval" type="xmml:IntervalType" substitutionGroup="gml:_Geometry"/>
 	<!-- =========================================================== -->
-	<complexType name="EnvelopeType">
+	<complexType name="IntervalType">
 		<annotation>
-			<documentation>Envelope defines an extent using a pair of positions defining opposite corners in arbitrary dimensions.</documentation>
+			<documentation>Interval defines an extent using a pair of positions defining opposite corners in arbitrary dimensions.</documentation>
 		</annotation>
 		<complexContent>
 			<extension base="gml:AbstractGeometryType">
