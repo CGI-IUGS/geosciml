@@ -48,8 +48,8 @@ Copyright (c) 2004 CSIRO - see https://www.seegrid.csiro.au/twiki/bin/view/Xmml/
 		<complexContent>
 			<extension base="xmml:GravityMeasurementBaseType">
 				<sequence>
-					<group ref="xmml:resultMeasureChoice"/>
-					<element name="procedureTime" type="gml:TimePrimitivePropertyType"/>
+					<element ref="xmml:resultMeasureExact"/>
+					<element ref="xmml:procedureTime"/>
 					<element ref="xmml:procedureUsed"/>
 				</sequence>
 			</extension>
@@ -71,15 +71,17 @@ Copyright (c) 2004 CSIRO - see https://www.seegrid.csiro.au/twiki/bin/view/Xmml/
 			<restriction base="xmml:MeasurementType">
 				<sequence>
 					<group ref="gml:StandardObjectProperties"/>
+					<group ref="xmml:StandardSupportProperties"/>
 					<group ref="xmml:ExtendedFeatureProperties"/>
+					<element ref="xmml:relatedFeature" minOccurs="0" maxOccurs="unbounded"/>
 					<element ref="gml:position"/>
+					<element ref="xmml:positionMethod" minOccurs="0"/>
 					<element ref="xmml:measurementStation"/>
-					<group ref="xmml:resultMeasureChoice"/>
-					<element ref="xmml:quality"/>
-					<element name="procedureTime" type="gml:TimePrimitivePropertyType"/>
-					<element name="responsible" type="xmml:PartyPropertyType" minOccurs="0"/>
+					<element ref="xmml:abstractResultMeasure"/>
+					<element ref="xmml:quality" minOccurs="0" maxOccurs="unbounded"/>
+					<element ref="xmml:procedureTime"/>
+					<element ref="xmml:responsible"/>
 					<element ref="xmml:procedureUsed"/>
-					<element ref="xmml:reference" minOccurs="0"/>
 				</sequence>
 			</restriction>
 		</complexContent>
