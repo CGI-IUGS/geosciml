@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!-- edited with XMLSPY v5 rel. 4 U (http://www.xmlspy.com) by Marcus Sen (british Geological Survey) -->
-<schema targetNamespace="http://www.opengis.net/xmml" xmlns="http://www.w3.org/2001/XMLSchema" xmlns:gml="http://www.opengis.net/gml" xmlns:xmml="http://www.opengis.net/xmml" elementFormDefault="qualified" attributeFormDefault="unqualified" version="pre-release">
+<schema targetNamespace="http://www.opengis.net/xmml" elementFormDefault="qualified" attributeFormDefault="unqualified" version="pre-release" xmlns="http://www.w3.org/2001/XMLSchema" xmlns:gml="http://www.opengis.net/gml" xmlns:xmml="http://www.opengis.net/xmml">
 	<annotation>
 		<documentation>
 geometry.xsd
@@ -17,6 +17,26 @@ Copyright (c) 2004 CSIRO - see https://www.seegrid.csiro.au/twiki/bin/view/Xmml/
 	<!-- bring in other schemas -->
 	<import namespace="http://www.opengis.net/gml" schemaLocation="http://schemas.opengis.net/gml/3.1.0/base/geometryComplexes.xsd"/>
 	<!-- ====================================================================== -->
+	<!-- ====================================================================== -->
+	<!-- === Compact form of multi-position.  === -->
+	<!-- =========================================================== -->
+	<element name="MultiPos" type="xmml:MultiPosType" substitutionGroup="gml:_GeometricAggregate"/>
+	<!-- ======================================================= -->
+	<complexType name="MultiPosType">
+		<annotation>
+			<documentation>
+				A MultiPos is defined by a list of direct positions recorded in a posList element
+			</documentation>
+		</annotation>
+		<complexContent>
+			<extension base="gml:AbstractGeometricAggregateType">
+				<choice>
+					<element ref="gml:posList"/>
+					<element ref="gml:pos" maxOccurs="unbounded"/>
+				</choice>
+			</extension>
+		</complexContent>
+	</complexType>
 	<!-- ====================================================================== -->
 	<!-- === Geometric primitives === -->
 	<!-- ====================================================================== -->

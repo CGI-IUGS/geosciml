@@ -17,6 +17,29 @@ Copyright (c) 2004 CSIRO - see https://www.seegrid.csiro.au/twiki/bin/view/Xmml/
 	<!-- bring in other schemas -->
 	<import namespace="http://www.opengis.net/gml" schemaLocation="http://schemas.opengis.net/gml/3.1.0/base/temporalTopology.xsd"/>
 	<!-- ================================================================== -->
+	<!-- =========================================================== -->
+	<!-- ============================================================== -->
+	<complexType name="TimePositionListType">
+		<annotation>
+			<documentation>TimePositionList instances hold a sequence of time positions within the same frame.</documentation>
+		</annotation>
+		<simpleContent>
+			<extension base="xmml:TimeValueList">
+				<attribute name="frame" type="anyURI" use="optional" default="#ISO-8601"/>
+				<attribute name="calendarEraName" type="string" use="optional"/>
+				<attribute name="indeterminatePosition" type="gml:TimeIndeterminateValueType" use="optional"/>
+				<attribute name="count" type="positiveInteger" use="optional">
+					<annotation>
+						<documentation>"count" allows to specify the number of direct positions in the list. </documentation>
+					</annotation>
+				</attribute>
+			</extension>
+		</simpleContent>
+	</complexType>
+	<!-- ============================================================== -->
+	<simpleType name="TimeValueList">
+		<list itemType="gml:TimePositionUnion"/>
+	</simpleType>
 	<!-- ====================================================================== -->
 	<!-- ===== Time geometric complexes ====== -->
 	<!-- ================================================================== -->
@@ -29,20 +52,23 @@ Copyright (c) 2004 CSIRO - see https://www.seegrid.csiro.au/twiki/bin/view/Xmml/
 	<complexType name="TimeGeometricComplexType">
 		<complexContent>
 			<extension base="gml:AbstractTimeComplexType">
-				<sequence maxOccurs="unbounded">
-					<choice>
-						<element name="primitivePos" type="gml:TimePositionType">
-							<annotation>
-								<documentation>Simple-content time position</documentation>
-							</annotation>
-						</element>
-						<element name="primitive" type="gml:TimeGeometricPrimitivePropertyType">
-							<annotation>
-								<documentation>Reference to an identified time primitive</documentation>
-							</annotation>
-						</element>
-					</choice>
-				</sequence>
+				<choice>
+					<element name="timePosList" type="xmml:TimePositionListType"/>
+					<sequence maxOccurs="unbounded">
+						<choice>
+							<element name="primitiveTimePos" type="gml:TimePositionType">
+								<annotation>
+									<documentation>Simple-content time position</documentation>
+								</annotation>
+							</element>
+							<element name="primitive" type="gml:TimeGeometricPrimitivePropertyType">
+								<annotation>
+									<documentation>Reference to an identified time primitive</documentation>
+								</annotation>
+							</element>
+						</choice>
+					</sequence>
+				</choice>
 			</extension>
 		</complexContent>
 	</complexType>
