@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<schema targetNamespace="http://www.opengis.net/xmml" xmlns:xmml="http://www.opengis.net/xmml" xmlns="http://www.w3.org/2001/XMLSchema" xmlns:gml="http://www.opengis.net/gml" xmlns:xlink="http://www.w3.org/1999/xlink" elementFormDefault="qualified" attributeFormDefault="unqualified" version="pre-release">
+<schema targetNamespace="http://www.opengis.net/xmml" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:gml="http://www.opengis.net/gml" xmlns="http://www.w3.org/2001/XMLSchema" xmlns:xmml="http://www.opengis.net/xmml" elementFormDefault="qualified" attributeFormDefault="unqualified" version="pre-release">
 	<annotation>
 		<documentation>
 geochemistry.xsd
@@ -7,7 +7,7 @@ geochemistry.xsd
 A GML conformant schema 
 for geochemistry
 
-2003-07-19
+2004-05-20
 
 Copyright (c) 2004 CSIRO - see https://www.seegrid.csiro.au/twiki/bin/view/Xmml/LegalNotices#Software_Notice
 </documentation>
@@ -20,21 +20,24 @@ Copyright (c) 2004 CSIRO - see https://www.seegrid.csiro.au/twiki/bin/view/Xmml/
 	<!-- ====================================================================== -->
 	<group name="geochemResultChoice">
 		<choice>
-			<element ref="xmml:result"/>
+			<element ref="xmml:resultMeasure"/>
 			<element ref="xmml:noResult"/>
 		</choice>
 	</group>
-	<element name="specimen" type="xmml:SpecimenPropertyType" substitutionGroup="xmml:subject"/>
+	<element name="subjectSpecimen" type="xmml:SpecimenPropertyType" substitutionGroup="xmml:subject"/>
 	<!-- ====================================================================== -->
 	<element name="GeochemMeasurement" type="xmml:GeochemMeasurementType" substitutionGroup="xmml:Observation"/>
 	<!-- -->
 	<complexType name="GeochemMeasurementBaseType">
 		<annotation>
-			<documentation>Restrict generic measurement type:
-         suppress observedProperty
-         specimen in place of "subject"
-         only numeric or no-result
-</documentation>
+			<documentation>Specialisation of generic observation type
+			First apply restriction:
+         			suppress "observedProperty" - chemicalConcentration is implied
+         			replace "subject" with "subjectSpecimen"
+         			only measure or no-result
+         
+        			For other documentation, see observation.xsd
+			</documentation>
 		</annotation>
 		<complexContent>
 			<restriction base="xmml:ObservationType">
@@ -43,9 +46,13 @@ Copyright (c) 2004 CSIRO - see https://www.seegrid.csiro.au/twiki/bin/view/Xmml/
 					<group ref="xmml:StandardSupportProperties"/>
 					<element ref="xmml:relatedFeature" minOccurs="0" maxOccurs="unbounded"/>
 					<element ref="gml:position"/>
-					<element ref="xmml:specimen" minOccurs="0"/>
+					<element ref="xmml:subjectSpecimen" minOccurs="0"/>
 					<group ref="xmml:geochemResultChoice"/>
-					<group ref="xmml:pqr"/>
+					<element ref="xmml:quality" minOccurs="0" maxOccurs="unbounded"/>
+					<element name="procedureTime" type="gml:TimePrimitivePropertyType"/>
+					<element name="responsible" type="xmml:PartyPropertyType" minOccurs="0"/>
+					<element ref="xmml:procedureUsed"/>
+					<element ref="xmml:reference" minOccurs="0"/>
 				</sequence>
 			</restriction>
 		</complexContent>
@@ -54,9 +61,9 @@ Copyright (c) 2004 CSIRO - see https://www.seegrid.csiro.au/twiki/bin/view/Xmml/
 	<complexType name="GeochemMeasurementType">
 		<annotation>
 			<documentation>Extend with 
-        analyte (in place of observedProperty)
-        purpose
-      </documentation>
+        			analyte (in place of observedProperty)
+        			purpose (optional)
+      			</documentation>
 		</annotation>
 		<complexContent>
 			<extension base="xmml:GeochemMeasurementBaseType">
@@ -65,6 +72,19 @@ Copyright (c) 2004 CSIRO - see https://www.seegrid.csiro.au/twiki/bin/view/Xmml/
 					<element ref="xmml:purpose" minOccurs="0"/>
 				</sequence>
 				<attribute name="seqNo" type="integer" use="optional"/>
+			</extension>
+		</complexContent>
+	</complexType>
+	<!-- ====================================================================== -->
+	<element name="GeochemSample" type="xmml:GeochemSampleType" substitutionGroup="xmml:Feature"/>
+	<!-- -->
+	<complexType name="GeochemSampleType">
+		<complexContent>
+			<extension base="xmml:PositionedFeatureType">
+				<choice>
+					<element name="suite" type="xmml:NumericTupleType"/>
+					<element name="concentration" type="xmml:SoftTypedMeasureType" maxOccurs="unbounded"/>
+				</choice>
 			</extension>
 		</complexContent>
 	</complexType>
