@@ -1,13 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <schema targetNamespace="http://www.opengis.net/xmml" elementFormDefault="qualified" attributeFormDefault="unqualified" version="pre-release" xmlns:xmml="http://www.opengis.net/xmml" xmlns="http://www.w3.org/2001/XMLSchema" xmlns:gml="http://www.opengis.net/gml" xmlns:xlink="http://www.w3.org/1999/xlink">
 	<annotation>
-		<documentation>
-feature.xsd
+		<documentation>feature.xsd
 
 A few variations on the basic feature and feature collection types for XMML
 
-Copyright (c) 2004 CSIRO - see https://www.seegrid.csiro.au/twiki/bin/view/Xmml/LegalNotices#Software_Notice
-</documentation>
+Copyright (c) 2004 CSIRO - see https://www.seegrid.csiro.au/twiki/bin/view/Xmml/LegalNotices#Software_Notice</documentation>
 	</annotation>
 	<!-- ====================================================================== -->
 	<!-- bring in other schemas -->
@@ -26,9 +24,23 @@ Copyright (c) 2004 CSIRO - see https://www.seegrid.csiro.au/twiki/bin/view/Xmml/
 	<!-- ====================================================================== -->
 	<element name="Feature" type="xmml:FeatureType" substitutionGroup="gml:_Feature">
 		<annotation>
-			<documentation>A generic feature for XMML.  </documentation>
+			<documentation>A generic feature for XMML.</documentation>
 		</annotation>
 	</element>
+	<!-- ...................... -->
+	<complexType name="AbstractFeatureType" abstract="true">
+		<annotation>
+			<documentation>Suppress gml:location</documentation>
+		</annotation>
+		<complexContent>
+			<restriction base="gml:AbstractFeatureType">
+				<sequence>
+					<group ref="gml:StandardObjectProperties"/>
+					<element ref="gml:boundedBy" minOccurs="0"/>
+				</sequence>
+			</restriction>
+		</complexContent>
+	</complexType>
 	<!-- ...................... -->
 	<complexType name="FeatureType">
 		<annotation>
@@ -38,11 +50,10 @@ Copyright (c) 2004 CSIRO - see https://www.seegrid.csiro.au/twiki/bin/view/Xmml/
       comment - additional comments that are not strictly part of the feature description
       relatedFeature - assert a relationship with another feature.  
       
-      Note, however, that features derived from this base may have additional more specific geometry properties, which may be more suitable for specific operations.    
-  </documentation>
+      Note, however, that features derived from this base may have additional more specific geometry properties, which may be more suitable for specific operations.</documentation>
 		</annotation>
 		<complexContent>
-			<extension base="gml:AbstractFeatureType">
+			<extension base="xmml:AbstractFeatureType">
 				<sequence>
 					<group ref="xmml:StandardSupportProperties"/>
 					<group ref="xmml:ExtendedFeatureProperties"/>
@@ -53,7 +64,7 @@ Copyright (c) 2004 CSIRO - see https://www.seegrid.csiro.au/twiki/bin/view/Xmml/
 	<!-- ====================================================================== -->
 	<element name="FeatureCollection" type="xmml:FeatureCollectionType" substitutionGroup="gml:_Feature">
 		<annotation>
-			<documentation>A generic concrete bag of features for XMML.  </documentation>
+			<documentation>A generic concrete bag of features for XMML.</documentation>
 		</annotation>
 	</element>
 	<!-- ...................... -->
@@ -100,7 +111,7 @@ Copyright (c) 2004 CSIRO - see https://www.seegrid.csiro.au/twiki/bin/view/Xmml/
 	</element>
 	<!-- ====================================================================== -->
 	<!-- PositionedFeature and BoundedFeature have been removed. These feature-types are a throw-back to the old geometry-centric abstraction and do not belong in a conceptual feature-type hierarchy. If position and bounds are required on a feature-type, they should be introduced locally. -->
-		<!-- ======================================================================
+	<!-- ======================================================================
 	<element name="AbstractBoundedFeature" type="xmml:BoundedFeatureType" abstract="true" substitutionGroup="xmml:Feature">
 		<annotation>
 			<documentation>A generic feature for XMML, with bounding box mandatory.  </documentation>
