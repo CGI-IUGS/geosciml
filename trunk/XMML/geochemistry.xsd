@@ -152,6 +152,7 @@ Copyright © 2004 CSIRO - see https://www.seegrid.csiro.au/twiki/bin/view/Xmml/L
 	<complexType name="AssayProcedureType">
 		<annotation>
 			<documentation>Adds the following assay-specific properties to generic procedure:
+				analyte
 				lowerDetectionLimit
 				upperDetectionLimit
 				secondUpperDetectionLimit
@@ -162,8 +163,9 @@ Copyright © 2004 CSIRO - see https://www.seegrid.csiro.au/twiki/bin/view/Xmml/L
 		<complexContent>
 			<extension base="xmml:ProcedureType">
 				<sequence>
+					<element name="analyte" type="xmml:analyteCode"/>
 					<element name="lowerDetectionLimit" type="gml:MeasureType"/>
-					<element name="upperDetectionLimit" type="gml:MeasureType"/>
+					<element name="upperDetectionLimit" type="gml:MeasureType" minOccurs="0"/>
 					<element name="secondUpperDetectionLimit" type="gml:MeasureType" minOccurs="0"/>
 				</sequence>
 			</extension>
