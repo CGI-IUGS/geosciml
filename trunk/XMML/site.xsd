@@ -21,6 +21,7 @@ Copyright (c) 2005 CSIRO - see https://www.seegrid.csiro.au/twiki/bin/view/Xmml/
 	<include schemaLocation="./feature.xsd"/>
 	<include schemaLocation="./geometry.xsd"/>
 	<include schemaLocation="./observation.xsd"/>
+	<include schemaLocation="./coverage.xsd"/>
 	<include schemaLocation="../enumerations/LUTgeography.xsd"/>
 	<!-- ====================================================================== -->
 	<!-- ===== Feature types in Site hierarchy ====== -->
@@ -98,6 +99,8 @@ Copyright (c) 2005 CSIRO - see https://www.seegrid.csiro.au/twiki/bin/view/Xmml/
 					<element name="end" type="gml:PointPropertyType"/>
 					<element name="length" type="gml:MeasureType"/>
 					<element name="shape" type="xmml:Shape1DPropertyType"/>
+					<element name="member" type="xmml:IntervalPropertyType" minOccurs="0" maxOccurs="unbounded"/>
+					<element name="log" type="xmml:LogPropertyType" minOccurs="0" maxOccurs="unbounded"/>
 				</sequence>
 			</extension>
 		</complexContent>
@@ -109,6 +112,76 @@ Copyright (c) 2005 CSIRO - see https://www.seegrid.csiro.au/twiki/bin/view/Xmml/
 		</sequence>
 		<attributeGroup ref="gml:AssociationAttributeGroup"/>
 	</complexType>
+	<!-- ====================================================================== -->
+	<element name="Interval" type="xmml:SectionType" substitutionGroup="xmml:Section"/>
+	<!-- .................. -->
+	<complexType name="IntervalPropertyType">
+		<sequence minOccurs="0">
+			<element ref="xmml:Interval"/>
+		</sequence>
+		<attributeGroup ref="gml:AssociationAttributeGroup"/>
+	</complexType>
+	<!-- ====================================================================== -->
+	<element name="CurveSurvey" type="xmml:CurveSurveyType" substitutionGroup="xmml:Coverage">
+		<annotation>
+			<documentation>A coverage whose domain is a collection of direct positions, and whose range is a set of direction vectors</documentation>
+		</annotation>
+	</element>
+	<!-- .................. -->
+	<complexType name="CurveSurveyType">
+		<annotation>
+			<documentation>A discrete coverage type whose domain is defined by a collection of positions, and whose range is a set of direction vectors, coverageFunction implicitly linear</documentation>
+		</annotation>
+		<complexContent>
+			<restriction base="xmml:CoverageType">
+				<sequence>
+					<group ref="gml:StandardObjectProperties"/>
+					<element ref="gml:boundedBy"/>
+					<group ref="xmml:StandardSupportProperties"/>
+					<group ref="xmml:ExtendedFeatureProperties"/>
+					<element ref="xmml:offsets"/>
+					<element ref="xmml:directions"/>
+				</sequence>
+			</restriction>
+		</complexContent>
+	</complexType>
+	<!-- .................. -->
+	<complexType name="CurveSurveyPropertyType">
+		<sequence minOccurs="0">
+			<element ref="xmml:CurveSurvey"/>
+		</sequence>
+		<attributeGroup ref="gml:AssociationAttributeGroup"/>
+	</complexType>
+	<!-- ====================================================================== -->
+	<element name="offsets" type="xmml:MultiPosDomainType" substitutionGroup="xmml:domain"/>
+	<!-- ====================================================================== -->
+	<element name="directions" type="xmml:DirectionsRangeType" substitutionGroup="xmml:range"/>
+	<!-- .................. -->
+	<complexType name="DirectionsRangeType">
+		<complexContent>
+			<restriction base="xmml:RangeType">
+				<sequence>
+					<element name="ListOfVectors" type="xmml:ListOfVectorsType"/>
+				</sequence>
+			</restriction>
+		</complexContent>
+	</complexType>
+	<!-- .................. -->
+	<complexType name="ListOfVectorsType">
+		<complexContent>
+			<restriction base="xmml:ListOfRecordsType">
+				<sequence>
+					<element ref="xmml:rangeParameters">
+						<annotation>
+							<documentation>In this context, the rangeParameters property will merely identify the CRS for the vectors</documentation>
+						</annotation>
+					</element>
+					<element ref="gml:vector" maxOccurs="unbounded"/>
+				</sequence>
+			</restriction>
+		</complexContent>
+	</complexType>
+	<!-- =========================================================== -->
 	<!-- ====================================================================== -->
 	<group name="Shape1D">
 		<choice>
