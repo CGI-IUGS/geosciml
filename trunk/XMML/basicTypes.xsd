@@ -13,7 +13,7 @@ Copyright © 2004 CSIRO - see https://www.seegrid.csiro.au/twiki/bin/view/Xmml/L
 	</annotation>
 	<!-- ====================================================================== -->
 	<!-- bring in other schemas -->
-	<import namespace="http://www.opengis.net/gml" schemaLocation="http://schemas.opengis.net/gml/3.1.0/base/geometryBasic0d1d.xsd"/>
+	<import namespace="http://www.opengis.net/gml" schemaLocation="../gml/base/geometryBasic0d1d.xsd"/>
 	<include schemaLocation="../enumerations/LUTother.xsd"/>
 	<!-- ===================================================== -->
 	<attributeGroup name="simpleContentStandardAttributes">
@@ -237,7 +237,7 @@ Copyright © 2004 CSIRO - see https://www.seegrid.csiro.au/twiki/bin/view/Xmml/L
 		</annotation>
 		<simpleContent>
 			<extension base="gml:MeasureType">
-				<attribute name="originalUom" type="gml:UomIdentifier" use="optional">
+				<attribute name="originalUom" type="anyURI" use="optional">
 					<annotation>
 						<documentation>When the value reported has been converted from the stored units (for example, raio values converted from ppm to a number), this attribute may be used to record  the original units of measure.</documentation>
 					</annotation>
