@@ -1,22 +1,22 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<schema targetNamespace="http://www.opengis.net/GeoSciML" xmlns="http://www.w3.org/2001/XMLSchema" xmlns:gsml="http://www.opengis.net/GeoSciML" xmlns:xmml="http://www.opengis.net/xmml" xmlns:gml="http://www.opengis.net/gml" elementFormDefault="qualified" attributeFormDefault="unqualified" version="pre-release">
+<schema targetNamespace="http://www.opengis.net/GeoSciML" elementFormDefault="qualified" attributeFormDefault="unqualified" version="pre-release" xmlns="http://www.w3.org/2001/XMLSchema" xmlns:gsml="http://www.opengis.net/GeoSciML" xmlns:xmml="http://www.opengis.net/xmml" xmlns:gml="http://www.opengis.net/gml">
 	<annotation>
 		<documentation>
 geoTime.xsd
 
 Composite of reference systems and reference times which may be used to collect together components that describe geological time scales and stratigraphic charts
 
-2003-10-27
+2004-06-10
 
 Copyright (c) 2004 CSIRO - see https://www.seegrid.csiro.au/twiki/bin/view/Xmml/LegalNotices#Software_Notice
 </documentation>
 	</annotation>
 	<!-- ======================== -->
 	<import namespace="http://www.opengis.net/gml" schemaLocation="../gml/base/temporalReferenceSystems.xsd"/>
-	<import namespace="http://www.opengis.net/xmml" schemaLocation="../XMML/base.xsd"/>
-	<include schemaLocation="./temporal.xsd"/>
+	<import namespace="http://www.opengis.net/xmml" schemaLocation="../XMML/procedures.xsd"/>
 	<include schemaLocation="../enumerations/LUTstratigraphy.xsd"/>
-	<!-- ======================== -->
+	<!-- ================================================================== -->
+	<!-- ================================================================== -->
 	<element name="GeologicalTimeScale" type="gsml:GeologicalTimeScaleType" substitutionGroup="gml:_TimeReferenceSystem"/>
 	<!-- ===================================== -->
 	<complexType name="GeologicalTimeScaleType" final="#all">
@@ -51,7 +51,7 @@ Copyright (c) 2004 CSIRO - see https://www.seegrid.csiro.au/twiki/bin/view/Xmml/
 							</sequence>
 						</complexType>
 					</element>
-					<element name="referenceTime" minOccurs="0" maxOccurs="unbounded">
+					<element name="node" minOccurs="0" maxOccurs="unbounded">
 						<annotation>
 							<documentation>Reference times may be described out-of-band from the Eras that they limit. This allows re-use of times for multiple Eras. </documentation>
 						</annotation>
@@ -67,32 +67,85 @@ Copyright (c) 2004 CSIRO - see https://www.seegrid.csiro.au/twiki/bin/view/Xmml/
 		</complexContent>
 	</complexType>
 	<!-- ================================================================== -->
-	<!-- ===== Time estimates ====== -->
-	<!-- ====================================================================== -->
-	<element name="StratPositionEstimate" type="gsml:StratPositionEstimateType" substitutionGroup="gsml:TimePositionEstimate">
-		<annotation>
-			<documentation>An observation resulting in an estimate of a stratigraphic position.</documentation>
-		</annotation>
-	</element>
+	<!-- ================================================================== -->
+	<!-- ===== Time Era ====== -->
+	<!-- ================================================================== -->
+	<element name="StratEra" type="gsml:StratEraType" substitutionGroup="gml:TimeOrdinalEra"/>
 	<!-- ===================================== -->
-	<complexType name="StratPositionEstimateType">
+	<complexType name="StratEraType">
 		<annotation>
-			<documentation>An observation resulting in an estimate of a stratigraphic position. 
-			adds stratigraphicEvent to TimePositionEstimate</documentation>
+			<documentation>An extension of the GML TimeOrdinalEra, with an additional "rank" property.</documentation>
 		</annotation>
 		<complexContent>
-			<extension base="gsml:TimePositionEstimateType">
+			<extension base="gml:TimeOrdinalEraType">
 				<sequence>
-					<element name="stratigraphicEvent" type="gml:StringOrRefType"/>
+					<element name="rank" type="gsml:GeologicalEraRanks"/>
+					<group ref="xmml:StandardSupportProperties"/>
 				</sequence>
 			</extension>
 		</complexContent>
 	</complexType>
+	<!-- ================================================================== -->
 	<!-- ====================================================================== -->
+	<!-- ===== Stratigraphy features and objects ====== -->
+	<!-- ================================================================== -->
+	<element name="StratNode" type="gsml:StratNodeType" substitutionGroup="gml:TimeNode"/>
+	<!-- ===================================== -->
+	<complexType name="StratNodeType">
+		<annotation>
+			<documentation>A variation of the GML TimeNode, which adds 
+			0..* event properties to record (local) realizations of this node</documentation>
+		</annotation>
+		<complexContent>
+			<extension base="gml:TimeNodeType">
+				<sequence>
+					<element name="event" type="gsml:StratigraphicEventPropertyType" maxOccurs="unbounded"/>
+					<group ref="xmml:StandardSupportProperties"/>
+				</sequence>
+			</extension>
+		</complexContent>
+	</complexType>
+	<!-- ================================================================== -->
+	<complexType name="StratNodePropertyType">
+		<sequence>
+			<element ref="gsml:StratNode" minOccurs="0"/>
+		</sequence>
+		<attributeGroup ref="gml:AssociationAttributeGroup"/>
+	</complexType>
+	<!-- ================================================================== -->
+	<!-- ================================================================== -->
+	<element name="StratigraphicEvent" type="gsml:StratigraphicEventType">
+		<annotation>
+			<documentation>A stratigraphic event.</documentation>
+		</annotation>
+	</element>
+	<!-- ===================================== -->
+	<complexType name="StratigraphicEventType">
+		<annotation>
+			<documentation>A stratigraphic event.
+			Use the description property to record a detailed description of the nature of the event</documentation>
+		</annotation>
+		<complexContent>
+			<extension base="gml:AbstractGMLType">
+				<sequence maxOccurs="unbounded">
+					<element name="ageEstimate" type="gsml:DateDeterminationPropertyType" />
+					<element name="prototype" type="gsml:StratotypePropertyType"/>
+				</sequence>
+			</extension>
+		</complexContent>
+	</complexType>
+	<!-- ================================================================== -->
+	<complexType name="StratigraphicEventPropertyType">
+		<sequence>
+			<element ref="gsml:StratigraphicEvent" minOccurs="0"/>
+		</sequence>
+		<attributeGroup ref="gml:AssociationAttributeGroup"/>
+	</complexType>
+	<!-- ================================================================== -->
 	<!-- ====================================================================== -->
-	<element name="BoundaryStratotype" type="gsml:BoundaryStratotypeType" substitutionGroup="gml:_Feature"/>
+	<element name="Stratotype" type="gsml:StratotypeType" substitutionGroup="gml:_Feature"/>
 	<!-- ====== -->
-	<complexType name="BoundaryStratotypeType">
+	<complexType name="StratotypeType">
 		<annotation>
 			<documentation>A special Feature used in stratigraphy
 	N.B. According to http://www.stratigraphy.org/ a Global Boundary Stratotype Section and Point requires the following descriptors			
@@ -114,7 +167,6 @@ Copyright (c) 2004 CSIRO - see https://www.seegrid.csiro.au/twiki/bin/view/Xmml/
 
 	The table of GSSP's provided by ICS only shows a subset of these, so only the following are used here:
 			use gml:description and gml:position for sampling location 
-			stratigraphicEvent (description of the event being dated)
 			status (i.e. is this stratotype point ratified by some organisation)
 			reference
 			</documentation>
@@ -123,6 +175,12 @@ Copyright (c) 2004 CSIRO - see https://www.seegrid.csiro.au/twiki/bin/view/Xmml/
 			<extension base="gml:AbstractFeatureType">
 				<sequence>
 					<element ref="gml:position"/>
+					<element name="event" type="gsml:StratigraphicEventPropertyType"/>
+					<element name="relatedObservation" type="gsml:DateDeterminationPropertyType" minOccurs="0" maxOccurs="unbounded">
+						<annotation>
+							<documentation>A variety of observations may be made on specimens from the stratotype; currently only tme estimate is allowed for. </documentation>
+						</annotation>
+					</element>
 					<element name="status" type="token"/>
 					<element ref="xmml:reference"/>
 				</sequence>
@@ -130,23 +188,71 @@ Copyright (c) 2004 CSIRO - see https://www.seegrid.csiro.au/twiki/bin/view/Xmml/
 		</complexContent>
 	</complexType>
 	<!-- ================================================================== -->
-	<element name="geochronologyProcedure" type="gsml:geochronologyProcedureCode" substitutionGroup="xmml:method"/>
-	<!-- ====================================================================== -->
+	<complexType name="StratotypePropertyType">
+		<sequence>
+			<element ref="gsml:Stratotype" minOccurs="0"/>
+		</sequence>
+		<attributeGroup ref="gml:AssociationAttributeGroup"/>
+	</complexType>
 	<!-- ================================================================== -->
-	<element name="TimeOrdinalEra" type="gsml:TimeOrdinalEraType" substitutionGroup="gml:TimeOrdinalEra"/>
-	<!-- ===================================== -->
-	<complexType name="TimeOrdinalEraType">
+	<!-- ====================================================================== -->
+	<!-- ===== Time estimates ====== -->
+	<!-- ====================================================================== -->
+	<element name="DateDetermination" type="gsml:DateDeterminationType">
 		<annotation>
-			<documentation>An extension of the GML TimeOrdinalEra, with an additional "rank" property.</documentation>
+			<documentation>An observation resulting in an estimate of a time position.
+			This can be a geochron measurement, or an estimate made using less precise techniques. </documentation>
+		</annotation>
+	</element>
+	<!-- ===================================== -->
+	<complexType name="DateDeterminationType">
+		<annotation>
+			<documentation>An observation resulting in an estimate of a time position.
+			Modelled after OandM pattern.</documentation>
 		</annotation>
 		<complexContent>
-			<extension base="gml:TimeOrdinalEraType">
+			<extension base="gml:AbstractFeatureType">
 				<sequence>
-					<element name="rank" type="gsml:GeologicalEraRanks"/>
+					<element name="subject" type="gml:FeaturePropertyType">
+						<annotation>
+							<documentation>The feature (e.g. specimen) on which the observations or measurements are made.</documentation>
+						</annotation>
+					</element>
+					<element name="result" type="gml:TimePositionType">
+						<annotation>
+							<documentation>The result of the observation.</documentation>
+						</annotation>
+					</element>
+					<element ref="xmml:quality" minOccurs="0"/>
+					<element name="procedureTime" type="gml:TimePrimitivePropertyType">
+						<annotation>
+							<documentation>The Time when the observation occurred.  </documentation>
+						</annotation>
+					</element>
+					<element name="responsible" type="xmml:PartyPropertyType" minOccurs="0">
+						<annotation>
+							<documentation>Person or organisation responsible for the observation</documentation>
+						</annotation>
+					</element>
+					<element ref="xmml:procedureUsed">
+						<annotation>
+							<documentation>Procedure or instrument used for the act of observation</documentation>
+						</annotation>
+					</element>
+					<element ref="xmml:reference" minOccurs="0"/>
 					<group ref="xmml:StandardSupportProperties"/>
 				</sequence>
 			</extension>
 		</complexContent>
+	</complexType>
+	<!-- ================================================================== -->
+	<element name="geochronologyProcedure" type="gsml:geochronologyProcedureCode" substitutionGroup="xmml:method"/>
+	<!-- ================================================================== -->
+	<complexType name="DateDeterminationPropertyType">
+		<sequence>
+			<element ref="gsml:DateDetermination" minOccurs="0"/>
+		</sequence>
+		<attributeGroup ref="gml:AssociationAttributeGroup"/>
 	</complexType>
 	<!-- ================================================================== -->
 </schema>
