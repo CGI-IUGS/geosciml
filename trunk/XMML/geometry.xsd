@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!-- edited with XMLSPY v5 rel. 4 U (http://www.xmlspy.com) by Marcus Sen (british Geological Survey) -->
-<schema xmlns="http://www.w3.org/2001/XMLSchema" xmlns:gml="http://www.opengis.net/gml" xmlns:xmml="http://www.opengis.net/xmml" targetNamespace="http://www.opengis.net/xmml" elementFormDefault="qualified" attributeFormDefault="unqualified" version="pre-release">
+<schema xmlns="http://www.w3.org/2001/XMLSchema" xmlns:gml="http://www.opengis.net/gml" xmlns:xmml="http://www.opengis.net/xmml" targetNamespace="http://www.opengis.net/xmml" elementFormDefault="qualified" attributeFormDefault="unqualified"
+        version="pre-release">
 	<annotation>
 		<documentation>geometry.xsd
 
@@ -129,22 +130,18 @@ Copyright (c) 2005 CSIRO - see https://www.seegrid.csiro.au/twiki/bin/view/Xmml/
 	<!-- =========================================================== -->
 	<!-- === Intervals === -->
 	<!-- =========================================================== -->
-	<element name="GInterval" type="xmml:GIntervalType" substitutionGroup="gml:LineString"/>
+	<element name="GInterval" type="xmml:GIntervalType" substitutionGroup="gml:_Curve"/>
 	<!-- =========================================================== -->
 	<complexType name="GIntervalType">
 		<annotation>
-			<documentation>GInterval defines a simple line segment using a pair of positions.</documentation>
+			<documentation>GInterval defines a simple curve segment using a pair of positions.</documentation>
 		</annotation>
 		<complexContent>
-			<restriction base="gml:LineStringType">
+			<extension base="gml:AbstractCurveType">
 				<sequence>
-					<choice>
-						<choice minOccurs="2" maxOccurs="2">
-							<element ref="gml:pointProperty"/>
-						</choice>
-					</choice>
+					<element ref="gml:pointProperty" minOccurs="2" maxOccurs="2"/>
 				</sequence>
-			</restriction>
+			</extension>
 		</complexContent>
 	</complexType>
 	<!-- =========================================================== -->
