@@ -120,7 +120,10 @@ Copyright © 2004 CSIRO - see https://www.seegrid.csiro.au/twiki/bin/view/Xmml/L
 		</annotation>
 		<sequence minOccurs="0">
 			<choice>
+				<element ref="xmml:SimpleBoreholeShape"/>
+				<element ref="xmml:SurveyTable"/>
 				<element ref="xmml:BoreholeSurvey"/>
+				<element name="BoreholeSurveyLog" type="xmml:PointSetCoverage"/>
 				<element ref="gml:_Curve"/>
 			</choice>
 		</sequence>
@@ -131,41 +134,79 @@ Copyright © 2004 CSIRO - see https://www.seegrid.csiro.au/twiki/bin/view/Xmml/L
 	<!-- ====================================================================== -->
 	<complexType name="BoreholeSurveyType">
 		<annotation>
-			<documentation>BoreholeSurvey carries an id, so can be used as the target of a reference. This is useful so that the survey defines a 1-D CRS used for indexing information along the borehole. </documentation>
+			<documentation>BoreholeSurvey carries an id, so can be used as the target of a reference. This is useful so that the survey defines a 1-D CRS used for indexing information along the borehole. 
+			
+			Should harmonise this with PointSetCoverage ...</documentation>
 		</annotation>
 		<complexContent>
 			<extension base="gml:AbstractGMLType">
 				<sequence>
 					<element name="origin" type="gml:PointPropertyType">
 						<annotation>
-							<documentation>A borehole survey is expressed as a set of offset/direction pairs. The offset is relative to an origin, which is typically the borehole collar. The "by reference" form should normally be used if this is the case, pointing to the value of gml:position above. </documentation>
+							<documentation>A borehole survey is expressed as a set of offset/direction records. The offset is relative to an origin, which is typically the borehole collar. The "by reference" form should normally be used if this is the case, pointing to the value of gml:position above. </documentation>
 						</annotation>
 					</element>
-					<choice>
-						<sequence>
-							<element name="offsets" type="gml:MeasureListType"/>
-							<element name="azimuths" type="gml:MeasureListType"/>
-							<element name="inclinations" type="gml:MeasureListType"/>
-						</sequence>
-						<element name="surveyTable">
-							<annotation>
-								<documentation>Compact form of the same information provided in row form embedded in a single element</documentation>
-							</annotation>
-							<complexType>
-								<simpleContent>
-									<restriction base="xmml:NumericTupleType">
-										<attribute name="dimension" fixed="3"/>
-										<attribute name="axisLabels" fixed="offset azimuth inclination"/>
-									</restriction>
-								</simpleContent>
-							</complexType>
-						</element>
-						<element ref="gml:direction">
-							<annotation>
-								<documentation>A simple direction relative to the origin.</documentation>
-							</annotation>
-						</element>
-					</choice>
+					<element name="offsets" type="gml:MeasureListType"/>
+					<element name="azimuths" type="gml:MeasureListType"/>
+					<element name="inclinations" type="gml:MeasureListType"/>
+				</sequence>
+			</extension>
+		</complexContent>
+	</complexType>
+	<!-- ====================================================================== -->
+	<element name="SimpleBoreholeShape" type="xmml:SimpleBoreholeShapeType"/>
+	<!-- ====================================================================== -->
+	<complexType name="SimpleBoreholeShapeType">
+		<annotation>
+			<documentation>SimpleBoreholeShape carries an id, so can be used as the target of a reference. This is useful so that the survey defines a 1-D CRS used for indexing information along the borehole. </documentation>
+		</annotation>
+		<complexContent>
+			<extension base="gml:AbstractGMLType">
+				<sequence>
+					<element name="origin" type="gml:PointPropertyType">
+						<annotation>
+							<documentation>Simple Shape is expressed as an origin and direction. 
+							This is equivalent to a degenerate survey with only one observation.  </documentation>
+						</annotation>
+					</element>
+					<element ref="gml:vector">
+						<annotation>
+							<documentation>A simple direction relative to the origin.</documentation>
+						</annotation>
+					</element>
+				</sequence>
+			</extension>
+		</complexContent>
+	</complexType>
+	<!-- ====================================================================== -->
+	<!-- ====================================================================== -->
+	<element name="SurveyTable" type="xmml:SurveyTableType"/>
+	<!-- ====================================================================== -->
+	<complexType name="SurveyTableType">
+		<annotation>
+			<documentation>SurveyTable carries an id, so can be used as the target of a reference. This is useful so that the survey defines a 1-D CRS used for indexing information along the borehole. </documentation>
+		</annotation>
+		<complexContent>
+			<extension base="gml:AbstractGMLType">
+				<sequence>
+					<element name="origin" type="gml:PointPropertyType">
+						<annotation>
+							<documentation>A borehole survey is expressed as a set of offset/direction records. The offset is relative to an origin, which is typically the borehole collar. The "by reference" form should normally be used if this is the case, pointing to the value of gml:position above. </documentation>
+						</annotation>
+					</element>
+					<element name="surveyTable">
+						<annotation>
+							<documentation>Compact form of the same information provided in row form embedded in a single element</documentation>
+						</annotation>
+						<complexType>
+							<simpleContent>
+								<restriction base="xmml:NumericTupleType">
+									<attribute name="dimension" fixed="3"/>
+									<attribute name="axisLabels" fixed="offset azimuth inclination"/>
+								</restriction>
+							</simpleContent>
+						</complexType>
+					</element>
 				</sequence>
 			</extension>
 		</complexContent>

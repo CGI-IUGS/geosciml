@@ -38,7 +38,7 @@ Copyright (c) 2004 CSIRO - see https://www.seegrid.csiro.au/twiki/bin/view/Xmml/
 			<extension base="xmml:FeatureType">
 				<sequence>
 					<element ref="xmml:domain"/>
-					<element ref="xmml:range"/>
+					<element ref="xmml:abstractRange"/>
 					<element ref="xmml:coverageFunction" minOccurs="0"/>
 				</sequence>
 				<attribute name="dimension" type="positiveInteger" use="optional"/>
@@ -67,57 +67,67 @@ N.B. Temporal domains still to be implemented.</documentation>
 		<attributeGroup ref="gml:AssociationAttributeGroup"/>
 	</complexType>
 	<!-- =========================================================== -->
-	<element name="range" type="xmml:RangeType"/>
+	<element name="abstractRange" type="anyType"/>
+	<!-- =========================================================== -->
+	<element name="range" type="xmml:RangeType" substitutionGroup="xmml:abstractRange"/>
 	<!-- =========================================================== -->
 	<complexType name="RangeType">
 		<annotation>
-			<documentation>Choice of representations of values in the coverage range. In general, the range will describe a composite property. The components of the composite values at sample locations may be described one component or band at a time over the whole domain (BandList or TableByBand), composite value or record for each sample location at a time (RecordList or TableByRecord) or in an external file (File) or as a list of Objects (ObjectList). Text values including whitespace require "special treatment" in </documentation>
+			<documentation>Choice of representations of values in the coverage range. In general, the range will describe a composite property. The components of the composite values at sample locations may be described one component or band at a time over the whole domain (BandList or TableByBand), composite value or record for each sample location at a time (RecordList or TableByRecord) or in an external file (File) or as a list of Objects (ObjectList). 
+			
+			Text values including whitespace require "special treatment" where these are recorded within the list types: e.g. use &#26; (non-breaking-space) which is not interpreted as "whitespace" when the list is converted into items. 
+			
+			The base type "anyType" is not strictly needed - all concrete types are implicitly "restrictions" of WXS "anyType", but making this explicit appear to make Xerces happier. </documentation>
 		</annotation>
-		<sequence>
-			<choice>
-				<element name="Band" type="xmml:BandType">
-					<annotation>
-						<documentation>Values in the range represented as a vector.</documentation>
-					</annotation>
-				</element>
-				<element name="ListOfBands" type="xmml:ListOfBandsType">
-					<annotation>
-						<documentation>Values in the range represented as vectors in property- component- or band-sequential order - i.e. values for all samples in domain for one component of range, followed by values for all samples in domain for next component, etc</documentation>
-					</annotation>
-				</element>
-				<element name="TableByBand" type="xmml:TableByBandType">
-					<annotation>
-						<documentation>Values in the range represented as a table in property- component or band-sequential order - i.e. values for all samples in domain for one component of range, followed by values for all samples in domain for next component, etc</documentation>
-					</annotation>
-				</element>
-				<element name="ListOfRecords" type="xmml:ListOfRecordsType">
-					<annotation>
-						<documentation>Values in the range represented as tuples in band-interleaved (property- or component-interleaved) order - i.e. values for all components of range for one sample in domain, followed by values for all components of range for next sample in domain, etc</documentation>
-					</annotation>
-				</element>
-				<element name="TableByRecord" type="xmml:TableByRecordType">
-					<annotation>
-						<documentation>Values in the range represented as a table in band-interleaved (property- or component-interleaved) order - i.e. values for all components of range for one sample in domain, followed by values for all components of range for next sample in domain, etc</documentation>
-					</annotation>
-				</element>
-				<element name="ListOfObjects" type="xmml:ListOfObjectsType">
-					<annotation>
-						<documentation>Values in the range represented as Objects or structured values - following the standard GML Property pattern, the "member" property may carry a link to an out-of-line object. </documentation>
-					</annotation>
-				</element>
-				<element name="ListOfDescriptions" type="xmml:ListOfDescriptionsType">
-					<annotation>
-						<documentation>Values in the range represented as text.</documentation>
-					</annotation>
-				</element>
-				<element name="File" type="xmml:FileType">
-					<annotation>
-						<documentation>A reference to an external source for the data, together with a description of how that external source is structured
+		<complexContent>
+			<restriction base="anyType">
+				<sequence>
+					<choice>
+						<element name="Band" type="xmml:BandType">
+							<annotation>
+								<documentation>Values in the range represented as a vector.</documentation>
+							</annotation>
+						</element>
+						<element name="ListOfBands" type="xmml:ListOfBandsType">
+							<annotation>
+								<documentation>Values in the range represented as vectors in property- component- or band-sequential order - i.e. values for all samples in domain for one component of range, followed by values for all samples in domain for next component, etc</documentation>
+							</annotation>
+						</element>
+						<element name="TableByBand" type="xmml:TableByBandType">
+							<annotation>
+								<documentation>Values in the range represented as a table in property- component or band-sequential order - i.e. values for all samples in domain for one component of range, followed by values for all samples in domain for next component, etc</documentation>
+							</annotation>
+						</element>
+						<element name="ListOfRecords" type="xmml:ListOfRecordsType">
+							<annotation>
+								<documentation>Values in the range represented as tuples in band-interleaved (property- or component-interleaved) order - i.e. values for all components of range for one sample in domain, followed by values for all components of range for next sample in domain, etc</documentation>
+							</annotation>
+						</element>
+						<element name="TableByRecord" type="xmml:TableByRecordType">
+							<annotation>
+								<documentation>Values in the range represented as a table in band-interleaved (property- or component-interleaved) order - i.e. values for all components of range for one sample in domain, followed by values for all components of range for next sample in domain, etc</documentation>
+							</annotation>
+						</element>
+						<element name="ListOfObjects" type="xmml:ListOfObjectsType">
+							<annotation>
+								<documentation>Values in the range represented as Objects or structured values - following the standard GML Property pattern, the "member" property may carry a link to an out-of-line object. </documentation>
+							</annotation>
+						</element>
+						<element name="ListOfDescriptions" type="xmml:ListOfDescriptionsType">
+							<annotation>
+								<documentation>Values in the range represented as text.</documentation>
+							</annotation>
+						</element>
+						<element name="File" type="xmml:FileType">
+							<annotation>
+								<documentation>A reference to an external source for the data, together with a description of how that external source is structured
 </documentation>
-					</annotation>
-				</element>
-			</choice>
-		</sequence>
+							</annotation>
+						</element>
+					</choice>
+				</sequence>
+			</restriction>
+		</complexContent>
 	</complexType>
 	<!-- =========================================================== -->
 	<!-- === Types used in range content choices === -->
@@ -503,6 +513,21 @@ XXXXXXXXXXXXXXX need to make this more comprehensive
 				<sequence minOccurs="0">
 					<choice>
 						<element ref="gml:MultiPoint"/>
+						<element ref="xmml:MultiPos"/>
+					</choice>
+				</sequence>
+			</restriction>
+		</complexContent>
+	</complexType>
+	<!-- =========================================================== -->
+	<!-- ====================================================================== -->
+	<element name="multiPosDomain" type="xmml:MultiPosDomainType" substitutionGroup="xmml:domain"/>
+	<!-- ====================================================================== -->
+	<complexType name="MultiPosDomainType">
+		<complexContent>
+			<restriction base="xmml:DomainType">
+				<sequence minOccurs="0">
+					<choice>
 						<element ref="xmml:MultiPos"/>
 					</choice>
 				</sequence>
