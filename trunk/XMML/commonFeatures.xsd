@@ -6,7 +6,7 @@ commonFeatures.xsd
 
 Some common feature types for XMML
 
-2003-12-19
+2004-06-30
 
 Copyright (c) 2004 CSIRO - see https://www.seegrid.csiro.au/twiki/bin/view/Xmml/LegalNotices#Software_Notice
 </documentation>
@@ -61,11 +61,17 @@ Copyright (c) 2004 CSIRO - see https://www.seegrid.csiro.au/twiki/bin/view/Xmml/
 			Note that if this specimen is a "processed" version of another (e.g. by grinding, seiving, etc) then 
 			the predecessor (if known) may be recorded as a relatedFeature
 			
+			If this specimen has been processed from an "original" specimen, 
+			as collected in the field or as supplied to the lab, 
+			but results should be reported regarding the original, 
+			then the original may be indicated using the reportingSpecimen property.
+			
 			Related observations may also be recorded using the relatedFeature property. </documentation>
 		</annotation>
 		<complexContent>
 			<extension base="xmml:PositionedFeatureType">
 				<sequence>
+					<element name="reportingSpecimen" type="gml:ReferenceType" minOccurs="0"/>
 					<element ref="xmml:processingStep" minOccurs="0" maxOccurs="unbounded">
 						<annotation>
 							<documentation>One or more procedures may have been applied to a specimen.  
