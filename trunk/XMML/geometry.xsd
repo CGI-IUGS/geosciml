@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!-- edited with XMLSPY v5 rel. 4 U (http://www.xmlspy.com) by Marcus Sen (british Geological Survey) -->
-<schema xmlns="http://www.w3.org/2001/XMLSchema" xmlns:gml="http://www.opengis.net/gml" xmlns:xmml="http://www.opengis.net/xmml" targetNamespace="http://www.opengis.net/xmml" elementFormDefault="qualified" attributeFormDefault="unqualified"
-        version="pre-release">
+<schema xmlns="http://www.w3.org/2001/XMLSchema" xmlns:gml="http://www.opengis.net/gml" xmlns:xmml="http://www.opengis.net/xmml" targetNamespace="http://www.opengis.net/xmml" elementFormDefault="qualified" attributeFormDefault="unqualified" version="pre-release">
 	<annotation>
 		<documentation>geometry.xsd
 
@@ -12,7 +11,7 @@ Copyright (c) 2005 CSIRO - see https://www.seegrid.csiro.au/twiki/bin/view/Xmml/
 	</annotation>
 	<!-- ====================================================================== -->
 	<!-- bring in other schemas -->
-	<import namespace="http://www.opengis.net/gml" schemaLocation="../gml/3.1.1/base/geometryComplexes.xsd"/>
+	<import namespace="http://www.opengis.net/gml" schemaLocation="./gml4geometry.xsd"/>
 	<!-- ====================================================================== -->
 	<!-- ====================================================================== -->
 	<!-- === Compact form of multi-position.  === -->
@@ -27,8 +26,8 @@ Copyright (c) 2005 CSIRO - see https://www.seegrid.csiro.au/twiki/bin/view/Xmml/
 			<extension base="gml:AbstractGeometricAggregateType">
 				<sequence>
 					<choice>
-						<element name="pos" type="gml:DirectPosition" maxOccurs="unbounded"/>
-						<element name="posList" type="gml:DirectPositionList"/>
+						<element name="pos" type="gml:DirectPositionType" maxOccurs="unbounded"/>
+						<element name="posList" type="gml:DirectPositionListType"/>
 					</choice>
 				</sequence>
 			</extension>
@@ -130,40 +129,43 @@ Copyright (c) 2005 CSIRO - see https://www.seegrid.csiro.au/twiki/bin/view/Xmml/
 	<!-- =========================================================== -->
 	<!-- === Intervals === -->
 	<!-- =========================================================== -->
-	<element name="Interval" type="xmml:IntervalType" substitutionGroup="gml:_GeometricPrimitive"/>
+	<element name="GInterval" type="xmml:GIntervalType" substitutionGroup="gml:LineString"/>
 	<!-- =========================================================== -->
-	<complexType name="IntervalType">
+	<complexType name="GIntervalType">
 		<annotation>
-			<documentation>Interval defines an extent using a pair of positions defining opposite corners in arbitrary dimensions.</documentation>
+			<documentation>GInterval defines a simple line segment using a pair of positions.</documentation>
 		</annotation>
 		<complexContent>
-			<extension base="gml:AbstractGeometricPrimitiveType">
+			<restriction base="gml:LineStringType">
 				<sequence>
-					<element name="lowerBound" type="gml:PointPropertyType"/>
-					<element name="upperBound" type="gml:PointPropertyType"/>
+					<choice>
+						<choice minOccurs="2" maxOccurs="2">
+							<element ref="gml:pointProperty"/>
+						</choice>
+					</choice>
 				</sequence>
-			</extension>
+			</restriction>
 		</complexContent>
 	</complexType>
 	<!-- =========================================================== -->
 	<!-- =========================================================== -->
-	<complexType name="IntervalPropertyType">
+	<complexType name="GIntervalPropertyType">
 		<sequence minOccurs="0">
-			<element ref="xmml:Interval"/>
+			<element ref="xmml:GInterval"/>
 		</sequence>
 		<attributeGroup ref="gml:AssociationAttributeGroup"/>
 	</complexType>
 	<!-- =========================================================== -->
-	<element name="MultiInterval" type="xmml:MultiIntervalType" substitutionGroup="gml:_GeometricAggregate"/>
+	<element name="MultiGInterval" type="xmml:MultiGIntervalType" substitutionGroup="gml:_GeometricAggregate"/>
 	<!-- =========================================================== -->
-	<complexType name="MultiIntervalType">
+	<complexType name="MultiGIntervalType">
 		<annotation>
-			<documentation>A MultiInterval is defined by one or more Intervals.</documentation>
+			<documentation>A MultiGInterval is defined by one or more GIntervals.</documentation>
 		</annotation>
 		<complexContent>
 			<extension base="gml:AbstractGeometricAggregateType">
 				<sequence>
-					<element name="member" type="xmml:IntervalPropertyType" minOccurs="0" maxOccurs="unbounded"/>
+					<element name="member" type="xmml:GIntervalPropertyType" minOccurs="0" maxOccurs="unbounded"/>
 				</sequence>
 			</extension>
 		</complexContent>
