@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<schema xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:gml="http://www.opengis.net/gml" xmlns="http://www.w3.org/2001/XMLSchema" xmlns:xmml="http://www.opengis.net/xmml" targetNamespace="http://www.opengis.net/xmml" elementFormDefault="qualified"
-        attributeFormDefault="unqualified" version="pre-release">
+<schema xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:gml="http://www.opengis.net/gml" xmlns="http://www.w3.org/2001/XMLSchema" xmlns:xmml="http://www.opengis.net/xmml" targetNamespace="http://www.opengis.net/xmml" elementFormDefault="qualified" attributeFormDefault="unqualified" version="pre-release">
 	<annotation>
 		<documentation>observation.xsd
 
@@ -70,11 +69,10 @@ Copyright (c) 2005 CSIRO - see https://www.seegrid.csiro.au/twiki/bin/view/Xmml/
 		<complexContent>
 			<extension base="xmml:ObservationBaseType">
 				<sequence>
-					<element name="subject" type="gml:FeaturePropertyType">
+					<element name="subject" type="xmml:ObservationSubjectPropertyType">
 						<annotation>
-							<documentation>the Feature regarding which the observations are being made, 
-			sometimes called the target of the observation, such as a specimen, station, tract, mountain, etc. 
-			This element is declared global, so that it may act as the head of a substitution group for more specialised versions of the subject property</documentation>
+							<documentation>the Feature or location regarding which the observations are being made, 
+			sometimes called the target of the observation, such as a specimen, station, tract, mountain, pixel, etc. </documentation>
 						</annotation>
 					</element>
 					<element name="observedProperty" type="gml:DictionaryEntryType" minOccurs="0">
@@ -98,6 +96,20 @@ Copyright (c) 2005 CSIRO - see https://www.seegrid.csiro.au/twiki/bin/view/Xmml/
 			</extension>
 		</complexContent>
 	</complexType>
+	<!-- ====================================================================== -->
+	<complexType name="ObservationSubjectPropertyType">
+		<sequence minOccurs="0">
+			<group ref="xmml:ObservationSubject"/>
+		</sequence>
+		<attributeGroup ref="gml:AssociationAttributeGroup"/>
+	</complexType>
+	<!-- ......................... -->
+	<group name="ObservationSubject">
+		<choice>
+			<element ref="gml:_Feature"/>
+			<element ref="gml:_Geometry"/>
+		</choice>
+	</group>
 	<!-- ====================================================================== -->
 	<element name="Measurement" type="xmml:MeasurementType" substitutionGroup="xmml:Observation">
 		<annotation>
