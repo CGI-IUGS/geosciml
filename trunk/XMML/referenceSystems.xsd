@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<schema targetNamespace="http://www.opengis.net/xmml" xmlns:xmml="http://www.opengis.net/xmml" xmlns:xsd="http://www.opengis.net/xmml/xsd" xmlns="http://www.w3.org/2001/XMLSchema" xmlns:gml="http://www.opengis.net/gml" xmlns:xlink="http://www.w3.org/1999/xlink" elementFormDefault="qualified" attributeFormDefault="unqualified" version="pre-release">
+<schema targetNamespace="http://www.opengis.net/xmml" elementFormDefault="qualified" attributeFormDefault="unqualified" version="pre-release" xmlns:xmml="http://www.opengis.net/xmml" xmlns:xsd="http://www.opengis.net/xmml/xsd" xmlns="http://www.w3.org/2001/XMLSchema" xmlns:gml="http://www.opengis.net/gml" xmlns:xlink="http://www.w3.org/1999/xlink">
 	<annotation>
 		<documentation>
 referenceSystems.xsd
@@ -8,7 +8,7 @@ A GML conformant schema
 for definitions of properties and property sets
 used for soft-typing of property elements
 
-SJDC  2004-05-20
+SJDC  2004-07-02
 
 Copyright (c) 2004 CSIRO - see https://www.seegrid.csiro.au/twiki/bin/view/Xmml/LegalNotices#Software_Notice
 </documentation>
@@ -34,10 +34,11 @@ For the moment I will comment out the necessary pieces.  </documentation>
   -->
 	<include schemaLocation="./procedures.xsd"/>
 	<!-- ====================================================================== -->
-	<complexType name="TupleDefinitionPropertyType">
-		<sequence>
-			<element ref="xmml:TupleDefinition" minOccurs="0"/>
-		</sequence>
+	<complexType name="RSDefinitionPropertyType">
+		<choice minOccurs="0">
+			<element ref="xmml:TupleDefinition"/>
+			<element ref="xmml:AxisDefinition"/>
+		</choice>
 		<attributeGroup ref="gml:AssociationAttributeGroup"/>
 	</complexType>
 	<!-- ====================================================================== -->
@@ -78,12 +79,12 @@ For the moment I will comment out the necessary pieces.  </documentation>
 							</annotation>
 							<group ref="xmml:constraintLists" maxOccurs="unbounded"/>
 						</choice>
-						<group ref="xmml:scale">
+						<element ref="xmml:representation">
 							<annotation>
 								<documentation>When the (baseProperty with constraints) method is chosen, 
                 then a single scale applies to all components of the set</documentation>
 							</annotation>
-						</group>
+						</element>
 						<group ref="xmml:quality">
 							<annotation>
 								<documentation>When the (baseProperty with constraints) method is chosen, 
@@ -126,22 +127,43 @@ For the moment I will comment out the necessary pieces.  </documentation>
 					</annotation>
 				</element>
 			</choice>
-			<!-- problems with XML Spy validation using the schema-for-schemas means that this is currently suppressed
-      <element ref="simpleType">
-        <annotation>
-          <documentation>Use this element to describe the "value-space" in terms of a base type and facets,  
+		</sequence>
+	</group>
+	<!-- ====================================================================== -->
+	<element name="representation">
+		<annotation>
+			<documentation> this should reuse components from XML Schema to describe the "value-space" in terms of a base type and facets,  
             or a composite such as a union.  
             
             For numeric types this will normally indicate integer, double etc and (optionally) facets to describe one or more intervals or a precision. 
             For textual types this will normally indicate string, token etc and (optionally) facets will indicate a pattern, enumeration, length etc.  
             
-            The "topLevelSimpleType" version is used in order that it may carry a "name" attribute.  
-            This allows independently defined value-spaces to be combined in unions.  </documentation>
-        </annotation>
-      </element>
-      -->
-		</sequence>
-	</group>
+            N.B. The "topLevelSimpleType" version should be used in order that it may carry a "name" attribute.  
+            This allows independently defined value-spaces to be combined in unions.  
+            
+	But currently validators mostly barf when trying to import the S4S </documentation>
+		</annotation>
+		<complexType>
+			<sequence>
+				<element name="scale" type="string" minOccurs="0"/>
+				<element name="minInclusive" type="string" minOccurs="0"/>
+				<element name="minExclusive" type="string" minOccurs="0"/>
+				<element name="maxInclusive" type="string" minOccurs="0"/>
+				<element name="maxExclusive" type="string" minOccurs="0"/>
+			</sequence>
+			<attribute name="type" type="xmml:componentType" use="required"/>
+		</complexType>
+	</element>
+	<simpleType name="componentType">
+		<restriction base="NCName">
+			<enumeration value="measure"/>
+			<enumeration value="decimal"/>
+			<enumeration value="integer"/>
+			<enumeration value="count"/>
+			<enumeration value="code"/>
+			<enumeration value="boolean"/>
+		</restriction>
+	</simpleType>
 	<!-- ====================================================================== -->
 	<group name="quality">
 		<sequence>
@@ -243,7 +265,7 @@ For the moment I will comment out the necessary pieces.  </documentation>
 							<group ref="xmml:singleConstraints" maxOccurs="unbounded"/>
 						</sequence>
 					</choice>
-					<group ref="xmml:scale"/>
+					<element ref="xmml:representation"/>
 					<group ref="xmml:quality"/>
 				</sequence>
 			</extension>
