@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<schema targetNamespace="http://www.opengis.net/xmml" elementFormDefault="qualified" attributeFormDefault="unqualified" version="pre-release" xmlns:gml="http://www.opengis.net/gml" xmlns:cil="urn:oasis:names:tc:ciq:xsdschema:xCIL:2.0" xmlns:nal="urn:oasis:names:tc:ciq:xsdschema:xNAL:2.0" xmlns:al="urn:oasis:names:tc:ciq:xsdschema:xAL:2.0" xmlns:nl="urn:oasis:names:tc:ciq:xsdschema:xNL:2.0" xmlns:smXML="http://www.isotc211.org/smXML" xmlns="http://www.w3.org/2001/XMLSchema" xmlns:xmml="http://www.opengis.net/xmml">
+<schema xmlns:gml="http://www.opengis.net/gml" xmlns:cil="urn:oasis:names:tc:ciq:xsdschema:xCIL:2.0" xmlns:nal="urn:oasis:names:tc:ciq:xsdschema:xNAL:2.0" xmlns:al="urn:oasis:names:tc:ciq:xsdschema:xAL:2.0" xmlns:nl="urn:oasis:names:tc:ciq:xsdschema:xNL:2.0" xmlns:smXML="http://www.isotc211.org/smXML" xmlns="http://www.w3.org/2001/XMLSchema" xmlns:xmml="http://www.opengis.net/xmml" targetNamespace="http://www.opengis.net/xmml" elementFormDefault="qualified" attributeFormDefault="unqualified" version="pre-release">
 	<annotation>
 		<documentation>
 event.xsd
@@ -18,13 +18,15 @@ Copyright © 2005 CSIRO - see https://www.seegrid.csiro.au/twiki/bin/view/Xmml/L
 	<!-- ===================================================== -->
 	<group name="EventProperties">
 		<sequence>
-			<element name="eventTime" type="gml:TimeGeometricPrimitivePropertyType">
+			<element name="eventTime" type="xmml:TimeObjectPropertyType">
 				<annotation>
 					<documentation>The Time when the event occurred.  This may be given 
               * in absolute terms as a TimeInstant or TimePeriod
               * in approximate terms or relative to an absolute position using the indeterminatePosition attribute
-              * or using a TimeTopology element (TimeEdge or TimeNode), which provides the option of giving a time relative to other edges or nodes, either directly (gml) or indirectly (xmml) </documentation>
+              * or using a TimeTopology element (TimeEdge or TimeNode), which provides the option of giving a time relative to other edges or nodes, either directly (gml) or indirectly (xmml) 
+              * as a TimeGeometricComplex if it is a recurring or repeating event</documentation>
 				</annotation>
+				
 			</element>
 			<element name="responsible" type="xmml:PartyPropertyType" minOccurs="0" maxOccurs="unbounded">
 				<annotation>
@@ -45,6 +47,14 @@ Copyright © 2005 CSIRO - see https://www.seegrid.csiro.au/twiki/bin/view/Xmml/L
 			</element>
 		</sequence>
 	</group>
+	<!-- ................. -->
+		<complexType name="TimeObjectPropertyType">
+		<sequence minOccurs="0">
+			<element ref="gml:_TimeObject"/>
+		</sequence>
+		<attributeGroup ref="gml:AssociationAttributeGroup"/>
+	</complexType>
+
 	<!-- ====================================================================== -->
 	<element name="Event" type="xmml:EventType" substitutionGroup="gml:_GML"/>
 	<!-- ====================================================================== -->
