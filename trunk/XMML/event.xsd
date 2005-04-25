@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<schema xmlns:gml="http://www.opengis.net/gml" xmlns:cil="urn:oasis:names:tc:ciq:xsdschema:xCIL:2.0" xmlns:nal="urn:oasis:names:tc:ciq:xsdschema:xNAL:2.0" xmlns:al="urn:oasis:names:tc:ciq:xsdschema:xAL:2.0" xmlns:nl="urn:oasis:names:tc:ciq:xsdschema:xNL:2.0" xmlns:smXML="http://www.isotc211.org/smXML" xmlns="http://www.w3.org/2001/XMLSchema" xmlns:xmml="http://www.opengis.net/xmml" targetNamespace="http://www.opengis.net/xmml" elementFormDefault="qualified" attributeFormDefault="unqualified" version="pre-release">
+<schema xmlns:gml="http://www.opengis.net/gml" xmlns:cil="urn:oasis:names:tc:ciq:xsdschema:xCIL:2.0" xmlns:nal="urn:oasis:names:tc:ciq:xsdschema:xNAL:2.0" xmlns:al="urn:oasis:names:tc:ciq:xsdschema:xAL:2.0"
+        xmlns:nl="urn:oasis:names:tc:ciq:xsdschema:xNL:2.0" xmlns:smXML="http://www.isotc211.org/smXML" xmlns="http://www.w3.org/2001/XMLSchema" xmlns:xmml="http://www.opengis.net/xmml" targetNamespace="http://www.opengis.net/xmml"
+        elementFormDefault="qualified" attributeFormDefault="unqualified" version="pre-release">
 	<annotation>
-		<documentation>
-event.xsd
+		<documentation>event.xsd
 
 Components required to establish the top-level of the xmml:Event substitution group
 
-Copyright © 2005 CSIRO - see https://www.seegrid.csiro.au/twiki/bin/view/Xmml/LegalNotices#Software_Notice
-</documentation>
+Copyright © 2005 CSIRO - see https://www.seegrid.csiro.au/twiki/bin/view/Xmml/LegalNotices#Software_Notice</documentation>
 	</annotation>
 	<!-- ====================================================================== -->
 	<!-- bring in other schemas -->
@@ -26,7 +26,11 @@ Copyright © 2005 CSIRO - see https://www.seegrid.csiro.au/twiki/bin/view/Xmml/L
               * or using a TimeTopology element (TimeEdge or TimeNode), which provides the option of giving a time relative to other edges or nodes, either directly (gml) or indirectly (xmml) 
               * as a TimeGeometricComplex if it is a recurring or repeating event</documentation>
 				</annotation>
-				
+			</element>
+			<element name="location" type="gml:GeometryPropertyType" nillable="true">
+				<annotation>
+					<documentation>Location where the event took place</documentation>
+				</annotation>
 			</element>
 			<element name="precedingEvent" type="gml:StringOrRefType" minOccurs="0" maxOccurs="unbounded">
 				<annotation>
@@ -48,7 +52,7 @@ Copyright © 2005 CSIRO - see https://www.seegrid.csiro.au/twiki/bin/view/Xmml/L
 		</sequence>
 	</group>
 	<!-- ................. -->
-		<complexType name="TimeObjectPropertyType">
+	<complexType name="TimeObjectPropertyType">
 		<sequence minOccurs="0">
 			<element ref="gml:_TimeObject"/>
 		</sequence>
@@ -64,7 +68,7 @@ Copyright © 2005 CSIRO - see https://www.seegrid.csiro.au/twiki/bin/view/Xmml/L
       The event may be transport or administrative.  
       Use gml:description to describe the nature of the event or action, or to point to a description of it.  
       Use xmml:reference (substitutable for gml:metaDataProperty) to provide a pointer to a citation for the event.
-      Specialised event types may be derived from this type. </documentation>
+      Specialised event types may be derived from this type.</documentation>
 		</annotation>
 		<complexContent>
 			<extension base="xmml:FeatureType">
@@ -79,7 +83,7 @@ Copyright © 2005 CSIRO - see https://www.seegrid.csiro.au/twiki/bin/view/Xmml/L
 	<!-- ====================================================================== -->
 	<element name="RecordEvent" type="xmml:RecordEventType" substitutionGroup="xmml:Event">
 		<annotation>
-			<documentation>An event in the life of a database record. </documentation>
+			<documentation>An event in the life of a database record.</documentation>
 		</annotation>
 	</element>
 	<!-- ...................... -->

@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<schema xmlns:gml="http://www.opengis.net/gml" xmlns:cil="urn:oasis:names:tc:ciq:xsdschema:xCIL:2.0" xmlns:nal="urn:oasis:names:tc:ciq:xsdschema:xNAL:2.0" xmlns:al="urn:oasis:names:tc:ciq:xsdschema:xAL:2.0" xmlns:nl="urn:oasis:names:tc:ciq:xsdschema:xNL:2.0" xmlns:smXML="http://www.isotc211.org/smXML" xmlns="http://www.w3.org/2001/XMLSchema" xmlns:xmml="http://www.opengis.net/xmml" targetNamespace="http://www.opengis.net/xmml" elementFormDefault="qualified" attributeFormDefault="unqualified" version="pre-release">
+<schema xmlns:gml="http://www.opengis.net/gml" xmlns:cil="urn:oasis:names:tc:ciq:xsdschema:xCIL:2.0" xmlns:nal="urn:oasis:names:tc:ciq:xsdschema:xNAL:2.0" xmlns:al="urn:oasis:names:tc:ciq:xsdschema:xAL:2.0"
+        xmlns:nl="urn:oasis:names:tc:ciq:xsdschema:xNL:2.0" xmlns:smXML="http://www.isotc211.org/smXML" xmlns="http://www.w3.org/2001/XMLSchema" xmlns:xmml="http://www.opengis.net/xmml" targetNamespace="http://www.opengis.net/xmml"
+        elementFormDefault="qualified" attributeFormDefault="unqualified" version="pre-release">
 	<annotation>
-		<documentation>
-procedureEvent.xsd
+		<documentation>procedureEvent.xsd
 
-Copyright © 2005 CSIRO - see https://www.seegrid.csiro.au/twiki/bin/view/Xmml/LegalNotices#Software_Notice
-</documentation>
+Copyright © 2005 CSIRO - see https://www.seegrid.csiro.au/twiki/bin/view/Xmml/LegalNotices#Software_Notice</documentation>
 	</annotation>
 	<!-- ====================================================================== -->
 	<!-- bring in other schemas -->
@@ -16,20 +16,19 @@ Copyright © 2005 CSIRO - see https://www.seegrid.csiro.au/twiki/bin/view/Xmml/L
 	<!-- ====================================================================== -->
 	<element name="ProcedureEvent" type="xmml:ProcedureEventType" substitutionGroup="xmml:Event">
 		<annotation>
-			<documentation>Description of an event involving a procedure.  </documentation>
+			<documentation>Description of an event involving a procedure.</documentation>
 		</annotation>
 	</element>
 	<!-- ...................... -->
 	<complexType name="ProcedureEventType">
 		<annotation>
-			<documentation>Description of an event involving a procedure.  </documentation>
+			<documentation>Description of an event involving a procedure.</documentation>
 		</annotation>
 		<complexContent>
 			<extension base="xmml:EventType">
 				<sequence>
-					<element name="location" type="gml:GeometryPropertyType" nillable="true"/>
 					<element name="procedureUsed" type="xmml:ProcedurePropertyType"/>
-					<element name="source" type="gml:StringOrRefType" minOccurs="0" maxOccurs="unbounded">
+					<element name="input" type="gml:StringOrRefType" minOccurs="0" maxOccurs="unbounded">
 						<annotation>
 							<documentation>Reference to input (if not implied by context)</documentation>
 						</annotation>
@@ -63,7 +62,7 @@ Copyright © 2005 CSIRO - see https://www.seegrid.csiro.au/twiki/bin/view/Xmml/L
 				<annotation>
 					<documentation>An indication of the quality of value or result.  
           This quality is specific to the individual feature.  
-          Systematic effects that are a consequence of the _procedure_ should be described in the description of the procedure instead. </documentation>
+          Systematic effects that are a consequence of the _procedure_ should be described in the description of the procedure instead.</documentation>
 				</annotation>
 			</element>
 			<element name="processingStep" type="xmml:ProcedureEventPropertyType" minOccurs="0" maxOccurs="unbounded">

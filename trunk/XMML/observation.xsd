@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<schema xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:gml="http://www.opengis.net/gml" xmlns="http://www.w3.org/2001/XMLSchema" xmlns:xmml="http://www.opengis.net/xmml" targetNamespace="http://www.opengis.net/xmml" elementFormDefault="qualified" attributeFormDefault="unqualified" version="pre-release">
+<schema xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:gml="http://www.opengis.net/gml" xmlns="http://www.w3.org/2001/XMLSchema" xmlns:xmml="http://www.opengis.net/xmml" targetNamespace="http://www.opengis.net/xmml" elementFormDefault="qualified"
+        attributeFormDefault="unqualified" version="pre-release">
 	<annotation>
 		<documentation>observation.xsd
 
@@ -38,28 +39,18 @@ Copyright (c) 2005 CSIRO - see https://www.seegrid.csiro.au/twiki/bin/view/Xmml/
 	<!-- ====================================================================== -->
 	<!-- ===== Object types for Observations ====== -->
 	<!-- ====================================================================== -->
-	<element name="AbstractObservation" type="xmml:AbstractObservationType" abstract="true" substitutionGroup="xmml:ProcedureEvent">
+	<complexType name="AbstractObservationPropertyType">
+		<sequence minOccurs="0">
+			<element ref="xmml:AbstractObservation"/>
+		</sequence>
+		<attributeGroup ref="gml:AssociationAttributeGroup"/>
+	</complexType>
+	<!-- ......................... -->
+	<element name="AbstractObservation" type="xmml:AbstractObservationType" abstract="true" substitutionGroup="xmml:Event">
 		<annotation>
 			<documentation>Head of Observation substitution group</documentation>
 		</annotation>
 	</element>
-	<!-- ...................... 
-	<complexType name="ObservationBaseType">
-		<annotation>
-			<documentation>Suppress precedingEvent, followingEvent, source and product</documentation>
-		</annotation>
-		<complexContent>
-			<restriction base="xmml:ProcedureEventType">
-				<sequence>
-					<group ref="gml:StandardObjectProperties"/>
-					<group ref="xmml:StandardSupportProperties"/>
-					<element name="eventTime" type="gml:TimeGeometricPrimitivePropertyType"/>
-					<element name="responsible" type="xmml:PartyPropertyType" minOccurs="0"/>
-					<element name="procedureUsed" type="xmml:ProcedurePropertyType"/>
-				</sequence>
-			</restriction>
-		</complexContent>
-	</complexType>-->
 	<!-- ...................... -->
 	<complexType name="AbstractObservationType">
 		<annotation>
@@ -70,12 +61,12 @@ Copyright (c) 2005 CSIRO - see https://www.seegrid.csiro.au/twiki/bin/view/Xmml/
 			Concrete Observation types must extend this type with a "result" of the appropriate type.</documentation>
 		</annotation>
 		<complexContent>
-			<extension base="xmml:ProcedureEventType">
+			<extension base="xmml:EventType">
 				<sequence>
-					<element name="subject" type="xmml:ObservationSubjectPropertyType">
+					<element name="target" type="xmml:ObservationTargetPropertyType">
 						<annotation>
 							<documentation>the Feature or location regarding which the observations are being made, 
-			sometimes called the target of the observation, such as a specimen, station, tract, mountain, pixel, etc. </documentation>
+			sometimes called the subject of the observation, such as a specimen, station, tract, mountain, pixel, etc.</documentation>
 						</annotation>
 					</element>
 					<element name="observedProperty" type="gml:DictionaryEntryType" minOccurs="0">
@@ -100,19 +91,38 @@ Copyright (c) 2005 CSIRO - see https://www.seegrid.csiro.au/twiki/bin/view/Xmml/
 		</complexContent>
 	</complexType>
 	<!-- ====================================================================== -->
-	<complexType name="ObservationSubjectPropertyType">
+	<complexType name="ObservationTargetPropertyType">
 		<sequence minOccurs="0">
-			<group ref="xmml:ObservationSubject"/>
+			<group ref="xmml:ObservationTarget"/>
 		</sequence>
 		<attributeGroup ref="gml:AssociationAttributeGroup"/>
 	</complexType>
 	<!-- ......................... -->
-	<group name="ObservationSubject">
+	<group name="ObservationTarget">
 		<choice>
 			<element ref="gml:_Feature"/>
 			<element ref="gml:_Geometry"/>
 		</choice>
 	</group>
+	<!-- ====================================================================== -->
+	<element name="CompositeObservation" type="xmml:CompositeObservationType" substitutionGroup="xmml:AbstractObservation">
+		<annotation>
+			<documentation>Composite Observation event</documentation>
+		</annotation>
+	</element>
+	<!-- ...................... -->
+	<complexType name="CompositeObservationType">
+		<annotation>
+			<documentation>Composite Observation event.</documentation>
+		</annotation>
+		<complexContent>
+			<extension base="xmml:AbstractObservationType">
+				<sequence>
+					<element name="member" type="xmml:AbstractObservationPropertyType" maxOccurs="unbounded"/>
+				</sequence>
+			</extension>
+		</complexContent>
+	</complexType>
 	<!-- ====================================================================== -->
 	<element name="Observation" type="xmml:ObservationType" substitutionGroup="xmml:AbstractObservation">
 		<annotation>
@@ -164,8 +174,7 @@ Copyright (c) 2005 CSIRO - see https://www.seegrid.csiro.au/twiki/bin/view/Xmml/
 		<annotation>
 			<documentation>Range Measurement event.   
 			adds an additional "result" properties of type "ResultMeasureType".
-			The values of the relativeMeasure attributes on the two results must specify a range. 
-			</documentation>
+			The values of the relativeMeasure attributes on the two results must specify a range.</documentation>
 		</annotation>
 		<complexContent>
 			<extension base="xmml:MeasurementType">
@@ -195,31 +204,51 @@ Copyright (c) 2005 CSIRO - see https://www.seegrid.csiro.au/twiki/bin/view/Xmml/
 		</complexContent>
 	</complexType>
 	<!-- ====================================================================== -->
-	<!-- ===== Properties used by specialised feature types ======= -->
-	<!-- ====================================================================== -->
-	<!-- 	<element name="previousObservation" type="xmml:ObservationPropertyType"/>
-	<element name="relatedObservation" type="xmml:ObservationPropertyType"/>
-...................... -->
-	<complexType name="ObservationPropertyType">
-		<sequence minOccurs="0">
-			<choice>
-				<element ref="xmml:AbstractObservation"/>
-				<element ref="xmml:ObservationCollection"/>
-			</choice>
-		</sequence>
-		<attributeGroup ref="gml:AssociationAttributeGroup"/>
+	<element name="ComplexObservation" type="xmml:ComplexObservationType" substitutionGroup="xmml:AbstractObservation">
+		<annotation>
+			<documentation>Observation, in which the result is a complex value expressed as a record/tuple</documentation>
+		</annotation>
+	</element>
+	<!-- ...................... -->
+	<complexType name="ComplexObservationType">
+		<annotation>
+			<documentation>Observation, in which the result is a complex value expressed as a record/tuple</documentation>
+		</annotation>
+		<complexContent>
+			<extension base="xmml:AbstractObservationType">
+				<sequence>
+					<element name="result" type="xmml:RecordType"/>
+				</sequence>
+			</extension>
+		</complexContent>
 	</complexType>
-	<!-- =================================================================== -->
+	<!-- ====================================================================== -->
+	<element name="ComplexMeasurement" type="xmml:ComplexMeasurementType" substitutionGroup="xmml:AbstractObservation">
+		<annotation>
+			<documentation>Observation, in which the result is a complex value expressed as a numeric record/tuple</documentation>
+		</annotation>
+	</element>
+	<!-- ...................... -->
+	<complexType name="ComplexMeasurementType">
+		<annotation>
+			<documentation>Observation, in which the result is a complex value expressed as a numeric record/tuple</documentation>
+		</annotation>
+		<complexContent>
+			<extension base="xmml:AbstractObservationType">
+				<sequence>
+					<element name="result" type="xmml:NumericRecordType"/>
+				</sequence>
+			</extension>
+		</complexContent>
+	</complexType>
+	<!-- ====================================================================== -->
 	<!-- ===== Observation collection ======= -->
 	<!-- ====================================================================== -->
-	<element name="ObservationCollection" type="xmml:ObservationCollectionType" substitutionGroup="gml:_GML"/>
+	<element name="ObservationCollection" type="xmml:ObservationCollectionType" substitutionGroup="xmml:AbstractObservation"/>
 	<!-- ...................... -->
 	<complexType name="ObservationCollectionType">
 		<complexContent>
-			<extension base="gml:AbstractGMLType">
-				<sequence>
-					<element name="observationMember" type="xmml:ObservationPropertyType" minOccurs="0" maxOccurs="unbounded"/>
-				</sequence>
+			<extension base="xmml:CompositeObservationType">
 			</extension>
 		</complexContent>
 	</complexType>
