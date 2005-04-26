@@ -161,7 +161,7 @@ Copyright (c) 2005 CSIRO - see https://www.seegrid.csiro.au/twiki/bin/view/Xmml/
 		</complexContent>
 	</complexType>
 	<!-- ====================================================================== -->
-	<element name="RangeMeasurement" type="xmml:RangeMeasurementType" substitutionGroup="xmml:Measurement">
+	<element name="RangeMeasurement" type="xmml:RangeMeasurementType" substitutionGroup="xmml:AbstractObservation">
 		<annotation>
 			<documentation>Range Measurement event</documentation>
 		</annotation>
@@ -170,13 +170,13 @@ Copyright (c) 2005 CSIRO - see https://www.seegrid.csiro.au/twiki/bin/view/Xmml/
 	<complexType name="RangeMeasurementType">
 		<annotation>
 			<documentation>Range Measurement event.   
-			adds an additional "result" properties of type "ResultMeasureType".
+			Carries two "result" properties of type "ResultMeasureType".
 			The values of the relativeMeasure attributes on the two results must specify a range.</documentation>
 		</annotation>
 		<complexContent>
-			<extension base="xmml:MeasurementType">
+			<extension base="xmml:AbstractObservationType">
 				<sequence>
-					<element name="result" type="xmml:ResultMeasureType"/>
+					<element name="result" type="xmml:ResultMeasureType" minOccurs="2" maxOccurs="2"/>
 				</sequence>
 			</extension>
 		</complexContent>
