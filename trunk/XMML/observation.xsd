@@ -105,16 +105,13 @@ Copyright (c) 2005 CSIRO - see https://www.seegrid.csiro.au/twiki/bin/view/Xmml/
 		</choice>
 	</group>
 	<!-- ====================================================================== -->
-	<element name="CompositeObservation" type="xmml:CompositeObservationType" substitutionGroup="xmml:AbstractObservation">
+	<element name="ObservationCollection" type="xmml:ObservationCollectionType" substitutionGroup="xmml:AbstractObservation">
 		<annotation>
-			<documentation>Composite Observation event</documentation>
+			<documentation>Observation collection, using the "Composite" pattern</documentation>
 		</annotation>
 	</element>
 	<!-- ...................... -->
-	<complexType name="CompositeObservationType">
-		<annotation>
-			<documentation>Composite Observation event.</documentation>
-		</annotation>
+	<complexType name="ObservationCollectionType">
 		<complexContent>
 			<extension base="xmml:AbstractObservationType">
 				<sequence>
@@ -242,13 +239,13 @@ Copyright (c) 2005 CSIRO - see https://www.seegrid.csiro.au/twiki/bin/view/Xmml/
 		</complexContent>
 	</complexType>
 	<!-- ====================================================================== -->
-	<!-- ===== Observation collection ======= -->
+	<!-- ===== Composite Observation ======= -->
 	<!-- ====================================================================== -->
-	<element name="ObservationCollection" type="xmml:ObservationCollectionType" substitutionGroup="xmml:AbstractObservation"/>
+	<element name="CompositeObservation" type="xmml:CompositeObservationType" substitutionGroup="xmml:ObservationCollection"><annotation><documentation>Specialization of ObservationCollection, in which the members of the collection refer to a consistent target, time etc. Functionally equivalent to ComplexObservation</documentation></annotation></element>
 	<!-- ...................... -->
-	<complexType name="ObservationCollectionType">
+	<complexType name="CompositeObservationType">
 		<complexContent>
-			<extension base="xmml:CompositeObservationType">
+			<extension base="xmml:ObservationCollectionType">
 			</extension>
 		</complexContent>
 	</complexType>
