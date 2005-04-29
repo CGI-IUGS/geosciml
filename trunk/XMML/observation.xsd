@@ -13,29 +13,6 @@ Copyright (c) 2005 CSIRO - see https://www.seegrid.csiro.au/twiki/bin/view/Xmml/
 	<import namespace="http://www.opengis.net/gml" schemaLocation="./gml4observation.xsd"/>
 	<include schemaLocation="./procedureEvent.xsd"/>
 	<!-- ====================================================================== -->
-	<!-- === hierarchy of "result" property elements for observations === -->
-	<!-- ====================================================================== -->
-	<complexType name="ResultMeasureType">
-		<simpleContent>
-			<extension base="xmml:MeasureType">
-				<attribute name="relativeMeasure" type="xmml:RelativeMeasureCode" default="equals"/>
-			</extension>
-		</simpleContent>
-	</complexType>
-	<!-- ............ -->
-	<simpleType name="RelativeMeasureCode">
-		<annotation>
-			<documentation xml:lang="en">This enumerated data type specifies values for relative measures.</documentation>
-		</annotation>
-		<restriction base="string">
-			<enumeration value="lessThan"/>
-			<enumeration value="lessThanOrEquals"/>
-			<enumeration value="equals"/>
-			<enumeration value="greaterThanOrEquals"/>
-			<enumeration value="greaterThan"/>
-		</restriction>
-	</simpleType>
-	<!-- ............ -->
 	<!-- ====================================================================== -->
 	<!-- ===== Object types for Observations ====== -->
 	<!-- ====================================================================== -->
@@ -77,6 +54,11 @@ Copyright (c) 2005 CSIRO - see https://www.seegrid.csiro.au/twiki/bin/view/Xmml/
 					<element ref="xmml:quality" minOccurs="0" maxOccurs="unbounded">
 						<annotation>
 							<documentation>Allow multiple quality measures if required.</documentation>
+						</annotation>
+					</element>
+					<element name="resultMap" type="string" default="scalar">
+						<annotation>
+							<documentation>Specifies how components of a complex result are associated with components of the target and eventTime when the values of the latter are not primitives.</documentation>
 						</annotation>
 					</element>
 					<!-- 
@@ -241,7 +223,11 @@ Copyright (c) 2005 CSIRO - see https://www.seegrid.csiro.au/twiki/bin/view/Xmml/
 	<!-- ====================================================================== -->
 	<!-- ===== Composite Observation ======= -->
 	<!-- ====================================================================== -->
-	<element name="CompositeObservation" type="xmml:CompositeObservationType" substitutionGroup="xmml:ObservationCollection"><annotation><documentation>Specialization of ObservationCollection, in which the members of the collection refer to a consistent target, time etc. Functionally equivalent to ComplexObservation</documentation></annotation></element>
+	<element name="CompositeObservation" type="xmml:CompositeObservationType" substitutionGroup="xmml:ObservationCollection">
+		<annotation>
+			<documentation>Specialization of ObservationCollection, in which the members of the collection refer to a consistent target, time etc. Functionally equivalent to ComplexObservation</documentation>
+		</annotation>
+	</element>
 	<!-- ...................... -->
 	<complexType name="CompositeObservationType">
 		<complexContent>
@@ -249,6 +235,31 @@ Copyright (c) 2005 CSIRO - see https://www.seegrid.csiro.au/twiki/bin/view/Xmml/
 			</extension>
 		</complexContent>
 	</complexType>
+	<!-- ====================================================================== -->
+	<!-- ====================================================================== -->
+	<!-- === "result" types for observations === -->
+	<!-- ====================================================================== -->
+	<complexType name="ResultMeasureType">
+		<simpleContent>
+			<extension base="xmml:MeasureType">
+				<attribute name="relativeMeasure" type="xmml:RelativeMeasureCode" default="equals"/>
+			</extension>
+		</simpleContent>
+	</complexType>
+	<!-- ............ -->
+	<simpleType name="RelativeMeasureCode">
+		<annotation>
+			<documentation xml:lang="en">This enumerated data type specifies values for relative measures.</documentation>
+		</annotation>
+		<restriction base="string">
+			<enumeration value="lessThan"/>
+			<enumeration value="lessThanOrEquals"/>
+			<enumeration value="equals"/>
+			<enumeration value="greaterThanOrEquals"/>
+			<enumeration value="greaterThan"/>
+		</restriction>
+	</simpleType>
+	<!-- ............ -->
 	<!-- ===================================================================  -->
 	<!-- <group name="SoftProperties">
 		<sequence>
