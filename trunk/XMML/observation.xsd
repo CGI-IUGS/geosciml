@@ -40,6 +40,7 @@ Copyright (c) 2005 CSIRO - see https://www.seegrid.csiro.au/twiki/bin/view/Xmml/
 		<complexContent>
 			<extension base="xmml:EventType">
 				<sequence>
+					<element name="procedureUsed" type="xmml:ProcedurePropertyType"/>
 					<element name="target" type="xmml:ObservationTargetPropertyType">
 						<annotation>
 							<documentation>the Feature or location regarding which the observations are being made, 
@@ -54,11 +55,6 @@ Copyright (c) 2005 CSIRO - see https://www.seegrid.csiro.au/twiki/bin/view/Xmml/
 					<element ref="xmml:quality" minOccurs="0" maxOccurs="unbounded">
 						<annotation>
 							<documentation>Allow multiple quality measures if required.</documentation>
-						</annotation>
-					</element>
-					<element name="resultMap" type="string" default="scalar">
-						<annotation>
-							<documentation>Specifies how components of a complex result are associated with components of the target and eventTime when the values of the latter are not primitives.</documentation>
 						</annotation>
 					</element>
 					<!-- 
@@ -118,6 +114,11 @@ Copyright (c) 2005 CSIRO - see https://www.seegrid.csiro.au/twiki/bin/view/Xmml/
 			<extension base="xmml:AbstractObservationType">
 				<sequence>
 					<element name="result" type="anyType"/>
+					<element name="resultMap" type="string" default="scalar">
+						<annotation>
+							<documentation>Specifies how components of a complex result are associated with components of the target and eventTime when the values of the latter are not primitives.</documentation>
+						</annotation>
+					</element>
 				</sequence>
 			</extension>
 		</complexContent>
@@ -197,6 +198,11 @@ Copyright (c) 2005 CSIRO - see https://www.seegrid.csiro.au/twiki/bin/view/Xmml/
 			<extension base="xmml:AbstractObservationType">
 				<sequence>
 					<element name="result" type="xmml:RecordType"/>
+					<element name="resultMap" type="string" default="scalar">
+						<annotation>
+							<documentation>Specifies how components of a complex result are associated with components of the target and eventTime when the values of the latter are not primitives.</documentation>
+						</annotation>
+					</element>
 				</sequence>
 			</extension>
 		</complexContent>
@@ -216,6 +222,59 @@ Copyright (c) 2005 CSIRO - see https://www.seegrid.csiro.au/twiki/bin/view/Xmml/
 			<extension base="xmml:AbstractObservationType">
 				<sequence>
 					<element name="result" type="xmml:NumericRecordType"/>
+					<element name="resultMap" type="string" default="scalar">
+						<annotation>
+							<documentation>Specifies how components of a complex result are associated with components of the target and eventTime when the values of the latter are not primitives.</documentation>
+						</annotation>
+					</element>
+				</sequence>
+			</extension>
+		</complexContent>
+	</complexType>
+	<!-- ====================================================================== -->
+	<element name="ResultPointerObservation" type="xmml:ResultPointerObservationType" substitutionGroup="xmml:AbstractObservation">
+		<annotation>
+			<documentation>Observation, in which the result is given as a URI pointing to an external resource</documentation>
+		</annotation>
+	</element>
+	<!-- ...................... -->
+	<complexType name="ResultPointerObservationType">
+		<annotation>
+			<documentation>Observation, in which the result is given as a URI pointing to an external resource</documentation>
+		</annotation>
+		<complexContent>
+			<extension base="xmml:AbstractObservationType">
+				<sequence>
+					<element name="result" type="xmml:ExternalReferenceType"/>
+					<element name="resultMap" type="string" default="scalar">
+						<annotation>
+							<documentation>Specifies how components of a complex result are associated with components of the target and eventTime when the values of the latter are not primitives.</documentation>
+						</annotation>
+					</element>
+				</sequence>
+			</extension>
+		</complexContent>
+	</complexType>
+	<!-- ====================================================================== -->
+	<element name="ImageCapture" type="xmml:ImageCaptureType" substitutionGroup="xmml:AbstractObservation">
+		<annotation>
+			<documentation>Observation, in which the result is an image</documentation>
+		</annotation>
+	</element>
+	<!-- ...................... -->
+	<complexType name="ImageCaptureType">
+		<annotation>
+			<documentation>Observation, in which the result is an image</documentation>
+		</annotation>
+		<complexContent>
+			<extension base="xmml:AbstractObservationType">
+				<sequence>
+					<element name="result" type="xmml:ExternalReferenceType"/>
+					<element name="resultMap" type="string" default="scalar">
+						<annotation>
+							<documentation>Specifies how components of a complex result are associated with components of the target and eventTime when the values of the latter are not primitives.</documentation>
+						</annotation>
+					</element>
 				</sequence>
 			</extension>
 		</complexContent>
@@ -260,6 +319,13 @@ Copyright (c) 2005 CSIRO - see https://www.seegrid.csiro.au/twiki/bin/view/Xmml/
 		</restriction>
 	</simpleType>
 	<!-- ............ -->
+	<complexType name="ExternalReferenceType">
+		<complexContent>
+			<extension base="gml:ReferenceType">
+				<attribute name="mimeType" type="anyURI" use="required"/>
+			</extension>
+		</complexContent>
+	</complexType>
 	<!-- ===================================================================  -->
 	<!-- <group name="SoftProperties">
 		<sequence>
