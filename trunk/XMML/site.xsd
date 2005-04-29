@@ -23,9 +23,9 @@ Copyright (c) 2005 CSIRO - see https://www.seegrid.csiro.au/twiki/bin/view/Xmml/
 	<!-- ====================================================================== -->
 	<!-- ===== Feature types in Site hierarchy ====== -->
 	<!-- ====================================================================== -->
-	<element name="Site" type="xmml:SiteType" abstract="true" substitutionGroup="xmml:Feature"/>
+	<element name="AbstractSite" type="xmml:AbstractSiteType" abstract="true" substitutionGroup="xmml:Feature"/>
 	<!-- .................. -->
-	<complexType name="SiteType">
+	<complexType name="AbstractSiteType">
 		<annotation>
 			<documentation>A "Site" is a feature used primarily for taking observations.</documentation>
 		</annotation>
@@ -45,14 +45,14 @@ Copyright (c) 2005 CSIRO - see https://www.seegrid.csiro.au/twiki/bin/view/Xmml/
 		</complexContent>
 	</complexType>
 	<!-- .................. -->
-	<complexType name="SitePropertyType">
+	<complexType name="AbstractSitePropertyType">
 		<sequence minOccurs="0">
-			<element ref="xmml:Site"/>
+			<element ref="xmml:AbstractSite"/>
 		</sequence>
 		<attributeGroup ref="gml:AssociationAttributeGroup"/>
 	</complexType>
 	<!-- ====================================================================== -->
-	<element name="Station" type="xmml:StationType" substitutionGroup="xmml:Site"/>
+	<element name="Station" type="xmml:StationType" substitutionGroup="xmml:AbstractSite"/>
 	<!-- .................. -->
 	<complexType name="StationType">
 		<annotation>
@@ -62,7 +62,7 @@ Copyright (c) 2005 CSIRO - see https://www.seegrid.csiro.au/twiki/bin/view/Xmml/
 		By using the Station feature, this position information and any metadata associated with it may be encoded in one place, i.e. normalised, and then re-used _by reference_ on other feature instances associated with it.</documentation>
 		</annotation>
 		<complexContent>
-			<extension base="xmml:SiteType">
+			<extension base="xmml:AbstractSiteType">
 				<sequence>
 					<element ref="gml:position"/>
 					<element name="elevation" type="gml:DirectPositionType" minOccurs="0">
@@ -109,7 +109,7 @@ Copyright (c) 2005 CSIRO - see https://www.seegrid.csiro.au/twiki/bin/view/Xmml/
 				<sequence>
 					<element name="location" type="gml:GeometryPropertyType" nillable="true"/>
 					<element name="locationMethod" type="gml:StringOrRefType" minOccurs="0"/>
-					<element name="sampledAt" type="xmml:SitePropertyType" minOccurs="0">
+					<element name="sampledAt" type="xmml:AbstractSitePropertyType" minOccurs="0">
 						<annotation>
 							<documentation>Pointer to the station, section, etc from which the specimen was obtained</documentation>
 						</annotation>
