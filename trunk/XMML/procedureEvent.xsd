@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<schema xmlns:gml="http://www.opengis.net/gml" xmlns:cil="urn:oasis:names:tc:ciq:xsdschema:xCIL:2.0" xmlns:nal="urn:oasis:names:tc:ciq:xsdschema:xNAL:2.0" xmlns:al="urn:oasis:names:tc:ciq:xsdschema:xAL:2.0"
-        xmlns:nl="urn:oasis:names:tc:ciq:xsdschema:xNL:2.0" xmlns:smXML="http://www.isotc211.org/smXML" xmlns="http://www.w3.org/2001/XMLSchema" xmlns:xmml="http://www.opengis.net/xmml" targetNamespace="http://www.opengis.net/xmml"
+<schema xmlns:gml="http://www.opengis.net/gml" xmlns:swe="http://www.opengis.net/2005/swe" xmlns:smXML="http://www.isotc211.org/smXML" xmlns="http://www.w3.org/2001/XMLSchema" xmlns:xmml="http://www.opengis.net/xmml" targetNamespace="http://www.opengis.net/xmml"
         elementFormDefault="qualified" attributeFormDefault="unqualified" version="pre-release">
 	<annotation>
 		<documentation>procedureEvent.xsd
@@ -10,11 +9,11 @@ Copyright © 2005 CSIRO - see https://www.seegrid.csiro.au/twiki/bin/view/Xmml/L
 	<!-- ====================================================================== -->
 	<!-- bring in other schemas -->
 	<import namespace="http://www.opengis.net/gml" schemaLocation="./gml4procedureEvent.xsd"/>
-	<include schemaLocation="./procedure.xsd"/>
-	<include schemaLocation="./event.xsd"/>
+	<import namespace="http://www.opengis.net/2005/swe" schemaLocation="./swe4procedureEvent.xsd"/>
+	<!-- include schemaLocation="./event.xsd"/ -->
 	<!-- =========================================================== -->
 	<!-- ====================================================================== -->
-	<element name="ProcedureEvent" type="xmml:ProcedureEventType" substitutionGroup="xmml:Event">
+	<element name="ProcedureEvent" type="xmml:ProcedureEventType" substitutionGroup="swe:Event">
 		<annotation>
 			<documentation>Description of an event involving a procedure.</documentation>
 		</annotation>
@@ -25,9 +24,9 @@ Copyright © 2005 CSIRO - see https://www.seegrid.csiro.au/twiki/bin/view/Xmml/L
 			<documentation>Description of an event involving a procedure.</documentation>
 		</annotation>
 		<complexContent>
-			<extension base="xmml:EventType">
+			<extension base="swe:EventType">
 				<sequence>
-					<element name="procedureUsed" type="xmml:ProcedurePropertyType"/>
+					<element name="procedureUsed" type="swe:ProcedurePropertyType"/>
 					<element name="input" type="gml:StringOrRefType" minOccurs="0" maxOccurs="unbounded">
 						<annotation>
 							<documentation>Reference to input (if not implied by context)</documentation>
@@ -58,7 +57,7 @@ Copyright © 2005 CSIRO - see https://www.seegrid.csiro.au/twiki/bin/view/Xmml/L
 				<documentation>Utility group of properties from which data quality can be inferred. 
         At least one of these should normally be present.</documentation>
 			</annotation>
-			<element name="quality" type="xmml:QualityPropertyType" minOccurs="0">
+			<element name="quality" type="swe:QualityPropertyType" minOccurs="0">
 				<annotation>
 					<documentation>An indication of the quality of value or result.  
           This quality is specific to the individual feature.  
@@ -70,7 +69,7 @@ Copyright © 2005 CSIRO - see https://www.seegrid.csiro.au/twiki/bin/view/Xmml/L
 					<documentation>Processing steps - (set of) procedure events</documentation>
 				</annotation>
 			</element>
-			<element name="reference" type="xmml:CitationPropertyType" minOccurs="0">
+			<element name="reference" type="swe:CitationPropertyType" minOccurs="0">
 				<annotation>
 					<documentation>Reference to documentation giving more complete explanation of procedure and/or quality.</documentation>
 				</annotation>

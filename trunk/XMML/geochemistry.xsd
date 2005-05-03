@@ -1,63 +1,36 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<schema xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:gml="http://www.opengis.net/gml" xmlns="http://www.w3.org/2001/XMLSchema" xmlns:xmml="http://www.opengis.net/xmml" targetNamespace="http://www.opengis.net/xmml" elementFormDefault="qualified" attributeFormDefault="unqualified" version="pre-release">
+<schema xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:gml="http://www.opengis.net/gml" xmlns:swe="http://www.opengis.net/2005/swe" xmlns="http://www.w3.org/2001/XMLSchema" xmlns:xmml="http://www.opengis.net/xmml"
+        targetNamespace="http://www.opengis.net/xmml" elementFormDefault="qualified" attributeFormDefault="unqualified" version="pre-release">
 	<annotation>
-		<documentation>
-geochemistry.xsd
+		<documentation>geochemistry.xsd
 
 A GML conformant schema 
 for geochemistry
 
-Copyright © 2004 CSIRO - see https://www.seegrid.csiro.au/twiki/bin/view/Xmml/LegalNotices#Software_Notice
-</documentation>
+Copyright © 2004 CSIRO - see https://www.seegrid.csiro.au/twiki/bin/view/Xmml/LegalNotices#Software_Notice</documentation>
 	</annotation>
 	<!-- ====================================================================== -->
 	<!-- bring in other schemas -->
 	<import namespace="http://www.opengis.net/gml" schemaLocation="./gml4geochemistry.xsd"/>
+	<import namespace="http://www.opengis.net/2005/swe" schemaLocation="./swe4geochemistry.xsd"/>
 	<include schemaLocation="./site.xsd"/>
-	<include schemaLocation="./referenceSystem.xsd"/>
 	<include schemaLocation="../enumerations/LUTgeochemistry.xsd"/>
 	<!-- ====================================================================== -->
-	<element name="GeochemMeasurement" type="xmml:GeochemMeasurementType" substitutionGroup="xmml:Measurement"/>
-	<!-- ...................... -->
-	<complexType name="GeochemMeasurementBaseType">
-		<annotation>
-			<documentation>Specialisation of generic measurement type
-			Apply restriction:
-         			suppress "observedProperty" - value is "fixed" as "chemicalConcentration"
-         			         
-					N.B. Use "subject" property to link to the specimen or other feature on which the measurement was made
-        			For other documentation, see observation.xsd
-			</documentation>
-		</annotation>
-		<complexContent>
-			<restriction base="xmml:MeasurementType">
-				<sequence>
-					<group ref="gml:StandardObjectProperties"/>
-					<element ref="gml:boundedBy" minOccurs="0"/>
-					<group ref="xmml:StandardSupportProperties"/>
-					<group ref="xmml:ExtendedFeatureProperties"/>
-					<group ref="xmml:EventProperties"/>
-					<element name="procedureUsed" type="xmml:ProcedurePropertyType"/>
-					<element name="target" type="xmml:ObservationTargetPropertyType"/>
-					<element ref="xmml:quality" minOccurs="0" maxOccurs="unbounded"/>
-					<element name="result" type="xmml:ResultMeasureType"/>
-				</sequence>
-			</restriction>
-		</complexContent>
-	</complexType>
+	<element name="GeochemMeasurement" type="xmml:GeochemMeasurementType" substitutionGroup="swe:Measurement"/>
 	<!-- ...................... -->
 	<complexType name="GeochemMeasurementType">
 		<annotation>
 			<documentation>Extend with 
-        			analyte (specializes the "chemicalConcentration" observedProperty)
-        			purpose (optional)
-      			</documentation>
+        			analyte (specializes the "chemicalConcentration" which is implicitly the fixed value for observedProperty which may be omitted in the instance)
+        			purpose (optional)</documentation>
 		</annotation>
 		<complexContent>
-			<extension base="xmml:GeochemMeasurementBaseType">
+			<extension base="swe:MeasurementType">
 				<sequence>
 					<element name="analyte" type="xmml:analyteCode"/>
-					<element ref="xmml:purpose" minOccurs="0"/>
+					<element name="purpose" type="string" minOccurs="0"/>
+					<group ref="xmml:StandardSupportProperties"/>
+					<group ref="xmml:ExtendedFeatureProperties"/>
 				</sequence>
 				<attribute name="seqNo" type="integer" use="optional"/>
 			</extension>
@@ -79,8 +52,7 @@ Copyright © 2004 CSIRO - see https://www.seegrid.csiro.au/twiki/bin/view/Xmml/L
 				Currently this is a vacuous extension of the generic Specimen. 
 				Use the (optional) "related Observation" property to link specimen to observations and measurements made on it
 				
-				If no fractionation is described by processingStep properties, then whole rock analysis is implied
-			</documentation>
+				If no fractionation is described by processingStep properties, then whole rock analysis is implied</documentation>
 		</annotation>
 		<complexContent>
 			<extension base="xmml:SpecimenType">
@@ -94,8 +66,7 @@ Copyright © 2004 CSIRO - see https://www.seegrid.csiro.au/twiki/bin/view/Xmml/L
 	<complexType name="GeochemSampleType">
 		<annotation>
 			<documentation>Geochemistry sample - specimen description + analyte results. 
-			If no results are being reported, then use GeochemSpecimen. 
-			</documentation>
+			If no results are being reported, then use GeochemSpecimen.</documentation>
 		</annotation>
 		<complexContent>
 			<extension base="xmml:GeochemSpecimenType">
@@ -104,7 +75,7 @@ Copyright © 2004 CSIRO - see https://www.seegrid.csiro.au/twiki/bin/view/Xmml/L
 						<documentation>Record geochemistry results related to this specimen;
 							as a set of soft-typed measures</documentation>
 					</annotation>
-					<element name="analyteResult" type="xmml:SoftTypedMeasureType" nillable="true" maxOccurs="unbounded">
+					<element name="analyteResult" type="swe:SoftTypedMeasureType" nillable="true" maxOccurs="unbounded">
 						<annotation>
 							<documentation>Analyte component value, expressed as a soft-typed measure; the value of the "property" attribute identifies the analyte; the value of the uom attribute indicates the units of measure; the value of the metadata attribute may be used to indicate the procedure or full description of the observation.</documentation>
 						</annotation>
@@ -114,7 +85,7 @@ Copyright © 2004 CSIRO - see https://www.seegrid.csiro.au/twiki/bin/view/Xmml/L
 		</complexContent>
 	</complexType>
 	<!-- ====================================================================== -->
-	<element name="AssayProcedure" type="xmml:AssayProcedureType" substitutionGroup="xmml:Procedure">
+	<element name="AssayProcedure" type="xmml:AssayProcedureType" substitutionGroup="swe:Procedure">
 		<annotation>
 			<documentation>description of an assay method</documentation>
 		</annotation>
@@ -128,11 +99,10 @@ Copyright © 2004 CSIRO - see https://www.seegrid.csiro.au/twiki/bin/view/Xmml/L
 				upperDetectionLimit
 				secondUpperDetectionLimit
 				
-				*** Note: this should be harmonised with adx:AnalyteProcedure ***
-			</documentation>
+				*** Note: this should be harmonised with adx:AnalyteProcedure ***</documentation>
 		</annotation>
 		<complexContent>
-			<extension base="xmml:ProcedureType">
+			<extension base="swe:ProcedureType">
 				<sequence>
 					<element name="analyteDetails" minOccurs="0" maxOccurs="unbounded">
 						<complexType>
@@ -141,6 +111,8 @@ Copyright © 2004 CSIRO - see https://www.seegrid.csiro.au/twiki/bin/view/Xmml/L
 							</sequence>
 						</complexType>
 					</element>
+					<group ref="xmml:StandardSupportProperties"/>
+					<group ref="xmml:ExtendedFeatureProperties"/>
 				</sequence>
 			</extension>
 		</complexContent>
@@ -165,7 +137,7 @@ Copyright © 2004 CSIRO - see https://www.seegrid.csiro.au/twiki/bin/view/Xmml/L
 	</complexType>
 	<!-- ====================================================================== -->
 	<!-- ====================================================================== -->
-	<element name="ChemAxisDefinition" type="xmml:ChemAxisDefinitionType" substitutionGroup="xmml:AxisDefinition">
+	<element name="ChemAxisDefinition" type="xmml:ChemAxisDefinitionType" substitutionGroup="swe:AxisDefinition">
 		<annotation>
 			<documentation>Specialised AxisDefinition with sensitivity information added</documentation>
 		</annotation>
@@ -173,7 +145,7 @@ Copyright © 2004 CSIRO - see https://www.seegrid.csiro.au/twiki/bin/view/Xmml/L
 	<!-- ........................................ -->
 	<complexType name="ChemAxisDefinitionType">
 		<complexContent>
-			<extension base="xmml:AxisDefinitionType">
+			<extension base="swe:AxisDefinitionType">
 				<sequence>
 					<element name="lowerDetectionLimit" type="gml:MeasureType" nillable="true"/>
 					<element name="upperDetectionLimit" type="gml:MeasureType" minOccurs="0"/>
@@ -217,9 +189,7 @@ Copyright © 2004 CSIRO - see https://www.seegrid.csiro.au/twiki/bin/view/Xmml/L
 	<!-- ...................... -->
 	<complexType name="AssayDefinitionType">
 		<annotation>
-			<documentation>
-							*** Note: this must be harmonised with xmml:AxisDefinition ***
-</documentation>
+			<documentation>*** Note: this must be harmonised with xmml:AxisDefinition ***</documentation>
 		</annotation>
 		<complexContent>
 			<extension base="gml:DefinitionType">
@@ -259,22 +229,18 @@ Copyright © 2004 CSIRO - see https://www.seegrid.csiro.au/twiki/bin/view/Xmml/L
 		</restriction>
 	</simpleType>
 	<!-- ====================================================================== -->
-	<element name="purpose" type="string"/>
-	<element name="WMCpurpose" type="xmml:QAQCPurposeWMC" substitutionGroup="xmml:purpose"/>
+	<element name="WMCpurpose" type="xmml:QAQCPurposeWMC"/>
 	<!-- ...................... -->
 	<simpleType name="QAQCPurposeWMC">
 		<annotation>
-			<documentation>
-    Codes for WMC QAQC measurements.
+			<documentation>Codes for WMC QAQC measurements.
     
     QS - internal standard or blank
     SD - site duplicate - i.e. splits from drill core, proximate specimen for surface samples
     RS - repeat sample for seasonal effects - surface sampling
     C - check assay - same prep, different lab
     D - lab duplicate - split prior to pulverising, same lab
-    R - lab replicate - split after pulverising, same lab
-    
-    </documentation>
+    R - lab replicate - split after pulverising, same lab</documentation>
 		</annotation>
 		<restriction base="string">
 			<enumeration value="normal"/>

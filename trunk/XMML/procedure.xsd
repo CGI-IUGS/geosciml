@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<schema xmlns:xmml="http://www.opengis.net/xmml" xmlns="http://www.w3.org/2001/XMLSchema" xmlns:gml="http://www.opengis.net/gml" xmlns:xlink="http://www.w3.org/1999/xlink" targetNamespace="http://www.opengis.net/xmml" elementFormDefault="qualified"
+<schema xmlns:xmml="http://www.opengis.net/xmml" xmlns="http://www.w3.org/2001/XMLSchema" xmlns:gml="http://www.opengis.net/gml" xmlns:swe="http://www.opengis.net/2005/swe" xmlns:xlink="http://www.w3.org/1999/xlink" targetNamespace="http://www.opengis.net/xmml" elementFormDefault="qualified"
         attributeFormDefault="unqualified" version="pre-release">
 	<annotation>
 		<documentation>procedures.xsd
@@ -11,123 +11,21 @@ Copyright (c) 2005 CSIRO - see https://www.seegrid.csiro.au/twiki/bin/view/Xmml/
 	<!-- ====================================================================== -->
 	<!-- bring in other schemas -->
 	<import namespace="http://www.opengis.net/gml" schemaLocation="./gml4procedure.xsd"/>
+	<import namespace="http://www.opengis.net/2005/swe" schemaLocation="./swe4procedure.xsd"/>
 	<include schemaLocation="./base.xsd"/>
 	<include schemaLocation="../enumerations/LUTgeodesy.xsd"/>
 	<!-- ====================================================================== -->
 	<!-- ====================================================================== -->
-	<!-- === Generic Procedure type === -->
-	<!-- ====================================================================== -->
-	<element name="Procedure" type="xmml:ProcedureType" substitutionGroup="gml:Definition">
-		<annotation>
-			<documentation>Procedures may be listed in a Dictionary (i.e. lightweight registry)</documentation>
-		</annotation>
-	</element>
-	<!-- ...................... -->
-	<complexType name="ProcedureType">
-		<annotation>
-			<documentation>Use gml:description element to describe the procedure or link to a definitive description.  
-     			use method to indicate member of list if possible</documentation>
-		</annotation>
-		<complexContent>
-			<extension base="gml:DefinitionType">
-				<sequence>
-					<group ref="xmml:StandardSupportProperties"/>
-					<element name="method" type="string">
-						<annotation>
-							<documentation>Code for the particular procedure type.  Usually an item from a list or registry of procedures, methods, instrument-types, etc.</documentation>
-						</annotation>
-					</element>
-					<element ref="xmml:quality" minOccurs="0">
-						<annotation>
-							<documentation>Quality associated systematically with this procedure.</documentation>
-						</annotation>
-					</element>
-				</sequence>
-			</extension>
-		</complexContent>
-	</complexType>
-	<!-- ...................... -->
-	<complexType name="ProcedurePropertyType">
-		<sequence minOccurs="0">
-			<element ref="xmml:Procedure"/>
-		</sequence>
-		<attributeGroup ref="gml:AssociationAttributeGroup"/>
-	</complexType>
-	<!-- ...................... -->
-	<element name="action" type="xmml:ProcedurePropertyType"/>
-	<element name="procedureUsed" type="xmml:ProcedurePropertyType" substitutionGroup="xmml:action"/>
-	<element name="procedureMember" type="xmml:ProcedurePropertyType" substitutionGroup="xmml:action"/>
-	<!-- ====================================================================== -->
-	<!-- ====================================================================== -->
-	<!-- === Specialised Procedure types === -->
-	<!-- ====================================================================== -->
-	<element name="CalculationProcedure" type="xmml:CalculationProcedureType" substitutionGroup="xmml:Procedure"/>
-	<!-- ...................... -->
-	<complexType name="CalculationProcedureType">
-		<annotation>
-			<documentation>Use the "description" property to record the details of the calculation</documentation>
-		</annotation>
-		<complexContent>
-			<extension base="xmml:ProcedureType"/>
-		</complexContent>
-	</complexType>
-	<!-- ...................... -->
-	<complexType name="CalculationProcedurePropertyType">
-		<sequence minOccurs="0">
-			<element ref="xmml:CalculationProcedure"/>
-		</sequence>
-		<attributeGroup ref="gml:AssociationAttributeGroup"/>
-	</complexType>
-	<!-- ====================================================================== -->
-	<!-- ====================================================================== -->
-	<element name="Instrument" type="xmml:InstrumentType" substitutionGroup="xmml:Procedure"/>
-	<!-- ...................... -->
-	<complexType name="InstrumentType">
-		<annotation>
-			<documentation>Add one or more instrument serial numbers, in order to identify specific instances or stations</documentation>
-		</annotation>
-		<complexContent>
-			<extension base="xmml:ProcedureType">
-				<sequence>
-					<element name="serialNumber" type="gml:CodeType" minOccurs="0" maxOccurs="unbounded"/>
-				</sequence>
-			</extension>
-		</complexContent>
-	</complexType>
-	<!-- ...................... -->
-	<complexType name="InstrumentPropertyType">
-		<sequence minOccurs="0">
-			<element ref="xmml:Instrument"/>
-		</sequence>
-		<attributeGroup ref="gml:AssociationAttributeGroup"/>
-	</complexType>
-	<!-- ====================================================================== -->
-	<!-- ====================================================================== -->
-	<element name="SurveyProcedure" type="xmml:SurveyProcedureType" substitutionGroup="xmml:Procedure"/>
-	<!-- ...................... -->
-	<complexType name="SurveyProcedureBaseType" abstract="true">
-		<annotation>
-			<documentation>Restrict method to be positionMethod</documentation>
-		</annotation>
-		<complexContent>
-			<restriction base="xmml:ProcedureType">
-				<sequence>
-					<group ref="gml:StandardDefinitionProperties"/>
-					<group ref="xmml:StandardSupportProperties"/>
-					<element name="method" type="xmml:positionMethodType"/>
-					<element ref="xmml:quality" minOccurs="0"/>
-				</sequence>
-			</restriction>
-		</complexContent>
-	</complexType>
+	<element name="SurveyProcedure" type="xmml:SurveyProcedureType" substitutionGroup="swe:Procedure"/>
 	<!-- ...................... -->
 	<complexType name="SurveyProcedureType">
 		<annotation>
 			<documentation/>
 		</annotation>
 		<complexContent>
-			<extension base="xmml:SurveyProcedureBaseType">
+			<extension base="swe:ProcedureType">
 				<sequence>
+					<element name="positionMethod" type="xmml:positionMethodType"/>
 					<element name="positionAccuracy" type="gml:MeasureType" minOccurs="0"/>
 					<element name="elevationMethod" type="xmml:elevationMethodType" minOccurs="0"/>
 					<element name="elevationAccuracy" type="gml:MeasureType" minOccurs="0"/>

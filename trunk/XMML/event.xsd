@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<schema xmlns:gml="http://www.opengis.net/gml" xmlns:cil="urn:oasis:names:tc:ciq:xsdschema:xCIL:2.0" xmlns:nal="urn:oasis:names:tc:ciq:xsdschema:xNAL:2.0" xmlns:al="urn:oasis:names:tc:ciq:xsdschema:xAL:2.0"
-        xmlns:nl="urn:oasis:names:tc:ciq:xsdschema:xNL:2.0" xmlns:smXML="http://www.isotc211.org/smXML" xmlns="http://www.w3.org/2001/XMLSchema" xmlns:xmml="http://www.opengis.net/xmml" targetNamespace="http://www.opengis.net/xmml"
+<schema xmlns:gml="http://www.opengis.net/gml" xmlns:swe="http://www.opengis.net/2005/swe" xmlns:smXML="http://www.isotc211.org/smXML" xmlns="http://www.w3.org/2001/XMLSchema" xmlns:xmml="http://www.opengis.net/xmml" targetNamespace="http://www.opengis.net/xmml"
         elementFormDefault="qualified" attributeFormDefault="unqualified" version="pre-release">
 	<annotation>
 		<documentation>event.xsd
@@ -12,76 +11,15 @@ Copyright © 2005 CSIRO - see https://www.seegrid.csiro.au/twiki/bin/view/Xmml/L
 	<!-- ====================================================================== -->
 	<!-- bring in other schemas -->
 	<import namespace="http://www.opengis.net/gml" schemaLocation="./gml4event.xsd"/>
-	<include schemaLocation="./feature.xsd"/>
+	<import namespace="http://www.opengis.net/2005/swe" schemaLocation="./swe4event.xsd"/>
+	<include schemaLocation="../enumerations/LUTmaintenance.xsd"/>
 	<!-- ====================================================================== -->
 	<!-- =========================================================== -->
 	<!-- ===================================================== -->
-	<group name="EventProperties">
-		<sequence>
-			<element name="eventTime" type="xmml:TimeObjectPropertyType" nillable="true">
-				<annotation>
-					<documentation>The Time when the event occurred.  This may be given 
-              * in absolute terms as a TimeInstant or TimePeriod
-              * in approximate terms or relative to an absolute position using the indeterminatePosition attribute
-              * or using a TimeTopology element (TimeEdge or TimeNode), which provides the option of giving a time relative to other edges or nodes, either directly (gml) or indirectly (xmml) 
-              * as a TimeGeometricComplex if it is a recurring or repeating event</documentation>
-				</annotation>
-			</element>
-			<element name="location" type="gml:GeometryPropertyType" nillable="true">
-				<annotation>
-					<documentation>Location where the event took place</documentation>
-				</annotation>
-			</element>
-			<element name="precedingEvent" type="gml:StringOrRefType" minOccurs="0" maxOccurs="unbounded">
-				<annotation>
-					<documentation>Description of, or pointer to, preceding event(s)</documentation>
-				</annotation>
-			</element>
-			<element name="followingEvent" type="gml:StringOrRefType" minOccurs="0" maxOccurs="unbounded">
-				<annotation>
-					<documentation>Description of, or pointer to, following event(s)</documentation>
-				</annotation>
-			</element>
-			<element name="responsible" type="xmml:PartyPropertyType" minOccurs="0" maxOccurs="unbounded">
-				<annotation>
-					<documentation>Person or organisation responsible for the event, if applicable. 
-					The nature of the responsibility (i.e. the role of the party with respect to the event) may be indicated using the xlink:href attribute. 
-					Examples of roles are operator, sponsor, requestor, provider, processor, etc.</documentation>
-				</annotation>
-			</element>
-		</sequence>
-	</group>
-	<!-- ................. -->
-	<complexType name="TimeObjectPropertyType">
-		<sequence minOccurs="0">
-			<element ref="gml:_TimeObject"/>
-		</sequence>
-		<attributeGroup ref="gml:AssociationAttributeGroup"/>
-	</complexType>
-
-	<!-- ====================================================================== -->
-	<element name="Event" type="xmml:EventType" substitutionGroup="xmml:Feature"/>
-	<!-- ====================================================================== -->
-	<complexType name="EventType">
-		<annotation>
-			<documentation>Description of an event, particularly that causes transformation, creation or destruction of a feature.  
-      The event may be transport or administrative.  
-      Use gml:description to describe the nature of the event or action, or to point to a description of it.  
-      Use xmml:reference (substitutable for gml:metaDataProperty) to provide a pointer to a citation for the event.
-      Specialised event types may be derived from this type.</documentation>
-		</annotation>
-		<complexContent>
-			<extension base="xmml:FeatureType">
-				<sequence>
-					<group ref="xmml:EventProperties"/>
-				</sequence>
-			</extension>
-		</complexContent>
-	</complexType>
 	<!-- ====================================================================== -->
 	<!-- === Specialised event types related to record-keeping === -->
 	<!-- ====================================================================== -->
-	<element name="RecordEvent" type="xmml:RecordEventType" substitutionGroup="xmml:Event">
+	<element name="RecordEvent" type="xmml:RecordEventType" substitutionGroup="swe:Event">
 		<annotation>
 			<documentation>An event in the life of a database record.</documentation>
 		</annotation>
@@ -93,7 +31,7 @@ Copyright © 2005 CSIRO - see https://www.seegrid.csiro.au/twiki/bin/view/Xmml/L
 			Follows xmml:Event pattern, but derivation designed to fit into Metadata substitution groups</documentation>
 		</annotation>
 		<complexContent>
-			<extension base="xmml:EventType">
+			<extension base="swe:EventType">
 				<sequence>
 					<element name="action" type="xmml:recordActionCodeType">
 						<annotation>
