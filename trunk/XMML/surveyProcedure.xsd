@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<schema xmlns:xmml="http://www.opengis.net/xmml" xmlns="http://www.w3.org/2001/XMLSchema" xmlns:gml="http://www.opengis.net/gml" xmlns:swe="http://www.opengis.net/2005/swe" xmlns:xlink="http://www.w3.org/1999/xlink" targetNamespace="http://www.opengis.net/xmml" elementFormDefault="qualified"
+<schema xmlns:xmml="http://www.opengis.net/xmml" xmlns:meta="http://www.seegrid.csiro.au/2005/metaLite" xmlns="http://www.w3.org/2001/XMLSchema" xmlns:gml="http://www.opengis.net/gml" xmlns:swe="http://www.opengis.net/2005/swe" xmlns:xlink="http://www.w3.org/1999/xlink" targetNamespace="http://www.opengis.net/xmml" elementFormDefault="qualified"
         attributeFormDefault="unqualified" version="pre-release">
 	<annotation>
 		<documentation>procedures.xsd
@@ -11,6 +11,7 @@ Copyright (c) 2005 CSIRO - see https://www.seegrid.csiro.au/twiki/bin/view/Xmml/
 	<!-- ====================================================================== -->
 	<!-- bring in other schemas -->
 	<import namespace="http://www.opengis.net/gml" schemaLocation="./gml4procedure.xsd"/>
+	<import namespace="http://www.seegrid.csiro.au/2005/metaLite" schemaLocation="./meta4procedure.xsd"/>
 	<import namespace="http://www.opengis.net/2005/swe" schemaLocation="./swe4procedure.xsd"/>
 	<include schemaLocation="./base.xsd"/>
 	<include schemaLocation="../enumerations/LUTgeodesy.xsd"/>
@@ -32,7 +33,7 @@ Copyright (c) 2005 CSIRO - see https://www.seegrid.csiro.au/twiki/bin/view/Xmml/
 					<element name="projection" type="xmml:projections" minOccurs="0"/>
 					<element name="geodeticDatum" type="xmml:gDatums" minOccurs="0"/>
 					<element name="elevationDatum" type="xmml:vDatums" minOccurs="0"/>
-					<element name="operator" type="xmml:PartyPropertyType" minOccurs="0">
+					<element name="operator" type="meta:PartyPropertyType" minOccurs="0">
 						<annotation>
 							<documentation>Note than in other contexts the "operator" is not embedded in the procedure description. Maybe needs a tweak later?</documentation>
 						</annotation>

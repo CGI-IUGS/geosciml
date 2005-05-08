@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<schema xmlns:gml="http://www.opengis.net/gml" xmlns:smXML="http://www.isotc211.org/smXML" xmlns="http://www.w3.org/2001/XMLSchema" xmlns:xmml="http://www.opengis.net/xmml" targetNamespace="http://www.opengis.net/xmml" elementFormDefault="qualified" attributeFormDefault="unqualified" version="pre-release">
+<schema xmlns:gml="http://www.opengis.net/gml" xmlns:smXML="http://www.isotc211.org/smXML" xmlns:meta="http://www.seegrid.csiro.au/2005/metaLite" xmlns="http://www.w3.org/2001/XMLSchema" xmlns:xmml="http://www.opengis.net/xmml" targetNamespace="http://www.opengis.net/xmml" elementFormDefault="qualified" attributeFormDefault="unqualified" version="pre-release">
 	<annotation>
 		<documentation>base.xsd
 
@@ -10,6 +10,7 @@ Copyright © 2005 CSIRO - see https://www.seegrid.csiro.au/twiki/bin/view/Xmml/L
 	<!-- ====================================================================== -->
 	<!-- bring in other schemas -->
 	<import namespace="http://www.opengis.net/gml" schemaLocation="./gml4base.xsd"/>
+	<import namespace="http://www.seegrid.csiro.au/2005/metaLite" schemaLocation="./meta4base.xsd"/>
 	<!--	
 	<import namespace="http://www.isotc211.org/smXML" schemaLocation="./smXML4xmml.xsd">
 		<annotation>
@@ -19,40 +20,9 @@ Copyright © 2005 CSIRO - see https://www.seegrid.csiro.au/twiki/bin/view/Xmml/L
 	<include schemaLocation="./basicTypes.xsd"/>
 	<include schemaLocation="../enumerations/LUTmaintenance.xsd"/>
 	<!-- ====================================================================== -->
-	<!-- =========================================================== -->
 	<!-- ================================================================== -->
 	<!-- ===== Some useful property components ====== -->
 	<!-- ====================================================================== -->
-	<!-- ===================================================== -->
-	<!-- ===================================================== -->
-	<group name="StandardSupportProperties">
-		<sequence>
-			<element name="support" type="gml:AssociationType" minOccurs="0" maxOccurs="unbounded">
-				<annotation>
-					<documentation>A place to attach components that are required to be listed someplace in order that they can be "used" by-reference elsewhere in (usually) the same instance document.</documentation>
-				</annotation>
-			</element>
-			<element name="comment" type="gml:StringOrRefType" minOccurs="0" maxOccurs="unbounded">
-				<annotation>
-					<documentation>Container for commentary that may not be strictly part of a "description".</documentation>
-				</annotation>
-			</element>
-			<element name="reference" type="xmml:CitationPropertyType" minOccurs="0">
-				<annotation>
-					<documentation>Holds or points to a Citation.  
-      If a URN for the cited work is known then this should appear as the value of a href attribute on the reference element.  
-      There are several systems available for assigning URN's to bibliographic resources - see review here: 
-          http://www.nla.gov.au/initiatives/persistence/PIcontents.html
-      Probably the best developed is DOI, described here: http://www.doi.org/
-      also see http://www.crossref.org/01company/15doi_info.html
-      Note that the DOI/crossref service is free to users, but not to publishers.       
-      
-      xmml:reference is substitutable for gml:metaDataProperty, so may appear as a property of most objects and features</documentation>
-				</annotation>
-			</element>
-		</sequence>
-	</group>
-	<!-- ===================================================== -->
 	<group name="StandardDefinitionProperties">
 		<sequence>
 			<element ref="gml:metaDataProperty" minOccurs="0" maxOccurs="unbounded"/>
@@ -63,66 +33,12 @@ Copyright © 2005 CSIRO - see https://www.seegrid.csiro.au/twiki/bin/view/Xmml/L
 	<!-- ====================================================================== -->
 	<!-- === Objects and properties associated with people, organisations, etc ======== -->
 	<!-- ====================================================================== -->
-	<!-- <element name="actor" type="xmml:PartyPropertyType">
-		<annotation>
-			<documentation>A generic property whose value is the description of a party, company, person, etc.</documentation>
-		</annotation>
-	</element> -->
-	<!-- ====================================================================== -->
-	<element name="responsible" type="xmml:PartyPropertyType">
+	<element name="responsible" type="meta:PartyPropertyType">
 		<annotation>
 			<documentation>Party responsible for action, event, etc.</documentation>
 		</annotation>
 	</element>
 	<!-- ====================================================================== -->
-	<complexType name="PartyPropertyType">
-		<sequence minOccurs="0">
-			<group ref="xmml:Party"/>
-		</sequence>
-		<attributeGroup ref="gml:AssociationAttributeGroup"/>
-	</complexType>
-	<!-- ==================================================== -->
-	<group name="Party">
-		<choice>
-			<!--		
-			<element ref="smXML:CI_ResponsibleParty"/>	-->
-			<element name="SimpleParty" type="gml:StringOrRefType"/>
-		</choice>
-	</group>
-	<!-- ==================================================== -->
-	<!-- ==== Common metadata components ==== -->
-	<!-- ====================================================================== -->
-	<!-- ====================================================================== -->
-	<!-- ==== Concrete metadata elements ==== -->
-	<!-- ====================================================================== -->
-	<!-- use ISO 19139 components smXML:MD_Constraints for use and access restrictions, etc -->
-	<!-- ====================================================================== -->
-	<element name="SimpleCitation" type="string">
-		<annotation>
-			<documentation>This element is used to record the details of an external source of information, such as a scholarly paper, technical report, or other publication, where the details are encoded as a text description.  It is substitutable for gml:_MetaData, so may appear as the value of a gml:metaDataProperty on most objects and features.
-			
-			Was type="xmml:TextMetaDataType" substitutionGroup="gml:_MetaData"</documentation>
-		</annotation>
-	</element>
-	<!-- ====================================================================== -->
-	<complexType name="CitationPropertyType">
-		<annotation>
-			<documentation>Holds or points to a Citation.  
-			Additional versions of "Citation" will be added to choice group in due course.</documentation>
-		</annotation>
-		<sequence minOccurs="0">
-			<choice>
-				<!--			
-				<element ref="smXML:CI_Citation">
-					<annotation>
-						<documentation>ISO 19139 component for Citations</documentation>
-					</annotation>
-				</element>	-->
-				<element ref="xmml:SimpleCitation"/>
-			</choice>
-		</sequence>
-		<attributeGroup ref="gml:AssociationAttributeGroup"/>
-	</complexType>
 	<!-- ====================================================================== -->
 	<!-- ===== Some generic elements and datatypes ====== -->
 	<!-- ====================================================================== -->
@@ -131,63 +47,6 @@ Copyright © 2005 CSIRO - see https://www.seegrid.csiro.au/twiki/bin/view/Xmml/L
 			<pattern value="true"/>
 		</restriction>
 	</simpleType>
-	<!-- ====================================================================== -->
-	<element name="quality" type="xmml:QualityPropertyType">
-		<annotation>
-			<documentation>Intended to store information concerning the quality of the value.  
-    An attribute "method" allows the user to indicate what kind of quality indicator this is: absolute limits, SD, 95% confidence, qualitative code, etc.</documentation>
-		</annotation>
-	</element>
-	<!-- ====================================================================== -->
-	<complexType name="QualityPropertyType">
-		<sequence minOccurs="0">
-			<element ref="xmml:AbstractQuality"/>
-		</sequence>
-		<attributeGroup ref="gml:AssociationAttributeGroup"/>
-	</complexType>
-	<!-- ====================================================================== -->
-	<element name="AbstractQuality" abstract="true">
-		<annotation>
-			<documentation>Substitution group head</documentation>
-		</annotation>
-	</element>
-	<!-- ... -->
-	<element name="ConformanceAssessment" substitutionGroup="xmml:AbstractQuality">
-		<annotation>
-			<documentation>Descriptive assessment of data conformance</documentation>
-		</annotation>
-		<complexType>
-			<sequence>
-				<element name="specification" type="xmml:CitationPropertyType" minOccurs="0"/>
-				<element name="explanation" type="string"/>
-				<element name="pass" type="boolean"/>
-			</sequence>
-		</complexType>
-	</element>
-	<element name="QualitativeAssessment" substitutionGroup="xmml:AbstractQuality">
-		<annotation>
-			<documentation>Descriptive assessment of data quality</documentation>
-		</annotation>
-		<complexType>
-			<sequence>
-				<element name="specification" type="xmml:CitationPropertyType" minOccurs="0"/>
-				<element name="explanation" type="string"/>
-				<element name="value" type="string"/>
-			</sequence>
-		</complexType>
-	</element>
-	<element name="QuantitativeAssessment" substitutionGroup="xmml:AbstractQuality">
-		<annotation>
-			<documentation>Quantitative assessment of data quality</documentation>
-		</annotation>
-		<complexType>
-			<sequence>
-				<element name="specification" type="xmml:CitationPropertyType" minOccurs="0"/>
-				<element name="explanation" type="string"/>
-				<element name="values" type="gml:MeasureListType"/>
-			</sequence>
-		</complexType>
-	</element>
 	<!-- ====================================================================== -->
 	<!-- ====================================================================== -->
 	<!-- ==== Generic metadata types ==== -->
