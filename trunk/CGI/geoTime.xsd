@@ -1,0 +1,341 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<schema xmlns="http://www.w3.org/2001/XMLSchema" xmlns:cgi="http://www.cgi-iugs.org/xml/cgi" xmlns:meta="http://www.seegrid.csiro.au/2005/metaLite" xmlns:xmml="http://www.opengis.net/xmml"  xmlns:swe="http://www.opengis.net/2005/swe" xmlns:gml="http://www.opengis.net/gml" targetNamespace="http://www.cgi-iugs.org/xml/cgi" elementFormDefault="qualified" attributeFormDefault="unqualified" version="pre-release">
+	<annotation>
+		<documentation>geoTime.xsd
+
+Components that describe geological time scales and stratigraphic charts. 
+
+Copyright (c) 2005 CSIRO - see https://www.seegrid.csiro.au/twiki/bin/view/Xmml/LegalNotices#Software_Notice</documentation>
+	</annotation>
+	<!-- ======================== -->
+	<import namespace="http://www.opengis.net/gml" schemaLocation="./gml4geotime.xsd"/>
+	<import namespace="http://www.seegrid.csiro.au/2005/metaLite" schemaLocation="./meta4geotime.xsd"/>
+	<import namespace="http://www.opengis.net/2005/swe" schemaLocation="./swe4geotime.xsd"/>
+	<import namespace="http://www.opengis.net/xmml" schemaLocation="./xmml4geotime.xsd"/>
+	<include schemaLocation="../enumerations/LUTstratigraphy.xsd"/>
+	<!-- ================================================================== -->
+	<!-- ================================================================== -->
+	<element name="GeologicTimeScale" type="cgi:GeologicTimeScaleType" substitutionGroup="cgi:TimeOrdinalReferenceSystem"/>
+	<!-- .................. -->
+	<complexType name="GeologicTimeScaleType" final="#all">
+		<annotation>
+			<documentation xml:lang="en">
+			</documentation>
+		</annotation>
+		<complexContent>
+			<extension base="cgi:TimeOrdinalReferenceSystemType">
+				<sequence>
+					<element name="referencePoint" type="cgi:TimeOrdinalEraBoundaryPropertyType" minOccurs="0" maxOccurs="unbounded">
+						<annotation>
+							<documentation>List boundary objects so that they may be used by-reference in the description of eras</documentation>
+						</annotation>
+					</element>
+					<group ref="meta:StandardSupportProperties"/>
+				</sequence>
+			</extension>
+		</complexContent>
+	</complexType>
+	<!-- ================================================================== -->
+	<!-- ================================================================== -->
+	<element name="TimeOrdinalReferenceSystem" type="cgi:TimeOrdinalReferenceSystemType" substitutionGroup="gml:_TimeReferenceSystem">
+		<annotation>
+			<documentation xml:lang="en">Replacement for GML TimeOrdinalReferenceSystem in which the content model for TimeOrdinalEra is modified.</documentation>
+		</annotation>
+	</element>
+	<!-- .................. -->
+	<complexType name="TimeOrdinalReferenceSystemType">
+		<annotation>
+			<documentation xml:lang="en">In an ordinal reference system the order of events in time can be well 
+      established, but the magnitude of the intervals between them can not be 
+      accurately determined (e.g. a stratigraphic sequence).</documentation>
+		</annotation>
+		<complexContent>
+			<extension base="gml:AbstractTimeReferenceSystemType">
+				<sequence>
+					<element name="component" type="cgi:TimeOrdinalEraPropertyType" maxOccurs="unbounded"/>
+				</sequence>
+			</extension>
+		</complexContent>
+	</complexType>
+	<!-- ================================================================== -->
+	<element name="TimeOrdinalEra" type="cgi:TimeOrdinalEraType" substitutionGroup="gml:Definition">
+		<annotation>
+			<documentation xml:lang="en">Replacement for GML TimeOrdinalEra in which the limits are described by TimeOrdinalEraBoundary objects.</documentation>
+		</annotation>
+	</element>
+	<!-- .................. -->
+	<complexType name="TimeOrdinalEraType">
+		<annotation>
+			<documentation xml:lang="en">Replacement for GML TimeOrdinalEra in which the limits are described by TimeOrdinalEraBoundary objects. 
+      
+      Note that in this schema the limits of a Time Ordinal Era are "Boundary" objects. 
+      This is a variation from ISO 19108 in which limits are given as time positions.  
+      This is in order to fulfill the requirements of ordinal reference systems based on eras delimited by 
+      named points or nodes, which are common in geology, archeology, etc.  
+      
+      This change is subject of a change proposal to ISO</documentation>
+		</annotation>
+		<complexContent>
+			<extension base="gml:DefinitionType">
+				<sequence>
+					<element name="relatedTime" type="gml:RelatedTimeType" minOccurs="0" maxOccurs="unbounded"/>
+					<element name="start" type="cgi:TimeOrdinalEraBoundaryPropertyType"/>
+					<element name="end" type="cgi:TimeOrdinalEraBoundaryPropertyType"/>
+					<element name="extent" type="gml:TimePeriodPropertyType" minOccurs="0"/>
+					<element name="member" type="cgi:TimeOrdinalEraPropertyType" minOccurs="0" maxOccurs="unbounded">
+						<annotation>
+							<documentation>An Era may be composed of several member Eras. The "member" element implements the association to the Era at the next level down the hierarchy.  "member" follows the standard GML property pattern whereby its (complex) value may be either described fully inline, or may be the target of a link carried on the member element and described fully elsewhere, either in the same document or from another service.</documentation>
+						</annotation>
+					</element>
+					<element name="group" type="gml:ReferenceType" minOccurs="0">
+						<annotation>
+							<documentation>In a particular Time System, an Era may be a member of a group.  The "group" element implements the back-pointer to the Era at the next level up in the hierarchy. 
+
+If the hierarchy is represented by describing the nested components fully in the their nested position inside "member" elements, then the parent can be easily inferred, so the group property is unnecessary.  
+
+However, if the hierarchy is represented by links carried on the "member" property elements, pointing to Eras described fully elsewhere, then it may be useful for a child (member) era to carry an explicit pointer back to its parent (group) Era.</documentation>
+						</annotation>
+					</element>
+				</sequence>
+			</extension>
+		</complexContent>
+	</complexType>
+	<!-- .................. -->
+	<complexType name="TimeOrdinalEraPropertyType">
+		<sequence minOccurs="0">
+			<element ref="cgi:TimeOrdinalEra"/>
+		</sequence>
+		<attributeGroup ref="gml:AssociationAttributeGroup"/>
+	</complexType>
+	<!-- ================================================================== -->
+	<element name="TimeOrdinalEraBoundary" type="cgi:TimeOrdinalEraBoundaryType" substitutionGroup="gml:Definition"/>
+	<!-- .................. -->
+	<complexType name="TimeOrdinalEraBoundaryType">
+		<annotation>
+			<documentation xml:lang="en">A Boundary object is used to describe the limits of an Era.  
+      This is patterned after TimeNode.
+      
+      This change is subject of a change proposal to ISO</documentation>
+		</annotation>
+		<complexContent>
+			<extension base="gml:DefinitionType">
+				<sequence>
+					<element name="previousEra" type="cgi:TimeOrdinalEraPropertyType" minOccurs="0" maxOccurs="unbounded"/>
+					<element name="nextEra" type="cgi:TimeOrdinalEraPropertyType" minOccurs="0" maxOccurs="unbounded"/>
+					<element name="timePosition" type="gml:TimeInstantPropertyType" nillable="true"/>
+				</sequence>
+			</extension>
+		</complexContent>
+	</complexType>
+	<!-- .................. -->
+	<complexType name="TimeOrdinalEraBoundaryPropertyType">
+		<sequence minOccurs="0">
+			<element ref="cgi:TimeOrdinalEraBoundary"/>
+		</sequence>
+		<attributeGroup ref="gml:AssociationAttributeGroup"/>
+	</complexType>
+	<!-- ================================================================== -->
+	<!-- ===== Geochronologic objects ====== -->
+	<!-- ================================================================== -->
+	<element name="GeochronologicEra" type="cgi:GeochronologicEraType" substitutionGroup="cgi:TimeOrdinalEra"/>
+	<!-- .................. -->
+	<complexType name="GeochronologicEraType">
+		<annotation>
+			<documentation>An extension of the GML TimeOrdinalEra, with an additional "rank", ... properties.</documentation>
+		</annotation>
+		<complexContent>
+			<extension base="cgi:TimeOrdinalEraType">
+				<sequence>
+					<element name="rank" type="cgi:GeochronEraRank"/>
+					<element name="stratotype" type="cgi:StratigraphicSectionPropertyType" minOccurs="0" maxOccurs="unbounded"/>
+					<group ref="meta:StandardSupportProperties"/>
+				</sequence>
+			</extension>
+		</complexContent>
+	</complexType>
+	<!-- ================================================================== -->
+	<!-- ====================================================================== -->
+	<element name="GeochronologicBoundary" type="cgi:GeochronologicBoundaryType" substitutionGroup="cgi:TimeOrdinalEraBoundary"/>
+	<!-- .................. -->
+	<complexType name="GeochronologicBoundaryType">
+		<annotation>
+			<documentation>An extension of the GML TimeOrdinalEraBoundary, with an additional ... properties.</documentation>
+		</annotation>
+		<complexContent>
+			<extension base="cgi:TimeOrdinalEraBoundaryType">
+				<sequence>
+					<element name="event" type="cgi:StratigraphicEventPropertyType"/>
+					<element name="stratotype" type="cgi:StratigraphicPointPropertyType"/>
+					<group ref="meta:StandardSupportProperties"/>
+				</sequence>
+			</extension>
+		</complexContent>
+	</complexType>
+	<!-- ================================================================== -->
+	<!-- ====================================================================== -->
+	<element name="NumericBoundary" type="cgi:NumericBoundaryType" substitutionGroup="cgi:TimeOrdinalEraBoundary"/>
+	<!-- .................. -->
+	<complexType name="NumericBoundaryType">
+		<annotation>
+			<documentation>An extension of the GML TimeOrdinalEraBoundary, with an additional status property.</documentation>
+		</annotation>
+		<complexContent>
+			<extension base="cgi:TimeOrdinalEraBoundaryType">
+				<sequence>
+					<element name="status" type="string"/>
+					<group ref="meta:StandardSupportProperties"/>
+				</sequence>
+			</extension>
+		</complexContent>
+	</complexType>
+	<!-- ================================================================== -->
+	<!-- ===== Stratigraphy features and objects ====== -->
+	<!-- ================================================================== -->
+	<!-- ================================================================== -->
+	<element name="StratigraphicEvent" type="cgi:StratigraphicEventType" substitutionGroup="swe:Event">
+		<annotation>
+			<documentation>A stratigraphic event.</documentation>
+		</annotation>
+	</element>
+	<!-- .................. -->
+	<complexType name="StratigraphicEventType">
+		<annotation>
+			<documentation>A stratigraphic event.
+			Use the description property to record a detailed description of the nature of the event</documentation>
+		</annotation>
+		<complexContent>
+			<extension base="swe:EventType">
+				<sequence>
+					<group ref="meta:StandardSupportProperties"/>
+				</sequence>
+			</extension>
+		</complexContent>
+	</complexType>
+	<!-- .................. -->
+	<complexType name="StratigraphicEventPropertyType">
+		<sequence>
+			<element ref="cgi:StratigraphicEvent" minOccurs="0"/>
+		</sequence>
+		<attributeGroup ref="gml:AssociationAttributeGroup"/>
+	</complexType>
+	<!-- ================================================================== -->
+	<!-- 	
+	N.B. According to http://www.stratigraphy.org/ a Global Boundary Stratotype Section and Point requires the following descriptors			
+        * Name of the boundary
+        * GSSP definition
+        * Stratigraphic rank and status of the boundary
+        * Stratigraphic position of the defined unit
+        * Type locality of the GSSP
+        * Geologic setting and geographic location
+        * Lithology/sedimentology/paleobathynmetry
+        * Map
+        * Accessibility, both logistically and politically
+        * Conservation
+        * Identification in the field
+        * Stratigraphic completeness of the section
+        * Global correlation, using where applicable biostratigraphy, magnetostratigraphy, stable isotope stratigraphy, and other stratigraphic tools and methods
+        * Best estimate of age in milions of years
+        * References to background studies
+
+	The table of GSSP's provided by ICS only shows a subset of these, so only the following are used here:
+			use gml:description and gml:position for sampling location 
+			status (i.e. is this stratotype point ratified by some organisation)
+			reference
+			-->
+	<!-- ====================================================================== -->
+	<element name="StratigraphicSection" type="cgi:StratigraphicSectionType" substitutionGroup="xmml:Section"/>
+	<!-- .................. -->
+	<complexType name="StratigraphicSectionType">
+		<annotation>
+			<documentation>A special Feature used in stratigraphy</documentation>
+		</annotation>
+		<complexContent>
+			<extension base="xmml:SectionType">
+				<sequence>
+					<element name="containedPoint" type="cgi:StratigraphicPointPropertyType" minOccurs="0" maxOccurs="unbounded"/>
+					<element name="status" type="string"/>
+				</sequence>
+			</extension>
+		</complexContent>
+	</complexType>
+	<!-- .................. -->
+	<complexType name="StratigraphicSectionPropertyType">
+		<sequence>
+			<element ref="cgi:StratigraphicSection" minOccurs="0"/>
+		</sequence>
+		<attributeGroup ref="gml:AssociationAttributeGroup"/>
+	</complexType>
+	<!-- ====================================================================== -->
+	<element name="StratigraphicPoint" type="cgi:StratigraphicPointType" substitutionGroup="xmml:Station"/>
+	<!-- .................. -->
+	<complexType name="StratigraphicPointType">
+		<annotation>
+			<documentation>A special Feature used in stratigraphy</documentation>
+		</annotation>
+		<complexContent>
+			<extension base="xmml:StationType">
+				<sequence>
+					<element name="hostSection" type="cgi:StratigraphicSectionPropertyType"/>
+					<element name="offset" type="gml:MeasureType" nillable="true"/>
+					<element name="primaryGuidingCriterion" type="string"/>
+					<element name="event" type="cgi:StratigraphicEventPropertyType"/>
+					<element name="additionalCorrelationProperty" type="string" minOccurs="0" maxOccurs="unbounded"/>
+					<element name="status" type="string"/>
+				</sequence>
+			</extension>
+		</complexContent>
+	</complexType>
+	<!-- .................. -->
+	<complexType name="StratigraphicPointPropertyType">
+		<sequence>
+			<element ref="cgi:StratigraphicPoint" minOccurs="0"/>
+		</sequence>
+		<attributeGroup ref="gml:AssociationAttributeGroup"/>
+	</complexType>
+	<!-- ================================================================== -->
+	<!-- ====================================================================== -->
+	<!-- ===== Time estimates ====== -->
+	<!-- ====================================================================== -->
+	<element name="StratigraphicAgeEstimate" type="cgi:StratigraphicAgeEstimateType" substitutionGroup="gml:TimeInstant"/>
+	<!-- ................... -->
+	<complexType name="StratigraphicAgeEstimateType">
+		<complexContent>
+			<extension base="gml:TimeInstantType">
+				<sequence>
+					<element name="quality" type="meta:QualityPropertyType"/>
+					<element name="relatedObservation" type="swe:AbstractObservationPropertyType" minOccurs="0" maxOccurs="unbounded"/>
+				</sequence>
+			</extension>
+		</complexContent>
+	</complexType>
+	<!-- ====================================================================== -->
+	<element name="DateDetermination" type="cgi:DateDeterminationType" substitutionGroup="swe:Measurement">
+		<annotation>
+			<documentation>An observation resulting in an estimate of a time position.
+			This can be a geochron measurement, or an estimate made using less precise techniques.</documentation>
+		</annotation>
+	</element>
+	<!-- ........ -->
+	<complexType name="DateDeterminationType">
+		<annotation>
+			<documentation>An observation resulting in an estimate of the age of the subject. </documentation>
+		</annotation>
+		<complexContent>
+			<extension base="swe:MeasurementType">
+				<sequence>
+					<element name="status" type="string"/>
+				</sequence>
+			</extension>
+		</complexContent>
+	</complexType>
+	<!-- ================================================================== -->
+	<element name="DatingProcedure" type="cgi:DatingProcedureType" substitutionGroup="swe:Procedure"/>
+	<!-- ................. -->
+	<complexType name="DatingProcedureType">
+		<complexContent>
+			<extension base="swe:ProcedureType">
+			</extension>
+		</complexContent>
+	</complexType>
+	<!-- ================================================================== -->
+</schema>
