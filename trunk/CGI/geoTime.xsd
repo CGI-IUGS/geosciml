@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<schema xmlns="http://www.w3.org/2001/XMLSchema" xmlns:cgi="http://www.cgi-iugs.org/xml/cgi" xmlns:meta="http://www.seegrid.csiro.au/2005/metaLite" xmlns:xmml="http://www.opengis.net/xmml"  xmlns:swe="http://www.opengis.net/2005/swe" xmlns:gml="http://www.opengis.net/gml" targetNamespace="http://www.cgi-iugs.org/xml/cgi" elementFormDefault="qualified" attributeFormDefault="unqualified" version="pre-release">
+<schema xmlns="http://www.w3.org/2001/XMLSchema" xmlns:cgi="http://www.cgi-iugs.org/xml/cgi" xmlns:meta="http://www.seegrid.csiro.au/2005/metaLite" xmlns:xmml="http://www.opengis.net/xmml" xmlns:swe="http://www.opengis.net/2005/swe" xmlns:gml="http://www.opengis.net/gml" targetNamespace="http://www.cgi-iugs.org/xml/cgi" elementFormDefault="qualified" attributeFormDefault="unqualified" version="pre-release">
 	<annotation>
 		<documentation>geoTime.xsd
 
@@ -15,8 +15,6 @@ Copyright (c) 2005 CSIRO - see https://www.seegrid.csiro.au/twiki/bin/view/Xmml/
 	<include schemaLocation="../enumerations/LUTstratigraphy.xsd"/>
 	<!-- ================================================================== -->
 	<!-- ================================================================== -->
-	<element name="GeologicTimeScale" type="cgi:GeologicTimeScaleType" substitutionGroup="cgi:TimeOrdinalReferenceSystem"/>
-	<!-- .................. -->
 	<complexType name="GeologicTimeScaleType" final="#all">
 		<annotation>
 			<documentation xml:lang="en">
@@ -35,14 +33,10 @@ Copyright (c) 2005 CSIRO - see https://www.seegrid.csiro.au/twiki/bin/view/Xmml/
 			</extension>
 		</complexContent>
 	</complexType>
-	<!-- ================================================================== -->
-	<!-- ================================================================== -->
-	<element name="TimeOrdinalReferenceSystem" type="cgi:TimeOrdinalReferenceSystemType" substitutionGroup="gml:_TimeReferenceSystem">
-		<annotation>
-			<documentation xml:lang="en">Replacement for GML TimeOrdinalReferenceSystem in which the content model for TimeOrdinalEra is modified.</documentation>
-		</annotation>
-	</element>
 	<!-- .................. -->
+	<element name="GeologicTimeScale" type="cgi:GeologicTimeScaleType" substitutionGroup="cgi:TimeOrdinalReferenceSystem"/>
+	<!-- ================================================================== -->
+	<!-- ================================================================== -->
 	<complexType name="TimeOrdinalReferenceSystemType">
 		<annotation>
 			<documentation xml:lang="en">In an ordinal reference system the order of events in time can be well 
@@ -57,13 +51,13 @@ Copyright (c) 2005 CSIRO - see https://www.seegrid.csiro.au/twiki/bin/view/Xmml/
 			</extension>
 		</complexContent>
 	</complexType>
-	<!-- ================================================================== -->
-	<element name="TimeOrdinalEra" type="cgi:TimeOrdinalEraType" substitutionGroup="gml:Definition">
+	<!-- .................. -->
+	<element name="TimeOrdinalReferenceSystem" type="cgi:TimeOrdinalReferenceSystemType" substitutionGroup="gml:_TimeReferenceSystem">
 		<annotation>
-			<documentation xml:lang="en">Replacement for GML TimeOrdinalEra in which the limits are described by TimeOrdinalEraBoundary objects.</documentation>
+			<documentation xml:lang="en">Replacement for GML TimeOrdinalReferenceSystem in which the content model for TimeOrdinalEra is modified.</documentation>
 		</annotation>
 	</element>
-	<!-- .................. -->
+	<!-- ================================================================== -->
 	<complexType name="TimeOrdinalEraType">
 		<annotation>
 			<documentation xml:lang="en">Replacement for GML TimeOrdinalEra in which the limits are described by TimeOrdinalEraBoundary objects. 
@@ -101,6 +95,12 @@ However, if the hierarchy is represented by links carried on the "member" proper
 		</complexContent>
 	</complexType>
 	<!-- .................. -->
+	<element name="TimeOrdinalEra" type="cgi:TimeOrdinalEraType" substitutionGroup="gml:Definition">
+		<annotation>
+			<documentation xml:lang="en">Replacement for GML TimeOrdinalEra in which the limits are described by TimeOrdinalEraBoundary objects.</documentation>
+		</annotation>
+	</element>
+	<!-- .................. -->
 	<complexType name="TimeOrdinalEraPropertyType">
 		<sequence minOccurs="0">
 			<element ref="cgi:TimeOrdinalEra"/>
@@ -108,8 +108,6 @@ However, if the hierarchy is represented by links carried on the "member" proper
 		<attributeGroup ref="gml:AssociationAttributeGroup"/>
 	</complexType>
 	<!-- ================================================================== -->
-	<element name="TimeOrdinalEraBoundary" type="cgi:TimeOrdinalEraBoundaryType" substitutionGroup="gml:Definition"/>
-	<!-- .................. -->
 	<complexType name="TimeOrdinalEraBoundaryType">
 		<annotation>
 			<documentation xml:lang="en">A Boundary object is used to describe the limits of an Era.  
@@ -128,6 +126,8 @@ However, if the hierarchy is represented by links carried on the "member" proper
 		</complexContent>
 	</complexType>
 	<!-- .................. -->
+	<element name="TimeOrdinalEraBoundary" type="cgi:TimeOrdinalEraBoundaryType" substitutionGroup="gml:Definition"/>
+	<!-- .................. -->
 	<complexType name="TimeOrdinalEraBoundaryPropertyType">
 		<sequence minOccurs="0">
 			<element ref="cgi:TimeOrdinalEraBoundary"/>
@@ -137,8 +137,6 @@ However, if the hierarchy is represented by links carried on the "member" proper
 	<!-- ================================================================== -->
 	<!-- ===== Geochronologic objects ====== -->
 	<!-- ================================================================== -->
-	<element name="GeochronologicEra" type="cgi:GeochronologicEraType" substitutionGroup="cgi:TimeOrdinalEra"/>
-	<!-- .................. -->
 	<complexType name="GeochronologicEraType">
 		<annotation>
 			<documentation>An extension of the GML TimeOrdinalEra, with an additional "rank", ... properties.</documentation>
@@ -153,10 +151,17 @@ However, if the hierarchy is represented by links carried on the "member" proper
 			</extension>
 		</complexContent>
 	</complexType>
+	<!-- .................. -->
+	<element name="GeochronologicEra" type="cgi:GeochronologicEraType" substitutionGroup="cgi:TimeOrdinalEra"/>
+	<!-- .................. -->
+	<complexType name="GeochronologicEraPropertyType">
+		<sequence minOccurs="0">
+			<element ref="cgi:GeochronologicEra"/>
+		</sequence>
+		<attributeGroup ref="gml:AssociationAttributeGroup"/>
+	</complexType>
 	<!-- ================================================================== -->
 	<!-- ====================================================================== -->
-	<element name="GeochronologicBoundary" type="cgi:GeochronologicBoundaryType" substitutionGroup="cgi:TimeOrdinalEraBoundary"/>
-	<!-- .................. -->
 	<complexType name="GeochronologicBoundaryType">
 		<annotation>
 			<documentation>An extension of the GML TimeOrdinalEraBoundary, with an additional ... properties.</documentation>
@@ -171,11 +176,18 @@ However, if the hierarchy is represented by links carried on the "member" proper
 			</extension>
 		</complexContent>
 	</complexType>
+	<!-- .................. -->
+	<element name="GeochronologicBoundary" type="cgi:GeochronologicBoundaryType" substitutionGroup="cgi:TimeOrdinalEraBoundary"/>
+	<!-- .................. -->
+	<complexType name="GeochronologicBoundaryPropertyType">
+		<sequence minOccurs="0">
+			<element ref="cgi:GeochronologicBoundary"/>
+		</sequence>
+		<attributeGroup ref="gml:AssociationAttributeGroup"/>
+	</complexType>
 	<!-- ================================================================== -->
 	<!-- ====================================================================== -->
-	<element name="NumericBoundary" type="cgi:NumericBoundaryType" substitutionGroup="cgi:TimeOrdinalEraBoundary"/>
-	<!-- .................. -->
-	<complexType name="NumericBoundaryType">
+	<complexType name="NumericEraBoundaryType">
 		<annotation>
 			<documentation>An extension of the GML TimeOrdinalEraBoundary, with an additional status property.</documentation>
 		</annotation>
@@ -183,21 +195,17 @@ However, if the hierarchy is represented by links carried on the "member" proper
 			<extension base="cgi:TimeOrdinalEraBoundaryType">
 				<sequence>
 					<element name="status" type="string"/>
-					<element name="reference" type="meta:CitationPropertyType"/>
+					<element name="reference" type="meta:CitationPropertyType" maxOccurs="unbounded"/>
 				</sequence>
 			</extension>
 		</complexContent>
 	</complexType>
+	<!-- .................. -->
+	<element name="NumericEraBoundary" type="cgi:NumericEraBoundaryType" substitutionGroup="cgi:TimeOrdinalEraBoundary"/>
 	<!-- ================================================================== -->
 	<!-- ===== Stratigraphy features and objects ====== -->
 	<!-- ================================================================== -->
 	<!-- ================================================================== -->
-	<element name="StratigraphicEvent" type="cgi:StratigraphicEventType" substitutionGroup="swe:Event">
-		<annotation>
-			<documentation>A stratigraphic event.</documentation>
-		</annotation>
-	</element>
-	<!-- .................. -->
 	<complexType name="StratigraphicEventType">
 		<annotation>
 			<documentation>A stratigraphic event.
@@ -211,6 +219,12 @@ However, if the hierarchy is represented by links carried on the "member" proper
 			</extension>
 		</complexContent>
 	</complexType>
+	<!-- .................. -->
+	<element name="StratigraphicEvent" type="cgi:StratigraphicEventType" substitutionGroup="swe:Event">
+		<annotation>
+			<documentation>A stratigraphic event.</documentation>
+		</annotation>
+	</element>
 	<!-- .................. -->
 	<complexType name="StratigraphicEventPropertyType">
 		<sequence>
@@ -243,8 +257,6 @@ However, if the hierarchy is represented by links carried on the "member" proper
 			reference
 			-->
 	<!-- ====================================================================== -->
-	<element name="StratigraphicSection" type="cgi:StratigraphicSectionType" substitutionGroup="xmml:Section"/>
-	<!-- .................. -->
 	<complexType name="StratigraphicSectionType">
 		<annotation>
 			<documentation>A special Feature used in stratigraphy</documentation>
@@ -252,12 +264,19 @@ However, if the hierarchy is represented by links carried on the "member" proper
 		<complexContent>
 			<extension base="xmml:SectionType">
 				<sequence>
+					<element name="era" type="cgi:GeochronologicEraPropertyType"/>
+					<element name="geologicSetting" type="string"/>
+					<element name="geologicDescription" type="string"/>
+					<element name="accessibility" type="string"/>
+					<element name="conservation" type="string"/>
 					<element name="containedPoint" type="cgi:StratigraphicPointPropertyType" minOccurs="0" maxOccurs="unbounded"/>
-					<element name="status" type="string"/>
+					<element name="reference" type="meta:CitationPropertyType" minOccurs="0" maxOccurs="unbounded"/>
 				</sequence>
 			</extension>
 		</complexContent>
 	</complexType>
+	<!-- .................. -->
+	<element name="StratigraphicSection" type="cgi:StratigraphicSectionType" substitutionGroup="xmml:Section"/>
 	<!-- .................. -->
 	<complexType name="StratigraphicSectionPropertyType">
 		<sequence>
@@ -266,8 +285,6 @@ However, if the hierarchy is represented by links carried on the "member" proper
 		<attributeGroup ref="gml:AssociationAttributeGroup"/>
 	</complexType>
 	<!-- ====================================================================== -->
-	<element name="StratigraphicPoint" type="cgi:StratigraphicPointType" substitutionGroup="xmml:Station"/>
-	<!-- .................. -->
 	<complexType name="StratigraphicPointType">
 		<annotation>
 			<documentation>A special Feature used in stratigraphy</documentation>
@@ -275,17 +292,20 @@ However, if the hierarchy is represented by links carried on the "member" proper
 		<complexContent>
 			<extension base="xmml:StationType">
 				<sequence>
+					<element name="boundary" type="cgi:GeochronologicBoundaryPropertyType"/>
 					<element name="hostSection" type="cgi:StratigraphicSectionPropertyType"/>
 					<element name="offset" type="gml:MeasureType" nillable="true"/>
 					<element name="primaryGuidingCriterion" type="string"/>
 					<element name="event" type="cgi:StratigraphicEventPropertyType"/>
 					<element name="additionalCorrelationProperty" type="string" minOccurs="0" maxOccurs="unbounded"/>
 					<element name="status" type="string"/>
-					<element name="reference" type="meta:CitationPropertyType"/>
+					<element name="reference" type="meta:CitationPropertyType" maxOccurs="unbounded"/>
 				</sequence>
 			</extension>
 		</complexContent>
 	</complexType>
+	<!-- .................. -->
+	<element name="StratigraphicPoint" type="cgi:StratigraphicPointType" substitutionGroup="xmml:Station"/>
 	<!-- .................. -->
 	<complexType name="StratigraphicPointPropertyType">
 		<sequence>
@@ -297,45 +317,43 @@ However, if the hierarchy is represented by links carried on the "member" proper
 	<!-- ====================================================================== -->
 	<!-- ===== Time estimates ====== -->
 	<!-- ====================================================================== -->
-	<element name="StratigraphicDateEstimate" type="cgi:StratigraphicDateEstimateType" substitutionGroup="gml:TimeInstant"/>
-	<!-- ................... -->
 	<complexType name="StratigraphicDateEstimateType">
 		<complexContent>
 			<extension base="gml:TimeInstantType">
 				<sequence>
 					<element name="quality" type="meta:QualityPropertyType"/>
 					<element name="status" type="string"/>
-					<element name="reference" type="meta:CitationPropertyType"/>
+					<element name="reference" type="meta:CitationPropertyType" maxOccurs="unbounded"/>
 					<element name="relatedObservation" type="swe:AbstractObservationPropertyType" minOccurs="0" maxOccurs="unbounded"/>
 				</sequence>
 			</extension>
 		</complexContent>
 	</complexType>
+	<!-- ................... -->
+	<element name="StratigraphicDateEstimate" type="cgi:StratigraphicDateEstimateType" substitutionGroup="gml:TimeInstant"/>
 	<!-- ====================================================================== -->
+	<complexType name="DateDeterminationType">
+		<annotation>
+			<documentation>An observation resulting in an estimate of the age of the subject. </documentation>
+		</annotation>
+		<complexContent>
+			<extension base="swe:MeasurementType"/>
+		</complexContent>
+	</complexType>
+	<!-- ........ -->
 	<element name="DateDetermination" type="cgi:DateDeterminationType" substitutionGroup="swe:Measurement">
 		<annotation>
 			<documentation>An observation resulting in an estimate of a time position.
 			This can be a geochron measurement, or an estimate made using less precise techniques.</documentation>
 		</annotation>
 	</element>
-	<!-- ........ -->
-	<complexType name="DateDeterminationType">
-		<annotation>
-			<documentation>An observation resulting in an estimate of the age of the subject. </documentation>
-		</annotation>
-		<complexContent>
-			<extension base="swe:MeasurementType">
-			</extension>
-		</complexContent>
-	</complexType>
 	<!-- ================================================================== -->
-	<element name="DatingProcedure" type="cgi:DatingProcedureType" substitutionGroup="swe:Procedure"/>
-	<!-- ................. -->
 	<complexType name="DatingProcedureType">
 		<complexContent>
-			<extension base="swe:ProcedureType">
-			</extension>
+			<extension base="swe:ProcedureType"/>
 		</complexContent>
 	</complexType>
+	<!-- ................. -->
+	<element name="DatingProcedure" type="cgi:DatingProcedureType" substitutionGroup="swe:Procedure"/>
 	<!-- ================================================================== -->
 </schema>
