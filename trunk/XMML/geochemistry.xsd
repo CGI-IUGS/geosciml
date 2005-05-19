@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<schema xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:gml="http://www.opengis.net/gml" xmlns:swe="http://www.opengis.net/2005/swe" xmlns:meta="http://www.seegrid.csiro.au/2005/metaLite" xmlns="http://www.w3.org/2001/XMLSchema" xmlns:xmml="http://www.opengis.net/xmml"
+<schema xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:gml="http://www.opengis.net/gml" xmlns:om="http://www.opengis.net/2005/om" xmlns:meta="http://www.seegrid.csiro.au/2005/metaLite" xmlns="http://www.w3.org/2001/XMLSchema" xmlns:xmml="http://www.opengis.net/xmml"
         targetNamespace="http://www.opengis.net/xmml" elementFormDefault="qualified" attributeFormDefault="unqualified" version="pre-release">
 	<annotation>
 		<documentation>geochemistry.xsd
@@ -13,11 +13,11 @@ Copyright © 2004 CSIRO - see https://www.seegrid.csiro.au/twiki/bin/view/Xmml/L
 	<!-- bring in other schemas -->
 	<import namespace="http://www.opengis.net/gml" schemaLocation="./gml4geochemistry.xsd"/>
 	<import namespace="http://www.seegrid.csiro.au/2005/metaLite" schemaLocation="./meta4geochemistry.xsd"/>
-	<import namespace="http://www.opengis.net/2005/swe" schemaLocation="./swe4geochemistry.xsd"/>
+	<import namespace="http://www.opengis.net/2005/om" schemaLocation="./om4geochemistry.xsd"/>
 	<include schemaLocation="./site.xsd"/>
 	<include schemaLocation="../enumerations/LUTgeochemistry.xsd"/>
 	<!-- ====================================================================== -->
-	<element name="GeochemMeasurement" type="xmml:GeochemMeasurementType" substitutionGroup="swe:Measurement"/>
+	<element name="GeochemMeasurement" type="xmml:GeochemMeasurementType" substitutionGroup="om:Measurement"/>
 	<!-- ...................... -->
 	<complexType name="GeochemMeasurementType">
 		<annotation>
@@ -26,7 +26,7 @@ Copyright © 2004 CSIRO - see https://www.seegrid.csiro.au/twiki/bin/view/Xmml/L
         			purpose (optional)</documentation>
 		</annotation>
 		<complexContent>
-			<extension base="swe:MeasurementType">
+			<extension base="om:MeasurementType">
 				<sequence>
 					<element name="analyte" type="xmml:analyteCode"/>
 					<element name="purpose" type="string" minOccurs="0"/>
@@ -76,7 +76,7 @@ Copyright © 2004 CSIRO - see https://www.seegrid.csiro.au/twiki/bin/view/Xmml/L
 						<documentation>Record geochemistry results related to this specimen;
 							as a set of soft-typed measures</documentation>
 					</annotation>
-					<element name="analyteResult" type="swe:SoftTypedMeasureType" nillable="true" maxOccurs="unbounded">
+					<element name="analyteResult" type="om:SoftTypedMeasureType" nillable="true" maxOccurs="unbounded">
 						<annotation>
 							<documentation>Analyte component value, expressed as a soft-typed measure; the value of the "property" attribute identifies the analyte; the value of the uom attribute indicates the units of measure; the value of the metadata attribute may be used to indicate the procedure or full description of the observation.</documentation>
 						</annotation>
@@ -86,7 +86,7 @@ Copyright © 2004 CSIRO - see https://www.seegrid.csiro.au/twiki/bin/view/Xmml/L
 		</complexContent>
 	</complexType>
 	<!-- ====================================================================== -->
-	<element name="AssayProcedure" type="xmml:AssayProcedureType" substitutionGroup="swe:Procedure">
+	<element name="AssayProcedure" type="xmml:AssayProcedureType" substitutionGroup="om:Procedure">
 		<annotation>
 			<documentation>description of an assay method</documentation>
 		</annotation>
@@ -103,7 +103,7 @@ Copyright © 2004 CSIRO - see https://www.seegrid.csiro.au/twiki/bin/view/Xmml/L
 				*** Note: this should be harmonised with adx:AnalyteProcedure ***</documentation>
 		</annotation>
 		<complexContent>
-			<extension base="swe:ProcedureType">
+			<extension base="om:ProcedureType">
 				<sequence>
 					<element name="analyteDetails" minOccurs="0" maxOccurs="unbounded">
 						<complexType>
@@ -138,7 +138,7 @@ Copyright © 2004 CSIRO - see https://www.seegrid.csiro.au/twiki/bin/view/Xmml/L
 	</complexType>
 	<!-- ====================================================================== -->
 	<!-- ====================================================================== -->
-	<element name="ChemAxisDefinition" type="xmml:ChemAxisDefinitionType" substitutionGroup="swe:AxisDefinition">
+	<element name="ChemAxisDefinition" type="xmml:ChemAxisDefinitionType" substitutionGroup="om:AxisDefinition">
 		<annotation>
 			<documentation>Specialised AxisDefinition with sensitivity information added</documentation>
 		</annotation>
@@ -146,7 +146,7 @@ Copyright © 2004 CSIRO - see https://www.seegrid.csiro.au/twiki/bin/view/Xmml/L
 	<!-- ........................................ -->
 	<complexType name="ChemAxisDefinitionType">
 		<complexContent>
-			<extension base="swe:AxisDefinitionType">
+			<extension base="om:AxisDefinitionType">
 				<sequence>
 					<element name="lowerDetectionLimit" type="gml:MeasureType" nillable="true"/>
 					<element name="upperDetectionLimit" type="gml:MeasureType" minOccurs="0"/>

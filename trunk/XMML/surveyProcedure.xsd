@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<schema xmlns:xmml="http://www.opengis.net/xmml" xmlns:meta="http://www.seegrid.csiro.au/2005/metaLite" xmlns="http://www.w3.org/2001/XMLSchema" xmlns:gml="http://www.opengis.net/gml" xmlns:swe="http://www.opengis.net/2005/swe" xmlns:xlink="http://www.w3.org/1999/xlink" targetNamespace="http://www.opengis.net/xmml" elementFormDefault="qualified"
+<schema xmlns:xmml="http://www.opengis.net/xmml" xmlns:meta="http://www.seegrid.csiro.au/2005/metaLite" xmlns="http://www.w3.org/2001/XMLSchema" xmlns:gml="http://www.opengis.net/gml" xmlns:om="http://www.opengis.net/2005/om" xmlns:xlink="http://www.w3.org/1999/xlink" targetNamespace="http://www.opengis.net/xmml" elementFormDefault="qualified"
         attributeFormDefault="unqualified" version="pre-release">
 	<annotation>
 		<documentation>procedures.xsd
@@ -12,19 +12,19 @@ Copyright (c) 2005 CSIRO - see https://www.seegrid.csiro.au/twiki/bin/view/Xmml/
 	<!-- bring in other schemas -->
 	<import namespace="http://www.opengis.net/gml" schemaLocation="./gml4procedure.xsd"/>
 	<import namespace="http://www.seegrid.csiro.au/2005/metaLite" schemaLocation="./meta4procedure.xsd"/>
-	<import namespace="http://www.opengis.net/2005/swe" schemaLocation="./swe4procedure.xsd"/>
+	<import namespace="http://www.opengis.net/2005/om" schemaLocation="./om4procedure.xsd"/>
 	<include schemaLocation="./base.xsd"/>
 	<include schemaLocation="../enumerations/LUTgeodesy.xsd"/>
 	<!-- ====================================================================== -->
 	<!-- ====================================================================== -->
-	<element name="SurveyProcedure" type="xmml:SurveyProcedureType" substitutionGroup="swe:Procedure"/>
+	<element name="SurveyProcedure" type="xmml:SurveyProcedureType" substitutionGroup="om:Procedure"/>
 	<!-- ...................... -->
 	<complexType name="SurveyProcedureType">
 		<annotation>
 			<documentation/>
 		</annotation>
 		<complexContent>
-			<extension base="swe:ProcedureType">
+			<extension base="om:ProcedureType">
 				<sequence>
 					<element name="positionMethod" type="xmml:positionMethodType"/>
 					<element name="positionAccuracy" type="gml:MeasureType" minOccurs="0"/>

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<schema xmlns:gml="http://www.opengis.net/gml" xmlns:swe="http://www.opengis.net/2005/swe" xmlns:smXML="http://www.isotc211.org/smXML" xmlns="http://www.w3.org/2001/XMLSchema" xmlns:xmml="http://www.opengis.net/xmml" targetNamespace="http://www.opengis.net/xmml"
+<schema xmlns:gml="http://www.opengis.net/gml" xmlns:om="http://www.opengis.net/2005/om" xmlns:smXML="http://www.isotc211.org/smXML" xmlns="http://www.w3.org/2001/XMLSchema" xmlns:xmml="http://www.opengis.net/xmml" targetNamespace="http://www.opengis.net/xmml"
         elementFormDefault="qualified" attributeFormDefault="unqualified" version="pre-release">
 	<annotation>
 		<documentation>event.xsd
@@ -11,7 +11,7 @@ Copyright © 2005 CSIRO - see https://www.seegrid.csiro.au/twiki/bin/view/Xmml/L
 	<!-- ====================================================================== -->
 	<!-- bring in other schemas -->
 	<import namespace="http://www.opengis.net/gml" schemaLocation="./gml4event.xsd"/>
-	<import namespace="http://www.opengis.net/2005/swe" schemaLocation="./swe4event.xsd"/>
+	<import namespace="http://www.opengis.net/2005/om" schemaLocation="./om4event.xsd"/>
 	<include schemaLocation="../enumerations/LUTmaintenance.xsd"/>
 	<!-- ====================================================================== -->
 	<!-- =========================================================== -->
@@ -19,7 +19,7 @@ Copyright © 2005 CSIRO - see https://www.seegrid.csiro.au/twiki/bin/view/Xmml/L
 	<!-- ====================================================================== -->
 	<!-- === Specialised event types related to record-keeping === -->
 	<!-- ====================================================================== -->
-	<element name="RecordEvent" type="xmml:RecordEventType" substitutionGroup="swe:Event">
+	<element name="RecordEvent" type="xmml:RecordEventType" substitutionGroup="om:Event">
 		<annotation>
 			<documentation>An event in the life of a database record.</documentation>
 		</annotation>
@@ -31,7 +31,7 @@ Copyright © 2005 CSIRO - see https://www.seegrid.csiro.au/twiki/bin/view/Xmml/L
 			Follows xmml:Event pattern, but derivation designed to fit into Metadata substitution groups</documentation>
 		</annotation>
 		<complexContent>
-			<extension base="swe:EventType">
+			<extension base="om:EventType">
 				<sequence>
 					<element name="action" type="xmml:recordActionCodeType">
 						<annotation>
