@@ -20,23 +20,48 @@ Copyright (c) 2005 CSIRO - see https://www.seegrid.csiro.au/twiki/bin/view/Xmml/
 	<!-- =========================================================== -->
 	<!-- === Solids === -->
 	<!-- =========================================================== -->
-	<element name="SimpleSolid" type="xmml:SimpleSolidType" substitutionGroup="gml:_Solid">
-		<annotation>
-			<documentation>Head of substitution group for primitive Solids with simple descriptions. </documentation>
-		</annotation>
-	</element>
-	<!-- =========================================================== -->
-	<complexType name="SimpleSolid" abstract="true">
+	<complexType name="AbstractSimpleSolidType" abstract="true">
 		<complexContent>
 			<extension base="gml:AbstractSolidType"/>
 		</complexContent>
 	</complexType>
-	<!-- =========================================================== -->
-	<element name="Hexahedron" type="xmml:HexahedronType" substitutionGroup="xmml:SimpleSolid">
+	<!-- .............. -->
+	<element name="AbstractSimpleSolid" type="xmml:AbstractSimpleSolidType" abstract="true" substitutionGroup="gml:_Solid">
 		<annotation>
-			<documentation>The "Hexahedron" element is a simple solid with eight vertices and six sides. </documentation>
+			<documentation>Head of substitution group for primitive Solids with simple descriptions. </documentation>
 		</annotation>
 	</element>
+	<!-- .................. -->
+	<complexType name="AbstractSimpleSolidPropertyType">
+		<sequence minOccurs="0">
+			<element ref="xmml:AbstractSimpleSolid"/>
+		</sequence>
+		<attributeGroup ref="gml:AssociationAttributeGroup"/>
+	</complexType>
+	<!-- =========================================================== -->
+	<!-- =========================================================== -->
+	<complexType name="MultiSimpleSolidType">
+		<complexContent>
+			<extension base="gml:AbstractGeometricAggregateType">
+				<sequence>
+					<element name="member" type="xmml:AbstractSimpleSolidPropertyType" maxOccurs="unbounded"/>
+				</sequence>
+			</extension>
+		</complexContent>
+	</complexType>
+	<!-- .............. -->
+	<element name="MultiSimpleSolid" type="xmml:MultiSimpleSolidType" substitutionGroup="gml:_GeometricAggregate">
+		<annotation>
+			<documentation>Head of substitution group for multiSolids with simple descriptions. </documentation>
+		</annotation>
+	</element>
+	<!-- .................. -->
+	<complexType name="MultiSimpleSolidPropertyType">
+		<sequence minOccurs="0">
+			<element ref="xmml:MultiSimpleSolid"/>
+		</sequence>
+		<attributeGroup ref="gml:AssociationAttributeGroup"/>
+	</complexType>
 	<!-- =========================================================== -->
 	<complexType name="HexahedronType">
 		<annotation>
@@ -61,17 +86,17 @@ For cases where the face order is used implicitly, then the faces are defined wi
       </documentation>
 		</annotation>
 		<complexContent>
-			<extension base="gml:AbstractSolidType">
+			<extension base="xmml:AbstractSimpleSolidType">
 				<sequence>
 					<element name="exteriorVertex" type="gml:PointPropertyType" minOccurs="8" maxOccurs="8"/>
 				</sequence>
 			</extension>
 		</complexContent>
 	</complexType>
-	<!-- =========================================================== -->
-	<element name="Wedge" type="xmml:WedgeType" substitutionGroup="xmml:SimpleSolid">
+	<!-- .................. -->
+	<element name="Hexahedron" type="xmml:HexahedronType" substitutionGroup="xmml:AbstractSimpleSolid">
 		<annotation>
-			<documentation>The "Wedge" element is a simple solid with six vertices and five sides. </documentation>
+			<documentation>The "Hexahedron" element is a simple solid with eight vertices and six sides. </documentation>
 		</annotation>
 	</element>
 	<!-- =========================================================== -->
@@ -97,17 +122,17 @@ For cases where the face order is used implicitly, then the faces are defined wi
       </documentation>
 		</annotation>
 		<complexContent>
-			<extension base="gml:AbstractSolidType">
+			<extension base="xmml:AbstractSimpleSolidType">
 				<sequence>
 					<element name="exteriorVertex" type="gml:PointPropertyType" minOccurs="6" maxOccurs="6"/>
 				</sequence>
 			</extension>
 		</complexContent>
 	</complexType>
-	<!-- =========================================================== -->
-	<element name="Pyramid" type="xmml:PyramidType" substitutionGroup="xmml:SimpleSolid">
+	<!-- .................. -->
+	<element name="Wedge" type="xmml:WedgeType" substitutionGroup="xmml:AbstractSimpleSolid">
 		<annotation>
-			<documentation>The "Pyramid" element is a simple solid with five vertices and five sides. </documentation>
+			<documentation>The "Wedge" element is a simple solid with six vertices and five sides. </documentation>
 		</annotation>
 	</element>
 	<!-- =========================================================== -->
@@ -132,17 +157,17 @@ For cases where the face order is used implicitly, then the faces are defined wi
       </documentation>
 		</annotation>
 		<complexContent>
-			<extension base="gml:AbstractSolidType">
+			<extension base="xmml:AbstractSimpleSolidType">
 				<sequence>
 					<element name="exteriorVertex" type="gml:PointPropertyType" minOccurs="5" maxOccurs="5"/>
 				</sequence>
 			</extension>
 		</complexContent>
 	</complexType>
-	<!-- ============================================================== -->
-	<element name="Tetrahedron" type="xmml:TetrahedronType" substitutionGroup="xmml:SimpleSolid">
+	<!-- .................. -->
+	<element name="Pyramid" type="xmml:PyramidType" substitutionGroup="xmml:AbstractSimpleSolid">
 		<annotation>
-			<documentation>The "TetrahedronP" element is a simple solid with four vertices and four sides.  </documentation>
+			<documentation>The "Pyramid" element is a simple solid with five vertices and five sides. </documentation>
 		</annotation>
 	</element>
 	<!-- =========================================================== -->
@@ -166,13 +191,18 @@ Relative to a right-handed coordinate system the vertex sequence is
       </documentation>
 		</annotation>
 		<complexContent>
-			<extension base="gml:AbstractSolidType">
+			<extension base="xmml:AbstractSimpleSolidType">
 				<sequence>
 					<element name="exteriorVertex" type="gml:PointPropertyType" minOccurs="4" maxOccurs="4"/>
 				</sequence>
 			</extension>
 		</complexContent>
 	</complexType>
-	<!-- ====================================================================== -->
+	<!-- .................. -->
+	<element name="Tetrahedron" type="xmml:TetrahedronType" substitutionGroup="xmml:AbstractSimpleSolid">
+		<annotation>
+			<documentation>The "TetrahedronP" element is a simple solid with four vertices and four sides.  </documentation>
+		</annotation>
+	</element>
 	<!-- ====================================================================== -->
 </schema>
