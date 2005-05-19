@@ -20,7 +20,7 @@ Copyright (c) 2005 CSIRO - see https://www.seegrid.csiro.au/twiki/bin/view/Xmml/
 	<import namespace="http://www.opengis.net/gml" schemaLocation="./gml4section.xsd"/>
 	<import namespace="http://www.opengis.net/2005/swe" schemaLocation="./swe4section.xsd"/>
 	<include schemaLocation="./site.xsd"/>
-	<include schemaLocation="./geometry.xsd"/>
+	<include schemaLocation="./geometryProperties.xsd"/>
 	<include schemaLocation="./coverage.xsd"/>
 	<include schemaLocation="../enumerations/LUTgeography.xsd"/>
 	<!-- ====================================================================== -->
@@ -163,30 +163,6 @@ Copyright (c) 2005 CSIRO - see https://www.seegrid.csiro.au/twiki/bin/view/Xmml/
 			<documentation>A log over a collection of regularly spaced locations</documentation>
 		</annotation>
 	</element>
-	<!-- ====================================================================== -->
-	<!-- ====================================================================== -->
-	<complexType name="Shape1DPropertyType">
-		<sequence minOccurs="0">
-			<choice>
-				<element ref="gml:Curve"/>
-				<element ref="gml:LineString"/>
-				<element ref="xmml:Line"/>
-			</choice>
-		</sequence>
-		<attributeGroup ref="gml:AssociationAttributeGroup"/>
-		<attribute name="unionSemantics">
-			<annotation>
-				<documentation>optional XML attribute implements UML Union discriminator</documentation>
-			</annotation>
-			<simpleType>
-				<restriction base="string">
-					<enumeration value="curveShape"/>
-					<enumeration value="lineStringShape"/>
-					<enumeration value="lineShape"/>
-				</restriction>
-			</simpleType>
-		</attribute>
-	</complexType>
 	<!-- ====================================================================== -->
 	<!-- ====================================================================== -->
 </schema>
