@@ -25,8 +25,6 @@ Copyright (c) 2005 CSIRO - see https://www.seegrid.csiro.au/twiki/bin/view/Xmml/
 	<!-- ====================================================================== -->
 	<!-- ===== Feature types in Site hierarchy ====== -->
 	<!-- ====================================================================== -->
-	<element name="AbstractSite" type="xmml:AbstractSiteType" abstract="true" substitutionGroup="xmml:Feature"/>
-	<!-- .................. -->
 	<complexType name="AbstractSiteType">
 		<annotation>
 			<documentation>A "Site" is a feature used primarily for taking observations.</documentation>
@@ -47,6 +45,8 @@ Copyright (c) 2005 CSIRO - see https://www.seegrid.csiro.au/twiki/bin/view/Xmml/
 		</complexContent>
 	</complexType>
 	<!-- .................. -->
+	<element name="AbstractSite" type="xmml:AbstractSiteType" abstract="true" substitutionGroup="xmml:Feature"/>
+	<!-- .................. -->
 	<complexType name="AbstractSitePropertyType">
 		<sequence minOccurs="0">
 			<element ref="xmml:AbstractSite"/>
@@ -54,8 +54,6 @@ Copyright (c) 2005 CSIRO - see https://www.seegrid.csiro.au/twiki/bin/view/Xmml/
 		<attributeGroup ref="gml:AssociationAttributeGroup"/>
 	</complexType>
 	<!-- ====================================================================== -->
-	<element name="Station" type="xmml:StationType" substitutionGroup="xmml:AbstractSite"/>
-	<!-- .................. -->
 	<complexType name="StationType">
 		<annotation>
 			<documentation>A "Station" is an identified position (0-D geospatial feature). 
@@ -77,6 +75,8 @@ Copyright (c) 2005 CSIRO - see https://www.seegrid.csiro.au/twiki/bin/view/Xmml/
 		</complexContent>
 	</complexType>
 	<!-- .................. -->
+	<element name="Station" type="xmml:StationType" substitutionGroup="xmml:AbstractSite"/>
+	<!-- .................. -->
 	<complexType name="StationPropertyType">
 		<sequence minOccurs="0">
 			<element ref="xmml:Station"/>
@@ -84,8 +84,6 @@ Copyright (c) 2005 CSIRO - see https://www.seegrid.csiro.au/twiki/bin/view/Xmml/
 		<attributeGroup ref="gml:AssociationAttributeGroup"/>
 	</complexType>
 	<!-- ====================================================================== -->
-	<element name="Specimen" type="xmml:SpecimenType" substitutionGroup="xmml:Feature"/>
-	<!-- .................. -->
 	<complexType name="SpecimenType">
 		<annotation>
 			<documentation>A located object on which measurements may be made.
@@ -150,12 +148,8 @@ Copyright (c) 2005 CSIRO - see https://www.seegrid.csiro.au/twiki/bin/view/Xmml/
 		</complexContent>
 	</complexType>
 	<!-- .................. -->
-	<!--
-	<element name="referenceSpecimen" type="xmml:SpecimenPropertyType"/>
-	<element name="relatedSpecimen" type="xmml:SpecimenPropertyType"/>
-	<element name="sourceSpecimen" type="xmml:SpecimenPropertyType"/>
-	<element name="associatedSpecimen" type="xmml:SpecimenPropertyType"/>
-	-->
+	<element name="Specimen" type="xmml:SpecimenType" substitutionGroup="xmml:Feature"/>
+	<!-- .................. -->
 	<complexType name="SpecimenPropertyType">
 		<sequence minOccurs="0">
 			<element ref="xmml:Specimen"/>
