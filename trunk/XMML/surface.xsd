@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!-- edited with XMLSPY v5 U (http://www.xmlspy.com) by Robert Cheung (CSIRO) -->
-<schema targetNamespace="http://www.opengis.net/xmml" xmlns:xmml="http://www.opengis.net/xmml" xmlns:gml="http://www.opengis.net/gml" xmlns="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified" attributeFormDefault="unqualified" version="pre-release">
+<schema xmlns:xmml="http://www.opengis.net/xmml" xmlns:geo="http://www.seegrid.csiro.au/xml/geometry" xmlns:om="http://www.opengis.net/om" xmlns:gml="http://www.opengis.net/gml" xmlns="http://www.w3.org/2001/XMLSchema" targetNamespace="http://www.opengis.net/xmml" elementFormDefault="qualified" attributeFormDefault="unqualified" version="pre-release">
 	<annotation>
 		<documentation>
 surfaces.xsd
@@ -15,12 +15,12 @@ Copyright (c) 2004 CSIRO - see https://www.seegrid.csiro.au/twiki/bin/view/Xmml/
 	</annotation>
 	<!-- ====================================================================== -->
 	<!-- bring in other schemas -->
-	<import namespace="http://www.opengis.net/gml" schemaLocation="https://www.seegrid.csiro.au/subversion/xmml/trunk/gml/3.1.1/base/geometryComplexes.xsd"/>
-	<include schemaLocation="./geometry.xsd"/>
-	<include schemaLocation="./observation.xsd"/>
+	<import namespace="http://www.opengis.net/gml" schemaLocation="./gml4shapefeature.xsd"/>
+	<import namespace="http://www.opengis.net/om" schemaLocation="../om/observation.xsd"/>
+	<import namespace="http://www.seegrid.csiro.au/xml/geometry" schemaLocation="../geometry/geometry.xsd"/>
 	<include schemaLocation="../enumerations/LUTportrayal.xsd"/>
 	<!-- ====================================================================== -->
-	<element name="SurfaceFeature" type="xmml:SurfaceFeatureType" substitutionGroup="xmml:Feature">
+	<element name="SurfaceFeature" type="xmml:SurfaceFeatureType" substitutionGroup="gml:_Feature">
 		<annotation>
 			<documentation>A basic feature having just a surface shape. </documentation>
 		</annotation>
@@ -32,8 +32,9 @@ Copyright (c) 2004 CSIRO - see https://www.seegrid.csiro.au/twiki/bin/view/Xmml/
       </documentation>
 		</annotation>
 		<complexContent>
-			<extension base="xmml:SurfacedFeatureType">
+			<extension base="gml:AbstractFeatureType">
 				<sequence>
+					<element name="shape" type="gml:SurfacePropertyType"/>
 					<element name="featureType" type="token" minOccurs="0"/>
 				</sequence>
 			</extension>

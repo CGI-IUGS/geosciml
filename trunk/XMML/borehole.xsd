@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<schema xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:xmml="http://www.opengis.net/xmml" xmlns:gml="http://www.opengis.net/gml" xmlns="http://www.w3.org/2001/XMLSchema" targetNamespace="http://www.opengis.net/xmml" elementFormDefault="qualified" attributeFormDefault="unqualified" version="pre-release">
+<schema xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:xmml="http://www.opengis.net/xmml" xmlns:sa="http://www.seegrid.csiro.au/xml/sampling"  xmlns:geo="http://www.seegrid.csiro.au/xml/geometry"  xmlns:gml="http://www.opengis.net/gml" xmlns="http://www.w3.org/2001/XMLSchema" targetNamespace="http://www.opengis.net/xmml" elementFormDefault="qualified" attributeFormDefault="unqualified" version="pre-release">
 	<annotation>
 		<documentation>
 borehole.xsd
@@ -13,11 +13,10 @@ Copyright © 2005 CSIRO - see https://www.seegrid.csiro.au/twiki/bin/view/Xmml/L
 	<!-- ====================================================================== -->
 	<!-- bring in other schemas -->
 	<import namespace="http://www.opengis.net/gml" schemaLocation="./gml4borehole.xsd"/>
-	<include schemaLocation="./site.xsd"/>
-	<include schemaLocation="./procedure.xsd"/>
+	<import namespace="http://www.seegrid.csiro.au/xml/sampling" schemaLocation="./sa4borehole.xsd"/>
 	<include schemaLocation="../enumerations/LUTsampling.xsd"/>
 	<!-- ====================================================================== -->
-	<element name="Borehole" type="xmml:BoreholeType" substitutionGroup="xmml:Feature">
+	<element name="Borehole" type="xmml:BoreholeType" substitutionGroup="sa:Section">
 		<annotation>
 			<documentation>An exploration well, borehole or drillhole, with logs.  </documentation>
 		</annotation>
@@ -30,9 +29,9 @@ Copyright © 2005 CSIRO - see https://www.seegrid.csiro.au/twiki/bin/view/Xmml/L
       2. The value of the "position" property will normally be the collar-location, but may be any other representative position. N.B. The detailed geometry, including location, is given by the value of the *shape* property. </documentation>
 		</annotation>
 		<complexContent>
-			<extension base="xmml:SectionType">
+			<extension base="sa:SectionType">
 				<sequence>
-					<element name="drilled" type="xmml:ProcedureEventPropertyType" minOccurs="0">
+					<element name="drilled" type="sa:ProcedureEventPropertyType" minOccurs="0">
 						<annotation>
 							<documentation>This element contains or points to a description of a drilling event</documentation>
 						</annotation>

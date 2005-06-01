@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<schema targetNamespace="http://www.opengis.net/xmml" elementFormDefault="qualified" attributeFormDefault="unqualified" version="pre-release" xmlns="http://www.w3.org/2001/XMLSchema" xmlns:gml="http://www.opengis.net/gml" xmlns:xmml="http://www.opengis.net/xmml">
+<schema xmlns="http://www.w3.org/2001/XMLSchema" xmlns:gml="http://www.opengis.net/gml" xmlns:geo="http://www.seegrid.csiro.au/xml/geometry" xmlns:om="http://www.opengis.net/om" xmlns:xmml="http://www.opengis.net/xmml" targetNamespace="http://www.opengis.net/xmml" elementFormDefault="qualified" attributeFormDefault="unqualified" version="pre-release">
 	<annotation>
 		<documentation>
 curves.xsd
@@ -14,12 +14,12 @@ Copyright (c) 2004 CSIRO - see https://www.seegrid.csiro.au/twiki/bin/view/Xmml/
 	</annotation>
 	<!-- ====================================================================== -->
 	<!-- bring in other schemas -->
-	<import namespace="http://www.opengis.net/gml" schemaLocation="https://www.seegrid.csiro.au/subversion/xmml/trunk/gml/3.1.1/base/geometryComplexes.xsd"/>
-	<include schemaLocation="./observation.xsd"/>
-	<include schemaLocation="./geometry.xsd"/>
+	<import namespace="http://www.opengis.net/gml" schemaLocation="./gml4shapefeature.xsd"/>
+	<import namespace="http://www.opengis.net/om" schemaLocation="../om/observation.xsd"/>
+	<import namespace="http://www.seegrid.csiro.au/xml/geometry" schemaLocation="../geometry/geometry.xsd"/>
 	<include schemaLocation="../enumerations/LUTportrayal.xsd"/>
 	<!-- ====================================================================== -->
-	<element name="CurveFeature" type="xmml:CurveFeatureType" substitutionGroup="xmml:Feature">
+	<element name="CurveFeature" type="xmml:CurveFeatureType" substitutionGroup="gml:_Feature">
 		<annotation>
 			<documentation>A basic feature having just a curve shape. </documentation>
 		</annotation>
@@ -30,8 +30,9 @@ Copyright (c) 2004 CSIRO - see https://www.seegrid.csiro.au/twiki/bin/view/Xmml/
 			<documentation>Add featureType property for soft-typing. </documentation>
 		</annotation>
 		<complexContent>
-			<extension base="xmml:CurvedFeatureType">
+			<extension base="gml:AbstractFeatureType">
 				<sequence>
+					<element name="shape" type="gml:CurvePropertyType"/>
 					<element name="featureType" type="token" minOccurs="0"/>
 				</sequence>
 			</extension>
