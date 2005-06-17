@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<schema xmlns="http://www.w3.org/2001/XMLSchema" xmlns:cgi="http://www.cgi-iugs.org/xml/CGI" xmlns:meta="http://www.seegrid.csiro.au/xml/metaLite" xmlns:xmml="http://www.opengis.net/xmml" xmlns:om="http://www.opengis.net/om" xmlns:gml="http://www.opengis.net/gml" targetNamespace="http://www.cgi-iugs.org/xml/CGI" elementFormDefault="qualified" attributeFormDefault="unqualified" version="pre-release">
+<schema xmlns="http://www.w3.org/2001/XMLSchema" xmlns:cgi="http://www.cgi-iugs.org/xml/CGI" xmlns:meta="http://www.seegrid.csiro.au/xml/metaLite" xmlns:sa="http://www.seegrid.csiro.au/xml/sampling" xmlns:om="http://www.opengis.net/om" xmlns:gml="http://www.opengis.net/gml" targetNamespace="http://www.cgi-iugs.org/xml/CGI" elementFormDefault="qualified" attributeFormDefault="unqualified" version="pre-release">
 	<annotation>
 		<documentation>geoTime.xsd
 
@@ -11,7 +11,7 @@ Copyright (c) 2005 CSIRO - see https://www.seegrid.csiro.au/twiki/bin/view/Xmml/
 	<import namespace="http://www.opengis.net/gml" schemaLocation="./gml4geotime.xsd"/>
 	<import namespace="http://www.seegrid.csiro.au/xml/metaLite" schemaLocation="./meta4geotime.xsd"/>
 	<import namespace="http://www.opengis.net/om" schemaLocation="./om4geotime.xsd"/>
-	<import namespace="http://www.opengis.net/xmml" schemaLocation="./xmml4geotime.xsd"/>
+	<import namespace="http://www.seegrid.csiro.au/xml/sampling" schemaLocation="./sa4geotime.xsd"/>
 	<include schemaLocation="../enumerations/LUTstratigraphy.xsd"/>
 	<!-- ================================================================== -->
 	<!-- ================================================================== -->
@@ -262,7 +262,7 @@ However, if the hierarchy is represented by links carried on the "member" proper
 			<documentation>A special Feature used in stratigraphy</documentation>
 		</annotation>
 		<complexContent>
-			<extension base="xmml:SectionType">
+			<extension base="sa:SectionType">
 				<sequence>
 					<element name="era" type="cgi:GeochronologicEraPropertyType"/>
 					<element name="geologicSetting" type="string"/>
@@ -276,7 +276,7 @@ However, if the hierarchy is represented by links carried on the "member" proper
 		</complexContent>
 	</complexType>
 	<!-- .................. -->
-	<element name="StratigraphicSection" type="cgi:StratigraphicSectionType" substitutionGroup="xmml:Section"/>
+	<element name="StratigraphicSection" type="cgi:StratigraphicSectionType" substitutionGroup="sa:Section"/>
 	<!-- .................. -->
 	<complexType name="StratigraphicSectionPropertyType">
 		<sequence>
@@ -290,7 +290,7 @@ However, if the hierarchy is represented by links carried on the "member" proper
 			<documentation>A special Feature used in stratigraphy</documentation>
 		</annotation>
 		<complexContent>
-			<extension base="xmml:StationType">
+			<extension base="sa:StationType">
 				<sequence>
 					<element name="boundary" type="cgi:GeochronologicBoundaryPropertyType"/>
 					<element name="hostSection" type="cgi:StratigraphicSectionPropertyType"/>
@@ -305,7 +305,7 @@ However, if the hierarchy is represented by links carried on the "member" proper
 		</complexContent>
 	</complexType>
 	<!-- .................. -->
-	<element name="StratigraphicPoint" type="cgi:StratigraphicPointType" substitutionGroup="xmml:Station"/>
+	<element name="StratigraphicPoint" type="cgi:StratigraphicPointType" substitutionGroup="sa:Station"/>
 	<!-- .................. -->
 	<complexType name="StratigraphicPointPropertyType">
 		<sequence>
