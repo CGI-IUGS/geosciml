@@ -16,8 +16,9 @@ Copyright (c) 2004 CSIRO - see https://www.seegrid.csiro.au/twiki/bin/view/Xmml/
 	<!-- bring in other schemas -->
 	<import namespace="http://www.opengis.net/gml" schemaLocation="./gml4shapefeature.xsd"/>
 	<import namespace="http://www.opengis.net/om" schemaLocation="../om/1.0.30/observation.xsd"/>
-	<import namespace="http://www.seegrid.csiro.au/xml/geometry" schemaLocation="../geometry/geometry.xsd"/>
+	<import namespace="http://www.seegrid.csiro.au/xml/geometry" schemaLocation="../geo/0.1.0/geometry.xsd"/>
 	<include schemaLocation="../enumerations/LUTportrayal.xsd"/>
+	<include schemaLocation="./basicTypes.xsd"/>
 	<!-- ====================================================================== -->
 	<!-- ====================================================================== -->
 	<element name="PositionFeature" type="xmml:PositionFeatureType" substitutionGroup="gml:_Feature">
@@ -54,7 +55,7 @@ Copyright (c) 2004 CSIRO - see https://www.seegrid.csiro.au/twiki/bin/view/Xmml/
 			<extension base="xmml:PositionFeatureType">
 				<sequence>
 					<group ref="xmml:property" minOccurs="0" maxOccurs="unbounded"/>
-					<element ref="xmml:relatedObservation" minOccurs="0" maxOccurs="unbounded"/>
+					<element name="relatedObservation" type="om:AbstractObservationPropertyType" minOccurs="0" maxOccurs="unbounded"/>
 				</sequence>
 			</extension>
 		</complexContent>
