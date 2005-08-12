@@ -18,7 +18,6 @@ Copyright (c) 2004 CSIRO - see https://www.seegrid.csiro.au/twiki/bin/view/Xmml/
 	<include schemaLocation="./feature.xsd"/>
 	<include schemaLocation="../enumerations/LUTmineral.xsd"/>
 	<include schemaLocation="../enumerations/LUTgeography.xsd"/>
-	<include schemaLocation="../enumerations/LUTgeodesy.xsd"/>
 	<!-- ====================================================================== -->
 	<element name="MineralOccurence" type="xmml:MineralOccurenceType" substitutionGroup="gml:_Feature"/>
 	<!-- ====================================================================== -->
@@ -35,10 +34,10 @@ Copyright (c) 2004 CSIRO - see https://www.seegrid.csiro.au/twiki/bin/view/Xmml/
 					<element ref="xmml:state"/>
 					<element name="country" type="xmml:ISOCountry3Char"/>
 					<element name="depositGroup" type="token" minOccurs="0"/>
-					<element name="commodity" type="xmml:commodityCodeType" maxOccurs="unbounded"/>
-					<element name="depositType" type="xmml:mineralDepositType"/>
-					<element name="class" type="xmml:mineralOccurenceClassType"/>
-					<element name="mineStatus" type="xmml:mineStatusType"/>
+					<element name="commodity" type="xmml:CommodityType" maxOccurs="unbounded"/>
+					<element name="depositType" type="xmml:MineralDepositType"/>
+					<element name="class" type="xmml:MineralOccurenceClass"/>
+					<element name="mineStatus" type="xmml:MineStatus"/>
 				</sequence>
 			</extension>
 		</complexContent>
