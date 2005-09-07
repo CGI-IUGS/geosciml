@@ -1,0 +1,603 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!-- edited with XMLSpy v2005 rel. 3 U (http://www.altova.com) by Eric Boisvert (Natural Resources Canada) -->
+<xs:schema xmlns="http://www.cgi-iugs.org/GeoSciML/light" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:gml="http://www.opengis.net/gml" targetNamespace="http://www.cgi-iugs.org/GeoSciML/light" elementFormDefault="qualified" attributeFormDefault="unqualified">
+	<xs:import namespace="http://www.opengis.net/gml" schemaLocation="http://schemas.opengis.net/gml/3.1.1/base/gml.xsd"/>
+	<xs:attributeGroup name="RichPropertyAttributeGroup">
+		<xs:attributeGroup ref="gml:AssociationAttributeGroup"/>
+		<xs:attribute ref="attributeProperty" use="optional"/>
+	</xs:attributeGroup>
+	<xs:attribute name="attributeProperty" type="xs:anyURI"/>
+	<xs:complexType name="CGI_ValueType" abstract="true">
+		<xs:sequence>
+			<xs:element name="qualifer" type="QualifierPropertyType" minOccurs="0"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:element name="CGI_Value" type="CGI_ValueType"/>
+	<xs:simpleType name="ValueQualifierCodeType">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="never"/>
+			<xs:enumeration value="sometimes"/>
+			<xs:enumeration value="common"/>
+			<xs:enumeration value="always"/>
+			<xs:enumeration value="greaterThan"/>
+			<xs:enumeration value="lessThan"/>
+			<xs:enumeration value="equalTo"/>
+			<xs:enumeration value="approximate"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:element name="ValueQualiferCode" type="ValueQualifierCodeType"/>
+	<xs:complexType name="QualifierPropertyType">
+		<xs:sequence minOccurs="0">
+			<xs:element ref="ValueQualiferCode"/>
+		</xs:sequence>
+		<xs:attributeGroup ref="RichPropertyAttributeGroup"/>
+	</xs:complexType>
+	<xs:complexType name="ScopedNameType">
+		<xs:simpleContent>
+			<xs:extension base="xs:string">
+				<xs:attribute name="codeBase" type="xs:anyURI" use="required"/>
+			</xs:extension>
+		</xs:simpleContent>
+	</xs:complexType>
+	<xs:element name="ScopedName" type="ScopedNameType"/>
+	<xs:complexType name="ScopedNamePropertyType">
+		<xs:sequence minOccurs="0">
+			<xs:element ref="ScopedName"/>
+		</xs:sequence>
+		<xs:attributeGroup ref="RichPropertyAttributeGroup"/>
+	</xs:complexType>
+	<xs:complexType name="CGI_PropertyDescriptionType">
+		<xs:sequence>
+			<xs:element name="property" type="ScopedNamePropertyType"/>
+			<xs:element name="value" type="CGI_ValuePropertyType"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:element name="CGI_PropertyDescription" type="CGI_PhysicalDescriptionPropertyType"/>
+	<xs:complexType name="DisplacementType">
+		<xs:sequence>
+			<xs:element name="displacementMagnitude" type="CGI_NumericPropertyType"/>
+			<xs:element name="hangingWallDirection" type="CGI_NumericPropertyType"/>
+			<xs:element name="displacementDirection" type="CGI_NumericPropertyType"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:element name="Displacement" type="DisplacementType"/>
+	<xs:complexType name="DisplacementPropertyType">
+		<xs:sequence minOccurs="0">
+			<xs:element ref="Displacement"/>
+		</xs:sequence>
+		<xs:attributeGroup ref="RichPropertyAttributeGroup"/>
+	</xs:complexType>
+	<!--=======================-->
+	<xs:complexType name="GeologicAgeType">
+		<xs:sequence>
+			<xs:element name="value" type="CGI_ValuePropertyType"/>
+			<xs:element name="event" type="CGI_TermValuePropertyType"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:element name="GeologicAge" type="GeologicAgeType"/>
+	<xs:complexType name="GeologicAgePropertyType">
+		<xs:sequence minOccurs="0">
+			<xs:element ref="GeologicAge"/>
+		</xs:sequence>
+		<xs:attributeGroup ref="RichPropertyAttributeGroup"/>
+	</xs:complexType>
+	<!--=======================-->
+	<xs:complexType name="CGI_PrimitiveValueType" abstract="true">
+		<xs:complexContent>
+			<xs:extension base="CGI_ValueType"/>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:element name="CGI_PrimitiveValue" type="CGI_PrimitiveValueType" substitutionGroup="CGI_Value"/>
+	<!--=======================-->
+	<xs:complexType name="MeasurePropertyType">
+		<xs:sequence minOccurs="0">
+			<xs:element ref="gml:measure"/>
+		</xs:sequence>
+		<xs:attributeGroup ref="RichPropertyAttributeGroup"/>
+	</xs:complexType>
+	<xs:complexType name="CGI_NumericValueType">
+		<xs:complexContent>
+			<xs:extension base="CGI_PrimitiveValueType">
+				<xs:sequence>
+					<xs:element name="principalValue" type="MeasurePropertyType"/>
+					<xs:element name="plusDelta" type="MeasurePropertyType"/>
+					<xs:element name="minusDelta" type="MeasurePropertyType"/>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:element name="CGI_NumericValue" type="CGI_NumericValueType" substitutionGroup="CGI_PrimitiveValue"/>
+	<!--=======================-->
+	<xs:complexType name="CGI_TermValueType">
+		<xs:complexContent>
+			<xs:extension base="CGI_PrimitiveValueType">
+				<xs:sequence>
+					<xs:element name="value" type="ScopedNamePropertyType"/>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:element name="CGI_TermValue" type="CGI_TermValueType" substitutionGroup="CGI_PrimitiveValue"/>
+	<!--=======================-->
+	<xs:complexType name="CGI_NumericValuePropertyType">
+		<xs:sequence minOccurs="0">
+			<xs:element ref="CGI_NumericValue"/>
+		</xs:sequence>
+		<xs:attributeGroup ref="RichPropertyAttributeGroup"/>
+	</xs:complexType>
+	<xs:complexType name="CGI_TermValuePropertyType">
+		<xs:sequence minOccurs="0">
+			<xs:element ref="CGI_TermValue"/>
+		</xs:sequence>
+		<xs:attributeGroup ref="RichPropertyAttributeGroup"/>
+	</xs:complexType>
+	<xs:complexType name="CGI_PrimitiveValuePropertyType">
+		<xs:sequence minOccurs="0">
+			<xs:element ref="CGI_PrimitiveValue"/>
+		</xs:sequence>
+		<xs:attributeGroup ref="RichPropertyAttributeGroup"/>
+	</xs:complexType>
+	<xs:complexType name="CGI_ValuePropertyType">
+		<xs:sequence minOccurs="0">
+			<xs:element ref="CGI_Value"/>
+		</xs:sequence>
+		<xs:attributeGroup ref="RichPropertyAttributeGroup"/>
+	</xs:complexType>
+	<xs:complexType name="CGI_PhysicalDescriptionPropertyType">
+		<xs:sequence minOccurs="0">
+			<xs:element name="CGI_PhysicalProperty"/>
+		</xs:sequence>
+		<xs:attributeGroup ref="RichPropertyAttributeGroup"/>
+	</xs:complexType>
+	<!--=======================-->
+	<xs:complexType name="CGI_RangeType">
+		<xs:complexContent>
+			<xs:extension base="CGI_ValueType">
+				<xs:sequence>
+					<xs:element name="lower" type="CGI_PrimitiveValuePropertyType"/>
+					<xs:element name="upper" type="CGI_PrimitiveValuePropertyType"/>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:element name="CGI_Range" type="CGI_RangeType" substitutionGroup="CGI_Value"/>
+	<!--=======================-->
+	<xs:complexType name="CGI_NumericRangeType">
+		<xs:complexContent>
+			<xs:extension base="CGI_ValueType">
+				<xs:sequence>
+					<xs:element name="lower" type="CGI_NumericValuePropertyType"/>
+					<xs:element name="upper" type="CGI_NumericValuePropertyType"/>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:element name="CGI_NumericRange" type="CGI_NumericRangeType" substitutionGroup="CGI_Value"/>
+	<!--=======================-->
+	<xs:complexType name="CGI_TermRangeType">
+		<xs:complexContent>
+			<xs:extension base="CGI_ValueType">
+				<xs:sequence>
+					<xs:element name="lower" type="CGI_TermValuePropertyType"/>
+					<xs:element name="upper" type="CGI_TermValuePropertyType"/>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:element name="CGI_TermRange" type="CGI_TermRangeType" substitutionGroup="CGI_Value"/>
+	<!--=======================-->
+	<xs:complexType name="CGI_TermPropertyType">
+		<xs:choice minOccurs="0">
+			<xs:element ref="CGI_TermValue"/>
+			<xs:element ref="CGI_TermRange"/>
+		</xs:choice>
+		<xs:attributeGroup ref="RichPropertyAttributeGroup"/>
+		<xs:attribute name="unionSemantics">
+			<xs:simpleType>
+				<xs:restriction base="xs:string">
+					<xs:enumeration value="value"/>
+					<xs:enumeration value="range"/>
+				</xs:restriction>
+			</xs:simpleType>
+		</xs:attribute>
+	</xs:complexType>
+	<xs:complexType name="CGI_NumericPropertyType">
+		<xs:choice minOccurs="0">
+			<xs:element ref="CGI_NumericValue"/>
+			<xs:element ref="CGI_NumericRange"/>
+		</xs:choice>
+		<xs:attributeGroup ref="RichPropertyAttributeGroup"/>
+		<xs:attribute name="unionSemantics">
+			<xs:simpleType>
+				<xs:restriction base="xs:string">
+					<xs:enumeration value="value"/>
+					<xs:enumeration value="range"/>
+				</xs:restriction>
+			</xs:simpleType>
+		</xs:attribute>
+	</xs:complexType>
+	<!--=======================-->
+	<xs:complexType name="MappedFeatureType">
+		<xs:complexContent>
+			<xs:extension base="gml:AbstractFeatureType">
+				<xs:sequence>
+					<xs:element name="shape" type="GeometryPropertyType"/>
+					<xs:element name="classification" type="GeologicFeaturePropertyType"/>
+					<xs:element name="metadata" type="MappedFeatureMetadataPropertyType"/>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:element name="MappedFeature" type="MappedFeatureType" substitutionGroup="gml:_Feature"/>
+	<xs:complexType name="MappedFeaturePropertyType">
+		<xs:sequence minOccurs="0">
+			<xs:element ref="MappedFeature"/>
+		</xs:sequence>
+		<xs:attributeGroup ref="RichPropertyAttributeGroup"/>
+	</xs:complexType>
+	<!--=======================-->
+	<xs:complexType name="GeometryPropertyType">
+		<xs:sequence minOccurs="0">
+			<xs:element ref="gml:_Geometry"/>
+		</xs:sequence>
+		<xs:attributeGroup ref="RichPropertyAttributeGroup"/>
+	</xs:complexType>
+	<xs:complexType name="GeologicFeaturePropertyType">
+		<xs:sequence minOccurs="0">
+			<xs:element ref="GeologicFeature"/>
+		</xs:sequence>
+		<xs:attributeGroup ref="RichPropertyAttributeGroup"/>
+	</xs:complexType>
+	<xs:complexType name="GeologicFeatureType" abstract="true">
+		<xs:complexContent>
+			<xs:extension base="gml:AbstractFeatureType">
+				<xs:sequence>
+					<xs:element name="purpose" type="ScopedNamePropertyType"/>
+					<xs:element name="age" type="GeologicAgePropertyType" maxOccurs="unbounded"/>
+					<xs:element name="metadata" type="GeologicFeatureMetadataPropertyType"/>
+					<xs:element name="occurence" type="MappedFeaturePropertyType" minOccurs="0" maxOccurs="unbounded"/>
+					<xs:element name="classifier" type="ControlledConceptPropertyType"/>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:element name="GeologicFeature" type="GeologicFeatureType" substitutionGroup="gml:_Feature"/>
+	<!--=======================-->
+	<xs:complexType name="GeologicStructureType">
+		<xs:complexContent>
+			<xs:extension base="GeologicFeatureType">
+				<xs:sequence>
+					<xs:element name="genesis" type="CGI_TermValuePropertyType"/>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:element name="GeologicStructure" type="GeologicStructureType" substitutionGroup="GeologicFeature"/>
+	<!--=======================-->
+	<xs:complexType name="GeologicUnitType">
+		<xs:complexContent>
+			<xs:extension base="GeologicFeatureType">
+				<xs:sequence>
+					<xs:element name="bodyMorphology" type="CGI_TermValuePropertyType" maxOccurs="unbounded"/>
+					<xs:element name="outcropCharacter" type="CGI_TermValuePropertyType" maxOccurs="unbounded"/>
+					<xs:element name="genesis" type="CGI_TermValuePropertyType" maxOccurs="unbounded"/>
+					<xs:element name="exposureColor" type="CGI_TermValuePropertyType" maxOccurs="unbounded"/>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:element name="GeologicUnit" type="GeologicUnitType" substitutionGroup="GeologicFeature"/>
+	<xs:complexType name="GeologicUnitPropertyType">
+		<xs:sequence minOccurs="0">
+			<xs:element ref="GeologicUnit"/>
+		</xs:sequence>
+		<xs:attributeGroup ref="RichPropertyAttributeGroup"/>
+	</xs:complexType>
+	<!--=======================-->
+	<xs:complexType name="FaultSystemType">
+		<xs:complexContent>
+			<xs:extension base="GeologicStructureType">
+				<xs:sequence>
+					<xs:element name="movementType" type="CGI_TermValuePropertyType"/>
+					<xs:element name="movementSense" type="CGI_TermValuePropertyType"/>
+					<xs:element name="displacement" type="DisplacementPropertyType" minOccurs="0"/>
+					<xs:element name="faultSystemMember" type="FaultSystemPropertyType" minOccurs="0" maxOccurs="unbounded"/>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:element name="FaultSystem" type="FaultSystemType" substitutionGroup="GeologicStructure"/>
+	<xs:complexType name="FaultSystemPropertyType">
+		<xs:sequence minOccurs="0">
+			<xs:element ref="FaultSystem"/>
+		</xs:sequence>
+		<xs:attributeGroup ref="RichPropertyAttributeGroup"/>
+	</xs:complexType>
+	<!--=======================-->
+	<xs:complexType name="ContactType">
+		<xs:complexContent>
+			<xs:extension base="GeologicStructureType">
+				<xs:sequence>
+					<xs:element name="contactType" type="CGI_TermValuePropertyType"/>
+					<xs:element name="contactCharacter" type="CGI_TermValuePropertyType"/>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:element name="Contact" type="ContactType" substitutionGroup="GeologicStructure"/>
+	<!--=======================-->
+	<xs:complexType name="FaultType">
+		<xs:complexContent>
+			<xs:extension base="FaultSystemType">
+				<xs:sequence>
+					<xs:element name="segment" type="FaultPropertyType" minOccurs="0" maxOccurs="unbounded"/>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:element name="Fault" type="FaultType" substitutionGroup="FaultSystem"/>
+	<xs:complexType name="FaultPropertyType">
+		<xs:sequence minOccurs="0">
+			<xs:element ref="Fault"/>
+		</xs:sequence>
+		<xs:attributeGroup ref="RichPropertyAttributeGroup"/>
+	</xs:complexType>
+	<!--=======================-->
+	<xs:complexType name="GeologicObjectType" abstract="true">
+		<xs:complexContent>
+			<xs:extension base="gml:AbstractGMLType">
+				<xs:sequence>
+					<xs:element name="purpose" type="ScopedNamePropertyType"/>
+					<xs:element name="metadata" type="ObjectMetadataPropertyType"/>
+					<xs:element name="classifier" type="ControlledConceptPropertyType"/>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:element name="GeologicObject" type="GeologicObjectType" substitutionGroup="gml:_GML"/>
+	<!--=======================-->
+	<xs:complexType name="EarthMaterialType" abstract="true">
+		<xs:complexContent>
+			<xs:extension base="GeologicObjectType">
+				<xs:sequence>
+					<xs:element name="color" type="CGI_TermValuePropertyType"/>
+					<xs:element name="physicalProperty" type="CGI_PhysicalDescriptionPropertyType" minOccurs="0" maxOccurs="unbounded"/>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:element name="EarthMaterial" type="EarthMaterialType" substitutionGroup="GeologicObject"/>
+	<xs:complexType name="EarthMaterialPropertyType">
+		<xs:sequence minOccurs="0">
+			<xs:element ref="EarthMaterial"/>
+		</xs:sequence>
+		<xs:attributeGroup ref="RichPropertyAttributeGroup"/>
+	</xs:complexType>
+	<!--=======================-->
+	<xs:complexType name="CompoundMaterialType">
+		<xs:complexContent>
+			<xs:extension base="EarthMaterialType">
+				<xs:sequence>
+					<xs:element name="consolidationDeegree" type="CGI_TermValuePropertyType"/>
+					<xs:element name="metamorphicGrade" type="CGI_TermValuePropertyType"/>
+					<xs:element name="particleGeometry" type="CGI_PhysicalDescriptionPropertyType" maxOccurs="unbounded"/>
+					<xs:element name="fabric" type="CGI_TermValuePropertyType"/>
+					<xs:element name="composition" type="CGI_TermValuePropertyType"/>
+					<xs:element name="genesis" type="CGI_TermValuePropertyType"/>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:element name="CompoundMaterial" type="CompoundMaterialType" substitutionGroup="EarthMaterial"/>
+	<!--=======================-->
+	<xs:complexType name="ControlledConceptType">
+		<xs:complexContent>
+			<xs:extension base="gml:DefinitionType">
+				<xs:sequence>
+					<xs:element name="preferedName" type="xs:string"/>
+					<xs:element name="prototype" type="GeologicEntityPropertyType"/>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:element name="ControlledConcept" type="ControlledConceptType" substitutionGroup="gml:Definition"/>
+	<xs:complexType name="ControlledConceptPropertyType">
+		<xs:sequence minOccurs="0">
+			<xs:element ref="ControlledConcept"/>
+		</xs:sequence>
+		<xs:attributeGroup ref="RichPropertyAttributeGroup"/>
+	</xs:complexType>
+	<xs:complexType name="VocabRelationType">
+		<xs:sequence>
+			<xs:element name="relationRole" type="ScopedNamePropertyType"/>
+			<xs:element name="collection" type="GeologicVocabularyPropertyType"/>
+			<xs:element name="target" type="ControlledConceptPropertyType"/>
+			<xs:element name="source" type="ControlledConceptPropertyType"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:element name="VocabRelation" type="VocabRelationType"/>
+	<xs:complexType name="VocabRelationPropertyType">
+		<xs:sequence minOccurs="0">
+			<xs:element ref="VocabRelation"/>
+		</xs:sequence>
+		<xs:attributeGroup ref="RichPropertyAttributeGroup"/>
+	</xs:complexType>
+	<!--=======================-->
+	<xs:complexType name="GeologicEntityPropertyType">
+		<xs:choice>
+			<xs:element ref="GeologicFeature"/>
+			<xs:element ref="GeologicObject"/>
+		</xs:choice>
+		<xs:attributeGroup ref="RichPropertyAttributeGroup"/>
+		<xs:attribute name="unionSemantics">
+			<xs:simpleType>
+				<xs:restriction base="xs:string">
+					<xs:enumeration value="featureEntity"/>
+					<xs:enumeration value="objectEntity"/>
+				</xs:restriction>
+			</xs:simpleType>
+		</xs:attribute>
+	</xs:complexType>
+	<!--=======================-->
+	<xs:complexType name="GeologicVocabularyType">
+		<xs:complexContent>
+			<xs:extension base="gml:DictionaryType">
+				<xs:sequence>
+					<xs:element name="conceptMember" type="ControlledConceptPropertyType" maxOccurs="unbounded"/>
+					<xs:element name="member" type="VocabRelationPropertyType" minOccurs="0" maxOccurs="unbounded"/>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:element name="GeologicVocabulary" type="GeologicVocabularyType" substitutionGroup="gml:Dictionary"/>
+	<xs:complexType name="GeologicVocabularyPropertyType">
+		<xs:sequence minOccurs="0">
+			<xs:element ref="GeologicVocabulary"/>
+		</xs:sequence>
+		<xs:attributeGroup ref="RichPropertyAttributeGroup"/>
+	</xs:complexType>
+	<!--=======================-->
+	<xs:complexType name="ObjectMetadataType">
+		<xs:complexContent>
+			<xs:extension base="gml:AbstractMetaDataType">
+				<xs:sequence>
+					<xs:element name="sourceReference" type="xs:anyURI" maxOccurs="unbounded"/>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:element name="ObjectMetadata" type="ObjectMetadataType" substitutionGroup="gml:_MetaData"/>
+	<xs:complexType name="ObjectMetadataPropertyType">
+		<xs:sequence minOccurs="0">
+			<xs:element ref="ObjectMetadata"/>
+		</xs:sequence>
+		<xs:attributeGroup ref="RichPropertyAttributeGroup"/>
+	</xs:complexType>
+	<!--=======================-->
+	<xs:complexType name="MappedFeatureMetadataType">
+		<xs:complexContent>
+			<xs:extension base="ObjectMetadataPropertyType">
+				<xs:sequence>
+					<xs:element name="positionalAccuracy" type="CGI_ValuePropertyType"/>
+					<xs:element name="observationMethod" type="CGI_ValuePropertyType" maxOccurs="unbounded"/>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:element name="MappedFeatureMetadata" type="MappedFeatureMetadataType" substitutionGroup="ObjectMetadata"/>
+	<xs:complexType name="MappedFeatureMetadataPropertyType">
+		<xs:sequence minOccurs="0">
+			<xs:element ref="MappedFeatureMetadata"/>
+		</xs:sequence>
+		<xs:attributeGroup ref="RichPropertyAttributeGroup"/>
+	</xs:complexType>
+	<!--=======================-->
+	<xs:complexType name="GeologicFeatureMetadataType">
+		<xs:complexContent>
+			<xs:extension base="ObjectMetadataPropertyType">
+				<xs:sequence>
+					<xs:element name="thematicAccuracy" type="CGI_ValuePropertyType"/>
+					<xs:element name="observationMethod" type="CGI_ValuePropertyType" maxOccurs="unbounded"/>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:element name="GeologicFeatureMetadata" type="GeologicFeatureMetadataType" substitutionGroup="ObjectMetadata"/>
+	<xs:complexType name="GeologicFeatureMetadataPropertyType">
+		<xs:sequence minOccurs="0">
+			<xs:element ref="GeologicFeatureMetadata"/>
+		</xs:sequence>
+		<xs:attributeGroup ref="RichPropertyAttributeGroup"/>
+	</xs:complexType>
+	<!--=======================-->
+	<xs:complexType name="DatasetMetadataType">
+		<xs:complexContent>
+			<xs:extension base="gml:AbstractMetaDataType"/>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:element name="DatasetMetadata" type="DatasetMetadataType" substitutionGroup="gml:_MetaData"/>
+	<!--=======================-->
+	<xs:complexType name="GeologicFeatureRelationType">
+		<xs:complexContent>
+			<xs:extension base="gml:AbstractGMLType">
+				<xs:sequence>
+					<xs:element name="target" type="GeologicFeaturePropertyType"/>
+					<xs:element name="source" type="GeologicFeaturePropertyType"/>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:element name="GeologicFeatureRelation" type="GeologicFeatureRelationType" substitutionGroup="gml:_GML"/>
+	<!--=======================-->
+	<xs:complexType name="CompositionPartType">
+		<xs:sequence>
+			<xs:element name="role" type="ScopedNamePropertyType"/>
+			<xs:element name="proportion" type="CGI_ValuePropertyType"/>
+			<xs:element name="material" type="EarthMaterialPropertyType"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:element name="CompositionPart">
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="CompositionPartType"/>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+	<xs:complexType name="CompositionPropertyType">
+		<xs:sequence minOccurs="0">
+			<xs:element ref="CompositionPart"/>
+		</xs:sequence>
+		<xs:attributeGroup ref="RichPropertyAttributeGroup"/>
+	</xs:complexType>
+	<!--=======================-->
+	<xs:complexType name="GeologicUnitPartType">
+		<xs:sequence>
+			<xs:element name="role" type="ScopedNamePropertyType"/>
+			<xs:element name="proportion" type="CGI_ValuePropertyType"/>
+			<xs:element name="partOf" type="GeologicUnitPropertyType"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:element name="GeologicUnitPart" type="GeologicUnitPartType"/>
+	<xs:complexType name="GeologicUnitPartPropertyType">
+		<xs:sequence minOccurs="0">
+			<xs:element name="unit" type="GeologicUnitPropertyType"/>
+		</xs:sequence>
+		<xs:attributeGroup ref="RichPropertyAttributeGroup"/>
+	</xs:complexType>
+	<!--=======================-->
+	<xs:complexType name="LithologicUnitType">
+		<xs:complexContent>
+			<xs:extension base="GeologicUnitType">
+				<xs:sequence>
+					<xs:element name="rank" type="ScopedNamePropertyType"/>
+					<xs:element name="composition" type="CGI_TermValuePropertyType" maxOccurs="unbounded"/>
+					<xs:element name="weatheringCharacter" type="CGI_TermValuePropertyType" maxOccurs="unbounded"/>
+					<xs:element name="structurePresent" type="CGI_TermValuePropertyType" minOccurs="0" maxOccurs="unbounded"/>
+					<xs:element name="metamorphicGrade" type="CGI_TermValuePropertyType" minOccurs="0" maxOccurs="unbounded"/>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:element name="LithologicUnit" type="LithologicUnitType" substitutionGroup="GeologicUnit"/>
+	<!--=======================-->
+	<xs:complexType name="LithoStratigraphicUnitType">
+		<xs:complexContent>
+			<xs:extension base="LithologicUnitType">
+				<xs:sequence>
+					<xs:element name="unitThickness" type="CGI_NumericPropertyType" maxOccurs="unbounded"/>
+					<xs:element name="beddingStyle" type="CGI_TermValuePropertyType" maxOccurs="unbounded"/>
+					<xs:element name="beddingPattern" type="CGI_TermValuePropertyType" maxOccurs="unbounded"/>
+					<xs:element name="beddingThickness" type="CGI_ValuePropertyType" maxOccurs="unbounded"/>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:element name="LithoStratigraphicUnit" type="LithoStratigraphicUnitType" substitutionGroup="LithologicUnit"/>
+	<!--=======================-->
+	<xs:complexType name="LithodemicUnitType">
+		<xs:complexContent>
+			<xs:extension base="LithologicUnitType"/>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:element name="LithodemicUnit" type="LithodemicUnitType" substitutionGroup="LithologicUnit"/>
+</xs:schema>
