@@ -1,0 +1,684 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!-- IUGS/CGI schema, ver. 1.0, 9/12/2005 -->
+<!-- Contains the concepts (classes), their inheritance, and relations from the -->
+<!-- GeoSciML Testbed-2 Model, ver. 1.0 -->
+<schema xmlns:gml="http://www.opengis.net/gml" xmlns="http://www.w3.org/2001/XMLSchema" xmlns:gsml="http://www.cgi-iugs.org/xml/GeoSciML/1.0" targetNamespace="http://www.cgi-iugs.org/xml/GeoSciML/1.0" elementFormDefault="qualified" attributeFormDefault="unqualified" version="1.0.0">
+	<import namespace="http://www.opengis.net/gml" schemaLocation="http://schemas.opengis.net/gml/3.1.1/base/gml.xsd"/>
+	<!--=======================-->
+	<complexType name="GsmlType">
+		<annotation>
+			<documentation>Collection of Geologic Features and Objects</documentation>
+		</annotation>
+		<complexContent>
+			<extension base="gml:FeatureCollectionType">
+				<sequence>
+					<element ref="gsml:geometryMember" minOccurs="0" maxOccurs="unbounded"/>
+					<element ref="gsml:vocabularyMember" minOccurs="0" maxOccurs="unbounded"/>
+					<element ref="gsml:geologicObjectMember" minOccurs="0" maxOccurs="unbounded"/>
+				</sequence>
+			</extension>
+		</complexContent>
+	</complexType>
+	<element name="Gsml" type="gsml:GsmlType" substitutionGroup="gml:FeatureCollection"/>
+	<!--=======================-->
+	<complexType name="GeometryMemberPropertyType">
+		<sequence>
+			<element ref="gml:_Geometry" minOccurs="0"/>
+		</sequence>
+		<attributeGroup ref="gml:AssociationAttributeGroup"/>
+	</complexType>
+	<element name="geometryMember" type="gsml:GeometryMemberPropertyType"/>
+	<!--=======================-->
+	<complexType name="VocabularyMemberPropertyType">
+		<sequence>
+			<element ref="gsml:GeologicVocabulary" minOccurs="0"/>
+		</sequence>
+		<attributeGroup ref="gml:AssociationAttributeGroup"/>
+	</complexType>
+	<element name="vocabularyMember" type="gsml:VocabularyMemberPropertyType"/>
+	<!--=======================-->
+	<complexType name="GeologicObjectMemberPropertyType">
+		<sequence>
+			<element ref="gsml:GeologicObject" minOccurs="0"/>
+		</sequence>
+		<attributeGroup ref="gml:AssociationAttributeGroup"/>
+	</complexType>
+	<element name="geologicObjectMember" type="gsml:GeologicObjectMemberPropertyType"/>
+	<!--=======================-->
+	<attributeGroup name="RichPropertyAttributeGroup">
+		<attributeGroup ref="gml:AssociationAttributeGroup"/>
+		<attribute ref="gsml:attributeProperty" use="optional"/>
+	</attributeGroup>
+	<attribute name="attributeProperty" type="anyURI"/>
+	<!--=======================-->
+	<complexType name="CGI_ValueType" abstract="true">
+		<sequence>
+			<element name="qualifer" type="gsml:QualifierPropertyType" minOccurs="0"/>
+		</sequence>
+	</complexType>
+	<element name="CGI_Value" type="gsml:CGI_ValueType"/>
+	<!--=======================-->
+	<simpleType name="ValueQualifierCodeType">
+		<restriction base="string">
+			<enumeration value="never"/>
+			<enumeration value="sometimes"/>
+			<enumeration value="common"/>
+			<enumeration value="always"/>
+			<enumeration value="greaterThan"/>
+			<enumeration value="lessThan"/>
+			<enumeration value="equalTo"/>
+			<enumeration value="approximate"/>
+		</restriction>
+	</simpleType>
+	<element name="ValueQualiferCode" type="gsml:ValueQualifierCodeType"/>
+	<!--=======================-->
+	<complexType name="QualifierPropertyType">
+		<sequence minOccurs="0">
+			<element ref="gsml:ValueQualiferCode"/>
+		</sequence>
+		<attributeGroup ref="gsml:RichPropertyAttributeGroup"/>
+	</complexType>
+	<!--=======================-->
+	<complexType name="ScopedNameType">
+		<simpleContent>
+			<extension base="string">
+				<attribute name="codeBase" type="anyURI" use="required"/>
+			</extension>
+		</simpleContent>
+	</complexType>
+	<element name="ScopedName" type="gsml:ScopedNameType"/>
+	<!--=======================-->
+	<complexType name="ScopedNamePropertyType">
+		<sequence minOccurs="0">
+			<element ref="gsml:ScopedName"/>
+		</sequence>
+		<attributeGroup ref="gsml:RichPropertyAttributeGroup"/>
+	</complexType>
+	<!--=======================-->
+	<complexType name="CGI_PropertyDescriptionType">
+		<sequence>
+			<element name="property" type="gsml:ScopedNamePropertyType"/>
+			<element name="value" type="gsml:CGI_ValuePropertyType"/>
+		</sequence>
+	</complexType>
+	<element name="CGI_PropertyDescription" type="gsml:CGI_PhysicalDescriptionPropertyType"/>
+	<!--=======================-->
+	<complexType name="DisplacementType">
+		<sequence>
+			<element name="displacementMagnitude" type="gsml:CGI_NumericPropertyType"/>
+			<element name="hangingWallDirection" type="gsml:CGI_NumericPropertyType"/>
+			<element name="displacementDirection" type="gsml:CGI_NumericPropertyType"/>
+		</sequence>
+	</complexType>
+	<element name="Displacement" type="gsml:DisplacementType"/>
+	<!--=======================-->
+	<complexType name="DisplacementPropertyType">
+		<sequence minOccurs="0">
+			<element ref="gsml:Displacement"/>
+		</sequence>
+		<attributeGroup ref="gsml:RichPropertyAttributeGroup"/>
+	</complexType>
+	<!--=======================-->
+	<complexType name="GeologicAgeType">
+		<sequence>
+			<element name="value" type="gsml:CGI_ValuePropertyType"/>
+			<element name="event" type="gsml:CGI_TermValuePropertyType"/>
+		</sequence>
+	</complexType>
+	<element name="GeologicAge" type="gsml:GeologicAgeType"/>
+	<!--=======================-->
+	<complexType name="GeologicAgePropertyType">
+		<sequence minOccurs="0">
+			<element ref="gsml:GeologicAge"/>
+		</sequence>
+		<attributeGroup ref="gsml:RichPropertyAttributeGroup"/>
+	</complexType>
+	<!--=======================-->
+	<complexType name="CGI_PrimitiveValueType" abstract="true">
+		<complexContent>
+			<extension base="gsml:CGI_ValueType"/>
+		</complexContent>
+	</complexType>
+	<element name="CGI_PrimitiveValue" type="gsml:CGI_PrimitiveValueType" substitutionGroup="gsml:CGI_Value"/>
+	<!--=======================-->
+	<complexType name="MeasurePropertyType">
+		<sequence minOccurs="0">
+			<element ref="gml:measure"/>
+		</sequence>
+		<attributeGroup ref="gsml:RichPropertyAttributeGroup"/>
+	</complexType>
+	<!--=======================-->
+	<complexType name="CGI_NumericValueType">
+		<complexContent>
+			<extension base="gsml:CGI_PrimitiveValueType">
+				<sequence>
+					<element name="principalValue" type="gsml:MeasurePropertyType"/>
+					<element name="plusDelta" type="gsml:MeasurePropertyType"/>
+					<element name="minusDelta" type="gsml:MeasurePropertyType"/>
+				</sequence>
+			</extension>
+		</complexContent>
+	</complexType>
+	<element name="CGI_NumericValue" type="gsml:CGI_NumericValueType" substitutionGroup="gsml:CGI_PrimitiveValue"/>
+	<!--=======================-->
+	<complexType name="CGI_TermValueType">
+		<complexContent>
+			<extension base="gsml:CGI_PrimitiveValueType">
+				<sequence>
+					<element name="value" type="gsml:ScopedNamePropertyType"/>
+				</sequence>
+			</extension>
+		</complexContent>
+	</complexType>
+	<element name="CGI_TermValue" type="gsml:CGI_TermValueType" substitutionGroup="gsml:CGI_PrimitiveValue"/>
+	<!--=======================-->
+	<complexType name="CGI_NumericValuePropertyType">
+		<sequence minOccurs="0">
+			<element ref="gsml:CGI_NumericValue"/>
+		</sequence>
+		<attributeGroup ref="gsml:RichPropertyAttributeGroup"/>
+	</complexType>
+	<!--=======================-->
+	<complexType name="CGI_TermValuePropertyType">
+		<sequence minOccurs="0">
+			<element ref="gsml:CGI_TermValue"/>
+		</sequence>
+		<attributeGroup ref="gsml:RichPropertyAttributeGroup"/>
+	</complexType>
+	<!--=======================-->
+	<complexType name="CGI_PrimitiveValuePropertyType">
+		<sequence minOccurs="0">
+			<element ref="gsml:CGI_PrimitiveValue"/>
+		</sequence>
+		<attributeGroup ref="gsml:RichPropertyAttributeGroup"/>
+	</complexType>
+	<!--=======================-->
+	<complexType name="CGI_ValuePropertyType">
+		<sequence minOccurs="0">
+			<element ref="gsml:CGI_Value"/>
+		</sequence>
+		<attributeGroup ref="gsml:RichPropertyAttributeGroup"/>
+	</complexType>
+	<!--=======================-->
+	<complexType name="CGI_PhysicalDescriptionPropertyType">
+		<sequence minOccurs="0">
+			<element name="CGI_PhysicalProperty"/>
+		</sequence>
+		<attributeGroup ref="gsml:RichPropertyAttributeGroup"/>
+	</complexType>
+	<!--=======================-->
+	<complexType name="CGI_RangeType">
+		<complexContent>
+			<extension base="gsml:CGI_ValueType">
+				<sequence>
+					<element name="lower" type="gsml:CGI_PrimitiveValuePropertyType"/>
+					<element name="upper" type="gsml:CGI_PrimitiveValuePropertyType"/>
+				</sequence>
+			</extension>
+		</complexContent>
+	</complexType>
+	<element name="CGI_Range" type="gsml:CGI_RangeType" substitutionGroup="gsml:CGI_Value"/>
+	<!--=======================-->
+	<complexType name="CGI_NumericRangeType">
+		<complexContent>
+			<extension base="gsml:CGI_ValueType">
+				<sequence>
+					<element name="lower" type="gsml:CGI_NumericValuePropertyType"/>
+					<element name="upper" type="gsml:CGI_NumericValuePropertyType"/>
+				</sequence>
+			</extension>
+		</complexContent>
+	</complexType>
+	<element name="CGI_NumericRange" type="gsml:CGI_NumericRangeType" substitutionGroup="gsml:CGI_Value"/>
+	<!--=======================-->
+	<complexType name="CGI_TermRangeType">
+		<complexContent>
+			<extension base="gsml:CGI_ValueType">
+				<sequence>
+					<element name="lower" type="gsml:CGI_TermValuePropertyType"/>
+					<element name="upper" type="gsml:CGI_TermValuePropertyType"/>
+				</sequence>
+			</extension>
+		</complexContent>
+	</complexType>
+	<element name="CGI_TermRange" type="gsml:CGI_TermRangeType" substitutionGroup="gsml:CGI_Value"/>
+	<!--=======================-->
+	<complexType name="CGI_TermPropertyType">
+		<choice minOccurs="0">
+			<element ref="gsml:CGI_TermValue"/>
+			<element ref="gsml:CGI_TermRange"/>
+		</choice>
+		<attributeGroup ref="gsml:RichPropertyAttributeGroup"/>
+		<attribute name="unionSemantics">
+			<simpleType>
+				<restriction base="string">
+					<enumeration value="value"/>
+					<enumeration value="range"/>
+				</restriction>
+			</simpleType>
+		</attribute>
+	</complexType>
+	<!--=======================-->
+	<complexType name="CGI_NumericPropertyType">
+		<choice minOccurs="0">
+			<element ref="gsml:CGI_NumericValue"/>
+			<element ref="gsml:CGI_NumericRange"/>
+		</choice>
+		<attributeGroup ref="gsml:RichPropertyAttributeGroup"/>
+		<attribute name="unionSemantics">
+			<simpleType>
+				<restriction base="string">
+					<enumeration value="value"/>
+					<enumeration value="range"/>
+				</restriction>
+			</simpleType>
+		</attribute>
+	</complexType>
+	<!--=======================-->
+	<complexType name="MappedFeatureType">
+		<complexContent>
+			<extension base="gml:AbstractFeatureType">
+				<sequence>
+					<element name="shape" type="gsml:GeometryPropertyType"/>
+					<element name="classification" type="gsml:GeologicFeaturePropertyType"/>
+					<element name="metadata" type="gsml:MappedFeatureMetadataPropertyType"/>
+				</sequence>
+			</extension>
+		</complexContent>
+	</complexType>
+	<element name="MappedFeature" type="gsml:MappedFeatureType" substitutionGroup="gml:_Feature"/>
+	<!--=======================-->
+	<complexType name="MappedFeaturePropertyType">
+		<sequence minOccurs="0">
+			<element ref="gsml:MappedFeature"/>
+		</sequence>
+		<attributeGroup ref="gsml:RichPropertyAttributeGroup"/>
+	</complexType>
+	<!--=======================-->
+	<complexType name="GeometryPropertyType">
+		<sequence minOccurs="0">
+			<element ref="gml:_Geometry"/>
+		</sequence>
+		<attributeGroup ref="gsml:RichPropertyAttributeGroup"/>
+	</complexType>
+	<!--=======================-->
+	<complexType name="GeologicFeaturePropertyType">
+		<sequence minOccurs="0">
+			<element ref="gsml:GeologicFeature"/>
+		</sequence>
+		<attributeGroup ref="gsml:RichPropertyAttributeGroup"/>
+	</complexType>
+	<!--=======================-->
+	<complexType name="GeologicFeatureType" abstract="true">
+		<complexContent>
+			<extension base="gml:AbstractFeatureType">
+				<sequence>
+					<element name="purpose" type="gsml:ScopedNamePropertyType"/>
+					<element name="age" type="gsml:GeologicAgePropertyType" maxOccurs="unbounded"/>
+					<element name="metadata" type="gsml:GeologicFeatureMetadataPropertyType"/>
+					<element name="occurrence" type="gsml:MappedFeaturePropertyType" minOccurs="0" maxOccurs="unbounded"/>
+					<element name="classifier" type="gsml:ControlledConceptPropertyType"/>
+				</sequence>
+			</extension>
+		</complexContent>
+	</complexType>
+	<element name="GeologicFeature" type="gsml:GeologicFeatureType" substitutionGroup="gml:_Feature"/>
+	<!--=======================-->
+	<complexType name="GeologicStructureType">
+		<complexContent>
+			<extension base="gsml:GeologicFeatureType">
+				<sequence>
+					<element name="genesis" type="gsml:CGI_TermValuePropertyType"/>
+				</sequence>
+			</extension>
+		</complexContent>
+	</complexType>
+	<element name="GeologicStructure" type="gsml:GeologicStructureType" substitutionGroup="gsml:GeologicFeature"/>
+	<!--=======================-->
+	<complexType name="GeologicUnitType">
+		<complexContent>
+			<extension base="gsml:GeologicFeatureType">
+				<sequence>
+					<element name="partOf" type="gsml:GeologicUnitPartPropertyType" minOccurs="0" maxOccurs="unbounded"/>
+					<element name="bodyMorphology" type="gsml:CGI_TermValuePropertyType" maxOccurs="unbounded"/>
+					<element name="outcropCharacter" type="gsml:CGI_TermValuePropertyType" maxOccurs="unbounded"/>
+					<element name="genesis" type="gsml:CGI_TermValuePropertyType" maxOccurs="unbounded"/>
+					<element name="exposureColor" type="gsml:CGI_TermValuePropertyType" maxOccurs="unbounded"/>
+					<element name="composition" type="gsml:CompositionPartType" minOccurs="0" maxOccurs="unbounded"/>
+				</sequence>
+			</extension>
+		</complexContent>
+	</complexType>
+	<element name="GeologicUnit" type="gsml:GeologicUnitType" substitutionGroup="gsml:GeologicFeature"/>
+	<!--=======================-->
+	<complexType name="GeologicUnitPropertyType">
+		<sequence minOccurs="0">
+			<element ref="gsml:GeologicUnit"/>
+		</sequence>
+		<attributeGroup ref="gsml:RichPropertyAttributeGroup"/>
+	</complexType>
+	<!--=======================-->
+	<complexType name="FaultSystemType">
+		<complexContent>
+			<extension base="gsml:GeologicStructureType">
+				<sequence>
+					<element name="movementType" type="gsml:CGI_TermValuePropertyType"/>
+					<element name="movementSense" type="gsml:CGI_TermValuePropertyType"/>
+					<element name="displacement" type="gsml:DisplacementPropertyType" minOccurs="0"/>
+					<element name="faultSystemMember" type="gsml:FaultSystemPropertyType" minOccurs="0" maxOccurs="unbounded"/>
+				</sequence>
+			</extension>
+		</complexContent>
+	</complexType>
+	<element name="FaultSystem" type="gsml:FaultSystemType" substitutionGroup="gsml:GeologicStructure"/>
+	<!--=======================-->
+	<complexType name="FaultSystemPropertyType">
+		<sequence minOccurs="0">
+			<element ref="gsml:FaultSystem"/>
+		</sequence>
+		<attributeGroup ref="gsml:RichPropertyAttributeGroup"/>
+	</complexType>
+	<!--=======================-->
+	<complexType name="ContactType">
+		<complexContent>
+			<extension base="gsml:GeologicStructureType">
+				<sequence>
+					<element name="contactType" type="gsml:CGI_TermValuePropertyType"/>
+					<element name="contactCharacter" type="gsml:CGI_TermValuePropertyType"/>
+				</sequence>
+			</extension>
+		</complexContent>
+	</complexType>
+	<element name="Contact" type="gsml:ContactType" substitutionGroup="gsml:GeologicStructure"/>
+	<!--=======================-->
+	<complexType name="FaultType">
+		<complexContent>
+			<extension base="gsml:FaultSystemType">
+				<sequence>
+					<element name="segment" type="gsml:FaultPropertyType" minOccurs="0" maxOccurs="unbounded"/>
+				</sequence>
+			</extension>
+		</complexContent>
+	</complexType>
+	<element name="Fault" type="gsml:FaultType" substitutionGroup="gsml:FaultSystem"/>
+	<!--=======================-->
+	<complexType name="FaultPropertyType">
+		<sequence minOccurs="0">
+			<element ref="gsml:Fault"/>
+		</sequence>
+		<attributeGroup ref="gsml:RichPropertyAttributeGroup"/>
+	</complexType>
+	<!--=======================-->
+	<complexType name="GeologicObjectType" abstract="true">
+		<complexContent>
+			<extension base="gml:AbstractGMLType">
+				<sequence>
+					<element name="purpose" type="gsml:ScopedNamePropertyType" minOccurs="0"/>
+					<element name="metadata" type="gsml:ObjectMetadataPropertyType" minOccurs="0"/>
+					<element name="classifier" type="gsml:ControlledConceptPropertyType" minOccurs="0"/>
+				</sequence>
+			</extension>
+		</complexContent>
+	</complexType>
+	<element name="GeologicObject" type="gsml:GeologicObjectType" substitutionGroup="gml:_GML"/>
+	<!--=======================-->
+	<complexType name="EarthMaterialType" abstract="true">
+		<complexContent>
+			<extension base="gsml:GeologicObjectType">
+				<sequence>
+					<element name="color" type="gsml:CGI_TermValuePropertyType" minOccurs="0"/>
+					<element name="physicalProperty" type="gsml:CGI_PhysicalDescriptionPropertyType" minOccurs="0" maxOccurs="unbounded"/>
+				</sequence>
+			</extension>
+		</complexContent>
+	</complexType>
+	<element name="EarthMaterial" type="gsml:EarthMaterialType" substitutionGroup="gsml:GeologicObject"/>
+	<!--=======================-->
+	<complexType name="EarthMaterialPropertyType">
+		<sequence minOccurs="0">
+			<element ref="gsml:EarthMaterial"/>
+		</sequence>
+		<attributeGroup ref="gsml:RichPropertyAttributeGroup"/>
+	</complexType>
+	<!--=======================-->
+	<complexType name="CompoundMaterialType">
+		<complexContent>
+			<extension base="gsml:EarthMaterialType">
+				<sequence>
+					<element name="consolidationDegree" type="gsml:CGI_TermValuePropertyType"/>
+					<element name="metamorphicGrade" type="gsml:CGI_TermValuePropertyType" minOccurs="0"/>
+					<element name="particleGeometry" type="gsml:CGI_PhysicalDescriptionPropertyType" minOccurs="0" maxOccurs="unbounded"/>
+					<element name="fabric" type="gsml:CGI_TermValuePropertyType" minOccurs="0" maxOccurs="unbounded"/>
+					<element name="composition" type="gsml:CGI_TermValuePropertyType" minOccurs="0"/>
+					<element name="genesis" type="gsml:CGI_TermValuePropertyType" minOccurs="0"/>
+				</sequence>
+			</extension>
+		</complexContent>
+	</complexType>
+	<element name="CompoundMaterial" type="gsml:CompoundMaterialType" substitutionGroup="gsml:EarthMaterial"/>
+	<!--=======================-->
+	<complexType name="ControlledConceptType">
+		<complexContent>
+			<extension base="gml:DefinitionType">
+				<sequence>
+					<element name="preferredName" type="string"/>
+					<element name="prototype" type="gsml:GeologicEntityPropertyType"/>
+				</sequence>
+			</extension>
+		</complexContent>
+	</complexType>
+	<element name="ControlledConcept" type="gsml:ControlledConceptType" substitutionGroup="gml:Definition"/>
+	<!--=======================-->
+	<complexType name="ControlledConceptPropertyType">
+		<sequence minOccurs="0">
+			<element ref="gsml:ControlledConcept"/>
+		</sequence>
+		<attributeGroup ref="gsml:RichPropertyAttributeGroup"/>
+	</complexType>
+	<!--=======================-->
+	<complexType name="VocabRelationType">
+		<complexContent>
+			<extension base="gsml:GeologicObjectType">
+				<sequence>
+					<element name="relationRole" type="gsml:ScopedNamePropertyType"/>
+					<element name="collection" type="gsml:GeologicVocabularyPropertyType" minOccurs="0"/>
+					<element name="target" type="gsml:ControlledConceptPropertyType"/>
+					<element name="source" type="gsml:ControlledConceptPropertyType"/>
+				</sequence>
+			</extension>
+		</complexContent>
+	</complexType>
+	<element name="VocabRelation" type="gsml:VocabRelationType" substitutionGroup="gsml:GeologicObject"/>
+	<!--=======================-->
+	<complexType name="VocabRelationPropertyType">
+		<sequence minOccurs="0">
+			<element ref="gsml:VocabRelation"/>
+		</sequence>
+		<attributeGroup ref="gsml:RichPropertyAttributeGroup"/>
+	</complexType>
+	<!--=======================-->
+	<complexType name="GeologicEntityPropertyType">
+		<choice>
+			<element ref="gsml:GeologicFeature" minOccurs="0"/>
+			<element ref="gsml:GeologicObject" minOccurs="0"/>
+		</choice>
+		<attributeGroup ref="gsml:RichPropertyAttributeGroup"/>
+		<attribute name="unionSemantics">
+			<simpleType>
+				<restriction base="string">
+					<enumeration value="featureEntity"/>
+					<enumeration value="objectEntity"/>
+				</restriction>
+			</simpleType>
+		</attribute>
+	</complexType>
+	<!--=======================-->
+	<complexType name="GeologicVocabularyType">
+		<complexContent>
+			<extension base="gml:DictionaryType">
+				<sequence>
+					<element name="conceptMember" type="gsml:ControlledConceptPropertyType" maxOccurs="unbounded"/>
+					<element name="member" type="gsml:VocabRelationPropertyType" minOccurs="0" maxOccurs="unbounded"/>
+				</sequence>
+			</extension>
+		</complexContent>
+	</complexType>
+	<element name="GeologicVocabulary" type="gsml:GeologicVocabularyType" substitutionGroup="gml:Dictionary"/>
+	<!--=======================-->
+	<complexType name="GeologicVocabularyPropertyType">
+		<sequence minOccurs="0">
+			<element ref="gsml:GeologicVocabulary"/>
+		</sequence>
+		<attributeGroup ref="gsml:RichPropertyAttributeGroup"/>
+	</complexType>
+	<!--=======================-->
+	<complexType name="ObjectMetadataType">
+		<complexContent>
+			<extension base="gml:AbstractMetaDataType">
+				<sequence>
+					<element name="sourceReference" type="anyURI" maxOccurs="unbounded"/>
+				</sequence>
+			</extension>
+		</complexContent>
+	</complexType>
+	<element name="ObjectMetadata" type="gsml:ObjectMetadataType" substitutionGroup="gml:_MetaData"/>
+	<!--=======================-->
+	<complexType name="ObjectMetadataPropertyType">
+		<sequence minOccurs="0">
+			<element ref="gsml:ObjectMetadata"/>
+		</sequence>
+		<attributeGroup ref="gsml:RichPropertyAttributeGroup"/>
+	</complexType>
+	<!--=======================-->
+	<complexType name="MappedFeatureMetadataType">
+		<complexContent>
+			<extension base="gsml:ObjectMetadataPropertyType">
+				<sequence>
+					<element name="positionalAccuracy" type="gsml:CGI_ValuePropertyType"/>
+					<element name="observationMethod" type="gsml:CGI_ValuePropertyType" maxOccurs="unbounded"/>
+				</sequence>
+			</extension>
+		</complexContent>
+	</complexType>
+	<!--=======================-->
+	<element name="MappedFeatureMetadata" type="gsml:MappedFeatureMetadataType" substitutionGroup="gsml:ObjectMetadata"/>
+	<complexType name="MappedFeatureMetadataPropertyType">
+		<sequence minOccurs="0">
+			<element ref="gsml:MappedFeatureMetadata"/>
+		</sequence>
+		<attributeGroup ref="gsml:RichPropertyAttributeGroup"/>
+	</complexType>
+	<!--=======================-->
+	<complexType name="GeologicFeatureMetadataType">
+		<complexContent>
+			<extension base="gsml:ObjectMetadataPropertyType">
+				<sequence>
+					<element name="thematicAccuracy" type="gsml:CGI_ValuePropertyType"/>
+					<element name="observationMethod" type="gsml:CGI_ValuePropertyType" maxOccurs="unbounded"/>
+				</sequence>
+			</extension>
+		</complexContent>
+	</complexType>
+	<element name="GeologicFeatureMetadata" type="gsml:GeologicFeatureMetadataType" substitutionGroup="gsml:ObjectMetadata"/>
+	<!--=======================-->
+	<complexType name="GeologicFeatureMetadataPropertyType">
+		<sequence minOccurs="0">
+			<element ref="gsml:GeologicFeatureMetadata"/>
+		</sequence>
+		<attributeGroup ref="gsml:RichPropertyAttributeGroup"/>
+	</complexType>
+	<!--=======================-->
+	<complexType name="DatasetMetadataType">
+		<complexContent>
+			<extension base="gml:AbstractMetaDataType"/>
+		</complexContent>
+	</complexType>
+	<element name="DatasetMetadata" type="gsml:DatasetMetadataType" substitutionGroup="gml:_MetaData"/>
+	<!--=======================-->
+	<complexType name="GeologicFeatureRelationType">
+		<complexContent>
+			<extension base="gsml:GeologicObjectType">
+				<sequence>
+					<element name="role" type="gsml:ScopedNamePropertyType"/>
+					<element name="source" type="gsml:GeologicFeaturePropertyType"/>
+					<element name="target" type="gsml:GeologicFeaturePropertyType"/>
+				</sequence>
+			</extension>
+		</complexContent>
+	</complexType>
+	<element name="GeologicFeatureRelation" type="gsml:GeologicFeatureRelationType" substitutionGroup="gsml:GeologicObject"/>
+	<!--=======================-->
+	<complexType name="CompositionPartType">
+		<sequence>
+			<element name="role" type="gsml:ScopedNamePropertyType"/>
+			<element name="proportion" type="gsml:CGI_ValuePropertyType"/>
+			<element name="material" type="gsml:EarthMaterialPropertyType"/>
+		</sequence>
+	</complexType>
+	<element name="CompositionPart">
+		<complexType>
+			<complexContent>
+				<extension base="gsml:CompositionPartType"/>
+			</complexContent>
+		</complexType>
+	</element>
+	<!--=======================-->
+	<complexType name="CompositionPropertyType">
+		<sequence minOccurs="0">
+			<element ref="gsml:CompositionPart"/>
+		</sequence>
+		<attributeGroup ref="gsml:RichPropertyAttributeGroup"/>
+	</complexType>
+	<!--=======================-->
+	<complexType name="GeologicUnitPartType">
+		<sequence>
+			<element name="unit" type="gsml:GeologicUnitPropertyType"/>
+			<element name="role" type="gsml:ScopedNamePropertyType"/>
+			<element name="proportion" type="gsml:CGI_ValuePropertyType"/>
+		</sequence>
+	</complexType>
+	<element name="GeologicUnitPart" type="gsml:GeologicUnitPartType"/>
+	<!--=======================-->
+	<complexType name="GeologicUnitPartPropertyType">
+		<sequence minOccurs="0">
+			<element ref="gsml:GeologicUnitPart"/>
+		</sequence>
+		<attributeGroup ref="gsml:RichPropertyAttributeGroup"/>
+	</complexType>
+	<!--=======================-->
+	<complexType name="LithologicUnitType">
+		<complexContent>
+			<extension base="gsml:GeologicUnitType">
+				<sequence>
+					<element name="rank" type="gsml:ScopedNamePropertyType"/>
+					<element name="compositionClass" type="gsml:CGI_TermValuePropertyType" maxOccurs="unbounded"/>
+					<element name="weatheringCharacter" type="gsml:CGI_TermValuePropertyType" maxOccurs="unbounded"/>
+					<element name="structurePresent" type="gsml:CGI_TermValuePropertyType" minOccurs="0" maxOccurs="unbounded"/>
+					<element name="metamorphicGrade" type="gsml:CGI_TermValuePropertyType" minOccurs="0" maxOccurs="unbounded"/>
+				</sequence>
+			</extension>
+		</complexContent>
+	</complexType>
+	<element name="LithologicUnit" type="gsml:LithologicUnitType" substitutionGroup="gsml:GeologicUnit"/>
+	<!--=======================-->
+	<complexType name="LithoStratigraphicUnitType">
+		<complexContent>
+			<extension base="gsml:LithologicUnitType">
+				<sequence>
+					<element name="unitThickness" type="gsml:CGI_NumericPropertyType" maxOccurs="unbounded"/>
+					<element name="beddingStyle" type="gsml:CGI_TermValuePropertyType" maxOccurs="unbounded"/>
+					<element name="beddingPattern" type="gsml:CGI_TermValuePropertyType" maxOccurs="unbounded"/>
+					<element name="beddingThickness" type="gsml:CGI_ValuePropertyType" maxOccurs="unbounded"/>
+				</sequence>
+			</extension>
+		</complexContent>
+	</complexType>
+	<element name="LithoStratigraphicUnit" type="gsml:LithoStratigraphicUnitType" substitutionGroup="gsml:LithologicUnit"/>
+	<!--=======================-->
+	<complexType name="LithodemicUnitType">
+		<complexContent>
+			<extension base="gsml:LithologicUnitType"/>
+		</complexContent>
+	</complexType>
+	<element name="LithodemicUnit" type="gsml:LithodemicUnitType" substitutionGroup="gsml:LithologicUnit"/>
+</schema>
