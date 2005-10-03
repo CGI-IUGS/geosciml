@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!-- IUGS/CGI schema, ver. 1.0, 9/12/2005 -->
+<!-- Contains the concepts (classes), their inheritance, and relations from the -->
+<!-- GeoSciML Testbed-2 Model, ver. 1.0 -->
+<schema xmlns:gml="http://www.opengis.net/gml" xmlns="http://www.w3.org/2001/XMLSchema" xmlns:gsml="http://www.cgi-iugs.org/xml/GeoSciML/1.0" targetNamespace="http://www.cgi-iugs.org/xml/GeoSciML/1.0" elementFormDefault="qualified" attributeFormDefault="unqualified" version="1.0.0">
+	<annotation>
+		<documentation>collection.xsd
+Collection object for GeoSciML, allowing a group of related or dependent elements to be packaged in one document</documentation>
+	</annotation>
+	<!--=======================-->
+	<import namespace="http://www.opengis.net/gml" schemaLocation="http://schemas.opengis.net/gml/3.1.1/base/feature.xsd"/>
+	<!--=======================-->
+	<include schemaLocation="top.xsd"/>
+	<!--=======================-->
+	<complexType name="GsmlType">
+		<annotation>
+			<documentation>Collection of Geologic Features and Objects</documentation>
+		</annotation>
+		<complexContent>
+			<extension base="gml:FeatureCollectionType">
+				<sequence>
+					<element name="geometryMember" type="gml:GeometryPropertyType" minOccurs="0" maxOccurs="unbounded"/>
+					<element name="vocabularyMember" type="gsml:DictionaryPropertyType" minOccurs="0" maxOccurs="unbounded"/>
+					<element name="geologicObjectMember" type="gsml:GeologicObjectPropertyType" minOccurs="0" maxOccurs="unbounded"/>
+				</sequence>
+			</extension>
+		</complexContent>
+	</complexType>
+	<!-- ..................... -->
+	<element name="Gsml" type="gsml:GsmlType" substitutionGroup="gml:FeatureCollection"/>
+	<!--=======================-->
+	<complexType name="DictionaryPropertyType">
+		<sequence minOccurs="0">
+			<element ref="gml:Dictionary"/>
+		</sequence>
+		<attributeGroup ref="gml:AssociationAttributeGroup"/>
+	</complexType>
+	<!--=======================-->
+</schema>

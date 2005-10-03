@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!-- IUGS/CGI schema, ver. 1.0, 9/12/2005 -->
+<!-- Contains the concepts (classes), their inheritance, and relations from the -->
+<!-- GeoSciML Testbed-2 Model, ver. 1.0 -->
+<schema xmlns:gml="http://www.opengis.net/gml" xmlns="http://www.w3.org/2001/XMLSchema" xmlns:gsml="http://www.cgi-iugs.org/xml/GeoSciML/1.0" targetNamespace="http://www.cgi-iugs.org/xml/GeoSciML/1.0" elementFormDefault="qualified"
+        attributeFormDefault="unqualified" version="1.0.0">
+	<annotation>
+		<documentation>metadata.xsd
+Basic metadata components for GeoSciML
+covering 	dataset and object metadata</documentation>
+	</annotation>
+	<!--=======================-->
+	<import namespace="http://www.opengis.net/gml" schemaLocation="http://schemas.opengis.net/gml/3.1.1/base/feature.xsd"/>
+	<!--=======================-->
+	<include schemaLocation="CGI_Value.xsd"/>
+	<!--=======================-->
+	<complexType name="MetadataType">
+		<complexContent>
+			<extension base="gml:AbstractGMLType">
+				<sequence>
+					<element name="sourceReference" type="anyURI" maxOccurs="unbounded"/>
+				</sequence>
+			</extension>
+		</complexContent>
+	</complexType>
+	<!-- ..................... -->
+	<element name="Metadata" type="gsml:MetadataType" abstract="true" substitutionGroup="gml:_GML"/>
+	<!--=======================-->
+	<complexType name="ObjectMetadataType">
+		<complexContent>
+			<extension base="gsml:MetadataType">
+			</extension>
+		</complexContent>
+	</complexType>
+	<!-- ..................... -->
+	<element name="ObjectMetadata" type="gsml:ObjectMetadataType" substitutionGroup="gsml:Metadata"/>
+	<!-- ..................... -->
+	<complexType name="ObjectMetadataPropertyType">
+		<sequence minOccurs="0">
+			<element ref="gsml:ObjectMetadata"/>
+		</sequence>
+		<attributeGroup ref="gsml:RichPropertyAttributeGroup"/>
+	</complexType>
+	<!--=======================-->
+	<complexType name="MappedFeatureMetadataType">
+		<complexContent>
+			<extension base="gsml:ObjectMetadataType">
+				<sequence>
+					<element name="positionalAccuracy" type="gsml:CGI_ValuePropertyType"/>
+					<element name="observationMethod" type="gsml:CGI_ValuePropertyType" maxOccurs="unbounded"/>
+				</sequence>
+			</extension>
+		</complexContent>
+	</complexType>
+	<!-- ..................... -->
+	<element name="MappedFeatureMetadata" type="gsml:MappedFeatureMetadataType" substitutionGroup="gsml:ObjectMetadata"/>
+	<!-- ..................... -->
+	<complexType name="MappedFeatureMetadataPropertyType">
+		<sequence minOccurs="0">
+			<element ref="gsml:MappedFeatureMetadata"/>
+		</sequence>
+		<attributeGroup ref="gsml:RichPropertyAttributeGroup"/>
+	</complexType>
+	<!--=======================-->
+	<complexType name="GeologicFeatureMetadataType">
+		<complexContent>
+			<extension base="gsml:ObjectMetadataType">
+				<sequence>
+					<element name="thematicAccuracy" type="gsml:CGI_ValuePropertyType"/>
+					<element name="observationMethod" type="gsml:CGI_ValuePropertyType" maxOccurs="unbounded"/>
+				</sequence>
+			</extension>
+		</complexContent>
+	</complexType>
+	<!-- ..................... -->
+	<element name="GeologicFeatureMetadata" type="gsml:GeologicFeatureMetadataType" substitutionGroup="gsml:ObjectMetadata"/>
+	<!-- ..................... -->
+	<complexType name="GeologicFeatureMetadataPropertyType">
+		<sequence minOccurs="0">
+			<element ref="gsml:GeologicFeatureMetadata"/>
+		</sequence>
+		<attributeGroup ref="gsml:RichPropertyAttributeGroup"/>
+	</complexType>
+	<!--=======================-->
+	<complexType name="DatasetMetadataType">
+		<complexContent>
+			<extension base="gsml:MetadataType"/>
+		</complexContent>
+	</complexType>
+	<element name="DatasetMetadata" type="gsml:DatasetMetadataType" substitutionGroup="gsml:Metadata"/>
+	<!--=======================-->
+</schema>
