@@ -17,23 +17,51 @@ Collection object for GeoSciML, allowing a group of related or dependent element
       <documentation>Collection of Geologic Features and Objects</documentation>
     </annotation>
     <complexContent>
-      <extension base="gml:BagType">
+      <extension base="gml:AbstractGMLType">
         <sequence>
-          <element name="geometryMember" type="gml:GeometryPropertyType" minOccurs="0" maxOccurs="unbounded"/>
-          <element name="vocabularyMember" type="gsml:DictionaryPropertyType" minOccurs="0" maxOccurs="unbounded"/>
-          <element name="geologicObjectMember" type="gsml:GeologicObjectPropertyType" minOccurs="0" maxOccurs="unbounded"/>
-          <element name="geologicFeatureMember" type="gsml:GeologicFeaturePropertyType" minOccurs="0" maxOccurs="unbounded"/>
-          <element name="geologicPortrayalMember" type="gsml:MappedFeaturePropertyType" minOccurs="0" maxOccurs="unbounded"/>
+          <element name="geometryMember" type="gsml:GeometryMemberType" minOccurs="0" maxOccurs="unbounded"/>
+          <element name="vocabularyMember" type="gsml:DictionaryMemberType" minOccurs="0" maxOccurs="unbounded"/>
+          <element name="geologicObjectMember" type="gsml:GeologicObjectMemberType" minOccurs="0" maxOccurs="unbounded"/>
+          <element name="geologicFeatureMember" type="gsml:GeologicFeatureMemberType" minOccurs="0" maxOccurs="unbounded"/>
+          <element name="geologicPortrayalMember" type="gsml:MappedFeatureMemberType" minOccurs="0" maxOccurs="unbounded"/>
         </sequence>
       </extension>
     </complexContent>
   </complexType>
   <!-- ..................... -->
-  <element name="Gsml" type="gsml:GsmlType" substitutionGroup="gml:Bag"/>
+  <element name="Gsml" type="gsml:GsmlType" substitutionGroup="gml:_GML"/>
   <!--=======================-->
-  <complexType name="DictionaryPropertyType">
+  <complexType name="GeometryMemberType">
+    <sequence minOccurs="0">
+      <element ref="gml:_Geometry"/>
+    </sequence>
+    <attributeGroup ref="gml:AssociationAttributeGroup"/>
+  </complexType>
+  <!--=======================-->
+  <complexType name="DictionaryMemberType">
     <sequence minOccurs="0">
       <element ref="gml:Dictionary"/>
+    </sequence>
+    <attributeGroup ref="gml:AssociationAttributeGroup"/>
+  </complexType>
+  <!--=======================-->
+  <complexType name="GeologicObjectMemberType">
+    <sequence minOccurs="0">
+      <element ref="gsml:GeologicObject"/>
+    </sequence>
+    <attributeGroup ref="gml:AssociationAttributeGroup"/>
+  </complexType>
+  <!--=======================-->
+  <complexType name="GeologicFeatureMemberType">
+    <sequence minOccurs="0">
+      <element ref="gsml:GeologicFeature"/>
+    </sequence>
+    <attributeGroup ref="gml:AssociationAttributeGroup"/>
+  </complexType>
+  <!--=======================-->
+  <complexType name="MappedFeatureMemberType">
+    <sequence minOccurs="0">
+      <element ref="gsml:MappedFeature"/>
     </sequence>
     <attributeGroup ref="gml:AssociationAttributeGroup"/>
   </complexType>
