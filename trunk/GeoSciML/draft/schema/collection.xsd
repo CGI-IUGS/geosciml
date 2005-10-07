@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!-- IUGS/CGI schema, ver. 1.0, 9/12/2005 -->
+<!-- Contains the concepts (classes), their inheritance, and relations from the -->
+<!-- GeoSciML Testbed-2 Model, ver. 1.0 -->
+<schema targetNamespace="http://www.cgi-iugs.org/xml/GeoSciML/1.0" xmlns:gsml="http://www.cgi-iugs.org/xml/GeoSciML/1.0" xmlns="http://www.w3.org/2001/XMLSchema" xmlns:gml="http://www.opengis.net/gml" elementFormDefault="qualified" attributeFormDefault="unqualified" version="1.0.0">
+  <annotation>
+    <documentation>collection.xsd
+Collection object for GeoSciML, allowing a group of related or dependent elements to be packaged in one document</documentation>
+  </annotation>
+  <!--=======================-->
+  <import namespace="http://www.opengis.net/gml" schemaLocation="http://schemas.opengis.net/gml/3.1.1/base/feature.xsd"/>
+  <!--=======================-->
+  <include schemaLocation="top.xsd"/>
+  <!--=======================-->
+  <complexType name="GsmlType">
+    <annotation>
+      <documentation>Collection of Geologic Features and Objects</documentation>
+    </annotation>
+    <complexContent>
+      <extension base="gml:AbstractGMLType">
+        <sequence>
+          <element name="geometryMember" type="gsml:GeometryMemberType" minOccurs="0" maxOccurs="unbounded"/>
+          <element name="vocabularyMember" type="gsml:DictionaryMemberType" minOccurs="0" maxOccurs="unbounded"/>
+          <element name="geologicObjectMember" type="gsml:GeologicObjectMemberType" minOccurs="0" maxOccurs="unbounded"/>
+          <element name="geologicFeatureMember" type="gsml:GeologicFeatureMemberType" minOccurs="0" maxOccurs="unbounded"/>
+          <element name="geologicPortrayalMember" type="gsml:MappedFeatureMemberType" minOccurs="0" maxOccurs="unbounded"/>
+        </sequence>
+      </extension>
+    </complexContent>
+  </complexType>
+  <!-- ..................... -->
+  <element name="Gsml" type="gsml:GsmlType" substitutionGroup="gml:_GML"/>
+  <!--=======================-->
+  <complexType name="GeometryMemberType">
+    <sequence minOccurs="0">
+      <element ref="gml:_Geometry"/>
+    </sequence>
+    <attributeGroup ref="gml:AssociationAttributeGroup"/>
+  </complexType>
+  <!--=======================-->
+  <complexType name="DictionaryMemberType">
+    <sequence minOccurs="0">
+      <element ref="gml:Dictionary"/>
+    </sequence>
+    <attributeGroup ref="gml:AssociationAttributeGroup"/>
+  </complexType>
+  <!--=======================-->
+  <complexType name="GeologicObjectMemberType">
+    <sequence minOccurs="0">
+      <element ref="gsml:GeologicObject"/>
+    </sequence>
+    <attributeGroup ref="gml:AssociationAttributeGroup"/>
+  </complexType>
+  <!--=======================-->
+  <complexType name="GeologicFeatureMemberType">
+    <sequence minOccurs="0">
+      <element ref="gsml:GeologicFeature"/>
+    </sequence>
+    <attributeGroup ref="gml:AssociationAttributeGroup"/>
+  </complexType>
+  <!--=======================-->
+  <complexType name="MappedFeatureMemberType">
+    <sequence minOccurs="0">
+      <element ref="gsml:MappedFeature"/>
+    </sequence>
+    <attributeGroup ref="gml:AssociationAttributeGroup"/>
+  </complexType>
+  <!--=======================-->
+</schema>
