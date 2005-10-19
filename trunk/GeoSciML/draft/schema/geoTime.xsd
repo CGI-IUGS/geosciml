@@ -1,5 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<schema xmlns="http://www.w3.org/2001/XMLSchema" xmlns:gt="http://www.cgi-iugs.org/xml/geologicTime" xmlns:swe="http://www.opengis.net/swe" xmlns:meta="http://www.seegrid.csiro.au/xml/metaLite" xmlns:sa="http://www.seegrid.csiro.au/xml/sampling" xmlns:om="http://www.opengis.net/om" xmlns:gml="http://www.opengis.net/gml" targetNamespace="http://www.cgi-iugs.org/xml/geologicTime" elementFormDefault="qualified" attributeFormDefault="unqualified" version="pre-release">
+<schema xmlns="http://www.w3.org/2001/XMLSchema" 
+xmlns:gsml="http://www.cgi-iugs.org/xml/GeoSciML/1" 
+xmlns:gt="http://www.cgi-iugs.org/xml/GeoTime/1" 
+xmlns:meta="http://www.seegrid.csiro.au/xml/metaLite" 
+xmlns:sa="http://www.seegrid.csiro.au/xml/sampling" 
+xmlns:om="http://www.opengis.net/om" 
+xmlns:gml="http://www.opengis.net/gml" targetNamespace="http://www.cgi-iugs.org/xml/GeoTime/1" elementFormDefault="qualified" attributeFormDefault="unqualified" version="pre-release">
 	<annotation>
 		<documentation>geoTime.xsd
 
@@ -10,9 +16,10 @@ Copyright (c) 2005 CSIRO - see https://www.seegrid.csiro.au/twiki/bin/view/Xmml/
 	<!-- ======================== -->
 	<import namespace="http://www.opengis.net/gml" schemaLocation="./gml4geotime.xsd"/>
 	<import namespace="http://www.seegrid.csiro.au/xml/metaLite" schemaLocation="../../../metaLite/0.1.30/metaLite.xsd"/>
+	<import namespace="http://www.cgi-iugs.org/xml/GeoSciML/1" schemaLocation="./metadata.xsd"/>
 	<import namespace="http://www.opengis.net/om" schemaLocation="../../../om/1.0.30/om.xsd"/>
 	<import namespace="http://www.seegrid.csiro.au/xml/sampling" schemaLocation="../../../sampling/0.1.0/sampling.xsd"/>
-	<include schemaLocation="../../../enumerations/LUTstratigraphy.xsd"/>
+	<include schemaLocation="./stratEnums.xsd"/>
 	<!-- ================================================================== -->
 	<!-- ================================================================== -->
 	<complexType name="GeologicTimeScaleType" final="#all">
@@ -28,7 +35,7 @@ Copyright (c) 2005 CSIRO - see https://www.seegrid.csiro.au/twiki/bin/view/Xmml/
 							<documentation>List boundary objects so that they may be used by-reference in the description of eras</documentation>
 						</annotation>
 					</element>
-					<group ref="meta:StandardLiteMetadata"/>
+					<element name="metadata" type="gsml:ObjectMetadataPropertyType" minOccurs="0"/>
 				</sequence>
 			</extension>
 		</complexContent>
@@ -146,7 +153,6 @@ However, if the hierarchy is represented by links carried on the "member" proper
 				<sequence>
 					<element name="rank" type="gt:GeochronEraRank"/>
 					<element name="stratotype" type="gt:StratigraphicSectionPropertyType" minOccurs="0" maxOccurs="unbounded"/>
-					<group ref="meta:StandardLiteMetadata"/>
 				</sequence>
 			</extension>
 		</complexContent>
@@ -171,7 +177,6 @@ However, if the hierarchy is represented by links carried on the "member" proper
 				<sequence>
 					<element name="event" type="gt:StratigraphicEventPropertyType"/>
 					<element name="stratotype" type="gt:StratigraphicPointPropertyType"/>
-					<group ref="meta:StandardLiteMetadata"/>
 				</sequence>
 			</extension>
 		</complexContent>
@@ -195,7 +200,6 @@ However, if the hierarchy is represented by links carried on the "member" proper
 			<extension base="gt:TimeOrdinalEraBoundaryType">
 				<sequence>
 					<element name="status" type="string"/>
-					<element name="reference" type="meta:CitationPropertyType" maxOccurs="unbounded"/>
 				</sequence>
 			</extension>
 		</complexContent>
@@ -214,7 +218,7 @@ However, if the hierarchy is represented by links carried on the "member" proper
 		<complexContent>
 			<extension base="om:EventType">
 				<sequence>
-					<group ref="meta:StandardLiteMetadata"/>
+					<element name="metadata" type="gsml:ObjectMetadataPropertyType" minOccurs="0"/>
 				</sequence>
 			</extension>
 		</complexContent>
@@ -270,7 +274,6 @@ However, if the hierarchy is represented by links carried on the "member" proper
 					<element name="accessibility" type="string"/>
 					<element name="conservation" type="string"/>
 					<element name="containedPoint" type="gt:StratigraphicPointPropertyType" minOccurs="0" maxOccurs="unbounded"/>
-					<element name="reference" type="meta:CitationPropertyType" minOccurs="0" maxOccurs="unbounded"/>
 				</sequence>
 			</extension>
 		</complexContent>
@@ -299,7 +302,6 @@ However, if the hierarchy is represented by links carried on the "member" proper
 					<element name="event" type="gt:StratigraphicEventPropertyType"/>
 					<element name="additionalCorrelationProperty" type="string" minOccurs="0" maxOccurs="unbounded"/>
 					<element name="status" type="string"/>
-					<element name="reference" type="meta:CitationPropertyType" maxOccurs="unbounded"/>
 				</sequence>
 			</extension>
 		</complexContent>
@@ -323,8 +325,8 @@ However, if the hierarchy is represented by links carried on the "member" proper
 				<sequence>
 					<element name="quality" type="meta:QualityPropertyType"/>
 					<element name="status" type="string"/>
-					<element name="reference" type="meta:CitationPropertyType" maxOccurs="unbounded"/>
 					<element name="observationalBasis" type="om:AbstractObservationPropertyType" minOccurs="0" maxOccurs="unbounded"/>
+					<element name="metadata" type="gsml:ObjectMetadataPropertyType" minOccurs="0"/>
 				</sequence>
 			</extension>
 		</complexContent>
@@ -337,7 +339,11 @@ However, if the hierarchy is represented by links carried on the "member" proper
 			<documentation>An observation resulting in an estimate of the age of the subject. </documentation>
 		</annotation>
 		<complexContent>
-			<extension base="om:MeasurementType"/>
+			<extension base="om:MeasurementType">
+				<sequence>
+					<element name="metadata" type="gsml:ObjectMetadataPropertyType" minOccurs="0"/>
+				</sequence>
+			</extension>
 		</complexContent>
 	</complexType>
 	<!-- ........ -->

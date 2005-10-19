@@ -2,8 +2,13 @@
 <!-- IUGS/CGI schema, ver. 1.0, 9/12/2005 -->
 <!-- Contains the concepts (classes), their inheritance, and relations from the -->
 <!-- GeoSciML Testbed-2 Model, ver. 1.0 -->
-<schema xmlns:gml="http://www.opengis.net/gml" xmlns="http://www.w3.org/2001/XMLSchema" xmlns:gsml="http://www.cgi-iugs.org/xml/GeoSciML/1" targetNamespace="http://www.cgi-iugs.org/xml/GeoSciML/1" elementFormDefault="qualified"
-        attributeFormDefault="unqualified" version="1.0.0">
+<schema 
+xmlns="http://www.w3.org/2001/XMLSchema" 
+xmlns:gml="http://www.opengis.net/gml" 
+xmlns:meta="http://www.seegrid.csiro.au/xml/metaLite" 
+xmlns:gsml="http://www.cgi-iugs.org/xml/GeoSciML/1" 
+targetNamespace="http://www.cgi-iugs.org/xml/GeoSciML/1"
+        elementFormDefault="qualified" attributeFormDefault="unqualified" version="1.0.0">
 	<annotation>
 		<documentation>metadata.xsd
 Basic metadata components for GeoSciML
@@ -11,6 +16,7 @@ covering 	dataset and object metadata</documentation>
 	</annotation>
 	<!--=======================-->
 	<import namespace="http://www.opengis.net/gml" schemaLocation="http://schemas.opengis.net/gml/3.1.1/base/feature.xsd"/>
+	<import namespace="http://www.seegrid.csiro.au/xml/metaLite" schemaLocation="../../../metaLite/0.1.30/metaLite.xsd"/>
 	<!--=======================-->
 	<include schemaLocation="CGI_Value.xsd"/>
 	<!--=======================-->
@@ -18,7 +24,12 @@ covering 	dataset and object metadata</documentation>
 		<complexContent>
 			<extension base="gml:AbstractGMLType">
 				<sequence>
-					<element name="sourceReference" type="anyURI" maxOccurs="unbounded"/>
+					<element name="sourceReference" type="meta:CitationPropertyType" maxOccurs="unbounded"/>
+					<element name="comment" type="gml:StringOrRefType" minOccurs="0">
+						<annotation>
+							<documentation>Container for commentary that may not be strictly part of a "description".</documentation>
+						</annotation>
+					</element>
 				</sequence>
 			</extension>
 		</complexContent>

@@ -1,79 +1,83 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<cgi-gt:GeologicTimeScale xmlns:cgi-gt="http://www.cgi-iugs.org/xml/geologicTime" xmlns:meta="http://www.seegrid.csiro.au/xml/metaLite" xmlns:gml="http://www.opengis.net/gml" xmlns:xlink="http://www.w3.org/1999/xlink"
+<gt:GeologicTimeScale 
+xmlns:gsml="http://www.cgi-iugs.org/xml/GeoSciML/1" 
+xmlns:gt="http://www.cgi-iugs.org/xml/GeoTime/1" 
+xmlns:meta="http://www.seegrid.csiro.au/xml/metaLite" 
+xmlns:gml="http://www.opengis.net/gml" 
+xmlns:xlink="http://www.w3.org/1999/xlink"
                        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-                       xsi:schemaLocation="     http://www.cgi-iugs.org/xml/geologicTime ../../CGI/geologicTime/geoTime.xsd      http://www.opengis.net/gml ../../CGI/geologicTime/gml4geotime.xsd  http://www.seegrid.csiro.au/xml/metaLite ../../CGI/geologicTime/meta4geoTime.xsd"
-                       gml:id="ICSTimeScale_EonsOnly">
+                       xsi:schemaLocation="     http://www.cgi-iugs.org/xml/GeoTime/1 ../../schema/geoTime.xsd"  gml:id="ICSTimeScale_EonsOnly">
 	<gml:description>The geologic timescale, as defined by ICS - decomposed to eons only</gml:description>
 	<gml:name>ICS Geologic Timescale - eons only</gml:name>
 	<gml:domainOfValidity>Earth</gml:domainOfValidity>
 	<!-- ============== -->
-	<cgi-gt:component>
-		<cgi-gt:GeochronologicEra gml:id="AR">
+	<gt:component>
+		<gt:GeochronologicEra gml:id="AR">
 			<gml:name>Archean</gml:name>
-			<cgi-gt:start xlink:href="urn:x-seegrid:items:exceptions:undefined"/>
-			<cgi-gt:end xlink:href="#AR_PR"/>
-			<cgi-gt:rank>Eon</cgi-gt:rank>
-		</cgi-gt:GeochronologicEra>
-	</cgi-gt:component>
-	<cgi-gt:component>
-		<cgi-gt:GeochronologicEra gml:id="PR">
+			<gt:start xlink:href="urn:x-seegrid:items:exceptions:undefined"/>
+			<gt:end xlink:href="#AR_PR"/>
+			<gt:rank>Eon</gt:rank>
+		</gt:GeochronologicEra>
+	</gt:component>
+	<gt:component>
+		<gt:GeochronologicEra gml:id="PR">
 			<gml:name>Proterozoic</gml:name>
-			<cgi-gt:start xlink:href="#AR_PR"/>
-			<cgi-gt:end xlink:href="#PR_PH"/>
-			<cgi-gt:rank>Eon</cgi-gt:rank>
-		</cgi-gt:GeochronologicEra>
-	</cgi-gt:component>
-	<cgi-gt:component>
-		<cgi-gt:GeochronologicEra gml:id="PH">
+			<gt:start xlink:href="#AR_PR"/>
+			<gt:end xlink:href="#PR_PH"/>
+			<gt:rank>Eon</gt:rank>
+		</gt:GeochronologicEra>
+	</gt:component>
+	<gt:component>
+		<gt:GeochronologicEra gml:id="PH">
 			<gml:name>Phanerozoic</gml:name>
-			<cgi-gt:start xlink:href="#PR_PH"/>
-			<cgi-gt:end xlink:href="#present"/>
-			<cgi-gt:rank>Eon</cgi-gt:rank>
-		</cgi-gt:GeochronologicEra>
-	</cgi-gt:component>
+			<gt:start xlink:href="#PR_PH"/>
+			<gt:end xlink:href="#present"/>
+			<gt:rank>Eon</gt:rank>
+		</gt:GeochronologicEra>
+	</gt:component>
 	<!-- ======================== -->
 	<!-- Reference times -->
 	<!-- Positions of Global Stratotype Points as given in http://www.stratigraphy.org/gssp.htm 2004-04-25 -->
 	<!-- ======================== -->
-	<cgi-gt:referencePoint>
-		<cgi-gt:NumericEraBoundary gml:id="AR_PR">
+	<gt:referencePoint>
+		<gt:NumericEraBoundary gml:id="AR_PR">
+			<gml:description xlink:href="citations.xml#Ev14p139_1991"/>
 			<gml:name>Base Proterozoic</gml:name>
 			<gml:name>Base Paleoproterozoic</gml:name>
 			<gml:name>Base Siderian</gml:name>
-			<cgi-gt:position>
+			<gt:position>
 				<gml:TimeInstant gml:id="PR_Origin">
 					<gml:timePosition frame="tcs.xml#geologyMA">2500.</gml:timePosition>
 				</gml:TimeInstant>
-			</cgi-gt:position>
-			<cgi-gt:status>GSSA</cgi-gt:status>
-			<cgi-gt:reference xlink:href="citations.xml#Ev14p139_1991"/>
-		</cgi-gt:NumericEraBoundary>
-	</cgi-gt:referencePoint>
-	<cgi-gt:referencePoint>
-		<cgi-gt:GeochronologicBoundary gml:id="PR_PH">
+			</gt:position>
+			<gt:status>GSSA</gt:status>
+		</gt:NumericEraBoundary>
+	</gt:referencePoint>
+	<gt:referencePoint>
+		<gt:GeochronologicBoundary gml:id="PR_PH">
 			<gml:description>Three different estimates of the position of this boundary are included.</gml:description>
 			<gml:name>Base Phanerozoic</gml:name>
 			<gml:name>Base Paleozoic</gml:name>
 			<gml:name>Base Cambrian</gml:name>
 			<gml:name>Base Lower Cambrian</gml:name>
-			<cgi-gt:position>
-				<cgi-gt:StratigraphicDateEstimate gml:id="PH_Origin">
+			<gt:position>
+				<gt:StratigraphicDateEstimate gml:id="PH_Origin">
 					<gml:timePosition frame="tcs.xml#geologyMa">-540.0</gml:timePosition>
-					<cgi-gt:quality>
+					<gt:quality>
 						<meta:QuantitativeAssessment>
 							<meta:explanation>Error</meta:explanation>
 							<meta:values uom="Ma">5</meta:values>
 						</meta:QuantitativeAssessment>
-					</cgi-gt:quality>
-					<cgi-gt:status>Informal</cgi-gt:status>
-					<cgi-gt:reference xlink:href="citations.xml#chronos"/>
-					<cgi-gt:observationalBasis xlink:href="dates.xml#PH_Origin1"/>
-					<cgi-gt:observationalBasis xlink:href="dates.xml#PH_Origin2"/>
-					<cgi-gt:observationalBasis xlink:href="dates.xml#PH_Origin3"/>
-				</cgi-gt:StratigraphicDateEstimate>
-			</cgi-gt:position>
-			<cgi-gt:event xlink:href="urn:x-seegrid:items:exceptions:unknown"/>
-			<cgi-gt:stratotype xlink:href="gssp.xml#PH_OriginPoint1"/>
-		</cgi-gt:GeochronologicBoundary>
-	</cgi-gt:referencePoint>
-</cgi-gt:GeologicTimeScale>
+					</gt:quality>
+					<gt:status>Informal</gt:status>
+					<gt:observationalBasis xlink:href="dates.xml#PH_Origin1"/>
+					<gt:observationalBasis xlink:href="dates.xml#PH_Origin2"/>
+					<gt:observationalBasis xlink:href="dates.xml#PH_Origin3"/>
+					<gt:metadata><gsml:ObjectMetadata><gsml:sourceReference  xlink:href="citations.xml#chronos"/></gsml:ObjectMetadata></gt:metadata>
+				</gt:StratigraphicDateEstimate>
+			</gt:position>
+			<gt:event xlink:href="urn:x-seegrid:items:exceptions:unknown"/>
+			<gt:stratotype xlink:href="gssp.xml#PH_OriginPoint1"/>
+		</gt:GeochronologicBoundary>
+	</gt:referencePoint>
+</gt:GeologicTimeScale>
