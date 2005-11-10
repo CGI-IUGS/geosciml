@@ -2,7 +2,8 @@
 <!-- IUGS/CGI GeoSciML schema, ver. 1 - draft 2005-10-19 -->
 <!-- Contains the concepts (classes), their inheritance, and relations from the CGI_Top package of the GeoSciML model -->
 <!-- GeoSciML Testbed-2 Model -->
-<schema xmlns:gml="http://www.opengis.net/gml" xmlns="http://www.w3.org/2001/XMLSchema" xmlns:gsml="http://www.cgi-iugs.org/xml/GeoSciML/1" targetNamespace="http://www.cgi-iugs.org/xml/GeoSciML/1" elementFormDefault="qualified" attributeFormDefault="unqualified" version="1.0.0">
+<schema xmlns:gml="http://www.opengis.net/gml" xmlns="http://www.w3.org/2001/XMLSchema" xmlns:gsml="http://www.cgi-iugs.org/xml/GeoSciML/1" targetNamespace="http://www.cgi-iugs.org/xml/GeoSciML/1" elementFormDefault="qualified"
+        attributeFormDefault="unqualified" version="1.0.0">
 	<annotation>
 		<documentation>top.xsd
 		High level classes for GeoSciML
@@ -50,7 +51,7 @@
 					<element name="age" type="gsml:GeologicAgePropertyType" maxOccurs="unbounded"/>
 					<element name="metadata" type="gsml:GeologicFeatureMetadataPropertyType"/>
 					<element name="occurrence" type="gsml:MappedFeaturePropertyType" minOccurs="0" maxOccurs="unbounded"/>
-					<element name="classifier" type="gsml:ControlledConceptPropertyType"/>
+					<element name="classifier" type="gsml:ControlledConceptPropertyType" minOccurs="0" maxOccurs="unbounded"/>
 				</sequence>
 			</extension>
 		</complexContent>
@@ -71,7 +72,7 @@
 				<sequence>
 					<element name="purpose" type="gsml:ScopedNameType" minOccurs="0"/>
 					<element name="metadata" type="gsml:ObjectMetadataPropertyType" minOccurs="0"/>
-					<element name="classifier" type="gsml:ControlledConceptPropertyType" minOccurs="0"/>
+					<element name="classifier" type="gsml:ControlledConceptPropertyType" minOccurs="0" maxOccurs="unbounded"/>
 				</sequence>
 			</extension>
 		</complexContent>
@@ -87,10 +88,12 @@
 	</complexType>
 	<!--=======================-->
 	<complexType name="GeologicEntityPropertyType">
-		<choice>
-			<element ref="gsml:GeologicFeature" minOccurs="0"/>
-			<element ref="gsml:GeologicObject" minOccurs="0"/>
-		</choice>
+		<sequence minOccurs="0">
+			<choice>
+				<element ref="gsml:GeologicFeature"/>
+				<element ref="gsml:GeologicObject"/>
+			</choice>
+		</sequence>
 		<attributeGroup ref="gsml:RichPropertyAttributeGroup"/>
 		<attribute name="unionSemantics">
 			<simpleType>
@@ -107,7 +110,7 @@
 			<extension base="gml:DefinitionType">
 				<sequence>
 					<element name="preferredName" type="string"/>
-					<element name="prototype" type="gsml:GeologicEntityPropertyType"/>
+					<element name="norm" type="gsml:GeologicEntityPropertyType"/>
 				</sequence>
 			</extension>
 		</complexContent>
