@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<schema xmlns="http://www.w3.org/2001/XMLSchema" xmlns:gml="http://www.opengis.net/gml" xmlns:geo="http://www.seegrid.csiro.au/xml/geometry" xmlns:om="http://www.opengis.net/om" xmlns:xmml="http://www.opengis.net/xmml" targetNamespace="http://www.opengis.net/xmml" elementFormDefault="qualified" attributeFormDefault="unqualified" version="pre-release">
+	<annotation>
+		<documentation>
+curves.xsd
+
+A GML conformant schema 
+for various features with curve geometry relevant to geology
+
+2004-02-04
+
+Copyright (c) 2004 CSIRO - see https://www.seegrid.csiro.au/twiki/bin/view/Xmml/LegalNotices#Software_Notice
+</documentation>
+	</annotation>
+	<!-- ====================================================================== -->
+	<!-- bring in other schemas -->
+	<import namespace="http://www.opengis.net/gml" schemaLocation="./gml4shapefeature.xsd"/>
+	<import namespace="http://www.opengis.net/om" schemaLocation="../../om/1.0.30/observation.xsd"/>
+	<import namespace="http://www.seegrid.csiro.au/xml/geometry" schemaLocation="../../geo/0.1.0/geometry.xsd"/>
+	<include schemaLocation="../../enumerations/LUTportrayal.xsd"/>
+	<include schemaLocation="./basicTypes.xsd"/>
+	<!-- ====================================================================== -->
+	<element name="CurveFeature" type="xmml:CurveFeatureType" substitutionGroup="gml:_Feature">
+		<annotation>
+			<documentation>A basic feature having just a curve shape. </documentation>
+		</annotation>
+	</element>
+	<!-- ====== -->
+	<complexType name="CurveFeatureType">
+		<annotation>
+			<documentation>Add featureType property for soft-typing. </documentation>
+		</annotation>
+		<complexContent>
+			<extension base="gml:AbstractFeatureType">
+				<sequence>
+					<element name="nodes" type="gml:MultiPointPropertyType" minOccurs="0"/>
+					<element name="shape" type="gml:CurvePropertyType"/>
+					<element name="featureType" type="token" minOccurs="0"/>
+				</sequence>
+			</extension>
+		</complexContent>
+	</complexType>
+	<!-- ====================================================================== -->
+	<element name="CurveWithProperties" type="xmml:CurveWithPropertiesType" substitutionGroup="xmml:CurveFeature">
+		<annotation>
+			<documentation>A basic feature having just a curve shape and some soft-typed properties. </documentation>
+		</annotation>
+	</element>
+	<!-- ====== -->
+	<complexType name="CurveWithPropertiesType">
+		<annotation>
+			<documentation> Add generic properties and observations. </documentation>
+		</annotation>
+		<complexContent>
+			<extension base="xmml:CurveFeatureType">
+				<sequence>
+					<group ref="xmml:property" minOccurs="0" maxOccurs="unbounded"/>
+					<element name="relatedObservation" type="om:AbstractObservationPropertyType" minOccurs="0" maxOccurs="unbounded"/>
+				</sequence>
+			</extension>
+		</complexContent>
+	</complexType>
+	<!-- ====================================================================== -->
+	<element name="ColouredCurve" type="xmml:ColouredCurveType" substitutionGroup="xmml:CurveFeature">
+		<annotation>
+			<documentation>A basic feature having a curve shape and default colour. </documentation>
+		</annotation>
+	</element>
+	<!-- ====== -->
+	<complexType name="ColouredCurveType">
+		<annotation>
+			<documentation>Add a defaultColour property. </documentation>
+		</annotation>
+		<complexContent>
+			<extension base="xmml:CurveFeatureType">
+				<sequence>
+					<element name="defaultColour" type="xmml:colour"/>
+				</sequence>
+			</extension>
+		</complexContent>
+	</complexType>
+	<!-- ====================================================================== -->
+</schema>

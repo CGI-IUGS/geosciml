@@ -1,0 +1,619 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<schema xmlns:gml="http://www.opengis.net/gml" xmlns="http://www.w3.org/2001/XMLSchema" xmlns:xmml="http://www.opengis.net/xmml" targetNamespace="http://www.opengis.net/xmml" elementFormDefault="qualified" attributeFormDefault="unqualified" version="pre-release">
+	<annotation>
+		<documentation>
+basicTypes.xsd
+
+Some basic types required in various places in XMML
+
+2004-08-10
+
+Copyright © 2004 CSIRO - see https://www.seegrid.csiro.au/twiki/bin/view/Xmml/LegalNotices#Software_Notice
+</documentation>
+	</annotation>
+	<!-- ====================================================================== -->
+	<!-- bring in other schemas -->
+	<import namespace="http://www.opengis.net/gml" schemaLocation="http://schemas.opengis.net/gml/3.1.1/base/gml.xsd"/>
+	<include schemaLocation="../../enumerations/LUTother.xsd"/>
+	<!-- ===================================================== -->
+	<attributeGroup name="simpleContentStandardAttributes">
+		<attribute name="nilReason" type="gml:NullType" use="optional"/>
+		<attribute name="metadata" type="anyURI" use="optional"/>
+		<attribute name="metadataRole" type="xmml:simpleContentMetadataType" use="optional"/>
+	</attributeGroup>
+	<!-- ===================================================== -->
+	<simpleType name="simpleContentMetadataType">
+		<union memberTypes="xmml:observationRelatedRole xmml:other"/>
+	</simpleType>
+	<!-- ===================================================== -->
+	<simpleType name="observationRelatedRole">
+		<annotation>
+			<documentation>This type provides a set of standard tokens indicating that the metadata concerns various descriptors related to the observation process</documentation>
+		</annotation>
+		<restriction base="string">
+			<enumeration value="observationEvent">
+				<annotation>
+					<documentation>Details of the observation or measurement event that led to the determination of the reported value</documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="observationProcedure">
+				<annotation>
+					<documentation>Details of the generic procedure used to determine the reported value</documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="observationResponsibleParty">
+				<annotation>
+					<documentation>Identity or details realted to the party responsible for making the observation</documentation>
+				</annotation>
+			</enumeration>
+		</restriction>
+	</simpleType>
+	<!-- ====================================================================== -->
+	<!-- ===== Soft-typed values and lists ====== -->
+	<!-- ====================================================================== -->
+	<!-- =========================================================== -->
+	<!-- ====================================================================== -->
+	<complexType name="SoftTypedBooleanType">
+		<annotation>
+			<documentation>A boolean value, representing a description of the phenomenon identified by the property attribute. </documentation>
+		</annotation>
+		<simpleContent>
+			<extension base="boolean">
+				<attribute name="property" type="anyURI">
+					<annotation>
+						<documentation>This attribute holds a reference to or label for the property being described. </documentation>
+					</annotation>
+				</attribute>
+				<attributeGroup ref="xmml:simpleContentStandardAttributes"/>
+			</extension>
+		</simpleContent>
+	</complexType>
+	<!-- ====================================================================== -->
+	<complexType name="SoftTypedBooleanListType">
+		<annotation>
+			<documentation>A list of boolean values, representing a set of descriptions of the phenomenon identified by the property attribute. </documentation>
+		</annotation>
+		<simpleContent>
+			<extension base="gml:booleanList">
+				<attribute name="property" type="anyURI">
+					<annotation>
+						<documentation>This attribute holds a reference to or label for the property being described. </documentation>
+					</annotation>
+				</attribute>
+				<attributeGroup ref="xmml:simpleContentStandardAttributes"/>
+				<attribute name="count" type="nonNegativeInteger" use="optional"/>
+			</extension>
+		</simpleContent>
+	</complexType>
+	<!-- ====================================================================== -->
+	<complexType name="SoftTypedBooleanOrNullListType">
+		<annotation>
+			<documentation>A list of boolean values or Nulls, representing a set of descriptions of the phenomenon identified by the property attribute. </documentation>
+		</annotation>
+		<simpleContent>
+			<extension base="gml:booleanOrNullList">
+				<attribute name="property" type="anyURI">
+					<annotation>
+						<documentation>This attribute holds a reference to or label for the property being described. </documentation>
+					</annotation>
+				</attribute>
+				<attributeGroup ref="xmml:simpleContentStandardAttributes"/>
+				<attribute name="count" type="nonNegativeInteger" use="optional"/>
+			</extension>
+		</simpleContent>
+	</complexType>
+	<!-- ====================================================================== -->
+	<!-- ====================================================================== -->
+	<complexType name="SoftTypedCategoryType">
+		<annotation>
+			<documentation>A text value, taken from a value space identified by the value of the (optional) codeSpace attribute, and representing a description of the phenomenon identified by the property attribute. </documentation>
+		</annotation>
+		<simpleContent>
+			<extension base="xmml:CodeWithAuthorityType">
+				<attribute name="property" type="anyURI">
+					<annotation>
+						<documentation>This attribute holds a reference to or label for the property being described.  
+            This will usually refer to a classification or phenomenon described on a nominal scale, 
+            such as lithology type, material colour.  </documentation>
+					</annotation>
+				</attribute>
+			</extension>
+		</simpleContent>
+	</complexType>
+	<!-- ====================================================================== -->
+	<complexType name="SoftTypedCategoryListType">
+		<annotation>
+			<documentation>A list of text values, taken from a value space identified by the value of the (optional) codeSpace attribute, and representing a set of descriptions of the phenomenon identified by the property attribute. </documentation>
+		</annotation>
+		<simpleContent>
+			<extension base="xmml:CodeListWithAuthorityType">
+				<attribute name="property" type="anyURI">
+					<annotation>
+						<documentation>This attribute holds a reference to or label for the property being described.  
+            This will usually refer to a classification or phenomenon described on a nominal scale, 
+            such as lithology type, material colour.  </documentation>
+					</annotation>
+				</attribute>
+			</extension>
+		</simpleContent>
+	</complexType>
+	<!-- ====================================================================== -->
+	<!-- ====================================================================== -->
+	<complexType name="CountType">
+		<simpleContent>
+			<extension base="nonNegativeInteger">
+				<attributeGroup ref="xmml:simpleContentStandardAttributes"/>
+			</extension>
+		</simpleContent>
+	</complexType>
+	<!-- ====================================================================== -->
+	<simpleType name="nonNegativeIntegerOrNullType">
+		<annotation>
+			<documentation>Union of the XML Schema nonNegativeInteger type and the GML ValueNullType.  An element which uses this type may have content which is either a Count or a value from ValueNullType</documentation>
+		</annotation>
+		<union memberTypes="gml:NullEnumeration nonNegativeInteger anyURI"/>
+	</simpleType>
+	<!-- =========================================================== -->
+	<simpleType name="nonNegativeIntegerOrNullListType">
+		<annotation>
+			<documentation>XML List based on the union type defined above.  An element declared with this type contains a space-separated list of Counts with Null values interspersed as needed</documentation>
+		</annotation>
+		<list itemType="xmml:nonNegativeIntegerOrNullType"/>
+	</simpleType>
+	<!-- =========================================================== -->
+	<simpleType name="nonNegativeIntegerListType">
+		<annotation>
+			<documentation>XML List based on XML Schema nonNegativeInteger type.  An element of this type contains a space-separated list of Counts</documentation>
+		</annotation>
+		<list itemType="nonNegativeInteger"/>
+	</simpleType>
+	<!-- =========================================================== -->
+	<!-- ====================================================================== -->
+	<complexType name="SoftTypedCountType">
+		<annotation>
+			<documentation>A numeric value, representing a description of the phenomenon identified by the property attribute. </documentation>
+		</annotation>
+		<simpleContent>
+			<extension base="xmml:CountType">
+				<attribute name="property" type="anyURI">
+					<annotation>
+						<documentation>This attribute holds a reference to or label for the property being described. </documentation>
+					</annotation>
+				</attribute>
+			</extension>
+		</simpleContent>
+	</complexType>
+	<!-- ====================================================================== -->
+	<complexType name="SoftTypedCountListType">
+		<annotation>
+			<documentation>A list of numeric values, representing a set of descriptions of the phenomenon identified by the property attribute. </documentation>
+		</annotation>
+		<simpleContent>
+			<extension base="xmml:nonNegativeIntegerListType">
+				<attribute name="property" type="anyURI">
+					<annotation>
+						<documentation>This attribute holds a reference to or label for the property being described. </documentation>
+					</annotation>
+				</attribute>
+				<attributeGroup ref="xmml:simpleContentStandardAttributes"/>
+				<attribute name="count" type="nonNegativeInteger" use="optional"/>
+			</extension>
+		</simpleContent>
+	</complexType>
+	<!-- ====================================================================== -->
+	<complexType name="SoftTypedCountOrNullListType">
+		<annotation>
+			<documentation>A list of numeric values or Nulls, representing a set of descriptions of the phenomenon identified by the property attribute. </documentation>
+		</annotation>
+		<simpleContent>
+			<extension base="xmml:nonNegativeIntegerOrNullListType">
+				<attribute name="property" type="anyURI">
+					<annotation>
+						<documentation>This attribute holds a reference to or label for the property being described. </documentation>
+					</annotation>
+				</attribute>
+				<attributeGroup ref="xmml:simpleContentStandardAttributes"/>
+				<attribute name="count" type="nonNegativeInteger" use="optional"/>
+			</extension>
+		</simpleContent>
+	</complexType>
+	<!-- ====================================================================== -->
+	<complexType name="SoftTypedCountIntervalType">
+		<annotation>
+			<documentation>A pair of numeric values, representing an interval of the phenomenon identified by the property attribute. </documentation>
+		</annotation>
+		<simpleContent>
+			<restriction base="xmml:SoftTypedCountOrNullListType">
+				<length value="2"/>
+				<attribute name="count" type="nonNegativeInteger" use="prohibited"/>
+			</restriction>
+		</simpleContent>
+	</complexType>
+	<!-- ====================================================================== -->
+	<!-- ====================================================================== -->
+	<complexType name="MeasureType">
+		<annotation>
+			<documentation>A numeric value, expressed using the scale indicated by the value of the (mandatory) uom attribute. </documentation>
+		</annotation>
+		<simpleContent>
+			<extension base="gml:MeasureType">
+				<attribute name="originalUom" type="anyURI" use="optional">
+					<annotation>
+						<documentation>When the value reported has been converted from the stored units (for example, ratio values converted from ppm to a number), this attribute may be used to record  the original units of measure.</documentation>
+					</annotation>
+				</attribute>
+				<attributeGroup ref="xmml:simpleContentStandardAttributes"/>
+			</extension>
+			<!-- <attribute name="originalUom" type="gml:UomIdentifier" use="optional"> -->
+		</simpleContent>
+	</complexType>
+	<!-- ====================================================================== -->
+	<complexType name="MeasureListType">
+		<annotation>
+			<documentation>A list of numeric values, expressed using the scale indicated by the value of the (mandatory) uom attribute. </documentation>
+		</annotation>
+		<simpleContent>
+			<extension base="gml:MeasureListType">
+				<attribute name="originalUom" type="anyURI" use="optional">
+					<annotation>
+						<documentation>When the value reported has been converted from the stored units (for example, raio values converted from ppm to a number), this attribute may be used to record  the original units of measure.</documentation>
+					</annotation>
+				</attribute>
+				<attributeGroup ref="xmml:simpleContentStandardAttributes"/>
+				<attribute name="count" type="nonNegativeInteger" use="optional"/>
+			</extension>
+			<!-- <attribute name="originalUom" type="gml:UomIdentifier" use="optional"> -->
+		</simpleContent>
+	</complexType>
+	<!-- ====================================================================== -->
+	<complexType name="MeasureIntervalType">
+		<annotation>
+			<documentation>A pair of numeric values, expressed using the scale indicated by the value of the (mandatory) uom attribute, attribute, and representing an interval of the phenomenon identified by the property attribute. </documentation>
+		</annotation>
+		<simpleContent>
+			<restriction base="xmml:MeasureListType">
+				<length value="2"/>
+				<attribute name="count" type="nonNegativeInteger" use="prohibited"/>
+			</restriction>
+		</simpleContent>
+	</complexType>
+	<!-- ====================================================================== -->
+	<complexType name="SoftTypedMeasureType">
+		<annotation>
+			<documentation>A numeric value, expressed using the scale indicated by the value of the (mandatory) uom attribute, attribute, and representing a description of the phenomenon identified by the property attribute. </documentation>
+		</annotation>
+		<simpleContent>
+			<extension base="xmml:MeasureType">
+				<attribute name="property" type="anyURI">
+					<annotation>
+						<documentation>This attribute holds a reference to or label for the property being described.  
+            This will usually refer to a measure described on a ratio or interval scale, 
+            such as temperature, wavelength, concentration.  </documentation>
+					</annotation>
+				</attribute>
+			</extension>
+		</simpleContent>
+	</complexType>
+	<!-- ====================================================================== -->
+	<complexType name="SoftTypedMeasureListType">
+		<annotation>
+			<documentation>A list of numeric values, expressed using the scale indicated by the value of the (mandatory) uom attribute, attribute, and representing a set of descriptions of the phenomenon identified by the property attribute. </documentation>
+		</annotation>
+		<simpleContent>
+			<extension base="gml:MeasureListType">
+				<attribute name="property" type="anyURI">
+					<annotation>
+						<documentation>This attribute holds a reference to or label for the property being described.  
+            This will usually refer to a measure described on a ratio or interval scale, 
+            such as temperature, wavelength, concentration.  </documentation>
+					</annotation>
+				</attribute>
+				<attributeGroup ref="xmml:simpleContentStandardAttributes"/>
+				<attribute name="count" type="nonNegativeInteger" use="optional"/>
+			</extension>
+		</simpleContent>
+	</complexType>
+	<!-- ====================================================================== -->
+	<complexType name="SoftTypedMeasureOrNullListType">
+		<annotation>
+			<documentation>A list of numeric values or Nulls, expressed using the scale indicated by the value of the (mandatory) uom attribute, attribute, and representing a set of descriptions of the phenomenon identified by the property attribute. </documentation>
+		</annotation>
+		<simpleContent>
+			<extension base="gml:MeasureOrNullListType">
+				<attribute name="property" type="anyURI">
+					<annotation>
+						<documentation>This attribute holds a reference to or label for the property being described.  
+            This will usually refer to a measure described on a ratio or interval scale, 
+            such as temperature, wavelength, concentration.  </documentation>
+					</annotation>
+				</attribute>
+				<attributeGroup ref="xmml:simpleContentStandardAttributes"/>
+				<attribute name="count" type="nonNegativeInteger" use="optional"/>
+			</extension>
+		</simpleContent>
+	</complexType>
+	<!-- ====================================================================== -->
+	<complexType name="SoftTypedMeasureIntervalType">
+		<annotation>
+			<documentation>A pair of numeric values, expressed using the scale indicated by the value of the (mandatory) uom attribute, attribute, and representing an interval of the phenomenon identified by the property attribute. </documentation>
+		</annotation>
+		<simpleContent>
+			<restriction base="xmml:SoftTypedMeasureOrNullListType">
+				<length value="2"/>
+				<attribute name="count" type="nonNegativeInteger" use="prohibited"/>
+			</restriction>
+		</simpleContent>
+	</complexType>
+	<!-- =================================================================== -->
+	<!-- ====================================================================== -->
+	<!-- =================================================================== -->
+	<group name="property">
+		<choice>
+			<element name="booleanProperty" type="xmml:SoftTypedBooleanType" nillable="true"/>
+			<element name="categoryProperty" type="xmml:SoftTypedCategoryType" nillable="true"/>
+			<element name="countProperty" type="xmml:SoftTypedCountType" nillable="true"/>
+			<element name="measureProperty" type="xmml:SoftTypedMeasureType" nillable="true"/>
+			<element name="objectProperty" type="gml:AssociationType" nillable="true"/>
+			<!-- <element name="temporalProperty" type="xmml:SoftTypedTimeObjectType"/> -->
+		</choice>
+	</group>
+	<!-- ====================================================================== -->
+	<!-- ===== Numeric Records and tables ====== -->
+	<!-- ====================================================================== -->
+	<complexType name="NumericRecordType">
+		<annotation>
+			<documentation>A set of numeric values, representing a record.  
+      Generalises the approach used for gml:DirectPositionType, replacing "srsName" with "RS". 
+      This allows a record composed of numeric components to be recorded in compact form, as a whitespace-separated list of doubles.</documentation>
+		</annotation>
+		<simpleContent>
+			<extension base="gml:doubleList">
+				<attribute name="RS" type="anyURI" use="optional">
+					<annotation>
+						<documentation>Pointer to definition of the reference system for the record.  
+            The RS description should indicate the semantics/label and units of measure for each component, 
+            and the order in which the components appear in the Record.  
+            RS may be ommitted, in which case it is the same as the previous value in the current context or document.</documentation>
+					</annotation>
+				</attribute>
+				<attribute name="dimension" type="positiveInteger" use="optional">
+					<annotation>
+						<documentation>The number of components in the Record</documentation>
+					</annotation>
+				</attribute>
+				<attributeGroup ref="gml:SRSInformationGroup">
+					<annotation>
+						<documentation>Optionally include the axis-names and axis-labels as lists</documentation>
+					</annotation>
+				</attributeGroup>
+			</extension>
+		</simpleContent>
+	</complexType>
+	<!-- ====================================================================== -->
+	<complexType name="NumericOrNullRecordType">
+		<annotation>
+			<documentation>A set of numeric or Null values, representing a Record.  
+      Generalises the approach used for gml:DirectPositionType, replacing "srsName" with "RS". 
+      This allows a Record to be recorded in compact form, as a whitespace-separated list of doubles.</documentation>
+		</annotation>
+		<simpleContent>
+			<extension base="gml:doubleOrNullList">
+				<attribute name="RS" type="anyURI" use="optional">
+					<annotation>
+						<documentation>Pointer to definition of the reference system for the Record.  
+            The RS description should indicate the semantics/label and units of measure for each component, 
+            and the order in which the components appear in the Record.  
+            RS may be ommitted, in which case it is the same as the previous value in the current context or document.</documentation>
+					</annotation>
+				</attribute>
+				<attribute name="dimension" type="positiveInteger" use="optional">
+					<annotation>
+						<documentation>The number of components in the Record</documentation>
+					</annotation>
+				</attribute>
+				<attributeGroup ref="gml:SRSInformationGroup">
+					<annotation>
+						<documentation>Optionally include the axis-names and axis-labels as lists</documentation>
+					</annotation>
+				</attributeGroup>
+			</extension>
+		</simpleContent>
+	</complexType>
+	<!-- ====================================================================== -->
+	<complexType name="NumericRecordListType">
+		<annotation>
+			<documentation>A set of numeric values, representing a list of Records or a table.  
+      This allows a table of values to be recorded in compact form, as a whitespace-separated list of doubles. 
+      Record components increment fastest, followed by Record instances, so if you think of this as a table in which the rows are Records, then the representation is left-to-right followed by down the table.  
+       
+      To assist direct inspection of the data, good practice is to use 
+         * linefeed between Records, and 
+         * tab between components in a Record.
+      However any whitespace character sequence is a valid separator between items. </documentation>
+		</annotation>
+		<simpleContent>
+			<extension base="gml:doubleList">
+				<attribute name="RS" type="anyURI" use="optional">
+					<annotation>
+						<documentation>Pointer to definition of the reference system for the Record.  
+            The RS description should indicate the semantics/label and units of measure for each component, 
+            and the order in which the components appear in the Record.  
+            RS may be ommitted, in which case it is the same as the previous value in the current context or document.</documentation>
+					</annotation>
+				</attribute>
+				<attribute name="dimension" type="positiveInteger" use="optional">
+					<annotation>
+						<documentation>The number of components in the Record. Should this be mandatory?</documentation>
+					</annotation>
+				</attribute>
+				<attributeGroup ref="gml:SRSInformationGroup">
+					<annotation>
+						<documentation>Optionally include the axis-names and axis-labels as lists</documentation>
+					</annotation>
+				</attributeGroup>
+				<attribute name="recordCount" type="nonNegativeInteger" use="optional">
+					<annotation>
+						<documentation>The number of Records in the list</documentation>
+					</annotation>
+				</attribute>
+			</extension>
+		</simpleContent>
+	</complexType>
+	<!-- ====================================================================== -->
+	<complexType name="NumericOrNullRecordListType">
+		<annotation>
+			<documentation>A set of numeric or Null values, representing a list of Records or a table.  
+      This allows a table of values to be recorded in compact form, as a whitespace-separated list of doubles. 
+      Record components increment fastest, followed by Record instances, so if you think of this as a table in which the rows are Records, then the representation is left-to-right followed by down the table.  
+       
+      To assist direct inspection of the data, good practice is to use 
+         * linefeed between Records, and 
+         * tab between components in a Record.
+      However any whitespace character sequence is a valid separator between items. </documentation>
+		</annotation>
+		<simpleContent>
+			<extension base="gml:doubleOrNullList">
+				<attribute name="RS" type="anyURI" use="optional">
+					<annotation>
+						<documentation>Pointer to definition of the reference system for the Record.  
+            The RS description should indicate the semantics/label and units of measure for each component, 
+            and the order in which the components appear in the Record.  
+            RS may be ommitted, in which case it is the same as the previous value in the current context or document.</documentation>
+					</annotation>
+				</attribute>
+				<attribute name="dimension" type="positiveInteger" use="optional">
+					<annotation>
+						<documentation>The number of components in the Record. Should this be mandatory?</documentation>
+					</annotation>
+				</attribute>
+				<attributeGroup ref="gml:SRSInformationGroup">
+					<annotation>
+						<documentation>Optionally include the axis-names and axis-labels as lists</documentation>
+					</annotation>
+				</attributeGroup>
+				<attribute name="recordCount" type="nonNegativeInteger" use="optional">
+					<annotation>
+						<documentation>The number of Records in the list</documentation>
+					</annotation>
+				</attribute>
+			</extension>
+		</simpleContent>
+	</complexType>
+	<!-- ====================================================================== -->
+	<!-- ===== General Records and tables ====== -->
+	<!-- ====================================================================== -->
+	<complexType name="RecordType">
+		<annotation>
+			<documentation>A set of values, representing a Record.  
+      Generalises the approach used for xmml:NumericRecordType. 
+      This allows a Record to be recorded in compact form, as a list of tokens.
+      Note that XML "token" may contain embedded single spaces, so item separators should be tabs, linefeeds, or two or more consecutive spaces.  
+</documentation>
+		</annotation>
+		<simpleContent>
+			<extension base="xmml:stringListType">
+				<attribute name="RS" type="anyURI" use="optional">
+					<annotation>
+						<documentation>Pointer to definition of the reference system for the Record.  
+            The RS description should indicate the semantics/label and 
+            units of measure or value-space (if appropriate) for each component, 
+            and the order in which the components appear in the Record.  
+            RS may be ommitted, in which case it is the same as the previous value in the current context or document.</documentation>
+					</annotation>
+				</attribute>
+				<attribute name="dimension" type="positiveInteger" use="optional">
+					<annotation>
+						<documentation>The number of components in the Record</documentation>
+					</annotation>
+				</attribute>
+				<attributeGroup ref="gml:SRSInformationGroup">
+					<annotation>
+						<documentation>Optionally include the axis-names and axis-labels as lists</documentation>
+					</annotation>
+				</attributeGroup>
+			</extension>
+		</simpleContent>
+	</complexType>
+	<!-- ====================================================================== -->
+	<complexType name="RecordListType">
+		<annotation>
+			<documentation>A set of values, representing a list of Records or a table.  
+      This allows a table of values to be recorded in compact form, as a list of tokens. 
+      Note that XML "token" may contain embedded single spaces, so item separators should be tabs, linefeeds, or two or more consecutive spaces.  
+      Record components increment fastest, followed by Record instances, so if you think of this as a table in which the rows are Records, then the representation is left-to-right followed by down the table.  
+       
+      To assist direct inspection of the data, good practice is to use 
+         * linefeed between Records, and 
+         * tab between components in a Record.
+      However any whitespace character sequence is a valid separator between items. </documentation>
+		</annotation>
+		<simpleContent>
+			<extension base="xmml:stringListType">
+				<attribute name="RS" type="anyURI" use="optional">
+					<annotation>
+						<documentation>Pointer to definition of the reference system for the Record.  The RS description should indicate the semantics/label and units of measure for each component, and the order in which the components appear in the Record.  RS may be ommitted, in which case it is the same as the previous value in the current context or document.</documentation>
+					</annotation>
+				</attribute>
+				<attribute name="dimension" type="positiveInteger" use="optional">
+					<annotation>
+						<documentation>The number of components in the Record.  Should this be mandatory?</documentation>
+					</annotation>
+				</attribute>
+				<attributeGroup ref="gml:SRSInformationGroup">
+					<annotation>
+						<documentation>Optionally include the axis-names and axis-labels as lists</documentation>
+					</annotation>
+				</attributeGroup>
+				<attribute name="recordCount" type="nonNegativeInteger" use="optional">
+					<annotation>
+						<documentation>The number of Records in the list</documentation>
+					</annotation>
+				</attribute>
+			</extension>
+		</simpleContent>
+	</complexType>
+	<!-- ====================================================================== -->
+	<!-- ====================================================================== -->
+	<!-- ====================================================================== -->
+	<!-- ===== Some additional list types ====== -->
+	<!-- ====================================================================== -->
+	<simpleType name="refListType">
+		<list itemType="anyURI"/>
+	</simpleType>
+	<!-- ====================================================================== -->
+	<simpleType name="stringListType">
+		<annotation>
+			<documentation>
+When appearing in a list context, internal whitespace is interpreted as an item separator.  
+Strings may be represented in a list by escaping spaces as a (non-breaking space) entity.  
+</documentation>
+		</annotation>
+		<list itemType="string"/>
+	</simpleType>
+	<!-- ====================================================================== -->
+	<complexType name="CodeWithAuthorityType">
+		<annotation>
+			<documentation>Extension of token which also carries a codeSpace attribute. </documentation>
+		</annotation>
+		<simpleContent>
+			<extension base="string">
+				<attribute name="codeSpace" type="anyURI" use="optional"/>
+				<attributeGroup ref="xmml:simpleContentStandardAttributes"/>
+			</extension>
+		</simpleContent>
+	</complexType>
+	<!-- ====================================================================== -->
+	<complexType name="CodeListWithAuthorityType">
+		<annotation>
+			<documentation>Extension of stringList which also carries a codeSpace attribute. </documentation>
+		</annotation>
+		<simpleContent>
+			<extension base="xmml:stringListType">
+				<attribute name="codeSpace" type="anyURI" use="optional"/>
+				<attributeGroup ref="xmml:simpleContentStandardAttributes"/>
+				<attribute name="count" type="nonNegativeInteger" use="optional"/>
+			</extension>
+		</simpleContent>
+	</complexType>
+	<!-- ====================================================================== -->
+</schema>
