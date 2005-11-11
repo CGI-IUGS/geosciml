@@ -7,17 +7,22 @@
 	Wrapper schema for GeoSciML composed from the various sub-schemas</documentation>
 	</annotation>
 	<!--=======================-->
-	<import namespace="http://www.opengis.net/xmml" schemaLocation="../../../XMML/xmml.xsd">
-		<annotation>
-			<documentation>Make XMML borehole components available.</documentation>
-		</annotation>
-	</import>
-	<!--=======================-->
 	<include schemaLocation="collection.xsd"/>
-	<include schemaLocation="earthMaterial.xsd"/>
 	<include schemaLocation="geologicRelation.xsd"/>
 	<include schemaLocation="geologicUnit.xsd"/>
 	<include schemaLocation="structureObject.xsd"/>
 	<include schemaLocation="vocabulary.xsd"/>
+	<!--=======================-->
+	<import namespace="http://www.cgi-iugs.org/xml/GeoTime/1" schemaLocation="./geoTime.xsd">
+		<annotation>
+			<documentation>Make geological timescale components available.</documentation>
+		</annotation>
+	</import>
+	<!--=======================-->
+	<import namespace="http://www.opengis.net/xmml" schemaLocation="../../../XMML/1/xmml.xsd">
+		<annotation>
+			<documentation>Make XMML borehole components available.</documentation>
+		</annotation>
+	</import>
 	<!--=======================-->
 </schema>
