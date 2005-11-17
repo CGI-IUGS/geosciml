@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<schema xmlns:meta="http://www.seegrid.csiro.au/xml/metaLite" xmlns:xmml="http://www.opengis.net/xmml" xmlns="http://www.w3.org/2001/XMLSchema" xmlns:gml="http://www.opengis.net/gml" xmlns:xlink="http://www.w3.org/1999/xlink" targetNamespace="http://www.opengis.net/xmml" elementFormDefault="qualified" attributeFormDefault="unqualified" version="pre-release">
+<schema xmlns:meta="http://www.seegrid.csiro.au/xml/metaLite" xmlns:xmml="http://www.opengis.net/xmml" xmlns="http://www.w3.org/2001/XMLSchema" xmlns:gml="http://www.opengis.net/gml" xmlns:xlink="http://www.w3.org/1999/xlink"
+        targetNamespace="http://www.opengis.net/xmml" elementFormDefault="qualified" attributeFormDefault="unqualified" version="pre-release">
 	<annotation>
 		<documentation>feature.xsd
 
@@ -17,9 +18,15 @@ Copyright (c) 2005 CSIRO - see https://www.seegrid.csiro.au/twiki/bin/view/Xmml/
 	<!-- ====================================================================== -->
 	<group name="ExtendedFeatureProperties">
 		<sequence>
-			<element ref="xmml:place" minOccurs="0" maxOccurs="unbounded"/>
+			<element name="place" type="gml:CodeType" minOccurs="0" maxOccurs="unbounded"/>
 			<element name="country" type="gml:CodeType" minOccurs="0"/>
-			<element ref="xmml:relatedFeature" minOccurs="0" maxOccurs="unbounded"/>
+			<element name="relatedFeature" type="gml:ReferenceType" minOccurs="0" maxOccurs="unbounded">
+				<annotation>
+					<documentation>General link to another feature.  
+      Use xlink:role to indicate the nature of the related feature, 
+      and xlink:arcrole to indicate the nature of the relationship</documentation>
+				</annotation>
+			</element>
 		</sequence>
 	</group>
 	<!-- ====================================================================== -->
@@ -83,21 +90,8 @@ Copyright (c) 2005 CSIRO - see https://www.seegrid.csiro.au/twiki/bin/view/Xmml/
 	</complexType>
 	<!-- ===================================================== -->
 	<!-- ===================================================== -->
-	<element name="relatedFeature" type="gml:ReferenceType">
-		<annotation>
-			<documentation>General link to another feature.  
-      Normally used with no element content in the "by-reference" mode 
-      with the identity of the target held as the value of a xlink:href attribute.  
-      Use xlink:role to indicate the nature of the related feature, 
-      and xlink:arcrole to indicate the nature of the relationship</documentation>
-		</annotation>
-	</element>
-	<!-- ===================================================== -->
 	<!-- === Specialised location properties === -->
 	<!-- ===================================================== -->
-	<element name="place" type="gml:CodeType"/>
-	<!-- ===================================================== -->
-	<element name="mapsheet" type="gml:CodeType" substitutionGroup="xmml:place"/>
 	<!-- ====================================================================== -->
 	<element name="geogPosition" type="gml:PointPropertyType">
 		<annotation>
