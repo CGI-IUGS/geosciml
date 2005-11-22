@@ -2,13 +2,13 @@
 <!-- IUGS/CGI GeoSciML schema, ver. 1 - draft 2005-10-19 -->
 <!-- Contains the concepts (classes), their inheritance, and relations from the earthMaterial package of the GeoSciML model -->
 <!-- GeoSciML Testbed-2 Model -->
-<schema targetNamespace="http://www.cgi-iugs.org/xml/GeoSciML/1" xmlns:gsml="http://www.cgi-iugs.org/xml/GeoSciML/1" xmlns="http://www.w3.org/2001/XMLSchema" xmlns:gml="http://www.opengis.net/gml" elementFormDefault="qualified" attributeFormDefault="unqualified" version="1.0.0">
+<schema targetNamespace="http://www.cgi-iugs.org/xml/GeoSciML/1" xmlns:gml="http://www.opengis.net/gml" xmlns="http://www.w3.org/2001/XMLSchema" xmlns:gsml="http://www.cgi-iugs.org/xml/GeoSciML/1" elementFormDefault="qualified" attributeFormDefault="unqualified" version="1.0.0">
   <annotation>
     <documentation>earthMaterial.xsd
 Basic earth material description for GeoSciML</documentation>
   </annotation>
   <!--=======================-->
-	<import namespace="http://www.opengis.net/gml" schemaLocation="http://schemas.opengis.net/gml/3.1.1/base/gml.xsd"/>
+  <import namespace="http://www.opengis.net/gml" schemaLocation="http://schemas.opengis.net/gml/3.1.1/base/gml.xsd"/>
   <!--=======================-->
   <include schemaLocation="top.xsd"/>
   <!--=======================-->
@@ -40,11 +40,9 @@ Basic earth material description for GeoSciML</documentation>
           <element name="metamorphicGrade" type="gsml:CGI_TermValuePropertyType" minOccurs="0"/>
           <element name="particleGeometry" type="gsml:CGI_PhysicalDescriptionPropertyType" minOccurs="0" maxOccurs="unbounded"/>
           <element name="fabric" type="gsml:CGI_TermValuePropertyType" minOccurs="0" maxOccurs="unbounded"/>
-          <element name="grossComposition" type="gsml:CGI_TermValuePropertyType"/>
-		  <!-- Something inherited from NADM??
-          <element name="compositionClass" type="gsml:CGI_TermValuePropertyType" maxOccurs="unbounded"/>
-		  -->
+          <element name="grossComposition" type="gsml:CGI_TermValuePropertyType" minOccurs="0" />
           <element name="genesis" type="gsml:CGI_TermValuePropertyType" minOccurs="0" maxOccurs="unbounded"/>
+          <element name="compositionClass" type="gsml:CGI_TermValuePropertyType" minOccurs="0" maxOccurs="unbounded"/>
         </sequence>
       </extension>
     </complexContent>
