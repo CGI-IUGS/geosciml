@@ -1,115 +1,122 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Gsml xmlns="http://www.cgi-iugs.org/xml/GeoSciML/1" xmlns:gml="http://www.opengis.net/gml" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.cgi-iugs.org/xml/GeoSciML/1 ../schema/GeoSciML.xsd">
-  <!-- Concepts  -->
-  <vocabularyMember>
-    <GeologicVocabulary gml:id="nadm1.0">
-      <gml:name>LithClass 6.1 (fragment)</gml:name>
-      <conceptMember>
-        <ControlledConcept gml:id="lith-1">
-          <!-- simple in-line definition -->
-          <gml:name>Granite</gml:name>
-          <preferredName>granite</preferredName>
-          <prototype>
-            <CompoundMaterial gml:id="granite">
-              <gml:description>A plutonic rock defined in the QAPF diagram as having Q between 20 and 60% and P/(A+P) between 10 and 65%</gml:description>
-              <gml:name>Granite</gml:name>
-              <consolidationDegree>
-                <CGI_TermValue>
-                  <value codeSpace="http://www.iugs-cgi.org/consolidationDegreeList">consolidated</value>
-                </CGI_TermValue>
-              </consolidationDegree>
-              <compositionClass/>
-            </CompoundMaterial>
-          </prototype>
-        </ControlledConcept>
-      </conceptMember>
-      <conceptMember>
-        <ControlledConcept gml:id="lith-5">
-          <!-- simple in-line definition w/ fabrics-->
-          <gml:name>Plutonic rock</gml:name>
-          <preferredName>plutonic</preferredName>
-          <prototype>
-            <CompoundMaterial gml:id="plutonic">
-              <gml:description>A rock formed at considerable depth by crystallization of magma and/or by chemical alteration.  It is characteristically medium- to coarse-grained, of granitoid texture.</gml:description>
-              <gml:name>Plutonic rock</gml:name>
-              <consolidationDegree>
-                <CGI_TermValue>
-                  <value codeSpace="http://www.iugs-cgi.org/consolidationDegreeList">consolidated</value>
-                </CGI_TermValue>
-              </consolidationDegree>
-              <fabric>
-                <CGI_TermValue>
-                  <value codeSpace="http://www.iugs-cgi.org/fabricList">plutonic</value>
-                </CGI_TermValue>
-              </fabric>
-              <fabric>
-                <CGI_TermValue>
-                  <value codeSpace="http://www.iugs-cgi.org/fabricList">hypabyssal</value>
-                </CGI_TermValue>
-              </fabric>
-              <compositionClass/>
-            </CompoundMaterial>
-          </prototype>
-        </ControlledConcept>
-      </conceptMember>
-      <conceptMember>
-        <ControlledConcept gml:id="lith-6">
-          <!-- referenced definition in different document -->
-          <gml:name>granitoid</gml:name>
-          <preferredName>granitoid</preferredName>
-          <prototype xlink:href="#rock144"/>
-        </ControlledConcept>
-      </conceptMember>
-      <conceptMember>
-        <ControlledConcept gml:id="lith-9">
-          <!-- definition w/ multiple names, one preferred -->
-          <gml:name>leuco-granite</gml:name>
-          <gml:name>trondhjemite</gml:name>
-          <preferredName>tonalite</preferredName>
-          <prototype>
-            <CompoundMaterial gml:id="tonalite">
-              <gml:description>A plutonic rock defined in the QAPF diagram as having Q between 20 and 60% and P/(A+P) > 90%</gml:description>
-              <gml:name>Tonalite</gml:name>
-              <consolidationDegree>
-                <CGI_TermValue>
-                  <value codeSpace="http://www.iugs-cgi.org/consolidationDegreeList">consolidated</value>
-                </CGI_TermValue>
-              </consolidationDegree>
-              <fabric>
-                <CGI_TermValue>
-                  <value codeSpace="http://www.iugs-cgi.org/fabricList">plutonic</value>
-                </CGI_TermValue>
-              </fabric>
-              <compositionClass/>
-            </CompoundMaterial>
-          </prototype>
-        </ControlledConcept>
-      </conceptMember>
-    </GeologicVocabulary>
-  </vocabularyMember>
-  <!-- hierarchical relations -->
-  <geologicObjectMember>
-    <VocabRelation gml:id="nadm-118">
-      <gml:name>hierarchy</gml:name>
-      <relationRole codeSpace="http://www.iugs-cgi.org/vocabRelationList">child</relationRole>
-      <target xlink:href="#nadm-6"/>
-      <source xlink:href="#nadm-5"/>
-    </VocabRelation>
-  </geologicObjectMember>
-  <geologicObjectMember>
-    <VocabRelation gml:id="nadm-119">
-      <gml:name>hierarchy</gml:name>
-      <relationRole codeSpace="http://www.iugs-cgi.org/vocabRelationList">child</relationRole>
-      <target xlink:href="#nadm-6"/>
-      <source xlink:href="#nadm-1"/>
-    </VocabRelation>
-  </geologicObjectMember>
-  <geologicObjectMember>
-    <VocabRelation gml:id="nadm-120">
-      <gml:name>hierarchy</gml:name>
-      <relationRole codeSpace="http://www.iugs-cgi.org/vocabRelationList">child</relationRole>
-      <target xlink:href="#nadm-6"/>
-      <source xlink:href="#nadm-9"/>
-    </VocabRelation>
-  </geologicObjectMember>
+	<!-- Concepts  -->
+	<vocabularyMember>
+		<GeologicVocabulary gml:id="nadm1.0">
+			<gml:name>urn:x-cgi:lex:lithology:GSV:6.1:LithClass</gml:name>
+			<gml:name>LithClass 6.1 (fragment)</gml:name>
+			<member>
+				<ControlledConcept gml:id="lith-1">
+					<!-- simple in-line definition -->
+					<gml:name>urn:x-cgi:def:lithology:GSV:6.1:granite</gml:name>
+					<preferredName>granite</preferredName>
+					<prototype>
+						<CompoundMaterial gml:id="granite">
+							<gml:description>A plutonic rock defined in the QAPF diagram as having Q between 20 and 60% and P/(A+P) between 10 and 65%</gml:description>
+							<gml:name>Granite</gml:name>
+							<consolidationDegree>
+								<CGI_TermValue>
+									<value codeSpace="http://www.iugs-cgi.org/consolidationDegreeList">consolidated</value>
+								</CGI_TermValue>
+							</consolidationDegree>
+							<compositionClass/>
+						</CompoundMaterial>
+					</prototype>
+					<vocabulary xlink:href="urn:x-cgi:lex:lithology:GSV:6.1:LithClass"/>
+				</ControlledConcept>
+			</member>
+			<member>
+				<ControlledConcept gml:id="lith-5">
+					<!-- simple in-line definition w/ fabrics-->
+					<gml:description>Plutonic rock</gml:description>
+					<gml:name>urn:x-cgi:def:lithology:GSV:6.1:plutonic</gml:name>
+					<preferredName>plutonic</preferredName>
+					<prototype>
+						<CompoundMaterial gml:id="plutonic">
+							<gml:description>A rock formed at considerable depth by crystallization of magma and/or by chemical alteration.  It is characteristically medium- to coarse-grained, of granitoid texture.</gml:description>
+							<gml:name>Plutonic rock</gml:name>
+							<consolidationDegree>
+								<CGI_TermValue>
+									<value codeSpace="http://www.iugs-cgi.org/consolidationDegreeList">consolidated</value>
+								</CGI_TermValue>
+							</consolidationDegree>
+							<fabric>
+								<CGI_TermValue>
+									<value codeSpace="http://www.iugs-cgi.org/fabricList">plutonic</value>
+								</CGI_TermValue>
+							</fabric>
+							<fabric>
+								<CGI_TermValue>
+									<value codeSpace="http://www.iugs-cgi.org/fabricList">hypabyssal</value>
+								</CGI_TermValue>
+							</fabric>
+							<compositionClass/>
+						</CompoundMaterial>
+					</prototype>
+					<vocabulary xlink:href="urn:x-cgi:lex:lithology:GSV:6.1:LithClass"/>
+				</ControlledConcept>
+			</member>
+			<member>
+				<ControlledConcept gml:id="lith-6">
+					<!-- referenced definition in different document -->
+					<gml:name>urn:x-cgi:def:lithology:GSV:6.1:granitoid</gml:name>
+					<preferredName>granitoid</preferredName>
+					<prototype xlink:href="#rock144"/>
+					<vocabulary xlink:href="urn:x-cgi:lex:lithology:GSV:6.1:LithClass"/>
+				</ControlledConcept>
+			</member>
+			<member>
+				<ControlledConcept gml:id="lith-9">
+					<!-- definition w/ multiple names, one preferred -->
+					<gml:name>urn:x-cgi:def:lithology:GSV:6.1:tonalite</gml:name>
+					<gml:name>leuco-granite</gml:name>
+					<gml:name>trondhjemite</gml:name>
+					<preferredName>tonalite</preferredName>
+					<prototype>
+						<CompoundMaterial gml:id="tonalite">
+							<gml:description>A plutonic rock defined in the QAPF diagram as having Q between 20 and 60% and P/(A+P) > 90%</gml:description>
+							<gml:name>Tonalite</gml:name>
+							<consolidationDegree>
+								<CGI_TermValue>
+									<value codeSpace="http://www.iugs-cgi.org/consolidationDegreeList">consolidated</value>
+								</CGI_TermValue>
+							</consolidationDegree>
+							<fabric>
+								<CGI_TermValue>
+									<value codeSpace="http://www.iugs-cgi.org/fabricList">plutonic</value>
+								</CGI_TermValue>
+							</fabric>
+							<compositionClass/>
+						</CompoundMaterial>
+					</prototype>
+					<vocabulary xlink:href="urn:x-cgi:lex:lithology:GSV:6.1:LithClass"/>
+				</ControlledConcept>
+			</member>
+			<!-- hierarchical relations -->
+			<member>
+				<VocabRelation gml:id="nadm-118">
+					<relationRole codeSpace="http://www.iugs-cgi.org/vocabRelationList">child</relationRole>
+					<target xlink:href="#nadm-6"/>
+					<source xlink:href="#nadm-5"/>
+					<vocabulary xlink:href="urn:x-cgi:lex:lithology:GSV:6.1:LithClass"/>
+				</VocabRelation>
+			</member>
+			<member>
+				<VocabRelation gml:id="nadm-119">
+					<relationRole codeSpace="http://www.iugs-cgi.org/vocabRelationList">child</relationRole>
+					<target xlink:href="#nadm-6"/>
+					<source xlink:href="#nadm-1"/>
+					<vocabulary xlink:href="urn:x-cgi:lex:lithology:GSV:6.1:LithClass"/>
+				</VocabRelation>
+			</member>
+			<member>
+				<VocabRelation gml:id="nadm-120">
+					<relationRole codeSpace="http://www.iugs-cgi.org/vocabRelationList">child</relationRole>
+					<target xlink:href="#nadm-6"/>
+					<source xlink:href="#nadm-9"/>
+					<vocabulary xlink:href="urn:x-cgi:lex:lithology:GSV:6.1:LithClass"/>
+				</VocabRelation>
+			</member>
+		</GeologicVocabulary>
+	</vocabularyMember>
 </Gsml>

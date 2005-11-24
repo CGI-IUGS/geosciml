@@ -17,8 +17,7 @@ covering concepts, vocabularies and relations</documentation>
 		<complexContent>
 			<extension base="gml:DictionaryType">
 				<sequence>
-					<element name="conceptMember" type="gsml:ControlledConceptPropertyType" maxOccurs="unbounded"/>
-					<element name="member" type="gsml:VocabRelationPropertyType" minOccurs="0" maxOccurs="unbounded"/>
+					<element name="member" type="gsml:VocabItemPropertyType" maxOccurs="unbounded"/>
 				</sequence>
 			</extension>
 		</complexContent>
@@ -38,9 +37,9 @@ covering concepts, vocabularies and relations</documentation>
 			<extension base="gsml:GeologicObjectType">
 				<sequence>
 					<element name="relationRole" type="gsml:ScopedNameType"/>
-					<element name="collection" type="gsml:GeologicVocabularyPropertyType" minOccurs="0"/>
 					<element name="target" type="gsml:ControlledConceptPropertyType"/>
 					<element name="source" type="gsml:ControlledConceptPropertyType"/>
+					<element name="vocabulary" type="gml:ReferenceType"/>
 				</sequence>
 			</extension>
 		</complexContent>
@@ -53,6 +52,24 @@ covering concepts, vocabularies and relations</documentation>
 			<element ref="gsml:VocabRelation"/>
 		</sequence>
 		<attributeGroup ref="gsml:RichPropertyAttributeGroup"/>
+	</complexType>
+	<!--=======================-->
+	<complexType name="VocabItemPropertyType">
+		<sequence minOccurs="0">
+			<choice>
+				<element ref="gsml:ControlledConcept"/>
+				<element ref="gsml:VocabRelation"/>
+			</choice>
+		</sequence>
+		<attributeGroup ref="gsml:RichPropertyAttributeGroup"/>
+		<attribute name="unionSemantics">
+			<simpleType>
+				<restriction base="string">
+					<enumeration value="conceptMember"/>
+					<enumeration value="relationMember"/>
+				</restriction>
+			</simpleType>
+		</attribute>
 	</complexType>
 	<!--=======================-->
 </schema>
