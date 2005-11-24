@@ -2,7 +2,8 @@
 <!-- IUGS/CGI GeoSciML schema, ver. 1 - draft 2005-10-19 -->
 <!-- Contains the concepts (classes), their inheritance, and relations from the CGI_Top package of the GeoSciML model -->
 <!-- GeoSciML Testbed-2 Model -->
-<schema xmlns:gml="http://www.opengis.net/gml" xmlns="http://www.w3.org/2001/XMLSchema" xmlns:gsml="http://www.cgi-iugs.org/xml/GeoSciML/1" targetNamespace="http://www.cgi-iugs.org/xml/GeoSciML/1" elementFormDefault="qualified" attributeFormDefault="unqualified" version="1.0.0">
+<schema xmlns:gml="http://www.opengis.net/gml" xmlns="http://www.w3.org/2001/XMLSchema" xmlns:gsml="http://www.cgi-iugs.org/xml/GeoSciML/1" targetNamespace="http://www.cgi-iugs.org/xml/GeoSciML/1" elementFormDefault="qualified"
+        attributeFormDefault="unqualified" version="1.0.0">
 	<annotation>
 		<documentation>top.xsd
 		High level classes for GeoSciML
@@ -46,11 +47,20 @@
 		<complexContent>
 			<extension base="gml:AbstractFeatureType">
 				<sequence>
-					<element name="purpose" type="gsml:ScopedNameType"/>
+					<element name="purpose" type="gsml:ScopedNameType">
+						<annotation>
+							<documentation>What is this for? </documentation>
+						</annotation>
+					</element>
 					<element name="age" type="gsml:GeologicAgePropertyType" maxOccurs="unbounded"/>
 					<element name="metadata" type="gsml:GeologicFeatureMetadataPropertyType"/>
 					<element name="occurrence" type="gsml:MappedFeaturePropertyType" minOccurs="0" maxOccurs="unbounded"/>
-					<element name="classifier" type="gsml:ControlledConceptPropertyType" minOccurs="0" maxOccurs="unbounded"/>
+					<!--					<element name="classifier" type="gsml:ControlledConceptPropertyType" minOccurs="0" maxOccurs="unbounded"/> -->
+					<element name="classifier" type="gml:ReferenceType" minOccurs="0" maxOccurs="unbounded">
+						<annotation>
+							<documentation>Pointer to controlled concept which serves to classify the object on some axis</documentation>
+						</annotation>
+					</element>
 				</sequence>
 			</extension>
 		</complexContent>
@@ -71,7 +81,12 @@
 				<sequence>
 					<element name="purpose" type="gsml:ScopedNameType" minOccurs="0"/>
 					<element name="metadata" type="gsml:ObjectMetadataPropertyType" minOccurs="0"/>
-					<element name="classifier" type="gsml:ControlledConceptPropertyType" minOccurs="0" maxOccurs="unbounded"/>
+					<!--					<element name="classifier" type="gsml:ControlledConceptPropertyType" minOccurs="0" maxOccurs="unbounded"/> -->
+					<element name="classifier" type="gml:ReferenceType" minOccurs="0" maxOccurs="unbounded">
+						<annotation>
+							<documentation>Pointer to controlled concept which serves to classify the object on some axis</documentation>
+						</annotation>
+					</element>
 				</sequence>
 			</extension>
 		</complexContent>
@@ -108,9 +123,22 @@
 		<complexContent>
 			<extension base="gml:DefinitionType">
 				<sequence>
-					<element name="preferredName" type="string"/>
+					<element name="preferredName" type="string">
+						<annotation>
+							<documentation>Preferred natural language term</documentation>
+						</annotation>
+					</element>
 					<element name="prototype" type="gsml:GeologicEntityPropertyType"/>
-					<element name="vocabulary" type="gml:ReferenceType"/>
+					<!--	maybe? <element name="prototype" type="gml:ReferenceType"> -->
+						<annotation>
+							<documentation>Pointer to geologic feature or geologic object which acts as the prototype for this concept</documentation>
+						</annotation>
+					</element>
+					<element name="vocabulary" type="gml:ReferenceType">
+						<annotation>
+							<documentation>Pointer to the parent vocabulary which this concept belongs to</documentation>
+						</annotation>
+					</element>
 				</sequence>
 			</extension>
 		</complexContent>
