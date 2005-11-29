@@ -19,11 +19,25 @@
 		</simpleContent>
 	</complexType>
 	<!--=======================-->
-	<complexType name="MeasureType">
+	<complexType name="CGI_MeasureType">
 		<simpleContent>
 			<extension base="gml:MeasureType">
+				<attribute name="relativeMeasure" type="gsml:RelativeMeasureCode" default="equals"/>
 			</extension>
 		</simpleContent>
 	</complexType>
+	<!-- ............ -->
+	<simpleType name="RelativeMeasureCode">
+		<annotation>
+			<documentation xml:lang="en">This enumerated data type specifies values for relative measures.</documentation>
+		</annotation>
+		<restriction base="string">
+			<enumeration value="lessThan"/>
+			<enumeration value="lessThanOrEquals"/>
+			<enumeration value="equals"/>
+			<enumeration value="greaterThanOrEquals"/>
+			<enumeration value="greaterThan"/>
+		</restriction>
+	</simpleType>
 	<!--=======================-->
 </schema>
