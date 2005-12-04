@@ -118,39 +118,4 @@
     </attribute>
   </complexType>
   <!--=======================-->
-  <complexType name="ControlledConceptType">
-    <complexContent>
-      <extension base="gml:DefinitionType">
-        <sequence>
-          <element name="preferredName" type="string">
-            <annotation>
-              <documentation>Preferred natural language term</documentation>
-            </annotation>
-          </element>
-          <element name="prototype" type="gsml:GeologicEntityPropertyType">
-            <annotation>
-              <documentation>Pointer to geologic feature or geologic object which acts as the prototype for this concept</documentation>
-            </annotation>
-            <!--	maybe? <element name="prototype" type="gml:ReferenceType"> -->
-          </element>
-          <element name="vocabulary" type="gml:ReferenceType">
-            <annotation>
-              <documentation>Pointer to the parent vocabulary which this concept belongs to</documentation>
-            </annotation>
-          </element>
-          <element name="metadata" type="gsml:ObjectMetadataPropertyType" minOccurs="0"/>
-        </sequence>
-      </extension>
-    </complexContent>
-  </complexType>
-  <!-- ..................... -->
-  <element name="ControlledConcept" type="gsml:ControlledConceptType" substitutionGroup="gml:Definition"/>
-  <!-- ..................... -->
-  <complexType name="ControlledConceptPropertyType">
-    <sequence minOccurs="0">
-      <element ref="gsml:ControlledConcept"/>
-    </sequence>
-    <attributeGroup ref="gsml:RichPropertyAttributeGroup"/>
-  </complexType>
-  <!--=======================-->
 </schema>
