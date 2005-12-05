@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!-- edited with XMLSpy v2005 rel. 3 U (http://www.altova.com) by Stephen M Richard (Arizona Geological Survey)
-This instance document revised from GeologicUnit-1.xml originally posted by Bruce Johnson. Names of the example units have been changed to less 'personal' names -->
-<Gsml xmlns="http://www.cgi-iugs.org/xml/GeoSciML/1" xmlns:gml="http://www.opengis.net/gml" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-      xsi:schemaLocation="http://www.cgi-iugs.org/xml/GeoSciML/1 ../schema/GeoSciML.xsd">
+This instance document revised from GeologicUnit-1.xml originally posted by Bruce Johnson. Names of the example units have been changed to less 'personal' names
+120505 Simon Cox fix up SMR version so it validates
+120505 SMR add classifier in McCoy Sandstone CompoundMaterial instance for 'SandstoneConcept'; make the CompoundMaterial instance there a typical description for sandstone in that formation, point SandstoneConcept prototye to external compoundMaterial instance, change gross composition to chemical term; add comments, other minor fixes  -->
+<Gsml xmlns="http://www.cgi-iugs.org/xml/GeoSciML/1" xmlns:gml="http://www.opengis.net/gml" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.cgi-iugs.org/xml/GeoSciML/1 ../schema/GeoSciML.xsd">
 	<!-- The lexicon would probably be in a separate file -->
 	<vocabularyMember>
 		<StratigraphicLexicon gml:id="SCAMPGeologicUnits">
@@ -50,7 +51,7 @@ This instance document revised from GeologicUnit-1.xml originally posted by Bruc
 					<gml:description>Formal definition of sandstone (in text form, this is a verbal version of the prototype description)...</gml:description>
 					<gml:name>urn:x-cgi:def:lithostratigraphy:USGS:2006:Geolex:Sandstone</gml:name>
 					<preferredName>Sandstone</preferredName>
-					<prototype xlink:href="#Rock24"/>
+					<prototype xlink:href="http://pubs.usgs.gov/Geolex/GeoSciML_lith_prototypes/Sandstone.xml"/>
 					<vocabulary xlink:href="#someonesStandardLithologyVocabulary"/>
 					<metadata/>
 				</ControlledConcept>
@@ -82,7 +83,8 @@ This instance document revised from GeologicUnit-1.xml originally posted by Bruc
 				</gml:Envelope>
 			</gml:boundedBy>
 			<purpose codeSpace="http://www.iugs-cgi.org/DescriptionPurposeVocabulary">TypicalNorm
-				<!--Specification of the intended purpose/level of abstraction for a given feature or object instance. Scoped name because intension is asserted by author of the data instance. Values: Instance, TypicalNorm, IdentifyingNorm. --></purpose>
+				<!--Specification of the intended purpose/level of abstraction for a given feature or object instance. Scoped name because intension is asserted by author of the data instance. Values: Instance, TypicalNorm, IdentifyingNorm. -->
+			</purpose>
 			<age>
 				<GeologicAge>
 					<value>
@@ -147,7 +149,7 @@ This instance document revised from GeologicUnit-1.xml originally posted by Bruc
 			<bodyMorphology/>
 			<outcropCharacter>
 				<CGI_TermValue>
-
+					<qualifier>common</qualifier>
 					<value codeSpace="http://www.iugs-cgi.org/outcropCharacterVocabulary">alternating ledge and slope forming</value>
 				</CGI_TermValue>
 			</outcropCharacter>
@@ -175,7 +177,6 @@ This instance document revised from GeologicUnit-1.xml originally posted by Bruc
 	<geologicFeatureMember>
 		<LithoStratigraphicUnit gml:id="LS2">
 			<!-- unit w/ composition by reference -->
-
 			<gml:description>This is a description of Typical properties of Eagle Conglomerate outcrops in the San Bernardino Wash quad, based on map collar description. The text on the map collar reads as follows: "Massive conglomerate unit at base of Juncal Group....blah blah blah"</gml:description>
 			<gml:name>Eagle Conglomerate, San Bernardino Wash quad</gml:name>
 			<gml:boundedBy>
@@ -203,7 +204,6 @@ This instance document revised from GeologicUnit-1.xml originally posted by Bruc
 			</age>
 			<metadata/>
 			<classifier xlink:href="#EagleConglomerateConcept"/>
-
 			<!-- no geologic unit parts defined here -->
 			<bodyMorphology/>
 			<outcropCharacter>
@@ -238,7 +238,7 @@ This instance document revised from GeologicUnit-1.xml originally posted by Bruc
 			</compositionClass>
 			<composition>
 				<CompositionPart>
-					<role codeSpace="http://www.iugs-cgi.org/compositionPartRoleVocabulary">entirety</role>
+					<role codeSpace="http://www.iugs-cgi.org/compositionPartRoleVocabulary">Lithologic constiuent</role>
 					<proportion>
 						<CGI_NumericValue>
 							<principalValue uom="percent">100</principalValue>
@@ -278,7 +278,8 @@ This instance document revised from GeologicUnit-1.xml originally posted by Bruc
 				</gml:Envelope>
 			</gml:boundedBy>
 			<purpose codeSpace="http://www.iugs-cgi.org/DescriptionPurposeVocabulary">TypicalNorm
-				<!--Specification of the intended purpose/level of abstraction for a given feature or object instance. Scoped name because intension is asserted by author of the data instance. Values: Instance, TypicalNorm, IdentifyingNorm. --></purpose>
+				<!--Specification of the intended purpose/level of abstraction for a given feature or object instance. Scoped name because intension is asserted by author of the data instance. Values: Instance, TypicalNorm, IdentifyingNorm. -->
+			</purpose>
 			<age>
 				<GeologicAge>
 					<value>
@@ -291,7 +292,7 @@ This instance document revised from GeologicUnit-1.xml originally posted by Bruc
 			</age>
 			<metadata/>
 			<classifier xlink:href="#McCoySandstoneConcept"/>
-			<!-- this unit has no geologic unit parts -->
+			<!-- this unit has no described geologic unit parts -->
 			<bodyMorphology/>
 			<outcropCharacter>
 				<CGI_TermValue>
@@ -304,10 +305,14 @@ This instance document revised from GeologicUnit-1.xml originally posted by Bruc
 					<value codeSpace="http://www.iugs-cgi.org/exposureColorVocabulary">pink</value>
 				</CGI_TermValue>
 			</exposureColor>
-			<compositionClass/>
+			<compositionClass>
+				<CGI_TermValue>
+					<value codeSpace="http://www.iugs-cgi.org/compositionVocabulary">siliciclastic</value>
+				</CGI_TermValue>
+			</compositionClass>
 			<composition>
 				<CompositionPart>
-					<role codeSpace="http://www.iugs-cgi.org/compositionPartRoleVocabulary">Lithologic Constituent</role>
+					<role codeSpace="http://www.iugs-cgi.org/compositionPartRoleVocabulary">entirety</role>
 					<proportion>
 						<CGI_NumericValue>
 							<principalValue uom="percent">100</principalValue>
@@ -317,11 +322,12 @@ This instance document revised from GeologicUnit-1.xml originally posted by Bruc
 					</proportion>
 					<material>
 						<CompoundMaterial gml:id="rock24">
-							<gml:name>sandstone</gml:name>
-							<purpose codeSpace="http://www.cgi-iugs.org">typical</purpose>
+							<gml:name>Typical McCoy sandstone lithology description</gml:name>
+							<purpose codeSpace="http://www.cgi-iugs.org">instance</purpose> <!-- unless one wants to elevate 'McCoy Sandstone sandstone' to a lithology vocabulary, this is an instance description whose scope is the McCoy Sandstone formation -->
+							<classifier xlink:href="#SandstoneConcept"/>
+							<!-- Here is the ControlledConcept that is the most specific subsuming concept in the standard vocabulary of your choice that identifies what kind of stuff you're describing. Properties not specified in this description would inherit from the prototype or default description associated with the controlled concept -->
 							<color xlink:href="urn:x-ogc:def:nil:OGC:unknown"/>
 							<!-- the rest of the rock description -->
-							<!-- I don't imagine it would be described in-line very often, but it could be done -->
 							<consolidationDegree>
 								<CGI_TermValue>
 									<value codeSpace="http://www.iugs-cgi.org/consolidationDegreeList">consolidated</value>
@@ -329,13 +335,20 @@ This instance document revised from GeologicUnit-1.xml originally posted by Bruc
 							</consolidationDegree>
 							<metamorphicGrade xlink:href="urn:x-ogc:def:nil:OGC:unknown"/>
 							<particleGeometry xlink:href="urn:x-ogc:def:nil:OGC:unknown"/>
+							<!-- actual prototype description would have to have a grain size description here specifying the grain size distribution allowed for something to be called sandstone -->
 							<fabric xlink:href="urn:x-ogc:def:nil:OGC:unknown"/>
 							<grossComposition>
+								<!-- this property should allow multiple values, what if I want to say that this particular variety of sandstone is sometimes ferrugineous and sometimes calcareous?-->
 								<CGI_TermValue>
-									<value codeSpace="http://www.iugs-cgi.org/lithologicVocabulary">sandstone</value>
+									<qualifier>always</qualifier>
+									<value codeSpace="http://www.iugs-cgi.org/compositionVocabulary">siliciclastic</value>
 								</CGI_TermValue>
 							</grossComposition>
-							<genesis xlink:href="urn:x-ogc:def:nil:OGC:unknown"/>
+							<genesis>
+								<CGI_TermValue>
+									<value codeSpace="http://www.iugs-cgi.org/GenesisTerms">clastic sedimentary</value>
+								</CGI_TermValue>
+							</genesis>
 						</CompoundMaterial>
 					</material>
 				</CompositionPart>
