@@ -72,7 +72,7 @@ covering concepts, vocabularies and relations</documentation>
     <complexContent>
       <extension base="gsml:GeologicObjectType">
         <sequence>
-          <element name="relationRole" type="gsml:ScopedNameType"/>
+          <element name="role" type="gsml:ScopedNameType"/>
           <element name="target" type="gsml:ControlledConceptPropertyType"/>
           <element name="source" type="gsml:ControlledConceptPropertyType"/>
           <element name="vocabulary" type="gml:ReferenceType"/>
@@ -108,4 +108,13 @@ covering concepts, vocabularies and relations</documentation>
     </attribute>
   </complexType>
   <!--=======================-->
+    <complexType name="StratigraphicLexiconType">
+    <complexContent>
+      <extension base="gsml:GeologicVocabularyType"/>
+	  </complexContent>
+	  </complexType>
+  <!-- ..................... -->
+  <element name="StratigraphicLexicon" type="gsml:StratigraphicLexiconType" substitutionGroup="gsml:GeologicVocabulary"/>
+  <!--=======================-->
+
 </schema>
