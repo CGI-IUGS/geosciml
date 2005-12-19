@@ -16,7 +16,7 @@ Basic earth material description for GeoSciML</documentation>
     <complexContent>
       <extension base="gsml:GeologicObjectType">
         <sequence>
-          <element name="color" type="gsml:CGI_TermValuePropertyType"/>
+          <element name="color" type="gsml:CGI_TermValuePropertyType" maxOccurs="unbounded"/>
           <element name="physicalProperty" type="gsml:CGI_PhysicalDescriptionPropertyType" minOccurs="0" maxOccurs="unbounded"/>
         </sequence>
       </extension>
@@ -40,8 +40,8 @@ Basic earth material description for GeoSciML</documentation>
           <element name="metamorphicGrade" type="gsml:CGI_TermValuePropertyType"/>
           <element name="particleGeometry" type="gsml:CGI_PhysicalDescriptionPropertyType" maxOccurs="unbounded"/>
           <element name="fabric" type="gsml:CGI_TermValuePropertyType" maxOccurs="unbounded"/>
-          <element name="grossComposition" type="gsml:CGI_TermValuePropertyType"/>
-          <element name="genesis" type="gsml:CGI_TermValuePropertyType"/>
+          <element name="grossChemistry" type="gsml:ChemicalCompositionClass"/>
+          <element name="genesis" type="gsml:CGI_TermValuePropertyType" maxOccurs="unbounded"/>
         </sequence>
       </extension>
     </complexContent>
@@ -49,4 +49,26 @@ Basic earth material description for GeoSciML</documentation>
   <!-- ..................... -->
   <element name="CompoundMaterial" type="gsml:CompoundMaterialType" substitutionGroup="gsml:EarthMaterial"/>
   <!--=======================-->
+	<simpleType name="ChemicalCompositionClass">
+		<union>
+			<simpleType>
+				<restriction base="string">
+					<enumeration value="carbonate"/>
+					<enumeration value="hydrocarbon"/>
+					<enumeration value="oxide"/>
+					<enumeration value="silicate"/>
+					<enumeration value="silicate-felsic"/>
+					<enumeration value="silicate-intermediate"/>
+					<enumeration value="silicate-mafic"/>
+					<enumeration value="sulfide"/>
+				</restriction>
+			</simpleType>
+			<simpleType>
+				<restriction base="string">
+					<pattern value="other:\w{2,}"/>
+				</restriction>
+			</simpleType>
+		</union>
+	</simpleType>
+	<!--=======================-->
 </schema>

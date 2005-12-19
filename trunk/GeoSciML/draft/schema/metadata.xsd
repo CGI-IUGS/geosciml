@@ -20,7 +20,7 @@ covering 	dataset and object metadata</documentation>
 	<!--=======================-->
 	<include schemaLocation="CGI_Value.xsd"/>
 	<!--=======================-->
-	<complexType name="MetadataType">
+	<complexType name="ObjectMetadataType">
 		<complexContent>
 			<extension base="gml:AbstractGMLType">
 				<sequence>
@@ -35,16 +35,7 @@ covering 	dataset and object metadata</documentation>
 		</complexContent>
 	</complexType>
 	<!-- ..................... -->
-	<element name="Metadata" type="gsml:MetadataType" abstract="true" substitutionGroup="gml:_GML"/>
-	<!--=======================-->
-	<complexType name="ObjectMetadataType">
-		<complexContent>
-			<extension base="gsml:MetadataType">
-			</extension>
-		</complexContent>
-	</complexType>
-	<!-- ..................... -->
-	<element name="ObjectMetadata" type="gsml:ObjectMetadataType" substitutionGroup="gsml:Metadata"/>
+	<element name="ObjectMetadata" type="gsml:ObjectMetadataType" abstract="true" substitutionGroup="gml:_GML"/>
 	<!-- ..................... -->
 	<complexType name="ObjectMetadataPropertyType">
 		<sequence minOccurs="0">
@@ -94,10 +85,11 @@ covering 	dataset and object metadata</documentation>
 	</complexType>
 	<!--=======================-->
 	<complexType name="DatasetMetadataType">
+		<annotation><documentation>Should be derived from MD_Metadata</documentation></annotation>
 		<complexContent>
-			<extension base="gsml:MetadataType"/>
+			<extension base="gml:AbstractGMLType"/>
 		</complexContent>
 	</complexType>
-	<element name="DatasetMetadata" type="gsml:DatasetMetadataType" substitutionGroup="gsml:Metadata"/>
+	<element name="DatasetMetadata" type="gsml:DatasetMetadataType" substitutionGroup="gml:_GML"/>
 	<!--=======================-->
 </schema>
