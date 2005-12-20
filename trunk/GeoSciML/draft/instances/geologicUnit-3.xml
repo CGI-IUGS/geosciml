@@ -62,7 +62,8 @@ This instance document revised from GeologicUnit-1.xml originally posted by Bruc
 	<geologicObjectMember>
 		<GeologicFeatureRelation gml:id="rel-100">
 			<gml:name>Stratigraphic position</gml:name>
-			<purpose codeSpace="http://www.cgi-iugs.org">asserted</purpose>
+			<purpose>observed</purpose>
+			<classifier xlink:href="urn:x-ogc:def:nil:OGC:inapplicable"/>
 			<role codeSpace="http://www.iugs-cgi.org/featureRelationVocabulary">overlies</role>
 			<source xlink:href="#LS3"/>
 			<target xlink:href="#LS2"/>
@@ -82,9 +83,8 @@ This instance document revised from GeologicUnit-1.xml originally posted by Bruc
 					<gml:upperCorner/>
 				</gml:Envelope>
 			</gml:boundedBy>
-			<purpose codeSpace="http://www.iugs-cgi.org/DescriptionPurposeVocabulary">TypicalNorm
-				<!--Specification of the intended purpose/level of abstraction for a given feature or object instance. Scoped name because intension is asserted by author of the data instance. Values: Instance, TypicalNorm, IdentifyingNorm. -->
-			</purpose>
+			<purpose>typicalNorm</purpose>
+				<!--Specification of the intended purpose/level of abstraction for a given feature or object instance. Scoped name because intension is asserted by author of the data instance. Values: Instance, typicalNorm, IdentifyingNorm. -->
 			<age>
 				<GeologicAge>
 					<value>
@@ -155,7 +155,7 @@ This instance document revised from GeologicUnit-1.xml originally posted by Bruc
 			</outcropCharacter>
 			<genesis xlink:href="urn:x-ogc:def:nil:OGC:unknown"/>
 			<exposureColor xlink:href="urn:x-ogc:def:nil:OGC:unknown"/>
-			<compositionClass xlink:href="urn:x-ogc:def:nil:OGC:unknown"/>
+			<grossChemistry>unknown</grossChemistry>
 			<rank codeSpace="http://www.iugs-cgi.org/rankVocabulary">Group</rank>
 			<weatheringCharacter xlink:href="urn:x-ogc:def:nil:OGC:unknown"/>
 			<metamorphicGrade>
@@ -186,8 +186,8 @@ This instance document revised from GeologicUnit-1.xml originally posted by Bruc
 					<gml:upperCorner/>
 				</gml:Envelope>
 			</gml:boundedBy>
-			<purpose codeSpace="http://www.iugs-cgi.org/DescriptionPurposeVocabulary">TypicalNorm</purpose>
-			<!--Specification of the intended purpose/level of abstraction for a given feature or object instance. Scoped name because intension is asserted by author of the data instance. Values: Instance, TypicalNorm, IdentifyingNorm. -->
+			<purpose>typicalNorm</purpose>
+			<!--Specification of the intended purpose/level of abstraction for a given feature or object instance. Scoped name because intension is asserted by author of the data instance. Values: Instance, typicalNorm, IdentifyingNorm. -->
 			<age>
 				<GeologicAge>
 					<value>
@@ -230,12 +230,7 @@ This instance document revised from GeologicUnit-1.xml originally posted by Bruc
 					<value codeSpace="http://www.iugs-cgi.org/exposureColorVocabulary">yellow-tan</value>
 				</CGI_TermValue>
 			</exposureColor>
-			<compositionClass>
-				<CGI_TermValue>
-					<value codeSpace="http://www.iugs-cgi.org/CompositionTermsVocabulary">
-						<!--Term to specify the gross chemical character of geologic unit. Examples include silicate, carbonate, ferromagnesian, oxide. -->siliciclastic</value>
-				</CGI_TermValue>
-			</compositionClass>
+			<grossChemistry>silicate</grossChemistry>
 			<composition>
 				<CompositionPart>
 					<role codeSpace="http://www.iugs-cgi.org/compositionPartRoleVocabulary">Lithologic constiuent</role>
@@ -277,9 +272,7 @@ This instance document revised from GeologicUnit-1.xml originally posted by Bruc
 					<gml:upperCorner/>
 				</gml:Envelope>
 			</gml:boundedBy>
-			<purpose codeSpace="http://www.iugs-cgi.org/DescriptionPurposeVocabulary">TypicalNorm
-				<!--Specification of the intended purpose/level of abstraction for a given feature or object instance. Scoped name because intension is asserted by author of the data instance. Values: Instance, TypicalNorm, IdentifyingNorm. -->
-			</purpose>
+			<purpose>typicalNorm</purpose>
 			<age>
 				<GeologicAge>
 					<value>
@@ -305,11 +298,7 @@ This instance document revised from GeologicUnit-1.xml originally posted by Bruc
 					<value codeSpace="http://www.iugs-cgi.org/exposureColorVocabulary">pink</value>
 				</CGI_TermValue>
 			</exposureColor>
-			<compositionClass>
-				<CGI_TermValue>
-					<value codeSpace="http://www.iugs-cgi.org/compositionVocabulary">siliciclastic</value>
-				</CGI_TermValue>
-			</compositionClass>
+			<grossChemistry>silicate</grossChemistry>
 			<composition>
 				<CompositionPart>
 					<role codeSpace="http://www.iugs-cgi.org/compositionPartRoleVocabulary">entirety</role>
@@ -323,7 +312,7 @@ This instance document revised from GeologicUnit-1.xml originally posted by Bruc
 					<material>
 						<CompoundMaterial gml:id="rock24">
 							<gml:name>Typical McCoy sandstone lithology description</gml:name>
-							<purpose codeSpace="http://www.cgi-iugs.org">instance</purpose> <!-- unless one wants to elevate 'McCoy Sandstone sandstone' to a lithology vocabulary, this is an instance description whose scope is the McCoy Sandstone formation -->
+							<purpose>observed</purpose> <!-- unless one wants to elevate 'McCoy Sandstone sandstone' to a lithology vocabulary, this is an instance description whose scope is the McCoy Sandstone formation -->
 							<classifier xlink:href="#SandstoneConcept"/>
 							<!-- Here is the ControlledConcept that is the most specific subsuming concept in the standard vocabulary of your choice that identifies what kind of stuff you're describing. Properties not specified in this description would inherit from the prototype or default description associated with the controlled concept -->
 							<color xlink:href="urn:x-ogc:def:nil:OGC:unknown"/>
@@ -337,13 +326,7 @@ This instance document revised from GeologicUnit-1.xml originally posted by Bruc
 							<particleGeometry xlink:href="urn:x-ogc:def:nil:OGC:unknown"/>
 							<!-- actual prototype description would have to have a grain size description here specifying the grain size distribution allowed for something to be called sandstone -->
 							<fabric xlink:href="urn:x-ogc:def:nil:OGC:unknown"/>
-							<grossComposition>
-								<!-- this property should allow multiple values, what if I want to say that this particular variety of sandstone is sometimes ferrugineous and sometimes calcareous?-->
-								<CGI_TermValue>
-									<qualifier>always</qualifier>
-									<value codeSpace="http://www.iugs-cgi.org/compositionVocabulary">siliciclastic</value>
-								</CGI_TermValue>
-							</grossComposition>
+							<grossChemistry>silicate</grossChemistry>
 							<genesis>
 								<CGI_TermValue>
 									<value codeSpace="http://www.iugs-cgi.org/GenesisTerms">clastic sedimentary</value>
