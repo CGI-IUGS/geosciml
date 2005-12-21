@@ -5,7 +5,7 @@ This instance document revised from GeologicUnit-1.xml originally posted by Bruc
 120505 SMR add classifier in McCoy Sandstone CompoundMaterial instance for 'SandstoneConcept'; make the CompoundMaterial instance there a typical description for sandstone in that formation, point SandstoneConcept prototye to external compoundMaterial instance, change gross composition to chemical term; add comments, other minor fixes  -->
 <Gsml xmlns="http://www.cgi-iugs.org/xml/GeoSciML/1" xmlns:gml="http://www.opengis.net/gml" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.cgi-iugs.org/xml/GeoSciML/1 ../schema/GeoSciML.xsd">
 	<!-- The lexicon would probably be in a separate file -->
-	<vocabularyMember>
+	<member>
 		<StratigraphicLexicon gml:id="SCAMPGeologicUnits">
 			<gml:description>Collection of geologic units defined by State of California and USGS for use in southern California mapping project</gml:description>
 			<gml:name>Southern California stratigraphic unit lexicon</gml:name>
@@ -40,9 +40,9 @@ This instance document revised from GeologicUnit-1.xml originally posted by Bruc
 				</ControlledConcept>
 			</member>
 		</StratigraphicLexicon>
-	</vocabularyMember>
+	</member>
 	<!-- -->
-	<vocabularyMember>
+	<member>
 		<GeologicVocabulary gml:id="someonesStandardLithologyVocabulary">
 			<gml:description>Collection of standard terms that identify kinds of Earth material, from some authority somewhere....</gml:description>
 			<gml:name>The ultimate vocabulary of NADM Compound materials</gml:name>
@@ -57,21 +57,18 @@ This instance document revised from GeologicUnit-1.xml originally posted by Bruc
 				</ControlledConcept>
 			</member>
 		</GeologicVocabulary>
-	</vocabularyMember>
+	</member>
 	<!-- -->
-	<geologicObjectMember>
+	<member>
 		<GeologicFeatureRelation gml:id="rel-100">
-			<gml:name>Stratigraphic position</gml:name>
-			<purpose>observed</purpose>
-			<classifier xlink:href="urn:x-ogc:def:nil:OGC:inapplicable"/>
 			<role codeSpace="http://www.iugs-cgi.org/featureRelationVocabulary">overlies</role>
 			<source xlink:href="#LS3"/>
 			<target xlink:href="#LS2"/>
 		</GeologicFeatureRelation>
-	</geologicObjectMember>
+	</member>
 	<!-- -->
 	<!-- -->
-	<geologicFeatureMember>
+	<member>
 		<LithoStratigraphicUnit gml:id="LS1">
 			<!--simple unit w/o composition -->
 			<gml:description>This is a description of Typical properties of Juncal group outcrops in the San Bernardino Wash quad, based on map collar description. The text on the map collar reads as follows: "Cretacous non marine clastic rocks of the San Bernardino Basin....blah blah blah"</gml:description>
@@ -168,13 +165,13 @@ This instance document revised from GeologicUnit-1.xml originally posted by Bruc
 			<beddingPattern xlink:href="urn:x-ogc:def:nil:OGC:unknown"/>
 			<beddingThickness xlink:href="urn:x-ogc:def:nil:OGC:unknown"/>
 		</LithoStratigraphicUnit>
-	</geologicFeatureMember>
+	</member>
 	<!-- -->
 	<!-- -->
 	<!-- -->
 	<!-- ************************************************************************************************-->
 	<!-- second description -->
-	<geologicFeatureMember>
+	<member>
 		<LithoStratigraphicUnit gml:id="LS2">
 			<!-- unit w/ composition by reference -->
 			<gml:description>This is a description of Typical properties of Eagle Conglomerate outcrops in the San Bernardino Wash quad, based on map collar description. The text on the map collar reads as follows: "Massive conglomerate unit at base of Juncal Group....blah blah blah"</gml:description>
@@ -256,11 +253,11 @@ This instance document revised from GeologicUnit-1.xml originally posted by Bruc
 			<beddingPattern xlink:href="urn:x-ogc:def:nil:OGC:unknown"/>
 			<beddingThickness xlink:href="urn:x-ogc:def:nil:OGC:unknown"/>
 		</LithoStratigraphicUnit>
-	</geologicFeatureMember>
+	</member>
 	<!-- -->
 	<!-- -->
 	<!-- Third descripiton-->
-	<geologicFeatureMember>
+	<member>
 		<LithoStratigraphicUnit gml:id="LS3">
 			<!-- unit w/ in-line composition definition -->
 			<gml:description>This is a description of Typical properties of McCoy Sandstone outcrops in the San Bernardino Wash quad, based on map collar description. The text on the map collar reads as follows: "Thick bedded lithic sandstone with abundant low-angle cross bedding....blah blah blah"</gml:description>
@@ -312,7 +309,7 @@ This instance document revised from GeologicUnit-1.xml originally posted by Bruc
 					<material>
 						<CompoundMaterial gml:id="rock24">
 							<gml:name>Typical McCoy sandstone lithology description</gml:name>
-							<purpose>observed</purpose> <!-- unless one wants to elevate 'McCoy Sandstone sandstone' to a lithology vocabulary, this is an instance description whose scope is the McCoy Sandstone formation -->
+							<purpose>instance</purpose> <!-- unless one wants to elevate 'McCoy Sandstone sandstone' to a lithology vocabulary, this is an instance description whose scope is the McCoy Sandstone formation -->
 							<classifier xlink:href="#SandstoneConcept"/>
 							<!-- Here is the ControlledConcept that is the most specific subsuming concept in the standard vocabulary of your choice that identifies what kind of stuff you're describing. Properties not specified in this description would inherit from the prototype or default description associated with the controlled concept -->
 							<color xlink:href="urn:x-ogc:def:nil:OGC:unknown"/>
@@ -348,5 +345,5 @@ This instance document revised from GeologicUnit-1.xml originally posted by Bruc
 			<beddingPattern xlink:href="urn:x-ogc:def:nil:OGC:unknown"/>
 			<beddingThickness xlink:href="urn:x-ogc:def:nil:OGC:unknown"/>
 		</LithoStratigraphicUnit>
-	</geologicFeatureMember>
+	</member>
 </Gsml>

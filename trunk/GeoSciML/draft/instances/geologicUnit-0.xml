@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Gsml xmlns="http://www.cgi-iugs.org/xml/GeoSciML/1" xmlns:gml="http://www.opengis.net/gml" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
       xsi:schemaLocation="http://www.cgi-iugs.org/xml/GeoSciML/1 ../schema/GeoSciML.xsd">
-	<geologicFeatureMember>
+	<member>
 		<LithoStratigraphicUnit gml:id="LS1">
 			<!-- simple unit w/o composition -->
 			<gml:name>Matti's Group</gml:name>
-			<purpose>observed</purpose>
+			<purpose>instance</purpose>
 			<age>
 				<GeologicAge>
 					<value>
@@ -39,12 +39,12 @@
 			<beddingPattern xlink:href="urn:x-ogc:def:nil:OGC:unknown"/>
 			<beddingThickness xlink:href="urn:x-ogc:def:nil:OGC:unknown"/>
 		</LithoStratigraphicUnit>
-	</geologicFeatureMember>
-	<geologicFeatureMember>
+	</member>
+	<member>
 		<LithoStratigraphicUnit gml:id="LS2">
 			<!-- unit w/ composition by reference -->
 			<gml:name>Jonathan's Conglomerate</gml:name>
-			<purpose>observed</purpose>
+			<purpose>instance</purpose>
 			<age>
 				<GeologicAge>
 					<value>
@@ -69,11 +69,7 @@
 					<value codeSpace="http://www.iugs-cgi.org/exposureColorVocabulary">red</value>
 				</CGI_TermValue>
 			</exposureColor>
-			<grossChemistry>
-				<CGI_TermValue>
-					<value codeSpace="http://www.iugs-cgi.org/lithologicVocabulary">Conglomerate</value>
-				</CGI_TermValue>
-			</grossChemistry>
+			<grossChemistry>silicate</grossChemistry>
 			<composition>
 				<CompositionPart>
 					<role codeSpace="http://www.iugs-cgi.org/compositionPartRoleVocabulary">entirety</role>
@@ -99,14 +95,12 @@
 			<beddingPattern xlink:href="urn:x-ogc:def:nil:OGC:unknown"/>
 			<beddingThickness xlink:href="urn:x-ogc:def:nil:OGC:unknown"/>
 		</LithoStratigraphicUnit>
-	</geologicFeatureMember>
-	<geologicFeatureMember>
+	</member>
+	<member>
 		<LithoStratigraphicUnit gml:id="LS3">
 			<!-- unit w/ in-line composition definition -->
 			<gml:name>Peter's Sandstone</gml:name>
-			<purpose codeSpace="unknown">
-				<!--  Anybody remember what purpose was for? -->
-			</purpose>
+			<purpose>instance</purpose>
 			<age>
 				<GeologicAge>
 					<value>
@@ -131,7 +125,7 @@
 					<value codeSpace="http://www.iugs-cgi.org/exposureColorVocabulary">pink</value>
 				</CGI_TermValue>
 			</exposureColor>
-			<grossChemistry/>
+			<grossChemistry>silicate</grossChemistry>
 			<composition>
 				<CompositionPart>
 					<role codeSpace="http://www.iugs-cgi.org/compositionPartRoleVocabulary">entirety</role>
@@ -145,7 +139,8 @@
 					<material>
 						<CompoundMaterial gml:id="rock24">
 							<gml:name>sandstone</gml:name>
-							<purpose>typical</purpose>
+							<purpose>typicalNorm</purpose>
+							<classifier xlink:href="urn:x-cgi:def:exception:CGI:2006:nil:informal"/>
 							<color xlink:href="urn:x-ogc:def:nil:OGC:unknown"/>
 							<!-- the rest of the rock description -->
 							<!-- I don't imagine it would be described in-line very often, but it could be done -->
@@ -157,11 +152,7 @@
 							<metamorphicGrade xlink:href="urn:x-ogc:def:nil:OGC:unknown"/>
 							<particleGeometry xlink:href="urn:x-ogc:def:nil:OGC:unknown"/>
 							<fabric xlink:href="urn:x-ogc:def:nil:OGC:unknown"/>
-							<grossChemistry>
-								<CGI_TermValue>
-									<value codeSpace="http://www.iugs-cgi.org/lithologicVocabulary">sandstone</value>
-								</CGI_TermValue>
-							</grossChemistry>
+							<grossChemistry>silicate</grossChemistry>
 							<genesis xlink:href="urn:x-ogc:def:nil:OGC:unknown"/>
 						</CompoundMaterial>
 					</material>
@@ -179,5 +170,5 @@
 			<beddingPattern xlink:href="urn:x-ogc:def:nil:OGC:unknown"/>
 			<beddingThickness xlink:href="urn:x-ogc:def:nil:OGC:unknown"/>
 		</LithoStratigraphicUnit>
-	</geologicFeatureMember>
+	</member>
 </Gsml>
