@@ -70,9 +70,8 @@ covering concepts, vocabularies and relations</documentation>
   <!--=======================-->
   <complexType name="VocabRelationType">
     <complexContent>
-      <extension base="gsml:GeologicObjectType">
+      <extension base="gsml:GeologicRelationType">
         <sequence>
-          <element name="role" type="gsml:ScopedNameType"/>
           <element name="target" type="gsml:ControlledConceptPropertyType"/>
           <element name="source" type="gsml:ControlledConceptPropertyType"/>
           <element name="vocabulary" type="gml:ReferenceType"/>
@@ -81,7 +80,7 @@ covering concepts, vocabularies and relations</documentation>
     </complexContent>
   </complexType>
   <!-- ..................... -->
-  <element name="VocabRelation" type="gsml:VocabRelationType" substitutionGroup="gsml:GeologicObject"/>
+  <element name="VocabRelation" type="gsml:VocabRelationType" substitutionGroup="gsml:GeologicRelation"/>
   <!-- ..................... -->
   <complexType name="VocabRelationPropertyType">
     <sequence minOccurs="0">

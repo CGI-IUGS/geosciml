@@ -122,10 +122,10 @@
 		<union>
 			<simpleType>
 				<restriction base="string">
+					<enumeration value="definingNorm"/>
 					<enumeration value="identifyingNorm"/>
 					<enumeration value="typicalNorm"/>
-					<enumeration value="asserted"/>
-					<enumeration value="observed"/>
+					<enumeration value="instance"/>
 				</restriction>
 			</simpleType>
 			<simpleType>
@@ -135,5 +135,24 @@
 			</simpleType>
 		</union>
 	</simpleType>
+	<!--=======================-->
+	<complexType name="GeologicRelationType" abstract="true">
+		<complexContent>
+			<extension base="gml:AbstractGMLType">
+				<sequence>
+					<element name="role" type="gsml:ScopedNameType"/>
+				</sequence>
+			</extension>
+		</complexContent>
+	</complexType>
+	<!-- ..................... -->
+	<element name="GeologicRelation" type="gsml:GeologicRelationType" substitutionGroup="gml:_GML"/>
+	<!-- ..................... -->
+	<complexType name="GeologicRelationPropertyType">
+		<sequence minOccurs="0">
+			<element ref="gsml:GeologicRelation"/>
+		</sequence>
+		<attributeGroup ref="gsml:RichPropertyAttributeGroup"/>
+	</complexType>
 	<!--=======================-->
 </schema>
