@@ -1,0 +1,1330 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<gml:Dictionary xmlns:cgi="http://www.cgi-iugs.org/xml/CGI" xmlns:xmml="http://www.opengis.net/xmml" xmlns:om="http://www.opengis.net/om" xmlns:meta="http://www.seegrid.csiro.au/xml/metaLite" xmlns:gml="http://www.opengis.net/gml"
+                xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                xsi:schemaLocation="     http://www.cgi-iugs.org/xml/CGI ../../CGI/geoTime.xsd      http://www.opengis.net/gml ../../CGI/gml4geotime.xsd      http://www.opengis.net/om ../../CGI/om4geotime.xsd      http://www.opengis.net/xmml ../../CGI/xmml4geotime.xsd http://www.seegrid.csiro.au/xml/metaLite ../../CGI/meta4geoTime.xsd"
+                gml:id="gssp_Permian1">
+	<gml:description>A set of interrelated components which define a geological time scales, values taken from the ICS - detail in Permian only
+	In this version *all* the componnets required are included in a single (rather unwieldy) document, and most cross-references are local (i.e. to locations within the document).
+	A more manageable normalised version is alongside this document in the repository. 
+	This document will not be maintined after 2005-05-16 so may not be valid according to the latest version of the schema.</gml:description>
+	<gml:name>ICS time scale - Permian detail</gml:name>
+	<!-- ============== -->
+	<gml:dictionaryEntry>
+		<gml:TimeCoordinateSystem gml:id="geologyMa">
+			<gml:description>Time coordinate system for geological time - millions of years</gml:description>
+			<gml:name>Geological coordinate system - Ma</gml:name>
+			<gml:domainOfValidity>Earth</gml:domainOfValidity>
+			<gml:origin>
+				<gml:TimeInstant gml:id="C14_Origin">
+					<gml:description xlink:href="http://www.c14dating.com/agecalc.html">Conventional origin used for carbon dating.  Equivalent to "present" for other radiometric dating techniques which have much lower precision.</gml:description>
+					<gml:timePosition frame="ISO-8601">1950</gml:timePosition>
+				</gml:TimeInstant>
+			</gml:origin>
+			<gml:interval unit="year" radix="10" factor="-6">1.0</gml:interval>
+		</gml:TimeCoordinateSystem>
+	</gml:dictionaryEntry>
+	<!-- =============== -->
+	<gml:dictionaryEntry>
+		<cgi:GeologicTimeScale gml:id="GSSPTimeScale">
+			<gml:description>The geologic timescale, as defined by ICS</gml:description>
+			<gml:name>ICS Geologic Timescale</gml:name>
+			<gml:domainOfValidity>Earth</gml:domainOfValidity>
+			<!-- ============== -->
+			<cgi:component>
+				<cgi:GeochronologicEra gml:id="AR">
+					<gml:name>Archean</gml:name>
+					<cgi:start xlink:href="urn:x-seegrid:items:exceptions:undefined"/>
+					<cgi:end xlink:href="#AR_PR"/>
+					<cgi:member>
+						<cgi:GeochronologicEra gml:id="EAR">
+							<gml:name>Eoarchean</gml:name>
+							<cgi:start xlink:href="urn:x-seegrid:items:exceptions:undefined"/>
+							<cgi:end xlink:href="#EAR_PAR"/>
+							<cgi:rank>Era</cgi:rank>
+						</cgi:GeochronologicEra>
+					</cgi:member>
+					<cgi:member>
+						<cgi:GeochronologicEra gml:id="PAR">
+							<gml:name>Paleoarchean</gml:name>
+							<cgi:start xlink:href="#EAR_PAR"/>
+							<cgi:end xlink:href="#PAR_MAR"/>
+							<cgi:rank>Era</cgi:rank>
+						</cgi:GeochronologicEra>
+					</cgi:member>
+					<cgi:member>
+						<cgi:GeochronologicEra gml:id="MAR">
+							<gml:name>Mesoarchean</gml:name>
+							<cgi:start xlink:href="#PAR_MAR"/>
+							<cgi:end xlink:href="#MAR_NAR"/>
+							<cgi:rank>Era</cgi:rank>
+						</cgi:GeochronologicEra>
+					</cgi:member>
+					<cgi:member>
+						<cgi:GeochronologicEra gml:id="NAR">
+							<gml:name>Neoarchean</gml:name>
+							<cgi:start xlink:href="#MAR_NAR"/>
+							<cgi:end xlink:href="#AR_PR"/>
+							<cgi:rank>Era</cgi:rank>
+						</cgi:GeochronologicEra>
+					</cgi:member>
+					<cgi:rank>Eon</cgi:rank>
+				</cgi:GeochronologicEra>
+			</cgi:component>
+			<cgi:component>
+				<cgi:GeochronologicEra gml:id="PR">
+					<gml:name>Proterozoic</gml:name>
+					<cgi:start xlink:href="#AR_PR"/>
+					<cgi:end xlink:href="#PR_PH"/>
+					<cgi:member>
+						<cgi:GeochronologicEra gml:id="PPR">
+							<gml:name>Paleoproterozoic Era</gml:name>
+							<cgi:start xlink:href="#AR_PR"/>
+							<cgi:end xlink:href="#PPR_MPR"/>
+							<cgi:member>
+								<cgi:GeochronologicEra gml:id="PPR1">
+									<gml:name>Siderian</gml:name>
+									<cgi:start xlink:href="#AR_PR"/>
+									<cgi:end xlink:href="#PPR1_PPR2"/>
+									<cgi:rank>Period</cgi:rank>
+								</cgi:GeochronologicEra>
+							</cgi:member>
+							<cgi:member>
+								<cgi:GeochronologicEra gml:id="PPR2">
+									<gml:name>Rhyacian</gml:name>
+									<cgi:start xlink:href="#PPR1_PPR2"/>
+									<cgi:end xlink:href="#PPR2_PPR3"/>
+									<cgi:rank>Period</cgi:rank>
+								</cgi:GeochronologicEra>
+							</cgi:member>
+							<cgi:member>
+								<cgi:GeochronologicEra gml:id="PPR3">
+									<gml:name>Orosirian</gml:name>
+									<cgi:start xlink:href="#PPR2_PPR3"/>
+									<cgi:end xlink:href="#PPR3_PPR4"/>
+									<cgi:rank>Period</cgi:rank>
+								</cgi:GeochronologicEra>
+							</cgi:member>
+							<cgi:member>
+								<cgi:GeochronologicEra gml:id="PPR4">
+									<gml:name>Statherian</gml:name>
+									<cgi:start xlink:href="#PPR3_PPR4"/>
+									<cgi:end xlink:href="#PPR_MPR"/>
+									<cgi:rank>Period</cgi:rank>
+								</cgi:GeochronologicEra>
+							</cgi:member>
+							<cgi:rank>Era</cgi:rank>
+						</cgi:GeochronologicEra>
+					</cgi:member>
+					<cgi:member>
+						<cgi:GeochronologicEra gml:id="MPR">
+							<gml:name>Mesoproterozoic Era</gml:name>
+							<cgi:start xlink:href="#PPR_MPR"/>
+							<cgi:end xlink:href="#MPR_NPR"/>
+							<cgi:member>
+								<cgi:GeochronologicEra gml:id="MPR1">
+									<gml:name>Calymmian</gml:name>
+									<cgi:start xlink:href="#PPR_MPR"/>
+									<cgi:end xlink:href="#MPR1_MPR2"/>
+									<cgi:rank>Period</cgi:rank>
+								</cgi:GeochronologicEra>
+							</cgi:member>
+							<cgi:member>
+								<cgi:GeochronologicEra gml:id="MPR2">
+									<gml:name>Ectasian</gml:name>
+									<cgi:start xlink:href="#MPR1_MPR2"/>
+									<cgi:end xlink:href="#MPR2_MPR3"/>
+									<cgi:rank>Period</cgi:rank>
+								</cgi:GeochronologicEra>
+							</cgi:member>
+							<cgi:member>
+								<cgi:GeochronologicEra gml:id="MPR3">
+									<gml:name>Stenian</gml:name>
+									<cgi:start xlink:href="#MPR2_MPR3"/>
+									<cgi:end xlink:href="#MPR_NPR"/>
+									<cgi:rank>Period</cgi:rank>
+								</cgi:GeochronologicEra>
+							</cgi:member>
+							<cgi:rank>Era</cgi:rank>
+						</cgi:GeochronologicEra>
+					</cgi:member>
+					<cgi:member>
+						<cgi:GeochronologicEra gml:id="NPR">
+							<gml:name>Neoproterozoic Era</gml:name>
+							<cgi:start xlink:href="#MPR_NPR"/>
+							<cgi:end xlink:href="#PR_PH"/>
+							<cgi:member>
+								<cgi:GeochronologicEra gml:id="NPR1">
+									<gml:name>Tonian</gml:name>
+									<cgi:start xlink:href="#MPR_NPR"/>
+									<cgi:end xlink:href="#NPR1_NPR2"/>
+									<cgi:rank>Period</cgi:rank>
+								</cgi:GeochronologicEra>
+							</cgi:member>
+							<cgi:member>
+								<cgi:GeochronologicEra gml:id="NPR2">
+									<gml:name>Cryogenian</gml:name>
+									<cgi:start xlink:href="#NPR1_NPR2"/>
+									<cgi:end xlink:href="#NPR2_NPR3"/>
+									<cgi:rank>Period</cgi:rank>
+								</cgi:GeochronologicEra>
+							</cgi:member>
+							<cgi:member>
+								<cgi:GeochronologicEra gml:id="NPR3">
+									<gml:name>Ediacaran</gml:name>
+									<cgi:start xlink:href="#NPR2_NPR3"/>
+									<cgi:end xlink:href="#PR_PH"/>
+									<cgi:rank>Period</cgi:rank>
+								</cgi:GeochronologicEra>
+							</cgi:member>
+							<cgi:rank>Era</cgi:rank>
+						</cgi:GeochronologicEra>
+					</cgi:member>
+					<cgi:rank>Eon</cgi:rank>
+				</cgi:GeochronologicEra>
+			</cgi:component>
+			<cgi:component>
+				<cgi:GeochronologicEra gml:id="PH">
+					<gml:name>Phanerozoic</gml:name>
+					<cgi:start xlink:href="#PR_PH"/>
+					<cgi:end xlink:href="#present"/>
+					<cgi:member>
+						<cgi:GeochronologicEra gml:id="PZ">
+							<gml:name>Paleozoic</gml:name>
+							<cgi:start xlink:href="#PR_PH"/>
+							<cgi:end xlink:href="#PZ_MZ"/>
+							<cgi:member xlink:title="Cambrian" xlink:href="#G"/>
+							<cgi:member xlink:title="Ordovician" xlink:href="#O"/>
+							<cgi:member xlink:title="Silurian" xlink:href="#S"/>
+							<cgi:member xlink:title="Devonian" xlink:href="#D"/>
+							<cgi:member xlink:title="Carboniferous" xlink:href="#C"/>
+							<cgi:member>
+								<cgi:GeochronologicEra gml:id="P">
+									<gml:name>Permian</gml:name>
+									<cgi:start xlink:href="#C_P"/>
+									<cgi:end xlink:href="#PZ_MZ"/>
+									<cgi:member>
+										<cgi:GeochronologicEra gml:id="P1">
+											<gml:name>Cisuralian</gml:name>
+											<cgi:start xlink:href="#C_P"/>
+											<cgi:end xlink:href="#P1_P2"/>
+											<cgi:member>
+												<cgi:GeochronologicEra gml:id="p1">
+													<gml:name>Asselian</gml:name>
+													<cgi:start xlink:href="#C_P"/>
+													<cgi:end xlink:href="#p1_p2"/>
+													<cgi:group xlink:href="#P1"/>
+													<cgi:rank>Age</cgi:rank>
+												</cgi:GeochronologicEra>
+											</cgi:member>
+											<cgi:member>
+												<cgi:GeochronologicEra gml:id="p2">
+													<gml:name>Sakmarian</gml:name>
+													<cgi:start xlink:href="#p1_p2"/>
+													<cgi:end xlink:href="#p2_p3"/>
+													<cgi:group xlink:href="#P1"/>
+													<cgi:rank>Age</cgi:rank>
+												</cgi:GeochronologicEra>
+											</cgi:member>
+											<cgi:member>
+												<cgi:GeochronologicEra gml:id="p3">
+													<gml:name>Artinskian</gml:name>
+													<cgi:start xlink:href="#p2_p3"/>
+													<cgi:end xlink:href="#p3_p4"/>
+													<cgi:group xlink:href="#P1"/>
+													<cgi:rank>Age</cgi:rank>
+												</cgi:GeochronologicEra>
+											</cgi:member>
+											<cgi:member>
+												<cgi:GeochronologicEra gml:id="p4">
+													<gml:name>Kungurian</gml:name>
+													<cgi:start xlink:href="#p3_p4"/>
+													<cgi:end xlink:href="#P1_P2"/>
+													<cgi:group xlink:href="#P1"/>
+													<cgi:rank>Age</cgi:rank>
+												</cgi:GeochronologicEra>
+											</cgi:member>
+											<cgi:group xlink:href="#P"/>
+											<cgi:rank>Epoch</cgi:rank>
+										</cgi:GeochronologicEra>
+									</cgi:member>
+									<cgi:member>
+										<cgi:GeochronologicEra gml:id="P2">
+											<gml:name>Guadalupian</gml:name>
+											<cgi:start xlink:href="#P1_P2"/>
+											<cgi:end xlink:href="#P2_P3"/>
+											<cgi:member>
+												<cgi:GeochronologicEra gml:id="p5">
+													<gml:name>Roadian</gml:name>
+													<cgi:start xlink:href="#P1_P2"/>
+													<cgi:end xlink:href="#p5_p6"/>
+													<cgi:group xlink:href="#P2"/>
+													<cgi:rank>Age</cgi:rank>
+												</cgi:GeochronologicEra>
+											</cgi:member>
+											<cgi:member>
+												<cgi:GeochronologicEra gml:id="p6">
+													<gml:name>Wordian</gml:name>
+													<cgi:start xlink:href="#p5_p6"/>
+													<cgi:end xlink:href="#p6_p7"/>
+													<cgi:group xlink:href="#P2"/>
+													<cgi:rank>Age</cgi:rank>
+												</cgi:GeochronologicEra>
+											</cgi:member>
+											<cgi:member>
+												<cgi:GeochronologicEra gml:id="p7">
+													<gml:name>Capitanian</gml:name>
+													<cgi:start xlink:href="#p6_p7"/>
+													<cgi:end xlink:href="#P2_P3"/>
+													<cgi:group xlink:href="#P2"/>
+													<cgi:rank>Age</cgi:rank>
+												</cgi:GeochronologicEra>
+											</cgi:member>
+											<cgi:group xlink:href="#P"/>
+											<cgi:rank>Epoch</cgi:rank>
+										</cgi:GeochronologicEra>
+									</cgi:member>
+									<cgi:member>
+										<cgi:GeochronologicEra gml:id="P3">
+											<gml:name>Lopingian</gml:name>
+											<cgi:start xlink:href="#P2_P3"/>
+											<cgi:end xlink:href="#PZ_MZ"/>
+											<cgi:member>
+												<cgi:GeochronologicEra gml:id="p8">
+													<gml:name>Wuchiapingian</gml:name>
+													<cgi:start xlink:href="#P2_P3"/>
+													<cgi:end xlink:href="#p8_p9"/>
+													<cgi:group xlink:href="#P3"/>
+													<cgi:rank>Age</cgi:rank>
+												</cgi:GeochronologicEra>
+											</cgi:member>
+											<cgi:member>
+												<cgi:GeochronologicEra gml:id="p9">
+													<gml:name>Changhsingian</gml:name>
+													<cgi:start xlink:href="#p8_p9"/>
+													<cgi:end xlink:href="#PZ_MZ"/>
+													<cgi:group xlink:href="#P3"/>
+													<cgi:rank>Age</cgi:rank>
+												</cgi:GeochronologicEra>
+											</cgi:member>
+											<cgi:group xlink:href="#P"/>
+											<cgi:rank>Epoch</cgi:rank>
+										</cgi:GeochronologicEra>
+									</cgi:member>
+									<cgi:group xlink:href="#PZ"/>
+									<cgi:rank>Period</cgi:rank>
+									<meta:comment>Permian-Carboniferous time scale is derived from calibrating a master composite section to selected radiometric ages</meta:comment>
+								</cgi:GeochronologicEra>
+							</cgi:member>
+							<cgi:group xlink:href="#PH"/>
+							<cgi:rank>Era</cgi:rank>
+							<meta:comment>Paleozoic Era.
+					Note that this era definition contains references to some eras that are not yet described here: 
+					viz. G, O, S, D, C.</meta:comment>
+						</cgi:GeochronologicEra>
+					</cgi:member>
+					<cgi:member>
+						<cgi:GeochronologicEra gml:id="MZ">
+							<gml:name>Mesozoic</gml:name>
+							<cgi:start xlink:href="#PZ_MZ"/>
+							<cgi:end xlink:href="#MZ_CZ"/>
+							<cgi:member xlink:title="Triassic" xlink:href="#T"/>
+							<cgi:member xlink:title="Jurassic" xlink:href="#J"/>
+							<cgi:member xlink:title="Cretaceous" xlink:href="#K"/>
+							<cgi:group xlink:href="#PH"/>
+							<cgi:rank>Era</cgi:rank>
+							<meta:comment>Mesozoic Era
+							Note that this era definition contains references to some eras that are not yet described here: 
+							viz. T, J K.</meta:comment>
+						</cgi:GeochronologicEra>
+					</cgi:member>
+					<cgi:member>
+						<cgi:GeochronologicEra gml:id="CZ">
+							<gml:name>Cenozoic</gml:name>
+							<cgi:start xlink:href="#MZ_CZ"/>
+							<cgi:end xlink:href="#present"/>
+							<cgi:member xlink:title="Paleogene" xlink:href="#Pg"/>
+							<cgi:member xlink:title="Neogene" xlink:href="#Ng"/>
+							<cgi:group xlink:href="#PH"/>
+							<cgi:rank>Era</cgi:rank>
+							<meta:comment>Cenozoic Era
+							Note that this era definition contains references to some eras that are not yet described here: 
+							viz. Pg, Ng.</meta:comment>
+						</cgi:GeochronologicEra>
+					</cgi:member>
+					<cgi:rank>Eon</cgi:rank>
+				</cgi:GeochronologicEra>
+			</cgi:component>
+			<!-- ======================== -->
+			<!-- Reference times -->
+			<!-- Positions of Global Stratotype Points as given in http://www.stratigraphy.org/gssp.htm 2004-04-25 -->
+			<!-- ======================== -->
+			<cgi:referencePoint>
+				<cgi:NumericEraBoundary gml:id="EAR_PAR">
+					<gml:name>Base Paleoarchean</gml:name>
+					<cgi:position>
+						<gml:TimeInstant gml:id="PAR_Origin">
+							<gml:timePosition frame="#geologyMA">-3600.</gml:timePosition>
+						</gml:TimeInstant>
+					</cgi:position>
+					<cgi:status>GSSA</cgi:status>
+					<cgi:reference xlink:href="#Ev14p139_1991"/>
+				</cgi:NumericEraBoundary>
+			</cgi:referencePoint>
+			<cgi:referencePoint>
+				<cgi:NumericEraBoundary gml:id="PAR_MAR">
+					<gml:name>Base Mesoarchean</gml:name>
+					<cgi:position>
+						<gml:TimeInstant gml:id="MAR_Origin">
+							<gml:timePosition frame="#geologyMA">-3200.</gml:timePosition>
+						</gml:TimeInstant>
+					</cgi:position>
+					<cgi:status>GSSA</cgi:status>
+					<cgi:reference xlink:href="#Ev14p139_1991"/>
+				</cgi:NumericEraBoundary>
+			</cgi:referencePoint>
+			<cgi:referencePoint>
+				<cgi:NumericEraBoundary gml:id="MAR_NAR">
+					<gml:name>Base Neoarchean</gml:name>
+					<cgi:position>
+						<gml:TimeInstant gml:id="NAR_Origin">
+							<gml:timePosition frame="#geologyMA">-2800.</gml:timePosition>
+						</gml:TimeInstant>
+					</cgi:position>
+					<cgi:status>GSSA</cgi:status>
+					<cgi:reference xlink:href="#Ev14p139_1991"/>
+				</cgi:NumericEraBoundary>
+			</cgi:referencePoint>
+			<cgi:referencePoint>
+				<cgi:NumericEraBoundary gml:id="AR_PR">
+					<gml:name>Base Proterozoic</gml:name>
+					<gml:name>Base Paleoproterozoic</gml:name>
+					<gml:name>Base Siderian</gml:name>
+					<cgi:position>
+						<gml:TimeInstant gml:id="PR_Origin">
+							<gml:timePosition frame="#geologyMA">-2500.</gml:timePosition>
+						</gml:TimeInstant>
+					</cgi:position>
+					<cgi:status>GSSA</cgi:status>
+					<cgi:reference xlink:href="#Ev14p139_1991"/>
+				</cgi:NumericEraBoundary>
+			</cgi:referencePoint>
+			<cgi:referencePoint>
+				<cgi:NumericEraBoundary gml:id="PPR1_PPR2">
+					<gml:name>Base Rhyacian</gml:name>
+					<cgi:position>
+						<gml:TimeInstant gml:id="PPR2_Origin">
+							<gml:timePosition frame="#geologyMA">-2300.</gml:timePosition>
+						</gml:TimeInstant>
+					</cgi:position>
+					<cgi:status>GSSA</cgi:status>
+					<cgi:reference xlink:href="#Ev14p139_1991"/>
+				</cgi:NumericEraBoundary>
+			</cgi:referencePoint>
+			<cgi:referencePoint>
+				<cgi:NumericEraBoundary gml:id="PPR2_PPR3">
+					<gml:name>Base Orosirian</gml:name>
+					<cgi:position>
+						<gml:TimeInstant gml:id="PPR3_Origin">
+							<gml:timePosition frame="#geologyMA">-2050.</gml:timePosition>
+						</gml:TimeInstant>
+					</cgi:position>
+					<cgi:status>GSSA</cgi:status>
+					<cgi:reference xlink:href="#Ev14p139_1991"/>
+				</cgi:NumericEraBoundary>
+			</cgi:referencePoint>
+			<cgi:referencePoint>
+				<cgi:NumericEraBoundary gml:id="PPR3_PPR4">
+					<gml:name>Base Statherian</gml:name>
+					<cgi:position>
+						<gml:TimeInstant gml:id="PPR4_Origin">
+							<gml:timePosition frame="#geologyMA">-1800.</gml:timePosition>
+						</gml:TimeInstant>
+					</cgi:position>
+					<cgi:status>GSSA</cgi:status>
+					<cgi:reference xlink:href="#Ev14p139_1991"/>
+				</cgi:NumericEraBoundary>
+			</cgi:referencePoint>
+			<cgi:referencePoint>
+				<cgi:NumericEraBoundary gml:id="PPR_MPR">
+					<gml:name>Base Mesoproterozoic</gml:name>
+					<gml:name>Base Calymmian</gml:name>
+					<cgi:position>
+						<gml:TimeInstant gml:id="MPR_Origin">
+							<gml:timePosition frame="#geologyMA">-1600.</gml:timePosition>
+						</gml:TimeInstant>
+					</cgi:position>
+					<cgi:status>GSSA</cgi:status>
+					<cgi:reference xlink:href="#Ev14p139_1991"/>
+				</cgi:NumericEraBoundary>
+			</cgi:referencePoint>
+			<cgi:referencePoint>
+				<cgi:NumericEraBoundary gml:id="MPR1_MPR2">
+					<gml:name>Base Ectasian</gml:name>
+					<cgi:position>
+						<gml:TimeInstant gml:id="MPR2_Origin">
+							<gml:timePosition frame="#geologyMA">-1400.</gml:timePosition>
+						</gml:TimeInstant>
+					</cgi:position>
+					<cgi:status>GSSA</cgi:status>
+					<cgi:reference xlink:href="#Ev14p139_1991"/>
+				</cgi:NumericEraBoundary>
+			</cgi:referencePoint>
+			<cgi:referencePoint>
+				<cgi:NumericEraBoundary gml:id="MPR2_MPR3">
+					<gml:name>Base Stenian</gml:name>
+					<cgi:position>
+						<gml:TimeInstant gml:id="MPR3_Origin">
+							<gml:timePosition frame="#geologyMA">-1200.</gml:timePosition>
+						</gml:TimeInstant>
+					</cgi:position>
+					<cgi:status>GSSA</cgi:status>
+					<cgi:reference xlink:href="#Ev14p139_1991"/>
+				</cgi:NumericEraBoundary>
+			</cgi:referencePoint>
+			<cgi:referencePoint>
+				<cgi:NumericEraBoundary gml:id="MPR_NPR">
+					<gml:name>Base Neoproterozoic</gml:name>
+					<gml:name>Base Tonian</gml:name>
+					<cgi:position>
+						<gml:TimeInstant gml:id="NPR_Origin">
+							<gml:timePosition frame="#geologyMA">-1000.</gml:timePosition>
+						</gml:TimeInstant>
+					</cgi:position>
+					<cgi:status>GSSA</cgi:status>
+					<cgi:reference xlink:href="#Ev14p139_1991"/>
+				</cgi:NumericEraBoundary>
+			</cgi:referencePoint>
+			<cgi:referencePoint>
+				<cgi:NumericEraBoundary gml:id="NPR1_NPR2">
+					<gml:name>Base Cryogenian</gml:name>
+					<cgi:position>
+						<gml:TimeInstant gml:id="NPR2_Origin">
+							<gml:timePosition frame="#geologyMA">-850.</gml:timePosition>
+						</gml:TimeInstant>
+					</cgi:position>
+					<cgi:status>GSSA</cgi:status>
+					<cgi:reference xlink:href="#Ev14p139_1991"/>
+				</cgi:NumericEraBoundary>
+			</cgi:referencePoint>
+			<cgi:referencePoint>
+				<cgi:GeochronologicBoundary gml:id="NPR2_NPR3">
+					<gml:name>Base Ediacaran</gml:name>
+					<cgi:position>
+						<cgi:StratigraphicDateEstimate gml:id="NPR3_Origin">
+							<gml:timePosition frame="#geologyMa">-600.0</gml:timePosition>
+							<cgi:quality>
+								<meta:QualitativeAssessment>
+									<meta:explanation>Vague estimation from bracketing radiometric ages</meta:explanation>
+									<meta:value>Estimate</meta:value>
+								</meta:QualitativeAssessment>
+							</cgi:quality>
+							<cgi:status>GSSP Ratified 1996</cgi:status>
+							<cgi:reference xlink:href="#Ev14p139_1991"/>
+						</cgi:StratigraphicDateEstimate>
+					</cgi:position>
+					<cgi:event>
+						<cgi:StratigraphicEvent gml:id="NPR2_NPR3_1">
+							<gml:description>Termination of Varanger (or Marinoan) glaciation.</gml:description>
+							<om:eventTime xlink:href="#NPR2_NPR3/cgi:position"/>
+							<om:eventLocation>
+								<om:LocationCode>
+									<om:locationName>Global</om:locationName>
+								</om:LocationCode>
+							</om:eventLocation>
+						</cgi:StratigraphicEvent>
+					</cgi:event>
+					<cgi:stratotype>
+						<cgi:StratigraphicPoint gml:id="gssp_base_ediacaran">
+							<gml:description>Base of the Nuccaleena Formation cap carbonate, immediately above the Elatina diamictite in the Enorama Creek section, Flinders Ranges, South Australia</gml:description>
+							<xmml:position>
+								<gml:Point srsName="epsg:4326" gml:id="gssp_base_ediacaran_pos">
+									<gml:pos>-31.32 138.62</gml:pos>
+								</gml:Point>
+							</xmml:position>
+							<cgi:boundary xlink:href="#NPR2_NPR3"/>
+							<cgi:hostSection xlink:title="Enorama Creek section, Flinders Ranges, South Australia"/>
+							<cgi:offset uom="m" xsi:nil="true"/>
+							<cgi:primaryGuidingCriterion>Paleoclimate</cgi:primaryGuidingCriterion>
+							<cgi:event xlink:href="#NPR2_NPR3_1"/>
+							<cgi:status>GSSP Ratified 1996</cgi:status>
+							<cgi:reference xlink:href="#Ev14p139_1991"/>
+						</cgi:StratigraphicPoint>
+					</cgi:stratotype>
+				</cgi:GeochronologicBoundary>
+			</cgi:referencePoint>
+			<cgi:referencePoint>
+				<cgi:GeochronologicBoundary gml:id="PR_PH">
+					<gml:name>Base Phanerozoic</gml:name>
+					<gml:name>Base Paleozoic</gml:name>
+					<gml:name>Base Cambrian</gml:name>
+					<gml:name>Base Lower Cambrian</gml:name>
+					<cgi:position>
+						<cgi:StratigraphicDateEstimate gml:id="PH_Origin">
+							<gml:timePosition frame="#geologyMa">-540.0</gml:timePosition>
+							<cgi:quality>
+								<meta:QuantitativeAssessment>
+									<meta:explanation>Error</meta:explanation>
+									<meta:values uom="Ma">5</meta:values>
+								</meta:QuantitativeAssessment>
+							</cgi:quality>
+							<cgi:status>Informal</cgi:status>
+							<cgi:reference xlink:href="#chronos"/>
+							<cgi:observationalBasis>
+								<cgi:DateDetermination gml:id="PH_Origin1">
+									<meta:reference xlink:href="#chronos"/>
+									<om:eventTime xlink:href="urn:x-seegrid:items:exceptions:unknown"/>
+									<om:eventLocation xlink:href="urn:x-seegrid:items:exceptions:unknown"/>
+									<om:procedureUsed xlink:href="urn:x-seegrid:items:exceptions:unknown"/>
+									<om:quality>
+										<meta:QuantitativeAssessment>
+											<meta:explanation>Error</meta:explanation>
+											<meta:values uom="Ma">1</meta:values>
+										</meta:QuantitativeAssessment>
+									</om:quality>
+									<om:target xlink:href="urn:x-seegrid:items:exceptions:unknown"/>
+									<om:result uom="Ma">542.0</om:result>
+								</cgi:DateDetermination>
+							</cgi:observationalBasis>
+							<cgi:observationalBasis>
+								<cgi:DateDetermination gml:id="PH_Origin2">
+									<meta:reference xlink:href="#chronos"/>
+									<om:eventTime xlink:href="urn:x-seegrid:items:exceptions:unknown"/>
+									<om:eventLocation xlink:href="urn:x-seegrid:items:exceptions:unknown"/>
+									<om:procedureUsed xlink:href="urn:x-seegrid:items:exceptions:unknown"/>
+									<om:quality>
+										<meta:QuantitativeAssessment>
+											<meta:explanation>Error</meta:explanation>
+											<meta:values uom="Ma">5</meta:values>
+										</meta:QuantitativeAssessment>
+									</om:quality>
+									<om:target xlink:href="urn:x-seegrid:items:exceptions:unknown"/>
+									<om:result uom="Ma">-540.0</om:result>
+								</cgi:DateDetermination>
+							</cgi:observationalBasis>
+							<cgi:observationalBasis>
+								<cgi:DateDetermination gml:id="PH_Origin3">
+									<meta:reference xlink:href="#IUGS"/>
+									<om:eventTime xlink:href="urn:x-seegrid:items:exceptions:unknown"/>
+									<om:eventLocation xlink:href="urn:x-seegrid:items:exceptions:unknown"/>
+									<om:procedureUsed xlink:href="urn:x-seegrid:items:exceptions:unknown"/>
+									<om:target xlink:href="urn:x-seegrid:items:exceptions:unknown"/>
+									<om:result uom="Ma">-545.0</om:result>
+								</cgi:DateDetermination>
+							</cgi:observationalBasis>
+						</cgi:StratigraphicDateEstimate>
+					</cgi:position>
+					<cgi:event>
+						<cgi:StratigraphicEvent gml:id="PR_PH_1">
+							<gml:description>Lowest occurrence of Treptichnus (Phycodes) pedum</gml:description>
+							<om:eventTime xlink:href="#PR_PH/cgi:position"/>
+							<om:eventLocation>
+								<om:LocationCode>
+									<om:locationName>Global</om:locationName>
+								</om:LocationCode>
+							</om:eventLocation>
+						</cgi:StratigraphicEvent>
+					</cgi:event>
+					<cgi:stratotype>
+						<cgi:StratigraphicPoint gml:id="PH_OriginPoint1">
+							<xmml:relatedObservation xlink:href="#PH_Origin1"/>
+							<xmml:relatedObservation xlink:href="#PH_Origin2"/>
+							<xmml:relatedObservation xlink:href="#PH_Origin3"/>
+							<xmml:position xlink:href="urn:x-seegrid:items:exceptions:unknown"/>
+							<cgi:boundary xlink:href="#PR_PH"/>
+							<cgi:hostSection xlink:title="Member 2 of Chapel Island Fm., Fortune Head, Burin Peninsula, southeast Newfoundland, Canada"/>
+							<cgi:offset uom="m">2.4</cgi:offset>
+							<cgi:primaryGuidingCriterion>Trace fossil biostratigraphy</cgi:primaryGuidingCriterion>
+							<cgi:event xlink:href="#PR_PH_1"/>
+							<cgi:additionalCorrelationProperty>Near base of negative carbon-isotope excursion</cgi:additionalCorrelationProperty>
+							<cgi:status>GSSP Ratified 1992</cgi:status>
+							<cgi:reference>
+								<meta:SimpleCitation gml:id="Ev17p95_1994">
+									<gml:name>Episodes 17 (1 and 2), p.95-100, 1994</gml:name>
+								</meta:SimpleCitation>
+							</cgi:reference>
+						</cgi:StratigraphicPoint>
+					</cgi:stratotype>
+				</cgi:GeochronologicBoundary>
+			</cgi:referencePoint>
+			<cgi:referencePoint>
+				<cgi:GeochronologicBoundary gml:id="C_P">
+					<gml:name>Base of Permian</gml:name>
+					<gml:name>Base of Cisuralian</gml:name>
+					<gml:name>Base of Asselian</gml:name>
+					<cgi:position>
+						<cgi:StratigraphicDateEstimate gml:id="P_Origin">
+							<gml:timePosition frame="#geologyMa">-299.0</gml:timePosition>
+							<cgi:quality>
+								<meta:QuantitativeAssessment>
+									<meta:explanation>Error</meta:explanation>
+									<meta:values uom="Ma">0.8</meta:values>
+								</meta:QuantitativeAssessment>
+							</cgi:quality>
+							<cgi:status>GSSP Ratified 1996</cgi:status>
+							<cgi:reference xlink:href="#Ev21p11_1998"/>
+							<cgi:observationalBasis>
+								<cgi:DateDetermination gml:id="P_Origin1">
+									<gml:description>Calibration of a master composite section to selected radiometric ages</gml:description>
+									<om:eventTime>
+										<gml:TimeInstant gml:id="P_Origin1_Measured">
+											<gml:timePosition>1998</gml:timePosition>
+										</gml:TimeInstant>
+									</om:eventTime>
+									<om:eventLocation xlink:href="urn:x-seegrid:items:exceptions:unknown"/>
+									<om:procedureUsed xlink:href="http://www.stratigraphy.org/procedures/geochronology/compositeSectionCalibration"/>
+									<om:quality>
+										<meta:QuantitativeAssessment>
+											<meta:explanation>Error</meta:explanation>
+											<meta:values uom="Ma">0.8</meta:values>
+										</meta:QuantitativeAssessment>
+									</om:quality>
+									<om:target xlink:href="#gssp_base_permian"/>
+									<om:result uom="Ma">299.0</om:result>
+								</cgi:DateDetermination>
+							</cgi:observationalBasis>
+						</cgi:StratigraphicDateEstimate>
+					</cgi:position>
+					<cgi:event>
+						<cgi:StratigraphicEvent gml:id="C_P_1">
+							<gml:description>Conodont, lowest occurrence of Streptognathodus isolatus within the S. "wabaunsensis" conodont chronocline.  6 m higher is lowest fusilinid foraminifer Sphaeroschwagerina.</gml:description>
+							<om:eventTime xlink:href="#C_P/cgi:position"/>
+							<om:eventLocation>
+								<om:LocationCode>
+									<om:locationName>Global</om:locationName>
+								</om:LocationCode>
+							</om:eventLocation>
+						</cgi:StratigraphicEvent>
+					</cgi:event>
+					<cgi:stratotype>
+						<cgi:StratigraphicPoint gml:id="gssp_base_permian">
+							<gml:description>27 m above base of Bed 19, Aidaralash Creek, Aktöbe, southern Ural Mountains, northern Kazakhstan</gml:description>
+							<xmml:relatedObservation xlink:href="#P_Origin1"/>
+							<xmml:position xlink:href="urn:x-seegrid:items:exceptions:unknown"/>
+							<cgi:boundary xlink:href="#C_P"/>
+							<cgi:hostSection xlink:title="Bed 19, Aidaralash Creek, Aktöbe, southern Ural Mountains, northern Kazakhstan"/>
+							<cgi:offset uom="m">27</cgi:offset>
+							<cgi:primaryGuidingCriterion>Conodont biostratigraphy</cgi:primaryGuidingCriterion>
+							<cgi:event xlink:href="#C_P_1"/>
+							<cgi:status>GSSP Ratified 1996</cgi:status>
+							<cgi:reference xlink:href="#Ev21p11_1998"/>
+						</cgi:StratigraphicPoint>
+					</cgi:stratotype>
+				</cgi:GeochronologicBoundary>
+			</cgi:referencePoint>
+			<cgi:referencePoint>
+				<cgi:GeochronologicBoundary gml:id="p1_p2">
+					<gml:name>Base of Sakmarian</gml:name>
+					<cgi:position>
+						<cgi:StratigraphicDateEstimate gml:id="p2_Origin">
+							<gml:timePosition frame="#geologyMa">-294.6</gml:timePosition>
+							<cgi:quality>
+								<meta:QuantitativeAssessment>
+									<meta:explanation>Error</meta:explanation>
+									<meta:values uom="Ma">0.8</meta:values>
+								</meta:QuantitativeAssessment>
+							</cgi:quality>
+							<cgi:status>Informal</cgi:status>
+							<cgi:reference xlink:href="#chronos"/>
+							<cgi:observationalBasis>
+								<cgi:DateDetermination gml:id="p2_Origin1">
+									<gml:description>Calibration of a master composite section to selected radiometric ages</gml:description>
+									<om:eventTime xlink:href="urn:x-seegrid:items:exceptions:unknown"/>
+									<om:eventLocation xlink:href="urn:x-seegrid:items:exceptions:unknown"/>
+									<om:procedureUsed xlink:href="http://www.stratigraphy.org/procedures/geochronology/compositeSectionCalibration"/>
+									<om:quality>
+										<meta:QuantitativeAssessment>
+											<meta:explanation>Error</meta:explanation>
+											<meta:values uom="Ma">0.8</meta:values>
+										</meta:QuantitativeAssessment>
+									</om:quality>
+									<om:target xlink:href="#gssp_base_sakmarian"/>
+									<om:result uom="Ma">294.6</om:result>
+								</cgi:DateDetermination>
+							</cgi:observationalBasis>
+						</cgi:StratigraphicDateEstimate>
+					</cgi:position>
+					<cgi:event>
+						<cgi:StratigraphicEvent gml:id="p1_p2_1">
+							<gml:description>Conodont, near lowest occurrence of conodont Streptognathodus postfusus.</gml:description>
+							<om:eventTime xlink:href="#p1_p2/cgi:position"/>
+							<om:eventLocation>
+								<om:LocationCode>
+									<om:locationName>Global</om:locationName>
+								</om:LocationCode>
+							</om:eventLocation>
+						</cgi:StratigraphicEvent>
+					</cgi:event>
+					<cgi:stratotype>
+						<cgi:StratigraphicPoint gml:id="gssp_base_sakmarian">
+							<gml:description>Leading candidate is at Kondurovsky, Orenburg Province, Russia.</gml:description>
+							<meta:reference xlink:href="#Ogg1"/>
+							<xmml:relatedObservation xlink:href="#p2_Origin1"/>
+							<xmml:position xlink:href="urn:x-seegrid:items:exceptions:unknown"/>
+							<cgi:boundary xlink:href="#p1_p2"/>
+							<cgi:hostSection xlink:title="Kondurovsky, Orenburg Province, Russia"/>
+							<cgi:offset uom="m" xsi:nil="true"/>
+							<cgi:primaryGuidingCriterion>Conodont biostratigraphy</cgi:primaryGuidingCriterion>
+							<cgi:event xlink:href="#p1_p2_1"/>
+							<cgi:status>Informal</cgi:status>
+							<cgi:reference xlink:href="#chronos"/>
+						</cgi:StratigraphicPoint>
+					</cgi:stratotype>
+				</cgi:GeochronologicBoundary>
+			</cgi:referencePoint>
+			<cgi:referencePoint>
+				<cgi:GeochronologicBoundary gml:id="p2_p3">
+					<gml:name>Base of Artinskian</gml:name>
+					<cgi:position>
+						<cgi:StratigraphicDateEstimate gml:id="p3_Origin">
+							<gml:timePosition frame="#geologyMa">-284.4</gml:timePosition>
+							<cgi:quality>
+								<meta:QuantitativeAssessment>
+									<meta:explanation>Error</meta:explanation>
+									<meta:values uom="Ma">0.7</meta:values>
+								</meta:QuantitativeAssessment>
+							</cgi:quality>
+							<cgi:status>Informal</cgi:status>
+							<cgi:reference xlink:href="#chronos"/>
+							<cgi:observationalBasis>
+								<cgi:DateDetermination gml:id="p3_Origin1">
+									<gml:description>Calibration of a master composite section to selected radiometric ages</gml:description>
+									<om:eventTime xlink:href="urn:x-seegrid:items:exceptions:unknown"/>
+									<om:eventLocation xlink:href="urn:x-seegrid:items:exceptions:unknown"/>
+									<om:procedureUsed xlink:href="http://www.stratigraphy.org/procedures/geochronology/compositeSectionCalibration"/>
+									<om:quality>
+										<meta:QuantitativeAssessment>
+											<meta:explanation>Error</meta:explanation>
+											<meta:values uom="Ma">0.7</meta:values>
+										</meta:QuantitativeAssessment>
+									</om:quality>
+									<om:target xlink:href="#gssp_base_artinskian"/>
+									<om:result uom="Ma">284.4</om:result>
+								</cgi:DateDetermination>
+							</cgi:observationalBasis>
+						</cgi:StratigraphicDateEstimate>
+					</cgi:position>
+					<cgi:event>
+						<cgi:StratigraphicEvent gml:id="p2_p3_1">
+							<gml:description>Conodont, lowest occurrence of conodont Sweetognathus whitei-Mesogondolella bisselli.</gml:description>
+							<om:eventTime xlink:href="#p2_p3/cgi:position"/>
+							<om:eventLocation>
+								<om:LocationCode>
+									<om:locationName>Global</om:locationName>
+								</om:LocationCode>
+							</om:eventLocation>
+						</cgi:StratigraphicEvent>
+					</cgi:event>
+					<cgi:stratotype>
+						<cgi:StratigraphicPoint gml:id="gssp_base_artinskian">
+							<gml:description>Leading candidates are in southern Ural Mtns.</gml:description>
+							<meta:reference xlink:href="#Ogg1"/>
+							<xmml:relatedObservation xlink:href="#p3_Origin1"/>
+							<xmml:position xlink:href="urn:x-seegrid:items:exceptions:unknown"/>
+							<cgi:boundary xlink:href="#p2_p3"/>
+							<cgi:hostSection xlink:title="southern Ural Mtns"/>
+							<cgi:offset uom="m" xsi:nil="true"/>
+							<cgi:primaryGuidingCriterion>Conodont biostratigraphy</cgi:primaryGuidingCriterion>
+							<cgi:event xlink:href="#p2_p3_1"/>
+							<cgi:status>Informal</cgi:status>
+							<cgi:reference xlink:href="#chronos"/>
+						</cgi:StratigraphicPoint>
+					</cgi:stratotype>
+				</cgi:GeochronologicBoundary>
+			</cgi:referencePoint>
+			<cgi:referencePoint>
+				<cgi:GeochronologicBoundary gml:id="p3_p4">
+					<gml:name>Base of Kungurian</gml:name>
+					<cgi:position>
+						<cgi:StratigraphicDateEstimate gml:id="p4_Origin">
+							<gml:timePosition frame="#geologyMa">-275.6</gml:timePosition>
+							<cgi:quality>
+								<meta:QuantitativeAssessment>
+									<meta:explanation>Error</meta:explanation>
+									<meta:values uom="Ma">0.7</meta:values>
+								</meta:QuantitativeAssessment>
+							</cgi:quality>
+							<cgi:status>Informal</cgi:status>
+							<cgi:reference xlink:href="#chronos"/>
+							<cgi:observationalBasis>
+								<cgi:DateDetermination gml:id="p4_Origin1">
+									<gml:description>Calibration of a master composite section to selected radiometric ages</gml:description>
+									<om:eventTime xlink:href="urn:x-seegrid:items:exceptions:unknown"/>
+									<om:eventLocation xlink:href="urn:x-seegrid:items:exceptions:unknown"/>
+									<om:procedureUsed xlink:href="http://www.stratigraphy.org/procedures/geochronology/compositeSectionCalibration"/>
+									<om:quality>
+										<meta:QuantitativeAssessment>
+											<meta:explanation>Error</meta:explanation>
+											<meta:values uom="Ma">0.7</meta:values>
+										</meta:QuantitativeAssessment>
+									</om:quality>
+									<om:target xlink:href="#gssp_base_kungurian"/>
+									<om:result uom="Ma">275.6</om:result>
+								</cgi:DateDetermination>
+							</cgi:observationalBasis>
+						</cgi:StratigraphicDateEstimate>
+					</cgi:position>
+					<cgi:event>
+						<cgi:StratigraphicEvent gml:id="p3_p4_1">
+							<gml:description>Conodont, near lowest occurrence of conodont Neostreptognathus pnevi-N. exculptu.</gml:description>
+							<om:eventTime xlink:href="#p3_p4/cgi:position"/>
+							<om:eventLocation>
+								<om:LocationCode>
+									<om:locationName>Global</om:locationName>
+								</om:LocationCode>
+							</om:eventLocation>
+						</cgi:StratigraphicEvent>
+					</cgi:event>
+					<cgi:stratotype>
+						<cgi:StratigraphicPoint gml:id="gssp_base_kungurian">
+							<gml:description>Leading candidates are in southern Ural Mtns.</gml:description>
+							<meta:reference xlink:href="#Ogg1"/>
+							<xmml:relatedObservation xlink:href="#p4_Origin"/>
+							<xmml:position xlink:href="urn:x-seegrid:items:exceptions:unknown"/>
+							<cgi:boundary xlink:href="#p3_p4"/>
+							<cgi:hostSection xlink:title="southern Ural Mtns"/>
+							<cgi:offset uom="m" xsi:nil="true"/>
+							<cgi:primaryGuidingCriterion>Conodont biostratigraphy</cgi:primaryGuidingCriterion>
+							<cgi:event xlink:href="#p3_p4_1"/>
+							<cgi:status>Informal</cgi:status>
+							<cgi:reference xlink:href="#chronos"/>
+						</cgi:StratigraphicPoint>
+					</cgi:stratotype>
+				</cgi:GeochronologicBoundary>
+			</cgi:referencePoint>
+			<cgi:referencePoint>
+				<cgi:GeochronologicBoundary gml:id="P1_P2">
+					<gml:name>Base of Guadalupian</gml:name>
+					<gml:name>Base of Roadian</gml:name>
+					<cgi:position>
+						<cgi:StratigraphicDateEstimate gml:id="P2_Origin">
+							<gml:timePosition frame="#geologyMa">-270.6</gml:timePosition>
+							<cgi:quality>
+								<meta:QuantitativeAssessment>
+									<meta:explanation>Error</meta:explanation>
+									<meta:values uom="Ma">0.7</meta:values>
+								</meta:QuantitativeAssessment>
+							</cgi:quality>
+							<cgi:status>GSSP Ratified 2001</cgi:status>
+							<cgi:reference xlink:href="#E_InPrep"/>
+							<cgi:observationalBasis>
+								<cgi:DateDetermination gml:id="P2_Origin1">
+									<gml:description>Calibration of a master composite section to selected radiometric ages</gml:description>
+									<om:eventTime>
+										<gml:TimeInstant gml:id="P2_Origin1_Measured">
+											<gml:timePosition>2001</gml:timePosition>
+										</gml:TimeInstant>
+									</om:eventTime>
+									<om:eventLocation xlink:href="urn:x-seegrid:items:exceptions:unknown"/>
+									<om:procedureUsed xlink:href="http://www.stratigraphy.org/procedures/geochronology/compositeSectionCalibration"/>
+									<om:quality>
+										<meta:QuantitativeAssessment>
+											<meta:explanation>Error</meta:explanation>
+											<meta:values uom="Ma">0.7</meta:values>
+										</meta:QuantitativeAssessment>
+									</om:quality>
+									<om:target xlink:href="#gssp_base_guadalupian"/>
+									<om:result uom="Ma">270.6</om:result>
+								</cgi:DateDetermination>
+							</cgi:observationalBasis>
+						</cgi:StratigraphicDateEstimate>
+					</cgi:position>
+					<cgi:event>
+						<cgi:StratigraphicEvent gml:id="P1_P2_1">
+							<gml:description>Conodont, lowest occurrence of Jinogondolella nanginkensis.</gml:description>
+							<om:eventTime xlink:href="#P1_P2/cgi:position"/>
+							<om:eventLocation>
+								<om:LocationCode>
+									<om:locationName>Global</om:locationName>
+								</om:LocationCode>
+							</om:eventLocation>
+						</cgi:StratigraphicEvent>
+					</cgi:event>
+					<cgi:stratotype>
+						<cgi:StratigraphicPoint gml:id="gssp_base_guadalupian">
+							<gml:description>42.7 m above base of Cutoff Formation, Stratotype Canyon, southern Guadalupe Mountains, Texas, USA.</gml:description>
+							<meta:reference xlink:href="#E_InPrep"/>
+							<xmml:relatedObservation xlink:href="#P2_Origin1"/>
+							<xmml:position xlink:href="urn:x-seegrid:items:exceptions:unknown"/>
+							<cgi:boundary xlink:href="#P1_P2"/>
+							<cgi:hostSection xlink:title="Cutoff Formation, Stratotype Canyon, southern Guadalupe Mountains, Texas, USA"/>
+							<cgi:offset uom="m">42.7</cgi:offset>
+							<cgi:primaryGuidingCriterion>Conodont biostratigraphy</cgi:primaryGuidingCriterion>
+							<cgi:event xlink:href="#P1_P2_1"/>
+							<cgi:status>GSSP Ratified 2001</cgi:status>
+							<cgi:reference xlink:href="#E_InPrep"/>
+						</cgi:StratigraphicPoint>
+					</cgi:stratotype>
+				</cgi:GeochronologicBoundary>
+			</cgi:referencePoint>
+			<cgi:referencePoint>
+				<cgi:GeochronologicBoundary gml:id="p5_p6">
+					<gml:name>Base of Wordian</gml:name>
+					<cgi:position>
+						<cgi:StratigraphicDateEstimate gml:id="p6_Origin">
+							<gml:timePosition frame="#geologyMa">-268.0</gml:timePosition>
+							<cgi:quality>
+								<meta:QuantitativeAssessment>
+									<meta:explanation>Error</meta:explanation>
+									<meta:values uom="Ma">0.7</meta:values>
+								</meta:QuantitativeAssessment>
+							</cgi:quality>
+							<cgi:status>GSSP Ratified 2001</cgi:status>
+							<cgi:reference xlink:href="#E_InPrep"/>
+							<cgi:observationalBasis>
+								<cgi:DateDetermination gml:id="p6_Origin1">
+									<gml:description>Calibration of a master composite section to selected radiometric ages</gml:description>
+									<om:eventTime>
+										<gml:TimeInstant gml:id="p6_Origin_Measured">
+											<gml:timePosition>2001</gml:timePosition>
+										</gml:TimeInstant>
+									</om:eventTime>
+									<om:eventLocation xlink:href="urn:x-seegrid:items:exceptions:unknown"/>
+									<om:procedureUsed xlink:href="http://www.stratigraphy.org/procedures/geochronology/compositeSectionCalibration"/>
+									<om:quality>
+										<meta:QuantitativeAssessment>
+											<meta:explanation>Error</meta:explanation>
+											<meta:values uom="Ma">0.7</meta:values>
+										</meta:QuantitativeAssessment>
+									</om:quality>
+									<om:target xlink:href="#gssp_base_wordian"/>
+									<om:result uom="Ma">268.0</om:result>
+								</cgi:DateDetermination>
+							</cgi:observationalBasis>
+						</cgi:StratigraphicDateEstimate>
+					</cgi:position>
+					<cgi:event>
+						<cgi:StratigraphicEvent gml:id="p5_p6_1">
+							<gml:description>Conodont, lowest occurrence of Jinogondolella aserrata.</gml:description>
+							<om:eventTime xlink:href="#p5_p6/cgi:position"/>
+							<om:eventLocation>
+								<om:LocationCode>
+									<om:locationName>Global</om:locationName>
+								</om:LocationCode>
+							</om:eventLocation>
+						</cgi:StratigraphicEvent>
+					</cgi:event>
+					<cgi:stratotype>
+						<cgi:StratigraphicPoint gml:id="gssp_base_wordian">
+							<gml:description>7.6 m above base of Getaway Ledge outcrop, Guadalupe Pass, SE Guadalupe Mountains, Texas, USA</gml:description>
+							<xmml:relatedObservation xlink:href="#p6_Origin1"/>
+							<xmml:position xlink:href="urn:x-seegrid:items:exceptions:unknown"/>
+							<cgi:boundary xlink:href="#p5_p6"/>
+							<cgi:hostSection xlink:title="Getaway Ledge outcrop, Guadalupe Pass, SE Guadalupe Mountains, Texas, USA"/>
+							<cgi:offset uom="m">7.6</cgi:offset>
+							<cgi:primaryGuidingCriterion>Conodont biostratigraphy</cgi:primaryGuidingCriterion>
+							<cgi:event xlink:href="#p5_p6_1"/>
+							<cgi:status>GSSP Ratified 2001</cgi:status>
+							<cgi:reference xlink:href="#E_InPrep"/>
+						</cgi:StratigraphicPoint>
+					</cgi:stratotype>
+				</cgi:GeochronologicBoundary>
+			</cgi:referencePoint>
+			<cgi:referencePoint>
+				<cgi:GeochronologicBoundary gml:id="p6_p7">
+					<gml:name>Base of Capitanian</gml:name>
+					<cgi:position>
+						<cgi:StratigraphicDateEstimate gml:id="p7_Origin">
+							<gml:timePosition frame="#geologyMa">-265.8</gml:timePosition>
+							<cgi:quality>
+								<meta:QuantitativeAssessment>
+									<meta:explanation>Error</meta:explanation>
+									<meta:values uom="Ma">0.7</meta:values>
+								</meta:QuantitativeAssessment>
+							</cgi:quality>
+							<cgi:status>GSSP Ratified 2001</cgi:status>
+							<cgi:reference xlink:href="#E_InPrep"/>
+							<cgi:observationalBasis>
+								<cgi:DateDetermination gml:id="p7_Origin1">
+									<gml:description>Calibration of a master composite section to selected radiometric ages</gml:description>
+									<om:eventTime>
+										<gml:TimeInstant gml:id="p7_Origin_Measured">
+											<gml:timePosition>2001</gml:timePosition>
+										</gml:TimeInstant>
+									</om:eventTime>
+									<om:eventLocation xlink:href="urn:x-seegrid:items:exceptions:unknown"/>
+									<om:procedureUsed xlink:href="http://www.stratigraphy.org/procedures/geochronology/compositeSectionCalibration"/>
+									<om:quality>
+										<meta:QuantitativeAssessment>
+											<meta:explanation>Error</meta:explanation>
+											<meta:values uom="Ma">0.7</meta:values>
+										</meta:QuantitativeAssessment>
+									</om:quality>
+									<om:target xlink:href="#gssp_base_capitanian"/>
+									<om:result uom="Ma">265.8</om:result>
+								</cgi:DateDetermination>
+							</cgi:observationalBasis>
+						</cgi:StratigraphicDateEstimate>
+					</cgi:position>
+					<cgi:event>
+						<cgi:StratigraphicEvent gml:id="p6_p7_1">
+							<gml:description>Conodont, lowest occurrence of Jinogondolella  postserrata.</gml:description>
+							<om:eventTime xlink:href="#p6_p7/cgi:position"/>
+							<om:eventLocation>
+								<om:LocationCode>
+									<om:locationName>Global</om:locationName>
+								</om:LocationCode>
+							</om:eventLocation>
+						</cgi:StratigraphicEvent>
+					</cgi:event>
+					<cgi:stratotype>
+						<cgi:StratigraphicPoint gml:id="gssp_base_capitanian">
+							<gml:description>4.5 m above base of Pinery Limestone Member, Nipple Hill, SE Guadalupe Mountains, Texas, USA</gml:description>
+							<xmml:relatedObservation xlink:href="#p7_Origin1"/>
+							<xmml:position xlink:href="urn:x-seegrid:items:exceptions:unknown"/>
+							<cgi:boundary xlink:href="#p6_p7"/>
+							<cgi:hostSection xlink:title="Pinery Limestone Member, Nipple Hill, SE Guadalupe Mountains, Texas, USA"/>
+							<cgi:offset uom="m">4.5</cgi:offset>
+							<cgi:primaryGuidingCriterion>Conodont biostratigraphy</cgi:primaryGuidingCriterion>
+							<cgi:event xlink:href="#p6_p7_1"/>
+							<cgi:status>GSSP Ratified 2001</cgi:status>
+							<cgi:reference xlink:href="#E_InPrep"/>
+						</cgi:StratigraphicPoint>
+					</cgi:stratotype>
+				</cgi:GeochronologicBoundary>
+			</cgi:referencePoint>
+			<cgi:referencePoint>
+				<cgi:GeochronologicBoundary gml:id="P2_P3">
+					<gml:name>Base of Lopingian</gml:name>
+					<gml:name>Base of Wuchiapigian</gml:name>
+					<cgi:position>
+						<cgi:StratigraphicDateEstimate gml:id="P3_Origin">
+							<gml:timePosition frame="#geologyMa">-260.4</gml:timePosition>
+							<cgi:quality>
+								<meta:QuantitativeAssessment>
+									<meta:explanation>Error</meta:explanation>
+									<meta:values uom="Ma">0.7</meta:values>
+								</meta:QuantitativeAssessment>
+							</cgi:quality>
+							<cgi:status>Informal</cgi:status>
+							<cgi:reference xlink:href="#Ogg1"/>
+							<cgi:observationalBasis>
+								<cgi:DateDetermination gml:id="P3_Origin1">
+									<gml:description>Calibration of a master composite section to selected radiometric ages</gml:description>
+									<om:eventTime>
+										<gml:TimeInstant gml:id="P3_Origin_Measured">
+											<gml:timePosition>2001</gml:timePosition>
+										</gml:TimeInstant>
+									</om:eventTime>
+									<om:eventLocation xlink:href="urn:x-seegrid:items:exceptions:unknown"/>
+									<om:procedureUsed xlink:href="http://www.stratigraphy.org/procedures/geochronology/compositeSectionCalibration"/>
+									<om:quality>
+										<meta:QuantitativeAssessment>
+											<meta:explanation>Error</meta:explanation>
+											<meta:values uom="Ma">0.7</meta:values>
+										</meta:QuantitativeAssessment>
+									</om:quality>
+									<om:target xlink:href="#gssp_base_lopingian"/>
+									<om:result uom="Ma">260.4</om:result>
+								</cgi:DateDetermination>
+							</cgi:observationalBasis>
+						</cgi:StratigraphicDateEstimate>
+					</cgi:position>
+					<cgi:event>
+						<cgi:StratigraphicEvent gml:id="P2_P3_1">
+							<gml:description>Near lowest occurrence of conodont Clarkina postbitteri</gml:description>
+							<om:eventTime xlink:href="#P2_P3/cgi:position"/>
+							<om:eventLocation>
+								<om:LocationCode>
+									<om:locationName>Global</om:locationName>
+								</om:LocationCode>
+							</om:eventLocation>
+						</cgi:StratigraphicEvent>
+					</cgi:event>
+					<cgi:stratotype>
+						<cgi:StratigraphicPoint gml:id="gssp_base_lopingian">
+							<gml:description>Candidate section is Tieqiao rail-bridge section, Laibin Syncline, Guangxi Province, China</gml:description>
+							<meta:reference xlink:href="#Ogg1"/>
+							<xmml:relatedObservation xlink:href="#P3_Origin1"/>
+							<xmml:position xlink:href="urn:x-seegrid:items:exceptions:unknown"/>
+							<cgi:boundary xlink:href="#P2_P3"/>
+							<cgi:hostSection xlink:title="Tieqiao rail-bridge section, Laibin Syncline, Guangxi Province, China"/>
+							<cgi:offset uom="m" xsi:nil="true"/>
+							<cgi:primaryGuidingCriterion>Conodont biostratigraphy</cgi:primaryGuidingCriterion>
+							<cgi:event xlink:href="#P2_P3_1"/>
+							<cgi:status>Informal</cgi:status>
+							<cgi:reference xlink:href="#Ogg1"/>
+						</cgi:StratigraphicPoint>
+					</cgi:stratotype>
+				</cgi:GeochronologicBoundary>
+			</cgi:referencePoint>
+			<cgi:referencePoint>
+				<cgi:GeochronologicBoundary gml:id="p8_p9">
+					<gml:name>Base of Changhsingian</gml:name>
+					<cgi:position>
+						<cgi:StratigraphicDateEstimate gml:id="p9_Origin">
+							<gml:timePosition frame="#geologyMa">-253.8</gml:timePosition>
+							<cgi:quality>
+								<meta:QuantitativeAssessment>
+									<meta:explanation>Error</meta:explanation>
+									<meta:values uom="Ma">0.7</meta:values>
+								</meta:QuantitativeAssessment>
+							</cgi:quality>
+							<cgi:status>Informal</cgi:status>
+							<cgi:reference xlink:href="#Ogg1"/>
+							<cgi:observationalBasis>
+								<cgi:DateDetermination gml:id="p9_Origin1">
+									<gml:description>Calibration of a master composite section to selected radiometric ages</gml:description>
+									<om:eventTime>
+										<gml:TimeInstant gml:id="p9_Origin_Measured">
+											<gml:timePosition>2001</gml:timePosition>
+										</gml:TimeInstant>
+									</om:eventTime>
+									<om:eventLocation xlink:href="urn:x-seegrid:items:exceptions:unknown"/>
+									<om:procedureUsed xlink:href="http://www.stratigraphy.org/procedures/geochronology/compositeSectionCalibration"/>
+									<om:quality>
+										<meta:QuantitativeAssessment>
+											<meta:explanation>Error</meta:explanation>
+											<meta:values uom="Ma">0.7</meta:values>
+										</meta:QuantitativeAssessment>
+									</om:quality>
+									<om:target xlink:href="#gssp_base_changhsingian"/>
+									<om:result uom="Ma">253.8</om:result>
+								</cgi:DateDetermination>
+							</cgi:observationalBasis>
+						</cgi:StratigraphicDateEstimate>
+					</cgi:position>
+					<cgi:event>
+						<cgi:StratigraphicEvent gml:id="p8_p9_1">
+							<gml:description>Near lowest occurrence of conodont Clarkina wangi</gml:description>
+							<om:eventTime xlink:href="#p8_p9/cgi:position"/>
+							<om:eventLocation>
+								<om:LocationCode>
+									<om:locationName>Global</om:locationName>
+								</om:LocationCode>
+							</om:eventLocation>
+						</cgi:StratigraphicEvent>
+					</cgi:event>
+					<cgi:stratotype>
+						<cgi:StratigraphicPoint gml:id="gssp_base_changhsingian">
+							<gml:description>Leading candidates are in China</gml:description>
+							<xmml:relatedObservation xlink:href="#p9_Origin1"/>
+							<xmml:position xlink:href="urn:x-seegrid:items:exceptions:unknown"/>
+							<cgi:boundary xlink:href="#p8_p9"/>
+							<cgi:hostSection xlink:title="China"/>
+							<cgi:offset uom="m" xsi:nil="true"/>
+							<cgi:primaryGuidingCriterion>Conodont biostratigraphy</cgi:primaryGuidingCriterion>
+							<cgi:event xlink:href="#p8_p9_1"/>
+							<cgi:status>Informal</cgi:status>
+							<cgi:reference xlink:href="#Ogg1"/>
+						</cgi:StratigraphicPoint>
+					</cgi:stratotype>
+				</cgi:GeochronologicBoundary>
+			</cgi:referencePoint>
+			<cgi:referencePoint>
+				<cgi:GeochronologicBoundary gml:id="PZ_MZ">
+					<gml:name>Base of Mesozoic</gml:name>
+					<gml:name>Base of Triassic</gml:name>
+					<gml:name>Base of Lower Triassic</gml:name>
+					<gml:name>Base of Induan</gml:name>
+					<cgi:position>
+						<cgi:StratigraphicDateEstimate gml:id="MZ_Origin">
+							<gml:timePosition frame="#geologyMa">-251.0</gml:timePosition>
+							<cgi:quality>
+								<meta:QuantitativeAssessment>
+									<meta:explanation>Error</meta:explanation>
+									<meta:values uom="Ma">0.4</meta:values>
+								</meta:QuantitativeAssessment>
+							</cgi:quality>
+							<cgi:status>GSSP Ratified 2001</cgi:status>
+							<cgi:reference xlink:href="#E24p102_2001"/>
+							<cgi:observationalBasis>
+								<cgi:DateDetermination gml:id="MZ_Origin1">
+									<gml:description>U-Pb ages bracket GSSP</gml:description>
+									<meta:reference>
+										<meta:SimpleCitation gml:id="B1998">
+											<gml:name>Bowring et al., 1998</gml:name>
+										</meta:SimpleCitation>
+									</meta:reference>
+									<om:eventTime>
+										<gml:TimeInstant gml:id="MZ_Origin_Measured">
+											<gml:timePosition>1998</gml:timePosition>
+										</gml:TimeInstant>
+									</om:eventTime>
+									<om:eventLocation xlink:href="urn:x-seegrid:items:exceptions:unknown"/>
+									<om:procedureUsed xlink:href="http://www.stratigraphy.org/procedures/geochronology/U_Pb"/>
+									<om:quality>
+										<meta:QuantitativeAssessment>
+											<meta:explanation>Error</meta:explanation>
+											<meta:values uom="Ma">0.4</meta:values>
+										</meta:QuantitativeAssessment>
+									</om:quality>
+									<om:target xlink:href="#gssp_base_triassic"/>
+									<om:result uom="Ma">251.0</om:result>
+								</cgi:DateDetermination>
+							</cgi:observationalBasis>
+						</cgi:StratigraphicDateEstimate>
+					</cgi:position>
+					<cgi:event>
+						<cgi:StratigraphicEvent gml:id="PZ_MZ_1">
+							<gml:description>Conodont, lowest occurrence of Hindeodus parvus</gml:description>
+							<om:eventTime xlink:href="#P1_P2/cgi:position"/>
+							<om:eventLocation>
+								<om:LocationCode>
+									<om:locationName>Global</om:locationName>
+								</om:LocationCode>
+							</om:eventLocation>
+						</cgi:StratigraphicEvent>
+					</cgi:event>
+					<cgi:stratotype>
+						<cgi:StratigraphicPoint gml:id="gssp_base_triassic">
+							<gml:description>Base of Bed 27c, Meishan, Zhejiang, China</gml:description>
+							<xmml:relatedObservation xlink:href="#MZ_Origin1"/>
+							<xmml:position xlink:href="urn:x-seegrid:items:exceptions:unknown"/>
+							<cgi:boundary xlink:href="#PZ_MZ"/>
+							<cgi:hostSection xlink:title="Bed 27c, Meishan, Zhejiang, China"/>
+							<cgi:offset uom="m">0.0</cgi:offset>
+							<cgi:primaryGuidingCriterion>Conodont biostratigraphy</cgi:primaryGuidingCriterion>
+							<cgi:event xlink:href="#PZ_MZ_1"/>
+							<cgi:additionalCorrelationProperty>Termination of major negative carbon-isotope excursion</cgi:additionalCorrelationProperty>
+							<cgi:additionalCorrelationProperty>About 1 myr after peak of Late Permian extinctions.</cgi:additionalCorrelationProperty>
+							<cgi:status>GSSP Ratified 2001</cgi:status>
+							<cgi:reference xlink:href="#E24p102_2001"/>
+						</cgi:StratigraphicPoint>
+					</cgi:stratotype>
+				</cgi:GeochronologicBoundary>
+			</cgi:referencePoint>
+			<!-- ============== -->
+			<meta:comment>In this document, except for the link to the definition of the C14 scale and the to the IUGS International Stratigraphic Chart, all references use the "shorthand pointer" form of URI (http://www.w3.org/TR/xptr-framework/#shorthand), which cross-reference nodes in the current document.  This is for convenience only, to allow us to record all the information relating to this time system in one document.  Other examples may use references to external resources instead or as well.  Either method may be used according to taste or convenience.</meta:comment>
+			<meta:comment>In this document the "member" and "group" properties are implemented as pointers to TimeOrdinalEra's described elsewhere within the same document.</meta:comment>
+			<meta:reference>
+				<meta:SimpleCitation gml:id="chronos">
+					<gml:name codeSpace="http://www.ietf.org/rfc/rfc2616.txt">http://www.stratigraphy.org</gml:name>
+				</meta:SimpleCitation>
+			</meta:reference>
+			<meta:reference>
+				<meta:SimpleCitation gml:id="IUGS">
+					<gml:name codeSpace="http://www.ietf.org/rfc/rfc1738.txt">ftp://ftp.iugs.org/pub/iugs/iugs_intstratchart.pdf</gml:name>
+				</meta:SimpleCitation>
+			</meta:reference>
+			<meta:reference>
+				<meta:SimpleCitation gml:id="Ev14p139_1991">
+					<gml:name>Episodes 14 (2), p.139-140, 1991</gml:name>
+				</meta:SimpleCitation>
+			</meta:reference>
+			<meta:reference>
+				<meta:SimpleCitation gml:id="Ev21p11_1998">
+					<gml:name>Episodes 21 (1), p.11-18, 1998</gml:name>
+				</meta:SimpleCitation>
+			</meta:reference>
+			<meta:reference>
+				<meta:SimpleCitation gml:id="E24p102_2001">
+					<gml:name>Episodes 24 (2), p.102-114, 2001</gml:name>
+				</meta:SimpleCitation>
+			</meta:reference>
+			<meta:reference>
+				<meta:SimpleCitation gml:id="E_InPrep">
+					<gml:description>Episodes article in preparation</gml:description>
+					<gml:name>No name available</gml:name>
+				</meta:SimpleCitation>
+			</meta:reference>
+			<meta:reference>
+				<meta:SimpleCitation gml:id="GSSP">
+					<gml:description>Adapted from http://www.stratigraphy.org/gssp.htm 2004-04-25</gml:description>
+					<gml:name>No name available</gml:name>
+				</meta:SimpleCitation>
+			</meta:reference>
+			<!-- ============== -->
+		</cgi:GeologicTimeScale>
+	</gml:dictionaryEntry>
+	<!-- ============== -->
+</gml:Dictionary>

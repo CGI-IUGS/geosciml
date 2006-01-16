@@ -1,0 +1,3252 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xmml:GeologicalTimeScale xmlns:xmml="http://www.opengis.net/xmml" xmlns:gml="http://www.opengis.net/gml" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.opengis.net/xmml
+../../XMML/geoTime.xsd" gml:id="GA_GEOTIME">
+	<xmml:reference xlink:href="http://www.ga.gov.au/oracle"/>
+	<gml:description>A set of interrelated components which define a geological time scale for Australia.  Values taken from the Geoscience Australia Oracle lookp table NPM.V_WEBGEOTIME</gml:description>
+	<gml:name>Components for a geological time scale for Australia</gml:name>
+	<gml:domainOfValidity>Australia</gml:domainOfValidity>
+	<!-- ============== -->
+	<xmml:system>
+		<gml:TimeCoordinateSystem gml:id="geologyMa">
+			<gml:description>Time coordinate system for geological time - millions of years</gml:description>
+			<gml:name>Geological time system - Ma</gml:name>
+			<gml:domainOfValidity>Earth</gml:domainOfValidity>
+			<gml:origin>
+				<gml:TimeInstant>
+					<gml:description xlink:href="http://www.c14dating.com/agecalc.html">Conventional origin used for carbon dating.  Equivalent to "present" for other radiometric dating techniques which have much lower precision.  </gml:description>
+					<gml:timePosition frame="ISO-8601">1950</gml:timePosition>
+				</gml:TimeInstant>
+			</gml:origin>
+			<gml:interval unit="year" radix="10" factor="-6">1.0</gml:interval>
+		</gml:TimeCoordinateSystem>
+	</xmml:system>
+	<!-- ============== -->
+	<xmml:system>
+		<gml:TimeOrdinalReferenceSystem gml:id="GeoTimeScale">
+			<xmml:reference xlink:href="http://www.ga.gov.au/oracle"/>
+			<gml:description>The Geoscience Australia geological time scale</gml:description>
+			<gml:name>A geological time scale for Australia</gml:name>
+			<gml:domainOfValidity>Australia</gml:domainOfValidity>
+			<!-- ======================== -->
+			<!-- Super-Eonothem & Eonothems -->
+			<!-- ======================== -->
+			<gml:component>
+				<xmml:TimeOrdinalEra gml:id="PG">
+					<gml:name>Precambrian</gml:name>
+					<gml:start xlink:href="#_EA"/>
+					<gml:end xlink:href="#PR_PH"/>
+					<gml:member>
+						<xmml:TimeOrdinalEra gml:id="AR">
+							<gml:name>Archean</gml:name>
+							<gml:name>Early Precambrian</gml:name>
+							<gml:name>Cryptozoic</gml:name>
+							<gml:start xlink:href="#_EA"/>
+							<gml:end xlink:href="#AR_PR"/>
+							<gml:member xlink:href="#EA"/>
+							<gml:member xlink:href="#PA"/>
+							<gml:member xlink:href="#MA"/>
+							<gml:member xlink:href="#NA"/>
+							<gml:group xlink:href="#PG"/>
+							<xmml:rank>Eonothem/Eon</xmml:rank>
+						</xmml:TimeOrdinalEra>
+					</gml:member>
+					<gml:member>
+						<xmml:TimeOrdinalEra gml:id="PR">
+							<gml:name>Proterozoic</gml:name>
+							<gml:name>Algonkian</gml:name>
+							<gml:start xlink:href="#AR_PR"/>
+							<gml:end xlink:href="#PR_PH"/>
+							<gml:member xlink:href="#PP"/>
+							<gml:member xlink:href="#MP"/>
+							<gml:member xlink:href="#NP"/>
+							<gml:group xlink:href="#PG"/>
+							<xmml:rank>Eonothem/Eon</xmml:rank>
+						</xmml:TimeOrdinalEra>
+					</gml:member>
+					<xmml:rank>other:SuperEon</xmml:rank>
+				</xmml:TimeOrdinalEra>
+			</gml:component>
+			<gml:component>
+				<xmml:TimeOrdinalEra gml:id="PH">
+					<gml:name>Phanerozoic</gml:name>
+					<gml:start xlink:href="#PR_PH"/>
+					<gml:end xlink:href="#now"/>
+					<gml:member xlink:href="#PZ"/>
+					<gml:member xlink:href="#MZ"/>
+					<gml:member xlink:href="#CZ"/>
+					<xmml:rank>Eonothem/Eon</xmml:rank>
+				</xmml:TimeOrdinalEra>
+			</gml:component>
+			<!-- ======================== -->
+			<!-- Erathem -->
+			<!-- ======================== -->
+			<gml:component>
+				<xmml:TimeOrdinalEra gml:id="EA">
+					<gml:name>Eoarchean</gml:name>
+					<gml:start xlink:href="#_EA"/>
+					<gml:end xlink:href="#EA_PA"/>
+					<gml:group xlink:href="#AR"/>
+					<xmml:rank>Erathem/Era</xmml:rank>
+				</xmml:TimeOrdinalEra>
+			</gml:component>
+			<gml:component>
+				<xmml:TimeOrdinalEra gml:id="PA">
+					<gml:name>Paleoarchean</gml:name>
+					<gml:start xlink:href="#EA_PA"/>
+					<gml:end xlink:href="#PA_MA"/>
+					<gml:group xlink:href="#AR"/>
+					<xmml:rank>Erathem/Era</xmml:rank>
+				</xmml:TimeOrdinalEra>
+			</gml:component>
+			<gml:component>
+				<xmml:TimeOrdinalEra gml:id="MA">
+					<gml:name>Mesoarchean</gml:name>
+					<gml:start xlink:href="#PA_MA"/>
+					<gml:end xlink:href="#MA_NA"/>
+					<gml:group xlink:href="#AR"/>
+					<xmml:rank>Erathem/Era</xmml:rank>
+				</xmml:TimeOrdinalEra>
+			</gml:component>
+			<gml:component>
+				<xmml:TimeOrdinalEra gml:id="NA">
+					<gml:name>Neoarchean</gml:name>
+					<gml:start xlink:href="#MA_NA"/>
+					<gml:end xlink:href="#AR_PR"/>
+					<gml:group xlink:href="#AR"/>
+					<xmml:rank>Erathem/Era</xmml:rank>
+				</xmml:TimeOrdinalEra>
+			</gml:component>
+			<!-- ======================== -->
+			<gml:component>
+				<xmml:TimeOrdinalEra gml:id="PG1">
+					<gml:name>Early Precambrian</gml:name>
+					<gml:start xlink:href="#_EA"/>
+					<gml:end xlink:href="#AR_PR"/>
+					<gml:group xlink:href="#PG"/>
+					<xmml:rank>Eonothem/Eon</xmml:rank>
+				</xmml:TimeOrdinalEra>
+			</gml:component>
+			<gml:component>
+				<xmml:TimeOrdinalEra gml:id="PG2">
+					<gml:name>Middle Precambrian</gml:name>
+					<gml:start xlink:href="#AR_PR"/>
+					<gml:end xlink:href="#MP_NP"/>
+					<gml:group xlink:href="#PG"/>
+					<xmml:rank>Erathem/Era</xmml:rank>
+				</xmml:TimeOrdinalEra>
+			</gml:component>
+			<gml:component>
+				<xmml:TimeOrdinalEra gml:id="PG3">
+					<gml:name>Late Precambrian</gml:name>
+					<gml:start xlink:href="#MP_NP"/>
+					<gml:end xlink:href="#PR_PH"/>
+					<gml:group xlink:href="#PG"/>
+					<xmml:rank>Erathem/Era</xmml:rank>
+				</xmml:TimeOrdinalEra>
+			</gml:component>
+			<gml:component>
+				<xmml:TimeOrdinalEra gml:id="RP">
+					<gml:name>Riphean</gml:name>
+					<gml:start xlink:href="#PP_MP"/>
+					<gml:end xlink:href="#NP2_NP3"/>
+					<gml:member xlink:href="#RP1"/>
+					<gml:member xlink:href="#RP2"/>
+					<gml:member xlink:href="#RP3"/>
+					<gml:group xlink:href="#PG3"/>
+					<xmml:rank>Erathem/Era</xmml:rank>
+				</xmml:TimeOrdinalEra>
+			</gml:component>
+			<!-- ======================== -->
+			<gml:component>
+				<xmml:TimeOrdinalEra gml:id="PP">
+					<gml:name>Paleoproterozoic</gml:name>
+					<gml:start xlink:href="#AR_PR"/>
+					<gml:end xlink:href="#PP_MP"/>
+					<gml:member xlink:href="#PP1"/>
+					<gml:member xlink:href="#PP2"/>
+					<gml:member xlink:href="#PP3"/>
+					<gml:member xlink:href="#PP4"/>
+					<gml:group xlink:href="#PR"/>
+					<xmml:rank>Erathem/Era</xmml:rank>
+				</xmml:TimeOrdinalEra>
+			</gml:component>
+			<gml:component>
+				<xmml:TimeOrdinalEra gml:id="MP">
+					<gml:name>Mesoproterozoic</gml:name>
+					<gml:start xlink:href="#PP_MP"/>
+					<gml:end xlink:href="#MP_NP"/>
+					<gml:member xlink:href="#MP1"/>
+					<gml:member xlink:href="#MP2"/>
+					<gml:member xlink:href="#MP3"/>
+					<gml:group xlink:href="#PR"/>
+					<xmml:rank>Erathem/Era</xmml:rank>
+				</xmml:TimeOrdinalEra>
+			</gml:component>
+			<gml:component>
+				<xmml:TimeOrdinalEra gml:id="NP">
+					<gml:name>Neoproterozoic</gml:name>
+					<gml:start xlink:href="#MP_NP"/>
+					<gml:end xlink:href="#PR_PH"/>
+					<gml:member xlink:href="#NP1"/>
+					<gml:member xlink:href="#NP2"/>
+					<gml:member xlink:href="#NP3"/>
+					<gml:group xlink:href="#PR"/>
+					<xmml:rank>Erathem/Era</xmml:rank>
+				</xmml:TimeOrdinalEra>
+			</gml:component>
+			<!-- ======================== -->
+			<gml:component>
+				<xmml:TimeOrdinalEra gml:id="PZ">
+					<gml:name>Paleozoic</gml:name>
+					<gml:start xlink:href="#PR_PH"/>
+					<gml:end xlink:href="#PZ_MZ"/>
+					<gml:member xlink:href="#G"/>
+					<gml:member xlink:href="#O"/>
+					<gml:member xlink:href="#S"/>
+					<gml:member xlink:href="#D"/>
+					<gml:member xlink:href="#C"/>
+					<gml:member xlink:href="#P"/>
+					<gml:group xlink:href="#PH"/>
+					<xmml:rank>Erathem/Era</xmml:rank>
+				</xmml:TimeOrdinalEra>
+			</gml:component>
+			<gml:component>
+				<xmml:TimeOrdinalEra gml:id="MZ">
+					<gml:name>Mesozoic</gml:name>
+					<gml:start xlink:href="#PZ_MZ"/>
+					<gml:end xlink:href="#MZ_CZ"/>
+					<gml:member xlink:href="#T"/>
+					<gml:member xlink:href="#J"/>
+					<gml:member xlink:href="#K"/>
+					<gml:group xlink:href="#PH"/>
+					<xmml:rank>Erathem/Era</xmml:rank>
+				</xmml:TimeOrdinalEra>
+			</gml:component>
+			<gml:component>
+				<xmml:TimeOrdinalEra gml:id="CZ">
+					<gml:name>Cenozoic Era</gml:name>
+					<gml:start xlink:href="#MZ_CZ"/>
+					<gml:end xlink:href="#now"/>
+					<gml:member xlink:href="#E"/>
+					<gml:member xlink:href="#N"/>
+					<gml:member xlink:href="#Q"/>
+					<gml:group xlink:href="#PH"/>
+					<xmml:rank>Erathem/Era</xmml:rank>
+				</xmml:TimeOrdinalEra>
+			</gml:component>
+			<!-- ======================== -->
+			<!-- System -->
+			<!-- ======================== -->
+			<gml:component>
+				<xmml:TimeOrdinalEra gml:id="PP1">
+					<gml:name>Siderian</gml:name>
+					<gml:start xlink:href="#AR_PR"/>
+					<gml:end xlink:href="#PP1_PP2"/>
+					<gml:group xlink:href="#PP"/>
+					<xmml:rank>System/Period</xmml:rank>
+				</xmml:TimeOrdinalEra>
+			</gml:component>
+			<gml:component>
+				<xmml:TimeOrdinalEra gml:id="PP2">
+					<gml:name>Rhyacian</gml:name>
+					<gml:start xlink:href="#PP1_PP2"/>
+					<gml:end xlink:href="#PP2_PP3"/>
+					<gml:group xlink:href="#PP"/>
+					<xmml:rank>System/Period</xmml:rank>
+				</xmml:TimeOrdinalEra>
+			</gml:component>
+			<gml:component>
+				<xmml:TimeOrdinalEra gml:id="PP3">
+					<gml:name>Orosirian</gml:name>
+					<gml:start xlink:href="#PP2_PP3"/>
+					<gml:end xlink:href="#PP3_PP4"/>
+					<gml:group xlink:href="#PP"/>
+					<xmml:rank>System/Period</xmml:rank>
+				</xmml:TimeOrdinalEra>
+			</gml:component>
+			<gml:component>
+				<xmml:TimeOrdinalEra gml:id="PP4">
+					<gml:name>Statherian</gml:name>
+					<gml:start xlink:href="#PP3_PP4"/>
+					<gml:end xlink:href="#PP_MP"/>
+					<gml:group xlink:href="#PP"/>
+					<xmml:rank>System/Period</xmml:rank>
+				</xmml:TimeOrdinalEra>
+			</gml:component>
+			<gml:component>
+				<xmml:TimeOrdinalEra gml:id="MP1">
+					<gml:name>Calymmian</gml:name>
+					<gml:start xlink:href="#PP_MP"/>
+					<gml:end xlink:href="#MP1_MP2"/>
+					<gml:group xlink:href="#MP"/>
+					<xmml:rank>System/Period</xmml:rank>
+				</xmml:TimeOrdinalEra>
+			</gml:component>
+			<gml:component>
+				<xmml:TimeOrdinalEra gml:id="MP2">
+					<gml:name>Ectasian</gml:name>
+					<gml:start xlink:href="#MP1_MP2"/>
+					<gml:end xlink:href="#MP2_MP3"/>
+					<gml:group xlink:href="#MP"/>
+					<xmml:rank>System/Period</xmml:rank>
+				</xmml:TimeOrdinalEra>
+			</gml:component>
+			<gml:component>
+				<xmml:TimeOrdinalEra gml:id="MP3">
+					<gml:name>Stenian</gml:name>
+					<gml:start xlink:href="#MP2_MP3"/>
+					<gml:end xlink:href="#MP_NP"/>
+					<gml:group xlink:href="#MP"/>
+					<xmml:rank>System/Period</xmml:rank>
+				</xmml:TimeOrdinalEra>
+			</gml:component>
+			<gml:component>
+				<xmml:TimeOrdinalEra gml:id="NP1">
+					<gml:name>Tonian</gml:name>
+					<gml:start xlink:href="#MP_NP"/>
+					<gml:end xlink:href="#NP1_NP2"/>
+					<xmml:rank>System/Period</xmml:rank>
+				</xmml:TimeOrdinalEra>
+			</gml:component>
+			<gml:component>
+				<xmml:TimeOrdinalEra gml:id="NP2">
+					<gml:name>Cryogenian</gml:name>
+					<gml:start xlink:href="#NP1_NP2"/>
+					<gml:end xlink:href="#NP2_NP3"/>
+					<xmml:rank>System/Period</xmml:rank>
+				</xmml:TimeOrdinalEra>
+			</gml:component>
+			<gml:component>
+				<xmml:TimeOrdinalEra gml:id="NP3">
+					<gml:name>Neoproterozoic III</gml:name>
+					<gml:name>Vendian</gml:name>
+					<gml:start xlink:href="#NP2_NP3"/>
+					<gml:end xlink:href="#PR_PH"/>
+					<xmml:rank>System/Period</xmml:rank>
+				</xmml:TimeOrdinalEra>
+			</gml:component>
+			<!-- ======================== -->
+			<gml:component>
+				<xmml:TimeOrdinalEra gml:id="RP1">
+					<gml:name>Early Riphean</gml:name>
+					<gml:start xlink:href="#PP_MP"/>
+					<gml:end xlink:href="#RP1_RP2"/>
+					<gml:group xlink:href="#RP"/>
+					<xmml:rank>System/Period</xmml:rank>
+				</xmml:TimeOrdinalEra>
+			</gml:component>
+			<gml:component>
+				<xmml:TimeOrdinalEra gml:id="RP2">
+					<gml:name>Middle Riphean</gml:name>
+					<gml:start xlink:href="#RP1_RP2"/>
+					<gml:end xlink:href="#RP2_RP3"/>
+					<gml:group xlink:href="#RP"/>
+					<xmml:rank>System/Period</xmml:rank>
+				</xmml:TimeOrdinalEra>
+			</gml:component>
+			<gml:component>
+				<xmml:TimeOrdinalEra gml:id="RP3">
+					<gml:name>Late Riphean</gml:name>
+					<gml:start xlink:href="#RP2_RP3"/>
+					<gml:end xlink:href="#NP2_NP3"/>
+					<gml:group xlink:href="#RP"/>
+					<xmml:rank>System/Period</xmml:rank>
+				</xmml:TimeOrdinalEra>
+			</gml:component>
+			<!-- ======================== -->
+			<gml:component>
+				<xmml:TimeOrdinalEra gml:id="RP1a">
+					<gml:name>Burzyanian</gml:name>
+					<gml:start xlink:href="#PP_MP"/>
+					<gml:end xlink:href="#RP1a_RP2a"/>
+					<gml:group xlink:href="#RP"/>
+					<xmml:rank>System/Period</xmml:rank>
+				</xmml:TimeOrdinalEra>
+			</gml:component>
+			<gml:component>
+				<xmml:TimeOrdinalEra gml:id="RP2a">
+					<gml:name>Yurmatian</gml:name>
+					<gml:start xlink:href="#RP1a_RP2a"/>
+					<gml:end xlink:href="#RP2a_RP3a"/>
+					<gml:group xlink:href="#RP"/>
+					<xmml:rank>System/Period</xmml:rank>
+				</xmml:TimeOrdinalEra>
+			</gml:component>
+			<gml:component>
+				<xmml:TimeOrdinalEra gml:id="RP3a">
+					<gml:name>Karatavian</gml:name>
+					<gml:start xlink:href="#RP2a_RP3a"/>
+					<gml:end xlink:href="#NP2_NP3"/>
+					<gml:group xlink:href="#RP"/>
+					<xmml:rank>System/Period</xmml:rank>
+				</xmml:TimeOrdinalEra>
+			</gml:component>
+			<!-- ======================== -->
+			<gml:component>
+				<xmml:TimeOrdinalEra gml:id="PZ1">
+					<gml:name>Early Palaeozoic</gml:name>
+					<gml:start xlink:href="#PR_PH"/>
+					<gml:end xlink:href="#D_C"/>
+					<gml:member xlink:href="#G"/>
+					<gml:member xlink:href="#O"/>
+					<gml:member xlink:href="#S"/>
+					<gml:member xlink:href="#D"/>
+					<gml:group xlink:href="#PZ"/>
+					<xmml:rank>System/Period</xmml:rank>
+				</xmml:TimeOrdinalEra>
+			</gml:component>
+			<gml:component>
+				<xmml:TimeOrdinalEra gml:id="PZ2">
+					<gml:name>Late Palaeozoic</gml:name>
+					<gml:start xlink:href="#D_C"/>
+					<gml:end xlink:href="#PZ_MZ"/>
+					<gml:member xlink:href="#C"/>
+					<gml:member xlink:href="#P"/>
+					<gml:group xlink:href="#PZ"/>
+					<xmml:rank>System/Period</xmml:rank>
+				</xmml:TimeOrdinalEra>
+			</gml:component>
+			<!-- ======================== -->
+			<gml:component>
+				<xmml:TimeOrdinalEra gml:id="G">
+					<gml:name>Cambrian</gml:name>
+					<gml:start xlink:href="#PR_PH"/>
+					<gml:end xlink:href="#G_O"/>
+					<gml:member xlink:href="#G1"/>
+					<gml:member xlink:href="#G2"/>
+					<gml:member xlink:href="#G3"/>
+					<gml:group xlink:href="#PZ"/>
+					<xmml:rank>System/Period</xmml:rank>
+				</xmml:TimeOrdinalEra>
+			</gml:component>
+			<gml:component>
+				<xmml:TimeOrdinalEra gml:id="O">
+					<gml:name>Ordovician</gml:name>
+					<gml:start xlink:href="#G_O"/>
+					<gml:end xlink:href="#O_S"/>
+					<gml:member xlink:href="#O1"/>
+					<gml:member xlink:href="#O2"/>
+					<gml:member xlink:href="#O3"/>
+					<gml:group xlink:href="#PZ"/>
+					<xmml:rank>System/Period</xmml:rank>
+				</xmml:TimeOrdinalEra>
+			</gml:component>
+			<gml:component>
+				<xmml:TimeOrdinalEra gml:id="S">
+					<gml:name>Silurian</gml:name>
+					<gml:start xlink:href="#O_S"/>
+					<gml:end xlink:href="#S_D"/>
+					<gml:member xlink:href="#S1"/>
+					<gml:member xlink:href="#S2"/>
+					<gml:member xlink:href="#S3"/>
+					<gml:member xlink:href="#S4"/>
+					<gml:group xlink:href="#PZ"/>
+					<xmml:rank>System/Period</xmml:rank>
+				</xmml:TimeOrdinalEra>
+			</gml:component>
+			<gml:component>
+				<xmml:TimeOrdinalEra gml:id="D">
+					<gml:name>Devonian</gml:name>
+					<gml:start xlink:href="#S_D"/>
+					<gml:end xlink:href="#D_C"/>
+					<gml:member xlink:href="#D1"/>
+					<gml:member xlink:href="#D2"/>
+					<gml:member xlink:href="#D3"/>
+					<gml:group xlink:href="#PZ"/>
+					<xmml:rank>System/Period</xmml:rank>
+				</xmml:TimeOrdinalEra>
+			</gml:component>
+			<gml:component>
+				<xmml:TimeOrdinalEra gml:id="C">
+					<gml:name>Carboniferous</gml:name>
+					<gml:start xlink:href="#D_C"/>
+					<gml:end xlink:href="#C_P"/>
+					<gml:member xlink:href="#C1"/>
+					<gml:member xlink:href="#C2"/>
+					<gml:group xlink:href="#PZ"/>
+					<xmml:rank>System/Period</xmml:rank>
+				</xmml:TimeOrdinalEra>
+			</gml:component>
+			<gml:component>
+				<xmml:TimeOrdinalEra gml:id="P">
+					<gml:name>Permian</gml:name>
+					<gml:start xlink:href="#C_P"/>
+					<gml:end xlink:href="#PZ_MZ"/>
+					<gml:member xlink:href="#P1"/>
+					<gml:member xlink:href="#P2"/>
+					<gml:member xlink:href="#P3"/>
+					<gml:group xlink:href="#PZ"/>
+					<xmml:rank>System/Period</xmml:rank>
+				</xmml:TimeOrdinalEra>
+			</gml:component>
+			<gml:component>
+				<xmml:TimeOrdinalEra gml:id="T">
+					<gml:name>Triassic</gml:name>
+					<gml:start xlink:href="#PZ_MZ"/>
+					<gml:end xlink:href="#T_J"/>
+					<gml:member xlink:href="#T1"/>
+					<gml:member xlink:href="#T2"/>
+					<gml:member xlink:href="#T3"/>
+					<gml:group xlink:href="#MZ"/>
+					<xmml:rank>System/Period</xmml:rank>
+				</xmml:TimeOrdinalEra>
+			</gml:component>
+			<gml:component>
+				<xmml:TimeOrdinalEra gml:id="J">
+					<gml:name>Jurassic</gml:name>
+					<gml:start xlink:href="#T_J"/>
+					<gml:end xlink:href="#J_K"/>
+					<gml:member xlink:href="#J1"/>
+					<gml:member xlink:href="#J2"/>
+					<gml:member xlink:href="#J3"/>
+					<gml:group xlink:href="#MZ"/>
+					<xmml:rank>System/Period</xmml:rank>
+				</xmml:TimeOrdinalEra>
+			</gml:component>
+			<gml:component>
+				<xmml:TimeOrdinalEra gml:id="K">
+					<gml:name>Cretaceous</gml:name>
+					<gml:start xlink:href="#J_K"/>
+					<gml:end xlink:href="#MZ_CZ"/>
+					<gml:member xlink:href="#K1"/>
+					<gml:member xlink:href="#K2"/>
+					<gml:group xlink:href="#MZ"/>
+					<xmml:rank>System/Period</xmml:rank>
+				</xmml:TimeOrdinalEra>
+			</gml:component>
+			<gml:component>
+				<xmml:TimeOrdinalEra gml:id="E">
+					<gml:name>Paleogene</gml:name>
+					<gml:start xlink:href="#MZ_CZ"/>
+					<gml:end xlink:href="#E_N"/>
+					<gml:member xlink:href="#E1"/>
+					<gml:member xlink:href="#E2"/>
+					<gml:member xlink:href="#E3"/>
+					<gml:group xlink:href="#CZ"/>
+					<xmml:rank>System/Period</xmml:rank>
+				</xmml:TimeOrdinalEra>
+			</gml:component>
+			<gml:component>
+				<xmml:TimeOrdinalEra gml:id="N">
+					<gml:name>Neogene</gml:name>
+					<gml:start xlink:href="#E_N"/>
+					<gml:end xlink:href="#N_Q"/>
+					<gml:member xlink:href="#N1"/>
+					<gml:member xlink:href="#N2"/>
+					<gml:group xlink:href="#CZ"/>
+					<xmml:rank>System/Period</xmml:rank>
+				</xmml:TimeOrdinalEra>
+			</gml:component>
+			<gml:component>
+				<xmml:TimeOrdinalEra gml:id="Q">
+					<gml:name>Quaternary</gml:name>
+					<gml:start xlink:href="#N_Q"/>
+					<gml:end xlink:href="#now"/>
+					<gml:member xlink:href="#Q1"/>
+					<gml:member xlink:href="#Q2"/>
+					<gml:group xlink:href="#CZ"/>
+					<xmml:rank>System/Period</xmml:rank>
+				</xmml:TimeOrdinalEra>
+			</gml:component>
+			<!-- ======================== -->
+			<!-- Series -->
+			<!-- ======================== -->
+			<gml:component>
+				<xmml:TimeOrdinalEra gml:id="G1">
+					<gml:name>Early Cambrian</gml:name>
+					<gml:start xlink:href="#PR_PH"/>
+					<gml:end xlink:href="#G1_G2"/>
+					<gml:group xlink:href="#G"/>
+					<xmml:rank>Series/Epoch</xmml:rank>
+				</xmml:TimeOrdinalEra>
+			</gml:component>
+			<gml:component>
+				<xmml:TimeOrdinalEra gml:id="G2">
+					<gml:name>Middle Cambrian</gml:name>
+					<gml:start xlink:href="#G1_G2"/>
+					<gml:end xlink:href="#G2_G3"/>
+					<gml:group xlink:href="#G"/>
+					<xmml:rank>Series/Epoch</xmml:rank>
+				</xmml:TimeOrdinalEra>
+			</gml:component>
+			<gml:component>
+				<xmml:TimeOrdinalEra gml:id="G3">
+					<gml:name>Late Cambrian</gml:name>
+					<gml:start xlink:href="#G2_G3"/>
+					<gml:end xlink:href="#G_O"/>
+					<gml:group xlink:href="#G"/>
+					<xmml:rank>Series/Epoch</xmml:rank>
+				</xmml:TimeOrdinalEra>
+			</gml:component>
+			<gml:component>
+				<xmml:TimeOrdinalEra gml:id="O1">
+					<gml:name>Early Ordovician</gml:name>
+					<gml:start xlink:href="#G_O"/>
+					<gml:end xlink:href="#O1_O2"/>
+					<gml:group xlink:href="#O"/>
+					<xmml:rank>Series/Epoch</xmml:rank>
+				</xmml:TimeOrdinalEra>
+			</gml:component>
+			<gml:component>
+				<xmml:TimeOrdinalEra gml:id="O2">
+					<gml:name>Middle Ordovician</gml:name>
+					<gml:start xlink:href="#O1_O2"/>
+					<gml:end xlink:href="#O2_O3"/>
+					<gml:group xlink:href="#O"/>
+					<xmml:rank>Series/Epoch</xmml:rank>
+				</xmml:TimeOrdinalEra>
+			</gml:component>
+			<gml:component>
+				<xmml:TimeOrdinalEra gml:id="O3">
+					<gml:name>Late Ordovician</gml:name>
+					<gml:start xlink:href="#O2_O3"/>
+					<gml:end xlink:href="#O_S"/>
+					<gml:group xlink:href="#O"/>
+					<xmml:rank>Series/Epoch</xmml:rank>
+				</xmml:TimeOrdinalEra>
+			</gml:component>
+			<gml:component>
+				<xmml:TimeOrdinalEra gml:id="S_1">
+					<gml:name>Early Silurian</gml:name>
+					<gml:start xlink:href="#O_S"/>
+					<gml:end xlink:href="#S2_S3"/>
+					<gml:group xlink:href="#S"/>
+					<xmml:rank>Series/Epoch</xmml:rank>
+				</xmml:TimeOrdinalEra>
+			</gml:component>
+			<gml:component>
+				<xmml:TimeOrdinalEra gml:id="S_2">
+					<gml:name>Late Silurian</gml:name>
+					<gml:start xlink:href="#S2_S3"/>
+					<gml:end xlink:href="#S_D"/>
+					<gml:group xlink:href="#S"/>
+					<xmml:rank>Series/Epoch</xmml:rank>
+				</xmml:TimeOrdinalEra>
+			</gml:component>
+			<gml:component>
+				<xmml:TimeOrdinalEra gml:id="S1">
+					<gml:name>Llandovery</gml:name>
+					<gml:start xlink:href="#O_S"/>
+					<gml:end xlink:href="#O1_O2"/>
+					<gml:group xlink:href="#S"/>
+					<xmml:rank>Series/Epoch</xmml:rank>
+				</xmml:TimeOrdinalEra>
+			</gml:component>
+			<gml:component>
+				<xmml:TimeOrdinalEra gml:id="S2">
+					<gml:name>Wenlock</gml:name>
+					<gml:start xlink:href="#S1_S2"/>
+					<gml:end xlink:href="#S2_S3"/>
+					<gml:group xlink:href="#S"/>
+					<xmml:rank>Series/Epoch</xmml:rank>
+				</xmml:TimeOrdinalEra>
+			</gml:component>
+			<gml:component>
+				<xmml:TimeOrdinalEra gml:id="S3">
+					<gml:name>Ludlow</gml:name>
+					<gml:start xlink:href="#S2_S3"/>
+					<gml:end xlink:href="#S3_S4"/>
+					<gml:group xlink:href="#S"/>
+					<xmml:rank>Series/Epoch</xmml:rank>
+				</xmml:TimeOrdinalEra>
+			</gml:component>
+			<gml:component>
+				<xmml:TimeOrdinalEra gml:id="S4">
+					<gml:name>Pridoli</gml:name>
+					<gml:start xlink:href="#S3_S4"/>
+					<gml:end xlink:href="#S_D"/>
+					<gml:group xlink:href="#S"/>
+					<xmml:rank>Series/Epoch</xmml:rank>
+				</xmml:TimeOrdinalEra>
+			</gml:component>
+			<gml:component>
+				<xmml:TimeOrdinalEra gml:id="D1">
+					<gml:name>Early Devonian</gml:name>
+					<gml:start xlink:href="#S_D"/>
+					<gml:end xlink:href="#D1_D2"/>
+					<gml:group xlink:href="#D"/>
+					<xmml:rank>Series/Epoch</xmml:rank>
+				</xmml:TimeOrdinalEra>
+			</gml:component>
+			<gml:component>
+				<xmml:TimeOrdinalEra gml:id="D2">
+					<gml:name>Middle Devonian</gml:name>
+					<gml:start xlink:href="#D1_D2"/>
+					<gml:end xlink:href="#D2_D3"/>
+					<gml:group xlink:href="#D"/>
+					<xmml:rank>Series/Epoch</xmml:rank>
+				</xmml:TimeOrdinalEra>
+			</gml:component>
+			<gml:component>
+				<xmml:TimeOrdinalEra gml:id="D3">
+					<gml:name>Late Devonian</gml:name>
+					<gml:start xlink:href="#D2_D3"/>
+					<gml:end xlink:href="#D_C"/>
+					<gml:group xlink:href="#D"/>
+					<xmml:rank>Series/Epoch</xmml:rank>
+				</xmml:TimeOrdinalEra>
+			</gml:component>
+			<gml:component>
+				<xmml:TimeOrdinalEra gml:id="C1">
+					<gml:name>Mississippian</gml:name>
+					<gml:name>Early Carboniferous</gml:name>
+					<gml:start xlink:href="#D_C"/>
+					<gml:end xlink:href="#C1_C2"/>
+					<gml:group xlink:href="#C"/>
+					<xmml:rank>Series/Epoch</xmml:rank>
+				</xmml:TimeOrdinalEra>
+			</gml:component>
+			<gml:component>
+				<xmml:TimeOrdinalEra gml:id="C2">
+					<gml:name>Pennsylvanian</gml:name>
+					<gml:name>Late Carboniferous</gml:name>
+					<gml:start xlink:href="#C1_C2"/>
+					<gml:end xlink:href="#C_P"/>
+					<gml:group xlink:href="#C"/>
+					<xmml:rank>Series/Epoch</xmml:rank>
+				</xmml:TimeOrdinalEra>
+			</gml:component>
+			<gml:component>
+				<xmml:TimeOrdinalEra gml:id="P1">
+					<gml:name>Cisuralian</gml:name>
+					<gml:name>Early Permian</gml:name>
+					<gml:start xlink:href="#C_P"/>
+					<gml:end xlink:href="#P1_P2"/>
+					<gml:group xlink:href="#P"/>
+					<xmml:rank>Series/Epoch</xmml:rank>
+				</xmml:TimeOrdinalEra>
+			</gml:component>
+			<gml:component>
+				<xmml:TimeOrdinalEra gml:id="PL">
+					<gml:name>Late Permian</gml:name>
+					<gml:start xlink:href="#P1_P2"/>
+					<gml:end xlink:href="#PZ_MZ"/>
+					<gml:group xlink:href="#P"/>
+					<xmml:rank>Series/Epoch</xmml:rank>
+				</xmml:TimeOrdinalEra>
+			</gml:component>
+			<gml:component>
+				<xmml:TimeOrdinalEra gml:id="P2">
+					<gml:name>Guadalupian</gml:name>
+					<gml:start xlink:href="#P1_P2"/>
+					<gml:end xlink:href="#P2_P3"/>
+					<gml:group xlink:href="#P"/>
+					<xmml:rank>Series/Epoch</xmml:rank>
+				</xmml:TimeOrdinalEra>
+			</gml:component>
+			<gml:component>
+				<xmml:TimeOrdinalEra gml:id="P3">
+					<gml:name>Lopingian</gml:name>
+					<gml:start xlink:href="#P2_P3"/>
+					<gml:end xlink:href="#PZ_MZ"/>
+					<gml:group xlink:href="#P"/>
+					<xmml:rank>Series/Epoch</xmml:rank>
+				</xmml:TimeOrdinalEra>
+			</gml:component>
+			<gml:component>
+				<xmml:TimeOrdinalEra gml:id="T1">
+					<gml:name>Early Triassic</gml:name>
+					<gml:name>Scythian</gml:name>
+					<gml:start xlink:href="#PZ_MZ"/>
+					<gml:end xlink:href="#T1_T2"/>
+					<gml:group xlink:href="#T"/>
+					<xmml:rank>Series/Epoch</xmml:rank>
+				</xmml:TimeOrdinalEra>
+			</gml:component>
+			<gml:component>
+				<xmml:TimeOrdinalEra gml:id="T2">
+					<gml:name>Middle Triassic</gml:name>
+					<gml:start xlink:href="#T1_T2"/>
+					<gml:end xlink:href="#T2_T3"/>
+					<gml:group xlink:href="#T"/>
+					<xmml:rank>Series/Epoch</xmml:rank>
+				</xmml:TimeOrdinalEra>
+			</gml:component>
+			<gml:component>
+				<xmml:TimeOrdinalEra gml:id="T3">
+					<gml:name>Late Triassic</gml:name>
+					<gml:start xlink:href="#T2_T3"/>
+					<gml:end xlink:href="#T_J"/>
+					<gml:group xlink:href="#T"/>
+					<xmml:rank>Series/Epoch</xmml:rank>
+				</xmml:TimeOrdinalEra>
+			</gml:component>
+			<gml:component>
+				<xmml:TimeOrdinalEra gml:id="J1">
+					<gml:name>Early Jurassic</gml:name>
+					<gml:name>Lias</gml:name>
+					<gml:start xlink:href="#T_J"/>
+					<gml:end xlink:href="#J1_J2"/>
+					<gml:group xlink:href="#J"/>
+					<xmml:rank>Series/Epoch</xmml:rank>
+				</xmml:TimeOrdinalEra>
+			</gml:component>
+			<gml:component>
+				<xmml:TimeOrdinalEra gml:id="J2">
+					<gml:name>Middle Jurassic</gml:name>
+					<gml:name>Dogger</gml:name>
+					<gml:start xlink:href="#J1_J2"/>
+					<gml:end xlink:href="#J2_J3"/>
+					<gml:group xlink:href="#J"/>
+					<xmml:rank>Series/Epoch</xmml:rank>
+				</xmml:TimeOrdinalEra>
+			</gml:component>
+			<gml:component>
+				<xmml:TimeOrdinalEra gml:id="J3">
+					<gml:name>Late Jurassic</gml:name>
+					<gml:name>Malm</gml:name>
+					<gml:start xlink:href="#J2_J3"/>
+					<gml:end xlink:href="#J_K"/>
+					<gml:group xlink:href="#J"/>
+					<xmml:rank>Series/Epoch</xmml:rank>
+				</xmml:TimeOrdinalEra>
+			</gml:component>
+			<gml:component>
+				<xmml:TimeOrdinalEra gml:id="K1">
+					<gml:name>Early Cretaceous</gml:name>
+					<gml:start xlink:href="#J_K"/>
+					<gml:end xlink:href="#K1_K2"/>
+					<xmml:rank>Series/Epoch</xmml:rank>
+				</xmml:TimeOrdinalEra>
+			</gml:component>
+			<gml:component>
+				<xmml:TimeOrdinalEra gml:id="K2">
+					<gml:name>Late Cretaceous</gml:name>
+					<gml:start xlink:href="#K1_K2"/>
+					<gml:end xlink:href="#MZ_CZ"/>
+					<xmml:rank>Series/Epoch</xmml:rank>
+				</xmml:TimeOrdinalEra>
+			</gml:component>
+			<gml:component>
+				<xmml:TimeOrdinalEra gml:id="E1">
+					<gml:name>Paleocene</gml:name>
+					<gml:start xlink:href="#MZ_CZ"/>
+					<gml:end xlink:href="#E1_E2"/>
+					<xmml:rank>Series/Epoch</xmml:rank>
+				</xmml:TimeOrdinalEra>
+			</gml:component>
+			<gml:component>
+				<xmml:TimeOrdinalEra gml:id="E2">
+					<gml:name>Eocene</gml:name>
+					<gml:start xlink:href="#E1_E2"/>
+					<gml:end xlink:href="#E2_E3"/>
+					<xmml:rank>Series/Epoch</xmml:rank>
+				</xmml:TimeOrdinalEra>
+			</gml:component>
+			<gml:component>
+				<xmml:TimeOrdinalEra gml:id="E3">
+					<gml:name>Oligocene</gml:name>
+					<gml:start xlink:href="#E2_E3"/>
+					<gml:end xlink:href="#E_N"/>
+					<xmml:rank>Series/Epoch</xmml:rank>
+				</xmml:TimeOrdinalEra>
+			</gml:component>
+			<gml:component>
+				<xmml:TimeOrdinalEra gml:id="N1">
+					<gml:name>Miocene</gml:name>
+					<gml:start xlink:href="#E_N"/>
+					<gml:end xlink:href="#N1_N2"/>
+					<xmml:rank>Series/Epoch</xmml:rank>
+				</xmml:TimeOrdinalEra>
+			</gml:component>
+			<gml:component>
+				<xmml:TimeOrdinalEra gml:id="N2">
+					<gml:name>Pliocene</gml:name>
+					<gml:start xlink:href="#N1_N2"/>
+					<gml:end xlink:href="#N_Q"/>
+					<xmml:rank>Series/Epoch</xmml:rank>
+				</xmml:TimeOrdinalEra>
+			</gml:component>
+			<gml:component>
+				<xmml:TimeOrdinalEra gml:id="Q1">
+					<gml:name>Pleistocene</gml:name>
+					<gml:start xlink:href="#N_Q"/>
+					<gml:end xlink:href="#Q1_Q2"/>
+					<xmml:rank>Series/Epoch</xmml:rank>
+				</xmml:TimeOrdinalEra>
+			</gml:component>
+			<gml:component>
+				<xmml:TimeOrdinalEra gml:id="Q2">
+					<gml:name>Holocene</gml:name>
+					<gml:name>Recent</gml:name>
+					<gml:start xlink:href="#Q1_Q2"/>
+					<gml:end xlink:href="#now"/>
+					<xmml:rank>Series/Epoch</xmml:rank>
+				</xmml:TimeOrdinalEra>
+			</gml:component>
+		</gml:TimeOrdinalReferenceSystem>
+	</xmml:system>
+	<!--
+PP1a Udocanian	stage	2000	2500	Middle Precambrian
+PP2a Ulcanian	stage	1600	2000	Middle Precambrian
+
+PR2a Nullaginian	stage	1850	2250	Middle Precambrian
+PR3a Carpentarian	stage	1400	1850	Middle Precambrian
+PR4a Adelaidean	stage	545	1400	Late Precambrian
+PR4a1 Early Adelaidean	stage	775	1400	Adelaidean
+PR4a2 Late Adelaidean	stage	545	775	Adelaidean
+-->
+	<!--
+g1c Meishucunian	stage	528.4	545	Precambrian
+g2c Qiongzhusian	stage	525.5	528.4	Early Cambrian
+g3c Canglangpuan	stage	509	525.5	Early Cambrian
+g4c Longwangmiaoan	stage	507	509	Middle Cambrian
+g5c Maozhuangian	stage	506	507	Middle Cambrian
+g6c Xuzhuangian	stage	504	506	Middle Cambrian
+g7c Zhangxian	stage	499	504	Middle Cambrian
+g8c Kushanian	stage	497	499	Late Cambrian
+g9c Changshanian	stage	494	497	Late Cambrian
+g10c Fengshanian	stage	492	494	Late Cambrian
+
+g1a Nemakit-Daldynian	stage	534	545	Early Cambrian
+g2a Tommotian	stage	527	534	Early Cambrian
+g3a Botoman-Atdabanian	stage	520	527	Early Cambrian
+g4a Toyonian	stage	509	520	Early Cambrian
+g5a Ordian-Early Templetonian	stage	506	509	
+g6a Late Templetonian-Floran	stage	503	506	Middle Cambrian
+g7a Undillan	stage	501	503	Middle Cambrian
+g8a Boomerangian	stage	500	501	Middle Cambrian
+g9a Mindyallan	stage	497.38	500	Late Cambrian
+g10a Idamean	stage	495.8	497.38	Late Cambrian
+g11a Iverian	stage	494	495.8	Late Cambrian
+g12a Payntonian	stage	492	494	Late Cambrian
+
+g2b Aldanian	stage	520	530	Early Cambrian
+g3b Lenan	stage	506	520	Middle Cambrian
+g4b Amgan	stage	504	506	Middle Cambrian
+g5b Mayan	stage	497.5	504	Middle Cambrian
+
+g6d Tuorian	stage	495	498	Late Cambrian
+g7d Shidertinian	stage	490	495	Late Cambrian
+
+g8e Franconian	stage	493.5	496	Cambrian
+-->
+	<!--
+
+s1 Rhuddanian	stage	431	434	Early Silurian
+s2 Aeronian	stage	428	431	Early Silurian
+s3 Telychian	stage	425	428	Early Silurian
+s4 Sheinwoodian	stage	422.5	425	Early Silurian
+s5 Homerian	stage	420	422.5	Early Silurian
+s6 Gorstian	stage	417	420	Late Silurian
+s7 Ludfordian	stage	414	417	Late Silurian
+s8 Pridoli	stage	410	414	Late Silurian
+
+s1b Valentian	stage	425	434	Early Silurian
+s2b Salopian	stage	410	425	Late Silurian
+
+s1v Keilorian	stage	425	434	Early Silurian
+s2v Eildonian	stage	420	425	Late Silurian
+s3v Melbournian	stage	410	420	Late Silurian
+
+s21 Early Wenlockian	stage	423	425	Wenlockian
+s22 Middle Wenlockian	stage	421	423	Wenlockian
+s23 Late Wenlockian	stage	420	421	Wenlockian
+-->
+	<!--
+
+d1 Lochkovian	stage	404.5	410	Devonian
+d2 Pragian	stage	399.5	404.5	Devonian
+d3 Emsian	stage	384	399.5	Early Devonian
+d4 Eifelian	stage	378	384	Devonian
+d5 Givetian	stage	369	378	Middle Devonian
+d6 Frasnian	stage	364.5	369	Late Devonian
+d7 Famennian	stage	354	364.5	Late Devonian
+
+d1a Downtonian	stage	405	410	Devonian
+
+d1b Gedinnian	stage	407	410	Early Devonian
+d2b Siegenian	stage	404.5	407	Early Devonian
+
+d3c Zlichovian	stage	384	393	Devonian
+d4c Couvinian	stage	378	384	Middle Devonian
+-->
+	<!--
+
+C1a Dinantian	stage	325	354	Early Carboniferous
+C2a Silesian	stage	298	325	Late Carboniferous
+
+c1 Tournaisian	stage	343	354	Early Carboniferous
+c2 Visean	stage	325	343	Early Carboniferous
+c3 Serpukhovian	stage	314	325	Carboniferous
+c4 Bashkirian	stage	311.5	314	Carboniferous
+c5 Moscovian	stage	305	311.5	Carboniferous
+c6 Kasimovian	stage	302	305	Carboniferous
+c7 Gzhelian	stage	298	302	Carboniferous
+
+c1a Hastarian	stage	348	354	Carboniferous
+c2a Ivorian	stage	344	348	Carboniferous
+c3a Chadian	stage	341.5	344	Carboniferous
+c4a Arundian	stage	335	341.5	Carboniferous
+c5a Holkerian	stage	330.5	335	Carboniferous
+c6a Asbian	stage	328.5	330.5	Carboniferous
+c7a Brigantian	stage	325	328.5	Carboniferous
+c8a Namurian	stage	312.4	325	Late Carboniferous
+c9a Westphalian	stage	306	312.4	Late Carboniferous
+c10a Stephanian	stage	298	306	Late Carboniferous
+-->
+	<!--
+
+p1 Asselian	stage	293	298	Permian
+p2 Sakmarian	stage	285	293	Early Permian
+p3 Artinskian	stage	274	285	Early Permian
+p4 Kungurian	stage	270	274	Early Permian
+p5 Ufimian	stage	267	270	Permian
+p6 Kazanian	stage	263	267	Late Permian
+p7 Midian	stage	259	263	Permian
+p8 Dzhulfian	stage	255	259	Permian
+p9 Changhsingian	stage	251	255	Permian
+Dorashamian	stage	251	255	Permian
+
+p2_1 Tastubian	stage	288	293	Permian
+p2_2 Sterlitamakian	stage	285	288	Permian
+p3_1 Aktastinian	stage	281.5	285	Permian
+p3_2 Baigendzhinian	stage	274	281.5	Permian
+p3b Tatarian	stage	251	263	Late Permian
+-->
+	<!--
+
+t1a Griesbachian	stage	247	251	Early Triassic
+t2a Nammalian	stage	244	247	Early Triassic
+t3a Spathian	stage	241	244	Early Triassic
+t3 Anisian	stage	235	241	Middle Triassic
+t4 Ladinian	stage	230	235	Middle Triassic
+t5 Carnian	stage	220	230	Late Triassic
+t6 Norian	stage	207	220	Late Triassic
+t7 Rhaetian	stage	205	207	Late Triassic
+-->
+	<!--
+
+l1 Hettangian	stage	202	205	Early Jurassic
+l2 Sinemurian	stage	195	202	Early Jurassic
+l3 Pliensbachian	stage	190	195	Early Jurassic
+l4 Toarcian	stage	184	190	Early Jurassic
+j1 Aalenian	stage	180	184	Middle Jurassic
+j2 Bajocian	stage	173	180	Middle Jurassic
+j3 Bathonian	stage	165	173	Middle Jurassic
+j4 Callovian	stage	159	165	Middle Jurassic
+j5 Oxfordian	stage	151	159	Late Jurassic
+
+j5_1 Early Oxfordian	substage	157	159	Oxfordian
+j5_2 Middle Oxfordian	substage	154	157	Oxfordian
+j5_3 Late Oxfordian	substage	151	154	Oxfordian
+
+j6 Kimmeridgian	stage	146	151	Late Jurassic
+j7 Tithonian	stage	141	146	Late Jurassic
+j7_2Portlandian	stage	141	144	Malm
+-->
+	<!--
+
+b1b2b3 Neocomian	series	123	141	Early Cretaceous
+
+b1 Berriasian	stage	135	141	Early Cretaceous
+b2 Valanginian	stage	130	135	Early Cretaceous
+b3 Hauterivian	stage	123	130	Early Cretaceous
+b4 Barremian	stage	115	123	Early Cretaceous
+b5 Aptian	stage	108	115	Early Cretaceous
+b6 Albian	stage	97.5	108	Early Cretaceous
+k1 Cenomanian	stage	91	97.5	Late Cretaceous
+k2 Turonian	stage	89	91	Late Cretaceous
+K2_2 Senonian	series	65	89	Late Cretaceous
+k3 Coniacian	stage	87	89	Late Cretaceous
+k4 Santonian	stage	83	87	Late Cretaceous
+k5 Campanian	stage	73	83	Late Cretaceous
+k6 Maastrichtian	stage	65	73	Late Cretaceous
+k6_1 Early Maastrichtian	series	67.6	73	
+k6_2 Late Maastrichtian	series	65	67.6	
+-->
+	<!--
+
+
+e2a Montian	stage	59	62	Early Paleocene
+
+e1 Danian	stage	60.9	65	Early Paleocene
+Early Paleocene	stage	60.9	65	Palaeogene
+e2 Selandian	stage	57.9	60.9	
+e3 Thanetian	stage	54.8	57.9	Late Paleocene
+e4 Ypresian	stage	49	54.8	Early Eocene
+Early Eocene	stage	49	54.8	Eocene
+e5 Lutetian	stage	41.3	49	Middle Eocene
+e6 Bartonian	stage	37	41.3	Late Eocene
+e7 Priabonian	stage	33.7	37	Late Eocene
+Late Eocene	stage	33.7	37	Eocene
+e8 Rupelian	stage	28.5	33.7	Early Oligocene
+Early Oligocene	stage	28.5	33.7	Oligocene
+e9 Chattian	stage	23.8	28.5	Late Oligocene
+Late Oligocene	stage	23.8	28.5	Oligocene
+n1 Aquitanian	stage	20.52	23.8	Early Miocene
+n2 Burdigalian	stage	16.4	20.52	Early Miocene
+n3 Langhian	stage	14.8	16.4	Middle Miocene
+n4 Serravallian	stage	11.2	14.8	Middle Miocene
+n5 Tortonian	stage	7.12	11.2	Late Miocene
+n6 Messinian	stage	5.32	7.12	Late Miocene
+n7 Zanclean	stage	3.56	5.32	Early Pliocene
+n8 Piacenzian	stage	1.78	3.56	Late Pliocene
+Q1 Calabrian	stage	0.01	1.78	Early Pleistocene
+
+e2e3 Late Paleocene	stage	54.8	60.9	Palaeogene
+e5e6 Middle Eocene	stage	37	49	Eocene
+n1n2 Early Miocene	stage	16.4	23.8	Miocene
+n3n4 Middle Miocene	stage	11.2	16.4	Miocene
+n5n6 Late Miocene	stage	5.32	11.2	Miocene
+n7a Early Pliocene	stage	3.56	5.32	Pliocene
+n8a Late Pliocene	stage	1.78	3.56	Pliocene
+q1 Early Pleistocene	stage	0.7	1.78	Pleistocene
+q2 Late Pleistocene	stage	0.01	0.7	Pleistocene
+
+e1a Wangerripian	stage	51	65	Paleocene
+e2a Johannian	stage	38.5	51	Eocene
+e3a Aldingan	stage	33	38.5	Eocene
+e4a Willungan	stage	28.5	33	
+e5a Janjukian	stage	21.2	28.5	Oligocene
+n1a Longfordian	stage	16.4	21.2	Early Miocene
+n2a Batesfordian	stage	15.5	16.4	Early Miocene
+n3a Balcombian	stage	12.7	15.5	Middle Miocene
+n4a Bairnsdalian	stage	10.7	12.7	Middle Miocene
+n5a Mitchellian	stage	6.8	10.7	Late Miocene
+n6a Cheltenhamian	stage	5.5	6.8	Early Pliocene
+n7a Kalimnan	stage	2.2	5.5	Pliocene
+n8a Yatalan	stage	1.6	2.2	Late Pliocene
+q1a Werrikooian	stage	1	1.6	Pleistocene
+q2a Emilian	stage	0.7	1	Early Pleistocene
+q3a Sicilian	stage	0.45	0.7	Late Pleistocene
+q4a Milazzian	stage	0.1	0.45	Late Pleistocene
+q5a Tyrrhenian	stage	0.01	0.1	Late Pleistocene
+-->
+	<!-- ======================== -->
+	<!-- Reference times -->
+	<!-- ======================== -->
+	<xmml:referenceTime>
+		<xmml:TimeNode gml:id="_EA">
+			<gml:name>Base of Precambrian</gml:name>
+			<gml:name>Base of Archaean</gml:name>
+			<gml:name>Base of Early Precambrian</gml:name>
+			<gml:name>Base of Cryptozoic</gml:name>
+			<gml:name>Base of Eoarchaean</gml:name>
+			<xmml:estimatedPosition>
+				<xmml:TimeEstimate>
+					<gml:timePosition frame="#geologyMa">-4600.0</gml:timePosition>
+					<xmml:reference xlink:href="#GA"/>
+				</xmml:TimeEstimate>
+			</xmml:estimatedPosition>
+		</xmml:TimeNode>
+	</xmml:referenceTime>
+	<xmml:referenceTime>
+		<xmml:TimeNode gml:id="EA_PA">
+			<gml:name>Base of Paleoarchaean</gml:name>
+			<xmml:estimatedPosition>
+				<xmml:TimeEstimate>
+					<gml:timePosition frame="#geologyMa">-3600.0</gml:timePosition>
+					<xmml:reference xlink:href="#GA"/>
+				</xmml:TimeEstimate>
+			</xmml:estimatedPosition>
+		</xmml:TimeNode>
+	</xmml:referenceTime>
+	<xmml:referenceTime>
+		<xmml:TimeNode gml:id="PA_MA">
+			<gml:name>Base of Mesoarchaean</gml:name>
+			<xmml:estimatedPosition>
+				<xmml:TimeEstimate>
+					<gml:timePosition frame="#geologyMa">-3200.0</gml:timePosition>
+					<xmml:reference xlink:href="#GA"/>
+				</xmml:TimeEstimate>
+			</xmml:estimatedPosition>
+		</xmml:TimeNode>
+	</xmml:referenceTime>
+	<xmml:referenceTime>
+		<xmml:TimeNode gml:id="MA_NA">
+			<gml:name>Base of Neoarchaean</gml:name>
+			<xmml:estimatedPosition>
+				<xmml:TimeEstimate>
+					<gml:timePosition frame="#geologyMa">-2800.0</gml:timePosition>
+					<xmml:reference xlink:href="#GA"/>
+				</xmml:TimeEstimate>
+			</xmml:estimatedPosition>
+		</xmml:TimeNode>
+	</xmml:referenceTime>
+	<xmml:referenceTime>
+		<xmml:TimeNode gml:id="AR_PR">
+			<gml:name>Base of Proterozoic</gml:name>
+			<gml:name>Base of Algonkian</gml:name>
+			<gml:name>Base of Middle Precambrian</gml:name>
+			<gml:name>Base of Paleoproterozoic</gml:name>
+			<gml:name>Base of Udocanian</gml:name>
+			<gml:name>Base of Siderian</gml:name>
+			<xmml:estimatedPosition>
+				<xmml:TimeEstimate>
+					<gml:timePosition frame="#geologyMa">-2500.0</gml:timePosition>
+					<xmml:reference xlink:href="#GA"/>
+				</xmml:TimeEstimate>
+			</xmml:estimatedPosition>
+		</xmml:TimeNode>
+	</xmml:referenceTime>
+	<xmml:referenceTime>
+		<xmml:TimeNode gml:id="PP1_PP2">
+			<gml:name>Base of Rhyacian</gml:name>
+			<xmml:estimatedPosition>
+				<xmml:TimeEstimate>
+					<gml:timePosition frame="#geologyMa">-2300.0</gml:timePosition>
+					<xmml:reference xlink:href="#GA"/>
+				</xmml:TimeEstimate>
+			</xmml:estimatedPosition>
+		</xmml:TimeNode>
+	</xmml:referenceTime>
+	<xmml:referenceTime>
+		<xmml:TimeNode gml:id="_PR2a">
+			<gml:name>Base of Nullaginian</gml:name>
+			<xmml:estimatedPosition>
+				<xmml:TimeEstimate>
+					<gml:timePosition frame="#geologyMa">-2250.0</gml:timePosition>
+					<xmml:reference xlink:href="#GA"/>
+				</xmml:TimeEstimate>
+			</xmml:estimatedPosition>
+		</xmml:TimeNode>
+	</xmml:referenceTime>
+	<xmml:referenceTime>
+		<xmml:TimeNode gml:id="PP2_PP3">
+			<gml:name>Base of Orosirian</gml:name>
+			<xmml:estimatedPosition>
+				<xmml:TimeEstimate>
+					<gml:timePosition frame="#geologyMa">-2050.0</gml:timePosition>
+					<xmml:reference xlink:href="#GA"/>
+				</xmml:TimeEstimate>
+			</xmml:estimatedPosition>
+		</xmml:TimeNode>
+	</xmml:referenceTime>
+	<xmml:referenceTime>
+		<xmml:TimeNode gml:id="PP1a_PP2a">
+			<gml:name>Base of Ulcanian</gml:name>
+			<xmml:estimatedPosition>
+				<xmml:TimeEstimate>
+					<gml:timePosition frame="#geologyMa">-2000.0</gml:timePosition>
+					<xmml:reference xlink:href="#GA"/>
+				</xmml:TimeEstimate>
+			</xmml:estimatedPosition>
+		</xmml:TimeNode>
+	</xmml:referenceTime>
+	<xmml:referenceTime>
+		<xmml:TimeNode gml:id="PR2a_PR3a">
+			<gml:name>Base of Carpentarian</gml:name>
+			<xmml:estimatedPosition>
+				<xmml:TimeEstimate>
+					<gml:timePosition frame="#geologyMa">-1850.0</gml:timePosition>
+					<xmml:reference xlink:href="#GA"/>
+				</xmml:TimeEstimate>
+			</xmml:estimatedPosition>
+		</xmml:TimeNode>
+	</xmml:referenceTime>
+	<xmml:referenceTime>
+		<xmml:TimeNode gml:id="PP3_PP4">
+			<gml:name>Base of Statherian</gml:name>
+			<xmml:estimatedPosition>
+				<xmml:TimeEstimate>
+					<gml:timePosition frame="#geologyMa">-1800.0</gml:timePosition>
+					<xmml:reference xlink:href="#GA"/>
+				</xmml:TimeEstimate>
+			</xmml:estimatedPosition>
+		</xmml:TimeNode>
+	</xmml:referenceTime>
+	<xmml:referenceTime>
+		<xmml:TimeNode gml:id="PP_MP">
+			<gml:name>Base of Riphean</gml:name>
+			<gml:name>Base of Mesoproterozoic</gml:name>
+			<gml:name>Base of Burzyanian</gml:name>
+			<gml:name>Base of Early Riphean</gml:name>
+			<gml:name>Base of Calymmian</gml:name>
+			<xmml:estimatedPosition>
+				<xmml:TimeEstimate>
+					<gml:timePosition frame="#geologyMa">-1600.0</gml:timePosition>
+					<xmml:reference xlink:href="#GA"/>
+				</xmml:TimeEstimate>
+			</xmml:estimatedPosition>
+		</xmml:TimeNode>
+	</xmml:referenceTime>
+	<xmml:referenceTime>
+		<xmml:TimeNode gml:id="MP1_MP2">
+			<gml:name>Base of Adelaidean</gml:name>
+			<gml:name>Base of Early Adelaidean</gml:name>
+			<gml:name>Base of Ectasian</gml:name>
+			<xmml:estimatedPosition>
+				<xmml:TimeEstimate>
+					<gml:timePosition frame="#geologyMa">-1400.0</gml:timePosition>
+					<xmml:reference xlink:href="#GA"/>
+				</xmml:TimeEstimate>
+			</xmml:estimatedPosition>
+		</xmml:TimeNode>
+	</xmml:referenceTime>
+	<xmml:referenceTime>
+		<xmml:TimeNode gml:id="RP1_RP2">
+			<gml:name>Base of Middle Riphean</gml:name>
+			<xmml:estimatedPosition>
+				<xmml:TimeEstimate>
+					<gml:timePosition frame="#geologyMa">-1350.0</gml:timePosition>
+					<xmml:reference xlink:href="#GA"/>
+				</xmml:TimeEstimate>
+			</xmml:estimatedPosition>
+		</xmml:TimeNode>
+	</xmml:referenceTime>
+	<xmml:referenceTime>
+		<xmml:TimeNode gml:id="RP1a_RP2a">
+			<gml:name>Base of Yurmatian</gml:name>
+			<xmml:estimatedPosition>
+				<xmml:TimeEstimate>
+					<gml:timePosition frame="#geologyMa">-1350.0</gml:timePosition>
+					<xmml:reference xlink:href="#GA"/>
+				</xmml:TimeEstimate>
+			</xmml:estimatedPosition>
+		</xmml:TimeNode>
+	</xmml:referenceTime>
+	<xmml:referenceTime>
+		<xmml:TimeNode gml:id="MP2_MP3">
+			<gml:name>Base of Stenian</gml:name>
+			<xmml:estimatedPosition>
+				<xmml:TimeEstimate>
+					<gml:timePosition frame="#geologyMa">-1200.0</gml:timePosition>
+					<xmml:reference xlink:href="#GA"/>
+				</xmml:TimeEstimate>
+			</xmml:estimatedPosition>
+		</xmml:TimeNode>
+	</xmml:referenceTime>
+	<xmml:referenceTime>
+		<xmml:TimeNode gml:id="MP_NP">
+			<gml:name>Base of Neoproterozoic</gml:name>
+			<gml:name>Base of Late Precambrian</gml:name>
+			<gml:name>Base of Late Riphean</gml:name>
+			<gml:name>Base of Tonian</gml:name>
+			<xmml:estimatedPosition>
+				<xmml:TimeEstimate>
+					<gml:timePosition frame="#geologyMa">-1000.0</gml:timePosition>
+					<xmml:reference xlink:href="#GA"/>
+				</xmml:TimeEstimate>
+			</xmml:estimatedPosition>
+		</xmml:TimeNode>
+	</xmml:referenceTime>
+	<xmml:referenceTime>
+		<xmml:TimeNode gml:id="RP2a_RP3a">
+			<gml:name>Base of Karatavian</gml:name>
+			<xmml:estimatedPosition>
+				<xmml:TimeEstimate>
+					<gml:timePosition frame="#geologyMa">-950.0</gml:timePosition>
+					<xmml:reference xlink:href="#GA"/>
+				</xmml:TimeEstimate>
+			</xmml:estimatedPosition>
+		</xmml:TimeNode>
+	</xmml:referenceTime>
+	<xmml:referenceTime>
+		<xmml:TimeNode gml:id="NP1_NP2">
+			<gml:name>Base of Cryogenian</gml:name>
+			<xmml:estimatedPosition>
+				<xmml:TimeEstimate>
+					<gml:timePosition frame="#geologyMa">-850.0</gml:timePosition>
+					<xmml:reference xlink:href="#GA"/>
+				</xmml:TimeEstimate>
+			</xmml:estimatedPosition>
+		</xmml:TimeNode>
+	</xmml:referenceTime>
+	<xmml:referenceTime>
+		<xmml:TimeNode gml:id="PR4a1_PR4a2">
+			<gml:name>Base of Late Adelaidean</gml:name>
+			<xmml:estimatedPosition>
+				<xmml:TimeEstimate>
+					<gml:timePosition frame="#geologyMa">-775.0</gml:timePosition>
+					<xmml:reference xlink:href="#GA"/>
+				</xmml:TimeEstimate>
+			</xmml:estimatedPosition>
+		</xmml:TimeNode>
+	</xmml:referenceTime>
+	<xmml:referenceTime>
+		<xmml:TimeNode gml:id="NP2_NP3">
+			<gml:name>Base of Vendian</gml:name>
+			<gml:name>Base of Neoproterozoic III</gml:name>
+			<xmml:estimatedPosition>
+				<xmml:TimeEstimate>
+					<gml:timePosition frame="#geologyMa">-650.0</gml:timePosition>
+					<xmml:reference xlink:href="#GA"/>
+				</xmml:TimeEstimate>
+			</xmml:estimatedPosition>
+		</xmml:TimeNode>
+	</xmml:referenceTime>
+	<!-- ======================== -->
+	<xmml:referenceTime>
+		<xmml:TimeNode gml:id="PR_PH">
+			<gml:name>Base of Phanerozoic</gml:name>
+			<gml:name>Base of Palaeozoic</gml:name>
+			<gml:name>Base of Early Palaeozoic</gml:name>
+			<gml:name>Base of Cambrian</gml:name>
+			<gml:name>Base of Early Cambrian</gml:name>
+			<gml:name>Base of Meishucunian</gml:name>
+			<gml:name>Base of Nemakit-Daldynian</gml:name>
+			<xmml:estimatedPosition>
+				<xmml:TimeEstimate>
+					<gml:timePosition frame="#geologyMa">-545.0</gml:timePosition>
+					<xmml:reference xlink:href="#GA"/>
+				</xmml:TimeEstimate>
+			</xmml:estimatedPosition>
+		</xmml:TimeNode>
+	</xmml:referenceTime>
+	<xmml:referenceTime>
+		<xmml:TimeNode gml:id="g1a_g2a">
+			<gml:name>Base of Tommotian</gml:name>
+			<xmml:estimatedPosition>
+				<xmml:TimeEstimate>
+					<gml:timePosition frame="#geologyMa">-534.0</gml:timePosition>
+					<xmml:reference xlink:href="#GA"/>
+				</xmml:TimeEstimate>
+			</xmml:estimatedPosition>
+		</xmml:TimeNode>
+	</xmml:referenceTime>
+	<xmml:referenceTime>
+		<xmml:TimeNode gml:id="_g2b">
+			<gml:name>Base of Aldanian</gml:name>
+			<xmml:estimatedPosition>
+				<xmml:TimeEstimate>
+					<gml:timePosition frame="#geologyMa">-530.0</gml:timePosition>
+					<xmml:reference xlink:href="#GA"/>
+				</xmml:TimeEstimate>
+			</xmml:estimatedPosition>
+		</xmml:TimeNode>
+	</xmml:referenceTime>
+	<xmml:referenceTime>
+		<xmml:TimeNode gml:id="g1c_g2c">
+			<gml:name>Base of Qiongzhusian</gml:name>
+			<xmml:estimatedPosition>
+				<xmml:TimeEstimate>
+					<gml:timePosition frame="#geologyMa">-528.4</gml:timePosition>
+					<xmml:reference xlink:href="#GA"/>
+				</xmml:TimeEstimate>
+			</xmml:estimatedPosition>
+		</xmml:TimeNode>
+	</xmml:referenceTime>
+	<xmml:referenceTime>
+		<xmml:TimeNode gml:id="g2a_g3a">
+			<gml:name>Base of Botoman-Atdabanian</gml:name>
+			<xmml:estimatedPosition>
+				<xmml:TimeEstimate>
+					<gml:timePosition frame="#geologyMa">-527</gml:timePosition>
+					<xmml:reference xlink:href="#GA"/>
+				</xmml:TimeEstimate>
+			</xmml:estimatedPosition>
+		</xmml:TimeNode>
+	</xmml:referenceTime>
+	<xmml:referenceTime>
+		<xmml:TimeNode gml:id="g2c_g3c">
+			<gml:name>Base of Canglangpuan</gml:name>
+			<xmml:estimatedPosition>
+				<xmml:TimeEstimate>
+					<gml:timePosition frame="#geologyMa">-525.5</gml:timePosition>
+					<xmml:reference xlink:href="#GA"/>
+				</xmml:TimeEstimate>
+			</xmml:estimatedPosition>
+		</xmml:TimeNode>
+	</xmml:referenceTime>
+	<xmml:referenceTime>
+		<xmml:TimeNode gml:id="g2b_g3b">
+			<gml:name>Base of Lenan</gml:name>
+			<gml:name>Base of Toyonian</gml:name>
+			<xmml:estimatedPosition>
+				<xmml:TimeEstimate>
+					<gml:timePosition frame="#geologyMa">-520</gml:timePosition>
+					<xmml:reference xlink:href="#GA"/>
+				</xmml:TimeEstimate>
+			</xmml:estimatedPosition>
+		</xmml:TimeNode>
+	</xmml:referenceTime>
+	<xmml:referenceTime>
+		<xmml:TimeNode gml:id="G1_G2">
+			<gml:name>Base of Middle Cambrian</gml:name>
+			<gml:name>Base of Ordian-Early Templetonia</gml:name>
+			<gml:name>Base of Longwangmiaoan</gml:name>
+			<xmml:estimatedPosition>
+				<xmml:TimeEstimate>
+					<gml:timePosition frame="#geologyMa">-509</gml:timePosition>
+					<xmml:reference xlink:href="#GA"/>
+				</xmml:TimeEstimate>
+			</xmml:estimatedPosition>
+		</xmml:TimeNode>
+	</xmml:referenceTime>
+	<xmml:referenceTime>
+		<xmml:TimeNode gml:id="g4c_g5c">
+			<gml:name>Base of Maozhuangian</gml:name>
+			<xmml:estimatedPosition>
+				<xmml:TimeEstimate>
+					<gml:timePosition frame="#geologyMa">-507</gml:timePosition>
+					<xmml:reference xlink:href="#GA"/>
+				</xmml:TimeEstimate>
+			</xmml:estimatedPosition>
+		</xmml:TimeNode>
+	</xmml:referenceTime>
+	<xmml:referenceTime>
+		<xmml:TimeNode gml:id="g5a_g6a">
+			<gml:name>Base of Late Templetonian-Floran</gml:name>
+			<gml:name>Base of Amgan</gml:name>
+			<gml:name>Base of Xuzhuangian</gml:name>
+			<xmml:estimatedPosition>
+				<xmml:TimeEstimate>
+					<gml:timePosition frame="#geologyMa">-506</gml:timePosition>
+					<xmml:reference xlink:href="#GA"/>
+				</xmml:TimeEstimate>
+			</xmml:estimatedPosition>
+		</xmml:TimeNode>
+	</xmml:referenceTime>
+	<xmml:referenceTime>
+		<xmml:TimeNode gml:id="g4b_g5b">
+			<gml:name>Base of Mayan</gml:name>
+			<gml:name>Base of Zhangxian</gml:name>
+			<xmml:estimatedPosition>
+				<xmml:TimeEstimate>
+					<gml:timePosition frame="#geologyMa">-504</gml:timePosition>
+					<xmml:reference xlink:href="#GA"/>
+				</xmml:TimeEstimate>
+			</xmml:estimatedPosition>
+		</xmml:TimeNode>
+	</xmml:referenceTime>
+	<xmml:referenceTime>
+		<xmml:TimeNode gml:id="g6a_g7a">
+			<gml:name>Base of Undillan</gml:name>
+			<xmml:estimatedPosition>
+				<xmml:TimeEstimate>
+					<gml:timePosition frame="#geologyMa">-503</gml:timePosition>
+					<xmml:reference xlink:href="#GA"/>
+				</xmml:TimeEstimate>
+			</xmml:estimatedPosition>
+		</xmml:TimeNode>
+	</xmml:referenceTime>
+	<xmml:referenceTime>
+		<xmml:TimeNode gml:id="g7a_g8a">
+			<gml:name>Base of Boomerangian</gml:name>
+			<xmml:estimatedPosition>
+				<xmml:TimeEstimate>
+					<gml:timePosition frame="#geologyMa">-501</gml:timePosition>
+					<xmml:reference xlink:href="#GA"/>
+				</xmml:TimeEstimate>
+			</xmml:estimatedPosition>
+		</xmml:TimeNode>
+	</xmml:referenceTime>
+	<xmml:referenceTime>
+		<xmml:TimeNode gml:id="g8a_g9a">
+			<gml:name>Base of Mindyallan</gml:name>
+			<xmml:estimatedPosition>
+				<xmml:TimeEstimate>
+					<gml:timePosition frame="#geologyMa">-500</gml:timePosition>
+					<xmml:reference xlink:href="#GA"/>
+				</xmml:TimeEstimate>
+			</xmml:estimatedPosition>
+		</xmml:TimeNode>
+	</xmml:referenceTime>
+	<xmml:referenceTime>
+		<xmml:TimeNode gml:id="g7c_g8c">
+			<gml:name>Base of Kushanian</gml:name>
+			<xmml:estimatedPosition>
+				<xmml:TimeEstimate>
+					<gml:timePosition frame="#geologyMa">-499</gml:timePosition>
+					<xmml:reference xlink:href="#GA"/>
+				</xmml:TimeEstimate>
+			</xmml:estimatedPosition>
+		</xmml:TimeNode>
+	</xmml:referenceTime>
+	<xmml:referenceTime>
+		<xmml:TimeNode gml:id="_g6d">
+			<gml:name>Base of Tuorian</gml:name>
+			<xmml:estimatedPosition>
+				<xmml:TimeEstimate>
+					<gml:timePosition frame="#geologyMa">-498</gml:timePosition>
+					<xmml:reference xlink:href="#GA"/>
+				</xmml:TimeEstimate>
+			</xmml:estimatedPosition>
+		</xmml:TimeNode>
+	</xmml:referenceTime>
+	<xmml:referenceTime>
+		<xmml:TimeNode gml:id="G2_G3">
+			<gml:name>Base of Late Cambrian</gml:name>
+			<xmml:estimatedPosition>
+				<xmml:TimeEstimate>
+					<gml:timePosition frame="#geologyMa">-497.5</gml:timePosition>
+					<xmml:reference xlink:href="#GA"/>
+				</xmml:TimeEstimate>
+			</xmml:estimatedPosition>
+		</xmml:TimeNode>
+	</xmml:referenceTime>
+	<xmml:referenceTime>
+		<xmml:TimeNode gml:id="g9a_g10a">
+			<gml:name>Base of Idamean</gml:name>
+			<xmml:estimatedPosition>
+				<xmml:TimeEstimate>
+					<gml:timePosition frame="#geologyMa">-497.38</gml:timePosition>
+					<xmml:reference xlink:href="#GA"/>
+				</xmml:TimeEstimate>
+			</xmml:estimatedPosition>
+		</xmml:TimeNode>
+	</xmml:referenceTime>
+	<xmml:referenceTime>
+		<xmml:TimeNode gml:id="g8c_g9c">
+			<gml:name>Base of Changshanian</gml:name>
+			<xmml:estimatedPosition>
+				<xmml:TimeEstimate>
+					<gml:timePosition frame="#geologyMa">-497</gml:timePosition>
+					<xmml:reference xlink:href="#GA"/>
+				</xmml:TimeEstimate>
+			</xmml:estimatedPosition>
+		</xmml:TimeNode>
+	</xmml:referenceTime>
+	<xmml:referenceTime>
+		<xmml:TimeNode gml:id="_g8e">
+			<gml:name>Base of Franconian</gml:name>
+			<xmml:estimatedPosition>
+				<xmml:TimeEstimate>
+					<gml:timePosition frame="#geologyMa">-496</gml:timePosition>
+					<xmml:reference xlink:href="#GA"/>
+				</xmml:TimeEstimate>
+			</xmml:estimatedPosition>
+		</xmml:TimeNode>
+	</xmml:referenceTime>
+	<xmml:referenceTime>
+		<xmml:TimeNode gml:id="g10a_g11a">
+			<gml:name>Base of Iverian</gml:name>
+			<xmml:estimatedPosition>
+				<xmml:TimeEstimate>
+					<gml:timePosition frame="#geologyMa">-495.8</gml:timePosition>
+					<xmml:reference xlink:href="#GA"/>
+				</xmml:TimeEstimate>
+			</xmml:estimatedPosition>
+		</xmml:TimeNode>
+	</xmml:referenceTime>
+	<xmml:referenceTime>
+		<xmml:TimeNode gml:id="g6d_g7d">
+			<gml:name>Base of Shidertinian</gml:name>
+			<xmml:estimatedPosition>
+				<xmml:TimeEstimate>
+					<gml:timePosition frame="#geologyMa">-495</gml:timePosition>
+					<xmml:reference xlink:href="#GA"/>
+				</xmml:TimeEstimate>
+			</xmml:estimatedPosition>
+		</xmml:TimeNode>
+	</xmml:referenceTime>
+	<xmml:referenceTime>
+		<xmml:TimeNode gml:id="g11a_g12a">
+			<gml:name>Base of Payntonian</gml:name>
+			<gml:name>Base of Fengshanian</gml:name>
+			<xmml:estimatedPosition>
+				<xmml:TimeEstimate>
+					<gml:timePosition frame="#geologyMa">-494</gml:timePosition>
+					<xmml:reference xlink:href="#GA"/>
+				</xmml:TimeEstimate>
+			</xmml:estimatedPosition>
+		</xmml:TimeNode>
+	</xmml:referenceTime>
+	<!-- ======================== -->
+	<xmml:referenceTime>
+		<xmml:TimeNode gml:id="baseDatsonian">
+			<gml:name>Base of Datsonian</gml:name>
+			<xmml:estimatedPosition>
+				<xmml:TimeEstimate>
+					<gml:timePosition frame="#geologyMa">-492</gml:timePosition>
+					<xmml:reference xlink:href="#GA"/>
+				</xmml:TimeEstimate>
+			</xmml:estimatedPosition>
+		</xmml:TimeNode>
+	</xmml:referenceTime>
+	<xmml:referenceTime>
+		<xmml:TimeNode gml:id="baseIbexian">
+			<gml:name>Base of Ibexian</gml:name>
+			<xmml:estimatedPosition>
+				<xmml:TimeEstimate>
+					<gml:timePosition frame="#geologyMa">-491.1</gml:timePosition>
+					<xmml:reference xlink:href="#GA"/>
+				</xmml:TimeEstimate>
+			</xmml:estimatedPosition>
+		</xmml:TimeNode>
+	</xmml:referenceTime>
+	<xmml:referenceTime>
+		<xmml:TimeNode gml:id="G_O">
+			<gml:name>Base of Ordovician</gml:name>
+			<gml:name>Base of Early Ordovician</gml:name>
+			<gml:name>Base of Tremadoc</gml:name>
+			<gml:name>Base of Warendan</gml:name>
+			<gml:name>Base of Tremadocian</gml:name>
+			<xmml:estimatedPosition>
+				<xmml:TimeEstimate>
+					<gml:timePosition frame="#geologyMa">-490</gml:timePosition>
+					<xmml:reference xlink:href="#GA"/>
+				</xmml:TimeEstimate>
+			</xmml:estimatedPosition>
+		</xmml:TimeNode>
+	</xmml:referenceTime>
+	<xmml:referenceTime>
+		<xmml:TimeNode gml:id="baseLancefieldian">
+			<gml:name>Base of Lancefieldian</gml:name>
+			<xmml:estimatedPosition>
+				<xmml:TimeEstimate>
+					<gml:timePosition frame="#geologyMa">-489.5</gml:timePosition>
+					<xmml:reference xlink:href="#GA"/>
+				</xmml:TimeEstimate>
+			</xmml:estimatedPosition>
+		</xmml:TimeNode>
+	</xmml:referenceTime>
+	<xmml:referenceTime>
+		<xmml:TimeNode gml:id="baseArenig">
+			<gml:name>Base of Arenig</gml:name>
+			<gml:name>Base of Skiddavian</gml:name>
+			<gml:name>Base of Lancefieldian (3)</gml:name>
+			<xmml:estimatedPosition>
+				<xmml:TimeEstimate>
+					<gml:timePosition frame="#geologyMa">-486</gml:timePosition>
+					<xmml:reference xlink:href="#GA"/>
+				</xmml:TimeEstimate>
+			</xmml:estimatedPosition>
+		</xmml:TimeNode>
+	</xmml:referenceTime>
+	<!--
+
+o0 Datsonian	stage	490	492	Early Ordovician
+o1 Tremadoc	series	486	490	Early Ordovician
+Warendan	stage	486	490	Early Ordovician
+o2 Arenig	series	463	486	Early Ordovician
+Skiddavian	stage	463	486	Early Ordovician
+o3 Llanvirn	series	459	463	Early Ordovician
+Chazyan	stage	459	463	Ordovician
+o4 Llandeilo	series	459	461	Early Ordovician
+o5 Caradoc	series	445	459	Late Ordovician
+o6 Ashgill	series	434	445	Late Ordovician
+
+o1v Lancefieldian	stage	484.5	489.5	Early Ordovician
+o2v Bendigonian	stage	481	484.5	Early Ordovician
+o3v Chewtonian	stage	477	481	Early Ordovician
+o4v Castlemainian	stage	471	477	Early Ordovician
+o5v Yapeenian	stage	467	471	Early Ordovician
+o6v Darriwilian	stage	459	467	Early Ordovician
+o7v Gisbornian	stage	454.5	459	Late Ordovician
+o8v Eastonian	stage	443	454.5	Late Ordovician
+o9v Bolindian	stage	434	443	Late Ordovician
+
+o1b Ibexian	series	475	491.1	Early Ordovician
+o2b Whiterockian	series	457.5	475	Early Ordovician
+o3b Mohawkian	series	449.5	457.5	Late Ordovician
+o4b Cincinnatian	series	434	449.5	Late Ordovician
+-->
+	<xmml:referenceTime>
+		<xmml:TimeNode gml:id="baseBendigonian">
+			<gml:name>Base of Bendigonian</gml:name>
+			<xmml:estimatedPosition>
+				<xmml:TimeEstimate>
+					<gml:timePosition frame="#geologyMa">-484.5</gml:timePosition>
+					<xmml:reference xlink:href="#GA"/>
+				</xmml:TimeEstimate>
+			</xmml:estimatedPosition>
+		</xmml:TimeNode>
+	</xmml:referenceTime>
+	<xmml:referenceTime>
+		<xmml:TimeNode gml:id="baseChewtonian">
+			<gml:name>Base of Chewtonian</gml:name>
+			<xmml:estimatedPosition>
+				<xmml:TimeEstimate>
+					<gml:timePosition frame="#geologyMa">-481</gml:timePosition>
+					<xmml:reference xlink:href="#GA"/>
+				</xmml:TimeEstimate>
+			</xmml:estimatedPosition>
+		</xmml:TimeNode>
+	</xmml:referenceTime>
+	<xmml:referenceTime>
+		<xmml:TimeNode gml:id="O1_O2">
+			<gml:name>Base of Middle Ordovician</gml:name>
+			<gml:name>Base of Castlemainian</gml:name>
+			<xmml:estimatedPosition>
+				<xmml:TimeEstimate>
+					<gml:timePosition frame="#geologyMa">-477</gml:timePosition>
+					<xmml:reference xlink:href="#GA"/>
+				</xmml:TimeEstimate>
+			</xmml:estimatedPosition>
+		</xmml:TimeNode>
+	</xmml:referenceTime>
+	<xmml:referenceTime>
+		<xmml:TimeNode gml:id="baseWhiterockian">
+			<gml:name>Base of Whiterockian</gml:name>
+			<xmml:estimatedPosition>
+				<xmml:TimeEstimate>
+					<gml:timePosition frame="#geologyMa">-475</gml:timePosition>
+					<xmml:reference xlink:href="#GA"/>
+				</xmml:TimeEstimate>
+			</xmml:estimatedPosition>
+		</xmml:TimeNode>
+	</xmml:referenceTime>
+	<xmml:referenceTime>
+		<xmml:TimeNode gml:id="baseYapeenian">
+			<gml:name>Base of Yapeenian</gml:name>
+			<xmml:estimatedPosition>
+				<xmml:TimeEstimate>
+					<gml:timePosition frame="#geologyMa">-471</gml:timePosition>
+					<xmml:reference xlink:href="#GA"/>
+				</xmml:TimeEstimate>
+			</xmml:estimatedPosition>
+		</xmml:TimeNode>
+	</xmml:referenceTime>
+	<xmml:referenceTime>
+		<xmml:TimeNode gml:id="baseDarriwilian">
+			<gml:name>Base of Darriwilian</gml:name>
+			<xmml:estimatedPosition>
+				<xmml:TimeEstimate>
+					<gml:timePosition frame="#geologyMa">-467</gml:timePosition>
+					<xmml:reference xlink:href="#GA"/>
+				</xmml:TimeEstimate>
+			</xmml:estimatedPosition>
+		</xmml:TimeNode>
+	</xmml:referenceTime>
+	<xmml:referenceTime>
+		<xmml:TimeNode gml:id="baseLlanvirn">
+			<gml:name>Base of Llanvirn</gml:name>
+			<gml:name>Base of Chazyan</gml:name>
+			<xmml:estimatedPosition>
+				<xmml:TimeEstimate>
+					<gml:timePosition frame="#geologyMa">-463</gml:timePosition>
+					<xmml:reference xlink:href="#GA"/>
+				</xmml:TimeEstimate>
+			</xmml:estimatedPosition>
+		</xmml:TimeNode>
+	</xmml:referenceTime>
+	<xmml:referenceTime>
+		<xmml:TimeNode gml:id="baseLlandeilo">
+			<gml:name>Base of Llandeilo</gml:name>
+			<xmml:estimatedPosition>
+				<xmml:TimeEstimate>
+					<gml:timePosition frame="#geologyMa">-461</gml:timePosition>
+					<xmml:reference xlink:href="#GA"/>
+				</xmml:TimeEstimate>
+			</xmml:estimatedPosition>
+		</xmml:TimeNode>
+	</xmml:referenceTime>
+	<xmml:referenceTime>
+		<xmml:TimeNode gml:id="O2_O3">
+			<gml:name>Base of Late Ordovician</gml:name>
+			<gml:name>Base of Caradoc</gml:name>
+			<gml:name>Base of Gisbornian</gml:name>
+			<xmml:estimatedPosition>
+				<xmml:TimeEstimate>
+					<gml:timePosition frame="#geologyMa">-459</gml:timePosition>
+					<xmml:reference xlink:href="#GA"/>
+				</xmml:TimeEstimate>
+			</xmml:estimatedPosition>
+		</xmml:TimeNode>
+	</xmml:referenceTime>
+	<xmml:referenceTime>
+		<xmml:TimeNode gml:id="baseMohawkian">
+			<gml:name>Base of Mohawkian</gml:name>
+			<xmml:estimatedPosition>
+				<xmml:TimeEstimate>
+					<gml:timePosition frame="#geologyMa">-457.5</gml:timePosition>
+					<xmml:reference xlink:href="#GA"/>
+				</xmml:TimeEstimate>
+			</xmml:estimatedPosition>
+		</xmml:TimeNode>
+	</xmml:referenceTime>
+	<xmml:referenceTime>
+		<xmml:TimeNode gml:id="baseEastonian">
+			<gml:name>Base of Eastonian</gml:name>
+			<xmml:estimatedPosition>
+				<xmml:TimeEstimate>
+					<gml:timePosition frame="#geologyMa">-454.5</gml:timePosition>
+					<xmml:reference xlink:href="#GA"/>
+				</xmml:TimeEstimate>
+			</xmml:estimatedPosition>
+		</xmml:TimeNode>
+	</xmml:referenceTime>
+	<xmml:referenceTime>
+		<xmml:TimeNode gml:id="baseCincinnatian">
+			<gml:name>Base of Cincinnatian</gml:name>
+			<xmml:estimatedPosition>
+				<xmml:TimeEstimate>
+					<gml:timePosition frame="#geologyMa">-449.5</gml:timePosition>
+					<xmml:reference xlink:href="#GA"/>
+				</xmml:TimeEstimate>
+			</xmml:estimatedPosition>
+		</xmml:TimeNode>
+	</xmml:referenceTime>
+	<xmml:referenceTime>
+		<xmml:TimeNode gml:id="baseAshgill">
+			<gml:name>Base of Ashgill</gml:name>
+			<xmml:estimatedPosition>
+				<xmml:TimeEstimate>
+					<gml:timePosition frame="#geologyMa">-445</gml:timePosition>
+					<xmml:reference xlink:href="#GA"/>
+				</xmml:TimeEstimate>
+			</xmml:estimatedPosition>
+		</xmml:TimeNode>
+	</xmml:referenceTime>
+	<xmml:referenceTime>
+		<xmml:TimeNode gml:id="baseBolindian">
+			<gml:name>Base of Bolindian</gml:name>
+			<xmml:estimatedPosition>
+				<xmml:TimeEstimate>
+					<gml:timePosition frame="#geologyMa">-443</gml:timePosition>
+					<xmml:reference xlink:href="#GA"/>
+				</xmml:TimeEstimate>
+			</xmml:estimatedPosition>
+		</xmml:TimeNode>
+	</xmml:referenceTime>
+	<xmml:referenceTime>
+		<xmml:TimeNode gml:id="O_S">
+			<gml:name>Base of Silurian</gml:name>
+			<gml:name>Base of Early Silurian</gml:name>
+			<gml:name>Base of Llandovery</gml:name>
+			<gml:name>Base of Keilorian</gml:name>
+			<gml:name>Base of Valentian</gml:name>
+			<gml:name>Base of Rhuddanian</gml:name>
+			<xmml:estimatedPosition>
+				<xmml:TimeEstimate>
+					<gml:timePosition frame="#geologyMa">-434</gml:timePosition>
+					<xmml:reference xlink:href="#GA"/>
+				</xmml:TimeEstimate>
+			</xmml:estimatedPosition>
+		</xmml:TimeNode>
+	</xmml:referenceTime>
+	<xmml:referenceTime>
+		<xmml:TimeNode gml:id="s1_s2">
+			<gml:name>Base of Aeronian</gml:name>
+			<xmml:estimatedPosition>
+				<xmml:TimeEstimate>
+					<gml:timePosition frame="#geologyMa">-431</gml:timePosition>
+					<xmml:reference xlink:href="#GA"/>
+				</xmml:TimeEstimate>
+			</xmml:estimatedPosition>
+		</xmml:TimeNode>
+	</xmml:referenceTime>
+	<xmml:referenceTime>
+		<xmml:TimeNode gml:id="s2_s3">
+			<gml:name>Base of Telychian</gml:name>
+			<xmml:estimatedPosition>
+				<xmml:TimeEstimate>
+					<gml:timePosition frame="#geologyMa">-428</gml:timePosition>
+					<xmml:reference xlink:href="#GA"/>
+				</xmml:TimeEstimate>
+			</xmml:estimatedPosition>
+		</xmml:TimeNode>
+	</xmml:referenceTime>
+	<xmml:referenceTime>
+		<xmml:TimeNode gml:id="S1_S2">
+			<gml:name>Base of Salopian</gml:name>
+			<gml:name>Base of Wenlock</gml:name>
+			<gml:name>Base of Eildonian</gml:name>
+			<gml:name>Base of Sheinwoodian</gml:name>
+			<gml:name>Base of Early Wenlock</gml:name>
+			<xmml:estimatedPosition>
+				<xmml:TimeEstimate>
+					<gml:timePosition frame="#geologyMa">-425</gml:timePosition>
+					<xmml:reference xlink:href="#GA"/>
+				</xmml:TimeEstimate>
+			</xmml:estimatedPosition>
+		</xmml:TimeNode>
+	</xmml:referenceTime>
+	<xmml:referenceTime>
+		<xmml:TimeNode gml:id="baseMiddleWenlock">
+			<gml:name>Base of Middle Wenlock</gml:name>
+			<xmml:estimatedPosition>
+				<xmml:TimeEstimate>
+					<gml:timePosition frame="#geologyMa">-423</gml:timePosition>
+					<xmml:reference xlink:href="#GA"/>
+				</xmml:TimeEstimate>
+			</xmml:estimatedPosition>
+		</xmml:TimeNode>
+	</xmml:referenceTime>
+	<xmml:referenceTime>
+		<xmml:TimeNode gml:id="s4_s5">
+			<gml:name>Base of Homerian</gml:name>
+			<xmml:estimatedPosition>
+				<xmml:TimeEstimate>
+					<gml:timePosition frame="#geologyMa">-422.5</gml:timePosition>
+					<xmml:reference xlink:href="#GA"/>
+				</xmml:TimeEstimate>
+			</xmml:estimatedPosition>
+		</xmml:TimeNode>
+	</xmml:referenceTime>
+	<xmml:referenceTime>
+		<xmml:TimeNode gml:id="baseLateWenlock">
+			<gml:name>Base of Late Wenlock</gml:name>
+			<xmml:estimatedPosition>
+				<xmml:TimeEstimate>
+					<gml:timePosition frame="#geologyMa">-421</gml:timePosition>
+					<xmml:reference xlink:href="#GA"/>
+				</xmml:TimeEstimate>
+			</xmml:estimatedPosition>
+		</xmml:TimeNode>
+	</xmml:referenceTime>
+	<xmml:referenceTime>
+		<xmml:TimeNode gml:id="S2_S3">
+			<gml:name>Base of Late Silurian</gml:name>
+			<gml:name>Base of Melbournian</gml:name>
+			<gml:name>Base of Ludlow</gml:name>
+			<gml:name>Base of Gorstian</gml:name>
+			<xmml:estimatedPosition>
+				<xmml:TimeEstimate>
+					<gml:timePosition frame="#geologyMa">-420</gml:timePosition>
+					<xmml:reference xlink:href="#GA"/>
+				</xmml:TimeEstimate>
+			</xmml:estimatedPosition>
+		</xmml:TimeNode>
+	</xmml:referenceTime>
+	<xmml:referenceTime>
+		<xmml:TimeNode gml:id="s6_s7">
+			<gml:name>Base of Ludfordian</gml:name>
+			<xmml:estimatedPosition>
+				<xmml:TimeEstimate>
+					<gml:timePosition frame="#geologyMa">-417</gml:timePosition>
+					<xmml:reference xlink:href="#GA"/>
+				</xmml:TimeEstimate>
+			</xmml:estimatedPosition>
+		</xmml:TimeNode>
+	</xmml:referenceTime>
+	<xmml:referenceTime>
+		<xmml:TimeNode gml:id="S3_S4">
+			<gml:name>Base of Pridoli</gml:name>
+			<xmml:estimatedPosition>
+				<xmml:TimeEstimate>
+					<gml:timePosition frame="#geologyMa">-414</gml:timePosition>
+					<xmml:reference xlink:href="#GA"/>
+				</xmml:TimeEstimate>
+			</xmml:estimatedPosition>
+		</xmml:TimeNode>
+	</xmml:referenceTime>
+	<xmml:referenceTime>
+		<xmml:TimeNode gml:id="S_D">
+			<gml:name>Base of Devonian</gml:name>
+			<gml:name>Base of Early Devonian</gml:name>
+			<gml:name>Base of Lochkovian</gml:name>
+			<gml:name>Base of Downtonian</gml:name>
+			<gml:name>Base of Gedinnian</gml:name>
+			<xmml:estimatedPosition>
+				<xmml:TimeEstimate>
+					<gml:timePosition frame="#geologyMa">-410</gml:timePosition>
+					<xmml:reference xlink:href="#GA"/>
+				</xmml:TimeEstimate>
+			</xmml:estimatedPosition>
+		</xmml:TimeNode>
+	</xmml:referenceTime>
+	<xmml:referenceTime>
+		<xmml:TimeNode gml:id="baseSiegenian">
+			<gml:name>Base of Siegenian</gml:name>
+			<xmml:estimatedPosition>
+				<xmml:TimeEstimate>
+					<gml:timePosition frame="#geologyMa">-407</gml:timePosition>
+					<xmml:reference xlink:href="#GA"/>
+				</xmml:TimeEstimate>
+			</xmml:estimatedPosition>
+		</xmml:TimeNode>
+	</xmml:referenceTime>
+	<xmml:referenceTime>
+		<xmml:TimeNode gml:id="d1_d2">
+			<gml:name>Base of Pragian</gml:name>
+			<xmml:estimatedPosition>
+				<xmml:TimeEstimate>
+					<gml:timePosition frame="#geologyMa">-404.5</gml:timePosition>
+					<xmml:reference xlink:href="#GA"/>
+				</xmml:TimeEstimate>
+			</xmml:estimatedPosition>
+		</xmml:TimeNode>
+	</xmml:referenceTime>
+	<xmml:referenceTime>
+		<xmml:TimeNode gml:id="d2_d3">
+			<gml:name>Base of Emsian</gml:name>
+			<xmml:estimatedPosition>
+				<xmml:TimeEstimate>
+					<gml:timePosition frame="#geologyMa">-399.5</gml:timePosition>
+					<xmml:reference xlink:href="#GA"/>
+				</xmml:TimeEstimate>
+			</xmml:estimatedPosition>
+		</xmml:TimeNode>
+	</xmml:referenceTime>
+	<xmml:referenceTime>
+		<xmml:TimeNode gml:id="baseZlichovian">
+			<gml:name>Base of Zlichovian</gml:name>
+			<xmml:estimatedPosition>
+				<xmml:TimeEstimate>
+					<gml:timePosition frame="#geologyMa">-393</gml:timePosition>
+					<xmml:reference xlink:href="#GA"/>
+				</xmml:TimeEstimate>
+			</xmml:estimatedPosition>
+		</xmml:TimeNode>
+	</xmml:referenceTime>
+	<xmml:referenceTime>
+		<xmml:TimeNode gml:id="D1_D2">
+			<gml:name>Base of Middle Devonian</gml:name>
+			<gml:name>Base of Couvinian</gml:name>
+			<gml:name>Base of Eifelian</gml:name>
+			<xmml:estimatedPosition>
+				<xmml:TimeEstimate>
+					<gml:timePosition frame="#geologyMa">-384</gml:timePosition>
+					<xmml:reference xlink:href="#GA"/>
+				</xmml:TimeEstimate>
+			</xmml:estimatedPosition>
+		</xmml:TimeNode>
+	</xmml:referenceTime>
+	<xmml:referenceTime>
+		<xmml:TimeNode gml:id="d4_d5">
+			<gml:name>Base of Givetian</gml:name>
+			<xmml:estimatedPosition>
+				<xmml:TimeEstimate>
+					<gml:timePosition frame="#geologyMa">-378</gml:timePosition>
+					<xmml:reference xlink:href="#GA"/>
+				</xmml:TimeEstimate>
+			</xmml:estimatedPosition>
+		</xmml:TimeNode>
+	</xmml:referenceTime>
+	<xmml:referenceTime>
+		<xmml:TimeNode gml:id="D2_D3">
+			<gml:name>Base of Late Devonian</gml:name>
+			<gml:name>Base of Frasnian</gml:name>
+			<xmml:estimatedPosition>
+				<xmml:TimeEstimate>
+					<gml:timePosition frame="#geologyMa">-369</gml:timePosition>
+					<xmml:reference xlink:href="#GA"/>
+				</xmml:TimeEstimate>
+			</xmml:estimatedPosition>
+		</xmml:TimeNode>
+	</xmml:referenceTime>
+	<xmml:referenceTime>
+		<xmml:TimeNode gml:id="d6_d7">
+			<gml:name>Base of Famennian</gml:name>
+			<xmml:estimatedPosition>
+				<xmml:TimeEstimate>
+					<gml:timePosition frame="#geologyMa">-364.5</gml:timePosition>
+					<xmml:reference xlink:href="#GA"/>
+				</xmml:TimeEstimate>
+			</xmml:estimatedPosition>
+		</xmml:TimeNode>
+	</xmml:referenceTime>
+	<xmml:referenceTime>
+		<xmml:TimeNode gml:id="D_C">
+			<gml:name>Base of Late Palaeozoic</gml:name>
+			<gml:name>Base of Carboniferous</gml:name>
+			<gml:name>Base of Mississippian</gml:name>
+			<gml:name>Base of Dinantian</gml:name>
+			<gml:name>Base of Early Carboniferous</gml:name>
+			<gml:name>Base of Tournaisian</gml:name>
+			<gml:name>Base of Hastarian</gml:name>
+			<xmml:estimatedPosition>
+				<xmml:TimeEstimate>
+					<gml:timePosition frame="#geologyMa">-354</gml:timePosition>
+					<xmml:reference xlink:href="#GA"/>
+				</xmml:TimeEstimate>
+			</xmml:estimatedPosition>
+		</xmml:TimeNode>
+	</xmml:referenceTime>
+	<xmml:referenceTime>
+		<xmml:TimeNode gml:id="baseIvorian">
+			<gml:name>Base of Ivorian</gml:name>
+			<xmml:estimatedPosition>
+				<xmml:TimeEstimate>
+					<gml:timePosition frame="#geologyMa">-348</gml:timePosition>
+					<xmml:reference xlink:href="#GA"/>
+				</xmml:TimeEstimate>
+			</xmml:estimatedPosition>
+		</xmml:TimeNode>
+	</xmml:referenceTime>
+	<xmml:referenceTime>
+		<xmml:TimeNode gml:id="baseChadian">
+			<gml:name>Base of Chadian</gml:name>
+			<xmml:estimatedPosition>
+				<xmml:TimeEstimate>
+					<gml:timePosition frame="#geologyMa">-344</gml:timePosition>
+					<xmml:reference xlink:href="#GA"/>
+				</xmml:TimeEstimate>
+			</xmml:estimatedPosition>
+		</xmml:TimeNode>
+	</xmml:referenceTime>
+	<xmml:referenceTime>
+		<xmml:TimeNode gml:id="c1_c2">
+			<gml:name>Base of Visean</gml:name>
+			<xmml:estimatedPosition>
+				<xmml:TimeEstimate>
+					<gml:timePosition frame="#geologyMa">-343</gml:timePosition>
+					<xmml:reference xlink:href="#GA"/>
+				</xmml:TimeEstimate>
+			</xmml:estimatedPosition>
+		</xmml:TimeNode>
+	</xmml:referenceTime>
+	<xmml:referenceTime>
+		<xmml:TimeNode gml:id="baseArundian">
+			<gml:name>Base of Arundian</gml:name>
+			<xmml:estimatedPosition>
+				<xmml:TimeEstimate>
+					<gml:timePosition frame="#geologyMa">-341.5</gml:timePosition>
+					<xmml:reference xlink:href="#GA"/>
+				</xmml:TimeEstimate>
+			</xmml:estimatedPosition>
+		</xmml:TimeNode>
+	</xmml:referenceTime>
+	<xmml:referenceTime>
+		<xmml:TimeNode gml:id="baseHolkerian">
+			<gml:name>Base of Holkerian</gml:name>
+			<xmml:estimatedPosition>
+				<xmml:TimeEstimate>
+					<gml:timePosition frame="#geologyMa">-335</gml:timePosition>
+					<xmml:reference xlink:href="#GA"/>
+				</xmml:TimeEstimate>
+			</xmml:estimatedPosition>
+		</xmml:TimeNode>
+	</xmml:referenceTime>
+	<xmml:referenceTime>
+		<xmml:TimeNode gml:id="baseAsbian">
+			<gml:name>Base of Asbian</gml:name>
+			<xmml:estimatedPosition>
+				<xmml:TimeEstimate>
+					<gml:timePosition frame="#geologyMa">-330.5</gml:timePosition>
+					<xmml:reference xlink:href="#GA"/>
+				</xmml:TimeEstimate>
+			</xmml:estimatedPosition>
+		</xmml:TimeNode>
+	</xmml:referenceTime>
+	<xmml:referenceTime>
+		<xmml:TimeNode gml:id="baseBrigantian">
+			<gml:name>Base of Brigantian</gml:name>
+			<xmml:estimatedPosition>
+				<xmml:TimeEstimate>
+					<gml:timePosition frame="#geologyMa">-328.5</gml:timePosition>
+					<xmml:reference xlink:href="#GA"/>
+				</xmml:TimeEstimate>
+			</xmml:estimatedPosition>
+		</xmml:TimeNode>
+	</xmml:referenceTime>
+	<xmml:referenceTime>
+		<xmml:TimeNode gml:id="c2_c3">
+			<gml:name>Base of Late Carboniferous</gml:name>
+			<gml:name>Base of Silesian</gml:name>
+			<gml:name>Base of Namurian</gml:name>
+			<gml:name>Base of Serpukhovian</gml:name>
+			<xmml:estimatedPosition>
+				<xmml:TimeEstimate>
+					<gml:timePosition frame="#geologyMa">-325</gml:timePosition>
+					<xmml:reference xlink:href="#GA"/>
+				</xmml:TimeEstimate>
+			</xmml:estimatedPosition>
+		</xmml:TimeNode>
+	</xmml:referenceTime>
+	<xmml:referenceTime>
+		<xmml:TimeNode gml:id="C1_C2">
+			<gml:name>Base of Pennsylvanian</gml:name>
+			<gml:name>Base of Bashkirian</gml:name>
+			<xmml:estimatedPosition>
+				<xmml:TimeEstimate>
+					<gml:timePosition frame="#geologyMa">-314</gml:timePosition>
+					<xmml:reference xlink:href="#GA"/>
+				</xmml:TimeEstimate>
+			</xmml:estimatedPosition>
+		</xmml:TimeNode>
+	</xmml:referenceTime>
+	<xmml:referenceTime>
+		<xmml:TimeNode gml:id="baseWestphalian">
+			<gml:name>Base of Westphalian</gml:name>
+			<xmml:estimatedPosition>
+				<xmml:TimeEstimate>
+					<gml:timePosition frame="#geologyMa">-312.4</gml:timePosition>
+					<xmml:reference xlink:href="#GA"/>
+				</xmml:TimeEstimate>
+			</xmml:estimatedPosition>
+		</xmml:TimeNode>
+	</xmml:referenceTime>
+	<xmml:referenceTime>
+		<xmml:TimeNode gml:id="c4_c5">
+			<gml:name>Base of Moscovian</gml:name>
+			<xmml:estimatedPosition>
+				<xmml:TimeEstimate>
+					<gml:timePosition frame="#geologyMa">-311.5</gml:timePosition>
+					<xmml:reference xlink:href="#GA"/>
+				</xmml:TimeEstimate>
+			</xmml:estimatedPosition>
+		</xmml:TimeNode>
+	</xmml:referenceTime>
+	<xmml:referenceTime>
+		<xmml:TimeNode gml:id="baseStephanian">
+			<gml:name>Base of Stephanian</gml:name>
+			<xmml:estimatedPosition>
+				<xmml:TimeEstimate>
+					<gml:timePosition frame="#geologyMa">-306</gml:timePosition>
+					<xmml:reference xlink:href="#GA"/>
+				</xmml:TimeEstimate>
+			</xmml:estimatedPosition>
+		</xmml:TimeNode>
+	</xmml:referenceTime>
+	<xmml:referenceTime>
+		<xmml:TimeNode gml:id="c5_c6">
+			<gml:name>Base of Kasimovian</gml:name>
+			<xmml:estimatedPosition>
+				<xmml:TimeEstimate>
+					<gml:timePosition frame="#geologyMa">-305</gml:timePosition>
+					<xmml:reference xlink:href="#GA"/>
+				</xmml:TimeEstimate>
+			</xmml:estimatedPosition>
+		</xmml:TimeNode>
+	</xmml:referenceTime>
+	<xmml:referenceTime>
+		<xmml:TimeNode gml:id="c6_c7">
+			<gml:name>Base of Gzhelian</gml:name>
+			<xmml:estimatedPosition>
+				<xmml:TimeEstimate>
+					<gml:timePosition frame="#geologyMa">-302</gml:timePosition>
+					<xmml:reference xlink:href="#GA"/>
+				</xmml:TimeEstimate>
+			</xmml:estimatedPosition>
+		</xmml:TimeNode>
+	</xmml:referenceTime>
+	<xmml:referenceTime>
+		<xmml:TimeNode gml:id="C_P">
+			<gml:name>Base of Permian</gml:name>
+			<gml:name>Base of Early Permian</gml:name>
+			<gml:name>Base of Asselian</gml:name>
+			<xmml:estimatedPosition>
+				<xmml:TimeEstimate>
+					<gml:timePosition frame="#geologyMa">-298</gml:timePosition>
+					<xmml:reference xlink:href="#GA"/>
+				</xmml:TimeEstimate>
+			</xmml:estimatedPosition>
+		</xmml:TimeNode>
+	</xmml:referenceTime>
+	<xmml:referenceTime>
+		<xmml:TimeNode gml:id="p1_p2">
+			<gml:name>Base of Sakmarian</gml:name>
+			<gml:name>Base of Tastubian</gml:name>
+			<xmml:estimatedPosition>
+				<xmml:TimeEstimate>
+					<gml:timePosition frame="#geologyMa">-293</gml:timePosition>
+					<xmml:reference xlink:href="#GA"/>
+				</xmml:TimeEstimate>
+			</xmml:estimatedPosition>
+		</xmml:TimeNode>
+	</xmml:referenceTime>
+	<xmml:referenceTime>
+		<xmml:TimeNode gml:id="baseSterlitamakian">
+			<gml:name>Base of Sterlitamakian</gml:name>
+			<xmml:estimatedPosition>
+				<xmml:TimeEstimate>
+					<gml:timePosition frame="#geologyMa">-288</gml:timePosition>
+					<xmml:reference xlink:href="#GA"/>
+				</xmml:TimeEstimate>
+			</xmml:estimatedPosition>
+		</xmml:TimeNode>
+	</xmml:referenceTime>
+	<xmml:referenceTime>
+		<xmml:TimeNode gml:id="p2_p3">
+			<gml:name>Base of Artinskian</gml:name>
+			<gml:name>Base of Aktastinian</gml:name>
+			<xmml:estimatedPosition>
+				<xmml:TimeEstimate>
+					<gml:timePosition frame="#geologyMa">-285</gml:timePosition>
+					<xmml:reference xlink:href="#GA"/>
+				</xmml:TimeEstimate>
+			</xmml:estimatedPosition>
+		</xmml:TimeNode>
+	</xmml:referenceTime>
+	<xmml:referenceTime>
+		<xmml:TimeNode gml:id="baseBaigendzhinian">
+			<gml:name>Base of Baigendzhinian</gml:name>
+			<xmml:estimatedPosition>
+				<xmml:TimeEstimate>
+					<gml:timePosition frame="#geologyMa">-281.5</gml:timePosition>
+					<xmml:reference xlink:href="#GA"/>
+				</xmml:TimeEstimate>
+			</xmml:estimatedPosition>
+		</xmml:TimeNode>
+	</xmml:referenceTime>
+	<xmml:referenceTime>
+		<xmml:TimeNode gml:id="p3_p4">
+			<gml:name>Base of Kungurian</gml:name>
+			<xmml:estimatedPosition>
+				<xmml:TimeEstimate>
+					<gml:timePosition frame="#geologyMa">-274</gml:timePosition>
+					<xmml:reference xlink:href="#GA"/>
+				</xmml:TimeEstimate>
+			</xmml:estimatedPosition>
+		</xmml:TimeNode>
+	</xmml:referenceTime>
+	<xmml:referenceTime>
+		<xmml:TimeNode gml:id="P1_P2">
+			<gml:name>Base of Late Permian</gml:name>
+			<gml:name>Base of Guadalupian</gml:name>
+			<gml:name>Base of Ufimian</gml:name>
+			<xmml:estimatedPosition>
+				<xmml:TimeEstimate>
+					<gml:timePosition frame="#geologyMa">-270</gml:timePosition>
+					<xmml:reference xlink:href="#GA"/>
+				</xmml:TimeEstimate>
+			</xmml:estimatedPosition>
+		</xmml:TimeNode>
+	</xmml:referenceTime>
+	<xmml:referenceTime>
+		<xmml:TimeNode gml:id="baseKazanian">
+			<gml:name>Base of Kazanian</gml:name>
+			<xmml:estimatedPosition>
+				<xmml:TimeEstimate>
+					<gml:timePosition frame="#geologyMa">-267</gml:timePosition>
+					<xmml:reference xlink:href="#GA"/>
+				</xmml:TimeEstimate>
+			</xmml:estimatedPosition>
+		</xmml:TimeNode>
+	</xmml:referenceTime>
+	<xmml:referenceTime>
+		<xmml:TimeNode gml:id="baseTatarian">
+			<gml:name>Base of Tatarian</gml:name>
+			<gml:name>Base of Midian</gml:name>
+			<xmml:estimatedPosition>
+				<xmml:TimeEstimate>
+					<gml:timePosition frame="#geologyMa">-263</gml:timePosition>
+					<xmml:reference xlink:href="#GA"/>
+				</xmml:TimeEstimate>
+			</xmml:estimatedPosition>
+		</xmml:TimeNode>
+	</xmml:referenceTime>
+	<xmml:referenceTime>
+		<xmml:TimeNode gml:id="baseDzhulfian">
+			<gml:name>Base of Dzhulfian</gml:name>
+			<xmml:estimatedPosition>
+				<xmml:TimeEstimate>
+					<gml:timePosition frame="#geologyMa">-259</gml:timePosition>
+					<xmml:reference xlink:href="#GA"/>
+				</xmml:TimeEstimate>
+			</xmml:estimatedPosition>
+		</xmml:TimeNode>
+	</xmml:referenceTime>
+	<xmml:referenceTime>
+		<xmml:TimeNode gml:id="baseDorashamian">
+			<gml:name>Base of Dorashamian</gml:name>
+			<gml:name>Base of Changhsingian</gml:name>
+			<xmml:estimatedPosition>
+				<xmml:TimeEstimate>
+					<gml:timePosition frame="#geologyMa">-255</gml:timePosition>
+					<xmml:reference xlink:href="#GA"/>
+				</xmml:TimeEstimate>
+			</xmml:estimatedPosition>
+		</xmml:TimeNode>
+	</xmml:referenceTime>
+	<xmml:referenceTime>
+		<xmml:TimeNode gml:id="PZ_MZ">
+			<gml:name>Base of Mesozoic</gml:name>
+			<gml:name>Base of Triassic</gml:name>
+			<gml:name>Base of Early Triassic</gml:name>
+			<gml:name>Base of Scythian</gml:name>
+			<gml:name>Base of Griesbachian</gml:name>
+			<xmml:estimatedPosition>
+				<xmml:TimeEstimate>
+					<gml:timePosition frame="#geologyMa">-251</gml:timePosition>
+					<xmml:reference xlink:href="#GA"/>
+				</xmml:TimeEstimate>
+			</xmml:estimatedPosition>
+		</xmml:TimeNode>
+	</xmml:referenceTime>
+	<xmml:referenceTime>
+		<xmml:TimeNode gml:id="baseNammalian">
+			<gml:name>Base of Nammalian</gml:name>
+			<xmml:estimatedPosition>
+				<xmml:TimeEstimate>
+					<gml:timePosition frame="#geologyMa">-247</gml:timePosition>
+					<xmml:reference xlink:href="#GA"/>
+				</xmml:TimeEstimate>
+			</xmml:estimatedPosition>
+		</xmml:TimeNode>
+	</xmml:referenceTime>
+	<xmml:referenceTime>
+		<xmml:TimeNode gml:id="baseSpathian">
+			<gml:name>Base of Spathian</gml:name>
+			<xmml:estimatedPosition>
+				<xmml:TimeEstimate>
+					<gml:timePosition frame="#geologyMa">-244</gml:timePosition>
+					<xmml:reference xlink:href="#GA"/>
+				</xmml:TimeEstimate>
+			</xmml:estimatedPosition>
+		</xmml:TimeNode>
+	</xmml:referenceTime>
+	<xmml:referenceTime>
+		<xmml:TimeNode gml:id="T1_T2">
+			<gml:name>Base of Middle Triassic</gml:name>
+			<gml:name>Base of Anisian</gml:name>
+			<xmml:estimatedPosition>
+				<xmml:TimeEstimate>
+					<gml:timePosition frame="#geologyMa">-241</gml:timePosition>
+					<xmml:reference xlink:href="#GA"/>
+				</xmml:TimeEstimate>
+			</xmml:estimatedPosition>
+		</xmml:TimeNode>
+	</xmml:referenceTime>
+	<xmml:referenceTime>
+		<xmml:TimeNode gml:id="t3_t4">
+			<gml:name>Base of Ladinian</gml:name>
+			<xmml:estimatedPosition>
+				<xmml:TimeEstimate>
+					<gml:timePosition frame="#geologyMa">-235</gml:timePosition>
+					<xmml:reference xlink:href="#GA"/>
+				</xmml:TimeEstimate>
+			</xmml:estimatedPosition>
+		</xmml:TimeNode>
+	</xmml:referenceTime>
+	<xmml:referenceTime>
+		<xmml:TimeNode gml:id="T2_T3">
+			<gml:name>Base of Late Triassic</gml:name>
+			<gml:name>Base of Carnian</gml:name>
+			<xmml:estimatedPosition>
+				<xmml:TimeEstimate>
+					<gml:timePosition frame="#geologyMa">-230</gml:timePosition>
+					<xmml:reference xlink:href="#GA"/>
+				</xmml:TimeEstimate>
+			</xmml:estimatedPosition>
+		</xmml:TimeNode>
+	</xmml:referenceTime>
+	<xmml:referenceTime>
+		<xmml:TimeNode gml:id="t5_t6">
+			<gml:name>Base of Norian</gml:name>
+			<xmml:estimatedPosition>
+				<xmml:TimeEstimate>
+					<gml:timePosition frame="#geologyMa">-220</gml:timePosition>
+					<xmml:reference xlink:href="#GA"/>
+				</xmml:TimeEstimate>
+			</xmml:estimatedPosition>
+		</xmml:TimeNode>
+	</xmml:referenceTime>
+	<xmml:referenceTime>
+		<xmml:TimeNode gml:id="t6_t7">
+			<gml:name>Base of Rhaetian</gml:name>
+			<xmml:estimatedPosition>
+				<xmml:TimeEstimate>
+					<gml:timePosition frame="#geologyMa">-207</gml:timePosition>
+					<xmml:reference xlink:href="#GA"/>
+				</xmml:TimeEstimate>
+			</xmml:estimatedPosition>
+		</xmml:TimeNode>
+	</xmml:referenceTime>
+	<xmml:referenceTime>
+		<xmml:TimeNode gml:id="T_J">
+			<gml:name>Base of Jurassic</gml:name>
+			<gml:name>Base of Early Jurassic</gml:name>
+			<gml:name>Base of Lias</gml:name>
+			<gml:name>Base of Hettangian</gml:name>
+			<xmml:estimatedPosition>
+				<xmml:TimeEstimate>
+					<gml:timePosition frame="#geologyMa">-205</gml:timePosition>
+					<xmml:reference xlink:href="#GA"/>
+				</xmml:TimeEstimate>
+			</xmml:estimatedPosition>
+		</xmml:TimeNode>
+	</xmml:referenceTime>
+	<xmml:referenceTime>
+		<xmml:TimeNode gml:id="l1_l2">
+			<gml:name>Base of Sinemurian</gml:name>
+			<xmml:estimatedPosition>
+				<xmml:TimeEstimate>
+					<gml:timePosition frame="#geologyMa">-202</gml:timePosition>
+					<xmml:reference xlink:href="#GA"/>
+				</xmml:TimeEstimate>
+			</xmml:estimatedPosition>
+		</xmml:TimeNode>
+	</xmml:referenceTime>
+	<xmml:referenceTime>
+		<xmml:TimeNode gml:id="l2_l3">
+			<gml:name>Base of Pliensbachian</gml:name>
+			<xmml:estimatedPosition>
+				<xmml:TimeEstimate>
+					<gml:timePosition frame="#geologyMa">-195</gml:timePosition>
+					<xmml:reference xlink:href="#GA"/>
+				</xmml:TimeEstimate>
+			</xmml:estimatedPosition>
+		</xmml:TimeNode>
+	</xmml:referenceTime>
+	<xmml:referenceTime>
+		<xmml:TimeNode gml:id="l3_l4">
+			<gml:name>Base of Toarcian</gml:name>
+			<xmml:estimatedPosition>
+				<xmml:TimeEstimate>
+					<gml:timePosition frame="#geologyMa">-190</gml:timePosition>
+					<xmml:reference xlink:href="#GA"/>
+				</xmml:TimeEstimate>
+			</xmml:estimatedPosition>
+		</xmml:TimeNode>
+	</xmml:referenceTime>
+	<xmml:referenceTime>
+		<xmml:TimeNode gml:id="J1_J2">
+			<gml:name>Base of Middle Jurassic</gml:name>
+			<gml:name>Base of Dogger</gml:name>
+			<gml:name>Base of Aalenian</gml:name>
+			<xmml:estimatedPosition>
+				<xmml:TimeEstimate>
+					<gml:timePosition frame="#geologyMa">-184</gml:timePosition>
+					<xmml:reference xlink:href="#GA"/>
+				</xmml:TimeEstimate>
+			</xmml:estimatedPosition>
+		</xmml:TimeNode>
+	</xmml:referenceTime>
+	<xmml:referenceTime>
+		<xmml:TimeNode gml:id="j1_j2">
+			<gml:name>Base of Bajocian</gml:name>
+			<xmml:estimatedPosition>
+				<xmml:TimeEstimate>
+					<gml:timePosition frame="#geologyMa">-180</gml:timePosition>
+					<xmml:reference xlink:href="#GA"/>
+				</xmml:TimeEstimate>
+			</xmml:estimatedPosition>
+		</xmml:TimeNode>
+	</xmml:referenceTime>
+	<xmml:referenceTime>
+		<xmml:TimeNode gml:id="j2_j3">
+			<gml:name>Base of Bathonian</gml:name>
+			<xmml:estimatedPosition>
+				<xmml:TimeEstimate>
+					<gml:timePosition frame="#geologyMa">-173</gml:timePosition>
+					<xmml:reference xlink:href="#GA"/>
+				</xmml:TimeEstimate>
+			</xmml:estimatedPosition>
+		</xmml:TimeNode>
+	</xmml:referenceTime>
+	<xmml:referenceTime>
+		<xmml:TimeNode gml:id="J3_J4">
+			<gml:name>Base of Callovian</gml:name>
+			<xmml:estimatedPosition>
+				<xmml:TimeEstimate>
+					<gml:timePosition frame="#geologyMa">-165</gml:timePosition>
+					<xmml:reference xlink:href="#GA"/>
+				</xmml:TimeEstimate>
+			</xmml:estimatedPosition>
+		</xmml:TimeNode>
+	</xmml:referenceTime>
+	<xmml:referenceTime>
+		<xmml:TimeNode gml:id="J2_J3">
+			<gml:name>Base of Late Jurassic</gml:name>
+			<gml:name>Base of Malm</gml:name>
+			<gml:name>Base of Oxfordian</gml:name>
+			<gml:name>Base of Early Oxfordian</gml:name>
+			<xmml:estimatedPosition>
+				<xmml:TimeEstimate>
+					<gml:timePosition frame="#geologyMa">-159</gml:timePosition>
+					<xmml:reference xlink:href="#GA"/>
+				</xmml:TimeEstimate>
+			</xmml:estimatedPosition>
+		</xmml:TimeNode>
+	</xmml:referenceTime>
+	<xmml:referenceTime>
+		<xmml:TimeNode gml:id="baseMiddleOxfordian">
+			<gml:name>Base of Middle Oxfordian</gml:name>
+			<xmml:estimatedPosition>
+				<xmml:TimeEstimate>
+					<gml:timePosition frame="#geologyMa">-157</gml:timePosition>
+					<xmml:reference xlink:href="#GA"/>
+				</xmml:TimeEstimate>
+			</xmml:estimatedPosition>
+		</xmml:TimeNode>
+	</xmml:referenceTime>
+	<xmml:referenceTime>
+		<xmml:TimeNode gml:id="baseLateOxfordian">
+			<gml:name>Base of Late Oxfordian</gml:name>
+			<xmml:estimatedPosition>
+				<xmml:TimeEstimate>
+					<gml:timePosition frame="#geologyMa">-154</gml:timePosition>
+					<xmml:reference xlink:href="#GA"/>
+				</xmml:TimeEstimate>
+			</xmml:estimatedPosition>
+		</xmml:TimeNode>
+	</xmml:referenceTime>
+	<xmml:referenceTime>
+		<xmml:TimeNode gml:id="j5_j6">
+			<gml:name>Base of Kimmeridgian</gml:name>
+			<xmml:estimatedPosition>
+				<xmml:TimeEstimate>
+					<gml:timePosition frame="#geologyMa">-151</gml:timePosition>
+					<xmml:reference xlink:href="#GA"/>
+				</xmml:TimeEstimate>
+			</xmml:estimatedPosition>
+		</xmml:TimeNode>
+	</xmml:referenceTime>
+	<xmml:referenceTime>
+		<xmml:TimeNode gml:id="j6_j7">
+			<gml:name>Base of Tithonian</gml:name>
+			<xmml:estimatedPosition>
+				<xmml:TimeEstimate>
+					<gml:timePosition frame="#geologyMa">-146</gml:timePosition>
+					<xmml:reference xlink:href="#GA"/>
+				</xmml:TimeEstimate>
+			</xmml:estimatedPosition>
+		</xmml:TimeNode>
+	</xmml:referenceTime>
+	<xmml:referenceTime>
+		<xmml:TimeNode gml:id="basePortlandian">
+			<gml:name>Base of Portlandian</gml:name>
+			<xmml:estimatedPosition>
+				<xmml:TimeEstimate>
+					<gml:timePosition frame="#geologyMa">-144</gml:timePosition>
+					<xmml:reference xlink:href="#GA"/>
+				</xmml:TimeEstimate>
+			</xmml:estimatedPosition>
+		</xmml:TimeNode>
+	</xmml:referenceTime>
+	<xmml:referenceTime>
+		<xmml:TimeNode gml:id="J_K">
+			<gml:name>Base of Cretaceous</gml:name>
+			<gml:name>Base of Early Cretaceous</gml:name>
+			<gml:name>Base of Neocomian</gml:name>
+			<gml:name>Base of Berriasian</gml:name>
+			<xmml:estimatedPosition>
+				<xmml:TimeEstimate>
+					<gml:timePosition frame="#geologyMa">-141</gml:timePosition>
+					<xmml:reference xlink:href="#GA"/>
+				</xmml:TimeEstimate>
+			</xmml:estimatedPosition>
+		</xmml:TimeNode>
+	</xmml:referenceTime>
+	<xmml:referenceTime>
+		<xmml:TimeNode gml:id="b1_b2">
+			<gml:name>Base of Valanginian</gml:name>
+			<xmml:estimatedPosition>
+				<xmml:TimeEstimate>
+					<gml:timePosition frame="#geologyMa">-135</gml:timePosition>
+					<xmml:reference xlink:href="#GA"/>
+				</xmml:TimeEstimate>
+			</xmml:estimatedPosition>
+		</xmml:TimeNode>
+	</xmml:referenceTime>
+	<xmml:referenceTime>
+		<xmml:TimeNode gml:id="b2_b3">
+			<gml:name>Base of Hauterivian</gml:name>
+			<xmml:estimatedPosition>
+				<xmml:TimeEstimate>
+					<gml:timePosition frame="#geologyMa">-130</gml:timePosition>
+					<xmml:reference xlink:href="#GA"/>
+				</xmml:TimeEstimate>
+			</xmml:estimatedPosition>
+		</xmml:TimeNode>
+	</xmml:referenceTime>
+	<xmml:referenceTime>
+		<xmml:TimeNode gml:id="b3_b4">
+			<gml:name>Base of Barremian</gml:name>
+			<xmml:estimatedPosition>
+				<xmml:TimeEstimate>
+					<gml:timePosition frame="#geologyMa">-123</gml:timePosition>
+					<xmml:reference xlink:href="#GA"/>
+				</xmml:TimeEstimate>
+			</xmml:estimatedPosition>
+		</xmml:TimeNode>
+	</xmml:referenceTime>
+	<xmml:referenceTime>
+		<xmml:TimeNode gml:id="b4_b5">
+			<gml:name>Base of Aptian</gml:name>
+			<xmml:estimatedPosition>
+				<xmml:TimeEstimate>
+					<gml:timePosition frame="#geologyMa">-115</gml:timePosition>
+					<xmml:reference xlink:href="#GA"/>
+				</xmml:TimeEstimate>
+			</xmml:estimatedPosition>
+		</xmml:TimeNode>
+	</xmml:referenceTime>
+	<xmml:referenceTime>
+		<xmml:TimeNode gml:id="b5_b6">
+			<gml:name>Base of Albian</gml:name>
+			<xmml:estimatedPosition>
+				<xmml:TimeEstimate>
+					<gml:timePosition frame="#geologyMa">-108</gml:timePosition>
+					<xmml:reference xlink:href="#GA"/>
+				</xmml:TimeEstimate>
+			</xmml:estimatedPosition>
+		</xmml:TimeNode>
+	</xmml:referenceTime>
+	<xmml:referenceTime>
+		<xmml:TimeNode gml:id="K1_K2">
+			<gml:name>Base of Late Cretaceous</gml:name>
+			<xmml:estimatedPosition>
+				<xmml:TimeEstimate>
+					<gml:timePosition frame="#geologyMa">-97.5</gml:timePosition>
+					<xmml:reference xlink:href="#GA"/>
+				</xmml:TimeEstimate>
+			</xmml:estimatedPosition>
+		</xmml:TimeNode>
+	</xmml:referenceTime>
+	<xmml:referenceTime>
+		<xmml:TimeNode gml:id="k1_k2">
+			<gml:name>Base of Turonian</gml:name>
+			<xmml:estimatedPosition>
+				<xmml:TimeEstimate>
+					<gml:timePosition frame="#geologyMa">-91</gml:timePosition>
+					<xmml:reference xlink:href="#GA"/>
+				</xmml:TimeEstimate>
+			</xmml:estimatedPosition>
+		</xmml:TimeNode>
+	</xmml:referenceTime>
+	<xmml:referenceTime>
+		<xmml:TimeNode gml:id="k2_k3">
+			<gml:name>Base of Senonian</gml:name>
+			<gml:name>Base of Coniacian</gml:name>
+			<xmml:estimatedPosition>
+				<xmml:TimeEstimate>
+					<gml:timePosition frame="#geologyMa">-89</gml:timePosition>
+					<xmml:reference xlink:href="#GA"/>
+				</xmml:TimeEstimate>
+			</xmml:estimatedPosition>
+		</xmml:TimeNode>
+	</xmml:referenceTime>
+	<xmml:referenceTime>
+		<xmml:TimeNode gml:id="k3_k4">
+			<gml:name>Base of Santonian</gml:name>
+			<xmml:estimatedPosition>
+				<xmml:TimeEstimate>
+					<gml:timePosition frame="#geologyMa">-87</gml:timePosition>
+					<xmml:reference xlink:href="#GA"/>
+				</xmml:TimeEstimate>
+			</xmml:estimatedPosition>
+		</xmml:TimeNode>
+	</xmml:referenceTime>
+	<xmml:referenceTime>
+		<xmml:TimeNode gml:id="k4_k5">
+			<gml:name>Base of Campanian</gml:name>
+			<xmml:estimatedPosition>
+				<xmml:TimeEstimate>
+					<gml:timePosition frame="#geologyMa">-83</gml:timePosition>
+					<xmml:reference xlink:href="#GA"/>
+				</xmml:TimeEstimate>
+			</xmml:estimatedPosition>
+		</xmml:TimeNode>
+	</xmml:referenceTime>
+	<xmml:referenceTime>
+		<xmml:TimeNode gml:id="k5_k6">
+			<gml:name>Base of Maastrichtian</gml:name>
+			<gml:name>Base of Early Maastrichtian</gml:name>
+			<xmml:estimatedPosition>
+				<xmml:TimeEstimate>
+					<gml:timePosition frame="#geologyMa">-73</gml:timePosition>
+					<xmml:reference xlink:href="#GA"/>
+				</xmml:TimeEstimate>
+			</xmml:estimatedPosition>
+		</xmml:TimeNode>
+	</xmml:referenceTime>
+	<xmml:referenceTime>
+		<xmml:TimeNode gml:id="baseLateMaastrichtian">
+			<gml:name>Base of Late Maastrichtian</gml:name>
+			<xmml:estimatedPosition>
+				<xmml:TimeEstimate>
+					<gml:timePosition frame="#geologyMa">-67.6</gml:timePosition>
+					<xmml:reference xlink:href="#GA"/>
+				</xmml:TimeEstimate>
+			</xmml:estimatedPosition>
+		</xmml:TimeNode>
+	</xmml:referenceTime>
+	<xmml:referenceTime>
+		<xmml:TimeNode gml:id="MZ_CZ">
+			<gml:name>Base of Cainozoic</gml:name>
+			<gml:name>Base of Tertiary</gml:name>
+			<gml:name>Base of Palaeogene</gml:name>
+			<gml:name>Base of Wangerripian</gml:name>
+			<gml:name>Base of Paleocene</gml:name>
+			<gml:name>Base of Danian</gml:name>
+			<gml:name>Base of Early Paleocene</gml:name>
+			<xmml:estimatedPosition>
+				<xmml:TimeEstimate>
+					<gml:timePosition frame="#geologyMa">-65</gml:timePosition>
+					<xmml:reference xlink:href="#GA"/>
+				</xmml:TimeEstimate>
+			</xmml:estimatedPosition>
+		</xmml:TimeNode>
+	</xmml:referenceTime>
+	<xmml:referenceTime>
+		<xmml:TimeNode gml:id="baseMontian">
+			<gml:name>Base of Montian</gml:name>
+			<xmml:estimatedPosition>
+				<xmml:TimeEstimate>
+					<gml:timePosition frame="#geologyMa">-62</gml:timePosition>
+					<xmml:reference xlink:href="#GA"/>
+				</xmml:TimeEstimate>
+			</xmml:estimatedPosition>
+		</xmml:TimeNode>
+	</xmml:referenceTime>
+	<xmml:referenceTime>
+		<xmml:TimeNode gml:id="e1_e2">
+			<gml:name>Base of Late Paleocene</gml:name>
+			<gml:name>Base of Selandian</gml:name>
+			<xmml:estimatedPosition>
+				<xmml:TimeEstimate>
+					<gml:timePosition frame="#geologyMa">-60.9</gml:timePosition>
+					<xmml:reference xlink:href="#GA"/>
+				</xmml:TimeEstimate>
+			</xmml:estimatedPosition>
+		</xmml:TimeNode>
+	</xmml:referenceTime>
+	<xmml:referenceTime>
+		<xmml:TimeNode gml:id="e2_e3">
+			<gml:name>Base of Thanetian</gml:name>
+			<xmml:estimatedPosition>
+				<xmml:TimeEstimate>
+					<gml:timePosition frame="#geologyMa">-57.9</gml:timePosition>
+					<xmml:reference xlink:href="#GA"/>
+				</xmml:TimeEstimate>
+			</xmml:estimatedPosition>
+		</xmml:TimeNode>
+	</xmml:referenceTime>
+	<xmml:referenceTime>
+		<xmml:TimeNode gml:id="E1_E2">
+			<gml:name>Base of Eocene</gml:name>
+			<gml:name>Base of Early Eocene</gml:name>
+			<gml:name>Base of Ypresian</gml:name>
+			<xmml:estimatedPosition>
+				<xmml:TimeEstimate>
+					<gml:timePosition frame="#geologyMa">-54.8</gml:timePosition>
+					<xmml:reference xlink:href="#GA"/>
+				</xmml:TimeEstimate>
+			</xmml:estimatedPosition>
+		</xmml:TimeNode>
+	</xmml:referenceTime>
+	<xmml:referenceTime>
+		<xmml:TimeNode gml:id="baseJohannian">
+			<gml:name>Base of Johannian</gml:name>
+			<xmml:estimatedPosition>
+				<xmml:TimeEstimate>
+					<gml:timePosition frame="#geologyMa">-51</gml:timePosition>
+					<xmml:reference xlink:href="#GA"/>
+				</xmml:TimeEstimate>
+			</xmml:estimatedPosition>
+		</xmml:TimeNode>
+	</xmml:referenceTime>
+	<xmml:referenceTime>
+		<xmml:TimeNode gml:id="e4_e5">
+			<gml:name>Base of Middle Eocene</gml:name>
+			<gml:name>Base of Lutetian</gml:name>
+			<xmml:estimatedPosition>
+				<xmml:TimeEstimate>
+					<gml:timePosition frame="#geologyMa">-49</gml:timePosition>
+					<xmml:reference xlink:href="#GA"/>
+				</xmml:TimeEstimate>
+			</xmml:estimatedPosition>
+		</xmml:TimeNode>
+	</xmml:referenceTime>
+	<xmml:referenceTime>
+		<xmml:TimeNode gml:id="e5_e6">
+			<gml:name>Base of Bartonian</gml:name>
+			<xmml:estimatedPosition>
+				<xmml:TimeEstimate>
+					<gml:timePosition frame="#geologyMa">-41.3</gml:timePosition>
+					<xmml:reference xlink:href="#GA"/>
+				</xmml:TimeEstimate>
+			</xmml:estimatedPosition>
+		</xmml:TimeNode>
+	</xmml:referenceTime>
+	<xmml:referenceTime>
+		<xmml:TimeNode gml:id="baseAldingan">
+			<gml:name>Base of Aldingan</gml:name>
+			<xmml:estimatedPosition>
+				<xmml:TimeEstimate>
+					<gml:timePosition frame="#geologyMa">-38.5</gml:timePosition>
+					<xmml:reference xlink:href="#GA"/>
+				</xmml:TimeEstimate>
+			</xmml:estimatedPosition>
+		</xmml:TimeNode>
+	</xmml:referenceTime>
+	<xmml:referenceTime>
+		<xmml:TimeNode gml:id="e6_e7">
+			<gml:name>Base of Late Eocene</gml:name>
+			<gml:name>Base of Priabonian</gml:name>
+			<xmml:estimatedPosition>
+				<xmml:TimeEstimate>
+					<gml:timePosition frame="#geologyMa">-37</gml:timePosition>
+					<xmml:reference xlink:href="#GA"/>
+				</xmml:TimeEstimate>
+			</xmml:estimatedPosition>
+		</xmml:TimeNode>
+	</xmml:referenceTime>
+	<xmml:referenceTime>
+		<xmml:TimeNode gml:id="E2_E3">
+			<gml:name>Base of Oligocene</gml:name>
+			<gml:name>Base of Early Oligocene</gml:name>
+			<gml:name>Base of Rupelian</gml:name>
+			<xmml:estimatedPosition>
+				<xmml:TimeEstimate>
+					<gml:timePosition frame="#geologyMa">-33.7</gml:timePosition>
+					<xmml:reference xlink:href="#GA"/>
+				</xmml:TimeEstimate>
+			</xmml:estimatedPosition>
+		</xmml:TimeNode>
+	</xmml:referenceTime>
+	<xmml:referenceTime>
+		<xmml:TimeNode gml:id="baseWillungan">
+			<gml:name>Base of Willungan</gml:name>
+			<xmml:estimatedPosition>
+				<xmml:TimeEstimate>
+					<gml:timePosition frame="#geologyMa">-33</gml:timePosition>
+					<xmml:reference xlink:href="#GA"/>
+				</xmml:TimeEstimate>
+			</xmml:estimatedPosition>
+		</xmml:TimeNode>
+	</xmml:referenceTime>
+	<xmml:referenceTime>
+		<xmml:TimeNode gml:id="e8_e9">
+			<gml:name>Base of Late Oligocene</gml:name>
+			<gml:name>Base of Janjukian</gml:name>
+			<gml:name>Base of Chattian</gml:name>
+			<xmml:estimatedPosition>
+				<xmml:TimeEstimate>
+					<gml:timePosition frame="#geologyMa">-28.5</gml:timePosition>
+					<xmml:reference xlink:href="#GA"/>
+				</xmml:TimeEstimate>
+			</xmml:estimatedPosition>
+		</xmml:TimeNode>
+	</xmml:referenceTime>
+	<xmml:referenceTime>
+		<xmml:TimeNode gml:id="E_N">
+			<gml:name>Base of Neogene</gml:name>
+			<gml:name>Base of Miocene</gml:name>
+			<gml:name>Base of Early Miocene</gml:name>
+			<gml:name>Base of Aquitanian</gml:name>
+			<xmml:estimatedPosition>
+				<xmml:TimeEstimate>
+					<gml:timePosition frame="#geologyMa">-23.8</gml:timePosition>
+					<xmml:reference xlink:href="#GA"/>
+				</xmml:TimeEstimate>
+			</xmml:estimatedPosition>
+		</xmml:TimeNode>
+	</xmml:referenceTime>
+	<xmml:referenceTime>
+		<xmml:TimeNode gml:id="baseLongfordian">
+			<gml:name>Base of Longfordian</gml:name>
+			<xmml:estimatedPosition>
+				<xmml:TimeEstimate>
+					<gml:timePosition frame="#geologyMa">-21.2</gml:timePosition>
+					<xmml:reference xlink:href="#GA"/>
+				</xmml:TimeEstimate>
+			</xmml:estimatedPosition>
+		</xmml:TimeNode>
+	</xmml:referenceTime>
+	<xmml:referenceTime>
+		<xmml:TimeNode gml:id="n1_n2">
+			<gml:name>Base of Burdigalian</gml:name>
+			<xmml:estimatedPosition>
+				<xmml:TimeEstimate>
+					<gml:timePosition frame="#geologyMa">-20.52</gml:timePosition>
+					<xmml:reference xlink:href="#GA"/>
+				</xmml:TimeEstimate>
+			</xmml:estimatedPosition>
+		</xmml:TimeNode>
+	</xmml:referenceTime>
+	<xmml:referenceTime>
+		<xmml:TimeNode gml:id="n2_n3">
+			<gml:name>Base of Middle Miocene</gml:name>
+			<gml:name>Base of Langhian</gml:name>
+			<gml:name>Base of Batesfordian</gml:name>
+			<xmml:estimatedPosition>
+				<xmml:TimeEstimate>
+					<gml:timePosition frame="#geologyMa">-16.4</gml:timePosition>
+					<xmml:reference xlink:href="#GA"/>
+				</xmml:TimeEstimate>
+			</xmml:estimatedPosition>
+		</xmml:TimeNode>
+	</xmml:referenceTime>
+	<xmml:referenceTime>
+		<xmml:TimeNode gml:id="baseBalcombian">
+			<gml:name>Base of Balcombian</gml:name>
+			<xmml:estimatedPosition>
+				<xmml:TimeEstimate>
+					<gml:timePosition frame="#geologyMa">-15.5</gml:timePosition>
+					<xmml:reference xlink:href="#GA"/>
+				</xmml:TimeEstimate>
+			</xmml:estimatedPosition>
+		</xmml:TimeNode>
+	</xmml:referenceTime>
+	<xmml:referenceTime>
+		<xmml:TimeNode gml:id="n3_n4">
+			<gml:name>Base of Serravallian</gml:name>
+			<xmml:estimatedPosition>
+				<xmml:TimeEstimate>
+					<gml:timePosition frame="#geologyMa">-14.8</gml:timePosition>
+					<xmml:reference xlink:href="#GA"/>
+				</xmml:TimeEstimate>
+			</xmml:estimatedPosition>
+		</xmml:TimeNode>
+	</xmml:referenceTime>
+	<xmml:referenceTime>
+		<xmml:TimeNode gml:id="baseBairnsdalian">
+			<gml:name>Base of Bairnsdalian</gml:name>
+			<xmml:estimatedPosition>
+				<xmml:TimeEstimate>
+					<gml:timePosition frame="#geologyMa">-12.7</gml:timePosition>
+					<xmml:reference xlink:href="#GA"/>
+				</xmml:TimeEstimate>
+			</xmml:estimatedPosition>
+		</xmml:TimeNode>
+	</xmml:referenceTime>
+	<xmml:referenceTime>
+		<xmml:TimeNode gml:id="n4_n5">
+			<gml:name>Base of Late Miocene</gml:name>
+			<gml:name>Base of Tortonian</gml:name>
+			<xmml:estimatedPosition>
+				<xmml:TimeEstimate>
+					<gml:timePosition frame="#geologyMa">-11.2</gml:timePosition>
+					<xmml:reference xlink:href="#GA"/>
+				</xmml:TimeEstimate>
+			</xmml:estimatedPosition>
+		</xmml:TimeNode>
+	</xmml:referenceTime>
+	<xmml:referenceTime>
+		<xmml:TimeNode gml:id="baseMitchellian">
+			<gml:name>Base of Mitchellian</gml:name>
+			<xmml:estimatedPosition>
+				<xmml:TimeEstimate>
+					<gml:timePosition frame="#geologyMa">-10.7</gml:timePosition>
+					<xmml:reference xlink:href="#GA"/>
+				</xmml:TimeEstimate>
+			</xmml:estimatedPosition>
+		</xmml:TimeNode>
+	</xmml:referenceTime>
+	<xmml:referenceTime>
+		<xmml:TimeNode gml:id="n5_n6">
+			<gml:name>Base of Messinian</gml:name>
+			<xmml:estimatedPosition>
+				<xmml:TimeEstimate>
+					<gml:timePosition frame="#geologyMa">-7.12</gml:timePosition>
+					<xmml:reference xlink:href="#GA"/>
+				</xmml:TimeEstimate>
+			</xmml:estimatedPosition>
+		</xmml:TimeNode>
+	</xmml:referenceTime>
+	<xmml:referenceTime>
+		<xmml:TimeNode gml:id="baseCheltenhamian">
+			<gml:name>Base of Cheltenhamian</gml:name>
+			<xmml:estimatedPosition>
+				<xmml:TimeEstimate>
+					<gml:timePosition frame="#geologyMa">-6.8</gml:timePosition>
+					<xmml:reference xlink:href="#GA"/>
+				</xmml:TimeEstimate>
+			</xmml:estimatedPosition>
+		</xmml:TimeNode>
+	</xmml:referenceTime>
+	<xmml:referenceTime>
+		<xmml:TimeNode gml:id="baseKalimnan">
+			<gml:name>Base of Kalimnan</gml:name>
+			<xmml:estimatedPosition>
+				<xmml:TimeEstimate>
+					<gml:timePosition frame="#geologyMa">-5.5</gml:timePosition>
+					<xmml:reference xlink:href="#GA"/>
+				</xmml:TimeEstimate>
+			</xmml:estimatedPosition>
+		</xmml:TimeNode>
+	</xmml:referenceTime>
+	<xmml:referenceTime>
+		<xmml:TimeNode gml:id="N1_N2">
+			<gml:name>Base of Pliocene</gml:name>
+			<gml:name>Base of Early Pliocene</gml:name>
+			<gml:name>Base of Zanclean</gml:name>
+			<xmml:estimatedPosition>
+				<xmml:TimeEstimate>
+					<gml:timePosition frame="#geologyMa">-5.32</gml:timePosition>
+					<xmml:reference xlink:href="#GA"/>
+				</xmml:TimeEstimate>
+			</xmml:estimatedPosition>
+		</xmml:TimeNode>
+	</xmml:referenceTime>
+	<xmml:referenceTime>
+		<xmml:TimeNode gml:id="n7_n8">
+			<gml:name>Base of Late Pliocene</gml:name>
+			<gml:name>Base of Piacenzian</gml:name>
+			<xmml:estimatedPosition>
+				<xmml:TimeEstimate>
+					<gml:timePosition frame="#geologyMa">-3.56</gml:timePosition>
+					<xmml:reference xlink:href="#GA"/>
+				</xmml:TimeEstimate>
+			</xmml:estimatedPosition>
+		</xmml:TimeNode>
+	</xmml:referenceTime>
+	<xmml:referenceTime>
+		<xmml:TimeNode gml:id="baseYatalan">
+			<gml:name>Base of Yatalan</gml:name>
+			<xmml:estimatedPosition>
+				<xmml:TimeEstimate>
+					<gml:timePosition frame="#geologyMa">-2.2</gml:timePosition>
+					<xmml:reference xlink:href="#GA"/>
+				</xmml:TimeEstimate>
+			</xmml:estimatedPosition>
+		</xmml:TimeNode>
+	</xmml:referenceTime>
+	<xmml:referenceTime>
+		<xmml:TimeNode gml:id="N_Q">
+			<gml:name>Base of Quaternary</gml:name>
+			<gml:name>Base of Pleistocene</gml:name>
+			<gml:name>Base of Calabrian</gml:name>
+			<gml:name>Base of Early Pleistocene</gml:name>
+			<xmml:estimatedPosition>
+				<xmml:TimeEstimate>
+					<gml:timePosition frame="#geologyMa">-1.78</gml:timePosition>
+					<xmml:reference xlink:href="#GA"/>
+				</xmml:TimeEstimate>
+			</xmml:estimatedPosition>
+		</xmml:TimeNode>
+	</xmml:referenceTime>
+	<xmml:referenceTime>
+		<xmml:TimeNode gml:id="baseWerrikooian">
+			<gml:name>Base of Werrikooian</gml:name>
+			<xmml:estimatedPosition>
+				<xmml:TimeEstimate>
+					<gml:timePosition frame="#geologyMa">-1.6</gml:timePosition>
+					<xmml:reference xlink:href="#GA"/>
+				</xmml:TimeEstimate>
+			</xmml:estimatedPosition>
+		</xmml:TimeNode>
+	</xmml:referenceTime>
+	<xmml:referenceTime>
+		<xmml:TimeNode gml:id="baseEmilian">
+			<gml:name>Base of Emilian</gml:name>
+			<xmml:estimatedPosition>
+				<xmml:TimeEstimate>
+					<gml:timePosition frame="#geologyMa">-1</gml:timePosition>
+					<xmml:reference xlink:href="#GA"/>
+				</xmml:TimeEstimate>
+			</xmml:estimatedPosition>
+		</xmml:TimeNode>
+	</xmml:referenceTime>
+	<xmml:referenceTime>
+		<xmml:TimeNode gml:id="baseLatePleistocene">
+			<gml:name>Base of Late Pleistocene</gml:name>
+			<gml:name>Base of Sicilian</gml:name>
+			<xmml:estimatedPosition>
+				<xmml:TimeEstimate>
+					<gml:timePosition frame="#geologyMa">-0.7</gml:timePosition>
+					<xmml:reference xlink:href="#GA"/>
+				</xmml:TimeEstimate>
+			</xmml:estimatedPosition>
+		</xmml:TimeNode>
+	</xmml:referenceTime>
+	<xmml:referenceTime>
+		<xmml:TimeNode gml:id="baseMilazzian">
+			<gml:name>Base of Milazzian</gml:name>
+			<xmml:estimatedPosition>
+				<xmml:TimeEstimate>
+					<gml:timePosition frame="#geologyMa">-0.45</gml:timePosition>
+					<xmml:reference xlink:href="#GA"/>
+				</xmml:TimeEstimate>
+			</xmml:estimatedPosition>
+		</xmml:TimeNode>
+	</xmml:referenceTime>
+	<xmml:referenceTime>
+		<xmml:TimeNode gml:id="baseTyrrhenian">
+			<gml:name>Base of Tyrrhenian</gml:name>
+			<xmml:estimatedPosition>
+				<xmml:TimeEstimate>
+					<gml:timePosition frame="#geologyMa">-0.1</gml:timePosition>
+					<xmml:reference xlink:href="#GA"/>
+				</xmml:TimeEstimate>
+			</xmml:estimatedPosition>
+		</xmml:TimeNode>
+	</xmml:referenceTime>
+	<xmml:referenceTime>
+		<xmml:TimeNode gml:id="Q1_Q2">
+			<gml:name>Base of Holocene</gml:name>
+			<gml:name>Base of Recent</gml:name>
+			<xmml:estimatedPosition>
+				<xmml:TimeEstimate>
+					<gml:timePosition frame="#geologyMa">-0.01</gml:timePosition>
+					<xmml:reference xlink:href="#GA"/>
+				</xmml:TimeEstimate>
+			</xmml:estimatedPosition>
+		</xmml:TimeNode>
+	</xmml:referenceTime>
+	<xmml:referenceTime>
+		<gml:TimeNode gml:id="now">
+			<gml:name>Now</gml:name>
+			<gml:name>The present</gml:name>
+			<gml:position>
+				<gml:TimeInstant>
+					<gml:timePosition indeterminatePosition="now"/>
+				</gml:TimeInstant>
+			</gml:position>
+		</gml:TimeNode>
+	</xmml:referenceTime>
+	<!-- =========== -->
+	<xmml:support>
+		<xmml:SimpleCitation gml:id="GA">Geoscience Australia geological time scale - look-ups http://www.ga.gov.au/oracle</xmml:SimpleCitation>
+	</xmml:support>
+	<xmml:comment>In this document, except for the Precambrian where the member Eras are described inline, the "member" properties are implemented as pointers to TimeOrdinalEra's described elsewhere.  Either method may be used according to taste.</xmml:comment>
+	<xmml:comment>In this document, except for the link to the definition of the C14 scale, and the to the IUGS International Stratigraphic Chart, all references use the "shorthand pointer" form of URI (http://www.w3.org/TR/xptr-framework/#shorthand), which cross-reference nodes in the current document.  This is for conveneince only, to allow us to record all the information relating to this time system in one document.  Other examples may use references to external resources instead or as well.  </xmml:comment>
+	<!-- =========== -->
+</xmml:GeologicalTimeScale>
