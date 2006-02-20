@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<schema xmlns:meta="http://www.seegrid.csiro.au/xml/metaLite" xmlns:xmml="http://www.opengis.net/xmml" xmlns="http://www.w3.org/2001/XMLSchema" xmlns:gml="http://www.opengis.net/gml" xmlns:xlink="http://www.w3.org/1999/xlink"
+<schema xmlns:xmml="http://www.opengis.net/xmml" xmlns="http://www.w3.org/2001/XMLSchema" xmlns:gml="http://www.opengis.net/gml" xmlns:xlink="http://www.w3.org/1999/xlink"
         targetNamespace="http://www.opengis.net/xmml" elementFormDefault="qualified" attributeFormDefault="unqualified" version="pre-release">
 	<annotation>
 		<documentation>feature.xsd
@@ -11,7 +11,6 @@ Copyright (c) 2005 CSIRO - see https://www.seegrid.csiro.au/twiki/bin/view/Xmml/
 	<!-- ====================================================================== -->
 	<!-- bring in other schemas -->
 	<import namespace="http://www.opengis.net/gml" schemaLocation="http://schemas.opengis.net/gml/3.1.1/base/gml.xsd"/>
-	<import namespace="http://www.seegrid.csiro.au/xml/metaLite" schemaLocation="../../metaLite/0.1.30/metaLite.xsd"/>
 	<include schemaLocation="./base.xsd"/>
 	<!-- ====================================================================== -->
 	<!-- === A few variations on the basic feature and feature collection types === -->
@@ -63,7 +62,7 @@ Copyright (c) 2005 CSIRO - see https://www.seegrid.csiro.au/twiki/bin/view/Xmml/
 		<complexContent>
 			<extension base="xmml:AbstractFeatureType">
 				<sequence>
-					<group ref="meta:StandardLiteMetadata"/>
+					<group ref="xmml:StandardLiteMetadata"/>
 					<group ref="xmml:ExtendedFeatureProperties"/>
 				</sequence>
 			</extension>
