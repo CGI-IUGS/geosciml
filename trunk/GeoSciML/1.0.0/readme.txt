@@ -2,3 +2,6 @@ This is the first release of GeoSciML, version 1.0.0.
 These documents were copied across from the draft ../draft on 2006-01-16
 The draft will be left in place, since the Subversion repository records the development history. 
 
+The UML Model ./model/GeoSciML.EAP is an Enterprise Architect document.
+
+A free viewer or 30-day trial edition are available from http://www.sparxsystems.com.au/products/ea_downloads.html
