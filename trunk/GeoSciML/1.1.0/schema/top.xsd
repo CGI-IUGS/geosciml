@@ -2,8 +2,7 @@
 <!-- IUGS/CGI GeoSciML schema, ver. 1 - draft 2005-10-19 -->
 <!-- Contains the concepts (classes), their inheritance, and relations from the CGI_Top package of the GeoSciML model -->
 <!-- GeoSciML Testbed-2 Model -->
-<schema xmlns:gml="http://www.opengis.net/gml" xmlns="http://www.w3.org/2001/XMLSchema" xmlns:gsml="http://www.cgi-iugs.org/xml/GeoSciML/1" targetNamespace="http://www.cgi-iugs.org/xml/GeoSciML/1" elementFormDefault="qualified"
-        attributeFormDefault="unqualified" version="1.0.0">
+<schema xmlns:gml="http://www.opengis.net/gml" xmlns="http://www.w3.org/2001/XMLSchema" xmlns:gsml="http://www.cgi-iugs.org/xml/GeoSciML/1" targetNamespace="http://www.cgi-iugs.org/xml/GeoSciML/1" elementFormDefault="qualified" attributeFormDefault="unqualified" version="1.1.0">
 	<annotation>
 		<documentation>top.xsd
 		High level classes for GeoSciML
@@ -14,6 +13,7 @@
 	<!--=======================-->
 	<include schemaLocation="metadata.xsd"/>
 	<include schemaLocation="geologicAge.xsd"/>
+	<include schemaLocation="vocabulary.xsd"/>
 	<!--=======================-->
 	<complexType name="GeometryPropertyType">
 		<sequence minOccurs="0">
@@ -61,14 +61,16 @@
 					</element>
 					<element name="physicalProperty" type="gsml:CGI_PhysicalDescriptionPropertyType" minOccurs="0" maxOccurs="unbounded"/>
 					<element name="occurrence" type="gsml:MappedFeaturePropertyType" minOccurs="0" maxOccurs="unbounded"/>
-					<element name="classifier" type="gml:ReferenceType">
+					<element name="classifier" type="gsml:ControlledConceptPropertyType">
 						<annotation>
-							<documentation>Primary classifier: Pointer to controlled concept which serves to classify the object on some axis</documentation>
+							<documentation>Primary classifier: Pointer to controlled concept that defines the original intent under which the feature was defined. This classifier might be a very general concept for reporting observational data that has not been organized into named concepts (e.g. classifier is LithostratigraphicUnit for geolgoic unit descriptions in field data for which named stratigraphic units have not yet been defined). For data instances containing descriptions of named concepts (e.g. named geologic units), the classifer identifies the data as a description of some occurrence of that concept, and the prototype description feature associated with the classifier controlledConcept provides constraints on property values to be consistent with the classifier prototype. 
+							 Classifier Type should be gml:refence, such that Dictionary elements are always by reference. The type=gsml:ControlledConceptPropertyType assignment is made here with the idea that because we can't include vocabularies in WFS documents (they're geologicObject, not GeologicFeatures), the ControlledConcept basics (preferredName, vocabulary) should be inline, with prototype links by reference. This is a temporary measure, pending a proper strategy for "Dictionary" objects. We need to plan on using a registry solution for the latter, in parallel with the WFS solution for features. Then concepts would have identifiers that resolve to registry calls (SMR SJC 052606).</documentation>
 						</annotation>
 					</element>
-					<element name="alternativeClassifier" type="gml:ReferenceType" minOccurs="0" maxOccurs="unbounded">
+					<element name="alternativeClassifier" type="gsml:ControlledConceptPropertyType" minOccurs="0" maxOccurs="unbounded">
 						<annotation>
-							<documentation>Alternative classifier: Pointer to other controlled concept which may serve to classify the object on some alternative axis</documentation>
+							<documentation>Alternative classifier: Pointer to other controlled concept which may serve to classify the object on some alternative axis. Use for classifications that are not implicit in the existing content of the feature instance. For example a lithologic classification of lithostratigraphic units that uses various combinations of genesis and composition, or interpretive assignment of a geologic unit with a complex, protracted history of deposition, deformation, and metamorphism to a single 'best representative' geologic age. The principal use case for this property is for encoding of classifications used to define derivative map views of data without generating a new feature collection defined based on the alternate classification. This follows the logic that it is important to include the 'heritage' (i.e. original definition, see classifier above) of the features with derivative classification information.
+							See discussion of element type in documentation for classifier.</documentation>
 						</annotation>
 					</element>
 					<element name="metadata" type="gsml:GeologicFeatureMetadataPropertyType"/>

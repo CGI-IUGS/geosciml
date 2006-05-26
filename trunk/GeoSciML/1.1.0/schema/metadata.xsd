@@ -2,12 +2,7 @@
 <!-- IUGS/CGI GeoSciML schema, ver. 1 - draft 2005-10-19 -->
 <!-- Contains the concepts (classes), their inheritance, and relations from the CGI_Metadata package of the GeoSciML model -->
 <!-- GeoSciML Testbed-2 Model -->
-<schema 
-xmlns="http://www.w3.org/2001/XMLSchema" 
-xmlns:gml="http://www.opengis.net/gml" 
-xmlns:gsml="http://www.cgi-iugs.org/xml/GeoSciML/1" 
-targetNamespace="http://www.cgi-iugs.org/xml/GeoSciML/1"
-        elementFormDefault="qualified" attributeFormDefault="unqualified" version="1.0.0">
+<schema xmlns="http://www.w3.org/2001/XMLSchema" xmlns:gml="http://www.opengis.net/gml" xmlns:gsml="http://www.cgi-iugs.org/xml/GeoSciML/1" targetNamespace="http://www.cgi-iugs.org/xml/GeoSciML/1" elementFormDefault="qualified" attributeFormDefault="unqualified" version="1.1.0">
 	<annotation>
 		<documentation>metadata.xsd
 Basic metadata components for GeoSciML
@@ -21,7 +16,9 @@ These should be updated to use ISO 19139 components when that is properly suppor
 	<include schemaLocation="CGI_Value.xsd"/>
 	<!--=======================-->
 	<complexType name="MetadataType">
-		<annotation><documentation>Should be derived from MD_Metadata</documentation></annotation>
+		<annotation>
+			<documentation>Should be derived from MD_Metadata</documentation>
+		</annotation>
 		<complexContent>
 			<extension base="gml:AbstractGMLType">
 				<sequence>
@@ -94,7 +91,7 @@ These should be updated to use ISO 19139 components when that is properly suppor
 		<union>
 			<simpleType>
 				<restriction base="string">
-				<enumeration value="attribute" id="attribute">
+					<enumeration value="attribute" id="attribute">
 						<annotation>
 							<documentation>attribute</documentation>
 						</annotation>

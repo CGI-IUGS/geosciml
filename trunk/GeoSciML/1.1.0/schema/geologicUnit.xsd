@@ -2,8 +2,7 @@
 <!-- IUGS/CGI GeoSciML schema, ver. 1 - draft 2005-10-19 -->
 <!-- Contains the concepts (classes), their inheritance, and relations from the geologicUnit package of the GeoSciML model -->
 <!-- GeoSciML Testbed-2 Model -->
-<schema targetNamespace="http://www.cgi-iugs.org/xml/GeoSciML/1" xmlns:gsml="http://www.cgi-iugs.org/xml/GeoSciML/1" xmlns="http://www.w3.org/2001/XMLSchema" xmlns:gml="http://www.opengis.net/gml" elementFormDefault="qualified"
-        attributeFormDefault="unqualified" version="1.0.0">
+<schema xmlns:gsml="http://www.cgi-iugs.org/xml/GeoSciML/1" xmlns="http://www.w3.org/2001/XMLSchema" xmlns:gml="http://www.opengis.net/gml" targetNamespace="http://www.cgi-iugs.org/xml/GeoSciML/1" elementFormDefault="qualified" attributeFormDefault="unqualified" version="1.1.0">
 	<annotation>
 		<documentation>geologicUnit.xsd
 Basic geologic unit for GeoSciML
@@ -24,7 +23,7 @@ covering lithostratigraphic and lithodemic units</documentation>
 					<element name="outcropCharacter" type="gsml:CGI_TermValuePropertyType" minOccurs="0" maxOccurs="unbounded"/>
 					<element name="grossGenesisTerm" type="gsml:CGI_TermValuePropertyType" minOccurs="0" maxOccurs="unbounded"/>
 					<element name="exposureColor" type="gsml:CGI_TermValuePropertyType" minOccurs="0" maxOccurs="unbounded"/>
-					<element name="grossChemistry" minOccurs="0" type="gsml:ChemicalCompositionClass"/>
+					<element name="grossChemistry" type="gsml:CGI_TermValuePropertyType" minOccurs="0"/>
 					<element name="composition" type="gsml:CompositionPartPropertyType" minOccurs="0" maxOccurs="unbounded">
 						<annotation>
 							<documentation>Detailed description</documentation>
@@ -48,7 +47,7 @@ covering lithostratigraphic and lithodemic units</documentation>
 		<sequence>
 			<element name="role" type="gsml:ScopedNameType"/>
 			<element name="proportion" type="gsml:CGI_ValuePropertyType"/>
-			<element name="material" type="gsml:MaterialEntityPropertyType"/>
+			<element name="material" type="gsml:MaterialEntityPropertyType" maxOccurs="unbounded"/>
 		</sequence>
 	</complexType>
 	<!-- ..................... -->
@@ -109,7 +108,7 @@ covering lithostratigraphic and lithodemic units</documentation>
 			<extension base="gsml:GeologicUnitType">
 				<sequence>
 					<element name="rank" type="gsml:ScopedNameType"/>
-					<element name="weatheringCharacter" type="gsml:CGI_TermValuePropertyType" maxOccurs="unbounded"/>
+					<element name="weatheringCharacter" type="gsml:CGI_TermValuePropertyType" minOccurs="0" maxOccurs="unbounded"/>
 					<element name="structurePresent" type="gsml:CGI_TermValuePropertyType" minOccurs="0" maxOccurs="unbounded"/>
 					<element name="metamorphicGrade" type="gsml:CGI_TermValuePropertyType" minOccurs="0" maxOccurs="unbounded"/>
 				</sequence>
@@ -123,16 +122,16 @@ covering lithostratigraphic and lithodemic units</documentation>
 		<complexContent>
 			<extension base="gsml:LithologicUnitType">
 				<sequence>
-					<element name="unitThickness" type="gsml:CGI_NumericPropertyType" maxOccurs="unbounded"/>
-					<element name="beddingStyle" type="gsml:CGI_TermValuePropertyType" maxOccurs="unbounded"/>
-					<element name="beddingPattern" type="gsml:CGI_TermValuePropertyType" maxOccurs="unbounded"/>
-					<element name="beddingThickness" type="gsml:CGI_ValuePropertyType" maxOccurs="unbounded"/>
+					<element name="unitThickness" type="gsml:CGI_NumericPropertyType" minOccurs="0" maxOccurs="unbounded"/>
+					<element name="beddingStyle" type="gsml:CGI_TermValuePropertyType" minOccurs="0" maxOccurs="unbounded"/>
+					<element name="beddingPattern" type="gsml:CGI_TermValuePropertyType" minOccurs="0" maxOccurs="unbounded"/>
+					<element name="beddingThickness" type="gsml:CGI_ValuePropertyType" minOccurs="0" maxOccurs="unbounded"/>
 				</sequence>
 			</extension>
 		</complexContent>
 	</complexType>
 	<!-- ..................... -->
-	<element name="LithoStratigraphicUnit" type="gsml:LithoStratigraphicUnitType" substitutionGroup="gsml:LithologicUnit"/>
+	<element name="LithostratigraphicUnit" type="gsml:LithoStratigraphicUnitType" substitutionGroup="gsml:LithologicUnit"/>
 	<!--=======================-->
 	<complexType name="LithodemicUnitType">
 		<complexContent>
