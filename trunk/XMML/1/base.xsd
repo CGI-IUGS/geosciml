@@ -11,7 +11,7 @@ Copyright © 2005 CSIRO - see https://www.seegrid.csiro.au/twiki/bin/view/Xmml/L
 	<!-- bring in other schemas -->
 	<import namespace="http://www.opengis.net/gml" schemaLocation="http://schemas.opengis.net/gml/3.1.1/base/gml.xsd"/>
 	<import namespace="http://www.isotc211.org/2005/gmd" schemaLocation="../../iso19139/gml3.1.1version/gmd/gmd.xsd"/>
-	<include schemaLocation="../../enumerations/LUTmaintenance.xsd"/>
+	<!-- <include schemaLocation="../../enumerations/LUTmaintenance.xsd"/> -->
 	<!-- ====================================================================== -->
 	<!-- ================================================================== -->
 	<!-- ===== Some useful property components ====== -->
@@ -62,7 +62,7 @@ Copyright © 2005 CSIRO - see https://www.seegrid.csiro.au/twiki/bin/view/Xmml/L
 		</complexContent>
 	</complexType>
 	<!-- ====================================================================== -->
-		<!-- ====================================================================== -->
+	<!-- ====================================================================== -->
 	<group name="StandardLiteMetadata">
 		<sequence>
 			<element name="support" type="gml:AssociationType" minOccurs="0" maxOccurs="unbounded">
@@ -87,10 +87,11 @@ Copyright © 2005 CSIRO - see https://www.seegrid.csiro.au/twiki/bin/view/Xmml/L
 				</annotation>
 			</element>
 			<element name="geographicDescription" type="gml:CodeType" minOccurs="0" maxOccurs="unbounded">
-				<annotation><documentation>Description of geographic location or extent using an identifier</documentation></annotation>
+				<annotation>
+					<documentation>Description of geographic location or extent using an identifier</documentation>
+				</annotation>
 			</element>
 		</sequence>
 	</group>
 	<!-- ====================================================================== -->
-
 </schema>
