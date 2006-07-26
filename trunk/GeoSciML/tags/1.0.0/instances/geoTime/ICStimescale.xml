@@ -1,0 +1,761 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<gt:GeologicTimeScale 
+xmlns:gsml="http://www.cgi-iugs.org/xml/GeoSciML/1" 
+xmlns:gt="http://www.cgi-iugs.org/xml/GeoTime/1" 
+xmlns:meta="http://www.seegrid.csiro.au/xml/metaLite" 
+xmlns:gml="http://www.opengis.net/gml" 
+xmlns:xlink="http://www.w3.org/1999/xlink"
+                       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                       xsi:schemaLocation="     http://www.cgi-iugs.org/xml/GeoTime/1 ../../schema/geoTime.xsd" gml:id="ICSTimeScale">
+	<gml:description>The geologic timescale, as defined by ICS</gml:description>
+	<gml:name>ICS Geologic Timescale</gml:name>
+	<gml:domainOfValidity>Earth</gml:domainOfValidity>
+	<!-- ============== -->
+	<gt:component>
+		<gt:GeochronologicEra gml:id="AR">
+			<gml:name>Archean</gml:name>
+			<gt:start xlink:href="urn:x-seegrid:items:exceptions:undefined"/>
+			<gt:end xlink:href="#AR_PR"/>
+			<gt:member>
+				<gt:GeochronologicEra gml:id="EAR">
+					<gml:name>Eoarchean</gml:name>
+					<gt:start xlink:href="urn:x-seegrid:items:exceptions:undefined"/>
+					<gt:end xlink:href="#EAR_PAR"/>
+					<gt:rank>Era</gt:rank>
+				</gt:GeochronologicEra>
+			</gt:member>
+			<gt:member>
+				<gt:GeochronologicEra gml:id="PAR">
+					<gml:name>Paleoarchean</gml:name>
+					<gt:start xlink:href="#EAR_PAR"/>
+					<gt:end xlink:href="#PAR_MAR"/>
+					<gt:rank>Era</gt:rank>
+				</gt:GeochronologicEra>
+			</gt:member>
+			<gt:member>
+				<gt:GeochronologicEra gml:id="MAR">
+					<gml:name>Mesoarchean</gml:name>
+					<gt:start xlink:href="#PAR_MAR"/>
+					<gt:end xlink:href="#MAR_NAR"/>
+					<gt:rank>Era</gt:rank>
+				</gt:GeochronologicEra>
+			</gt:member>
+			<gt:member>
+				<gt:GeochronologicEra gml:id="NAR">
+					<gml:name>Neoarchean</gml:name>
+					<gt:start xlink:href="#MAR_NAR"/>
+					<gt:end xlink:href="#AR_PR"/>
+					<gt:rank>Era</gt:rank>
+				</gt:GeochronologicEra>
+			</gt:member>
+			<gt:rank>Eon</gt:rank>
+		</gt:GeochronologicEra>
+	</gt:component>
+	<gt:component>
+		<gt:GeochronologicEra gml:id="PR">
+			<gml:name>Proterozoic</gml:name>
+			<gt:start xlink:href="#AR_PR"/>
+			<gt:end xlink:href="#PR_PH"/>
+			<gt:member>
+				<gt:GeochronologicEra gml:id="PPR">
+					<gml:name>Paleoproterozoic Era</gml:name>
+					<gt:start xlink:href="#AR_PR"/>
+					<gt:end xlink:href="#PPR_MPR"/>
+					<gt:member>
+						<gt:GeochronologicEra gml:id="PPR1">
+							<gml:name>Siderian</gml:name>
+							<gt:start xlink:href="#AR_PR"/>
+							<gt:end xlink:href="#PPR1_PPR2"/>
+							<gt:rank>Period</gt:rank>
+						</gt:GeochronologicEra>
+					</gt:member>
+					<gt:member>
+						<gt:GeochronologicEra gml:id="PPR2">
+							<gml:name>Rhyacian</gml:name>
+							<gt:start xlink:href="#PPR1_PPR2"/>
+							<gt:end xlink:href="#PPR2_PPR3"/>
+							<gt:rank>Period</gt:rank>
+						</gt:GeochronologicEra>
+					</gt:member>
+					<gt:member>
+						<gt:GeochronologicEra gml:id="PPR3">
+							<gml:name>Orosirian</gml:name>
+							<gt:start xlink:href="#PPR2_PPR3"/>
+							<gt:end xlink:href="#PPR3_PPR4"/>
+							<gt:rank>Period</gt:rank>
+						</gt:GeochronologicEra>
+					</gt:member>
+					<gt:member>
+						<gt:GeochronologicEra gml:id="PPR4">
+							<gml:name>Statherian</gml:name>
+							<gt:start xlink:href="#PPR3_PPR4"/>
+							<gt:end xlink:href="#PPR_MPR"/>
+							<gt:rank>Period</gt:rank>
+						</gt:GeochronologicEra>
+					</gt:member>
+					<gt:rank>Era</gt:rank>
+				</gt:GeochronologicEra>
+			</gt:member>
+			<gt:member>
+				<gt:GeochronologicEra gml:id="MPR">
+					<gml:name>Mesoproterozoic Era</gml:name>
+					<gt:start xlink:href="#PPR_MPR"/>
+					<gt:end xlink:href="#MPR_NPR"/>
+					<gt:member>
+						<gt:GeochronologicEra gml:id="MPR1">
+							<gml:name>Calymmian</gml:name>
+							<gt:start xlink:href="#PPR_MPR"/>
+							<gt:end xlink:href="#MPR1_MPR2"/>
+							<gt:rank>Period</gt:rank>
+						</gt:GeochronologicEra>
+					</gt:member>
+					<gt:member>
+						<gt:GeochronologicEra gml:id="MPR2">
+							<gml:name>Ectasian</gml:name>
+							<gt:start xlink:href="#MPR1_MPR2"/>
+							<gt:end xlink:href="#MPR2_MPR3"/>
+							<gt:rank>Period</gt:rank>
+						</gt:GeochronologicEra>
+					</gt:member>
+					<gt:member>
+						<gt:GeochronologicEra gml:id="MPR3">
+							<gml:name>Stenian</gml:name>
+							<gt:start xlink:href="#MPR2_MPR3"/>
+							<gt:end xlink:href="#MPR_NPR"/>
+							<gt:rank>Period</gt:rank>
+						</gt:GeochronologicEra>
+					</gt:member>
+					<gt:rank>Era</gt:rank>
+				</gt:GeochronologicEra>
+			</gt:member>
+			<gt:member>
+				<gt:GeochronologicEra gml:id="NPR">
+					<gml:name>Neoproterozoic Era</gml:name>
+					<gt:start xlink:href="#MPR_NPR"/>
+					<gt:end xlink:href="#PR_PH"/>
+					<gt:member>
+						<gt:GeochronologicEra gml:id="NPR1">
+							<gml:name>Tonian</gml:name>
+							<gt:start xlink:href="#MPR_NPR"/>
+							<gt:end xlink:href="#NPR1_NPR2"/>
+							<gt:rank>Period</gt:rank>
+						</gt:GeochronologicEra>
+					</gt:member>
+					<gt:member>
+						<gt:GeochronologicEra gml:id="NPR2">
+							<gml:name>Cryogenian</gml:name>
+							<gt:start xlink:href="#NPR1_NPR2"/>
+							<gt:end xlink:href="#NPR2_NPR3"/>
+							<gt:rank>Period</gt:rank>
+						</gt:GeochronologicEra>
+					</gt:member>
+					<gt:member>
+						<gt:GeochronologicEra gml:id="NPR3">
+							<gml:name>Ediacaran</gml:name>
+							<gt:start xlink:href="#NPR2_NPR3"/>
+							<gt:end xlink:href="#PR_PH"/>
+							<gt:rank>Period</gt:rank>
+						</gt:GeochronologicEra>
+					</gt:member>
+					<gt:rank>Era</gt:rank>
+				</gt:GeochronologicEra>
+			</gt:member>
+			<gt:rank>Eon</gt:rank>
+		</gt:GeochronologicEra>
+	</gt:component>
+	<gt:component>
+		<gt:GeochronologicEra gml:id="PH">
+			<gml:name>Phanerozoic</gml:name>
+			<gt:start xlink:href="#PR_PH"/>
+			<gt:end xlink:href="#present"/>
+			<gt:member>
+				<gt:GeochronologicEra gml:id="PZ">
+					<gml:description>  Paleozoic Era.
+					Note that this era definition contains references to some eras that are not yet described here: 
+					viz. G, O, S, D, C.</gml:description>
+					<gml:name>Paleozoic</gml:name>
+					<gt:start xlink:href="#PR_PH"/>
+					<gt:end xlink:href="#PZ_MZ"/>
+					<gt:member xlink:title="Cambrian" xlink:href="#G"/>
+					<gt:member xlink:title="Ordovician" xlink:href="#O"/>
+					<gt:member xlink:title="Silurian" xlink:href="#S"/>
+					<gt:member xlink:title="Devonian" xlink:href="#D"/>
+					<gt:member xlink:title="Carboniferous" xlink:href="#C"/>
+					<gt:member>
+						<gt:GeochronologicEra gml:id="P">
+							<gml:description>  Permian-Carboniferous time scale is derived from calibrating a master composite section to selected radiometric ages</gml:description>
+							<gml:name>Permian</gml:name>
+							<gt:start xlink:href="#C_P"/>
+							<gt:end xlink:href="#PZ_MZ"/>
+							<gt:member>
+								<gt:GeochronologicEra gml:id="P1">
+									<gml:name>Cisuralian</gml:name>
+									<gt:start xlink:href="#C_P"/>
+									<gt:end xlink:href="#P1_P2"/>
+									<gt:member>
+										<gt:GeochronologicEra gml:id="p1">
+											<gml:name>Asselian</gml:name>
+											<gt:start xlink:href="#C_P"/>
+											<gt:end xlink:href="#p1_p2"/>
+											<gt:group xlink:href="#P1"/>
+											<gt:rank>Age</gt:rank>
+										</gt:GeochronologicEra>
+									</gt:member>
+									<gt:member>
+										<gt:GeochronologicEra gml:id="p2">
+											<gml:name>Sakmarian</gml:name>
+											<gt:start xlink:href="#p1_p2"/>
+											<gt:end xlink:href="#p2_p3"/>
+											<gt:group xlink:href="#P1"/>
+											<gt:rank>Age</gt:rank>
+										</gt:GeochronologicEra>
+									</gt:member>
+									<gt:member>
+										<gt:GeochronologicEra gml:id="p3">
+											<gml:name>Artinskian</gml:name>
+											<gt:start xlink:href="#p2_p3"/>
+											<gt:end xlink:href="#p3_p4"/>
+											<gt:group xlink:href="#P1"/>
+											<gt:rank>Age</gt:rank>
+										</gt:GeochronologicEra>
+									</gt:member>
+									<gt:member>
+										<gt:GeochronologicEra gml:id="p4">
+											<gml:name>Kungurian</gml:name>
+											<gt:start xlink:href="#p3_p4"/>
+											<gt:end xlink:href="#P1_P2"/>
+											<gt:group xlink:href="#P1"/>
+											<gt:rank>Age</gt:rank>
+										</gt:GeochronologicEra>
+									</gt:member>
+									<gt:group xlink:href="#P"/>
+									<gt:rank>Epoch</gt:rank>
+								</gt:GeochronologicEra>
+							</gt:member>
+							<gt:member>
+								<gt:GeochronologicEra gml:id="P2">
+									<gml:name>Guadalupian</gml:name>
+									<gt:start xlink:href="#P1_P2"/>
+									<gt:end xlink:href="#P2_P3"/>
+									<gt:member>
+										<gt:GeochronologicEra gml:id="p5">
+											<gml:name>Roadian</gml:name>
+											<gt:start xlink:href="#P1_P2"/>
+											<gt:end xlink:href="#p5_p6"/>
+											<gt:group xlink:href="#P2"/>
+											<gt:rank>Age</gt:rank>
+										</gt:GeochronologicEra>
+									</gt:member>
+									<gt:member>
+										<gt:GeochronologicEra gml:id="p6">
+											<gml:name>Wordian</gml:name>
+											<gt:start xlink:href="#p5_p6"/>
+											<gt:end xlink:href="#p6_p7"/>
+											<gt:group xlink:href="#P2"/>
+											<gt:rank>Age</gt:rank>
+										</gt:GeochronologicEra>
+									</gt:member>
+									<gt:member>
+										<gt:GeochronologicEra gml:id="p7">
+											<gml:name>Capitanian</gml:name>
+											<gt:start xlink:href="#p6_p7"/>
+											<gt:end xlink:href="#P2_P3"/>
+											<gt:group xlink:href="#P2"/>
+											<gt:rank>Age</gt:rank>
+										</gt:GeochronologicEra>
+									</gt:member>
+									<gt:group xlink:href="#P"/>
+									<gt:rank>Epoch</gt:rank>
+								</gt:GeochronologicEra>
+							</gt:member>
+							<gt:member>
+								<gt:GeochronologicEra gml:id="P3">
+									<gml:name>Lopingian</gml:name>
+									<gt:start xlink:href="#P2_P3"/>
+									<gt:end xlink:href="#PZ_MZ"/>
+									<gt:member>
+										<gt:GeochronologicEra gml:id="p8">
+											<gml:name>Wuchiapingian</gml:name>
+											<gt:start xlink:href="#P2_P3"/>
+											<gt:end xlink:href="#p8_p9"/>
+											<gt:group xlink:href="#P3"/>
+											<gt:rank>Age</gt:rank>
+										</gt:GeochronologicEra>
+									</gt:member>
+									<gt:member>
+										<gt:GeochronologicEra gml:id="p9">
+											<gml:name>Changhsingian</gml:name>
+											<gt:start xlink:href="#p8_p9"/>
+											<gt:end xlink:href="#PZ_MZ"/>
+											<gt:group xlink:href="#P3"/>
+											<gt:rank>Age</gt:rank>
+										</gt:GeochronologicEra>
+									</gt:member>
+									<gt:group xlink:href="#P"/>
+									<gt:rank>Epoch</gt:rank>
+								</gt:GeochronologicEra>
+							</gt:member>
+							<gt:group xlink:href="#PZ"/>
+							<gt:rank>Period</gt:rank>
+						</gt:GeochronologicEra>
+					</gt:member>
+					<gt:group xlink:href="#PH"/>
+					<gt:rank>Era</gt:rank>
+				</gt:GeochronologicEra>
+			</gt:member>
+			<gt:member>
+				<gt:GeochronologicEra gml:id="MZ">
+					<gml:description>  Mesozoic Era
+							Note that this era definition contains references to some eras that are not yet described here: 
+							viz. T, J K.</gml:description>
+					<gml:name>Mesozoic</gml:name>
+					<gt:start xlink:href="#PZ_MZ"/>
+					<gt:end xlink:href="#MZ_CZ"/>
+					<gt:member xlink:title="Triassic" xlink:href="#T"/>
+					<gt:member xlink:title="Jurassic" xlink:href="#J"/>
+					<gt:member xlink:title="Cretaceous" xlink:href="#K"/>
+					<gt:group xlink:href="#PH"/>
+					<gt:rank>Era</gt:rank>
+				</gt:GeochronologicEra>
+			</gt:member>
+			<gt:member>
+				<gt:GeochronologicEra gml:id="CZ">
+					<gml:description>  Cenozoic Era
+							Note that this era definition contains references to some eras that are not yet described here: 
+							viz. Pg, Ng.</gml:description>
+					<gml:name>Cenozoic</gml:name>
+					<gt:start xlink:href="#MZ_CZ"/>
+					<gt:end xlink:href="#present"/>
+					<gt:member xlink:title="Paleogene" xlink:href="#Pg"/>
+					<gt:member xlink:title="Neogene" xlink:href="#Ng"/>
+					<gt:group xlink:href="#PH"/>
+					<gt:rank>Era</gt:rank>
+				</gt:GeochronologicEra>
+			</gt:member>
+			<gt:rank>Eon</gt:rank>
+		</gt:GeochronologicEra>
+	</gt:component>
+	<!-- ======================== -->
+	<!-- Reference times -->
+	<!-- Positions of Boundaries as given in http://www.stratigraphy.org/gssp.htm 2004-04-25 -->
+	<!-- ======================== -->
+	<gt:referencePoint>
+		<gt:NumericEraBoundary gml:id="EAR_PAR">
+			<gml:description  xlink:href="citations.xml#Ev14p139_1991"/>
+			<gml:name>Base Paleoarchean</gml:name>
+			<gt:position>
+				<gml:TimeInstant gml:id="PAR_Origin">
+					<gml:timePosition frame="tcs.xml#geologyMA">-3600.</gml:timePosition>
+				</gml:TimeInstant>
+			</gt:position>
+			<gt:status>GSSA</gt:status>
+		</gt:NumericEraBoundary>
+	</gt:referencePoint>
+	<gt:referencePoint>
+		<gt:NumericEraBoundary gml:id="PAR_MAR">
+			<gml:description  xlink:href="citations.xml#Ev14p139_1991"/>
+			<gml:name>Base Mesoarchean</gml:name>
+			<gt:position>
+				<gml:TimeInstant gml:id="MAR_Origin">
+					<gml:timePosition frame="tcs.xml#geologyMA">-3200.</gml:timePosition>
+				</gml:TimeInstant>
+			</gt:position>
+			<gt:status>GSSA</gt:status>
+		</gt:NumericEraBoundary>
+	</gt:referencePoint>
+	<gt:referencePoint>
+		<gt:NumericEraBoundary gml:id="MAR_NAR">
+			<gml:description  xlink:href="citations.xml#Ev14p139_1991"/>
+			<gml:name>Base Neoarchean</gml:name>
+			<gt:position>
+				<gml:TimeInstant gml:id="NAR_Origin">
+					<gml:timePosition frame="tcs.xml#geologyMA">-2800.</gml:timePosition>
+				</gml:TimeInstant>
+			</gt:position>
+			<gt:status>GSSA</gt:status>
+		</gt:NumericEraBoundary>
+	</gt:referencePoint>
+	<gt:referencePoint>
+		<gt:NumericEraBoundary gml:id="AR_PR">
+			<gml:description  xlink:href="citations.xml#Ev14p139_1991"/>
+			<gml:name>Base Proterozoic</gml:name>
+			<gml:name>Base Paleoproterozoic</gml:name>
+			<gml:name>Base Siderian</gml:name>
+			<gt:position>
+				<gml:TimeInstant gml:id="PR_Origin">
+					<gml:timePosition frame="tcs.xml#geologyMA">-2500.</gml:timePosition>
+				</gml:TimeInstant>
+			</gt:position>
+			<gt:status>GSSA</gt:status>
+		</gt:NumericEraBoundary>
+	</gt:referencePoint>
+	<gt:referencePoint>
+		<gt:NumericEraBoundary gml:id="PPR1_PPR2">
+			<gml:description  xlink:href="citations.xml#Ev14p139_1991"/>
+			<gml:name>Base Rhyacian</gml:name>
+			<gt:position>
+				<gml:TimeInstant gml:id="PPR2_Origin">
+					<gml:timePosition frame="tcs.xml#geologyMA">-2300.</gml:timePosition>
+				</gml:TimeInstant>
+			</gt:position>
+			<gt:status>GSSA</gt:status>
+		</gt:NumericEraBoundary>
+	</gt:referencePoint>
+	<gt:referencePoint>
+		<gt:NumericEraBoundary gml:id="PPR2_PPR3">
+			<gml:description  xlink:href="citations.xml#Ev14p139_1991"/>
+			<gml:name>Base Orosirian</gml:name>
+			<gt:position>
+				<gml:TimeInstant gml:id="PPR3_Origin">
+					<gml:timePosition frame="tcs.xml#geologyMA">-2050.</gml:timePosition>
+				</gml:TimeInstant>
+			</gt:position>
+			<gt:status>GSSA</gt:status>
+		</gt:NumericEraBoundary>
+	</gt:referencePoint>
+	<gt:referencePoint>
+		<gt:NumericEraBoundary gml:id="PPR3_PPR4">
+			<gml:description  xlink:href="citations.xml#Ev14p139_1991"/>
+			<gml:name>Base Statherian</gml:name>
+			<gt:position>
+				<gml:TimeInstant gml:id="PPR4_Origin">
+					<gml:timePosition frame="tcs.xml#geologyMA">-1800.</gml:timePosition>
+				</gml:TimeInstant>
+			</gt:position>
+			<gt:status>GSSA</gt:status>
+		</gt:NumericEraBoundary>
+	</gt:referencePoint>
+	<gt:referencePoint>
+		<gt:NumericEraBoundary gml:id="PPR_MPR">
+			<gml:description  xlink:href="citations.xml#Ev14p139_1991"/>
+			<gml:name>Base Mesoproterozoic</gml:name>
+			<gml:name>Base Calymmian</gml:name>
+			<gt:position>
+				<gml:TimeInstant gml:id="MPR_Origin">
+					<gml:timePosition frame="tcs.xml#geologyMA">-1600.</gml:timePosition>
+				</gml:TimeInstant>
+			</gt:position>
+			<gt:status>GSSA</gt:status>
+		</gt:NumericEraBoundary>
+	</gt:referencePoint>
+	<gt:referencePoint>
+		<gt:NumericEraBoundary gml:id="MPR1_MPR2">
+			<gml:description  xlink:href="citations.xml#Ev14p139_1991"/>
+			<gml:name>Base Ectasian</gml:name>
+			<gt:position>
+				<gml:TimeInstant gml:id="MPR2_Origin">
+					<gml:timePosition frame="tcs.xml#geologyMA">-1400.</gml:timePosition>
+				</gml:TimeInstant>
+			</gt:position>
+			<gt:status>GSSA</gt:status>
+		</gt:NumericEraBoundary>
+	</gt:referencePoint>
+	<gt:referencePoint>
+		<gt:NumericEraBoundary gml:id="MPR2_MPR3">
+			<gml:description  xlink:href="citations.xml#Ev14p139_1991"/>
+			<gml:name>Base Stenian</gml:name>
+			<gt:position>
+				<gml:TimeInstant gml:id="MPR3_Origin">
+					<gml:timePosition frame="tcs.xml#geologyMA">-1200.</gml:timePosition>
+				</gml:TimeInstant>
+			</gt:position>
+			<gt:status>GSSA</gt:status>
+		</gt:NumericEraBoundary>
+	</gt:referencePoint>
+	<gt:referencePoint>
+		<gt:NumericEraBoundary gml:id="MPR_NPR">
+			<gml:description  xlink:href="citations.xml#Ev14p139_1991"/>
+			<gml:name>Base Neoproterozoic</gml:name>
+			<gml:name>Base Tonian</gml:name>
+			<gt:position>
+				<gml:TimeInstant gml:id="NPR_Origin">
+					<gml:timePosition frame="tcs.xml#geologyMA">-1000.</gml:timePosition>
+				</gml:TimeInstant>
+			</gt:position>
+			<gt:status>GSSA</gt:status>
+		</gt:NumericEraBoundary>
+	</gt:referencePoint>
+	<gt:referencePoint>
+		<gt:NumericEraBoundary gml:id="NPR1_NPR2">
+			<gml:description  xlink:href="citations.xml#Ev14p139_1991"/>
+			<gml:name>Base Cryogenian</gml:name>
+			<gt:position>
+				<gml:TimeInstant gml:id="NPR2_Origin">
+					<gml:timePosition frame="tcs.xml#geologyMA">-850.</gml:timePosition>
+				</gml:TimeInstant>
+			</gt:position>
+			<gt:status>GSSA</gt:status>
+		</gt:NumericEraBoundary>
+	</gt:referencePoint>
+	<gt:referencePoint>
+		<gt:GeochronologicBoundary gml:id="NPR2_NPR3">
+			<gml:name>Base Ediacaran</gml:name>
+			<gt:position>
+				<gt:StratigraphicDateEstimate gml:id="NPR3_Origin">
+					<gml:timePosition frame="tcs.xml#geologyMA">-600.0</gml:timePosition>
+					<gt:quality>
+						<meta:QualitativeAssessment>
+							<meta:explanation>Vague estimation from bracketing radiometric ages</meta:explanation>
+							<meta:value>Estimate</meta:value>
+						</meta:QualitativeAssessment>
+					</gt:quality>
+					<gt:status>GSSP Ratified 1996</gt:status>
+					<gt:metadata><gsml:ObjectMetadata><gsml:sourceReference  xlink:href="citations.xml#Ev14p139_1991"/></gsml:ObjectMetadata></gt:metadata>
+				</gt:StratigraphicDateEstimate>
+			</gt:position>
+			<gt:event xlink:href="gssp.xml#NPR2_NPR3_1"/>
+			<gt:stratotype xlink:href="gssp.xml#gssp_base_ediacaran"/>
+		</gt:GeochronologicBoundary>
+	</gt:referencePoint>
+	<gt:referencePoint>
+		<gt:GeochronologicBoundary gml:id="PR_PH">
+			<gml:name>Base Phanerozoic</gml:name>
+			<gml:name>Base Paleozoic</gml:name>
+			<gml:name>Base Cambrian</gml:name>
+			<gml:name>Base Lower Cambrian</gml:name>
+			<gt:position>
+				<gt:StratigraphicDateEstimate gml:id="PH_Origin">
+					<gml:timePosition frame="tcs.xml#geologyMA">-540.0</gml:timePosition>
+					<gt:quality>
+						<meta:QuantitativeAssessment>
+							<meta:explanation>Error</meta:explanation>
+							<meta:values uom="Ma">5</meta:values>
+						</meta:QuantitativeAssessment>
+					</gt:quality>
+					<gt:status>Informal</gt:status>
+					<gt:observationalBasis xlink:href="dates.xml#PH_Origin1"/>
+					<gt:observationalBasis xlink:href="dates.xml#PH_Origin2"/>
+					<gt:observationalBasis xlink:href="dates.xml#PH_Origin3"/>
+					<gt:metadata><gsml:ObjectMetadata><gsml:sourceReference  xlink:href="citations.xml#chronos"/></gsml:ObjectMetadata></gt:metadata>
+				</gt:StratigraphicDateEstimate>
+			</gt:position>
+			<gt:event xlink:href="PR_PH_1"/>
+			<gt:stratotype xlink:href="gssp.xml#PH_OriginPoint1"/>
+		</gt:GeochronologicBoundary>
+	</gt:referencePoint>
+	<gt:referencePoint>
+		<gt:GeochronologicBoundary gml:id="C_P">
+			<gml:name>Base of Permian</gml:name>
+			<gml:name>Base of Cisuralian</gml:name>
+			<gml:name>Base of Asselian</gml:name>
+			<gt:position>
+				<gt:StratigraphicDateEstimate gml:id="P_Origin">
+					<gml:timePosition frame="tcs.xml#geologyMA">-299.0</gml:timePosition>
+					<gt:quality>
+						<meta:QuantitativeAssessment>
+							<meta:explanation>Error</meta:explanation>
+							<meta:values uom="Ma">0.8</meta:values>
+						</meta:QuantitativeAssessment>
+					</gt:quality>
+					<gt:status>GSSP Ratified 1996</gt:status>
+					<gt:observationalBasis xlink:href="dates.xml#P_Origin1"/>
+					<gt:metadata><gsml:ObjectMetadata><gsml:sourceReference  xlink:href="citations.xml#Ev21p11_1998"/></gsml:ObjectMetadata></gt:metadata>
+				</gt:StratigraphicDateEstimate>
+			</gt:position>
+			<gt:event xlink:href="gssp.xml#C_P_1"/>
+			<gt:stratotype xlink:href="gssp.xml#gssp_base_permian"/>
+		</gt:GeochronologicBoundary>
+	</gt:referencePoint>
+	<gt:referencePoint>
+		<gt:GeochronologicBoundary gml:id="p1_p2">
+			<gml:name>Base of Sakmarian</gml:name>
+			<gt:position>
+				<gt:StratigraphicDateEstimate gml:id="p2_Origin">
+					<gml:timePosition frame="tcs.xml#geologyMA">-294.6</gml:timePosition>
+					<gt:quality>
+						<meta:QuantitativeAssessment>
+							<meta:explanation>Error</meta:explanation>
+							<meta:values uom="Ma">0.8</meta:values>
+						</meta:QuantitativeAssessment>
+					</gt:quality>
+					<gt:status>Informal</gt:status>
+					<gt:observationalBasis xlink:href="dates.xml#p2_Origin1"/>
+					<gt:metadata><gsml:ObjectMetadata><gsml:sourceReference  xlink:href="citations.xml#chronos"/></gsml:ObjectMetadata></gt:metadata>
+				</gt:StratigraphicDateEstimate>
+			</gt:position>
+			<gt:event xlink:href="gssp.xml#p1_p2_1"/>
+			<gt:stratotype xlink:href="gssp.xml#gssp_base_sakmarian"/>
+		</gt:GeochronologicBoundary>
+	</gt:referencePoint>
+	<gt:referencePoint>
+		<gt:GeochronologicBoundary gml:id="p2_p3">
+			<gml:name>Base of Artinskian</gml:name>
+			<gt:position>
+				<gt:StratigraphicDateEstimate gml:id="p3_Origin">
+					<gml:timePosition frame="tcs.xml#geologyMA">-284.4</gml:timePosition>
+					<gt:quality>
+						<meta:QuantitativeAssessment>
+							<meta:explanation>Error</meta:explanation>
+							<meta:values uom="Ma">0.7</meta:values>
+						</meta:QuantitativeAssessment>
+					</gt:quality>
+					<gt:status>Informal</gt:status>
+					<gt:observationalBasis xlink:href="dates.xml#p3_Origin1"/>
+					<gt:metadata><gsml:ObjectMetadata><gsml:sourceReference  xlink:href="citations.xml#chronos"/></gsml:ObjectMetadata></gt:metadata>
+				</gt:StratigraphicDateEstimate>
+			</gt:position>
+			<gt:event xlink:href="gssp.xml#p2_p3_1"/>
+			<gt:stratotype xlink:href="gssp.xml#gssp_base_artinskian"/>
+		</gt:GeochronologicBoundary>
+	</gt:referencePoint>
+	<gt:referencePoint>
+		<gt:GeochronologicBoundary gml:id="p3_p4">
+			<gml:name>Base of Kungurian</gml:name>
+			<gt:position>
+				<gt:StratigraphicDateEstimate gml:id="p4_Origin">
+					<gml:timePosition frame="tcs.xml#geologyMA">-275.6</gml:timePosition>
+					<gt:quality>
+						<meta:QuantitativeAssessment>
+							<meta:explanation>Error</meta:explanation>
+							<meta:values uom="Ma">0.7</meta:values>
+						</meta:QuantitativeAssessment>
+					</gt:quality>
+					<gt:status>Informal</gt:status>
+					<gt:observationalBasis xlink:href="dates.xml#p4_Origin1"/>
+					<gt:metadata><gsml:ObjectMetadata><gsml:sourceReference  xlink:href="citations.xml#chronos"/></gsml:ObjectMetadata></gt:metadata>
+				</gt:StratigraphicDateEstimate>
+			</gt:position>
+			<gt:event xlink:href="gssp.xml#p3_p4_1"/>
+			<gt:stratotype xlink:href="gssp.xml#gssp_base_kungurian"/>
+		</gt:GeochronologicBoundary>
+	</gt:referencePoint>
+	<gt:referencePoint>
+		<gt:GeochronologicBoundary gml:id="P1_P2">
+			<gml:name>Base of Guadalupian</gml:name>
+			<gml:name>Base of Roadian</gml:name>
+			<gt:position>
+				<gt:StratigraphicDateEstimate gml:id="P2_Origin">
+					<gml:timePosition frame="tcs.xml#geologyMA">-270.6</gml:timePosition>
+					<gt:quality>
+						<meta:QuantitativeAssessment>
+							<meta:explanation>Error</meta:explanation>
+							<meta:values uom="Ma">0.7</meta:values>
+						</meta:QuantitativeAssessment>
+					</gt:quality>
+					<gt:status>GSSP Ratified 2001</gt:status>
+					<gt:observationalBasis xlink:href="dates.xml#P2_Origin1"/>
+					<gt:metadata><gsml:ObjectMetadata><gsml:sourceReference  xlink:href="citations.xml#E_InPrep"/></gsml:ObjectMetadata></gt:metadata>
+				</gt:StratigraphicDateEstimate>
+			</gt:position>
+			<gt:event xlink:href="gssp.xml#P1_P2_1"/>
+			<gt:stratotype xlink:href="gssp.xml#gssp_base_guadalupian"/>
+		</gt:GeochronologicBoundary>
+	</gt:referencePoint>
+	<gt:referencePoint>
+		<gt:GeochronologicBoundary gml:id="p5_p6">
+			<gml:name>Base of Wordian</gml:name>
+			<gt:position>
+				<gt:StratigraphicDateEstimate gml:id="p6_Origin">
+					<gml:timePosition frame="tcs.xml#geologyMA">-268.0</gml:timePosition>
+					<gt:quality>
+						<meta:QuantitativeAssessment>
+							<meta:explanation>Error</meta:explanation>
+							<meta:values uom="Ma">0.7</meta:values>
+						</meta:QuantitativeAssessment>
+					</gt:quality>
+					<gt:status>GSSP Ratified 2001</gt:status>
+					<gt:observationalBasis xlink:href="dates.xml#p6_Origin1"/>
+					<gt:metadata><gsml:ObjectMetadata><gsml:sourceReference  xlink:href="citations.xml#E_InPrep"/></gsml:ObjectMetadata></gt:metadata>
+				</gt:StratigraphicDateEstimate>
+			</gt:position>
+			<gt:event xlink:href="gssp.xml#p5_p6_1"/>
+			<gt:stratotype xlink:href="gssp.xml#gssp_base_wordian"/>
+		</gt:GeochronologicBoundary>
+	</gt:referencePoint>
+	<gt:referencePoint>
+		<gt:GeochronologicBoundary gml:id="p6_p7">
+			<gml:name>Base of Capitanian</gml:name>
+			<gt:position>
+				<gt:StratigraphicDateEstimate gml:id="p7_Origin">
+					<gml:timePosition frame="tcs.xml#geologyMA">-265.8</gml:timePosition>
+					<gt:quality>
+						<meta:QuantitativeAssessment>
+							<meta:explanation>Error</meta:explanation>
+							<meta:values uom="Ma">0.7</meta:values>
+						</meta:QuantitativeAssessment>
+					</gt:quality>
+					<gt:status>GSSP Ratified 2001</gt:status>
+					<gt:observationalBasis xlink:href="dates.xml#p7_Origin1"/>
+					<gt:metadata><gsml:ObjectMetadata><gsml:sourceReference  xlink:href="citations.xml#E_InPrep"/></gsml:ObjectMetadata></gt:metadata>
+				</gt:StratigraphicDateEstimate>
+			</gt:position>
+			<gt:event xlink:href="gssp.xml#p6_p7_1"/>
+			<gt:stratotype xlink:href="gssp.xml#gssp_base_capitanian"/>
+		</gt:GeochronologicBoundary>
+	</gt:referencePoint>
+	<gt:referencePoint>
+		<gt:GeochronologicBoundary gml:id="P2_P3">
+			<gml:name>Base of Lopingian</gml:name>
+			<gml:name>Base of Wuchiapigian</gml:name>
+			<gt:position>
+				<gt:StratigraphicDateEstimate gml:id="P3_Origin">
+					<gml:timePosition frame="tcs.xml#geologyMA">-260.4</gml:timePosition>
+					<gt:quality>
+						<meta:QuantitativeAssessment>
+							<meta:explanation>Error</meta:explanation>
+							<meta:values uom="Ma">0.7</meta:values>
+						</meta:QuantitativeAssessment>
+					</gt:quality>
+					<gt:status>Informal</gt:status>
+					<gt:observationalBasis xlink:href="dates.xml#P3_Origin1"/>
+					<gt:metadata><gsml:ObjectMetadata><gsml:sourceReference  xlink:href="citations.xml#Ogg1"/></gsml:ObjectMetadata></gt:metadata>
+				</gt:StratigraphicDateEstimate>
+			</gt:position>
+			<gt:event xlink:href="gssp.xml#P2_P3_1"/>
+			<gt:stratotype xlink:href="gssp.xml#gssp_base_lopingian"/>
+		</gt:GeochronologicBoundary>
+	</gt:referencePoint>
+	<gt:referencePoint>
+		<gt:GeochronologicBoundary gml:id="p8_p9">
+			<gml:name>Base of Changhsingian</gml:name>
+			<gt:previousEra xlink:href="#p8"/>
+			<gt:nextEra xlink:href="#p9"/>
+			<gt:position>
+				<gt:StratigraphicDateEstimate gml:id="p9_Origin">
+					<gml:timePosition frame="tcs.xml#geologyMA">-253.8</gml:timePosition>
+					<gt:quality>
+						<meta:QuantitativeAssessment>
+							<meta:explanation>Error</meta:explanation>
+							<meta:values uom="Ma">0.7</meta:values>
+						</meta:QuantitativeAssessment>
+					</gt:quality>
+					<gt:status>Informal</gt:status>
+					<gt:observationalBasis xlink:href="dates.xml#p9_Origin1"/>
+					<gt:metadata><gsml:ObjectMetadata><gsml:sourceReference  xlink:href="citations.xml#Ogg1"/></gsml:ObjectMetadata></gt:metadata>
+				</gt:StratigraphicDateEstimate>
+			</gt:position>
+			<gt:event xlink:href="gssp.xml#p8_p9_1"/>
+			<gt:stratotype xlink:href="gssp.xml#gssp_base_changhsingian"/>
+		</gt:GeochronologicBoundary>
+	</gt:referencePoint>
+	<gt:referencePoint>
+		<gt:GeochronologicBoundary gml:id="PZ_MZ">
+			<gml:name>Base of Mesozoic</gml:name>
+			<gml:name>Base of Triassic</gml:name>
+			<gml:name>Base of Lower Triassic</gml:name>
+			<gml:name>Base of Induan</gml:name>
+			<gt:previousEra xlink:href="#p9"/>
+			<gt:previousEra xlink:href="#P"/>
+			<gt:previousEra xlink:href="#PZ"/>
+			<gt:nextEra xlink:href="#MZ"/>
+			<gt:nextEra xlink:href="#T"/>
+			<gt:nextEra xlink:href="#t1"/>
+			<gt:position>
+				<gt:StratigraphicDateEstimate gml:id="MZ_Origin">
+					<gml:timePosition frame="tcs.xml#geologyMA">-251.0</gml:timePosition>
+					<gt:quality>
+						<meta:QuantitativeAssessment>
+							<meta:explanation>Error</meta:explanation>
+							<meta:values uom="Ma">0.4</meta:values>
+						</meta:QuantitativeAssessment>
+					</gt:quality>
+					<gt:status>GSSP Ratified 2001</gt:status>
+					<gt:observationalBasis xlink:href="dates.xml#MZ_Origin1"/>
+					<gt:metadata><gsml:ObjectMetadata><gsml:sourceReference  xlink:href="citations.xml#E24p102_2001"/></gsml:ObjectMetadata></gt:metadata>
+				</gt:StratigraphicDateEstimate>
+			</gt:position>
+			<gt:event xlink:href="gssp.xml#PZ_MZ_1"/>
+			<gt:stratotype xlink:href="gssp.xml#gssp_base_triassic"/>
+		</gt:GeochronologicBoundary>
+	</gt:referencePoint>
+</gt:GeologicTimeScale>

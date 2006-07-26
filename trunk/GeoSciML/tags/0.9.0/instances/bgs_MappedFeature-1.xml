@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<gml:FeatureCollection xmlns:gsml="http://www.cgi-iugs.org/xml/GeoSciML/1" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:gml="http://www.opengis.net/gml">
+	<gml:boundedBy>
+		<!-- Note the gml:Box output by GeoServer WFS does not validate, expects gml:Envelope. Are we using GML3 schemas with deprecated elements removed? -->
+		<gml:Envelope srsName="http://www.opengis.net/gml/srs/epsg.xml#27700">
+			<gml:coordinates xmlns:gml="http://www.opengis.net/gml" decimal="." cs="," ts=" ">429740.118,335534.044 429765.522,335558.314</gml:coordinates>
+		</gml:Envelope>
+	</gml:boundedBy>
+	<gml:featureMember>
+		<gsml:MappedFeature gml:id="bedrock.651">
+			<gsml:shape>
+				<gml:MultiPolygon srsName="http://www.opengis.net/gml/srs/epsg.xml#27700">
+					<gml:polygonMember>
+						<gml:Polygon>
+							<gml:outerBoundaryIs>
+								<gml:LinearRing>
+									<gml:coordinates xmlns:gml="http://www.opengis.net/gml" decimal="." cs="," ts=" ">429740.118,335558.314 429765.522,335558.072 429752.994,335539.613 429747.427,335534.044 429742.903,335534.392 429740.467,335542.398 429740.118,335558.314</gml:coordinates>
+								</gml:LinearRing>
+							</gml:outerBoundaryIs>
+						</gml:Polygon>
+					</gml:polygonMember>
+				</gml:MultiPolygon>
+			</gsml:shape>
+			<gsml:specification>
+				<gsml:GeologicUnit>
+					<gsml:purpose>instance</gsml:purpose>
+					<!-- The BGS DigMap data has mimimum and maximum ages; how should this be represented? -->
+					<gsml:age>
+						<gsml:GeologicAge>
+							<gsml:value>
+								<gsml:CGI_TermValue>
+									<gsml:value codeSpace="http://www.iugs-cgi.org/geologicAgeVocabulary">LADINIAN</gsml:value>
+								</gsml:CGI_TermValue>
+							</gsml:value>
+							<gsml:event xlink:href="urn:x-ogc:def:nil:OGC:unknown"/>
+						</gsml:GeologicAge>
+					</gsml:age>
+					<gsml:age>
+						<gsml:GeologicAge>
+							<gsml:value>
+								<gsml:CGI_TermValue>
+									<gsml:value codeSpace="http://www.iugs-cgi.org/geologicAgeVocabulary">ANISIAN</gsml:value>
+								</gsml:CGI_TermValue>
+							</gsml:value>
+							<gsml:event xlink:href="urn:x-ogc:def:nil:OGC:unknown"/>
+						</gsml:GeologicAge>
+					</gsml:age>
+					<gsml:metadata/>
+					<gsml:classifier xlink:href="urn:x-bgs:What should go here? A URN for the BGS LEX_ROCK dictionary?"/>
+					<gsml:bodyMorphology xlink:href="urn:x-ogc:def:nil:OGC:unknown"/>
+					<gsml:outcropCharacter xlink:href="urn:x-ogc:def:nil:OGC:unknown"/>
+					<gsml:genesis xlink:href="urn:x-ogc:def:nil:OGC:unknown"/>
+					<gsml:exposureColor xlink:href="urn:x-ogc:def:nil:OGC:unknown"/>
+					<gsml:grossChemistry>unknown</gsml:grossChemistry>
+				</gsml:GeologicUnit>
+			</gsml:specification>
+			<gsml:metadata>
+			<!-- Should somehow specify the fact that this is 50K scale mapping to indicate accuracy
+but I'm not sure how this should be expressed. -->
+			</gsml:metadata>
+		</gsml:MappedFeature>
+	</gml:featureMember>
+</gml:FeatureCollection>

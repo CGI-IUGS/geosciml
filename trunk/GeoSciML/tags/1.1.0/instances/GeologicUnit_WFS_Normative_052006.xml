@@ -1,0 +1,257 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Example return to getFeature request from Geology data layer-->
+<!-- Original from draft example from Bruce Johnson, 05/04/06 -->
+<!-- SMR  I haven't figured out how to get wfs version (root element wfs, with gml:featuremembers) 
+  to validate; this version replaces wfs with gsml (from collection.xsd) as root element and gml:featuremember
+  with gsml:member so it can be validated against the GeoSciML schema (mostly updated to v. 1.1, but 
+  Simon Cox still needs to bless the 1.1 updates)... -->
+<gsml:Gsml xmlns:gml="http://www.opengis.net/gml" xmlns:wfs="http://www.opengis.net/wfs" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:gsml="http://www.cgi-iugs.org/xml/GeoSciML/1" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.cgi-iugs.org/xml/GeoSciML/1 ../schema/GeoSciML.xsd">
+	<!-- namespaces and schema added by SMR -->
+	<!--  0..* gml:metadataProperty elements. Best Practice: use these to provide data set level metadata -->
+	<!-- one gml:description may be used to describe this collection -->
+	<!-- 0..* gml Name elements to identify the collection, see discussion of gml:name below under LithostratigraphicUnit -->
+	<!-- optional gml:boundedBy for collection -->
+	<!-- optional gml:location (deprecated in gml 3.1.1) for collection -->
+	<!-- wfs:featureCollection [gsml:gsml] includs 0..* gml:featureMember [gsml:member] elements. wfs also allows grouping of features in a gml:featureMembers element following any featureMember elements. This is designed to represent an array of features. Best Practice: include GeoSciML features as featureMember elements. --> 
+	<gsml:member>
+		<!-- wfs:featureCollection elements must be in gml:_Feature substitution group; gsml:gsml members must be gml:_Geometry substitution group (based on XMLspy 2005 schema view) -->
+		<gsml:LithostratigraphicUnit>
+			<!-- gml:metaDataProperty 0 to many-->
+			<!-- one gml:description is optional. Best Practice: any text description associated with the geologic unit (e.g. map legend description text) is included verbatim in this element-->
+			<gml:description>free text description of unit</gml:description>
+			<!-- gml:name is 0 to many; Best Practice: use for 'standard' name used by geologists, and if source data has an identifier/primary key, include that as another name element. Names in different language would be additional name element. These are differentiated using the codespace attribute. It may be useful to specify that the codespace for Primary keys has some predetermined codespace name; in this case the xsi:type attribute on name could be used to specify the data type for the key (e.g. GUID, string.URI, string, integer, etc.). This might require extension of gml name to allow gsml: attributes on gml name.-->
+			<gml:name codeSpace="SomeEnglishLanguageGUvocabulary">UnitNameinEnglish</gml:name>
+			<gml:name codeSpace="SomeSpanishLanguageGUVocaublary">NombreDelFormacionEnEspanol</gml:name>
+			<gml:name codeSpace="PrimaryKey">EA2F6608-BBD5-4726-AFBE-1633D366E0E8</gml:name>
+			<!-- gml:boundedBy could be included here -->
+			<!-- gml:location could be included here -->
+			<!--exactly one purpose is required -->
+			<gsml:purpose>typicalNorm</gsml:purpose>
+			<!-- age is 1..* -->
+			<gsml:age>
+				<gsml:GeologicAge>
+					<gsml:value>
+						<!-- one value is required, any CGI_Value; TermValue included here as example -->
+						<gsml:CGI_TermValue>
+							<gsml:value codeSpace=""/>
+						</gsml:CGI_TermValue>
+					</gsml:value>
+					<gsml:event>
+						<!-- one event is required, specified by CGI_TermValue -->
+						<gsml:CGI_TermValue>
+							<gsml:value codeSpace=""/>
+						</gsml:CGI_TermValue>
+					</gsml:event>
+				</gsml:GeologicAge>
+			</gsml:age>
+			<!-- physical property is 0 to many; values are specified by CGI_PhysicalDescriptionPropertyType,  which includes a property element specifying the kind of property and a value element to specify  the property value; this is a soft-type approach, allows for any kind of property in a controlled  vocabulary of property types to be specified. -->
+			<gsml:physicalProperty/>
+			<!-- occurrence is optional, 0 to many; specified by MappedFeature elements; this is a forward link from  a description to features (shapes in particular) where the description applies -->
+			<gsml:occurrence xlink:href="hrefToMappedFeature"/>
+			<!--one classifier is required; this is a link to a controlled concept that specifies the kind of thing that this feature instance describes. In this case the classifier would be a geologic unit, either a non-situated unit 'type' (e.g. Lithostratigraphic unit),  in the case of observation data, or to a specific geologic unit  (e.g. Martin Formation) in the case that the description is applied to an already defined unit.-->
+			<!-- Best Practice: Classifier ControlledConcepts should be defined in a separate vocabulary document that includes the prototype GeologicEntity instances. In this example the prototype for the  associated classifier would be a GeologicFeature.GeologicUnit.LithostratigraphicUnit instance.  In the best practice case, classifer element wouldhave xlink:href pointer to the ControlledConcept. ControlledConcept element is included in line here for demonstration -->
+			<gsml:classifier>
+				<gsml:ControlledConcept gml:id="concept11">
+					<gml:name>name</gml:name>
+					<gsml:preferredName/>
+					<gsml:prototype xlink:href="LinktoPrototype"/>
+					<gsml:vocabulary xlink:href="LinkToVocbulary"/>
+					<gsml:metadata/>
+				</gsml:ControlledConcept>
+			</gsml:classifier>
+			<!-- alternativeClassifier is 0..* -->
+			<!-- Best Practice: specify alternativeClasifier by reference only -->
+			<gsml:alternativeClassifier xlink:href="LinktoAControlledConcept"/>
+			<!-- one gsml:metadata element is required - this has a variety of subelements, see metadata.xsd -->
+			<gsml:metadata/>
+			<!-- partOf is  0..*. These are GeologicUnitParts, used to represent descriptive or formal subdivision
+                      of a geologic unit for descriptive purposes -->
+			<!-- Best Practice: specify gsml:unit in GeologicUnitPart by reference only -->
+			<gsml:partOf>
+				<gsml:GeologicUnitPart>
+					<gsml:unit xlink:href="LinktoUnitPart"/>
+					<gsml:role codeSpace="RoleTermCodespace">someRoleTerm</gsml:role>
+					<!-- proportion specified by a CGI_Value -->
+					<gsml:proportion/>
+				</gsml:GeologicUnitPart>
+			</gsml:partOf>
+			<gsml:partOf>
+				<gsml:GeologicUnitPart>
+					<gsml:unit xlink:href="LinkToAnotherUnitPart"/>
+					<gsml:role codeSpace="RoleTermCodespace">someRoleTerm</gsml:role>
+					<!-- proportion specified by a CGI_Value -->
+					<gsml:proportion/>
+				</gsml:GeologicUnitPart>
+			</gsml:partOf>
+			<!-- bodyMorphology is 0..*, specified by CGI_TermValue -->
+			<gsml:bodyMorphology/>
+			<!-- outcropCharacter is 0..*, specified by CGI_TermValue -->
+			<gsml:outcropCharacter/>
+			<!-- grossGenesisTerm is 0..*, specified by CGI_TermValue -->
+			<gsml:grossGenesisTerm/>
+			<!-- exposureColor is 0..*, specified by CGI_TermValue -->
+			<gsml:exposureColor/>
+			<!-- grossChemistry is 0..1, specified by CGI_TermValue -->
+			<gsml:grossChemistry/>
+			<!-- composition is 0..*, specified by a CompositionPart element; this is used to represent composition of geologic unit in terms of EarthMaterial.CompoundMaterial (rock or unconsolidated material) -->
+			<!-- Best Practice: The material element of a CompositionPart should be included in line if it is specified by a compoundMaterial instance (material.unionSemantics = materialInstance); these represent descriptions of a lithologic constituent specific to the geologic unit.   Material elements for composition parts that have a material specified by a lithology term from a vocabulary (material.unionSemantics = materialTerm) should be by reference to a controlled vocabulary term-->
+			<gsml:composition>
+				<gsml:CompositionPart>
+					<gsml:role codeSpace="ACodeSpace">someGUCompositionPartRoleTerm</gsml:role>
+					<gsml:proportion>
+						<!-- proportion is specified by an element that substitutes for CGI_TermValue -->
+						<gsml:CGI_NumericValue>
+							<gsml:principalValue uom="percent">1</gsml:principalValue>
+							<gsml:plusDelta uom="percent">0.2</gsml:plusDelta>
+							<gsml:minusDelta uom="percent">0.2</gsml:minusDelta>
+						</gsml:CGI_NumericValue>
+					</gsml:proportion>
+					<!-- material is required; BestPractice: if it is a specific material description, include in line -->
+					<gsml:material unionSemantics="materialInstance">
+						<gsml:CompoundMaterial gml:id="MaterialID22">
+							<gml:metaDataProperty xlink:href=""/>
+							<gml:description/>
+							<gml:name codeSpace=""/>
+							<gsml:purpose>typicalNorm</gsml:purpose>
+							<gsml:classifier xlink:href="RockNameTerm"/>
+							<gsml:alternativeClassifier xlink:href=""/>
+							<gsml:metadata>
+								<gsml:Metadata gml:id="AMetadataID">
+									<gml:metaDataProperty xlink:href=""/>
+									<gml:description/>
+									<gml:name codeSpace=""/>
+									<gsml:hierarchyLevel>feature</gsml:hierarchyLevel>
+									<gsml:parent/>
+									<gsml:sourceReference xlink:href="citationToLiterature"/>
+									<gsml:comment/>
+								</gsml:Metadata>
+							</gsml:metadata>
+							<gsml:color>
+								<gsml:CGI_TermValue>
+									<gsml:qualifier>common</gsml:qualifier>
+									<gsml:value codeSpace=""/>
+								</gsml:CGI_TermValue>
+							</gsml:color>
+							<gsml:physicalProperty>
+								<gsml:CGI_PhysicalDescription>
+									<gsml:property codeSpace="">Density</gsml:property>
+									<gsml:value>
+										<gsml:CGI_NumericValue>
+											<gsml:principalValue uom="g/m3">2.85</gsml:principalValue>
+											<gsml:plusDelta uom="g/m3">0.1</gsml:plusDelta>
+											<gsml:minusDelta uom="g/m3">0.1</gsml:minusDelta>
+										</gsml:CGI_NumericValue>
+									</gsml:value>
+								</gsml:CGI_PhysicalDescription>
+							</gsml:physicalProperty>
+							<gsml:consolidationDegree xlink:href="ConsolidationTermLink"/>
+							<gsml:metamorphicGrade xlink:href="MetamorphicGradeTermLink"/>
+							<gsml:particleGeometry/>
+							<gsml:fabric/>
+							<gsml:grossChemistry>
+								<gsml:CGI_TermValue>
+									<gsml:value codeSpace="GrossChemistryVocab">silicate</gsml:value>
+								</gsml:CGI_TermValue>
+							</gsml:grossChemistry>
+							<gsml:grossGenesisTerm>
+								<gsml:CGI_TermValue>
+									<gsml:qualifier>always</gsml:qualifier>
+									<gsml:value codeSpace="RockGenesisTerms">Igneous</gsml:value>
+								</gsml:CGI_TermValue>
+							</gsml:grossGenesisTerm>
+						</gsml:CompoundMaterial>
+					</gsml:material>
+				</gsml:CompositionPart>
+			</gsml:composition>
+			<gsml:composition>
+				<gsml:CompositionPart>
+					<gsml:role codeSpace=""/>
+					<gsml:proportion/>
+					<gsml:material xlink:href="MaterialEntityLink" unionSemantics="materialTerm"/>
+				</gsml:CompositionPart>
+			</gsml:composition>
+			<!-- rank is required, specified by a scoped name -->
+			<gsml:rank codeSpace="GeoUnitRankTerms">Not specified	</gsml:rank>
+			<!-- weatheringCharacter is 0..*, specified by CGI_TermValue -->
+			<gsml:weatheringCharacter/>
+			<!-- structurePresent is 0..*, specified by CGI_TermValue -->
+			<gsml:structurePresent/>
+			<!-- metamorphicGrade is 0..*, specified by CGI_TermValue -->
+			<gsml:metamorphicGrade/>
+			<!-- unitThickness is 0..*, specified by CGI_NumericValue -->
+			<gsml:unitThickness/>
+			<!-- beddingStyle is 0..*, specified by CGI_TermValue -->
+			<gsml:beddingStyle/>
+			<!-- beddingPattern is 0..*, specified by CGI_TermValue -->
+			<gsml:beddingPattern/>
+			<!-- beddingThickenss is 0..*, specified by CGI_NumericValue -->
+			<gsml:beddingThickness/>
+		</gsml:LithostratigraphicUnit>
+	</gsml:member>
+	<gsml:member>
+		<!-- 0..* -->
+		<gsml:LithodemicUnit>
+			<!-- any gml:StandardObjectProperties could be included here, 
+          e.g. gml:metaDataProperty, gml:description, gml:name... -->
+			<!-- gml:boundedBy could be included here -->
+			<!--exactly one purpose is required -->
+			<gsml:purpose>typicalNorm</gsml:purpose>
+			<!-- age 1..* -->
+			<gsml:age>
+				<gsml:GeologicAge>
+					<gsml:value/>
+					<gsml:event/>
+				</gsml:GeologicAge>
+			</gsml:age>
+			<!--physicalProperty 0..* -->
+			<gsml:physicalProperty/>
+			<!-- occurrence 0..* -->
+			<gsml:occurrence xlink:href="LinktoMappedFeature"/>
+			<gsml:classifier xlink:href="LinkToGeolgoicUnitLexiconTerm"/>
+			<gsml:alternativeClassifier/>
+			<gsml:metadata/>
+			<!-- partOf 0..* -->
+			<gsml:partOf>
+				<gsml:GeologicUnitPart>
+					<!--Best practice: unit is by reference only -->
+					<gsml:unit xlink:href="SomeGeologicUnit"/>
+					<gsml:role codeSpace=""/>
+					<gsml:proportion/>
+				</gsml:GeologicUnitPart>
+			</gsml:partOf>
+			<!--bodyMorphology 0..* -->
+			<gsml:bodyMorphology/>
+			<!-- outcropCharacter 0..* -->
+			<gsml:outcropCharacter/>
+			<!--grossGenesisTerm 0..* -->
+			<gsml:grossGenesisTerm/>
+			<!--exposureColor 0..* -->
+			<gsml:exposureColor/>
+			<!--grossChemistry 0..1 -->
+			<gsml:grossChemistry/>
+			<!--composition 0..* -->
+			<gsml:composition>
+				<gsml:CompositionPart>
+					<gsml:role codeSpace=""/>
+					<gsml:proportion/>
+					<gsml:material xlink:href="LinkToLithologyTerm" unionSemantics="materialTerm"/>
+				</gsml:CompositionPart>
+			</gsml:composition>
+			<gsml:composition>
+				<gsml:CompositionPart>
+					<gsml:role codeSpace=""/>
+					<gsml:proportion/>
+					<gsml:material xlink:href="LinkToCompoundMaterialVocabularyTerm" unionSemantics="materialTerm"/>
+				</gsml:CompositionPart>
+			</gsml:composition>
+			<!-- rank- required -->
+			<gsml:rank codeSpace="StratigraphicRankCodespace">not specified</gsml:rank>
+			<!-- weatheringCharcter 0..* -->
+			<gsml:weatheringCharacter/>
+			<!--structurePresent 0..* -->
+			<gsml:structurePresent/>
+			<!--metamorphicGrade 0..* -->
+			<gsml:metamorphicGrade/>
+		</gsml:LithodemicUnit>
+	</gsml:member>
+</gsml:Gsml>
