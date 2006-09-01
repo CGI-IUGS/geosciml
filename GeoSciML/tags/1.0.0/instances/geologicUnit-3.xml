@@ -1,0 +1,349 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- edited with XMLSpy v2005 rel. 3 U (http://www.altova.com) by Stephen M Richard (Arizona Geological Survey)
+This instance document revised from GeologicUnit-1.xml originally posted by Bruce Johnson. Names of the example units have been changed to less 'personal' names
+120505 Simon Cox fix up SMR version so it validates
+120505 SMR add classifier in McCoy Sandstone CompoundMaterial instance for 'SandstoneConcept'; make the CompoundMaterial instance there a typical description for sandstone in that formation, point SandstoneConcept prototye to external compoundMaterial instance, change gross composition to chemical term; add comments, other minor fixes  -->
+<Gsml xmlns="http://www.cgi-iugs.org/xml/GeoSciML/1" xmlns:gml="http://www.opengis.net/gml" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.cgi-iugs.org/xml/GeoSciML/1 ../schema/GeoSciML.xsd">
+	<!-- The lexicon would probably be in a separate file -->
+	<member>
+		<StratigraphicLexicon gml:id="SCAMPGeologicUnits">
+			<gml:description>Collection of geologic units defined by State of California and USGS for use in southern California mapping project</gml:description>
+			<gml:name>Southern California stratigraphic unit lexicon</gml:name>
+			<member>
+				<ControlledConcept gml:id="JuncalGroupConcept">
+					<gml:description>lithostratigraphic group defined by Banks [1927] to include lower to middle Cretaceous sandstone, shale and conglomerate in northern San Bernardino Basin, characterized by fining-upward cycles, clasts of Pelona Schist in conglomerates, and stratigraphic position between Matilija Formation carbonates and Monterey formation diatomites</gml:description>
+					<gml:name>urn:x-cgi:def:lithostratigraphy:USGS:2006:Geolex:JuncalGroup</gml:name>
+					<preferredName>Juncal Group</preferredName>
+					<prototype xlink:href="http://pubs.usgs.gov/Geolex/GeoSciML_GU_prototypes/Juncal.xml"/>
+					<vocabulary xlink:href="#SCAMPGeologicUnits"/>
+					<metadata/>
+				</ControlledConcept>
+			</member>
+			<member>
+				<ControlledConcept gml:id="EagleConglomerateConcept">
+					<gml:description>This text defines the intention of the geologic unit...</gml:description>
+					<gml:name>urn:x-cgi:def:lithostratigraphy:USGS:2006:Geolex:EagleConglomerate</gml:name>
+					<preferredName>Eagle Conglomerate</preferredName>
+					<prototype xlink:href="http://pubs.usgs.gov/Geolex/GeoSciML_GU_prototypes/EagleConglomerate.xml"/>
+					<vocabulary xlink:href="#SCAMPGeologicUnits"/>
+					<metadata/>
+				</ControlledConcept>
+			</member>
+			<member>
+				<ControlledConcept gml:id="McCoySandstoneConcept">
+					<gml:description>This text defines the intention of the geologic unit...</gml:description>
+					<gml:name>urn:x-cgi:def:lithostratigraphy:USGS:2006:Geolex:McCoySandstone</gml:name>
+					<preferredName>McCoy Sandstone</preferredName>
+					<prototype xlink:href="http://pubs.usgs.gov/Geolex/GeoSciML_GU_prototypes/McCoySandstone.xml"/>
+					<vocabulary xlink:href="#SCAMPGeologicUnits"/>
+					<metadata/>
+				</ControlledConcept>
+			</member>
+		</StratigraphicLexicon>
+	</member>
+	<!-- -->
+	<member>
+		<GeologicVocabulary gml:id="someonesStandardLithologyVocabulary">
+			<gml:description>Collection of standard terms that identify kinds of Earth material, from some authority somewhere....</gml:description>
+			<gml:name>The ultimate vocabulary of NADM Compound materials</gml:name>
+			<member>
+				<ControlledConcept gml:id="SandstoneConcept">
+					<gml:description>Formal definition of sandstone (in text form, this is a verbal version of the prototype description)...</gml:description>
+					<gml:name>urn:x-cgi:def:lithostratigraphy:USGS:2006:Geolex:Sandstone</gml:name>
+					<preferredName>Sandstone</preferredName>
+					<prototype xlink:href="http://pubs.usgs.gov/Geolex/GeoSciML_lith_prototypes/Sandstone.xml"/>
+					<vocabulary xlink:href="#someonesStandardLithologyVocabulary"/>
+					<metadata/>
+				</ControlledConcept>
+			</member>
+		</GeologicVocabulary>
+	</member>
+	<!-- -->
+	<member>
+		<GeologicFeatureRelation gml:id="rel-100">
+			<role codeSpace="http://www.iugs-cgi.org/featureRelationVocabulary">overlies</role>
+			<source xlink:href="#LS3"/>
+			<target xlink:href="#LS2"/>
+		</GeologicFeatureRelation>
+	</member>
+	<!-- -->
+	<!-- -->
+	<member>
+		<LithoStratigraphicUnit gml:id="LS1">
+			<!--simple unit w/o composition -->
+			<gml:description>This is a description of Typical properties of Juncal group outcrops in the San Bernardino Wash quad, based on map collar description. The text on the map collar reads as follows: "Cretacous non marine clastic rocks of the San Bernardino Basin....blah blah blah"</gml:description>
+			<gml:name>Juncal Group, San Bernardino Wash quad</gml:name>
+			<gml:boundedBy>
+				<gml:Envelope>
+					<gml:lowerCorner/>
+					<!-- these would be the corners of the quadrangle-->
+					<gml:upperCorner/>
+				</gml:Envelope>
+			</gml:boundedBy>
+			<purpose>typicalNorm</purpose>
+				<!--Specification of the intended purpose/level of abstraction for a given feature or object instance. Scoped name because intension is asserted by author of the data instance. Values: Instance, typicalNorm, IdentifyingNorm. -->
+			<age>
+				<GeologicAge>
+					<value>
+						<CGI_TermValue>
+							<value codeSpace="http://www.iugs-cgi.org/geologicAgeVocabulary">Cretaceous</value>
+						</CGI_TermValue>
+					</value>
+					<event>
+						<CGI_TermValue>
+							<value codeSpace="http://www.iugs-cgi.org/EventVocabulary">deposition</value>
+						</CGI_TermValue>
+					</event>
+				</GeologicAge>
+			</age>
+			<age>
+				<GeologicAge>
+					<value>
+						<CGI_TermValue>
+							<value codeSpace="http://www.iugs-cgi.org/geologicAgeVocabulary">Eocene</value>
+						</CGI_TermValue>
+					</value>
+					<event>
+						<CGI_TermValue>
+							<value codeSpace="http://www.iugs-cgi.org/EventVocabulary">metamorphic recrystallization</value>
+						</CGI_TermValue>
+					</event>
+				</GeologicAge>
+			</age>
+			<metadata/>
+			<classifier xlink:href="#JuncalGroupConcept"/>
+			<!-- heres the link to the controlled concept that defines what Juncal group is-->
+			<partOf>
+				<!-- two formations are identified as parts of this Group -->
+				<GeologicUnitPart>
+					<unit xlink:href="#LS2"/>
+					<!-- formation is part of group -->
+					<role codeSpace="http://www.iugs-cgi.org/unitPartRoleVocabulary">Stratigraphic part</role>
+					<proportion>
+						<CGI_NumericValue>
+							<qualifier>approximate</qualifier>
+							<principalValue uom="percent">12</principalValue>
+							<plusDelta uom="percent">0</plusDelta>
+							<minusDelta uom="percent">0</minusDelta>
+						</CGI_NumericValue>
+					</proportion>
+				</GeologicUnitPart>
+			</partOf>
+			<partOf>
+				<GeologicUnitPart>
+					<unit xlink:href="#LS3"/>
+					<role codeSpace="http://www.iugs-cgi.org/unitPartRoleVocabulary">Stratigraphic part</role>
+					<proportion>
+						<CGI_NumericValue>
+							<qualifier>approximate</qualifier>
+							<principalValue uom="percent">88</principalValue>
+							<plusDelta uom="percent">0</plusDelta>
+							<minusDelta uom="percent">0</minusDelta>
+						</CGI_NumericValue>
+					</proportion>
+				</GeologicUnitPart>
+			</partOf>
+			<bodyMorphology/>
+			<outcropCharacter>
+				<CGI_TermValue>
+					<qualifier>common</qualifier>
+					<value codeSpace="http://www.iugs-cgi.org/outcropCharacterVocabulary">alternating ledge and slope forming</value>
+				</CGI_TermValue>
+			</outcropCharacter>
+			<genesis xlink:href="urn:x-ogc:def:nil:OGC:unknown"/>
+			<exposureColor xlink:href="urn:x-ogc:def:nil:OGC:unknown"/>
+			<grossChemistry>unknown</grossChemistry>
+			<rank codeSpace="http://www.iugs-cgi.org/rankVocabulary">Group</rank>
+			<weatheringCharacter xlink:href="urn:x-ogc:def:nil:OGC:unknown"/>
+			<metamorphicGrade>
+				<CGI_TermValue>
+					<value codeSpace="http://www.iugs-cgi.org/metamorphicGradeVocabulary">low greenschist</value>
+				</CGI_TermValue>
+			</metamorphicGrade>
+			<unitThickness xlink:href="urn:x-ogc:def:nil:OGC:unknown"/>
+			<beddingStyle xlink:href="urn:x-ogc:def:nil:OGC:unknown"/>
+			<beddingPattern xlink:href="urn:x-ogc:def:nil:OGC:unknown"/>
+			<beddingThickness xlink:href="urn:x-ogc:def:nil:OGC:unknown"/>
+		</LithoStratigraphicUnit>
+	</member>
+	<!-- -->
+	<!-- -->
+	<!-- -->
+	<!-- ************************************************************************************************-->
+	<!-- second description -->
+	<member>
+		<LithoStratigraphicUnit gml:id="LS2">
+			<!-- unit w/ composition by reference -->
+			<gml:description>This is a description of Typical properties of Eagle Conglomerate outcrops in the San Bernardino Wash quad, based on map collar description. The text on the map collar reads as follows: "Massive conglomerate unit at base of Juncal Group....blah blah blah"</gml:description>
+			<gml:name>Eagle Conglomerate, San Bernardino Wash quad</gml:name>
+			<gml:boundedBy>
+				<gml:Envelope>
+					<gml:lowerCorner/>
+					<!-- these would be the corners of the quadrangle-->
+					<gml:upperCorner/>
+				</gml:Envelope>
+			</gml:boundedBy>
+			<purpose>typicalNorm</purpose>
+			<!--Specification of the intended purpose/level of abstraction for a given feature or object instance. Scoped name because intension is asserted by author of the data instance. Values: Instance, typicalNorm, IdentifyingNorm. -->
+			<age>
+				<GeologicAge>
+					<value>
+						<CGI_TermValue>
+							<value codeSpace="http://www.iugs-cgi.org/geologicAgeVocabulary">Lower Cretaceous</value>
+						</CGI_TermValue>
+					</value>
+					<event>
+						<CGI_TermValue>
+							<value codeSpace="http://www.iugs-cgi.org/EventVocabulary">deposition</value>
+						</CGI_TermValue>
+					</event>
+				</GeologicAge>
+			</age>
+			<metadata/>
+			<classifier xlink:href="#EagleConglomerateConcept"/>
+			<!-- no geologic unit parts defined here -->
+			<bodyMorphology/>
+			<outcropCharacter>
+				<CGI_TermValue>
+					<value codeSpace="http://www.iugs-cgi.org/outcropCharacterVocabulary">ledge forming</value>
+				</CGI_TermValue>
+			</outcropCharacter>
+			<genesis/>
+			<exposureColor>
+				<CGI_TermValue>
+					<qualifier>common</qualifier>
+					<value codeSpace="http://www.iugs-cgi.org/exposureColorVocabulary">red-brown</value>
+				</CGI_TermValue>
+			</exposureColor>
+			<exposureColor>
+				<CGI_TermValue>
+					<qualifier>sometimes</qualifier>
+					<value codeSpace="http://www.iugs-cgi.org/exposureColorVocabulary">gray-red</value>
+				</CGI_TermValue>
+			</exposureColor>
+			<exposureColor>
+				<CGI_TermValue>
+					<qualifier>rare</qualifier>
+					<value codeSpace="http://www.iugs-cgi.org/exposureColorVocabulary">yellow-tan</value>
+				</CGI_TermValue>
+			</exposureColor>
+			<grossChemistry>silicate</grossChemistry>
+			<composition>
+				<CompositionPart>
+					<role codeSpace="http://www.iugs-cgi.org/compositionPartRoleVocabulary">Lithologic constiuent</role>
+					<proportion>
+						<CGI_NumericValue>
+							<principalValue uom="percent">100</principalValue>
+							<plusDelta uom="percent">0</plusDelta>
+							<minusDelta uom="percent">0</minusDelta>
+						</CGI_NumericValue>
+					</proportion>
+					<material xlink:href="#Rock144"/>
+				</CompositionPart>
+			</composition>
+			<rank codeSpace="http://www.iugs-cgi.org/rankVocabulary">Formation</rank>
+			<weatheringCharacter/>
+			<metamorphicGrade>
+				<CGI_TermValue>
+					<value codeSpace="http://www.iugs-cgi.org/metamorphicGradeVocabulary">low greenschist</value>
+				</CGI_TermValue>
+			</metamorphicGrade>
+			<unitThickness xlink:href="urn:x-ogc:def:nil:OGC:unknown"/>
+			<beddingStyle xlink:href="urn:x-ogc:def:nil:OGC:unknown"/>
+			<beddingPattern xlink:href="urn:x-ogc:def:nil:OGC:unknown"/>
+			<beddingThickness xlink:href="urn:x-ogc:def:nil:OGC:unknown"/>
+		</LithoStratigraphicUnit>
+	</member>
+	<!-- -->
+	<!-- -->
+	<!-- Third descripiton-->
+	<member>
+		<LithoStratigraphicUnit gml:id="LS3">
+			<!-- unit w/ in-line composition definition -->
+			<gml:description>This is a description of Typical properties of McCoy Sandstone outcrops in the San Bernardino Wash quad, based on map collar description. The text on the map collar reads as follows: "Thick bedded lithic sandstone with abundant low-angle cross bedding....blah blah blah"</gml:description>
+			<gml:name>McCoy Sandstone, San Bernardino Wash quad</gml:name>
+			<gml:boundedBy>
+				<gml:Envelope>
+					<gml:lowerCorner/>
+					<!-- these would be the corners of the quadrangle-->
+					<gml:upperCorner/>
+				</gml:Envelope>
+			</gml:boundedBy>
+			<purpose>typicalNorm</purpose>
+			<age>
+				<GeologicAge>
+					<value>
+						<CGI_TermValue>
+							<value codeSpace="http://www.iugs-cgi.org/geologicAgeVocabulary">Middle Cretaceous</value>
+						</CGI_TermValue>
+					</value>
+					<event/>
+				</GeologicAge>
+			</age>
+			<metadata/>
+			<classifier xlink:href="#McCoySandstoneConcept"/>
+			<!-- this unit has no described geologic unit parts -->
+			<bodyMorphology/>
+			<outcropCharacter>
+				<CGI_TermValue>
+					<value codeSpace="http://www.iugs-cgi.org/outcropCharacterVocabulary">alternating ledge and slope forming</value>
+				</CGI_TermValue>
+			</outcropCharacter>
+			<genesis/>
+			<exposureColor>
+				<CGI_TermValue>
+					<value codeSpace="http://www.iugs-cgi.org/exposureColorVocabulary">pink</value>
+				</CGI_TermValue>
+			</exposureColor>
+			<grossChemistry>silicate</grossChemistry>
+			<composition>
+				<CompositionPart>
+					<role codeSpace="http://www.iugs-cgi.org/compositionPartRoleVocabulary">entirety</role>
+					<proportion>
+						<CGI_NumericValue>
+							<principalValue uom="percent">100</principalValue>
+							<plusDelta uom="percent">0</plusDelta>
+							<minusDelta uom="percent">0</minusDelta>
+						</CGI_NumericValue>
+					</proportion>
+					<material>
+						<CompoundMaterial gml:id="rock24">
+							<gml:name>Typical McCoy sandstone lithology description</gml:name>
+							<purpose>instance</purpose> <!-- unless one wants to elevate 'McCoy Sandstone sandstone' to a lithology vocabulary, this is an instance description whose scope is the McCoy Sandstone formation -->
+							<classifier xlink:href="#SandstoneConcept"/>
+							<!-- Here is the ControlledConcept that is the most specific subsuming concept in the standard vocabulary of your choice that identifies what kind of stuff you're describing. Properties not specified in this description would inherit from the prototype or default description associated with the controlled concept -->
+							<color xlink:href="urn:x-ogc:def:nil:OGC:unknown"/>
+							<!-- the rest of the rock description -->
+							<consolidationDegree>
+								<CGI_TermValue>
+									<value codeSpace="http://www.iugs-cgi.org/consolidationDegreeList">consolidated</value>
+								</CGI_TermValue>
+							</consolidationDegree>
+							<metamorphicGrade xlink:href="urn:x-ogc:def:nil:OGC:unknown"/>
+							<particleGeometry xlink:href="urn:x-ogc:def:nil:OGC:unknown"/>
+							<!-- actual prototype description would have to have a grain size description here specifying the grain size distribution allowed for something to be called sandstone -->
+							<fabric xlink:href="urn:x-ogc:def:nil:OGC:unknown"/>
+							<grossChemistry>silicate</grossChemistry>
+							<genesis>
+								<CGI_TermValue>
+									<value codeSpace="http://www.iugs-cgi.org/GenesisTerms">clastic sedimentary</value>
+								</CGI_TermValue>
+							</genesis>
+						</CompoundMaterial>
+					</material>
+				</CompositionPart>
+			</composition>
+			<rank codeSpace="http://www.iugs-cgi.org/rankVocabulary">Formation</rank>
+			<weatheringCharacter/>
+			<metamorphicGrade>
+				<CGI_TermValue>
+					<value codeSpace="http://www.iugs-cgi.org/metamorphicGradeVocabulary">low greenschist</value>
+				</CGI_TermValue>
+			</metamorphicGrade>
+			<unitThickness xlink:href="urn:x-ogc:def:nil:OGC:unknown"/>
+			<beddingStyle xlink:href="urn:x-ogc:def:nil:OGC:unknown"/>
+			<beddingPattern xlink:href="urn:x-ogc:def:nil:OGC:unknown"/>
+			<beddingThickness xlink:href="urn:x-ogc:def:nil:OGC:unknown"/>
+		</LithoStratigraphicUnit>
+	</member>
+</Gsml>
