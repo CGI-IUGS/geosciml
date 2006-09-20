@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- edited with XMLSPY v5 rel. 4 U (http://www.xmlspy.com) by Marcus Sen (british Geological Survey) -->
+<schema targetNamespace="http://www.opengis.net/xmml" elementFormDefault="qualified" attributeFormDefault="unqualified" version="pre-release" xmlns="http://www.w3.org/2001/XMLSchema" xmlns:gml="http://www.opengis.net/gml" xmlns:xmml="http://www.opengis.net/xmml">
+	<annotation>
+		<documentation>
+geometry.xsd
+
+A GML conformant schema 
+for specialised geometries for geoscience
+
+Copyright (c) 2006 CSIRO - see https://www.seegrid.csiro.au/twiki/bin/view/Xmml/LegalNotices#Software_Notice
+</documentation>
+	</annotation>
+	<!-- ====================================================================== -->
+	<!-- bring in other schemas -->
+	<import namespace="http://www.opengis.net/gml" schemaLocation="http://schemas.opengis.net/gml/3.1.1/base/geometryComplexes.xsd"/>
+	<include schemaLocation="./geometry.xsd"/>
+	<!-- ====================================================================== -->
+	<!-- ====================================================================== -->
+	<!-- === Geometry objects representing the intersection of  === -->
+	<!-- === a higher-order geometry object with a surface === -->
+	<!-- ====================================================================== -->
+	<complexType name="GeometrysInSurfacePropertyType">
+		<annotation>
+			<documentation>Container for a set of geometries lying within a specified surface, representing the intersection of a geometry with the surface. </documentation>
+		</annotation>
+		<sequence minOccurs="0">
+			<element ref="xmml:GeometrysInSurface"/>
+		</sequence>
+		<attributeGroup ref="gml:AssociationAttributeGroup"/>
+	</complexType>
+	<!-- ====================================================================== -->
+	<element name="GeometrysInSurface" type="xmml:GeometrysInSurfaceType"/>
+	<!-- ====================================================================== -->
+	<complexType name="GeometrysInSurfaceType">
+		<annotation>
+			<documentation>Convenience object representing a set of shapes lying completely within the specified surface. </documentation>
+		</annotation>
+		<complexContent>
+			<extension base="gml:AbstractGeometryType">
+				<sequence>
+					<element name="shape" type="gml:MultiGeometryPropertyType"/>
+					<element name="containingSurface" type="gml:SurfacePropertyType"/>
+				</sequence>
+			</extension>
+		</complexContent>
+	</complexType>
+	<!-- ====================================================================== -->
+	<complexType name="PointsInSurfacePropertyType">
+		<annotation>
+			<documentation>Container for a set of points lying within a specified surface, representing the intersection of a curve with the surface. </documentation>
+		</annotation>
+		<sequence minOccurs="0">
+			<element ref="xmml:PointsInSurface"/>
+		</sequence>
+		<attributeGroup ref="gml:AssociationAttributeGroup"/>
+	</complexType>
+	<!-- ====================================================================== -->
+	<element name="PointsInSurface" type="xmml:PointsInSurfaceType"/>
+	<!-- ====================================================================== -->
+	<complexType name="PointsInSurfaceType">
+		<annotation>
+			<documentation>Convenience object representing a set of shapes lying completely within the specified surface. </documentation>
+		</annotation>
+		<complexContent>
+			<extension base="gml:AbstractGeometryType">
+				<sequence>
+					<element name="shape" type="gml:MultiPointPropertyType"/>
+					<element name="containingSurface" type="gml:SurfacePropertyType"/>
+				</sequence>
+			</extension>
+		</complexContent>
+	</complexType>
+	<!-- ====================================================================== -->
+	<complexType name="CurvesInSurfacePropertyType">
+		<annotation>
+			<documentation>Container for a set of curves lying within a specified surface, representing the intersection of a surface with the surface.</documentation>
+		</annotation>
+		<sequence minOccurs="0">
+			<element ref="xmml:CurvesInSurface"/>
+		</sequence>
+		<attributeGroup ref="gml:AssociationAttributeGroup"/>
+	</complexType>
+	<!-- ====================================================================== -->
+	<element name="CurvesInSurface" type="xmml:CurvesInSurfaceType"/>
+	<!-- ====================================================================== -->
+	<complexType name="CurvesInSurfaceType">
+		<annotation>
+			<documentation>Convenience object representing a set of shapes lying completely within the specified surface. </documentation>
+		</annotation>
+		<complexContent>
+			<extension base="gml:AbstractGeometryType">
+				<sequence>
+					<element name="shape" type="gml:MultiCurvePropertyType"/>
+					<element name="containingSurface" type="gml:SurfacePropertyType"/>
+				</sequence>
+			</extension>
+		</complexContent>
+	</complexType>
+	<!-- ====================================================================== -->
+	<complexType name="SurfacesInSurfacePropertyType">
+		<annotation>
+			<documentation>Container for a set of surface (patches) lying within a specified surface, representing the intersection of a solid with the surface. </documentation>
+		</annotation>
+		<sequence minOccurs="0">
+			<element ref="xmml:SurfacesInSurface"/>
+		</sequence>
+		<attributeGroup ref="gml:AssociationAttributeGroup"/>
+	</complexType>
+	<!-- ====================================================================== -->
+	<element name="SurfacesInSurface" type="xmml:SurfacesInSurfaceType"/>
+	<!-- ====================================================================== -->
+	<complexType name="SurfacesInSurfaceType">
+		<annotation>
+			<documentation>Convenience object representing a set of shapes lying completely within the specified surface. </documentation>
+		</annotation>
+		<complexContent>
+			<extension base="gml:AbstractGeometryType">
+				<sequence>
+					<element name="shape" type="gml:CompositeSurfacePropertyType"/>
+					<element name="containingSurface" type="gml:SurfacePropertyType"/>
+				</sequence>
+			</extension>
+		</complexContent>
+	</complexType>
+	<!-- ====================================================================== -->
+	<!-- ====================================================================== -->
+</schema>
