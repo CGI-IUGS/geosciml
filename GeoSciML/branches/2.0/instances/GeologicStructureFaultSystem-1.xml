@@ -202,31 +202,12 @@
 									</gsml:movementSense>
 									<!-- The magnitude value can be specified using the CGI_Numeric DataType, which can be either CGI_NumericValue with three measures to describe plus error, minus error and value, or CGI_NumericRange specified by an upper and lower CGI_NumericValue -->									
 									<gsml:magnitude>
-										<gsml:CGI:NumericValue>
-											<gsml:principalValue>
-												<!-- principalValue has a DataType Measure with subtype Length -->
-												<gml:Length>
-													<gml:value>50</gml:value>
-													<gml:uom>
-														<gml:UomLength>
-															<gml:measureType>length</gml:measureType>
-															<gml:uomName>kilometre</gml:uomName>
-															<gml:uomSymbol>km</gml:uomSymbol>
-														</gml:UomLength>
-													</gml:uom>
-												</gml:Length>
-											</gsml:principalValue>
+										<gsml:CGI_NumericValue>
+											<gsml:principalValue uom="km">50</gsml:principalValue>
 											<!-- plusDelta and minusDelta Measures (plus/minus errors) are mandatory but are unknown for this instance.  The cardinality in the schema needs to be changed to allow flexibility -->
 											<gsml:minusDelta></gsml:minusDelta>
 											<gsml:plusDelta></gsml:plusDelta>
-										</gsml:CGI:NumericValue>
-										<!-- An alternative way of representing the magnitude is:
-										<gsml:CGI_NumericValue>
-											<gsml:principalValue uom="kilometre">50</gsml:principalValue>
-											<gsml:plusDelta uom="length"></gsml:plusDelta>
-											<gsml:minusDelta uom="length"></gsml:minusDelta>
 										</gsml:CGI_NumericValue>
-										Are both appropriate? -->
 									</gsml:magnitude>
 								</gsml:DisplacementValue>
 							</gsml:displacement>
