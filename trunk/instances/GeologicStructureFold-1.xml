@@ -1,0 +1,174 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Example return to getFeature request from Geology data layer for a fold by BAS -->
+<gsml:Gsml xmlns:gml="http://www.opengis.net/gml" xmlns:wfs="http://www.opengis.net/wfs" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:gsml="http://www.cgi-iugs.org/xml/GeoSciML/2" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.cgi-iugs.org/xml/GeoSciML/2 ../schema/GeoSciML.xsd">
+	<!--  0..* gml:metadataProperty elements. Best Practice: use these to provide data set level metadata -->
+	<!-- one gml:description may be used to describe this collection -->
+	<!-- optional gml:boundedBy for collection -->
+	<!-- optional gml:location (deprecated in gml 3.1.1) for collection -->
+	<!-- wfs:featureCollection [gsml:gsml] includs 0..* gml:featureMember [gsml:member] elements. wfs also allows grouping of features in a gml:featureMembers element following any featureMember elements. This is designed to represent an array of features. Best Practice: include GeoSciML features as featureMember elements. --> 
+	<gsml:member>
+		<!-- wfs:featureCollection elements must be in gml:_Feature substitution group; gsml:gsml members must be gml:_Geometry substitution group (based on XMLspy 2005 schema view) -->
+		<gsml:GeologicFeature>
+			<!-- one gml:description is optional. Best Practice: any text description associated with the geologic structure (e.g. map legend description text) is included verbatim in this element-->
+			<!-- gml:name is 0 to many; Best Practice: use if source data has an identifier/primary key. Use "preferredName" for 'standard' name used by geologists. Names in different language or alternative names would be alternativeClassifier 'preferredName' elements.-->
+			<!-- It may be useful to specify that the codespace for Primary keys has some predetermined codespace name; in this case the xsi:type attribute on name could be used to specify the data type for the key (e.g. GUID, string.URI, string, integer, etc.). This might require extension of gml name to allow gsml: attributes on gml name.-->
+			<!-- gml:id Best Practise: don't use -->
+			<!-- gml:boundedBy could be included here -->
+			<!-- gml:location could be included here -->
+			<!--exactly one purpose is required -->
+			<gsml:purpose>instance</gsml:purpose>
+						<!-- occurrence is optional, 0 to many; specified by MappedFeature elements; this is a forward link from  a description to features (shapes in particular) where the description applies -->
+			<gsml:occurrence xlink:href="hrefToMappedFeature"/>
+			<!--one classifier is required; this is a link to a controlled concept that specifies the kind of thing that this feature instance describes. In this case the classifier would be a geologic unit, either a non-situated unit 'type' (e.g. Lithostratigraphic unit),  in the case of observation data, or to a specific geologic unit  (e.g. Martin Formation) in the case that the description is applied to an already defined unit.-->
+			<!-- Best Practice: Classifier ControlledConcepts should be defined in a separate vocabulary document that includes the prototype GeologicEntity instances. In this example the prototype for the  associated classifier would be a GeologicFeature.GeologicStructureDescription.DuctileShearStructure instance.  In the best practice case, classifer element would have xlink:href pointer to the ControlledConcept.  -->
+			<gsml:classifier>
+				<gsml:GeologicStructure>
+					<!-- classifier requires preferredName.  This is inappropriate for many GeologicStructure features, such as Folds, Contacts  -->
+					<gsml:preferredName>Bristol Hill Anticlinorium</gsml:preferredName>
+				</gsml:GeologicStructure>
+			</gsml:classifier>
+			<!-- alternativeClassifier is 0..* and could go here -->
+			<!-- Best Practice: Alternative Classifier used for alternative names -->
+			<!-- age is 1..* .  This is general age for the GeologicFeature that applies to all descriptions of the feature.  Genesis captures ages for individual descriptions -->			
+			<gsml:age>
+				<gsml:GeologicAge>
+					<gsml:value>
+						<!-- one age value is required, any CGI_Value; CGI_TermRange is included here as example -->
+						<gsml:CGI_TermRange>
+							<gsml:lower>
+								<gsml:CGI_TermValue>
+									<gsml:value codeSpace="http://www.iugs-cgi.org/geologicAgeVocabulary">Late Ordovician</gsml:value>
+								</gsml:CGI_TermValue>
+							</gsml:lower>
+							<gsml:upper>
+								<gsml:CGI_TermValue>
+									<gsml:value codeSpace="http://www.iugs-cgi.org/geologicAgeVocabulary">Silurian</gsml:value>
+								</gsml:CGI_TermValue>
+							</gsml:upper>
+						</gsml:CGI_TermRange>
+					</gsml:value>
+					<gsml:event>
+						<!-- one event is required, specified by CGI_TermValue -->
+						<gsml:CGI_TermValue>
+							<gsml:value codeSpace="http://www.iugs-cgi.org/GeologicEventVocabulary">folding</gsml:value>
+						</gsml:CGI_TermValue>
+					</gsml:event>
+				</gsml:GeologicAge>
+			</gsml:age>
+			<!-- physical property is 0 to many; values are specified by CGI_PhysicalDescriptionPropertyType, which includes a property element specifying the kind of property and a value element to specify  the property value; this is a soft-type approach, allows for any kind of property in a controlled  vocabulary of property types to be specified. -->
+			<gsml:physicalProperty/>
+			<!-- a gsml:metadata element is required - this has a variety of subelements, see metadata.xsd -->
+			<gsml:metadata gml:id="AMetadataID">
+				<gsml:GeologicFeatureMetadata>
+					<!-- 0 or 1 gsml:comment is allowed  -->
+					<gsml:comment>Some free text comment on the metadata</gsml:comment>
+					<!-- One hierarchyLevel is required to specify the class of information to which the referencing entity applies. The GeoSciML Code List is a subset of ISO 19115 scope codes -->
+					<gsml:hierarchyLevel>
+						<gsml:Metadata_ScopeCode>feature</gsml:Metadata_ScopeCode>
+					</gsml:hierarchyLevel>
+					<!-- One or more sourceReferences are required to Identify the source(s) of the object description: from literature, project, geoscientist, the content of which will carry more detailed metadata about the source collection -->
+					<!-- Have not provided instance example as unsure what content would look like. Presumably it would be like CI-Citation -->
+					<gsml:sourceReference>
+						<!-- The DataType "ReferenceType is currently unspecified in GeoSciML and does not appear to be defined in ISO 19115  -->
+						<gsml:ReferenceType/>
+					</gsml:sourceReference>
+					<!-- An alternative (or additional method) is via external link -->
+					<gsml:sourceReference xlink:href="citationToLiterature"/>
+					<!-- One or more observationMethod term(s) that specify the method by which the value was obtained (e.g. point count, brunton compass on site, air photo interpretation, field estimate...) -->
+					<gsml:observationMethod>
+						<gsml:CGI_Value>
+						 <gsml:value>field mapping</gsml:value>
+						</gsml:CGI_Value>
+					</gsml:observationMethod>
+					<!-- One thematicAccuracy term is required that specify the Confidence that the specified value is accurate. Examples: high, standard, low. See ISO 19115 DQ_ThematicAccuracy-->
+					<gsml:thematicAccuracy>
+						<gsml:CGI_Value>
+							<gsml:value>standard</gsml:value>
+						</gsml:CGI_Value>
+					</gsml:thematicAccuracy>
+				</gsml:GeologicFeatureMetadata>
+			</gsml:metadata>
+			<!-- description is 0 to many unless the GeologicFeature:purpose =  "definingNorm", in which case it is mandatory 1; properties are specified by GeologicStructureDescription. -->
+			<gsml:description>
+				<!-- GeologicStructureDescription is of type Fold -->
+				<gsml:Fold>
+					<!-- genesis is 1 to many which are ordered. It has property type GeologicEvent with attributes eventAge, eventEnvironment and eventProcess -->
+					<gsml:genesis>
+						<!-- This is the genesis for the Fold -->
+						<gsml:GeologicEvent>
+							<gsml:value>
+								<gsml:CGI_TermRange>
+									<gsml:lower>
+										<gsml:CGI_TermValue>
+											<gsml:value codeSpace="http://www.iugs-cgi.org/geologicAgeVocabulary">Late Ordovician</gsml:value>
+										</gsml:CGI_TermValue>
+									</gsml:lower>
+									<gsml:upper>
+										<gsml:CGI_TermValue>
+											<gsml:value codeSpace="http://www.iugs-cgi.org/geologicAgeVocabulary">Silurian</gsml:value>
+										</gsml:CGI_TermValue>
+									</gsml:upper>
+								</gsml:CGI_TermRange>
+							</gsml:value>
+							<gsml:eventEnvironment>
+								<gsml:CGI_TermValue>
+									<gsml:value codespace="http://www.iugs-cgi.org/GeologicEventEnvironmentVocabulary">upper crust</gsml:value>
+								</gsml:CGI_TermValue>
+							</gsml:eventEnvironment>	
+							<gsml:eventProcess>
+								 <gsml:CGI_TermValue>
+									 <gsml:value codespace="http://www.iugs-cgi.org/GeologicEventProcessVocabulary">folding</gsml:value>
+									</gsml:CGI_TermValue>
+							</gsml:eventProcess>		
+						</gsml:GeologicEvent>
+					</gsml:genesis>
+					<!-- amplitude is optional 0..1 -->					
+					<gsml:amplitude>
+						<gsml:CGI_NumericValue>
+							<gsml:principalValue uom="km">5</gsml:principalValue>
+							<!-- plusDelta and minusDelta Measures (plus/minus errors) are mandatory but are unknown for this instance.  The cardinality in the schema needs to be changed to allow flexibility -->
+							<gsml:minusDelta></gsml:minusDelta>
+							<gsml:plusDelta></gsml:plusDelta>
+						</gsml:CGI_NumericValue>
+					</gsml:amplitude>
+					<!-- 0 or many axialSurface is used to characterize the geometry of a fold. -->
+					<!-- As a geologic surface, it has geometric properties, including orientation, which may be specified by observations at one or more locations, or generalized using terminology (upright, inclined, reclined, recumbent, overturned). Dip and Dip Direction are one approach to specifying the value. -->
+					<gsml:axialSurface codespace="http://www.iugs-cgi.org/GeologicFoldAxialSurfaceVocabulary">upright</gsml:axialSurface>
+					<!-- 0 or 1 geneticModel specifies the genetic model for the fold is required, e.g. flexural slip, parallel -->
+					<gsml:geneticModel codespace="http://www.iugs-cgi.org/GeologicFoldGeneticModelVocabulary">flexural slip</gsml:geneticModel>
+					<!-- 0 or many hingLineCurvature specifies variation in orientation of fold hinge along trend of fold. Specify with terminology eg sheath, dome, basin, box, ptygmatic -->
+					<gsml:hingeLineCurvature codespace="http://www.iugs-cgi.org/GeologicFoldHingeLineCurvatureVocabulary">cylindrical fold</gsml:hingeLineCurvature>
+					<!-- 0 or many hinge plunge term (sub-vertical, steeply plunging, horizontal normal, plunging normal, horizontal inclined, plunging inclined). Also reclined and vertical for special cases in which hinge plunge is close to axial surface dip. -->
+					<gsml:hingePlunge codespace="http://www.iugs-cgi.org/GeologicFoldHingePlungeVocabulary">horizontal normal</gsml:hingePlunge>
+					<!-- 0 or 1 hingeShape foe rounded vs. angular hinge zones; has to do with proprotion of wavelength that is considered part of hinge -->
+					<gsml:hingeShape codespace="http://www.iugs-cgi.org/GeologicFoldHingeShapeVocabulary">angular</gsml:hingeShape>
+					<!-- 0 or 1 interLimbAngle specified using angular quantity, or with tightness term (gentle (120-180), open (70-120), close (30-70), tight (10-30), isoclinal (0-10)) -->
+					<gsml:interLimbAngle codespace="http://www.iugs-cgi.org/GeologicFoldInterLimbAngleVocabulary">tight</gsml:interLimbAngle>
+					<!-- 0 or 1 limbShape for straight vs curved limbs, eg kink, chevron, sinusoidal -->
+					<gsml:limbShape codespace="http://www.iugs-cgi.org/GeologicFoldInterLimbAngleVocabulary">chevron</gsml:limbShape>
+					<!-- 0 or 1 profileType to specify concave/convex geometry of fold relative to earth surface, and relationship to younging direction in folded strata if known. antiform, synform, neutral, anticline, syncline, monocline. -->
+					<gsml:profileType codespace="http://www.iugs-cgi.org/GeologicFoldProfileTypeVocabulary">anticline</gsml:profileType>
+					<!-- 0 or many span specifies the linear distance between inflection points in a single fold -->
+					<gsml:span>
+						<gsml:CGI:NumericRange>
+							<gsml:lower>
+								<gsml:principalValue uom="km">3</gsml:principalValue>
+								<!-- plusDelta and minusDelta Measures (plus/minus errors) are mandatory but are unknown for this instance.  The cardinality in the schema needs to be changed to allow flexibility -->
+								<gsml:minusDelta></gsml:minusDelta>
+								<gsml:plusDelta></gsml:plusDelta>
+							</gsml:lower>
+							<gsml:upper>
+								<gsml:principalValue uom="km">3.5</gsml:principalValue>
+								<!-- plusDelta and minusDelta Measures (plus/minus errors) are mandatory but are unknown for this instance.  The cardinality in the schema needs to be changed to allow flexibility -->
+								<gsml:minusDelta></gsml:minusDelta>
+								<gsml:plusDelta></gsml:plusDelta>
+							</gsml:upper>
+						</gsml:CGI:NumericRange>
+					</gsml:span>
+					<!-- 0 or many symmetry defines the concordance or discordance of bisecting surface and axial surface, or ratio of length of limbs. Folded surface may have asymmetry defined by limb length ratio if inflection points are defined. Defintion based on bisecting surface/axial surface angle depends on having multiple surfaces defined such that the axial surface may be identified. (symmetric, assymetric) -->
+					<gsml:symmetry codespace="http://www.iugs-cgi.org/GeologicFoldSymmetryVocabulary">symmetric</gsml:symmetry>
+				</gsml:Fold>
+			</gsml:description>
+		</gsml:GeologicFeature>
+	</gsml:member>
+</gsml:Gsml>
