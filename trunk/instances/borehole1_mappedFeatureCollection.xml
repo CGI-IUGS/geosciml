@@ -1,0 +1,46 @@
+<?xml version="1.0"?>
+<GSML><gml:description>Sketch of how to do a lithological log as a MappedFeature collection
+Compare with Borehole1_samplingCurveWithObservations.xml</gml:description>
+	<samplingFeatureItem>
+		<sa:SamplingCurve gml:id="b1">
+			...
+			<sa:shape>
+				<gml:LineString gml:id="b1_ls1" srsName="urn:ogc:def:crs:EPSG:6.8:4347"><!-- 3D CRS -->
+					<gml:pos>-30.7111 134.2059 321.</gml:pos>
+					<gml:pos>-30.7112 134.2058 315.</gml:pos>
+					<gml:pos>-30.7113 134.2057 303.</gml:pos>
+					<gml:pos>-30.7114 134.2056 296.</gml:pos>
+					<gml:pos>-30.7115 134.2055 272.</gml:pos>
+					<gml:pos>-30.7116 134.2054 271.</gml:pos>
+					<gml:pos>-30.7117 134.2053 270.</gml:pos>
+				</gml:LineString>
+			</sa:shape>
+		</sa:SamplingCurve>
+	</samplingFeatureItem>
+	<mappedItem>
+		<MappedFeature gml:id="interval1">
+			<samplingFrame xlink:href="#b1"/>
+			<shape>
+				<gml:LineString srsName="#b1_ls1" srsDimension="1">
+					<!-- positions given in 1D CRS defined by borehole shape -->
+					<gml:pos>0.0</gml:pos>
+					<gml:pos>5.6</gml:pos>
+				</gml:LineString>
+			</shape>
+			<specification xlink:href="http://www.ga.gov.au/stratlex/fg567"/>
+		</MappedFeature>
+	</mappedItem>
+	<mappedItem>
+		<MappedFeature>
+			<samplingFrame xlink:href="#b1"/>
+			<shape>
+				<gml:LineString srsName="#b1_ls1" srsDimension="1">
+					<!-- positions given in 1D CRS defined by borehole shape -->
+					<gml:pos>5.6</gml:pos>
+					<gml:pos>35.0</gml:pos>
+				</gml:LineString>
+			</shape>
+			<specification xlink:href="http://www.ga.gov.au/stratlex/de997"/>
+		</MappedFeature>
+	</mappedItem>
+</GSML>
