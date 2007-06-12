@@ -1,0 +1,450 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Example return to getFeature request from Geology data layer-->
+<!-- Original from draft example from Bruce Johnson, 05/04/06 -->
+<!-- SMR  I haven't figured out how to get wfs version (root element wfs, with gml:featuremembers) 
+  to validate; this version replaces wfs with gsml (from collection.xsd) as root element and gml:featuremember
+  with gsml:member so it can be validated against the GeoSciML schema (mostly updated to v. 1.1, but 
+  Simon Cox still needs to bless the 1.1 updates)... -->
+<gsml:Gsml 
+		xmlns:gml="http://www.opengis.net/gml" 
+		xmlns:wfs="http://www.opengis.net/wfs" 
+		xmlns:xlink="http://www.w3.org/1999/xlink" 
+		xmlns:Units_of_Measure="" 
+		xmlns:ISO19115v1="" 
+		xmlns:gsml="http://www.cgi-iugs.org/xml/GeoSciML/2" 
+		xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+		xsi:schemaLocation="http://www.cgi-iugs.org/xml/GeoSciML/2 ../schema/GeoSciML.xsd">
+	<!-- namespaces and schema added by SMR -->
+	<!--  0..* gml:metadataProperty elements. Best Practice: use these to provide data set level metadata -->
+	<!-- one gml:description may be used to describe this collection -->
+	<!-- 0..* gml Name elements to identify the collection, see discussion of gml:name below under LithostratigraphicUnit -->
+	<!-- optional gml:boundedBy for collection -->
+	<!-- optional gml:location (deprecated in gml 3.1.1) for collection -->
+	<!-- wfs:featureCollection [gsml:gsml] includs 0..* gml:featureMember [gsml:member] elements. wfs also allows grouping of features in a gml:featureMembers element following any featureMember elements. This is designed to represent an array of features. Best Practice: include GeoSciML features as featureMember elements. --> 
+	<ISO19115v1:MD_Metadata/>
+	<!-- dataset metadata, use ISO 19115 schema -->
+	
+	<gsml:member>
+		<!-- wfs:featureCollection elements must be in gml:_Feature substitution group; gsml:gsml members must be gml:_Geometry substitution group (based on XMLspy 2005 schema view) -->
+		<gsml:LithostratigraphicUnit>
+			<!-- NGMDB p3 use gsml:LithologicUnit if no thickness is reported -->
+			<!-- gml:metaDataProperty 0 to many-->
+			<!-- one gml:description is optional. Best Practice: any text description associated with the geologic unit (e.g. map legend description text) is included verbatim in this element-->
+			<gml:description>free text description of unit</gml:description>
+			<!-- gml:name is 0 to many; Best Practice: use for 'standard' name used by geologists, and if source data has an identifier/primary key, include that as another name element. Names in different language would be additional name element. These are differentiated using the codespace attribute. It may be useful to specify that the codespace for Primary keys has some predetermined codespace name; in this case the xsi:type attribute on name could be used to specify the data type for the key (e.g. GUID, string.URI, string, integer, etc.). This might require extension of gml name to allow gsml: attributes on gml name.-->
+			<gml:name codeSpace="SomeEnglishLanguageGUvocabulary">Display name from NGMDBLite table or from GeologicUnitDescription</gml:name>
+			<gml:name codeSpace="NGMDB_PrimaryKey">NGMDB SysGUID for GeologicUnitDescription e.g. EA2F6608-BBD5-4726-AFBE-1633D366E0E8</gml:name>
+			<!-- gml:boundedBy could be included here 
+					could populate with Envelop (bounding box lower left and upper right corners) for map extent
+					of map from which description was extracted-->
+			<!-- gml:location could be included here -->
+			<!--exactly one purpose is required -->
+			<!-- for P3, make all descriptions instance descriptions-->
+			<gsml:observationMethod>
+						<gsml:CGI_TermValue>
+							<gml:name codespace="NGMDB  SysGUID">SysGUID</gml:name>
+							<gsml:value codeSpace="NGMDB ObservationMethod">Summary of published description</gsml:value>
+						</gsml:CGI_TermValue>
+			</gsml:observationMethod>
+			<gsml:purpose>Instance</gsml:purpose>
+		
+			<!-- preferredAge is 1. The intent is that a description may include stuff like crystallization age, metamorphic age cooling age, uplift age....-->
+			<gsml:preferredAge>
+				<gsml:GeologicEvent>
+			<!-- genesisTerms from import tool go here -->
+					<gml:name codespace="NGMDB GeologicAge SysGUID">GeologicAge SysGUID</gml:name>
+					<gsml:name codeSpace="NGMDB DisplayName">put DisplayName here</gsml:name>
+					<gsml:eventAge>
+						<!-- any value may have a qualifier-->
+						<!-- one value is required, any CGI_Value; TermValue included here as example -->
+						<gsml:CGI_TermValue>
+							<gml:name codespace="NGMDB StratigraphicEra SysGUID">SysGUID</gml:name>
+							<gsml:value codeSpace="GSA Time Scale">stratigraphic era name, e.g. Jurassic</gsml:value>
+						</gsml:CGI_TermValue>
+						<!-- second example included here for term range (Cretaceous to Jurassic) -->
+						<!-- for age that is range of stratigraphic eras, use CGI_TermRange -->
+						<gsml:CGI_TermRange>
+							<!-- -->
+							<gsml:lower>
+								<gsml:CGI_TermValue>
+									<gsml:value codeSpace="GSA time scale">Cambrian</gsml:value>
+								</gsml:CGI_TermValue>
+							</gsml:lower>
+							<gsml:upper>
+								<gsml:CGI_TermValue>
+									<gsml:value codeSpace="GSATime scale">Silurian</gsml:value>
+								</gsml:CGI_TermValue>
+							</gsml:upper>
+						</gsml:CGI_TermRange>
+						
+					</gsml:eventAge>
+					
+					<!-- process is required -->
+					<gsml:eventProcess>
+							<gsml:CGI_TermValue>
+								<gml:name codespace="NGMDB SysGUID">SysGUID</gml:name>
+								<gsml:value codeSpace="process vocabulary URL">not specified</gsml:value>
+							</gsml:CGI_TermValue>
+					</gsml:eventProcess>
+
+				</gsml:GeologicEvent>
+			</gsml:preferredAge>
+			
+			<!--optional feature level ISO 19115 metadata here -->
+			<ISO19115v1:MD_metadata/>
+			
+			<!-- The geometry or form of a GeologicUnit.  Examples include: dike, cone, fan, sheet, etc. Morphology is independent of the substance (EarthMaterial) that composes the GeologicUnit.  0..* CGI_TermValue -->
+			<gsml:bodyMorphology/>
+			
+			<!--  the color of typical outcrops of a geologic unit.  0..* CGI_TermValue -->
+			<gsml:exposureColor/>
+			
+		<!-- rank is required for Lithostratigraphic unit, specified by a scoped name -->
+			<gsml:rank codeSpace="GeoUnitRankTerms">Not specified	</gsml:rank>
+			
+			<!-- Terms to categorize the compositional character of a com-pound material. Examples include silicate, carbonate, ferro-magnesian, oxide (for chemical categories); quartzose, feld-spathic, arkosic (sandstone petrographic composition categories) CGI_TermValue 0..1 -->
+			<gsml:compositionCategory/>
+			
+			<!-- Describes the nature of outcrops formed by a geologic unit.   Examples: bouldery, cliff-forming, ledge-forming, slope-forming, poorly exposed CGI_TermValue 0..* -->
+			<gsml:outcropCharacter/>
+
+<!-- start association links to other classes ******************************************************** -->
+			<!--one classifier is optional; this is a link to a controlled concept that specifies the kind of thing that this feature instance describes. In this case the classifier would be a geologic unit, either a non-situated unit 'type' (e.g. Lithostratigraphic unit),  in the case of observation data, or to a specific geologic unit  (e.g. Martin Formation) in the case that the description is applied to an already defined unit.-->
+			<!-- Best Practice: Classifier ControlledConcepts should be defined in a separate vocabulary document that includes the prototype GeologicEntity instances. In this example the prototype for the  associated classifier would be a GeologicFeature.GeologicUnit.LithostratigraphicUnit instance.  In the best practice case, classifer element wouldhave xlink:href pointer to the ControlledConcept. ControlledConcept element is included in line here for demonstration -->
+			<!-- for NGMDB p3, since only one classifier is allowed on each GeologicUnit, will have to generate empty classifier for cases for which have >1 associated GeoLex unit, until we think of abetter way. Logical method would be to create an artificial aggregation unit in a GeolgoicVocabulary element that is part of the gsml collection, using VocabRelation 'partOf' to aggregate units that are included, and then using the local 'aggregation unit' as the classifier here. That's a fair amount of work, probably don't want to do now. See LithologyLexicon.xml instance document for exampl of how these sort of vocab relationship would be constructed-->
+			<gsml:classifier>
+				<gsml:ControlledConcept gml:id="internal identifier, just has to be unique, don't use anything that's required to have external significance">
+					<gml:name codeSpace="GeoLEX GenRemID">put GeoLex integer ID here e.g. 4997</gml:name>					<gsml:preferredName/>
+					<gml:name codeSpace="GeoLEX SysGUID">put GeoLex SysGUID here</gml:name>					<gsml:preferredName/>
+					<gsml:preferredName>preferred formation name here, e.g. Dakota Sandstone</gsml:preferredName>
+					<gsml:prototype xlink:href="null"/>
+					<gsml:vocabulary xlink:href="http://URL for GeoLex e.g. http://ngmdb.usgs.gov/Geolex/"/>
+					<gsml:metadata/>
+				</gsml:ControlledConcept>
+			</gsml:classifier>
+			
+			<!-- composition is 0..*, specified by a CompositionPart element; this is used to represent composition of geologic unit in terms of EarthMaterial.CompoundMaterial (rock or unconsolidated material) -->
+			<!-- Best Practice: The material element of a CompositionPart should be included in line if it is specified by a compoundMaterial instance (material.unionSemantics = materialInstance); these represent descriptions of gsml:valuea lithologic constituent specific to the geologic unit.   Material elements for composition parts that have a material specified by a lithology term from a vocabulary (material.unionSemantics = materialTerm) should be by reference to a controlled vocabulary term-->
+			<gsml:composition>
+				<gsml:CompositionPart>
+				<!-- use 'constituent role not specified' as default-->
+					<gsml:role codeSpace="ACodeSpace">Constituent role not specified</gsml:role>
+					<!-- lithology from controlled vocabulary is required 1..* -->
+					<gsml:lithology>
+						<gsml:ControlledConcept gml:id="internal identifier, just has to be unique, don't use anything that's required to have external significance">
+								<gml:name codeSpace="StandardLithology SysGUID">put GeoLex SysGUID here</gml:name>								<gsml:preferredName>Granite</gsml:preferredName>
+								<gsml:prototype xlink:href="null"/>
+								<gsml:vocabulary xlink:href="http://URL for lexicon e.g. http://ngmdb.usgs.gov/StandardLithology/"/>
+								<gsml:metadata/>
+						</gsml:ControlledConcept>
+					</gsml:lithology>
+					<!-- optional CompoundMaterial element here for a specific description of the lithologic component. If a specific material description include CompoundMaterial element in line; if material is specified by controlled concept, specify by duplicating lithology concept in line-->
+				<gsml:proportion>
+						<!-- proportion is specified by an element that substitutes for CGI_TermValue
+								 NGMDB P3 abundance terms go here, e.g. dominant, subordinate, present....-->
+						<gsml:CGI_TermValue>
+							<gml:Name codeSpace="NGMDB ScienceLanguage sysGUID">put SysGUIDhere</gml:Name>
+							<gsml:value codeSpace="NGMDB ScienceLanguage DisplayName">put DisplayName here, e.g Dominant</gsml:value>
+						</gsml:CGI_TermValue>
+					</gsml:proportion>
+				</gsml:CompositionPart>
+			</gsml:composition>
+			<gsml:composition>
+				<gsml:CompositionPart>
+					<gsml:role codeSpace=""/>
+					<!-- lithology assignment could be by href to other controlled concept instance within the document, using gml:id-->
+					<gsml:lithology xlink:href="url for standard lithology term" />
+					<gsml:proportion>
+						<gsml:CGI_TermValue>
+							<gml:Name codeSpace="NGMDB ScienceLanguage sysGUID">put SysGUIDhere</gml:Name>
+							<gsml:value codeSpace="NGMDB ScienceLanguage DisplayName">put DisplayName here, e.g Present</gsml:value>
+						</gsml:CGI_TermValue>
+					</gsml:proportion>
+				</gsml:CompositionPart>
+			</gsml:composition>
+
+			<!-- geologic unit parts here 
+			<part>
+				<GeologicUnitPart>
+					<role>
+					</role>
+					<proportion>
+					</proportion>
+				</GeologicUnitPart>
+			</part>
+			end geologicUnit part -->
+			
+			<!-- metamorphicCharacter here 
+			<metamorphicCharacter>
+				<metamorphicDescription>
+					<metamorphicFacies/>	 optional CGI_TermValue 
+					<metamorphicGrade/>	 optional CGI_TermValue 
+					<peakPressureValue/>	 optional CGI_NumericValue 
+					<peakTemperatureValue/>	 optional CGI_NumericValue 
+					<protolithLithology/>	 optional EarthMaterial 0..* 
+				</metamorphicDescription>
+			</metamorphicCharacter>
+			end metamorphicCharacter -->
+			
+			<!-- weatheringCharacter is link to WeatheringDesription element, could be in line or by ref 
+			<gsml:weatheringCharacter>
+				<gsml:WeatheringDescription>
+					<gsml:weatheringDegree/>
+					
+						<gsml:CGI_TermValue>
+							<gml:Name codeSpace="NGMDB ScienceLanguage sysGUID">put SysGUIDhere</gml:Name>
+							<gsml:value codeSpace="NGMDB ScienceLanguage DisplayName">put DisplayName here</gsml:value>
+						</gsml:CGI_TermValue>
+						</gsml:weatheringDegree>
+					<gsml:weatheringProduct/>
+					<gsml:weatheringProcess/>
+					<gsml:environment/>
+				</gsml:WeatheringDescription>
+			</gsml:weatheringCharacter>
+			end weathering character -->
+			
+			<!-- physical description here; all attributes optional. At least one must have a value.
+			<physicalProperty>
+				<PhysicalDescription>
+					<density/>
+					<magneticSusceptibility/>
+					<porosity/>
+					<permeability/>
+				</PhysicalDescription>
+			</physicalProperty>
+			 end physical description -->
+			
+			<!-- Term(s) specifying patterns of bedding thickness or relationships between bedding packages, e.g. thinning upward, thickening upward CGI_TermValue 0..* -->
+			<gsml:beddingPattern/>
+			
+			<!-- Term(s) specifying the style of bedding in a stratified geologic unit, e.g. lenticular, irregular, planar, vague, massive CGI_TermValue 0..* -->
+			<gsml:beddingStyle/>
+			
+			<!-- Term(s) or numeric values characterizing the thickness of bedding in the unit.  CGI_Value 0..* -->
+			<gsml:beddingThickness/>
+			
+			<!-- unitThickness is 0..*, specified by CGI_NumericValue  or CGI_NumericValueRange-->
+			<gsml:unitThickness>
+					<gsml:CGI_NumericRange>
+							<gml:name codespace="NGMDB MeasuredQuantity DisplayName">Display name for thickness, e.g. 100 to 200 m</gml:name>
+							<gml:name codespace="NGMDB MeasuredQuantity SysGUID">SysGUID here</gml:name>
+							<gsml:lower>
+								<gsml:CGI_NumericValue>
+									<gsml:principalValue uom="meter">NGMDB Lite MinThicknessOrDepth, e.g. 100</gsml:principalValue>
+									<!-- plustDelta and minusDelta are compulsory but can't take null values as they are based on double. We don't have anything to put in these fields for our data -->
+									<gsml:plusDelta uom="">0</gsml:plusDelta>
+									<gsml:minusDelta uom="">0</gsml:minusDelta>
+								</gsml:CGI_NumericValue>
+							</gsml:lower>
+							<gsml:upper>
+								<gsml:CGI_NumericValue>
+									<gsml:principalValue uom="meter">NGMDB Lite MaxThicknessOrDepth, e.g. 200</gsml:principalValue>
+									<gsml:plusDelta uom="">0</gsml:plusDelta>
+									<gsml:minusDelta uom="">0</gsml:minusDelta>
+								</gsml:CGI_NumericValue>
+							</gsml:upper>
+						</gsml:CGI_NumericRange>
+			</gsml:unitThickness>
+			
+		</gsml:LithostratigraphicUnit>
+	</gsml:member>
+	
+	<gsml:member>
+		<!-- 0..* -->
+		<gsml:LithologicUnit>
+			<!-- any gml:StandardObjectProperties could be included here, 
+          e.g. gml:metaDataProperty, gml:description, gml:name... -->
+			<!-- gml:boundedBy could be included here -->
+			<!--exactly one purpose is required -->
+			
+			<!--  this is the same as lithostratigraphic unit, but doesn't have the thickness and bedding properties.-->
+			<gsml:observationMethod>
+				<gsml:CGI_TermValue>
+					<gml:name codespace="NGMDB  SysGUID">SysGUID</gml:name>
+					<gsml:value codeSpace="NGMDB ObservationMethod">Summary of published description</gsml:value>
+				</gsml:CGI_TermValue>
+			</gsml:observationMethod>
+			<gsml:purpose>instance</gsml:purpose>
+			
+			
+			
+			<!-- start association links for GeologicFeature *********************************************************** -->
+			<!-- age 1..* -->
+			<gsml:preferredAge>
+				<GeologicEvent xlink:href="LinktoGeologicEvent"/>
+			</gsml:preferredAge>
+			<!--grossGenesisTerm 0..* -->
+			<gsml:geologicHistory>
+				<GeologicEvent xlink:href="LinktoGeologicEvent1"/>
+				<GeologicEvent xlink:href="LinktoGeologicEvent2"/>
+				<GeologicEvent xlink:href="LinktoGeologicEvent3"/>
+				<GeologicEvent xlink:href="LinktoGeologicEvent4"/>
+			</gsml:geologicHistory>
+
+			<!-- occurrence 0..* -->
+			<gsml:occurrence xlink:href="LinktoMappedFeature"/>
+			
+			<ISO19115v1:MD_metadata/>
+			
+			
+			<!-- start attributes of GeologicUnit ******************************************************************************* -->
+			<!--bodyMorphology CGI_TermValue 0..* -->
+			<gsml:bodyMorphology/>
+			
+			<!--exposureColor CGI_TermValue 0..* -->
+			<gsml:exposureColor/>
+			
+			<!-- rank- optional for lithologic unit -->
+			<gsml:rank/>
+			
+			<!--CompositonCategory CGI_TermValue 0..1 -->
+			<gsml:compositionCategory/>
+			
+			<!-- outcropCharacter CGI_TermValue 0..* -->
+			<gsml:outcropCharacter/>
+			
+			<!-- start Geologic Unit association links ************************************************************** -->
+
+			<gsml:classifier xlink:href="LinkToGeolgoicUnitLexiconTerm"/>
+			
+			<!--composition 0..* -->
+			<gsml:composition>
+				<gsml:CompositionPart>
+					<gsml:role codeSpace=""/>
+					<gsml:lithology xlink:href="LinkToLithologyControlledConcept" />
+					<gsml:material xlink:href="LinkToCompoundMaterialInstance"/>
+					<gsml:proportion>
+						<CGI_Value/>
+					</gsml:proportion>
+				</gsml:CompositionPart>
+			</gsml:composition>
+			<gsml:composition>
+				<gsml:CompositionPart>
+					<gsml:role codeSpace=""/>
+					<gsml:lithology xlink:href="LinkToLithologyControlledConcept" />
+					<gsml:proportion>
+						<CGI_Value/>
+					</gsml:proportion>
+				</gsml:CompositionPart>
+			</gsml:composition>
+
+			<!-- partOf 0..* -->
+			<gsml:partOf>
+				<gsml:GeologicUnitPart>
+					<!--Best practice: unit is by reference only -->
+					<gsml:unit xlink:href="SomeGeologicUnit"/>
+					<gsml:role codeSpace=""/>
+					<gsml:proportion/>
+				</gsml:GeologicUnitPart>
+			</gsml:partOf>
+
+			<!-- metamorphicCharacter is optional --> 
+			<gsml:metamorphicCharacter>
+				<gsml:metamorphicDescription> 
+					<!-- all properties are optional. At least one must have a value -->
+					<gsml:metamorphicFacies>
+						<gsml:CGI_TermValue>
+							<gml:Name codeSpace="NGMDB ScienceLanguage sysGUID">put SysGUIDhere</gml:Name>
+							<gsml:value codeSpace="NGMDB ScienceLanguage DisplayName">put DisplayName here</gsml:value>
+						</gsml:CGI_TermValue>
+					</gsml:metamorphicFacies> 
+					
+					<gsml:metamorphicGrade>
+						<gsml:CGI_TermValue>
+							<gml:Name codeSpace="NGMDB ScienceLanguage sysGUID">put SysGUIDhere</gml:Name>
+							<gsml:value codeSpace="NGMDB ScienceLanguage DisplayName">put DisplayName here</gsml:value>
+						</gsml:CGI_TermValue>
+					</gsml:metamorphicGrade> 
+					
+					<gsml:peakPressureValue>
+							<gsml:CGI_NumericValue>
+								<gsml:principalValue>
+									<Units_of_Measure:Measure>
+										<Units_of_Measure:value>
+											<Units_of_Measure:value>600</Units_of_Measure:value>
+											<Units_of_Measure:uom>
+												<!-- ISO 19103 does not include units for pressure, not sure how to deal with this, use ISO 19103 abstract UnitOfMeasure -->
+													<Units_of_Measure:UnitOfMeasure xlink:href="url for kilopascal definition"/>
+											</Units_of_Measure:uom> 
+										</Units_of_Measure:value>
+									</Units_of_Measure:Measure>
+								</gsml:principalValue>
+								<!-- optional plusDelta and  minusDelta values may be included here as MeasureElements -->
+							</gsml:CGI_NumericValue>
+					</gsml:peakPressureValue> 
+					
+					<gsml:peakTemperatureValue>
+							<CGI_NumericValue>
+								<principalValue>
+									<Units_of_Measure:Measure>
+										<Units_of_Measure:value>
+											<Units_of_Measure:value>1000</Units_of_Measure:value>
+											<Units_of_Measure:uom>
+												<!-- ISO 19103 does not include units for temperature, not sure how to deal with this, use ISO 19103 abstract UnitOfMeasure -->
+													<Units_of_Measure:UnitOfMeasure xlink:href="url for degrees centigrade definition"/>
+											</Units_of_Measure:uom> 
+										</Units_of_Measure:value>
+									</Units_of_Measure:Measure>
+								</principalValue>
+								<!-- optional plusDelta and  minusDelta values may be included here as MeasureElements -->
+							</CGI_NumericValue>
+					</gsml:peakTemperatureValue>
+					
+					<!-- optional EarthMaterial as protolith 0..* -->
+					<gsml:protolithLithology>
+						<gsml:Rock xlink:href="link to a CompoundMaterial.Rock element instance"/>
+					</gsml:protolithLithology>	 
+				</gsml:metamorphicDescription>
+			</gsml:metamorphicCharacter>
+			<!-- end metamorphicCharacter -->
+			
+			<!-- weatheringCharacter is link to WeatheringDesription element, could be in line or by ref -->
+			<gsml:weatheringCharacter>
+				<gsml:WeatheringDescription>
+				
+					<gsml:weatheringDegree>
+						<gsml:CGI_TermValue>
+							<gml:Name codeSpace="NGMDB ScienceLanguage sysGUID">put SysGUIDhere</gml:Name>
+							<gsml:value codeSpace="NGMDB ScienceLanguage DisplayName">put DisplayName here</gsml:value>
+						</gsml:CGI_TermValue>
+					</gsml:weatheringDegree>
+					
+					<gsml:weatheringProduct>
+						<gsml:CGI_TermValue>
+							<gml:Name codeSpace="NGMDB ScienceLanguage sysGUID">put SysGUIDhere</gml:Name>
+							<gsml:value codeSpace="NGMDB ScienceLanguage DisplayName">put DisplayName here</gsml:value>
+						</gsml:CGI_TermValue>
+					</gsml:weatheringProduct>
+					
+					<gsml:weatheringProcess>
+						<gsml:CGI_TermValue>
+							<gml:Name codeSpace="NGMDB ScienceLanguage sysGUID">put SysGUIDhere</gml:Name>
+							<gsml:value codeSpace="NGMDB ScienceLanguage DisplayName">put DisplayName here</gsml:value>
+						</gsml:CGI_TermValue>
+					</gsml:weatheringProcess>
+					
+					<gsml:environment>
+						<gsml:CGI_TermValue>
+							<gml:Name codeSpace="NGMDB ScienceLanguage sysGUID">put SysGUIDhere</gml:Name>
+							<gsml:value codeSpace="NGMDB ScienceLanguage DisplayName">put DisplayName here</gsml:value>
+						</gsml:CGI_TermValue>
+					</gsml:environment>
+				</gsml:WeatheringDescription>
+			</gsml:weatheringCharacter>
+			<!-- end weathering character -->
+			
+			<!-- physical description here; all attributes optional. At least one must have a value. -->
+			<gsml:physicalProperty>
+				<gsml:PhysicalDescription>
+					<gsml:density/>
+					<gsml:magneticSusceptibility/>
+					<gsml:porosity/>
+					<gsml:permeability/>
+				</gsml:PhysicalDescription>
+			</gsml:physicalProperty>
+			 <!-- end physical description -->
+			
+
+		</gsml:LithologicUnit>
+	</gsml:member>
+</gsml:Gsml>
