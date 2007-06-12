@@ -5,7 +5,7 @@
   to validate; this version replaces wfs with gsml (from collection.xsd) as root element and gml:featuremember
   with gsml:member so it can be validated against the GeoSciML schema (mostly updated to v. 1.1, but 
   Simon Cox still needs to bless the 1.1 updates)... -->
-<gsml:Gsml 
+<wfs:FeatureCollection 
 		xmlns:gml="http://www.opengis.net/gml" 
 		xmlns:wfs="http://www.opengis.net/wfs" 
 		xmlns:xlink="http://www.w3.org/1999/xlink" 
@@ -24,7 +24,7 @@
 	<ISO19115v1:MD_Metadata/>
 	<!-- dataset metadata, use ISO 19115 schema -->
 	
-	<gsml:member>
+	<gml:featureMember>
 		<!-- wfs:featureCollection elements must be in gml:_Feature substitution group; gsml:gsml members must be gml:_Geometry substitution group (based on XMLspy 2005 schema view) -->
 		<gsml:LithostratigraphicUnit>
 			<!-- NGMDB p3 use gsml:LithologicUnit if no thickness is reported -->
@@ -247,9 +247,9 @@
 			</gsml:unitThickness>
 			
 		</gsml:LithostratigraphicUnit>
-	</gsml:member>
+	</gml:featureMember>
 	
-	<gsml:member>
+	<gml:featureMember>
 		<!-- 0..* -->
 		<gsml:LithologicUnit>
 			<!-- any gml:StandardObjectProperties could be included here, 
@@ -446,5 +446,5 @@
 			
 
 		</gsml:LithologicUnit>
-	</gsml:member>
-</gsml:Gsml>
+	</gml:featureMember>
+</wfs:FeatureCollection>
