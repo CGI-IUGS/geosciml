@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!-- edited with XMLSpy v2007 sp2 (http://www.altova.com) by Eric Boisvert (Ressources naturelles Canada) -->
+<!-- edited with XMLSpy v2005 rel. 3 U (http://www.altova.com) by Stephen M Richard (Arizona Geological Survey) -->
 <xs:schema xmlns:gsml="http://www.cgi-iugs.org/xml/GeoSciML/2" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:gml="http://www.opengis.net/gml" xmlns:om="http://www.opengis.net/om" targetNamespace="http://www.cgi-iugs.org/xml/GeoSciML/2" elementFormDefault="qualified" attributeFormDefault="unqualified">
 	<xs:annotation>
 		<xs:documentation>Encoded by Eric Boisvert (May 2007) Geological Survey of Canada</xs:documentation>
@@ -44,7 +44,7 @@
 					<xs:element name="purpose" type="gsml:DescriptionPurpose" default="instance"/>
 					<xs:element name="occurence" type="gsml:MappedFeaturePropertyType" minOccurs="0" maxOccurs="unbounded"/>
 					<xs:element name="metadata" type="gsml:MetadataPropertyType" minOccurs="0"/>
-					<xs:element name="preferedAge" type="gsml:GeologicEventPropertyType"/>
+					<xs:element name="preferredAge" type="gsml:GeologicEventPropertyType"/>
 					<xs:element name="geologicHistory" type="gsml:GeologicEventPropertyType" minOccurs="0" maxOccurs="unbounded"/>
 				</xs:sequence>
 			</xs:extension>
@@ -112,8 +112,8 @@
 			<xs:extension base="gml:AbstractFeatureType">
 				<xs:sequence>
 					<xs:element name="eventAge" type="gsml:CGI_ValuePropertyType"/>
-					<xs:element name="eventProcess" type="gsml:CGI_TermValuePropertyType"/>
-					<xs:element name="eventEnvironment" type="gsml:CGI_TermValuePropertyType"/>
+					<xs:element name="eventProcess" type="gsml:CGI_TermValuePropertyType" minOccurs="0" maxOccurs="unbounded"/>
+					<xs:element name="eventEnvironment" type="gsml:CGI_TermValuePropertyType" minOccurs="0" maxOccurs="unbounded"/>
 					<xs:element name="metadata" type="gsml:MetadataPropertyType" minOccurs="0"/>
 				</xs:sequence>
 			</xs:extension>
