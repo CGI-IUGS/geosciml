@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Layering xmlns="http://www.cgi-iugs.org/xml/GeoSciML/2"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+    xmlns:xlink="http://www.w3.org/1999/xlink"
+    xmlns:gml="http://www.opengis.net/gml"
+    xsi:schemaLocation="http://www.cgi-iugs.org/xml/GeoSciML/2 http://www.cgi-iugs.org/xml/GeoSciML/2/geologicStructure.xsd">
+    <gml:description>bedding plane</gml:description>
+    <gml:name codeSpace="http://www.ga.gov.au">Site 95846001 Structure #1</gml:name>
+    <observationMethod>
+        <CGI_TermValue>
+            <value codeSpace="http://www.ga.gov.au/GeologicalVocabs">field mapping</value>
+        </CGI_TermValue>
+    </observationMethod>
+    <purpose>instance</purpose>
+    <preferredAge>
+        <GeologicEvent>
+            <eventAge>
+                <CGI_Value xsi:type="CGI_TermValueType">
+                    <value codeSpace="http://www.ga.gov.au/ICS_timescale">Silurian</value>
+                </CGI_Value>
+            </eventAge>
+            <eventProcess>
+                <CGI_TermValue>
+                    <value codeSpace="http://www.ga.gov.au/GeologicalVocabs">deposition</value>
+                </CGI_TermValue>
+            </eventProcess>
+        </GeologicEvent>
+    </preferredAge>
+    <foliationType>
+        <ControlledConcept>
+            <preferredName>bedding plane</preferredName>
+            <vocabulary xlink:type="simple" xlink:href="http://www.ga.gov.au/GA_structures_vocabulary"/>
+        </ControlledConcept>
+    </foliationType>
+    <orientation>
+        <CGI_PlanarOrientation>
+            <determinationMethod>
+                <CGI_TermValue>
+                    <value codeSpace="http://www.ga.gov.au/GeologicalVocabs">compass and clinometer</value>
+                </CGI_TermValue>
+            </determinationMethod>
+            <azimuth>
+                <CGI_Value xsi:type="CGI_NumericValueType">
+                    <principalValue uom="degrees">270</principalValue>
+                </CGI_Value>
+            </azimuth>
+            <dip>  
+<!-- 
+                    At the time of writing there are two problems with the GeologicStructure schema here.
+                    [1] The 'dip' element needs to be updated to be of type gsml:CGI_ValuePropertyType, (e.g. same as 'azimuth').
+                    [2] The 'polarity' element needs to be added after the 'dip' element (ref latest UML model). 
+--> 
+                <CGI_Value xsi:type="CGI_NumericValueType">
+                    <principalValue uom="degrees">40</principalValue>
+                </CGI_Value>
+            </dip>
+            <convention>dip dip direction</convention>
+        </CGI_PlanarOrientation>
+    </orientation>
+</Layering>
