@@ -31,8 +31,6 @@
 		<xs:complexContent>
 			<xs:extension base="gsml:GeologicEventType">
 				<xs:sequence>
-					<xs:element name="movementSense" type="gsml:CGI_TermValuePropertyType" minOccurs="0"/>
-					<xs:element name="movementType" type="gsml:CGI_TermValuePropertyType" minOccurs="0"/>
 					<xs:element name="incrementalDisplacement" type="gsml:DisplacementValuePropertyType" minOccurs="0"/>
 				</xs:sequence>
 			</xs:extension>
@@ -52,6 +50,7 @@
 		<xs:sequence>
 			<xs:element name="hangingWallDirection" type="gsml:CGI_LinearOrientationPropertyType" minOccurs="0"/>
 			<xs:element name="movementSense" type="gsml:CGI_TermValuePropertyType" minOccurs="0"/>
+			<xs:element name="movementType" type="gsml:CGI_TermValuePropertyType" minOccurs="0"/>
 		</xs:sequence>
 	</xs:complexType>
 	<!-- ..................... -->
@@ -158,9 +157,7 @@
 		<xs:complexContent>
 			<xs:extension base="gsml:GeologicStructureType">
 				<xs:sequence>
-					<xs:element name="netMovementType" type="gsml:CGI_TermValuePropertyType" minOccurs="0"/>
-					<xs:element name="netMovementSense" type="gsml:CGI_TermValuePropertyType" minOccurs="0"/>
-					<xs:element name="totalDisplacement" type="gsml:DisplacementValuePropertyType" minOccurs="0"/>
+					<xs:element name="totalDisplacement" type="gsml:DisplacementValuePropertyType" minOccurs="0" maxOccurs="unbounded"/>
 					<xs:element name="physicalProperty" type="gsml:PhysicalDescriptionPropertyType" minOccurs="0" maxOccurs="unbounded"/>
 				</xs:sequence>
 			</xs:extension>
@@ -280,11 +277,11 @@
 			<xs:extension base="gsml:GeologicStructureType">
 				<xs:sequence>
 					<xs:element name="profileType" type="gsml:CGI_TermValuePropertyType" minOccurs="0"/>
-					<xs:element name="axialSurfaceOrientation" type="gsml:CGI_PlanarOrientationPropertyType" minOccurs="0" maxOccurs="unbounded"/>
-					<xs:element name="hingeLineOrientation" type="gsml:CGI_LinearOrientationPropertyType" minOccurs="0" maxOccurs="unbounded"/>
+					<xs:element name="axialSurfaceOrientation" type="gsml:CGI_PlanarOrientationPropertyType" minOccurs="0"/>
+					<xs:element name="hingeLineOrientation" type="gsml:CGI_LinearOrientationPropertyType" minOccurs="0"/>
 					<xs:element name="geneticModel" type="gsml:CGI_TermValuePropertyType" minOccurs="0"/>
 					<xs:element name="amplitude" type="gsml:CGI_NumericPropertyType" minOccurs="0"/>
-					<xs:element name="hingeLineCurvature" type="gsml:CGI_TermValuePropertyType" minOccurs="0" maxOccurs="unbounded"/>
+					<xs:element name="hingeLineCurvature" type="gsml:CGI_TermValuePropertyType" minOccurs="0"/>
 					<xs:element name="hingeShape" type="gsml:CGI_TermValuePropertyType" minOccurs="0"/>
 					<xs:element name="hingeLimbAngle" type="gsml:CGI_TermPropertyType" minOccurs="0"/>
 					<xs:element name="limbShape" type="gsml:CGI_TermValuePropertyType" minOccurs="0"/>
@@ -356,7 +353,7 @@
 			<xs:extension base="gsml:GeologicStructureType">
 				<xs:sequence>
 					<xs:element name="lineationType" type="gsml:ControlledConceptPropertyType"/>
-					<xs:element name="definingElement" type="gsml:CGI_TermPropertyType" minOccurs="0"/>
+					<xs:element name="definingElement" type="gsml:CGI_TermPropertyType" minOccurs="0" maxOccurs="unbounded"/>
 					<xs:element name="orientation" type="gsml:CGI_LinearOrientationPropertyType" minOccurs="0" maxOccurs="unbounded"/>
 					<xs:element name="mineralElement" type="gsml:MineralPropertyType" minOccurs="0" maxOccurs="unbounded"/>
 					<xs:element name="intensity" type="gsml:CGI_TermPropertyType" minOccurs="0"/>

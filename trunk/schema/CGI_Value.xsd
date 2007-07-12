@@ -35,7 +35,7 @@
 		<attribute ref="gsml:attributeProperty" use="optional"/>
 	</attributeGroup>
 	<!--=======================-->
-	<simpleType name="ValueQualifierCode">
+	<simpleType name="ValueQualifierCodeType">
 		<restriction base="string">
 			<enumeration value="never"/>
 			<enumeration value="rare"/>
@@ -48,22 +48,18 @@
 			<enumeration value="approximate"/>
 			<enumeration value="nil:inapplicable"/>
 			<enumeration value="nil:missing"/>
-			<enumeration value="nil:rumsfeld">
-				<annotation>
-					<documentation>Reports that say that something hasn't happened are always interesting to me, 
-			because as we know, there are known knowns; there are things we know we know. 
-			We also know there are known unknowns; that is to say we know there are some things we do not know. 
-			But there are also unknown unknowns - the ones we don't know we don't know.</documentation>
-				</annotation>
-			</enumeration>
 			<enumeration value="nil:unknown"/>
 			<enumeration value="nil:withheld"/>
+			<enumeration value="arithmetic mean"/>
+			<enumeration value="median"/>
+			<enumeration value="mode"/>
+			<enumeration value="geometric mean"/>
 		</restriction>
 	</simpleType>
 	<!--=======================-->
 	<complexType name="CGI_ValueType" abstract="true">
 		<sequence>
-			<element name="qualifier" type="gsml:ValueQualifierCode" minOccurs="0"/>
+			<element name="qualifier" type="gsml:ValueQualifierCodeType" default="equalTo" minOccurs="0"/>
 		</sequence>
 	</complexType>
 	<!-- ..................... -->
@@ -245,10 +241,28 @@
 		<attribute ref="gsml:attributeProperty" use="optional"/>
 	</complexType>
 	<!--=======================-->
-	<simpleType name="ConventionCode">
+	<simpleType name="ConventionCodeType">
 		<restriction base="string">
 			<enumeration value="dip dip direction"/>
 			<enumeration value="strike dip right hand rule"/>
+		</restriction>
+	</simpleType>
+	<!--=======================-->
+	<simpleType name="PlanarPolarityCodeType">
+		<restriction base="string">
+			<enumeration value="upright"/>
+			<enumeration value="overturned"/>
+			<enumeration value="vertical"/>
+			<enumeration value="not available"/>
+			<enumeration value="unknown"/>
+		</restriction>
+	</simpleType>
+	<!--=======================-->
+	<simpleType name="LinearDirectedCodeType">
+		<restriction base="string">
+			<enumeration value="directed"/>
+			<enumeration value="directed down"/>
+			<enumeration value="directed up"/>
 		</restriction>
 	</simpleType>
 	<!--=======================-->
@@ -273,8 +287,9 @@
 			<extension base="gsml:CGI_GeometricDescriptionValueType">
 				<sequence>
 					<element name="azimuth" type="gsml:CGI_ValuePropertyType" minOccurs="0"/>
+					<element name="convention" type="gsml:ConventionCodeType"/>
 					<element name="dip" type="gsml:CGI_ValueType" minOccurs="0"/>
-					<element name="convention" type="gsml:ConventionCode"/>
+					<element name="polarity" type="gsml:PlanarPolarityCodeType"/>
 				</sequence>
 			</extension>
 		</complexContent>
@@ -293,17 +308,9 @@
 		<complexContent>
 			<extension base="gsml:CGI_GeometricDescriptionValueType">
 				<sequence>
-					<element name="trend" type="gsml:CGI_ValuePropertyType" minOccurs="0"/>
+					<element name="directed" type="gsml:LinearDirectedCodeType" minOccurs="0"/>
 					<element name="plunge" type="gsml:CGI_ValuePropertyType" minOccurs="0"/>
-					<element name="directed" minOccurs="0">
-						<complexType>
-							<simpleContent>
-								<extension base="boolean">
-									<attribute ref="gsml:attributeProperty" use="optional"/>
-								</extension>
-							</simpleContent>
-						</complexType>
-					</element>
+					<element name="trend" type="gsml:CGI_ValuePropertyType" minOccurs="0"/>
 				</sequence>
 			</extension>
 		</complexContent>

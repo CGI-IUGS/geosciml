@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!-- edited with XMLSpy v2005 rel. 3 U (http://www.altova.com) by Stephen M Richard (Arizona Geological Survey) -->
-<xs:schema xmlns:gsml="http://www.cgi-iugs.org/xml/GeoSciML/2" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:gml="http://www.opengis.net/gml" xmlns:om="http://www.opengis.net/om" targetNamespace="http://www.cgi-iugs.org/xml/GeoSciML/2" elementFormDefault="qualified" attributeFormDefault="unqualified">
+<!-- edited with XMLSpy v2007 sp2 (http://www.altova.com) by Eric Boisvert (Ressources naturelles Canada) -->
+<xs:schema xmlns:gsml="http://www.cgi-iugs.org/xml/GeoSciML/2" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:gml="http://www.opengis.net/gml" xmlns:om="http://www.opengis.net/om" xmlns:sa="http://www.opengis.net/sampling/1.0" targetNamespace="http://www.cgi-iugs.org/xml/GeoSciML/2" elementFormDefault="qualified" attributeFormDefault="unqualified">
 	<xs:annotation>
 		<xs:documentation>Encoded by Eric Boisvert (May 2007) Geological Survey of Canada</xs:documentation>
 	</xs:annotation>
@@ -8,13 +8,14 @@
 	<xs:include schemaLocation="CGI_Value.xsd"/>
 	<xs:include schemaLocation="vocabulary.xsd"/>
 	<xs:include schemaLocation="earthMaterial.xsd"/>
+	<xs:import namespace="http://www.opengis.net/sampling/1.0" schemaLocation="http://schemas.opengis.net/sampling/1.0.0/sampling.xsd"/>
 	<xs:complexType name="MappedFeatureType">
 		<xs:complexContent>
 			<xs:extension base="gml:AbstractFeatureType">
 				<xs:sequence>
-					<xs:element name="positionalAccuracy" type="gsml:CGI_ValuePropertyType" minOccurs="0"/>
+					<xs:element name="positionalAccuracy" type="gsml:CGI_ValuePropertyType"/>
 					<xs:element name="observationMethod" type="gsml:CGI_TermValuePropertyType" maxOccurs="unbounded"/>
-					<xs:element name="samplingFrame" type="xs:anyType">
+					<xs:element name="samplingFrame" type="sa:SpatiallyExtensiveSamplingFeaturePropertyType">
 						<xs:annotation>
 							<xs:documentation>until a final Observation and Measurement and related schemas is stable, this points to xs:anyType</xs:documentation>
 						</xs:annotation>
@@ -158,6 +159,7 @@
 			<xs:element ref="gsml:GeologicEvent"/>
 			<xs:element ref="gsml:GeologicRelation"/>
 			<xs:element ref="gsml:EarthMaterial"/>
+			<xs:element ref="sa:SamplingFeature"/>
 		</xs:choice>
 		<xs:attribute name="unionSemantic">
 			<xs:simpleType>
