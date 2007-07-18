@@ -1,0 +1,258 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--Example boreholes instance based on data from BGS borehole databases.-->
+<!-- This example is a manual conversion of one of the GeoSciML version 1 instances for the proposed GeoSciML version 2 format using
+SamplingCurve (may have a Borehole feature extending this trivially later -->
+<sa:SamplingCurve gml:id="bh.196911" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:gml="http://www.opengis.net/gml" xmlns:swe="http://www.opengis.net/swe/1.0" xmlns:om="http://www.opengis.net/om/1.0" xmlns:sa="http://www.opengis.net/sampling/1.0" xmlns:cv="http://www.opengis.net/cv/0.2" xmlns:geox="http://www.opengis.net/geomExt/0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="
+	http://www.opengis.net/gml 		http://schemas.opengis.net/gml/3.1.1/base/gml.xsd
+	http://www.opengis.net/swe/1.0		http://schemas.opengis.net/swe/1.0.0/swe.xsd 
+	http://www.opengis.net/cv/0.2 		http://schemas.opengis.net/cv/0.2.0/cv.xsd 
+	http://www.opengis.net/om/1.0 		http://schemas.opengis.net/om/1.0.0/om.xsd 
+	http://www.opengis.net/sampling/1.0 	http://schemas.opengis.net/sampling/1.0.0/sampling.xsd">
+	<gml:name codeSpace="http://ns.bgs.ac.uk/bgs.sobi.pk">SK21NE/BJ/16/.</gml:name>
+	<gml:name codeSpace="http://ns.bgs.ac.uk/bgs.ubi.pk">196911</gml:name>
+	<gml:name codeSpace="http://ns.bgs.ac.uk/bgs.wm.pk">SK21/30/   A</gml:name>
+	<gml:name codeSpace="http://ns.bgs.ac.uk/bgs.sobi.bore_name">BRETBY COLLIERY 3 STANTON &amp; NEWHALL</gml:name>
+	<gml:name codeSpace="http://ns.bgs.ac.uk/bgs.sobi.original_number">3</gml:name>
+	<!-- The Schema requires a sampledFeature property but we have no useful information to put here with our national borehole
+	database apart from something generic like "the ground". Is it really appropriate to make this a compulsory property? -->
+	<sa:sampledFeature/>
+	<sa:relatedObservation>
+		<om:Observation>
+			<om:samplingTime xlink:href="urn:x-ogc:def:nil:OGC:unknown"/>
+			<om:procedure xlink:href="urn:x-ogc:def:nil:OGC:unknown"/>
+			<om:observedProperty xlink:href="http://ns.bgs.ac.uk/thesaurus/lithostratigraphy"/>
+			<!-- This is a compulsory property for an Observation which will always be the same as the sampledFeature
+				of the parent borehole (SamplingCurve) where we are nesting Observations within one, and similarly we are
+				unlikely to want to describe something more than the generic "ground" -->
+			<om:featureOfInterest/>
+			<om:result>
+				<cv:CV_DiscreteCoverage>
+					<cv:domainExtent xlink:href="bh.196911.shape"/>
+					<!-- What's the difference between the rangeType here and the parent Observation observedProperty ? -->
+					<cv:rangeType xlink:href="http://ns.bgs.ac.uk/thesaurus/lithostratigraphy"/>
+					<cv:element>
+						<cv:CV_GeometryValuePair>
+							<cv:geometry>
+								<cv:CV_DomainObject>
+									<cv:spatialElement>
+										<gml:LineString srsName="#bh.196911.shape" srsDimension="1">
+											<gml:pos>0.0</gml:pos>
+											<gml:pos>0.3</gml:pos>
+										</gml:LineString>
+									</cv:spatialElement>
+								</cv:CV_DomainObject>
+							</cv:geometry>
+							<cv:value xsi:type="gml:CodeType" codeSpace="http://ns.bgs.ac.uk/bgs.lex_lithostrat_unit_v3">unknown</cv:value>
+						</cv:CV_GeometryValuePair>
+					</cv:element>
+					<cv:element>
+						<cv:CV_GeometryValuePair>
+							<cv:geometry>
+								<cv:CV_DomainObject>
+									<cv:spatialElement>
+										<gml:LineString srsName="#bh.196911.shape" srsDimension="1">
+											<gml:pos>0.3</gml:pos>
+											<gml:pos>51.81</gml:pos>
+										</gml:LineString>
+									</cv:spatialElement>
+								</cv:CV_DomainObject>
+							</cv:geometry>
+							<cv:value xsi:type="gml:CodeType" codeSpace="http://ns.bgs.ac.uk/bgs.lex_lithostrat_unit_v3">unknown</cv:value>
+						</cv:CV_GeometryValuePair>
+					</cv:element>
+					<cv:element>
+						<cv:CV_GeometryValuePair>
+							<cv:geometry>
+								<cv:CV_DomainObject>
+									<cv:spatialElement>
+										<gml:LineString srsName="#bh.196911.shape" srsDimension="1">
+											<gml:pos>396.54</gml:pos>
+											<gml:pos>397.38</gml:pos>
+										</gml:LineString>
+									</cv:spatialElement>
+								</cv:CV_DomainObject>
+							</cv:geometry>
+							<cv:value xsi:type="gml:CodeType" codeSpace="http://ns.bgs.ac.uk/bgs.lex_lithostrat_unit_v3">unknown</cv:value>
+						</cv:CV_GeometryValuePair>
+					</cv:element>
+				</cv:CV_DiscreteCoverage>
+				
+			</om:result>
+		</om:Observation>
+	</sa:relatedObservation>
+	<sa:relatedObservation>
+		<om:Observation>
+			<om:samplingTime xlink:href="urn:x-ogc:def:nil:OGC:unknown"/>
+			<om:procedure xlink:href="urn:x-ogc:def:nil:OGC:unknown"/>
+			<om:observedProperty xlink:href="urn:ogc:def:phenomenon:CGI:2007:lithology"/>
+			<!-- This is a compulsory property for an Observation which will always be the same as the sampledFeature
+				of the parent borehole (SamplingCurve) where we are nesting Observations within one, and similarly we are
+				unlikely to want to describe something more than the generic "ground" -->
+			<om:featureOfInterest/>
+			<om:result>
+				<cv:CV_DiscreteCoverage>
+					<cv:domainExtent xlink:href="bh.196911.shape"/>
+					<!-- What's the difference between the rangeType here and the parent Observation observedProperty ? -->
+					<cv:rangeType xlink:href="http://ns.bgs.ac.uk/thesaurus/lithostratigraphy"/>
+					<cv:element>
+						<cv:CV_GeometryValuePair>
+							<cv:geometry>
+								<cv:CV_DomainObject>
+									<cv:spatialElement>
+										<gml:LineString srsName="#bh.196911.shape" srsDimension="1">
+											<gml:pos>0.0</gml:pos>
+											<gml:pos>0.3</gml:pos>
+										</gml:LineString>
+									</cv:spatialElement>
+								</cv:CV_DomainObject>
+							</cv:geometry>
+							<cv:value xsi:type="gml:CodeType" codeSpace="http://ns.bgs.ac.uk/bgs.dic_rock_name">DRFTU</cv:value>
+						</cv:CV_GeometryValuePair>
+					</cv:element>
+					<cv:element>
+						<cv:CV_GeometryValuePair>
+							<cv:geometry>
+								<cv:CV_DomainObject>
+									<cv:spatialElement>
+										<gml:LineString srsName="#bh.196911.shape" srsDimension="1">
+											<gml:pos>0.3</gml:pos>
+											<gml:pos>51.81</gml:pos>
+										</gml:LineString>
+									</cv:spatialElement>
+								</cv:CV_DomainObject>
+							</cv:geometry>
+							<cv:value xsi:type="gml:CodeType" codeSpace="http://ns.bgs.ac.uk/bgs.dic_rock_name">ROCK</cv:value>
+						</cv:CV_GeometryValuePair>
+					</cv:element>
+					<cv:element>
+						<cv:CV_GeometryValuePair>
+							<cv:geometry>
+								<cv:CV_DomainObject>
+									<cv:spatialElement>
+										<gml:LineString srsName="#bh.196911.shape" srsDimension="1">
+											<gml:pos>396.54</gml:pos>
+											<gml:pos>397.38</gml:pos>
+										</gml:LineString>
+									</cv:spatialElement>
+								</cv:CV_DomainObject>
+							</cv:geometry>
+							<cv:value xsi:type="gml:CodeType" codeSpace="http://ns.bgs.ac.uk/bgs.dic_rock_name">COAL</cv:value>
+						</cv:CV_GeometryValuePair>
+					</cv:element>
+				</cv:CV_DiscreteCoverage>
+				
+			</om:result>
+		</om:Observation>
+	</sa:relatedObservation>
+	<sa:relatedObservation>
+		<om:Observation>
+			<om:samplingTime xlink:href="urn:x-ogc:def:nil:OGC:unknown"/>
+			<om:procedure xlink:href="urn:x-ogc:def:nil:OGC:unknown"/>
+			<om:observedProperty xlink:href="http://ns.bgs.ac.uk/thesaurus/base_bed"/>
+			<!-- This is a compulsory property for an Observation which will always be the same as the sampledFeature
+				of the parent borehole (SamplingCurve) where we are nesting Observations within one, and similarly we are
+				unlikely to want to describe something more than the generic "ground" -->
+			<om:featureOfInterest/>
+			<om:result>
+				<cv:CV_DiscreteCoverage>
+					<cv:domainExtent xlink:href="bh.196911.shape"/>
+					<!-- What's the difference between the rangeType here and the parent Observation observedProperty ? -->
+					<cv:rangeType xlink:href="http://ns.bgs.ac.uk/thesaurus/base_bed"/>
+					<cv:element>
+						<cv:CV_GeometryValuePair>
+							<cv:geometry>
+								<cv:CV_DomainObject>
+									<cv:spatialElement>
+										<gml:LineString srsName="#bh.196911.shape" srsDimension="1">
+											<gml:pos>0.0</gml:pos>
+											<gml:pos>0.3</gml:pos>
+										</gml:LineString>
+									</cv:spatialElement>
+								</cv:CV_DomainObject>
+							</cv:geometry>
+							<cv:value xsi:type="gml:CodeType" codeSpace="http://ns.bgs.ac.uk/bgs.dic_base_bed">RH</cv:value>
+						</cv:CV_GeometryValuePair>
+					</cv:element>
+					<cv:element>
+						<cv:CV_GeometryValuePair>
+							<cv:geometry>
+								<cv:CV_DomainObject>
+									<cv:spatialElement>
+										<gml:LineString srsName="#bh.196911.shape" srsDimension="1">
+											<gml:pos>0.3</gml:pos>
+											<gml:pos>51.81</gml:pos>
+										</gml:LineString>
+									</cv:spatialElement>
+								</cv:CV_DomainObject>
+							</cv:geometry>
+							<cv:value xsi:type="gml:CodeType" codeSpace="http://ns.bgs.ac.uk/bgs.dic_base_bed">TD</cv:value>
+						</cv:CV_GeometryValuePair>
+					</cv:element>
+					<cv:element>
+						<cv:CV_GeometryValuePair>
+							<cv:geometry>
+								<cv:CV_DomainObject>
+									<cv:spatialElement>
+										<gml:LineString srsName="#bh.196911.shape" srsDimension="1">
+											<gml:pos>396.54</gml:pos>
+											<gml:pos>397.38</gml:pos>
+										</gml:LineString>
+									</cv:spatialElement>
+								</cv:CV_DomainObject>
+							</cv:geometry>
+							<cv:value xsi:type="gml:CodeType" codeSpace="http://ns.bgs.ac.uk/bgs.dic_base_bed">inapplicable</cv:value>
+						</cv:CV_GeometryValuePair>
+					</cv:element>
+				</cv:CV_DiscreteCoverage>
+				
+			</om:result>
+		</om:Observation>
+	</sa:relatedObservation>
+	<!-- Would the old information about drillMethod be specified somehow in the SurveyProcedure? -->
+	<!-- 
+		<xmml:drillMethod>other:bgsU</xmml:drillMethod>
+	-->
+	<sa:surveyDetails>
+		<sa:SurveyProcedure gml:id="bh.196911.sp">
+			<!-- Is urn:ogc:def:uom:UCUM:m the new standard way to refer ot metres? -->
+			<sa:elevationAccuracy uom="urn:ogc:def:uom:UCUM:m">0.1</sa:elevationAccuracy>
+			<!-- We have a BGS dictionary with a very BGS specific classification of how the borehole was located (digitised, read off paper map etc.)
+			Is just putting some opaque BGS specific URN's here acceptable? -->
+			<sa:positionMethod xlink:href="http://ns.bgs.ac.uk/bgs.dic_xysource.NOT_ENTERED"/>
+			<sa:positionAccuracy uom="urn:ogc:def:uom:UCUM:m">10</sa:positionAccuracy>
+		</sa:SurveyProcedure>
+	</sa:surveyDetails>
+	<!-- We have dropped begin and end properties which were in GeoSciML 1. Does this information get put into the shape?
+	Often will just have start point.-->
+	<!-- 
+	<sa:begin>
+		<gml:Point srsName="epsg:7405" gml:id="bh.196911.start">
+			<gml:pos>427790 0319960 70.87</gml:pos>
+		</gml:Point>
+	</sa:begin>
+	<sa:end xlink:href="urn:x-ogc:def:nil:OGC:unknown"/>
+	-->
+	<sa:shape>
+		<!-- In GeoSciML 1 example had used the geomExt extended geometry feature package for just specifying a LineByVector 
+		with origin and descriptive direction. However, I'm not sure of that packages current status in terms of when it might be
+		officially published and it also appears (?) to need some components from not yet published GML 3.2 and that seems (?)
+		to break something in one of the Observations and Measurements schemas. Doesn't seem appropriate to chase down
+		methods using more unofficial package versions at the moment; especially for a geometry specification which it would be
+		extra hassle for a processing application to deal with. -->
+		<!--
+		<geox:LineByVector gml:id="bh.196911.shape">
+			<geox:origin xlink:href="#bh.196911.start"/>
+			<geox:directionDescription codeSpace="http://ns.bgs.ac.uk/bgs.dic_incl">NOT ENTERED</geox:directionDescription>
+		</geox:LineByVector>
+		-->
+		<!-- Instead of previous method of having specific model components to describe the general borehole inclination which
+			we have in our national borehole database I'll just take the simple expedient method of putting start and end points
+			for the shape.
+		-->
+		<gml:LineString gml:id="bh.196911.shape" srsName="epsg:7405">
+			<gml:pos>427790 0319960 70.87</gml:pos>
+			<gml:pos>427790 0319960 122.68</gml:pos>
+		</gml:LineString>
+	</sa:shape>
+	<sa:length uom="#m">51.81</sa:length>			
+</sa:SamplingCurve>
