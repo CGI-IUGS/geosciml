@@ -1,0 +1,195 @@
+<?xml version="1.0"?>
+<gsml:Borehole gml:id="bh.303432383858303032312F53" 
+xmlns:swe="http://www.opengis.net/swe/1.0" 
+xmlns:om="http://www.opengis.net/om/1.0" 
+xmlns:sa="http://www.opengis.net/sampling/1.0" 
+xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+xmlns:xlink="http://www.w3.org/1999/xlink"  
+xmlns:gml="http://www.opengis.net/gml" 
+xmlns:cv="http://www.opengis.net/cv/0.2"
+xmlns:gsml="http://www.cgi-iugs.org/xml/GeoSciML/2"
+xsi:schemaLocation="http://www.opengis.net/swe/1.0 http://schemas.opengis.net/swe/1.0.0/swe.xsd 
+http://www.opengis.net/cv/0.2 http://schemas.opengis.net/cv/0.2.0/cv.xsd 
+http://www.opengis.net/om/1.0 http://schemas.opengis.net/om/1.0.0/om.xsd 
+http://www.opengis.net/sampling/1.0 http://schemas.opengis.net/sampling/1.0.0/sampling.xsd
+http://www.cgi-iugs.org/xml/GeoSciML/2 http://schemas.cgi-iugs.net/GeoSciML/ObsAndMeas.xsd">
+	<gml:description>Deviated mining borehole using swe arrays to define the observations and the measurements</gml:description>
+	<gml:name codeSpace="urn:x-cgi:obj:borehole:BRGM:2007:CODE_BSS">04288X0021/S</gml:name>
+	<gml:boundedBy>
+		<gml:Envelope srsName="urn:ogc:def:crs:EPSG:6.8:27582"><!-- 2D CRS -->
+			<gml:lowerCorner>586925.8930 2320951.0480</gml:lowerCorner>
+			<gml:upperCorner>586999.3670 2321025.8800</gml:upperCorner>
+		</gml:Envelope>
+	</gml:boundedBy>
+	<sa:sampledFeature xlink:href="urn:x-cgi:obj:borehole:BRGM:2007:CODE_BSS:04288X0021/S"/>
+	
+	<!-- Direction and inclination values of the borehole coded as a SWE array : point data -->
+	<sa:relatedObservation>
+		<om:Observation gml:id="bh.303432383858303032312F53.direction.inclination">
+			<gml:description>Depth, direction and inclination of the borehole</gml:description>
+			<om:samplingTime>
+				<gml:TimeInstant>
+					<gml:timePosition>2007-07-25</gml:timePosition>
+				</gml:TimeInstant>
+			</om:samplingTime>
+			<om:procedure xlink:href="urn:x-ogc:def:nil:OGC:unknown"/>
+			<om:observedProperty xlink:href="urn:ogc:def:phenomenon:CGI:2007:DirectionInclination"/>
+			<om:featureOfInterest xlink:href="../../../.."/>
+			<om:result>
+				<swe:DataArray>
+					<swe:elementCount>
+						<swe:Count>
+							<swe:value>4</swe:value>
+						</swe:Count>
+					</swe:elementCount>
+					<swe:elementType name="MagSusElement">
+						<swe:DataRecord>
+							<swe:field name="Depth">
+								<swe:Quantity definition="urn:ogc:def:phenomenon:CGI:2007:offset">
+									<swe:uom xlink:href="urn:ogc:def:uom:UCUM:m"/>
+								</swe:Quantity>
+							</swe:field>
+							<swe:field name="Direction">
+								<swe:Quantity definition="urn:ogc:def:phenomenon:CGI:2007:Direction">
+									<swe:uom xlink:href="urn:ogc:def:uom:UCUM:degree"/>
+								</swe:Quantity>
+							</swe:field>
+							<swe:field name="Inclination">
+								<swe:Quantity definition="urn:ogc:def:phenomenon:CGI:2007:Inclination">
+									<swe:uom xlink:href="urn:ogc:def:uom:UCUM:degree"/>
+								</swe:Quantity>
+							</swe:field>
+						</swe:DataRecord>
+					</swe:elementType>
+					<swe:encoding>
+						<swe:TextBlock decimalSeparator="." tokenSeparator="," blockSeparator=" "/>
+					</swe:encoding>
+					<swe:values>
+					0.0,315.0,60.0
+					100.5,317.0,59.0
+					131.0,317.0,59.0
+					199.0,312.0,60.0
+					</swe:values>
+				</swe:DataArray>
+			</om:result>
+		</om:Observation>
+	</sa:relatedObservation>
+
+	<!-- All the observations (geology) and measurements (gold and silver) along the borehole : interval data -->
+	<sa:relatedObservation>
+		<om:Observation gml:id="bh.303432383858303032312F53.lithology.grades.1">
+			<gml:description>Interval from depth, interval to depth, geology, gold and silver</gml:description>
+			<om:samplingTime>
+				<gml:TimeInstant>
+					<gml:timePosition>2007-07-25</gml:timePosition>
+				</gml:TimeInstant>
+			</om:samplingTime>
+			<om:procedure xlink:href="urn:x-ogc:def:nil:OGC:unknown"/>
+			<om:observedProperty xlink:href="urn:BRGM:def:phenomenon:CGI:2007:GeologyGoldSilver"/>
+			<om:featureOfInterest xlink:href="../../../.."/>
+			<om:result>
+				<swe:DataArray>
+					<swe:elementCount>
+						<swe:Count>
+							<swe:value>21</swe:value>
+						</swe:Count>
+					</swe:elementCount>
+					<swe:elementType name="MagSusElement">
+						<swe:DataRecord>
+							<swe:field name="From">
+								<swe:Quantity definition="urn:ogc:def:phenomenon:CGI:2007:offset">
+									<swe:uom xlink:href="urn:ogc:def:uom:UCUM:m"/>
+								</swe:Quantity>
+							</swe:field>
+							<swe:field name="To">
+								<swe:Quantity definition="urn:ogc:def:phenomenon:CGI:2007:offset">
+									<swe:uom xlink:href="urn:ogc:def:uom:UCUM:m"/>
+								</swe:Quantity>
+							</swe:field>
+							<swe:field name="Geology">
+								<swe:Category definition="urn:ogc:def:phenomenon:CGI:2007:lithology">
+									<swe:codeSpace xlink:href="http://www.brgm.fr/geoSciML/vocabulary/lithology/2007"/>
+								</swe:Category>
+							</swe:field>
+							<swe:field name="Gold">
+								<swe:Quantity definition="urn:ogc:def:phenomenon:CGI:2007:Grade">
+									<swe:uom xlink:href="urn:ogc:def:uom:UCUM:g/t"/>
+								</swe:Quantity>
+							</swe:field>
+							<swe:field name="Silver">
+								<swe:Quantity definition="urn:ogc:def:phenomenon:CGI:2007:Grade">
+									<swe:uom xlink:href="urn:ogc:def:uom:UCUM:g/t"/>
+								</swe:Quantity>
+							</swe:field>
+						</swe:DataRecord>
+					</swe:elementType>
+					<swe:encoding>
+						<swe:TextBlock decimalSeparator="." tokenSeparator="," blockSeparator=" "/>
+					</swe:encoding>
+					<swe:values>
+					0.0,17.8,Argi,missing,missing
+					17.8,21.2,Argi,missing,missing
+					21.2,33.55,Argi,missing,missing
+					33.55,40.55,GLSa,missing,missing
+					40.55,69.55,Brec,missing,missing
+					69.55,70.90,Argi,missing,missing
+					70.90,96.55,Brec,missing,missing
+					96.55,101.5,Cars,missing,missing
+					101.5,103.1,Brec,3.45,missing
+					103.1,104.1,Brec,2.34,7.51
+					104.1,105.1,Brec,2.56,3.29
+					105.1,106.0,Brec,1.89,missing
+					108.95,115.90,HESa,missing,missing
+					126.0,130.75,Brec,missing,missing
+					143.2,171.55,Brec,missing,missing
+					171.55,179.4,Qsch,missing,missing
+					179.4,189.0,Argi,missing,missing
+					189.0,192.05,Qsch,missing,missing
+					192.05,194.10,Argi,missing,missing
+					194.10,197.25,Brec,missing,missing
+					202.30,206.35,Brec,missing,missing
+					</swe:values>
+				</swe:DataArray>
+			</om:result>
+		</om:Observation>
+	</sa:relatedObservation>
+	
+	<sa:shape>
+		<!-- 3D CRS -->
+		<!-- The coordinates are coordinates calculated with the BRGM GDM application -->
+		<!-- according to the direction and inclination values defined in the above coverages. -->
+		<!-- With another algorithm, we might get different values. -->
+		<!-- The first point is the collar of the borehole at depth 0. -->
+		<!-- All the other coordinate values represent the coordinates of the points corresponding to the values of depth in the observations. -->
+		<!-- The coordinate values are sorted according to the increasing depth. -->
+		<gml:LineString gml:id="bh.303432383858303032312F53.BoreholeShape" srsName="urn:ogc:def:crs:EPSG:6.8:7412">
+			<gml:pos>586999.3670 2320951.0480 1003.0500</gml:pos>
+			<gml:pos>586993.0760 2320957.3780 987.6480</gml:pos>
+			<gml:pos>586991.8760 2320958.5950 984.7100</gml:pos>
+			<gml:pos>586987.5150 2320963.0390 974.0440</gml:pos>
+			<gml:pos>586985.0450 2320965.5730 968.0040</gml:pos>
+			<gml:pos>586974.8240 2320976.1930 943.0290</gml:pos>
+			<gml:pos>586974.3490 2320976.6920 941.8690</gml:pos>
+			<gml:pos>586965.3270 2320986.2540 919.8440</gml:pos>
+			<gml:pos>586963.5880 2320988.1170 915.6000</gml:pos>
+			<gml:pos>586963.0260 2320988.7200 914.2290</gml:pos>
+			<gml:pos>586962.6750 2320989.0960 913.3720</gml:pos>
+			<gml:pos>586962.3240 2320989.4730 912.5140</gml:pos>
+			<gml:pos>586962.0080 2320989.8120 911.7430</gml:pos>
+			<gml:pos>586962.0080 2320989.8120 909.2140</gml:pos>
+			<gml:pos>586958.5300 2320993.5410 903.2570</gml:pos>
+			<gml:pos>586954.9820 2320997.3450 894.6000</gml:pos>
+			<gml:pos>586953.3140 2320999.1350 890.5280</gml:pos>
+			<gml:pos>586948.9160 2321003.7800 879.8470</gml:pos>
+			<gml:pos>586938.7200 2321014.0000 855.4480</gml:pos>
+			<gml:pos>586935.8540 2321016.7400 848.6730</gml:pos>
+			<gml:pos>586932.3260 2321020.0400 840.3780</gml:pos>
+			<gml:pos>586931.1990 2321021.0800 837.7400</gml:pos>
+			<gml:pos>586930.4410 2321021.7700 835.9660</gml:pos>
+			<gml:pos>586929.2730 2321022.8300 833.2390</gml:pos>
+			<gml:pos>586927.3970 2321024.5200 828.8660</gml:pos>
+			<gml:pos>586925.8930 2321025.8800 825.3580</gml:pos>
+		</gml:LineString>
+	</sa:shape>
+	<sa:length uom="urn:ogc:def:uom:UCUM:m">206.35</sa:length>
+</gsml:Borehole>
