@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<GSML xmlns="http://www.cgi-iugs.org/xml/GeoSciML/2"    
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+    xmlns:xlink="http://www.w3.org/1999/xlink"
+    xmlns:gml="http://www.opengis.net/gml"
+    xsi:schemaLocation="http://www.cgi-iugs.org/xml/GeoSciML/2 http://www.cgi-iugs.org/xml/GeoSciML/2/geologicStructure.xsd">
+    <member>
+		<Contact gml:id="#C1">
+			<gml:description>bedding plane</gml:description>	
+			<gml:name codeSpace="http://www.gsv.vic.gov.au">Site id 383739</gml:name>
+			<observationMethod>
+			      <CGI_TermValue>
+						<value codeSpace="http://www.gsv.vic.gov.au/GeologicalVocabularies">Brunton Compass</value>
+				</CGI_TermValue>
+			</observationMethod>
+			<purpose>instance</purpose>
+			<contactCharacter>abrupt</contactCharacter>
+			<contactType>bedding</contactType>
+			<contactOrientation>
+				<CGI_PlanarOrientation>
+					<convention>
+						<ConventionCode>dip dip direction</ConventionCode>
+					</convention>
+					<azimuth>
+						<CGI_NumericValue>
+							<principalValue>
+								<Measure uom="degree">270</Measure>
+							</principalValue>
+						</CGI_NumericValue>
+					</azimuth>
+					<dip>
+						<CGI_NumericValue>
+							<principalValue>
+								<Measure uom="degree">60</Measure>
+							</principalValue>
+						</CGI_NumericValue>
+					</dip>
+					<polarity>
+						<PlanarPolarityCode>upright</PlanarPolarityCode>
+					</polarity>
+				</CGI_PlanarOrientation>
+			</contactOrientation>
+		</Contact>
+	</member>
+	<member>
+		<LithostratigraphicUnit gml:id="#GU1">
+			<gml:description>Undifferentiated sandstone: sandstone, siltstone, black shale; sparsely fossiliferous</gml:description>
+		    <gml:name codeSpace="http://www.ga.gov.au">CastleMaine Group</gml:name>
+			<observationMethod>
+				<CGI_TermValue>
+					<value codeSpace="http://www.gsv.vic.gov.au/GeologicalVocabularies">field mapping</value>
+				</CGI_TermValue>
+			</observationMethod>
+			<purpose>typicalNorm</purpose>
+			<preferredAge>
+				<GeologicEvent>
+					<eventAge>
+						<CGI_Value xsi:type="CGI_TermValueType">
+							<value codeSpace="http://www.iugs-cgi.org/geologicAgeVocabulary">Ordovician</value>
+						</CGI_Value>
+					</eventAge>
+					<eventProcess>
+						<CGI_TermValue>
+							<value codeSpace="http//www.gsv.vic.gov.au/GeologicalVocabularies">deposition</value>
+						</CGI_TermValue>
+					</eventProcess>
+					<eventEnvironment>
+						<CGI_TermValue>
+							<value codeSpace="http//www.gsv.vic.gov.au/GeologicalVocabularies">marine</value>
+						</CGI_TermValue>
+					</eventEnvironment>
+				</GeologicEvent>
+			</preferredAge>
+			<rank codeSpace="http://www.iugs-cgi.org/rankVocabulary">Group</rank>
+			<classifier>
+				<ControlledConcept>
+					<preferredName>CastleMaine Group</preferredName>
+					<vocabulary xlink:type="simple" xlink:href="www.ga.gov.au/GA_stratigraphic_lexicon"/>
+				</ControlledConcept>
+			</classifier>
+		</LithostratigraphicUnit>
+	</member>
+	<member>
+		<GeologicFeatureRelation gml:id="#GR1">
+			<relationship>bedding contact</relationship>
+			<source xlink:href="#C1"/>
+			<target xlink:href="#GU1"/>
+		</GeologicFeatureRelation>
+	</member>
+</GSML>
