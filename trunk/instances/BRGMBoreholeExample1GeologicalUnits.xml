@@ -1,0 +1,311 @@
+<?xml version="1.0"?>
+<gsml:Borehole gml:id="bh.303432383858303032312F53" 
+xmlns:swe="http://www.opengis.net/swe/1.0" 
+xmlns:om="http://www.opengis.net/om/1.0" 
+xmlns:sa="http://www.opengis.net/sampling/1.0" 
+xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+xmlns:xlink="http://www.w3.org/1999/xlink"  
+xmlns:gml="http://www.opengis.net/gml" 
+xmlns:cv="http://www.opengis.net/cv/0.2"
+xmlns:gsml="http://www.cgi-iugs.org/xml/GeoSciML/2"
+xsi:schemaLocation="http://www.opengis.net/swe/1.0 http://schemas.opengis.net/swe/1.0.0/swe.xsd 
+http://www.opengis.net/cv/0.2 http://schemas.opengis.net/cv/0.2.0/cv.xsd 
+http://www.opengis.net/om/1.0 http://schemas.opengis.net/om/1.0.0/om.xsd 
+http://www.opengis.net/sampling/1.0 http://schemas.opengis.net/sampling/1.0.0/sampling.xsd
+http://www.cgi-iugs.org/xml/GeoSciML/2 http://schemas.cgi-iugs.net/GeoSciML/GeoSciML.xsd">
+	<gml:description>An example of a BRGM vertical borehole with lithology and lithostratigraphy encoded as GeoSciML geologic units</gml:description>
+	<gml:name codeSpace="urn:x-cgi:obj:borehole:BRGM:2007:CODE_BSS">04288X0021/S</gml:name>
+	<gml:boundedBy>
+		<gml:Envelope srsName="#bh.303432383858303032312F53.BoreholeShape">
+			<gml:lowerCorner>-526300 526300 65.89</gml:lowerCorner>
+			<gml:upperCorner>-288450 288450 9.39</gml:upperCorner>
+		</gml:Envelope>
+	</gml:boundedBy>
+	<sa:sampledFeature xlink:href="urn:x-cgi:obj:borehole:BRGM:2007:CODE_BSS:04288X0021/S"/>
+	<sa:relatedObservation>
+		<om:Observation gml:id="bh.303432383858303032312F53.lithology.1">
+			<gml:description>Lithology</gml:description>
+			<om:samplingTime>
+				<gml:TimeInstant>
+					<gml:timePosition>2007-07-25</gml:timePosition>
+				</gml:TimeInstant>
+			</om:samplingTime>
+			<om:procedure xlink:href="urn:x-ogc:def:nil:OGC:unknown"/>
+			<om:observedProperty xlink:href="urn:ogc:def:phenomenon:CGI:2007:lithology"/>
+			<om:featureOfInterest xlink:href="../../../.."/>
+			<om:result>
+				<cv:CV_DiscreteCoverage>
+					<cv:domainExtent xlink:href="#bh.303432383858303032312F53.BoreholeShape"/>
+					<cv:rangeType xlink:href="urn:ogc:def:phenomenon:CGI:2007:lithology"/>
+					<cv:element>
+						<cv:CV_GeometryValuePair>
+							<cv:geometry>
+								<cv:CV_DomainObject>
+									<cv:spatialElement>
+										<gml:LineString srsName="#bh.303432383858303032312F53.BoreholeShape" srsDimension="1">
+											<gml:pos>36.4</gml:pos>
+											<gml:pos>46.6</gml:pos>
+										</gml:LineString>
+									</cv:spatialElement>
+								</cv:CV_DomainObject>
+							</cv:geometry>
+							<cv:value xsi:type="gsml:GeologicUnitPropertyType">
+								<gsml:LithologicUnit gml:id="LithologyUnit.1">
+									<gml:name codeSpace="http://www.brgm.fr">Calcaires lacustres éocènes</gml:name>
+									<gsml:observationMethod>
+										<gsml:CGI_TermValue>
+											<gsml:value codeSpace="http://www.brgm.fr/VocabGeol">à partir de la carte géologique</gsml:value>
+										</gsml:CGI_TermValue>
+									</gsml:observationMethod>
+									<gsml:purpose>instance</gsml:purpose>
+									<gsml:preferredAge>
+										<gsml:GeologicEvent>
+											<gsml:eventAge>
+												<gsml:CGI_Value xsi:type="gsml:CGI_TermValueType">
+													<gsml:value codeSpace="http://www.brgm.fr/age/2006">Ludien</gsml:value>
+												</gsml:CGI_Value>
+											</gsml:eventAge>
+											<gsml:eventProcess>
+												<gsml:CGI_TermValue>
+													<gsml:value codeSpace="http://www.brgm.fr/TypeMiseEnPlace">dépôt</gsml:value>
+												</gsml:CGI_TermValue>
+											</gsml:eventProcess>
+											<gsml:eventEnvironment>
+												<gsml:CGI_TermValue>
+													<gsml:value codeSpace="http://www.brgm.fr/Lexique_Environnement">lacustre</gsml:value>
+												</gsml:CGI_TermValue>
+											</gsml:eventEnvironment>
+										</gsml:GeologicEvent>
+									</gsml:preferredAge>
+									<gsml:classifier>
+										<gsml:ControlledConcept>
+											<gsml:preferredName>Calcaires lacustres éocènes</gsml:preferredName>
+											<gsml:vocabulary>
+												<gsml:GeologicVocabulary gml:id="gv1">
+													<gml:name codeSpace="www.brgm.fr/lexique_Lithologie">Calcaire</gml:name>
+													<gsml:member>
+														<gsml:ControlledConcept>
+															<gsml:preferredName>Calcaire dur</gsml:preferredName>
+															<gsml:vocabulary xlink:href="#gv1"/>
+														</gsml:ControlledConcept>
+													</gsml:member>
+													<gsml:member>
+														<gsml:ControlledConcept>
+															<gsml:preferredName>Calcaire tendre</gsml:preferredName>
+															<gsml:vocabulary xlink:href="#gv1"/>
+														</gsml:ControlledConcept>
+													</gsml:member>
+													<gsml:member>
+														<gsml:ControlledConcept>
+															<gsml:preferredName>Calcaire jaunâtre</gsml:preferredName>
+															<gsml:vocabulary xlink:href="#gv1"/>
+														</gsml:ControlledConcept>
+													</gsml:member>
+												</gsml:GeologicVocabulary>
+											</gsml:vocabulary>
+										</gsml:ControlledConcept>
+									</gsml:classifier>
+								</gsml:LithologicUnit>
+							</cv:value>
+						</cv:CV_GeometryValuePair>
+					</cv:element>
+					<cv:element>
+						<cv:CV_GeometryValuePair>
+							<cv:geometry>
+								<cv:CV_DomainObject>
+									<cv:spatialElement>
+										<gml:LineString srsName="#bh.303432383858303032312F53.BoreholeShape" srsDimension="1">
+											<gml:pos>46.6</gml:pos>
+											<gml:pos>56.5</gml:pos>
+										</gml:LineString>
+									</cv:spatialElement>
+								</cv:CV_DomainObject>
+							</cv:geometry>
+							<cv:value xsi:type="gsml:GeologicUnitPropertyType">
+								<gsml:LithologicUnit gml:id="LithologyUnit.2">
+									<gml:name codeSpace="http://www.brgm.fr">Unités détritiques continentales</gml:name>
+									<gsml:observationMethod>
+										<gsml:CGI_TermValue>
+											<gsml:value codeSpace="http://www.brgm.fr/VocabGeol">à partir de la carte géologique</gsml:value>
+										</gsml:CGI_TermValue>
+									</gsml:observationMethod>
+									<gsml:purpose>instance</gsml:purpose>
+									<gsml:preferredAge>
+										<gsml:GeologicEvent>
+											<gsml:eventAge>
+												<gsml:CGI_Value xsi:type="gsml:CGI_TermValueType">
+													<gsml:value codeSpace="http://www.brgm.fr/age/2006">Paléocène à Eocène</gsml:value>
+												</gsml:CGI_Value>
+											</gsml:eventAge>
+										</gsml:GeologicEvent>
+									</gsml:preferredAge>
+									<gsml:classifier>
+										<gsml:ControlledConcept>
+											<gsml:preferredName>Unités détritiques continentales</gsml:preferredName>
+											<gsml:vocabulary xlink:type="simple" xlink:href="www.brgm.fr/BRGM_appellation_lexique"/>
+										</gsml:ControlledConcept>
+									</gsml:classifier>
+								</gsml:LithologicUnit>
+							</cv:value>
+						</cv:CV_GeometryValuePair>
+					</cv:element>
+				</cv:CV_DiscreteCoverage>
+			</om:result>
+		</om:Observation>
+	</sa:relatedObservation>
+	<sa:relatedObservation>
+		<om:Observation gml:id="bh.03432383858303032312F53.lithostratigraphy.1">
+			<gml:description>Lithostratigraphy</gml:description>
+			<om:samplingTime>
+				<gml:TimeInstant>
+					<gml:timePosition>2007-07-25</gml:timePosition>
+				</gml:TimeInstant>
+			</om:samplingTime>
+			<om:procedure xlink:href="urn:x-ogc:def:nil:OGC:unknown"/>
+			<om:observedProperty xlink:href="urn:ogc:def:phenomenon:CGI:2007:lithostratigraphy"/>
+			<om:featureOfInterest xlink:href="../../../.."/>
+			<om:result>
+				<cv:CV_DiscreteCoverage>
+					<cv:domainExtent xlink:href="#bh.303432383858303032312F53.BoreholeShape"/>
+					<cv:rangeType xlink:href="urn:ogc:def:phenomenon:CGI:2007:lithostratigraphy"/>
+					<cv:element>
+						<cv:CV_GeometryValuePair>
+							<cv:geometry>
+								<cv:CV_DomainObject>
+									<cv:spatialElement>
+										<gml:LineString srsName="#bh.303432383858303032312F53.BoreholeShape" srsDimension="1">
+											<gml:pos>0</gml:pos>
+											<gml:pos>15.25</gml:pos>
+										</gml:LineString>
+									</cv:spatialElement>
+								</cv:CV_DomainObject>
+							</cv:geometry>
+							<cv:value xsi:type="gsml:GeologicUnitPropertyType">
+								<gsml:LithostratigraphicUnit gml:id="LithoStratigraphyUnit.1">
+									<gml:name codeSpace="http://www.brgm.fr">Calcaire de Pithiviers</gml:name>
+									<gsml:observationMethod>
+										<gsml:CGI_TermValue>
+											<gsml:value codeSpace="http://www.brgm.fr/VocabGeol">à partir de la carte géologique</gsml:value>
+										</gsml:CGI_TermValue>
+									</gsml:observationMethod>
+									<gsml:purpose>instance</gsml:purpose>
+									<gsml:preferredAge>
+										<gsml:GeologicEvent>
+											<gsml:eventAge>
+												<gsml:CGI_Value xsi:type="gsml:CGI_TermValueType">
+													<gsml:value codeSpace="http://www.brgm.fr/age/2006">Aquitanien</gsml:value>
+												</gsml:CGI_Value>
+											</gsml:eventAge>
+										</gsml:GeologicEvent>
+									</gsml:preferredAge>
+									<gsml:rank codeSpace="http://www.brgm.fr/VocabGeol">formation</gsml:rank>
+									<gsml:classifier>
+										<gsml:ControlledConcept>
+											<gsml:preferredName>Calcaire de Pithiviers</gsml:preferredName>
+											<gsml:vocabulary xlink:type="simple" xlink:href="www.brgm.fr/BRGM_appellation_lexique"/>
+										</gsml:ControlledConcept>
+									</gsml:classifier>
+								</gsml:LithostratigraphicUnit>
+							</cv:value>
+						</cv:CV_GeometryValuePair>
+					</cv:element>
+					<cv:element>
+						<cv:CV_GeometryValuePair>
+							<cv:geometry>
+								<cv:CV_DomainObject>
+									<cv:spatialElement>
+										<gml:LineString srsName="#bh.303432383858303032312F53.BoreholeShape" srsDimension="1">
+											<gml:pos>15.25</gml:pos>
+											<gml:pos>15.3</gml:pos>
+										</gml:LineString>
+									</cv:spatialElement>
+								</cv:CV_DomainObject>
+							</cv:geometry>
+							<cv:value xsi:type="gsml:GeologicUnitPropertyType">
+								<gsml:LithostratigraphicUnit gml:id="LithoStratigraphyUnit.2">
+									<gml:name codeSpace="http://www.brgm.fr">Molasse du Gâtinais</gml:name>
+									<gsml:observationMethod>
+										<gsml:CGI_TermValue>
+											<gsml:value codeSpace="http://www.brgm.fr/VocabGeol">à partir de la carte géologique</gsml:value>
+										</gsml:CGI_TermValue>
+									</gsml:observationMethod>
+									<gsml:purpose>instance</gsml:purpose>
+									<gsml:preferredAge>
+										<gsml:GeologicEvent>
+											<gsml:eventAge>
+												<gsml:CGI_Value xsi:type="gsml:CGI_TermValueType">
+													<gsml:value codeSpace="http://www.brgm.fr/age/2006">Aquitanien</gsml:value>
+												</gsml:CGI_Value>
+											</gsml:eventAge>
+										</gsml:GeologicEvent>
+									</gsml:preferredAge>
+									<gsml:rank codeSpace="http://www.brgm.fr/VocabGeol">formation</gsml:rank>
+									<gsml:classifier>
+										<gsml:ControlledConcept>
+											<gsml:preferredName>Molasse du Gâtinais</gsml:preferredName>
+											<gsml:vocabulary xlink:type="simple" xlink:href="www.brgm.fr/BRGM_appellation_lexique"/>
+										</gsml:ControlledConcept>
+									</gsml:classifier>
+								</gsml:LithostratigraphicUnit>
+							</cv:value>
+						</cv:CV_GeometryValuePair>
+					</cv:element>
+					<cv:element>
+						<cv:CV_GeometryValuePair>
+							<cv:geometry>
+								<cv:CV_DomainObject>
+									<cv:spatialElement>
+										<gml:LineString srsName="#bh.303432383858303032312F53.BoreholeShape" srsDimension="1">
+											<gml:pos>15.3</gml:pos>
+											<gml:pos>34.6</gml:pos>
+										</gml:LineString>
+									</cv:spatialElement>
+								</cv:CV_DomainObject>
+							</cv:geometry>
+							<cv:value xsi:type="gsml:GeologicUnitPropertyType">
+								<gsml:LithostratigraphicUnit gml:id="LithoStratigraphyUnit.3">
+									<gml:name codeSpace="http://www.brgm.fr">Calcaire d'Etampes (Calcaire du Gâtinais)</gml:name>
+									<gsml:observationMethod>
+										<gsml:CGI_TermValue>
+											<gsml:value codeSpace="http://www.brgm.fr/VocabGeol">à partir de la carte géologique</gsml:value>
+										</gsml:CGI_TermValue>
+									</gsml:observationMethod>
+									<gsml:purpose>instance</gsml:purpose>
+									<gsml:preferredAge>
+										<gsml:GeologicEvent>
+											<gsml:eventAge>
+												<gsml:CGI_Value xsi:type="gsml:CGI_TermValueType">
+													<gsml:value codeSpace="http://www.brgm.fr/age/2006">Stampien</gsml:value>
+												</gsml:CGI_Value>
+											</gsml:eventAge>
+										</gsml:GeologicEvent>
+									</gsml:preferredAge>
+									<gsml:rank codeSpace="http://www.brgm.fr/VocabGeol">formation</gsml:rank>
+									<gsml:classifier>
+										<gsml:ControlledConcept>
+											<gsml:preferredName>Calcaire d'Etampes (Calcaire du Gâtinais)</gsml:preferredName>
+											<gsml:vocabulary xlink:type="simple" xlink:href="www.brgm.fr/BRGM_appellation_lexique"/>
+										</gsml:ControlledConcept>
+									</gsml:classifier>
+								</gsml:LithostratigraphicUnit>
+							</cv:value>
+						</cv:CV_GeometryValuePair>
+					</cv:element>
+				</cv:CV_DiscreteCoverage>
+			</om:result>
+		</om:Observation>
+	</sa:relatedObservation>
+	<sa:shape>
+		<!-- As the borehole is a 3D line, we need a 3D CRS -->
+		<!-- EPSG:6.8:7412 means that Z coordinate values are expressed in meters -->
+		<gml:LineString gml:id="bh.303432383858303032312F53.BoreholeShape" srsName="urn:ogc:def:crs:EPSG:6.8:7412" srsDimension="3">
+			<!-- As the borehole is vertical, we only need the begin point and the end point -->
+  			<gml:pos>526300 288450 65.89</gml:pos> 
+  			<!-- As the borehole is vertical, the Z coordinadte of the end point must be equal to the Z coordinate of the begin point - the length of the borehole -->
+			<gml:pos>526300 288450 9.39</gml:pos>
+		</gml:LineString>
+	</sa:shape>
+	<!-- As the borehole is vertical, the length of the borehole must be equal to Z end point of the 3D line string - Z begin point of the 3D line string -->
+	<!-- sa:length element is optional -->
+	<sa:length uom="urn:ogc:def:uom:UCUM:m">56.5</sa:length>
+</gsml:Borehole>

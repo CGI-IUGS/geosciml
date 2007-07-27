@@ -1,0 +1,305 @@
+<?xml version="1.0"?>
+<gsml:GSML xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:gsml="http://www.cgi-iugs.org/xml/GeoSciML/2" xmlns:gml="http://www.opengis.net/gml" xmlns:swe="http://www.opengis.net/swe/1.0" xmlns:om="http://www.opengis.net/om/1.0" xmlns:sa="http://www.opengis.net/sampling/1.0" xmlns:cv="http://www.opengis.net/cv/0.2" xmlns:geox="http://www.opengis.net/geomExt/0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="
+    http://www.cgi-iugs.org/xml/GeoSciML/2  http://schemas.cgi-iugs.net/GeoSciML/GeoSciML.xsd
+	http://www.opengis.net/gml 		http://schemas.opengis.net/gml/3.1.1/base/gml.xsd
+	http://www.opengis.net/swe/1.0		http://schemas.opengis.net/swe/1.0.0/swe.xsd 
+	http://www.opengis.net/cv/0.2 		http://schemas.opengis.net/cv/0.2.0/cv.xsd 
+	http://www.opengis.net/om/1.0 		http://schemas.opengis.net/om/1.0.0/om.xsd 
+	http://www.opengis.net/sampling/1.0 	http://schemas.opengis.net/sampling/1.0.0/sampling.xsd">
+	<gml:description>Sketch of how to do a lithological log as a MappedFeature collection with the basic BRGM example BRGMBoreholeExample1.xml</gml:description>
+	<gml:name codeSpace="urn:x-cgi:obj:borehole:BRGM:2007:CODE_BSS">04288X0021/S</gml:name>
+	<gml:boundedBy>
+		<gml:Envelope srsName="#bh.303432383858303032312F53.BoreholeShape">
+			<gml:lowerCorner>-526300 526300 65.89</gml:lowerCorner>
+			<gml:upperCorner>-288450 288450 9.39</gml:upperCorner>
+		</gml:Envelope>
+	</gml:boundedBy>
+	<gsml:member>
+		<sa:SamplingCurve gml:id="bh.303432383858303032312F53.SamplingCurve">
+			<sa:sampledFeature/>
+			<sa:shape>
+				<gml:LineString gml:id="bh.303432383858303032312F53.BoreholeShape" srsName="urn:ogc:def:crs:EPSG:6.8:7412" srsDimension="3">
+					<gml:pos>526300 288450 65.89</gml:pos> 
+					<gml:pos>526300 288450 9.39</gml:pos>
+				</gml:LineString>
+			</sa:shape>
+		</sa:SamplingCurve>
+	</gsml:member>
+	<!-- Lithologic units -->
+	<gsml:member>
+			<gsml:MappedFeature gml:id="bh.303432383858303032312F53.Interval1.1">
+				<gsml:positionalAccuracy>
+					<gsml:CGI_NumericValue>
+						<gsml:qualifier>nil:missing</gsml:qualifier>
+						<gsml:principalValue uom="#m">0</gsml:principalValue>
+					</gsml:CGI_NumericValue>
+				</gsml:positionalAccuracy>
+				<gsml:observationMethod>
+					<gsml:CGI_TermValue>
+						<gsml:value codeSpace=""></gsml:value>
+					</gsml:CGI_TermValue>
+				</gsml:observationMethod>
+				<gsml:samplingFrame xlink:href="#bh.303432383858303032312F53.SamplingCurve"/>
+				<gsml:shape>
+					<gml:LineString srsName="#bh.303432383858303032312F53.BoreholeShape" srsDimension="1">
+						<gml:pos>36.4</gml:pos>
+						<gml:pos>46.6</gml:pos>
+					</gml:LineString>
+				</gsml:shape>
+				<gsml:specification>
+					<gsml:LithologicUnit gml:id="LithologyUnit.1">
+						<gml:name codeSpace="http://www.brgm.fr">Calcaires lacustres éocènes</gml:name>
+						<gsml:observationMethod>
+							<gsml:CGI_TermValue>
+								<gsml:value codeSpace="http://www.brgm.fr/VocabGeol">à partir de la carte géologique</gsml:value>
+							</gsml:CGI_TermValue>
+						</gsml:observationMethod>
+						<gsml:purpose>instance</gsml:purpose>
+						<gsml:preferredAge>
+							<gsml:GeologicEvent>
+								<gsml:eventAge>
+									<gsml:CGI_Value xsi:type="gsml:CGI_TermValueType">
+										<gsml:value codeSpace="http://www.brgm.fr/age/2006">Ludien</gsml:value>
+									</gsml:CGI_Value>
+								</gsml:eventAge>
+								<gsml:eventProcess>
+									<gsml:CGI_TermValue>
+										<gsml:value codeSpace="http://www.brgm.fr/TypeMiseEnPlace">dépôt</gsml:value>
+									</gsml:CGI_TermValue>
+								</gsml:eventProcess>
+								<gsml:eventEnvironment>
+									<gsml:CGI_TermValue>
+										<gsml:value codeSpace="http://www.brgm.fr/Lexique_Environnement">lacustre</gsml:value>
+									</gsml:CGI_TermValue>
+								</gsml:eventEnvironment>
+							</gsml:GeologicEvent>
+						</gsml:preferredAge>
+						<gsml:classifier>
+							<gsml:ControlledConcept>
+								<gsml:preferredName>Calcaires lacustres éocènes</gsml:preferredName>
+								<gsml:vocabulary>
+									<gsml:GeologicVocabulary gml:id="gv1">
+										<gml:name codeSpace="www.brgm.fr/lexique_Lithologie">Calcaire</gml:name>
+										<gsml:member>
+											<gsml:ControlledConcept>
+												<gsml:preferredName>Calcaire dur</gsml:preferredName>
+												<gsml:vocabulary xlink:href="#gv1"/>
+											</gsml:ControlledConcept>
+										</gsml:member>
+										<gsml:member>
+											<gsml:ControlledConcept>
+												<gsml:preferredName>Calcaire tendre</gsml:preferredName>
+												<gsml:vocabulary xlink:href="#gv1"/>
+											</gsml:ControlledConcept>
+										</gsml:member>
+										<gsml:member>
+											<gsml:ControlledConcept>
+												<gsml:preferredName>Calcaire jaunâtre</gsml:preferredName>
+												<gsml:vocabulary xlink:href="#gv1"/>
+											</gsml:ControlledConcept>
+										</gsml:member>
+									</gsml:GeologicVocabulary>
+								</gsml:vocabulary>
+							</gsml:ControlledConcept>
+						</gsml:classifier>
+					</gsml:LithologicUnit>
+				</gsml:specification>
+			</gsml:MappedFeature>
+	</gsml:member>
+	<gsml:member>
+			<gsml:MappedFeature gml:id="bh.303432383858303032312F53.Interval1.2">
+				<gsml:positionalAccuracy>
+					<gsml:CGI_NumericValue>
+						<gsml:qualifier>nil:missing</gsml:qualifier>
+						<gsml:principalValue uom="#m">0</gsml:principalValue>
+					</gsml:CGI_NumericValue>
+				</gsml:positionalAccuracy>
+				<gsml:observationMethod>
+					<gsml:CGI_TermValue>
+						<gsml:value codeSpace=""></gsml:value>
+					</gsml:CGI_TermValue>
+				</gsml:observationMethod>
+				<gsml:samplingFrame xlink:href="#bh.303432383858303032312F53.SamplingCurve"/>
+				<gsml:shape>
+					<gml:LineString srsName="#bh.303432383858303032312F53.BoreholeShape" srsDimension="1">
+						<gml:pos>46.6</gml:pos>
+						<gml:pos>56.5</gml:pos>
+					</gml:LineString>
+				</gsml:shape>
+				<gsml:specification>
+					<gsml:LithologicUnit gml:id="LithologyUnit.2">
+						<gml:name codeSpace="http://www.brgm.fr">Unités détritiques continentales</gml:name>
+						<gsml:observationMethod>
+							<gsml:CGI_TermValue>
+								<gsml:value codeSpace="http://www.brgm.fr/VocabGeol">à partir de la carte géologique</gsml:value>
+							</gsml:CGI_TermValue>
+						</gsml:observationMethod>
+						<gsml:purpose>instance</gsml:purpose>
+						<gsml:preferredAge>
+							<gsml:GeologicEvent>
+								<gsml:eventAge>
+									<gsml:CGI_Value xsi:type="gsml:CGI_TermValueType">
+										<gsml:value codeSpace="http://www.brgm.fr/age/2006">Paléocène à Eocène</gsml:value>
+									</gsml:CGI_Value>
+								</gsml:eventAge>
+							</gsml:GeologicEvent>
+						</gsml:preferredAge>
+						<gsml:classifier>
+							<gsml:ControlledConcept>
+								<gsml:preferredName>Unités détritiques continentales</gsml:preferredName>
+								<gsml:vocabulary xlink:type="simple" xlink:href="www.brgm.fr/BRGM_appellation_lexique"/>
+							</gsml:ControlledConcept>
+						</gsml:classifier>
+					</gsml:LithologicUnit>
+				</gsml:specification>
+			</gsml:MappedFeature>
+	</gsml:member>
+	<!-- Lithostragraphic units -->
+	<gsml:member>
+			<gsml:MappedFeature gml:id="bh.303432383858303032312F53.Interval2.1">
+				<gsml:positionalAccuracy>
+					<gsml:CGI_NumericValue>
+						<gsml:qualifier>nil:missing</gsml:qualifier>
+						<gsml:principalValue uom="#m">0</gsml:principalValue>
+					</gsml:CGI_NumericValue>
+				</gsml:positionalAccuracy>
+				<gsml:observationMethod>
+					<gsml:CGI_TermValue>
+						<gsml:value codeSpace=""></gsml:value>
+					</gsml:CGI_TermValue>
+				</gsml:observationMethod>
+				<gsml:samplingFrame xlink:href="#bh.303432383858303032312F53.SamplingCurve"/>
+				<gsml:shape>
+					<gml:LineString srsName="#bh.303432383858303032312F53.BoreholeShape" srsDimension="1">
+						<gml:pos>0.0</gml:pos>
+						<gml:pos>15.25</gml:pos>
+					</gml:LineString>
+				</gsml:shape>
+				<gsml:specification>
+					<gsml:LithostratigraphicUnit gml:id="LithoStratigraphyUnit.1">
+						<gml:name codeSpace="http://www.brgm.fr">Calcaire de Pithiviers</gml:name>
+						<gsml:observationMethod>
+							<gsml:CGI_TermValue>
+								<gsml:value codeSpace="http://www.brgm.fr/VocabGeol">à partir de la carte géologique</gsml:value>
+							</gsml:CGI_TermValue>
+						</gsml:observationMethod>
+						<gsml:purpose>instance</gsml:purpose>
+						<gsml:preferredAge>
+							<gsml:GeologicEvent>
+								<gsml:eventAge>
+									<gsml:CGI_Value xsi:type="gsml:CGI_TermValueType">
+										<gsml:value codeSpace="http://www.brgm.fr/age/2006">Aquitanien</gsml:value>
+									</gsml:CGI_Value>
+								</gsml:eventAge>
+							</gsml:GeologicEvent>
+						</gsml:preferredAge>
+						<gsml:rank codeSpace="http://www.brgm.fr/VocabGeol">formation</gsml:rank>
+						<gsml:classifier>
+							<gsml:ControlledConcept>
+								<gsml:preferredName>Calcaire de Pithiviers</gsml:preferredName>
+								<gsml:vocabulary xlink:type="simple" xlink:href="www.brgm.fr/BRGM_appellation_lexique"/>
+							</gsml:ControlledConcept>
+						</gsml:classifier>
+					</gsml:LithostratigraphicUnit>
+				</gsml:specification>
+			</gsml:MappedFeature>
+	</gsml:member>
+	<gsml:member>
+			<gsml:MappedFeature gml:id="bh.303432383858303032312F53.Interval2.2">
+				<gsml:positionalAccuracy>
+					<gsml:CGI_NumericValue>
+						<gsml:qualifier>nil:missing</gsml:qualifier>
+						<gsml:principalValue uom="#m">0</gsml:principalValue>
+					</gsml:CGI_NumericValue>
+				</gsml:positionalAccuracy>
+				<gsml:observationMethod>
+					<gsml:CGI_TermValue>
+						<gsml:value codeSpace=""></gsml:value>
+					</gsml:CGI_TermValue>
+				</gsml:observationMethod>
+				<gsml:samplingFrame xlink:href="#bh.303432383858303032312F53.SamplingCurve"/>
+				<gsml:shape>
+					<gml:LineString srsName="#bh.303432383858303032312F53.BoreholeShape" srsDimension="1">
+						<gml:pos>15.25</gml:pos>
+						<gml:pos>15.30</gml:pos>
+					</gml:LineString>
+				</gsml:shape>
+				<gsml:specification>
+					<gsml:LithostratigraphicUnit gml:id="LithoStratigraphyUnit.2">
+						<gml:name codeSpace="http://www.brgm.fr">Molasse du Gâtinais</gml:name>
+						<gsml:observationMethod>
+							<gsml:CGI_TermValue>
+								<gsml:value codeSpace="http://www.brgm.fr/VocabGeol">à partir de la carte géologique</gsml:value>
+							</gsml:CGI_TermValue>
+						</gsml:observationMethod>
+						<gsml:purpose>instance</gsml:purpose>
+						<gsml:preferredAge>
+							<gsml:GeologicEvent>
+								<gsml:eventAge>
+									<gsml:CGI_Value xsi:type="gsml:CGI_TermValueType">
+										<gsml:value codeSpace="http://www.brgm.fr/age/2006">Aquitanien</gsml:value>
+									</gsml:CGI_Value>
+								</gsml:eventAge>
+							</gsml:GeologicEvent>
+						</gsml:preferredAge>
+						<gsml:rank codeSpace="http://www.brgm.fr/VocabGeol">formation</gsml:rank>
+						<gsml:classifier>
+							<gsml:ControlledConcept>
+								<gsml:preferredName>Molasse du Gâtinais</gsml:preferredName>
+								<gsml:vocabulary xlink:type="simple" xlink:href="www.brgm.fr/BRGM_appellation_lexique"/>
+							</gsml:ControlledConcept>
+						</gsml:classifier>
+					</gsml:LithostratigraphicUnit>
+				</gsml:specification>
+			</gsml:MappedFeature>
+	</gsml:member>
+	<gsml:member>
+			<gsml:MappedFeature gml:id="bh.303432383858303032312F53.Interval2.3">
+				<gsml:positionalAccuracy>
+					<gsml:CGI_NumericValue>
+						<gsml:qualifier>nil:missing</gsml:qualifier>
+						<gsml:principalValue uom="#m">0</gsml:principalValue>
+					</gsml:CGI_NumericValue>
+				</gsml:positionalAccuracy>
+				<gsml:observationMethod>
+					<gsml:CGI_TermValue>
+						<gsml:value codeSpace=""></gsml:value>
+					</gsml:CGI_TermValue>
+				</gsml:observationMethod>
+				<gsml:samplingFrame xlink:href="#bh.303432383858303032312F53.SamplingCurve"/>
+				<gsml:shape>
+					<gml:LineString srsName="#bh.303432383858303032312F53.BoreholeShape" srsDimension="1">
+						<gml:pos>15.30</gml:pos>
+						<gml:pos>34.60</gml:pos>
+					</gml:LineString>
+				</gsml:shape>
+				<gsml:specification>
+					<gsml:LithostratigraphicUnit gml:id="LithoStratigraphyUnit.3">
+						<gml:name codeSpace="http://www.brgm.fr">Calcaire d'Etampes (Calcaire du Gâtinais)</gml:name>
+						<gsml:observationMethod>
+							<gsml:CGI_TermValue>
+								<gsml:value codeSpace="http://www.brgm.fr/VocabGeol">à partir de la carte géologique</gsml:value>
+							</gsml:CGI_TermValue>
+						</gsml:observationMethod>
+						<gsml:purpose>instance</gsml:purpose>
+						<gsml:preferredAge>
+							<gsml:GeologicEvent>
+								<gsml:eventAge>
+									<gsml:CGI_Value xsi:type="gsml:CGI_TermValueType">
+										<gsml:value codeSpace="http://www.brgm.fr/age/2006">Stampien</gsml:value>
+									</gsml:CGI_Value>
+								</gsml:eventAge>
+							</gsml:GeologicEvent>
+						</gsml:preferredAge>
+						<gsml:rank codeSpace="http://www.brgm.fr/VocabGeol">formation</gsml:rank>
+						<gsml:classifier>
+							<gsml:ControlledConcept>
+								<gsml:preferredName>Calcaire d'Etampes (Calcaire du Gâtinais)</gsml:preferredName>
+								<gsml:vocabulary xlink:type="simple" xlink:href="www.brgm.fr/BRGM_appellation_lexique"/>
+							</gsml:ControlledConcept>
+						</gsml:classifier>
+					</gsml:LithostratigraphicUnit>
+				</gsml:specification>
+			</gsml:MappedFeature>
+	</gsml:member>
+</gsml:GSML>
