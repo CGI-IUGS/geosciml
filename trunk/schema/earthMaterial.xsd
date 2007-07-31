@@ -4,6 +4,9 @@
 	<xs:annotation>
 		<xs:documentation>Encoded by Eric Boisvert (May 2007) Geological Survey of Canada</xs:documentation>
 	</xs:annotation>
+	<xs:annotation>
+		<xs:documentation>2007-07-31 : Added documentation - Eric Boisvert</xs:documentation>
+	</xs:annotation>
 	<xs:import namespace="http://www.opengis.net/gml" schemaLocation="http://schemas.opengis.net/gml/3.1.1/base/gml.xsd"/>
 	<xs:include schemaLocation="CGI_Value.xsd"/>
 	<xs:include schemaLocation="vocabulary.xsd"/>
@@ -11,11 +14,23 @@
 	<xs:include schemaLocation="Gsml.xsd"/>
 	<xs:include schemaLocation="geologicUnit.xsd"/>
 	<xs:complexType name="EarthMaterialType">
+		<xs:annotation>
+			<xs:documentation>Package : EarthMaterial ; Date 2007-07-18 09:09:46 
+ The Earth Material class holds a description of a naturally occurring substance in the Earth.  Earth Material represents material composition or substance, and is thus independent of quantity or location. Ideally, Earth Materials are defined strictly based on physical properties, but because of standard geological usage, genetic interpretations may enter into the description as well. </xs:documentation>
+		</xs:annotation>
 		<xs:complexContent>
 			<xs:extension base="gml:AbstractGMLType">
 				<xs:sequence>
-					<xs:element name="color" type="gsml:CGI_TermValuePropertyType" minOccurs="0" maxOccurs="unbounded"/>
-					<xs:element name="metadata" type="gsml:MetadataPropertyType" minOccurs="0"/>
+					<xs:element name="color" type="gsml:CGI_TermValuePropertyType" minOccurs="0" maxOccurs="unbounded">
+						<xs:annotation>
+							<xs:documentation>(attribute): Terms to specify color of the earth material.  Color schemes such as the Munsell rock and soil color schemes could be used.</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="metadata" type="gsml:MetadataPropertyType" minOccurs="0">
+						<xs:annotation>
+							<xs:documentation>(association): </xs:documentation>
+						</xs:annotation>
+					</xs:element>
 				</xs:sequence>
 			</xs:extension>
 		</xs:complexContent>
@@ -31,12 +46,63 @@
 	</xs:complexType>
 	<!--=======================-->
 	<xs:complexType name="ConstituentPartType">
+		<xs:annotation>
+			<xs:documentation>Package : EarthMaterial ; Date 2007-07-21 09:35:55 
+ The Constituent Part class describes how Earth Materials may be made up of other Earth Materials, including the proportion of the constituent part in the whole (eg: 20%, minor, dominant); the role that the constituent plays in the whole (eg: matrix, groundmass, framework, phenocryst, xenolith, vein); and type of particle (eg: grain, clast, crystal, fossil, oolite)
+
+The distinction between "role" and "particleType" is subtle.  An operational test is that constituentType may be determined independent of relationship between particles in the aggregation, whereas role requires consideration of the relationship to other particles. A particle may be identified as clast, independent of its material composition, and independent of its relationship to other grains in a rock. The term 'floating clast' is a role, because it is dependent on the relationship 'not in contact with other clasts'. Consider Dunham's textural classification of carbonate rocks (wackestone, packstone, grainstone...) in the description of carbonate rocks. The description is predicated on identification of two kinds of intraclasts (grains) and matrix (carbonate mud), and then uses this distinction to establish relationships--mud supported vs. grain supported -- that define roles for the two types of constituents (framework, matrix...).
+
+examples of type vs. role:
+Particle type: clast. Role: framework, floating particle
+
+particle type: crystal. Role: matrix, pseudomatrix (in case that matrix is interpreted as recrystallized material)
+
+particle type: clast. Role: matrix (in case that matrix is interpreted as very-fine grained detrital fraction)
+
+particle type: crystal. Role: cement (in case that material insterstitial to particles is crystalline material introduced during diagenesis)
+
+particle type: crystal. Role: phenocryst (in igneous rock)
+
+particle type: microlite Role: groundmass (in porphyrytic igneous rock)
+
+particle type: crystal. Role: framework (in igneous rock)
+
+particle type: pyroclast. role: framework (in tuff)
+
+particle type: crystal Role: oikocryst
+
+particle type: crystal Role: overgrowth
+
+particle type: biogenic particle Role: floating particle
+
+particle type: ooid Role: framework </xs:documentation>
+		</xs:annotation>
 		<xs:sequence>
-			<xs:element name="proportion" type="gsml:CGI_ValuePropertyType"/>
-			<xs:element name="role" type="gsml:ScopedNameType"/>
-			<xs:element name="particleType" type="gsml:ScopedNameType" minOccurs="0"/>
-			<xs:element name="material" type="gsml:EarthMaterialPropertyType" minOccurs="0"/>
-			<xs:element name="particleGeometry" type="gsml:ParticleGeometryDescriptionPropertyType" minOccurs="0"/>
+			<xs:element name="proportion" type="gsml:CGI_ValuePropertyType">
+				<xs:annotation>
+					<xs:documentation>(attribute): Quantity that specifies the fraction of the Earth Material formed by the part (eg: 20%, minor, dominant)</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="role" type="gsml:ScopedNameType">
+				<xs:annotation>
+					<xs:documentation>(attribute): Describes the relationship between particles in an earth material aggregation. (eg: framework, matrix, phenocryst, cement)</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="particleType" type="gsml:ScopedNameType" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>(attribute): Terms to specify the nature of individual particles of each constituent in an Earth Material aggregation, based mostly on their genesis.  Examples include oolith, crystals, pore space. Constituent type is determined based on the nature of the particles, and ideally is independent of the relationship between particles in a compound material aggregation.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="material" type="gsml:EarthMaterialPropertyType" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>(association): </xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="particleGeometry" type="gsml:ParticleGeometryDescriptionPropertyType" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>(association): </xs:documentation>
+				</xs:annotation>
+			</xs:element>
 		</xs:sequence>
 	</xs:complexType>
 	<!-- ..................... -->
@@ -50,11 +116,28 @@
 	</xs:complexType>
 	<!--=======================-->
 	<xs:complexType name="MaterialRelationType">
+		<xs:annotation>
+			<xs:documentation>Package : EarthMaterial ; Date 2007-07-19 22:10:24 
+ The concrete MaterialRelation class is a subtype of the abstract GeologicRelation class which describes the relationships between constituent parts in an Earth Material (eg: A mineral overgrowth on a phenocryst within a granite).
+
+Relationships are always binary and directional.  There is always a single source and a single target.  The relationship is always defined from the perspective of the Source and is generally an active verb.
+
+Example:  Consider an overgrowth of albite on plagioclase in a granite.  The  Source would point to the albite mineral description.  In this case, the Target would point to the plagioclase mineral description and the relationship attribute would be 'overgrows'.  Other appropriate relationship attributes might include: crosscuts, replaces, etc.
+</xs:documentation>
+		</xs:annotation>
 		<xs:complexContent>
 			<xs:extension base="gsml:GeologicRelationType">
 				<xs:sequence>
-					<xs:element name="source" type="gsml:ConstituentPartPropertyType"/>
-					<xs:element name="target" type="gsml:ConstituentPartPropertyType"/>
+					<xs:element name="source" type="gsml:ConstituentPartPropertyType">
+						<xs:annotation>
+							<xs:documentation>(association): </xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="target" type="gsml:ConstituentPartPropertyType">
+						<xs:annotation>
+							<xs:documentation>(association): </xs:documentation>
+						</xs:annotation>
+					</xs:element>
 				</xs:sequence>
 			</xs:extension>
 		</xs:complexContent>
@@ -70,15 +153,43 @@
 	</xs:complexType>
 	<!--=======================-->
 	<xs:complexType name="CompoundMaterialType">
+		<xs:annotation>
+			<xs:documentation>Package : EarthMaterial ; Date 2007-07-18 11:07:49 
+ An EarthMaterial composed of particles composed of EarthMaterials, possibly including other CompoundMaterials.  Includes consolidated and unconsolidated materials as well as mixtures of consolidated and unconsolidated materials.</xs:documentation>
+		</xs:annotation>
 		<xs:complexContent>
 			<xs:extension base="gsml:EarthMaterialType">
 				<xs:sequence>
-					<xs:element name="compositionCategory" type="gsml:CGI_TermValuePropertyType" minOccurs="0" maxOccurs="unbounded"/>
-					<xs:element name="geneticCategory" type="gsml:CGI_TermValuePropertyType" minOccurs="0" maxOccurs="unbounded"/>
-					<xs:element name="part" type="gsml:ConstituentPartPropertyType" minOccurs="0" maxOccurs="unbounded"/>
-					<xs:element name="particleGeometry" type="gsml:ParticleGeometryDescriptionPropertyType" minOccurs="0"/>
-					<xs:element name="metamorphicCharacter" type="gsml:MetamorphicDescriptionPropertyType" minOccurs="0"/>
-					<xs:element name="fabric" type="gsml:FabricDescriptionPropertyType" minOccurs="0" maxOccurs="unbounded"/>
+					<xs:element name="compositionCategory" type="gsml:CGI_TermValuePropertyType" minOccurs="0" maxOccurs="unbounded">
+						<xs:annotation>
+							<xs:documentation>(attribute): Term to specify the gross compositional character of a compound material. Terms would typically include broad chemical classifications such as silicate, carbonate, ferromagnesian, oxide.  However, this attribute may have different terminology for different kinds of rocks - for example sandstone petrographic classification terms (e.g. feldspathic) might be placed here.</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="geneticCategory" type="gsml:CGI_TermValuePropertyType" minOccurs="0" maxOccurs="unbounded">
+						<xs:annotation>
+							<xs:documentation>(attribute): A term that represents a summary geologic history of the material. (ie, a genetic process classifier term)  Examples include igneous, sedimentary, metamorphic, shock metamorphic, volcanic, pyroclastic.</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="part" type="gsml:ConstituentPartPropertyType" minOccurs="0" maxOccurs="unbounded">
+						<xs:annotation>
+							<xs:documentation>(association): </xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="particleGeometry" type="gsml:ParticleGeometryDescriptionPropertyType" minOccurs="0">
+						<xs:annotation>
+							<xs:documentation>(association): </xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="metamorphicCharacter" type="gsml:MetamorphicDescriptionPropertyType" minOccurs="0">
+						<xs:annotation>
+							<xs:documentation>(association): </xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="fabric" type="gsml:FabricDescriptionPropertyType" minOccurs="0" maxOccurs="unbounded">
+						<xs:annotation>
+							<xs:documentation>(association): </xs:documentation>
+						</xs:annotation>
+					</xs:element>
 				</xs:sequence>
 			</xs:extension>
 		</xs:complexContent>
@@ -94,11 +205,31 @@
 	</xs:complexType>
 	<!--=======================-->
 	<xs:complexType name="ParticleGeometryDescriptionType">
+		<xs:annotation>
+			<xs:documentation>Package : EarthMaterial ; Date 2007-06-08 14:29:33 
+ ParticleGeometryDescription describes particles in a CompoundMaterial independent of their relationship to each other or orientation. It is distinguished from Fabric in that the ParticleGeometryDescription remains constant if the material is disaggregated into its constituent particles, whereas Fabric is lost if the material is disaggregated.  Properties include the particle size (grainsize), particle sorting (size distribution, eg: well sorted, poorly sorted, bimodal sorting), particle shape (surface rounding or crystal face development, eg: well rounded, euhedral, anhedral), and particle aspectRatio (eg: elongated, platy, bladed, compact, acicular).</xs:documentation>
+		</xs:annotation>
 		<xs:sequence>
-			<xs:element name="size" type="gsml:CGI_ValuePropertyType" minOccurs="0" maxOccurs="unbounded"/>
-			<xs:element name="sorting" type="gsml:CGI_ValuePropertyType" minOccurs="0" maxOccurs="unbounded"/>
-			<xs:element name="shape" type="gsml:CGI_ValuePropertyType" minOccurs="0" maxOccurs="unbounded"/>
-			<xs:element name="aspectRatio" type="gsml:CGI_ValuePropertyType" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:element name="size" type="gsml:CGI_ValuePropertyType" minOccurs="0" maxOccurs="unbounded">
+				<xs:annotation>
+					<xs:documentation>(attribute): The Size attribute specifies particle grainsize.  Values may be reported using absolute measurements (eg: range, mean, median, mode, maximum) or as descriptive terms from a schema appropriate to the type of Compound Material (eg: the Udden-Wentworth sheme for clastic sedimentary rocks - silt, sand, gravel; volcaniclastic rocks - ash, lapilli, bomb; crystalline rocks - fine, medium, coarse, cryptocrystalline)</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="sorting" type="gsml:CGI_ValuePropertyType" minOccurs="0" maxOccurs="unbounded">
+				<xs:annotation>
+					<xs:documentation>(attribute): The Sorting attribute holds text or numeric terms to specify size distribution of particles in a CompoundMaterial.  Terminology for sorting in sedimentary rocks is based on the quantitative Graphic Standard Deviation (IGSD) scheme proposed by Folk (1968, 1974).  Example terms for this attribute may include sedimentary terms such as well sorted and poorly sorted, or igneous terms such as porphyritic, equigranuilar, seriate.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="shape" type="gsml:CGI_ValuePropertyType" minOccurs="0" maxOccurs="unbounded">
+				<xs:annotation>
+					<xs:documentation>(attribute): The Shape attribute describes, a) the development of crystal faces bounding particles in crystalline compond materials, and b) surface rounding of grains in sedimentary rocks.  Roundness is a measure of the sharpness of the edges between surfaces bounding a particle (see Jackson, 1997; Wadell, 1932). Terms should be appropriate for the kind of compound material (eg: for crystalline rocks- euhedral, ideoblastic, subhedral, anhedral, xenoblastic; for sedimentary rocks - angular, rounded)</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="aspectRatio" type="gsml:CGI_ValuePropertyType" minOccurs="0" maxOccurs="unbounded">
+				<xs:annotation>
+					<xs:documentation>(attribute): AspectRatio describes the geometry of particles based on the ratios of lengths of long, intermediate and short axes of grains. Equates to sphericity in sedimentary rocks (ie: the degree to which the shape of a particle approximates a sphere).  A quantitative specification based on the ratio of lengths of long, intermediate and short axes of grain shape (Sneed and Folk, 1958; Zingg, 1935). (eg: prolate, slightly flattened, very bladed, equant, acicular, tabular)</xs:documentation>
+				</xs:annotation>
+			</xs:element>
 		</xs:sequence>
 	</xs:complexType>
 	<!-- ..................... -->
@@ -112,9 +243,24 @@
 	</xs:complexType>
 	<!--=======================-->
 	<xs:complexType name="FabricDescriptionType">
+		<xs:annotation>
+			<xs:documentation>Package : EarthMaterial ; Date 2007-06-25 13:19:58 
+ The FabricDescription class describes all types of fabrics associated with a CompoundMaterial (ie, tectonic, metamorphic, sedimentary, igneous fabrics or textures).  It denotes a pattern, defined by one or more CompoundMaterial constituents, that is present throughout a rock body when considered at some scale.  FabricDescription is defined based on the average configuration of many constituents.  Penetrative fabric denotes that these constituents are distributed throughout the rock volume at the scale of observation [Passchier and Trouw, 1998], and are repeated at distances that are small relative to the scale of the whole, such that they can be considered to pervade the whole uniformly (Turner and Weiss [1963] p. 21-24; Hobbs and others [1976], p. 73; Jackson [1997]; Passchier and Trouw [1998]). 
+
+FabricDescription is distinguished from Particle Geometry based on the criteria that Particle Geometry is preserved if a CompoundMaterial is disaggregated, while FabricDescription is not defined if the material is disaggregated.
+</xs:documentation>
+		</xs:annotation>
 		<xs:sequence>
-			<xs:element name="fabricType" type="gsml:ControlledConceptPropertyType"/>
-			<xs:element name="fabricDescription" type="xs:string" minOccurs="0"/>
+			<xs:element name="fabricType" type="gsml:ControlledConceptPropertyType">
+				<xs:annotation>
+					<xs:documentation>(attribute): Attribute to denote the type of fabric in the CompoundMaterial (eg, rapikivi texture, autobrecciation, spaced cleavage, porphyroblastic, cross-bedding).  The fabricType describes a pattern, defined by one or more CompoundMaterial constituents, that is present throughout a rock body when considered at some scale.  FabricDescription is defined based on the average configuration of many constituents.  Penetrative fabric denotes that these constituents are distributed throughout the rock volume at the scale of observation [Passchier and Trouw, 1998], and are repeated at distances that are small relative to the scale of the whole, such that they can be considered to pervade the whole uniformly. </xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="fabricDescription" type="xs:string" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>(attribute): A free text string to indicate any specific or peculiar features of the described fabric in the CompoundMaterial.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
 		</xs:sequence>
 	</xs:complexType>
 	<!-- ..................... -->
@@ -128,6 +274,10 @@
 	</xs:complexType>
 	<!--=======================-->
 	<xs:complexType name="OrganicMaterialType">
+		<xs:annotation>
+			<xs:documentation>Package : EarthMaterial ; Date 2007-07-18 09:09:33 
+ An EarthMaterial that belongs to the class of chemical compounds having a reduced carbon basis (as distinct from carbonates), and derived from living organisms.  Includes high-carbon EarthMaterials such as bitumen, peat, and coal.  </xs:documentation>
+		</xs:annotation>
 		<xs:complexContent>
 			<xs:extension base="gsml:EarthMaterialType"/>
 		</xs:complexContent>
@@ -143,6 +293,10 @@
 	</xs:complexType>
 	<!--=======================-->
 	<xs:complexType name="InorganicFluidType">
+		<xs:annotation>
+			<xs:documentation>Package : EarthMaterial ; Date 2007-07-18 09:09:41 
+ An inorganic, non-crystalline EarthMaterial (solid, liquid, or gas) that tends to flow or conform to the shape of its container.  Includes glass.  By convention liquid mercury is considered a mineral (examples: water, brine, glass)</xs:documentation>
+		</xs:annotation>
 		<xs:complexContent>
 			<xs:extension base="gsml:EarthMaterialType"/>
 		</xs:complexContent>
@@ -158,10 +312,18 @@
 	</xs:complexType>
 	<!--=======================-->
 	<xs:complexType name="MineralType">
+		<xs:annotation>
+			<xs:documentation>Package : EarthMaterial ; Date 2007-07-18 09:09:37 
+ A naturally occurring inorganic element or compound having a periodically repeating arrangement of atoms and a characteristic chemical composition or range of compositions, resulting in distinctive physical properties.  Includes mercury as a general exception to the requirement of crystallinity.  Also includes crypto¬crystalline materials such as chalcedony and amorphous silica.</xs:documentation>
+		</xs:annotation>
 		<xs:complexContent>
 			<xs:extension base="gsml:EarthMaterialType">
 				<xs:sequence>
-					<xs:element name="mineralName" type="gsml:ControlledConceptPropertyType" maxOccurs="unbounded"/>
+					<xs:element name="mineralName" type="gsml:ControlledConceptPropertyType" maxOccurs="unbounded">
+						<xs:annotation>
+							<xs:documentation>(attribute): Name of the mineral (eg: orthoclase) or mineral family (eg: feldspar), approved by the International Mineralogical Association. (eg: http://www.mindat.org/mineralindex.php)</xs:documentation>
+						</xs:annotation>
+					</xs:element>
 				</xs:sequence>
 			</xs:extension>
 		</xs:complexContent>
@@ -177,12 +339,28 @@
 	</xs:complexType>
 	<!--=======================-->
 	<xs:complexType name="RockType">
+		<xs:annotation>
+			<xs:documentation>Package : EarthMaterial ; Date 2007-07-18 09:09:27 
+ A consolidated aggregate of one or more EarthMaterials, or a body of undifferentiated mineral matter, or of solid organic material [adapted from Jackson, 1997].  Includes polymineralic mineral aggregates such as granite, shale, schist, and monomineralic aggregates such as calcite limestone or marble.  Excludes unconsolidated materials.  Materials not classified as Rocks in this model include volcanic glass (inorganic fluid, non-crystalline) and coal (organic material).</xs:documentation>
+		</xs:annotation>
 		<xs:complexContent>
 			<xs:extension base="gsml:CompoundMaterialType">
 				<xs:sequence>
-					<xs:element name="consolidationDegree" type="gsml:CGI_TermPropertyType"/>
-					<xs:element name="lithology" type="gsml:ControlledConceptPropertyType" maxOccurs="unbounded"/>
-					<xs:element name="physicalProperty" type="gsml:PhysicalDescriptionPropertyType" minOccurs="0"/>
+					<xs:element name="consolidationDegree" type="gsml:CGI_TermPropertyType">
+						<xs:annotation>
+							<xs:documentation>(attribute): A property that specifies the degree to which an aggregation of EarthMaterial particles is a distinct solid material. Consolidation and induration are related concepts specified by this property. They define a continuum from poorly-cemented collections of particles to very hard rock. Induration is the degree to which a consolidated material is made hard, operationally determined by how difficult it is to break a piece of the material. Consolidated materials may have varying degrees of induration (NADMSC, 2004)</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="lithology" type="gsml:ControlledConceptPropertyType" maxOccurs="unbounded">
+						<xs:annotation>
+							<xs:documentation>(attribute): A controlled concept indicating the name of the rock type (eg, quartz sandstone, basalt, muscovite schist).  Igneous rock definitions are governed by IUGS agreed vocabulary.</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="physicalProperty" type="gsml:PhysicalDescriptionPropertyType" minOccurs="0">
+						<xs:annotation>
+							<xs:documentation>(association): </xs:documentation>
+						</xs:annotation>
+					</xs:element>
 				</xs:sequence>
 			</xs:extension>
 		</xs:complexContent>
@@ -198,12 +376,28 @@
 	</xs:complexType>
 	<!--=======================-->
 	<xs:complexType name="UnconsolidatedMaterialType">
+		<xs:annotation>
+			<xs:documentation>Package : EarthMaterial ; Date 2007-07-18 09:09:24 
+ A CompoundMaterial that consists of particles that are not bound together to form a solid material. May occur either at the surface or at depth.  May include sediment, mud, sand, soil, volcanic detritus etc.  Cohesion of these materials forms a continuum with weakly consolidated rocks, and as such some UnconsolidatedMaterials may have a minor degree of cohesion (eg, a clay soil).</xs:documentation>
+		</xs:annotation>
 		<xs:complexContent>
 			<xs:extension base="gsml:CompoundMaterialType">
 				<xs:sequence>
-					<xs:element name="consolidationDegree" type="gsml:CGI_TermPropertyType"/>
-					<xs:element name="lithology" type="gsml:ControlledConceptPropertyType" maxOccurs="unbounded"/>
-					<xs:element name="physicalProperty" type="gsml:PhysicalDescriptionPropertyType" minOccurs="0"/>
+					<xs:element name="consolidationDegree" type="gsml:CGI_TermPropertyType">
+						<xs:annotation>
+							<xs:documentation>(attribute): Cohesion of these materials forms a continuum with weakly consolidated rocks, and as such some UnconsolidatedMaterials may have some minor degree of cohesion (eg, a clay soil).</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="lithology" type="gsml:ControlledConceptPropertyType" maxOccurs="unbounded">
+						<xs:annotation>
+							<xs:documentation>(attribute): A controlled concept indicating the name of the uncosolidated material type (eg, sand, mud, soil, saprolite).</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="physicalProperty" type="gsml:PhysicalDescriptionPropertyType" minOccurs="0">
+						<xs:annotation>
+							<xs:documentation>(association): </xs:documentation>
+						</xs:annotation>
+					</xs:element>
 				</xs:sequence>
 			</xs:extension>
 		</xs:complexContent>
@@ -219,10 +413,20 @@
 	</xs:complexType>
 	<!--=======================-->
 	<xs:complexType name="MaterialFossilType">
+		<xs:annotation>
+			<xs:documentation>Package : Fossil ; Date 2007-07-18 11:08:41 
+ The preserved remains or replaced remains (casts) of plants and animals.  The MaterialFossil class describes fossils as a type of CompoundMaterial which may form a constituent part of another CompoundMaterial (such as a limestone rock).  A fossil type may have one or more described associated organisms.
+
+Note: Trace fossils and molds are GeologicStructures and may be related to MaterialFossils through their associated organisms.  Individual fossil instances (ie, fossil specimens) are treated in this model as specimens composed of CompoundMaterial/MaterialFossil.</xs:documentation>
+		</xs:annotation>
 		<xs:complexContent>
 			<xs:extension base="gsml:CompoundMaterialType">
 				<xs:sequence>
-					<xs:element name="sourceOrganism" type="gsml:OrganismPropertyType" minOccurs="0"/>
+					<xs:element name="sourceOrganism" type="gsml:OrganismPropertyType" minOccurs="0">
+						<xs:annotation>
+							<xs:documentation>(association): a material structure may have a related Organism representing the plant or animal whose remains were preserved or replaced to form the fossil.</xs:documentation>
+						</xs:annotation>
+					</xs:element>
 				</xs:sequence>
 			</xs:extension>
 		</xs:complexContent>
@@ -238,6 +442,10 @@
 	</xs:complexType>
 	<!--=======================-->
 	<xs:complexType name="CastType">
+		<xs:annotation>
+			<xs:documentation>Package : EarthMaterial ; Date 2007-07-18 09:09:53 
+ A replica or reproduction of the external details (size, shape, surface features) of a fossil shell, skeleton, or other organic structure, produced by the filling of a cavity originally formed by the decay or dissolution of some or all of the original hard parts of the organism. May form by in situ replacement (ie, there may never be an actual cavity).</xs:documentation>
+		</xs:annotation>
 		<xs:complexContent>
 			<xs:extension base="gsml:MaterialFossilType"/>
 		</xs:complexContent>
@@ -253,6 +461,10 @@
 	</xs:complexType>
 	<!--=======================-->
 	<xs:complexType name="PreservedRemainType">
+		<xs:annotation>
+			<xs:documentation>Package : Fossil ; Date 2007-07-18 09:09:00 
+ The original materials comprising an organism's body, shell, or other hard parts. Includes recrystallized but not replaced material. Also includes non-fossilized bone and shell remains. This material would become fossil material when it is deemed to be 'preserved ... since some past geologic or prehistoric time' [Jackson, 1997].</xs:documentation>
+		</xs:annotation>
 		<xs:complexContent>
 			<xs:extension base="gsml:MaterialFossilType"/>
 		</xs:complexContent>

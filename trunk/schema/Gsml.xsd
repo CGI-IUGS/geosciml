@@ -10,6 +10,12 @@
 	<xs:annotation>
 		<xs:documentation>2007-07-12 : Minor fixes and changes to fit new version of model - Eric Boisvert</xs:documentation>
 	</xs:annotation>
+	<xs:annotation>
+		<xs:documentation>2007-07-31 : Added documentation - Eric Boisvert</xs:documentation>
+	</xs:annotation>
+	<xs:annotation>
+		<xs:documentation>2007-07-31 :Fixed syntax of GSMLItemType to GSMLItemPropertyType - Eric Boisvert</xs:documentation>
+	</xs:annotation>
 	<xs:import namespace="http://www.opengis.net/gml" schemaLocation="http://schemas.opengis.net/gml/3.1.1/base/gml.xsd"/>
 	<xs:import namespace="http://www.opengis.net/sampling/1.0" schemaLocation="http://schemas.opengis.net/sampling/1.0.0/sampling.xsd"/>
 	<xs:include schemaLocation="geosciml.xsd"/>
@@ -17,19 +23,50 @@
 	<xs:include schemaLocation="vocabulary.xsd"/>
 	<xs:include schemaLocation="earthMaterial.xsd"/>
 	<xs:complexType name="MappedFeatureType">
+		<xs:annotation>
+			<xs:documentation>Package : CGI_Top ; Date 2007-06-26 16:26:48 
+ A MappedFeature provides a link between a notional feature (description package) and one spatial representation of it, or part of it. (Exposures, Surface Traces and Intercepts, etc)
+    * the specific bounded occurrence, such as an outcrop or map polygon
+    * the Mapped Feature carries a geometry or shape
+          o the association with a Geologic Feature (legend item) provides specification of all the other descriptors
+          o the association with a Sampling Feature provides the context and dimensionality 
+
+A Mapped Feature is always associated with some sampling feature - e.g. a mapping surface, a section, a Borehole (see BoreHolesAndObservation) etc.  As noted on the diagram, if the associated sampling feature is a Borehole, then the shape associated with the MappedFeature will usually be either a point or an interval. This reconciles the 2-D ("map", section) and 1-D (borehole, traverse) viewpoints in a common abstraction. 
+</xs:documentation>
+		</xs:annotation>
 		<xs:complexContent>
 			<xs:extension base="gml:AbstractFeatureType">
 				<xs:sequence>
-					<xs:element name="positionalAccuracy" type="gsml:CGI_ValuePropertyType"/>
-					<xs:element name="observationMethod" type="gsml:CGI_TermValuePropertyType" maxOccurs="unbounded"/>
-					<xs:element name="samplingFrame" type="sa:SpatiallyExtensiveSamplingFeaturePropertyType">
+					<xs:element name="positionalAccuracy" type="gsml:CGI_ValuePropertyType">
 						<xs:annotation>
-							<xs:documentation>until a final Observation and Measurement and related schemas is stable, this points to xs:anyType</xs:documentation>
+							<xs:documentation>(attribute): Examples: accurate, approximate, diagramatic, indefinite, unknown, 5 m. Corresponds to ISO19115 DQ_ThematicAccuracy (either quantitative or non quantitative).result.value</xs:documentation>
 						</xs:annotation>
 					</xs:element>
-					<xs:element name="shape" type="gml:GeometryPropertyType"/>
-					<xs:element name="specification" type="gsml:GeologicFeaturePropertyType"/>
-					<xs:element name="metadata" type="gsml:MetadataPropertyType" minOccurs="0"/>
+					<xs:element name="observationMethod" type="gsml:CGI_TermValuePropertyType" maxOccurs="unbounded">
+						<xs:annotation>
+							<xs:documentation>(attribute): Examples: direct, fieldObservation, handSpecimen, indirect, laboratory, aerialPhotography, creativeImagination. This corresponds (loosely) to ISO19115 Lineage.Statement</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="samplingFrame" type="sa:SpatiallyExtensiveSamplingFeaturePropertyType">
+						<xs:annotation>
+							<xs:documentation>(association): SamplingFrame is MapHorizon or other reference frame within which the MappedFeature is located. Map sheet, outcrop, borehole, flightline, swath, specimen, section, etc</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="shape" type="gml:GeometryPropertyType">
+						<xs:annotation>
+							<xs:documentation>(association): Association of a MappedFeature with a single GML shape object.  The shape object may have any dimensionality.</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="specification" type="gsml:GeologicFeaturePropertyType">
+						<xs:annotation>
+							<xs:documentation>(association): a description association that links a notional geologic feature with any number of mapped features.  A geologic feature, such as a geologic unit may be linked to mapped features from a number of different maps.  A mapped feature, however is always associated with only a single description (geologic feature).</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="metadata" type="gsml:MetadataPropertyType" minOccurs="0">
+						<xs:annotation>
+							<xs:documentation>(association): </xs:documentation>
+						</xs:annotation>
+					</xs:element>
 				</xs:sequence>
 			</xs:extension>
 		</xs:complexContent>
@@ -45,15 +82,49 @@
 	</xs:complexType>
 	<!--=======================-->
 	<xs:complexType name="GeologicFeatureType">
+		<xs:annotation>
+			<xs:documentation>Package : CGI_Top ; Date 2007-06-26 16:32:24 
+ The abstract GeologicFeature class represents a conceptual feature that is hypothesized to exist coherently in the world.
+   * this corresponds with a "legend item" from a traditional geologic map
+   * while the bounding coordinates of a Geologic Feature may be described, its shape is not.
+
+The implemented Geologic Feature instance acts as the "description package"
+
+    * the description package is classified according to its purpose as a Norm or an Instance 
+
+
+</xs:documentation>
+		</xs:annotation>
 		<xs:complexContent>
 			<xs:extension base="gml:AbstractFeatureType">
 				<xs:sequence>
-					<xs:element name="observationMethod" type="gsml:CGI_TermValuePropertyType" maxOccurs="unbounded"/>
-					<xs:element name="purpose" type="gsml:DescriptionPurpose" default="instance"/>
+					<xs:element name="observationMethod" type="gsml:CGI_TermValuePropertyType" maxOccurs="unbounded">
+						<xs:annotation>
+							<xs:documentation>(attribute): Term(s) that specify the method by which the value was obtained (e.g. point count, brunton compass on site, air photo interpretation, field estimate...). This corresponds (loosely) to ISO19115 Lineage.Statement</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="purpose" type="gsml:DescriptionPurpose" default="instance">
+						<xs:annotation>
+							<xs:documentation>(attribute): Specification of the intended purpose/level of abstraction for a given feature or object instance. Scoped name because intension is asserted by author of the data instance. Values: Instance, TypicalNorm, IdentifyingNorm. </xs:documentation>
+						</xs:annotation>
+					</xs:element>
 					<xs:element name="occurence" type="gsml:MappedFeaturePropertyType" minOccurs="0" maxOccurs="unbounded"/>
-					<xs:element name="metadata" type="gsml:MetadataPropertyType" minOccurs="0"/>
-					<xs:element name="preferredAge" type="gsml:GeologicEventPropertyType"/>
-					<xs:element name="geologicHistory" type="gsml:GeologicEventPropertyType" minOccurs="0" maxOccurs="unbounded"/>
+					<xs:element name="metadata" type="gsml:MetadataPropertyType" minOccurs="0">
+						<xs:annotation>
+							<xs:documentation>(association): </xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="preferredAge" type="gsml:GeologicEventPropertyType">
+						<xs:annotation>
+							<xs:documentation>(association): Specifies the geologic event that the data supplier considers the 'preferred' event age and event process for that feature.
+This is the age and process of the feature that would be commonly shown on a geologic map (eg deposition age, peak temperature age, intrusion age).</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="geologicHistory" type="gsml:GeologicEventPropertyType" minOccurs="0" maxOccurs="unbounded">
+						<xs:annotation>
+							<xs:documentation>(association): Associates multiple geologic events to a GeologicFeature to describe the geologic history of the feature</xs:documentation>
+						</xs:annotation>
+					</xs:element>
 				</xs:sequence>
 			</xs:extension>
 		</xs:complexContent>
@@ -77,10 +148,20 @@
 	</xs:simpleType>
 	<!--=======================-->
 	<xs:complexType name="GeologicRelationType" abstract="true">
+		<xs:annotation>
+			<xs:documentation>Package : CGI_Top ; Date 2007-06-26 15:33:55 
+ The GeologicRelation class is an abstract class that defines the general structure used to define relationships between any feature or object within GeoSciML.  Relationships are always binary and directional.  There is always a single source and a single target.  The relationship is always defined from the perspective of the Source and is generally an active verb.
+
+Example:  a Source may point to an intrusive igneous rock body.  In this case, the Target would point to the appropriate host rock body and the relationship attribute would be 'intrudes'.  Other appropriate relationship attributes might include: overlies, offsets, crosscuts, folds, etc.</xs:documentation>
+		</xs:annotation>
 		<xs:complexContent>
 			<xs:extension base="gml:AbstractFeatureType">
 				<xs:sequence>
-					<xs:element name="relationship" type="gsml:ScopedNameType"/>
+					<xs:element name="relationship" type="gsml:ScopedNameType">
+						<xs:annotation>
+							<xs:documentation>(attribute): Term that specifies the relationship between source and target geologic objects. Vocabulary of relationship names should explicitly state relationship between source and target role fillers.  For example, quartz (source) overgrows feldspar phenocryst (target).</xs:documentation>
+						</xs:annotation>
+					</xs:element>
 				</xs:sequence>
 			</xs:extension>
 		</xs:complexContent>
@@ -96,11 +177,33 @@
 	</xs:complexType>
 	<!--=======================-->
 	<xs:complexType name="GeologicFeatureRelationType">
+		<xs:annotation>
+			<xs:documentation>Package : GeologicRelation ; Date 2007-06-26 15:38:26 
+ The GeologicFeatureRelation class is a concrete subtype of the abstract GeologicRelation class that is used to define realtionships between geologic features, ie. structure-structure, unit-unit, and structure-unit relationships.
+
+Relationships are always binary and directional.  There is always a single source and a single target.  The relationship is always defined from the perspective of the Source and is generally an active verb.
+
+Example:  a Source may point to an intrusive igneous rock body.  In this case, the Target would point to the appropriate host rock body and the relationship attribute would be 'intrudes'.  Other appropriate relationship attributes might include: overlies, offsets, crosscuts, folds, etc.</xs:documentation>
+		</xs:annotation>
 		<xs:complexContent>
 			<xs:extension base="gsml:GeologicRelationType">
 				<xs:sequence>
-					<xs:element name="source" type="gsml:GeologicFeaturePropertyType"/>
-					<xs:element name="target" type="gsml:GeologicFeaturePropertyType"/>
+					<xs:element name="source" type="gsml:GeologicFeaturePropertyType">
+						<xs:annotation>
+							<xs:documentation>(association): An association between a geologic relationship and the source of that relationship.
+
+Relationships are always binary and directional.  There is always a single source and a single target.  The relationship is always defined from the perspective of the Source and is generally an active verb.
+</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="target" type="gsml:GeologicFeaturePropertyType">
+						<xs:annotation>
+							<xs:documentation>(association): An association between a geologic relationship and the target of that relationship.
+
+Relationships are always binary and directional.  There is always a single source and a single target.  The relationship is always defined from the perspective of the Source and is generally an active verb.
+</xs:documentation>
+						</xs:annotation>
+					</xs:element>
 				</xs:sequence>
 			</xs:extension>
 		</xs:complexContent>
@@ -116,13 +219,37 @@
 	</xs:complexType>
 	<!--=======================-->
 	<xs:complexType name="GeologicEventType">
+		<xs:annotation>
+			<xs:documentation>Package : GeologicAge ; Date 2007-06-04 09:36:06 
+ An identifiable event during which one or more geological processes act to modify geological entities. A GeologicEvent must have a specified GeologicAge and may have specified environments and processes.  An example might be a cratonic uplift event during which erosion, sedimentation, and volcanism all take place.
+
+Geological history is an ordered aggregation of Geological Event objects, each of which may have an associated Geological Age, Geological Environment, and one or more Geological Process objects. Genesis typically pertains to some geological phenomenon (Geological Structure, Earth Material, Geological Unit, Fossil, etc.)
+
+In GeoSciML 2.0 this ordering cannot be specified.</xs:documentation>
+		</xs:annotation>
 		<xs:complexContent>
 			<xs:extension base="gml:AbstractFeatureType">
 				<xs:sequence>
-					<xs:element name="eventAge" type="gsml:CGI_ValuePropertyType"/>
-					<xs:element name="eventProcess" type="gsml:CGI_TermValuePropertyType" minOccurs="0" maxOccurs="unbounded"/>
-					<xs:element name="eventEnvironment" type="gsml:CGI_TermValuePropertyType" minOccurs="0" maxOccurs="unbounded"/>
-					<xs:element name="metadata" type="gsml:MetadataPropertyType" minOccurs="0"/>
+					<xs:element name="eventAge" type="gsml:CGI_ValuePropertyType">
+						<xs:annotation>
+							<xs:documentation>(attribute): The eventAge attribute is the age of a particular geological event or feature expressed in terms of years before present (absolute age), referred to the geological time scale, or by comparison with other geological events or features (relative age).  An eventAge can represent an instant in time, an interval of time, or any combination of multiple instants or intervals.  Specifications of age in years before present are based on determination of time durations based on interpretation of isotopic analyses of EarthMaterial (some other methods are used for geologically young materials).  Ages referred to geological time scales are essentially based on correlation of a geological unit with a standard chronostratigraphic unit that serves as a reference.  Relative ages are based on relationships between geological units such as superposition, intruded by, cross-cuts, or 'contains inclusions of'</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="eventProcess" type="gsml:CGI_TermValuePropertyType" minOccurs="0" maxOccurs="unbounded">
+						<xs:annotation>
+							<xs:documentation>(attribute): A geologicProcess is a function, possibly complex, that acts on one geologic entity to produce another geologic entity at a later time. GeologicProcess is time independent; some GeologicProcesses are presently observable in the world or in the laboratory, others can only be inferred from observing the results of the process. Processes take one or more of EarthMaterial, GeologicUnit, or GeologicStructure as input and have one or more of EarthMaterial, GeologicUnit or GeologicStructure as output.</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="eventEnvironment" type="gsml:CGI_TermValuePropertyType" minOccurs="0" maxOccurs="unbounded">
+						<xs:annotation>
+							<xs:documentation>(attribute): The physical setting within which a GeologicEvent takes place.  GeologicEnvironment is construed broadly to include physical settings on the Earth surface specified by climate, tectonics, physiography or geography, and settings in the Earth’s interior specified by pressure, temperature, chemical environment, or tectonics. Specification of setting may be a simple text description or a link to a complex description.  </xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="metadata" type="gsml:MetadataPropertyType" minOccurs="0">
+						<xs:annotation>
+							<xs:documentation>(association): </xs:documentation>
+						</xs:annotation>
+					</xs:element>
 				</xs:sequence>
 			</xs:extension>
 		</xs:complexContent>
@@ -138,11 +265,23 @@
 	</xs:complexType>
 	<!--=======================-->
 	<xs:complexType name="GSMLType">
+		<xs:annotation>
+			<xs:documentation>Package : CGI_Collection ; Date 2007-06-26 14:58:31 
+ The GSML Class acts as a collection container for items to be bundled in WFS response documents and other applications. FeatureType allows this to be a FeatureMember in a WFS_FeatureCollection.</xs:documentation>
+		</xs:annotation>
 		<xs:complexContent>
 			<xs:extension base="gml:AbstractFeatureType">
 				<xs:sequence>
-					<xs:element name="metadata" type="gsml:MetadataPropertyType" minOccurs="0"/>
-					<xs:element name="member" type="gsml:GSMLItemType" minOccurs="0" maxOccurs="unbounded"/>
+					<xs:element name="metadata" type="gsml:MetadataPropertyType" minOccurs="0">
+						<xs:annotation>
+							<xs:documentation>(association): </xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="member" type="gsml:GSMLPropertyType" minOccurs="0" maxOccurs="unbounded">
+						<xs:annotation>
+							<xs:documentation>(association): Association that allows GeoSciML features and objects to be included as members in a GML Collection, through the use of the GSML class.</xs:documentation>
+						</xs:annotation>
+					</xs:element>
 				</xs:sequence>
 			</xs:extension>
 		</xs:complexContent>
@@ -157,7 +296,7 @@
 		<xs:attributeGroup ref="gsml:EstimatedPropertyAttributeGroup"/>
 	</xs:complexType>
 	<!--=======================-->
-	<xs:complexType name="GSMLItemType">
+	<xs:complexType name="GSMLItemPropertyType">
 		<xs:choice>
 			<xs:element ref="gsml:GeologicFeature"/>
 			<xs:element ref="gml:_Geometry"/>

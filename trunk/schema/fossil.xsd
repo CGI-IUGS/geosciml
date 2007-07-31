@@ -4,15 +4,26 @@
 	<xs:annotation>
 		<xs:documentation>Encoded by Eric Boisvert (May 2007) Geological Survey of Canada</xs:documentation>
 	</xs:annotation>
+	<xs:annotation>
+		<xs:documentation>2007-07-31 : Added documentation - Eric Boisvert</xs:documentation>
+	</xs:annotation>
 	<xs:import namespace="http://www.opengis.net/gml" schemaLocation="http://schemas.opengis.net/gml/3.1.1/base/gml.xsd"/>
 	<xs:include schemaLocation="vocabulary.xsd"/>
 	<xs:include schemaLocation="geologicStructure.xsd"/>
 	<xs:include schemaLocation="CGI_Value.xsd"/>
 	<xs:complexType name="OrganismType">
+		<xs:annotation>
+			<xs:documentation>Package : Fossil ; Date 2007-07-18 09:09:06 
+ Broad class to represent any living or once living thing. This is the connection to taxonomy/biology for fossils.</xs:documentation>
+		</xs:annotation>
 		<xs:complexContent>
 			<xs:extension base="gml:AbstractGMLType">
 				<xs:sequence>
-					<xs:element name="classifier" type="gsml:ControlledConceptPropertyType" maxOccurs="unbounded"/>
+					<xs:element name="classifier" type="gsml:ControlledConceptPropertyType" maxOccurs="unbounded">
+						<xs:annotation>
+							<xs:documentation>(association): </xs:documentation>
+						</xs:annotation>
+					</xs:element>
 				</xs:sequence>
 			</xs:extension>
 		</xs:complexContent>
@@ -28,10 +39,18 @@
 	</xs:complexType>
 	<!--=======================-->
 	<xs:complexType name="TraceFossilType">
+		<xs:annotation>
+			<xs:documentation>Package : Fossil ; Date 2007-07-18 11:11:55 
+ A sedimentary structure produced by the life activities (other than growth) of some organism. Neuendorf et al. (2005) restrict to structures produced by animals; further consideration needed on how to deal with structures produced by other life-forms.</xs:documentation>
+		</xs:annotation>
 		<xs:complexContent>
 			<xs:extension base="gsml:GeologicStructureType">
 				<xs:sequence>
-					<xs:element name="sourceOrganism" type="gsml:OrganismPropertyType" minOccurs="0"/>
+					<xs:element name="sourceOrganism" type="gsml:OrganismPropertyType" minOccurs="0">
+						<xs:annotation>
+							<xs:documentation>(association): a fossil structure may have a related Organism that produced the fossil in the original substrate material</xs:documentation>
+						</xs:annotation>
+					</xs:element>
 				</xs:sequence>
 			</xs:extension>
 		</xs:complexContent>
@@ -47,10 +66,18 @@
 	</xs:complexType>
 	<!--=======================-->
 	<xs:complexType name="FossilMoldType">
+		<xs:annotation>
+			<xs:documentation>Package : Fossil ; Date 2007-05-12 17:14:19 
+ A fossil that is a negative image of some organism or part of an organism. Considered a structure because the mold has the same relationship to its material substrate that a geologic structure does--the mold is in the substrate, it is not the substrate itself.</xs:documentation>
+		</xs:annotation>
 		<xs:complexContent>
 			<xs:extension base="gsml:GeologicStructureType">
 				<xs:sequence>
-					<xs:element name="sourceOrganism" type="gsml:OrganismPropertyType" minOccurs="0"/>
+					<xs:element name="sourceOrganism" type="gsml:OrganismPropertyType" minOccurs="0">
+						<xs:annotation>
+							<xs:documentation>(association): a fossil structure may have a related Organism that produced the fossil in the original substrate material</xs:documentation>
+						</xs:annotation>
+					</xs:element>
 				</xs:sequence>
 			</xs:extension>
 		</xs:complexContent>
