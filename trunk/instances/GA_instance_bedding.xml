@@ -4,7 +4,7 @@
     xmlns:xlink="http://www.w3.org/1999/xlink"
     xmlns:gml="http://www.opengis.net/gml"
     xsi:schemaLocation="http://www.cgi-iugs.org/xml/GeoSciML/2 http://www.cgi-iugs.org/xml/GeoSciML/2/geologicStructure.xsd">
-    <gml:description>bedding plane</gml:description>
+    <gml:description>bedding</gml:description>
     <gml:name codeSpace="http://www.ga.gov.au">Site 95846001 Structure #1</gml:name>
     <observationMethod>
         <CGI_TermValue>
@@ -44,17 +44,13 @@
                     <principalValue uom="degrees">270</principalValue>
                 </CGI_Value>
             </azimuth>
+            <convention>dip dip direction</convention>
             <dip>  
-<!-- 
-                    At the time of writing there are two problems with the GeologicStructure schema here.
-                    [1] The 'dip' element needs to be updated to be of type gsml:CGI_ValuePropertyType, (e.g. same as 'azimuth').
-                    [2] The 'polarity' element needs to be added after the 'dip' element (ref latest UML model). 
---> 
                 <CGI_Value xsi:type="CGI_NumericValueType">
                     <principalValue uom="degrees">40</principalValue>
                 </CGI_Value>
             </dip>
-            <convention>dip dip direction</convention>
-        </CGI_PlanarOrientation>
+            <polarity>upright</polarity>
+       </CGI_PlanarOrientation>
     </orientation>
 </Layering>
