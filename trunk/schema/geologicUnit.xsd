@@ -10,6 +10,9 @@
 	<xs:annotation>
 		<xs:documentation>2007-07-31 : Added documentation - Eric Boisvert</xs:documentation>
 	</xs:annotation>
+	<xs:annotation>
+		<xs:documentation>2007-07-31: Changed property GeologicUnitPart->whole to GeologicUnitPart->containedUnit to fit UML model</xs:documentation>
+	</xs:annotation>
 	<xs:import namespace="http://www.opengis.net/gml" schemaLocation="http://schemas.opengis.net/gml/3.1.1/base/gml.xsd"/>
 	<xs:include schemaLocation="geosciml.xsd"/>
 	<xs:complexType name="GeologicUnitType">
@@ -111,7 +114,11 @@ Will be made Abstract when a complete (enough) set of specialized subtypes is de
 					<xs:documentation>(attribute): Nature of the parts, e.g. facies, stratigraphic, interbeds, geographic, eastern facies, </xs:documentation>
 				</xs:annotation>
 			</xs:element>
-			<xs:element name="whole" type="gsml:GeologicUnitPropertyType"/>
+			<xs:element name="containedUnit" type="gsml:GeologicUnitPropertyType">
+				<xs:annotation>
+					<xs:documentation>(association): This association specifies exactly one GeologicUnit that is a proper part of another GeologicUnit.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
 		</xs:sequence>
 	</xs:complexType>
 	<!-- ..................... -->
