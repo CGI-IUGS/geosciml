@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<gsml:Foliation xmlns="http://www.cgi-iugs.org/xml/GeoSciML/2"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:xlink="http://www.w3.org/1999/xlink"
+    xmlns:gml="http://www.opengis.net/gml"
+	xmlns:gsml="http://www.cgi-iugs.org/xml/GeoSciML/2"
+	xsi:schemaLocation="http://www.cgi-iugs.org/xml/GeoSciML/2 http://schemas.cgi-iugs.net/GeoSciML/GeoSciML.xsd">
+	<gml:name codeSpace="http://www.brgm.fr">Foliation</gml:name>
+	<gsml:observationMethod>
+		<gsml:CGI_TermValue>
+			<gsml:value codeSpace="http://www.brgm.fr/VocabGeol">sur le terrain</gsml:value>
+		</gsml:CGI_TermValue>
+	</gsml:observationMethod>
+	<purpose>instance</purpose>
+	<gsml:preferredAge>
+		<gsml:GeologicEvent>
+			<gsml:eventAge>
+				<gsml:CGI_Value xsi:type="gsml:CGI_TermValueType">
+					<gsml:value codeSpace="http://www.brgm.fr/age/2006">Dévonien</gsml:value>
+				</gsml:CGI_Value>
+			</gsml:eventAge>
+		</gsml:GeologicEvent>
+	</gsml:preferredAge>
+	<gsml:foliationType>
+		<gsml:ControlledConcept>
+			<gsml:preferredName>Foliation métamorphique</gsml:preferredName>
+			<gsml:vocabulary>
+				<gsml:GeologicVocabulary gml:id="gv1">
+					<gml:name codeSpace="www.brgm.fr/Lexique_Elements_Ponctuels_Structuraux">foliation</gml:name>
+					<gsml:member>
+						<gsml:ControlledConcept>
+							<gsml:preferredName>métamorphique</gsml:preferredName>
+							<gsml:vocabulary xlink:href="#gv1"/>
+						</gsml:ControlledConcept>
+					</gsml:member>
+				</gsml:GeologicVocabulary>
+			</gsml:vocabulary>
+		</gsml:ControlledConcept>
+	</gsml:foliationType>
+	<gsml:mineralElement>
+		<gsml:Mineral>
+			<gsml:mineralName>
+				<gsml:ControlledConcept>
+					<gsml:preferredName>muscovite</gsml:preferredName>
+					<gsml:vocabulary>
+						<gsml:GeologicVocabulary gml:id="gv2">
+							<gml:name codeSpace="www.brgm.fr/Lexique_Minéraux">muscovite</gml:name>
+							<gsml:member/>
+						</gsml:GeologicVocabulary>
+					</gsml:vocabulary>
+				</gsml:ControlledConcept>
+			</gsml:mineralName>
+		</gsml:Mineral>
+	</gsml:mineralElement>
+	<gsml:orientation>
+		<gsml:CGI_PlanarOrientation>
+			<gsml:azimuth>
+				<gsml:CGI_TermValue>
+					<gsml:value codeSpace="http://www.brgm.fr/Convention_Hook">30</gsml:value>
+				</gsml:CGI_TermValue>
+			</gsml:azimuth>
+			<gsml:convention>dip dip direction</gsml:convention>
+			<gsml:dip>
+				<gsml:CGI_TermValue>
+					<gsml:value codeSpace="http://www.brgm.fr/Convention_Hook">70</gsml:value>
+				</gsml:CGI_TermValue>
+			</gsml:dip>
+			<gsml:polarity>vertical</gsml:polarity>
+		</gsml:CGI_PlanarOrientation>
+	</gsml:orientation>
+</gsml:Foliation>
