@@ -7,6 +7,9 @@
 	<xs:annotation>
 		<xs:documentation>2007-07-31 : Added documentation - Eric Boisvert</xs:documentation>
 	</xs:annotation>
+	<xs:annotation>
+		<xs:documentation>2007-08-02 : Removed xlink:href associations to DataType as they cannot be referenced (but only inlined)</xs:documentation>
+	</xs:annotation>
 	<xs:import namespace="http://www.opengis.net/gml" schemaLocation="http://schemas.opengis.net/gml/3.1.1/base/gml.xsd"/>
 	<xs:include schemaLocation="geosciml.xsd"/>
 	<xs:complexType name="EarthMaterialType">
@@ -108,7 +111,6 @@ particle type: ooid Role: framework </xs:documentation>
 		<xs:sequence>
 			<xs:element ref="gsml:ConstituentPart"/>
 		</xs:sequence>
-		<xs:attribute ref="gsml:attributeProperty"/>
 	</xs:complexType>
 	<!--=======================-->
 	<xs:complexType name="MaterialRelationType">
@@ -235,7 +237,6 @@ Example:  Consider an overgrowth of albite on plagioclase in a granite.  The  So
 		<xs:sequence>
 			<xs:element ref="gsml:ParticleGeometryDescription"/>
 		</xs:sequence>
-		<xs:attribute ref="gsml:attributeProperty"/>
 	</xs:complexType>
 	<!--=======================-->
 	<xs:complexType name="FabricDescriptionType">
@@ -266,7 +267,6 @@ FabricDescription is distinguished from Particle Geometry based on the criteria 
 		<xs:sequence>
 			<xs:element ref="gsml:FabricDescription"/>
 		</xs:sequence>
-		<xs:attribute ref="gsml:attributeProperty"/>
 	</xs:complexType>
 	<!--=======================-->
 	<xs:complexType name="OrganicMaterialType">

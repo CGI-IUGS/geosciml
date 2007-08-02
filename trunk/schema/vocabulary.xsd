@@ -14,6 +14,9 @@
 		<documentation>2007-07-31 : Added documentation - Eric Boisvert</documentation>
 	</annotation>
 	<annotation>
+		<documentation>2007-08-02 :Fixed VocabItemPropertyType - Eric Boisvert</documentation>
+	</annotation>
+	<annotation>
 		<documentation>vocabulary.xsd
 Basic vocabulary components for GeoSciML
 covering concepts, vocabularies and relations</documentation>
@@ -152,12 +155,10 @@ GeologicVocabulary.member to VocabItem.vocabulary to GeologicVocabulary.</docume
 			<documentation>Package : CGI_Vocabulary ; Date 2007-06-02 10:48:10 
  Union class to represent that a GeologicVocabulary is a collection of ControlledConcepts and VocabRelations.</documentation>
 		</annotation>
-		<sequence minOccurs="0">
-			<choice>
-				<element ref="gsml:ControlledConcept"/>
-				<element ref="gsml:VocabRelation"/>
-			</choice>
-		</sequence>
+		<choice minOccurs="0">
+			<element ref="gsml:VocabRelation"/>
+			<element ref="gsml:ControlledConcept"/>
+		</choice>
 		<attributeGroup ref="gsml:EstimatedPropertyAttributeGroup"/>
 		<attribute name="unionSemantics">
 			<simpleType>

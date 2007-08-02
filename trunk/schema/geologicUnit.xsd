@@ -13,6 +13,9 @@
 	<xs:annotation>
 		<xs:documentation>2007-07-31: Changed property GeologicUnitPart->whole to GeologicUnitPart->containedUnit to fit UML model</xs:documentation>
 	</xs:annotation>
+	<xs:annotation>
+		<xs:documentation>2007-08-02 : Removed xlink:href associations to DataType as they cannot be referenced (but only inlined)</xs:documentation>
+	</xs:annotation>
 	<xs:import namespace="http://www.opengis.net/gml" schemaLocation="http://schemas.opengis.net/gml/3.1.1/base/gml.xsd"/>
 	<xs:include schemaLocation="geosciml.xsd"/>
 	<xs:complexType name="GeologicUnitType">
@@ -128,7 +131,6 @@ Will be made Abstract when a complete (enough) set of specialized subtypes is de
 		<xs:sequence>
 			<xs:element ref="gsml:GeologicUnitPart"/>
 		</xs:sequence>
-		<xs:attribute ref="gsml:attributeProperty"/>
 	</xs:complexType>
 	<!--=======================-->
 	<xs:complexType name="CompositionPartType">
@@ -166,7 +168,6 @@ Will be made Abstract when a complete (enough) set of specialized subtypes is de
 		<xs:sequence>
 			<xs:element ref="gsml:CompositionPart"/>
 		</xs:sequence>
-		<xs:attribute ref="gsml:attributeProperty"/>
 	</xs:complexType>
 	<!--=======================-->
 	<xs:complexType name="WeatheringDescriptionType">
@@ -204,7 +205,6 @@ Will be made Abstract when a complete (enough) set of specialized subtypes is de
 		<xs:sequence>
 			<xs:element ref="gsml:WeatheringDescription"/>
 		</xs:sequence>
-		<xs:attribute ref="gsml:attributeProperty"/>
 	</xs:complexType>
 	<!--=======================-->
 	<xs:complexType name="PhysicalDescriptionType">
@@ -242,7 +242,6 @@ Will be made Abstract when a complete (enough) set of specialized subtypes is de
 		<xs:sequence>
 			<xs:element ref="gsml:PhysicalDescription"/>
 		</xs:sequence>
-		<xs:attribute ref="gsml:attributeProperty"/>
 	</xs:complexType>
 	<!--=======================-->
 	<xs:complexType name="MetamorphicDescriptionType">
@@ -286,7 +285,6 @@ Indicates in a general way the P-T environment in which the metamorphism took pl
 		<xs:sequence>
 			<xs:element ref="gsml:MetamorphicDescription"/>
 		</xs:sequence>
-		<xs:attribute ref="gsml:attributeProperty"/>
 	</xs:complexType>
 	<!--=======================-->
 	<xs:complexType name="ChronostratigraphicUnitType">
