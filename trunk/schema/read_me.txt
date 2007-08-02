@@ -7,9 +7,12 @@ see https://www.seegrid.csiro.au/twiki/bin/view/CGIModel/ConfiguringXmlValidator
 for complete instruction
 
 2007-07-31
-WARNING: Known XMLSpy issue - Gsml.xsd does not validate.
+WARNING: Known XMLSpy issue (version 2007 sp2) - Gsml.xsd does not validate.
 There is a known problem about XMLSpy
 see: http://www.altova.com/forum/default.aspx?g=posts&t=7404
 
 This problem actually show for Gsml.xsd.  As long as you don't open this file in Schemas/WSDL mode, the xsd and instances validate fine.
+
+2007-08-02
+This problem has been fixed in r3.
 
