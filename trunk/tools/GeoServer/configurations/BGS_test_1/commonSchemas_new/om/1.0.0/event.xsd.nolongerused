@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<schema 
+xmlns:gml="http://www.opengis.net/gml" 
+xmlns:gmd="http://www.isotc211.org/2005/gmd" 
+xmlns:swe="http://www.opengis.net/swe/0.0" 
+xmlns="http://www.w3.org/2001/XMLSchema"        
+xmlns:om="http://www.opengis.net/om/0.0" 
+targetNamespace="http://www.opengis.net/om/0.0"
+        elementFormDefault="qualified" attributeFormDefault="unqualified" version="0.0">
+	<annotation>
+		<documentation>event.xsd
+
+Components required to establish the top-level of the om:Event substitution group
+
+Copyright © 2007 Open Geospatial Consortium - see http://www.opengeospatial.org/about/?page=ipr</documentation>
+	</annotation>
+	<!-- ====================================================================== -->
+	<!-- bring in other schemas -->
+	<import namespace="http://www.opengis.net/gml" schemaLocation="http://schemas.opengis.net/gml/3.1.1/base/gml.xsd"/>
+	<!--
+	<import namespace="http://www.isotc211.org/2005/gmd" schemaLocation="../../sweCommon/current/gmd.xsd"/>
+	-->
+	<import namespace="http://www.opengis.net/swe/0.0" schemaLocation="../../sweCommon/current/swe.xsd"/>
+	<!-- ====================================================================== -->
+	<!-- =========================================================== -->
+	<complexType name="TimeObjectPropertyType">
+		<annotation>
+			<documentation>Property type for TM_Object not provided by GML</documentation>
+		</annotation>
+		<sequence minOccurs="0">
+			<element ref="gml:_TimeObject"/>
+		</sequence>
+		<attributeGroup ref="gml:AssociationAttributeGroup"/>
+	</complexType>
+	<!-- =========================================================== -->
+	<complexType name="EventType">
+		<annotation>
+			<documentation>Event is a feature type [ISO 19101, ISO 19109, OGC AS Topic 0] characterized primarily by a time whose value is a temporal object (TM_Object—ISO 19108). 
+			The event time will often be an instant or period (TM_Instant or TM_Period), though it may be characterised using temporal topology.  
+			Explicit associations with preceding or following events may also be known.  
+      Use gml:description to describe the nature of the event or action, or to point to a description of it.  
+      Head of a substitution group of more specialized events, including Observations. </documentation>
+		</annotation>
+		<complexContent>
+			<extension base="gml:AbstractFeatureType">
+				<sequence>
+					<element name="eventParameter" type="swe:TypedValuePropertyType" minOccurs="0" maxOccurs="unbounded">
+						<annotation>
+							<documentation>Generic soft-typed event parameter or property. 
+							Used to record an event attribute if no more specific property is available in a specialization or as part of the description of an associated object.
+							The tag is "eventParameter" rather than "parameter" because the fact that this time is associated with an event may become obscured when used in derived types, which is expected to be common. </documentation>
+						</annotation>
+					</element>
+					<element name="eventTime" type="om:TimeObjectPropertyType">
+						<annotation>
+							<documentation>The Time when the event occurred (mandatory). 
+							The tag is "eventTime" rather than "time" because the fact that this time is associated with an event may become obscured when used in derived types, which is expected to be common. 
+			This may be given 
+              * in absolute terms as a TimeInstant or TimePeriod
+              * in approximate terms or relative to an absolute position using the indeterminatePosition attribute
+              * or using a TimeTopology element (TimeEdge or TimeNode), which provides the option of giving a time relative to other edges or nodes, either directly (gml) or indirectly (xmml) 
+              * as a TimeGeometricComplex if it is a recurring or repeating event</documentation>
+						</annotation>
+					</element>
+					<element name="precedingEvent" type="gml:ReferenceType" minOccurs="0" maxOccurs="unbounded">
+						<annotation>
+							<documentation>Pointer to preceding event(s)</documentation>
+						</annotation>
+					</element>
+					<element name="followingEvent" type="gml:ReferenceType" minOccurs="0" maxOccurs="unbounded">
+						<annotation>
+							<documentation>Pointer to following event(s)</documentation>
+						</annotation>
+					</element>
+				</sequence>
+			</extension>
+		</complexContent>
+	</complexType>
+	<!-- ................. -->
+	<element name="Event" type="om:EventType" substitutionGroup="gml:_Feature">
+		<annotation>
+			<documentation>Event is a feature type [ISO 19101, ISO 19109, OGC AS Topic 0] characterized primarily by a time whose value is a temporal object (TM_Object—ISO 19108). 
+			The event time will often be an instant or period (TM_Instant or TM_Period), though it may be characterised using temporal topology.  
+			Explicit associations with preceding or following events may also be known.   
+      Use gml:description to describe the nature of the event or action, or to point to a description of it.  
+      Head of a substitution group of more specialized events, including Observations. </documentation>
+		</annotation>
+	</element>
+	<!-- ................. -->
+	<complexType name="EventPropertyType">
+		<sequence minOccurs="0">
+			<element ref="om:Event"/>
+		</sequence>
+		<attributeGroup ref="gml:AssociationAttributeGroup"/>
+	</complexType>
+	<!-- ====================================================================== -->
+</schema>
