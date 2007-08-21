@@ -1,9 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<Layering xmlns="http://www.cgi-iugs.org/xml/GeoSciML/2"
-    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
-    xmlns:xlink="http://www.w3.org/1999/xlink"
-    xmlns:gml="http://www.opengis.net/gml"
-    xsi:schemaLocation="http://www.cgi-iugs.org/xml/GeoSciML/2 http://www.cgi-iugs.org/xml/GeoSciML/2/geologicStructure.xsd">
+<GSML xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+ xsi:schemaLocation="http://www.cgi-iugs.org/xml/GeoSciML/2 ../schema/geosciml.xsd"
+ xmlns:gml="http://www.opengis.net/gml"
+ xmlns:xlink="http://www.w3.org/1999/xlink"
+ xmlns="http://www.cgi-iugs.org/xml/GeoSciML/2">
+<member>
+   <Layering gml:id="structure1">
     <gml:description>bedding</gml:description>
     <gml:name codeSpace="http://www.ga.gov.au">Site 95846001 Structure #1</gml:name>
     <observationMethod>
@@ -53,4 +55,61 @@
             <polarity>upright</polarity>
        </CGI_PlanarOrientation>
     </orientation>
-</Layering>
+   </Layering>
+</member>
+    
+    <member>
+        <Joint gml:id="structure2">
+    <gml:description>joint set</gml:description>
+     <gml:name codeSpace="http://www.ga.gov.au">Site 95846001 Structure #1</gml:name>
+            <observationMethod>
+                <CGI_TermValue>
+                    <value codeSpace="http://www.ga.gov.au/GeologicalVocabs">field mapping</value>
+                </CGI_TermValue>
+            </observationMethod>
+            <purpose>instance</purpose>
+<!-- Use the MappedFeature geometry rather if serving the structures as a primary service. ie, don't go via Outcrops.    
+    
+    <occurence xmlns:ns1="http://www.w3.org/1999/xlink" ns1:type="simple">
+        <MappedFeature>
+            <metaDataProperty xmlns="http://www.opengis.net/gml" xmlns:ns1="http://www.w3.org/1999/xlink" ns1:type="simple"></metaDataProperty>
+            <description xmlns="http://www.opengis.net/gml" xmlns:ns1="http://www.w3.org/1999/xlink" ns1:type="simple"></description>
+            <name xmlns="http://www.opengis.net/gml"></name>
+            <boundedBy xmlns="http://www.opengis.net/gml"></boundedBy>
+            <location xmlns="http://www.opengis.net/gml" xmlns:ns1="http://www.w3.org/1999/xlink" ns1:type="simple"></location>
+            <positionalAccuracy>
+                <CGI_Value>
+                    <qualifier></qualifier>
+                </CGI_Value>
+            </positionalAccuracy>
+            <observationMethod>
+                <CGI_TermValue>
+                    <qualifier></qualifier>
+                    <value codeSpace=""></value>
+                </CGI_TermValue>
+            </observationMethod>
+            <samplingFrame xmlns:ns1="http://www.w3.org/1999/xlink" ns1:type="simple"></samplingFrame>
+            <shape xmlns:ns1="http://www.w3.org/1999/xlink" ns1:type="simple"></shape>
+            <specification xmlns:ns1="http://www.w3.org/1999/xlink" ns1:type="simple">
+                <GeologicFeature></GeologicFeature>
+            </specification>
+            <metadata xmlns:ns1="http://www.w3.org/1999/xlink" ns1:type="simple"/>
+        </MappedFeature>
+    </occurence>-->
+        <preferredAge xmlns:ns1="http://www.w3.org/1999/xlink" ns1:type="simple">
+            <GeologicEvent>
+                <eventAge>
+                    <CGI_Value xsi:type="CGI_TermValueType">
+                        <value codeSpace="http://www.ga.gov.au/ICS_timescale">unknown</value>
+                    </CGI_Value>
+                </eventAge>
+                <eventProcess>
+                    <CGI_TermValue>
+                        <value codeSpace="http://www.ga.gov.au/GeologicalVocabs">deformation</value>
+                    </CGI_TermValue>
+                </eventProcess>
+            </GeologicEvent>
+           </preferredAge>
+    </Joint>
+   </member>
+ </GSML>
