@@ -1,0 +1,267 @@
+<?xml version="1.0" encoding="utf-8"?>
+<fo:root xmlns:fo="http://www.w3.org/1999/XSL/Format"
+         xmlns:pr="urn:ws-profile-mgr:schemas:profiles:profiles.xsd"
+         xmlns:ud="http://utf-x.sourceforge.net/xsd/utfxdoc_1_0/utfxdoc.xsd">
+   <fo:layout-master-set>
+      <fo:simple-page-master margin-bottom="20mm" margin-left="15mm" margin-right="15mm" margin-top="0mm"
+                             master-name="title-page-master"
+                             page-height="297mm"
+                             page-width="210mm">
+         <fo:region-body margin-bottom="10mm" margin-top="15mm" region-name="xsl-region-body"/>
+         <fo:region-after extent="5mm"/>
+         <fo:region-start extent="150mm" region-name="xsl-region-start"/>
+      </fo:simple-page-master>
+      <fo:simple-page-master margin-bottom="20mm" margin-left="15mm" margin-right="35mm" margin-top="20mm"
+                             master-name="toc-page-master"
+                             page-height="297mm"
+                             page-width="210mm">
+         <fo:region-body margin-bottom="10mm" margin-top="15mm" region-name="xsl-region-body"/>
+         <fo:region-after extent="5mm"/>
+         <fo:region-start extent="150mm" region-name="xsl-region-start"/>
+      </fo:simple-page-master>
+      <fo:simple-page-master margin-bottom="20mm" margin-left="15mm" margin-right="35mm" margin-top="20mm"
+                             master-name="content-page-master"
+                             page-height="297mm"
+                             page-width="210mm">
+         <fo:region-body margin-bottom="10mm" margin-top="15mm" region-name="xsl-region-body"/>
+         <fo:region-after extent="5mm"/>
+         <fo:region-start extent="150mm" region-name="xsl-region-start"/>
+      </fo:simple-page-master>
+      <fo:simple-page-master margin-bottom="20mm" margin-left="15mm" margin-right="35mm" margin-top="20mm"
+                             master-name="profile-page-master"
+                             page-height="297mm"
+                             page-width="210mm">
+         <fo:region-body margin-bottom="10mm" margin-top="15mm" region-name="xsl-region-body"/>
+         <fo:region-after extent="5mm"/>
+         <fo:region-start extent="150mm" region-name="xsl-region-start"/>
+      </fo:simple-page-master>
+      <fo:page-sequence-master master-name="title-sequence-master">
+         <fo:repeatable-page-master-reference master-reference="title-page-master"/>
+      </fo:page-sequence-master>
+      <fo:page-sequence-master master-name="toc-sequence-master">
+         <fo:repeatable-page-master-reference master-reference="toc-page-master"/>
+      </fo:page-sequence-master>
+      <fo:page-sequence-master master-name="content-sequence-master">
+         <fo:repeatable-page-master-reference master-reference="content-page-master"/>
+      </fo:page-sequence-master>
+      <fo:page-sequence-master master-name="profile-sequence-master">
+         <fo:repeatable-page-master-reference master-reference="content-page-master"/>
+      </fo:page-sequence-master>
+   </fo:layout-master-set>
+   <fo:page-sequence master-reference="title-sequence-master">
+      <fo:flow flow-name="xsl-region-body">
+         <fo:block>
+            <fo:external-graphic src="qgcio.jpg"/>
+         </fo:block>
+         <fo:block font-size="48pt" space-before="25mm" text-align="right">sdi WFS</fo:block>
+         <fo:block font-size="32pt" space-before="2mm" text-align="right">Web Services Profile</fo:block>
+         <fo:block font-size="12pt" font-weight="bold" space-before="75mm">
+            <fo:block>Version </fo:block>
+            <fo:block space-before="3mm"/>
+            <fo:block space-before="3mm">Queensland Government Chief Information
+                Office</fo:block>
+         </fo:block>
+      </fo:flow>
+   </fo:page-sequence>
+   <fo:page-sequence master-reference="profile-page-master">
+      <fo:static-content flow-name="xsl-region-start">
+         <fo:block background-color="white" color="black" font-family="Helvetica"
+                   font-size="8.5pt"
+                   text-align="left">
+            <fo:inline font-weight="bold">Page <fo:page-number/>       </fo:inline>
+            <fo:inline color="brown">sdi WFS</fo:inline>
+         </fo:block>
+      </fo:static-content>
+      <fo:flow flow-name="xsl-region-body"><!--profile template will create an id--><fo:block id="sdi-wfs">
+            <fo:block font-size="36pt" space-after="10mm"/>
+            <fo:block>
+               <fo:external-graphic src="inheritance-sdi-wfs.svg" width="400px" height="120px"/>
+            </fo:block>
+            <fo:block font-size="12pt" space-before="5mm" space-after="2mm" text-align="left"
+                      color="black"
+                      font-weight="bold">Inherits from: <fo:basic-link color="blue" internal-destination="sdi-data-services">sdi data services</fo:basic-link>
+            </fo:block>
+            <fo:block>This profile constrains the behaviour of a service delivers data objects
+        (Features) via the OGC Web feature Service 1.0 interface. This generic profile will be
+        implemented through binding a WFS to a specific data product, and is specialised according
+        to the usage patterns expected to be supported.</fo:block>
+            <fo:block font-size="12pt" space-before="5mm" space-after="2mm" text-align="left"
+                      color="black">
+               <fo:block font-size="16pt" space-before="5mm" space-after="2mm" text-align="left"
+                         color="black">WFS_CAPABILITIES</fo:block>
+               <fo:block>WFS_CAPABILITIES document, accessed via a GetCapabilities operation</fo:block>
+            
+                count(/wfs:WFS_Capabilities)  = 1
+            
+            
+            <fo:block font-size="12pt" space-before="5mm" space-after="2mm" text-align="left"
+                         color="black">
+                  <fo:inline font-weight="bold" color="#118811">WFS_MAX_FEATURES</fo:inline>
+                  <fo:block margin-left="2mm" padding="5mm" text-align="left" background-color="#CCFFCC"
+                            font-size="9pt"
+                            border-style="solid"
+                            border-color="green"
+                            border-width="1"
+                            space-before="1mm">
+                     <fo:block>Maximum number of features.</fo:block>
+                     <fo:block space-before="1mm">
+                        <fo:inline>XPath locator: </fo:inline>
+                        <fo:inline font-size="10pt" font-family="Courier" color="#666611">//wfs:GetFeature/@maxFeatures</fo:inline>
+                        <fo:block/>
+                     </fo:block>
+                  </fo:block>
+               </fo:block>
+
+               <fo:block font-size="12pt" space-before="5mm" space-after="2mm" text-align="left"
+                         color="black">
+                  <fo:inline font-weight="bold" color="#118811">WFS_CURRENCY</fo:inline>
+                  <fo:block margin-left="2mm" padding="5mm" text-align="left" background-color="#CCFFCC"
+                            font-size="9pt"
+                            border-style="solid"
+                            border-color="green"
+                            border-width="1"
+                            space-before="1mm">
+                     <fo:block>(fixed XPath) Temporal currency of the data. Need a more complex
+                    mechanism to model constraints associated with this target. 3</fo:block>
+                     <fo:block space-before="1mm">
+                        <fo:inline>XPath locator: </fo:inline>
+                        <fo:inline font-size="10pt" font-family="Courier" color="#666611">/FeatureTypeList/FeatureType/Keywords</fo:inline>
+                        <fo:block/>
+                     </fo:block>
+                  </fo:block>
+               </fo:block>
+            </fo:block>
+            <fo:block font-size="12pt" space-before="5mm" space-after="2mm" text-align="left"
+                      color="black">
+               <fo:block font-size="16pt" space-before="5mm" space-after="2mm" text-align="left"
+                         color="black">WFS_FEATURETYPEMETADATA</fo:block>
+               <fo:block>External metadata document describing content exposed. This is used to
+                inherit various information to control description of the FeatureType when ingested
+                into a service registry</fo:block>
+            </fo:block>
+            <fo:block font-size="12pt" space-before="5mm" space-after="2mm" text-align="left"
+                      color="black">
+               <fo:block font-size="16pt" space-before="5mm" space-after="2mm" text-align="left"
+                         color="black">WFS_REQUEST_GETFEATURE</fo:block>
+               <fo:block>A template or "query model" describing the supported queries a WFS
+                service may support for a particular FeatureType. This is a seperately managed
+                document that may be referenced by future versions of WFS, but for now will need to
+                be discovered through registry services.</fo:block>
+            </fo:block>
+            <fo:block font-size="12pt" space-before="5mm" space-after="2mm" text-align="left"
+                      color="black">
+               <fo:block font-size="16pt" space-before="5mm" space-after="2mm" text-align="left"
+                         color="black">DATACURRENCY</fo:block>
+
+               <fo:block>Controlled vocabulary of data currency keywords, encoded as an ebRIM
+        classification scheme.</fo:block>
+      
+        
+        
+        
+          
+            
+          
+          
+            
+          
+          
+            
+              
+            
+          
+          
+            
+              
+            
+          
+          
+            
+              
+            
+          
+          
+            
+              
+            
+          
+        
+
+      
+      http://oceans-catalog.socialchange.net.au/noocat-data/harvestconfig-testplans/community/framework/data/classificationschemes/ClassificationScheme-DataCurrency.xml
+    </fo:block>
+            <fo:block font-size="12pt" space-before="5mm" space-after="2mm" text-align="left"
+                      color="black">
+               <fo:block font-size="16pt" space-before="5mm" space-after="2mm" text-align="left"
+                         color="black">Conformance Targets</fo:block>
+               <fo:block font-size="12pt" space-before="5mm" space-after="2mm" text-align="left"
+                         color="black"
+                         id="max-features">
+                  <fo:inline font-weight="bold" color="#118811">WFS_MAX_FEATURES</fo:inline>
+                  <fo:block margin-left="2mm" padding="5mm" text-align="left" background-color="#CCFFCC"
+                            font-size="9pt"
+                            border-style="solid"
+                            border-color="green"
+                            border-width="1"
+                            space-before="1mm">
+                     <fo:block>Maximum number of features.</fo:block>
+                     <fo:block space-before="1mm">
+                        <fo:inline>XPath locator: </fo:inline>
+                        <fo:inline font-size="10pt" font-family="Courier" color="#666611">//wfs:GetFeature/@maxFeatures</fo:inline>
+                        <fo:block/>
+                     </fo:block>
+                  </fo:block>
+               </fo:block>
+               <fo:block font-size="12pt" space-before="5mm" space-after="2mm" text-align="left"
+                         color="black"
+                         id="currency">
+                  <fo:inline font-weight="bold" color="#118811">WFS_CURRENCY</fo:inline>
+                  <fo:block margin-left="2mm" padding="5mm" text-align="left" background-color="#CCFFCC"
+                            font-size="9pt"
+                            border-style="solid"
+                            border-color="green"
+                            border-width="1"
+                            space-before="1mm">
+                     <fo:block>(fixed XPath) Temporal currency of the data. Need a more complex
+                    mechanism to model constraints associated with this target. 3</fo:block>
+                     <fo:block space-before="1mm">
+                        <fo:inline>XPath locator: </fo:inline>
+                        <fo:inline font-size="10pt" font-family="Courier" color="#666611">/FeatureTypeList/FeatureType/Keywords</fo:inline>
+                        <fo:block/>
+                     </fo:block>
+                  </fo:block>
+               </fo:block>
+            </fo:block>
+            <fo:block font-size="12pt" space-before="5mm" space-after="2mm" text-align="left"
+                      color="black">
+               <fo:block font-size="16pt" space-before="5mm" space-after="2mm" text-align="left"
+                         color="black">Requirements</fo:block>
+               <fo:block font-size="12pt" space-before="5mm" space-after="2mm" text-align="left"
+                         color="black"
+                         keep-together="always">
+                  <fo:inline color="brown" font-size="12pt" font-weight="bold">SDIDS1</fo:inline>
+                  <fo:inline color="#BBBBBB"> inherited from sdi data services</fo:inline>
+                  <fo:block space-after="2mm" margin-left="2mm" padding="5mm" text-align="left"
+                            background-color="#FFFFCC"
+                            font-size="9pt"
+                            border-style="solid"
+                            border-color="#f5a90b"
+                            border-width="1"
+                            space-before="1mm">
+                     <fo:inline color="blue" font-weight="bold">COMMENT: [IAN] - write the non-normative content for this requirement and provide
+          examples of correct or incorrect usage.</fo:inline> Currency of data set (NB ISO19115
+        does not seem to provide a slot for this) <fo:inline color="red" font-weight="bold">MUST</fo:inline> be
+        described using keyword from (CRS data currency keywords vocabulary identifier - ISO19115
+        provides these?) [The user will need to know whether the data is the most recent available
+        or a historical snapshot or a prediction - this is not currently part of the FGDC metadata
+        /CRS design, but it will need to be eventually, so we need to add it to service profiles so
+        the info will be available when needed. there is a bigger general issue that the sdi
+        architecture requires the ability to publish vocabularies and then reference
+      them.]</fo:block>
+                  <fo:block/>
+               </fo:block>
+            </fo:block>
+         </fo:block>
+      </fo:flow>
+   </fo:page-sequence>
+</fo:root>
