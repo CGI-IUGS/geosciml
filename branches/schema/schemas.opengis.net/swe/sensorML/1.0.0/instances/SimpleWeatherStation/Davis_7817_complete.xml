@@ -1,0 +1,300 @@
+<SensorML xmlns="http://www.opengis.net/sensorML/1.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:swe="http://www.opengis.net/swe/1.0" xmlns:gml="http://www.opengis.net/gml" xmlns:xlink="http://www.w3.org/1999/xlink" xsi:schemaLocation="http://www.opengis.net/sensorML/1.0 ../../base/sensorML.xsd" version="1.0">
+	<member xlink:role="urn:x-ogx:def:sensor:OGC:detector">
+		<Component>
+			<gml:name>Davis_7817 Thermometer</gml:name>
+			<!-- metadata  -->
+			<keywords>
+				<KeywordList codeSpace="urn:x-nasa:def:gcmd:keywords">
+					<keyword>weather</keyword>
+					<keyword>insitu</keyword>
+					<keyword>station</keyword>
+				</KeywordList>
+			</keywords>
+			<identification>
+				<IdentifierList>
+					<identifier name="longName">
+						<Term definition="urn:x-ogc:def:identifier:OGC:longname">
+							<value>Davis 7817 External Temperature Sensor</value>
+						</Term>
+					</identifier>
+					<identifier name="shortName">
+						<Term definition="urn:x-ogc:def:identifier:OGC:shortname">
+							<value>Davis 7817 Thermometer</value>
+						</Term>
+					</identifier>
+					<identifier name="modelNumber">
+						<Term definition="urn:x-ogc:def:identifier:OGC:modelNumber">
+							<value>7817</value>
+						</Term>
+					</identifier>
+					<identifier name="manufacturer">
+						<Term definition="urn:x-ogc:def:identifier:OGC:manufacturer">
+							<value>Davis Instruments</value>
+						</Term>
+					</identifier>
+				</IdentifierList>
+			</identification>
+			<classification>
+				<ClassifierList>
+					<classifier name="intendedApplication">
+						<Term definition="urn:x-ogc:def:classifier:OGC:application">
+							<value>weather</value>
+						</Term>
+					</classifier>
+					<classifier name="sensorType">
+						<Term definition="urn:sensor:classifier:sensorType">
+							<codeSpace xlink:href="urn:x-ceos:def:GCMD:sensors"/>
+							<value>thermometer</value>
+						</Term>
+					</classifier>
+					<classifier name="measuredProperty">
+						<Term definition="urn:x-ogc:def:property">
+							<value>temperature</value>
+						</Term>
+					</classifier>
+				</ClassifierList>
+			</classification>
+			<characteristics>
+				<swe:DataRecord definition="urn:x-ogc:def:property:physicalProperties">
+					<swe:field name="physicalProperties">
+						<swe:DataRecord>
+							<swe:field name="weight">
+								<swe:Quantity definition="urn:x-ogc:def:property:weight">
+									<swe:uom xlink:href="urn:ogc:unit:gram"/>
+									<swe:value>128</swe:value>
+								</swe:Quantity>
+							</swe:field>
+							<swe:field name="diameter">
+								<swe:Quantity definition="urn:x-ogc:def:property:diameter">
+									<swe:uom xlink:href="urn:ogc:unit:mm"/>
+									<swe:value>6.5</swe:value>
+								</swe:Quantity>
+							</swe:field>
+							<swe:field name="length">
+								<swe:Quantity definition="urn:x-ogc:def:property:length">
+									<swe:uom xlink:href="urn:ogc:unit:mm"/>
+									<swe:value>32</swe:value>
+								</swe:Quantity>
+							</swe:field>
+						</swe:DataRecord>
+					</swe:field>
+				</swe:DataRecord>
+			</characteristics>
+			<capabilities>
+				<swe:DataRecord definition="urn:x-ogc:def:property:measurementProperties">
+					<gml:description>The External Temperature Sensor is used to measure temperatures in general 
+						conditions. It is well-suited for air, water, or soil temperature measurements, 
+						and it may be used anywhere a reliable, low-cost temperature sensor is required.
+						The sensor is epoxy-encapsulated in a vinyl cap. The External Temperature Sensor 
+						uses a precision platinum wire thermistor as a sensor. The thermistor produces a 
+						resistance change proportional to temperature. To ensure accurate readings when 
+						measuring outdoor air temperature, the External Temperature Sensor should be 
+						shielded from direct sunlight and other sources of reflected or radiated heat. 
+						We recommend the use of a Davis Radiation Shield (#7714) or its equivalent for 
+						this purpose.</gml:description>
+					<!-- add EnvironmentalLimit group -->
+					<swe:field name="resolution" xlink:role="urn:x-ogc:def:property:resolution">
+						<swe:Quantity definition="urn:x-ogc:def:property:temperature">
+							<swe:uom xlink:href="urn:ogc:unit:degree:celsius"/>
+							<swe:value>0.1</swe:value>
+						</swe:Quantity>
+					</swe:field>
+					<swe:field name="range" xlink:role="urn:x-ogc:def:property:dynamicRange">
+						<swe:QuantityRange definition="urn:x-ogc:def:property:temperature">
+							<swe:uom xlink:href="urn:ogc:unit:degree:celsius"/>
+							<swe:value>-45 60</swe:value>
+						</swe:QuantityRange>
+					</swe:field>
+					<swe:field name="accuracy" xlink:role="urn:x-ogc:def:property:accuracy">
+						<swe:QuantityRange definition="urn:x-ogc:def:property:absoluteAccuracy">
+							<swe:uom xlink:href="urn:ogc:unit:percent"/>
+							<swe:value>-0.5 0.5</swe:value>
+						</swe:QuantityRange>
+					</swe:field>
+				</swe:DataRecord>
+			</capabilities>
+			<contact xlink:href="./DavisInstruments" xlink:role="urn:x-ogc:def:role:manufacturer"/>
+			<documentation xlink:role="urn:ogc:role:specificationSheet">
+				<Document>
+					<gml:description>specification sheet</gml:description>
+					<format>pdf</format>
+					<onlineResource xlink:href="http://www.davisnet.com/product_documents/weather/spec_sheets/ext_temp_sensor_std.pdf"/>
+				</Document>
+			</documentation>
+			<documentation xlink:role="urn:x-ogc:def:role:image">
+				<Document>
+					<gml:description>image of the external thermometer 7817</gml:description>
+					<format>mime/image/jpeg</format>
+					<onlineResource xlink:href="http://www.davisnet.com/productpics/big/7817.jpg"/>
+				</Document>
+			</documentation>
+			<!--~~~~~~~~~~~~~~~~~~~~~~~-->
+			<!--Detector Coordinate Frame-->
+			<!--~~~~~~~~~~~~~~~~~~~~~~~-->
+			<spatialReferenceFrame>
+				<gml:EngineeringCRS gml:id="SENSOR_FRAME">
+					<gml:srsName>Sensor Frame</gml:srsName>
+					<gml:usesCS xlink:href="urn:ogc:def:crs:ogc:1.0:xyzFrame"/>
+					<gml:usesEngineeringDatum>
+						<gml:EngineeringDatum gml:id="Davis_7817_Datum">
+							<gml:datumName>Sensor Datum</gml:datumName>
+							<gml:anchorPoint>
+								origin is at the tip of the thermometer;
+								x and Y are orthogonal to z but undetermined; 
+								z is along the long axis of symmetry of the thermometer
+							</gml:anchorPoint>
+						</gml:EngineeringDatum>
+					</gml:usesEngineeringDatum>
+				</gml:EngineeringCRS>
+			</spatialReferenceFrame>
+			<interfaces>
+				<InterfaceList>
+					<interface name="cable">
+						<InterfaceDefinition>
+							<physicalLayer>
+								<swe:DataRecord definition="urn:x-ogc:def:property:interfaceCharacteristics">
+									<swe:field name="cableLength">
+										<swe:Quantity definition="urn:x-ogc:def:property:length">
+											<swe:uom xlink:href="urn:ogc:unit:mm"/>
+											<swe:value>7.6</swe:value>
+										</swe:Quantity>
+									</swe:field>
+									<swe:field name="connectorType">
+										<swe:Category definition="urn:x-ogc:def:property:connector:electrical">
+											<swe:value>RJ-11</swe:value>
+										</swe:Category>
+									</swe:field>
+									<swe:field name="cableType">
+										<swe:Category definition="urn:x-ogc:def:property:cable:electrical">
+											<swe:value>26-AWG:4-conductor</swe:value>
+										</swe:Category>
+									</swe:field>
+								</swe:DataRecord>
+							</physicalLayer>
+						</InterfaceDefinition>
+					</interface>
+				</InterfaceList>
+			</interfaces>
+			<!--~~~~~~~~~~~~~-->
+			<!-- Detector Inputs-->
+			<!--~~~~~~~~~~~~~-->
+			<!-- note: in most cases, a detector’s input will be a phenomenon and its output a measured digital value (e.g. 
+				Quantity)  -->
+			<inputs>
+				<InputList>
+					<input name="temperature">
+						<swe:ObservableProperty definition="urn:ogc:def:phenomenon:ogc:1.0.3:temperature"/>
+					</input>
+				</InputList>
+			</inputs>
+			<!--~~~~~~~~~~~~~~-->
+			<!-- Detector Outputs-->
+			<!--~~~~~~~~~~~~~~-->
+			<!-- note: in this case, the detector’s output is also a phenomenon (electrical resistance) rather than 
+				measured digital values -->
+			<outputs>
+				<OutputList>
+					<output name="measuredTemperature">
+						<swe:ObservableProperty definition="urn:ogc:def:phenomenon:ogc:1.0.3:resistance"/>
+					</output>
+				</OutputList>
+			</outputs>
+			<!--~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
+			<!--  Temperature Response     -->
+			<!--~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
+			<parameters>
+				<ParameterList>
+					<parameter name="steadyState" xlink:role="urn:x-ogc::def:calibration">
+						<swe:NormalizedCurve fixed="true">
+							<swe:function>
+								<swe:Curve>
+									<swe:elementCount>
+										<swe:Count>
+											<swe:value>21</swe:value>
+										</swe:Count>
+									</swe:elementCount>
+									<swe:elementType>
+										<swe:SimpleDataRecord>
+											<swe:field name="temperature">
+												<swe:Quantity gml:id="TEMP1" definition="urn:ogc:def:phenomenon:ogc:1.0.3:temperature">
+													<swe:uom code="cel"/>
+												</swe:Quantity>
+											</swe:field>
+											<swe:field name="resistance">
+												<swe:Quantity gml:id="RES" definition="urn:ogc:def:phenomenon:ogc:1.0.3:resistance">
+													<swe:uom code="kohm"/>
+												</swe:Quantity>
+											</swe:field>
+										</swe:SimpleDataRecord>
+									</swe:elementType>
+									<swe:encoding>
+										<swe:TextBlock tokenSeparator="&#x20;" blockSeparator="," decimalSeparator="."/>
+									</swe:encoding>
+									<swe:values>
+										-40,328.4 -35,237.7 -30,173.9
+										-25,128.5 -20,95.89 -15,72.23
+										-10,54.89 -5,42.07 0,32.51
+										5,25.31 10,19.86 15,15.69
+										20,12.49 25,10 30,8.06 35,6.536
+										40,5.331 45,4.373 50,3.606
+										55,2.989 60,2.49
+									</swe:values>
+								</swe:Curve>
+							</swe:function>
+						</swe:NormalizedCurve>
+					</parameter>
+					<parameter name="accuracy" xlink:role="urn:x-ogc:def:property:measurementAccuracy">
+						<swe:NormalizedCurve fixed="true">
+							<swe:function>
+								<swe:Curve>
+									<swe:elementCount>
+										<swe:Count>
+											<swe:value>6</swe:value>
+										</swe:Count>
+									</swe:elementCount>
+									<swe:elementType>
+										<swe:SimpleDataRecord>
+											<swe:field name="temperature">
+												<swe:Quantity gml:id="TEMP2" definition="urn:x-ogc:def:phenomenon:ogc:1.0.3:temperature">
+													<swe:uom code="cel"/>
+												</swe:Quantity>
+											</swe:field>
+											<swe:field name="absoluteError">
+												<swe:Quantity gml:id="ERR" definition="urn:x-ogc:data:quantity:absoluteAccuracy">
+													<swe:uom code="cel"/>
+												</swe:Quantity>
+											</swe:field>
+										</swe:SimpleDataRecord>
+									</swe:elementType>
+									<swe:encoding>
+										<swe:TextBlock tokenSeparator="&#x20;" blockSeparator="," decimalSeparator="."/>
+									</swe:encoding>
+									<swe:values>
+										-40,0.0 -20,0.1 -10,0.2 0,0.3
+										10,0.4 20,0.5
+									</swe:values>
+								</swe:Curve>
+							</swe:function>
+						</swe:NormalizedCurve>
+					</parameter>
+					<parameter name="latency" xlink:role="urn:x-ogc:def:property:latencyTime">
+						<swe:ConditionalValue>
+							<swe:condition name="medium">
+								<swe:Category definition="urn:xogc:def:phenomenon:medium">
+									<swe:value>air</swe:value>
+								</swe:Category>
+							</swe:condition>
+							<swe:data>
+								<swe:Quantity definition="urn:x-ogc:def:phenomenon:duration">
+									<swe:uom code="s"/>
+									<swe:value>10</swe:value>
+								</swe:Quantity>
+							</swe:data>
+						</swe:ConditionalValue>
+					</parameter>
+				</ParameterList>
+			</parameters>
+			<method xlink:href="urn:ogc:def:process:ogc:detector"/>
+		</Component>
+	</member>
+</SensorML>

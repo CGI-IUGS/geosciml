@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<sml:SensorML xmlns:sml="http://www.opengis.net/sensorML/1.0" xmlns:swe="http://www.opengis.net/swe/1.0" xmlns:gml="http://www.opengis.net/gml" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.opengis.net/sensorML/1.0 ../base/sensorML.xsd" version="1.0">
+	<sml:member xlink:role="urn:x-ogc:def:role:process">
+		<sml:ProcessModel gml:id="WINDCHILL_PROCESS">
+			<!-- METADATA SECTION -->
+			<gml:description>Wind chill temperature computation process</gml:description>
+			<!-- INPUTS DEFINITION -->
+			<sml:inputs>
+				<sml:InputList>
+					<sml:input name="atmosphericConditions">
+						<swe:DataRecord>
+							<swe:field name="ambiant_temperature">
+								<swe:Quantity definition="urn:ogc:def:phenomenon:temperature">
+									<swe:uom code="degF"/>
+								</swe:Quantity>
+							</swe:field>
+							<swe:field name="wind_speed">
+								<swe:Quantity definition="urn:ogc:def:phenomenon:windSpeed">
+									<swe:uom code="mph"/>
+								</swe:Quantity>
+							</swe:field>
+						</swe:DataRecord>
+					</sml:input>
+				</sml:InputList>
+			</sml:inputs>
+			<!-- OUTPUTS DEFINITION -->
+			<sml:outputs>
+				<sml:OutputList>
+					<sml:output name="windchill_temperature">
+						<swe:Quantity definition="urn:ogc:def:phenomenon:temperature">
+							<swe:uom code="degF"/>
+						</swe:Quantity>
+					</sml:output>
+				</sml:OutputList>
+			</sml:outputs>
+			<!-- METHOD DEFINITION -->
+			<sml:method xlink:href="urn:x-ogc:def:process:WindChill:1.0"/>
+		</sml:ProcessModel>
+	</sml:member>
+</sml:SensorML>
