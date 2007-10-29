@@ -14,16 +14,10 @@
             <documentation>add required xml:lang attribute</documentation>
         </annotation>
         <simpleContent>
-            <extension base="gml:CodeType">
+            <extension base="cgu:CodeWithAuthorityType">
                 <attribute ref="xml:lang" use="required"/>
             </extension>
         </simpleContent>
-    </complexType>
-    <complexType name="LocalizedScopedNamePropertyType">
-        <sequence minOccurs="0">
-            <element ref="cgu:LocalizedScopedName"/>
-        </sequence>
-        <attributeGroup ref="gml:AssociationAttributeGroup"/>
     </complexType>
     <element name="LocalizedGenericName" type="cgu:LocalizedGenericNameType" substitutionGroup="gml:name"/>
     <complexType name="LocalizedGenericNameType">
@@ -31,16 +25,10 @@
             <documentation>add required xml:lang attribute</documentation>
         </annotation>
         <simpleContent>
-            <extension base="gml:CodeType">
+            <extension base="cgu:CodeWithAuthorityType">
                 <attribute ref="xml:lang" use="required"/>
             </extension>
         </simpleContent>
-    </complexType>
-    <complexType name="LocalizableGenericNamePropertyType">
-        <sequence minOccurs="0">
-            <element ref="cgu:LocalizableGenericName"/>
-        </sequence>
-        <attributeGroup ref="gml:AssociationAttributeGroup"/>
     </complexType>
     <element name="LocalizableScopedName" type="cgu:LocalizableScopedNameType" substitutionGroup="gml:name"/>
     <complexType name="LocalizableScopedNameType">
@@ -53,12 +41,6 @@
             </extension>
         </simpleContent>
     </complexType>
-    <complexType name="LocalizableScopedNamePropertyType">
-        <sequence minOccurs="0">
-            <element ref="cgu:LocalizableScopedName"/>
-        </sequence>
-        <attributeGroup ref="gml:AssociationAttributeGroup"/>
-    </complexType>
     <element name="LocalizableGenericName" type="cgu:LocalizableGenericNameType" substitutionGroup="gml:name"/>
     <complexType name="LocalizableGenericNameType">
         <annotation>
@@ -70,10 +52,20 @@
             </extension>
         </simpleContent>
     </complexType>
-    <complexType name="LocalizedGenericNamePropertyType">
-        <sequence minOccurs="0">
-            <element ref="cgu:LocalizedGenericName"/>
-        </sequence>
-        <attributeGroup ref="gml:AssociationAttributeGroup"/>
+    <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+         NOTE: "CodeWithAuthorityType" is a GML component that is temporarily
+         defined in this namespace. It is defined in GML 3.2 and should be
+         removed after CGI schemas are migrated from GML 3.1 to GML 3.2.
+         ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
+    <complexType name="CodeWithAuthorityType">
+        <annotation>
+            <documentation>gml:CodeWithAuthorityType requires that the codeSpace attribute is provided in an
+            instance.</documentation>
+        </annotation>
+        <simpleContent>
+            <restriction base="gml:CodeType">
+                <attribute name="codeSpace" type="anyURI" use="required"/>
+            </restriction>
+        </simpleContent>
     </complexType>
 </schema>
