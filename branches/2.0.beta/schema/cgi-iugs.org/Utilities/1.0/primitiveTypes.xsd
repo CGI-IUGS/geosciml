@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<schema xmlns="http://www.w3.org/2001/XMLSchema" xmlns:gml="http://www.opengis.net/gml"
+    xmlns:cgu="urn:cgi:xmlns:CGI:Utilities:1.0" targetNamespace="urn:cgi:xmlns:CGI:Utilities:1.0"
+    xmlns:xml="http://www.w3.org/XML/1998/namespace" elementFormDefault="qualified" attributeFormDefault="unqualified">
+    <annotation>
+        <documentation>This package contains classes that have a canonical encoding so must be packaged separately from
+            the packages from which the XML encoding will be generated automatically.</documentation>
+    </annotation>
+    <import namespace="http://www.opengis.net/gml" schemaLocation="http://schemas.opengis.net/gml/3.1.1/base/gml.xsd"/>
+    <import namespace="http://www.w3.org/XML/1998/namespace" schemaLocation="http://www.w3.org/2001/xml.xsd"/>
+    <element name="LocalizedScopedName" type="cgu:LocalizedScopedNameType" substitutionGroup="gml:name"/>
+    <complexType name="LocalizedScopedNameType">
+        <annotation>
+            <documentation>add required xml:lang attribute</documentation>
+        </annotation>
+        <simpleContent>
+            <extension base="gml:CodeType">
+                <attribute ref="xml:lang" use="required"/>
+            </extension>
+        </simpleContent>
+    </complexType>
+    <complexType name="LocalizedScopedNamePropertyType">
+        <sequence minOccurs="0">
+            <element ref="cgu:LocalizedScopedName"/>
+        </sequence>
+        <attributeGroup ref="gml:AssociationAttributeGroup"/>
+    </complexType>
+    <element name="LocalizedGenericName" type="cgu:LocalizedGenericNameType" substitutionGroup="gml:name"/>
+    <complexType name="LocalizedGenericNameType">
+        <annotation>
+            <documentation>add required xml:lang attribute</documentation>
+        </annotation>
+        <simpleContent>
+            <extension base="gml:CodeType">
+                <attribute ref="xml:lang" use="required"/>
+            </extension>
+        </simpleContent>
+    </complexType>
+    <complexType name="LocalizableGenericNamePropertyType">
+        <sequence minOccurs="0">
+            <element ref="cgu:LocalizableGenericName"/>
+        </sequence>
+        <attributeGroup ref="gml:AssociationAttributeGroup"/>
+    </complexType>
+    <element name="LocalizableScopedName" type="cgu:LocalizableScopedNameType" substitutionGroup="gml:name"/>
+    <complexType name="LocalizableScopedNameType">
+        <annotation>
+            <documentation>add optional xml:lang attribute</documentation>
+        </annotation>
+        <simpleContent>
+            <extension base="gml:CodeType">
+                <attribute ref="xml:lang"/>
+            </extension>
+        </simpleContent>
+    </complexType>
+    <complexType name="LocalizableScopedNamePropertyType">
+        <sequence minOccurs="0">
+            <element ref="cgu:LocalizableScopedName"/>
+        </sequence>
+        <attributeGroup ref="gml:AssociationAttributeGroup"/>
+    </complexType>
+    <element name="LocalizableGenericName" type="cgu:LocalizableGenericNameType" substitutionGroup="gml:name"/>
+    <complexType name="LocalizableGenericNameType">
+        <annotation>
+            <documentation>add optional xml:lang attribute</documentation>
+        </annotation>
+        <simpleContent>
+            <extension base="gml:CodeType">
+                <attribute ref="xml:lang"/>
+            </extension>
+        </simpleContent>
+    </complexType>
+    <complexType name="LocalizedGenericNamePropertyType">
+        <sequence minOccurs="0">
+            <element ref="cgu:LocalizedGenericName"/>
+        </sequence>
+        <attributeGroup ref="gml:AssociationAttributeGroup"/>
+    </complexType>
+</schema>
