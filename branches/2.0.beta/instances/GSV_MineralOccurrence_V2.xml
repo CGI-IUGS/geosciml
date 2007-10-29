@@ -192,13 +192,11 @@ If Shoot Plunge = -1, then plunge is empty; Shoot Plunge Direction = trend -->
 								</gsml:CGI_TermValue>
 							</gsml:value>
 						</gsml:CGI_Term>
-					</gsml:consolidationDegree>					
-					<gsml:lithology xlink:href="urn:cgi:classifier:CGI:Lithology:felsicapheniticrock"/>
-					
-<!-- Alternative Controlled Concept Lithology using gml:name etc requires a dummy gml:id.  This prevents having the same ControlledConcept in two places
- in the same document without having different gml:ids -->
-	<!--					
-						<gsml:ControlledConcept gml:id="id_cc04">
+					</gsml:consolidationDegree>							
+<!--  Controlled Concept Lithology using gml:name etc requires a dummy gml:id.  This prevents having the same ControlledConcept in two places
+ in the same document without having different gml:ids -->						
+					<gsml:lithology>
+						<gsml:ControlledConcept gml:id="id_cc01">
 							<gml:name codeSpace="urn:ietf:rfc:2141">urn:cgi:classifier:CGI:Lithology:felsicapheniticrock</gml:name>
 							<gsml:identifier codeSpace="urn:ietf:rfc:2141">urn:cgi:classifier:CGI:Lithology:felsicapheniticrock</gsml:identifier>
 							<gsml:name>
@@ -206,7 +204,7 @@ If Shoot Plunge = -1, then plunge is empty; Shoot Plunge Direction = trend -->
 							</gsml:name>
 							<gsml:vocabulary xlink:href="urn:cgi:classifierScheme:CGI:Lithology"/>
 						</gsml:ControlledConcept>
--->
+					</gsml:lithology>
 				</gsml:Rock> 
 			</mo:material>
 		</mo:EarthResourceMaterial>
@@ -302,18 +300,8 @@ If Shoot Plunge = -1, then plunge is empty; Shoot Plunge Direction = trend -->
 					<mo:material>
 						<gsml:Mineral> 
 							<gsml:purpose>instance</gsml:purpose> 
-							<gsml:mineralName> 
-<!-- Added a dummy gml:id because schema required it.  This doesn't make sense, especially as it prevents having the same ControlledConcept in two places
- in the same document without having different gml:ids -->
-								<gsml:ControlledConcept gml:id="id_cc01"> 
-									<gml:name codeSpace="urn:ietf:rfc:2141">urn:cgi:classifier:CGI:pyrite</gml:name> 
-									<gsml:identifier codeSpace="urn:ietf:rfc:2141">urn:cgi:classifier:CGI:pyrite</gsml:identifier> 
-									<gsml:name>
-										<cgu:LocalizedGenericName xml:lang="en" codeSpace="urn:cgi:classifier:GSV:Minerals:pyrite">pyrite</cgu:LocalizedGenericName>
-									</gsml:name> 
-									<gsml:vocabulary xlink:href="urn:cgi:classifierScheme:CGI:Minerals"/> 
-								</gsml:ControlledConcept> 
-							</gsml:mineralName> 
+							<gsml:mineralName xlink:href="urn:cgi:classifier:CGI:pyrite"> 
+							</gsml:mineralName>
 						</gsml:Mineral> 
 					</mo:material>
 					<mo:rawMaterialRole>gangue</mo:rawMaterialRole>
@@ -392,18 +380,7 @@ If Shoot Plunge = -1, then plunge is empty; Shoot Plunge Direction = trend -->
 					<mo:material>
 						<gsml:Mineral>
 							<gsml:purpose>instance</gsml:purpose>
-							<gsml:mineralName>
-<!-- Added a dummy id because schema required it.  This doesn't make sense, especially as it prevents having the same ControlledConcept 
-in two places in the same document without having different gml:ids -->
-								<gsml:ControlledConcept gml:id="id_cc02"> 
-									<gml:name codeSpace="urn:ietf:rfc:2141">urn:cgi:classifier:CGI:pyrite</gml:name> 
-									<gsml:identifier codeSpace="urn:ietf:rfc:2141">urn:cgi:classifier:CGI:pyrite</gsml:identifier> 
-									<gsml:name>
-										<cgu:LocalizedGenericName xml:lang="en" codeSpace="urn:cgi:classifier:GSV:Minerals:pyrite">pyrite</cgu:LocalizedGenericName>
-									</gsml:name> 
-									<gsml:vocabulary xlink:href="urn:cgi:classifierScheme:CGI:Minerals"/> 
-								</gsml:ControlledConcept> 
-							</gsml:mineralName>
+							<gsml:mineralName xlink:href="urn:cgi:classifier:CGI:pyrite"/>
 						</gsml:Mineral>
 					</mo:material>
 					<mo:rawMaterialRole>gangue</mo:rawMaterialRole>
@@ -466,16 +443,7 @@ in two places in the same document without having different gml:ids -->
 					<mo:material>
 						<gsml:Mineral>
 							<gsml:purpose>instance</gsml:purpose>
-							<gsml:mineralName>
-								<gsml:ControlledConcept gml:id="id_cc03"> 
-									<gml:name codeSpace="urn:ietf:rfc:2141">urn:cgi:classifier:CGI:pyrite</gml:name> 
-									<gsml:identifier codeSpace="urn:ietf:rfc:2141">urn:cgi:classifier:CGI:pyrite</gsml:identifier> 
-									<gsml:name>
-										<cgu:LocalizedGenericName xml:lang="en" codeSpace="urn:cgi:classifier:GSV:Minerals:pyrite">pyrite</cgu:LocalizedGenericName>
-									</gsml:name> 
-									<gsml:vocabulary xlink:href="urn:cgi:classifierScheme:CGI:Minerals"/> 
-								</gsml:ControlledConcept> 						
-							</gsml:mineralName>
+							<gsml:mineralName xlink:href="urn:cgi:classifier:CGI:pyrite"/>
 						</gsml:Mineral>
 					</mo:material>
 					<mo:rawMaterialRole>gangue</mo:rawMaterialRole>
