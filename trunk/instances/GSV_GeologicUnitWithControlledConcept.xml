@@ -1,0 +1,244 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<gsml:GSML 
+xmlns="http://www.w3.org/2001/XMLSchema"
+xmlns:gml="http://www.opengis.net/gml"
+xmlns:gsml="urn:cgi:xmlns:CGI:GeoSciML:2.0" 
+xmlns:mo="urn:cgi:xmlns:GGIC:MineralOccurrence:1.0"
+xmlns:om="http://www.opengis.net/om" 
+xmlns:xlink="http://www.w3.org/1999/xlink"
+xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+xmlns:cgu="urn:cgi:xmlns:CGI:Utilities:1.0"
+xsi:schemaLocation="urn:cgi:xmlns:CGI:GeoSciML:2.0 https://www.seegrid.csiro.au/subversion/GeoSciML/branches/2.0.beta/schema\cgi-iugs.org/GeoSciML/2.0.0/geosciml.xsd">
+	<gsml:member>
+		<gsml:GSMLitem>
+		<!--	<gsml:featureItem> featureItem is not required with the current approach to encoding Union classes -->
+<!-- ############# Start description of GeologicUnit class ############# -->
+<!-- GeoSciML 2.0 accepts GeologicUnit, LithologicUnit, LithostratigraohicUnit, LithodemicUnit, DeformationUnit and ChronostratigraphicUnit subtypes -->
+			<gsml:ChronostratigraphicUnit>
+<!-- one gml:description is optional. Best Practice: any text description associated with the geologic unit (e.g. map legend description text) is included verbatim in this element-->
+				<gml:description>Sandstone, mudstone,black shale and minor granule quartz conglomerate: mostly thick bedded sandstone, coarse to fine grained, often graded, diffusely stratified to cross laminated, moderately to well sorted; graptolitic; deep marine turbidites and hemipelagic sediments </gml:description>
+<!-- gml:name is 0 to many; Best Practice: use for 'standard' name used by geologists, and if source data has an identifier/primary key, include that as another name element. Names in different language would be additional name element. These are differentiated using the codespace attribute. 
+The codespace for Primary keys has the predetermined codespace name codeSpace="urn:ietf:rfc:2141"
+In GML3.2 gml:identifier will be used for the unique id.-->
+				<gml:name codeSpace="urn:cgi:classifierScheme:GSV:StratigraphicLexicon:2007">Castlemaine Group - Lancefieldian</gml:name>
+				<gml:name codeSpace="urn:cgi:classifierScheme:GSV:StratigraphicLexicon:2007">Ocl</gml:name>
+				<gml:name codeSpace="urn:ietf:rfc:2141">urn:cgi:feature:GSV:GeoDataVicID:EA2F6608-BBD5-4726-AFBE-1633D366E0E8</gml:name>
+				<gsml:observationMethod>
+<!-- Term(s) that specify the method by which the value was obtained (e.g. point count, brunton compass on site, air photo interpretation, field estimate...). This corresponds (loosely) to ISO19115 Lineage.Statement  -->
+					<gsml:CGI_TermValue>
+						<gsml:value codeSpace="urn:cgi:classifierScheme:GSV:ObservationMethods:2007">published description</gsml:value>
+				</gsml:CGI_TermValue>
+				</gsml:observationMethod>
+				<gsml:purpose>instance</gsml:purpose>
+<!-- Terms to categorize the compositional character of a compound material. Examples include silicate, carbonate, ferro-magnesian, oxide (for chemical categories); quartzose, feldspathic, arkosic (sandstone petrographic composition categories) CGI_TermValue 0..1 -->
+				<gsml:compositionCategory>
+					<gsml:CGI_TermValue>
+						<gsml:value codeSpace="urn:cgi:classifierScheme:GSV:NullValues:2007">null [unspecified]</gsml:value>
+					</gsml:CGI_TermValue>
+				</gsml:compositionCategory>
+				<gsml:outcropCharacter>
+<!-- Describes the nature of outcrops formed by a geologic unit.   Examples: bouldery, cliff-forming, ledge-forming, slope-forming, poorly exposed CGI_TermValue 0..* -->
+				<gsml:CGI_TermValue>
+					<gsml:value codeSpace="urn:cgi:classifierScheme:GSV:OutcropCharacter:2007">well exposed</gsml:value>
+				</gsml:CGI_TermValue>
+				</gsml:outcropCharacter>
+<!-- rank is optional for GeologicUnits, specified by a scoped name -->
+				<gsml:rank codeSpace="urn:cgi:classifierScheme:GSV:Rank:2007">Formation</gsml:rank>
+<!-- ############# start association links to other classes ############# -->
+<!--one classifier is optional; this is a link to a controlled concept that specifies the kind of thing that this feature instance describes. In this case the classifier would be a geologic unit, either a non-situated unit 'type' (e.g. Lithostratigraphic unit),  in the case of observation data, or to a specific geologic unit  (e.g. Martin Formation) in the case that the description is applied to an already defined unit.-->
+<!-- Best Practice: Classifier ControlledConcepts should be defined in a separate vocabulary document that includes the prototype GeologicEntity instances. In this example the prototype for the  associated classifier would be a GeologicFeature.GeologicUnit.ChronostratigraphicUnit instance.  In the best practice case, classifer element wouldhave xlink:href pointer to the ControlledConcept. ControlledConcept element is included in line here for demonstration -->
+<!-- Since only one classifier is allowed on each GeologicUnit, where the unit is defined more than once (eg GSV StrtigraphicLexicon and GA Stratigraphic Lexicon)  will need to create an artificial aggregation unit in a GeologicVocabulary  -->
+				<gsml:classifier>	
+					<gsml:ControlledConcept gml:id="id_cc01">
+					<!-- gml:id is internal identifier, just has to be unique, don't use anything that's required to have external significance -->
+						<gml:name codeSpace="urn:ietf:rfc:2141">urn:cgi:feature:GSV:GeoDataVicID:EA2F6608-BBD5-4726-AFBE-1633D366E0E8</gml:name>
+						<gsml:identifier codeSpace="urn:ietf:rfc:2141">urn:cgi:feature:GSV:GeoDataVicID:EA2F6608-BBD5-4726-AFBE-1633D366E0E8</gsml:identifier>
+						<gsml:name xml:lang="en" codeSpace="urn:cgi:classifier:GSV:StratigraphicLexicon:2007">Castlemaine Group - Lancefieldian</gsml:name>
+						<gsml:name xml:lang="en" codeSpace="urn:cgi:classifierScheme:GSV:StratigraphicLexicon:2007">Ocl</gsml:name>
+						<gsml:vocabulary xlink:href="urn:cgi:classifierScheme:GSV:StratigraphicLexicon:2007"/>
+					</gsml:ControlledConcept>
+				</gsml:classifier>
+<!-- composition is 0..*, specified by a CompositionPart element; this is used to represent composition of geologic unit in terms of EarthMaterial.CompoundMaterial (rock or unconsolidated material) -->
+<!-- Best Practice: The material element of a CompositionPart should be included in line if it is specified by a compoundMaterial instance (material.unionSemantics = materialInstance); these represent descriptions of gsml:valuea lithologic constituent specific to the geologic unit.   Material elements for composition parts that have a material specified by a lithology term from a vocabulary (material.unionSemantics = materialTerm) should be by reference to a controlled vocabulary term-->
+				<gsml:composition>
+					<gsml:CompositionPart>
+						<gsml:role  codeSpace="urn:cgi:classifierScheme:GSV:Roles:2007">part of</gsml:role>
+<!-- lithology from controlled vocabulary is required 1..* -->
+<!-- Best Practice: Lithology ControlledConcepts should be defined in a separate vocabulary document that includes the prototype GeologicEntity instances. -->
+<!-- For this example lithology assignment is by href to other controlled concept instance within the document, using gml:id-->
+						<gsml:lithology xlink:href="id_cc02"/>
+<!-- optional CompoundMaterial element here for a specific description of the lithologic component. -->
+<!-- If a specific material description include CompoundMaterial element in line; if material is specified by controlled concept, specify by reference-->
+						<gsml:proportion>
+<!-- proportion is specified by an element that substitutes for CGI_TermValue.-->
+							<gsml:CGI_TermValue>
+								<gsml:value codeSpace="urn:cgi:classifierScheme:GSV:Proportion:2007">dominant</gsml:value>
+							</gsml:CGI_TermValue>
+						</gsml:proportion>
+					</gsml:CompositionPart>
+				</gsml:composition>
+				<gsml:composition>
+					<gsml:CompositionPart>
+						<gsml:role codeSpace="urn:cgi:classifierScheme:GSV:Roles:2007">part of</gsml:role>
+						<gsml:lithology xlink:href="id_cc03"/>
+						<gsml:proportion>
+							<gsml:CGI_TermValue>
+								<gsml:value codeSpace="urn:cgi:classifierScheme:GSV:Proportion:2007">minor</gsml:value>
+							</gsml:CGI_TermValue>
+						</gsml:proportion>
+					</gsml:CompositionPart>
+				</gsml:composition>
+				<gsml:metamorphicCharacter>
+					<gsml:MetamorphicDescription>
+<!-- Terms specifying. metamorphicFacies, metamorphicGrade, peakPressureValue, peakTempperatureValue and protolithLithology can go here-->
+					</gsml:MetamorphicDescription>
+				</gsml:metamorphicCharacter>
+				<gsml:part>
+<!-- The role, proportion and full descriptions of the GeologicalUnits that form parts of this unit can be specified here-->
+					<gsml:GeologicUnitPart>
+						<gsml:role codeSpace="urn:cgi:classifierScheme:GSV:Roles:2007">member</gsml:role>
+						<gsml:proportion>
+							<gsml:CGI_NumericRange>
+								<gsml:lower>
+									<gsml:CGI_NumericValue>
+										<gsml:principalValue uom="%">10</gsml:principalValue>
+									</gsml:CGI_NumericValue>
+								</gsml:lower>
+								<gsml:upper>
+									<gsml:CGI_NumericValue>
+										<gsml:principalValue uom="%">20</gsml:principalValue>
+									</gsml:CGI_NumericValue>
+								</gsml:upper>
+							</gsml:CGI_NumericRange>
+						</gsml:proportion>
+<!-- The GeologicalUnit that is part of this unit can be specified here -->
+<!-- The unit part can be specified by xlink:href, as per this example, or the complete description of the unit part can be included in-line -->
+						<gsml:containedUnit xlink:href="urn:cgi:feature:GSV:GeoDataVicID:EA2F6608-BBD5-4726-AFBE-1633D366E0E1"></gsml:containedUnit>
+					</gsml:GeologicUnitPart>
+				</gsml:part>
+<!-- The physical description of the GeologicalUnit can be specified here.  GeoSciML 2.0 allows for density, magneticSusceptibility, permeability and porosity -->
+				<gsml:physicalProperty>
+					<gsml:PhysicalDescription>
+						<gsml:magneticSusceptibility>
+							<gsml:CGI_NumericRange>
+								<gsml:lower>
+									<gsml:CGI_NumericValue>
+										<gsml:principalValue uom="urn:ogc:def:uom:UCUM:cgs" >1e-5</gsml:principalValue>
+									</gsml:CGI_NumericValue>
+								</gsml:lower>
+								<gsml:upper>
+									<gsml:CGI_NumericValue>
+										<gsml:principalValue uom="urn:ogc:def:uom:UCUM:cgs">100e-5</gsml:principalValue>
+									</gsml:CGI_NumericValue>
+								</gsml:upper>
+							</gsml:CGI_NumericRange>
+						</gsml:magneticSusceptibility>
+					</gsml:PhysicalDescription>
+				</gsml:physicalProperty>
+<!-- The weatheringCharacter of the GeologicalUnit can be specified here.  -->
+				<gsml:weatheringCharacter>
+					<gsml:WeatheringDescription>
+<!-- GeoSciML 2.0 allows for environment, weatheringDegree, weatheringProcess, and weatheringProduct -->
+					</gsml:WeatheringDescription>
+				</gsml:weatheringCharacter>
+<!-- ############# start of attributes unique to ChronostratigraphicUnits ############# -->
+<!-- Term(s) specifying patterns of bedding thickness or relationships between bedding packages, e.g. thinning upward, thickening upward CGI_TermValue 0..* -->
+				<gsml:beddingPattern>
+					<gsml:CGI_TermValue>
+						<gsml:value codeSpace="urn:cgi:classifierScheme:GSV:PreLithification:2007">graded bedding</gsml:value>
+					</gsml:CGI_TermValue>
+				</gsml:beddingPattern>
+<!-- Term(s) specifying the style of bedding in a stratified geologic unit, e.g. lenticular, irregular, planar, vague, massive CGI_TermValue 0..* -->
+				<gsml:beddingStyle>
+					<gsml:CGI_TermValue>
+						<gsml:value codeSpace="urn:cgi:classifierScheme:GSV:PreLithification:2007">cross bedding/cross lamination</gsml:value>
+					</gsml:CGI_TermValue>
+				</gsml:beddingStyle>
+				<gsml:beddingStyle>
+					<gsml:CGI_TermValue>
+						<gsml:value codeSpace="urn:cgi:classifierScheme:GSV:PreLithification:2007">cross stratification</gsml:value>
+					</gsml:CGI_TermValue>
+				</gsml:beddingStyle>
+<!-- Term(s) or numeric values characterizing the thickness of bedding in the unit.  CGI_Value 0..* -->
+				<gsml:beddingThickness><gsml:CGI_TermRange>
+					<gsml:lower>
+						<gsml:CGI_TermValue>
+							<gsml:value codeSpace="urn:cgi:classifierScheme:GSV:PreLithification:2007">laminated (less than10 mm)</gsml:value>
+						</gsml:CGI_TermValue>
+					</gsml:lower>
+					<gsml:upper>
+						<gsml:CGI_TermValue>
+							<gsml:value codeSpace="urn:cgi:classifierScheme:GSV:PreLithification:2007">thick (300-1000 mm)</gsml:value>
+						</gsml:CGI_TermValue>
+					</gsml:upper>
+				</gsml:CGI_TermRange>
+			</gsml:beddingThickness>
+			<gsml:definingAge><gsml:CGI_TermRange>
+				<gsml:lower>
+					<gsml:CGI_TermValue>
+						<gsml:value codeSpace="urn:cgi:classifierScheme:ICS:StratChart:2008">Tremadocian</gsml:value>
+					</gsml:CGI_TermValue>
+				</gsml:lower>
+				<gsml:upper>
+					<gsml:CGI_TermValue>
+					<gsml:value codeSpace="urn:cgi:classifierScheme:ICS:StratChart:2008">Floian</gsml:value>
+					</gsml:CGI_TermValue>
+				</gsml:upper>
+			</gsml:CGI_TermRange>
+			</gsml:definingAge>
+<!-- The Geologic Unit thickness can be specified here.  unitThickness is 0..*, specified by CGI_NumericValue  or CGI_NumericValueRange-->
+			<gsml:unitThickness>
+				<gsml:CGI_Numeric>
+					<gsml:CGI_NumericRange>
+						<gsml:lower>
+							<gsml:CGI_NumericValue>
+								<gsml:principalValue uom="urn:ogc:def:uom:UCUM:m"> 1100</gsml:principalValue>
+							</gsml:CGI_NumericValue>
+						</gsml:lower>
+						<gsml:upper>
+							<gsml:CGI_NumericValue>
+								<gsml:principalValue uom="urn:ogc:def:uom:UCUM:m">1400</gsml:principalValue>
+							</gsml:CGI_NumericValue>
+						</gsml:upper>
+					</gsml:CGI_NumericRange>
+				</gsml:CGI_Numeric>
+			</gsml:unitThickness>
+		</gsml:ChronostratigraphicUnit>
+	<!--	</gsml:featureItem> -->
+		</gsml:GSMLitem>
+	</gsml:member>
+	<gsml:member>
+		<gsml:GSMLitem>
+			<gsml:GeologicVocabulary gml:id="id_gv01"> 
+<!-- This is the GeologicVocabulary that contains the ControlledConcept term -->
+			<gml:name codeSpace="rn:ietf:rfc:2141">urn:cgi:classifierScheme:GSV:Lithology:2007</gml:name> 
+				<gml:definitionMember>
+					<gsml:ControlledConcept gml:id="id_cc02"> 
+<!-- gml:id is internal document identifier, just has to be unique, don't use anything that's required to have external significance -->							
+						<gml:description> clastic sedimentary rock composed predominantly of fragments 0.032-2 mm in diameter </gml:description>
+						<gml:name codeSpace="urn:ietf:rfc:2141">urn:cgi:classifier:GSV:Lithology:2007:Sandstone</gml:name> 
+<!-- this is the GSV identifier for the concept -->
+						<gsml:identifier codeSpace="urn:ietf:rfc:2141">urn:cgi:classifier:GSV:Lithology:2007:Sandstone</gsml:identifier> 
+<!-- the identifier attribute appears redundant -->
+						<gsml:name codeSpace="urn:cgi:classifierScheme:GSV:Lithology:2007" xml:lang="en">sandstone</gsml:name>
+						<gsml:vocabulary xlink:href="urn:cgi:classifierScheme:GSV:Lithology:2007"/>
+					</gsml:ControlledConcept>
+				</gml:definitionMember>
+				<gml:definitionMember>
+					<gsml:ControlledConcept gml:id="id_cc03"> 
+<!-- gml:id is internal document identifier, just has to be unique, don't use anything that's required to have external significance -->							
+						<gml:description> a laminated, indurated rock with >67% clay sized minerals </gml:description>
+						<gml:name codeSpace="urn:ietf:rfc:2141">urn:cgi:classifier:GSV:Lithology:2007:Shale</gml:name> 
+<!-- this is the GSV identifier for the concept -->
+						<gsml:identifier codeSpace="urn:ietf:rfc:2141">urn:cgi:classifier:GSV:Lithology:2007:Shale</gsml:identifier> 
+<!-- the identifier attribute appears redundant -->
+						<gsml:name codeSpace="urn:cgi:classifierScheme:GSV:Lithology:2007" xml:lang="en">shale</gsml:name>
+						<gsml:vocabulary xlink:href="urn:cgi:classifierScheme:GSV:Lithology:2007"/>
+					</gsml:ControlledConcept>
+				</gml:definitionMember>
+			</gsml:GeologicVocabulary>
+		</gsml:GSMLitem>
+	</gsml:member>
+</gsml:GSML>
+
