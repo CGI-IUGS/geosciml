@@ -10,6 +10,7 @@ xmlns:xlink="http://www.w3.org/1999/xlink"
 xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 xmlns:cgu="urn:cgi:xmlns:CGI:Utilities:1.0"
 xsi:schemaLocation="urn:cgi:xmlns:CGI:GeoSciML:2.0 https://www.seegrid.csiro.au/subversion/GeoSciML/trunk/schema/GeoSciML/geosciml.xsd">
+<!-- cgi-iugs.org/GeoSciML/ -->
 	<gsml:member>
 		<gsml:GSMLitem>
 		<!--	<gsml:featureItem> featureItem is not required with the current approach to encoding Union classes -->
@@ -48,7 +49,7 @@ In GML3.2 gml:identifier will be used for the unique id.-->
 <!-- ############# start association links to other classes ############# -->
 <!--one classifier is optional; this is a link to a controlled concept that specifies the kind of thing that this feature instance describes. In this case the classifier would be a geologic unit, either a non-situated unit 'type' (e.g. Lithostratigraphic unit),  in the case of observation data, or to a specific geologic unit  (e.g. Martin Formation) in the case that the description is applied to an already defined unit.-->
 <!-- Best Practice: Classifier ControlledConcepts should be defined in a separate vocabulary document that includes the prototype GeologicEntity instances. In this example the prototype for the  associated classifier would be a GeologicFeature.GeologicUnit.ChronostratigraphicUnit instance.  In the best practice case, classifer element wouldhave xlink:href pointer to the ControlledConcept. ControlledConcept element is included in line here for demonstration -->
-<!-- Since only one classifier is allowed on each GeologicUnit, where the unit is defined more than once (eg GSV StrtigraphicLexicon and GA Stratigraphic Lexicon)  will need to create an artificial aggregation unit in a GeologicVocabulary  -->
+<!-- Since only one classifier is allowed on each GeologicUnit, where the unit is defined more than once (eg GSV StratigraphicLexicon and GA Stratigraphic Lexicon)  will need to create an artificial aggregation unit in a GeologicVocabulary  -->
 				<gsml:classifier>	
 					<gsml:ControlledConcept gml:id="id_cc01">
 					<!-- gml:id is internal identifier, just has to be unique, don't use anything that's required to have external significance -->
@@ -66,10 +67,10 @@ In GML3.2 gml:identifier will be used for the unique id.-->
 						<gsml:role  codeSpace="urn:cgi:classifierScheme:GSV:Roles:2007">part of</gsml:role>
 <!-- lithology from controlled vocabulary is required 1..* -->
 <!-- Best Practice: Lithology ControlledConcepts should be defined in a separate vocabulary document that includes the prototype GeologicEntity instances. -->
-<!-- For this example lithology assignment is by href to other controlled concept instance within the document, using gml:id-->
+<!-- For this example lithology assignment is by href to other controlled concept instance within this document, using gml:id-->
 						<gsml:lithology xlink:href="id_cc02"/>
 <!-- optional CompoundMaterial element here for a specific description of the lithologic component. -->
-<!-- If a specific material description include CompoundMaterial element in line; if material is specified by controlled concept, specify by reference-->
+<!-- If a specific material description is required include the CompoundMaterial element in line; if  the material is specified by controlled concept, specify by reference-->
 						<gsml:proportion>
 <!-- proportion is specified by an element that substitutes for CGI_TermValue.-->
 							<gsml:CGI_TermValue>
@@ -102,12 +103,12 @@ In GML3.2 gml:identifier will be used for the unique id.-->
 							<gsml:CGI_NumericRange>
 								<gsml:lower>
 									<gsml:CGI_NumericValue>
-										<gsml:principalValue uom="">10</gsml:principalValue>
+										<gsml:principalValue uom="%">10</gsml:principalValue>
 									</gsml:CGI_NumericValue>
 								</gsml:lower>
 								<gsml:upper>
 									<gsml:CGI_NumericValue>
-										<gsml:principalValue uom="">20</gsml:principalValue>
+										<gsml:principalValue uom="%">20</gsml:principalValue>
 									</gsml:CGI_NumericValue>
 								</gsml:upper>
 							</gsml:CGI_NumericRange>
