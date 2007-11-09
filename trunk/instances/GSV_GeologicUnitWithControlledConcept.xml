@@ -5,7 +5,7 @@ xmlns="http://www.w3.org/2001/XMLSchema"
 xmlns:gml="http://www.opengis.net/gml"
 xmlns:gsml="urn:cgi:xmlns:CGI:GeoSciML:2.0" 
 xmlns:mo="urn:cgi:xmlns:GGIC:MineralOccurrence:1.0"
-xmlns:om="http://www.opengis.net/om" 
+xmlns:om="http://www.opengis.net/om/1.0.0" 
 xmlns:xlink="http://www.w3.org/1999/xlink"
 xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 xmlns:cgu="urn:cgi:xmlns:CGI:Utilities:1.0"
@@ -24,7 +24,12 @@ The codespace for Primary keys has the predetermined codespace name codeSpace="u
 In GML3.2 gml:identifier will be used for the unique id.-->
 				<gml:name codeSpace="urn:cgi:classifierScheme:GSV:StratigraphicLexicon:2007">Castlemaine Group - Lancefieldian</gml:name>
 				<gml:name codeSpace="urn:cgi:classifierScheme:GSV:StratigraphicLexicon:2007">Ocl</gml:name>
+				<!-- XXXXXXXXXXXXXXXX additional gml:name instances should give common names, alternatives and aliases, for this *feature*. 
+				However, the two names above are from a *classifier scheme*. Are these are actually attributes of the associated "ControlledConcept"? 
+				If you just want to give some informal aliases for the feature, then not necessary to indicate a codeSpace ...
+				Also: does your classifierScheme allow alternative identifiers for the same thing, or can these be disambiguated further? --> 
 				<gml:name codeSpace="urn:ietf:rfc:2141">urn:cgi:feature:GSV:GeoDataVicID:EA2F6608-BBD5-4726-AFBE-1633D366E0E8</gml:name>
+				<!-- XXXXXXXXXXXXXXXX this is the same identifier as on the Controlled Concept below - that is impossible - they are different entities so must have different identifiers -->
 				<gsml:observationMethod>
 <!-- Term(s) that specify the method by which the value was obtained (e.g. point count, brunton compass on site, air photo interpretation, field estimate...). This corresponds (loosely) to ISO19115 Lineage.Statement  -->
 					<gsml:CGI_TermValue>
@@ -55,8 +60,9 @@ In GML3.2 gml:identifier will be used for the unique id.-->
 					<!-- gml:id is internal identifier, just has to be unique, don't use anything that's required to have external significance -->
 						<gml:name codeSpace="urn:ietf:rfc:2141">urn:cgi:feature:GSV:GeoDataVicID:EA2F6608-BBD5-4726-AFBE-1633D366E0E8</gml:name>
 						<gsml:identifier codeSpace="urn:ietf:rfc:2141">urn:cgi:feature:GSV:GeoDataVicID:EA2F6608-BBD5-4726-AFBE-1633D366E0E8</gsml:identifier>
-						<gsml:name xml:lang="en" codeSpace="urn:cgi:classifier:GSV:StratigraphicLexicon:2007">Castlemaine Group - Lancefieldian</gsml:name>
+						<gsml:name xml:lang="en" codeSpace="urn:cgi:classifierScheme:GSV:StratigraphicLexicon:2007">Castlemaine Group - Lancefieldian</gsml:name>
 						<gsml:name xml:lang="en" codeSpace="urn:cgi:classifierScheme:GSV:StratigraphicLexicon:2007">Ocl</gsml:name>
+						<!-- XXXXXXXXXXXXXXX does your classifierScheme allow alternative identifiers for the same thing, or can these be disambiguated further? --> 
 						<gsml:vocabulary xlink:href="urn:cgi:classifierScheme:GSV:StratigraphicLexicon:2007"/>
 					</gsml:ControlledConcept>
 				</gsml:classifier>
@@ -103,12 +109,13 @@ In GML3.2 gml:identifier will be used for the unique id.-->
 							<gsml:CGI_NumericRange>
 								<gsml:lower>
 									<gsml:CGI_NumericValue>
-										<gsml:principalValue uom="%">10</gsml:principalValue>
+										<gsml:principalValue uom="urn:ogc:def:uom:UCUM:%25">10</gsml:principalValue>
+										<!-- "%" must be encoded %25 to make it a valid URI -->
 									</gsml:CGI_NumericValue>
 								</gsml:lower>
 								<gsml:upper>
 									<gsml:CGI_NumericValue>
-										<gsml:principalValue uom="%">20</gsml:principalValue>
+										<gsml:principalValue uom="urn:ogc:def:uom:UCUM:%25">20</gsml:principalValue>
 									</gsml:CGI_NumericValue>
 								</gsml:upper>
 							</gsml:CGI_NumericRange>
@@ -126,6 +133,7 @@ In GML3.2 gml:identifier will be used for the unique id.-->
 								<gsml:lower>
 									<gsml:CGI_NumericValue>
 										<gsml:principalValue uom="urn:ogc:def:uom:UCUM:cgs" >1e-5</gsml:principalValue>
+										<!-- XXXXXXXXXXXXXXXXXXXX "cgs" is not defined in the UCUM standard - see http://aurora.regenstrief.org/~schadow/units/UCUM/ucum.html -->
 									</gsml:CGI_NumericValue>
 								</gsml:lower>
 								<gsml:upper>
