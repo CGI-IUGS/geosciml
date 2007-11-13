@@ -12,7 +12,7 @@ xmlns:cgu="urn:cgi:xmlns:CGI:Utilities:1.0"
 xsi:schemaLocation="urn:cgi:xmlns:CGI:GeoSciML:2.0 https://www.seegrid.csiro.au/subversion/GeoSciML/trunk/schema/GeoSciML/geosciml.xsd">
 <!-- cgi-iugs.org/GeoSciML/ -->
 	<gsml:member>
-		<gsml:GSMLitem>
+		<!-- gsml:GSMLitem -->
 		<!--	<gsml:featureItem> featureItem is not required with the current approach to encoding Union classes This is an error that should be fixed with the next schema release -->
 <!-- ############# Start description of GeologicUnit class ############# -->
 <!-- GeoSciML 2.0 accepts GeologicUnit, LithologicUnit, LithostratigraohicUnit, LithodemicUnit, DeformationUnit and ChronostratigraphicUnit subtypes -->
@@ -197,7 +197,7 @@ Should this be another gsml:name with the same codeSpace (as per above), gsml:na
 			</gsml:definingAge>
 <!-- The Geologic Unit thickness can be specified here.  unitThickness is 0..*, specified by CGI_NumericValue  or CGI_NumericValueRange-->
 			<gsml:unitThickness>
-				<gsml:CGI_Numeric>
+				<!-- gsml:CGI_Numeric -->
 					<gsml:CGI_NumericRange>
 						<gsml:lower>
 							<gsml:CGI_NumericValue>
@@ -210,14 +210,14 @@ Should this be another gsml:name with the same codeSpace (as per above), gsml:na
 							</gsml:CGI_NumericValue>
 						</gsml:upper>
 					</gsml:CGI_NumericRange>
-				</gsml:CGI_Numeric>
+				<!-- /gsml:CGI_Numeric -->
 			</gsml:unitThickness>
 		</gsml:ChronostratigraphicUnit>
 	<!--	</gsml:featureItem> -->
-		</gsml:GSMLitem>
+		<!-- /gsml:GSMLitem -->
 	</gsml:member>
 	<gsml:member>
-		<gsml:GSMLitem>
+		<!-- gsml:GSMLitem -->
 			<gsml:GeologicVocabulary gml:id="id_gv01"> 
 <!-- This is the GeologicVocabulary that contains the ControlledConcept term -->
 			<gml:name codeSpace="rn:ietf:rfc:2141">urn:cgi:classifierScheme:GSV:Lithology</gml:name> 
@@ -246,7 +246,7 @@ Should this be another gsml:name with the same codeSpace (as per above), gsml:na
 					</gsml:ControlledConcept>
 				</gml:definitionMember>
 			</gsml:GeologicVocabulary>
-		</gsml:GSMLitem>
+		<!-- /gsml:GSMLitem -->
 	</gsml:member>
 </gsml:GSML>
 
