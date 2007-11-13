@@ -340,58 +340,52 @@
             <element ref="gsml:CGI_Value"/>
         </sequence>
     </complexType>
-    <element name="CGI_Term" type="gsml:CGI_TermType">
+    <group name="CGI_Term">
         <annotation>
             <documentation>A union class that allows the value to either be a CGI_TermValue or a
             CGI_TermRange</documentation>
         </annotation>
-    </element>
-    <complexType name="CGI_TermType">
         <choice>
             <element ref="gsml:CGI_TermRange"/>
             <element ref="gsml:CGI_TermValue"/>
         </choice>
-        <attributeGroup ref="gml:AssociationAttributeGroup"/>
-        <attribute name="unionSemantics">
-            <simpleType>
-                <restriction base="string">
-                    <enumeration value="range"/>
-                    <enumeration value="value"/>
-                </restriction>
-            </simpleType>
-        </attribute>
-    </complexType>
+    </group>
     <complexType name="CGI_TermPropertyType">
-        <sequence>
-            <element ref="gsml:CGI_Term"/>
+        <sequence minOccurs="0">
+            <group ref="gsml:CGI_Term"/>
         </sequence>
+        <attributeGroup ref="gml:AssociationAttributeGroup"/>
+        <attribute name="unionSemantics" type="gsml:CGI_TermUnionSemantics"/>
     </complexType>
-    <element name="CGI_Numeric" type="gsml:CGI_NumericType">
+    <simpleType name="CGI_TermUnionSemantics">
+        <restriction base="string">
+            <enumeration value="range"/>
+            <enumeration value="value"/>
+        </restriction>
+    </simpleType>
+    <group name="CGI_Numeric">
         <annotation>
             <documentation>A union class that allows the value to either be a CGI_NumericValue or a
             CGI_NumericRange</documentation>
         </annotation>
-    </element>
-    <complexType name="CGI_NumericType">
         <choice>
             <element ref="gsml:CGI_NumericRange"/>
             <element ref="gsml:CGI_NumericValue"/>
         </choice>
-        <attributeGroup ref="gml:AssociationAttributeGroup"/>
-        <attribute name="unionSemantics">
-            <simpleType>
-                <restriction base="string">
-                    <enumeration value="range"/>
-                    <enumeration value="value"/>
-                </restriction>
-            </simpleType>
-        </attribute>
-    </complexType>
+    </group>
     <complexType name="CGI_NumericPropertyType">
-        <sequence>
-            <element ref="gsml:CGI_Numeric"/>
+        <sequence minOccurs="0">
+            <group ref="gsml:CGI_Numeric"/>
         </sequence>
+        <attributeGroup ref="gml:AssociationAttributeGroup"/>
+        <attribute name="unionSemantics" type="gsml:CGI_NumericUnionSemantics"/>
     </complexType>
+    <simpleType name="CGI_NumericUnionSemantics">
+        <restriction base="string">
+            <enumeration value="range"/>
+            <enumeration value="value"/>
+        </restriction>
+    </simpleType>
     <simpleType name="ConventionCodeType">
         <restriction base="string">
             <enumeration value="dip dip direction">

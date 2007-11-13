@@ -130,13 +130,11 @@
         </sequence>
         <attributeGroup ref="gml:AssociationAttributeGroup"/>
     </complexType>
-    <element abstract="true" name="GeologicEntity" type="gsml:GeologicEntityType">
+    <group name="GeologicEntity">
         <annotation>
             <documentation>Union class to allow prototype descriptions for ControlledConcepts to be GeologicFeature
                 (e.g. geologic unit or geologic structure), EarthMaterial, or Specimen.</documentation>
         </annotation>
-    </element>
-    <complexType abstract="true" name="GeologicEntityType">
         <choice>
             <element ref="gsml:GeologicFeature">
                 <annotation>
@@ -150,19 +148,18 @@
                 </annotation>
             </element>
         </choice>
-        <attributeGroup ref="gml:AssociationAttributeGroup"/>
-        <attribute name="unionSemantics">
-            <simpleType>
-                <restriction base="string">
-                    <enumeration value="featureEntity"/>
-                    <enumeration value="materialEntity"/>
-                </restriction>
-            </simpleType>
-        </attribute>
-    </complexType>
+    </group>
     <complexType name="GeologicEntityPropertyType">
-        <sequence>
-            <element ref="gsml:GeologicEntity"/>
+        <sequence minOccurs="0">
+            <group ref="gsml:GeologicEntity"/>
         </sequence>
+        <attributeGroup ref="gml:AssociationAttributeGroup"/>
+        <attribute name="unionSemantics" type="gsml:GeologicEntityUnionSemantics"/>
     </complexType>
+    <simpleType name="GeologicEntityUnionSemantics">
+        <restriction base="string">
+            <enumeration value="featureEntity"/>
+            <enumeration value="materialEntity"/>
+        </restriction>
+    </simpleType>
 </schema>
