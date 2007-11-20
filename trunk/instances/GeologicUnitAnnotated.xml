@@ -1,11 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-
-<gsml:GSML xmlns:gml="http://www.opengis.net/gml" 
-xmlns:wfs="http://www.opengis.net/wfs" 
-xmlns:xlink="http://www.w3.org/1999/xlink" 
-xmlns:gsml="http://www.cgi-iugs.org/xml/GeoSciML/2" 
-xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
-xsi:schemaLocation="http://www.cgi-iugs.org/xml/GeoSciML/2 ../schema/GeoSciML.xsd">
+<gsml:GSML xmlns:gml="http://www.opengis.net/gml" xmlns:wfs="http://www.opengis.net/wfs" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:gsml="urn:cgi:xmlns:CGI:GeoSciML:2.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="urn:cgi:xmlns:CGI:GeoSciML:2.0 https://www.seegrid.csiro.au/subversion/GeoSciML/trunk/schema/GeoSciML/geosciml.xsd">
 	<!-- namespaces and schema added by SMR -->
 	<!--  0..* gml:metadataProperty elements. Best Practice: use gsml:metadata to href ISO19115 metadata -->
 	<!-- one gml:description may be used to describe this collection -->
@@ -13,8 +7,6 @@ xsi:schemaLocation="http://www.cgi-iugs.org/xml/GeoSciML/2 ../schema/GeoSciML.xs
 	<!-- optional gml:boundedBy for collection -->
 	<!-- optional gml:location (deprecated in gml 3.1.1) for collection -->
 	<!-- wfs:featureCollection [gsml:gsml] includs 0..* gml:featureMember [gsml:member] elements. wfs also allows grouping of features in a gml:featureMembers element following any featureMember elements. This is designed to represent an array of features. Best Practice: include GeoSciML features as featureMember elements. -->
-	<!-- dataset metadata, use ISO 19115 schema -->
-	<gsml:metadata/>
 	<gsml:member>
 		<!-- wfs:featureCollection elements must be in gml:_Feature substitution group; gsml:gsml members must be gml:_Geometry substitution group (based on XMLspy 2005 schema view) -->
 		<gsml:LithostratigraphicUnit>
@@ -90,18 +82,6 @@ xsi:schemaLocation="http://www.cgi-iugs.org/xml/GeoSciML/2 ../schema/GeoSciML.xs
 			</gsml:exposureColor>
 			<!-- rank is required for Lithostratigraphic unit, specified by a scoped name -->
 			<gsml:rank codeSpace="GeoUnitRankTerms">Not specified	</gsml:rank>
-			<!-- Terms to categorize the compositional character of a com-pound material. Examples include silicate, carbonate, ferro-magnesian, oxide (for chemical categories); quartzose, feld-spathic, arkosic (sandstone petrographic composition categories) CGI_TermValue 0..1 -->
-			<gsml:compositionCategory>
-				<gsml:CGI_TermValue>
-					<gsml:value codeSpace="None">Null</gsml:value>
-				</gsml:CGI_TermValue>
-			</gsml:compositionCategory>
-			<!-- Describes the nature of outcrops formed by a geologic unit.   Examples: bouldery, cliff-forming, ledge-forming, slope-forming, poorly exposed CGI_TermValue 0..* -->
-			<gsml:outcropCharacter>
-				<gsml:CGI_TermValue>
-					<gsml:value codeSpace="None">Null</gsml:value>
-				</gsml:CGI_TermValue>
-			</gsml:outcropCharacter>
 			<!-- start association links to other classes ******************************************************** -->
 			<!--one classifier is optional; this is a link to a controlled concept that specifies the kind of thing that this feature instance describes. In this case the classifier would be a geologic unit, either a non-situated unit 'type' (e.g. Lithostratigraphic unit),  in the case of observation data, or to a specific geologic unit  (e.g. Martin Formation) in the case that the description is applied to an already defined unit.-->
 			<!-- Best Practice: Classifier ControlledConcepts should be defined in a separate vocabulary document that includes the prototype GeologicEntity instances. In this example the prototype for the  associated classifier would be a GeologicFeature.GeologicUnit.LithostratigraphicUnit instance.  In the best practice case, classifer element wouldhave xlink:href pointer to the ControlledConcept. ControlledConcept element is included in line here for demonstration -->
@@ -110,8 +90,8 @@ xsi:schemaLocation="http://www.cgi-iugs.org/xml/GeoSciML/2 ../schema/GeoSciML.xs
 				<gsml:ControlledConcept gml:id="e9907">
 					<!-- gml:id is internal identifier, just has to be unique, don't use anything that's required to have external significance -->
 					<gml:name codeSpace="GeoLEX GenRemID">put GeoLex integer ID here e.g. 4997</gml:name>
-					<gml:name codeSpace="GeoLEX SysGUID">put GeoLex SysGUID here</gml:name>
-					<gsml:preferredName>preferred formation name here, e.g. Dakota Sandstone</gsml:preferredName>
+					<gsml:identifier codeSpace="GeoLEX SysGUID">put GeoLex SysGUID here</gsml:identifier>
+					<gsml:name codeSpace="none" xml:lang="EN">preferred formation name here, e.g. Dakota Sandstone</gsml:name>
 					<gsml:prototype xlink:href="null"/>
 					<gsml:vocabulary xlink:href="http://URL for GeoLex e.g. http://ngmdb.usgs.gov/Geolex/"/>
 					<gsml:metadata/>
@@ -121,12 +101,15 @@ xsi:schemaLocation="http://www.cgi-iugs.org/xml/GeoSciML/2 ../schema/GeoSciML.xs
 			<!-- Best Practice: The material element of a CompositionPart should be included in line if it is specified by a compoundMaterial instance (material.unionSemantics = materialInstance); these represent descriptions of gsml:valuea lithologic constituent specific to the geologic unit.   Material elements for composition parts that have a material specified by a lithology term from a vocabulary (material.unionSemantics = materialTerm) should be by reference to a controlled vocabulary term-->
 			<gsml:composition>
 				<gsml:CompositionPart>
+					<!-- use 'constituent role not specified' as default-->
+					<gsml:role codeSpace="ACodeSpace">Constituent role not specified</gsml:role>
 					<!-- lithology from controlled vocabulary is required 1..* -->
 					<gsml:lithology>
 						<gsml:ControlledConcept gml:id="rhjle55">
 							<!-- gml:id is internal identifier, just has to be unique, don't use anything that's required to have external significance -->
 							<gml:name codeSpace="StandardLithology SysGUID">put GeoLex SysGUID here</gml:name>
-							<gsml:preferredName>Granite</gsml:preferredName>
+							<gsml:identifier codeSpace="none">some URN</gsml:identifier>
+							<gsml:name codeSpace="NONE" xml:lang="EN">Granite</gsml:name>
 							<gsml:prototype xlink:href="null"/>
 							<gsml:vocabulary xlink:href="http://URL for lexicon e.g. http://ngmdb.usgs.gov/StandardLithology/"/>
 							<gsml:metadata/>
@@ -140,12 +123,11 @@ xsi:schemaLocation="http://www.cgi-iugs.org/xml/GeoSciML/2 ../schema/GeoSciML.xs
 							<gsml:value codeSpace="NGMDB ScienceLanguage DisplayName">put DisplayName here, e.g Dominant</gsml:value>
 						</gsml:CGI_TermValue>
 					</gsml:proportion>
-					<!-- use 'constituent role not specified' as default-->
-					<gsml:role codeSpace="ACodeSpace">Constituent role not specified</gsml:role>
 				</gsml:CompositionPart>
 			</gsml:composition>
 			<gsml:composition>
 				<gsml:CompositionPart>
+					<gsml:role codeSpace=""/>
 					<!-- lithology assignment could be by href to other controlled concept instance within the document, using gml:id-->
 					<gsml:lithology xlink:href="url for standard lithology term"/>
 					<gsml:proportion>
@@ -153,10 +135,8 @@ xsi:schemaLocation="http://www.cgi-iugs.org/xml/GeoSciML/2 ../schema/GeoSciML.xs
 							<gsml:value codeSpace="NGMDB ScienceLanguage DisplayName">put DisplayName here, e.g Present</gsml:value>
 						</gsml:CGI_TermValue>
 					</gsml:proportion>
-					<gsml:role codeSpace=""/>
 				</gsml:CompositionPart>
 			</gsml:composition>
-			
 			<!-- Term(s) specifying patterns of bedding thickness or relationships between bedding packages, e.g. thinning upward, thickening upward CGI_TermValue 0..* -->
 			<gsml:beddingPattern>
 				<gsml:CGI_TermValue>
@@ -181,16 +161,13 @@ xsi:schemaLocation="http://www.cgi-iugs.org/xml/GeoSciML/2 ../schema/GeoSciML.xs
 					<gsml:lower>
 						<gsml:CGI_NumericValue>
 							<gsml:principalValue uom="meter"> 100</gsml:principalValue>
-							<!-- plustDelta and minusDelta are compulsory but can't take null values as they are based on double. We don't have anything to put in these fields for our data -->
-							<gsml:plusDelta uom="">0</gsml:plusDelta>
-							<gsml:minusDelta uom="">0</gsml:minusDelta>
 						</gsml:CGI_NumericValue>
 					</gsml:lower>
 					<gsml:upper>
 						<gsml:CGI_NumericValue>
-							<gsml:principalValue uom="meter">200</gsml:principalValue>
-							<gsml:plusDelta uom="">0</gsml:plusDelta>
 							<gsml:minusDelta uom="">0</gsml:minusDelta>
+							<gsml:plusDelta uom="">0</gsml:plusDelta>
+							<gsml:principalValue uom="meter">200</gsml:principalValue>
 						</gsml:CGI_NumericValue>
 					</gsml:upper>
 				</gsml:CGI_NumericRange>
@@ -218,9 +195,9 @@ xsi:schemaLocation="http://www.cgi-iugs.org/xml/GeoSciML/2 ../schema/GeoSciML.xs
 			<gsml:geologicHistory>
 				<gsml:GeologicEvent>
 					<gsml:eventAge>
-						<gsml:CGI_Value xsi:type="gsml:CGI_TermValueType">
+						<gsml:CGI_TermValue>
 							<gsml:value codeSpace="IUGS time scale">Permian</gsml:value>
-						</gsml:CGI_Value>
+						</gsml:CGI_TermValue>
 					</gsml:eventAge>
 					<gsml:eventProcess>
 						<gsml:CGI_TermValue>
@@ -232,28 +209,28 @@ xsi:schemaLocation="http://www.cgi-iugs.org/xml/GeoSciML/2 ../schema/GeoSciML.xs
 			<gsml:geologicHistory>
 				<gsml:GeologicEvent>
 					<gsml:eventAge>
-						<gsml:CGI_Value xsi:type="gsml:CGI_TermValueType">
-							<gsml:value codeSpace="IUGS time scale">Cretaceous</gsml:value>
-						</gsml:CGI_Value>
-					</gsml:eventAge>
-					<gsml:eventProcess>
 						<gsml:CGI_TermValue>
-							<gsml:value codeSpace="MyProcessVocabulary">Metamorphism</gsml:value>
+							<gsml:value codeSpace="IUGS time scale">Cretaceous</gsml:value>
 						</gsml:CGI_TermValue>
-					</gsml:eventProcess>
+					</gsml:eventAge>
 					<gsml:eventEnvironment>
 						<gsml:CGI_TermValue>
 							<gsml:value codeSpace="MyEnvironmentVocabulary">Contact metamorphic setting</gsml:value>
 						</gsml:CGI_TermValue>
 					</gsml:eventEnvironment>
+					<gsml:eventProcess>
+						<gsml:CGI_TermValue>
+							<gsml:value codeSpace="MyProcessVocabulary">Metamorphism</gsml:value>
+						</gsml:CGI_TermValue>
+					</gsml:eventProcess>
 				</gsml:GeologicEvent>
 			</gsml:geologicHistory>
 			<gsml:geologicHistory>
 				<gsml:GeologicEvent>
 					<gsml:eventAge>
-						<gsml:CGI_Value xsi:type="gsml:CGI_TermValueType">
+						<gsml:CGI_TermValue>
 							<gsml:value codeSpace="IUGS time scale">Late Miocene</gsml:value>
-						</gsml:CGI_Value>
+						</gsml:CGI_TermValue>
 					</gsml:eventAge>
 					<gsml:eventProcess>
 						<gsml:CGI_TermValue>
@@ -277,35 +254,12 @@ xsi:schemaLocation="http://www.cgi-iugs.org/xml/GeoSciML/2 ../schema/GeoSciML.xs
 			</gsml:exposureColor>
 			<!-- rank- optional for lithologic unit -->
 			<gsml:rank codeSpace="None">Not Specified</gsml:rank>
-			<!--CompositonCategory CGI_TermValue 0..1 -->
-			<gsml:compositionCategory>
-				<gsml:CGI_TermValue>
-					<gsml:value codeSpace="CompositionCategories">quartzose</gsml:value>
-				</gsml:CGI_TermValue>
-			</gsml:compositionCategory>
-			<!-- outcropCharacter CGI_TermValue 0..* -->
-			<gsml:outcropCharacter>
-				<gsml:CGI_TermValue>
-					<gsml:value codeSpace="None">not specified</gsml:value>
-				</gsml:CGI_TermValue>
-			</gsml:outcropCharacter>
-			<!-- start Geologic Unit association links ************************************************************** -->
-			<!-- partOf 0..* -->
-			<gsml:part>
-				<gsml:GeologicUnitPart>
-					<gsml:proportion>
-						<gsml:CGI_Value xsi:type="gsml:CGI_NumericValueType">
-							<gsml:principalValue uom="percent">100</gsml:principalValue>
-						</gsml:CGI_Value>
-					</gsml:proportion>
-					<gsml:role codeSpace=""/>
-					<gsml:containedUnit/>
-				</gsml:GeologicUnitPart>
-			</gsml:part>
 			<gsml:classifier xlink:href="LinkToGeolgoicUnitLexiconTerm"/>
+			<!-- start Geologic Unit association links ************************************************************** -->
 			<!--composition 0..* -->
 			<gsml:composition>
 				<gsml:CompositionPart>
+					<gsml:role codeSpace=""/>
 					<gsml:lithology xlink:href="LinkToLithologyControlledConcept"/>
 					<gsml:material xlink:href="LinkToCompoundMaterialInstance"/>
 					<gsml:proportion>
@@ -322,11 +276,11 @@ xsi:schemaLocation="http://www.cgi-iugs.org/xml/GeoSciML/2 ../schema/GeoSciML.xs
 							</gsml:upper>
 						</gsml:CGI_NumericRange>
 					</gsml:proportion>
-					<gsml:role codeSpace=""/>
 				</gsml:CompositionPart>
 			</gsml:composition>
 			<gsml:composition>
 				<gsml:CompositionPart>
+					<gsml:role codeSpace=""/>
 					<gsml:lithology xlink:href="LinkToLithologyControlledConcept"/>
 					<gsml:proportion>
 						<gsml:CGI_NumericRange>
@@ -342,63 +296,9 @@ xsi:schemaLocation="http://www.cgi-iugs.org/xml/GeoSciML/2 ../schema/GeoSciML.xs
 							</gsml:upper>
 						</gsml:CGI_NumericRange>
 					</gsml:proportion>
-					<gsml:role codeSpace=""/>
 				</gsml:CompositionPart>
 			</gsml:composition>
 			<!-- weatheringCharacter is link to WeatheringDesription element, could be in line or by ref -->
-			<gsml:weatheringCharacter>
-				<gsml:WeatheringDescription>
-					<gsml:weatheringDegree>
-						<gsml:CGI_TermValue>
-							<gsml:value codeSpace="NGMDB ScienceLanguage DisplayName">put DisplayName here</gsml:value>
-						</gsml:CGI_TermValue>
-					</gsml:weatheringDegree>
-					<gsml:weatheringProduct>
-						<gsml:EarthMaterial>
-							<gsml:Rock>
-								<gsml:consolidationDegree>
-									<gsml:CGI_TermValue>
-										<gsml:value codeSpace="ConsolidationTerms">moderately consolidated</gsml:value>
-									</gsml:CGI_TermValue>
-								</gsml:consolidationDegree>
-								<gsml:lithology>
-									<gsml:ControlledConcept gml:id="cc3464267">
-									   <gml:name>granitic regolith</gml:name>
-										<gsml:preferredName>granitic regolith</gsml:preferredName>
-										<gsml:vocabulary xlink:href="url for vocabulary"/>
-									</gsml:ControlledConcept>
-								</gsml:lithology>
-							</gsml:Rock>
-						</gsml:EarthMaterial>
-					</gsml:weatheringProduct>
-					<gsml:weatheringProcess>
-						<gsml:CGI_TermValue>
-							<gsml:value codeSpace="NGMDB ScienceLanguage DisplayName">put DisplayName here</gsml:value>
-						</gsml:CGI_TermValue>
-					</gsml:weatheringProcess>
-					<gsml:environment>
-						<gsml:CGI_TermValue>
-							<gsml:value codeSpace="NGMDB ScienceLanguage DisplayName">put DisplayName here</gsml:value>
-						</gsml:CGI_TermValue>
-					</gsml:environment>
-				</gsml:WeatheringDescription>
-			</gsml:weatheringCharacter>
-			<!-- end weathering character -->
-			<!-- physical description here; all attributes optional. At least one must have a value. -->
-			<gsml:physicalProperty>
-				<gsml:PhysicalDescription>
-					<gsml:density>
-						<gsml:CGI_NumericValue>
-							<gsml:principalValue uom="g/cc">2.8</gsml:principalValue>
-						</gsml:CGI_NumericValue>
-					</gsml:density>
-					<!-- other properties that may be specified: 
-<gsml:magneticSusceptibility/>
-					<gsml:porosity/>
-					<gsml:permeability/> -->
-				</gsml:PhysicalDescription>
-			</gsml:physicalProperty>
-			<!-- end physical description -->
 			<!-- metamorphicCharacter is optional -->
 			<gsml:metamorphicCharacter>
 				<gsml:MetamorphicDescription>
@@ -415,42 +315,97 @@ xsi:schemaLocation="http://www.cgi-iugs.org/xml/GeoSciML/2 ../schema/GeoSciML.xs
 					</gsml:metamorphicGrade>
 					<gsml:peakPressureValue>
 						<gsml:CGI_NumericValue>
-							<gsml:principalValue uom="kbar">7</gsml:principalValue>
-							<gsml:plusDelta uom="kbar">1.5</gsml:plusDelta>
-							<gsml:minusDelta uom="kbar">1.5</gsml:minusDelta>
 							<!-- optional plusDelta and  minusDelta values may be included here as MeasureElements -->
+							<gsml:minusDelta uom="kbar">1.5</gsml:minusDelta>
+							<gsml:plusDelta uom="kbar">1.5</gsml:plusDelta>
+							<gsml:principalValue uom="kbar">7</gsml:principalValue>
 						</gsml:CGI_NumericValue>
 					</gsml:peakPressureValue>
 					<gsml:peakTemperatureValue>
-						<gsml:CGI_NumericRange>
-							<gsml:lower>
-								<gsml:CGI_NumericValue>
-									<gsml:principalValue uom="K">800</gsml:principalValue>
-								</gsml:CGI_NumericValue>
-							</gsml:lower>
-							<gsml:upper>
-								<gsml:CGI_NumericValue>
-									<gsml:principalValue uom="K">1200</gsml:principalValue>
-								</gsml:CGI_NumericValue>
-							</gsml:upper>
-						</gsml:CGI_NumericRange>
+						<gsml:CGI_NumericValue>
+							<gsml:principalValue uom="K">800</gsml:principalValue>
+						</gsml:CGI_NumericValue>
 					</gsml:peakTemperatureValue>
 					<!-- optional Rock as protolith 0..* -->
 					<gsml:protolithLithology>
-						<gsml:EarthMaterial>
-							<gsml:Rock>
-								<gsml:consolidationDegree>
-									<gsml:CGI_TermValue>
-										<gsml:value codeSpace="None">Not specified</gsml:value>
-									</gsml:CGI_TermValue>
-								</gsml:consolidationDegree>
-								<gsml:lithology xlink:href="http://my.favorite.vocabulary/sandstone.htm"/>
-							</gsml:Rock>
-						</gsml:EarthMaterial>
+						<gsml:Rock>
+							<gsml:purpose>instance</gsml:purpose>
+							<gsml:consolidationDegree>
+								<gsml:CGI_TermValue>
+									<gsml:value codeSpace="None">Not specified</gsml:value>
+								</gsml:CGI_TermValue>
+							</gsml:consolidationDegree>
+							<gsml:lithology xlink:href="http://my.favorite.vocabulary/sandstone.htm"/>
+						</gsml:Rock>
 					</gsml:protolithLithology>
 				</gsml:MetamorphicDescription>
 			</gsml:metamorphicCharacter>
 			<!-- end metamorphicCharacter -->
+			<!-- partOf 0..* -->
+			<gsml:part>
+				<gsml:GeologicUnitPart>
+					<gsml:role codeSpace=""/>
+					<gsml:proportion>
+						<gsml:CGI_NumericValue>
+							<gsml:principalValue uom="percent">100</gsml:principalValue>
+						</gsml:CGI_NumericValue>
+					</gsml:proportion>
+					<gsml:containedUnit/>
+				</gsml:GeologicUnitPart>
+			</gsml:part>
+			<!-- physical description here; all attributes optional. At least one must have a value. -->
+			<gsml:physicalProperty>
+				<gsml:PhysicalDescription>
+					<gsml:density>
+						<gsml:CGI_NumericValue>
+							<gsml:principalValue uom="g/cc">2.8</gsml:principalValue>
+						</gsml:CGI_NumericValue>
+					</gsml:density>
+					<!-- other properties that may be specified: 
+<gsml:magneticSusceptibility/>
+					<gsml:porosity/>
+					<gsml:permeability/> -->
+				</gsml:PhysicalDescription>
+			</gsml:physicalProperty>
+			<!-- end physical description -->
+			<gsml:weatheringCharacter>
+				<gsml:WeatheringDescription>
+					<gsml:environment>
+						<gsml:CGI_TermValue>
+							<gsml:value codeSpace="NGMDB ScienceLanguage DisplayName">put DisplayName here</gsml:value>
+						</gsml:CGI_TermValue>
+					</gsml:environment>
+					<gsml:weatheringDegree>
+						<gsml:CGI_TermValue>
+							<gsml:value codeSpace="NGMDB ScienceLanguage DisplayName">put DisplayName here</gsml:value>
+						</gsml:CGI_TermValue>
+					</gsml:weatheringDegree>
+					<gsml:weatheringProcess>
+						<gsml:CGI_TermValue>
+							<gsml:value codeSpace="NGMDB ScienceLanguage DisplayName">put DisplayName here</gsml:value>
+						</gsml:CGI_TermValue>
+					</gsml:weatheringProcess>
+					<gsml:weatheringProduct>
+						<gsml:Rock>
+							<gsml:purpose>instance</gsml:purpose>
+							<gsml:consolidationDegree>
+								<gsml:CGI_TermValue>
+									<gsml:value codeSpace="ConsolidationTerms">moderately consolidated</gsml:value>
+								</gsml:CGI_TermValue>
+							</gsml:consolidationDegree>
+							<gsml:lithology>
+								<gsml:ControlledConcept gml:id="cc3464267">
+									<gml:name>granitic regolith</gml:name>
+									<gsml:identifier codeSpace="none">some urn</gsml:identifier>
+									<gsml:name codeSpace="none" xml:lang="EN">granitic regolith</gsml:name>
+									<gsml:vocabulary xlink:href="url for vocabulary"/>
+								</gsml:ControlledConcept>
+							</gsml:lithology>
+						</gsml:Rock>
+					</gsml:weatheringProduct>
+				</gsml:WeatheringDescription>
+			</gsml:weatheringCharacter>
+			<!-- end weathering character -->
 		</gsml:LithologicUnit>
 	</gsml:member>
 </gsml:GSML>
