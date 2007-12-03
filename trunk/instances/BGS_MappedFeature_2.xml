@@ -2,11 +2,11 @@
 <!--Example mapped feature from BGS data.-->
 <GSML xmlns="http://www.cgi-iugs.org/xml/GeoSciML/2" gml:id="mf.1" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:gml="http://www.opengis.net/gml" xmlns:swe="http://www.opengis.net/swe/1.0" xmlns:om="http://www.opengis.net/om/1.0" xmlns:sa="http://www.opengis.net/sampling/1.0" xmlns:cv="http://www.opengis.net/cv/0.2" xmlns:geox="http://www.opengis.net/geomExt/0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="
 http://www.opengis.net/gml 		http://schemas.opengis.net/gml/3.1.1/base/gml.xsd
-http://www.cgi-iugs.org/xml/GeoSciML/2	http://www.cgi-iugs.org/xml/GeoSciML/2/geosciml.xsd
-http://www.opengis.net/swe/1.0		http://schemas.opengis.net/swe/1.0.0/swe.xsd 
-http://www.opengis.net/cv/0.2 		http://schemas.opengis.net/cv/0.2.0/cv.xsd 
-http://www.opengis.net/om/1.0 		http://schemas.opengis.net/om/1.0.0/om.xsd 
-http://www.opengis.net/sampling/1.0 	http://schemas.opengis.net/sampling/1.0.0/sampling.xsd">
+urn:cgi:xmlns:CGI:GeoSciML:2.0	https://www.seegrid.csiro.au/subversion/GeoSciML/trunk/schema/GeoSciML/geosciml.xsd
+http://www.opengis.net/swe/1.0.1		http://schemas.opengis.net/swe/1.0.1/swe.xsd 
+http://www.opengis.net/cv/0.2.1 		http://schemas.opengis.net/cv/0.2.1/cv.xsd 
+http://www.opengis.net/om/1.0.0 		http://schemas.opengis.net/om/1.0.0/om.xsd 
+http://www.opengis.net/sampling/1.0.0 	http://schemas.opengis.net/sampling/1.0.0/sampling.xsd">
 	<member>
 		<MappedFeature>
 			<positionalAccuracy>
@@ -24,15 +24,9 @@ http://www.opengis.net/sampling/1.0 	http://schemas.opengis.net/sampling/1.0.0/s
 					<value codeSpace="http://www.bgs.ac.uk/observationMethodVocab">Boreholes</value>
 				</CGI_TermValue>
 			</observationMethod>
-			<samplingFrame>
-				<sa:SamplingSurface>
-					<!--Need MapHorizon specialisation here-->
-					<sa:sampledFeature></sa:sampledFeature>
-					<sa:shape></sa:shape>
-				</sa:SamplingSurface>
-			</samplingFrame>
+			<samplingFrame xlink:href="urn:cgi:feature:CGI:EarthNaturalSurface"/>
 			<shape></shape>
-			<specification>
+			<specification xlink:href="http://www.bgs.ac.uk/LithostratLexicon?DCF"/>
 				<LithostratigraphicUnit>
 					<gml:name> codeSpace="http://www.bgs.ac.uk/LithostratLexicon">DEEP CONGLOMERATE FORMATION</gml:name>
 					<observationMethod>
