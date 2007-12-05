@@ -1,0 +1,37 @@
+<?xml version="1.0"?>
+<gsml:Borehole gml:id="bh.303432383858303032312F53" 
+xmlns:om="http://www.opengis.net/om/1.0.0"
+xmlns:sa="http://www.opengis.net/sampling/1.0.0"
+xmlns:gml="http://www.opengis.net/gml"
+xmlns:cv="http://www.opengis.net/cv/0.2"
+xmlns:xlink="http://www.w3.org/1999/xlink"
+xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+xmlns:gsml="urn:cgi:xmlns:CGI:GeoSciML:2.0"
+xsi:schemaLocation="http://www.opengis.net/cv/0.2 http://bp.schemas.opengis.net/06-188r1/cv/0.2.0/cv.xsd 
+http://www.opengis.net/om/1.0.0 http://schemas.opengis.net/om/1.0.0/om.xsd 
+http://www.opengis.net/sampling/1.0.0 http://schemas.opengis.net/sampling/1.0.0/sampling.xsd
+urn:cgi:xmlns:CGI:GeoSciML:2.0 http://www.cgi-iugs.org/xml/GeoSciML/2/borehole.xsd">
+	<gml:description>An example of a straight borehole</gml:description>
+	<gml:name codeSpace="urn:ietf:rfc:2141">urn:cgi:feature:BRGM:04288X0021/S</gml:name>
+	<gml:boundedBy>
+		<gml:Envelope srsName="#bh.303432383858303032312F53.BoreholeShape">
+			<!-- As the borehole is straight, the 2D envelope is built from the begin point and the end point of the borehole -->
+			<gml:lowerCorner>-288450 288650 15.89</gml:lowerCorner>
+			<gml:upperCorner>-526300 526100 65.89</gml:upperCorner>
+		</gml:Envelope>
+	</gml:boundedBy>
+	<sa:sampledFeature/>
+	<sa:shape>
+		<!-- As the borehole is a 3D line, we need a 3D CRS -->
+		<!-- EPSG:6.8:7412 means that Z coordinate values are expressed in meters -->
+		<gml:LineString gml:id="bh.303432383858303032312F53.BoreholeShape" srsName="urn:ogc:def:crs:EPSG:6.8:7412" srsDimension="3">
+			<!-- As the borehole is straight, we only need the begin point and the end point -->
+  			<gml:pos>526100 288650 65.89</gml:pos> 
+			<gml:pos>526300 288450 15.89</gml:pos>
+		</gml:LineString>
+	</sa:shape>
+	<!-- As the borehole is straight, the length of the borehole must be equal to the distance from the begin point to the end point -->
+	<!-- sa:length element is optional -->
+	<sa:length uom="urn:ogc:def:uom:UCUM:m">285.65</sa:length>
+	<gsml:collarLocation/>
+</gsml:Borehole>
