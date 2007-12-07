@@ -3,51 +3,51 @@
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
     xmlns:xlink="http://www.w3.org/1999/xlink"
     xmlns:gml="http://www.opengis.net/gml"
-	xmlns:gsml="http://www.cgi-iugs.org/xml/GeoSciML/2"
-	xsi:schemaLocation="http://www.cgi-iugs.org/xml/GeoSciML/2 http://www.cgi-iugs.org/xml/GeoSciML/2/geosciml.xsd">
-	<gml:name codeSpace="http://www.brgm.fr">Linéation</gml:name>
+	xmlns:gsml="urn:cgi:xmlns:CGI:GeoSciML:2.0"
+	xsi:schemaLocation="urn:cgi:xmlns:CGI:GeoSciML:2.0 http://www.cgi-iugs.org/xml/GeoSciML/2/geosciml.xsd">
+	<gml:description>Linéation</gml:description>
 	<gsml:observationMethod>
 		<gsml:CGI_TermValue>
-			<gsml:value codeSpace="http://www.brgm.fr/VocabGeol">sur le terrain</gsml:value>
+			<gsml:value codeSpace="urn:cgi:classifier:BRGM:ObservationMethod">sur le terrain</gsml:value>
 		</gsml:CGI_TermValue>
 	</gsml:observationMethod>
 	<gsml:purpose>instance</gsml:purpose>
 	<gsml:preferredAge>
 		<gsml:GeologicEvent>
 			<gsml:eventAge>
-				<gsml:CGI_Value xsi:type="gsml:CGI_TermValueType">
-					<gsml:value codeSpace="http://www.brgm.fr/age/2006">Dévonien</gsml:value>
-				</gsml:CGI_Value>
+				<gsml:CGI_TermValue xsi:type="gsml:CGI_TermValueType">
+					<gsml:value codeSpace="urn:cgi:classifierScheme:BRGM:StratigraphicLexicon:1986">Dévonien</gsml:value>
+				</gsml:CGI_TermValue>
 			</gsml:eventAge>
+			<gsml:eventProcess>
+				<gsml:CGI_TermValue xsi:type="gsml:CGI_TermValueType">
+					<gsml:value codeSpace=""/>
+				</gsml:CGI_TermValue>
+			</gsml:eventProcess>
 		</gsml:GeologicEvent>
 	</gsml:preferredAge>
 	<gsml:lineationType>
-		<gsml:ControlledConcept>
-			<gsml:preferredName>linéation minérale</gsml:preferredName>
-			<gsml:vocabulary>
-				<gsml:GeologicVocabulary gml:id="gv1">
-					<gml:name codeSpace="www.brgm.fr/Lexique_Elements_Ponctuels_Structuraux">linéation</gml:name>
-					<gsml:member>
-						<gsml:ControlledConcept>
-							<gsml:preferredName>minérale</gsml:preferredName>
-							<gsml:vocabulary xlink:href="#gv1"/>
-						</gsml:ControlledConcept>
-					</gsml:member>
-				</gsml:GeologicVocabulary>
-			</gsml:vocabulary>
+		<gsml:ControlledConcept gml:id="ControlledConcept.Lineation.1">
+			<gml:name codeSpace="urn:cgi:classifier:BRGM:Structure">linéation minérale</gml:name>
+			<gsml:identifier codeSpace="urn:cgi:classifier:BRGM:Structure">linéation minérale</gsml:identifier>
+			<gsml:name codeSpace="urn:cgi:classifier:BRGM:Structure" xml:lang="fr">linéation minérale</gsml:name>
+			<gsml:vocabulary/>
 		</gsml:ControlledConcept>
 	</gsml:lineationType>
 	<gsml:mineralElement>
 		<gsml:Mineral>
+			<gsml:color>
+				<gsml:CGI_TermValue>
+					<gsml:value codeSpace=""></gsml:value>
+				</gsml:CGI_TermValue>
+			</gsml:color>
+			<gsml:purpose>instance</gsml:purpose>
 			<gsml:mineralName>
-				<gsml:ControlledConcept>
-					<gsml:preferredName>biotite</gsml:preferredName>
-					<gsml:vocabulary>
-						<gsml:GeologicVocabulary gml:id="gv2">
-							<gml:name codeSpace="www.brgm.fr/Lexique_Minéraux">biotite</gml:name>
-							<gsml:member/>
-						</gsml:GeologicVocabulary>
-					</gsml:vocabulary>
+				<gsml:ControlledConcept gml:id="ControlledConcept.Mineral.1">
+					<gml:name codeSpace="urn:cgi:classifier:BRGM:Mineral">biotite</gml:name>
+					<gsml:identifier codeSpace="urn:cgi:classifier:BRGM:Mineral">biotite</gsml:identifier>
+					<gsml:name codeSpace="urn:cgi:classifier:BRGM:Mineral" xml:lang="fr">biotite</gsml:name>
+					<gsml:vocabulary/>
 				</gsml:ControlledConcept>
 			</gsml:mineralName>
 		</gsml:Mineral>
