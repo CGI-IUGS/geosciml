@@ -1,0 +1,500 @@
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en">
+    <head>
+        <title>GML Application Schema Class Details - GeologicUnit</title>
+        <meta http-equiv="Content-type" content="text/html;charset=UTF-8"/>
+        <link href="../../default.css" rel="stylesheet" type="text/css"/>
+    </head>
+    <body class="section-3">
+        <div id="header">
+            <div align="left">
+                <img src="../../gas-banner.jpg" alt="GML Application Schema API Specification" width="1000" height="59"/>
+            </div>
+            <ul id="menu">
+                <li id="nav-1">
+                    <a href="../../overview-summary.html">Overview</a>
+                </li>
+                <li id="nav-2">
+                    <a href="package-summary.html">Package</a>
+                </li>
+                <li id="nav-3">
+                    <a href="GeologicUnit.html">Class</a>
+                </li>
+                <li id="nav-4">
+                    <a href="../../help-doc.html">Help</a>
+                </li>
+            </ul>
+        </div>
+        <div id="main">
+            <h1 class="first">
+				Class <tt>&lt;&lt;FeatureType&gt;&gt;  GeologicUnit  (extends <i>
+                        <a href="../GeologicFeature/GeologicFeature.html">GeologicFeature</a>
+                    </i>)</tt>
+            </h1>
+            <p>Operationally, the GeologicUnit element is a container used to associate geologic properties with some mapped occurrence (through GeologicFeature.occurrence -&gt; MappedFeature link), or with a geologic unit ControlledConcept in a vocabulary (through the GeologicUnit.classifier -&gt;ControlledConcept link).
+
+Conceptually, may represent a body of material in the Earth whose complete and precise extent is inferred to exist (NADM GeologicUnit, Stratigraphic unit in sense of NACSN or Intnl Stratigraphic Code), or a classifier used to characterize parts of the Earth (e.g. lithologic map unit like 'granitic rock' or 'alluvial deposit', surficial units like 'till' or 'old alluvium').
+
+Spatial properties are only available through association with a MappedFeature. Includes both formal units (i.e. formally adopted and named in the official lexicon) and informal units (i.e. named but not promoted to the lexicon) and unnamed units (i.e. recognisable and described and delineable in the field but not otherwise formalised). 
+
+Will be made Abstract when a complete (enough) set of specialized subtypes is defined.</p><!-- Create a list of known local subclasses, if there are any -->
+            <b>Local Subclasses:</b>
+            <a href="ChronostratigraphicUnit.html">ChronostratigraphicUnit</a>
+            <a href="DeformationUnit.html">DeformationUnit</a>
+            <a href="LithologicUnit.html">LithologicUnit</a><!-- Create a table to list class attributes, if there are any -->
+            <h2>Attributes</h2>
+            <table width="95%" class="details"><!-- Column 1: Name -->
+                <th>Name</th><!-- Column 2: Type -->
+                <th>Type</th><!-- Column 3: Lower Bound -->
+                <th>Lower Bound</th><!-- Column 4: Upper Bound -->
+                <th>Upper Bound</th><!-- Column 5: Sequence Number -->
+                <th>Sequence Number</th><!-- Column 6: From Class -->
+                <th>From Class</th><!-- Column 7: Notes-->
+                <th>Notes</th>
+                <tr><!-- Column 1: Name -->
+                    <td>
+                        <b>observationMethod</b>
+                    </td><!-- Column 2: Type -->
+                    <td>
+                        <a href="../CGI_Value/CGI_TermValue.html">CGI_TermValue</a>
+                    </td><!-- Column 3: Lower Bound -->
+                    <td>1</td><!-- Column 4: Upper Bound -->
+                    <td>*</td><!-- Column 5: Sequence Number -->
+                    <td>2</td><!-- Column 6: From Class -->
+                    <td>
+                        <a href="../GeologicFeature/GeologicFeature.html">GeologicFeature</a>
+                    </td><!-- Column 7: Notes -->
+                    <td>Term(s) that specify the method by which the value was obtained (e.g. point count, brunton compass on site, air photo interpretation, field estimate...). This corresponds (loosely) to ISO19115 Lineage.Statement</td>
+                </tr>
+                <tr><!-- Column 1: Name -->
+                    <td>
+                        <b>purpose</b>
+                    </td><!-- Column 2: Type -->
+                    <td>
+                        <a href="../GeologicFeature/DescriptionPurpose.html">DescriptionPurpose</a>
+                    </td><!-- Column 3: Lower Bound -->
+                    <td>1</td><!-- Column 4: Upper Bound -->
+                    <td>1</td><!-- Column 5: Sequence Number -->
+                    <td>3</td><!-- Column 6: From Class -->
+                    <td>
+                        <a href="../GeologicFeature/GeologicFeature.html">GeologicFeature</a>
+                    </td><!-- Column 7: Notes -->
+                    <td>Specification of the intended purpose/level of abstraction for a given feature or object instance. Scoped name because intension is asserted by author of the data instance. Values: Instance, TypicalNorm, IdentifyingNorm. </td>
+                </tr>
+                <tr><!-- Column 1: Name -->
+                    <td>
+                        <b>bodyMorphology</b>
+                    </td><!-- Column 2: Type -->
+                    <td>
+                        <a href="../CGI_Value/CGI_TermValue.html">CGI_TermValue</a>
+                    </td><!-- Column 3: Lower Bound -->
+                    <td>0</td><!-- Column 4: Upper Bound -->
+                    <td>*</td><!-- Column 5: Sequence Number -->
+                    <td>2</td><!-- Column 6: From Class -->
+                    <td>GeologicUnit</td><!-- Column 7: Notes -->
+                    <td>The geometry or form of a GeologicUnit.  Examples include: dike, cone, fan, sheet, etc. Morphology is independent of the substance (EarthMaterial) that composes the GeologicUnit.</td>
+                </tr>
+                <tr><!-- Column 1: Name -->
+                    <td>
+                        <b>compositionCategory</b>
+                    </td><!-- Column 2: Type -->
+                    <td>
+                        <a href="../CGI_Value/CGI_TermValue.html">CGI_TermValue</a>
+                    </td><!-- Column 3: Lower Bound -->
+                    <td>0</td><!-- Column 4: Upper Bound -->
+                    <td>1</td><!-- Column 5: Sequence Number -->
+                    <td>3</td><!-- Column 6: From Class -->
+                    <td>GeologicUnit</td><!-- Column 7: Notes -->
+                    <td>Term to specify the gross chemical character of geologic unit. Examples include silicate, carbonate, ferromagnesian, oxide.  Chemical classification terms for igneous rocks also go here, e.g. alkalic, subaluminous, peraluminous, mafic, felsic, intermediate.</td>
+                </tr>
+                <tr><!-- Column 1: Name -->
+                    <td>
+                        <b>exposureColor</b>
+                    </td><!-- Column 2: Type -->
+                    <td>
+                        <a href="../CGI_Value/CGI_TermValue.html">CGI_TermValue</a>
+                    </td><!-- Column 3: Lower Bound -->
+                    <td>0</td><!-- Column 4: Upper Bound -->
+                    <td>*</td><!-- Column 5: Sequence Number -->
+                    <td>4</td><!-- Column 6: From Class -->
+                    <td>GeologicUnit</td><!-- Column 7: Notes -->
+                    <td> the color of typical outcrops of a geologic unit. </td>
+                </tr>
+                <tr><!-- Column 1: Name -->
+                    <td>
+                        <b>outcropCharacter</b>
+                    </td><!-- Column 2: Type -->
+                    <td>
+                        <a href="../CGI_Value/CGI_TermValue.html">CGI_TermValue</a>
+                    </td><!-- Column 3: Lower Bound -->
+                    <td>0</td><!-- Column 4: Upper Bound -->
+                    <td>*</td><!-- Column 5: Sequence Number -->
+                    <td>5</td><!-- Column 6: From Class -->
+                    <td>GeologicUnit</td><!-- Column 7: Notes -->
+                    <td>Describes the nature of outcrops formed by a geologic unit.   Examples: bouldery, cliff-forming, ledge-forming, slope-forming, poorly exposed</td>
+                </tr>
+                <tr><!-- Column 1: Name -->
+                    <td>
+                        <b>rank</b>
+                    </td><!-- Column 2: Type -->
+                    <td>ScopedName</td><!-- Column 3: Lower Bound -->
+                    <td>0</td><!-- Column 4: Upper Bound -->
+                    <td>1</td><!-- Column 5: Sequence Number -->
+                    <td>6</td><!-- Column 6: From Class -->
+                    <td>GeologicUnit</td><!-- Column 7: Notes -->
+                    <td>term classifies unit in generalization hierarchy from most local/smallest volume to most regional. Scoped name because classification is asserted, not based on observational data.</td>
+                </tr>
+            </table>
+			&#160;
+			<!-- Create a table to list class associations, if there are any -->
+            <h2>Outbound Associations</h2>
+            <table width="95%" class="details"><!-- Column 1: Name -->
+                <th>Name</th><!-- Column 2: Type -->
+                <th>Type</th><!-- Column 3: Lower Bound -->
+                <th>Lower Bound</th><!-- Column 4: Upper Bound -->
+                <th>Upper Bound</th><!-- Column 5: Sequence Number -->
+                <th>Sequence Number</th><!-- Column 6: From Class -->
+                <th>From Class</th><!-- Column 7: Notes-->
+                <th>Notes</th>
+                <tr><!-- Column 1: Name -->
+                    <td>
+                        <b>occurrence</b>
+                    </td><!-- Column 2: Type -->
+                    <td>
+                        <a href="../GeologicFeature/MappedFeature.html">MappedFeature</a>
+                    </td><!-- Column 3: Lower Bound -->
+                    <td>0</td><!-- Column 4: Upper Bound -->
+                    <td>*</td><!-- Column 5: Sequence Number -->
+                    <td>4</td><!-- Column 6: From Class -->
+                    <td>
+                        <a href="../GeologicFeature/GeologicFeature.html">GeologicFeature</a>
+                    </td><!-- Column 7: Notes -->
+                    <td>Points to any number of mapped features which are occurrences of the geologic feature.  Mapped features may all be from a single map or from several maps.</td>
+                </tr>
+                <tr><!-- Column 1: Name -->
+                    <td>
+                        <b>preferredAge</b>
+                    </td><!-- Column 2: Type -->
+                    <td>
+                        <a href="../GeologicAge/GeologicEvent.html">GeologicEvent</a>
+                    </td><!-- Column 3: Lower Bound -->
+                    <td>0</td><!-- Column 4: Upper Bound -->
+                    <td>1</td><!-- Column 5: Sequence Number -->
+                    <td>5</td><!-- Column 6: From Class -->
+                    <td>
+                        <a href="../GeologicFeature/GeologicFeature.html">GeologicFeature</a>
+                    </td><!-- Column 7: Notes -->
+                    <td>Normative geologic unit descriptions are expected to include an age specification whenever the age is constrained--even if the range is very large (e.g. Phanerozoic....).</td>
+                </tr>
+                <tr><!-- Column 1: Name -->
+                    <td>
+                        <b>geologicHistory</b>
+                    </td><!-- Column 2: Type -->
+                    <td>
+                        <a href="../GeologicAge/GeologicEvent.html">GeologicEvent</a>
+                    </td><!-- Column 3: Lower Bound -->
+                    <td>0</td><!-- Column 4: Upper Bound -->
+                    <td>*</td><!-- Column 5: Sequence Number -->
+                    <td>6</td><!-- Column 6: From Class -->
+                    <td>
+                        <a href="../GeologicFeature/GeologicFeature.html">GeologicFeature</a>
+                    </td><!-- Column 7: Notes -->
+                    <td/>
+                </tr>
+                <tr><!-- Column 1: Name -->
+                    <td>
+                        <b>sourceLink</b>
+                    </td><!-- Column 2: Type -->
+                    <td>
+                        <a href="../GeologicFeature/GeologicFeatureRelation.html">GeologicFeatureRelation</a>
+                    </td><!-- Column 3: Lower Bound -->
+                    <td>0</td><!-- Column 4: Upper Bound -->
+                    <td>*</td><!-- Column 5: Sequence Number -->
+                    <td>7</td><!-- Column 6: From Class -->
+                    <td>
+                        <a href="../GeologicFeature/GeologicFeature.html">GeologicFeature</a>
+                    </td><!-- Column 7: Notes -->
+                    <td/>
+                </tr>
+                <tr><!-- Column 1: Name -->
+                    <td>
+                        <b>targetLink</b>
+                    </td><!-- Column 2: Type -->
+                    <td>
+                        <a href="../GeologicFeature/GeologicFeatureRelation.html">GeologicFeatureRelation</a>
+                    </td><!-- Column 3: Lower Bound -->
+                    <td>0</td><!-- Column 4: Upper Bound -->
+                    <td>*</td><!-- Column 5: Sequence Number -->
+                    <td>8</td><!-- Column 6: From Class -->
+                    <td>
+                        <a href="../GeologicFeature/GeologicFeature.html">GeologicFeature</a>
+                    </td><!-- Column 7: Notes -->
+                    <td/>
+                </tr>
+                <tr><!-- Column 1: Name -->
+                    <td>
+                        <b>metadata</b>
+                    </td><!-- Column 2: Type -->
+                    <td>MD_Metadata</td><!-- Column 3: Lower Bound -->
+                    <td>0</td><!-- Column 4: Upper Bound -->
+                    <td>1</td><!-- Column 5: Sequence Number -->
+                    <td/><!-- Column 6: From Class -->
+                    <td>
+                        <a href="../GeologicFeature/GeologicFeature.html">GeologicFeature</a>
+                    </td><!-- Column 7: Notes -->
+                    <td>feature level metadata</td>
+                </tr>
+                <tr><!-- Column 1: Name -->
+                    <td>
+                        <b>classifier</b>
+                    </td><!-- Column 2: Type -->
+                    <td>
+                        <a href="../Vocabulary/ControlledConcept.html">ControlledConcept</a>
+                    </td><!-- Column 3: Lower Bound -->
+                    <td>0</td><!-- Column 4: Upper Bound -->
+                    <td>1</td><!-- Column 5: Sequence Number -->
+                    <td>7</td><!-- Column 6: From Class -->
+                    <td>GeologicUnit</td><!-- Column 7: Notes -->
+                    <td/>
+                </tr>
+                <tr><!-- Column 1: Name -->
+                    <td>
+                        <b>composition</b>
+                    </td><!-- Column 2: Type -->
+                    <td>
+                        <a href="CompositionPart.html">CompositionPart</a>
+                    </td><!-- Column 3: Lower Bound -->
+                    <td>0</td><!-- Column 4: Upper Bound -->
+                    <td>*</td><!-- Column 5: Sequence Number -->
+                    <td>8</td><!-- Column 6: From Class -->
+                    <td>GeologicUnit</td><!-- Column 7: Notes -->
+                    <td/>
+                </tr>
+                <tr><!-- Column 1: Name -->
+                    <td>
+                        <b>metamorphicCharacter</b>
+                    </td><!-- Column 2: Type -->
+                    <td>
+                        <a href="MetamorphicDescription.html">MetamorphicDescription</a>
+                    </td><!-- Column 3: Lower Bound -->
+                    <td>0</td><!-- Column 4: Upper Bound -->
+                    <td>1</td><!-- Column 5: Sequence Number -->
+                    <td>9</td><!-- Column 6: From Class -->
+                    <td>GeologicUnit</td><!-- Column 7: Notes -->
+                    <td/>
+                </tr>
+                <tr><!-- Column 1: Name -->
+                    <td>
+                        <b>part</b>
+                    </td><!-- Column 2: Type -->
+                    <td>
+                        <a href="GeologicUnitPart.html">GeologicUnitPart</a>
+                    </td><!-- Column 3: Lower Bound -->
+                    <td>0</td><!-- Column 4: Upper Bound -->
+                    <td>*</td><!-- Column 5: Sequence Number -->
+                    <td>10</td><!-- Column 6: From Class -->
+                    <td>GeologicUnit</td><!-- Column 7: Notes -->
+                    <td>indicates a subsiduary unit with its role and proportion with respect to the container unit</td>
+                </tr>
+                <tr><!-- Column 1: Name -->
+                    <td>
+                        <b>physicalProperty</b>
+                    </td><!-- Column 2: Type -->
+                    <td>
+                        <a href="PhysicalDescription.html">PhysicalDescription</a>
+                    </td><!-- Column 3: Lower Bound -->
+                    <td>0</td><!-- Column 4: Upper Bound -->
+                    <td>*</td><!-- Column 5: Sequence Number -->
+                    <td>11</td><!-- Column 6: From Class -->
+                    <td>GeologicUnit</td><!-- Column 7: Notes -->
+                    <td/>
+                </tr>
+                <tr><!-- Column 1: Name -->
+                    <td>
+                        <b>weatheringCharacter</b>
+                    </td><!-- Column 2: Type -->
+                    <td>
+                        <a href="WeatheringDescription.html">WeatheringDescription</a>
+                    </td><!-- Column 3: Lower Bound -->
+                    <td>0</td><!-- Column 4: Upper Bound -->
+                    <td>1</td><!-- Column 5: Sequence Number -->
+                    <td>12</td><!-- Column 6: From Class -->
+                    <td>GeologicUnit</td><!-- Column 7: Notes -->
+                    <td/>
+                </tr>
+            </table>
+			&#160;
+			<!-- Create a table to list class constraints, if there are any -->
+            <h2>Constraints</h2>
+            <table width="95%" class="details"><!-- Column 1: Constraint -->
+                <th>Constraint</th><!-- Column 2: Type -->
+                <th>Type</th><!-- Column 3: Status -->
+                <th>Status</th><!-- Column 4: Weight -->
+                <th>Weight</th>
+            </table>
+			&#160;
+			<!-- Create a table to list class tagged values, if there are any -->
+            <h2>Tagged Values</h2>
+            <table width="95%" class="details"><!-- Column 1: Tag -->
+                <th>Tag</th><!-- Column 2: Value -->
+                <th>Value</th><!-- Column 3: Notes -->
+                <th>Notes</th>
+                <tr><!-- Column 1: Tag -->
+                    <td>byValuePropertyType</td><!-- Column 2: Value -->
+                    <td>false</td><!-- Column 3: Notes -->
+                    <td>Values: true | false<br/>Default: false<br/>Description: enforce the 'by value' property pattern without xlinks<br/>
+                    </td>
+                </tr>
+                <tr><!-- Column 1: Tag -->
+                    <td>documentation</td><!-- Column 2: Value -->
+                    <td/><!-- Column 3: Notes -->
+                    <td>Description: Normative documentation association with this element<br/>
+                    </td>
+                </tr>
+                <tr><!-- Column 1: Tag -->
+                    <td>hasXmlLang</td><!-- Column 2: Value -->
+                    <td>false</td><!-- Column 3: Notes -->
+                    <td>Values: true | false<br/>Default: false<br/>Description: axml attribute xml:lang shall be generated for the type representing the class<br/>
+                    </td>
+                </tr>
+                <tr><!-- Column 1: Tag -->
+                    <td>isCollection</td><!-- Column 2: Value -->
+                    <td>false</td><!-- Column 3: Notes -->
+                    <td>Values: true | false<br/>Default: false<br/>Description: attribute group gml:AggregationAttributeGroup is added to the complex type of the feature type<br/>
+                    </td>
+                </tr>
+                <tr><!-- Column 1: Tag -->
+                    <td>noPropertyType</td><!-- Column 2: Value -->
+                    <td>false</td><!-- Column 3: Notes -->
+                    <td>Values: true | false<br/>Default: false<br/>Description: suppress automatic creation of *PropertyType complexType<br/>
+                    </td>
+                </tr>
+                <tr><!-- Column 1: Tag -->
+                    <td>xsdCanonicalElement</td><!-- Column 2: Value -->
+                    <td/><!-- Column 3: Notes -->
+                    <td>Description: no element shall be generated for the class, but the given type or element referenced<br/>
+                    </td>
+                </tr>
+                <tr><!-- Column 1: Tag -->
+                    <td>xsdCanonicalPropertyGroup</td><!-- Column 2: Value -->
+                    <td/><!-- Column 3: Notes -->
+                    <td>Description: group to be referenced if the class is used as a type of a property<br/>
+                    </td>
+                </tr>
+                <tr><!-- Column 1: Tag -->
+                    <td>xsdCanonicalPropertyType</td><!-- Column 2: Value -->
+                    <td/><!-- Column 3: Notes -->
+                    <td>Description: type to be referenced if the class is used as a type of a property<br/>
+                    </td>
+                </tr>
+                <tr><!-- Column 1: Tag -->
+                    <td>xsdCanonicalType</td><!-- Column 2: Value -->
+                    <td/><!-- Column 3: Notes -->
+                    <td>Description: no type shall be generated for the class, but the given type or element referenced<br/>
+                    </td>
+                </tr>
+                <tr><!-- Column 1: Tag -->
+                    <td>xsdDerivation</td><!-- Column 2: Value -->
+                    <td>true</td><!-- Column 3: Notes -->
+                    <td>Values: true | false<br/>Default: true<br/>Description: class implemented as new type + element, or by applying constraints only<br/>
+                    </td>
+                </tr>
+                <tr><!-- Column 1: Tag -->
+                    <td>xsdName</td><!-- Column 2: Value -->
+                    <td/><!-- Column 3: Notes -->
+                    <td>Description: value to be used for the schema conversion instead of the UML name<br/>
+                    </td>
+                </tr>
+            </table>
+			&#160;
+			<h2>XML Implementation Details</h2>
+            <table width="95%" border="0">
+                <td>
+                    <pre>&lt;xs:element xmlns:xs="http://www.w3.org/2001/XMLSchema" name="GeologicUnit" substitutionGroup="gsml:GeologicFeature" type="gsml:GeologicUnitType"&gt;
+    &lt;xs:annotation&gt;
+        &lt;xs:documentation&gt;Operationally, the GeologicUnit element is a container used to associate geologic properties
+                with some mapped occurrence (through GeologicFeature.occurrence -&amp;gt; MappedFeature link), or with a
+                geologic unit ControlledConcept in a vocabulary (through the GeologicUnit.classifier
+                -&amp;gt;ControlledConcept link). Conceptually, may represent a body of material in the Earth whose
+                complete and precise extent is inferred to exist (NADM GeologicUnit, Stratigraphic unit in sense of
+                NACSN or Intnl Stratigraphic Code), or a classifier used to characterize parts of the Earth (e.g.
+                lithologic map unit like 'granitic rock' or 'alluvial deposit', surficial units like 'till' or 'old
+                alluvium'). Spatial properties are only available through association with a MappedFeature. Includes
+                both formal units (i.e. formally adopted and named in the official lexicon) and informal units (i.e.
+                named but not promoted to the lexicon) and unnamed units (i.e. recognisable and described and delineable
+                in the field but not otherwise formalised). Will be made Abstract when a complete (enough) set of
+                specialized subtypes is defined.&lt;/xs:documentation&gt;
+    &lt;/xs:annotation&gt;
+&lt;/xs:element&gt;</pre>
+                    <pre>&lt;xs:complexType xmlns:xs="http://www.w3.org/2001/XMLSchema" name="GeologicUnitType"&gt;
+    &lt;xs:complexContent&gt;
+        &lt;xs:extension base="gsml:GeologicFeatureType"&gt;
+            &lt;xs:sequence&gt;
+                &lt;xs:element maxOccurs="unbounded" minOccurs="0" name="bodyMorphology" type="gsml:CGI_TermValuePropertyType"&gt;
+                    &lt;xs:annotation&gt;
+                        &lt;xs:documentation&gt;The geometry or form of a GeologicUnit. Examples include: dike, cone, fan,
+                                sheet, etc. Morphology is independent of the substance (EarthMaterial) that composes the
+                                GeologicUnit.&lt;/xs:documentation&gt;
+                    &lt;/xs:annotation&gt;
+                &lt;/xs:element&gt;
+                &lt;xs:element maxOccurs="1" minOccurs="0" name="compositionCategory" type="gsml:CGI_TermValuePropertyType"&gt;
+                    &lt;xs:annotation&gt;
+                        &lt;xs:documentation&gt;Term to specify the gross chemical character of geologic unit. Examples
+                                include silicate, carbonate, ferromagnesian, oxide. Chemical classification terms for
+                                igneous rocks also go here, e.g. alkalic, subaluminous, peraluminous, mafic, felsic,
+                                intermediate.&lt;/xs:documentation&gt;
+                    &lt;/xs:annotation&gt;
+                &lt;/xs:element&gt;
+                &lt;xs:element maxOccurs="unbounded" minOccurs="0" name="exposureColor" type="gsml:CGI_TermValuePropertyType"&gt;
+                    &lt;xs:annotation&gt;
+                        &lt;xs:documentation&gt;the color of typical outcrops of a geologic unit.&lt;/xs:documentation&gt;
+                    &lt;/xs:annotation&gt;
+                &lt;/xs:element&gt;
+                &lt;xs:element maxOccurs="unbounded" minOccurs="0" name="outcropCharacter" type="gsml:CGI_TermValuePropertyType"&gt;
+                    &lt;xs:annotation&gt;
+                        &lt;xs:documentation&gt;Describes the nature of outcrops formed by a geologic unit. Examples:
+                                bouldery, cliff-forming, ledge-forming, slope-forming, poorly exposed&lt;/xs:documentation&gt;
+                    &lt;/xs:annotation&gt;
+                &lt;/xs:element&gt;
+                &lt;xs:element maxOccurs="1" minOccurs="0" name="rank" type="cgu:CodeWithAuthorityType"&gt;
+                    &lt;xs:annotation&gt;
+                        &lt;xs:documentation&gt;term classifies unit in generalization hierarchy from most local/smallest
+                                volume to most regional. Scoped name because classification is asserted, not based on
+                                observational data.&lt;/xs:documentation&gt;
+                    &lt;/xs:annotation&gt;
+                &lt;/xs:element&gt;
+                &lt;xs:element maxOccurs="1" minOccurs="0" name="classifier" type="gsml:ControlledConceptPropertyType"/&gt;
+                &lt;xs:element maxOccurs="unbounded" minOccurs="0" name="composition" type="gsml:CompositionPartPropertyType"/&gt;
+                &lt;xs:element maxOccurs="1" minOccurs="0" name="metamorphicCharacter" type="gsml:MetamorphicDescriptionPropertyType"/&gt;
+                &lt;xs:element maxOccurs="unbounded" minOccurs="0" name="part" type="gsml:GeologicUnitPartPropertyType"/&gt;
+                &lt;xs:element maxOccurs="unbounded" minOccurs="0" name="physicalProperty" type="gsml:PhysicalDescriptionPropertyType"/&gt;
+                &lt;xs:element maxOccurs="1" minOccurs="0" name="weatheringCharacter" type="gsml:WeatheringDescriptionPropertyType"/&gt;
+            &lt;/xs:sequence&gt;
+        &lt;/xs:extension&gt;
+    &lt;/xs:complexContent&gt;
+&lt;/xs:complexType&gt;</pre>
+                    <pre>&lt;xs:complexType xmlns:xs="http://www.w3.org/2001/XMLSchema" name="GeologicUnitPropertyType"&gt;
+    &lt;xs:sequence minOccurs="0"&gt;
+        &lt;xs:element ref="gsml:GeologicUnit"/&gt;
+    &lt;/xs:sequence&gt;
+    &lt;xs:attributeGroup ref="gml:AssociationAttributeGroup"/&gt;
+&lt;/xs:complexType&gt;</pre>
+                </td>
+            </table>&#160;</div>
+        <div class="clearing">&#160;</div>
+        <div id="footer">
+            <hr class="first"/>
+            <p class="panel">For more information about GML Application Schema
+    		             development refer to:<br/>
+                <a href="https://www.seegrid.csiro.au/twiki/bin/view/AppSchemas/UmlGml">
+    		UML models of GML Application Schemas</a>
+            </p>
+            <p class="panel">For more general information about GML refer to:<br/>
+                <a href="http://www.opengis.net/gml/">GML - the Geography Markup Language</a>
+            </p>
+            <p class="panel">The document set was auto-generated at 2007-12-09T08:40+01:00<br/>
+    	                 using FullMoon - A processing framework for transforming XML models
+    	</p>
+            <p/>
+        </div>
+    </body>
+</html>
