@@ -438,7 +438,34 @@ DeformationUnits may also be defined by presence of cleavage, jointing, structur
 			&#160;
 			<h2>XML Implementation Details</h2>
             <table width="95%" border="0">
-                <td/>
+                <td>
+                    <pre>&lt;xs:element xmlns:xs="http://www.w3.org/2001/XMLSchema" name="DeformationUnit" substitutionGroup="gsml:GeologicUnit" type="gsml:DeformationUnitType"&gt;
+    &lt;xs:annotation&gt;
+        &lt;xs:documentation&gt;GeologicUnit defined by containment of or association with some geologic structure. DeformationUnits may be predominantly brittle, discontinuous deformation, ductile/plastic deformation or a combination of these.  
+
+Includes fault zone, which is a body of rock characterized by deformation associated with some ShearDisplacementStructure feature, and mapped as such. If there are many faults contained in the DeformationUnit then these form a FaultSystem, so there is a zero to one association between DeformationUnit and ShearDisplacementStructure, with the ShearDisplacementStructure being either a FaultSystem, DuctileShearStructure or a Fault. The faults are not the geologic unit, the deformed rock is the geologic unit.
+
+A ShearDisplacementStructure may be associated with 0 to one DeformationUnit. Such a DeformationUnit may have 1 or more parts distinguished by different kinds of fault rocks. Zero represents the case in which the DeformationUnit is not mapped or described. 
+
+DeformationUnits may also be defined by presence of cleavage, jointing, structures with a particular orientation (e.g. 'southeast-dipping bedding domain').&lt;/xs:documentation&gt;
+    &lt;/xs:annotation&gt;
+&lt;/xs:element&gt;</pre>
+                    <pre>&lt;xs:complexType xmlns:xs="http://www.w3.org/2001/XMLSchema" name="DeformationUnitType"&gt;
+    &lt;xs:complexContent&gt;
+        &lt;xs:extension base="gsml:GeologicUnitType"&gt;
+            &lt;xs:sequence&gt;
+                &lt;xs:element name="definingStructure" type="gsml:GeologicStructurePropertyType"/&gt;
+            &lt;/xs:sequence&gt;
+        &lt;/xs:extension&gt;
+    &lt;/xs:complexContent&gt;
+&lt;/xs:complexType&gt;</pre>
+                    <pre>&lt;xs:complexType xmlns:xs="http://www.w3.org/2001/XMLSchema" name="DeformationUnitPropertyType"&gt;
+    &lt;xs:sequence minOccurs="0"&gt;
+        &lt;xs:element ref="gsml:DeformationUnit"/&gt;
+    &lt;/xs:sequence&gt;
+    &lt;xs:attributeGroup ref="gml:AssociationAttributeGroup"/&gt;
+&lt;/xs:complexType&gt;</pre>
+                </td>
             </table>&#160;</div>
         <div class="clearing">&#160;</div>
         <div id="footer">
@@ -451,7 +478,7 @@ DeformationUnits may also be defined by presence of cleavage, jointing, structur
             <p class="panel">For more general information about GML refer to:<br/>
                 <a href="http://www.opengis.net/gml/">GML - the Geography Markup Language</a>
             </p>
-            <p class="panel">The document set was auto-generated at 2007-12-10T05:59+01:00<br/>
+            <p class="panel">The document set was auto-generated at 2007-12-10T06:20+01:00<br/>
     	                 using FullMoon - A processing framework for transforming XML models
     	</p>
             <p/>

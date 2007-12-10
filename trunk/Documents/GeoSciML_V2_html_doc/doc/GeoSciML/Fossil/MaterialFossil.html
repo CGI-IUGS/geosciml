@@ -278,7 +278,30 @@ Note: Trace fossils and molds are GeologicStructures and may be related to Mater
 			&#160;
 			<h2>XML Implementation Details</h2>
             <table width="95%" border="0">
-                <td/>
+                <td>
+                    <pre>&lt;xs:element xmlns:xs="http://www.w3.org/2001/XMLSchema" name="MaterialFossil" substitutionGroup="gsml:CompoundMaterial" type="gsml:MaterialFossilType"&gt;
+    &lt;xs:annotation&gt;
+        &lt;xs:documentation&gt;The preserved remains or replaced remains (casts) of plants and animals.  The MaterialFossil class describes fossils as a type of CompoundMaterial which may form a constituent part of another CompoundMaterial (such as a limestone rock).  A fossil type may have one or more described associated organisms.
+
+Note: Trace fossils and molds are GeologicStructures and may be related to MaterialFossils through their associated organisms.  Individual fossil instances (ie, fossil specimens) are treated in this model as specimens composed of CompoundMaterial/MaterialFossil.&lt;/xs:documentation&gt;
+    &lt;/xs:annotation&gt;
+&lt;/xs:element&gt;</pre>
+                    <pre>&lt;xs:complexType xmlns:xs="http://www.w3.org/2001/XMLSchema" name="MaterialFossilType"&gt;
+    &lt;xs:complexContent&gt;
+        &lt;xs:extension base="gsml:CompoundMaterialType"&gt;
+            &lt;xs:sequence&gt;
+                &lt;xs:element maxOccurs="1" minOccurs="0" name="sourceOrganism" type="gsml:OrganismPropertyType"/&gt;
+            &lt;/xs:sequence&gt;
+        &lt;/xs:extension&gt;
+    &lt;/xs:complexContent&gt;
+&lt;/xs:complexType&gt;</pre>
+                    <pre>&lt;xs:complexType xmlns:xs="http://www.w3.org/2001/XMLSchema" name="MaterialFossilPropertyType"&gt;
+    &lt;xs:sequence minOccurs="0"&gt;
+        &lt;xs:element ref="gsml:MaterialFossil"/&gt;
+    &lt;/xs:sequence&gt;
+    &lt;xs:attributeGroup ref="gml:AssociationAttributeGroup"/&gt;
+&lt;/xs:complexType&gt;</pre>
+                </td>
             </table>&#160;</div>
         <div class="clearing">&#160;</div>
         <div id="footer">
@@ -291,7 +314,7 @@ Note: Trace fossils and molds are GeologicStructures and may be related to Mater
             <p class="panel">For more general information about GML refer to:<br/>
                 <a href="http://www.opengis.net/gml/">GML - the Geography Markup Language</a>
             </p>
-            <p class="panel">The document set was auto-generated at 2007-12-10T05:59+01:00<br/>
+            <p class="panel">The document set was auto-generated at 2007-12-10T06:20+01:00<br/>
     	                 using FullMoon - A processing framework for transforming XML models
     	</p>
             <p/>

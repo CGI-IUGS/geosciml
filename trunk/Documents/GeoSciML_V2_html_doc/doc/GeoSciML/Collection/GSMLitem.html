@@ -232,7 +232,70 @@
 			&#160;
 			<h2>XML Implementation Details</h2>
             <table width="95%" border="0">
-                <td/>
+                <td>
+                    <pre>&lt;xs:group xmlns:xs="http://www.w3.org/2001/XMLSchema" name="GSMLitem"&gt;
+    &lt;xs:annotation&gt;
+        &lt;xs:documentation&gt;GSMLitem is a union class that specifies the types of features that are allowed to be members of the GSML class, and therefore, members of a GML Collection.&lt;/xs:documentation&gt;
+    &lt;/xs:annotation&gt;
+    &lt;xs:choice&gt;
+        &lt;xs:element ref="gsml:EarthMaterial"&gt;
+            &lt;xs:annotation&gt;
+                &lt;xs:documentation&gt;The earthMaterialItem attribute is a placeholder for the EarthMaterial class that is included as a member of a GML Collection.&lt;/xs:documentation&gt;
+            &lt;/xs:annotation&gt;
+        &lt;/xs:element&gt;
+        &lt;xs:element ref="gsml:GeologicEvent"&gt;
+            &lt;xs:annotation&gt;
+                &lt;xs:documentation&gt;The eventItem attribute is a placeholder for the GeologicEvent class that is included as a member of a GML Collection.&lt;/xs:documentation&gt;
+            &lt;/xs:annotation&gt;
+        &lt;/xs:element&gt;
+        &lt;xs:element ref="gsml:GeologicFeature"&gt;
+            &lt;xs:annotation&gt;
+                &lt;xs:documentation&gt;The featureItem attribute is a placeholder for the GeologicFeature class that is included as a member of a GML Collection.&lt;/xs:documentation&gt;
+            &lt;/xs:annotation&gt;
+        &lt;/xs:element&gt;
+        &lt;xs:element ref="gml:_Geometry"&gt;
+            &lt;xs:annotation&gt;
+                &lt;xs:documentation&gt;The geometryItem attribute is a placeholder for the AbstractGeometry class that is included as a member of a GML Collection.&lt;/xs:documentation&gt;
+            &lt;/xs:annotation&gt;
+        &lt;/xs:element&gt;
+        &lt;xs:element ref="gsml:MappedFeature"&gt;
+            &lt;xs:annotation&gt;
+                &lt;xs:documentation&gt;The mappedItem attribute is a placeholder for the MappedFeature class that is included as a member of a GML Collection.&lt;/xs:documentation&gt;
+            &lt;/xs:annotation&gt;
+        &lt;/xs:element&gt;
+        &lt;xs:element ref="gsml:GeologicRelation"&gt;
+            &lt;xs:annotation&gt;
+                &lt;xs:documentation&gt;The relationItem attribute is a placeholder for the GeologicRelation class that is included as a member of a GML Collection.&lt;/xs:documentation&gt;
+            &lt;/xs:annotation&gt;
+        &lt;/xs:element&gt;
+        &lt;xs:element ref="sa:SamplingFeature"/&gt;
+        &lt;xs:element ref="gsml:GeologicVocabulary"&gt;
+            &lt;xs:annotation&gt;
+                &lt;xs:documentation&gt;The vocabularyItem attribute is a placeholder for the GeologicVocabulary class that is included as a member of a GML Collection.&lt;/xs:documentation&gt;
+            &lt;/xs:annotation&gt;
+        &lt;/xs:element&gt;
+    &lt;/xs:choice&gt;
+&lt;/xs:group&gt;</pre>
+                    <pre>&lt;xs:simpleType xmlns:xs="http://www.w3.org/2001/XMLSchema" name="GSMLitemUnionSemantics"&gt;
+    &lt;xs:restriction base="string"&gt;
+        &lt;xs:enumeration value="earthMaterialItem"/&gt;
+        &lt;xs:enumeration value="eventItem"/&gt;
+        &lt;xs:enumeration value="featureItem"/&gt;
+        &lt;xs:enumeration value="geometryItem"/&gt;
+        &lt;xs:enumeration value="mappedItem"/&gt;
+        &lt;xs:enumeration value="relationItem"/&gt;
+        &lt;xs:enumeration value="samplingFeatureItem"/&gt;
+        &lt;xs:enumeration value="vocabularyItem"/&gt;
+    &lt;/xs:restriction&gt;
+&lt;/xs:simpleType&gt;</pre>
+                    <pre>&lt;xs:complexType xmlns:xs="http://www.w3.org/2001/XMLSchema" name="GSMLitemPropertyType"&gt;
+    &lt;xs:sequence minOccurs="0"&gt;
+        &lt;xs:group ref="gsml:GSMLitem"/&gt;
+    &lt;/xs:sequence&gt;
+    &lt;xs:attributeGroup ref="gml:AssociationAttributeGroup"/&gt;
+    &lt;xs:attribute name="unionSemantics" type="gsml:GSMLitemUnionSemantics"/&gt;
+&lt;/xs:complexType&gt;</pre>
+                </td>
             </table>&#160;</div>
         <div class="clearing">&#160;</div>
         <div id="footer">
@@ -245,7 +308,7 @@
             <p class="panel">For more general information about GML refer to:<br/>
                 <a href="http://www.opengis.net/gml/">GML - the Geography Markup Language</a>
             </p>
-            <p class="panel">The document set was auto-generated at 2007-12-10T05:59+01:00<br/>
+            <p class="panel">The document set was auto-generated at 2007-12-10T06:20+01:00<br/>
     	                 using FullMoon - A processing framework for transforming XML models
     	</p>
             <p/>

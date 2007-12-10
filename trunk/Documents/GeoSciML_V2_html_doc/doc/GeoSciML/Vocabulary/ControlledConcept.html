@@ -224,7 +224,48 @@ This is not the concept identifier. </td>
 			&#160;
 			<h2>XML Implementation Details</h2>
             <table width="95%" border="0">
-                <td/>
+                <td>
+                    <pre>&lt;xs:element xmlns:xs="http://www.w3.org/2001/XMLSchema" name="ControlledConcept" substitutionGroup="gml:Definition" type="gsml:ControlledConceptType"&gt;
+    &lt;xs:annotation&gt;
+        &lt;xs:documentation&gt;Element to represent a defined concept.
+A concept in the context of a GeologicVocabulary.   A relationship class representing inclusion of an instance of a concept in a GeologicVocabulary. The GeologicConcept instance must have an associated definition (prototype 0..1), which may be text for human interpretation, or a formal description in the form of a GeologicEntity instance. 
+
+    * items in the classification framework
+    * every GeologicUnit may be classified as being representative of a Controlled Concept. This may be a formal stratigraphic unit from a stratigraphic lexicon, or some generic mappable concept like 'alluvial fan deposit' or 'basaltic rock'.
+    * a Controlled Concept instance mayt be associated with one special feature or object, which is the prototype or normative description meant to specify what the concept represents.&lt;/xs:documentation&gt;
+    &lt;/xs:annotation&gt;
+&lt;/xs:element&gt;</pre>
+                    <pre>&lt;xs:complexType xmlns:xs="http://www.w3.org/2001/XMLSchema" name="ControlledConceptType"&gt;
+    &lt;xs:complexContent&gt;
+        &lt;xs:extension base="gml:DefinitionType"&gt;
+            &lt;xs:sequence&gt;
+                &lt;xs:element name="identifier" type="cgu:CodeWithAuthorityType"&gt;
+                    &lt;xs:annotation&gt;
+                        &lt;xs:documentation&gt;Language neutral identifier for the concept. 
+In GeoSciML this is normally a URN in the "classifier" branch, with the @codesSpace attribute set to "urn:ieft:rfc:2141".&lt;/xs:documentation&gt;
+                    &lt;/xs:annotation&gt;
+                &lt;/xs:element&gt;
+                &lt;xs:element maxOccurs="unbounded" minOccurs="1" name="name" type="cgu:LocalizedGenericNameType"&gt;
+                    &lt;xs:annotation&gt;
+                        &lt;xs:documentation&gt;A localized term that acts as a human-readable label for the concept. 
+This is not the concept identifier.&lt;/xs:documentation&gt;
+                    &lt;/xs:annotation&gt;
+                &lt;/xs:element&gt;
+                &lt;xs:element maxOccurs="1" minOccurs="0" name="metadata" type="gsml:MetadataPropertyType"/&gt;
+                &lt;xs:element maxOccurs="1" minOccurs="0" name="prototype" type="gsml:GeologicEntityPropertyType"/&gt;
+                &lt;xs:element name="vocabulary" type="gsml:GeologicVocabularyPropertyType"/&gt;
+                &lt;xs:element maxOccurs="unbounded" minOccurs="0" name="linkToTarget" type="gsml:VocabRelationPropertyType"/&gt;
+            &lt;/xs:sequence&gt;
+        &lt;/xs:extension&gt;
+    &lt;/xs:complexContent&gt;
+&lt;/xs:complexType&gt;</pre>
+                    <pre>&lt;xs:complexType xmlns:xs="http://www.w3.org/2001/XMLSchema" name="ControlledConceptPropertyType"&gt;
+    &lt;xs:sequence minOccurs="0"&gt;
+        &lt;xs:element ref="gsml:ControlledConcept"/&gt;
+    &lt;/xs:sequence&gt;
+    &lt;xs:attributeGroup ref="gml:AssociationAttributeGroup"/&gt;
+&lt;/xs:complexType&gt;</pre>
+                </td>
             </table>&#160;</div>
         <div class="clearing">&#160;</div>
         <div id="footer">
@@ -237,7 +278,7 @@ This is not the concept identifier. </td>
             <p class="panel">For more general information about GML refer to:<br/>
                 <a href="http://www.opengis.net/gml/">GML - the Geography Markup Language</a>
             </p>
-            <p class="panel">The document set was auto-generated at 2007-12-10T05:59+01:00<br/>
+            <p class="panel">The document set was auto-generated at 2007-12-10T06:20+01:00<br/>
     	                 using FullMoon - A processing framework for transforming XML models
     	</p>
             <p/>

@@ -173,7 +173,57 @@
 			&#160;
 			<h2>XML Implementation Details</h2>
             <table width="95%" border="0">
-                <td/>
+                <td>
+                    <pre>&lt;xs:element xmlns:xs="http://www.w3.org/2001/XMLSchema" name="BoreholeDetails" type="gsml:BoreholeDetailsType"&gt;
+    &lt;xs:annotation&gt;
+        &lt;xs:documentation&gt;Borehole specific index (or metadata) information&lt;/xs:documentation&gt;
+    &lt;/xs:annotation&gt;
+&lt;/xs:element&gt;</pre>
+                    <pre>&lt;xs:complexType xmlns:xs="http://www.w3.org/2001/XMLSchema" name="BoreholeDetailsType"&gt;
+    &lt;xs:sequence&gt;
+        &lt;xs:element name="operator" type="gmd:CI_ResponsibleParty_Type"&gt;
+            &lt;xs:annotation&gt;
+                &lt;xs:documentation&gt;Organisation responsible for commissioning the borehole (as opposed to drilling the borehole)&lt;/xs:documentation&gt;
+            &lt;/xs:annotation&gt;
+        &lt;/xs:element&gt;
+        &lt;xs:element name="driller" type="gmd:CI_ResponsibleParty_Type"&gt;
+            &lt;xs:annotation&gt;
+                &lt;xs:documentation&gt;The organisation responsible for drilling the borehole (as opposed to commissioning the borehole)&lt;/xs:documentation&gt;
+            &lt;/xs:annotation&gt;
+        &lt;/xs:element&gt;
+        &lt;xs:element name="dateOfDrilling" type="gml:CalDate"&gt;
+            &lt;xs:annotation&gt;
+                &lt;xs:documentation&gt;The date on which drilling of the borehole commenced&lt;/xs:documentation&gt;
+            &lt;/xs:annotation&gt;
+        &lt;/xs:element&gt;
+        &lt;xs:element name="drillingMethod" type="gsml:BoreholeDrillingMethodCodeType"&gt;
+            &lt;xs:annotation&gt;
+                &lt;xs:documentation&gt;Indicates the drilling method used. Appropriate terms would include Rotary; Shell &amp;amp; Auger; Downhole Air Hammer; Hand Auger etc&lt;/xs:documentation&gt;
+            &lt;/xs:annotation&gt;
+        &lt;/xs:element&gt;
+        &lt;xs:element name="startPoint" type="gsml:BoreholeStartPointCodeType"&gt;
+            &lt;xs:annotation&gt;
+                &lt;xs:documentation&gt;Indicates the position relative to ground surface where the borehole commenced. Appropriate terms would include Drilled from Ground Surface; Drilled Underground;  Drilled from Quarry Floor etc&lt;/xs:documentation&gt;
+            &lt;/xs:annotation&gt;
+        &lt;/xs:element&gt;
+        &lt;xs:element name="nominalDiameter" type="gml:MeasureType"&gt;
+            &lt;xs:annotation&gt;
+                &lt;xs:documentation&gt;The starting diameter&lt;/xs:documentation&gt;
+            &lt;/xs:annotation&gt;
+        &lt;/xs:element&gt;
+        &lt;xs:element name="inclinationType" type="gsml:BoreholeInclinationCodeType"&gt;
+            &lt;xs:annotation&gt;
+                &lt;xs:documentation&gt;Indicates the inclination of the borehole. Appropriate terms would include Vertical; Inclined Up; Inclined Down etc&lt;/xs:documentation&gt;
+            &lt;/xs:annotation&gt;
+        &lt;/xs:element&gt;
+    &lt;/xs:sequence&gt;
+&lt;/xs:complexType&gt;</pre>
+                    <pre>&lt;xs:complexType xmlns:xs="http://www.w3.org/2001/XMLSchema" name="BoreholeDetailsPropertyType"&gt;
+    &lt;xs:sequence&gt;
+        &lt;xs:element ref="gsml:BoreholeDetails"/&gt;
+    &lt;/xs:sequence&gt;
+&lt;/xs:complexType&gt;</pre>
+                </td>
             </table>&#160;</div>
         <div class="clearing">&#160;</div>
         <div id="footer">
@@ -186,7 +236,7 @@
             <p class="panel">For more general information about GML refer to:<br/>
                 <a href="http://www.opengis.net/gml/">GML - the Geography Markup Language</a>
             </p>
-            <p class="panel">The document set was auto-generated at 2007-12-10T05:59+01:00<br/>
+            <p class="panel">The document set was auto-generated at 2007-12-10T06:20+01:00<br/>
     	                 using FullMoon - A processing framework for transforming XML models
     	</p>
             <p/>

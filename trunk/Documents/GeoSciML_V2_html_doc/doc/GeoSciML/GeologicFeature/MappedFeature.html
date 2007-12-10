@@ -229,7 +229,47 @@ A Mapped Feature is always associated with some sampling feature - e.g. a mappin
 			&#160;
 			<h2>XML Implementation Details</h2>
             <table width="95%" border="0">
-                <td/>
+                <td>
+                    <pre>&lt;xs:element xmlns:xs="http://www.w3.org/2001/XMLSchema" name="MappedFeature" substitutionGroup="gml:_Feature" type="gsml:MappedFeatureType"&gt;
+    &lt;xs:annotation&gt;
+        &lt;xs:documentation&gt;A MappedFeature provides a link between a notional feature (description package) and one spatial representation of it, or part of it. (Exposures, Surface Traces and Intercepts, etc)
+    * the specific bounded occurrence, such as an outcrop or map polygon
+    * the Mapped Feature carries a geometry or shape
+          o the association with a Geologic Feature (legend item) provides specification of all the other descriptors
+          o the association with a Sampling Feature provides the context and dimensionality 
+
+A Mapped Feature is always associated with some sampling feature - e.g. a mapping surface, a section, a Borehole (see BoreHolesAndObservation) etc.  As noted on the diagram, if the associated sampling feature is a Borehole, then the shape associated with the MappedFeature will usually be either a point or an interval. This reconciles the 2-D ("map", section) and 1-D (borehole, traverse) viewpoints in a common abstraction.&lt;/xs:documentation&gt;
+    &lt;/xs:annotation&gt;
+&lt;/xs:element&gt;</pre>
+                    <pre>&lt;xs:complexType xmlns:xs="http://www.w3.org/2001/XMLSchema" name="MappedFeatureType"&gt;
+    &lt;xs:complexContent&gt;
+        &lt;xs:extension base="gml:AbstractFeatureType"&gt;
+            &lt;xs:sequence&gt;
+                &lt;xs:element maxOccurs="unbounded" minOccurs="1" name="observationMethod" type="gsml:CGI_TermValuePropertyType"&gt;
+                    &lt;xs:annotation&gt;
+                        &lt;xs:documentation&gt;Examples: direct, fieldObservation, handSpecimen, indirect, laboratory, aerialPhotography, creativeImagination. This corresponds (loosely) to ISO19115 Lineage.Statement&lt;/xs:documentation&gt;
+                    &lt;/xs:annotation&gt;
+                &lt;/xs:element&gt;
+                &lt;xs:element name="positionalAccuracy" type="gsml:CGI_ValuePropertyType"&gt;
+                    &lt;xs:annotation&gt;
+                        &lt;xs:documentation&gt;Examples: accurate, approximate, diagramatic, indefinite, unknown, 5 m. Corresponds to ISO19115 DQ_ThematicAccuracy (either quantitative or non quantitative).result.value&lt;/xs:documentation&gt;
+                    &lt;/xs:annotation&gt;
+                &lt;/xs:element&gt;
+                &lt;xs:element maxOccurs="1" minOccurs="0" name="metadata" type="gsml:MetadataPropertyType"/&gt;
+                &lt;xs:element name="specification" type="gsml:GeologicFeaturePropertyType"/&gt;
+                &lt;xs:element name="samplingFrame" type="sa:SpatiallyExtensiveSamplingFeaturePropertyType"/&gt;
+                &lt;xs:element name="shape" type="gml:GeometryPropertyType"/&gt;
+            &lt;/xs:sequence&gt;
+        &lt;/xs:extension&gt;
+    &lt;/xs:complexContent&gt;
+&lt;/xs:complexType&gt;</pre>
+                    <pre>&lt;xs:complexType xmlns:xs="http://www.w3.org/2001/XMLSchema" name="MappedFeaturePropertyType"&gt;
+    &lt;xs:sequence minOccurs="0"&gt;
+        &lt;xs:element ref="gsml:MappedFeature"/&gt;
+    &lt;/xs:sequence&gt;
+    &lt;xs:attributeGroup ref="gml:AssociationAttributeGroup"/&gt;
+&lt;/xs:complexType&gt;</pre>
+                </td>
             </table>&#160;</div>
         <div class="clearing">&#160;</div>
         <div id="footer">
@@ -242,7 +282,7 @@ A Mapped Feature is always associated with some sampling feature - e.g. a mappin
             <p class="panel">For more general information about GML refer to:<br/>
                 <a href="http://www.opengis.net/gml/">GML - the Geography Markup Language</a>
             </p>
-            <p class="panel">The document set was auto-generated at 2007-12-10T05:59+01:00<br/>
+            <p class="panel">The document set was auto-generated at 2007-12-10T06:20+01:00<br/>
     	                 using FullMoon - A processing framework for transforming XML models
     	</p>
             <p/>

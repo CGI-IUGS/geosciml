@@ -185,7 +185,43 @@ Note that volume magnetic susceptibility is dimensionless, being magnetization (
 			&#160;
 			<h2>XML Implementation Details</h2>
             <table width="95%" border="0">
-                <td/>
+                <td>
+                    <pre>&lt;xs:element xmlns:xs="http://www.w3.org/2001/XMLSchema" name="PhysicalDescription" type="gsml:PhysicalDescriptionType"&gt;
+    &lt;xs:annotation&gt;
+        &lt;xs:documentation&gt;PhysicalDescription describes a limited but commonly used set of physical properties of Rocks and UnconsolidatedMaterials.  The Working Group recognizes that this set is an incomplete subset of potential physical properties that could be used to describe Rocks and UnconsolidatedMaterials, but it will likely cover most use cases for GeoSciML version 2.  Revision/extension of this list is antcipated in future versions.&lt;/xs:documentation&gt;
+    &lt;/xs:annotation&gt;
+&lt;/xs:element&gt;</pre>
+                    <pre>&lt;xs:complexType xmlns:xs="http://www.w3.org/2001/XMLSchema" name="PhysicalDescriptionType"&gt;
+    &lt;xs:sequence&gt;
+        &lt;xs:element maxOccurs="1" minOccurs="0" name="density" type="gsml:CGI_NumericPropertyType"&gt;
+            &lt;xs:annotation&gt;
+                &lt;xs:documentation&gt;Material mass per unit volume&lt;/xs:documentation&gt;
+            &lt;/xs:annotation&gt;
+        &lt;/xs:element&gt;
+        &lt;xs:element maxOccurs="1" minOccurs="0" name="magneticSusceptibility" type="gsml:CGI_ValuePropertyType"&gt;
+            &lt;xs:annotation&gt;
+                &lt;xs:documentation&gt;Material magnetic susceptibility, customarily measured in SI units.  The ratio of induced magnetization to the strength of the magnetic field causing the magnetization.
+Note that volume magnetic susceptibility is dimensionless, being magnetization (magnetic dipole moment) in amperes per metre (SI) divided by the applied field, also in amperes per metre. However, many tables of magnetic susceptibility and some instruments give cgs values that rely on different definitions of the permeability of free space than SI values. The cgs value of susceptibility is multiplied by 4pi to give the SI susceptibility value. For example, the cgs volume magnetic susceptibility of water at 20?C is -7.19x10-7 which is -9.04x10-6 in SI. The xml encoding should specify whether the uom is SI or cgs, and if in cgs provide a &amp;lt;gml:conversionToPreferredUnit&amp;gt;.&lt;/xs:documentation&gt;
+            &lt;/xs:annotation&gt;
+        &lt;/xs:element&gt;
+        &lt;xs:element maxOccurs="1" minOccurs="0" name="permeability" type="gsml:CGI_ValuePropertyType"&gt;
+            &lt;xs:annotation&gt;
+                &lt;xs:documentation&gt;The measure of the capacity of a porous material to transmit a fluid under unequal pressure.  Customary unit of measure: millidarcy&lt;/xs:documentation&gt;
+            &lt;/xs:annotation&gt;
+        &lt;/xs:element&gt;
+        &lt;xs:element maxOccurs="1" minOccurs="0" name="porosity" type="gsml:CGI_ValuePropertyType"&gt;
+            &lt;xs:annotation&gt;
+                &lt;xs:documentation&gt;The percentage of the bulk volume of a material that is occupied by interstices, whether isolated or connected.&lt;/xs:documentation&gt;
+            &lt;/xs:annotation&gt;
+        &lt;/xs:element&gt;
+    &lt;/xs:sequence&gt;
+&lt;/xs:complexType&gt;</pre>
+                    <pre>&lt;xs:complexType xmlns:xs="http://www.w3.org/2001/XMLSchema" name="PhysicalDescriptionPropertyType"&gt;
+    &lt;xs:sequence&gt;
+        &lt;xs:element ref="gsml:PhysicalDescription"/&gt;
+    &lt;/xs:sequence&gt;
+&lt;/xs:complexType&gt;</pre>
+                </td>
             </table>&#160;</div>
         <div class="clearing">&#160;</div>
         <div id="footer">
@@ -198,7 +234,7 @@ Note that volume magnetic susceptibility is dimensionless, being magnetization (
             <p class="panel">For more general information about GML refer to:<br/>
                 <a href="http://www.opengis.net/gml/">GML - the Geography Markup Language</a>
             </p>
-            <p class="panel">The document set was auto-generated at 2007-12-10T05:59+01:00<br/>
+            <p class="panel">The document set was auto-generated at 2007-12-10T06:20+01:00<br/>
     	                 using FullMoon - A processing framework for transforming XML models
     	</p>
             <p/>

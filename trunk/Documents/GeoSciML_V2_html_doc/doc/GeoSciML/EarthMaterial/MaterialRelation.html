@@ -210,7 +210,33 @@ Example:  Consider an overgrowth of albite on plagioclase in a granite.  The  So
 			&#160;
 			<h2>XML Implementation Details</h2>
             <table width="95%" border="0">
-                <td/>
+                <td>
+                    <pre>&lt;xs:element xmlns:xs="http://www.w3.org/2001/XMLSchema" name="MaterialRelation" substitutionGroup="gsml:GeologicRelation" type="gsml:MaterialRelationType"&gt;
+    &lt;xs:annotation&gt;
+        &lt;xs:documentation&gt;The concrete MaterialRelation class is a subtype of the abstract GeologicRelation class which describes the relationships between constituent parts in an Earth Material (eg: A mineral overgrowth on a phenocryst within a granite).
+
+Relationships are always binary and directional.  There is always a single source and a single target.  The relationship is always defined from the perspective of the Source and is generally an active verb.
+
+Example:  Consider an overgrowth of albite on plagioclase in a granite.  The  Source would point to the albite mineral description.  In this case, the Target would point to the plagioclase mineral description and the relationship attribute would be 'overgrows'.  Other appropriate relationship attributes might include: crosscuts, replaces, etc.&lt;/xs:documentation&gt;
+    &lt;/xs:annotation&gt;
+&lt;/xs:element&gt;</pre>
+                    <pre>&lt;xs:complexType xmlns:xs="http://www.w3.org/2001/XMLSchema" name="MaterialRelationType"&gt;
+    &lt;xs:complexContent&gt;
+        &lt;xs:extension base="gsml:GeologicRelationType"&gt;
+            &lt;xs:sequence&gt;
+                &lt;xs:element name="source" type="gsml:ConstituentPartPropertyType"/&gt;
+                &lt;xs:element name="target" type="gsml:ConstituentPartPropertyType"/&gt;
+            &lt;/xs:sequence&gt;
+        &lt;/xs:extension&gt;
+    &lt;/xs:complexContent&gt;
+&lt;/xs:complexType&gt;</pre>
+                    <pre>&lt;xs:complexType xmlns:xs="http://www.w3.org/2001/XMLSchema" name="MaterialRelationPropertyType"&gt;
+    &lt;xs:sequence minOccurs="0"&gt;
+        &lt;xs:element ref="gsml:MaterialRelation"/&gt;
+    &lt;/xs:sequence&gt;
+    &lt;xs:attributeGroup ref="gml:AssociationAttributeGroup"/&gt;
+&lt;/xs:complexType&gt;</pre>
+                </td>
             </table>&#160;</div>
         <div class="clearing">&#160;</div>
         <div id="footer">
@@ -223,7 +249,7 @@ Example:  Consider an overgrowth of albite on plagioclase in a granite.  The  So
             <p class="panel">For more general information about GML refer to:<br/>
                 <a href="http://www.opengis.net/gml/">GML - the Geography Markup Language</a>
             </p>
-            <p class="panel">The document set was auto-generated at 2007-12-10T05:59+01:00<br/>
+            <p class="panel">The document set was auto-generated at 2007-12-10T06:20+01:00<br/>
     	                 using FullMoon - A processing framework for transforming XML models
     	</p>
             <p/>

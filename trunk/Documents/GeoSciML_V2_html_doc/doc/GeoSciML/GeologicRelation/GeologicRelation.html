@@ -178,7 +178,38 @@ Many other types of relationships can also be accommodated via GeologicRelation,
 			&#160;
 			<h2>XML Implementation Details</h2>
             <table width="95%" border="0">
-                <td/>
+                <td>
+                    <pre>&lt;xs:element xmlns:xs="http://www.w3.org/2001/XMLSchema" abstract="true" name="GeologicRelation" substitutionGroup="gml:_Feature" type="gsml:GeologicRelationType"&gt;
+    &lt;xs:annotation&gt;
+        &lt;xs:documentation&gt;The GeologicRelation class is an abstract class that defines the general structure used to define relationships between any feature or object within GeoSciML.  Relationships are always binary and directional.  There is always a single source and a single target.  The relationship is always defined from the perspective of the Source and is generally an active verb.
+
+Example:  a Source may point to an intrusive igneous rock body.  In this case, the Target would point to the appropriate host rock body and the relationship attribute would be 'intrudes'.  Other appropriate relationship attributes might include: overlies, offsets, crosscuts, folds, etc.
+
+Many other types of relationships can also be accommodated via GeologicRelation, for example, topological relations between spatial objects could be described where they are scientifically significant.&lt;/xs:documentation&gt;
+    &lt;/xs:annotation&gt;
+&lt;/xs:element&gt;</pre>
+                    <pre>&lt;xs:complexType xmlns:xs="http://www.w3.org/2001/XMLSchema" abstract="true" name="GeologicRelationType"&gt;
+    &lt;xs:complexContent&gt;
+        &lt;xs:extension base="gml:AbstractFeatureType"&gt;
+            &lt;xs:sequence&gt;
+                &lt;xs:element name="relationship" type="cgu:CodeWithAuthorityType"&gt;
+                    &lt;xs:annotation&gt;
+                        &lt;xs:documentation&gt;Term that specifies the relationship between source and target geologic objects. Vocabulary of relationship names should explicitly state relationship between source and target role fillers.  For example, quartz (source) overgrows feldspar phenocryst (target).&lt;/xs:documentation&gt;
+                    &lt;/xs:annotation&gt;
+                &lt;/xs:element&gt;
+                &lt;xs:element maxOccurs="1" minOccurs="0" name="sourceRole" type="cgu:CodeWithAuthorityType"/&gt;
+                &lt;xs:element maxOccurs="1" minOccurs="0" name="targetRole" type="cgu:CodeWithAuthorityType"/&gt;
+            &lt;/xs:sequence&gt;
+        &lt;/xs:extension&gt;
+    &lt;/xs:complexContent&gt;
+&lt;/xs:complexType&gt;</pre>
+                    <pre>&lt;xs:complexType xmlns:xs="http://www.w3.org/2001/XMLSchema" name="GeologicRelationPropertyType"&gt;
+    &lt;xs:sequence minOccurs="0"&gt;
+        &lt;xs:element ref="gsml:GeologicRelation"/&gt;
+    &lt;/xs:sequence&gt;
+    &lt;xs:attributeGroup ref="gml:AssociationAttributeGroup"/&gt;
+&lt;/xs:complexType&gt;</pre>
+                </td>
             </table>&#160;</div>
         <div class="clearing">&#160;</div>
         <div id="footer">
@@ -191,7 +222,7 @@ Many other types of relationships can also be accommodated via GeologicRelation,
             <p class="panel">For more general information about GML refer to:<br/>
                 <a href="http://www.opengis.net/gml/">GML - the Geography Markup Language</a>
             </p>
-            <p class="panel">The document set was auto-generated at 2007-12-10T05:59+01:00<br/>
+            <p class="panel">The document set was auto-generated at 2007-12-10T06:20+01:00<br/>
     	                 using FullMoon - A processing framework for transforming XML models
     	</p>
             <p/>

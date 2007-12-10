@@ -471,7 +471,47 @@
 			&#160;
 			<h2>XML Implementation Details</h2>
             <table width="95%" border="0">
-                <td/>
+                <td>
+                    <pre>&lt;xs:element xmlns:xs="http://www.w3.org/2001/XMLSchema" name="LithostratigraphicUnit" substitutionGroup="gsml:LithologicUnit" type="gsml:LithostratigraphicUnitType"&gt;
+    &lt;xs:annotation&gt;
+        &lt;xs:documentation&gt;Geologic unit that has stratification, allowing specification of thickness and bedding-related properties. Note that while this usage corresponds to the formally definition of 'Lithostratigaphic unit' as defined in the North American Code of Stratigraphic Nomenclature, usage of this element does not denote definition or description of a unit in the sense of the code, only that stratification is present and can be described.&lt;/xs:documentation&gt;
+    &lt;/xs:annotation&gt;
+&lt;/xs:element&gt;</pre>
+                    <pre>&lt;xs:complexType xmlns:xs="http://www.w3.org/2001/XMLSchema" name="LithostratigraphicUnitType"&gt;
+    &lt;xs:complexContent&gt;
+        &lt;xs:extension base="gsml:LithologicUnitType"&gt;
+            &lt;xs:sequence&gt;
+                &lt;xs:element maxOccurs="unbounded" minOccurs="0" name="beddingPattern" type="gsml:CGI_TermValuePropertyType"&gt;
+                    &lt;xs:annotation&gt;
+                        &lt;xs:documentation&gt;Term(s) specifying patterns of bedding thickness or relationships between bedding packages, e.g. thinning upward, thickening upward&lt;/xs:documentation&gt;
+                    &lt;/xs:annotation&gt;
+                &lt;/xs:element&gt;
+                &lt;xs:element maxOccurs="unbounded" minOccurs="0" name="beddingStyle" type="gsml:CGI_TermValuePropertyType"&gt;
+                    &lt;xs:annotation&gt;
+                        &lt;xs:documentation&gt;Term(s) specifying the style of bedding in a stratified geologic unit, e.g. lenticular, irregular, planar, vague, massive&lt;/xs:documentation&gt;
+                    &lt;/xs:annotation&gt;
+                &lt;/xs:element&gt;
+                &lt;xs:element maxOccurs="unbounded" minOccurs="0" name="beddingThickness" type="gsml:CGI_ValuePropertyType"&gt;
+                    &lt;xs:annotation&gt;
+                        &lt;xs:documentation&gt;Term(s) or numeric values characterizing the thickness of bedding in the unit.&lt;/xs:documentation&gt;
+                    &lt;/xs:annotation&gt;
+                &lt;/xs:element&gt;
+                &lt;xs:element maxOccurs="unbounded" minOccurs="0" name="unitThickness" type="gsml:CGI_NumericPropertyType"&gt;
+                    &lt;xs:annotation&gt;
+                        &lt;xs:documentation&gt;Thickness typical of geologic unit.&lt;/xs:documentation&gt;
+                    &lt;/xs:annotation&gt;
+                &lt;/xs:element&gt;
+            &lt;/xs:sequence&gt;
+        &lt;/xs:extension&gt;
+    &lt;/xs:complexContent&gt;
+&lt;/xs:complexType&gt;</pre>
+                    <pre>&lt;xs:complexType xmlns:xs="http://www.w3.org/2001/XMLSchema" name="LithostratigraphicUnitPropertyType"&gt;
+    &lt;xs:sequence minOccurs="0"&gt;
+        &lt;xs:element ref="gsml:LithostratigraphicUnit"/&gt;
+    &lt;/xs:sequence&gt;
+    &lt;xs:attributeGroup ref="gml:AssociationAttributeGroup"/&gt;
+&lt;/xs:complexType&gt;</pre>
+                </td>
             </table>&#160;</div>
         <div class="clearing">&#160;</div>
         <div id="footer">
@@ -484,7 +524,7 @@
             <p class="panel">For more general information about GML refer to:<br/>
                 <a href="http://www.opengis.net/gml/">GML - the Geography Markup Language</a>
             </p>
-            <p class="panel">The document set was auto-generated at 2007-12-10T05:59+01:00<br/>
+            <p class="panel">The document set was auto-generated at 2007-12-10T06:20+01:00<br/>
     	                 using FullMoon - A processing framework for transforming XML models
     	</p>
             <p/>

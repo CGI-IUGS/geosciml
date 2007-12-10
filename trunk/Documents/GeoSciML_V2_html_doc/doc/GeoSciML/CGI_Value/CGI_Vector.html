@@ -220,7 +220,31 @@
 			&#160;
 			<h2>XML Implementation Details</h2>
             <table width="95%" border="0">
-                <td/>
+                <td>
+                    <pre>&lt;xs:element xmlns:xs="http://www.w3.org/2001/XMLSchema" name="CGI_Vector" substitutionGroup="gsml:CGI_LinearOrientation" type="gsml:CGI_VectorType"&gt;
+    &lt;xs:annotation&gt;
+        &lt;xs:documentation&gt;data type for linear orientation with magnitude. Cardinality on magnitude is 1, if magnitude is unknown use CGI_LinearOrientation&lt;/xs:documentation&gt;
+    &lt;/xs:annotation&gt;
+&lt;/xs:element&gt;</pre>
+                    <pre>&lt;xs:complexType xmlns:xs="http://www.w3.org/2001/XMLSchema" name="CGI_VectorType"&gt;
+    &lt;xs:complexContent&gt;
+        &lt;xs:extension base="gsml:CGI_LinearOrientationType"&gt;
+            &lt;xs:sequence&gt;
+                &lt;xs:element name="magnitude" type="gsml:CGI_NumericValuePropertyType"&gt;
+                    &lt;xs:annotation&gt;
+                        &lt;xs:documentation&gt;The numerical length of a linear vector&lt;/xs:documentation&gt;
+                    &lt;/xs:annotation&gt;
+                &lt;/xs:element&gt;
+            &lt;/xs:sequence&gt;
+        &lt;/xs:extension&gt;
+    &lt;/xs:complexContent&gt;
+&lt;/xs:complexType&gt;</pre>
+                    <pre>&lt;xs:complexType xmlns:xs="http://www.w3.org/2001/XMLSchema" name="CGI_VectorPropertyType"&gt;
+    &lt;xs:sequence&gt;
+        &lt;xs:element ref="gsml:CGI_Vector"/&gt;
+    &lt;/xs:sequence&gt;
+&lt;/xs:complexType&gt;</pre>
+                </td>
             </table>&#160;</div>
         <div class="clearing">&#160;</div>
         <div id="footer">
@@ -233,7 +257,7 @@
             <p class="panel">For more general information about GML refer to:<br/>
                 <a href="http://www.opengis.net/gml/">GML - the Geography Markup Language</a>
             </p>
-            <p class="panel">The document set was auto-generated at 2007-12-10T05:59+01:00<br/>
+            <p class="panel">The document set was auto-generated at 2007-12-10T06:20+01:00<br/>
     	                 using FullMoon - A processing framework for transforming XML models
     	</p>
             <p/>

@@ -188,7 +188,42 @@
 			&#160;
 			<h2>XML Implementation Details</h2>
             <table width="95%" border="0">
-                <td/>
+                <td>
+                    <pre>&lt;xs:element xmlns:xs="http://www.w3.org/2001/XMLSchema" name="CompositionPart" type="gsml:CompositionPartType"&gt;
+    &lt;xs:annotation&gt;
+        &lt;xs:documentation&gt;Element to represent composition of a geologic unit in terms of earth material constituents.&lt;/xs:documentation&gt;
+    &lt;/xs:annotation&gt;
+&lt;/xs:element&gt;</pre>
+                    <pre>&lt;xs:complexType xmlns:xs="http://www.w3.org/2001/XMLSchema" name="CompositionPartType"&gt;
+    &lt;xs:sequence&gt;
+        &lt;xs:element name="role" type="cgu:CodeWithAuthorityType"&gt;
+            &lt;xs:annotation&gt;
+                &lt;xs:documentation&gt;Defines the relationship of the earth material constituent in the geologic unit, e.g. vein, interbedded constituent, layers, dominant constituent. Scoped name because role is asserted by the geologist building the description.&lt;/xs:documentation&gt;
+            &lt;/xs:annotation&gt;
+        &lt;/xs:element&gt;
+        &lt;xs:element maxOccurs="unbounded" minOccurs="1" name="lithology" type="gsml:ControlledConceptPropertyType"&gt;
+            &lt;xs:annotation&gt;
+                &lt;xs:documentation&gt;1..* so that it is possible to give a material names from several different vocabularies, e.g. chemical and genetic classifications (common in volcanic rocks) or to use multiple terms from a single vocabulary with implication that classification is a conjonction of terms.&lt;/xs:documentation&gt;
+            &lt;/xs:annotation&gt;
+        &lt;/xs:element&gt;
+        &lt;xs:element maxOccurs="1" minOccurs="0" name="material" type="gsml:CompoundMaterialPropertyType"&gt;
+            &lt;xs:annotation&gt;
+                &lt;xs:documentation&gt;0..1 because this is where the "description" of the material is (optionally) held&lt;/xs:documentation&gt;
+            &lt;/xs:annotation&gt;
+        &lt;/xs:element&gt;
+        &lt;xs:element name="proportion" type="gsml:CGI_ValuePropertyType"&gt;
+            &lt;xs:annotation&gt;
+                &lt;xs:documentation&gt;Quantity that specifies the fraction of the geologic unit composed of the compound material.&lt;/xs:documentation&gt;
+            &lt;/xs:annotation&gt;
+        &lt;/xs:element&gt;
+    &lt;/xs:sequence&gt;
+&lt;/xs:complexType&gt;</pre>
+                    <pre>&lt;xs:complexType xmlns:xs="http://www.w3.org/2001/XMLSchema" name="CompositionPartPropertyType"&gt;
+    &lt;xs:sequence&gt;
+        &lt;xs:element ref="gsml:CompositionPart"/&gt;
+    &lt;/xs:sequence&gt;
+&lt;/xs:complexType&gt;</pre>
+                </td>
             </table>&#160;</div>
         <div class="clearing">&#160;</div>
         <div id="footer">
@@ -201,7 +236,7 @@
             <p class="panel">For more general information about GML refer to:<br/>
                 <a href="http://www.opengis.net/gml/">GML - the Geography Markup Language</a>
             </p>
-            <p class="panel">The document set was auto-generated at 2007-12-10T05:59+01:00<br/>
+            <p class="panel">The document set was auto-generated at 2007-12-10T06:20+01:00<br/>
     	                 using FullMoon - A processing framework for transforming XML models
     	</p>
             <p/>

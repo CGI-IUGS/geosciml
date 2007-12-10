@@ -198,7 +198,48 @@ Indicates in a general way the P-T environment in which the metamorphism took pl
 			&#160;
 			<h2>XML Implementation Details</h2>
             <table width="95%" border="0">
-                <td/>
+                <td>
+                    <pre>&lt;xs:element xmlns:xs="http://www.w3.org/2001/XMLSchema" name="MetamorphicDescription" type="gsml:MetamorphicDescriptionType"&gt;
+    &lt;xs:annotation&gt;
+        &lt;xs:documentation&gt;MetamorphicDescription describes the character of metamorphism applied to a CompoundMaterial or GeologicUnit using one or more properties including estimated intensity (grade; eg high grade, low grade), characteristic metamorphic mineral assemblages (facies; eg, greenschist, amphibolite), peak P-T estimates, and protolith material if known.&lt;/xs:documentation&gt;
+    &lt;/xs:annotation&gt;
+&lt;/xs:element&gt;</pre>
+                    <pre>&lt;xs:complexType xmlns:xs="http://www.w3.org/2001/XMLSchema" name="MetamorphicDescriptionType"&gt;
+    &lt;xs:sequence&gt;
+        &lt;xs:element maxOccurs="unbounded" minOccurs="0" name="metamorphicFacies" type="gsml:CGI_TermValuePropertyType"&gt;
+            &lt;xs:annotation&gt;
+                &lt;xs:documentation&gt;A description of characteristic mineral assemblages indicative of certain metamorphic P-T conditions.  Examples include Barrovian metasedimentary zones (eg: biotite facies, kyanite facies) or assemblages developed in rocks of more mafic composition (eg: greenschist facies, amphibolite facies).&lt;/xs:documentation&gt;
+            &lt;/xs:annotation&gt;
+        &lt;/xs:element&gt;
+        &lt;xs:element maxOccurs="1" minOccurs="0" name="metamorphicGrade" type="gsml:CGI_TermValuePropertyType"&gt;
+            &lt;xs:annotation&gt;
+                &lt;xs:documentation&gt;A term to indicate the intensity or rank of metamorphism applied to an EarthMaterial (eg: high metamorphic grade, low metamorphic grade)
+Indicates in a general way the P-T environment in which the metamorphism took place. Determination of metamorphic grade is based on mineral assemblages (ie, facies) present in a rock that are interpreted to have crystallized in equilibrium during a particular metamorphic event.&lt;/xs:documentation&gt;
+            &lt;/xs:annotation&gt;
+        &lt;/xs:element&gt;
+        &lt;xs:element maxOccurs="1" minOccurs="0" name="peakPressureValue" type="gsml:CGI_NumericValuePropertyType"&gt;
+            &lt;xs:annotation&gt;
+                &lt;xs:documentation&gt;A numerical value to indicate the estimated pressure at peak metamorphic conditions.&lt;/xs:documentation&gt;
+            &lt;/xs:annotation&gt;
+        &lt;/xs:element&gt;
+        &lt;xs:element maxOccurs="1" minOccurs="0" name="peakTemperatureValue" type="gsml:CGI_NumericValuePropertyType"&gt;
+            &lt;xs:annotation&gt;
+                &lt;xs:documentation&gt;A numerical value to indicate the estimated temperature at peak metamorphic conditions.&lt;/xs:documentation&gt;
+            &lt;/xs:annotation&gt;
+        &lt;/xs:element&gt;
+        &lt;xs:element maxOccurs="unbounded" minOccurs="0" name="protolithLithology" type="gsml:EarthMaterialPropertyType"&gt;
+            &lt;xs:annotation&gt;
+                &lt;xs:documentation&gt;An interpretation of the EarthMaterial that constituted the pre-metamorphic lithology for this metamorphosed CompoundMaterial.&lt;/xs:documentation&gt;
+            &lt;/xs:annotation&gt;
+        &lt;/xs:element&gt;
+    &lt;/xs:sequence&gt;
+&lt;/xs:complexType&gt;</pre>
+                    <pre>&lt;xs:complexType xmlns:xs="http://www.w3.org/2001/XMLSchema" name="MetamorphicDescriptionPropertyType"&gt;
+    &lt;xs:sequence&gt;
+        &lt;xs:element ref="gsml:MetamorphicDescription"/&gt;
+    &lt;/xs:sequence&gt;
+&lt;/xs:complexType&gt;</pre>
+                </td>
             </table>&#160;</div>
         <div class="clearing">&#160;</div>
         <div id="footer">
@@ -211,7 +252,7 @@ Indicates in a general way the P-T environment in which the metamorphism took pl
             <p class="panel">For more general information about GML refer to:<br/>
                 <a href="http://www.opengis.net/gml/">GML - the Geography Markup Language</a>
             </p>
-            <p class="panel">The document set was auto-generated at 2007-12-10T05:59+01:00<br/>
+            <p class="panel">The document set was auto-generated at 2007-12-10T06:20+01:00<br/>
     	                 using FullMoon - A processing framework for transforming XML models
     	</p>
             <p/>

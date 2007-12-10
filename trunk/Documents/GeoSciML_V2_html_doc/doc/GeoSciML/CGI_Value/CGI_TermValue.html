@@ -167,7 +167,27 @@ Arithmetic terms (arithmetic mean, geometric mean, mode, median) added for GeoSc
 			&#160;
 			<h2>XML Implementation Details</h2>
             <table width="95%" border="0">
-                <td/>
+                <td>
+                    <pre>&lt;xs:element xmlns:xs="http://www.w3.org/2001/XMLSchema" name="CGI_TermValue" substitutionGroup="gsml:CGI_PrimitiveValue" type="gsml:CGI_TermValueType"&gt;
+    &lt;xs:annotation&gt;
+        &lt;xs:documentation&gt;Where the value is from a ControlledVocabulary, the string shall be the value of the preferredName on the ControlledConcept; the codeSpace shall indicate the ControlledVocabulary; where the value is from an informal vocabulary, the codeSpace shall indicate the identity of that vocabulary and the string shall be a term from the vocabulary ... somehow&lt;/xs:documentation&gt;
+    &lt;/xs:annotation&gt;
+&lt;/xs:element&gt;</pre>
+                    <pre>&lt;xs:complexType xmlns:xs="http://www.w3.org/2001/XMLSchema" name="CGI_TermValueType"&gt;
+    &lt;xs:complexContent&gt;
+        &lt;xs:extension base="gsml:CGI_PrimitiveValueType"&gt;
+            &lt;xs:sequence&gt;
+                &lt;xs:element name="value" type="cgu:CodeWithAuthorityType"/&gt;
+            &lt;/xs:sequence&gt;
+        &lt;/xs:extension&gt;
+    &lt;/xs:complexContent&gt;
+&lt;/xs:complexType&gt;</pre>
+                    <pre>&lt;xs:complexType xmlns:xs="http://www.w3.org/2001/XMLSchema" name="CGI_TermValuePropertyType"&gt;
+    &lt;xs:sequence&gt;
+        &lt;xs:element ref="gsml:CGI_TermValue"/&gt;
+    &lt;/xs:sequence&gt;
+&lt;/xs:complexType&gt;</pre>
+                </td>
             </table>&#160;</div>
         <div class="clearing">&#160;</div>
         <div id="footer">
@@ -180,7 +200,7 @@ Arithmetic terms (arithmetic mean, geometric mean, mode, median) added for GeoSc
             <p class="panel">For more general information about GML refer to:<br/>
                 <a href="http://www.opengis.net/gml/">GML - the Geography Markup Language</a>
             </p>
-            <p class="panel">The document set was auto-generated at 2007-12-10T05:59+01:00<br/>
+            <p class="panel">The document set was auto-generated at 2007-12-10T06:20+01:00<br/>
     	                 using FullMoon - A processing framework for transforming XML models
     	</p>
             <p/>

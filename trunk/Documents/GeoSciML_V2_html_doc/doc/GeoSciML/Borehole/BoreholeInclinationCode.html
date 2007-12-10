@@ -122,7 +122,24 @@
 			&#160;
 			<h2>XML Implementation Details</h2>
             <table width="95%" border="0">
-                <td/>
+                <td>
+                    <pre>&lt;xs:simpleType xmlns:xs="http://www.w3.org/2001/XMLSchema" name="BoreholeInclinationCodeType"&gt;
+    &lt;xs:union memberTypes="gsml:BoreholeInclinationCodeEnumerationType gsml:BoreholeInclinationCodeOtherType"/&gt;
+&lt;/xs:simpleType&gt;</pre>
+                    <pre>&lt;xs:simpleType xmlns:xs="http://www.w3.org/2001/XMLSchema" name="BoreholeInclinationCodeEnumerationType"&gt;
+    &lt;xs:restriction base="string"&gt;
+        &lt;xs:enumeration value="inclined down"/&gt;
+        &lt;xs:enumeration value="inclined up"/&gt;
+        &lt;xs:enumeration value="vertical"/&gt;
+        &lt;xs:enumeration value="horizontal"/&gt;
+    &lt;/xs:restriction&gt;
+&lt;/xs:simpleType&gt;</pre>
+                    <pre>&lt;xs:simpleType xmlns:xs="http://www.w3.org/2001/XMLSchema" name="BoreholeInclinationCodeOtherType"&gt;
+    &lt;xs:restriction base="string"&gt;
+        &lt;xs:pattern value="other: \w{2,}"/&gt;
+    &lt;/xs:restriction&gt;
+&lt;/xs:simpleType&gt;</pre>
+                </td>
             </table>&#160;</div>
         <div class="clearing">&#160;</div>
         <div id="footer">
@@ -135,7 +152,7 @@
             <p class="panel">For more general information about GML refer to:<br/>
                 <a href="http://www.opengis.net/gml/">GML - the Geography Markup Language</a>
             </p>
-            <p class="panel">The document set was auto-generated at 2007-12-10T05:59+01:00<br/>
+            <p class="panel">The document set was auto-generated at 2007-12-10T06:20+01:00<br/>
     	                 using FullMoon - A processing framework for transforming XML models
     	</p>
             <p/>

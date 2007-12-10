@@ -158,7 +158,30 @@
 			&#160;
 			<h2>XML Implementation Details</h2>
             <table width="95%" border="0">
-                <td/>
+                <td>
+                    <pre>&lt;xs:group xmlns:xs="http://www.w3.org/2001/XMLSchema" name="CGI_Term"&gt;
+    &lt;xs:annotation&gt;
+        &lt;xs:documentation&gt;A union class that allows the value to either be a CGI_TermValue or a CGI_TermRange&lt;/xs:documentation&gt;
+    &lt;/xs:annotation&gt;
+    &lt;xs:choice&gt;
+        &lt;xs:element ref="gsml:CGI_TermRange"/&gt;
+        &lt;xs:element ref="gsml:CGI_TermValue"/&gt;
+    &lt;/xs:choice&gt;
+&lt;/xs:group&gt;</pre>
+                    <pre>&lt;xs:simpleType xmlns:xs="http://www.w3.org/2001/XMLSchema" name="CGI_TermUnionSemantics"&gt;
+    &lt;xs:restriction base="string"&gt;
+        &lt;xs:enumeration value="range"/&gt;
+        &lt;xs:enumeration value="value"/&gt;
+    &lt;/xs:restriction&gt;
+&lt;/xs:simpleType&gt;</pre>
+                    <pre>&lt;xs:complexType xmlns:xs="http://www.w3.org/2001/XMLSchema" name="CGI_TermPropertyType"&gt;
+    &lt;xs:sequence minOccurs="0"&gt;
+        &lt;xs:group ref="gsml:CGI_Term"/&gt;
+    &lt;/xs:sequence&gt;
+    &lt;xs:attributeGroup ref="gml:AssociationAttributeGroup"/&gt;
+    &lt;xs:attribute name="unionSemantics" type="gsml:CGI_TermUnionSemantics"/&gt;
+&lt;/xs:complexType&gt;</pre>
+                </td>
             </table>&#160;</div>
         <div class="clearing">&#160;</div>
         <div id="footer">
@@ -171,7 +194,7 @@
             <p class="panel">For more general information about GML refer to:<br/>
                 <a href="http://www.opengis.net/gml/">GML - the Geography Markup Language</a>
             </p>
-            <p class="panel">The document set was auto-generated at 2007-12-10T05:59+01:00<br/>
+            <p class="panel">The document set was auto-generated at 2007-12-10T06:20+01:00<br/>
     	                 using FullMoon - A processing framework for transforming XML models
     	</p>
             <p/>
