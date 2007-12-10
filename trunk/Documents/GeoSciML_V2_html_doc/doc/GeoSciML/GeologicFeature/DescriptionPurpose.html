@@ -117,50 +117,7 @@
 			&#160;
 			<h2>XML Implementation Details</h2>
             <table width="95%" border="0">
-                <td>
-                    <pre>&lt;xs:simpleType xmlns:xs="http://www.w3.org/2001/XMLSchema" name="DescriptionPurposeType"&gt;
-    &lt;xs:union memberTypes="gsml:DescriptionPurposeEnumerationType gsml:DescriptionPurposeOtherType"/&gt;
-&lt;/xs:simpleType&gt;</pre>
-                    <pre>&lt;xs:simpleType xmlns:xs="http://www.w3.org/2001/XMLSchema" name="DescriptionPurposeEnumerationType"&gt;
-    &lt;xs:restriction base="string"&gt;
-        &lt;xs:enumeration value="typicalNorm"&gt;
-            &lt;xs:annotation&gt;
-                &lt;xs:documentation&gt;TypicalNorm -- a description that specifies properties to be expected of some
-                        occurrence associated with the GeologicEntity. This description may include many properties that
-                        are not part of the DefiningNorm. For example, the fact that granite is typically light-colored
-                        is not a defining property, but is certainly a useful typical property. These kinds of
-                        descriptions would be used to address queries like 'This area is within a polygon classified as
-                        Podunk Formation; what sort of lithology am I most likely to encounter when I start digging?'
-                        The Podunk Formation may be defined by the presence of a certain ammonite... TypicalNorm
-                        description would be constructed as a summary over many Instance descriptions.&lt;/xs:documentation&gt;
-            &lt;/xs:annotation&gt;
-        &lt;/xs:enumeration&gt;
-        &lt;xs:enumeration value="definingNorm"&gt;
-            &lt;xs:annotation&gt;
-                &lt;xs:documentation&gt;DefiningNorm -- a description that specifies properties sufficient to identify a new
-                        occurrence as belonging to the class represented by the description. Basically these are the
-                        'sufficient conditions' for class membership. Used when presented with a query 'I have an
-                        outcrop with these properties; which geologic unit should I assign to the outcrop?' DefiningNorm
-                        has to do with the intension of a ControlledConcept.&lt;/xs:documentation&gt;
-            &lt;/xs:annotation&gt;
-        &lt;/xs:enumeration&gt;
-        &lt;xs:enumeration value="instance"&gt;
-            &lt;xs:annotation&gt;
-                &lt;xs:documentation&gt;Instance -- a description that is specific to a particular observed occurrence. This
-                        is 'raw data', and its classification may start out as very general. There are kinds of narrowly
-                        defined ControlledConcepts that might not allow 'instances' that are different from the
-                        DefiningNorm. It might be worth considering a different relationship between MappedFeature and
-                        an Instance GeologicEntity, with the GeologicEntity role being 'description'.&lt;/xs:documentation&gt;
-            &lt;/xs:annotation&gt;
-        &lt;/xs:enumeration&gt;
-    &lt;/xs:restriction&gt;
-&lt;/xs:simpleType&gt;</pre>
-                    <pre>&lt;xs:simpleType xmlns:xs="http://www.w3.org/2001/XMLSchema" name="DescriptionPurposeOtherType"&gt;
-    &lt;xs:restriction base="string"&gt;
-        &lt;xs:pattern value="other: \w{2,}"/&gt;
-    &lt;/xs:restriction&gt;
-&lt;/xs:simpleType&gt;</pre>
-                </td>
+                <td/>
             </table>&#160;</div>
         <div class="clearing">&#160;</div>
         <div id="footer">
@@ -173,7 +130,7 @@
             <p class="panel">For more general information about GML refer to:<br/>
                 <a href="http://www.opengis.net/gml/">GML - the Geography Markup Language</a>
             </p>
-            <p class="panel">The document set was auto-generated at 2007-12-09T08:40+01:00<br/>
+            <p class="panel">The document set was auto-generated at 2007-12-10T05:59+01:00<br/>
     	                 using FullMoon - A processing framework for transforming XML models
     	</p>
             <p/>

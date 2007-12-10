@@ -408,77 +408,7 @@ Will be made Abstract when a complete (enough) set of specialized subtypes is de
 			&#160;
 			<h2>XML Implementation Details</h2>
             <table width="95%" border="0">
-                <td>
-                    <pre>&lt;xs:element xmlns:xs="http://www.w3.org/2001/XMLSchema" name="GeologicUnit" substitutionGroup="gsml:GeologicFeature" type="gsml:GeologicUnitType"&gt;
-    &lt;xs:annotation&gt;
-        &lt;xs:documentation&gt;Operationally, the GeologicUnit element is a container used to associate geologic properties
-                with some mapped occurrence (through GeologicFeature.occurrence -&amp;gt; MappedFeature link), or with a
-                geologic unit ControlledConcept in a vocabulary (through the GeologicUnit.classifier
-                -&amp;gt;ControlledConcept link). Conceptually, may represent a body of material in the Earth whose
-                complete and precise extent is inferred to exist (NADM GeologicUnit, Stratigraphic unit in sense of
-                NACSN or Intnl Stratigraphic Code), or a classifier used to characterize parts of the Earth (e.g.
-                lithologic map unit like 'granitic rock' or 'alluvial deposit', surficial units like 'till' or 'old
-                alluvium'). Spatial properties are only available through association with a MappedFeature. Includes
-                both formal units (i.e. formally adopted and named in the official lexicon) and informal units (i.e.
-                named but not promoted to the lexicon) and unnamed units (i.e. recognisable and described and delineable
-                in the field but not otherwise formalised). Will be made Abstract when a complete (enough) set of
-                specialized subtypes is defined.&lt;/xs:documentation&gt;
-    &lt;/xs:annotation&gt;
-&lt;/xs:element&gt;</pre>
-                    <pre>&lt;xs:complexType xmlns:xs="http://www.w3.org/2001/XMLSchema" name="GeologicUnitType"&gt;
-    &lt;xs:complexContent&gt;
-        &lt;xs:extension base="gsml:GeologicFeatureType"&gt;
-            &lt;xs:sequence&gt;
-                &lt;xs:element maxOccurs="unbounded" minOccurs="0" name="bodyMorphology" type="gsml:CGI_TermValuePropertyType"&gt;
-                    &lt;xs:annotation&gt;
-                        &lt;xs:documentation&gt;The geometry or form of a GeologicUnit. Examples include: dike, cone, fan,
-                                sheet, etc. Morphology is independent of the substance (EarthMaterial) that composes the
-                                GeologicUnit.&lt;/xs:documentation&gt;
-                    &lt;/xs:annotation&gt;
-                &lt;/xs:element&gt;
-                &lt;xs:element maxOccurs="1" minOccurs="0" name="compositionCategory" type="gsml:CGI_TermValuePropertyType"&gt;
-                    &lt;xs:annotation&gt;
-                        &lt;xs:documentation&gt;Term to specify the gross chemical character of geologic unit. Examples
-                                include silicate, carbonate, ferromagnesian, oxide. Chemical classification terms for
-                                igneous rocks also go here, e.g. alkalic, subaluminous, peraluminous, mafic, felsic,
-                                intermediate.&lt;/xs:documentation&gt;
-                    &lt;/xs:annotation&gt;
-                &lt;/xs:element&gt;
-                &lt;xs:element maxOccurs="unbounded" minOccurs="0" name="exposureColor" type="gsml:CGI_TermValuePropertyType"&gt;
-                    &lt;xs:annotation&gt;
-                        &lt;xs:documentation&gt;the color of typical outcrops of a geologic unit.&lt;/xs:documentation&gt;
-                    &lt;/xs:annotation&gt;
-                &lt;/xs:element&gt;
-                &lt;xs:element maxOccurs="unbounded" minOccurs="0" name="outcropCharacter" type="gsml:CGI_TermValuePropertyType"&gt;
-                    &lt;xs:annotation&gt;
-                        &lt;xs:documentation&gt;Describes the nature of outcrops formed by a geologic unit. Examples:
-                                bouldery, cliff-forming, ledge-forming, slope-forming, poorly exposed&lt;/xs:documentation&gt;
-                    &lt;/xs:annotation&gt;
-                &lt;/xs:element&gt;
-                &lt;xs:element maxOccurs="1" minOccurs="0" name="rank" type="cgu:CodeWithAuthorityType"&gt;
-                    &lt;xs:annotation&gt;
-                        &lt;xs:documentation&gt;term classifies unit in generalization hierarchy from most local/smallest
-                                volume to most regional. Scoped name because classification is asserted, not based on
-                                observational data.&lt;/xs:documentation&gt;
-                    &lt;/xs:annotation&gt;
-                &lt;/xs:element&gt;
-                &lt;xs:element maxOccurs="1" minOccurs="0" name="classifier" type="gsml:ControlledConceptPropertyType"/&gt;
-                &lt;xs:element maxOccurs="unbounded" minOccurs="0" name="composition" type="gsml:CompositionPartPropertyType"/&gt;
-                &lt;xs:element maxOccurs="1" minOccurs="0" name="metamorphicCharacter" type="gsml:MetamorphicDescriptionPropertyType"/&gt;
-                &lt;xs:element maxOccurs="unbounded" minOccurs="0" name="part" type="gsml:GeologicUnitPartPropertyType"/&gt;
-                &lt;xs:element maxOccurs="unbounded" minOccurs="0" name="physicalProperty" type="gsml:PhysicalDescriptionPropertyType"/&gt;
-                &lt;xs:element maxOccurs="1" minOccurs="0" name="weatheringCharacter" type="gsml:WeatheringDescriptionPropertyType"/&gt;
-            &lt;/xs:sequence&gt;
-        &lt;/xs:extension&gt;
-    &lt;/xs:complexContent&gt;
-&lt;/xs:complexType&gt;</pre>
-                    <pre>&lt;xs:complexType xmlns:xs="http://www.w3.org/2001/XMLSchema" name="GeologicUnitPropertyType"&gt;
-    &lt;xs:sequence minOccurs="0"&gt;
-        &lt;xs:element ref="gsml:GeologicUnit"/&gt;
-    &lt;/xs:sequence&gt;
-    &lt;xs:attributeGroup ref="gml:AssociationAttributeGroup"/&gt;
-&lt;/xs:complexType&gt;</pre>
-                </td>
+                <td/>
             </table>&#160;</div>
         <div class="clearing">&#160;</div>
         <div id="footer">
@@ -491,7 +421,7 @@ Will be made Abstract when a complete (enough) set of specialized subtypes is de
             <p class="panel">For more general information about GML refer to:<br/>
                 <a href="http://www.opengis.net/gml/">GML - the Geography Markup Language</a>
             </p>
-            <p class="panel">The document set was auto-generated at 2007-12-09T08:40+01:00<br/>
+            <p class="panel">The document set was auto-generated at 2007-12-10T05:59+01:00<br/>
     	                 using FullMoon - A processing framework for transforming XML models
     	</p>
             <p/>
