@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!--Example boreholes instance based on data from BGS borehole databases.-->
 <!-- This example is a manual conversion of one of the GeoSciML version 1 instances for the proposed GeoSciML version 2 format using
-SamplingCurve (may have a Borehole feature extending this trivially later -->
+Obs and Meas based Borehole feature. -->
 <Borehole xmlns="urn:cgi:xmlns:CGI:GeoSciML:2.0" gml:id="bh.196911" 
 xmlns:xlink="http://www.w3.org/1999/xlink" 
 xmlns:gml="http://www.opengis.net/gml" 
@@ -213,10 +213,6 @@ urn:cgi:xmlns:CGI:GeoSciML:2.0	https://www.seegrid.csiro.au/subversion/GeoSciML/
 			</om:result>
 		</om:Observation>
 	</sa:relatedObservation>
-	<!-- Would the old information about drillMethod be specified somehow in the SurveyProcedure? -->
-	<!-- 
-		<xmml:drillMethod>other:bgsU</xmml:drillMethod>
-	-->
 	<sa:surveyDetails>
 		<sa:SurveyProcedure gml:id="bh.196911.sp">
 			<!-- Is urn:ogc:def:uom:UCUM:m the new standard way to refer ot metres? -->
@@ -227,16 +223,6 @@ urn:cgi:xmlns:CGI:GeoSciML:2.0	https://www.seegrid.csiro.au/subversion/GeoSciML/
 			<sa:positionAccuracy uom="urn:ogc:def:uom:UCUM:m">10</sa:positionAccuracy>
 		</sa:SurveyProcedure>
 	</sa:surveyDetails>
-	<!-- We have dropped begin and end properties which were in GeoSciML 1. Does this information get put into the shape?
-	Often will just have start point.-->
-	<!-- 
-	<sa:begin>
-		<gml:Point srsName="epsg:7405" gml:id="bh.196911.start">
-			<gml:pos>427790 0319960 70.87</gml:pos>
-		</gml:Point>
-	</sa:begin>
-	<sa:end xlink:href="urn:x-ogc:def:nil:OGC:unknown"/>
-	-->
 	<sa:shape>
 		<!-- In GeoSciML 1 example had used the geomExt extended geometry feature package for just specifying a LineByVector 
 		with origin and descriptive direction. However, I'm not sure of that packages current status in terms of when it might be
@@ -259,5 +245,30 @@ urn:cgi:xmlns:CGI:GeoSciML:2.0	https://www.seegrid.csiro.au/subversion/GeoSciML/
 			<gml:pos>427790 0319960 122.68</gml:pos>
 		</gml:LineString>
 	</sa:shape>
-	<sa:length uom="#m">51.81</sa:length>			
+	<sa:length uom="#m">51.81</sa:length>
+	<collarLocation>
+		<BoreholeCollar>
+			<location><gml:Point><gml:pos>427790 0319960 70.87</gml:pos></gml:Point></location>
+		</BoreholeCollar>
+	</collarLocation>
+	<!-- BGS has some database information that would seem to belong in the indexData like drillingMethod but
+	I'm not sure whether I can easily map it to the CGI model. To consider later. -->
+	<!-- 
+		<xmml:drillMethod>other:bgsU</xmml:drillMethod>
+	<indexData>
+		<BoreholeDetails>
+			<operator>
+				<role xmlns="http://www.isotc211.org/2005/gmd"></role>
+			</operator>
+			<driller>
+				<role xmlns="http://www.isotc211.org/2005/gmd"></role>
+			</driller>
+			<dateOfDrilling></dateOfDrilling>
+			<drillingMethod></drillingMethod>
+			<startPoint></startPoint>
+			<nominalDiameter uom=""></nominalDiameter>
+			<inclinationType></inclinationType>
+		</BoreholeDetails>
+	</indexData>
+	-->
 </Borehole>
