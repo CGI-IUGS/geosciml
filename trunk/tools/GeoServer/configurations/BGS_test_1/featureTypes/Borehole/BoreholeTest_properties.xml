@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!-- 
-  Loughborough mapping file
+  BGS Borehole mapping file from denormalised text dump of SOBI and BoGE entries.
 -->
 <c:ComplexDataStore xmlns:c="http://www.geotools.org/complex" xmlns:ogc="http://www.opengis.net/ogc"
   xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
@@ -12,6 +12,10 @@
       resolve <type> elements. 
     -->
     <Namespace>
+      <prefix>gsml</prefix>
+      <uri>urn:cgi:xmlns:CGI:GeoSciML:2.0</uri>
+    </Namespace>
+    <Namespace>
       <prefix>gml</prefix>
       <uri>http://www.opengis.net/gml</uri>
     </Namespace>
@@ -20,20 +24,12 @@
       <uri>http://www.w3.org/1999/xlink</uri>
     </Namespace>
     <Namespace>
-      <prefix>xmml</prefix>
-      <uri>http://www.opengis.net/xmml</uri>
-    </Namespace>
-    <Namespace>
       <prefix>sa</prefix>
-      <uri>http://www.opengis.net/sampling</uri>
+      <uri>http://www.opengis.net/sampling/1.0.0</uri>
     </Namespace>
     <Namespace>
-      <prefix>geo</prefix>
-      <uri>http://www.seegrid.csiro.au/xml/geometry</uri>
-    </Namespace>
-    <Namespace>
-      <prefix>swe</prefix>
-      <uri>http://www.opengis.net/swe</uri>
+      <prefix>om</prefix>
+      <uri>http://www.opengis.net/om/1.0.0</uri>
     </Namespace>
   </namespaces>
   <sourceDataStores>
@@ -57,14 +53,14 @@
         Imports and includes at the schemas will be followed as long
         as they're relative paths.
       -->
-      <schemaUri>../../commonSchemas/XMML/1/borehole.xsd</schemaUri>
+      <schemaUri>../../Need to update</schemaUri>
     </FeatureType>
   </targetTypes>
   <typeMappings>
     <FeatureTypeMapping>
       <sourceDataStore>borehole_denormalized</sourceDataStore>
       <sourceType>boreholes_denormalized</sourceType>
-      <targetElement>xmml:Borehole</targetElement>
+      <targetElement>gsml:Borehole</targetElement>
       <groupBy>
         <!-- 
           All source schema attributes except LITHOSTRAT, LITHOLOGY_, BASE_BED_C, DRILLED_D and DRILLED__1 
@@ -86,7 +82,7 @@
       </groupBy>
       <attributeMappings>
         <AttributeMapping>
-          <targetAttribute>xmml:Borehole</targetAttribute>
+          <targetAttribute>gsml:Borehole</targetAttribute>
           <idExpression>
             <OCQL>strConcat("bh.", BGS_ID)</OCQL>
           </idExpression>
@@ -131,19 +127,229 @@
             <value>"http://ns.bgs.ac.uk/bgs.sobi.original_number"</value>
           </ClientProperty>
         </AttributeMapping>
-        <!-- 
-          Don't know where comment is defined
-          <AttributeMapping>
-          <targetAttribute>Borehole/comment</targetAttribute>
-          <sourceExpression><OCQL>strConcat(CONFIDENTI, "Access Restrictions: ")</OCQL></sourceExpression>
-          </AttributeMapping>
-        -->
+        
+        <!-- Will empty sampledFeature element be created automatically? -->
+        
+        <AttributeMapping>
+          <targetAttribute>sa:relatedObservation[1]/om:Observation/om:samplingTime</targetAttribute>
+          <ClientProperty>
+            <name>xlink:href</name>
+            <value>urn:x-ogc:def:nil:OGC:unknown</value>
+          </ClientProperty>
+        </AttributeMapping>
+        
+        <AttributeMapping>
+          <targetAttribute>sa:relatedObservation[1]/om:Observation/om:procedure</targetAttribute>
+          <ClientProperty>
+            <name>xlink:href</name>
+            <value>urn:x-ogc:def:nil:OGC:unknown</value>
+          </ClientProperty>
+        </AttributeMapping>
+        
+        <AttributeMapping>
+          <targetAttribute>sa:relatedObservation[1]/om:Observation/om:observedProperty</targetAttribute>
+          <ClientProperty>
+            <name>xlink:href</name>
+            <value>http://ns.bgs.ac.uk/thesaurus/lithostratigraphy</value>
+          </ClientProperty>
+        </AttributeMapping>
+        
+        <!-- Will empty om:featureOfInterest element be automatically created? -->
+        
+        <AttributeMapping>
+          <targetAttribute>sa:relatedObservation[1]/om:Observation/om:result/cv:CV_DiscreteCoverage/cv:domainExtent</targetAttribute>
+          <ClientProperty>
+            <name>xlink:href</name>
+            <value>strConcat("#bh.", strConcat(BGS_ID, ".shape"))</value>
+          </ClientProperty>
+        </AttributeMapping>
+        
+        <AttributeMapping>
+          <targetAttribute>sa:relatedObservation[1]/om:Observation/om:result/cv:CV_DiscreteCoverage/cv:rangeType</targetAttribute>
+          <ClientProperty>
+            <name>xlink:href</name>
+            <value>http://ns.bgs.ac.uk/thesaurus/lithostratigraphy</value>
+          </ClientProperty>
+        </AttributeMapping>
+        
+        <AttributeMapping>
+          <targetAttribute>sa:relatedObservation[1]/om:Observation/om:result/cv:CV_DiscreteCoverage/cv:element</targetAttribute>
+          <isMultiple>true</isMultiple>
+        </AttributeMapping>
+        
+        <AttributeMapping>
+          <targetAttribute>sa:relatedObservation[1]/om:Observation/om:result/cv:CV_DiscreteCoverage/cv:element/cv:CV_GeometryValuePair/cv:geometry/cv:CV_DomainObject/cv:spatialElementgml:LineString</targetAttribute>
+          <ClientProperty>
+            <name>srsName</name>
+            <value>strConcat("#bh.", strConcat(BGS_ID, ".shape"))</value>
+          </ClientProperty>
+          <ClientProperty>
+            <name>srsDimension</name>
+            <value>"1"</value>
+          </ClientProperty>
+        </AttributeMapping>
+        
+        <AttributeMapping>
+          <targetAttribute>sa:relatedObservation[1]/om:Observation/om:result/cv:CV_DiscreteCoverage/cv:element/cv:CV_GeometryValuePair/cv:geometry/cv:CV_DomainObject/cv:spatialElementgml:LineString/gml:pos</targetAttribute>
+          <sourceExpression>
+            <OCQL>DRILLED_DE</OCQL>
+          </sourceExpression>
+        </AttributeMapping>
+        
+        <AttributeMapping>
+          <targetAttribute>sa:relatedObservation[1]/om:Observation/om:result/cv:CV_DiscreteCoverage/cv:element/cv:CV_GeometryValuePair/cv:geometry/cv:CV_DomainObject/cv:spatialElementgml:LineString/gml:pos</targetAttribute>
+          <sourceExpression>
+            <OCQL>DRILLED__1</OCQL>
+          </sourceExpression>
+        </AttributeMapping>
+        
+        <AttributeMapping>
+          <targetAttribute>sa:relatedObservation[1]/om:Observation/om:result/cv:CV_DiscreteCoverage/cv:value</targetAttribute>
+          <sourceExpression>
+            <OCQL>LITHOSTRAT</OCQL>
+          </sourceExpression>
+          <ClientProperty>
+            <name>xsi:type</name>
+            <value>gml:CodeType</value>
+          </ClientProperty>
+          <ClientProperty>
+            <name>codeSpace</name>
+            <value>http://ns.bgs.ac.uk/bgs.lex_lithostrat_unit_v3</value>
+          </ClientProperty>
+        </AttributeMapping>
+        
+        <AttributeMapping>
+          <targetAttribute>sa:relatedObservation[1]/om:Observation/om:samplingTime</targetAttribute>
+          <ClientProperty>
+            <name>xlink:href</name>
+            <value>urn:x-ogc:def:nil:OGC:unknown</value>
+          </ClientProperty>
+        </AttributeMapping>
+        
+        <AttributeMapping>
+          <targetAttribute>sa:relatedObservation[1]/om:Observation/om:procedure</targetAttribute>
+          <ClientProperty>
+            <name>xlink:href</name>
+            <value>urn:x-ogc:def:nil:OGC:unknown</value>
+          </ClientProperty>
+        </AttributeMapping>
+        
+        <AttributeMapping>
+          <targetAttribute>sa:relatedObservation[1]/om:Observation/om:observedProperty</targetAttribute>
+          <ClientProperty>
+            <name>xlink:href</name>
+            <value>urn:ogc:def:phenomenon:CGI:2007:lithology</value>
+          </ClientProperty>
+        </AttributeMapping>
+        
+        <!-- Will empty om:featureOfInterest element be automatically created? -->
+        
+        <AttributeMapping>
+          <targetAttribute>sa:relatedObservation[1]/om:Observation/om:result/cv:CV_DiscreteCoverage/cv:domainExtent</targetAttribute>
+          <ClientProperty>
+            <name>xlink:href</name>
+            <value>strConcat("#bh.", strConcat(BGS_ID, ".shape"))</value>
+          </ClientProperty>
+        </AttributeMapping>
+        
+        <AttributeMapping>
+          <targetAttribute>sa:relatedObservation[1]/om:Observation/om:result/cv:CV_DiscreteCoverage/cv:rangeType</targetAttribute>
+          <ClientProperty>
+            <name>xlink:href</name>
+            <value>http://ns.bgs.ac.uk/thesaurus/lithostratigraphy</value>
+          </ClientProperty>
+        </AttributeMapping>
+        
+        <AttributeMapping>
+          <targetAttribute>sa:relatedObservation[1]/om:Observation/om:result/cv:CV_DiscreteCoverage/cv:element</targetAttribute>
+          <isMultiple>true</isMultiple>
+        </AttributeMapping>
+        
+        <AttributeMapping>
+          <targetAttribute>sa:relatedObservation[1]/om:Observation/om:result/cv:CV_DiscreteCoverage/cv:element/cv:CV_GeometryValuePair/cv:geometry/cv:CV_DomainObject/cv:spatialElementgml:LineString</targetAttribute>
+          <ClientProperty>
+            <name>srsName</name>
+            <value>strConcat("#bh.", strConcat(BGS_ID, ".shape"))</value>
+          </ClientProperty>
+          <ClientProperty>
+            <name>srsDimension</name>
+            <value>"1"</value>
+          </ClientProperty>
+        </AttributeMapping>
+        
+        <AttributeMapping>
+          <targetAttribute>sa:relatedObservation[1]/om:Observation/om:result/cv:CV_DiscreteCoverage/cv:element/cv:CV_GeometryValuePair/cv:geometry/cv:CV_DomainObject/cv:spatialElementgml:LineString/gml:pos</targetAttribute>
+          <sourceExpression>
+            <OCQL>DRILLED_DE</OCQL>
+          </sourceExpression>
+        </AttributeMapping>
+        
+        <AttributeMapping>
+          <targetAttribute>sa:relatedObservation[1]/om:Observation/om:result/cv:CV_DiscreteCoverage/cv:element/cv:CV_GeometryValuePair/cv:geometry/cv:CV_DomainObject/cv:spatialElementgml:LineString/gml:pos</targetAttribute>
+          <sourceExpression>
+            <OCQL>DRILLED__1</OCQL>
+          </sourceExpression>
+        </AttributeMapping>
+        
+        <AttributeMapping>
+          <targetAttribute>sa:relatedObservation[1]/om:Observation/om:result/cv:CV_DiscreteCoverage/cv:value</targetAttribute>
+          <sourceExpression>
+            <OCQL>LITHOLOGY_</OCQL>
+          </sourceExpression>
+          <ClientProperty>
+            <name>xsi:type</name>
+            <value>gml:CodeType</value>
+          </ClientProperty>
+          <ClientProperty>
+            <name>codeSpace</name>
+            <value>http://ns.bgs.ac.uk/bgs.dic_rock_name</value>
+          </ClientProperty>
+        </AttributeMapping>
+        
         <AttributeMapping>
           <targetAttribute>Borehole/sa:surveyDetails/sa:SurveyProcedure</targetAttribute>
           <idExpression>
             <OCQL>strConcat("bh.", strConcat(BGS_ID, ".sp"))</OCQL>
           </idExpression>
         </AttributeMapping>
+        
+        <AttributeMapping>
+          <targetAttribute>Borehole/sa:surveyDetails/sa:SurveyProcedure/sa:elevationAccuracy</targetAttribute>
+          <sourceExpression><OCQL>"not in file data"</OCQL></sourceExpression>
+          <ClientProperty>
+            <name>uom</name>
+            <value>urn:ogc:def:uom:UCUM:m</value>
+          </ClientProperty>
+          
+        </AttributeMapping>
+        
+        <AttributeMapping>
+          <targetAttribute>Borehole/sa:surveyDetails/sa:SurveyProcedure/sa:positionMethod</targetAttribute>
+          <ClientProperty>
+            <name>xlink:href</name>
+            <value>Not in file data</value>
+          </ClientProperty>
+          
+        </AttributeMapping>
+        
+        <AttributeMapping>
+          <targetAttribute>Borehole/sa:surveyDetails/sa:SurveyProcedure/sa:positionAccuracy</targetAttribute>
+          <sourceExpression><OCQL>"not in file data"</OCQL></sourceExpression>
+          <ClientProperty>
+            <name>uom</name>
+            <value>urn:ogc:def:uom:UCUM:m</value>
+          </ClientProperty>
+          
+        </AttributeMapping>
+        
+        <!-- 
+  <sa:surveyDetails>
+  <sa:SurveyProcedure gml:id="bh.196911.sp">
+        <sa:elevationAccuracy uom="urn:ogc:def:uom:UCUM:m">0.1</sa:elevationAccuracy>
+         <sa:positionMethod xlink:href="http://ns.bgs.ac.uk/bgs.dic_xysource.NOT_ENTERED"/>
+        <sa:positionAccuracy uom="urn:ogc:def:uom:UCUM:m">10</sa:positionAccuracy>
+        </sa:SurveyProcedure>
+        </sa:surveyDetails>
 
         <AttributeMapping>
           <targetAttribute>Borehole/sa:surveyDetails/sa:SurveyProcedure/gml:description</targetAttribute>
@@ -154,173 +360,27 @@
             </OCQL>
           </sourceExpression>
         </AttributeMapping>
-
+-->
         <AttributeMapping>
-          <targetAttribute>Borehole/sa:begin</targetAttribute>
+          <targetAttribute>Borehole/sa:shape</targetAttribute>
           <sourceExpression>
             <OCQL>SHAPE</OCQL>
           </sourceExpression>
         </AttributeMapping>
-
-        <!-- 
-          REVISIT: complains saying that PointPropertyType is not nillable, which is wrong
-        -->
-        <AttributeMapping>
-          <targetAttribute>Borehole/sa:end</targetAttribute>
-          <ClientProperty>
-            <name>xlink:href</name>
-            <value>"urn:x-ogc:def:nil:OGC:unknown"</value>
-          </ClientProperty>
-        </AttributeMapping>
-
         <AttributeMapping>
           <targetAttribute>Borehole/sa:length</targetAttribute>
           <sourceExpression>
             <OCQL>LENGTHC</OCQL>
           </sourceExpression>
           <ClientProperty>
-            <name>swe:uom</name>
+            <name>uom</name>
             <value>"#m"</value>
           </ClientProperty>
         </AttributeMapping>
-
         <AttributeMapping>
-          <targetAttribute>Borehole/sa:shape/geo:LineByVector</targetAttribute>
-          <idExpression>
-            <OCQL>strConcat("bh.", strConcat(BGS_ID, ".shape"))</OCQL>
-          </idExpression>
-          <targetAttributeNode>geo:LineByVectorType</targetAttributeNode>
-        </AttributeMapping>
-
-        <AttributeMapping>
-          <targetAttribute>Borehole/sa:shape/geo:LineByVector/geo:origin</targetAttribute>
-          <ClientProperty>
-            <name>xlink:href</name>
-            <value>strConcat("#bh.", strConcat(BGS_ID, ".start"))</value>
-          </ClientProperty>
-        </AttributeMapping>
-
-        <AttributeMapping>
-          <targetAttribute>Borehole/sa:shape/geo:LineByVector/geo:directionDescription</targetAttribute>
+          <targetAttribute>Borehole/collarLocation/BoreholeCollar/location</targetAttribute>
           <sourceExpression>
-            <OCQL>"(Missing from SDE table)"</OCQL>
-          </sourceExpression>
-          <ClientProperty>
-            <name>gml:codeSpace</name>
-            <value>"http://ns.bgs.ac.uk/bgs.dic_incl"</value>
-          </ClientProperty>
-        </AttributeMapping>
-
-        <AttributeMapping>
-          <targetAttribute>Borehole/xmml:drillMethod</targetAttribute>
-          <sourceExpression>
-            <OCQL>"(Missing from SDE table)"</OCQL>
-          </sourceExpression>
-        </AttributeMapping>
-
-        <AttributeMapping>
-          <targetAttribute>Borehole/xmml:log/xmml:IntervalLog</targetAttribute>
-          <idExpression>
-            <OCQL>strConcat("bh.", strConcat(BGS_ID, ".log"))</OCQL>
-          </idExpression>
-          <ClientProperty>
-            <name>xmml:dimension</name>
-            <value>"1"</value>
-          </ClientProperty>
-        </AttributeMapping>
-
-        <!--
-          TODO: geotools AbstractFeatureType does not defines boundedBy 
-          <AttributeMapping>
-          <targetAttribute>Borehole/log/IntervalLog/boundedBy/Null</targetAttribute>
-          <sourceExpression><OCQL>"missing"</OCQL></sourceExpression>
-          </AttributeMapping>
-        -->
-
-        <AttributeMapping>
-          <targetAttribute>xmml:log/xmml:IntervalLog/xmml:range</targetAttribute>
-          <isMultiple>true</isMultiple>
-        </AttributeMapping>
-
-        <AttributeMapping>
-          <targetAttribute>xmml:log/xmml:IntervalLog/xmml:range/xmml:ListOfBands/xmml:categoryList[1]</targetAttribute>
-          <sourceExpression>
-            <OCQL>LITHOSTRAT</OCQL>
-          </sourceExpression>
-          <ClientProperty>
-            <name>swe:codeSpace</name>
-            <value>"http://ns.bgs.ac.uk/bgs.lex_lithostrat_unit_v3"</value>
-          </ClientProperty>
-          <ClientProperty>
-            <name>swe:property</name>
-            <value>"http://ns.bgs.ac.uk/thesaurus/lithostratigraphy"</value>
-          </ClientProperty>
-        </AttributeMapping>
-
-        <AttributeMapping>
-          <targetAttribute>xmml:log/xmml:IntervalLog/xmml:range/xmml:ListOfBands/xmml:categoryList[2]</targetAttribute>
-          <sourceExpression>
-            <OCQL>LITHOLOGY_</OCQL>
-          </sourceExpression>
-          <ClientProperty>
-            <name>swe:codeSpace</name>
-            <value>"http://ns.bgs.ac.uk/bgs.dic_rock_name"</value>
-          </ClientProperty>
-          <ClientProperty>
-            <name>swe:property</name>
-            <value>"http://ns.bgs.ac.uk/thesaurus/lithology"</value>
-          </ClientProperty>
-        </AttributeMapping>
-
-        <AttributeMapping>
-          <targetAttribute>xmml:log/xmml:IntervalLog/xmml:range/xmml:ListOfBands/xmml:categoryList[3]</targetAttribute>
-          <sourceExpression>
-            <OCQL>BASE_BED_C</OCQL>
-          </sourceExpression>
-          <ClientProperty>
-            <name>swe:codeSpace</name>
-            <value>"http://ns.bgs.ac.uk/bgs.dic_base_bed"</value>
-          </ClientProperty>
-          <ClientProperty>
-            <name>swe:property</name>
-            <value>"http://ns.bgs.ac.uk/thesaurus/base_bed"</value>
-          </ClientProperty>
-        </AttributeMapping>
-
-        <AttributeMapping>
-          <targetAttribute>xmml:log/xmml:IntervalLog/xmml:intervalSetDomain/geo:MultiGInterval</targetAttribute>
-          <idExpression>
-            <OCQL>strConcat("bh.", strConcat(BGS_ID, ".logdomain"))</OCQL>
-          </idExpression>
-          <ClientProperty>
-            <name>srsName</name>
-            <value>strConcat("#bh.", strConcat(BGS_ID, ".shape"))</value>
-          </ClientProperty>
-        </AttributeMapping>
-
-        <AttributeMapping>
-          <targetAttribute>xmml:log/xmml:IntervalLog/xmml:intervalSetDomain/geo:MultiGInterval/geo:member</targetAttribute>
-          <isMultiple>true</isMultiple>
-        </AttributeMapping>
-
-        <AttributeMapping>
-          <targetAttribute>xmml:log/xmml:IntervalLog/xmml:intervalSetDomain/geo:MultiGInterval/geo:member/geo:GInterval</targetAttribute>
-          <idExpression>
-            <OCQL>strConcat("bh.", strConcat(BGS_ID, ".loginterval.1"))</OCQL>
-          </idExpression>
-        </AttributeMapping>
-
-        <AttributeMapping>
-          <targetAttribute>xmml:log/xmml:IntervalLog/xmml:intervalSetDomain/geo:MultiGInterval/geo:member/geo:GInterval/geo:beginPos</targetAttribute>
-          <sourceExpression>
-            <OCQL>DRILLED_DE</OCQL>
-          </sourceExpression>
-        </AttributeMapping>
-
-        <AttributeMapping>
-          <targetAttribute>xmml:log/xmml:IntervalLog/xmml:intervalSetDomain/geo:MultiGInterval/geo:member/geo:GInterval/geo:endPos</targetAttribute>
-          <sourceExpression>
-            <OCQL>DRILLED__1</OCQL>
+            <OCQL>SHAPE</OCQL>
           </sourceExpression>
         </AttributeMapping>
 
