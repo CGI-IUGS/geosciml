@@ -10,8 +10,9 @@ xmlns:xlink="http://www.w3.org/1999/xlink"
 xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 xmlns:cgu="urn:cgi:xmlns:CGI:Utilities:1.0"
 xsi:schemaLocation="urn:cgi:xmlns:CGI:GeoSciML:2.0 https://www.seegrid.csiro.au/subversion/GeoSciML/trunk/schema/GeoSciML/geosciml.xsd">
-<!-- cgi-iugs.org/GeoSciML/ -->
-<!-- ############# Start description of GeologicUnit class ############# -->
+<!-- =========================================  
+ Start description of GeologicUnit class 
+=========================================   -->
 <!-- GeoSciML 2.0 accepts GeologicUnit, LithologicUnit, LithostratigraphicUnit, LithodemicUnit, DeformationUnit and ChronostratigraphicUnit subtypes -->
 	<gsml:member>
 		<gsml:ChronostratigraphicUnit gml:id="id_gu01">
@@ -23,8 +24,7 @@ The XML parser ignores the text in the <![CDATA[...]]> format allowing deliverin
 <!-- gml:name is 0 to many; 
 Best Practice: use for 'standard' name used by geologists, and if source data has an identifier/primary key, include that as another name element. 
 Names in different language would be additional name element. These are differentiated using the codespace attribute. 
-Additional gml:name instances should give common names, alternatives and aliases, for this *feature*. 
--->
+Additional gml:name instances should give common names, alternatives and aliases, for this *feature*. -->
 			<gml:name codeSpace="urn:cgi:classifierScheme:GSV:GUS_Name"><![CDATA[Castlemaine Group - Lancefieldian]]></gml:name>
 			<gml:name><![CDATA[Ocl]]></gml:name>
 <!-- The codespace for Primary keys (the unique identifier for this instance of the feature) has the predetermined codespace name codeSpace="urn:ietf:rfc:2141"
@@ -42,8 +42,8 @@ This corresponds (loosely) to ISO19115 Lineage.Statement  -->
 
 <!-- gsml:occurrence specifies the MappedFeatures associated with the GeologicUnit -->
 <!-- In this example two Polygons are specified, each with an associated Shape describing the geometry -->
-			<gsml:occurrence xlink:href="id_polygon01"/>
-			<gsml:occurrence xlink:href="id_polygon02"/>
+			<gsml:occurrence xlink:href="id_mf01"/>
+			<gsml:occurrence xlink:href="id_mf02"/>
 				
 <!-- preferredAge is to indicate what the age usually shown on maps is for this GeologicUnit. 
 For ChronostratigraphicUnits this would be the same as the definedAge -->
@@ -354,11 +354,15 @@ Need someway to indicate cgs vs SI based units-->
 				</gsml:CGI_NumericRange>
 			</gsml:unitThickness>
 		</gsml:ChronostratigraphicUnit>
+<!-- =========================================  
+This is the end of the GeologicUnit
+=========================================   -->
 	</gsml:member>
 	
-	<!-- This is the GeologicVocabulary that provides the 
+	<!-- =========================================  
+This is the GeologicVocabulary that provides the 
 StratigraphicLexicon 
--->
+=========================================  -->
 	<gsml:member>
 <!-- gml:id is internal identifier for the GeologicVocabulary, just has to be unique, don't use anything that's required to have external significance -->
 		<gsml:GeologicVocabulary gml:id="id_gv01">
@@ -370,24 +374,24 @@ StratigraphicLexicon
 Done by using gml:name and gsml:identifier. -->
 					<gml:name codeSpace="urn:ietf:rfc:2141">urn:cgi:classifier:GSV:StratigraphicLexicon:EA2F6608-BBD5-4726-AFBE-346253265GFFD67</gml:name>
 					<gsml:identifier codeSpace="urn:ietf:rfc:2141">urn:cgi:classifier:GSV:StratigraphicLexicon:EA2F6608-BBD5-4726-AFBE-346253265GFFD67</gsml:identifier>
-<!-- 
-Also want to specify what the (local) name for the concept is - used gsml:name. -->
+<!-- Also want to specify what the (local) name for the concept is - used gsml:name. -->
 					<gsml:name xml:lang="en" codeSpace="urn:cgi:classifierScheme:GSV:StratigraphicLexicon">Castlemaine Group - Lancefieldian</gsml:name>
-<!-- Also want to specify an alternative name for the concept (in this case a map symbol). It can be considered an alternative name.  
--->
+<!-- Also want to specify an alternative name for the concept (in this case a map symbol). It can be considered an alternative name.  -->
 					<gsml:name xml:lang="en" codeSpace="urn:cgi:classifierScheme:GSV:StratigraphicLexicon">Ocl</gsml:name>
 					<gsml:vocabulary xlink:href="urn:cgi:classifierScheme:GSV:StratigraphicLexicon"/>
 				</gsml:ControlledConcept>
 			</gml:definitionMember>
 		</gsml:GeologicVocabulary>
-<!-- This is the end of the StratigraphicLexicon ControlledConcepts -->
+<!-- =========================================  
+This is the end of the StratigraphicLexicon ControlledConcepts 
+=========================================  -->
 	</gsml:member>
 	
-<!-- This is the GeologicVocabulary that contains the 
+<!-- =========================================  
+This is the GeologicVocabulary that contains the 
 Lithology ControlledConcept term 
--->
-	<gsml:member>
-	
+=========================================  -->
+	<gsml:member>	
 		<gsml:GeologicVocabulary gml:id="id_gv02">
 <!-- gml:name provides the unique identifier for the GeologicVocabulary --> 
 			<gml:name codeSpace="urn:ietf:rfc:2141">urn:cgi:classifierScheme:GSV:Lithology</gml:name> 
@@ -404,26 +408,27 @@ Lithology ControlledConcept term
 				</gsml:ControlledConcept>
 			</gml:definitionMember>
 			<gml:definitionMember>
-<!-- gml:id on ControlledConcept is internal document identifier, just has to be unique, don't use anything that's required to have external significance -->							
-					<gsml:ControlledConcept gml:id="id_cc03"> 
-						<gml:description> <![CDATA[a laminated, indurated rock with >67% clay sized minerals]]></gml:description>
+<!-- gml:id on ControlledConcept is internal document identifier, just has to be unique, don't use anything that's required to have external significance -->					
+				<gsml:ControlledConcept gml:id="id_cc03"> 
+					<gml:description> <![CDATA[a laminated, indurated rock with >67% clay sized minerals]]></gml:description>
 <!-- this is the GSV identifier for the concept -->
-						<gml:name codeSpace="urn:ietf:rfc:2141">urn:cgi:classifier:GSV:Lithology:UIUYG1245NN07</gml:name> 
+					<gml:name codeSpace="urn:ietf:rfc:2141">urn:cgi:classifier:GSV:Lithology:UIUYG1245NN07</gml:name> 
 <!-- the gsml:identifier attribute appears redundant -->
-						<gsml:identifier codeSpace="urn:ietf:rfc:2141">urn:cgi:classifier:GSV:Lithology:UIUYG1245NN07</gsml:identifier> 
-						<gsml:name codeSpace="urn:cgi:classifierScheme:GSV:Lithology" xml:lang="en">shale</gsml:name>
-						<gsml:vocabulary xlink:href="urn:cgi:classifierScheme:GSV:Lithology"/>
-					</gsml:ControlledConcept>
-				</gml:definitionMember>
-			</gsml:GeologicVocabulary>
-<!-- This is the end of the Lithology ControlledConcepts -->
+					<gsml:identifier codeSpace="urn:ietf:rfc:2141">urn:cgi:classifier:GSV:Lithology:UIUYG1245NN07</gsml:identifier> 
+					<gsml:name codeSpace="urn:cgi:classifierScheme:GSV:Lithology" xml:lang="en">shale</gsml:name>
+					<gsml:vocabulary xlink:href="urn:cgi:classifierScheme:GSV:Lithology"/>
+				</gsml:ControlledConcept>
+			</gml:definitionMember>
+		</gsml:GeologicVocabulary>
 	</gsml:member>
-	
-		<!-- =========================================  
-  Mapped features
+<!-- =========================================  
+This is the end of the Lithology ControlledConcepts 
+=========================================  -->
+<!-- =========================================  
+  This is the start of the Mapped features
 ========================================= -->
 	<gsml:member>
-		<gsml:MappedFeature gml:id="id_polygon01">
+		<gsml:MappedFeature gml:id="id_mf01">
 			<gsml:observationMethod>
 				<gsml:CGI_TermValue>
 					<gsml:value codeSpace="urn:cgi:classifierScheme:GSV:ObservationMethod">field mapping</gsml:value>
@@ -434,13 +439,13 @@ Lithology ControlledConcept term
 					<gsml:value codeSpace="urn:cgi:classifierScheme:GSV:PositionalAccuracy">approximate</gsml:value>
 				</gsml:CGI_TermValue>
 			</gsml:positionalAccuracy>
-			<gsml:shape xlink:href="id_shape01"/>
+			<gsml:shape xlink:href="id_polygon01"/>
 			<gsml:specification xlink:href="id_gu01"/>
 			<gsml:samplingFrame xlink:href="urn:cgi:feature:CGI:EarthNaturalSurface"/>
 		</gsml:MappedFeature>
 	</gsml:member>
 	<gsml:member>
-		<gsml:MappedFeature gml:id="id_polygon02">
+		<gsml:MappedFeature gml:id="id_mf02">
 			<gsml:observationMethod>
 				<gsml:CGI_TermValue>
 					<gsml:value codeSpace="urn:cgi:classifierScheme:GSV:ObservationMethod">field mapping</gsml:value>
@@ -451,41 +456,46 @@ Lithology ControlledConcept term
 					<gsml:value codeSpace="urn:cgi:classifierScheme:GSV:PositionalAccuracy">approximate</gsml:value>
 				</gsml:CGI_TermValue>
 			</gsml:positionalAccuracy>
-			<gsml:shape xlink:href="id_shape02"/>
+			<gsml:shape xlink:href="id_polygon02"/>
 			<gsml:specification xlink:href="id_gu01"/>
 			<gsml:samplingFrame xlink:href="urn:cgi:feature:CGI:EarthNaturalSurface"/>
 		</gsml:MappedFeature>
-<!-- This is the end of the Mapped Features -->
-	</gsml:member><!-- =========================================  
-  geometry objects for mapped feature shape
+	</gsml:member>
+<!-- =========================================  
+This is the end of the Mapped Features 
+=========================================  -->
+<!-- =========================================  
+  This is the start of the Polygon geometry objects for mapped feature shape
 ========================================= -->
 	<gsml:member>
-		<gml:Polygon gid="id_shape01" srsName="http://www.opengis.net/gml/srs/epsg.xml#4326">
+		<gml:Polygon gid="id_polygon01" srsName="http://www.opengis.net/gml/srs/epsg.xml#4326">
 			<gml:outerBoundaryIs>
 				<gml:LinearRing>
 							<gml:coordinates decimal="." cs="," ts="">
-                        141.94618067,-36.59701912
-                        141.94828905,-36.60132373 141.94951633,-36.60617081
-                        141.94651695,-36.59688031 141.94622325,-36.59700336
-                        141.94618067,-36.59701912
+                        144.348586741667,-37.3302900416666
+                        144.3470459,-37.3300251249999 144.346953441667,-37.3284951999999
+                        144.348510725,-37.3285648916666 144.348735308333,-37.3300086416666
+                        144.348586741667,-37.3302900416666
 							</gml:coordinates>
 						</gml:LinearRing>
 			</gml:outerBoundaryIs>
 		</gml:Polygon>
 	</gsml:member>
    	<gsml:member>
-     <gml:Polygon gid="id_shape02" srsName="http://www.opengis.net/gml/srs/epsg.xml#4326">
+     <gml:Polygon gid="id_polygon02" srsName="http://www.opengis.net/gml/srs/epsg.xml#4326">
             <gml:outerBoundaryIs>
                 <gml:LinearRing>
                     <gml:coordinates decimal="." cs="," ts="">
-                        141.947,-36.596
-                        141.949,-36.59 141.95,-36.59
-                        141.946,-36.596 141.9462,-36.59700
-                        141.947,-36.596
+                        144.438839516667,-37.3554113583332
+                        144.43765455,-37.3543848916666 144.438130933333,-37.3524476416666
+                        144.437768075,-37.3490136583332 144.439732566667,-37.3521408249999
+                        144.438839516667,-37.3554113583332
                     </gml:coordinates>
                 </gml:LinearRing>
             </gml:outerBoundaryIs>
           </gml:Polygon>
-<!-- This is the end of the feature geometry objects -->
 	</gsml:member>
+<!-- =========================================  
+This is the end of the feature geometry objects 
+=========================================  -->
 </gsml:GSML>
