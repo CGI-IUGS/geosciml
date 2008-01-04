@@ -10,9 +10,11 @@ xmlns:xlink="http://www.w3.org/1999/xlink"
 xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 xmlns:cgu="urn:cgi:xmlns:CGI:Utilities:1.0"
 xsi:schemaLocation="urn:cgi:xmlns:CGI:GeoSciML:2.0 https://www.seegrid.csiro.au/subversion/GeoSciML/trunk/schema/GeoSciML/geosciml.xsd">
-<!-- This instance document contains an example of a DuctileShearStructure that has two senses of movement (and therefore a preferred age and two geologicHistorys) each with a displacement plus a total displacement.
+<!-- ========================================= 
+This instance document contains an example of a DuctileShearStructure that has two senses of movement (and therefore a preferred age and two geologicHistorys) each with a displacement plus a total displacement.
 Four foliations and a Lineation are associated with the DuctileShearStructure and are associated by  GeologicFeatureRelations
-Alternatively a DeformationUnit could have been associated with the DuctileShearStructure and CompoundMaterial Fabrics, via CompositionPart, used to describe the fabrics -->
+Alternatively a DeformationUnit could have been associated with the DuctileShearStructure and CompoundMaterial Fabrics, via CompositionPart, used to describe the fabrics 
+========================================= -->
 <!-- =========================================  
  Start description of GeologicStructure::DuctileShearStructure class 
 =========================================   -->
@@ -20,44 +22,51 @@ Alternatively a DeformationUnit could have been associated with the DuctileShear
 		<gsml:DuctileShearStructure gml:id="id_gs01">
 		<gml:metaDataProperty xlink:href="urn:cgi:object:GSV:GSVCat_29725"></gml:metaDataProperty>
 		<gml:metaDataProperty xlink:href="urn:cgi:object:GSV:GSVCat_28362"></gml:metaDataProperty>
-			
-<!-- one gml:description is optional. Best Practice: any text description associated with the geologic unit (e.g. map legend description text) is included verbatim in this element.
-The XML parser ignores the text in the <![CDATA[...]]> format allowing delivering of text that the XML parser may struggle with, such as <, >, &. -->
+<!-- ========================================= 
+one gml:description is optional. Best Practice: any text description associated with the geologic unit (e.g. map legend description text) is included verbatim in this element.
+The XML parser ignores the text in the <![CDATA[...]]> format allowing delivering of text that the XML parser may struggle with, such as <, >, &. 
+========================================= -->
 			<gml:description><![CDATA[NW to NNW trending, steeply W dipping, 2 km wide zone of mylonite with both dextral and sinistral strike-slip movement, forming the eastern boundary of the Omeo Zone]]> </gml:description>
-
-<!-- gml:name is 0 to many; 
+<!-- ========================================= 
+gml:name is 0 to many; 
 Best Practice: use for 'standard' name used by geologists, and if source data has an identifier/primary key, include that as another name element. 
 Names in different language would be additional name element. These are differentiated using the codespace attribute. 
-Additional gml:name instances should give common names, alternatives and aliases, for this *feature*. -->
+Additional gml:name instances should give common names, alternatives and aliases, for this *feature*. 
+========================================= -->
 			<gml:name codeSpace="urn:cgi:classifierScheme:GSV:Structure_Name"><![CDATA[Kiewa Shear Zone]]></gml:name>
 			<gml:name><![CDATA[Kiewa Fault]]></gml:name>
-<!-- The codespace for Primary keys (the unique identifier for this instance of the feature) has the predetermined codespace name codeSpace="urn:ietf:rfc:2141"
-In GML3.2 gml:identifier will be used for the unique id.  -->
+<!-- ========================================= 
+The codespace for Primary keys (the unique identifier for this instance of the feature) has the predetermined codespace name codeSpace="urn:ietf:rfc:2141"
+In GML3.2 gml:identifier will be used for the unique id. 
+=========================================  -->
 			<gml:name codeSpace="urn:ietf:rfc:2141">urn:cgi:feature:GSV:GeoDataVicID:FB3G7719-CCE6-5837-BGCF-1744E477F1F9</gml:name>
-
-<!-- observationMethod is for term(s) that specify the method by which the value was obtained (e.g. point count, brunton compass on site, air photo interpretation, field estimate...). 
-This corresponds (loosely) to ISO19115 Lineage.Statement  -->
+<!-- ========================================= 
+observationMethod is for term(s) that specify the method by which the value was obtained (e.g. point count, brunton compass on site, air photo interpretation, field estimate...). 
+This corresponds (loosely) to ISO19115 Lineage.Statement  
+========================================= -->
 			<gsml:observationMethod>
 				<gsml:CGI_TermValue>
 					<gsml:value codeSpace="urn:cgi:classifierScheme:GSV:ObservationMethod">published description</gsml:value>
 				</gsml:CGI_TermValue>
 			</gsml:observationMethod>
 			<gsml:purpose>instance</gsml:purpose>
-
-<!-- gsml:occurrence specifies the MappedFeatures associated with the GeologicUnit -->
-<!-- In this example two Polygons are specified, each with an associated Shape describing the geometry -->
+<!-- ========================================= 
+gsml:occurrence specifies the MappedFeatures associated with the GeologicUnit -->
+<!-- In this example two Polygons are specified, each with an associated Shape describing the geometry 
+=========================================  -->
 			<gsml:occurrence xlink:href="id_mf01"/>
 			<gsml:occurrence xlink:href="id_mf02"/>
-				
 <!-- ========================================= 
 preferredAge is to indicate what the age usually shown on maps is for this GeologicStructure. 
 This Structure has two movement ages and so preferredAge is the full age range 
 ========================================= -->
 			<gsml:preferredAge>
 				<gsml:GeologicEvent>
-<!-- The eventAge attribute is the age of a particular geological event or feature expressed in terms of years before present (absolute age), 
+<!-- ========================================= 
+The eventAge attribute is the age of a particular geological event or feature expressed in terms of years before present (absolute age), 
 referred to the geological time scale, or by comparison with other geological events or features (relative age).  
-An eventAge can represent an instant in time, an interval of time, or any combination of multiple instants or intervals.  -->
+An eventAge can represent an instant in time, an interval of time, or any combination of multiple instants or intervals.
+=========================================   -->
 					<gsml:eventAge>
 						<gsml:CGI_TermRange>
 							<gsml:lower>
@@ -72,19 +81,22 @@ An eventAge can represent an instant in time, an interval of time, or any combin
 							</gsml:upper>
 						</gsml:CGI_TermRange>					
 					</gsml:eventAge>
-<!-- The physical setting within which a GeologicEvent takes place.  
+<!-- ========================================= 
+The physical setting within which a GeologicEvent takes place.  
 GeologicEnvironment is construed broadly to include physical settings on the Earth surface specified by climate, tectonics, physiography or geography, 
 and settings in the Earth’s interior specified by pressure, temperature, chemical environment, or tectonics. 
-Specification of setting may be a simple text description or a link to a complex description.  -->
+Specification of setting may be a simple text description or a link to a complex description.  
+========================================= -->
 					<gsml:eventEnvironment>
 						<gsml:CGI_TermValue>
 							<gsml:value codeSpace="urn:cgi:classifierScheme:GSV:FormationEnvironment">shear zone</gsml:value>
 						</gsml:CGI_TermValue>
 					</gsml:eventEnvironment>
-<!-- An eventProcess is a function, possibly complex, that acts on one geologic entity to produce another geologic entity at a later time. 
+<!-- ========================================= 
+An eventProcess is a function, possibly complex, that acts on one geologic entity to produce another geologic entity at a later time. 
 EventProcess is time independent; some EventProcesses are presently observable in the world or in the laboratory, 
 others can only be inferred from observing the results of the process. 
- -->
+ ========================================= -->
 					<gsml:eventProcess>
 						<gsml:CGI_TermValue>
 							<gsml:value codeSpace="urn:cgi:classifierScheme:GSV:GeologicalProcess">brittle-ductile deformation</gsml:value>
@@ -92,7 +104,6 @@ others can only be inferred from observing the results of the process.
 					</gsml:eventProcess>
 				</gsml:GeologicEvent>
 			</gsml:preferredAge>
-
 <!-- ========================================= 
 GeologicHistory is intended to allow associations of multiple GeologicEvents to a GeologicFeature to describe the geologic history of the feature -->
 <!-- Although the ordering of these is important, GeoSciML v2 does not allow this ordering to be specified 
@@ -223,6 +234,10 @@ This is the start of the GeologicFeatureRelations that link the Foliations and L
 			<gsml:sourceLink>
 				<gsml:GeologicFeatureRelation>
 					<gsml:relationship codeSpace="urn:cgi:classifierScheme:GSV:SpatialRelationships">containing</gsml:relationship>
+<!-- ========================================= 
+If the target is a Feature that can be delivered independent of the ShearDisplacementStructure then instead of xlink:href to the gml:id of the target (as shown here), 
+the gsml:Foliation tag within the gsml:target tag can be used to specify the urn:ietf:rfc:2141 compatible unique identifier via gml:name
+=========================================  -->
 					<gsml:target xlink:href="id_foliation01"></gsml:target>
 					<gsml:source xlink:href="id_gs01"></gsml:source>
 				</gsml:GeologicFeatureRelation>
@@ -538,7 +553,7 @@ This is the end of the ControlledConcepts
 		<gsml:MappedFeature gml:id="id_mf01">
 			<gsml:observationMethod>
 				<gsml:CGI_TermValue>
-					<gsml:value codeSpace="urn:cgi:classifierScheme:GSV:ObservationMethod">field mapping</gsml:value>
+					<gsml:value codeSpace="urn:cgi:classifierScheme:GSV:ObservationMethod">field observation</gsml:value>
 				</gsml:CGI_TermValue>
 			</gsml:observationMethod>
 			<gsml:positionalAccuracy>
@@ -555,7 +570,7 @@ This is the end of the ControlledConcepts
 		<gsml:MappedFeature gml:id="id_mf02">
 			<gsml:observationMethod>
 				<gsml:CGI_TermValue>
-					<gsml:value codeSpace="urn:cgi:classifierScheme:GSV:ObservationMethod">field mapping</gsml:value>
+					<gsml:value codeSpace="urn:cgi:classifierScheme:GSV:ObservationMethod">field observation</gsml:value>
 				</gsml:CGI_TermValue>
 			</gsml:observationMethod>
 			<gsml:positionalAccuracy>
