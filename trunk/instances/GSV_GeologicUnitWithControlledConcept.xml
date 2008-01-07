@@ -29,13 +29,13 @@ Best Practice: use for 'standard' name used by geologists, and if source data ha
 Names in different language would be additional name element. These are differentiated using the codespace attribute. 
 Additional gml:name instances should give common names, alternatives and aliases, for this *feature*. 
 ========================================= -->
-			<gml:name codeSpace="urn:cgi:classifierScheme:GSV:GUS_Name"><![CDATA[Castlemaine Group - Lancefieldian]]></gml:name>
+			<gml:name codeSpace="urn:cgi:classifierScheme:GSV:GeoDataVic_Name"><![CDATA[Castlemaine Group - Lancefieldian]]></gml:name>
 			<gml:name><![CDATA[Ocl]]></gml:name>
 <!-- ========================================= 
 The codespace for Primary keys (the unique identifier for this instance of the feature) has the predetermined codespace name codeSpace="urn:ietf:rfc:2141"
 In GML3.2 gml:identifier will be used for the unique id. 
 =========================================  -->
-			<gml:name codeSpace="urn:ietf:rfc:2141">urn:cgi:feature:GSV:GeoDataVicID:EA2F6608-BBD5-4726-AFBE-1633D366E0E8</gml:name>
+			<gml:name codeSpace="urn:ietf:rfc:2141">urn:cgi:feature:GSV:GeoDataVic_ID:EA2F6608-BBD5-4726-AFBE-1633D366E0E8</gml:name>
 <!-- ========================================= 
 observationMethod is for term(s) that specify the method by which the value was obtained (e.g. point count, brunton compass on site, air photo interpretation, field estimate...). 
 This corresponds (loosely) to ISO19115 Lineage.Statement  
@@ -179,7 +179,7 @@ Using gml:name seems to be the only way to reference the external unique identif
 ========================================= -->
 					<gsml:target>
 						<gsml:LithostratigraphicUnit>
-						<gml:name codeSpace="urn:ietf:rfc:2141">urn:cgi:feature:GSV:GeoDataVicID:EA2F6608-BBD5-4726-AFBE-1633D366E0E7</gml:name>
+						<gml:name codeSpace="urn:ietf:rfc:2141">urn:cgi:feature:GSV:GeoDataVic_ID:EA2F6608-BBD5-4726-AFBE-1633D366E0E7</gml:name>
 <!-- ========================================= 
 Specifying the FeatureType (eg LithodemicUnit is the only way to allow a gml:name and thereby specify the unique identifier.
 However, this then requires the observationMethod and purpose of the Feature to be specified
@@ -214,7 +214,7 @@ CGI_TermValue 0..1
  ========================================= -->
 			<gsml:compositionCategory>
 				<gsml:CGI_TermValue>
-					<gsml:value codeSpace="urn:cgi:classifierScheme:CGI:NullValues">null [unspecified]</gsml:value>
+					<gsml:value codeSpace="urn:cgi:classifierScheme:CGI:NullValue">null [unspecified]</gsml:value>
 				</gsml:CGI_TermValue>
 			</gsml:compositionCategory>
 <!-- ========================================= 
@@ -251,7 +251,7 @@ these represent descriptions of gsml:valuea lithologic constituent specific to t
 =========================================  -->
 			<gsml:composition>
 				<gsml:CompositionPart>
-					<gsml:role  codeSpace="urn:cgi:classifierScheme:GSV:Roles">part of</gsml:role>
+					<gsml:role  codeSpace="urn:cgi:classifierScheme:GSV:ComponentRole">part of</gsml:role>
 <!-- ========================================= 
 lithology from controlled vocabulary is required 1..* -->
 <!-- Best Practice: Lithology ControlledConcepts should be defined in a separate vocabulary document that includes the prototype GeologicEntity instances. -->
@@ -274,7 +274,7 @@ proportion is specified by an element that substitutes for CGI_TermValue.
 			</gsml:composition>
 			<gsml:composition>
 				<gsml:CompositionPart>
-					<gsml:role codeSpace="urn:cgi:classifierScheme:GSV:Roles">part of</gsml:role>
+					<gsml:role codeSpace="urn:cgi:classifierScheme:GSV:ComponentRole">part of</gsml:role>
 					<gsml:lithology xlink:href="id_cc03"/>
 					<gsml:proportion>
 						<gsml:CGI_TermValue>
@@ -295,7 +295,7 @@ Terms specifying. metamorphicFacies, metamorphicGrade, peakPressureValue, peakTe
 The role, proportion and full descriptions of the GeologicalUnits that form parts of this unit can be specified here
 =========================================  -->
 				<gsml:GeologicUnitPart>
-					<gsml:role codeSpace="urn:cgi:classifierScheme:GSV:Roles">member</gsml:role>
+					<gsml:role codeSpace="urn:cgi:classifierScheme:GSV:GeologicalUnitPartRole">member</gsml:role>
 					<gsml:proportion>
 						<gsml:CGI_NumericRange>
 							<gsml:lower>
@@ -317,7 +317,7 @@ The role, proportion and full descriptions of the GeologicalUnits that form part
 The GeologicalUnit that is part of this unit can be specified here -->
 <!-- The unit part can be specified by xlink:href, as per this example, or the complete description of the unit part can be included in-line 
 ========================================= -->
-					<gsml:containedUnit xlink:href="urn:cgi:feature:GSV:GeoDataVicID:EA2F6608-BBD5-4726-AFBE-1633D366E0E1"></gsml:containedUnit>
+					<gsml:containedUnit xlink:href="urn:cgi:feature:GSV:GeoDataVic_ID:EA2F6608-BBD5-4726-AFBE-1633D366E0E1"></gsml:containedUnit>
 				</gsml:GeologicUnitPart>
 			</gsml:part>
 <!-- ========================================= 
