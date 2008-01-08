@@ -1,0 +1,30 @@
+Step 1: Extract contents of cgi-basic-catalog-resources.zip to a directory (from here on refered to as <CATALOG_HOME>
+
+Step 2: Copy the "catalog.xml" file from this directory to <CATALOG_HOME>
+
+Step 3: Copy the "GeoSciML", "GeoTime" and "Utilities" folders from this directory to a new directory called <CATALOG_HOME>/cgi-iugs.org/ (you will need to create this directory).
+
+Step 4: Use <CATALOG_HOME>/catalog.xml as the OASIS XML Catalog to validate GeoSciML documents with.
+
+
+
+
+Tool Specific intepretations of "Step 4": (Please add for your editor)
+
+Oxygen (Versions 8.x or Later)
+============================================
+Go to Options | Preferences | XML Catalog
+    (1) Set Prefer system (rather than public)
+    (2) Click "New" button and set the <CATALOG_HOME>/catalog.xml file as the catalog.
+
+
+Stylus Studio
+============================================
+(TODO)
+
+Altova XMLSpy
+============================================
+
+Untick'Read-only' permission on Altova/XMLSpy2008/RootCatalog.xml file properties
+Add following line to RootCatalog.xml:
+<nextCatalog catalog="<CATALOG_HOME>/catalog.xml"/> before line </catalog>
