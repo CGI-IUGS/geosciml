@@ -1,0 +1,237 @@
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en">
+    <head>
+        <title>GML Application Schema Class Details - EarthMaterial</title>
+        <meta http-equiv="Content-type" content="text/html;charset=UTF-8"/>
+        <link href="../../default.css" rel="stylesheet" type="text/css"/>
+    </head>
+    <body class="section-3">
+        <div id="header">
+            <div align="left">
+                <img src="../../gas-banner.jpg" alt="GML Application Schema API Specification" width="1000" height="59"/>
+            </div>
+            <ul id="menu">
+                <li id="nav-1">
+                    <a href="../../overview-summary.html">Overview</a>
+                </li>
+                <li id="nav-2">
+                    <a href="package-summary.html">Package</a>
+                </li>
+                <li id="nav-3">
+                    <a href="EarthMaterial.html">Class</a>
+                </li>
+                <li id="nav-4">
+                    <a href="../../help-doc.html">Help</a>
+                </li>
+            </ul>
+        </div>
+        <div id="main">
+            <h1 class="first">
+				Class <tt>&lt;&lt;Type&gt;&gt; <i>EarthMaterial</i>
+                </tt>
+            </h1>
+            <p>The Earth Material class holds a description of a naturally occurring substance in the Earth.  Earth Material represents material composition or substance, and is thus independent of quantity or location. Ideally, Earth Materials are defined strictly based on physical properties, but because of standard geological usage, genetic interpretations may enter into the description as well. </p><!-- Create a list of known local subclasses, if there are any -->
+            <b>Local Subclasses:</b>
+            <i>
+                <a href="CompoundMaterial.html">CompoundMaterial</a>
+            </i>
+            <a href="InorganicFluid.html">InorganicFluid</a>
+            <a href="Mineral.html">Mineral</a>
+            <a href="OrganicMaterial.html">OrganicMaterial</a><!-- Create a table to list class attributes, if there are any -->
+            <h2>Attributes</h2>
+            <table width="95%" class="details"><!-- Column 1: Name -->
+                <th>Name</th><!-- Column 2: Type -->
+                <th>Type</th><!-- Column 3: Lower Bound -->
+                <th>Lower Bound</th><!-- Column 4: Upper Bound -->
+                <th>Upper Bound</th><!-- Column 5: Sequence Number -->
+                <th>Sequence Number</th><!-- Column 6: From Class -->
+                <th>From Class</th><!-- Column 7: Notes-->
+                <th>Notes</th>
+                <tr><!-- Column 1: Name -->
+                    <td>
+                        <b>color</b>
+                    </td><!-- Column 2: Type -->
+                    <td>
+                        <a href="../CGI_Value/CGI_TermValue.html">CGI_TermValue</a>
+                    </td><!-- Column 3: Lower Bound -->
+                    <td>0</td><!-- Column 4: Upper Bound -->
+                    <td>*</td><!-- Column 5: Sequence Number -->
+                    <td>2</td><!-- Column 6: From Class -->
+                    <td>EarthMaterial</td><!-- Column 7: Notes -->
+                    <td>Terms to specify color of the earth material.  Color schemes such as the Munsell rock and soil color schemes could be used.</td>
+                </tr>
+                <tr><!-- Column 1: Name -->
+                    <td>
+                        <b>purpose</b>
+                    </td><!-- Column 2: Type -->
+                    <td>
+                        <a href="../GeologicFeature/DescriptionPurpose.html">DescriptionPurpose</a>
+                    </td><!-- Column 3: Lower Bound -->
+                    <td>1</td><!-- Column 4: Upper Bound -->
+                    <td>1</td><!-- Column 5: Sequence Number -->
+                    <td>3</td><!-- Column 6: From Class -->
+                    <td>EarthMaterial</td><!-- Column 7: Notes -->
+                    <td>Specification of the intended purpose/level of abstraction for the given EarthMaterial. Scoped name because intention is asserted by author of the data instance. 
+Values: Instance, TypicalNorm, IdentifyingNorm.</td>
+                </tr>
+            </table>
+			&#160;
+			<!-- Create a table to list class associations, if there are any -->
+            <h2>Outbound Associations</h2>
+            <table width="95%" class="details"><!-- Column 1: Name -->
+                <th>Name</th><!-- Column 2: Type -->
+                <th>Type</th><!-- Column 3: Lower Bound -->
+                <th>Lower Bound</th><!-- Column 4: Upper Bound -->
+                <th>Upper Bound</th><!-- Column 5: Sequence Number -->
+                <th>Sequence Number</th><!-- Column 6: From Class -->
+                <th>From Class</th><!-- Column 7: Notes-->
+                <th>Notes</th>
+                <tr><!-- Column 1: Name -->
+                    <td>
+                        <b>metadata</b>
+                    </td><!-- Column 2: Type -->
+                    <td>MD_Metadata</td><!-- Column 3: Lower Bound -->
+                    <td>0</td><!-- Column 4: Upper Bound -->
+                    <td>1</td><!-- Column 5: Sequence Number -->
+                    <td/><!-- Column 6: From Class -->
+                    <td>EarthMaterial</td><!-- Column 7: Notes -->
+                    <td/>
+                </tr>
+            </table>
+			&#160;
+			<!-- Create a table to list class constraints, if there are any -->
+            <h2>Constraints</h2>
+            <table width="95%" class="details"><!-- Column 1: Constraint -->
+                <th>Constraint</th><!-- Column 2: Type -->
+                <th>Type</th><!-- Column 3: Status -->
+                <th>Status</th><!-- Column 4: Weight -->
+                <th>Weight</th>
+                <tr><!-- Column 1: Constraint -->
+                    <td>self.metadata.hierarchyLevel=feature</td><!-- Column 2: Type -->
+                    <td>Invariant</td><!-- Column 3: Status -->
+                    <td>Approved</td><!-- Column 4: Weight -->
+                    <td>0.00</td>
+                </tr>
+            </table>
+			&#160;
+			<!-- Create a table to list class tagged values, if there are any -->
+            <h2>Tagged Values</h2>
+            <table width="95%" class="details"><!-- Column 1: Tag -->
+                <th>Tag</th><!-- Column 2: Value -->
+                <th>Value</th><!-- Column 3: Notes -->
+                <th>Notes</th>
+                <tr><!-- Column 1: Tag -->
+                    <td>byValuePropertyType</td><!-- Column 2: Value -->
+                    <td>false</td><!-- Column 3: Notes -->
+                    <td>Values: true | false<br/>Default: false<br/>Description: enforce the 'by value' property pattern without xlinks<br/>
+                    </td>
+                </tr>
+                <tr><!-- Column 1: Tag -->
+                    <td>documentation</td><!-- Column 2: Value -->
+                    <td/><!-- Column 3: Notes -->
+                    <td>Description: Normative documentation association with this element<br/>
+                    </td>
+                </tr>
+                <tr><!-- Column 1: Tag -->
+                    <td>hasXmlLang</td><!-- Column 2: Value -->
+                    <td>false</td><!-- Column 3: Notes -->
+                    <td>Values: true | false<br/>Default: false<br/>Description: axml attribute xml:lang shall be generated for the type representing the class<br/>
+                    </td>
+                </tr>
+                <tr><!-- Column 1: Tag -->
+                    <td>noPropertyType</td><!-- Column 2: Value -->
+                    <td>false</td><!-- Column 3: Notes -->
+                    <td>Values: true | false<br/>Default: false<br/>Description: suppress automatic creation of *PropertyType complexType<br/>
+                    </td>
+                </tr>
+                <tr><!-- Column 1: Tag -->
+                    <td>xsdCanonicalElement</td><!-- Column 2: Value -->
+                    <td/><!-- Column 3: Notes -->
+                    <td>Description: no element shall be generated for the class, but the given type or element referenced<br/>
+                    </td>
+                </tr>
+                <tr><!-- Column 1: Tag -->
+                    <td>xsdCanonicalPropertyGroup</td><!-- Column 2: Value -->
+                    <td/><!-- Column 3: Notes -->
+                    <td>Description: group to be referenced if the class is used as a type of a property<br/>
+                    </td>
+                </tr>
+                <tr><!-- Column 1: Tag -->
+                    <td>xsdCanonicalPropertyType</td><!-- Column 2: Value -->
+                    <td/><!-- Column 3: Notes -->
+                    <td>Description: type to be referenced if the class is used as a type of a property<br/>
+                    </td>
+                </tr>
+                <tr><!-- Column 1: Tag -->
+                    <td>xsdCanonicalType</td><!-- Column 2: Value -->
+                    <td/><!-- Column 3: Notes -->
+                    <td>Description: no type shall be generated for the class, but the given type or element referenced<br/>
+                    </td>
+                </tr>
+                <tr><!-- Column 1: Tag -->
+                    <td>xsdDerivation</td><!-- Column 2: Value -->
+                    <td>true</td><!-- Column 3: Notes -->
+                    <td>Values: true | false<br/>Default: true<br/>Description: class implemented as new type + element, or by applying constraints only<br/>
+                    </td>
+                </tr>
+                <tr><!-- Column 1: Tag -->
+                    <td>xsdName</td><!-- Column 2: Value -->
+                    <td/><!-- Column 3: Notes -->
+                    <td>Description: value to be used for the schema conversion instead of the UML name<br/>
+                    </td>
+                </tr>
+            </table>
+			&#160;
+			<h2>XML Implementation Details</h2>
+            <table width="95%" border="0">
+                <td>
+                    <pre>&lt;xs:element xmlns:xs="http://www.w3.org/2001/XMLSchema" abstract="true" name="EarthMaterial" substitutionGroup="gml:_GML" type="gsml:EarthMaterialType"&gt;
+    &lt;xs:annotation&gt;
+        &lt;xs:documentation&gt;The Earth Material class holds a description of a naturally occurring substance in the Earth.  Earth Material represents material composition or substance, and is thus independent of quantity or location. Ideally, Earth Materials are defined strictly based on physical properties, but because of standard geological usage, genetic interpretations may enter into the description as well.&lt;/xs:documentation&gt;
+    &lt;/xs:annotation&gt;
+&lt;/xs:element&gt;</pre>
+                    <pre>&lt;xs:complexType xmlns:xs="http://www.w3.org/2001/XMLSchema" abstract="true" name="EarthMaterialType"&gt;
+    &lt;xs:complexContent&gt;
+        &lt;xs:extension base="gml:AbstractGMLType"&gt;
+            &lt;xs:sequence&gt;
+                &lt;xs:element maxOccurs="unbounded" minOccurs="0" name="color" type="gsml:CGI_TermValuePropertyType"&gt;
+                    &lt;xs:annotation&gt;
+                        &lt;xs:documentation&gt;Terms to specify color of the earth material.  Color schemes such as the Munsell rock and soil color schemes could be used.&lt;/xs:documentation&gt;
+                    &lt;/xs:annotation&gt;
+                &lt;/xs:element&gt;
+                &lt;xs:element name="purpose" type="gsml:DescriptionPurposeType"&gt;
+                    &lt;xs:annotation&gt;
+                        &lt;xs:documentation&gt;Specification of the intended purpose/level of abstraction for the given EarthMaterial. Scoped name because intention is asserted by author of the data instance. 
+Values: Instance, TypicalNorm, IdentifyingNorm.&lt;/xs:documentation&gt;
+                    &lt;/xs:annotation&gt;
+                &lt;/xs:element&gt;
+                &lt;xs:element maxOccurs="1" minOccurs="0" name="metadata" type="gsml:MetadataPropertyType"/&gt;
+            &lt;/xs:sequence&gt;
+        &lt;/xs:extension&gt;
+    &lt;/xs:complexContent&gt;
+&lt;/xs:complexType&gt;</pre>
+                    <pre>&lt;xs:complexType xmlns:xs="http://www.w3.org/2001/XMLSchema" name="EarthMaterialPropertyType"&gt;
+    &lt;xs:sequence minOccurs="0"&gt;
+        &lt;xs:element ref="gsml:EarthMaterial"/&gt;
+    &lt;/xs:sequence&gt;
+    &lt;xs:attributeGroup ref="gml:AssociationAttributeGroup"/&gt;
+&lt;/xs:complexType&gt;</pre>
+                </td>
+            </table>&#160;</div>
+        <div class="clearing">&#160;</div>
+        <div id="footer">
+            <hr class="first"/>
+            <p class="panel">For more information about GML Application Schema
+    		             development refer to:<br/>
+                <a href="https://www.seegrid.csiro.au/twiki/bin/view/AppSchemas/UmlGml">
+    		UML models of GML Application Schemas</a>
+            </p>
+            <p class="panel">For more general information about GML refer to:<br/>
+                <a href="http://www.opengis.net/gml/">GML - the Geography Markup Language</a>
+            </p>
+            <p class="panel">The document set was auto-generated at 2008-01-10T11:39+09:00<br/>
+    	                 using FullMoon - A processing framework for transforming XML models
+    	</p>
+            <p/>
+        </div>
+    </body>
+</html>
