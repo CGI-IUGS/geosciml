@@ -1,1 +1,0 @@
-This directory is for testing the latest complex features version of GeoServer's ability to deliver GeoSciML.
