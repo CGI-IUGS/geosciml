@@ -1,0 +1,228 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--Example of Earth Material vocabulary from BGS Rock Classification System.-->
+<GSML xmlns="urn:cgi:xmlns:CGI:GeoSciML:2.0" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:gml="http://www.opengis.net/gml" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="
+	urn:cgi:xmlns:CGI:GeoSciML:2.0	https://www.seegrid.csiro.au/subversion/GeoSciML/trunk/schema/GeoSciML/geosciml.xsd
+">
+	<member>
+		<GeologicVocabulary gml:id="RCS">
+			<gml:name>BGS Rock Classification System</gml:name>
+			<member>
+				<ControlledConcept gml:id="ROCK1">
+					<preferredName>METAMORPHIC ROCKS</preferredName>
+					<prototype>
+						<EarthMaterial>				
+							<Rock>
+								<geneticCategory>
+									<CGI_TermValue>
+										<value codeSpace="http://www.bgs.ac.uk/geneticCatTerms">METAMORPHIC</value>
+									</CGI_TermValue>
+								</geneticCategory>
+								<consolidationDegree>
+									<CGI_TermValue>
+										<value codeSpace="http://www.bgs.ac.uk/consolidationTerms">INDURATED</value>
+									</CGI_TermValue>
+								</consolidationDegree>
+								<?This is circular - lithology should be non-mandatory for Earth Material norms?>
+								<lithology>
+									<ControlledConcept>
+										<preferredName>METAMORPHIC ROCKS</preferredName>
+										<vocabulary xlink:href="#RCS" />
+									</ControlledConcept>
+								</lithology>
+							</Rock>
+						</EarthMaterial>
+					</prototype>
+					<vocabulary xlink:href="#RCS"/>
+				</ControlledConcept>
+			</member>
+			<member>
+				<ControlledConcept gml:id="ROCK2">
+					<preferredName>METASEDIMENT</preferredName>
+					<prototype>
+						<EarthMaterial>
+							<Rock>
+								<geneticCategory>
+									<CGI_TermValue>
+										<value codeSpace="http://www.bgs.ac.uk/geneticCatTerms">METAMORPHIC</value>
+									</CGI_TermValue>
+								</geneticCategory>
+								<consolidationDegree>
+									<CGI_TermValue>
+										<value codeSpace="http://www.bgs.ac.uk/consolidationTerms">INDURATED</value>
+									</CGI_TermValue>
+								</consolidationDegree>
+								<?This is circular - lithology should be non-mandatory for Earth Material norms?>
+								<lithology>
+									<ControlledConcept>
+										<preferredName>METASEDIMENT</preferredName>
+										<vocabulary xlink:href="#RCS" />
+									</ControlledConcept>
+								</lithology>
+							</Rock>
+						</EarthMaterial>
+					</prototype>
+					<vocabulary xlink:href="#RCS"/>
+				</ControlledConcept>
+			</member>
+			<member>
+				<VocabRelation gml:id="ROCKRELATION1">
+					<gml:name>METAMORPHIC ROCKS BROADER THAN METASEDIMENT</gml:name>
+					<role codeSpace="http://www.bgs.ac.uk/VocabRoleTerms">BROADER THAN</role>
+					<target xlink:href="#ROCK2"/>
+					<source xlink:href="#ROCK1"/>
+					<vocabulary xlink:href="#RCS"/>
+				</VocabRelation>
+			</member>
+			<member>
+				<ControlledConcept gml:id="ROCK3">
+					<preferredName>METALIMESTONE</preferredName>
+					<prototype>
+						<EarthMaterial>
+							<Rock>
+								<compositionCategory>
+									<CGI_TermValue>
+										<value codeSpace="http://www.bgs.ac.uk/compositionClassTerms">CARBONATE</value>
+									</CGI_TermValue>
+								</compositionCategory>
+								<geneticCategory>
+									<CGI_TermValue>
+										<value codeSpace="http://www.bgs.ac.uk/geneticCatTerms">METAMORPHIC</value>
+									</CGI_TermValue>
+								</geneticCategory>
+								<consolidationDegree>
+									<CGI_TermValue>
+										<value codeSpace="http://www.bgs.ac.uk/consolidationVocab">INDURATED</value>
+									</CGI_TermValue>
+								</consolidationDegree>
+								<?This is circular - lithology should be non-mandatory for Earth Material norms?>
+								<lithology>
+									<ControlledConcept>
+										<preferredName>METALIMESTONE</preferredName>
+										<vocabulary xlink:href="#RCS" />
+									</ControlledConcept>
+								</lithology>
+							</Rock>
+						</EarthMaterial>
+					</prototype>
+					<vocabulary xlink:href="#RCS"/>
+				</ControlledConcept>
+			</member>
+			<member>
+				<VocabRelation gml:id="ROCKRELATION2">
+					<gml:name>METASEDIMENT BROADER THAN METALIMESTONE</gml:name>
+					<role codeSpace="http://www.bgs.ac.uk/VocabRoleTerms">BROADER THAN</role>
+					<target xlink:href="#ROCK3"/>
+					<source xlink:href="#ROCK2"/>
+					<vocabulary xlink:href="#RCS"/>
+				</VocabRelation>
+			</member>
+			<member>
+				<ControlledConcept gml:id="ROCK4">
+					<preferredName>CALCSILICATE ROCK</preferredName>
+					<prototype>
+						<EarthMaterial>
+							<Rock>
+								<compositionCategory>
+									<CGI_TermValue>
+										<value codeSpace="http://www.bgs.ac.uk/compositionClassTerms">CALCSILICATE</value>
+									</CGI_TermValue>
+								</compositionCategory>
+								<geneticCategory>
+									<CGI_TermValue>
+										<value codeSpace="http://www.bgs.ac.uk/geneticCatTerms">METAMORPHIC</value>
+									</CGI_TermValue>
+								</geneticCategory>
+								<consolidationDegree>
+									<CGI_TermValue>
+										<value codeSpace="http://www.bgs.ac.uk/consolidationTerms">INDURATED</value>
+									</CGI_TermValue>
+								</consolidationDegree>
+								<?This is circular - lithology should be non-mandatory for Earth Material norms?>
+								<lithology>
+									<ControlledConcept>
+										<preferredName>CALCSILICATE ROCK</preferredName>
+										<vocabulary xlink:href="#RCS" />
+									</ControlledConcept>
+								</lithology>
+							</Rock>
+						</EarthMaterial>
+					</prototype>
+					<vocabulary xlink:href="#RCS"/>
+				</ControlledConcept>
+			</member>
+			<member>
+				<VocabRelation gml:id="ROCKRELATION3">
+					<gml:name>METASEDIMENT BROADER THAN CALCSILICATE ROCK</gml:name>
+					<role codeSpace="http://www.bgs.ac.uk/VocabRoleTerms">BROADER THAN</role>
+					<target xlink:href="#ROCK4"/>
+					<source xlink:href="#ROCK2"/>
+					<vocabulary xlink:href="#RCS"/>
+				</VocabRelation>
+			</member>
+			<member>
+				<ControlledConcept gml:id="COMPOSITEROCK1">
+					<preferredName>METALIMESTONE WITH BANDS OF CALCSILICATE ROCK</preferredName>
+					<prototype>
+						<EarthMaterial>
+							<CompoundMaterial>
+								<geneticCategory>
+									<CGI_TermValue>
+										<value codeSpace="http://www.bgs.ac.uk/geneticCatTerms">METAMORPHIC</value>
+									</CGI_TermValue>
+								</geneticCategory>
+								<MaterialRelation>
+									<relationship codeSpace="http://www.bgs.ac.uk/relationTerms">INCLUDES BANDS OF</relationship>
+									<source>
+										<ConstituentPart>
+											<proportion>
+												<CGI_TermValue>
+													<value codeSpace="http://www.bgs.ac.uk/proportionTerms">MAIN LITHOLOGY</value>
+												</CGI_TermValue>
+											</proportion>
+											<role codeSpace="http://www.bgs.ac.uk/constituentRoleTerms">CONTAINS BANDS</role>
+											<material>
+												<EarthMaterial> 
+													<Rock>
+														<consolidationDegree>
+															<CGI_TermValue>
+																<value codeSpace="http://www.bgs.ac.uk/consolidationTerms">INDURATED</value>
+															</CGI_TermValue>
+														</consolidationDegree>
+														<lithology xlink:href="#ROCK3"/>
+													</Rock>
+												</EarthMaterial>
+											</material>
+										</ConstituentPart>
+									</source>
+									<target>
+										<ConstituentPart>
+											<proportion>
+												<CGI_TermValue>
+													<value codeSpace="http://www.bgs.ac.uk/proportionTerms">SUBSIDIARY LITHOLOGY</value>
+												</CGI_TermValue>
+											</proportion>
+											<role codeSpace="http://www.bgs.ac.uk/constituentRoleTerms">FORMS BANDS</role>
+											<material>
+												<EarthMaterial>
+													<Rock>
+														<consolidationDegree>
+															<CGI_TermValue>
+																<value codeSpace="http://www.bgs.ac.uk/consolidationTerms">INDURATED</value>
+															</CGI_TermValue>
+														</consolidationDegree>
+														<lithology xlink:href="#ROCK4"/>
+													</Rock>
+												</EarthMaterial>
+											</material>
+										</ConstituentPart>
+									</target>
+								</MaterialRelation>
+							</CompoundMaterial>
+						</EarthMaterial>
+					</prototype>
+					<vocabulary xlink:href="#RCS"/>
+				</ControlledConcept>
+			</member>
+		</GeologicVocabulary>
+	</member>
+</GSML>
