@@ -1,9 +1,9 @@
 <?xml version="1.0"?>
-<gsml:GSML xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:gsml="http://www.cgi-iugs.org/xml/GeoSciML/2" xmlns:gml="http://www.opengis.net/gml" xmlns:swe="http://www.opengis.net/swe/1.0" xmlns:om="http://www.opengis.net/om/1.0" xmlns:sa="http://www.opengis.net/sampling/1.0" xmlns:cv="http://www.opengis.net/cv/0.2" xmlns:geox="http://www.opengis.net/geomExt/0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="
-	http://www.cgi-iugs.org/xml/GeoSciML/2	http://www.cgi-iugs.org/xml/GeoSciML/2/geosciml.xsd
+<gsml:GSML xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:gsml="urn:cgi:xmlns:CGI:GeoSciML:2.0" xmlns:gml="http://www.opengis.net/gml" xmlns:swe="http://www.opengis.net/swe/1.0.1" xmlns:om="http://www.opengis.net/om/1.0" xmlns:sa="http://www.opengis.net/sampling/1.0" xmlns:cv="http://www.opengis.net/cv/0.2.1" xmlns:geox="http://www.opengis.net/geomExt/0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="
+	urn:cgi:xmlns:CGI:GeoSciML:2.0 https://www.seegrid.csiro.au/subversion/GeoSciML/trunk/schema/GeoSciML/geosciml.xsd
 	http://www.opengis.net/gml 		http://schemas.opengis.net/gml/3.1.1/base/gml.xsd
-	http://www.opengis.net/swe/1.0		http://schemas.opengis.net/swe/1.0.0/swe.xsd 
-	http://www.opengis.net/cv/0.2 		http://schemas.opengis.net/cv/0.2.0/cv.xsd 
+	http://www.opengis.net/swe/1.0.1		http://schemas.opengis.net/sweCommon/1.0.1/swe.xsd 
+	http://www.opengis.net/cv/0.2.1 		http://bp.schemas.opengis.net/06-188r1/cv/0.2.1/cv.xsd 
 	http://www.opengis.net/om/1.0 		http://schemas.opengis.net/om/1.0.0/om.xsd 
 	http://www.opengis.net/sampling/1.0 	http://schemas.opengis.net/sampling/1.0.0/sampling.xsd">
 	<gml:description>Sketch of how to do a lithological log as a MappedFeature collection
@@ -27,18 +27,19 @@ Compare with Borehole1_samplingCurveWithObservations.xml</gml:description>
 	</gsml:member>
 	<gsml:member>
 			<gsml:MappedFeature gml:id="interval1">
+				<gsml:observationMethod>
+					<gsml:CGI_TermValue>
+						<gsml:value codeSpace=""></gsml:value>
+					</gsml:CGI_TermValue>
+				</gsml:observationMethod>
 				<gsml:positionalAccuracy>
 					<gsml:CGI_NumericValue>
 						<gsml:qualifier>nil:missing</gsml:qualifier>
 						<gsml:principalValue uom="#m">0</gsml:principalValue>
 					</gsml:CGI_NumericValue>
 				</gsml:positionalAccuracy>
-				<gsml:observationMethod>
-					<gsml:CGI_TermValue>
-						<gsml:value codeSpace=""></gsml:value>
-					</gsml:CGI_TermValue>
-				</gsml:observationMethod>
 				<gsml:samplingFrame xlink:href="#b1"/>
+				<gsml:specification xlink:href="http://www.ga.gov.au/stratlex/fg567"/>
 				<gsml:shape>
 					<gml:LineString srsName="#b1_ls1" srsDimension="1">
 						<!-- positions given in 1D CRS defined by borehole shape -->
@@ -46,24 +47,24 @@ Compare with Borehole1_samplingCurveWithObservations.xml</gml:description>
 						<gml:pos>5.6</gml:pos>
 					</gml:LineString>
 				</gsml:shape>
-				<gsml:specification xlink:href="http://www.ga.gov.au/stratlex/fg567"/>
 			</gsml:MappedFeature>
 	</gsml:member>
 	<gsml:member>
 			<gsml:MappedFeature>
-				<gsml:positionalAccuracy>
-					<gsml:CGI_NumericValue>
-						<gsml:qualifier>nil:missing</gsml:qualifier>
-						<gsml:principalValue uom="#m">0</gsml:principalValue>
-					</gsml:CGI_NumericValue>
-				</gsml:positionalAccuracy>
 				<gsml:observationMethod>
 					<gsml:CGI_TermValue>
 						<gsml:value codeSpace=""></gsml:value>
 					</gsml:CGI_TermValue>
 				</gsml:observationMethod>
 				
+				<gsml:positionalAccuracy>
+					<gsml:CGI_NumericValue>
+						<gsml:qualifier>nil:missing</gsml:qualifier>
+						<gsml:principalValue uom="#m">0</gsml:principalValue>
+					</gsml:CGI_NumericValue>
+				</gsml:positionalAccuracy>
 				<gsml:samplingFrame xlink:href="#b1"/>
+				<gsml:specification xlink:href="http://www.ga.gov.au/stratlex/de997"/>
 				<gsml:shape>
 					<gml:LineString srsName="#b1_ls1" srsDimension="1">
 						<!-- positions given in 1D CRS defined by borehole shape -->
@@ -71,7 +72,6 @@ Compare with Borehole1_samplingCurveWithObservations.xml</gml:description>
 						<gml:pos>35.0</gml:pos>
 					</gml:LineString>
 				</gsml:shape>
-				<gsml:specification xlink:href="http://www.ga.gov.au/stratlex/de997"/>
 			</gsml:MappedFeature>
 	</gsml:member>
 </gsml:GSML>
