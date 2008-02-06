@@ -10,7 +10,6 @@ xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 xmlns:cgu="urn:cgi:xmlns:CGI:Utilities:1.0"
 xsi:schemaLocation="urn:cgi:xmlns:CGI:GeoSciML:2.0 https://www.seegrid.csiro.au/subversion/GeoSciML/trunk/schema/GeoSciML/geosciml.xsd">
 	<gsml:member>
-		<!-- gsml:GSMLitem -->
 		<!--	<gsml:featureItem> featureItem is not required with the current approach to encoding Union classes This is an error that should be fixed with the next schema release -->
 <!-- ############# Start description of GeologicUnit class ############# -->
 <!-- GeoSciML 2.0 accepts GeologicUnit, LithologicUnit, LithostratigraohicUnit, LithodemicUnit, DeformationUnit and ChronostratigraphicUnit subtypes -->
@@ -180,22 +179,22 @@ Should this be another gsml:name with the same codeSpace (as per above), gsml:na
 					</gsml:upper>
 				</gsml:CGI_TermRange>
 			</gsml:beddingThickness>
-			<gsml:definingAge><gsml:CGI_TermRange>
-				<gsml:lower>
-					<gsml:CGI_TermValue>
-						<gsml:value codeSpace="urn:cgi:classifierScheme:ICS:StratChart2008">Tremadocian</gsml:value>
-					</gsml:CGI_TermValue>
-				</gsml:lower>
-				<gsml:upper>
-					<gsml:CGI_TermValue>
-					<gsml:value codeSpace="urn:cgi:classifierScheme:ICS:StratChart2008">Floian</gsml:value>
-					</gsml:CGI_TermValue>
-				</gsml:upper>
-			</gsml:CGI_TermRange>
+			<gsml:definingAge>
+				<gsml:CGI_TermRange>
+					<gsml:lower>
+						<gsml:CGI_TermValue>
+							<gsml:value codeSpace="urn:cgi:classifierScheme:ICS:StratChart2008">Tremadocian</gsml:value>
+						</gsml:CGI_TermValue>
+					</gsml:lower>
+					<gsml:upper>
+						<gsml:CGI_TermValue>
+						<gsml:value codeSpace="urn:cgi:classifierScheme:ICS:StratChart2008">Floian</gsml:value>
+						</gsml:CGI_TermValue>
+					</gsml:upper>
+				</gsml:CGI_TermRange>
 			</gsml:definingAge>
 <!-- The Geologic Unit thickness can be specified here.  unitThickness is 0..*, specified by CGI_NumericValue  or CGI_NumericValueRange-->
 			<gsml:unitThickness>
-				<!-- gsml:CGI_Numeric -->
 					<gsml:CGI_NumericRange>
 						<gsml:lower>
 							<gsml:CGI_NumericValue>
@@ -208,43 +207,38 @@ Should this be another gsml:name with the same codeSpace (as per above), gsml:na
 							</gsml:CGI_NumericValue>
 						</gsml:upper>
 					</gsml:CGI_NumericRange>
-				<!-- /gsml:CGI_Numeric -->
 			</gsml:unitThickness>
 		</gsml:ChronostratigraphicUnit>
-	<!--	</gsml:featureItem> -->
-		<!-- /gsml:GSMLitem -->
 	</gsml:member>
 	<gsml:member>
-		<!-- gsml:GSMLitem -->
-			<gsml:GeologicVocabulary gml:id="id_gv01"> 
+		<gsml:GeologicVocabulary gml:id="id_gv01"> 
 <!-- This is the GeologicVocabulary that contains the ControlledConcept term -->
-			<gml:name codeSpace="rn:ietf:rfc:2141">urn:cgi:classifierScheme:GSV:Lithology</gml:name> 
-				<gml:definitionMember>
-					<gsml:ControlledConcept gml:id="id_cc02"> 
+		<gml:name codeSpace="rn:ietf:rfc:2141">urn:cgi:classifierScheme:GSV:Lithology</gml:name> 
+			<gml:definitionMember>
+				<gsml:ControlledConcept gml:id="id_cc02"> 
 <!-- gml:id is internal document identifier, just has to be unique, don't use anything that's required to have external significance -->							
-						<gml:description> clastic sedimentary rock composed predominantly of fragments 0.032-2 mm in diameter </gml:description>
-						<gml:name codeSpace="urn:ietf:rfc:2141">urn:cgi:classifier:GSV:Lithology:UIUYG1245NN08</gml:name> 
+					<gml:description> clastic sedimentary rock composed predominantly of fragments 0.032-2 mm in diameter </gml:description>
+					<gml:name codeSpace="urn:ietf:rfc:2141">urn:cgi:classifier:GSV:Lithology:UIUYG1245NN08</gml:name> 
 <!-- this is the GSV identifier for the concept -->
-						<gsml:identifier codeSpace="urn:ietf:rfc:2141">urn:cgi:classifier:GSV:Lithology:UIUYG1245NN08</gsml:identifier> 
+					<gsml:identifier codeSpace="urn:ietf:rfc:2141">urn:cgi:classifier:GSV:Lithology:UIUYG1245NN08</gsml:identifier> 
 <!-- the identifier attribute appears redundant -->
-						<gsml:name codeSpace="urn:cgi:classifierScheme:GSV:Lithology" xml:lang="en">sandstone</gsml:name>
-						<gsml:vocabulary xlink:href="urn:cgi:classifierScheme:GSV:Lithology"/>
-					</gsml:ControlledConcept>
-				</gml:definitionMember>
-				<gml:definitionMember>
-					<gsml:ControlledConcept gml:id="id_cc03"> 
+					<gsml:name codeSpace="urn:cgi:classifierScheme:GSV:Lithology" xml:lang="en">sandstone</gsml:name>
+					<gsml:vocabulary xlink:href="urn:cgi:classifierScheme:GSV:Lithology"/>
+				</gsml:ControlledConcept>
+			</gml:definitionMember>
+			<gml:definitionMember>
+				<gsml:ControlledConcept gml:id="id_cc03"> 
 <!-- gml:id is internal document identifier, just has to be unique, don't use anything that's required to have external significance -->							
-						<gml:description> a laminated, indurated rock with >67% clay sized minerals </gml:description>
-						<gml:name codeSpace="urn:ietf:rfc:2141">urn:cgi:classifier:GSV:Lithology:UIUYG1245NN07</gml:name> 
+					<gml:description> a laminated, indurated rock with >67% clay sized minerals </gml:description>
+					<gml:name codeSpace="urn:ietf:rfc:2141">urn:cgi:classifier:GSV:Lithology:UIUYG1245NN07</gml:name> 
 <!-- this is the GSV identifier for the concept -->
-						<gsml:identifier codeSpace="urn:ietf:rfc:2141">urn:cgi:classifier:GSV:Lithology:UIUYG1245NN07</gsml:identifier> 
+					<gsml:identifier codeSpace="urn:ietf:rfc:2141">urn:cgi:classifier:GSV:Lithology:UIUYG1245NN07</gsml:identifier> 
 <!-- the identifier attribute appears redundant -->
-						<gsml:name codeSpace="urn:cgi:classifierScheme:GSV:Lithology" xml:lang="en">shale</gsml:name>
-						<gsml:vocabulary xlink:href="urn:cgi:classifierScheme:GSV:Lithology"/>
-					</gsml:ControlledConcept>
-				</gml:definitionMember>
-			</gsml:GeologicVocabulary>
-		<!-- /gsml:GSMLitem -->
+					<gsml:name codeSpace="urn:cgi:classifierScheme:GSV:Lithology" xml:lang="en">shale</gsml:name>
+					<gsml:vocabulary xlink:href="urn:cgi:classifierScheme:GSV:Lithology"/>
+				</gsml:ControlledConcept>
+			</gml:definitionMember>
+		</gsml:GeologicVocabulary>
 	</gsml:member>
 </gsml:GSML>
 
