@@ -1,0 +1,459 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<gt:GeologicTimescale  xmlns:gt="urn:cgi:xmlns:CGI:GeoTime:2.0"
+ xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+ xsi:schemaLocation="urn:cgi:xmlns:CGI:GeoTime:2.0 https://www.seegrid.csiro.au/subversion/GeoSciML/trunk/schema/GeoTime/geologicTime.xsd"
+ xmlns:gml="http://www.opengis.net/gml"
+ xmlns:gsml="urn:cgi:xmlns:CGI:GeoSciML:2.0"
+ xmlns:gmd="http://www.isotc211.org/2005/gmd"
+ xmlns:gco="http://www.isotc211.org/2005/gco"
+ xmlns:om="http://www.opengis.net/om/1.0"
+ xmlns:xlink="http://www.w3.org/1999/xlink"
+ xmlns:cgu="urn:cgi:xmlns:CGI:Utilities:1.0"
+ xmlns:sa="http://www.opengis.net/sampling/1.0"
+ gml:id="ICSTimescale2004">    
+	
+<!--  xmlns:meta="http://www.seegrid.csiro.au/xml/metaLite"
+**  The metaLite schema (used in GeoTime v1) is not valid to use anymore?  ** -->
+	
+	<gml:description>The geologic timescale, as defined by the International Commission on Stratigraphy</gml:description>
+	<gml:name>ICS Geologic Timescale</gml:name>
+	<gml:domainOfValidity>The Earth</gml:domainOfValidity>
+	
+<!-- ************************************************************** -->
+	
+	<gt:component>
+		<gt:GeochronologicEra gml:id="AR">
+			<gml:name>Archean</gml:name>
+			<gt:member>
+				<gt:GeochronologicEra gml:id="EAR">
+					<gml:name>Eoarchean</gml:name>
+					<gt:end xlink:href="#EAR_PAR"/>
+					<gt:start xlink:href="#origin"/>
+					<gt:rank>Era</gt:rank>
+					<gt:manifestedBy xlink:href="urn:ogc:def:nil:OGC:unknown"/>
+				</gt:GeochronologicEra>
+			</gt:member>
+			<gt:end xlink:href="#AR_PR"/>
+			<gt:start xlink:href="#origin"/>
+			<gt:rank>Eon</gt:rank>
+			<gt:manifestedBy xlink:href="urn:ogc:def:nil:OGC:unknown"/>
+		</gt:GeochronologicEra>
+	</gt:component>
+	<gt:component>
+		<gt:GeochronologicEra gml:id="PR">
+			<gml:name>Proterozoic</gml:name>
+			<gt:member>
+				<gt:GeochronologicEra gml:id="PPR">
+					<gml:name>Paleoproterozoic</gml:name>
+					<gt:member>
+						<gt:GeochronologicEra gml:id="PPR1">
+							<gml:name>Siderian</gml:name>
+							<gt:end xlink:href="#PPR_MPR"/>
+							<gt:start xlink:href="#AR_PR"/>
+							<gt:rank>Period</gt:rank>
+							<gt:manifestedBy xlink:href="urn:ogc:def:nil:OGC:unknown"/>
+						</gt:GeochronologicEra>
+					</gt:member>
+					<gt:member>
+						<gt:GeochronologicEra gml:id="PPR2">
+							<gml:name>Rhyacian</gml:name>
+							<gt:end xlink:href="#PPR2_PPR3"/>
+							<gt:start xlink:href="#PPR1_PPR2"/>
+							<gt:rank>Period</gt:rank>
+							<gt:manifestedBy xlink:href="urn:ogc:def:nil:OGC:unknown"/>
+						</gt:GeochronologicEra>
+					</gt:member>
+					<gt:end xlink:href="#PPR_MPR"/>
+					<gt:start xlink:href="#AR_PR"/>
+					<gt:rank>Era</gt:rank>
+					<gt:manifestedBy xlink:href="urn:ogc:def:nil:OGC:unknown"/>
+				</gt:GeochronologicEra>
+			</gt:member>
+			<gt:member>
+				<gt:GeochronologicEra gml:id="MPR">
+					<gml:name>Mesoproterozoic</gml:name>
+					<gt:member>
+						<gt:GeochronologicEra gml:id="MPR1">
+							<gml:name>Calymmian</gml:name>
+							<gt:end xlink:href="#MPR1_MPR2"/>
+							<gt:start xlink:href="#PPR_MPR"/>
+							<gt:rank>Period</gt:rank>
+							<gt:manifestedBy xlink:href="urn:ogc:def:nil:OGC:unknown"/>
+						</gt:GeochronologicEra>
+					</gt:member>
+					<gt:member>
+						<gt:GeochronologicEra gml:id="MPR2">
+							<gml:name>Ectasian</gml:name>
+							<gt:end xlink:href="#MPR2_MPR3"/>
+							<gt:start xlink:href="#MPR1_MPR2"/>
+							<gt:rank>Period</gt:rank>
+							<gt:manifestedBy xlink:href="urn:ogc:def:nil:OGC:unknown"/>
+						</gt:GeochronologicEra>
+					</gt:member>
+					<!-- Where does the "group" tag go in GeoTime v2, if at all?  I can't get a "group" tag to validate.  Only "member" validates.  -->
+					<!-- e.g, something like <gt:group xlink:href="#PR"> (see GeoTime v1) -->
+					<gt:end xlink:href="#MPR_NPR"/>
+					<gt:start xlink:href="#PPR_MPR"/>
+					<gt:rank>Era</gt:rank>
+					<gt:manifestedBy xlink:href="urn:ogc:def:nil:OGC:unknown"/>
+				</gt:GeochronologicEra>
+			</gt:member>
+			<gt:end xlink:href="#PR_PH"/>
+			<gt:start xlink:href="#AR_PR"/>
+			<gt:rank>Eon</gt:rank>
+			<gt:manifestedBy xlink:href="urn:ogc:def:nil:OGC:unknown"/>
+		</gt:GeochronologicEra>
+	</gt:component>
+	<gt:component>
+		<gt:GeochronologicEra gml:id="PH">
+			<gml:name>Phanerozoic</gml:name>
+			<gt:member>
+				<gt:GeochronologicEra gml:id="PZ">
+					<gml:description>Paleozoic Era</gml:description>
+					<gml:name>Paleozoic</gml:name>
+					<gt:member>
+						<gt:GeochronologicEra gml:id="P">
+							<gml:description>  Permian-Carboniferous time scale is derived from calibrating a master composite section to selected radiometric ages</gml:description>
+							<gml:name>Permian</gml:name>
+							<gt:member>
+								<gt:GeochronologicEra gml:id="P1">
+									<gml:name>Cisuralian</gml:name>
+									<gt:member>
+										<gt:GeochronologicEra gml:id="P1a">
+											<gml:name>Asselian</gml:name>
+											<gt:end xlink:href="#P1a_P1b"/>
+											<gt:start xlink:href="#C_P"/>
+<!--											<gt:group xlink:href="#P1"/>    ** Used in GeoTime v1 **  -->
+											<gt:rank>Age</gt:rank>
+											<gt:manifestedBy xlink:href="urn:ogc:def:nil:OGC:unknown"/>
+										</gt:GeochronologicEra>
+									</gt:member>
+									<gt:member>
+										<gt:GeochronologicEra gml:id="P1b">
+											<gml:name>Sakmarian</gml:name>
+											<gt:end xlink:href="#P1b_P1c"/>
+											<gt:start xlink:href="#P1a_P1b"/>
+<!--											<gt:group xlink:href="#P1"/>     ** Used in GeoTime v1 ** -->
+											<gt:rank>Age</gt:rank>
+											<gt:manifestedBy xlink:href="urn:ogc:def:nil:OGC:unknown"/>
+										</gt:GeochronologicEra>
+									</gt:member>
+<!--									<gt:group xlink:href="#P"/>    ** Used in GeoTime v1 ** -->
+									<gt:end xlink:href="#P1_P2"/>
+									<gt:start xlink:href="#C_P"/>
+									<gt:rank>Epoch</gt:rank>
+									<gt:manifestedBy xlink:href="urn:ogc:def:nil:OGC:unknown"/>
+								</gt:GeochronologicEra>
+							</gt:member>
+							<gt:member>
+								<gt:GeochronologicEra gml:id="P2">
+									<gml:name>Guadalupian</gml:name>
+									<gt:member>
+										<gt:GeochronologicEra gml:id="P2b">
+											<gml:name>Wordian</gml:name>
+											<gt:end xlink:href="#P2b_P2c"/>
+											<gt:start xlink:href="#P2a_P2b"/>
+											<!--<gt:group xlink:href="#P2"/>       ** Used in GeoTime v1 **-->
+											<gt:rank>Age</gt:rank>
+											<gt:manifestedBy xlink:href="urn:ogc:def:nil:OGC:unknown"/>
+										</gt:GeochronologicEra>
+									</gt:member>
+									<gt:member>
+										<gt:GeochronologicEra gml:id="P2c">
+											<gml:name>Capitanian</gml:name>
+											<gt:end xlink:href="#P2_P3"/>
+											<gt:start xlink:href="#P2b_P2c"/>
+<!--											<gt:group xlink:href="#P2"/>-->
+											<gt:rank>Age</gt:rank>
+											<gt:manifestedBy xlink:href="urn:ogc:def:nil:OGC:unknown"/>
+										</gt:GeochronologicEra>
+									</gt:member>
+<!--									<gt:group xlink:href="#P"/>-->
+									<gt:end xlink:href="#P2_P3"/>
+									<gt:start xlink:href="#P1_P2"/>
+									<gt:rank>Epoch</gt:rank>
+									<gt:manifestedBy xlink:href="urn:ogc:def:nil:OGC:unknown"/>
+								</gt:GeochronologicEra>
+							</gt:member>
+<!--							<gt:group xlink:href="#PZ"/>-->
+							<gt:end xlink:href="#PZ_MZ"/>
+							<gt:start xlink:href="#C_P"/>
+							<gt:rank>Period</gt:rank>
+							<gt:manifestedBy xlink:href="urn:ogc:def:nil:OGC:unknown"/>
+						</gt:GeochronologicEra>
+					</gt:member>
+					<gt:end xlink:href="#PZ_MZ"/>
+					<gt:start xlink:href="#PR_PH"/>
+<!--					<gt:group xlink:href="#PH"/>-->
+					<gt:rank>Era</gt:rank>
+					<gt:manifestedBy xlink:href="urn:ogc:def:nil:OGC:unknown"/>
+				</gt:GeochronologicEra>
+			</gt:member>
+			<gt:end xlink:href="#present"/>
+			<gt:start xlink:href="#PR_PH"/>
+			<gt:rank>Eon</gt:rank>
+			<gt:manifestedBy xlink:href="urn:ogc:def:nil:OGC:unknown"/>
+		</gt:GeochronologicEra>
+	</gt:component>
+<!-- ======================== -->
+<!-- Reference times -->
+<!-- Positions of Boundaries as given in http://www.stratigraphy.org/gssp.htm   -->
+<!-- ======================== -->
+	<gt:referencePoint>
+		<gt:NumericEraBoundary gml:id="EAR_PAR">
+			<gml:metaDataProperty>
+				<gmd:CI_Citation>
+					<gmd:title>
+						<gco:CharacterString>Hofmann, H.J., 1992. New Precambrian time scale; comments. Episodes 15(2), 122-123.</gco:CharacterString>
+					</gmd:title>
+					<gmd:date>
+						<gmd:CI_Date>
+							<gmd:date>					<!-- The repetition of 4 date elements here doesn't look good -->
+								<gco:Date>1992</gco:Date>
+							</gmd:date>
+							<gmd:dateType>
+								<gmd:CI_DateTypeCode codeList="http://www.isotc211.org/2005/resources/CodeList/gmxCodelists.xml#CI_DateTypeCode" codeListValue="publication">  </gmd:CI_DateTypeCode>
+							</gmd:dateType>
+						</gmd:CI_Date>
+					</gmd:date>
+				</gmd:CI_Citation>
+			</gml:metaDataProperty>
+			<gml:name>Base of Paleoarchean</gml:name>
+			<gt:position>
+				<gml:TimeInstant gml:id="EAR_PAR_Pos">
+					<gml:timePosition frame="TimeCoordinateSystem.xml#geologyMA">-3600</gml:timePosition>
+				</gml:TimeInstant>
+			</gt:position>
+			<gt:status>GSSA</gt:status>
+		</gt:NumericEraBoundary>
+	</gt:referencePoint>
+	<gt:referencePoint>
+		<gt:GeochronologicBoundary gml:id="NPR2_NPR3">
+			<gml:metaDataProperty>
+				<gmd:CI_Citation>
+					<gmd:title>
+						<gco:CharacterString>Knoll, A.H., Walter, M.R., Narbonne, G.M. and Christie-Blick, N., 2006. The Ediacaran Period: a new addition to the geologic time scale. Lethaia 39, 13-30.</gco:CharacterString>
+					</gmd:title>
+					<gmd:date>
+						<gmd:CI_Date>
+							<gmd:date>
+								<gco:Date>2006</gco:Date>
+							</gmd:date>
+							<gmd:dateType>
+								<gmd:CI_DateTypeCode codeList="http://www.isotc211.org/2005/resources/CodeList/gmxCodelists.xml#CI_DateTypeCode" codeListValue="publication">  </gmd:CI_DateTypeCode>
+							</gmd:dateType>
+						</gmd:CI_Date>
+					</gmd:date>
+				</gmd:CI_Citation>
+			</gml:metaDataProperty>
+			<gml:name>Base of Ediacaran</gml:name>
+			<gt:position>
+				<gt:StratigraphicDateEstimate gml:id="NPR2_NPR3_Pos">
+					<gml:timePosition frame="TimeCoordinateSystem.xml#geologyMA">-630</gml:timePosition>
+					<gt:quality xlink:href="urn:ogc:def:nil:OGC:unknown"/>
+					<gt:status>GSSP</gt:status>
+				</gt:StratigraphicDateEstimate>
+			</gt:position>
+			<gt:event>
+				<gt:StratigraphicEvent gml:id="NPR2_NPR3_Ev">
+					<gml:description>Base of cap dolomite. Termination of Varanger (or Marinoan) glaciation</gml:description>
+					<gsml:eventAge>
+						
+<!-- 	**  There is duplication of information between the mandatory elements position/StratigraphicDateEstimate/timeposition and StratigraphicEvent/eventAge.  
+	Both these elements contain the numeric age value for the era boundary (ie, 630 Ma) just coded differently.  The model need revisitings here? ** -->
+						
+						<gsml:CGI_NumericValue>
+							<gsml:qualifier>approximate</gsml:qualifier>
+							<gsml:principalValue uom="urn:ogc:def:uom:UCUM:Ma">-630</gsml:principalValue>   <!-- ** Need to revisit gsml Age types to see if they should use time position rather than CGI_Value? ** -->
+						</gsml:CGI_NumericValue>
+					</gsml:eventAge>
+					<gsml:eventProcess>
+						<gsml:CGI_TermValue>
+							<gsml:value codeSpace="http://www.opengeospatial.org">urn:x-ogc:def:nil:OGC:unknown</gsml:value>
+						</gsml:CGI_TermValue>
+					</gsml:eventProcess>
+					<gt:prototype xlink:href="urn:ogc:def:nil:OGC:unknown"/>
+					<gt:manifestedBy xlink:href="urn:ogc:def:nil:OGC:unknown"/>
+					<gt:correlatesWith xlink:href="urn:ogc:def:nil:OGC:unknown"/>
+				</gt:StratigraphicEvent>
+			</gt:event>
+			<gt:manifestedBy xlink:href="urn:ogc:def:nil:OGC:unknown"/>
+			<gt:stratotype>
+				<gt:StratigraphicPoint gml:id="NPR2_NPR3_StP">		
+<!-- StratigraphicPoint is a generalisation of SamplingPoint, hence all the sa attributes.  But have no data to put in them.  Should not be mandatory for geotime?  -->
+					<gml:description>Base of Nuccaleena Formation immediately above Elatina diamictite in Enorama Creek section, Flinders Ranges, South Australia</gml:description>
+					<gml:name>Base of Ediacaran</gml:name>
+					<sa:sampledFeature xlink:href="urn:x-ogc:def:nil:OGC:unknown"/>		 	<!-- No available data.   -->
+					<sa:position xlink:href="urn:x-ogc:def:nil:OGC:unknown"/>			  	<!-- No available data.    -->
+					<gt:status>GSSP</gt:status>
+					<gt:primaryGuidingCriterion>urn:x-ogc:def:nil:OGC:unknown</gt:primaryGuidingCriterion>		<!-- Don't have data here.  Use unknowns -->
+<!--					<gt:additionalCorrelationProperty></gt:additionalCorrelationProperty>      No available data.  Non-mandatory, leave out  -->
+					<gt:boundary xlink:href="NPR2_NPR3"/>    			<!-- Circular link back to geochronological boundary description in this doc -->
+					<gt:event xlink:href="NPR2_NPR3_Ev"/>				<!-- Circular link to event description in this doc.  Duplication of information? -->
+				</gt:StratigraphicPoint>
+			</gt:stratotype>
+		</gt:GeochronologicBoundary>
+	</gt:referencePoint>
+	<gt:referencePoint>
+		<gt:GeochronologicBoundary gml:id="PR_PH">
+			<gml:metaDataProperty>
+				<gmd:CI_Citation>
+					<gmd:title>
+						<gco:CharacterString>Brasier, M., Cowie, J. and Taylor, M., 1994. Decision on the Precambrian-Cambrian boundary stratotype. Episodes 17, 95-100.</gco:CharacterString>
+					</gmd:title>
+					<gmd:date>
+						<gmd:CI_Date>
+							<gmd:date>
+								<gco:Date>1994</gco:Date>
+							</gmd:date>
+							<gmd:dateType>
+								<gmd:CI_DateTypeCode codeList="http://www.isotc211.org/2005/resources/CodeList/gmxCodelists.xml#CI_DateTypeCode" codeListValue="publication">  </gmd:CI_DateTypeCode>
+							</gmd:dateType>
+						</gmd:CI_Date>
+					</gmd:date>
+				</gmd:CI_Citation>
+			</gml:metaDataProperty>
+			<gml:name>Base of Phanerozoic</gml:name>
+			<gt:position>
+				<gt:StratigraphicDateEstimate gml:id="PR_PH_Pos">
+					<gml:timePosition frame="TimeCoordinateSystem.xml#geologyMA">-542.0</gml:timePosition>
+					<gt:quality>   
+						<gmd:DQ_QuantitativeAttributeAccuracy> 
+							<gmd:result>
+								<gmd:DQ_QuantitativeResult>
+									<gmd:valueUnit>
+										<gml:BaseUnit gml:id="Ma">
+											<gml:name>millions of years</gml:name>
+											<gml:quantityType>time</gml:quantityType>
+											<gml:unitsSystem xlink:href="TimeCoordinateSystem.xml#geologyMa"/>
+										</gml:BaseUnit>
+									</gmd:valueUnit>
+									<gmd:value>
+										<gco:Record>1</gco:Record>  					<!-- Is this correct coding? -->
+									</gmd:value>
+								</gmd:DQ_QuantitativeResult>
+							</gmd:result>
+						</gmd:DQ_QuantitativeAttributeAccuracy>
+					</gt:quality>
+					<gt:status>GSSP</gt:status>
+<!--					<gt:observationalBasis xlink:href="dates.xml#PH_Origin1"/>     Non-mandatory observation data; don't have information in spreadsheet; leave out-->
+				</gt:StratigraphicDateEstimate>
+			</gt:position>
+			<gt:event>
+				<gt:StratigraphicEvent gml:id="PR_PH_Ev">
+					<gml:description>First appearance of trace fossil Treptichnus pedum</gml:description>
+					<gsml:eventAge>
+						<gsml:CGI_NumericValue>
+							<gsml:qualifier>equalTo</gsml:qualifier>
+							<gsml:minusDelta uom="urn:ogc:def:uom:UCUM:Ma">1</gsml:minusDelta>
+							<gsml:plusDelta uom="urn:ogc:def:uom:UCUM:Ma">1</gsml:plusDelta>
+							<gsml:principalValue uom="urn:ogc:def:uom:UCUM:Ma">-542</gsml:principalValue>
+						</gsml:CGI_NumericValue>
+					</gsml:eventAge>
+					<gsml:eventProcess>
+						<gsml:CGI_TermValue>
+							<gsml:value codeSpace="http://www.opengeospatial.org">urn:x-ogc:def:nil:OGC:unknown</gsml:value>  <!-- codeSpace taken from twiki? -->
+						</gsml:CGI_TermValue>
+					</gsml:eventProcess>
+					<gt:prototype xlink:href="urn:ogc:def:nil:OGC:unknown"/>
+					<gt:manifestedBy xlink:href="urn:ogc:def:nil:OGC:unknown"/>
+					<gt:correlatesWith xlink:href="urn:ogc:def:nil:OGC:unknown"/>
+				</gt:StratigraphicEvent>
+			</gt:event>
+			<gt:manifestedBy xlink:href="urn:ogc:def:nil:OGC:unknown"/>
+			<gt:stratotype>		<!-- Note that both GeochronologicBoundary and Stratotype refer to the same gt:event and gt:boundary.  Duplication of information? -->
+				<gt:StratigraphicPoint  gml:id="PR_PH_StP">
+					<gml:description>2.4 m above base of member 2 of Chapel Island Formation, Fortune Head, Burin Peninsula, southeast Newfoundland</gml:description>
+					<sa:sampledFeature xlink:href="urn:x-ogc:def:nil:OGC:unknown"/>
+					<sa:position xlink:href="urn:x-ogc:def:nil:OGC:unknown"/>
+					<gt:status>GSSP</gt:status>
+					<gt:primaryGuidingCriterion>urn:x-ogc:def:nil:OGC:unknown</gt:primaryGuidingCriterion>       <!-- Data not available in the spreadsheet.  Use unknowns.  -->
+					<gt:boundary xlink:href="PR_PH"/>  	<!-- Circular link back to GeochronologicBoundary -->
+					<gt:event  xlink:href="PR_PH_Ev"/>   	<!-- Circular link back to StratigraphicEvent -->
+				</gt:StratigraphicPoint>
+			</gt:stratotype>
+		</gt:GeochronologicBoundary>
+	</gt:referencePoint>
+	<gt:referencePoint>
+		<gt:GeochronologicBoundary gml:id="PZ_MZ">
+			<gml:metaDataProperty>
+				<gmd:CI_Citation>
+					<gmd:title>
+						<gco:CharacterString>Yin Hongfu, Zhang Kexin, Tong Jinnan, Yang Zunyi and Wu Shunbao, 2001. The Global Stratotype Section and Point (GSSP) of the Permian-Triassic Boundary. Episodes 24(2), 102-114.</gco:CharacterString>
+					</gmd:title>
+					<gmd:date>
+						<gmd:CI_Date>
+							<gmd:date>
+								<gco:Date>2001</gco:Date>
+							</gmd:date>
+							<gmd:dateType>
+								<gmd:CI_DateTypeCode codeList="http://www.isotc211.org/2005/resources/CodeList/gmxCodelists.xml#CI_DateTypeCode" codeListValue="publication">  </gmd:CI_DateTypeCode>
+							</gmd:dateType>
+						</gmd:CI_Date>
+					</gmd:date>
+				</gmd:CI_Citation>
+			</gml:metaDataProperty>
+			<gml:name>Base of Mesozoic</gml:name>
+			<gml:name>Base of Triassic</gml:name>
+			<gml:name>Base of Lower Triassic</gml:name>
+			<gml:name>Base of Induan</gml:name>
+<!--			<gt:nextEra xlink:href="#MZ"/>
+			<gt:nextEra xlink:href="#T"/>
+			<gt:nextEra xlink:href="#t1"/>
+			<gt:previousEra xlink:href="#p9"/>
+			<gt:previousEra xlink:href="#P"/>
+			<gt:previousEra xlink:href="#PZ"/>-->
+			<gt:position>
+				<gt:StratigraphicDateEstimate gml:id="PZ_MZ_Pos">
+					<gml:timePosition frame="TimeCoordinateSystem.xml#geologyMA">-251.0</gml:timePosition>
+					<gt:quality>
+						<gmd:DQ_QuantitativeAttributeAccuracy>  
+							<gmd:result>
+								<gmd:DQ_QuantitativeResult>
+									<gmd:valueUnit xlink:href="#Ma"/>
+									<gmd:value>
+										<gco:Record>0.4</gco:Record>		<!-- Is this correct coding? -->
+									</gmd:value>
+								</gmd:DQ_QuantitativeResult>
+							</gmd:result>
+						</gmd:DQ_QuantitativeAttributeAccuracy>
+					</gt:quality>
+					<gt:status>GSSP</gt:status>		
+				</gt:StratigraphicDateEstimate>
+			</gt:position>
+			<gt:event>
+				<gt:StratigraphicEvent gml:id="PZ_MZ_Ev">      
+					<gml:description>First appearance of conodont Hindeodus parvus</gml:description>
+					<gsml:eventAge>
+						<gsml:CGI_NumericValue>
+							<gsml:qualifier>equalTo</gsml:qualifier>
+							<gsml:minusDelta uom="urn:ogc:def:uom:UCUM:Ma">0.4</gsml:minusDelta>
+							<gsml:plusDelta uom="urn:ogc:def:uom:UCUM:Ma">0.4</gsml:plusDelta>
+							<gsml:principalValue uom="urn:ogc:def:uom:UCUM:Ma">-251.0</gsml:principalValue>
+						</gsml:CGI_NumericValue>
+					</gsml:eventAge>
+					<gsml:eventProcess>
+						<gsml:CGI_TermValue>
+							<gsml:value codeSpace="http://www.opengeospatial.org">urn:x-ogc:def:nil:OGC:unknown</gsml:value>
+						</gsml:CGI_TermValue>
+					</gsml:eventProcess>
+					<gt:prototype xlink:href="urn:ogc:def:nil:OGC:unknown"/>
+					<gt:manifestedBy xlink:href="urn:ogc:def:nil:OGC:unknown"/>
+					<gt:correlatesWith xlink:href="urn:ogc:def:nil:OGC:unknown"/>
+				</gt:StratigraphicEvent>
+			</gt:event>
+			<gt:manifestedBy xlink:href="urn:ogc:def:nil:OGC:unknown"/>
+			<gt:stratotype>
+				<gt:StratigraphicPoint gml:id="PZ_MZ_StP">
+					<gml:description>Base of Bed 27c, Meishan, Zhejiang, China</gml:description>
+					<sa:sampledFeature xlink:href="urn:x-ogc:def:nil:OGC:unknown"/>
+					<sa:position xlink:href="urn:x-ogc:def:nil:OGC:unknown"/>
+					<gt:status>GSSP</gt:status>
+					<gt:primaryGuidingCriterion>urn:x-ogc:def:nil:OGC:unknown</gt:primaryGuidingCriterion>		<!-- Data not in spreadsheet.  Use unknowns -->
+					<gt:boundary xlink:href="#PZ_MZ"/>
+					<gt:event xlink:href="#PZ_MZ_Ev"/>
+				</gt:StratigraphicPoint>	
+			</gt:stratotype>	
+		</gt:GeochronologicBoundary>
+	</gt:referencePoint>
+</gt:GeologicTimescale>
