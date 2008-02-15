@@ -25,11 +25,15 @@
     </Namespace>
     <Namespace>
       <prefix>sa</prefix>
-      <uri>http://www.opengis.net/sampling/1.0.0</uri>
+      <uri>http://www.opengis.net/sampling/1.0</uri>
     </Namespace>
     <Namespace>
       <prefix>om</prefix>
-      <uri>http://www.opengis.net/om/1.0.0</uri>
+      <uri>http://www.opengis.net/om/1.0</uri>
+    </Namespace>
+    <Namespace>
+      <prefix>cv</prefix>
+      <uri>http://schemas.opengis.net/cv/0.2.1</uri>
     </Namespace>
   </namespaces>
   <sourceDataStores>
@@ -54,8 +58,14 @@
         Imports and includes at the schemas will be followed as long
         as they're relative paths.
       -->
-      <schemaUri>../../Need to update</schemaUri>
-    </FeatureType>
+      <!--  
+      <schemaUri>http://schemas.opengis.net/sweCommon/1.0.1/swe.xsd</schemaUri>
+      <schemaUri>http://schemas.opengis.net/om/1.0.0/observation.xsd</schemaUri>
+      <schemaUri>http://schemas.opengis.net/sampling/1.0.0/samplingBase.xsd</schemaUri>
+      <schemaUri>http://schemas.opengis.net/sampling/1.0.0/sampling.xsd</schemaUri>
+      -->
+      <schemaUri>https://www.seegrid.csiro.au/subversion/GeoSciML/trunk/schema/GeoSciML/borehole.xsd</schemaUri>
+     </FeatureType>
   </targetTypes>
   <typeMappings>
     <FeatureTypeMapping>
@@ -85,17 +95,19 @@
         <AttributeMapping>
           <targetAttribute>gsml:Borehole</targetAttribute>
           <idExpression>
-            <OCQL>strConcat("bh.", BGS_ID)</OCQL>
+            <OCQL>strConcat('bh.', BGS_ID)</OCQL>
           </idExpression>
         </AttributeMapping>
+
+<!-- 
         <AttributeMapping>
           <targetAttribute>Borehole/gml:name[1]</targetAttribute>
           <sourceExpression>
-            <OCQL>strConcat( strConcat(QS, strConcat("/", RT)), strConcat(strConcat("/", NUMB), strConcat("/", BSUFF)) )</OCQL>
+            <OCQL>strConcat( strConcat(QS, strConcat('/', RT)), strConcat(strConcat('/', NUMB), strConcat('/', BSUFF)) )</OCQL>
           </sourceExpression>
           <ClientProperty>
             <name>gml:codeSpace</name>
-            <value>"http://ns.bgs.ac.uk/bgs.sobi.pk"</value>
+            <value>'http://ns.bgs.ac.uk/bgs.sobi.pk'</value>
           </ClientProperty>
         </AttributeMapping>
         <AttributeMapping>
@@ -105,7 +117,7 @@
           </sourceExpression>
           <ClientProperty>
             <name>gml:codeSpace</name>
-            <value>"http://ns.bgs.ac.uk/bgs.ubi.pk"</value>
+            <value>'http://ns.bgs.ac.uk/bgs.ubi.pk'</value>
           </ClientProperty>
         </AttributeMapping>
         <AttributeMapping>
@@ -115,7 +127,7 @@
           </sourceExpression>
           <ClientProperty>
             <name>gml:codeSpace</name>
-            <value>"http://ns.bgs.ac.uk/bgs.sobi.bore_name"</value>
+            <value>'http://ns.bgs.ac.uk/bgs.sobi.bore_name'</value>
           </ClientProperty>
         </AttributeMapping>
         <AttributeMapping>
@@ -125,17 +137,19 @@
           </sourceExpression>
           <ClientProperty>
             <name>gml:codeSpace</name>
-            <value>"http://ns.bgs.ac.uk/bgs.sobi.original_number"</value>
+            <value>'http://ns.bgs.ac.uk/bgs.sobi.original_number'</value>
           </ClientProperty>
         </AttributeMapping>
+
+-->
         
         <!-- Will empty sampledFeature element be created automatically? -->
-        
+<!-- 
         <AttributeMapping>
           <targetAttribute>sa:relatedObservation[1]/om:Observation/om:samplingTime</targetAttribute>
           <ClientProperty>
             <name>xlink:href</name>
-            <value>urn:x-ogc:def:nil:OGC:unknown</value>
+            <value>'urn:x-ogc:def:nil:OGC:unknown'</value>
           </ClientProperty>
         </AttributeMapping>
         
@@ -143,7 +157,7 @@
           <targetAttribute>sa:relatedObservation[1]/om:Observation/om:procedure</targetAttribute>
           <ClientProperty>
             <name>xlink:href</name>
-            <value>urn:x-ogc:def:nil:OGC:unknown</value>
+            <value>'urn:x-ogc:def:nil:OGC:unknown'</value>
           </ClientProperty>
         </AttributeMapping>
         
@@ -151,17 +165,17 @@
           <targetAttribute>sa:relatedObservation[1]/om:Observation/om:observedProperty</targetAttribute>
           <ClientProperty>
             <name>xlink:href</name>
-            <value>http://ns.bgs.ac.uk/thesaurus/lithostratigraphy</value>
+            <value>'http://ns.bgs.ac.uk/thesaurus/lithostratigraphy'</value>
           </ClientProperty>
         </AttributeMapping>
-        
+-->        
         <!-- Will empty om:featureOfInterest element be automatically created? -->
-        
+<!--        
         <AttributeMapping>
           <targetAttribute>sa:relatedObservation[1]/om:Observation/om:result/cv:CV_DiscreteCoverage/cv:domainExtent</targetAttribute>
           <ClientProperty>
             <name>xlink:href</name>
-            <value>strConcat("#bh.", strConcat(BGS_ID, ".shape"))</value>
+            <value>strConcat('#bh.', strConcat(BGS_ID, '.shape'))</value>
           </ClientProperty>
         </AttributeMapping>
         
@@ -169,7 +183,7 @@
           <targetAttribute>sa:relatedObservation[1]/om:Observation/om:result/cv:CV_DiscreteCoverage/cv:rangeType</targetAttribute>
           <ClientProperty>
             <name>xlink:href</name>
-            <value>http://ns.bgs.ac.uk/thesaurus/lithostratigraphy</value>
+            <value>'http://ns.bgs.ac.uk/thesaurus/lithostratigraphy'</value>
           </ClientProperty>
         </AttributeMapping>
         
@@ -182,11 +196,11 @@
           <targetAttribute>sa:relatedObservation[1]/om:Observation/om:result/cv:CV_DiscreteCoverage/cv:element/cv:CV_GeometryValuePair/cv:geometry/cv:CV_DomainObject/cv:spatialElementgml:LineString</targetAttribute>
           <ClientProperty>
             <name>srsName</name>
-            <value>strConcat("#bh.", strConcat(BGS_ID, ".shape"))</value>
+            <value>strConcat('#bh.', strConcat(BGS_ID, '.shape'))</value>
           </ClientProperty>
           <ClientProperty>
             <name>srsDimension</name>
-            <value>"1"</value>
+            <value>'1'</value>
           </ClientProperty>
         </AttributeMapping>
         
@@ -211,11 +225,11 @@
           </sourceExpression>
           <ClientProperty>
             <name>xsi:type</name>
-            <value>gml:CodeType</value>
+            <value>'gml:CodeType'</value>
           </ClientProperty>
           <ClientProperty>
             <name>codeSpace</name>
-            <value>http://ns.bgs.ac.uk/bgs.lex_lithostrat_unit_v3</value>
+            <value>'http://ns.bgs.ac.uk/bgs.lex_lithostrat_unit_v3'</value>
           </ClientProperty>
         </AttributeMapping>
         
@@ -223,7 +237,7 @@
           <targetAttribute>sa:relatedObservation[1]/om:Observation/om:samplingTime</targetAttribute>
           <ClientProperty>
             <name>xlink:href</name>
-            <value>urn:x-ogc:def:nil:OGC:unknown</value>
+            <value>'urn:x-ogc:def:nil:OGC:unknown'</value>
           </ClientProperty>
         </AttributeMapping>
         
@@ -231,7 +245,7 @@
           <targetAttribute>sa:relatedObservation[1]/om:Observation/om:procedure</targetAttribute>
           <ClientProperty>
             <name>xlink:href</name>
-            <value>urn:x-ogc:def:nil:OGC:unknown</value>
+            <value>'urn:x-ogc:def:nil:OGC:unknown'</value>
           </ClientProperty>
         </AttributeMapping>
         
@@ -239,17 +253,17 @@
           <targetAttribute>sa:relatedObservation[1]/om:Observation/om:observedProperty</targetAttribute>
           <ClientProperty>
             <name>xlink:href</name>
-            <value>urn:ogc:def:phenomenon:CGI:2007:lithology</value>
+            <value>'urn:ogc:def:phenomenon:CGI:2007:lithology'</value>
           </ClientProperty>
         </AttributeMapping>
-        
+-->
         <!-- Will empty om:featureOfInterest element be automatically created? -->
-        
+<!--        
         <AttributeMapping>
           <targetAttribute>sa:relatedObservation[1]/om:Observation/om:result/cv:CV_DiscreteCoverage/cv:domainExtent</targetAttribute>
           <ClientProperty>
             <name>xlink:href</name>
-            <value>strConcat("#bh.", strConcat(BGS_ID, ".shape"))</value>
+            <value>strConcat('#bh.', strConcat(BGS_ID, '.shape'))</value>
           </ClientProperty>
         </AttributeMapping>
         
@@ -257,7 +271,7 @@
           <targetAttribute>sa:relatedObservation[1]/om:Observation/om:result/cv:CV_DiscreteCoverage/cv:rangeType</targetAttribute>
           <ClientProperty>
             <name>xlink:href</name>
-            <value>http://ns.bgs.ac.uk/thesaurus/lithostratigraphy</value>
+            <value>'http://ns.bgs.ac.uk/thesaurus/lithostratigraphy'</value>
           </ClientProperty>
         </AttributeMapping>
         
@@ -270,11 +284,11 @@
           <targetAttribute>sa:relatedObservation[1]/om:Observation/om:result/cv:CV_DiscreteCoverage/cv:element/cv:CV_GeometryValuePair/cv:geometry/cv:CV_DomainObject/cv:spatialElementgml:LineString</targetAttribute>
           <ClientProperty>
             <name>srsName</name>
-            <value>strConcat("#bh.", strConcat(BGS_ID, ".shape"))</value>
+            <value>strConcat('#bh.', strConcat(BGS_ID, '.shape'))</value>
           </ClientProperty>
           <ClientProperty>
             <name>srsDimension</name>
-            <value>"1"</value>
+            <value>'1'</value>
           </ClientProperty>
         </AttributeMapping>
         
@@ -299,27 +313,27 @@
           </sourceExpression>
           <ClientProperty>
             <name>xsi:type</name>
-            <value>gml:CodeType</value>
+            <value>'gml:CodeType'</value>
           </ClientProperty>
           <ClientProperty>
             <name>codeSpace</name>
-            <value>http://ns.bgs.ac.uk/bgs.dic_rock_name</value>
+            <value>'http://ns.bgs.ac.uk/bgs.dic_rock_name'</value>
           </ClientProperty>
         </AttributeMapping>
         
         <AttributeMapping>
           <targetAttribute>Borehole/sa:surveyDetails/sa:SurveyProcedure</targetAttribute>
           <idExpression>
-            <OCQL>strConcat("bh.", strConcat(BGS_ID, ".sp"))</OCQL>
+            <OCQL>strConcat('bh.', strConcat(BGS_ID, '.sp'))</OCQL>
           </idExpression>
         </AttributeMapping>
         
         <AttributeMapping>
           <targetAttribute>Borehole/sa:surveyDetails/sa:SurveyProcedure/sa:elevationAccuracy</targetAttribute>
-          <sourceExpression><OCQL>"not in file data"</OCQL></sourceExpression>
+          <sourceExpression><OCQL>'not in file data'</OCQL></sourceExpression>
           <ClientProperty>
             <name>uom</name>
-            <value>urn:ogc:def:uom:UCUM:m</value>
+            <value>'urn:ogc:def:uom:UCUM:m'</value>
           </ClientProperty>
           
         </AttributeMapping>
@@ -328,21 +342,21 @@
           <targetAttribute>Borehole/sa:surveyDetails/sa:SurveyProcedure/sa:positionMethod</targetAttribute>
           <ClientProperty>
             <name>xlink:href</name>
-            <value>Not in file data</value>
+            <value>'Not in file data'</value>
           </ClientProperty>
           
         </AttributeMapping>
         
         <AttributeMapping>
           <targetAttribute>Borehole/sa:surveyDetails/sa:SurveyProcedure/sa:positionAccuracy</targetAttribute>
-          <sourceExpression><OCQL>"not in file data"</OCQL></sourceExpression>
+          <sourceExpression><OCQL>'not in file data'</OCQL></sourceExpression>
           <ClientProperty>
             <name>uom</name>
-            <value>urn:ogc:def:uom:UCUM:m</value>
+            <value>'urn:ogc:def:uom:UCUM:m'</value>
           </ClientProperty>
           
         </AttributeMapping>
-        
+       --> 
         <!-- 
   <sa:surveyDetails>
   <sa:SurveyProcedure gml:id="bh.196911.sp">
@@ -356,12 +370,14 @@
           <targetAttribute>Borehole/sa:surveyDetails/sa:SurveyProcedure/gml:description</targetAttribute>
           <sourceExpression>
             <OCQL>
-              "Horizontal precision: (Field missing from SDE table) Vertical precision: (Field missing from SDE table)
-              Positioning method: (Field missing from SDE table)"
+              'Horizontal precision: (Field missing from SDE table) Vertical precision: (Field missing from SDE table)
+              Positioning method: (Field missing from SDE table)'
             </OCQL>
           </sourceExpression>
         </AttributeMapping>
 -->
+
+<!--
         <AttributeMapping>
           <targetAttribute>Borehole/sa:shape</targetAttribute>
           <sourceExpression>
@@ -375,7 +391,7 @@
           </sourceExpression>
           <ClientProperty>
             <name>uom</name>
-            <value>"#m"</value>
+            <value>'#m'</value>
           </ClientProperty>
         </AttributeMapping>
         <AttributeMapping>
@@ -384,7 +400,7 @@
             <OCQL>SHAPE</OCQL>
           </sourceExpression>
         </AttributeMapping>
-
+-->
       </attributeMappings>
     </FeatureTypeMapping>
   </typeMappings>
