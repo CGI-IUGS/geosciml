@@ -254,6 +254,7 @@
         </AttributeMapping>
 -->
         <!-- Will empty om:featureOfInterest element be automatically created? -->
+
 <!--        
         <AttributeMapping>
           <targetAttribute>sa:relatedObservation[1]/om:Observation/om:result/cv:CV_DiscreteCoverage/cv:domainExtent</targetAttribute>
@@ -316,13 +317,18 @@
             <value>'http://ns.bgs.ac.uk/bgs.dic_rock_name'</value>
           </ClientProperty>
         </AttributeMapping>
+
+       --> 
+
         
         <AttributeMapping>
-          <targetAttribute>Borehole/sa:surveyDetails/sa:SurveyProcedure</targetAttribute>
+          <targetAttribute>gsml:Borehole/sa:surveyDetails/sa:SurveyProcedure</targetAttribute>
           <idExpression>
             <OCQL>strConcat('bh.', strConcat(BGS_ID, '.sp'))</OCQL>
           </idExpression>
         </AttributeMapping>
+
+       <!-- 
         
         <AttributeMapping>
           <targetAttribute>Borehole/sa:surveyDetails/sa:SurveyProcedure/sa:elevationAccuracy</targetAttribute>
@@ -331,20 +337,22 @@
             <name>uom</name>
             <value>'urn:ogc:def:uom:UCUM:m'</value>
           </ClientProperty>
-          
         </AttributeMapping>
+
+       --> 
         
         <AttributeMapping>
-          <targetAttribute>Borehole/sa:surveyDetails/sa:SurveyProcedure/sa:positionMethod</targetAttribute>
+          <targetAttribute>gsml:Borehole/sa:surveyDetails/sa:SurveyProcedure/sa:positionMethod</targetAttribute>
           <ClientProperty>
             <name>xlink:href</name>
             <value>'Not in file data'</value>
           </ClientProperty>
-          
         </AttributeMapping>
         
+        <!-- FIXME: Fails with an exception
+        
         <AttributeMapping>
-          <targetAttribute>Borehole/sa:surveyDetails/sa:SurveyProcedure/sa:positionAccuracy</targetAttribute>
+          <targetAttribute>gsml:Borehole/sa:surveyDetails/sa:SurveyProcedure/sa:positionAccuracy</targetAttribute>
           <sourceExpression><OCQL>'not in file data'</OCQL></sourceExpression>
           <ClientProperty>
             <name>uom</name>
@@ -352,7 +360,9 @@
           </ClientProperty>
           
         </AttributeMapping>
-       --> 
+    
+        --> 
+
         <!-- 
   <sa:surveyDetails>
   <sa:SurveyProcedure gml:id="bh.196911.sp">
@@ -361,9 +371,10 @@
         <sa:positionAccuracy uom="urn:ogc:def:uom:UCUM:m">10</sa:positionAccuracy>
         </sa:SurveyProcedure>
         </sa:surveyDetails>
+-->
 
         <AttributeMapping>
-          <targetAttribute>Borehole/sa:surveyDetails/sa:SurveyProcedure/gml:description</targetAttribute>
+          <targetAttribute>gsml:Borehole/sa:surveyDetails/sa:SurveyProcedure/gml:description</targetAttribute>
           <sourceExpression>
             <OCQL>
               'Horizontal precision: (Field missing from SDE table) Vertical precision: (Field missing from SDE table)
@@ -371,32 +382,36 @@
             </OCQL>
           </sourceExpression>
         </AttributeMapping>
--->
 
-<!--
         <AttributeMapping>
-          <targetAttribute>Borehole/sa:shape</targetAttribute>
+          <targetAttribute>gsml:Borehole/sa:shape</targetAttribute>
           <sourceExpression>
             <OCQL>SHAPE</OCQL>
           </sourceExpression>
         </AttributeMapping>
+        
+        <!-- FIXME: Fails with exception
+        
         <AttributeMapping>
-          <targetAttribute>Borehole/sa:length</targetAttribute>
+          <targetAttribute>gsml:Borehole/sa:length</targetAttribute>
           <sourceExpression>
             <OCQL>LENGTHC</OCQL>
           </sourceExpression>
           <ClientProperty>
-            <name>uom</name>
+            <name>swe:uom</name>
             <value>'#m'</value>
           </ClientProperty>
         </AttributeMapping>
+
+        -->
+
         <AttributeMapping>
-          <targetAttribute>Borehole/collarLocation/BoreholeCollar/location</targetAttribute>
+          <targetAttribute>gsml:Borehole/gsml:collarLocation/gsml:BoreholeCollar/gsml:location</targetAttribute>
           <sourceExpression>
             <OCQL>SHAPE</OCQL>
           </sourceExpression>
         </AttributeMapping>
--->
+
       </attributeMappings>
     </FeatureTypeMapping>
   </typeMappings>
