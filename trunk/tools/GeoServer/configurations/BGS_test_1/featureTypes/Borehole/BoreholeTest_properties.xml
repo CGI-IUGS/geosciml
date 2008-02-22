@@ -99,6 +99,9 @@
         <GroupByAttribute>SHAPE</GroupByAttribute>
          -->
       </groupBy>
+      
+      <!-- mapping:1 -->
+      
       <attributeMappings>
         <AttributeMapping>
           <targetAttribute>gsml:Borehole</targetAttribute>
@@ -106,6 +109,9 @@
             <OCQL>strConcat('bh.', BGS_ID)</OCQL>
           </idExpression>
         </AttributeMapping>
+      
+      <!-- mapping:2 -->
+      
         <AttributeMapping>
           <targetAttribute>gsml:Borehole/gml:name[1]</targetAttribute>
           <sourceExpression>
@@ -116,6 +122,9 @@
             <value>'http://ns.bgs.ac.uk/bgs.sobi.pk'</value>
           </ClientProperty>
         </AttributeMapping>
+      
+      <!-- mapping:3 -->
+
         <AttributeMapping>
           <targetAttribute>gsml:Borehole/gml:name[2]</targetAttribute>
           <sourceExpression>
@@ -126,6 +135,9 @@
             <value>'http://ns.bgs.ac.uk/bgs.ubi.pk'</value>
           </ClientProperty>
         </AttributeMapping>
+
+      <!-- mapping:4 -->
+
         <AttributeMapping>
           <targetAttribute>gsml:Borehole/gml:name[3]</targetAttribute>
           <sourceExpression>
@@ -136,6 +148,9 @@
             <value>'http://ns.bgs.ac.uk/bgs.sobi.bore_name'</value>
           </ClientProperty>
         </AttributeMapping>
+
+      <!-- mapping:5 -->
+
         <AttributeMapping>
           <targetAttribute>gsml:Borehole/gml:name[4]</targetAttribute>
           <sourceExpression>
@@ -149,6 +164,7 @@
         
         <!-- Will empty sampledFeature element be created automatically? -->
 
+      <!-- mapping:6 -->
 
         <AttributeMapping>
           <targetAttribute>sa:relatedObservation[1]/om:Observation/om:samplingTime</targetAttribute>
@@ -158,7 +174,8 @@
           </ClientProperty>
         </AttributeMapping>
 
-        
+      <!-- mapping:7 -->
+
         <AttributeMapping>
           <targetAttribute>sa:relatedObservation[1]/om:Observation/om:procedure</targetAttribute>
           <ClientProperty>
@@ -167,6 +184,8 @@
           </ClientProperty>
         </AttributeMapping>
         
+      <!-- mapping:8 -->
+      
         <AttributeMapping>
           <targetAttribute>sa:relatedObservation[1]/om:Observation/om:observedProperty</targetAttribute>
           <ClientProperty>
@@ -177,7 +196,9 @@
 
         <!-- Will empty om:featureOfInterest element be automatically created? -->
 
-<!-- java.lang.ClassCastException: org.geotools.data.complex.GroupingFeatureIterator3$MutableAttributeImpl
+<!-- mapping:9
+
+    java.lang.ClassCastException: org.geotools.data.complex.GroupingFeatureIterator3$MutableAttributeImpl
 	at org.geotools.data.complex.filter.XPath.set(XPath.java:582)
 
         <AttributeMapping>
@@ -190,7 +211,9 @@
 
 -->
  
-<!-- java.lang.ClassCastException: org.geotools.data.complex.GroupingFeatureIterator3$MutableAttributeImpl
+<!-- mapping:10
+
+    java.lang.ClassCastException: org.geotools.data.complex.GroupingFeatureIterator3$MutableAttributeImpl
 	at org.geotools.data.complex.filter.XPath.set(XPath.java:582)
         
         <AttributeMapping>
@@ -203,15 +226,26 @@
 
 -->
 
-<!--        
-
-        
+<!-- mapping:11
+       
+       java.util.NoSuchElementException
+       ...
+       	at org.geotools.data.complex.GroupingFeatureIterator3$LazyProperties.<init>(GroupingFeatureIterator3.java:852)
+	at org.geotools.data.complex.GroupingFeatureIterator3.setMultiValuedAttributes(GroupingFeatureIterator3.java:292)
+	at org.geotools.data.complex.GroupingFeatureIterator3.computeNext(GroupingFeatureIterator3.java:218)
+	at org.geotools.data.complex.GroupingFeatureIterator3.next(GroupingFeatureIterator3.java:190)
+       
+       
         <AttributeMapping>
           <targetAttribute>sa:relatedObservation[1]/om:Observation/om:result/cv:CV_DiscreteCoverage/cv:element</targetAttribute>
           <isMultiple>true</isMultiple>
         </AttributeMapping>
 -->
-<!--        
+
+<!-- mapping:12 
+
+java.lang.ClassCastException: org.geotools.data.complex.GroupingFeatureIterator3$MutableAttributeImpl
+	at org.geotools.data.complex.filter.XPath.set(XPath.java:582)
         
         <AttributeMapping>
           <targetAttribute>sa:relatedObservation[1]/om:Observation/om:result/cv:CV_DiscreteCoverage/cv:element/cv:CV_GeometryValuePair/cv:geometry/cv:CV_DomainObject/cv:spatialElementgml:LineString</targetAttribute>
@@ -225,7 +259,12 @@
           </ClientProperty>
         </AttributeMapping>
 -->
-<!--        
+
+
+<!-- mapping:13
+
+java.lang.ClassCastException: org.geotools.data.complex.GroupingFeatureIterator3$MutableAttributeImpl
+	at org.geotools.data.complex.filter.XPath.set(XPath.java:582)
         
         <AttributeMapping>
           <targetAttribute>sa:relatedObservation[1]/om:Observation/om:result/cv:CV_DiscreteCoverage/cv:element/cv:CV_GeometryValuePair/cv:geometry/cv:CV_DomainObject/cv:spatialElementgml:LineString/gml:pos</targetAttribute>
@@ -234,7 +273,8 @@
           </sourceExpression>
         </AttributeMapping>
 -->
-<!--        
+
+<!-- mapping:14
         
         <AttributeMapping>
           <targetAttribute>sa:relatedObservation[1]/om:Observation/om:result/cv:CV_DiscreteCoverage/cv:element/cv:CV_GeometryValuePair/cv:geometry/cv:CV_DomainObject/cv:spatialElementgml:LineString/gml:pos</targetAttribute>
@@ -243,7 +283,8 @@
           </sourceExpression>
         </AttributeMapping>
 -->
-<!--        
+
+<!-- mapping:15       
         
         <AttributeMapping>
           <targetAttribute>sa:relatedObservation[1]/om:Observation/om:result/cv:CV_DiscreteCoverage/cv:value</targetAttribute>
@@ -260,8 +301,9 @@
           </ClientProperty>
         </AttributeMapping>
 -->
-<!--        
-        
+
+<!-- mapping:16
+       
         <AttributeMapping>
           <targetAttribute>sa:relatedObservation[1]/om:Observation/om:samplingTime</targetAttribute>
           <ClientProperty>
@@ -270,7 +312,8 @@
           </ClientProperty>
         </AttributeMapping>
 -->
-<!--        
+
+<!-- mapping:17
         
         <AttributeMapping>
           <targetAttribute>sa:relatedObservation[1]/om:Observation/om:procedure</targetAttribute>
@@ -280,7 +323,8 @@
           </ClientProperty>
         </AttributeMapping>
 -->
-<!--        
+
+<!-- mapping:18
         
         <AttributeMapping>
           <targetAttribute>sa:relatedObservation[1]/om:Observation/om:observedProperty</targetAttribute>
@@ -292,7 +336,8 @@
 -->
         <!-- Will empty om:featureOfInterest element be automatically created? -->
 
-<!--        
+<!-- mapping:19
+
         <AttributeMapping>
           <targetAttribute>sa:relatedObservation[1]/om:Observation/om:result/cv:CV_DiscreteCoverage/cv:domainExtent</targetAttribute>
           <ClientProperty>
@@ -301,7 +346,8 @@
           </ClientProperty>
         </AttributeMapping>
 -->
-<!--        
+
+<!-- mapping:20
         
         <AttributeMapping>
           <targetAttribute>sa:relatedObservation[1]/om:Observation/om:result/cv:CV_DiscreteCoverage/cv:rangeType</targetAttribute>
@@ -311,14 +357,17 @@
           </ClientProperty>
         </AttributeMapping>
 -->
-<!--        
+
+<!-- mapping:21
         
         <AttributeMapping>
           <targetAttribute>sa:relatedObservation[1]/om:Observation/om:result/cv:CV_DiscreteCoverage/cv:element</targetAttribute>
           <isMultiple>true</isMultiple>
         </AttributeMapping>
 -->
-<!--        
+
+<!-- mapping:22
+
         <AttributeMapping>
           <targetAttribute>sa:relatedObservation[1]/om:Observation/om:result/cv:CV_DiscreteCoverage/cv:element/cv:CV_GeometryValuePair/cv:geometry/cv:CV_DomainObject/cv:spatialElementgml:LineString</targetAttribute>
           <ClientProperty>
@@ -331,7 +380,9 @@
           </ClientProperty>
         </AttributeMapping>
 -->
-<!--        
+
+<!-- mapping:23
+
         <AttributeMapping>
           <targetAttribute>sa:relatedObservation[1]/om:Observation/om:result/cv:CV_DiscreteCoverage/cv:element/cv:CV_GeometryValuePair/cv:geometry/cv:CV_DomainObject/cv:spatialElementgml:LineString/gml:pos</targetAttribute>
           <sourceExpression>
@@ -339,7 +390,9 @@
           </sourceExpression>
         </AttributeMapping>
 -->
-<!--        
+
+<!-- mapping:24
+
         <AttributeMapping>
           <targetAttribute>sa:relatedObservation[1]/om:Observation/om:result/cv:CV_DiscreteCoverage/cv:element/cv:CV_GeometryValuePair/cv:geometry/cv:CV_DomainObject/cv:spatialElementgml:LineString/gml:pos</targetAttribute>
           <sourceExpression>
@@ -347,7 +400,9 @@
           </sourceExpression>
         </AttributeMapping>
 -->
-<!--        
+
+<!-- mapping:25
+   
         <AttributeMapping>
           <targetAttribute>sa:relatedObservation[1]/om:Observation/om:result/cv:CV_DiscreteCoverage/cv:value</targetAttribute>
           <sourceExpression>
@@ -363,8 +418,9 @@
           </ClientProperty>
         </AttributeMapping>
 
-       --> 
+--> 
 
+      <!-- mapping:26 -->
         
         <AttributeMapping>
           <targetAttribute>gsml:Borehole/sa:surveyDetails/sa:SurveyProcedure</targetAttribute>
@@ -373,7 +429,8 @@
           </idExpression>
         </AttributeMapping>
 
-       <!-- 
+
+       <!-- mapping:27
         
         <AttributeMapping>
           <targetAttribute>Borehole/sa:surveyDetails/sa:SurveyProcedure/sa:elevationAccuracy</targetAttribute>
@@ -386,6 +443,8 @@
 
        --> 
         
+        <!-- mapping:28 -->
+        
         <AttributeMapping>
           <targetAttribute>gsml:Borehole/sa:surveyDetails/sa:SurveyProcedure/sa:positionMethod</targetAttribute>
           <ClientProperty>
@@ -394,7 +453,9 @@
           </ClientProperty>
         </AttributeMapping>
         
-        <!-- FIXME: Fails with an exception
+        <!-- mapping:29
+        
+        FIXME: Fails with an exception
         
         <AttributeMapping>
           <targetAttribute>gsml:Borehole/sa:surveyDetails/sa:SurveyProcedure/sa:positionAccuracy</targetAttribute>
@@ -408,7 +469,7 @@
     
         --> 
 
-        <!-- 
+        <!-- NOT A MAPPING
   <sa:surveyDetails>
   <sa:SurveyProcedure gml:id="bh.196911.sp">
         <sa:elevationAccuracy uom="urn:ogc:def:uom:UCUM:m">0.1</sa:elevationAccuracy>
@@ -417,6 +478,8 @@
         </sa:SurveyProcedure>
         </sa:surveyDetails>
 -->
+
+      <!-- mapping:30 -->
 
         <AttributeMapping>
           <targetAttribute>gsml:Borehole/sa:surveyDetails/sa:SurveyProcedure/gml:description</targetAttribute>
@@ -428,6 +491,8 @@
           </sourceExpression>
         </AttributeMapping>
 
+      <!-- mapping:31 -->
+
         <AttributeMapping>
           <targetAttribute>gsml:Borehole/sa:shape</targetAttribute>
           <sourceExpression>
@@ -435,7 +500,9 @@
           </sourceExpression>
         </AttributeMapping>
         
-        <!-- FIXME: Fails with exception
+        <!-- mapping:32
+        
+        FIXME: Fails with exception
         
         <AttributeMapping>
           <targetAttribute>gsml:Borehole/sa:length</targetAttribute>
@@ -449,6 +516,8 @@
         </AttributeMapping>
 
         -->
+
+      <!-- mapping:33 -->
 
         <AttributeMapping>
           <targetAttribute>gsml:Borehole/gsml:collarLocation/gsml:BoreholeCollar/gsml:location</targetAttribute>
