@@ -73,7 +73,8 @@
       <schemaUri>http://schemas.opengis.net/om/1.0.0/om.xsd</schemaUri>
       -->
       <schemaUri>https://www.seegrid.csiro.au/subversion/GeoSciML/trunk/schema/GeoSciML/borehole.xsd</schemaUri>
-     </FeatureType>
+      <!--<schemaUri>../../commonSchemas/geosciml/borehole.xsd</schemaUri>-->
+    </FeatureType>
   </targetTypes>
   <typeMappings>
     <FeatureTypeMapping>
@@ -194,13 +195,23 @@
           </ClientProperty>
         </AttributeMapping>
 
-        <!-- Will empty om:featureOfInterest element be automatically created? -->
+        <!-- Will empty om:featureOfInterest element be automatically created? 
+        
+        NO -RA -->
 
+        <!-- should have a wilcard -> concrete class look something like this - I'll try to debug this tomorrow on the train  -->
+        
+        <AttributeMapping>
+          <targetAttribute>sa:relatedObservation[1]/om:Observation/om:result</targetAttribute>
+          <targetAttributeNode>cv:CV_DiscreteCoveragePropertyType</targetAttributeNode>
+        </AttributeMapping>
+        
 <!-- mapping:9
 
     java.lang.ClassCastException: org.geotools.data.complex.GroupingFeatureIterator3$MutableAttributeImpl
 	at org.geotools.data.complex.filter.XPath.set(XPath.java:582)
-
+-->
+        
         <AttributeMapping>
           <targetAttribute>sa:relatedObservation[1]/om:Observation/om:result/cv:CV_DiscreteCoverage/cv:domainExtent</targetAttribute>
           <ClientProperty>
@@ -209,7 +220,7 @@
           </ClientProperty>
         </AttributeMapping>
 
--->
+
  
 <!-- mapping:10
 
@@ -265,8 +276,9 @@ java.lang.ClassCastException: org.geotools.data.complex.GroupingFeatureIterator3
 
 java.lang.ClassCastException: org.geotools.data.complex.GroupingFeatureIterator3$MutableAttributeImpl
 	at org.geotools.data.complex.filter.XPath.set(XPath.java:582)
+-->
         
-        <AttributeMapping>
+  <!--      <AttributeMapping>
           <targetAttribute>sa:relatedObservation[1]/om:Observation/om:result/cv:CV_DiscreteCoverage/cv:element/cv:CV_GeometryValuePair/cv:geometry/cv:CV_DomainObject/cv:spatialElement/gml:LineString/gml:pos</targetAttribute>
           <sourceExpression>
             <OCQL>DRILLED_DE</OCQL>
@@ -278,7 +290,9 @@ java.lang.ClassCastException: org.geotools.data.complex.GroupingFeatureIterator3
 
 java.lang.ClassCastException: org.geotools.data.complex.GroupingFeatureIterator3$MutableAttributeImpl
 	at org.geotools.data.complex.filter.XPath.set(XPath.java:582)
-        
+
+this mapping doesnt appear sensible - the source data is a Double, the target is a coordinate string. Also, in general geometries should be mapped to the root element, and internal details left to the gml object bindings.
+
         <AttributeMapping>
           <targetAttribute>sa:relatedObservation[1]/om:Observation/om:result/cv:CV_DiscreteCoverage/cv:element/cv:CV_GeometryValuePair/cv:geometry/cv:CV_DomainObject/cv:spatialElement/gml:LineString/gml:pos</targetAttribute>
           <sourceExpression>
@@ -291,7 +305,27 @@ java.lang.ClassCastException: org.geotools.data.complex.GroupingFeatureIterator3
 
 java.lang.ClassCastException: org.geotools.data.complex.GroupingFeatureIterator3$MutableAttributeImpl
 	at org.geotools.data.complex.filter.XPath.set(XPath.java:582) 
-        
+	
+	now is
+	
+	java.lang.IllegalArgumentException:
+	cv:value is not a valid location path for type
+	http://www.opengis.net/cv/0.2.1CV_DiscreteCoverageType.
+	cv:value ns: http://www.opengis.net/cv/0.2.1,
+	CV_DiscreteCoverageType properties:
+	http://www.opengis.net/gml#metaDataProperty,
+	http://www.opengis.net/gml#description,
+	http://www.opengis.net/gml#name,
+	http://www.opengis.net/gml#boundedBy,
+	http://www.opengis.net/gml#location,
+	http://www.opengis.net/cv/0.2.1#domainExtent,
+	http://www.opengis.net/cv/0.2.1#rangeType,
+	http://www.opengis.net/cv/0.2.1#element cv:value is
+	not a valid location path for type
+	http://www.opengis.net/cv/0.2.1CV_DiscreteCoverageType.
+	cv:value ns: http://www.opengis.net/cv/0.2.1,
+	CV_DiscreteCoverageType 
+ -->       
         <AttributeMapping>
           <targetAttribute>sa:relatedObservation[1]/om:Observation/om:result/cv:CV_DiscreteCoverage/cv:value</targetAttribute>
           <sourceExpression>
@@ -306,7 +340,7 @@ java.lang.ClassCastException: org.geotools.data.complex.GroupingFeatureIterator3
             <value>'http://ns.bgs.ac.uk/bgs.lex_lithostrat_unit_v3'</value>
           </ClientProperty>
         </AttributeMapping>
--->
+
 
 <!-- mapping:16 -->
        
