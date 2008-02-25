@@ -1,0 +1,276 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<GSML
+    gml:id="GA_LithologicUnits_Collection_000001"
+    xmlns="urn:cgi:xmlns:CGI:GeoSciML:2.0"
+    xmlns:gml="http://www.opengis.net/gml"
+    xmlns:gsml="urn:cgi:xmlns:CGI:GeoSciML:2.0" 
+    xmlns:mo="urn:cgi:xmlns:GGIC:MineralOccurrence:1.0"
+    xmlns:om="http://www.opengis.net/om/1.0" 
+    xmlns:xlink="http://www.w3.org/1999/xlink"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:cgu="urn:cgi:xmlns:CGI:Utilities:1.0"
+    xsi:schemaLocation="urn:cgi:xmlns:CGI:GeoSciML:2.0 https://www.seegrid.csiro.au/subversion/GeoSciML/trunk/schema/GeoSciML/geosciml.xsd">
+    <!-- 
+        ####   This instance document describes MappedFeature polygons of two LithologicUnits from the Eastern Australia 1:1million scale data.  ####
+    -->
+    <!--  0..* gml:metadataProperty elements. Best Practice: use gsml:metadata to href ISO19115 metadata -->
+    <!--    <gml:metaDataProperty>
+        ****     Does metadata go here or in the <metadata> tag? ****
+        <contact xmlns="http://www.opengis.net/sensorML/1.0.1">
+        <ResponsibleParty>
+        <organizationName>Geoscience Australia</organizationName>
+        </ResponsibleParty>
+        </contact>
+        </gml:metaDataProperty>-->
+    <!-- one gml:description may be used to describe this collection -->
+    <gml:description>Lithological units - Surface Geology of Eastern Australia - 1:1 million scale</gml:description>
+    <!-- 0..* gml Name elements to identify the collection-->
+    <!--    <gml:name></gml:name>   -->
+    <!-- wfs:featureCollection [gsml:gsml] includs 0..* gml:featureMember [gsml:member] elements. wfs also allows grouping of features in a gml:featureMembers element following any featureMember elements. This is designed to represent an array of features. Best Practice: include GeoSciML features as featureMember elements. -->
+<member>
+<MappedFeature>
+    <gml:description>Geological unit polygon</gml:description>  <!-- Constant for this dataset -->
+    <gml:name>134823</gml:name>    <!-- Use UFI from GIS dataset  -->
+    <observationMethod>           <!-- SRC_DATA -->
+        <CGI_TermValue>
+            <value codeSpace="urn:cgi:classifierScheme:GA:1MillionGeology_ObservationMethods">Geological Survey of New South Wales, Statewide geodatabase, 1:250,000 scale or better, 2003. Simplified, edge matched and modified for representation at 1:1 million scale</value>  
+        </CGI_TermValue>
+    </observationMethod>
+    <positionalAccuracy>         <!-- LOC_ACC -->
+        <CGI_NumericValue>
+            <principalValue uom="urn:ogc:def:uom:UCUM:m">500</principalValue>
+        </CGI_NumericValue>
+    </positionalAccuracy>
+    <samplingFrame xlink:href="urn:cgi:classsifier:GA:SurfaceGeologyOfEasternAustralia_1MillionScale"/>
+    <specification>
+        <LithologicUnit >
+            <gml:description>Mafic volcaniclastic sandstone, siltstone, shale, chert; minor limestone, conglomerate</gml:description>     <!-- LITH_DESC  -->
+            <gml:name codeSpace="urn:cgi:classifierScheme:GA:StratigraphicLexicon:Unitname">Kabadah Formation</gml:name>        <!-- UNITNAME -->
+            <gml:name codeSpace="urn:cgi:classifierScheme:GA:StratigraphicLexicon:Map_symbol">Ojck</gml:name>    <!-- MAP_SYMB unique letter code for this unit-->
+            <gml:name codeSpace="urn:ietf:rfc:2141">urn:cgi:feature:GA:Stratno:29570</gml:name>        <!-- STRATNO unique number for this unit  -->
+            <observationMethod>       <!-- Constant value for this dataset-->
+                <CGI_TermValue>
+                    <value codeSpace="urn:cgi:classifierScheme:GA:ObservationMethods">published description</value>
+                </CGI_TermValue>
+            </observationMethod>
+            <purpose>typicalNorm</purpose>             <!-- Constant value -->
+            <preferredAge>          <!-- Derive from MAP_SYMB -->
+                <GeologicEvent>
+                    <eventAge>
+                        <CGI_TermValue>
+                            <value codeSpace="urn:cgi:classifierScheme:ICS:StratChart:2004">urn:cgi:classifier:ICS:StratChart:2004:Ordovician</value>  <!-- Does the value need to be formatted this way if the classifierScheme URN is already given? -->
+                        </CGI_TermValue>
+                    </eventAge>
+                    <eventProcess>
+                        <CGI_TermValue>
+                            <value codeSpace="urn:cgi:classifierScheme:GA:Process">unspecified</value>    <!-- Constant value --> <!-- or derive value = 'deposition' from map_symb -->
+                        </CGI_TermValue>
+                    </eventProcess>
+                </GeologicEvent>
+            </preferredAge>
+            <geologicHistory>
+                <GeologicEvent>
+                    <eventAge>
+                        <CGI_TermRange>
+                            <lower>
+                                <CGI_TermValue>
+                                    <value codeSpace="urn:cgi:classifierScheme:ICS:StratChart:2004">urn:cgi:classifier:ICS:StratChart:2004:Upper Ordovician</value>    <!-- MAX_GEOAGE -->
+                                </CGI_TermValue>
+                            </lower>
+                            <upper>
+                                <CGI_TermValue>
+                                    <value codeSpace="urn:cgi:classifierScheme:ICS:StratChart:2004">urn:cgi:classifier:ICS:StratChart:2004:Llandovery</value>   <!-- MIN_GEOAGE -->
+                                </CGI_TermValue>
+                            </upper>
+                        </CGI_TermRange>
+                    </eventAge>
+                    <eventProcess>
+                        <CGI_TermValue>
+                            <value codeSpace="urn:cgi:classifierScheme:GA:Process">unspecified</value>    <!-- Constant value -->   <!-- or derive value = 'deposition' from map_symb -->
+                        </CGI_TermValue>
+                    </eventProcess>
+                </GeologicEvent>
+            </geologicHistory>
+            <bodyMorphology>
+                <CGI_TermValue>
+                    <value codeSpace="urn:cgi:classifierScheme:GA:FormType">unspecified</value>   <!-- Where FORM_TYPE = "intrusion", use value = "intrusion" -->
+                </CGI_TermValue>
+            </bodyMorphology>
+            <compositionCategory>
+                <CGI_TermValue>
+                    <value codeSpace="urn:cgi:classifierScheme:GA:CompositionCategory">siliciclastic</value>  <!-- Derive from LITH_GROUP -->
+                </CGI_TermValue>
+            </compositionCategory>
+            <rank codeSpace="urn:cgi:classifierScheme:GA:Rank">formation, beds</rank>     <!-- Geodx.rankname -->
+            <classifier>
+                <ControlledConcept gml:id="GA_stratno_29570">
+                    <!--    gml:id is internal identifier, just has to be unique, don't use anything that's required to have external significance -->
+                    <gml:name codeSpace="urn:ietf:rfc:2141">urn:cgi:feature:GA:StratigraphicLexicon:29570></gml:name>   <!-- STRATNO -->
+                    <identifier codeSpace="urn:ietf:rfc:2141">urn:cgi:feature:GA:StratigraphicLexicon:29570></identifier>     <!-- STRATNO -->
+                    <name xml:lang="en" codeSpace="urn:cgi:classifierScheme:GA:StratigraphicLexicon:Unitname">Kabadah Formation</name>       <!-- UNITNAME -->
+                    <!-- The aim here is to specify the unique classifier (identifier) for the ControlledConcept. Done by using gml:name and gsml:identifier.  Also want to specify what the (local) name for the concept is - used gsml:name. -->
+                    <name xml:lang="en" codeSpace="urn:cgi:classifierScheme:GA:StratigraphicLexicon:Map_symbol">Ojck</name>            <!-- MAP_SYMB -->
+                    <vocabulary xlink:href="urn:cgi:classifierScheme:GA:StratigraphicLexicon"/>
+                </ControlledConcept>
+            </classifier>
+            <composition>
+                <CompositionPart>
+                    <role codeSpace="urn:cgi:classifierScheme:GA:Role">part of</role>
+                    <lithology>
+                        <ControlledConcept gml:id="UID_0000001">    <!-- Generate a uid from somewhere? -->
+                            <!-- gml:id is internal identifier, just has to be unique, don't use anything that's required to have external significance -->
+                            <gml:name codeSpace="urn:cgi:classifierScheme:Testbed3_CGI_vocabulary:Lithology">UID for greywacke from the CGI vocabulary</gml:name>
+                            <identifier codeSpace="urn:cgi:classifierScheme:Testbed3_CGI_vocabulary:Lithology">UID for greywacke from the CGI vocabulary</identifier>
+                            <name codeSpace="urn:cgi:classifierScheme:Testbed3_CGI_vocabulary:Lithology" xml:lang="en">greywacke</name>
+                            <vocabulary xlink:href="urn:cgi:classifierScheme:Testbed3_CGI_vocabulary:Lithology"/>    <!-- Link to common Testbed3 vocabulary for lithology -->
+                        </ControlledConcept>
+                    </lithology>
+                    <proportion>
+                        <CGI_TermValue>
+                            <value codeSpace="urn:cgi:classifierScheme:GA:Proportion">dominant</value>
+                        </CGI_TermValue>
+                    </proportion>
+                </CompositionPart>
+            </composition>
+        </LithologicUnit>
+    </specification>
+    <shape>
+        <gml:Polygon srsName="http://www.opengis.net/gml/srs/epsg.xml#4326">
+            <gml:outerBoundaryIs>
+                <gml:LinearRing>
+                    <gml:coordinates decimal="." cs="," ts="">
+                        141.94618067,-36.59701912
+                        141.94828905,-36.60132373 141.94951633,-36.60617081
+                        141.94651695,-36.59688031 141.94622325,-36.59700336
+                        141.94618067,-36.59701912
+                    </gml:coordinates>
+                </gml:LinearRing>
+            </gml:outerBoundaryIs>
+          </gml:Polygon>
+    </shape>
+</MappedFeature>
+</member>
+<member>
+<MappedFeature>
+    <gml:description>Geological unit polygon</gml:description>  <!-- Constant for this dataset -->
+    <gml:name>783647</gml:name>       <!-- Use UFI from GIS dataset  -->
+    <observationMethod>           <!-- SRC_DATA -->
+        <CGI_TermValue>
+            <value codeSpace="urn:cgi:classifierScheme:GA:1MillionGeology_ObservationMethods">Geological Survey of Queensland, 1:100,000 scale geological maps, July 2004. Simplified, edge matched and modified for representation at 1:1 million scale</value>  
+        </CGI_TermValue>
+    </observationMethod>
+    <positionalAccuracy>         <!-- LOC_ACC -->
+        <CGI_NumericValue>
+            <principalValue uom="urn:ogc:def:uom:UCUM:m">500</principalValue>
+        </CGI_NumericValue>
+    </positionalAccuracy>
+    <samplingFrame xlink:href="urn:cgi:classsifier:GA:SurfaceGeologyOfEasternAustralia_1MillionScale"/>
+    <specification>
+        <LithologicUnit >
+            <gml:description>Grey, medium-grained biotite-hornblende granodiorite, biotite-hornblende quartz diorite and porphyritic microdiorite</gml:description>     <!-- LITH_DESC  -->
+            <gml:name codeSpace="urn:cgi:classifierScheme:GA:StratigraphicLexicon:Unitname">Copperville Granodiorite</gml:name>        <!-- UNITNAME -->
+            <gml:name codeSpace="urn:cgi:classifierScheme:GA:StratigraphicLexicon:Map_symbol">Pgcv</gml:name>    <!-- MAP_SYMB unique letter code for this unit-->
+            <gml:name codeSpace="urn:ietf:rfc:2141">urn:cgi:feature:GA:Stratno:33154</gml:name>        <!-- STRATNO unique number for this unit  -->
+            <observationMethod>       <!-- Constant value for this dataset -->
+                <CGI_TermValue>
+                    <value codeSpace="urn:cgi:classifierScheme:GA:ObservationMethods">published description</value>
+                </CGI_TermValue>
+            </observationMethod>
+            <purpose>typicalNorm</purpose>             <!-- Constant value -->
+            <preferredAge>          <!-- Derive from MAP_SYMB -->
+                <GeologicEvent>
+                    <eventAge>
+                        <CGI_TermValue>
+                            <value codeSpace="urn:cgi:classifierScheme:ICS:StratChart:2004">urn:cgi:classifier:ICS:StratChart:2004:Permian</value>  <!-- Does the value need to be formatted this way if the classifierScheme URN is already given? -->
+                        </CGI_TermValue>
+                    </eventAge>
+                    <eventProcess>
+                        <CGI_TermValue>
+                            <value codeSpace="urn:cgi:classifierScheme:GA:Process">unspecified</value>    <!-- Constant value -->    <!-- or derive value = 'intrusion' from map_symb -->
+                        </CGI_TermValue>
+                    </eventProcess>
+                </GeologicEvent>
+            </preferredAge>
+            <geologicHistory>
+                <GeologicEvent>
+                    <eventAge>
+                        <CGI_TermRange>
+                            <lower>
+                                <CGI_TermValue>
+                                    <value codeSpace="urn:cgi:classifierScheme:ICS:StratChart:2004">urn:cgi:classifier:ICS:StratChart:2004:Upper Permian</value>    <!-- MAX_GEOAGE -->
+                                </CGI_TermValue>
+                            </lower>
+                            <upper>
+                                <CGI_TermValue>
+                                    <value codeSpace="urn:cgi:classifierScheme:ICS:StratChart:2004">urn:cgi:classifier:ICS:StratChart:2004:Upper Permian</value>   <!-- MIN_GEOAGE -->
+                                </CGI_TermValue>
+                            </upper>
+                        </CGI_TermRange>
+                    </eventAge>
+                    <eventProcess>
+                        <CGI_TermValue>
+                            <value codeSpace="urn:cgi:classifierScheme:GA:Process">unspecified</value>    <!-- Constant value -->   <!-- or derive value = 'deposition' from map_symb -->
+                        </CGI_TermValue>
+                    </eventProcess>
+                </GeologicEvent>
+            </geologicHistory>
+            <bodyMorphology>
+                <CGI_TermValue>
+                    <value codeSpace="urn:cgi:classifierScheme:GA:FormType">intrusion</value>   <!-- Where FORM_TYPE = "intrusion", use value = "intrusion" -->
+                </CGI_TermValue>
+            </bodyMorphology>
+            <compositionCategory>
+                <CGI_TermValue>
+                    <value codeSpace="urn:cgi:classifierScheme:GA:CompositionCategory">igneous felsic</value>  <!-- Derive from LITH_GROUP -->
+                </CGI_TermValue>
+            </compositionCategory>
+            <rank codeSpace="urn:cgi:classifierScheme:GA:Rank">formation</rank>     <!-- Geodx.rankname -->
+            <classifier>
+                <ControlledConcept gml:id="GA_stratno_33154">    
+                    <!--    gml:id is internal identifier, just has to be unique, don't use anything that's required to have external significance -->
+                    <gml:name codeSpace="urn:ietf:rfc:2141">urn:cgi:feature:GA:StratigraphicLexicon:33154></gml:name>   <!-- STRATNO -->
+                    <identifier codeSpace="urn:ietf:rfc:2141">urn:cgi:feature:GA:StratigraphicLexicon:33154></identifier>     <!-- STRATNO -->
+                    <name xml:lang="en" codeSpace="urn:cgi:classifierScheme:GA:StratigraphicLexicon:Unitname">Copperville Granodiorite</name>       <!-- UNITNAME -->
+                    <name xml:lang="en" codeSpace="urn:cgi:classifierScheme:GA:StratigraphicLexicon:Map_symbol">Pgcv</name>            <!-- MAP_SYMB -->
+                    <!-- The aim here is to specify the unique classifier (identifier) for the ControlledConcept. Done by using gml:name and gsml:identifier.  Also want to specify what the (local) name for the concept is - used gsml:name. -->
+                    <vocabulary xlink:href="urn:cgi:classifierScheme:GA:StratigraphicLexicon"/>
+                </ControlledConcept>
+            </classifier>
+            <composition>
+                <CompositionPart>
+                    <role codeSpace="urn:cgi:classifierScheme:GA:Role">part of</role>
+                    <lithology>
+                        <ControlledConcept gml:id="UID_0000002">   <!-- Generate a uid from somewhere? -->
+                            <!-- gml:id is internal identifier, just has to be unique, don't use anything that's required to have external significance -->
+                            <gml:name codeSpace="urn:cgi:classifierScheme:Testbed3_CGI_vocabulary:Lithology">UID for granodiorite from the CGI vocabulary</gml:name>
+                            <identifier codeSpace="urn:cgi:classifierScheme:Testbed3_CGI_vocabulary:Lithology">UID for granodiorite from the CGI vocabulary</identifier>
+                            <name codeSpace="urn:cgi:classifierScheme:Testbed3_CGI_vocabulary:Lithology" xml:lang="en">greywacke</name>
+                            <vocabulary xlink:href="urn:cgi:classifierScheme:Testbed3_CGI_vocabulary:Lithology"/>    <!-- Link to common Testbed3 vocabulary for lithology -->
+                        </ControlledConcept>
+                    </lithology>
+                    <proportion>
+                        <CGI_TermValue>
+                            <value codeSpace="urn:cgi:classifierScheme:GA:Proportion">dominant</value>
+                        </CGI_TermValue>
+                    </proportion>
+                </CompositionPart>
+            </composition>
+        </LithologicUnit>
+    </specification>
+    <shape>
+        <gml:Polygon srsName="urn:ogc:def:crs:EPSG::4326">
+            <gml:outerBoundaryIs>
+                <gml:LinearRing>
+                    <gml:coordinates decimal="." cs="," ts="">
+                        149.94618067,-22.59701912
+                        149.94828905,-22.60132373 149.94951633,-22.60617081
+                        149.94651695,-22.59688031 149.94622325,-22.59700336
+                        149.94618067,-22.59701912
+                    </gml:coordinates>
+                </gml:LinearRing>
+            </gml:outerBoundaryIs>
+          </gml:Polygon>
+    </shape>
+</MappedFeature>
+</member>    
+</GSML>

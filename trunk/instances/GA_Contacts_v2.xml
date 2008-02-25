@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<GSML 
+    gml:id="GA_Contacts_Collection_000001"
+    xmlns="urn:cgi:xmlns:CGI:GeoSciML:2.0" 
+    xmlns:gml="http://www.opengis.net/gml"
+    xmlns:gsml="urn:cgi:xmlns:CGI:GeoSciML:2.0" 
+    xmlns:mo="urn:cgi:xmlns:GGIC:MineralOccurrence:1.0"
+    xmlns:om="http://www.opengis.net/om/1.0" 
+    xmlns:xlink="http://www.w3.org/1999/xlink"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:cgu="urn:cgi:xmlns:CGI:Utilities:1.0"
+    xsi:schemaLocation="urn:cgi:xmlns:CGI:GeoSciML:2.0 https://www.seegrid.csiro.au/subversion/GeoSciML/trunk/schema/GeoSciML/geosciml.xsd">
+    <!--  0..* gml:metadataProperty elements. Best Practice: use gsml:metadata to href ISO19115 metadata -->
+    <!--    <gml:metaDataProperty>
+        <contact xmlns="http://www.opengis.net/sensorML/1.0.1">
+        <ResponsibleParty>
+        <organizationName>Geoscience Australia</organizationName>
+        </ResponsibleParty>
+        </contact>
+        </gml:metaDataProperty>-->
+    <!-- one gml:description may be used to describe this collection -->
+    <gml:description>Geological unit contacts - Surface Geology of Eastern Australia - 1:1 million scale</gml:description>
+    <!-- <gml:name></gml:name>   -->
+    <member>
+        <Contact gml:id="GA_Contact_24680">    <!-- Use UFI of line in GIS dataset -->
+            <gml:description>Stratigraphic boundary - conformity</gml:description>         <!-- Use DESCRIPT from GIS dataset -->
+<!--            <gml:name></gml:name>      Stratigraphic boundaries don't have names  -->
+            <observationMethod>
+                <CGI_TermValue>
+                    <value codeSpace="urn:cgi:classifierScheme:GA:ObservationMethod">Field mapping</value>         <!-- Constant value -->
+                </CGI_TermValue>
+            </observationMethod>
+            <purpose>instance</purpose>
+            <contactType>
+                <ControlledConcept gml:id="GA_0000001">    <!-- Generate uid from vocabulary -->
+                    <gml:description>Conformable stratigraphic boundary</gml:description>
+                    <gml:name codeSpace="urn:ietf:rfc:2141">urn:cgi:classifierScheme:GA:ContactType:Conformity</gml:name>       
+                    <identifier codeSpace="urn:ietf:rfc:2141">urn:cgi:classifierScheme:GA:FeatureCode:1000199</identifier>            <!-- Use FEAT_CODE -->
+                    <name xml:lang="en" codeSpace="urn:ietf:rfc:2141">urn:cgi:classifierScheme:GA:ContactType:Conformity</name>    <!-- Redundant information?  - see gml:name -->
+                    <vocabulary xlink:href="urn:cgi:classifierScheme:GA:ContactType"/>
+                </ControlledConcept>
+            </contactType>
+            <boundedUnitLink>
+                <BoundaryRelationship>
+                    <gml:description>Conformable stratigraphic boundary</gml:description>
+                    <relationship codeSpace="urn:cgi:classifierScheme:GA:Relations">Stratigraphic boundary - conformity</relationship>
+                    <sourceRole codeSpace="urn:cgi:classifierScheme:GA:Role">overlying unit</sourceRole>    <!-- Need to get this from searching the stratigraphic lexicon ? -->
+                    <targetRole codeSpace="urn:cgi:classifierScheme:GA:Role">underlying unit</targetRole>    <!-- Need to get this from searching the stratigraphic lexicon  ? -->
+                    <target xlink:href="GA_Stratigraphic_Lexicon.xml#GA_Stratno_33373"/>      <!-- xlink to Kombolgie Formation in stratigraphic lexicon doc.  Alternative to describing the LithologicUnit like above example.  -->
+<!--                       <LithologicUnit gml:id="GA_Stratno_33373">
+                            <gml:name>Kombolgie Subgroup</gml:name>
+                            <observationMethod>
+                                <CGI_TermValue>
+                                    <value codeSpace="urn:cgi:classifierScheme:GA:ObservationMethod">Published description</value>    
+                                </CGI_TermValue>
+                            </observationMethod>
+                            <purpose>definingNorm</purpose>
+                        </LithologicUnit>   -->
+                     <source xlink:href="GA_Stratigraphic_Lexicon.xml#GA_Stratno_24881"/>        <!-- xlink to Cottee Formation in stratigraphic lexicon doc -->
+<!--                       <LithologicUnit gml:id="GA_Stratno_24881">
+                            <gml:name>Cottee Formation</gml:name>
+                            <observationMethod>
+                                <CGI_TermValue>
+                                    <value codeSpace="urn:cgi:classifierScheme:GA:ObservationMethod">Published description</value>         
+                                </CGI_TermValue>
+                            </observationMethod>
+                            <purpose>definingNorm</purpose>
+                        </LithologicUnit>-->
+                </BoundaryRelationship>
+            </boundedUnitLink>
+        </Contact>
+    </member>
+    <member>
+        <Contact gml:id="GA_Contact_123456">    <!-- Use UFI of line in GIS dataset -->
+            <gml:description>Fault</gml:description>   <!-- Use DESCRIPT from GIS dataset -->
+            <gml:name>Palmerville Fault</gml:name>          <!-- Use NAME from GIS dataset -->
+            <observationMethod>
+                <CGI_TermValue>
+                    <value codeSpace="urn:cgi:classifierScheme:GA:ObservationMethod">Field mapping</value>     <!-- Constant value -->
+                </CGI_TermValue>
+            </observationMethod>
+            <purpose>instance</purpose>
+            <contactType>
+                <ControlledConcept gml:id="GA_0000002">        <!-- Generate uid from vocabulary -->
+                    <gml:name codeSpace="urn:ietf:rfc:2141">urn:cgi:classifierScheme:GA:ContactType:Fault</gml:name>
+                    <identifier codeSpace="urn:ietf:rfc:2141">urn:cgi:classifierScheme:GA:FeatureCode:1100100</identifier>   <!-- Use FEAT_CODE -->
+                    <name xml:lang="en" codeSpace="urn:ietf:rfc:2141">urn:cgi:classifierScheme:GA:ContactType:Fault</name>    <!-- Redundant information?  - see gml:name -->
+                    <vocabulary xlink:href="urn:cgi:classifierScheme:GA:ContactType"/>
+                </ControlledConcept>
+            </contactType>
+            <boundedUnitLink>
+                <BoundaryRelationship>
+                    <gml:description>Unit boundary formed by a fault</gml:description>
+                    <relationship codeSpace="urn:cgi:classifierScheme:GA:Relations">Faulted contact</relationship>
+                    <sourceRole codeSpace="urn:cgi:classifierScheme:GA:Role">Faulted unit</sourceRole>
+                    <targetRole codeSpace="urn:cgi:classifierScheme:GA:Role">Faulted unit</targetRole>
+                    <target xlink:href="GA_Stratigraphic_Lexicon.xml#GA_Stratno_33373"/>      <!-- xlink to Kombolgie Formation in stratigraphic lexicon doc.  Alternative to describing the LithologicUnit like above example.  -->
+                    <source xlink:href="GA_Stratigraphic_Lexicon.xml#GA_Stratno_5978"/>        <!-- xlink to Edith River Group in stratigraphic lexicon doc -->
+                </BoundaryRelationship>
+            </boundedUnitLink>
+        </Contact>
+    </member>
+</GSML>
