@@ -7,35 +7,52 @@ Loughborough mapping file
   xsi:schemaLocation="http://www.geotools.org/complex ComplexDataStore.xsd
                       http://www.opengis.net/ogc http://schemas.opengis.net/filter/1.1.0/expr.xsd">
   <namespaces>
-    <!-- 
-         declare here the namespaces and prefixes used by the parser to
-         resolve <type> elements. 
-         i.e.:
-        <AttributeMapping>
-          <targetAttribute>Gsml/member[1]</targetAttribute>
-          <targetElement>gsml:CGI_RangeValueProperty</targetElement>
-          <sourceExpression><OCQL>null</OCQL></sourceExpression>
-        </AttributeMapping>
-    -->
     <Namespace>
       <prefix>gsml</prefix>
-      <uri>http://www.cgi-iugs.org/xml/GeoSciML/1</uri>
+      <uri>urn:cgi:xmlns:CGI:GeoSciML:2.0</uri>
+    </Namespace>
+    <Namespace>
+      <prefix>gml</prefix>
+      <uri>http://www.opengis.net/gml</uri>
+    </Namespace>
+    <Namespace>
+      <prefix>xlink</prefix>
+      <uri>http://www.w3.org/1999/xlink</uri>
+    </Namespace>
+    <Namespace>
+      <prefix>sa</prefix>
+      <uri>http://www.opengis.net/sampling/1.0</uri>
+    </Namespace>
+    <Namespace>
+      <prefix>om</prefix>
+      <uri>http://www.opengis.net/om/1.0</uri>
+    </Namespace>
+    <Namespace>
+      <prefix>cv</prefix>
+      <uri>http://www.opengis.net/cv/0.2.1</uri>
+    </Namespace>
+    <Namespace>
+      <prefix>swe</prefix>
+      <uri>http://www.opengis.net/swe/1.0.1</uri>
+    </Namespace>
+    <Namespace>
+      <prefix>sml</prefix>
+      <uri>http://www.opengis.net/sensorML/1.0.1</uri>
     </Namespace>
   </namespaces>
   <sourceDataStores>
     <DataStore>
-      <id>sde</id>
+      <id>mappedPolygons</id>
       <parameters>
-        <Parameter><name>dbtype</name><value>arcsde</value></Parameter>
-        <Parameter><name>server</name><value>server_name</value></Parameter>
-        <Parameter><name>port</name><value>port_number</value></Parameter>
-        <Parameter><name>instance</name><value>instance_name</value></Parameter>
-        <Parameter><name>user</name><value>user_name</value></Parameter>
-        <Parameter><name>password</name><value>password</value></Parameter>
-        <Parameter><name>pool.maxConnections</name><value>8</value></Parameter>
+        <Parameter>
+          <name>directory</name>
+          <!-- path can be relative to this file if starts with "file: -->
+          <value>file:./</value>
+        </Parameter>
       </parameters>
     </DataStore>
   </sourceDataStores>
+  <catalog>../../commonSchemas/OASIScatalog.xml</catalog>
   <targetTypes>
     <FeatureType>
       <!-- 
@@ -58,13 +75,13 @@ Loughborough mapping file
 	<schemaUri>www.seegrid.csiro.au/xsd/geosciml/GeoSciML.xsd</schemaUri>
 
 -->
-      <schemaUri>../../commonSchemas_new/GeoSciML/Gsml.xsd</schemaUri>
+      <schemaUri>https://www.seegrid.csiro.au/subversion/GeoSciML/trunk/schema/GeoSciML/geologicFeature.xsd</schemaUri>
     </FeatureType>
   </targetTypes>
   <typeMappings>
     <FeatureTypeMapping>
-      <sourceDataStore>sde</sourceDataStore>
-      <sourceType>SDE_BGSDATA.SDE.GSML_DM50K_EW141_BEDROCK_LATLON</sourceType>
+      <sourceDataStore>mappedfeature</sourceDataStore>
+      <sourceType>mappedfeature</sourceType>
       <targetElement>gsml:MappedFeature</targetElement>
       <groupBy/>
 <!--      <fidMappings>
@@ -84,15 +101,15 @@ Loughborough mapping file
           <idExpression><OCQL>getId()</OCQL></idExpression>
         </AttributeMapping>
           <AttributeMapping>
-            <targetAttribute>MappedFeature/gml:name[1]</targetAttribute>
+            <targetAttribute>gsml:MappedFeature/gml:name[1]</targetAttribute>
             <sourceExpression><OCQL>LEX</OCQL></sourceExpression>
           </AttributeMapping>
           <AttributeMapping>
-            <targetAttribute>MappedFeature/gml:name[2]</targetAttribute>
+            <targetAttribute>gsml:MappedFeature/gml:name[2]</targetAttribute>
             <sourceExpression><OCQL>LEX_ROCK</OCQL></sourceExpression>
           </AttributeMapping>
           <AttributeMapping>
-          <targetAttribute>MappedFeature/shape</targetAttribute>
+          <targetAttribute>gsml:MappedFeature/gsml:shape</targetAttribute>
           <sourceExpression><OCQL>SHAPE</OCQL></sourceExpression>
         </AttributeMapping>
 <!--
