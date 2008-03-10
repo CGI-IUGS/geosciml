@@ -563,13 +563,9 @@ java.lang.ClassCastException: org.geotools.data.complex.GroupingFeatureIterator3
           </sourceExpression>
         </AttributeMapping>
         
-        <!-- mapping:32
+        <!-- mapping:32 -->
         
-        java.lang.RuntimeException: Failed to get property: uom
-	at org.geotools.xml.impl.GetPropertyExecutor.visit(GetPropertyExecutor.java:47)
-        ...
-        Caused by: java.lang.ClassCastException: org.geotools.data.complex.GroupingFeatureIterator3$MutableAttributeImpl
-	at org.geotools.gml3.bindings.MeasureTypeBinding.getProperty(MeasureTypeBinding.java:100)
+        <!--  Simon suggests uom should be urn:ogc:def:uom:UCUM:m -->
         
         <AttributeMapping>
           <targetAttribute>gsml:Borehole/sa:length</targetAttribute>
@@ -577,12 +573,11 @@ java.lang.ClassCastException: org.geotools.data.complex.GroupingFeatureIterator3
             <OCQL>LENGTHC</OCQL>
           </sourceExpression>
           <ClientProperty>
-            <name>swe:uom</name>
+            <name>uom</name>
             <value>'#m'</value>
           </ClientProperty>
         </AttributeMapping>
      
-     -->
  
       <!-- mapping:33 -->
 
