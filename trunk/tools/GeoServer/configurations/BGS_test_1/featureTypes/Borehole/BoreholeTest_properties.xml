@@ -236,13 +236,13 @@
 	at org.geotools.data.complex.GroupingFeatureIterator3.computeNext(GroupingFeatureIterator3.java:218)
 	at org.geotools.data.complex.GroupingFeatureIterator3.next(GroupingFeatureIterator3.java:190)
        
-       
+     --> 
         <AttributeMapping>
           <targetAttribute>sa:relatedObservation[1]/om:Observation/om:result/cv:CV_DiscreteCoverage/cv:element</targetAttribute>
-          <isMultiple>true</isMultiple>
+          <targetAttributeNode>cv:CV_GeometryValuePairType</targetAttributeNode>
         </AttributeMapping>
 
--->
+ 
 
 
 <!-- mapping:12 
@@ -268,6 +268,8 @@ java.lang.ClassCastException: org.geotools.data.complex.GroupingFeatureIterator3
 
 java.lang.ClassCastException: org.geotools.data.complex.GroupingFeatureIterator3$MutableAttributeImpl
 	at org.geotools.data.complex.filter.XPath.set(XPath.java:582)
+	
+	probably need to explicitly cast type profile of geometry element
 -->
         
   <!--      <AttributeMapping>
@@ -295,31 +297,13 @@ this mapping doesnt appear sensible - the source data is a Double, the target is
 
 <!-- mapping:15
 
-java.lang.ClassCastException: org.geotools.data.complex.GroupingFeatureIterator3$MutableAttributeImpl
-	at org.geotools.data.complex.filter.XPath.set(XPath.java:582) 
-	
-	now is
-	
-	java.lang.IllegalArgumentException:
-	cv:value is not a valid location path for type
-	http://www.opengis.net/cv/0.2.1CV_DiscreteCoverageType.
-	cv:value ns: http://www.opengis.net/cv/0.2.1,
-	CV_DiscreteCoverageType properties:
-	http://www.opengis.net/gml#metaDataProperty,
-	http://www.opengis.net/gml#description,
-	http://www.opengis.net/gml#name,
-	http://www.opengis.net/gml#boundedBy,
-	http://www.opengis.net/gml#location,
-	http://www.opengis.net/cv/0.2.1#domainExtent,
-	http://www.opengis.net/cv/0.2.1#rangeType,
-	http://www.opengis.net/cv/0.2.1#element cv:value is
-	not a valid location path for type
-	http://www.opengis.net/cv/0.2.1CV_DiscreteCoverageType.
-	cv:value ns: http://www.opengis.net/cv/0.2.1,
-	CV_DiscreteCoverageType 
-
+	needs explicit type cast even thpough should be able to derive from type cast parent...
+	xsi:type is encoded as type (missing namespace)
+	isMultiple not required becuase we are not asking for multipple value mappings (and coulnt repeat for Observation [2] anyway 
+-->
         <AttributeMapping>
-          <targetAttribute>sa:relatedObservation[1]/om:Observation/om:result/cv:CV_DiscreteCoverage/cv:value</targetAttribute>
+          <targetAttribute>sa:relatedObservation[1]/om:Observation/om:result/cv:CV_DiscreteCoverage/cv:element/cv:value</targetAttribute>
+         <!-- <targetAttributeNode>xs:anyType</targetAttributeNode> -->
           <sourceExpression>
             <OCQL>LITHOSTRAT</OCQL>
           </sourceExpression>
@@ -332,9 +316,13 @@ java.lang.ClassCastException: org.geotools.data.complex.GroupingFeatureIterator3
             <value>'http://ns.bgs.ac.uk/bgs.lex_lithostrat_unit_v3'</value>
           </ClientProperty>
         </AttributeMapping>
-
- -->       
-
+  
+     
+       <AttributeMapping>
+          <targetAttribute>sa:relatedObservation[2]/om:Observation/om:result</targetAttribute>
+          <targetAttributeNode>cv:CV_DiscreteCoveragePropertyType</targetAttributeNode>
+        </AttributeMapping>
+ 
 <!-- mapping:16 -->
        
         <AttributeMapping>
@@ -371,7 +359,7 @@ java.lang.ClassCastException: org.geotools.data.complex.GroupingFeatureIterator3
 
 java.lang.ClassCastException: org.geotools.data.complex.GroupingFeatureIterator3$MutableAttributeImpl
 	at org.geotools.data.complex.filter.XPath.set(XPath.java:582)
-
+-->
         <AttributeMapping>
           <targetAttribute>sa:relatedObservation[2]/om:Observation/om:result/cv:CV_DiscreteCoverage/cv:domainExtent</targetAttribute>
           <ClientProperty>
@@ -379,12 +367,15 @@ java.lang.ClassCastException: org.geotools.data.complex.GroupingFeatureIterator3
             <value>strConcat('#bh.', strConcat(BGS_ID, '.shape'))</value>
           </ClientProperty>
         </AttributeMapping>
--->
+
 
 <!-- mapping:20
 
 java.lang.ClassCastException: org.geotools.data.complex.GroupingFeatureIterator3$MutableAttributeImpl
 	at org.geotools.data.complex.filter.XPath.set(XPath.java:582)
+        
+  -->
+        
         
         
         <AttributeMapping>
@@ -395,18 +386,19 @@ java.lang.ClassCastException: org.geotools.data.complex.GroupingFeatureIterator3
           </ClientProperty>
         </AttributeMapping>
 
--->
 
 <!-- mapping:21
 
         See mapping:11
-        
+     -->   
         <AttributeMapping>
           <targetAttribute>sa:relatedObservation[2]/om:Observation/om:result/cv:CV_DiscreteCoverage/cv:element</targetAttribute>
-          <isMultiple>true</isMultiple>
+             <targetAttributeNode>cv:CV_GeometryValuePairType</targetAttributeNode>
+  
         </AttributeMapping>
--->
 
+
+  
 <!-- mapping:22
 
         See mapping:12
@@ -446,15 +438,16 @@ java.lang.ClassCastException: org.geotools.data.complex.GroupingFeatureIterator3
             <OCQL>DRILLED__1</OCQL>
           </sourceExpression>
         </AttributeMapping>
+
 -->
 
 <!-- mapping:25 
    
    java.lang.ClassCastException: org.geotools.data.complex.GroupingFeatureIterator3$MutableAttributeImpl
 	at org.geotools.data.complex.filter.XPath.set(XPath.java:582)
-   
+   --> 
         <AttributeMapping>
-          <targetAttribute>sa:relatedObservation[2]/om:Observation/om:result/cv:CV_DiscreteCoverage/cv:value</targetAttribute>
+          <targetAttribute>sa:relatedObservation[2]/om:Observation/om:result/cv:CV_DiscreteCoverage/cv:element/cv:value</targetAttribute>
           <sourceExpression>
             <OCQL>LITHOLOGY_</OCQL>
           </sourceExpression>
@@ -468,7 +461,7 @@ java.lang.ClassCastException: org.geotools.data.complex.GroupingFeatureIterator3
           </ClientProperty>
         </AttributeMapping>
 
---> 
+
 
       <!-- mapping:26 -->
         
