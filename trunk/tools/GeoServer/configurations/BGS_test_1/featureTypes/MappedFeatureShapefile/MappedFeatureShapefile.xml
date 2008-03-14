@@ -76,14 +76,14 @@ Loughborough mapping file
       <schemaUri>http://www.geosciml.org/schemas/geosciml/2.0/geologicFeature.xsd</schemaUri>
 
 -->
-      <schemaUri>../../profiles/MappedFeature.xsd</schemaUri>
+      <schemaUri>../../profiles/MappedFeatureShapefile.xsd</schemaUri>
     </FeatureType>
   </targetTypes>
   <typeMappings>
     <FeatureTypeMapping>
       <sourceDataStore>mappedPolygons</sourceDataStore>
       <sourceType>mappedPolygons</sourceType>
-      <targetElement>gsml:MappedFeature</targetElement>
+      <targetElement>gsml:MappedFeatureShapefile</targetElement>
       <groupBy/>
 <!--      <fidMappings>
         <FidMapping>
@@ -98,19 +98,19 @@ Loughborough mapping file
 -->
       <attributeMappings>
         <AttributeMapping>
-          <targetAttribute>gsml:MappedFeature</targetAttribute>
+          <targetAttribute>gsml:MappedFeatureShapefile</targetAttribute>
           <idExpression><OCQL>getId()</OCQL></idExpression>
         </AttributeMapping>
           <AttributeMapping>
-            <targetAttribute>gsml:MappedFeature/gml:name[1]</targetAttribute>
+            <targetAttribute>gsml:MappedFeatureShapefile/gml:name[1]</targetAttribute>
             <sourceExpression><OCQL>LEX</OCQL></sourceExpression>
           </AttributeMapping>
           <AttributeMapping>
-            <targetAttribute>gsml:MappedFeature/gml:name[2]</targetAttribute>
+            <targetAttribute>gsml:MappedFeatureShapefile/gml:name[2]</targetAttribute>
             <sourceExpression><OCQL>LEX_ROCK</OCQL></sourceExpression>
           </AttributeMapping>
           <AttributeMapping>
-          <targetAttribute>gsml:MappedFeature/gsml:shape</targetAttribute>
+          <targetAttribute>gsml:MappedFeatureShapefile/gsml:shape</targetAttribute>
           <sourceExpression><OCQL>SHAPE</OCQL></sourceExpression>
         </AttributeMapping>
 <!--
