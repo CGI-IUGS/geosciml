@@ -55,9 +55,28 @@
 			<id>MappedFeaturePostgis</id>
 			<parameters>
 				<Parameter>
-					<name>directory</name>
-					<!-- path can be relative to this file if starts with "file: -->
-					<value>file:./</value>
+					<name>dbtype</name>
+					<value>postgis</value>
+				</Parameter>
+				<Parameter>
+					<name>host</name>
+					<value>PUT_YOUR_POSTGIS_SERVER_NAME_HERE</value>
+				</Parameter>
+				<Parameter>
+					<name>port</name>
+					<value>5432</value>
+				</Parameter>
+				<Parameter>
+					<name>database</name>
+					<value>gsmltb3</value>
+				</Parameter>
+				<Parameter>
+					<name>user</name>
+					<value>gsmltb3</value>
+				</Parameter>
+				<Parameter>
+					<name>passwd</name>
+					<value>PUT_YOUR_POSTGIS_USER_PASSWORD_HERE</value>
 				</Parameter>
 			</parameters>
 		</DataStore>
@@ -77,12 +96,13 @@
 
 		<FeatureTypeMapping>
 
+			<!-- this is the data store id given above -->
 			<sourceDataStore>MappedFeaturePostgis</sourceDataStore>
-			<sourceType>MappedFeaturePostgis</sourceType>
+			
+			<!-- the name of the table in the database -->
+			<sourceType>mapped_feature_postgis</sourceType>
 
-			<targetElement>
-				gsml:MappedFeaturePostgis
-			</targetElement>
+			<targetElement>gsml:MappedFeaturePostgis</targetElement>
 
 			<groupBy />
 
@@ -93,7 +113,7 @@
 						gsml:MappedFeaturePostgis
 					</targetAttribute>
 					<idExpression>
-						<OCQL>getId()</OCQL>
+						<OCQL>getID()</OCQL>
 					</idExpression>
 				</AttributeMapping>
 
@@ -102,7 +122,7 @@
 						gsml:MappedFeaturePostgis/gml:name[1]
 					</targetAttribute>
 					<sourceExpression>
-						<OCQL>LEX_D</OCQL>
+						<OCQL>lex_d</OCQL>
 					</sourceExpression>
 				</AttributeMapping>
 
@@ -111,7 +131,7 @@
 						gsml:MappedFeaturePostgis/gsml:shape
 					</targetAttribute>
 					<sourceExpression>
-						<OCQL>SHAPE</OCQL>
+						<OCQL>shape</OCQL>
 					</sourceExpression>
 				</AttributeMapping>
 
