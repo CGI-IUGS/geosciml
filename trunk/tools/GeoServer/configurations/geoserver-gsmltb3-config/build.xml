@@ -1,14 +1,21 @@
 <project default="zip">
 
 	<target name="zip">
-
 		<zip destfile="geoserver-gsmltb3-config.zip">
-			<zipfileset dir="featureTypes" prefix="featureTypes" />
-			<zipfileset dir="images" prefix="images" />
-			<zipfileset dir="profiles" prefix="profiles" />
-			<zipfileset dir="styles" prefix="styles"/>
-			<zipfileset file="catalog.xml" />
-			<zipfileset file="services.xml" />
+			<fileset dir="." includes="featureTypes/MappedFeaturePropertyfile/**" />
+			<!--
+			Excludes do not work!
+			Do not include featureTypes/MappedFeaturePostgis/MappedFeaturePostgis.xml
+			as it may contain password.
+			-->
+			<fileset dir="." includes="featureTypes/MappedFeaturePostgis/ComplexDataStore.xsd" />
+			<fileset dir="." includes="featureTypes/MappedFeaturePostgis/info.xml" />
+			<fileset dir="." includes="featureTypes/MappedFeaturePostgis/MappedFeaturePostgis.template.xml" />
+			<fileset dir="." includes="images/**" />
+			<fileset dir="." includes="profiles/**" />
+			<fileset dir="." includes="styles/**" />
+			<fileset file="catalog.xml" />
+			<fileset file="services.xml" />
 		</zip>
 	</target>
 
