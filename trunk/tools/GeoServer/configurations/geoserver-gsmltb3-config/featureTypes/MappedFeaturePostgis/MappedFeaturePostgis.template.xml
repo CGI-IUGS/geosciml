@@ -52,7 +52,7 @@
 
 	<sourceDataStores>
 		<DataStore>
-			<id>MappedFeaturePropertyfile</id>
+			<id>MappedFeaturePostgis</id>
 			<parameters>
 				<Parameter>
 					<name>directory</name>
@@ -68,7 +68,7 @@
 	<targetTypes>
 		<FeatureType>
 			<schemaUri>
-				../../profiles/MappedFeaturePropertyfile.xsd
+				../../profiles/MappedFeaturePostgis.xsd
 			</schemaUri>
 		</FeatureType>
 	</targetTypes>
@@ -77,11 +77,11 @@
 
 		<FeatureTypeMapping>
 
-			<sourceDataStore>MappedFeaturePropertyfile</sourceDataStore>
-			<sourceType>MappedFeaturePropertyfile</sourceType>
+			<sourceDataStore>MappedFeaturePostgis</sourceDataStore>
+			<sourceType>MappedFeaturePostgis</sourceType>
 
 			<targetElement>
-				gsml:MappedFeaturePropertyfile
+				gsml:MappedFeaturePostgis
 			</targetElement>
 
 			<groupBy />
@@ -90,7 +90,7 @@
 
 				<AttributeMapping>
 					<targetAttribute>
-						gsml:MappedFeaturePropertyfile
+						gsml:MappedFeaturePostgis
 					</targetAttribute>
 					<idExpression>
 						<OCQL>getId()</OCQL>
@@ -99,7 +99,7 @@
 
 				<AttributeMapping>
 					<targetAttribute>
-						gsml:MappedFeaturePropertyfile/gml:name[1]
+						gsml:MappedFeaturePostgis/gml:name[1]
 					</targetAttribute>
 					<sourceExpression>
 						<OCQL>LEX_D</OCQL>
@@ -108,7 +108,7 @@
 
 				<AttributeMapping>
 					<targetAttribute>
-						gsml:MappedFeaturePropertyfile/gsml:shape
+						gsml:MappedFeaturePostgis/gsml:shape
 					</targetAttribute>
 					<sourceExpression>
 						<OCQL>SHAPE</OCQL>
