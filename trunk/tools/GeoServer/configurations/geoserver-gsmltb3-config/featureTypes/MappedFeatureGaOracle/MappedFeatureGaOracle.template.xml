@@ -113,20 +113,22 @@
 						gsml:MappedFeatureGaOracle
 					</targetAttribute>
 					<idExpression>
-						<OCQL>getId()</OCQL>
+						<OCQL>OBJECTID</OCQL>
 					</idExpression>
 				</AttributeMapping>
 
-				<!-- 
-					<AttributeMapping>
+				<AttributeMapping>
 					<targetAttribute>
-					gsml:MappedFeatureGaOracle/gml:name[1]
+						gsml:MappedFeatureGaOracle/gsml:specification
 					</targetAttribute>
-					<sourceExpression>
-					<OCQL>lex_d</OCQL>
-					</sourceExpression>
-					</AttributeMapping>
-				-->
+					<ClientProperty>
+						<name>xlink:href</name>
+						<value>
+							strConcat('urn:cgi:feature:GA:Stratno:',
+							STRATNO)
+						</value>
+					</ClientProperty>
+				</AttributeMapping>
 
 				<AttributeMapping>
 					<targetAttribute>
