@@ -55,9 +55,11 @@
 			<id>MappedFeatureShapefile</id>
 			<parameters>
 				<Parameter>
-					<name>directory</name>
+					<name>url</name>
 					<!-- path can be relative to this file if starts with "file: -->
-					<value>file:./</value>
+					<value>
+						file:mappedPolygons/mappedPolygons.shp
+					</value>
 				</Parameter>
 			</parameters>
 		</DataStore>
@@ -77,12 +79,13 @@
 
 		<FeatureTypeMapping>
 
+			<!-- the data store we defined above -->
 			<sourceDataStore>MappedFeatureShapefile</sourceDataStore>
-			<sourceType>MappedFeatureShapefile</sourceType>
 
-			<targetElement>
-				gsml:MappedFeatureShapefile
-			</targetElement>
+			<!-- this is the name of the type as given in the shapefile .shp.xml -->
+			<sourceType>mappedPolygons</sourceType>
+
+			<targetElement>gsml:MappedFeatureShapefile</targetElement>
 
 			<groupBy />
 
@@ -106,12 +109,17 @@
 					</sourceExpression>
 				</AttributeMapping>
 
+				<!--
+					the horror ... whatever your geometry is called in the
+					shapefile .shp.xml, it is renamed "the_geom" by the
+					data store
+				-->
 				<AttributeMapping>
 					<targetAttribute>
 						gsml:MappedFeatureShapefile/gsml:shape
 					</targetAttribute>
 					<sourceExpression>
-						<OCQL>SHAPE</OCQL>
+						<OCQL>the_geom</OCQL>
 					</sourceExpression>
 				</AttributeMapping>
 
