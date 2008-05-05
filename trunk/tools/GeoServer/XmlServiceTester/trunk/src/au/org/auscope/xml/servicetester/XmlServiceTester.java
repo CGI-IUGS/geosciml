@@ -1,14 +1,12 @@
 package au.org.auscope.xml.servicetester;
 
 import java.io.File;
-import java.util.ArrayList;
-import java.util.List;
 
 import org.apache.log4j.Logger;
 
 public class XmlServiceTester {
 
-    public static String USAGE = "Usage: java -jar XmlServiceTester.jar config.xml";
+    public static String USAGE = "Usage: java -Xmx512m -jar XmlServiceTester.jar config.xml";
 
     public static String LOGGER_NAME = "XmlServiceTester";
 
@@ -18,15 +16,28 @@ public class XmlServiceTester {
         return logger;
     }
 
+    /**
+     * Programmatic application entry point.
+     * 
+     * @param configFile
+     *                XML configuration file
+     */
+    public static void run(File configFile) {
+        ConfigFactory.getInstance().load(configFile).execute();
+    }
+
+    /**
+     * Application entry point.
+     * 
+     * @param args
+     */
     public static void main(String[] args) {
         if (args.length != 1) {
             System.err.println(USAGE);
             System.exit(1);
         } else {
-            File configFile = new File(args[0]);
-            ConfigFactory.getInstance().load(configFile).execute();
+            run(new File(args[0]));
         }
-
     }
 
 }
