@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<schema xmlns="http://www.w3.org/2001/XMLSchema"
+	targetNamespace="http://www.auscope.org.au/xml/servicetester/config"
+	xmlns:c="http://www.auscope.org.au/xml/servicetester/config"
+	elementFormDefault="qualified">
+
+	<element name="service-tester-config"
+		type="c:service-tester-config-type" />
+
+	<element name="request" type="c:request-type" />
+
+	<element name="http-post-request" type="c:http-post-request-type"
+		substitutionGroup="c:request" />
+
+	<element name="file-request" type="c:file-request-type"
+		substitutionGroup="c:request" />
+
+	<complexType name="service-tester-config-type">
+		<annotation>
+			<documentation>
+				Root element for XmlserviceTester configuration file.
+			</documentation>
+		</annotation>
+		<sequence>
+			<element name="service-location" type="string"
+				minOccurs="0" />
+			<element name="catalog-file" type="string" minOccurs="0" />
+			<element name="test-case" type="c:test-case-type"
+				maxOccurs="unbounded" />
+		</sequence>
+	</complexType>
+
+	<complexType name="test-case-type">
+		<annotation>
+			<documentation>
+				One request/response pair. The request contains
+				everything to do with obtaining the a stream of bytes,
+				and the response describes everything done afterwards.
+			</documentation>
+		</annotation>
+		<sequence>
+			<element ref="c:request" />
+			<element name="response" type="c:response-type" />
+		</sequence>
+	</complexType>
+
+	<complexType name="request-type" abstract="true">
+		<annotation>
+			<documentation>
+				Abstract base class for request types.
+			</documentation>
+		</annotation>
+	</complexType>
+
+	<complexType name="http-post-request-type">
+		<annotation>
+			<documentation>
+				A request made via HTTP POST. The body of the request is
+				sourced from a file. Validation of the request body can
+				also be performed.
+			</documentation>
+		</annotation>
+		<complexContent>
+			<extension base="c:request-type">
+				<sequence>
+					<element name="service-location" type="string"
+						minOccurs="0" />
+					<element name="request-file" type="string" />
+					<element name="validation" type="c:validation-type"
+						minOccurs="0" />
+				</sequence>
+			</extension>
+		</complexContent>
+	</complexType>
+
+	<complexType name="file-request-type">
+		<annotation>
+			<documentation>
+				A request that results in the contents of a file being
+				received. Intended for offline testing.
+			</documentation>
+		</annotation>
+		<complexContent>
+			<extension base="c:request-type">
+				<sequence>
+					<element name="response-file" type="string" />
+				</sequence>
+			</extension>
+		</complexContent>
+	</complexType>
+
+	<complexType name="response-type">
+		<annotation>
+			<documentation>
+				Things to do with the response.
+			</documentation>
+		</annotation>
+		<sequence>
+			<element name="validation" type="c:validation-type" />
+		</sequence>
+	</complexType>
+
+	<complexType name="validation-type">
+		<annotation>
+			<documentation>
+				The namespace and schema document location used for
+				validation.
+			</documentation>
+		</annotation>
+		<sequence>
+			<element name="namespace" type="string" />
+			<element name="schema" type="string" />
+		</sequence>
+	</complexType>
+
+</schema>
