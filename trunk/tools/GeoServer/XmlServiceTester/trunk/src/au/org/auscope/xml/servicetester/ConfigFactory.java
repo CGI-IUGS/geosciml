@@ -1,7 +1,6 @@
 package au.org.auscope.xml.servicetester;
 
 import java.io.File;
-import java.net.URI;
 
 import javax.xml.bind.JAXBContext;
 import javax.xml.bind.JAXBElement;

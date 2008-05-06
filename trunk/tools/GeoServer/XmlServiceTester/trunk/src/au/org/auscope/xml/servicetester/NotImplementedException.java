@@ -1,6 +1,6 @@
 package au.org.auscope.xml.servicetester;
 
-@SuppressWarnings("unchecked")
+@SuppressWarnings("serial")
 public class NotImplementedException extends RuntimeException {
 
     public NotImplementedException() {
