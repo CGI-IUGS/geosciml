@@ -17,12 +17,17 @@
 		<fileset dir="${lib.dir}" includes="*.jar" />
 	</path>
 
+	<!-- JAXB task to create bindings -->
 	<taskdef name="xjc" classname="com.sun.tools.xjc.XJCTask">
 		<classpath>
 			<fileset dir="${jaxb.home}/lib" includes="*.jar" />
 		</classpath>
 	</taskdef>
 
+	<!--
+	JAXB bindings for config are built and stored in a jar (with source)
+	to dissuade editing. 
+	-->
 	<target name="generate">
 		<delete file="${generated.jar}" />
 		<delete dir="${generated.dir}" />

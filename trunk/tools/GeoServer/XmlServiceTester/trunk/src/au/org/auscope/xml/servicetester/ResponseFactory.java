@@ -20,19 +20,21 @@ public class ResponseFactory {
 
     public Response build(Config config, ServiceTesterConfigType configType,
             ResponseType responseType) {
-        File catalogFile = config.resolve(configType
-                .getCatalogFile().trim());
+        File catalogFile = config.resolve(configType.getCatalogFile());
+        if (catalogFile != null && !catalogFile.canRead()) {
+            throw new RuntimeException("Cannot read catalog file: "
+                    + catalogFile);
+        }
         URI validationNamespaceUri = null;
         try {
             validationNamespaceUri = new URI(responseType.getValidation()
-                    .getNamespace().trim());
+                    .getNamespace());
         } catch (URISyntaxException e) {
             throw new RuntimeException("Invalid namespace URI: "
-                    + responseType.getValidation().getNamespace().trim());
+                    + responseType.getValidation().getNamespace());
         }
-        File validationSchemaFile = config
-                .resolve(responseType.getValidation()
-                        .getSchema().trim());
+        File validationSchemaFile = config.resolve(responseType.getValidation()
+                .getSchema());
         return new ResponseImpl(catalogFile, validationNamespaceUri,
                 validationSchemaFile);
     }

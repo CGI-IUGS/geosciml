@@ -45,7 +45,7 @@ public class Config {
         if (pathRelativeToConfigFile == null) {
             return null;
         }
-        String path = pathRelativeToConfigFile.trim();
+        String path = pathRelativeToConfigFile;
         if (path.length() == 0) {
             return null;
         }

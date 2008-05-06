@@ -36,9 +36,9 @@ public class RequestFactory {
             HttpPostRequestType requestType) {
         String serviceLocationString;
         if (requestType.getServiceLocation() != null) {
-            serviceLocationString = requestType.getServiceLocation().trim();
+            serviceLocationString = requestType.getServiceLocation();
         } else if (configType.getServiceLocation() != null) {
-            serviceLocationString = configType.getServiceLocation().trim();
+            serviceLocationString = configType.getServiceLocation();
         } else {
             throw new RuntimeException("Could not determine service location");
         }
@@ -49,10 +49,9 @@ public class RequestFactory {
             throw new RuntimeException("Invalid service location URL: "
                     + serviceLocationString, e);
         }
-        File requestFile = config.resolve(requestType
-                .getRequestFile());
+        File requestFile = config.resolve(requestType.getRequestFile());
         if (requestFile == null || !requestFile.canRead()) {
-            throw new RuntimeException("Could not read request file: "
+            throw new RuntimeException("Cannot read request file: "
                     + requestFile);
         }
         return new HttpPostRequest(serviceLocationUrl, requestFile);
@@ -60,7 +59,12 @@ public class RequestFactory {
 
     private Request build(Config config, ServiceTesterConfigType configType,
             FileRequestType requestType) {
-        throw new NotImplementedException();
+        File responseFile = config.resolve(requestType.getResponseFile());
+        if (responseFile == null || !responseFile.canRead()) {
+            throw new RuntimeException("Cannot read response file: "
+                    + responseFile);
+        }
+        return new FileRequest(responseFile);
     }
 
 }
