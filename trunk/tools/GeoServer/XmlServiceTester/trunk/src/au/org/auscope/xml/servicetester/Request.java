@@ -10,6 +10,6 @@ public interface Request {
      * 
      * @return freshly created InputStream for the response.
      */
-    public InputStream execute();
+    public InputStream openResponseStream();
 
 }

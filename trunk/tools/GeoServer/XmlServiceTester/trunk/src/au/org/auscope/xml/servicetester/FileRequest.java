@@ -17,12 +17,17 @@ public class FileRequest implements Request {
         this.responseFile = responseFile;
     }
 
-    public InputStream execute() {
+    public InputStream openResponseStream() {
         try {
             return new FileInputStream(responseFile);
         } catch (FileNotFoundException e) {
             throw new RuntimeException(e);
         }
+    }
+
+    @Override
+    public String toString() {
+        return "Request that reads from file " + responseFile;
     }
 
 }

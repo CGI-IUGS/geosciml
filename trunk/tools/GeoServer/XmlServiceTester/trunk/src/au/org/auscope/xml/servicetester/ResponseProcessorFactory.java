@@ -7,19 +7,19 @@ import java.net.URISyntaxException;
 import au.org.auscope.xml.servicetester.config.ResponseType;
 import au.org.auscope.xml.servicetester.config.ServiceTesterConfigType;
 
-public class ResponseFactory {
+public class ResponseProcessorFactory {
 
-    private static final ResponseFactory INSTANCE = new ResponseFactory();
+    private static final ResponseProcessorFactory INSTANCE = new ResponseProcessorFactory();
 
-    public static ResponseFactory getInstance() {
+    public static ResponseProcessorFactory getInstance() {
         return INSTANCE;
     }
 
-    private ResponseFactory() {
+    private ResponseProcessorFactory() {
     }
 
-    public Response build(Config config, ServiceTesterConfigType configType,
-            ResponseType responseType) {
+    public ResponseProcessor build(TestSuite config,
+            ServiceTesterConfigType configType, ResponseType responseType) {
         File catalogFile = config.resolve(configType.getCatalogFile());
         if (catalogFile != null && !catalogFile.canRead()) {
             throw new RuntimeException("Cannot read catalog file: "
@@ -35,7 +35,7 @@ public class ResponseFactory {
         }
         File validationSchemaFile = config.resolve(responseType.getValidation()
                 .getSchema());
-        return new ResponseImpl(catalogFile, validationNamespaceUri,
+        return new ValidatingResponseProcessor(catalogFile, validationNamespaceUri,
                 validationSchemaFile);
     }
 }

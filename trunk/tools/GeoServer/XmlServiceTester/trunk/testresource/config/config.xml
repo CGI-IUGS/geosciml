@@ -7,6 +7,35 @@
 		http://localhost:8080/geoserver/wfs
 	</service-location>
 	<catalog-file>../schemas/catalog.xml</catalog-file>
+
+	<test-case>
+		<http-post-request>
+			<request-file>
+				../requests/MappedFeatureGaOracle-request.xml
+			</request-file>
+		</http-post-request>
+		<response>
+			<validation>
+				<namespace>urn:cgi:xmlns:CGI:GeoSciML:2.0</namespace>
+				<schema>../profiles/MappedFeatureGaOracle.xsd</schema>
+			</validation>
+		</response>
+	</test-case>
+
+	<test-case>
+		<http-post-request>
+			<request-file>
+				../requests/MappedFeaturePostgis-request.xml
+			</request-file>
+		</http-post-request>
+		<response>
+			<validation>
+				<namespace>urn:cgi:xmlns:CGI:GeoSciML:2.0</namespace>
+				<schema>../profiles/MappedFeaturePostgis.xsd</schema>
+			</validation>
+		</response>
+	</test-case>
+
 	<test-case>
 		<http-post-request>
 			<request-file>
@@ -22,4 +51,19 @@
 			</validation>
 		</response>
 	</test-case>
+
+	<test-case>
+		<http-post-request>
+			<request-file>
+				../requests/MappedFeatureShapefile-request.xml
+			</request-file>
+		</http-post-request>
+		<response>
+			<validation>
+				<namespace>urn:cgi:xmlns:CGI:GeoSciML:2.0</namespace>
+				<schema>../profiles/MappedFeatureShapefile.xsd</schema>
+			</validation>
+		</response>
+	</test-case>
+
 </service-tester-config>

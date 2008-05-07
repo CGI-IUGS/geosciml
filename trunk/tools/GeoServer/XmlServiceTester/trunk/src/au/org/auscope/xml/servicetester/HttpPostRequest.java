@@ -24,12 +24,7 @@ public class HttpPostRequest implements Request {
         this.requestFile = requestFile;
     }
 
-    /*
-     * (non-Javadoc)
-     * 
-     * @see au.org.auscope.xml.servicetester.Response#getResponseStream()
-     */
-    public InputStream execute() {
+    public InputStream openResponseStream() {
         HttpClient client = new HttpClient();
         PostMethod post = new PostMethod(location.toString());
         post.setRequestEntity(new FileRequestEntity(requestFile,
@@ -40,6 +35,12 @@ public class HttpPostRequest implements Request {
         } catch (Exception e) {
             throw new RuntimeException(e);
         }
+    }
+
+    @Override
+    public String toString() {
+        return "HTTP POST request to " + location + " with body from file "
+                + requestFile;
     }
 
 }

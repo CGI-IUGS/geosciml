@@ -20,7 +20,7 @@ public class RequestFactory {
     private RequestFactory() {
     }
 
-    public Request build(Config config, ServiceTesterConfigType configType,
+    public Request build(TestSuite config, ServiceTesterConfigType configType,
             RequestType requestType) {
         if (requestType instanceof HttpPostRequestType) {
             return build(config, configType, (HttpPostRequestType) requestType);
@@ -32,7 +32,7 @@ public class RequestFactory {
         }
     }
 
-    private Request build(Config config, ServiceTesterConfigType configType,
+    private Request build(TestSuite config, ServiceTesterConfigType configType,
             HttpPostRequestType requestType) {
         String serviceLocationString;
         if (requestType.getServiceLocation() != null) {
@@ -57,7 +57,7 @@ public class RequestFactory {
         return new HttpPostRequest(serviceLocationUrl, requestFile);
     }
 
-    private Request build(Config config, ServiceTesterConfigType configType,
+    private Request build(TestSuite config, ServiceTesterConfigType configType,
             FileRequestType requestType) {
         File responseFile = config.resolve(requestType.getResponseFile());
         if (responseFile == null || !responseFile.canRead()) {

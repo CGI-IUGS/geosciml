@@ -10,13 +10,13 @@ import javax.xml.bind.Unmarshaller;
 import au.org.auscope.xml.servicetester.config.ServiceTesterConfigType;
 import au.org.auscope.xml.servicetester.config.TestCaseType;
 
-public class ConfigFactory {
+public class TestSuiteFactory {
 
-    public static ConfigFactory getInstance() {
-        return new ConfigFactory();
+    public static TestSuiteFactory getInstance() {
+        return new TestSuiteFactory();
     }
 
-    private ConfigFactory() {
+    private TestSuiteFactory() {
     }
 
     /**
@@ -27,7 +27,7 @@ public class ConfigFactory {
      * @throws Exception
      */
     @SuppressWarnings("unchecked")
-    public Config load(File configFile) {
+    public TestSuite load(File configFile) {
         ServiceTesterConfigType configType = null;
         try {
             JAXBContext jc = JAXBContext
@@ -48,14 +48,14 @@ public class ConfigFactory {
      * @param configType
      * @return
      */
-    private Config build(File configFile, ServiceTesterConfigType configType) {
-        Config config = new Config(configFile);
+    private TestSuite build(File configFile, ServiceTesterConfigType configType) {
+        TestSuite config = new TestSuite(configFile);
         for (TestCaseType caseType : configType.getTestCase()) {
             Request request = RequestFactory.getInstance().build(config,
                     configType, caseType.getRequest().getValue());
-            Response response = ResponseFactory.getInstance().build(config,
-                    configType, caseType.getResponse());
-            Case c = new Case(request, response);
+            ResponseProcessor response = ResponseProcessorFactory.getInstance().build(
+                    config, configType, caseType.getResponse());
+            TestCase c = new TestCase(request, response);
             config.addCase(c);
         }
         return config;

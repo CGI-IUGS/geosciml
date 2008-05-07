@@ -4,20 +4,20 @@ import java.io.File;
 import java.io.InputStream;
 import java.net.URI;
 
+import org.apache.commons.logging.Log;
 import org.apache.xerces.parsers.SAXParser;
 import org.apache.xerces.util.XMLCatalogResolver;
 import org.xml.sax.InputSource;
 import org.xml.sax.XMLReader;
 
-public class ResponseImpl implements Response {
+public class ValidatingResponseProcessor implements ResponseProcessor {
 
-    private File catalogFile;
-    private URI validationNamespaceUri;
-    private File validationSchemaFile;
-    private LoggingErrorHandler errorHandler = new LoggingErrorHandler();
+    private final File catalogFile;
+    private final URI validationNamespaceUri;
+    private final File validationSchemaFile;
 
-    public ResponseImpl(File catalogFile, URI validationNamespace,
-            File validationSchemaFile) {
+    public ValidatingResponseProcessor(File catalogFile,
+            URI validationNamespace, File validationSchemaFile) {
         this.catalogFile = catalogFile;
         this.validationNamespaceUri = validationNamespace;
         this.validationSchemaFile = validationSchemaFile;
@@ -49,22 +49,21 @@ public class ResponseImpl implements Response {
                 + validationSchemaFile.toString();
     }
 
-    public void consume(InputStream inputStream) {
+    public void process(InputStream inputStream, Log log) {
         XMLReader reader = new SAXParser();
         configureReader(reader);
-        reader.setErrorHandler(errorHandler);
+        reader.setErrorHandler(new LoggingErrorHandler(log));
         try {
             reader.parse(new InputSource(inputStream));
         } catch (Exception e) {
             throw new RuntimeException(e);
         }
-        XmlServiceTester.getLogger().info(
-                "Diagnostic count: " + errorHandler.getCount());
-        if (errorHandler.getCount() == 0) {
-            XmlServiceTester.getLogger().info("Response was schema-valid");
-        } else {
-            XmlServiceTester.getLogger().error("Response was not schema-valid");
-        }
+    }
+
+    @Override
+    public String toString() {
+        return "Validation for namespace " + validationNamespaceUri
+                + " against schema " + validationSchemaFile;
     }
 
 }

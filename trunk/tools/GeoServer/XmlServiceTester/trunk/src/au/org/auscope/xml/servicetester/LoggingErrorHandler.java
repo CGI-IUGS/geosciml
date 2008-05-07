@@ -3,31 +3,37 @@
  */
 package au.org.auscope.xml.servicetester;
 
+import org.apache.commons.logging.Log;
 import org.xml.sax.ErrorHandler;
 import org.xml.sax.SAXException;
 import org.xml.sax.SAXParseException;
 
+/**
+ * Adapter to log validation errors.
+ * 
+ */
 class LoggingErrorHandler implements ErrorHandler {
 
-    private int count = 0;
+    private final Log log;
 
-    public void error(SAXParseException exception) throws SAXException {
-        count++;
-        XmlServiceTester.getLogger().error(exception.getMessage());
-    }
-
-    public void fatalError(SAXParseException exception) throws SAXException {
-        count++;
-        XmlServiceTester.getLogger().fatal(exception.getMessage());
+    /**
+     * @param log
+     *                log to which validation exception messages are written
+     */
+    public LoggingErrorHandler(Log log) {
+        this.log = log;
     }
 
     public void warning(SAXParseException exception) throws SAXException {
-        count++;
-        XmlServiceTester.getLogger().warn(exception.getMessage());
+        log.warn(exception.getMessage());
     }
 
-    public int getCount() {
-        return count;
+    public void error(SAXParseException exception) throws SAXException {
+        log.error(exception.getMessage());
+    }
+
+    public void fatalError(SAXParseException exception) throws SAXException {
+        log.fatal(exception.getMessage());
     }
 
 }
