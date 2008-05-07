@@ -8,7 +8,7 @@ public class TestSuiteTest extends junit.framework.TestCase {
 
     public void testLoadConfig() throws Exception {
         TestSuite suite = TestSuiteFactory.getInstance().load(CONFIG_FILE);
-        assertEquals(1, suite.getTestCases().size());
+        assertEquals(4, suite.getTestCases().size());
     }
 
     public void testResolveChild() {
