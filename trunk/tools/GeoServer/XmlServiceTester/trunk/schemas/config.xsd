@@ -22,8 +22,7 @@
 			</documentation>
 		</annotation>
 		<sequence>
-			<element name="service-location" type="token"
-				minOccurs="0" />
+			<element name="service-location" type="token" minOccurs="0" />
 			<element name="catalog-file" type="token" minOccurs="0" />
 			<element name="test-case" type="c:test-case-type"
 				maxOccurs="unbounded" />
@@ -65,7 +64,14 @@
 				<sequence>
 					<element name="service-location" type="token"
 						minOccurs="0" />
-					<element name="request-file" type="token" />
+					<element name="request-file" type="token">
+						<annotation>
+							<documentation>
+								URI relative to config file giving the
+								XML used for the body of the request.
+							</documentation>
+						</annotation>
+					</element>
 					<element name="validation" type="c:validation-type"
 						minOccurs="0" />
 				</sequence>
@@ -83,7 +89,15 @@
 		<complexContent>
 			<extension base="c:request-type">
 				<sequence>
-					<element name="response-file" type="token" />
+					<element name="response-file" type="token">
+						<annotation>
+							<documentation>
+								URI relative to the configuration file
+								giving the XML document returned in
+								response to this request.
+							</documentation>
+						</annotation>
+					</element>
 				</sequence>
 			</extension>
 		</complexContent>
