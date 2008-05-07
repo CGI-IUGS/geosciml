@@ -45,16 +45,12 @@ public class Config {
         if (pathRelativeToConfigFile == null) {
             return null;
         }
-        String path = pathRelativeToConfigFile;
-        if (path.length() == 0) {
-            return null;
-        }
         if (configFileUri == null) {
-            return new File(path);
+            return new File(pathRelativeToConfigFile);
         }
         URI relativeUri;
         try {
-            relativeUri = new URI(path);
+            relativeUri = new URI(pathRelativeToConfigFile);
         } catch (URISyntaxException e) {
             throw new RuntimeException(e);
         }
