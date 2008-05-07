@@ -123,6 +123,74 @@
 					</sourceExpression>
 				</AttributeMapping>
 
+				<!--
+					
+					*********************************************************************************
+					
+					Everything below this point contains no data but is required for schema validity.
+					
+					*********************************************************************************
+					
+				-->
+
+				<AttributeMapping>
+					<targetAttribute>
+						gsml:observationMethod/gsml:CGI_TermValue/gsml:value
+					</targetAttribute>
+					<sourceExpression>
+						<OCQL>'dummy'</OCQL>
+					</sourceExpression>
+					<ClientProperty>
+						<name>codeSpace</name>
+						<value>'urn:some:authority'</value>
+					</ClientProperty>
+				</AttributeMapping>
+
+				<AttributeMapping>
+					<targetAttribute>
+						gsml:positionalAccuracy/gsml:CGI_NumericValue/gsml:principalValue
+					</targetAttribute>
+					<sourceExpression>
+						<OCQL>500</OCQL>
+					</sourceExpression>
+					<ClientProperty>
+						<name>uom</name>
+						<value>'urn:ogc:def:uom:UCUM:m'</value>
+					</ClientProperty>
+				</AttributeMapping>
+
+				<!-- gsml:positionalAccuracy is abstract so need to give it a concrete type -->
+				<AttributeMapping>
+					<targetAttribute>
+						gsml:positionalAccuracy
+					</targetAttribute>
+					<targetAttributeNode>
+						gsml:CGI_NumericValuePropertyType
+					</targetAttributeNode>
+				</AttributeMapping>
+
+				<AttributeMapping>
+					<targetAttribute>
+						gsml:specification
+					</targetAttribute>
+					<ClientProperty>
+						<name>xlink:href</name>
+						<value>'http://example.com/wherever'</value>
+					</ClientProperty>
+				</AttributeMapping>
+
+				<AttributeMapping>
+					<targetAttribute>
+						gsml:samplingFrame
+					</targetAttribute>
+					<ClientProperty>
+						<name>xlink:href</name>
+						<value>
+							'http://example.com/get/your/sampling/frame/here'
+						</value>
+					</ClientProperty>
+				</AttributeMapping>
+
 			</attributeMappings>
 
 		</FeatureTypeMapping>

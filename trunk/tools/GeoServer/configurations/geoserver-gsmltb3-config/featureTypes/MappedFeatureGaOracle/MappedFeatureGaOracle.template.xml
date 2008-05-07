@@ -113,7 +113,7 @@
 						gsml:MappedFeatureGaOracle
 					</targetAttribute>
 					<idExpression>
-						<OCQL>OBJECTID</OCQL>
+						<OCQL>strConcat('objectid.', OBJECTID)</OCQL>
 					</idExpression>
 				</AttributeMapping>
 
@@ -138,7 +138,7 @@
 						<OCQL>INT_METHOD</OCQL>
 					</sourceExpression>
 					<ClientProperty>
-						<name>gml:codeSpace</name>
+						<name>codeSpace</name>
 						<value>
 							'urn:cgi:classifierScheme:GA:1MillionGeology_ObservationMethod'
 						</value>
@@ -175,6 +175,28 @@
 					<sourceExpression>
 						<OCQL>GEOM</OCQL>
 					</sourceExpression>
+				</AttributeMapping>
+
+				<!--
+					
+					*********************************************************************************
+					
+					Everything below this point contains no data but is required for schema validity.
+					
+					*********************************************************************************
+					
+				-->
+
+				<AttributeMapping>
+					<targetAttribute>
+						gsml:samplingFrame
+					</targetAttribute>
+					<ClientProperty>
+						<name>xlink:href</name>
+						<value>
+							'http://example.com/get/your/sampling/frame/here'
+						</value>
+					</ClientProperty>
 				</AttributeMapping>
 
 			</attributeMappings>

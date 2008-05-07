@@ -105,6 +105,23 @@
 				</AttributeMapping>
 
 				<AttributeMapping>
+					<targetAttribute>gsml:shape</targetAttribute>
+					<sourceExpression>
+						<OCQL>SHAPE</OCQL>
+					</sourceExpression>
+				</AttributeMapping>
+
+				<!--
+					
+					*********************************************************************************
+					
+					Everything below this point contains no data but is required for schema validity.
+					
+					*********************************************************************************
+					
+				-->
+
+				<AttributeMapping>
 					<targetAttribute>
 						gsml:observationMethod/gsml:CGI_TermValue/gsml:value
 					</targetAttribute>
@@ -115,15 +132,6 @@
 						<name>codeSpace</name>
 						<value>'urn:some:authority'</value>
 					</ClientProperty>
-				</AttributeMapping>
-				<!-- gsml:positionalAccuracy is abstract so need to give it a concrete type -->
-				<AttributeMapping>
-					<targetAttribute>
-						gsml:positionalAccuracy
-					</targetAttribute>
-					<targetAttributeNode>
-						gsml:CGI_NumericValuePropertyType
-					</targetAttributeNode>
 				</AttributeMapping>
 
 				<AttributeMapping>
@@ -137,6 +145,16 @@
 						<name>uom</name>
 						<value>'urn:ogc:def:uom:UCUM:m'</value>
 					</ClientProperty>
+				</AttributeMapping>
+
+				<!-- gsml:positionalAccuracy is abstract so need to give it a concrete type -->
+				<AttributeMapping>
+					<targetAttribute>
+						gsml:positionalAccuracy
+					</targetAttribute>
+					<targetAttributeNode>
+						gsml:CGI_NumericValuePropertyType
+					</targetAttributeNode>
 				</AttributeMapping>
 
 				<AttributeMapping>
@@ -159,13 +177,6 @@
 							'http://example.com/get/your/sampling/frame/here'
 						</value>
 					</ClientProperty>
-				</AttributeMapping>
-
-				<AttributeMapping>
-					<targetAttribute>gsml:shape</targetAttribute>
-					<sourceExpression>
-						<OCQL>SHAPE</OCQL>
-					</sourceExpression>
 				</AttributeMapping>
 
 			</attributeMappings>
