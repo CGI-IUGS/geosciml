@@ -22,12 +22,12 @@ public class XmlServiceTester {
     public static boolean run(File configFile) {
         TestSuite suite;
         try {
-             suite = TestSuiteFactory.getInstance().load(configFile);
+            suite = TestSuiteFactory.getInstance().load(configFile);
         } catch (RuntimeException e) {
             LOG.fatal("Could not load config file " + configFile, e);
             return false;
         }
-        return suite.execute(LOG);
+        return suite.run(LOG);
     }
 
     /**

@@ -37,7 +37,7 @@ public class TestSuite {
      * @param log
      * @return true if success
      */
-    public boolean execute(Log log) {
+    public boolean run(Log log) {
         log.info(STARS + " START " + STARS);
         int i;
         List<TestReport> reports = new ArrayList<TestReport>();
@@ -45,8 +45,7 @@ public class TestSuite {
         i = 0;
         for (TestCase testCase : getTestCases()) {
             i++;
-            log.info("Started " + formatSequence(i, total) + ": "
-                    + testCase);
+            log.info("Started " + formatSequence(i, total) + ": " + testCase);
             TestReport report = new TestReport(testCase.toString(), log);
             testCase.run(report);
             reports.add(report);
