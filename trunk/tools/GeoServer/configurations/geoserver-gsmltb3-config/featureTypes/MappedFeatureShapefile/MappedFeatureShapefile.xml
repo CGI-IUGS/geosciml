@@ -146,6 +146,20 @@
 					</ClientProperty>
 				</AttributeMapping>
 
+				<!--
+					gsml:positionalAccuracy is abstract so need to give it a concrete type.
+					This mapping must come before the mapping for
+					gsml:positionalAccuracy/gsml:CGI_NumericValue/gsml:principalValue
+				-->
+				<AttributeMapping>
+					<targetAttribute>
+						gsml:positionalAccuracy
+					</targetAttribute>
+					<targetAttributeNode>
+						gsml:CGI_NumericValuePropertyType
+					</targetAttributeNode>
+				</AttributeMapping>
+
 				<AttributeMapping>
 					<targetAttribute>
 						gsml:positionalAccuracy/gsml:CGI_NumericValue/gsml:principalValue
@@ -157,16 +171,6 @@
 						<name>uom</name>
 						<value>'urn:ogc:def:uom:UCUM:m'</value>
 					</ClientProperty>
-				</AttributeMapping>
-
-				<!-- gsml:positionalAccuracy is abstract so need to give it a concrete type -->
-				<AttributeMapping>
-					<targetAttribute>
-						gsml:positionalAccuracy
-					</targetAttribute>
-					<targetAttributeNode>
-						gsml:CGI_NumericValuePropertyType
-					</targetAttributeNode>
 				</AttributeMapping>
 
 				<AttributeMapping>
