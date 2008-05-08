@@ -15,15 +15,13 @@ public class TestCase {
         this.response = response;
     }
 
-    public void execute(Log log) {
+    public void run(Log log) {
         InputStream inputStream = null;
         try {
-            log.info("Request: " + request);
             inputStream = request.openResponseStream();
-            log.info("Response: " + response);
             response.process(inputStream, log);
         } catch (RuntimeException e) {
-            log.error("Failure: ", e);
+            log.fatal("Exception in test case: " + e.getMessage());
         } finally {
             if (inputStream != null) {
                 try {
@@ -38,7 +36,7 @@ public class TestCase {
 
     @Override
     public String toString() {
-        return request.toString() + " with " + response.toString();
+        return "Test case: " + request.toString() + " " + response.toString();
     }
 
 }

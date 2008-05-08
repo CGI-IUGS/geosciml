@@ -39,7 +39,7 @@ public class HttpPostRequest implements Request {
 
     @Override
     public String toString() {
-        return "HTTP POST request to " + location + " with body from file "
+        return "Request: HTTP POST to " + location + " with body from file "
                 + requestFile;
     }
 

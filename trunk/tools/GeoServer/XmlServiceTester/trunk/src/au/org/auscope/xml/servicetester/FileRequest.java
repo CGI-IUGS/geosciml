@@ -27,7 +27,7 @@ public class FileRequest implements Request {
 
     @Override
     public String toString() {
-        return "Request that reads from file " + responseFile;
+        return "Request: read file " + responseFile;
     }
 
 }

@@ -12,7 +12,7 @@ import org.apache.commons.logging.Log;
 public class TestSuite {
 
     private static final String STARS = "********";
-    
+
     private URI configFileUri;
 
     private final List<TestCase> cases = new ArrayList<TestCase>();
@@ -39,34 +39,57 @@ public class TestSuite {
      */
     public boolean execute(Log log) {
         log.info(STARS + " START " + STARS);
+        int i;
         List<TestReport> reports = new ArrayList<TestReport>();
-        for (TestCase c : getTestCases()) {
-            TestReport report = new TestReport(c.toString(), log);
-            c.execute(report);
+        int total = getTestCases().size();
+        i = 0;
+        for (TestCase testCase : getTestCases()) {
+            i++;
+            log.info("Started " + formatSequence(i, total) + ": "
+                    + testCase);
+            TestReport report = new TestReport(testCase.toString(), log);
+            testCase.run(report);
             reports.add(report);
+            log.info("Finished " + formatSequence(i, total));
         }
         log.info(STARS + " SUMMARY " + STARS);
-        int total = reports.size();
         int passed = 0;
         int failed = 0;
+        i = 0;
         for (TestReport report : reports) {
-            log.info(report);
+            i++;
             if (report.isPass()) {
                 passed++;
+                log.info(formatSequence(i, total) + ": " + report);
             } else {
                 failed++;
+                log.error(formatSequence(i, total) + ": " + report);
             }
         }
-        assert total == passed + failed;
-        log.info("Test cases: passed: " + passed + " failed: " + failed + " total: " + total);
+        if (total != passed + failed) {
+            throw new RuntimeException("Internal consistency error");
+        }
+        log.info("Test cases: passed: " + passed + " failed: " + failed
+                + " total: " + total);
         if (total == 0 || failed > 0) {
-            log.info(STARS + " FAILURE " + STARS);
+            log.error(STARS + " FAILURE " + STARS);
             return false;
         } else {
             log.info(STARS + " SUCCESS " + STARS);
             return true;
         }
 
+    }
+
+    /**
+     * Return string to represent i out of total.
+     * 
+     * @param i
+     * @param total
+     * @return
+     */
+    private String formatSequence(int i, int total) {
+        return String.format("%d/%d", i, total);
     }
 
     /**

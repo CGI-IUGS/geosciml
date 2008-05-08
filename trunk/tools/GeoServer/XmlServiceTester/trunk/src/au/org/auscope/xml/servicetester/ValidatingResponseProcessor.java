@@ -62,7 +62,7 @@ public class ValidatingResponseProcessor implements ResponseProcessor {
 
     @Override
     public String toString() {
-        return "Validation for namespace " + validationNamespaceUri
+        return "Response: validation for namespace " + validationNamespaceUri
                 + " against schema " + validationSchemaFile;
     }
 
