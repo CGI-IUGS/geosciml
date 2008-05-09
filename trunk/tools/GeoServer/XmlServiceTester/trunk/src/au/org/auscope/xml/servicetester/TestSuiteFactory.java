@@ -7,10 +7,12 @@ import javax.xml.bind.JAXBElement;
 import javax.xml.bind.JAXBException;
 import javax.xml.bind.Unmarshaller;
 
-import au.org.auscope.xml.servicetester.config.ServiceTesterConfigType;
-import au.org.auscope.xml.servicetester.config.TestCaseType;
+import au.org.auscope.xml.servicetester.generated.TestCaseType;
+import au.org.auscope.xml.servicetester.generated.TestSuiteType;
 
 public class TestSuiteFactory {
+
+    private static final String GENERATED_PACKAGE = "au.org.auscope.xml.servicetester.generated";
 
     public static TestSuiteFactory getInstance() {
         return new TestSuiteFactory();
@@ -22,43 +24,42 @@ public class TestSuiteFactory {
     /**
      * Load service tester configuration from an XML file.
      * 
-     * @param configFile
+     * @param testSuiteFile
      * @return
      * @throws Exception
      */
     @SuppressWarnings("unchecked")
-    public TestSuite load(File configFile) {
-        ServiceTesterConfigType configType = null;
+    public TestSuite load(File testSuiteFile) {
+        TestSuiteType testSuiteType = null;
         try {
-            JAXBContext jc = JAXBContext
-                    .newInstance("au.org.auscope.xml.servicetester.config");
+            JAXBContext jc = JAXBContext.newInstance(GENERATED_PACKAGE);
             Unmarshaller unmarshaller = jc.createUnmarshaller();
-            configType = ((JAXBElement<ServiceTesterConfigType>) unmarshaller
-                    .unmarshal(configFile)).getValue();
-            return build(configFile, configType);
+            testSuiteType = ((JAXBElement<TestSuiteType>) unmarshaller
+                    .unmarshal(testSuiteFile)).getValue();
+            return build(testSuiteFile, testSuiteType);
         } catch (JAXBException e) {
-            throw new RuntimeException("Could not load config file: "
-                    + configFile.toString());
+            throw new RuntimeException(e);
         }
     }
 
     /**
-     * @param configFile
+     * @param testSuiteFile
      *                used only to configure the filename resolver
-     * @param configType
+     * @param testSuiteType
      * @return
      */
-    private TestSuite build(File configFile, ServiceTesterConfigType configType) {
-        TestSuite config = new TestSuite(configFile);
-        for (TestCaseType caseType : configType.getTestCase()) {
-            Request request = RequestFactory.getInstance().build(config,
-                    configType, caseType.getRequest().getValue());
-            ResponseProcessor response = ResponseProcessorFactory.getInstance().build(
-                    config, configType, caseType.getResponse());
+    private TestSuite build(File testSuiteFile, TestSuiteType testSuiteType) {
+        TestSuite testSuite = new TestSuite(testSuiteFile);
+        for (TestCaseType testCaseType : testSuiteType.getTestCase()) {
+            Request request = RequestFactory.getInstance().build(testSuite,
+                    testSuiteType, testCaseType.getRequest().getValue());
+            ResponseProcessor response = ResponseProcessorFactory
+                    .getInstance()
+                    .build(testSuite, testSuiteType, testCaseType.getResponse());
             TestCase c = new TestCase(request, response);
-            config.addCase(c);
+            testSuite.addCase(c);
         }
-        return config;
+        return testSuite;
     }
 
 }

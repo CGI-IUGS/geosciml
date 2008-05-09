@@ -4,10 +4,10 @@ import java.io.File;
 import java.net.MalformedURLException;
 import java.net.URL;
 
-import au.org.auscope.xml.servicetester.config.FileRequestType;
-import au.org.auscope.xml.servicetester.config.HttpPostRequestType;
-import au.org.auscope.xml.servicetester.config.RequestType;
-import au.org.auscope.xml.servicetester.config.ServiceTesterConfigType;
+import au.org.auscope.xml.servicetester.generated.FileRequestType;
+import au.org.auscope.xml.servicetester.generated.HttpPostRequestType;
+import au.org.auscope.xml.servicetester.generated.RequestType;
+import au.org.auscope.xml.servicetester.generated.TestSuiteType;
 
 public class RequestFactory {
 
@@ -20,7 +20,7 @@ public class RequestFactory {
     private RequestFactory() {
     }
 
-    public Request build(TestSuite config, ServiceTesterConfigType configType,
+    public Request build(TestSuite config, TestSuiteType configType,
             RequestType requestType) {
         if (requestType instanceof HttpPostRequestType) {
             return build(config, configType, (HttpPostRequestType) requestType);
@@ -32,34 +32,43 @@ public class RequestFactory {
         }
     }
 
-    private Request build(TestSuite config, ServiceTesterConfigType configType,
+    private Request build(TestSuite suite, TestSuiteType suiteType,
             HttpPostRequestType requestType) {
-        String serviceLocationString;
-        if (requestType.getServiceLocation() != null) {
-            serviceLocationString = requestType.getServiceLocation();
-        } else if (configType.getServiceLocation() != null) {
-            serviceLocationString = configType.getServiceLocation();
+        String serviceUrlString;
+        if (requestType.getServiceUrl() != null) {
+            serviceUrlString = requestType.getServiceUrl();
+        } else if (suiteType.getServiceUrl() != null) {
+            serviceUrlString = suiteType.getServiceUrl();
         } else {
             throw new RuntimeException("Could not determine service location");
         }
-        URL serviceLocationUrl;
+        URL serviceUrl;
         try {
-            serviceLocationUrl = new URL(serviceLocationString);
+            serviceUrl = new URL(serviceUrlString);
         } catch (MalformedURLException e) {
             throw new RuntimeException("Invalid service location URL: "
-                    + serviceLocationString, e);
+                    + serviceUrlString, e);
         }
-        File requestFile = config.resolve(requestType.getRequestFile());
+        File requestFile = suite.resolve(requestType.getRequestFile());
         if (requestFile == null || !requestFile.canRead()) {
             throw new RuntimeException("Cannot read request file: "
                     + requestFile);
         }
-        return new HttpPostRequest(serviceLocationUrl, requestFile);
+        return new HttpPostRequest(serviceUrl, requestFile);
     }
 
-    private Request build(TestSuite config, ServiceTesterConfigType configType,
+    /**
+     * Build a file-request, that is, a requests that returns the contents of a
+     * local file.
+     * 
+     * @param suite
+     * @param suiteType
+     * @param requestType
+     * @return
+     */
+    private Request build(TestSuite suite, TestSuiteType suiteType,
             FileRequestType requestType) {
-        File responseFile = config.resolve(requestType.getResponseFile());
+        File responseFile = suite.resolve(requestType.getResponseFile());
         if (responseFile == null || !responseFile.canRead()) {
             throw new RuntimeException("Cannot read response file: "
                     + responseFile);

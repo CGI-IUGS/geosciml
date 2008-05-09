@@ -36,7 +36,7 @@ public class TestCase {
 
     @Override
     public String toString() {
-        return "Test case: " + request.toString() + " " + response.toString();
+        return "Test case: " + request.toString();
     }
 
 }

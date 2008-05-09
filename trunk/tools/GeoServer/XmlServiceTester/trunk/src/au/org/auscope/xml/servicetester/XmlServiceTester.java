@@ -24,7 +24,8 @@ public class XmlServiceTester {
         try {
             suite = TestSuiteFactory.getInstance().load(configFile);
         } catch (RuntimeException e) {
-            LOG.fatal("Could not load config file " + configFile, e);
+            LOG.fatal("Exception loading config file " + configFile + ": "
+                    + e.getMessage());
             return false;
         }
         return suite.run(LOG);

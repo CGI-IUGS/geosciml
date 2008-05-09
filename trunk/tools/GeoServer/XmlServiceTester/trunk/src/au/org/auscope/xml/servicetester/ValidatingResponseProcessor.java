@@ -13,14 +13,12 @@ import org.xml.sax.XMLReader;
 public class ValidatingResponseProcessor implements ResponseProcessor {
 
     private final File catalogFile;
-    private final URI validationNamespaceUri;
-    private final File validationSchemaFile;
+    private final String schemaLocationString;
 
     public ValidatingResponseProcessor(File catalogFile,
-            URI validationNamespace, File validationSchemaFile) {
+            String schemaLocationString) {
         this.catalogFile = catalogFile;
-        this.validationNamespaceUri = validationNamespace;
-        this.validationSchemaFile = validationSchemaFile;
+        this.schemaLocationString = schemaLocationString;
     }
 
     private void configureReader(XMLReader reader) {
@@ -30,8 +28,11 @@ public class ValidatingResponseProcessor implements ResponseProcessor {
                     "http://apache.org/xml/features/validation/schema", true);
             reader.setFeature("http://apache.org/xml/features/"
                     + "validation/schema-full-checking", true);
-            reader.setProperty("http://apache.org/xml/properties/"
-                    + "schema/external-schemaLocation", getSchemaLocation());
+            if (schemaLocationString != null) {
+                reader.setProperty("http://apache.org/xml/properties/"
+                        + "schema/external-schemaLocation",
+                        getSchemaLocationString());
+            }
             if (catalogFile != null) {
                 XMLCatalogResolver resolver = new XMLCatalogResolver();
                 resolver
@@ -44,9 +45,8 @@ public class ValidatingResponseProcessor implements ResponseProcessor {
         }
     }
 
-    private String getSchemaLocation() {
-        return validationNamespaceUri.toString() + " "
-                + validationSchemaFile.toString();
+    private String getSchemaLocationString() {
+        return schemaLocationString;
     }
 
     public void process(InputStream inputStream, Log log) {
@@ -58,12 +58,6 @@ public class ValidatingResponseProcessor implements ResponseProcessor {
         } catch (Exception e) {
             throw new RuntimeException(e);
         }
-    }
-
-    @Override
-    public String toString() {
-        return "Response: validation for namespace " + validationNamespaceUri
-                + " against schema " + validationSchemaFile;
     }
 
 }

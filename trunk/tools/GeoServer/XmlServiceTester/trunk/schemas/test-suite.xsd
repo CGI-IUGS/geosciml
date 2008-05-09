@@ -1,11 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <schema xmlns="http://www.w3.org/2001/XMLSchema"
-	targetNamespace="http://www.auscope.org.au/xml/servicetester/config"
-	xmlns:c="http://www.auscope.org.au/xml/servicetester/config"
+	targetNamespace="http://www.auscope.org.au/servicetester"
+	xmlns:c="http://www.auscope.org.au/servicetester" version="1.0.0"
 	elementFormDefault="qualified">
 
-	<element name="service-tester-config"
-		type="c:service-tester-config-type" />
+	<!-- root element -->
+
+	<element name="test-suite" type="c:test-suite-type" />
+
+	<!-- request substitutionGroup -->
 
 	<element name="request" type="c:request-type" />
 
@@ -15,14 +18,16 @@
 	<element name="file-request" type="c:file-request-type"
 		substitutionGroup="c:request" />
 
-	<complexType name="service-tester-config-type">
+	<!-- types -->
+
+	<complexType name="test-suite-type">
 		<annotation>
 			<documentation>
 				Root element for XmlserviceTester configuration file.
 			</documentation>
 		</annotation>
 		<sequence>
-			<element name="service-location" type="token" minOccurs="0" />
+			<element name="service-url" type="token" minOccurs="0" />
 			<element name="catalog-file" type="token" minOccurs="0" />
 			<element name="test-case" type="c:test-case-type"
 				maxOccurs="unbounded" />
@@ -62,7 +67,7 @@
 		<complexContent>
 			<extension base="c:request-type">
 				<sequence>
-					<element name="service-location" type="token"
+					<element name="service-url" type="token"
 						minOccurs="0" />
 					<element name="request-file" type="token">
 						<annotation>
@@ -72,8 +77,8 @@
 							</documentation>
 						</annotation>
 					</element>
-					<element name="validation" type="c:validation-type"
-						minOccurs="0" />
+					<element name="schema-location"
+						type="c:schema-location-type" minOccurs="0" maxOccurs="unbounded" />
 				</sequence>
 			</extension>
 		</complexContent>
@@ -83,7 +88,7 @@
 		<annotation>
 			<documentation>
 				A request that results in the contents of a file being
-				received. Intended for offline testing.
+				received. Useful for validation of local documents.
 			</documentation>
 		</annotation>
 		<complexContent>
@@ -110,20 +115,54 @@
 			</documentation>
 		</annotation>
 		<sequence>
-			<element name="validation" type="c:validation-type" />
+			<element name="schema-location"
+				type="c:schema-location-type" minOccurs="0" maxOccurs="unbounded">
+				<annotation>
+					<documentation>
+						Locations of the schemas to use for validation.
+					</documentation>
+				</annotation>
+			</element>
+			<element name="output-file" type="token" minOccurs="0"></element>
 		</sequence>
 	</complexType>
 
-	<complexType name="validation-type">
+	<complexType name="schema-location-type">
 		<annotation>
 			<documentation>
-				The namespace and schema document location used for
-				validation.
+				Schema location hint provided to validator, providing a
+				namespace and either a URL or file. Relative files are
+				relative to the instance document.
 			</documentation>
 		</annotation>
 		<sequence>
-			<element name="namespace" type="token" />
-			<element name="schema" type="token" />
+			<element name="namespace-uri" type="token" minOccurs="0">
+				<annotation>
+					<documentation>
+						URI for the namespace. If this element is
+						missing, the location is taken as the namespace
+						for documents with no namespace.
+					</documentation>
+				</annotation>
+			</element>
+			<choice>
+				<element name="schema-url" type="token">
+					<annotation>
+						<documentation>
+							URL where schema can be located.
+						</documentation>
+					</annotation>
+				</element>
+				<element name="schema-file" type="token">
+					<annotation>
+						<documentation>
+							URI to file relative to config document.
+							Examples: ../profiles/wrapper.xsd
+							/C:/profiles/wrapper.xsd
+						</documentation>
+					</annotation>
+				</element>
+			</choice>
 		</sequence>
 	</complexType>
 

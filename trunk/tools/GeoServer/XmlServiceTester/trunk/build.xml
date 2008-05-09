@@ -9,12 +9,13 @@
 	<property name="build.dir" location="build" />
 	<property name="src.dir" location="src" />
 	<property name="lib.dir" location="lib" />
+	<property name="resource.dir" location="resource" />
 	<property name="dist.dir" location="dist" />
 
 	<property name="generated.dir" location="generated" />
-	<property name="generated.jar" location="lib/generated-jaxb-bindings-for-config.jar" />
-	<property name="config.schema" location="schemas/config.xsd" />
-	<property name="config.package" value="au.org.auscope.xml.servicetester.config" />
+	<property name="generated.jar" location="lib/generated-jaxb-bindings.jar" />
+	<property name="generated.schema" location="schemas/test-suite.xsd" />
+	<property name="generated.package" value="au.org.auscope.xml.servicetester.generated" />
 
 	<!-- test directory layout -->
 	<property name="testsrc.dir" location="test" />
@@ -38,9 +39,9 @@
 	</pathconvert>
 
 	<!--
-	JAXB bindings for config are built and stored in a jar (with source)
+	JAXB bindings are built and stored in a jar (with source)
 	to dissuade editing. This target only needs to be run when the
-	config schema config.xsd is changed. The generated jar is stored in
+	schema is changed. The generated jar is stored in
 	lib so the software can be buit without JAXB.
 	-->
 	<target name="generate">
@@ -57,7 +58,7 @@
 		<delete file="${generated.jar}" />
 		<delete dir="${generated.dir}" />
 		<mkdir dir="${generated.dir}" />
-		<xjc schema="${config.schema}" destdir="${generated.dir}" package="${config.package}" />
+		<xjc schema="${generated.schema}" destdir="${generated.dir}" package="${generated.package}" />
 		<javac srcdir="${generated.dir}" destdir="${generated.dir}">
 			<classpath refid="libraries" />
 		</javac>
@@ -81,6 +82,7 @@
 		<javac srcdir="${testsrc.dir}" destdir="${testbuild.dir}">
 			<classpath>
 				<pathelement location="${build.dir}" />
+				<pathelement location="${resource.dir}" />
 				<path refid="libraries" />
 				<path refid="testlibraries" />
 			</classpath>
@@ -124,6 +126,7 @@
 		<zip destfile="${dist.dir}/${application.long.name}.zip">
 			<zipfileset dir="dist" includes="${application.name}.jar" prefix="lib" />
 			<zipfileset dir="lib" prefix="lib" />
+			<zipfileset dir="resource" prefix="lib" />
 			<zipfileset dir="scripts" includes="*.sh" prefix="bin" filemode="775" />
 			<zipfileset dir="scripts" includes="*.bat" prefix="bin" />
 		</zip>
