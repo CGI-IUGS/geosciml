@@ -8,7 +8,7 @@ public class XmlServiceTesterTest extends TestCase {
 
     public static void test() {
         assertTrue(XmlServiceTester.run(new File(
-                "testresource/config/config.XmlServiceTesterTest.xml")));
+                "testresource/test-suites/test-suite.XmlServiceTesterTest.xml")));
     }
 
 }

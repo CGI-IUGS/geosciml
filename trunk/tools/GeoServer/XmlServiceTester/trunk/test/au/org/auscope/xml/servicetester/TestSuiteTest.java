@@ -4,7 +4,7 @@ import java.io.File;
 
 public class TestSuiteTest extends junit.framework.TestCase {
 
-    public static File CONFIG_FILE = new File("testresource/config/config.xml");
+    public static File CONFIG_FILE = new File("testresource/test-suites/test-suite.XmlServiceTesterOnlineTest.xml");
 
     public void testLoadConfig() throws Exception {
         TestSuite suite = TestSuiteFactory.getInstance().load(CONFIG_FILE);
