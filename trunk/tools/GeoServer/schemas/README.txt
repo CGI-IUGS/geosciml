@@ -4,8 +4,6 @@ Schemas in a local cache, including those required for GeoSciML Testbed 3.
 
 This schema cache is intended for use by GeoServer and Eclipse.
 
-omx is added here as a convenience. It has not yet been published.
-
 catalog-expanded.xml is a version of catalog.xml with system/uri
 entries appended for each rewrite entry, for the convenience of
 Eclipse users. Because Eclipse (3.3) does not honour rewrites,
