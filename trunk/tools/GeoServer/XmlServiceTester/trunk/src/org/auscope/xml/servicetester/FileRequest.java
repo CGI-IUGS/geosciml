@@ -2,25 +2,41 @@ package org.auscope.xml.servicetester;
 
 import java.io.File;
 import java.io.FileInputStream;
-import java.io.FileNotFoundException;
-import java.io.InputStream;
 
 /**
- * Request that responds with a file. Used for testing.
- * 
+ * Request that responds with the contents of a local file. Used for validation
+ * of local documents and for testing.
  */
 public class FileRequest implements Request {
 
     private final File responseFile;
 
+    /**
+     * @param responseFile
+     *                file containing body of response
+     */
     public FileRequest(File responseFile) {
         this.responseFile = responseFile;
     }
 
-    public InputStream openResponseStream() {
+    /*
+     * (non-Javadoc)
+     * 
+     * @see org.auscope.xml.servicetester.Request#submit()
+     */
+    public Response submit() {
+        FileInputStream fileInputStream = null;
         try {
-            return new FileInputStream(responseFile);
-        } catch (FileNotFoundException e) {
+            fileInputStream = new FileInputStream(responseFile);
+            return new InputStreamResponse(fileInputStream);
+        } catch (Exception e) {
+            if (fileInputStream != null) {
+                try {
+                    fileInputStream.close();
+                } catch (Exception e1) {
+                    // we tried
+                }
+            }
             throw new RuntimeException(e);
         }
     }

@@ -1,15 +1,16 @@
 package org.auscope.xml.servicetester;
 
-import java.io.InputStream;
-
 public interface Request {
 
     /**
-     * Execute the request and return a new InputStream for the response. Caller
-     * must close the returned stream.
+     * Submit this request to obtain a response.
      * 
-     * @return freshly created InputStream for the response.
+     * <p>
+     * 
+     * Caller must call dispose() on response to release resources.
+     * 
+     * @return newly created response
      */
-    public InputStream openResponseStream();
+    public Response submit();
 
 }

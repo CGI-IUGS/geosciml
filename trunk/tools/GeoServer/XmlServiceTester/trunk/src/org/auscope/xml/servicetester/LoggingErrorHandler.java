@@ -9,8 +9,8 @@ import org.xml.sax.SAXException;
 import org.xml.sax.SAXParseException;
 
 /**
- * Adapter to log validation errors.
- * 
+ * Adapter to log validation errors directed to a SAX ErrorHandler interface to
+ * an apache-commons-logging log.
  */
 class LoggingErrorHandler implements ErrorHandler {
 

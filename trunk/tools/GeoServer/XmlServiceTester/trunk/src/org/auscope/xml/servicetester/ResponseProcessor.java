@@ -6,6 +6,6 @@ import org.apache.commons.logging.Log;
 
 public interface ResponseProcessor {
 
-    public void process(InputStream inputStream, Log log);
+    public void process(Response response, Log log);
 
 }

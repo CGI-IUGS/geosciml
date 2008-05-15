@@ -1,34 +1,27 @@
 package org.auscope.xml.servicetester;
 
-import java.io.IOException;
-import java.io.InputStream;
-
 import org.apache.commons.logging.Log;
 
 public class TestCase {
 
     private final Request request;
-    private final ResponseProcessor response;
+    private final ResponseProcessor responseProcessor;
 
-    public TestCase(Request request, ResponseProcessor response) {
+    public TestCase(Request request, ResponseProcessor responseProcessor) {
         this.request = request;
-        this.response = response;
+        this.responseProcessor = responseProcessor;
     }
 
     public void run(Log log) {
-        InputStream inputStream = null;
+        Response response = null;
         try {
-            inputStream = request.openResponseStream();
-            response.process(inputStream, log);
+            response = request.submit();
+            responseProcessor.process(response, log);
         } catch (RuntimeException e) {
             log.fatal("Exception in test case: " + e.getMessage());
         } finally {
-            if (inputStream != null) {
-                try {
-                    inputStream.close();
-                } catch (IOException e) {
-                    // ignore, we tried
-                }
+            if (response != null) {
+                response.dispose();
             }
         }
 

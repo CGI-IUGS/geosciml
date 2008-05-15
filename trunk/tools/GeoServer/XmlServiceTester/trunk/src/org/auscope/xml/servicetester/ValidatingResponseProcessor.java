@@ -49,12 +49,12 @@ public class ValidatingResponseProcessor implements ResponseProcessor {
         return schemaLocationString;
     }
 
-    public void process(InputStream inputStream, Log log) {
+    public void process(Response response, Log log) {
         XMLReader reader = new SAXParser();
         configureReader(reader);
         reader.setErrorHandler(new LoggingErrorHandler(log));
         try {
-            reader.parse(new InputSource(inputStream));
+            reader.parse(new InputSource(response.getInputStream()));
         } catch (Exception e) {
             throw new RuntimeException(e);
         }

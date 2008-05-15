@@ -1,7 +1,6 @@
 package org.auscope.xml.servicetester;
 
 import java.io.File;
-import java.io.InputStream;
 import java.net.URL;
 
 import org.apache.commons.httpclient.HttpClient;
@@ -24,15 +23,16 @@ public class HttpPostRequest implements Request {
         this.requestFile = requestFile;
     }
 
-    public InputStream openResponseStream() {
+    public Response submit() {
         HttpClient client = new HttpClient();
         PostMethod post = new PostMethod(location.toString());
         post.setRequestEntity(new FileRequestEntity(requestFile,
                 REQUEST_MIME_TYPE));
         try {
             client.executeMethod(post);
-            return post.getResponseBodyAsStream();
+            return new HttpMethodResponse(post.getResponseBodyAsStream(), post);
         } catch (Exception e) {
+            post.releaseConnection();
             throw new RuntimeException(e);
         }
     }
