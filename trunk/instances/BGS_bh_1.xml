@@ -25,6 +25,7 @@ urn:cgi:xmlns:CGI:GeoSciML:2.0	http://www.geosciml.org/schemas/geosciml/2.0_rc1/
 		<om:Observation>
 			<om:samplingTime xlink:href="urn:x-ogc:def:nil:OGC:unknown"/>
 			<om:procedure xlink:href="urn:x-ogc:def:nil:OGC:unknown"/>
+			<!-- To do: check whether there is some CGI defined URN to mean 'lithostratigraphy'  -->
 			<om:observedProperty xlink:href="http://ns.bgs.ac.uk/thesaurus/lithostratigraphy"/>
 			<!-- This is a compulsory property for an Observation which will always be the same as the sampledFeature
 				of the parent borehole (SamplingCurve) where we are nesting Observations within one, and similarly we are
@@ -47,7 +48,7 @@ urn:cgi:xmlns:CGI:GeoSciML:2.0	http://www.geosciml.org/schemas/geosciml/2.0_rc1/
 									</cv:spatialElement>
 								</cv:CV_DomainObject>
 							</cv:geometry>
-							<cv:value xsi:type="gml:CodeType" codeSpace="http://ns.bgs.ac.uk/bgs.lex_lithostrat_unit_v3">unknown</cv:value>
+							<cv:value xsi:type="gml:CodeType" codeSpace="urn:cgi:classifierScheme:BGS:StratigraphicLexicon">unknown</cv:value>
 						</cv:CV_GeometryValuePair>
 					</cv:element>
 					<cv:element>
@@ -62,7 +63,7 @@ urn:cgi:xmlns:CGI:GeoSciML:2.0	http://www.geosciml.org/schemas/geosciml/2.0_rc1/
 									</cv:spatialElement>
 								</cv:CV_DomainObject>
 							</cv:geometry>
-							<cv:value xsi:type="gml:CodeType" codeSpace="http://ns.bgs.ac.uk/bgs.lex_lithostrat_unit_v3">unknown</cv:value>
+							<cv:value xsi:type="gml:CodeType" codeSpace="urn:cgi:classifierScheme:BGS:StratigraphicLexicon">unknown</cv:value>
 						</cv:CV_GeometryValuePair>
 					</cv:element>
 					<cv:element>
@@ -77,7 +78,7 @@ urn:cgi:xmlns:CGI:GeoSciML:2.0	http://www.geosciml.org/schemas/geosciml/2.0_rc1/
 									</cv:spatialElement>
 								</cv:CV_DomainObject>
 							</cv:geometry>
-							<cv:value xsi:type="gml:CodeType" codeSpace="http://ns.bgs.ac.uk/bgs.lex_lithostrat_unit_v3">unknown</cv:value>
+							<cv:value xsi:type="gml:CodeType" codeSpace="urn:cgi:classifierScheme:BGS:StratigraphicLexicon">unknown</cv:value>
 						</cv:CV_GeometryValuePair>
 					</cv:element>
 				</cv:CV_DiscreteCoverage>
@@ -89,6 +90,7 @@ urn:cgi:xmlns:CGI:GeoSciML:2.0	http://www.geosciml.org/schemas/geosciml/2.0_rc1/
 		<om:Observation>
 			<om:samplingTime xlink:href="urn:x-ogc:def:nil:OGC:unknown"/>
 			<om:procedure xlink:href="urn:x-ogc:def:nil:OGC:unknown"/>
+			<!-- Is this lithology urn still valid? -->
 			<om:observedProperty xlink:href="urn:ogc:def:phenomenon:CGI:2007:lithology"/>
 			<!-- This is a compulsory property for an Observation which will always be the same as the sampledFeature
 				of the parent borehole (SamplingCurve) where we are nesting Observations within one, and similarly we are
@@ -111,7 +113,7 @@ urn:cgi:xmlns:CGI:GeoSciML:2.0	http://www.geosciml.org/schemas/geosciml/2.0_rc1/
 									</cv:spatialElement>
 								</cv:CV_DomainObject>
 							</cv:geometry>
-							<cv:value xsi:type="gml:CodeType" codeSpace="http://ns.bgs.ac.uk/bgs.dic_rock_name">DRFTU</cv:value>
+							<cv:value xsi:type="gml:CodeType" codeSpace="urn:cgi:classifierScheme:BGS:RCS">DRFTU</cv:value>
 						</cv:CV_GeometryValuePair>
 					</cv:element>
 					<cv:element>
@@ -126,7 +128,7 @@ urn:cgi:xmlns:CGI:GeoSciML:2.0	http://www.geosciml.org/schemas/geosciml/2.0_rc1/
 									</cv:spatialElement>
 								</cv:CV_DomainObject>
 							</cv:geometry>
-							<cv:value xsi:type="gml:CodeType" codeSpace="http://ns.bgs.ac.uk/bgs.dic_rock_name">ROCK</cv:value>
+							<cv:value xsi:type="gml:CodeType" codeSpace="urn:cgi:classifierScheme:BGS:RCS">ROCK</cv:value>
 						</cv:CV_GeometryValuePair>
 					</cv:element>
 					<cv:element>
@@ -141,71 +143,7 @@ urn:cgi:xmlns:CGI:GeoSciML:2.0	http://www.geosciml.org/schemas/geosciml/2.0_rc1/
 									</cv:spatialElement>
 								</cv:CV_DomainObject>
 							</cv:geometry>
-							<cv:value xsi:type="gml:CodeType" codeSpace="http://ns.bgs.ac.uk/bgs.dic_rock_name">COAL</cv:value>
-						</cv:CV_GeometryValuePair>
-					</cv:element>
-				</cv:CV_DiscreteCoverage>
-				
-			</om:result>
-		</om:Observation>
-	</sa:relatedObservation>
-	<sa:relatedObservation>
-		<om:Observation>
-			<om:samplingTime xlink:href="urn:x-ogc:def:nil:OGC:unknown"/>
-			<om:procedure xlink:href="urn:x-ogc:def:nil:OGC:unknown"/>
-			<om:observedProperty xlink:href="http://ns.bgs.ac.uk/thesaurus/base_bed"/>
-			<!-- This is a compulsory property for an Observation which will always be the same as the sampledFeature
-				of the parent borehole (SamplingCurve) where we are nesting Observations within one, and similarly we are
-				unlikely to want to describe something more than the generic "ground" -->
-			<om:featureOfInterest/>
-			<om:result>
-				<cv:CV_DiscreteCoverage>
-					<cv:domainExtent xlink:href="bh.196911.shape"/>
-					<!-- What's the difference between the rangeType here and the parent Observation observedProperty ? -->
-					<cv:rangeType xlink:href="http://ns.bgs.ac.uk/thesaurus/base_bed"/>
-					<cv:element>
-						<cv:CV_GeometryValuePair>
-							<cv:geometry>
-								<cv:CV_DomainObject>
-									<cv:spatialElement>
-										<gml:LineString srsName="#bh.196911.shape" srsDimension="1">
-											<gml:pos>0.0</gml:pos>
-											<gml:pos>0.3</gml:pos>
-										</gml:LineString>
-									</cv:spatialElement>
-								</cv:CV_DomainObject>
-							</cv:geometry>
-							<cv:value xsi:type="gml:CodeType" codeSpace="http://ns.bgs.ac.uk/bgs.dic_base_bed">RH</cv:value>
-						</cv:CV_GeometryValuePair>
-					</cv:element>
-					<cv:element>
-						<cv:CV_GeometryValuePair>
-							<cv:geometry>
-								<cv:CV_DomainObject>
-									<cv:spatialElement>
-										<gml:LineString srsName="#bh.196911.shape" srsDimension="1">
-											<gml:pos>0.3</gml:pos>
-											<gml:pos>51.81</gml:pos>
-										</gml:LineString>
-									</cv:spatialElement>
-								</cv:CV_DomainObject>
-							</cv:geometry>
-							<cv:value xsi:type="gml:CodeType" codeSpace="http://ns.bgs.ac.uk/bgs.dic_base_bed">TD</cv:value>
-						</cv:CV_GeometryValuePair>
-					</cv:element>
-					<cv:element>
-						<cv:CV_GeometryValuePair>
-							<cv:geometry>
-								<cv:CV_DomainObject>
-									<cv:spatialElement>
-										<gml:LineString srsName="#bh.196911.shape" srsDimension="1">
-											<gml:pos>396.54</gml:pos>
-											<gml:pos>397.38</gml:pos>
-										</gml:LineString>
-									</cv:spatialElement>
-								</cv:CV_DomainObject>
-							</cv:geometry>
-							<cv:value xsi:type="gml:CodeType" codeSpace="http://ns.bgs.ac.uk/bgs.dic_base_bed">inapplicable</cv:value>
+							<cv:value xsi:type="gml:CodeType" codeSpace="urn:cgi:classifierScheme:BGS:RCS">COAL</cv:value>
 						</cv:CV_GeometryValuePair>
 					</cv:element>
 				</cv:CV_DiscreteCoverage>
@@ -253,22 +191,22 @@ urn:cgi:xmlns:CGI:GeoSciML:2.0	http://www.geosciml.org/schemas/geosciml/2.0_rc1/
 	</collarLocation>
 	<!-- BGS has some database information that would seem to belong in the indexData like drillingMethod but
 	I'm not sure whether I can easily map it to the CGI model. To consider later. -->
-	<!-- 
-		<xmml:drillMethod>other:bgsU</xmml:drillMethod>
+	<!-- Model has indexData as optional but, if you include it then you have to put all the details! -->
 	<indexData>
 		<BoreholeDetails>
-			<operator>
-				<role xmlns="http://www.isotc211.org/2005/gmd"></role>
-			</operator>
-			<driller>
-				<role xmlns="http://www.isotc211.org/2005/gmd"></role>
-			</driller>
-			<dateOfDrilling></dateOfDrilling>
-			<drillingMethod></drillingMethod>
-			<startPoint></startPoint>
-			<nominalDiameter uom=""></nominalDiameter>
-			<inclinationType></inclinationType>
+			<operator/>
+			<driller/>
+			<dateOfDrilling>2008-01-03</dateOfDrilling>
+			<!-- To do: how can I map BGS dictionary of drilling methods to GeoSciML Code, especially as there isn't an 'other' or 'unknown' value
+			I can't definitely put one of the BoreholeDrillingMethodCode values in.-->
+			<drillingMethod>unknown</drillingMethod>
+			<!-- To do: can I map BGS dictionary of start points to GeoSciMl codes? -->
+			<startPoint>natural ground surface</startPoint>
+			<!-- To do: check if we have this information anyway. -->
+			<!-- To do: check what the urns for uom's like metres are -->
+			<nominalDiameter uom="#m">3</nominalDiameter>
+			<!-- To do: can I map BGS inclination code to GeoSciML codes? -->
+			<inclinationType>vertical</inclinationType>
 		</BoreholeDetails>
 	</indexData>
-	-->
 </Borehole>
