@@ -57,7 +57,7 @@ public class TestSuiteFactory {
         for (TestCaseType testCaseType : testSuiteType.getTestCase()) {
             Request request = RequestFactory.getInstance().build(testSuite,
                     testSuiteType, testCaseType.getRequest().getValue());
-            ResponseProcessor response = ResponseProcessorFactory
+            ValidatingResponseProcessor response = ResponseProcessorFactory
                     .getInstance()
                     .build(testSuite, testSuiteType, testCaseType.getResponse());
             TestCase c = new TestCase(request, response);

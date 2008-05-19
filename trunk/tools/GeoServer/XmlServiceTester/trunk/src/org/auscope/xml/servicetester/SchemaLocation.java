@@ -14,6 +14,17 @@ public class SchemaLocation {
         this.namespaceUri = namespaceUri;
         this.schemaUrl = schemaUrl;
         this.schemaFile = schemaFile;
+        if (namespaceUri == null) {
+            throw new IllegalArgumentException(
+                    "Must specify namespace (no-namespace not supported)");
+        }
+        if (schemaUrl == null && schemaFile == null) {
+            throw new IllegalArgumentException(
+                    "Must specify either schema URL or schema file");
+        } else if (schemaUrl != null && schemaFile != null) {
+            throw new IllegalArgumentException(
+                    "Cannot specify both schema URL and schema file");
+        }
     }
 
     public URI getNamespaceUri() {
@@ -26,7 +37,7 @@ public class SchemaLocation {
         } else {
             return schemaFile.toString();
         }
-    
+
     }
 
     /**

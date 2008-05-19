@@ -4,6 +4,9 @@ import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.xml.bind.JAXBElement;
+
+import org.auscope.xml.servicetester.generated.AssertionType;
 import org.auscope.xml.servicetester.generated.ResponseType;
 import org.auscope.xml.servicetester.generated.SchemaLocationType;
 import org.auscope.xml.servicetester.generated.TestSuiteType;
@@ -19,7 +22,7 @@ public class ResponseProcessorFactory {
     private ResponseProcessorFactory() {
     }
 
-    public ResponseProcessor build(TestSuite suite, TestSuiteType suiteType,
+    public ValidatingResponseProcessor build(TestSuite suite, TestSuiteType suiteType,
             ResponseType responseType) {
         File catalogFile = suite.resolve(suiteType.getCatalogFile());
         if (catalogFile != null && !catalogFile.canRead()) {
@@ -28,8 +31,7 @@ public class ResponseProcessorFactory {
         }
         String schemaLocationString = buildSchemaLocationString(suite,
                 suiteType, responseType);
-        return new ValidatingResponseProcessor(catalogFile,
-                schemaLocationString);
+        return new ValidatingResponseProcessor(catalogFile, schemaLocationString);
     }
 
     private List<SchemaLocation> buildSchemaLocations(TestSuite suite,
@@ -61,6 +63,16 @@ public class ResponseProcessorFactory {
         } else {
             return stringBuffer.toString();
         }
+    }
+
+    private List<Assertion> buildAssertions(ResponseType responseType) {
+        List<Assertion> assertions = new ArrayList<Assertion>();
+        for (JAXBElement<? extends AssertionType> assertionType : responseType
+                .getAssertion()) {
+            assertions.add(AssertionFactory.getInstance().build(
+                    assertionType.getValue()));
+        }
+        return assertions;
     }
 
 }

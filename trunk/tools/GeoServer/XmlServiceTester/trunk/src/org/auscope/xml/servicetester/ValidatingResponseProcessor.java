@@ -1,14 +1,17 @@
 package org.auscope.xml.servicetester;
 
 import java.io.File;
-import java.io.InputStream;
-import java.net.URI;
 
 import org.apache.commons.logging.Log;
 import org.apache.xerces.parsers.SAXParser;
 import org.apache.xerces.util.XMLCatalogResolver;
+import org.xml.sax.Attributes;
+import org.xml.sax.ContentHandler;
+import org.xml.sax.ErrorHandler;
 import org.xml.sax.InputSource;
+import org.xml.sax.SAXException;
 import org.xml.sax.XMLReader;
+import org.xml.sax.helpers.DefaultHandler;
 
 public class ValidatingResponseProcessor implements ResponseProcessor {
 
@@ -49,10 +52,22 @@ public class ValidatingResponseProcessor implements ResponseProcessor {
         return schemaLocationString;
     }
 
+    /*
+     * (non-Javadoc)
+     * 
+     * @see org.auscope.xml.servicetester.ResponseProcessor#process(org.auscope.xml.servicetester.Response,
+     *      org.apache.commons.logging.Log)
+     */
     public void process(Response response, Log log) {
+        process(response, new DefaultHandler(), new LoggingErrorHandler(log));
+    }
+
+    public void process(Response response, ContentHandler contentHandler,
+            ErrorHandler errorHandler) {
         XMLReader reader = new SAXParser();
         configureReader(reader);
-        reader.setErrorHandler(new LoggingErrorHandler(log));
+        reader.setContentHandler(contentHandler);
+        reader.setErrorHandler(errorHandler);
         try {
             reader.parse(new InputSource(response.getInputStream()));
         } catch (Exception e) {
