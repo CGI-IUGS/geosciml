@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <schema xmlns="http://www.w3.org/2001/XMLSchema"
 	targetNamespace="http://www.auscope.org/servicetester"
-	xmlns:c="http://www.auscope.org/servicetester" version="1.0.0"
+	xmlns:c="http://www.auscope.org/servicetester"
 	elementFormDefault="qualified">
 
 	<!-- root element -->
@@ -18,6 +18,13 @@
 	<element name="file-request" type="c:file-request-type"
 		substitutionGroup="c:request" />
 
+	<!-- assertion substitutionGroup -->
+
+	<element name="assertion" type="c:assertion-type" />
+
+	<element name="element-count-assertion"
+		type="c:element-count-assertion-type" substitutionGroup="c:assertion" />
+
 	<!-- types -->
 
 	<complexType name="test-suite-type">
@@ -29,6 +36,8 @@
 		<sequence>
 			<element name="service-url" type="token" minOccurs="0" />
 			<element name="catalog-file" type="token" minOccurs="0" />
+			<element name="schema-location"
+				type="c:schema-location-type" minOccurs="0" maxOccurs="unbounded" />
 			<element name="test-case" type="c:test-case-type"
 				maxOccurs="unbounded" />
 		</sequence>
@@ -77,8 +86,14 @@
 							</documentation>
 						</annotation>
 					</element>
+					<!-- 
+						FIXME: request file validation not yet implemented
+						Use a separate file-request to validate request file
+						until this is supported.		
+					-->
 					<element name="schema-location"
 						type="c:schema-location-type" minOccurs="0" maxOccurs="unbounded" />
+
 				</sequence>
 			</extension>
 		</complexContent>
@@ -115,6 +130,11 @@
 			</documentation>
 		</annotation>
 		<sequence>
+			<element name="output-file" type="token" minOccurs="0">
+				<annotation>
+					<documentation></documentation>
+				</annotation>
+			</element>
 			<element name="schema-location"
 				type="c:schema-location-type" minOccurs="0" maxOccurs="unbounded">
 				<annotation>
@@ -123,7 +143,14 @@
 					</documentation>
 				</annotation>
 			</element>
-			<element name="output-file" type="token" minOccurs="0"></element>
+			<element ref="c:assertion" minOccurs="0"
+				maxOccurs="unbounded">
+				<annotation>
+					<documentation>
+						Assertions made about response content.
+					</documentation>
+				</annotation>
+			</element>
 		</sequence>
 	</complexType>
 
@@ -164,6 +191,55 @@
 				</element>
 			</choice>
 		</sequence>
+	</complexType>
+
+	<complexType name="assertion-type" abstract="true">
+		<annotation>
+			<documentation>
+				Abstract base class for assertions.
+			</documentation>
+		</annotation>
+	</complexType>
+
+	<complexType name="element-count-assertion-type">
+		<annotation>
+			<documentation>
+				Assertion that the number of occurrences of an elements
+				matches as integer.
+			</documentation>
+		</annotation>
+		<complexContent>
+			<extension base="c:assertion-type">
+				<sequence>
+					<element name="namespace-uri" type="token">
+						<annotation>
+							<documentation>
+								URI of the namespace in which the
+								element of named. For example,
+								http://www.opengis.net/wfs
+							</documentation>
+						</annotation>
+					</element>
+					<element name="element-name" type="token">
+						<annotation>
+							<documentation>
+								Local name of the element. For example,
+								FeatureCollection.
+							</documentation>
+						</annotation>
+					</element>
+					<element name="element-count"
+						type="nonNegativeInteger">
+						<annotation>
+							<documentation>
+								The number of occurrences of the element
+								in the document.
+							</documentation>
+						</annotation>
+					</element>
+				</sequence>
+			</extension>
+		</complexContent>
 	</complexType>
 
 </schema>

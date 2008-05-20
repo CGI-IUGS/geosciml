@@ -5,9 +5,9 @@ import org.apache.commons.logging.Log;
 public class TestCase {
 
     private final Request request;
-    private final ResponseProcessor responseProcessor;
+    private final ResponseProcessorManager responseProcessor;
 
-    public TestCase(Request request, ResponseProcessor responseProcessor) {
+    public TestCase(Request request, ResponseProcessorManager responseProcessor) {
         this.request = request;
         this.responseProcessor = responseProcessor;
     }

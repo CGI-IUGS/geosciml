@@ -27,4 +27,8 @@ public class ElementCountAssertion implements Assertion {
         return elementCount;
     }
 
+    public String getElementQualifiedName() {
+        return "{" + namespaceUri.toString() + "}" + elementName;
+    }
+
 }

@@ -13,16 +13,21 @@ public class TestSuite {
 
     private static final String STARS = "********";
 
-    private URI configFileUri;
-
+    private final URI configFileUri;
+    private final List<SchemaLocation> schemaLocations;
     private final List<TestCase> cases = new ArrayList<TestCase>();
 
     public TestSuite() {
-        this(null);
+        this(null, null);
     }
 
     public TestSuite(File configFile) {
+        this(configFile, null);
+    }
+
+    public TestSuite(File configFile, List<SchemaLocation> schemaLocations) {
         this.configFileUri = configFile.toURI();
+        this.schemaLocations = schemaLocations;
     }
 
     public void addCase(TestCase c) {

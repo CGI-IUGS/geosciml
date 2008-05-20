@@ -3,6 +3,7 @@ package org.auscope.xml.servicetester;
 import java.io.IOException;
 import java.io.Writer;
 
+import org.apache.commons.logging.Log;
 import org.apache.xml.serialize.Method;
 import org.apache.xml.serialize.OutputFormat;
 import org.apache.xml.serialize.XMLSerializer;
@@ -28,9 +29,13 @@ public class AnnotatingXmlSerializer implements ContentHandler, ErrorHandler {
 
     private final XMLSerializer xmlSerializer;
 
-    public AnnotatingXmlSerializer(Writer writer) {
-        xmlSerializer = new XMLSerializer(writer, new OutputFormat(Method.XML,
-                null, true));
+    public AnnotatingXmlSerializer() {
+        xmlSerializer = new XMLSerializer(new OutputFormat(Method.XML, null,
+                true));
+    }
+    
+    public void setWriter(Writer writer) {
+        xmlSerializer.setOutputCharStream(writer);
     }
 
     /* ErrorHandler */

@@ -1,7 +1,5 @@
 package org.auscope.xml.servicetester;
 
-import java.util.HashMap;
-
 import org.xml.sax.Attributes;
 import org.xml.sax.ContentHandler;
 import org.xml.sax.Locator;
@@ -14,60 +12,18 @@ import org.xml.sax.SAXException;
 public class ElementCountingContentHandler implements ContentHandler {
 
     private final ContentHandler contentHandler;
-
-    private final HashMap<String, Integer> elementCountMap = new HashMap<String, Integer>();
+    private final ElementCounter elementCounter;
 
     /**
      * @param contentHandler
      *                content handler to which all operations are delegated.
+     * 
+     * @param elementCounter
      */
-    public ElementCountingContentHandler(ContentHandler contentHandler) {
+    public ElementCountingContentHandler(ContentHandler contentHandler,
+            ElementCounter elementCounter) {
         this.contentHandler = contentHandler;
-    }
-
-    /**
-     * Return the number of occurrences of the start of this element that have
-     * been seen.
-     * 
-     * @param uri
-     *                namespace in which element is defined
-     * @param localName
-     *                name of the element
-     * @return occurrence count
-     */
-    public int getElementCount(String uri, String localName) {
-        String key = buildKey(uri, localName);
-        Integer i = elementCountMap.get(key);
-        if (i == null) {
-            // no occurrences
-            return 0;
-        } else {
-            // some occurrences
-            return i;
-        }
-    }
-
-    private void countElement(String uri, String localName) {
-        String key = buildKey(uri, localName);
-        Integer i = elementCountMap.get(key);
-        if (i == null) {
-            // first occurrence
-            elementCountMap.put(key, 1);
-        } else {
-            // subsequent occurrence
-            elementCountMap.put(key, i + 1);
-        }
-    }
-
-    /**
-     * Build a key for this element.
-     * 
-     * @param uri
-     * @param localName
-     * @return
-     */
-    private String buildKey(String uri, String localName) {
-        return "{" + uri + "}" + localName;
+        this.elementCounter = elementCounter;
     }
 
     /**
@@ -78,7 +34,7 @@ public class ElementCountingContentHandler implements ContentHandler {
      */
     public void startElement(String uri, String localName, String name,
             Attributes atts) throws SAXException {
-        countElement(uri, localName);
+        elementCounter.countElement(uri, localName);
         contentHandler.startElement(uri, localName, name, atts);
     }
 
@@ -181,7 +137,5 @@ public class ElementCountingContentHandler implements ContentHandler {
             throws SAXException {
         contentHandler.startPrefixMapping(prefix, uri);
     }
-
-    /* end of generated delegate methods */
 
 }

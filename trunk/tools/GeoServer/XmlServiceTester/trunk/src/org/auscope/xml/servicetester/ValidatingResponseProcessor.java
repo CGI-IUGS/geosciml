@@ -52,18 +52,8 @@ public class ValidatingResponseProcessor implements ResponseProcessor {
         return schemaLocationString;
     }
 
-    /*
-     * (non-Javadoc)
-     * 
-     * @see org.auscope.xml.servicetester.ResponseProcessor#process(org.auscope.xml.servicetester.Response,
-     *      org.apache.commons.logging.Log)
-     */
-    public void process(Response response, Log log) {
-        process(response, new DefaultHandler(), new LoggingErrorHandler(log));
-    }
-
-    public void process(Response response, ContentHandler contentHandler,
-            ErrorHandler errorHandler) {
+    public void process(Response response, Log log,
+            ContentHandler contentHandler, ErrorHandler errorHandler) {
         XMLReader reader = new SAXParser();
         configureReader(reader);
         reader.setContentHandler(contentHandler);
