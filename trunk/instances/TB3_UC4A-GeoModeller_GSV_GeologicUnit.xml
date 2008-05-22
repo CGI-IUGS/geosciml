@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!--
+	GSV TESTBED 3 EXAMPLE INSTANCE DOCUMENT
+	USE CASE/PROFILE:	4A (GeoModeller)
+	FEATURE TYPE:		GeologicUnit
+	COMMENTS:
+		Shows expected serialisation of a GeologicUnit requested from a WFS meeting the profile for
+		Use Case 4A - GeoModeller.
+		The first featureMember shows all possible elements returned by a request to such a service.
+     	The second featureMember omits optional elements.
+    NOTES ON CONTENT:
+		* All units are returned (cast) as GeologicUnits regardless of their type as GeoModeller has no concept of
+		  unit type (they're all formations).
+		* occurrence values are not required.
+		* PhysicalDescription/magneticSusceptibility/CGI_Value value must be of type CGI_Numeric(Range).
+		* GeologicEvents are to be associated by preferredAge, not geologicHistory.
+        * ControlledConcepts are included by reference, not in-line. As per GeoSciML convention (?).
+ -->
+
+<wfs:FeatureCollection numberOfFeatures="2" 
+					   xmlns:wfs="http://www.opengis.net/wfs"
+					   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                       xmlns:xlink="http://www.w3.org/1999/xlink"
+                       xmlns:gml="http://www.opengis.net/gml"
+                       xmlns:gsml="urn:cgi:xmlns:CGI:GeoSciML:2.0" 
+					   xsi:schemaLocation="http://www.opengis.net/wfs http://schemas.opengis.net/wfs/1.1.0/wfs.xsd
+										   urn:cgi:xmlns:CGI:GeoSciML:2.0 http://www.geosciml.org/schemas/geosciml/2.0_rc1/geosciml.xsd">
+	<gml:featureMembers>
+		<!--Maximum serialisation: shows all the elements that could be used by GeoModeller. Any additional
+			elements returned would be ignored when the response is parsed by GeoModeller.-->
+		<gsml:GeologicUnit gml:id="GDV.16777549126937154">
+			<gml:name codeSpace="urn:ietf:rfc:2141">urn:cgi:feature:GSV:GeoDataVic_UID:16777549126937154</gml:name>
+			<gml:name codeSpace="urn:cgi:classifierScheme:GSV:GeologicalConceptName">G279</gml:name>
+			<gml:name codeSpace="urn:cgi:classifierScheme:GSV:GeologicalConceptName">Ingliston Granite</gml:name>
+			<gsml:observationMethod>
+				<gsml:CGI_TermValue>
+					<gsml:value codeSpace="urn:cgi:classifierScheme:GSV:NullValues">null [missing]</gsml:value>
+				</gsml:CGI_TermValue>
+			</gsml:observationMethod>
+			<gsml:purpose>instance</gsml:purpose>
+			<gsml:preferredAge>
+				<gsml:GeologicEvent>
+					<gsml:eventAge>
+						<gsml:CGI_TermValue>
+							<gsml:value codeSpace="urn:cgi:classifierScheme:ICS:StratChart:2008">urn:cgi:classifier:ICS:StratChart:2008:UpperDevonian</gsml:value>
+						</gsml:CGI_TermValue>
+					</gsml:eventAge>
+					<gsml:eventProcess>
+						<gsml:CGI_TermValue>
+							<gsml:value codeSpace="urn:cgi:classifierScheme:GSV:GeologicalProcess">intrusion [process]</gsml:value>
+						</gsml:CGI_TermValue>
+					</gsml:eventProcess>
+				</gsml:GeologicEvent>
+			</gsml:preferredAge>
+			<gsml:targetLink>
+				<gsml:GeologicFeatureRelation>
+					<gsml:relationship codeSpace="urn:cgi:classifierScheme:GSV:StratigraphicRelationship">onlapping</gsml:relationship>
+					<gsml:sourceRole codeSpace="urn:cgi:classifierScheme:GSV:StratigraphicRelationshipRole">onlapped</gsml:sourceRole>
+					<gsml:targetRole codeSpace="urn:cgi:classifierScheme:GSV:StratigraphicRelationshipRole">onlaps</gsml:targetRole>					
+					<gsml:target xlink:href="urn:cgi:feature:GSV:GeoDataVic_UID:16777549126937334"/>					
+					<gsml:source xlink:href="urn:cgi:feature:GSV:GeoDataVic_UID:16777549126937154"/>
+				</gsml:GeologicFeatureRelation>
+			</gsml:targetLink>
+			<gsml:rank codeSpace="urn:cgi:classifierScheme:GSV:Rank">intrusion [rank]</gsml:rank>
+			<gsml:classifier xlink:href="urn:cgi:classifier:GSV:GeologicalConceptName:16777549126931526"/>
+			<gsml:composition>
+				<gsml:CompositionPart>
+					<gsml:role codeSpace="urn:cgi:classifierScheme:GSV:CompositionPartRole">null [missing]</gsml:role>
+					<gsml:lithology xlink:href="urn:cgi:classifier:GSV:Lithology:10627317731366375334"/>
+					<!--Is this a correct CGI clasifier URN for granitic rock? It's based on something Bruce S found on the TWiki.-->
+					<gsml:lithology xlink:href="urn:cgi:classifier:CGI:granitic_rock"/>
+					<gsml:proportion>
+						<gsml:CGI_TermValue>
+							<gsml:value codeSpace="urn:cgi:classifierScheme:GSV:Proportion">all</gsml:value>
+						</gsml:CGI_TermValue>
+					</gsml:proportion>
+				</gsml:CompositionPart>
+			</gsml:composition>
+			<gsml:physicalProperty>
+				<gsml:PhysicalDescription>
+					<gsml:density>
+						<gsml:CGI_NumericValue>
+							<!--What is the proper UOM attribute value?-->
+							<gsml:principalValue uom="urn:ogc:def:uom:UCUM:gcm-3">2.65</gsml:principalValue>
+						</gsml:CGI_NumericValue>
+					</gsml:density>
+				</gsml:PhysicalDescription>
+			</gsml:physicalProperty>
+			<gsml:physicalProperty>
+				<gsml:PhysicalDescription>
+					<gsml:magneticSusceptibility>
+						<gsml:CGI_NumericRange>
+							<gsml:lower>
+								<gsml:CGI_NumericValue>
+									<!--What is the proper UOM attribute value?-->
+									<gsml:principalValue uom="urn:ogc:def:uom:UCUM:SI">75e-5</gsml:principalValue>
+								</gsml:CGI_NumericValue>
+							</gsml:lower>
+							<gsml:upper>
+								<gsml:CGI_NumericValue>
+									<!--What is the proper UOM attribute value?-->
+									<gsml:principalValue uom="urn:ogc:def:uom:UCUM:SI">200e-5</gsml:principalValue>
+								</gsml:CGI_NumericValue>
+							</gsml:upper>
+						</gsml:CGI_NumericRange>
+					</gsml:magneticSusceptibility>
+				</gsml:PhysicalDescription>
+			</gsml:physicalProperty>
+		</gsml:GeologicUnit>
+		<!-- Minimum serialisation: only shows the mandatory elements to be returned, all optional elements are excluded.-->
+		<gsml:GeologicUnit gml:id="GDV.16777549126937334">
+			<gml:name codeSpace="urn:ietf:rfc:2141">urn:cgi:feature:GSV:GeoDataVic_UID:16777549126937334</gml:name>
+			<gml:name codeSpace="urn:cgi:classifierScheme:GSV:GeologicalConceptName">Pxb</gml:name>
+			<gml:name codeSpace="urn:cgi:classifierScheme:GSV:GeologicalConceptName">Bacchus Marsh Formation</gml:name>
+			<gsml:observationMethod>
+				<gsml:CGI_TermValue>
+					<gsml:value codeSpace="urn:cgi:classifierScheme:GSV:NullValues">null [missing]</gsml:value>
+				</gsml:CGI_TermValue>
+			</gsml:observationMethod>
+			<gsml:purpose>instance</gsml:purpose>
+			<gsml:classifier xlink:href="urn:cgi:classifier:GSV:GeologicalConceptName:16777549126931316"/>
+		</gsml:GeologicUnit>
+	</gml:featureMembers>
+</wfs:FeatureCollection>
