@@ -69,6 +69,12 @@
 					<gsml:role codeSpace="urn:cgi:classifierScheme:GSV:CompositionPartRole">null [missing]</gsml:role>
 					<gsml:lithology xlink:href="urn:cgi:classifier:GSV:Lithology:10627317731366375334"/>
 					<!--Is this a correct CGI clasifier URN for granitic rock? It's based on something Bruce S found on the TWiki.-->
+					<!-- Yes, but urn:cgi:classifierScheme:GSV:Lithology should be registered first here https://www.seegrid.csiro.au/twiki/bin/view/CGIModel/CGIClassifierSchemeRegister, 
+					then urn:cgi:classifier:GSV:Lithology:10627317731366375334 must be added to an appropriate register. 
+					We have to decide how many separate registers of "classifiers" we want to manage. 
+					It could be one-per-classifierScheme (which is kinda redundant), 
+					or one-per-owner, or one-per-topic (various owners). 
+					Not sure what will work best ... I'm open to suggestions. -->
 					<gsml:lithology xlink:href="urn:cgi:classifier:CGI:granitic_rock"/>
 					<gsml:proportion>
 						<gsml:CGI_TermValue>
@@ -82,6 +88,9 @@
 					<gsml:density>
 						<gsml:CGI_NumericValue>
 							<!--What is the proper UOM attribute value?-->
+							<!-- see http://aurora.regenstrief.org/~schadow/units/UCUM/ucum.html 
+							you could use g/cm3 which has to be escaped to g%2Fcm3, so maybe better to go with g.cm-3 
+							-->
 							<gsml:principalValue uom="urn:ogc:def:uom:UCUM:gcm-3">2.65</gsml:principalValue>
 						</gsml:CGI_NumericValue>
 					</gsml:density>
@@ -94,6 +103,7 @@
 							<gsml:lower>
 								<gsml:CGI_NumericValue>
 									<!--What is the proper UOM attribute value?-->
+									<!-- Sorry - you gotta figure this one out - what is the unit? -->
 									<gsml:principalValue uom="urn:ogc:def:uom:UCUM:SI">75e-5</gsml:principalValue>
 								</gsml:CGI_NumericValue>
 							</gsml:lower>
