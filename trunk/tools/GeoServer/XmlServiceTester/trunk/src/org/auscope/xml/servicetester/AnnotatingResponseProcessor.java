@@ -10,11 +10,15 @@ import org.apache.commons.logging.Log;
 import org.xml.sax.ContentHandler;
 import org.xml.sax.ErrorHandler;
 
+/**
+ * Process a response by serialising it to XML, annotated with any errors.
+ * 
+ */
 public class AnnotatingResponseProcessor implements ResponseProcessor {
 
     private final ResponseProcessor responseProcessor;
     private final File outputFile;
-    private final AnnotatingXmlSerializer annotatingXmlSerializer = new AnnotatingXmlSerializer();
+    private final AnnotatingHandler annotatingXmlSerializer = new AnnotatingHandler();
 
     public AnnotatingResponseProcessor(ResponseProcessor responseProcessor,
             File outputFile) {

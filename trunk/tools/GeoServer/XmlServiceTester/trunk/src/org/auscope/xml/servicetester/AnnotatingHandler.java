@@ -3,7 +3,6 @@ package org.auscope.xml.servicetester;
 import java.io.IOException;
 import java.io.Writer;
 
-import org.apache.commons.logging.Log;
 import org.apache.xml.serialize.Method;
 import org.apache.xml.serialize.OutputFormat;
 import org.apache.xml.serialize.XMLSerializer;
@@ -21,47 +20,52 @@ import org.xml.sax.SAXParseException;
  * 
  * <p>
  * 
- * FIXME: Rewrite the implementation of this class to use JAXP to obtain
- * serializer. Xerces2 XMLSerializer is deprecated.
+ * The {@link ContentHandler} interface delegates to {@link XMLSerializer}.
+ * 
+ * <p>
+ * 
+ * FIXME: Rewrite the implementation of this class to use JAXP to obtain a
+ * serialiser. Xerces2 XMLSerializer is deprecated.
  */
 @SuppressWarnings("deprecation")
-public class AnnotatingXmlSerializer implements ContentHandler, ErrorHandler {
+public class AnnotatingHandler implements ContentHandler, ErrorHandler {
 
     private final XMLSerializer xmlSerializer;
 
-    public AnnotatingXmlSerializer() {
+    public AnnotatingHandler() {
         xmlSerializer = new XMLSerializer(new OutputFormat(Method.XML, null,
                 true));
     }
-    
+
     public void setWriter(Writer writer) {
         xmlSerializer.setOutputCharStream(writer);
+    }
+
+    /**
+     * Annotate the serialized XML by inserting a comment.
+     * 
+     * @param comment
+     */
+    private void comment(String comment) {
+        try {
+            xmlSerializer.comment(" " + comment + " ");
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
     }
 
     /* ErrorHandler */
 
     public void warning(SAXParseException exception) throws SAXException {
-        try {
-            xmlSerializer.comment("WARNING: " + exception.getMessage());
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        }
+        comment("WARNING: " + exception.getMessage());
     }
 
     public void error(SAXParseException exception) throws SAXException {
-        try {
-            xmlSerializer.comment("ERROR: " + exception.getMessage());
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        }
+        comment("ERROR: " + exception.getMessage());
     }
 
     public void fatalError(SAXParseException exception) throws SAXException {
-        try {
-            xmlSerializer.comment("FATAL ERROR: " + exception.getMessage());
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        }
+        comment("FATAL ERROR: " + exception.getMessage());
     }
 
     /* ContentHandler */

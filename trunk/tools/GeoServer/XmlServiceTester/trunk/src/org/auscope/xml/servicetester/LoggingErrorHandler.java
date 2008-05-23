@@ -31,8 +31,7 @@ public class LoggingErrorHandler implements ErrorHandler {
     }
 
     /**
-     * Convenience constructor that uses DefaultHandler, which ignores
-     * messages..
+     * Convenience constructor that uses DefaultHandler, which ignores messages.
      * 
      * @param log
      */
