@@ -25,7 +25,7 @@ public class SchemaLocationFactory {
         URI namespaceUri = buildNamespaceUri(locationType.getNamespaceUri());
         URL schemaUrl = buildSchemaUrl(locationType.getSchemaUrl());
         File schemaFile = buildSchemaFile(suite, locationType.getSchemaFile());
-        return new SchemaLocation(namespaceUri, schemaUrl, schemaFile);
+        return SchemaLocation.buildSchemaLocation(namespaceUri, schemaUrl, schemaFile);
     }
 
     private URI buildNamespaceUri(String namespace) {

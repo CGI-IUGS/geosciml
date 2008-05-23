@@ -5,12 +5,25 @@ import java.io.File;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 
+/**
+ * Main class for XmlServiceTester.
+ * 
+ */
 public class XmlServiceTester {
 
     private static final Log LOG = LogFactory.getLog("XmlServiceTester");
 
     public static String USAGE = "Usage: java -Xmx512m"
             + " -jar XmlServiceTester.jar config.xml";
+
+    /**
+     * Return the XmlServiceTester Log instance.
+     * 
+     * @return Log instance for this application.
+     */
+    public static Log getLog() {
+        return LOG;
+    }
 
     /**
      * Programmatic application entry point.

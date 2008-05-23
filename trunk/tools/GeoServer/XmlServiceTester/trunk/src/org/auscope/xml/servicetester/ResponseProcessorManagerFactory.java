@@ -30,10 +30,10 @@ public class ResponseProcessorManagerFactory {
     public ResponseProcessorManager build(TestSuite suite,
             TestSuiteType suiteType, ResponseType responseType) {
         File catalogFile = buildCatalogFile(suite, suiteType);
-        String schemaLocationString = buildSchemaLocationString(suite,
+        List<SchemaLocation> schemaLocations = buildSchemaLocations(suite,
                 suiteType, responseType);
         ResponseProcessor responseProcessor = new ValidatingResponseProcessor(
-                catalogFile, schemaLocationString);
+                catalogFile, schemaLocations);
         /*
          * 
          * 
@@ -102,27 +102,6 @@ public class ResponseProcessorManagerFactory {
                     suite, suiteType, locationType));
         }
         return schemaLocations;
-    }
-
-    private String buildSchemaLocationString(TestSuite suite,
-            TestSuiteType suiteType, ResponseType responseType) {
-        StringBuffer stringBuffer = null;
-        for (SchemaLocation loc : buildSchemaLocations(suite, suiteType,
-                responseType)) {
-            if (loc.getNamespaceUri() != null) {
-                if (stringBuffer == null) {
-                    stringBuffer = new StringBuffer();
-                } else {
-                    stringBuffer.append(" ");
-                }
-                stringBuffer.append(loc.getSchemaLocation());
-            }
-        }
-        if (stringBuffer == null) {
-            return null;
-        } else {
-            return stringBuffer.toString();
-        }
     }
 
     private List<ElementCountAssertion> buildElementCountAssertions(

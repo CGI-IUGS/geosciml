@@ -28,40 +28,70 @@ public class SchemaLocationTest extends TestCase {
 
     public void testSchemaUrl() {
         SchemaLocation schemaLocation = new SchemaLocation(NAMESPACE_URI,
-                SCHEMA_URL, null);
+                SCHEMA_URL);
         assertEquals(NAMESPACE_URI_STRING + " " + SCHEMA_URL_STRING,
-                schemaLocation.getSchemaLocation());
+                schemaLocation.getSchemaLocationString());
     }
 
     public void testSchemaFile() {
-        SchemaLocation schemaLocation = new SchemaLocation(NAMESPACE_URI, null,
+        SchemaLocation schemaLocation = new SchemaLocation(NAMESPACE_URI,
                 SCHEMA_FILE);
-        assertEquals(NAMESPACE_URI_STRING + " " + SCHEMA_FILE_STRING,
-                schemaLocation.getSchemaLocation());
+        String schemaLocationString = schemaLocation.getSchemaLocationString();
+        // file becomes absolute, so test the ends
+        assertTrue(schemaLocationString.startsWith(NAMESPACE_URI_STRING
+                + " file:/"));
+        assertTrue(schemaLocationString.endsWith(SCHEMA_FILE_STRING.replace(
+                "../", "")));
     }
 
-    public void testBoth() {
+    public void testNullSchemaFile() {
         try {
-            new SchemaLocation(NAMESPACE_URI, SCHEMA_URL, SCHEMA_FILE);
+            new SchemaLocation(NAMESPACE_URI, (File) null);
             fail();
         } catch (RuntimeException e) {
             // success
         }
     }
 
-    public void testNeither() {
+    public void testNullSchemaUrl() {
         try {
-            new SchemaLocation(NAMESPACE_URI, null, null);
+            new SchemaLocation(NAMESPACE_URI, (URL) null);
             fail();
         } catch (RuntimeException e) {
             // success
         }
     }
 
-    public void testNoNameSpace() {
+    public void testEmptySchemaFile() {
         try {
-            new SchemaLocation(null, SCHEMA_URL, null);
-            new SchemaLocation(null, null, SCHEMA_FILE);
+            new SchemaLocation(NAMESPACE_URI, new File(""));
+            fail();
+        } catch (RuntimeException e) {
+            // success
+        }
+    }
+
+    public void testBlankSchemaFile() {
+        try {
+            new SchemaLocation(NAMESPACE_URI, new File(" "));
+            fail();
+        } catch (RuntimeException e) {
+            // success
+        }
+    }
+
+    public void testNoNameSpaceUrl() {
+        try {
+            new SchemaLocation(null, SCHEMA_URL);
+            fail();
+        } catch (RuntimeException e) {
+            // success
+        }
+    }
+
+    public void testNoNameSpaceFile() {
+        try {
+            new SchemaLocation(null, SCHEMA_FILE);
             fail();
         } catch (RuntimeException e) {
             // success

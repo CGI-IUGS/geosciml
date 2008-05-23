@@ -3,28 +3,47 @@ package org.auscope.xml.servicetester;
 import org.apache.commons.logging.Log;
 
 /**
- * Decorator for apache commons Log that counts diagnostic to
+ * Decorator for apache commons Log that counts diagnostics to determine test
+ * result.
  * 
- * Class for reporting test results.
+ * <p>
+ * 
+ * The Xerces-2 SAX parser reports validation diagnostics as ErrorHandler
+ * events. This class is used to wrap a Log, and is wrapped by an ErrorHandler
+ * that is passed to a SAXParser, and thus received the diagnostics.s
  * 
  */
-public class TestReport implements Log {
+public class TestReportLog implements Log {
 
+    /**
+     * If true, warnings are treated as failures.
+     */
     private static final boolean FAIL_ON_WARN = true;
 
     private final String subject;
     private final Log log;
+
+    /**
+     * Number of warnings seen.
+     */
     private int warnCount;
+
+    /**
+     * Number of errors seen.
+     */
     private int errorCount;
+
+    /**
+     * Number of fatal errors seen.
+     */
     private int fatalCount;
 
-    public TestReport(String subject, Log log) {
+    public TestReportLog(String subject, Log log) {
         this.subject = subject;
         this.log = log;
     }
 
-    @Override
-    public String toString() {
+    public String getReport() {
         if (isPass()) {
             return "Passed: " + subject;
         } else {
@@ -77,6 +96,16 @@ public class TestReport implements Log {
         log.info(arg0, arg1);
     }
 
+    public void warn(Object arg0) {
+        warnCount++;
+        log.warn(arg0);
+    }
+
+    public void warn(Object arg0, Throwable arg1) {
+        warnCount++;
+        log.warn(arg0, arg1);
+    }
+
     public void error(Object arg0) {
         errorCount++;
         log.error(arg0);
@@ -95,16 +124,6 @@ public class TestReport implements Log {
     public void fatal(Object arg0, Throwable arg1) {
         fatalCount++;
         log.fatal(arg0, arg1);
-    }
-
-    public void warn(Object arg0) {
-        warnCount++;
-        log.warn(arg0);
-    }
-
-    public void warn(Object arg0, Throwable arg1) {
-        warnCount++;
-        log.warn(arg0, arg1);
     }
 
     public boolean isTraceEnabled() {

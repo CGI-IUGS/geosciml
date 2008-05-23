@@ -45,13 +45,13 @@ public class TestSuite {
     public boolean run(Log log) {
         log.info(STARS + " START " + STARS);
         int i;
-        List<TestReport> reports = new ArrayList<TestReport>();
+        List<TestReportLog> reports = new ArrayList<TestReportLog>();
         int total = getTestCases().size();
         i = 0;
         for (TestCase testCase : getTestCases()) {
             i++;
             log.info("Started " + formatSequence(i, total) + ": " + testCase);
-            TestReport report = new TestReport(testCase.toString(), log);
+            TestReportLog report = new TestReportLog(testCase.toString(), log);
             testCase.run(report);
             reports.add(report);
             log.info("Finished " + formatSequence(i, total));
@@ -60,14 +60,14 @@ public class TestSuite {
         int passed = 0;
         int failed = 0;
         i = 0;
-        for (TestReport report : reports) {
+        for (TestReportLog report : reports) {
             i++;
             if (report.isPass()) {
                 passed++;
-                log.info(formatSequence(i, total) + ": " + report);
+                log.info(formatSequence(i, total) + ": " + report.getReport());
             } else {
                 failed++;
-                log.error(formatSequence(i, total) + ": " + report);
+                log.error(formatSequence(i, total) + ": " + report.getReport());
             }
         }
         if (total != passed + failed) {

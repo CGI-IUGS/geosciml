@@ -1,27 +1,29 @@
 package org.auscope.xml.servicetester;
 
 import java.io.File;
+import java.util.List;
 
 import org.apache.commons.logging.Log;
 import org.apache.xerces.parsers.SAXParser;
 import org.apache.xerces.util.XMLCatalogResolver;
-import org.xml.sax.Attributes;
 import org.xml.sax.ContentHandler;
 import org.xml.sax.ErrorHandler;
 import org.xml.sax.InputSource;
-import org.xml.sax.SAXException;
 import org.xml.sax.XMLReader;
-import org.xml.sax.helpers.DefaultHandler;
 
 public class ValidatingResponseProcessor implements ResponseProcessor {
 
     private final File catalogFile;
     private final String schemaLocationString;
+    private final String noNamespaceSchemaLocationString;
 
     public ValidatingResponseProcessor(File catalogFile,
-            String schemaLocationString) {
+            List<SchemaLocation> schemaLocations) {
         this.catalogFile = catalogFile;
-        this.schemaLocationString = schemaLocationString;
+        this.schemaLocationString = SchemaLocation
+                .buildSchemaLocationString(schemaLocations);
+        this.noNamespaceSchemaLocationString = SchemaLocation
+                .buildNoNamespaceSchemaLocationString(schemaLocations);
     }
 
     private void configureReader(XMLReader reader) {
@@ -34,7 +36,12 @@ public class ValidatingResponseProcessor implements ResponseProcessor {
             if (schemaLocationString != null) {
                 reader.setProperty("http://apache.org/xml/properties/"
                         + "schema/external-schemaLocation",
-                        getSchemaLocationString());
+                        schemaLocationString);
+            }
+            if (noNamespaceSchemaLocationString != null) {
+                reader.setProperty("http://apache.org/xml/properties/"
+                        + "schema/external-noNamespaceSchemaLocation",
+                        noNamespaceSchemaLocationString);
             }
             if (catalogFile != null) {
                 XMLCatalogResolver resolver = new XMLCatalogResolver();
@@ -46,10 +53,6 @@ public class ValidatingResponseProcessor implements ResponseProcessor {
         } catch (Exception e) {
             throw new RuntimeException(e);
         }
-    }
-
-    private String getSchemaLocationString() {
-        return schemaLocationString;
     }
 
     public void process(Response response, Log log,
