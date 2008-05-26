@@ -26,38 +26,33 @@ public class XmlServiceTester {
     }
 
     /**
-     * Programmatic application entry point.
+     * Programmatic application entry point. This will not catch exceptions
+     * generated in the test-suite setup.
      * 
-     * @param configFile
+     * @param testSuiteFile
      *                XML configuration file
      * @return true if success
      */
-    public static boolean run(File configFile) {
-        TestSuite suite;
-        try {
-            suite = TestSuiteFactory.getInstance().load(configFile);
-        } catch (RuntimeException e) {
-            LOG.fatal("Exception loading config file " + configFile + ": "
-                    + e.getMessage());
-            return false;
-        }
-        return suite.run(LOG);
+    public static boolean run(File testSuiteFile) {
+        return TestSuiteFactory.getInstance().load(testSuiteFile).run(LOG);
     }
 
     /**
      * Application entry point.
      * 
      * @param args
+     *                single mandatory argument giving path to test-suite.xml
      */
     public static void main(String[] args) {
         if (args.length != 1) {
             System.err.println(USAGE);
             System.exit(1);
         } else {
-            boolean success = run(new File(args[0]));
-            if (success) {
-                System.exit(0);
-            } else {
+            try {
+                boolean success = run(new File(args[0]));
+                System.exit(success ? 0 : 1);
+            } catch (RuntimeException e) {
+                LOG.fatal(e);
                 System.exit(1);
             }
         }
