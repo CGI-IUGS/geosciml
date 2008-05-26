@@ -25,16 +25,22 @@ public class SchemaLocationFactory {
         URI namespaceUri = buildNamespaceUri(locationType.getNamespaceUri());
         URL schemaUrl = buildSchemaUrl(locationType.getSchemaUrl());
         File schemaFile = buildSchemaFile(suite, locationType.getSchemaFile());
-        return SchemaLocation.buildSchemaLocation(namespaceUri, schemaUrl, schemaFile);
+        return SchemaLocation.buildSchemaLocation(namespaceUri, schemaUrl,
+                schemaFile);
     }
 
     private URI buildNamespaceUri(String namespace) {
-        try {
-            return new URI(namespace);
-        } catch (URISyntaxException e) {
-            throw new RuntimeException("Invalid namespace URI: " + namespace, e);
+        // null for missing, empty string for empty tag
+        if (namespace == null || namespace.trim().length() == 0) {
+            return null;
+        } else {
+            try {
+                return new URI(namespace);
+            } catch (URISyntaxException e) {
+                throw new RuntimeException("Invalid namespace URI: "
+                        + namespace, e);
+            }
         }
-
     }
 
     private URL buildSchemaUrl(String schemaUrlString) {
@@ -47,7 +53,6 @@ public class SchemaLocationFactory {
                 throw new RuntimeException(e);
             }
         }
-
     }
 
     private File buildSchemaFile(TestSuite suite, String schemaFileString) {

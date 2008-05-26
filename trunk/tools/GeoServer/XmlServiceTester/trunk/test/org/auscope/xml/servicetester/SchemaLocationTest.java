@@ -27,15 +27,15 @@ public class SchemaLocationTest extends TestCase {
     }
 
     public void testSchemaUrl() {
-        SchemaLocation schemaLocation = new SchemaLocation(NAMESPACE_URI,
-                SCHEMA_URL);
+        SchemaLocation schemaLocation = SchemaLocation.buildSchemaLocation(
+                NAMESPACE_URI, SCHEMA_URL);
         assertEquals(NAMESPACE_URI_STRING + " " + SCHEMA_URL_STRING,
                 schemaLocation.getSchemaLocationString());
     }
 
     public void testSchemaFile() {
-        SchemaLocation schemaLocation = new SchemaLocation(NAMESPACE_URI,
-                SCHEMA_FILE);
+        SchemaLocation schemaLocation = SchemaLocation.buildSchemaLocation(
+                NAMESPACE_URI, SCHEMA_FILE);
         String schemaLocationString = schemaLocation.getSchemaLocationString();
         // file becomes absolute, so test the ends
         assertTrue(schemaLocationString.startsWith(NAMESPACE_URI_STRING
@@ -46,7 +46,7 @@ public class SchemaLocationTest extends TestCase {
 
     public void testNullSchemaFile() {
         try {
-            new SchemaLocation(NAMESPACE_URI, (File) null);
+            SchemaLocation.buildSchemaLocation(NAMESPACE_URI, (File) null);
             fail();
         } catch (RuntimeException e) {
             // success
@@ -55,7 +55,7 @@ public class SchemaLocationTest extends TestCase {
 
     public void testNullSchemaUrl() {
         try {
-            new SchemaLocation(NAMESPACE_URI, (URL) null);
+            SchemaLocation.buildSchemaLocation(NAMESPACE_URI, (URL) null);
             fail();
         } catch (RuntimeException e) {
             // success
@@ -64,7 +64,7 @@ public class SchemaLocationTest extends TestCase {
 
     public void testEmptySchemaFile() {
         try {
-            new SchemaLocation(NAMESPACE_URI, new File(""));
+            SchemaLocation.buildSchemaLocation(NAMESPACE_URI, new File(""));
             fail();
         } catch (RuntimeException e) {
             // success
@@ -73,29 +73,29 @@ public class SchemaLocationTest extends TestCase {
 
     public void testBlankSchemaFile() {
         try {
-            new SchemaLocation(NAMESPACE_URI, new File(" "));
+            SchemaLocation.buildSchemaLocation(NAMESPACE_URI, new File(" "));
             fail();
         } catch (RuntimeException e) {
             // success
         }
     }
 
-    public void testNoNameSpaceUrl() {
-        try {
-            new SchemaLocation(null, SCHEMA_URL);
-            fail();
-        } catch (RuntimeException e) {
-            // success
-        }
+    public void testNoNameSpaceSchemaUrl() {
+        SchemaLocation schemaLocation = SchemaLocation.buildSchemaLocation(
+                null, SCHEMA_URL);
+        String noNamespaceSchemaLocationString = schemaLocation
+                .getNoNamespaceSchemaLocationString();
+        assertEquals(SCHEMA_URL_STRING, noNamespaceSchemaLocationString);
     }
 
-    public void testNoNameSpaceFile() {
-        try {
-            new SchemaLocation(null, SCHEMA_FILE);
-            fail();
-        } catch (RuntimeException e) {
-            // success
-        }
+    public void testNoNameSpaceSchemaFile() {
+        SchemaLocation schemaLocation = SchemaLocation.buildSchemaLocation(
+                null, SCHEMA_FILE);
+        String noNamespaceSchemaLocationString = schemaLocation
+                .getNoNamespaceSchemaLocationString();
+        // file becomes absolute, so test the end
+        assertTrue(noNamespaceSchemaLocationString.endsWith(SCHEMA_FILE_STRING
+                .replace("../", "")));
     }
 
 }

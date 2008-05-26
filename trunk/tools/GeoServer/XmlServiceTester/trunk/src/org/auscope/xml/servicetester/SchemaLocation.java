@@ -22,48 +22,10 @@ public class SchemaLocation {
      */
     private final URI schemaUri;
 
-    /**
-     * Schema location URL.
-     * 
-     * @param namespaceUri
-     *                namespace of schema
-     * @param schemaUrl
-     *                schema location URL
-     */
-    public SchemaLocation(URI namespaceUri, URL schemaUrl) {
-        this(namespaceUri, toURI(schemaUrl));
-    }
-
-    /**
-     * Schema location file.
-     * 
-     * @param namespaceUri
-     *                namespace of schema
-     * @param schemaFile
-     *                schema location File
-     */
-    public SchemaLocation(URI namespaceUri, File schemaFile) {
-        this(namespaceUri, schemaFile.toURI());
-    }
-
-    /**
-     * Schema location with either URL or file. Exactly one of schemaUrl or
-     * schemaFile must be non-null.
-     * 
-     * @param namespaceUri
-     *                namespace of schema
-     * @param schemaUrl
-     *                schema location URL
-     * @param schemaFile
-     *                schema location File
-     */
     private SchemaLocation(URI namespaceUri, URI schemaUri) {
         this.namespaceUri = namespaceUri;
         this.schemaUri = schemaUri;
-        if (namespaceUri == null) {
-            throw new IllegalArgumentException(
-                    "No-namespace schema location not supported");
-        } else if (isEmpty(namespaceUri)) {
+        if (namespaceUri != null && isEmpty(namespaceUri)) {
             throw new IllegalArgumentException(
                     "Empty namespace URI for schema location");
         }
@@ -74,7 +36,6 @@ public class SchemaLocation {
             throw new IllegalArgumentException(
                     "Empty schema URI for schema location");
         }
-
     }
 
     private boolean isNoNamespace() {
@@ -87,20 +48,21 @@ public class SchemaLocation {
      * @return
      */
     public String getSchemaLocationString() {
-        return namespaceUri.toString() + " " + schemaUri.toString();
+        if (isNoNamespace()) {
+            throw new RuntimeException("Cannot get schema location string"
+                    + " for no-namespace schema location");
+        } else {
+            return namespaceUri.toString() + " " + schemaUri.toString();
+        }
     }
 
-    /**
-     * Return URL as a URI, with no checked exception.
-     * 
-     * @param url
-     * @return
-     */
-    private static URI toURI(URL url) {
-        try {
-            return url.toURI();
-        } catch (URISyntaxException e) {
-            throw new RuntimeException(e);
+    public String getNoNamespaceSchemaLocationString() {
+        if (!isNoNamespace()) {
+            throw new RuntimeException(
+                    "Cannot get no-namespace schema location string"
+                            + " for namespace schema location");
+        } else {
+            return schemaUri.toString();
         }
     }
 
@@ -111,10 +73,15 @@ public class SchemaLocation {
      * @return true if empty or whitespace
      */
     private static boolean isEmpty(URI uri) {
-        XmlServiceTester.getLog().trace("***"+uri+"***");
         return uri.toString().trim().length() == 0;
     }
 
+    /**
+     * Build a space-separated namespace schema location string
+     * 
+     * @param schemaLocations
+     * @return namespace schema location string or null if none
+     */
     public static String buildSchemaLocationString(
             List<SchemaLocation> schemaLocations) {
         StringBuffer stringBuffer = null;
@@ -135,25 +102,74 @@ public class SchemaLocation {
         }
     }
 
+    /**
+     * @param schemaLocations
+     * @return no-namespace schema location string, or null if none
+     */
     public static String buildNoNamespaceSchemaLocationString(
             List<SchemaLocation> schemaLocations) {
         for (SchemaLocation schemaLocation : schemaLocations) {
             if (schemaLocation.isNoNamespace()) {
-                schemaLocation.getSchemaLocationString();
+                schemaLocation.getNoNamespaceSchemaLocationString();
             }
         }
         return null;
     }
 
+    /**
+     * Build schema location with either URL or file. Exactly one of schemaUrl
+     * or schemaFile must be non-null.
+     * 
+     * @param namespaceUri
+     *                namespace of schema or null if none
+     * @param schemaUrl
+     *                schema location URL
+     * @param schemaFile
+     *                schema location File
+     */
     public static SchemaLocation buildSchemaLocation(URI namespaceUri,
             URL schemaUrl, File schemaFile) {
         if (schemaUrl != null && schemaFile == null) {
-            return new SchemaLocation(namespaceUri, schemaUrl);
+            return buildSchemaLocation(namespaceUri, schemaUrl);
         } else if (schemaUrl == null && schemaFile != null) {
-            return new SchemaLocation(namespaceUri, schemaFile);
+            return buildSchemaLocation(namespaceUri, schemaFile);
         } else {
             throw new RuntimeException("Must specify one of schema URL"
                     + " or schema file for schema location");
+        }
+    }
+
+    /**
+     * Build schema location withURL.
+     * 
+     * @param namespaceUri
+     *                namespace of schema or null if none
+     * @param schemaUrl
+     *                schema location URL
+     */
+    public static SchemaLocation buildSchemaLocation(URI namespaceUri,
+            URL schemaUrl) {
+        try {
+            return new SchemaLocation(namespaceUri, schemaUrl.toURI());
+        } catch (URISyntaxException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    /**
+     * Build schema location with file.
+     * 
+     * @param namespaceUri
+     *                namespace of schema or null if none
+     * @param schemaFile
+     *                schema location File
+     */
+    public static SchemaLocation buildSchemaLocation(URI namespaceUri,
+            File schemaFile) {
+        if (schemaFile.getPath().trim().length() == 0) {
+            throw new RuntimeException("Empty schema file path");
+        } else {
+            return new SchemaLocation(namespaceUri, schemaFile.toURI());
         }
     }
 
