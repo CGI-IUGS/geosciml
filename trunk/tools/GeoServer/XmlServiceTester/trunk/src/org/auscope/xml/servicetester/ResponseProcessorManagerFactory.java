@@ -16,6 +16,11 @@ import org.xml.sax.helpers.DefaultHandler;
 
 import sun.awt.RepaintArea;
 
+/**
+ * Factory to build a {@link ResponseProcessorManager} from the options bound by
+ * JAXB from the test-suite file.
+ * 
+ */
 public class ResponseProcessorManagerFactory {
 
     private static final ResponseProcessorManagerFactory INSTANCE = new ResponseProcessorManagerFactory();
@@ -29,14 +34,19 @@ public class ResponseProcessorManagerFactory {
 
     public ResponseProcessorManager build(TestSuite suite,
             TestSuiteType suiteType, ResponseType responseType) {
+        /*
+         * ResponseProcessor form a call stack. At the bottom must be a
+         * ValidatingResponseProcessor to do the validation.
+         */
         File catalogFile = buildCatalogFile(suite, suiteType);
         List<SchemaLocation> schemaLocations = buildSchemaLocations(suite,
                 suiteType, responseType);
         ResponseProcessor responseProcessor = new ValidatingResponseProcessor(
                 catalogFile, schemaLocations);
         /*
-         * 
-         * 
+         * If an output-file is requested, wrap the content and error handlers
+         * with those provided by an AnnotatingResponseProcessor, and add it to
+         * the call stack by wrapping the ValidatingResponseProcessor with it.
          */
         ContentHandler contentHandler;
         ErrorHandler errorHandler;
@@ -53,18 +63,30 @@ public class ResponseProcessorManagerFactory {
             errorHandler = annotatingResponseProcessor.getErrorHandler();
         }
         /*
-         * 
+         * If one or more element-count-assertion requested, wrap the processing
+         * stack with an ElementCountAssertingResponseProcessor.
          */
         List<ElementCountAssertion> elementCountAssertions = buildElementCountAssertions(responseType);
         if (!elementCountAssertions.isEmpty()) {
             responseProcessor = new ElementCountAssertingResponseProcessor(
                     responseProcessor, elementCountAssertions);
         }
-
+        /*
+         * Will need further wrapping to inject the log when it becomes
+         * available, so use ResponseProcessorManager to hold the pieces
+         * required.
+         */
         return new ResponseProcessorManager(responseProcessor, contentHandler,
                 errorHandler);
     }
 
+    /**
+     * Extract catalog-file, with validation.
+     * 
+     * @param suite
+     * @param suiteType
+     * @return
+     */
     private File buildCatalogFile(TestSuite suite, TestSuiteType suiteType) {
         File catalogFile = suite.resolve(suiteType.getCatalogFile());
         if (catalogFile != null && !catalogFile.canRead()) {

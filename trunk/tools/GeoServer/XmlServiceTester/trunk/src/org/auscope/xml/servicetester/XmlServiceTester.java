@@ -6,7 +6,8 @@ import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 
 /**
- * Main class for XmlServiceTester.
+ * Main class for XmlServiceTester, an application to make requests to XML
+ * services and schema-validate the responses.
  * 
  */
 public class XmlServiceTester {
