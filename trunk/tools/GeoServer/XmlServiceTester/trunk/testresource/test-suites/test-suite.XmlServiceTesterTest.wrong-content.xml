@@ -12,27 +12,27 @@
 		</schema-url>
 	</schema-location>
 
-	<test-case>
-		<file-request>
-			<response-file>
-				test-suite.XmlServiceTesterTest.xml
-			</response-file>
-		</file-request>
-		<response />
-	</test-case>
-
+	<schema-location>
+		<namespace-uri>http://www.opengis.net/ows</namespace-uri>
+		<schema-url>
+			http://schemas.opengis.net/ows/1.0.0/owsExceptionReport.xsd
+		</schema-url>
+	</schema-location>
 
 	<test-case>
 
 		<file-request>
 			<response-file>
-				../responses/response.MappedFeaturePropertyfile.xml
+				../responses/response.MappedFeaturePropertyfile.ExceptionReport.xml
 			</response-file>
 		</file-request>
 
 		<response>
-			<output-file>../../testoutput/output.MappedFeaturePropertyfile.xml</output-file>
-			
+
+			<output-file>
+				../../testoutput/output.MappedFeaturePropertyfile.ExceptionReport.xml
+			</output-file>
+
 			<schema-location>
 				<namespace-uri>
 					urn:cgi:xmlns:CGI:GeoSciML:2.0
@@ -41,7 +41,7 @@
 					../profiles/MappedFeaturePropertyfile.xsd
 				</schema-file>
 			</schema-location>
-			
+
 			<element-count-assertion>
 				<namespace-uri>
 					http://www.opengis.net/wfs
@@ -49,7 +49,7 @@
 				<element-name>FeatureCollection</element-name>
 				<element-count>1</element-count>
 			</element-count-assertion>
-			
+
 			<element-count-assertion>
 				<namespace-uri>
 					urn:cgi:xmlns:CGI:GeoSciML:2.0
@@ -57,7 +57,7 @@
 				<element-name>MappedFeaturePropertyfile</element-name>
 				<element-count>2</element-count>
 			</element-count-assertion>
-			
+
 		</response>
 
 	</test-case>
