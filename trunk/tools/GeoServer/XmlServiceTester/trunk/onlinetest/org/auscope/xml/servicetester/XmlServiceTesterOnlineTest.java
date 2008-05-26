@@ -8,7 +8,7 @@ import junit.framework.TestCase;
 
 public class XmlServiceTesterOnlineTest extends TestCase {
 
-    public static void test() {
+    public static void testOnline() {
         assertTrue(XmlServiceTester.run(new File(
                 "testresource/test-suites/test-suite.XmlServiceTesterOnlineTest.xml")));
     }
