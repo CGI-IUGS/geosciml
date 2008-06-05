@@ -10,6 +10,10 @@
 	xmlns:xlink="http://www.w3.org/1999/xlink" 
 	xmlns:mo="urn:cgi:xmlns:GGIC:MineralOccurrence:1.0" 
 	gml:id="GA_1M_GeologicUnits_Collection_000001">
+	
+<!--  ================================================================================================================
+####   This instance document describes MappedFeature polygons of two GeologicUnits from the Eastern Australia 1:1million scale data.  ####  
+====================================================================================================================-->
 	<gml:boundedBy>
 		<gml:Envelope srsName="urn:ogc:def:crs:EPSG:4326">
 			<gml:lowerCorner>142.17 -18.56</gml:lowerCorner>
@@ -17,41 +21,46 @@
 		</gml:Envelope>
 	</gml:boundedBy>
 	<gml:featureMember>
-		<gsml:MappedFeature gml:id="MappedFeature_5555">
-			<gml:description>Geological unit polygon</gml:description>
-			<gml:name>1M_geology_polygon_5555</gml:name>
+		<gsml:MappedFeature gml:id="MappedFeature_5555">  <!-- Concatenate "MappedFeature_" and gsml_geology_1m.objectid -->
+			<gml:description>Geological unit polygon</gml:description> <!-- Constant for this dataset -->
+			<gml:name>1M_geology_polygon_5555</gml:name>  <!-- Concatenate "1M_geology_polygon_" and gsml_geology_1m.objectid  -->
 			<gsml:observationMethod>
-				<gsml:CGI_TermValue>
+				<gsml:CGI_TermValue>     <!--  Constant codespace.  Value = gsml_geology_1m.SRC_DATA -->
 					<gsml:value codeSpace="urn:cgi:classifierScheme:GA:1MillionGeology_ObservationMethods">Geological Survey of Queensland, 1:100,000 scale geological maps, July 2004. Simplified, edge matched and modified for representation at 1:1 million scale.</gsml:value>
 				</gsml:CGI_TermValue>
 			</gsml:observationMethod>
 			<gsml:positionalAccuracy>
-				<gsml:CGI_NumericValue>
+				<gsml:CGI_NumericValue>   <!--  gsml_geology_1m.LOC_ACC.  Constant URN for UOM -->
 					<gsml:principalValue uom="urn:ogc:def:uom:UCUM:m">500</gsml:principalValue>
 				</gsml:CGI_NumericValue>
 			</gsml:positionalAccuracy>
-			<gsml:samplingFrame xlink:href="urn:cgi:classsifier:GA:SurfaceGeologyOfEasternAustralia_1MillionScale"/>
-			<gsml:specification>
-				<gsml:GeologicUnit gml:id="GA_GeologicUnit_38485">
-					<gml:description>Channel and flood plain alluvium; gravel, sand, silt, clay</gml:description>
-					<gml:name codeSpace="urn:ietf:rfc:2141">urn:cgi:feature:GA:StratigraphicLexicon:Stratno:38485</gml:name>
-					<gml:name codeSpace="urn:cgi:classifierScheme:GA:StratigraphicLexicon:Stratname">alluvium 38485</gml:name>
-					<gml:name codeSpace="urn:cgi:classifierScheme:GA:StratigraphicLexicon:Map_symbol">Qa</gml:name>
+			<gsml:samplingFrame xlink:href="urn:cgi:classsifier:GA:SurfaceGeologyOfEasternAustralia_1MillionScale"/>   <!-- Constant xlink value for this dataset  -->
+			<gsml:specification>    <!-- First occurrence of  unit is described in line, then by reference to gml:id.   -->
+				<gsml:GeologicUnit gml:id="GA_GeologicUnit_Stratno_38485">   <!-- Concatenate "GA_GeologicUnit_Stratno" and gsml_geology_1m.STRATNO -->
+					<gml:description>Channel and flood plain alluvium; gravel, sand, silt, clay</gml:description>  <!-- gsml_geol_stratnames.description  -->
+					<gml:name codeSpace="urn:ietf:rfc:2141">urn:cgi:feature:GA:StratigraphicLexicon:Stratno:38485</gml:name>  <!-- Constant codespace.  Concatenate "urn:cgi:feature:GA:StratigraphicLexicon:Stratno:" and gsml_geology_1m.STRATNO   -->
+					<gml:name codeSpace="urn:cgi:classifierScheme:GA:StratigraphicLexicon:Stratname">alluvium 38485</gml:name>   <!-- Constant codespace.  Value = gsml_geol_stratnames.stratname -->
+					<gml:name codeSpace="urn:cgi:classifierScheme:GA:StratigraphicLexicon:Map_symbol">Qa</gml:name>   <!-- Constant codespace.  Value = gsml_geology_1m.MAP_SYMB  -->
 					<gsml:observationMethod>
 						<gsml:CGI_TermValue>
-							<gsml:value codeSpace="urn:cgi:classifierScheme:GA:ObservationMethods">published description</gsml:value>
+							<gsml:value codeSpace="urn:cgi:classifierScheme:GA:ObservationMethods">published description</gsml:value>    <!-- Constant value for this dataset-->
 						</gsml:CGI_TermValue>
 					</gsml:observationMethod>
-					<gsml:purpose>typicalNorm</gsml:purpose>
+					<gsml:purpose>typicalNorm</gsml:purpose>    <!-- Constant value -->
 					<gsml:preferredAge>
 						<gsml:GeologicEvent>
 							<gsml:eventAge>
-								<gsml:CGI_TermValue>
+								<gsml:CGI_TermValue>  <!-- Constant codespace.  Concatenate "urn:cgi:classifier:ICS:StratChart:2008:" and gsml_geol_stratnames.preferred_age. Note that no spaces allowed in URN  -->
 									<gsml:value codeSpace="urn:cgi:classifierScheme:ICS:StratChart:2008">urn:cgi:classifier:ICS:StratChart:2008:Quaternary</gsml:value>
 								</gsml:CGI_TermValue>
 							</gsml:eventAge>
-							<gsml:eventProcess>
+							<gsml:eventEnvironment>     <!-- from gsml_geol_environment.environment.  If no data, populate with "unknown" -->
 								<gsml:CGI_TermValue>
+									<gsml:value codeSpace="urn:cgi:classifierScheme:GA:Process">fluvial</gsml:value>
+								</gsml:CGI_TermValue>
+							</gsml:eventEnvironment>
+							<gsml:eventProcess>
+								<gsml:CGI_TermValue>   <!-- from gsml_geol_environment.environment.  If no data, populate with "unknown" -->
 									<gsml:value codeSpace="urn:cgi:classifierScheme:GA:Process">deposition</gsml:value>
 								</gsml:CGI_TermValue>
 							</gsml:eventProcess>
@@ -62,81 +71,89 @@
 							<gsml:eventAge>
 								<gsml:CGI_TermRange>
 									<gsml:lower>
-										<gsml:CGI_TermValue>
+										<gsml:CGI_TermValue>  <!-- Constant codespace. Concatenate "urn:cgi:classifier:ICS:StratChart:2008:" and gsml_geol_stratnames.basemaxage.  Note that no spaces allowed in URN -->
 											<gsml:value codeSpace="urn:cgi:classifierScheme:ICS:StratChart:2008">urn:cgi:classifier:ICS:StratChart:2008:Quaternary</gsml:value>
 										</gsml:CGI_TermValue>
 									</gsml:lower>
 									<gsml:upper>
-										<gsml:CGI_TermValue>
+										<gsml:CGI_TermValue>    <!-- Constant codespace. Concatenate "urn:cgi:classifier:ICS:StratChart:2008:" and gsml_geol_stratnames.topminage. Note that no spaces allowed in URN -->
 											<gsml:value codeSpace="urn:cgi:classifierScheme:ICS:StratChart:2008">urn:cgi:classifier:ICS:StratChart:2008:Quaternary</gsml:value>
 										</gsml:CGI_TermValue>
 									</gsml:upper>
 								</gsml:CGI_TermRange>
-							</gsml:eventAge>			
-							<gsml:eventProcess>
+							</gsml:eventAge>	
+							<gsml:eventEnvironment>     <!-- from gsml_geol_environment.environment.  If no data, populate with "unknown" -->
 								<gsml:CGI_TermValue>
+									<gsml:value codeSpace="urn:cgi:classifierScheme:GA:Process">fluvial</gsml:value>
+								</gsml:CGI_TermValue>
+							</gsml:eventEnvironment>
+							<gsml:eventProcess>
+								<gsml:CGI_TermValue>        <!-- from gsml_geol_environment.environment.  If no data, populate with "unknown" -->
 									<gsml:value codeSpace="urn:cgi:classifierScheme:GA:Process">deposition</gsml:value>
 								</gsml:CGI_TermValue>
 							</gsml:eventProcess>
 						</gsml:GeologicEvent>
 					</gsml:geologicHistory>
-					<gsml:compositionCategory>
+					<gsml:compositionCategory>    <!-- Constant codespace. Value = gsml_geol_stratnames.composition_category -->
 						<gsml:CGI_TermValue>
-							<gsml:value codeSpace="urn:cgi:classifierScheme:GA:CompositionCategory">unknown</gsml:value>
+							<gsml:value codeSpace="urn:cgi:classifierScheme:GA:CompositionCategory">silicate</gsml:value>
 						</gsml:CGI_TermValue>
 					</gsml:compositionCategory>
-					<gsml:rank codeSpace="urn:cgi:classifierScheme:GA:Rank">formation</gsml:rank>
-					<gsml:classifier>
-						<gsml:ControlledConcept gml:id="GA_stratno_38485">
-							<gml:name codeSpace="urn:ietf:rfc:2141">urn:cgi:classifier:GA:StratigraphicLexicon:Stratno:38485</gml:name>
-							<gsml:identifier codeSpace="urn:ietf:rfc:2141">urn:cgi:classifier:GA:StratigraphicLexicon:Stratno:38485</gsml:identifier>
-							<gsml:name xml:lang="en" codeSpace="urn:cgi:classifierScheme:GA:StratigraphicLexicon:Stratname">alluvium 38485</gsml:name>
-							<gsml:name xml:lang="en" codeSpace="urn:cgi:classifierScheme:GA:StratigraphicLexicon:Map_symbol">Qa</gsml:name>
-							<gsml:vocabulary xlink:href="urn:cgi:classifierScheme:GA:StratigraphicLexicon"/>
+					<gsml:rank codeSpace="urn:cgi:classifierScheme:GA:Rank">formation</gsml:rank>   <!-- Constant codespace. Value = gsml_geol_stratnames.rank -->
+					<gsml:classifier xlink:href="urn:cgi:classifier:GA:StratigraphicLexicon:Stratno:38485"/>  <!-- Concatenate "urn:cgi:classifier:GA:StratigraphicLexicon:Stratno:" and gsml_geol_stratnames.stratno -->
+	
+	<!-- 		**** Omit this ControlledConcept stuff in favour of a URN reference to Strat Lexicon ****	
+						
+						<gsml:ControlledConcept  gml:id="GA_Stratno_38485">   **** Omit ControlledConcept stuff in favour of a URN reference to Strat Lexicon ****
+						<gml:name codeSpace="urn:ietf:rfc:2141">urn:cgi:classifier:GA:StratigraphicLexicon:Stratno:38485</gml:name>
+						<gsml:identifier codeSpace="urn:ietf:rfc:2141">urn:cgi:classifier:GA:StratigraphicLexicon:Stratno:38485</gsml:identifier>
+						<gsml:name xml:lang="en" codeSpace="urn:cgi:classifierScheme:GA:StratigraphicLexicon:Stratname">alluvium 38485</gsml:name>
+						<gsml:name xml:lang="en" codeSpace="urn:cgi:classifierScheme:GA:StratigraphicLexicon:Map_symbol">Qa</gsml:name>
+						<gsml:vocabulary xlink:href="urn:cgi:classifierScheme:GA:StratigraphicLexicon"/>
 						</gsml:ControlledConcept>
-					</gsml:classifier>
-					<gsml:composition>
+-->
+					<gsml:composition>  <!-- This data comes from gsml_geol_strat_liths table.  (0..* gsml:composition elements with each GeolUnit)     -->
 						<gsml:CompositionPart>
-							<gsml:role codeSpace="urn:cgi:classifierScheme:GA:Role">part of</gsml:role>
-							<gsml:lithology>
-								<gsml:ControlledConcept gml:id="CGILITH_036">
-									<gml:name codeSpace="urn:ietf:rfc:2141">urn:cgi:classifier:CGI:lithology:2008:CGILITH_036</gml:name>
-									<gsml:identifier codeSpace="urn:ietf:rfc:2141">urn:cgi:classifier:CGI:lithology:2008:CGILITH_036</gsml:identifier>
-									<gsml:name xml:lang="en" codeSpace="urn:cgi:classifierScheme:CGI:lithology:2008">clastic sediment</gsml:name>
-									<gsml:vocabulary xlink:href="urn:cgi:classifierScheme:CGI:lithology:2008"/>
+							<gsml:role codeSpace="urn:cgi:classifierScheme:GA:Role">part of</gsml:role>  <!-- Constant value -->
+							<gsml:lithology>  <!-- First occurence in line, then by reference to controlled concept id -->
+								<gsml:ControlledConcept gml:id="CGILith_036">  <!--  from the Testbed SimpleLlithology vocabulary.  Note mixed case"Lith" -->
+									<gml:name codeSpace="urn:ietf:rfc:2141">urn:cgi:classifier:CGI:SimpleLithology:2008:clastic sediment</gml:name>  <!-- concatenate "urn:cgi:classifier:CGI:SimpleLithology:2008:" and gsml_geol_strat_liths.gsml_lithology-->
+									<gsml:identifier codeSpace="urn:ietf:rfc:2141">urn:cgi:classifier:CGI:SimpleLithology:2008:clastic_sediment</gsml:identifier>  <!-- concatenate "urn:cgi:classifier:CGI:SimpleLithology:2008:" and gsml_geol_strat_liths.gsml_lithology with underscores instead of spaces  -->
+									<gsml:name xml:lang="en" codeSpace="urn:cgi:classifierScheme:CGI:SimpleLithology:2008">clastic sediment</gsml:name>  <!-- gsml_geol_strat_liths.gsml_lithology -->
+									<gsml:vocabulary xlink:href="urn:cgi:classifierScheme:CGI:SimpleLithology:2008"/>  <!-- constant -->
 								</gsml:ControlledConcept>
 							</gsml:lithology>
-							<gsml:material>
-								<gsml:UnconsolidatedMaterial>
-									<gsml:purpose>instance</gsml:purpose>
+							<gsml:material>   <!-- If gsml_geol_stratnames.GeneticCategory = “regolith”, then use gsml:UnconsolidatedMaterial, otherwise use gsml:Rock  -->
+								<gsml:UnconsolidatedMaterial> 
+									<gsml:purpose>instance</gsml:purpose>  <!-- Constant -->
 									<gsml:compositionCategory>
 										<gsml:CGI_TermValue>
-											<gsml:value codeSpace="urn:cgi:classifierScheme:GA:CompositionCategory">unknown</gsml:value>
+											<gsml:value codeSpace="urn:cgi:classifierScheme:GA:CompositionCategory">unknown</gsml:value>  <!-- gsml_geol_stratnames.composition_category for the stratno-->
 										</gsml:CGI_TermValue>
 									</gsml:compositionCategory>
 									<gsml:geneticCategory>
 										<gsml:CGI_TermValue>
-											<gsml:value codeSpace="urn:cgi:classifierScheme:GA:GeneticCategory">regolith</gsml:value>
+											<gsml:value codeSpace="urn:cgi:classifierScheme:GA:GeneticCategory">sedimentary</gsml:value>    <!-- gsml_lithology_vocab.geneticCategory for the lithology  -->
 										</gsml:CGI_TermValue>
 									</gsml:geneticCategory>
 									<gsml:consolidationDegree>
 										<gsml:CGI_TermValue>
-											<gsml:value codeSpace="urn:cgi:classifierScheme:GA:ConsolidationDegree">unknown</gsml:value>
+											<gsml:value codeSpace="urn:cgi:classifierScheme:GA:ConsolidationDegree">unknown</gsml:value>  <!-- constant -->
 										</gsml:CGI_TermValue>
 									</gsml:consolidationDegree>
-									<gsml:lithology xlink:href="#CGILITH_036"/>
+									<gsml:lithology xlink:href="#CGILith_036"/>  <!-- Use gml:id of gsml:CompositionPart/lithology   -->
 								</gsml:UnconsolidatedMaterial>					
 							</gsml:material>
 							<gsml:proportion>
 								<gsml:CGI_TermValue>
-									<gsml:value codeSpace="urn:cgi:classifierScheme:GA:Proportion">unknown</gsml:value>
+									<gsml:value codeSpace="urn:cgi:classifierScheme:GA:Proportion">unknown</gsml:value>  <!-- constant -->
 								</gsml:CGI_TermValue>
 							</gsml:proportion>
 						</gsml:CompositionPart>
 					</gsml:composition>
 				</gsml:GeologicUnit>
 			</gsml:specification>
-			<gsml:shape>
+			<gsml:shape>  <!-- gsml_geology_1M.geom -->
 				<gml:Polygon srsName="urn:ogc:def:crs:EPSG:4326">
 					<gml:outerBoundaryIs>
 						<gml:LinearRing>
@@ -815,6 +832,168 @@
 		</gsml:MappedFeature>
 	</gml:featureMember>
 	<gml:featureMember>
+		<gsml:MappedFeature gml:id="MappedFeature_999999">
+			<gml:description>Geological unit polygon</gml:description>
+			<gml:name>1M_geology_polygon_999999</gml:name>
+			<gsml:observationMethod>
+				<gsml:CGI_TermValue>
+					<gsml:value codeSpace="urn:cgi:classifierScheme:GA:1MillionGeology_ObservationMethods">Smout, J., Grimes, K.G., Poutch, H.F., Swoboda, R.A., Russell, E.A., 1980, Carpentaria and Karumba Basins 1:1,000,000, Geological Survey of Queensland &amp; Bureau of Mineral Resources.</gsml:value>
+				</gsml:CGI_TermValue>
+			</gsml:observationMethod>
+			<gsml:positionalAccuracy>
+				<gsml:CGI_NumericValue>
+					<gsml:principalValue uom="urn:ogc:def:uom:UCUM:m">1500</gsml:principalValue>
+				</gsml:CGI_NumericValue>
+			</gsml:positionalAccuracy>
+			<gsml:samplingFrame xlink:href="urn:cgi:classsifier:GA:SurfaceGeologyOfEasternAustralia_1MillionScale"/>
+			<gsml:specification>          <!-- This unit is an example of a unit with multiple gsml:composition elements -->
+				<gsml:GeologicUnit gml:id="GA_GeologicUnit_Stratno_134">
+					<gml:description>Medium to coarse-grained hornblende diorite, metagabbro; very minor acid veins</gml:description>
+					<gml:name codeSpace="urn:cgi:classifierScheme:GA:StratigraphicLexicon:Stratname">Adelong Norite</gml:name>
+					<gml:name codeSpace="urn:cgi:classifierScheme:GA:StratigraphicLexicon:Map_symbol">Sgad</gml:name>
+					<gml:name codeSpace="urn:ietf:rfc:2141">urn:cgi:feature:GA:StratigraphicLexicon:Stratno:134</gml:name>
+					<gsml:observationMethod>
+						<gsml:CGI_TermValue>
+							<gsml:value codeSpace="urn:cgi:classifierScheme:GA:ObservationMethods">published description</gsml:value>
+						</gsml:CGI_TermValue>
+					</gsml:observationMethod>
+					<gsml:purpose>typicalNorm</gsml:purpose>
+					<gsml:preferredAge>
+						<gsml:GeologicEvent>
+							<gsml:eventAge>
+								<gsml:CGI_TermValue>
+									<gsml:value codeSpace="urn:cgi:classifierScheme:ICS:StratChart:2008">urn:cgi:classifier:ICS:StratChart:2008:Silurian</gsml:value>
+								</gsml:CGI_TermValue>
+							</gsml:eventAge>
+							<gsml:eventProcess>
+								<gsml:CGI_TermValue>
+									<gsml:value codeSpace="urn:cgi:classifierScheme:GA:Process">intrusion</gsml:value>
+								</gsml:CGI_TermValue>
+							</gsml:eventProcess>
+						</gsml:GeologicEvent>
+					</gsml:preferredAge>
+					<gsml:geologicHistory>
+						<gsml:GeologicEvent>
+							<gsml:eventAge>
+								<gsml:CGI_TermRange>
+									<gsml:lower>
+										<gsml:CGI_TermValue>
+											<gsml:value codeSpace="urn:cgi:classifierScheme:ICS:StratChart:2008">urn:cgi:classifier:ICS:StratChart:2008:Silurian</gsml:value>
+										</gsml:CGI_TermValue>
+									</gsml:lower>
+									<gsml:upper>
+										<gsml:CGI_TermValue>
+											<gsml:value codeSpace="urn:cgi:classifierScheme:ICS:StratChart:2008">urn:cgi:classifier:ICS:StratChart:2008:Silurian</gsml:value>
+										</gsml:CGI_TermValue>
+									</gsml:upper>
+								</gsml:CGI_TermRange>
+							</gsml:eventAge>
+							<gsml:eventProcess>
+								<gsml:CGI_TermValue>
+									<gsml:value codeSpace="urn:cgi:classifierScheme:GA:Process">intrusion</gsml:value>
+								</gsml:CGI_TermValue>
+							</gsml:eventProcess>
+						</gsml:GeologicEvent>
+					</gsml:geologicHistory>
+					<gsml:compositionCategory>
+						<gsml:CGI_TermValue>
+							<gsml:value codeSpace="urn:cgi:classifierScheme:GA:CompositionCategory">basic</gsml:value>
+						</gsml:CGI_TermValue>
+					</gsml:compositionCategory>
+					<gsml:rank codeSpace="urn:cgi:classifierScheme:GA:Rank">formation</gsml:rank>
+					<gsml:classifier xlink:href="urn:cgi:classifier:GA:StratigraphicLexicon:Stratno:134"/>
+					<gsml:composition>  <!-- If there are multiple values in gsml_geol_strat_liths, then create multiple gsml:composition elements -->
+						<gsml:CompositionPart>
+							<gsml:role codeSpace="urn:cgi:classifierScheme:GA:Role">part of</gsml:role>
+							<gsml:lithology>
+								<gsml:ControlledConcept gml:id="CGILith_070">
+									<gml:name codeSpace="urn:ietf:rfc:2141">urn:cgi:classifier:CGI:SimpleLithology:2008:gabbro</gml:name> 
+									<gsml:identifier codeSpace="urn:ietf:rfc:2141">urn:cgi:classifier:CGI:SimpleLithology:2008:gabbro</gsml:identifier> 
+									<gsml:name codeSpace="urn:cgi:classifierScheme:CGI:SimpleLithology:2008" xml:lang="en">gabbro</gsml:name> 
+									<gsml:vocabulary xlink:href="urn:cgi:classifierScheme:CGI:SimpleLithology:2008"/> 
+								</gsml:ControlledConcept>
+							</gsml:lithology>
+							<gsml:material>
+								<gsml:Rock>
+									<gsml:purpose>instance</gsml:purpose>
+									<gsml:compositionCategory>
+										<gsml:CGI_TermValue>
+											<gsml:value codeSpace="urn:cgi:classifierScheme:GA:CompositionCategory">basic</gsml:value>
+										</gsml:CGI_TermValue>
+									</gsml:compositionCategory>
+									<gsml:geneticCategory>
+										<gsml:CGI_TermValue>
+											<gsml:value codeSpace="urn:cgi:classifierScheme:GA:GeneticCategory">plutonic</gsml:value>
+										</gsml:CGI_TermValue>
+									</gsml:geneticCategory>
+									<gsml:consolidationDegree>
+										<gsml:CGI_TermValue>
+											<gsml:value codeSpace="urn:cgi:classifierScheme:GA:ConsolidationDegree">unknown</gsml:value>
+										</gsml:CGI_TermValue>
+									</gsml:consolidationDegree>
+									<gsml:lithology xlink:href="#CGILith_070"/>
+								</gsml:Rock>		
+							</gsml:material>
+							<gsml:proportion>
+								<gsml:CGI_TermValue>
+									<gsml:value codeSpace="urn:cgi:classifierScheme:GA:Proportion">unknown</gsml:value>
+								</gsml:CGI_TermValue>
+							</gsml:proportion>
+						</gsml:CompositionPart>
+					</gsml:composition>
+					<gsml:composition>
+						<gsml:CompositionPart>
+							<gsml:role codeSpace="urn:cgi:classifierScheme:GA:Role">part of</gsml:role>
+							<gsml:lithology>
+								<gsml:ControlledConcept gml:id="CGILith_048">
+									<gml:name codeSpace="urn:ietf:rfc:2141">urn:cgi:classifier:CGI:SimpleLithology:2008:dioritic rock</gml:name> 
+									<gsml:identifier codeSpace="urn:ietf:rfc:2141">urn:cgi:classifier:CGI:SimpleLithology:2008:dioritic_rock</gsml:identifier> 
+									<gsml:name codeSpace="urn:cgi:classifierScheme:CGI:SimpleLithology:2008" xml:lang="en">dioritic rock</gsml:name> 
+									<gsml:vocabulary xlink:href="urn:cgi:classifierScheme:CGI:SimpleLithology:2008"/> 
+								</gsml:ControlledConcept>
+							</gsml:lithology>
+							<gsml:material>
+								<gsml:Rock>
+									<gsml:purpose>instance</gsml:purpose>
+									<gsml:compositionCategory>
+										<gsml:CGI_TermValue>
+											<gsml:value codeSpace="urn:cgi:classifierScheme:GA:CompositionCategory">basic</gsml:value>
+										</gsml:CGI_TermValue>
+									</gsml:compositionCategory>
+									<gsml:geneticCategory>
+										<gsml:CGI_TermValue>
+											<gsml:value codeSpace="urn:cgi:classifierScheme:GA:GeneticCategory">plutonic</gsml:value>
+										</gsml:CGI_TermValue>
+									</gsml:geneticCategory>
+									<gsml:consolidationDegree>
+										<gsml:CGI_TermValue>
+											<gsml:value codeSpace="urn:cgi:classifierScheme:GA:ConsolidationDegree">unknown</gsml:value>
+										</gsml:CGI_TermValue>
+									</gsml:consolidationDegree>
+									<gsml:lithology xlink:href="#CGILith_048"/>
+								</gsml:Rock>		
+							</gsml:material>
+							<gsml:proportion>
+								<gsml:CGI_TermValue>
+									<gsml:value codeSpace="urn:cgi:classifierScheme:GA:Proportion">unknown</gsml:value>
+								</gsml:CGI_TermValue>
+							</gsml:proportion>
+						</gsml:CompositionPart>
+					</gsml:composition>
+				</gsml:GeologicUnit>
+			</gsml:specification>
+			<gsml:shape>
+				<gml:Polygon srsName="urn:ogc:def:crs:EPSG:4326">
+					<gml:outerBoundaryIs>
+						<gml:LinearRing>
+							<gml:posList> 142.1 -19.2583990608557 142.172068544096 -19.2546485090388 142.155416913158 -19.2516959832536 142.141116191144 -19.2449615283995 142.136385949755 -19.2457329336206 142.136395566884 -19.2479970732439 142.140372291732 -19.2517521359808 142.153849380413 -19.2577358051352 142.168928361458 -19.2599404653786 142.172899243883 -19.2621870745973 142.176062814743 -19.262174894991 142.1 -19.2583990608557 </gml:posList>
+						</gml:LinearRing>
+					</gml:outerBoundaryIs>
+				</gml:Polygon>
+			</gsml:shape>
+		</gsml:MappedFeature>
+	</gml:featureMember>
+	<gml:featureMember>
 		<gsml:MappedFeature gml:id="MappedFeature_11462">
 			<gml:description>Geological unit polygon</gml:description>
 			<gml:name>1M_geology_polygon_11462</gml:name>
@@ -830,7 +1009,7 @@
 			</gsml:positionalAccuracy>
 			<gsml:samplingFrame xlink:href="urn:cgi:classsifier:GA:SurfaceGeologyOfEasternAustralia_1MillionScale"/>
 			<gsml:specification>
-				<gsml:GeologicUnit gml:id="GA_GeologicUnit_38484">
+				<gsml:GeologicUnit gml:id="GA_GeologicUnit_Stratno_38484">
 					<gml:description>Quaternary sediments, undivided</gml:description>
 					<gml:name codeSpace="urn:cgi:classifierScheme:GA:StratigraphicLexicon:Stratname">sediments 38484</gml:name>
 					<gml:name codeSpace="urn:cgi:classifierScheme:GA:StratigraphicLexicon:Map_symbol">Qs</gml:name>
@@ -884,19 +1063,19 @@
 						</gsml:CGI_TermValue>
 					</gsml:compositionCategory>
 					<gsml:rank codeSpace="urn:cgi:classifierScheme:GA:Rank">formation</gsml:rank>
-					<gsml:classifier>
-						<gsml:ControlledConcept gml:id="GA_stratno_38484">
+					<gsml:classifier xlink:href="urn:cgi:classifier:GA:StratigraphicLexicon:Stratno:38484">
+<!--						<gsml:ControlledConcept gml:id="GA_stratno_38484">
 							<gml:name codeSpace="urn:ietf:rfc:2141">urn:cgi:classifier:GA:StratigraphicLexicon:Stratno:38484</gml:name>
 							<gsml:identifier codeSpace="urn:ietf:rfc:2141">urn:cgi:classifier:GA:StratigraphicLexicon:Stratno:38484</gsml:identifier>
 							<gsml:name xml:lang="en" codeSpace="urn:cgi:classifierScheme:GA:StratigraphicLexicon:Stratname">sediments 38484</gsml:name>
 							<gsml:name xml:lang="en" codeSpace="urn:cgi:classifierScheme:GA:StratigraphicLexicon:Map_symbol">Qs</gsml:name>
 							<gsml:vocabulary xlink:href="urn:cgi:classifierScheme:GA:StratigraphicLexicon"/>
-						</gsml:ControlledConcept>
+						</gsml:ControlledConcept>-->
 					</gsml:classifier>
 					<gsml:composition>
 						<gsml:CompositionPart>
 							<gsml:role codeSpace="urn:cgi:classifierScheme:GA:Role">part of</gsml:role>
-							<gsml:lithology xlink:href="#CGILITH_036"/>
+							<gsml:lithology xlink:href="#CGILith_036"/>  <!-- xlink ref to "clastic sediment".  First ref is in line (see above) -->
 							<gsml:material>
 								<gsml:UnconsolidatedMaterial>
 									<gsml:purpose>instance</gsml:purpose>
@@ -907,7 +1086,7 @@
 									</gsml:compositionCategory>
 									<gsml:geneticCategory>
 										<gsml:CGI_TermValue>
-											<gsml:value codeSpace="urn:cgi:classifierScheme:GA:GeneticCategory">regolith</gsml:value>
+											<gsml:value codeSpace="urn:cgi:classifierScheme:GA:GeneticCategory">sedimentary</gsml:value>
 										</gsml:CGI_TermValue>
 									</gsml:geneticCategory>
 									<gsml:consolidationDegree>
@@ -915,7 +1094,7 @@
 											<gsml:value codeSpace="urn:cgi:classifierScheme:GA:ConsolidationDegree">unknown</gsml:value>
 										</gsml:CGI_TermValue>
 									</gsml:consolidationDegree>
-									<gsml:lithology xlink:href="#CGILITH_036"/>
+									<gsml:lithology xlink:href="#CGILith_036"/>
 								</gsml:UnconsolidatedMaterial>		
 							</gsml:material>
 							<gsml:proportion>
@@ -953,7 +1132,7 @@
 				</gsml:CGI_NumericValue>
 			</gsml:positionalAccuracy>
 			<gsml:samplingFrame xlink:href="urn:cgi:classsifier:GA:SurfaceGeologyOfEasternAustralia_1MillionScale"/>
-			<gsml:specification xlink:href="#GA_GeologicUnit_38484"/>
+			<gsml:specification xlink:href="#GA_GeologicUnit_Stratno_38484"/>  <!-- xlink ref to unit described above -->
 			<gsml:shape>
 				<gml:Polygon srsName="urn:ogc:def:crs:EPSG:4326">
 					<gml:outerBoundaryIs>
@@ -981,7 +1160,7 @@
 			</gsml:positionalAccuracy>
 			<gsml:samplingFrame xlink:href="urn:cgi:classsifier:GA:SurfaceGeologyOfEasternAustralia_1MillionScale"/>
 			<gsml:specification>
-				<gsml:GeologicUnit gml:id="GA_GeologicUnit_4090">
+				<gsml:GeologicUnit gml:id="GA_GeologicUnit_Stratno_4090">
 					<gml:description>Clayey quartzose sand and sandy mud; minor gravel</gml:description>
 					<gml:name codeSpace="urn:cgi:classifierScheme:GA:StratigraphicLexicon:Stratname">Claraville beds</gml:name>
 					<gml:name codeSpace="urn:cgi:classifierScheme:GA:StratigraphicLexicon:Map_symbol">Czcla</gml:name>
@@ -1035,24 +1214,24 @@
 						</gsml:CGI_TermValue>
 					</gsml:compositionCategory>
 					<gsml:rank codeSpace="urn:cgi:classifierScheme:GA:Rank">formation</gsml:rank>
-					<gsml:classifier>
-						<gsml:ControlledConcept gml:id="GA_stratno_4090">
+					<gsml:classifier xlink:href="urn:cgi:classifier:GA:StratigraphicLexicon:Stratno:4090">
+<!--						<gsml:ControlledConcept gml:id="GA_stratno_4090">
 							<gml:name codeSpace="urn:ietf:rfc:2141">urn:cgi:classifier:GA:StratigraphicLexicon:Stratno:4090</gml:name>
 							<gsml:identifier codeSpace="urn:ietf:rfc:2141">urn:cgi:classifier:GA:StratigraphicLexicon:Stratno:4090</gsml:identifier>
 							<gsml:name xml:lang="en" codeSpace="urn:cgi:classifierScheme:GA:StratigraphicLexicon:Stratname">Claraville beds</gsml:name>
 							<gsml:name xml:lang="en" codeSpace="urn:cgi:classifierScheme:GA:StratigraphicLexicon:Map_symbol">Czcla</gsml:name>
 							<gsml:vocabulary xlink:href="urn:cgi:classifierScheme:GA:StratigraphicLexicon"/>
-						</gsml:ControlledConcept>
+						</gsml:ControlledConcept>-->
 					</gsml:classifier>
 					<gsml:composition>
 						<gsml:CompositionPart>
 							<gsml:role codeSpace="urn:cgi:classifierScheme:GA:Role">part of</gsml:role>
 							<gsml:lithology>
-								<gsml:ControlledConcept gml:id="CGILITH_129">
-									<gml:name codeSpace="urn:ietf:rfc:2141">urn:cgi:classifier:CGI:lithology:2008:CGILITH_129</gml:name>
-									<gsml:identifier codeSpace="urn:ietf:rfc:2141">urn:cgi:classifier:CGI:lithology:2008:CGILITH_129</gsml:identifier>
-									<gsml:name xml:lang="en" codeSpace="urn:cgi:classifierScheme:CGI:lithology:2008">sandstone</gsml:name>
-									<gsml:vocabulary xlink:href="urn:cgi:classifierScheme:CGI:lithology:2008"/>
+								<gsml:ControlledConcept gml:id="CGILith_129">
+									<gml:name codeSpace="urn:ietf:rfc:2141">urn:cgi:classifier:CGI:Simple Lithology:2008:sandstone</gml:name>
+									<gsml:identifier codeSpace="urn:ietf:rfc:2141">urn:cgi:classifier:CGI:Simple Lithology:2008:sandstone</gsml:identifier>
+									<gsml:name xml:lang="en" codeSpace="urn:cgi:classifierScheme:CGI:SimpleLithology:2008">sandstone</gsml:name>
+									<gsml:vocabulary xlink:href="urn:cgi:classifierScheme:CGI:SimpleLithology:2008"/>
 								</gsml:ControlledConcept>
 							</gsml:lithology>
 							<gsml:material>
@@ -1065,10 +1244,10 @@
 									</gsml:compositionCategory>
 									<gsml:geneticCategory>
 										<gsml:CGI_TermValue>
-											<gsml:value codeSpace="urn:cgi:classifierScheme:GA:GeneticCategory">sedimentary clastic</gsml:value>
+											<gsml:value codeSpace="urn:cgi:classifierScheme:GA:GeneticCategory">sedimentary</gsml:value>
 										</gsml:CGI_TermValue>
 									</gsml:geneticCategory>				
-									<gsml:lithology xlink:href="CGILITH_129"/> 
+									<gsml:lithology xlink:href="CGILith_129"/> 
 								</gsml:Rock>					
 							</gsml:material>
 							<gsml:proportion>
