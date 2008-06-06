@@ -28,7 +28,8 @@
 <!-- Special rules for encoding BRGM boreholes with age encoded as gml:ReferenceType values
 		- Age references refer to the ICS dictionary
 		- Lithology and age are observed on the same intervals -->
-<gsml:GSML 
+<wfs:FeatureCollection 
+xmlns:wfs="http://www.opengis.net/wfs" 
 xmlns:om="http://www.opengis.net/om/1.0"
 xmlns:sa="http://www.opengis.net/sampling/1.0"
 xmlns:gml="http://www.opengis.net/gml"
@@ -36,7 +37,8 @@ xmlns:cv="http://www.opengis.net/cv/0.2.1"
 xmlns:xlink="http://www.w3.org/1999/xlink"
 xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 xmlns:gsml="urn:cgi:xmlns:CGI:GeoSciML:2.0"
-xsi:schemaLocation="http://www.opengis.net/cv/0.2.1 http://bp.schemas.opengis.net/06-188r1/cv/0.2.1/cv.xsd 
+xsi:schemaLocation="http://www.opengis.net/wfs http://schemas.opengis.net/wfs/1.1.0/wfs.xsd 
+http://www.opengis.net/cv/0.2.1 http://bp.schemas.opengis.net/06-188r1/cv/0.2.1/cv.xsd 
 http://www.opengis.net/om/1.0 http://schemas.opengis.net/om/1.0.0/om.xsd 
 http://www.opengis.net/sampling/1.0 http://schemas.opengis.net/sampling/1.0.0/sampling.xsd
 urn:cgi:xmlns:CGI:GeoSciML:2.0 http://www.geosciml.org/schemas/geosciml/2.0_rc1/geosciml.xsd">
@@ -48,7 +50,7 @@ urn:cgi:xmlns:CGI:GeoSciML:2.0 http://www.geosciml.org/schemas/geosciml/2.0_rc1/
 		</gml:Envelope>
 	</gml:boundedBy>
 	<!-- One borehole -->
-	<gsml:member>
+    <gml:featureMember>
 		<gsml:Borehole gml:id="bh.303031333558303031382F53">
 			<!-- The BRGM name of the borehole -->
 			<gml:description>00135X0018/S borehole</gml:description>
@@ -213,5 +215,5 @@ urn:cgi:xmlns:CGI:GeoSciML:2.0 http://www.geosciml.org/schemas/geosciml/2.0_rc1/
 				</gsml:BoreholeCollar>
 			</gsml:collarLocation>
 		</gsml:Borehole>
-	</gsml:member>
-</gsml:GSML>
+    </gml:featureMember>
+</wfs:FeatureCollection>
