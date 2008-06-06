@@ -7,25 +7,67 @@
 
 	<!-- root element -->
 
-	<element name="test-suite" type="c:test-suite-type" />
+	<element name="test-suite" type="c:test-suite-type">
+		<annotation>
+			<documentation>
+				The root element for a document describing a suite of
+				tests that should be performed to schema- and
+				content-validate an XML service. A document with this as
+				its root element is required by XmlServiceTester.
+			</documentation>
+		</annotation>
+	</element>
 
 	<!-- request substitutionGroup -->
 
-	<element name="request" type="c:request-type" />
+	<element name="request" type="c:request-type">
+		<annotation>
+			<documentation>
+				Abstract base element for request types.
+			</documentation>
+		</annotation>
+	</element>
 
 	<element name="http-post-request" type="c:http-post-request-type"
-		substitutionGroup="c:request" />
+		substitutionGroup="c:request">
+		<annotation>
+			<documentation>
+				HTTP POST request with body sourced from a local file.
+			</documentation>
+		</annotation>
+	</element>
 
 	<element name="file-request" type="c:file-request-type"
-		substitutionGroup="c:request" />
+		substitutionGroup="c:request">
+		<annotation>
+			<documentation>
+				"Request" which results in the contents of a local file
+				being supplied as the response. Useful for testing or
+				validating local files.
+			</documentation>
+		</annotation>
+	</element>
 
 	<!-- assertion substitutionGroup -->
 
-	<element name="assertion" type="c:assertion-type" />
+	<element name="assertion" type="c:assertion-type">
+		<annotation>
+			<documentation>
+				Abstract base class for assertions.
+			</documentation>
+		</annotation>
+	</element>
 
 	<element name="element-count-assertion"
-		type="c:element-count-assertion-type" substitutionGroup="c:assertion" />
-
+		type="c:element-count-assertion-type"
+		substitutionGroup="c:assertion">
+		<annotation>
+			<documentation>
+				Assertion that an element occurs exactly a number of
+				times.
+			</documentation>
+		</annotation>
+	</element>
 	<!-- types -->
 
 	<complexType name="test-suite-type">
@@ -35,12 +77,49 @@
 			</documentation>
 		</annotation>
 		<sequence>
-			<element name="service-url" type="token" minOccurs="0" />
-			<element name="catalog-file" type="token" minOccurs="0" />
+			<element name="service-url" type="token" minOccurs="0">
+				<annotation>
+					<documentation>
+						The service-url describes the URL to which
+						service requests are submitted. This element is
+						optional because it can be supplied or
+						overridden in, for example, an http-port-request
+						element. It will be ignored by file-request.
+					</documentation>
+				</annotation>
+			</element>
+			<element name="catalog-file" type="token" minOccurs="0">
+				<annotation>
+					<documentation>
+						URI of an OASIS catalog file, relative to this
+						file. Optional. If not supplied, the parser will
+						fetch schemas from locations in the document
+						schemaLocation.
+					</documentation>
+				</annotation>
+			</element>
 			<element name="schema-location"
-				type="c:schema-location-type" minOccurs="0" maxOccurs="unbounded" />
+				type="c:schema-location-type" minOccurs="0" maxOccurs="unbounded">
+				<annotation>
+					<documentation>
+						Schema location used in validation. You can have
+						as many as you like. They are used in order
+						supplied. Schema locations specified in respone
+						elements take precedence.
+					</documentation>
+				</annotation>
+			</element>
 			<element name="test-case" type="c:test-case-type"
-				maxOccurs="unbounded" />
+				maxOccurs="unbounded">
+				<annotation>
+					<documentation>
+						Each test-case represents a request-response.
+						Every response is schema-validated. Each
+						test-case fails or succeeds by itself. You can
+						have as many as you like (but at least one).
+					</documentation>
+				</annotation>
+			</element>
 		</sequence>
 	</complexType>
 
@@ -53,8 +132,23 @@
 			</documentation>
 		</annotation>
 		<sequence>
-			<element ref="c:request" />
-			<element name="response" type="c:response-type" />
+			<element ref="c:request">
+				<annotation>
+					<documentation>
+						Everything to do with obtaining the response
+						from the service or file.
+					</documentation>
+				</annotation>
+			</element>
+			<element name="response" type="c:response-type">
+				<annotation>
+					<documentation>
+						How the response document should be processed.
+						An empty element indicates that just
+						schema-validation should be performed.
+					</documentation>
+				</annotation>
+			</element>
 		</sequence>
 	</complexType>
 
@@ -78,7 +172,19 @@
 			<extension base="c:request-type">
 				<sequence>
 					<element name="service-url" type="token"
-						minOccurs="0" />
+						minOccurs="0">
+						<annotation>
+							<documentation>
+								(Optional) A service-url defined here
+								overrrides one defined at the top level.
+								If not present, the top-level
+								service-url is used. One must be
+								supplied either here or at the top level
+								for http-pot-request or a runtime error
+								will occur.
+							</documentation>
+						</annotation>
+					</element>
 					<element name="request-file" type="token">
 						<annotation>
 							<documentation>
@@ -133,14 +239,24 @@
 		<sequence>
 			<element name="output-file" type="token" minOccurs="0">
 				<annotation>
-					<documentation></documentation>
+					<documentation>
+						(Optional) URI relative to this file of an
+						output file containing the response text. The
+						output may be annotated with comments indicating
+						the location of any validation diagnostics.
+					</documentation>
 				</annotation>
 			</element>
 			<element name="schema-location"
 				type="c:schema-location-type" minOccurs="0" maxOccurs="unbounded">
 				<annotation>
 					<documentation>
-						Locations of the schemas to use for validation.
+						(Optional) Override document and top-level
+						schema location. This is essential if the
+						response document conforms to schemas not
+						mentioned or incorrectly mentioned in
+						schemaLocation, such as not-implemented
+						DescribeFeatureType URLs.
 					</documentation>
 				</annotation>
 			</element>
@@ -148,7 +264,8 @@
 				maxOccurs="unbounded">
 				<annotation>
 					<documentation>
-						Assertions made about response content.
+						Assertions made about response content. A
+						test-case fails if an enclosed assertion fails.
 					</documentation>
 				</annotation>
 			</element>
@@ -184,8 +301,8 @@
 				<element name="schema-file" type="token">
 					<annotation>
 						<documentation>
-							URI to file relative to config document.
-							Examples: ../profiles/wrapper.xsd
+							URI to schema file relative to test-suite
+							document. Examples: ../profiles/wrapper.xsd
 							/C:/profiles/wrapper.xsd
 						</documentation>
 					</annotation>
@@ -205,8 +322,8 @@
 	<complexType name="element-count-assertion-type">
 		<annotation>
 			<documentation>
-				Assertion that the number of occurrences of an elements
-				matches as integer.
+				Assertion that an element occurs exactly a number of
+				times.
 			</documentation>
 		</annotation>
 		<complexContent>
