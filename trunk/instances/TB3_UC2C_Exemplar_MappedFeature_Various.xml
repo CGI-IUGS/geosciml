@@ -22,8 +22,19 @@
         ####   This instance document describes MappedFeature lines of two ShearDisplacementStructures from the Eastern Australia 1:1million scale data.  ####  
         =============================================================================================  -->
     <!--    <gml:description>Faults - Surface Geology of Eastern Australia - 1:1 million scale</gml:description>-->
+    <!-- TB3 Profile Note: The GML 3.1 spec says for gml:location NOTE The flexible content model of the location property has proved to be difficult to implement in practice, so the
+        element gml:location is deprecated in this version of GML. So suggest not having it. -->
     <gml:location xlink:href="urn:cgi:classsifier:GA:EasternAustralia"/>   <!-- constant, no spaces in URN -->
     <gml:featureMember>
+        <!-- TB3 Profile Note: gml:id can be used to retrieve a particular feature by id. 
+            There is no real gml:name appropriate for mapped polygons advise not populating this.
+            The gml:description is not worth using unless there is some specific descriptive information available for the particular MappedFeature; 
+            so don't use this to put a generic description like 'geological polygon' or similar. -->
+        <!-- TB3 Profile Note: All organizations examples to date have very generic values for observation method meaning basically
+            "geological mapping procedures" which suggests that no-one actually explicitly stores this information at the moment. Thus it
+            would be possible to use a CDTG defined term registered in the urn:cgi:classifierScheme:CGI:ObservationMethod:2008 codeSpace.
+            As this information will not be the basis of any queries, however, we will not constrain whether people use the cgi codeSpace or their
+            own. Need to clarify whether all codeSpaces should be recorded in CGIClassifierSchemeRegister .-->
         <gsml:MappedFeature gml:id="GA_Mapped_Structure_12345">    <!-- Concatenate "GA_Mapped_Structure_" and gsml_faults.UFI  -->
             <gml:description>Mapped location of structure</gml:description>  <!-- constant -->
             <gml:name>GA_Structure_12345"</gml:name>     <!-- Concatenate "GA_Structure_" and gsml_faults.UFI -->
@@ -32,17 +43,35 @@
                     <gsml:value codeSpace="urn:cgi:classifierScheme:GA:1MillionGeology_ObservationMethods">Geological Survey of New South Wales, Statewide geodatabase, 1:250,000 scale or better, 2003. Simplified, edge matched and modified for representation at 1:1 million scale</gsml:value>  
                 </gsml:CGI_TermValue>
             </gsml:observationMethod>
+            <!-- TB3 Profile Note: Check that there is no CGI URN scheme for positional accuracy that we should use.  
+                Some people have put numerical values in here; that is also fine.-->
             <gsml:positionalAccuracy>
                 <gsml:CGI_NumericValue>
                     <gsml:principalValue uom="urn:ogc:def:uom:UCUM:m">500</gsml:principalValue>          <!-- gsml_faults.LOC_ACC   UOM = constant urn value -->
                 </gsml:CGI_NumericValue>
             </gsml:positionalAccuracy>
+            <!-- TB3 Profile Note: BGS has made a different kind of specification here (rockhead, ground surface etc.) whereas other organizations
+                have put geographical specifications here. BGS is 'right' :-) E.g. in a borehole you would specify the borehole track as the samplingFrame
+                along which the depth coordinates would be projected to find the full position in 3D. Similarly these mapped lines could be projected onto
+                the ground surface or rockhead surface to get their 3D position. It is not useful to say that the mapped line whose geographical coordinates
+                you have has been mapped within the UK or France or Australia...
+                side note; what convention do we want to put for href values pointing to generic concepts like this if we don' actually have the coord data?-->
             <gsml:samplingFrame xlink:href="urn:cgi:classsifier:GA:SurfaceGeologyOfEasternAustralia_1MillionScale"/>   <!-- Constant xlink value for this dataset  -->
             <gsml:specification>
                 <gsml:Fault gml:id="GA_Fault_12345">                   <!--NOTE:  Feature = gsml:Fault where gsml_faults.descript = 'Fault%'.  Feature = gsml:DuctileShearStructure where gsml_faults.descript = 'Shear%'.
                     gml:id = concatenate either "GA_Fault_" or "GA_Shear_" with gsml_faults.ufi.   One MappedFeature per structure for this dataset.--> 
-                    <gml:description>Fault</gml:description>        <!--  gsml_faults.descript-->
+                    <!-- TB3 Profile Note: Suggest only include gml:name and gml:description if there is specific information about this structure.
+                        A description of "Fault" is not worth including. -->
+                    <!-- TB3 Profile Note: Is including a URN name with codeSpace urn:ietf:rfc:2141. Is this necessary / desirable?
+                        -->
+                        <gml:description>Fault</gml:description>        <!--  gsml_faults.descript-->
                     <gml:name>LAKE GEORGE FAULT</gml:name>                  <!--    gsml_faults.name   (May be NULL) -->
+                    <!-- TB3 Profile Note: All organizations examples to date have very generic values for observation method meaning basically
+                        "published description" which suggests that no-one actually explicitly stores this information at the moment. Thus it
+                        would be possible to use a CDTG defined term registered in the  
+                        urn:cgi:classifierScheme:CGI:ObservationMethod:2008 codeSpace.
+                        As this information will not be the basis of any queries, however, we will not constrain whether people use the cgi codeSpace or their
+                        own. Need to clarify whether all codeSpaces should be recorded in CGIClassifierSchemeRegister .-->
                     <gsml:observationMethod>
                         <gsml:CGI_TermValue>
                             <gsml:value codeSpace="urn:cgi:classifierScheme:GA:ObservationMethods">published map</gsml:value>   <!-- constant -->
@@ -52,6 +81,7 @@
                     <gsml:planeOrientation>         <!--     ##  THIS SHOULD NOT BE MANDATORY!! ## -->
                         <gsml:CGI_PlanarOrientation>
                             <gsml:convention>dip dip direction</gsml:convention>    <!-- constant -->
+                            <!-- TB3 Profile Note: For Cookbook purposes will put real example value for polarity. -->
                             <gsml:polarity>not applicable</gsml:polarity>    <!-- constant -->
                         </gsml:CGI_PlanarOrientation>
                     </gsml:planeOrientation>
@@ -82,6 +112,7 @@
             </gsml:positionalAccuracy>
             <gsml:samplingFrame xlink:href="urn:cgi:classsifier:GA:SurfaceGeologyOfEasternAustralia_1MillionScale"/>   <!-- Constant xlink value for this dataset  -->
             <gsml:specification>
+                <!-- TB3 Profile Note: Same comments apply as for gsml:Fault above. -->
                 <gsml:DuctileShearStructure gml:id="GA_Shear_123457">                                   <!--NOTE:  Feature = gsml:Fault where gsml_faults.descript = 'Fault%'.  Feature = gsml:DuctileShearStructure where gsml_faults.descript = 'Shear%'.
                     gml:id = concatenate either "GA_Fault_" or "GA_Shear_" with gsml_faults.ufi.   One MappedFeature per structure for this dataset.--> 
                     <gml:description>Shear</gml:description>        <!--  gsml_faults.descript-->
@@ -124,6 +155,7 @@
             <gsml:specification>
                 <!--             <gsml:specification xlink:href="http://features.ga.gov.au?1000100"/>  But can't use an xlink to a generic specification because each contact has specific related boundedUnits?  -->
                 <gsml:Contact gml:id="GA_Contact_24680">    <!-- Concatenate "GA_Contact_" & gsml_contacts.uid. One contact per mapped feature -->
+                    <!-- TB3 Profile Note: Same comments as above for name, description, observationMethod and purpose. -->
                     <gml:description>Geological boundary</gml:description>         <!-- gsml_contacts.descript -->
                     <gsml:observationMethod>
                         <gsml:CGI_TermValue>
@@ -133,6 +165,7 @@
                     <gsml:purpose>instance</gsml:purpose>
                     <gsml:contactType>
                         <gsml:ControlledConcept gml:id="GA_FeatureCode_1000199">    <!-- Concatenate "GA_FeatureCode gsml_contacts.feat_code.  First contactType/ControlledConcept in line, then by xlink:href.  See the last FeatureMember in this doc. -->
+                            <!-- TB3 Profile Note: Do not include gml:description if it does not actually add extra information about the item. -->
                             <gml:description>Geological boundary</gml:description>  <!-- gsml_contacts.descript -->
                             <gml:name codeSpace="urn:ietf:rfc:2141">urn:cgi:feature:GA:FeatureCode:Feat_code:1000199</gml:name>        <!-- Concatenate "urn:cgi:feature:GA:FeatureCode:Feat_code:" and gsml_contacts.feat_code -->
                             <gsml:identifier codeSpace="urn:ietf:rfc:2141">urn:cgi:feature:GA:FeatureCode:Feat_code:1000199</gsml:identifier>            <!-- Concatenate "urn:cgi:feature:GA:FeatureCode:Feat_code:" and gsml_contacts.feat_code -->
@@ -178,6 +211,7 @@
             </gsml:positionalAccuracy>
             <gsml:samplingFrame xlink:href="urn:cgi:classsifier:GA:SurfaceGeologyOfEasternAustralia_1MillionScale"/>   <!-- constant -->
             <gsml:specification>
+                <!-- TB3 Profile Note: Same comments apply as for gsml:Contact above. -->
                 <gsml:Contact gml:id="GA_Contact_123456">    
                     <gml:description>Fault</gml:description>   
                     <gsml:observationMethod>
@@ -224,6 +258,7 @@
             </gsml:positionalAccuracy>
             <gsml:samplingFrame xlink:href="urn:cgi:classsifier:GA:SurfaceGeologyOfEasternAustralia_1MillionScale"/>
             <gsml:specification>
+                <!-- TB3 Profile Note: Same comments apply as for gsml:Contact above. -->
                 <gsml:Contact gml:id="GA_Contact_9876542">   
                     <gml:description>Fault</gml:description>   
                     <gsml:observationMethod>
