@@ -23,11 +23,10 @@
   <gsml:Outcrop gml:id="GA_FieldSite_93846001">  <!-- Concatenate "GA_FieldSite_" and GSML_GEOL_ENTITIES.ENTITYID -->
     <gml:name>Fieldsite 93846001</gml:name>   <!-- Concatenate "Fieldsite " and GSML_GEOL_ENTITIES.ENTITYID -->
     <gml:location>
-        <gml:LocationString>Molong-Manildra Road</gml:LocationString>     <!-- from GSML_GEOL_ENTITIES.LOCDESC -->
+    	<gml:LocationString>Molong-Manildra Road</gml:LocationString>     <!-- from GSML_GEOL_ENTITIES.LOCDESC. If NULL, then omit this element. -->
     </gml:location>
     <sa:sampledFeature>      
         <gsml:GeologicUnit gml:id="GA_GeolUnit_9925_1502034">   <!-- Concatenate "GA_GeolUnit_" and GSML_GEOL_SAMPLES.STRATNO and "_" and GSML_GEOL_SAMPLES.SAMPLENO-->
-            <gml:description>massive fine grained sandstone - bedding unclear</gml:description>     <!-- GSML_GEOL_SAMPLES.REMARK-->
             <gml:name codeSpace="urn:cgi:classifierScheme:GA:StratigraphicLexicon:Stratname">Kurrajong Park Formation</gml:name>        <!-- GSML_GEOL_SAMPLES.STRATNAME -->
         	 <gml:name codeSpace="urn:ietf:rfc:2141">urn:cgi:feature:GA:StratigraphicLexicon:Stratno:9925</gml:name>        <!-- Concatenate "urn:cgi:feature:GA:StratigraphicLexicon:Stratno:" and GSML_GEOL_SAMPLES.STRATNO -->
             <gsml:observationMethod>      
@@ -61,8 +60,8 @@
         				<CI_ResponsibleParty>Wyborn, D.</CI_ResponsibleParty>
         			</MD_Metadata>
         		</om:metadata>-->
-        	<om:samplingTime>
-        		<gml:TimeInstant  gml:id="GA_SamplingDate_FieldSite_93846001">  <!-- reuse this ID for samplingTime of a located specimen -->
+        	<om:samplingTime>          	<!--If GSML_GEOL_ENTITIES.OBSDATE is NULL, use <om:samplingTime xlink:href="urn:ogc:def:nil:OGC:unknown">  -->
+        		<gml:TimeInstant  gml:id="GA_SamplingDate_FieldSite_93846001">  <!-- Concatenate "GA_SamplingDate_FieldSite_" and GSML_GEOL_ENTITIES.ENTITYID.  Reuse this ID for samplingTime of a located specimen -->
                     <gml:timePosition>1993-04-27</gml:timePosition>  <!-- GSML_GEOL_ENTITIES.OBSDATE.  Reformatting of date required from Oracle -> XML -->
                 </gml:TimeInstant>
             </om:samplingTime>
@@ -71,25 +70,26 @@
         	<om:featureOfInterest xlink:href="GA_FieldSite_93846001"/>     <!-- xlink to the id of the Outcrop. ie, Concatenate "GA_FieldSite_" and GSML_GEOL_ENTITIES.ENTITYID -->
             <om:result>
                 <gsml:Rock>
+                	<gml:description>massive fine grained sandstone - bedding unclear</gml:description>     <!-- GSML_GEOL_SAMPLES.REMARK  -->
                     <gsml:color>
                         <gsml:CGI_TermValue>
-                            <gsml:value codeSpace="urn:cgi:classifierScheme:GA:Colour">buff</gsml:value>     <!-- GSML_GEOL_SAMPLEDATA_PROPERTY.COLOUR -->
+                            <gsml:value codeSpace="urn:cgi:classifierScheme:GA:Colour">buff</gsml:value>     <!-- GSML_GEOL_SAMPLEDATA_PROPERTY.COLOUR.  If null, leave the element out -->
                         </gsml:CGI_TermValue>
                     </gsml:color>
                     <gsml:purpose>instance</gsml:purpose>  <!-- CONSTANT -->
                     <gsml:compositionCategory>
                         <gsml:CGI_TermValue>
-                            <gsml:value codeSpace="urn:cgi:classifierScheme:GA:CompositionCategory">silicate</gsml:value>  <!-- GSML_GEOL_SAMPLES.COMPOSITION_CATEGORY -->
+                        	<gsml:value codeSpace="urn:cgi:classifierScheme:GA:CompositionCategory">silicate</gsml:value>  <!-- GSML_GEOL_SAMPLES.COMPOSITION_CATEGORY. If null, leave the element out -->
                         </gsml:CGI_TermValue>
                     </gsml:compositionCategory>
                     <gsml:geneticCategory>
                         <gsml:CGI_TermValue>
-                            <gsml:value codeSpace="urn:cgi:classifierScheme:GA:GeneticCategory">sedimentary clastic</gsml:value>    <!--   GSML_GEOL_SAMPLES.GENETIC_CATEGORY -->
+                        	<gsml:value codeSpace="urn:cgi:classifierScheme:GA:GeneticCategory">sedimentary clastic</gsml:value>    <!--   GSML_GEOL_SAMPLES.GENETIC_CATEGORY. If null, leave the element out -->
                         </gsml:CGI_TermValue>
                     </gsml:geneticCategory>
-                    <gsml:fabric>         
+                	<gsml:fabric>         <!-- First in line, then by reference to controlled concept.  If GSML_GEOL_SAMPLEDATA_property.IGNEOUS_TEXTURE is null, leave the element out  -->
                         <gsml:FabricDescription>
-                        	<gsml:fabricType>   <!-- First in line, then by reference to controlled concept.  -->
+                        	<gsml:fabricType>   
                         		<gsml:ControlledConcept gml:id="GA_FabricType_flow_banded">    <!-- Concatenate "GA_FabricType_" and  GSML_GEOL_SAMPLEDATA_PROPERTY.IGNEOUS_TEXTURE. Replace spaces with "_"   -->
                                 	<gml:name codeSpace="urn:ietf:rfc:2141">urn:cgi:feature:GA:FabricType:flow_banded</gml:name> <!-- Concatenate "urn:cgi:feature:GA:FabricType:" and gsml_geol_sampledata_property.igneous_texture-->
                                 	<gsml:identifier codeSpace="urn:ietf:rfc:2141">urn:cgi:feature:GA:FabricType:flow_banded</gsml:identifier>  <!-- Concatenate "urn:cgi:feature:GA:FabricType:" and gsml_geol_sampledata_property.igneous_texture.  Replace spaces with "_"  -->
@@ -103,35 +103,30 @@
                         <gsml:ParticleGeometryDescription>
                            <gsml:shape>
                                <gsml:CGI_TermValue>
-                                   <gsml:value codeSpace="urn:cgi:classifierScheme:GA:ParticleGeometry">sub-rounded</gsml:value>          <!--   GSML_GEOL_SAMPLEDATA_PROPERTY.ROUNDNESS  -->     
+                               	<gsml:value codeSpace="urn:cgi:classifierScheme:GA:ParticleGeometry">sub-rounded</gsml:value>          <!--   GSML_GEOL_SAMPLEDATA_PROPERTY.ROUNDNESS.   -->     
                                </gsml:CGI_TermValue>
                            </gsml:shape>                      
                             <gsml:size>
                                 <gsml:CGI_TermValue>
-                                    <gsml:value codeSpace="urn:cgi:classifierScheme:GA:ParticleGeometry">sand (0.062-2 mm)</gsml:value>      <!-- GSML_GEOL_SAMPLEDATA_PROPERTY.GRAINSIZE -->
+                                	<gsml:value codeSpace="urn:cgi:classifierScheme:GA:ParticleGeometry">sand (0.062-2 mm)</gsml:value>      <!-- GSML_GEOL_SAMPLEDATA_PROPERTY.GRAINSIZE.   -->
                                 </gsml:CGI_TermValue>
                             </gsml:size>
                             <gsml:sorting>
                                 <gsml:CGI_TermValue>
-                                    <gsml:value codeSpace="urn:cgi:classifierScheme:GA:ParticleGeometry">well sorted</gsml:value>    <!-- GSML_GEOL_SAMPLEDATA_PROPERTY.SORTING -->
+                                	<gsml:value codeSpace="urn:cgi:classifierScheme:GA:ParticleGeometry">well sorted</gsml:value>    <!-- GSML_GEOL_SAMPLEDATA_PROPERTY.SORTING.   -->
                                 </gsml:CGI_TermValue>
                             </gsml:sorting>
                         </gsml:ParticleGeometryDescription>
                     </gsml:particleGeometry>
-                    <gsml:consolidationDegree>
-                        <gsml:CGI_TermValue>
-                            <gsml:value codeSpace="urn:cgi:classifierScheme:GA:ConsolidationDegree">unknown</gsml:value>  <!-- constant -->
-                        </gsml:CGI_TermValue>
-                    </gsml:consolidationDegree>                  
                     <gsml:lithology>  <!-- First inline, then by reference to Controlled Concept -->
                         	<gsml:ControlledConcept gml:id="CGILith_129">  <!-- retrieve ID from CGI vocabulary -->
-                        		<gml:name codeSpace="urn:ietf:rfc:2141">urn:cgi:classifier:CGI:SimpleLithology:2008:sandstone</gml:name>  <!-- GSML_GEOL_SAMPLES.gsml_lithology with constant urn path -->
+                        		<gml:name codeSpace="urn:ietf:rfc:2141">urn:cgi:classifier:CGI:SimpleLithology:2008:sandstone</gml:name>   <!-- GSML_GEOL_SAMPLES.gsml_lithology with spaces replaced by "_"-->
                         		<gsml:identifier codeSpace="urn:ietf:rfc:2141">urn:cgi:classifier:CGI:SimpleLithology:2008:sandstone</gsml:identifier>  <!-- GSML_GEOL_SAMPLES.gsml_lithology with spaces replaced by "_"-->
                         		<gsml:name codeSpace="urn:cgi:classifierScheme:CGI:SimpleLithology:2008" xml:lang="en">sandstone</gsml:name>  <!-- GSML_GEOL_SAMPLES.gsml_lithology -->
                         		<gsml:vocabulary xlink:href="urn:cgi:classifierScheme:CGI:SimpleLithology:2008"/>  <!-- constant -->
                         </gsml:ControlledConcept>
                     </gsml:lithology>
-              <gsml:physicalProperty>
+              <gsml:physicalProperty> 
                        <gsml:PhysicalDescription>
                            <gsml:magneticSusceptibility>
                                <gsml:CGI_NumericRange>
@@ -157,15 +152,15 @@
             </om:result>
         </om:Observation>
         </sa:relatedObservation>
-	  <sa:relatedSamplingFeature>   <!-- Specimens go here.  Populate this element where gsml_geol_samples.sampleid is NOT NULL  -->
+	  <sa:relatedSamplingFeature>   <!-- Specimens go here.  Populate this element if gsml_geol_samples.sampleid is NOT NULL  -->
             	<sa:SamplingFeatureRelation>
             		<sa:role codeSpace="urn:cgi:classifierScheme:GA:SampleType">hand specimen</sa:role>  <!-- constant -->
             		<sa:target>
             			<sa:LocatedSpecimen  gml:id="GA_Specimen_93846001">  <!-- Concatenate "GA_Specimen_" and gsml_geol_samples.sampleid -->
             				<gml:name>93846001</gml:name>   <!-- gsml_geol_samples.sampleid -->
-            				<sa:sampledFeature xlink:href="#GA_FieldSite_93846001"></sa:sampledFeature>  <!-- xlink to Outcrop ID -->
+            				<sa:sampledFeature xlink:href="#GA_FieldSite_93846001"></sa:sampledFeature>  <!-- xlink to Outcrop ID.  Concatenate "#GA_FieldSite_" and GSML_GEOL_ENTITIES.ENTITYID-->
             				<sa:materialClass codeSpace="urn:cgi:classifierScheme:GA:SampleMaterial">rock</sa:materialClass>   <!-- Constant -->
-<!--            				<sa:currentLocation>Need to be able put an address in here.  eg: GA Rock Store, Shelf 23, Box 9</sa:currentLocation>-->
+<!--            				<sa:currentLocation>Need to be able put an address in here.  eg: Geoscience Australia Rock Store, Shelf 23, Box 9</sa:currentLocation>-->
             				<sa:samplingTime xlink:href="#GA_SamplingDate_FieldSite_93846001"/>   <!-- xlink to Outcrop/SamplingTime.  See above. -->
             				<sa:samplingLocation xlink:href="#GA_FieldSiteLocation_93846001"/>  <!-- xlink to Outcrop/position, see below.  Concatenate "GA_FieldSiteLocation_" and GSML_GEOL_ENTITIES.ENTITYID -->
             			</sa:LocatedSpecimen>
@@ -174,7 +169,8 @@
             </sa:relatedSamplingFeature>
             <sa:position>
                 <gml:Point gml:id="GA_FieldSiteLocation_93846001" srsName="urn:ogc:def:crs:EPSG:4326">  <!-- Concatenate "GA_FieldSiteLocation_" and GSML_GEOL_ENTITIES.ENTITYID.  srs is constant value -->
-            <gml:pos>148.7284886 -33.1381392</gml:pos>  <!-- GSML_GEOL_ENTITIES.GEOM -->
+                	<gml:pos>148.7284886 -33.1381392</gml:pos>  <!-- GSML_GEOL_ENTITIES.GEOM --> <!-- Longitude and Latitude -->  
+                	<!-- How do I indicate the error in the position (eg, +/- 40m) and the method used to locate this point (eg, GPS location)?  -->
         </gml:Point>
         </sa:position>
 	</gsml:Outcrop>
