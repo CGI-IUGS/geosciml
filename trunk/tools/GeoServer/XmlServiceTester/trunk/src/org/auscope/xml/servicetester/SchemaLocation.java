@@ -38,6 +38,9 @@ public class SchemaLocation {
         }
     }
 
+    /**
+     * @return true id this is a no-namespace schema location
+     */
     private boolean isNoNamespace() {
         return namespaceUri == null;
     }
@@ -56,6 +59,11 @@ public class SchemaLocation {
         }
     }
 
+    /**
+     * Return schema location for this no-namespace schema location.
+     * 
+     * @return
+     */
     public String getNoNamespaceSchemaLocationString() {
         if (!isNoNamespace()) {
             throw new RuntimeException(

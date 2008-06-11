@@ -2,6 +2,11 @@ package org.auscope.xml.servicetester;
 
 import java.net.URI;
 
+/**
+ * An element count assertion, that is, the assertion that the number of
+ * elements with a particular name in a response matches an integer.
+ * 
+ */
 public class ElementCountAssertion implements Assertion {
 
     private final URI namespaceUri;

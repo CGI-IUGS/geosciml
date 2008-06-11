@@ -6,6 +6,10 @@ package org.auscope.xml.servicetester;
 import java.net.URI;
 import java.util.HashMap;
 
+/**
+ * Counter of named elements.
+ * 
+ */
 public class ElementCounter {
 
     private final HashMap<String, Integer> elementCountMap = new HashMap<String, Integer>();
@@ -32,10 +36,27 @@ public class ElementCounter {
         }
     }
 
+    /**
+     * Return count of elements.
+     * 
+     * @param namespaceUri
+     *                namespace
+     * @param elementName
+     *                element name
+     * @return
+     */
     public int getElementCount(URI namespaceUri, String elementName) {
         return getElementCount(namespaceUri.toString(), elementName);
     }
 
+    /**
+     * Count an element
+     * 
+     * @param uri
+     *                namespace
+     * @param localName
+     *                element local name
+     */
     public void countElement(String uri, String localName) {
         String key = buildKey(uri, localName);
         Integer i = elementCountMap.get(key);
@@ -52,11 +73,13 @@ public class ElementCounter {
      * Build a key for this element.
      * 
      * @param uri
+     *                namespace
      * @param localName
+     *                element local name
      * @return
      */
     public String buildKey(String uri, String localName) {
         return "{" + uri + "}" + localName;
     }
-    
+
 }

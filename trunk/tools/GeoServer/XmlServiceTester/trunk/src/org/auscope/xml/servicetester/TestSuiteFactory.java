@@ -10,6 +10,12 @@ import javax.xml.bind.Unmarshaller;
 import org.auscope.xml.servicetester.generated.TestCaseType;
 import org.auscope.xml.servicetester.generated.TestSuiteType;
 
+/**
+ * Factory to hide the nastiness of unmarshalling the test-suite file and
+ * converting deserialised JAXB objects into gleaming pearly-white domain
+ * objects.
+ * 
+ */
 public class TestSuiteFactory {
 
     /**

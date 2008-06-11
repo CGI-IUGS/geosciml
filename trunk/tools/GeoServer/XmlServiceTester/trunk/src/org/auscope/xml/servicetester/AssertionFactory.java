@@ -6,6 +6,10 @@ import java.net.URISyntaxException;
 import org.auscope.xml.servicetester.generated.AssertionType;
 import org.auscope.xml.servicetester.generated.ElementCountAssertionType;
 
+/**
+ * The ugly business of manufacturing Assertions.
+ * 
+ */
 public class AssertionFactory {
 
     private static final AssertionFactory INSTANCE = new AssertionFactory();
@@ -17,6 +21,13 @@ public class AssertionFactory {
     private AssertionFactory() {
     }
 
+    /**
+     * Build an Assertion from a JAXB AssertionType (found in a test-suite
+     * file).
+     * 
+     * @param assertionType
+     * @return
+     */
     public Assertion build(AssertionType assertionType) {
         if (assertionType instanceof ElementCountAssertionType) {
             return build((ElementCountAssertionType) assertionType);
@@ -26,6 +37,13 @@ public class AssertionFactory {
         }
     }
 
+    /**
+     * Build an element count assertion from a JAXB deserialised element count
+     * assertion.
+     * 
+     * @param assertionType
+     * @return
+     */
     private Assertion build(ElementCountAssertionType assertionType) {
         try {
             return new ElementCountAssertion(new URI(assertionType
@@ -35,5 +53,5 @@ public class AssertionFactory {
             throw new RuntimeException(e);
         }
     }
-    
+
 }

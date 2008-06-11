@@ -6,6 +6,11 @@ import org.apache.commons.logging.Log;
 import org.xml.sax.ContentHandler;
 import org.xml.sax.ErrorHandler;
 
+/**
+ * A response processor that counts the elements in a document and tests if
+ * element count assertions pass or fail, reporting these to the log.
+ * 
+ */
 public class ElementCountAssertingResponseProcessor implements
         ResponseProcessor {
 
@@ -19,6 +24,13 @@ public class ElementCountAssertingResponseProcessor implements
         this.elementCountAssertions = elementCountAssertions;
     }
 
+    /*
+     * (non-Javadoc)
+     * 
+     * @see org.auscope.xml.servicetester.ResponseProcessor#process(org.auscope.xml.servicetester.Response,
+     *      org.apache.commons.logging.Log, org.xml.sax.ContentHandler,
+     *      org.xml.sax.ErrorHandler)
+     */
     public void process(Response response, Log log,
             ContentHandler contentHandler, ErrorHandler errorHandler) {
         ElementCounter elementCounter = new ElementCounter();

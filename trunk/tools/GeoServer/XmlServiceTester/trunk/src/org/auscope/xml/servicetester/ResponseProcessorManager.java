@@ -21,6 +21,10 @@ public class ResponseProcessorManager {
         this.errorHandler = errorHandler;
     }
 
+    /**
+     * @param response
+     * @param log
+     */
     public void process(Response response, Log log) {
         responseProcessor.process(response, log, contentHandler,
                 new LoggingErrorHandler(log, errorHandler));

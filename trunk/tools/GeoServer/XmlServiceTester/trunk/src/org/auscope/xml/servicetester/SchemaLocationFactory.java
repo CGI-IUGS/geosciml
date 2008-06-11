@@ -9,6 +9,11 @@ import java.net.URL;
 import org.auscope.xml.servicetester.generated.SchemaLocationType;
 import org.auscope.xml.servicetester.generated.TestSuiteType;
 
+/**
+ * Factory to hide the nastiness of building schema locations from the JAXB
+ * deserialised test-suite file.
+ * 
+ */
 public class SchemaLocationFactory {
 
     private static final SchemaLocationFactory INSTANCE = new SchemaLocationFactory();

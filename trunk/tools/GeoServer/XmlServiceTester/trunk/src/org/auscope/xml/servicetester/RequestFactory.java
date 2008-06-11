@@ -9,6 +9,11 @@ import org.auscope.xml.servicetester.generated.HttpPostRequestType;
 import org.auscope.xml.servicetester.generated.RequestType;
 import org.auscope.xml.servicetester.generated.TestSuiteType;
 
+/**
+ * Factory to hide the nastiness of converting JAXB deserialised requests into
+ * Request types.
+ * 
+ */
 public class RequestFactory {
 
     private static final RequestFactory INSTANCE = new RequestFactory();
@@ -20,6 +25,14 @@ public class RequestFactory {
     private RequestFactory() {
     }
 
+    /**
+     * Build a request.
+     * 
+     * @param config
+     * @param configType
+     * @param requestType
+     * @return
+     */
     public Request build(TestSuite config, TestSuiteType configType,
             RequestType requestType) {
         if (requestType instanceof HttpPostRequestType) {
@@ -32,6 +45,15 @@ public class RequestFactory {
         }
     }
 
+    /**
+     * Build a HTTP POST request, that is, one that gets a response using a
+     * request sourced from a file.
+     * 
+     * @param suite
+     * @param suiteType
+     * @param requestType
+     * @return
+     */
     private Request build(TestSuite suite, TestSuiteType suiteType,
             HttpPostRequestType requestType) {
         String serviceUrlString;

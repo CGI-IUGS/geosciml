@@ -9,12 +9,16 @@ import java.util.List;
 
 import org.apache.commons.logging.Log;
 
+/**
+ * A collection of test cases.
+ * 
+ */
 public class TestSuite {
 
     private static final String STARS = "********";
 
     private final URI configFileUri;
-    private final List<SchemaLocation> schemaLocations;
+    private final List<SchemaLocation> schemaLocations; // FIXME: use this
     private final List<TestCase> cases = new ArrayList<TestCase>();
 
     public TestSuite() {
@@ -39,8 +43,11 @@ public class TestSuite {
     }
 
     /**
+     * Run the test cases, logging results to log, returning true on success of
+     * all, else false.
+     * 
      * @param log
-     * @return true if success
+     * @return true on success, false on failure
      */
     public boolean run(Log log) {
         log.info(STARS + " START " + STARS);
@@ -97,10 +104,15 @@ public class TestSuite {
     }
 
     /**
+     * Convert a URI relative to the test-suite file into an absolute file.
      * 
+     * <p>
+     * 
+     * If the URI is null or there is no test-suite file, null is returned.
      * 
      * @param fileRelativeToConfigFile
-     * @return
+     *                URI relative to test-suite file.
+     * @return absolute File
      */
     public File resolve(String pathRelativeToConfigFile) {
         if (pathRelativeToConfigFile == null) {

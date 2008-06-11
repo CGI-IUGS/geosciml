@@ -112,6 +112,15 @@ public class ResponseProcessorManagerFactory {
         return outputFile;
     }
 
+    /**
+     * Build all the schema locations, first from the response, and then from
+     * the top level, so the top level are of lower priority.
+     * 
+     * @param suite
+     * @param suiteType
+     * @param responseType
+     * @return
+     */
     private List<SchemaLocation> buildSchemaLocations(TestSuite suite,
             TestSuiteType suiteType, ResponseType responseType) {
         List<SchemaLocation> schemaLocations = new ArrayList<SchemaLocation>();
