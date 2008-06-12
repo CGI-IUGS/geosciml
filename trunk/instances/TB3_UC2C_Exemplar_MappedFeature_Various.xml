@@ -50,13 +50,11 @@
                     <gsml:principalValue uom="urn:ogc:def:uom:UCUM:m">500</gsml:principalValue>          <!-- gsml_faults.LOC_ACC   UOM = constant urn value -->
                 </gsml:CGI_NumericValue>
             </gsml:positionalAccuracy>
-            <!-- TB3 Profile Note: BGS has made a different kind of specification here (rockhead, ground surface etc.) whereas other organizations
-                have put geographical specifications here. BGS is 'right' :-) E.g. in a borehole you would specify the borehole track as the samplingFrame
-                along which the depth coordinates would be projected to find the full position in 3D. Similarly these mapped lines could be projected onto
-                the ground surface or rockhead surface to get their 3D position. It is not useful to say that the mapped line whose geographical coordinates
-                you have has been mapped within the UK or France or Australia...
-                side note; what convention do we want to put for href values pointing to generic concepts like this if we don' actually have the coord data?-->
-            <gsml:samplingFrame xlink:href="urn:cgi:classsifier:GA:SurfaceGeologyOfEasternAustralia_1MillionScale"/>   <!-- Constant xlink value for this dataset  -->
+            <!-- TB3 Profile Note: For most geological maps the sampling frame can be identified by one of the two global features
+                urn:cgi:feature:CGI:EarthBedrockSurface or urn:cgi:feature:CGI:EarthNaturalSurface which are in the CGI Register at
+                https://www.seegrid.csiro.au/twiki/bin/view/CGIModel/CGIFeatureRegister. Email the Testbed mailing list if you think you
+                might want to use a different value here. -->
+            <gsml:samplingFrame xlink:href="urn:cgi:feature:CGI:EarthNaturalSurface"/>   <!-- Constant xlink value for this dataset  -->
             <gsml:specification>
                 <gsml:Fault gml:id="GA_Fault_12345">                   <!--NOTE:  Feature = gsml:Fault where gsml_faults.descript = 'Fault%'.  Feature = gsml:DuctileShearStructure where gsml_faults.descript = 'Shear%'.
                     gml:id = concatenate either "GA_Fault_" or "GA_Shear_" with gsml_faults.ufi.   One MappedFeature per structure for this dataset.--> 
@@ -110,7 +108,7 @@
                     <gsml:principalValue uom="urn:ogc:def:uom:UCUM:m">1000</gsml:principalValue>       <!-- gsml_faults.LOC_ACC   UOM = constant urn value -->
                 </gsml:CGI_NumericValue>
             </gsml:positionalAccuracy>
-            <gsml:samplingFrame xlink:href="urn:cgi:classsifier:GA:SurfaceGeologyOfEasternAustralia_1MillionScale"/>   <!-- Constant xlink value for this dataset  -->
+            <gsml:samplingFrame xlink:href="urn:cgi:feature:CGI:EarthNaturalSurface"/>   <!-- Constant xlink value for this dataset  -->
             <gsml:specification>
                 <!-- TB3 Profile Note: Same comments apply as for gsml:Fault above. -->
                 <gsml:DuctileShearStructure gml:id="GA_Shear_123457">                                   <!--NOTE:  Feature = gsml:Fault where gsml_faults.descript = 'Fault%'.  Feature = gsml:DuctileShearStructure where gsml_faults.descript = 'Shear%'.
@@ -151,7 +149,7 @@
                     <gsml:principalValue uom="urn:ogc:def:uom:UCUM:m">500</gsml:principalValue>   <!-- UOM is constant; gsml_contacts.loc_acc  -->
                 </gsml:CGI_NumericValue>
             </gsml:positionalAccuracy>
-            <gsml:samplingFrame xlink:href="urn:cgi:classsifier:GA:SurfaceGeologyOfEasternAustralia_1MillionScale"/>
+            <gsml:samplingFrame xlink:href="urn:cgi:feature:CGI:EarthNaturalSurface"/>
             <gsml:specification>
                 <!--             <gsml:specification xlink:href="http://features.ga.gov.au?1000100"/>  But can't use an xlink to a generic specification because each contact has specific related boundedUnits?  -->
                 <gsml:Contact gml:id="GA_Contact_24680">    <!-- Concatenate "GA_Contact_" & gsml_contacts.uid. One contact per mapped feature -->
@@ -209,7 +207,7 @@
                     <gsml:principalValue uom="urn:ogc:def:uom:UCUM:m">500</gsml:principalValue>
                 </gsml:CGI_NumericValue>
             </gsml:positionalAccuracy>
-            <gsml:samplingFrame xlink:href="urn:cgi:classsifier:GA:SurfaceGeologyOfEasternAustralia_1MillionScale"/>   <!-- constant -->
+            <gsml:samplingFrame xlink:href="urn:cgi:feature:CGI:EarthNaturalSurface"/>   <!-- constant -->
             <gsml:specification>
                 <!-- TB3 Profile Note: Same comments apply as for gsml:Contact above. -->
                 <gsml:Contact gml:id="GA_Contact_123456">    
@@ -256,7 +254,7 @@
                     <gsml:principalValue uom="urn:ogc:def:uom:UCUM:m">500</gsml:principalValue>    
                 </gsml:CGI_NumericValue>
             </gsml:positionalAccuracy>
-            <gsml:samplingFrame xlink:href="urn:cgi:classsifier:GA:SurfaceGeologyOfEasternAustralia_1MillionScale"/>
+            <gsml:samplingFrame xlink:href="urn:cgi:feature:CGI:EarthNaturalSurface"/>
             <gsml:specification>
                 <!-- TB3 Profile Note: Same comments apply as for gsml:Contact above. -->
                 <gsml:Contact gml:id="GA_Contact_9876542">   

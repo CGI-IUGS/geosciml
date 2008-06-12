@@ -108,7 +108,7 @@ urn:cgi:xmlns:CGI:GeoSciML:2.0 http://www.geosciml.org/schemas/geosciml/2.0_rc1/
 										</cv:CV_DomainObject>
 									</cv:geometry>
 									<!-- TB3 Profile Note: should put some urn from the CGI Lithology vocabulary here to be consistent with 3D and
-									wish to query on CGI defined lithology values. Not exactly sure whether the below is a valid example URN though?-->
+										wish to query on CGI defined lithology values. See http://tellus.brgm.fr/exist/brgm_geosciml/concept.xql?request=GetResource&resourcetype=vocabulary&resourcepath=CGI_SimpleLithology_2008.xml -->
 									<cv:value xsi:type="gml:ReferenceType" xlink:href="urn:cgi:classifierScheme:CGI:SimpleLithology:2008:Sandstone"/>
 								</cv:CV_GeometryValuePair>
 							</cv:element>
@@ -224,7 +224,8 @@ urn:cgi:xmlns:CGI:GeoSciML:2.0 http://www.geosciml.org/schemas/geosciml/2.0_rc1/
 			<!-- TB3 Profile note: surveyDetails are optional include only if you have the data. -->
 			<sa:surveyDetails>
 				<sa:SurveyProcedure gml:id="bh.303031333558303031382F53.sp">
-					<!-- Is urn:ogc:def:uom:UCUM:m the new standard way to refer ot metres? -->
+					<!-- TB3 Profile Note: Use urn:ogc:def:uom:UCUM:* for units specification.
+						See https://www.seegrid.csiro.au/twiki/bin/view/CGIModel/OgcURNScheme -->
 					<sa:elevationAccuracy uom="urn:ogc:def:uom:UCUM:m">0.1</sa:elevationAccuracy>
 					<sa:positionMethod xlink:href="urn:ogc:def:nil:OGC:missing"/>
 					<sa:positionAccuracy uom="urn:ogc:def:uom:UCUM:m">10</sa:positionAccuracy>

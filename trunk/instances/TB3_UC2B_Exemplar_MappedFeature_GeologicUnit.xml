@@ -45,13 +45,11 @@
 					<gsml:principalValue uom="urn:ogc:def:uom:UCUM:m">500</gsml:principalValue>
 				</gsml:CGI_NumericValue>
 			</gsml:positionalAccuracy>
-			<!-- TB3 Profile Note: BGS has made a different kind of specification here (rockhead, ground surface etc.) whereas other organizations
-				have put geographical specifications here. BGS is 'right' :-) E.g. in a borehole you would specify the borehole track as the samplingFrame
-				along which the depth coordinates would be projected to find the full position in 3D. Similarly these mapped polygons could be projected onto
-				the ground surface or rockhead surface to get their 3D position. It is not useful to say that the mapped polygon whose geographical coordinates
-				you have has been mapped within the UK or France or Australia...
-				side note; what convention do we want to put for href values pointing to generic concepts like this if we don' actually have the coord data?-->
-			<gsml:samplingFrame xlink:href="urn:cgi:classsifier:GA:SurfaceGeologyOfEasternAustralia_1MillionScale"/>   <!-- Constant xlink value for this dataset  -->
+			<!-- TB3 Profile Note: For most geological maps the sampling frame can be identified by one of the two global features
+				urn:cgi:feature:CGI:EarthBedrockSurface or urn:cgi:feature:CGI:EarthNaturalSurface which are in the CGI Register at
+				https://www.seegrid.csiro.au/twiki/bin/view/CGIModel/CGIFeatureRegister. Email the Testbed mailing list if you think you
+				might want to use a different value here. -->
+			<gsml:samplingFrame xlink:href="urn:cgi:feature:CGI:EarthNaturalSurface"/>   <!-- Constant xlink value for this dataset  -->
 			<gsml:specification>    <!-- First occurrence of  unit is described in line, then by reference to gml:id.   -->
 				<!-- TB3 Profile Note: Organizations are free to return GeologicUnit or  a subtype like LithodemicUnit etc.
 					However, do not return DeformationUnits (which require links to GeologicStructures and are getting too complex for this UseCase. -->
@@ -894,7 +892,7 @@
 					<gsml:principalValue uom="urn:ogc:def:uom:UCUM:m">1500</gsml:principalValue>
 				</gsml:CGI_NumericValue>
 			</gsml:positionalAccuracy>
-			<gsml:samplingFrame xlink:href="urn:cgi:classsifier:GA:SurfaceGeologyOfEasternAustralia_1MillionScale"/>
+			<gsml:samplingFrame xlink:href="urn:cgi:feature:CGI:EarthNaturalSurface"/>
 			<gsml:specification>          <!-- This unit is an example of a unit with multiple gsml:composition elements -->
 				<gsml:GeologicUnit gml:id="GA_GeologicUnit_Stratno_134">
 					<gml:description>Medium to coarse-grained hornblende diorite, metagabbro; very minor acid veins</gml:description>
@@ -1056,7 +1054,7 @@
 					<gsml:principalValue uom="urn:ogc:def:uom:UCUM:m">1500</gsml:principalValue>
 				</gsml:CGI_NumericValue>
 			</gsml:positionalAccuracy>
-			<gsml:samplingFrame xlink:href="urn:cgi:classsifier:GA:SurfaceGeologyOfEasternAustralia_1MillionScale"/>
+			<gsml:samplingFrame xlink:href="urn:cgi:feature:CGI:EarthNaturalSurface"/>
 			<gsml:specification>
 				<gsml:GeologicUnit gml:id="GA_GeologicUnit_Stratno_38484">
 					<gml:description>Quaternary sediments, undivided</gml:description>
@@ -1180,7 +1178,7 @@
 					<gsml:principalValue uom="urn:ogc:def:uom:UCUM:m">1500</gsml:principalValue>
 				</gsml:CGI_NumericValue>
 			</gsml:positionalAccuracy>
-			<gsml:samplingFrame xlink:href="urn:cgi:classsifier:GA:SurfaceGeologyOfEasternAustralia_1MillionScale"/>
+			<gsml:samplingFrame xlink:href="urn:cgi:feature:CGI:EarthNaturalSurface"/>
 			<gsml:specification xlink:href="#GA_GeologicUnit_Stratno_38484"/>  <!-- xlink ref to unit described above -->
 			<gsml:shape>
 				<gml:Polygon srsName="urn:ogc:def:crs:EPSG:4326">
@@ -1207,7 +1205,7 @@
 					<gsml:principalValue uom="urn:ogc:def:uom:UCUM:m">1500</gsml:principalValue>
 				</gsml:CGI_NumericValue>
 			</gsml:positionalAccuracy>
-			<gsml:samplingFrame xlink:href="urn:cgi:classsifier:GA:SurfaceGeologyOfEasternAustralia_1MillionScale"/>
+			<gsml:samplingFrame xlink:href="urn:cgi:feature:CGI:EarthNaturalSurface"/>
 			<gsml:specification>
 				<gsml:GeologicUnit gml:id="GA_GeologicUnit_Stratno_4090">
 					<gml:description>Clayey quartzose sand and sandy mud; minor gravel</gml:description>
