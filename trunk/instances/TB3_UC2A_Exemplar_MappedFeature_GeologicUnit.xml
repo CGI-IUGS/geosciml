@@ -116,12 +116,14 @@
                             <!-- TB3 Profile Note: BGS has included ControlledConcept inline, others have used xlink:href with a URN value. Will these URNs
                             be registered with the registry? Can't see any reason to restrict to one or the other for TB3.-->
                             <lithology>
-                                <!-- To do: consider whether we can map to CGI lithology terms. -->
-                                <ControlledConcept gml:id="RCS1">
-                                    <gml:name codeSpace="urn:ietf:rfc:2141">urn:cgi:classifier:BGS:RCS:CONG</gml:name>
-                                    <identifier codeSpace="urn:ietf:rfc:2141">urn:cgi:classifier:BGS:RCS:CONG</identifier>
-                                    <name xml:lang="en" codeSpace="urn:cgi:classifierScheme:BGS:RCS">CONGLOMERATE</name>
-                                    <vocabulary xlink:href="urn:cgi:classifierScheme:BGS:RCS"/>
+                                <!-- TB3 Profile Note: Should use the CGI Simple Lithology terms at
+                                .http://tellus.brgm.fr/exist/brgm_geosciml/concept.xql?request=GetResource&resourcetype=vocabulary&resourcepath=CGI_SimpleLithology_2008.xml -->
+                                <!-- TB3 Profile Note: Example has same gml:id as in register vocabulary for convenience but this cannot be a requirement. -->
+                                <ControlledConcept gml:id="CGILith_042">
+                                    <gml:name codeSpace="urn:ietf:rfc:2141">urn:cgi:classifier:CGI:SimpleLithology:2008:conglomerate</gml:name>
+                                    <identifier codeSpace="urn:ietf:rfc:2141">urn:cgi:classifier:CGI:SimpleLithology:2008:conglomerate</identifier>
+                                    <name xml:lang="en" codeSpace="urn:cgi:classifierScheme:CGI:SimpleLithology:2008">conglomerate</name>
+                                    <vocabulary xlink:href="urn:cgi:classifierScheme:CGI:SimpleLithology:2008"/>
                                 </ControlledConcept>
                             </lithology>
                             <!-- TB3 Profile Note: For use case 2A the material property is not required. -->
