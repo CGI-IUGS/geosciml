@@ -61,6 +61,18 @@
         </sequence>
         <attributeGroup ref="gml:AssociationAttributeGroup"/>
     </complexType>
+		<element name="StandardGlobalNumericalAge" substitutionGroup="gt:NumericEraBoundary" type="gt:StandardGlobalNumericalAgeType"/>
+		<complexType name="StandardGlobalNumericalAgeType">
+			<complexContent>
+				<extension base="gt:NumericEraBoundaryType"/>
+			</complexContent>
+		</complexType>
+		<complexType name="StandardGlobalNumericalAgePropertyType">
+			<sequence minOccurs="0">
+				<element ref="gt:StandardGlobalNumericalAge"/>
+			</sequence>
+			<attributeGroup ref="gml:AssociationAttributeGroup"/>
+		</complexType>
     <element name="GeochronologicEra" substitutionGroup="gt:TimeOrdinalEra" type="gt:GeochronologicEraType">
         <annotation>
             <documentation>The association of an era with a stratotype is optional. 

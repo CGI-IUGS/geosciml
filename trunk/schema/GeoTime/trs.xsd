@@ -6,23 +6,17 @@
 	<import namespace="http://www.opengis.net/gml" schemaLocation="http://schemas.opengis.net/gml/3.1.1/base/gml.xsd"/>
 	<import namespace="urn:cgi:xmlns:CGI:Utilities:1.0" schemaLocation="http://www.geosciml.org/schemas/cgiutilities/1.0/cgiUtilities.xsd"/>
 	<include schemaLocation="geologicTime.xsd"/>
-	<element name="StandardGlobalNumericalAge" substitutionGroup="gt:NumericEraBoundary" type="gt:StandardGlobalNumericalAgeType"/>
-	<complexType name="StandardGlobalNumericalAgeType">
-		<complexContent>
-			<extension base="gt:NumericEraBoundaryType"/>
-		</complexContent>
-	</complexType>
-	<complexType name="StandardGlobalNumericalAgePropertyType">
-		<sequence minOccurs="0">
-			<element ref="gt:StandardGlobalNumericalAge"/>
-		</sequence>
-		<attributeGroup ref="gml:AssociationAttributeGroup"/>
-	</complexType>
 	<element name="TimeOrdinalEraBoundary" substitutionGroup="gml:_GML" type="gt:TimeOrdinalEraBoundaryType"/>
 	<complexType name="TimeOrdinalEraBoundaryType">
 		<complexContent>
 			<extension base="gml:AbstractGMLType">
 				<sequence>
+					<element name="identifier" type="cgu:CodeWithAuthorityType">
+						<annotation>
+							<documentation>Language neutral identifier for the concept. 
+In GeoSciML this is normally a URN in the "classifier" branch, with the @codesSpace attribute set to "urn:ieft:rfc:2141".</documentation>
+						</annotation>
+					</element>
 					<element name="position" type="gml:TimeInstantPropertyType"/>
 					<element maxOccurs="unbounded" minOccurs="0" name="previousEra" type="gt:TimeOrdinalEraPropertyType"/>
 					<element maxOccurs="unbounded" minOccurs="0" name="nextEra" type="gt:TimeOrdinalEraPropertyType"/>
@@ -79,11 +73,11 @@ This is not the concept identifier.</documentation>
 		<complexContent>
 			<extension base="gml:AbstractTimeReferenceSystemType">
 				<sequence>
-                    <element name="identifier" type="cgu:CodeWithAuthorityType">
-					    <annotation>
-                            		<documentation>Language neutral identifier for the timescale. 
+          <element name="identifier" type="cgu:CodeWithAuthorityType">
+					   <annotation>
+                <documentation>Language neutral identifier for the timescale. 
 In GeoSciML this is normally a URN in the "classifierScheme" branch, with the @codesSpace attribute set to "urn:ieft:rfc:2141". </documentation>
-                        			</annotation>
+             </annotation>
 					</element>
 					<element maxOccurs="unbounded" minOccurs="1" name="component" type="gt:TimeOrdinalEraPropertyType"/>
 				</sequence>
