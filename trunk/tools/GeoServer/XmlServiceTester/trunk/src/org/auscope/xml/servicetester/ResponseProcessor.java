@@ -14,9 +14,13 @@ public interface ResponseProcessor {
      * Process a {@link Response}.
      * 
      * @param response
+     *                response to be processed
      * @param log
+     *                target of logging
      * @param contentHandler
+     *                content handler to be notified of document content events
      * @param errorHandler
+     *                error handler to be notified of document error events
      */
     public void process(Response response, Log log,
             ContentHandler contentHandler, ErrorHandler errorHandler);

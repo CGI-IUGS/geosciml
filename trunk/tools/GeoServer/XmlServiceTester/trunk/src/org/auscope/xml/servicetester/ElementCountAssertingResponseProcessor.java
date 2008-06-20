@@ -10,6 +10,10 @@ import org.xml.sax.ErrorHandler;
  * A response processor that counts the elements in a document and tests if
  * element count assertions pass or fail, reporting these to the log.
  * 
+ * <p>
+ * 
+ * Decorates another response processor.
+ * 
  */
 public class ElementCountAssertingResponseProcessor implements
         ResponseProcessor {
@@ -17,6 +21,14 @@ public class ElementCountAssertingResponseProcessor implements
     private final ResponseProcessor responseProcessor;
     private final List<ElementCountAssertion> elementCountAssertions;
 
+    /**
+     * Constructor.
+     * 
+     * @param responseProcessor
+     *                response processor to decorate
+     * @param elementCountAssertions
+     *                list of element count assertions to apply.
+     */
     public ElementCountAssertingResponseProcessor(
             ResponseProcessor responseProcessor,
             List<ElementCountAssertion> elementCountAssertions) {

@@ -14,9 +14,15 @@ import org.apache.commons.httpclient.HttpMethod;
  */
 public class HttpMethodResponse extends InputStreamResponse {
 
+    /**
+     * HttpClient implementation object, stored here so it can be released when
+     * processing of this response is complete.
+     */
     private final HttpMethod httpMethod;
 
     /**
+     * Constructor.
+     * 
      * @param inputStream
      *                inputStream from which response body can be read
      * @param httpMethod

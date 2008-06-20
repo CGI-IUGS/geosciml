@@ -11,14 +11,26 @@ import org.xml.sax.SAXException;
  */
 public class ElementCountingContentHandler implements ContentHandler {
 
+    /**
+     * Content handler to which all operations are delegated, that is, the
+     * content handler being decorated
+     */
     private final ContentHandler contentHandler;
+
+    /**
+     * counter for elements found in the document
+     */
     private final ElementCounter elementCounter;
 
     /**
+     * Constructor.
+     * 
      * @param contentHandler
-     *                content handler to which all operations are delegated.
+     *                content handler to which all operations are delegated,
+     *                that is, the content handler being decorated
      * 
      * @param elementCounter
+     *                counter for elements found in the document
      */
     public ElementCountingContentHandler(ContentHandler contentHandler,
             ElementCounter elementCounter) {

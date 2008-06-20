@@ -12,7 +12,11 @@ import java.util.HashMap;
  */
 public class ElementCounter {
 
-    private final HashMap<String, Integer> elementCountMap = new HashMap<String, Integer>();
+    /**
+     * Map from element name in {namespace}localname form to count of
+     * occurrences.
+     */
+    private final HashMap<String, Integer> elementNameToCountMap = new HashMap<String, Integer>();
 
     /**
      * Return the number of occurrences of the start of this element that have
@@ -26,7 +30,7 @@ public class ElementCounter {
      */
     public int getElementCount(String uri, String localName) {
         String key = buildKey(uri, localName);
-        Integer i = elementCountMap.get(key);
+        Integer i = elementNameToCountMap.get(key);
         if (i == null) {
             // no occurrences
             return 0;
@@ -59,24 +63,24 @@ public class ElementCounter {
      */
     public void countElement(String uri, String localName) {
         String key = buildKey(uri, localName);
-        Integer i = elementCountMap.get(key);
+        Integer i = elementNameToCountMap.get(key);
         if (i == null) {
             // first occurrence
-            elementCountMap.put(key, 1);
+            elementNameToCountMap.put(key, 1);
         } else {
             // subsequent occurrence
-            elementCountMap.put(key, i + 1);
+            elementNameToCountMap.put(key, i + 1);
         }
     }
 
     /**
-     * Build a key for this element.
+     * Build a string key for a qualified element name.
      * 
      * @param uri
      *                namespace
      * @param localName
      *                element local name
-     * @return
+     * @return element name in {namespace}localname form
      */
     public String buildKey(String uri, String localName) {
         return "{" + uri + "}" + localName;

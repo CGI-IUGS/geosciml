@@ -10,10 +10,31 @@ import org.xml.sax.ErrorHandler;
  */
 public class ResponseProcessorManager {
 
+    /**
+     * response processor to use
+     */
     private final ResponseProcessor responseProcessor;
+
+    /**
+     * content handler to notify of document content events
+     */
     private final ContentHandler contentHandler;
+
+    /**
+     * error handler to notify of document error events
+     */
     private final ErrorHandler errorHandler;
 
+    /**
+     * Constructor.
+     * 
+     * @param responseProcessor
+     *                response processor to use
+     * @param contentHandler
+     *                content handler to notify of document content events
+     * @param errorHandler
+     *                error handler to notify of document error events
+     */
     public ResponseProcessorManager(ResponseProcessor responseProcessor,
             ContentHandler contentHandler, ErrorHandler errorHandler) {
         this.responseProcessor = responseProcessor;
@@ -22,6 +43,10 @@ public class ResponseProcessorManager {
     }
 
     /**
+     * Process the response, using the log, with the content handler and error
+     * handler set in the constructor. The error handler is wrapped to log
+     * errors to the log.
+     * 
      * @param response
      * @param log
      */

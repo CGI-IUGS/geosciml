@@ -12,6 +12,9 @@ import org.apache.commons.logging.LogFactory;
  */
 public class XmlServiceTester {
 
+    /**
+     * Log used for reporting and logging.
+     */
     private static final Log LOG = LogFactory.getLog("XmlServiceTester");
 
     public static String USAGE = "Usage: java -Xmx512m"
@@ -35,7 +38,7 @@ public class XmlServiceTester {
      * @return true if success
      */
     public static boolean run(File testSuiteFile) {
-        return TestSuiteFactory.getInstance().load(testSuiteFile).run(LOG);
+        return TestSuiteFactory.load(testSuiteFile).run(LOG);
     }
 
     /**

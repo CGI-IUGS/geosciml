@@ -13,23 +13,56 @@ import org.xml.sax.ErrorHandler;
 /**
  * Process a response by serialising it to XML, annotated with any errors.
  * 
+ * <p>
+ * 
+ * Decorates another response processor.
+ * 
  */
 public class AnnotatingResponseProcessor implements ResponseProcessor {
 
+    /**
+     * Response processor decorated by this processor.
+     */
     private final ResponseProcessor responseProcessor;
+
+    /**
+     * File to which output is written.
+     */
     private final File outputFile;
+
+    /**
+     * Annotating serialises user to produce annotated output.
+     */
     private final AnnotatingHandler annotatingXmlSerializer = new AnnotatingHandler();
 
+    /**
+     * Constructor.
+     * 
+     * @param responseProcessor
+     *                response processor decorated by this processor
+     * @param outputFile
+     *                file to which output is written
+     */
     public AnnotatingResponseProcessor(ResponseProcessor responseProcessor,
             File outputFile) {
         this.responseProcessor = responseProcessor;
         this.outputFile = outputFile;
     }
 
+    /**
+     * Get the content handler to be notified of elements.
+     * 
+     * @return
+     */
     public ContentHandler getContentHandler() {
         return annotatingXmlSerializer;
     }
 
+    /**
+     * Get the element handler that will annotate output with comments.
+     * 
+     * @return
+     */
     public ErrorHandler getErrorHandler() {
         return annotatingXmlSerializer;
     }

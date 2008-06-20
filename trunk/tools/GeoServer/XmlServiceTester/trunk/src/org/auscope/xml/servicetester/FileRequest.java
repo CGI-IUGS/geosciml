@@ -9,9 +9,14 @@ import java.io.FileInputStream;
  */
 public class FileRequest implements Request {
 
+    /**
+     * file containing body of response
+     */
     private final File responseFile;
 
     /**
+     * Constructor.
+     * 
      * @param responseFile
      *                file containing body of response
      */
@@ -41,6 +46,9 @@ public class FileRequest implements Request {
         }
     }
 
+    /* (non-Javadoc)
+     * @see java.lang.Object#toString()
+     */
     @Override
     public String toString() {
         return "Request: read file " + responseFile;

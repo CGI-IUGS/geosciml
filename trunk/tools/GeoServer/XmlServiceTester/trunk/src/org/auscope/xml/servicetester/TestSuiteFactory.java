@@ -24,10 +24,9 @@ public class TestSuiteFactory {
      */
     private static final String GENERATED_PACKAGE = "org.auscope.xml.servicetester.generated";
 
-    public static TestSuiteFactory getInstance() {
-        return new TestSuiteFactory();
-    }
-
+    /**
+     * Prevent instantiation.
+     */
     private TestSuiteFactory() {
     }
 
@@ -35,11 +34,10 @@ public class TestSuiteFactory {
      * Load service tester configuration from an XML file.
      * 
      * @param testSuiteFile
-     * @return
-     * @throws Exception
+     * @return a test suite
      */
     @SuppressWarnings("unchecked")
-    public TestSuite load(File testSuiteFile) {
+    public static TestSuite load(File testSuiteFile) {
         TestSuiteType testSuiteType = null;
         try {
             JAXBContext jc = JAXBContext.newInstance(GENERATED_PACKAGE);
@@ -53,19 +51,21 @@ public class TestSuiteFactory {
     }
 
     /**
+     * Build a test suite from deserialised JAXB objects.
+     * 
      * @param testSuiteFile
      *                used only to configure the filename resolver
      * @param testSuiteType
-     * @return
+     * @return a test suite
      */
-    private TestSuite build(File testSuiteFile, TestSuiteType testSuiteType) {
+    private static TestSuite build(File testSuiteFile,
+            TestSuiteType testSuiteType) {
         TestSuite testSuite = new TestSuite(testSuiteFile);
         for (TestCaseType testCaseType : testSuiteType.getTestCase()) {
-            Request request = RequestFactory.getInstance().build(testSuite,
-                    testSuiteType, testCaseType.getRequest().getValue());
+            Request request = RequestFactory.build(testSuite, testSuiteType,
+                    testCaseType.getRequest().getValue());
             ResponseProcessorManager response = ResponseProcessorManagerFactory
-                    .getInstance().build(testSuite, testSuiteType,
-                            testCaseType.getResponse());
+                    .build(testSuite, testSuiteType, testCaseType.getResponse());
             TestCase c = new TestCase(request, response);
             testSuite.addCase(c);
         }

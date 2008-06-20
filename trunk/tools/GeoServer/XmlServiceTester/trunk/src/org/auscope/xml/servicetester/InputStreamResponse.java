@@ -9,8 +9,17 @@ import java.io.InputStream;
  */
 public class InputStreamResponse implements Response {
 
+    /**
+     * The input stream providing the text of the response.
+     */
     private final InputStream inputStream;
 
+    /**
+     * Constructor.
+     * 
+     * @param inputStream
+     *                The input stream providing the text of the response
+     */
     public InputStreamResponse(InputStream inputStream) {
         this.inputStream = inputStream;
     }

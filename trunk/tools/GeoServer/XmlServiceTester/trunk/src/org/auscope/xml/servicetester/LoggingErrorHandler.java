@@ -16,14 +16,24 @@ import org.xml.sax.helpers.DefaultHandler;
  */
 public class LoggingErrorHandler implements ErrorHandler {
 
+    /**
+     * log to which validation exception messages are written
+     */
     private final Log log;
+
+    /**
+     * error handler called after the log message is written
+     */
     private final ErrorHandler errorHandler;
 
     /**
+     * Constructor.
+     * 
      * @param log
      *                log to which validation exception messages are written
      * @param errorHandler
      *                error handler called after the log message is written.
+     *                This error handler is thus decorated.
      */
     public LoggingErrorHandler(Log log, ErrorHandler errorHandler) {
         this.log = log;
@@ -34,6 +44,7 @@ public class LoggingErrorHandler implements ErrorHandler {
      * Convenience constructor that uses DefaultHandler, which ignores messages.
      * 
      * @param log
+     *                log to which validation exception messages are written
      */
     public LoggingErrorHandler(Log log) {
         this(log, new DefaultHandler());

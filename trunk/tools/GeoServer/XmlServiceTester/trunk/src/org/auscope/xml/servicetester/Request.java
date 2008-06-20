@@ -7,9 +7,9 @@ public interface Request {
      * 
      * <p>
      * 
-     * Caller must call dispose() on response to release resources.
+     * Caller must call dispose() on returned response to release resources.
      * 
-     * @return newly created response
+     * @return newly created response (caller must dispose)
      */
     public Response submit();
 

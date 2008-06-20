@@ -16,12 +16,9 @@ import org.auscope.xml.servicetester.generated.TestSuiteType;
  */
 public class RequestFactory {
 
-    private static final RequestFactory INSTANCE = new RequestFactory();
-
-    public static RequestFactory getInstance() {
-        return INSTANCE;
-    }
-
+    /**
+     * Prevent instantiation.
+     */
     private RequestFactory() {
     }
 
@@ -33,7 +30,7 @@ public class RequestFactory {
      * @param requestType
      * @return
      */
-    public Request build(TestSuite config, TestSuiteType configType,
+    public static Request build(TestSuite config, TestSuiteType configType,
             RequestType requestType) {
         if (requestType instanceof HttpPostRequestType) {
             return build(config, configType, (HttpPostRequestType) requestType);
@@ -54,7 +51,7 @@ public class RequestFactory {
      * @param requestType
      * @return
      */
-    private Request build(TestSuite suite, TestSuiteType suiteType,
+    private static Request build(TestSuite suite, TestSuiteType suiteType,
             HttpPostRequestType requestType) {
         String serviceUrlString;
         if (requestType.getServiceUrl() != null) {
@@ -88,7 +85,7 @@ public class RequestFactory {
      * @param requestType
      * @return
      */
-    private Request build(TestSuite suite, TestSuiteType suiteType,
+    private static Request build(TestSuite suite, TestSuiteType suiteType,
             FileRequestType requestType) {
         File responseFile = suite.resolve(requestType.getResponseFile());
         if (responseFile == null || !responseFile.canRead()) {

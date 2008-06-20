@@ -8,6 +8,8 @@ import junit.framework.TestCase;
 
 public class SchemaLocationTest extends TestCase {
 
+    /* common test data */
+
     private static final String NAMESPACE_URI_STRING = "urn:example";
     private static final String SCHEMA_URL_STRING = "http://example.org/schemas/example.xsd";
     private static final String SCHEMA_FILE_STRING = "../../schemas/example.xsd";
@@ -26,6 +28,9 @@ public class SchemaLocationTest extends TestCase {
         }
     }
 
+    /**
+     * Test conversion of URL schema location.
+     */
     public void testSchemaUrl() {
         SchemaLocation schemaLocation = SchemaLocation.buildSchemaLocation(
                 NAMESPACE_URI, SCHEMA_URL);
@@ -33,6 +38,9 @@ public class SchemaLocationTest extends TestCase {
                 schemaLocation.getSchemaLocationString());
     }
 
+    /**
+     * Test conversion of file schema location.
+     */
     public void testSchemaFile() {
         SchemaLocation schemaLocation = SchemaLocation.buildSchemaLocation(
                 NAMESPACE_URI, SCHEMA_FILE);
@@ -44,6 +52,9 @@ public class SchemaLocationTest extends TestCase {
                 "../", "")));
     }
 
+    /**
+     * Test exception thrown for null schema file.
+     */
     public void testNullSchemaFile() {
         try {
             SchemaLocation.buildSchemaLocation(NAMESPACE_URI, (File) null);
@@ -53,6 +64,9 @@ public class SchemaLocationTest extends TestCase {
         }
     }
 
+    /**
+     * Test exception thrown for null schema file.
+     */
     public void testNullSchemaUrl() {
         try {
             SchemaLocation.buildSchemaLocation(NAMESPACE_URI, (URL) null);
@@ -62,6 +76,9 @@ public class SchemaLocationTest extends TestCase {
         }
     }
 
+    /**
+     * Test exception thrown for empty schema file path.
+     */
     public void testEmptySchemaFile() {
         try {
             SchemaLocation.buildSchemaLocation(NAMESPACE_URI, new File(""));
@@ -71,6 +88,9 @@ public class SchemaLocationTest extends TestCase {
         }
     }
 
+    /**
+     * Test exception thrown for whitespace schema file path.
+     */
     public void testBlankSchemaFile() {
         try {
             SchemaLocation.buildSchemaLocation(NAMESPACE_URI, new File(" "));
@@ -80,6 +100,9 @@ public class SchemaLocationTest extends TestCase {
         }
     }
 
+    /**
+     * Test conversion of no-namespace schema file.
+     */
     public void testNoNameSpaceSchemaUrl() {
         SchemaLocation schemaLocation = SchemaLocation.buildSchemaLocation(
                 null, SCHEMA_URL);
@@ -88,6 +111,9 @@ public class SchemaLocationTest extends TestCase {
         assertEquals(SCHEMA_URL_STRING, noNamespaceSchemaLocationString);
     }
 
+    /**
+     * Test conversion of no-namespace schema URL.
+     */
     public void testNoNameSpaceSchemaFile() {
         SchemaLocation schemaLocation = SchemaLocation.buildSchemaLocation(
                 null, SCHEMA_FILE);

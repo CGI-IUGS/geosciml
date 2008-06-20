@@ -26,8 +26,24 @@ import org.xml.sax.XMLReader;
  */
 public class ValidatingResponseProcessor implements ResponseProcessor {
 
+    /**
+     * File containing OASIS Catalog of schemas, or null if none. Used to
+     * satisfy requests for matching schema locations, instead of fetching from
+     * the web.
+     */
     private final File catalogFile;
+
+    /**
+     * Whitespace separated list of namespace/schema-location pairs, in the form
+     * of xsi:schemaLocation. These locations override the locations specified
+     * in the document.
+     */
     private final String schemaLocationString;
+
+    /**
+     * The no-namespace schema location, or null if none. This location
+     * overrides any non-namespace schema location specified in the document.
+     */
     private final String noNamespaceSchemaLocationString;
 
     /**
@@ -37,7 +53,8 @@ public class ValidatingResponseProcessor implements ResponseProcessor {
      *                OASIS catalog file used to resolve entities
      * @param schemaLocations
      *                list of {@link SchemaLocation} that overrides the
-     *                schemaLocation of the response document
+     *                schemaLocation/noNamespaceSchemaLocation of the response
+     *                document
      */
     public ValidatingResponseProcessor(File catalogFile,
             List<SchemaLocation> schemaLocations) {
@@ -52,6 +69,7 @@ public class ValidatingResponseProcessor implements ResponseProcessor {
      * Set features and properties on the parser.
      * 
      * @param reader
+     *                the XML reader to modify
      */
     private void configureReader(XMLReader reader) {
         try {
@@ -82,8 +100,12 @@ public class ValidatingResponseProcessor implements ResponseProcessor {
         }
     }
 
-    /* (non-Javadoc)
-     * @see org.auscope.xml.servicetester.ResponseProcessor#process(org.auscope.xml.servicetester.Response, org.apache.commons.logging.Log, org.xml.sax.ContentHandler, org.xml.sax.ErrorHandler)
+    /*
+     * (non-Javadoc)
+     * 
+     * @see org.auscope.xml.servicetester.ResponseProcessor#process(org.auscope.xml.servicetester.Response,
+     *      org.apache.commons.logging.Log, org.xml.sax.ContentHandler,
+     *      org.xml.sax.ErrorHandler)
      */
     public void process(Response response, Log log,
             ContentHandler contentHandler, ErrorHandler errorHandler) {

@@ -14,8 +14,6 @@ import org.xml.sax.ContentHandler;
 import org.xml.sax.ErrorHandler;
 import org.xml.sax.helpers.DefaultHandler;
 
-import sun.awt.RepaintArea;
-
 /**
  * Factory to build a {@link ResponseProcessorManager} from the options bound by
  * JAXB from the test-suite file.
@@ -23,16 +21,21 @@ import sun.awt.RepaintArea;
  */
 public class ResponseProcessorManagerFactory {
 
-    private static final ResponseProcessorManagerFactory INSTANCE = new ResponseProcessorManagerFactory();
-
-    public static ResponseProcessorManagerFactory getInstance() {
-        return INSTANCE;
-    }
-
+    /**
+     * Prevent instantiation.
+     */
     private ResponseProcessorManagerFactory() {
     }
 
-    public ResponseProcessorManager build(TestSuite suite,
+    /**
+     * Build a response processor manager from deserialised test-suite file
+     * 
+     * @param suite
+     * @param suiteType
+     * @param responseType
+     * @return
+     */
+    public static ResponseProcessorManager build(TestSuite suite,
             TestSuiteType suiteType, ResponseType responseType) {
         /*
          * ResponseProcessor form a call stack. At the bottom must be a
@@ -81,13 +84,14 @@ public class ResponseProcessorManagerFactory {
     }
 
     /**
-     * Extract catalog-file, with validation.
+     * Extract catalog-file, and validate that it exists and is readable.
      * 
      * @param suite
      * @param suiteType
-     * @return
+     * @return catalog file, or null if none set
      */
-    private File buildCatalogFile(TestSuite suite, TestSuiteType suiteType) {
+    private static File buildCatalogFile(TestSuite suite,
+            TestSuiteType suiteType) {
         File catalogFile = suite.resolve(suiteType.getCatalogFile());
         if (catalogFile != null && !catalogFile.canRead()) {
             throw new RuntimeException("Cannot read catalog file: "
@@ -97,11 +101,15 @@ public class ResponseProcessorManagerFactory {
     }
 
     /**
+     * Build output file, or null if not set. Validates that the output file
+     * would be writable.
+     * 
      * @param suite
      * @param responseType
      * @return either null or an output file
      */
-    private File buildOutputFile(TestSuite suite, ResponseType responseType) {
+    private static File buildOutputFile(TestSuite suite,
+            ResponseType responseType) {
         File outputFile = suite.resolve(responseType.getOutputFile());
         if (outputFile != null
                 && (outputFile.getParent() == null || !outputFile
@@ -119,29 +127,35 @@ public class ResponseProcessorManagerFactory {
      * @param suite
      * @param suiteType
      * @param responseType
-     * @return
+     * @return list of schema locations
      */
-    private List<SchemaLocation> buildSchemaLocations(TestSuite suite,
+    private static List<SchemaLocation> buildSchemaLocations(TestSuite suite,
             TestSuiteType suiteType, ResponseType responseType) {
         List<SchemaLocation> schemaLocations = new ArrayList<SchemaLocation>();
         for (SchemaLocationType locationType : responseType.getSchemaLocation()) {
-            schemaLocations.add(SchemaLocationFactory.getInstance().build(
-                    suite, suiteType, locationType));
+            schemaLocations.add(SchemaLocationFactory.build(suite, suiteType,
+                    locationType));
         }
         for (SchemaLocationType locationType : suiteType.getSchemaLocation()) {
-            schemaLocations.add(SchemaLocationFactory.getInstance().build(
-                    suite, suiteType, locationType));
+            schemaLocations.add(SchemaLocationFactory.build(suite, suiteType,
+                    locationType));
         }
         return schemaLocations;
     }
 
-    private List<ElementCountAssertion> buildElementCountAssertions(
+    /**
+     * Build list or element count assertions for this response.
+     * 
+     * @param responseType
+     * @return list of element count assertions
+     */
+    private static List<ElementCountAssertion> buildElementCountAssertions(
             ResponseType responseType) {
         List<ElementCountAssertion> elementCountAssertions = new ArrayList<ElementCountAssertion>();
         for (JAXBElement<? extends AssertionType> assertionType : responseType
                 .getAssertion()) {
-            Assertion assertion = AssertionFactory.getInstance().build(
-                    assertionType.getValue());
+            Assertion assertion = AssertionFactory.build(assertionType
+                    .getValue());
             if (assertion instanceof ElementCountAssertion) {
                 elementCountAssertions.add((ElementCountAssertion) assertion);
             }

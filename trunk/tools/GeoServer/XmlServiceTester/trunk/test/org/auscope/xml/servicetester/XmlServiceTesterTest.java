@@ -6,8 +6,14 @@ import org.auscope.xml.servicetester.XmlServiceTester;
 
 import junit.framework.TestCase;
 
+/**
+ * Top-level integration tests of XmlServiceTester.
+ */
 public class XmlServiceTesterTest extends TestCase {
 
+    /**
+     * Basic test.
+     */
     public static void test() {
         assertTrue(XmlServiceTester
                 .run(new File(

@@ -18,10 +18,18 @@ public class SchemaLocation {
     private final URI namespaceUri;
 
     /**
-     * schema location URI
+     * schema location URI (could be a URL or absolute file)
      */
     private final URI schemaUri;
 
+    /**
+     * Constructor.
+     * 
+     * @param namespaceUri
+     *                namespace of schema
+     * @param schemaUri
+     *                schema location URI (could be a URL or absolute file)
+     */
     private SchemaLocation(URI namespaceUri, URI schemaUri) {
         this.namespaceUri = namespaceUri;
         this.schemaUri = schemaUri;
@@ -39,7 +47,9 @@ public class SchemaLocation {
     }
 
     /**
-     * @return true id this is a no-namespace schema location
+     * Is this a no-namespace schema location?
+     * 
+     * @return true if this is a no-namespace schema location
      */
     private boolean isNoNamespace() {
         return namespaceUri == null;
@@ -48,7 +58,7 @@ public class SchemaLocation {
     /**
      * Return namespace/schema as a whitespace-separated String
      * 
-     * @return
+     * @return whitespace-separated namespace/schema pair
      */
     public String getSchemaLocationString() {
         if (isNoNamespace()) {
@@ -62,7 +72,7 @@ public class SchemaLocation {
     /**
      * Return schema location for this no-namespace schema location.
      * 
-     * @return
+     * @return the schema location (there is no namespace)
      */
     public String getNoNamespaceSchemaLocationString() {
         if (!isNoNamespace()) {
@@ -78,6 +88,7 @@ public class SchemaLocation {
      * Test if a URI is empty or consists only of whitespace.
      * 
      * @param uri
+     *                URI to test
      * @return true if empty or whitespace
      */
     private static boolean isEmpty(URI uri) {
@@ -87,7 +98,12 @@ public class SchemaLocation {
     /**
      * Build a space-separated namespace schema location string
      * 
+     * <p>
+     * 
+     * No-namespace schema locations are ignored.
+     * 
      * @param schemaLocations
+     *                list of schema locations
      * @return namespace schema location string or null if none
      */
     public static String buildSchemaLocationString(
@@ -111,14 +127,18 @@ public class SchemaLocation {
     }
 
     /**
+     * Return the first no-namespace schema location in the list of schema
+     * locations.
+     * 
      * @param schemaLocations
+     *                list of schema locations
      * @return no-namespace schema location string, or null if none
      */
     public static String buildNoNamespaceSchemaLocationString(
             List<SchemaLocation> schemaLocations) {
         for (SchemaLocation schemaLocation : schemaLocations) {
             if (schemaLocation.isNoNamespace()) {
-                schemaLocation.getNoNamespaceSchemaLocationString();
+                return schemaLocation.getNoNamespaceSchemaLocationString();
             }
         }
         return null;
@@ -148,7 +168,7 @@ public class SchemaLocation {
     }
 
     /**
-     * Build schema location withURL.
+     * Build schema location with URL.
      * 
      * @param namespaceUri
      *                namespace of schema or null if none

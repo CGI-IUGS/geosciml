@@ -30,13 +30,24 @@ import org.xml.sax.SAXParseException;
 @SuppressWarnings("deprecation")
 public class AnnotatingHandler implements ContentHandler, ErrorHandler {
 
+    /**
+     * Serializer to which serialisation is delegated.
+     */
     private final XMLSerializer xmlSerializer;
 
+    /**
+     * Constructor.
+     */
     public AnnotatingHandler() {
         xmlSerializer = new XMLSerializer(new OutputFormat(Method.XML, null,
                 true));
     }
 
+    /**
+     * Set writer with which serialised document is written.
+     * 
+     * @param writer
+     */
     public void setWriter(Writer writer) {
         xmlSerializer.setOutputCharStream(writer);
     }
@@ -56,14 +67,29 @@ public class AnnotatingHandler implements ContentHandler, ErrorHandler {
 
     /* ErrorHandler */
 
+    /*
+     * (non-Javadoc)
+     * 
+     * @see org.xml.sax.ErrorHandler#warning(org.xml.sax.SAXParseException)
+     */
     public void warning(SAXParseException exception) throws SAXException {
         comment("WARNING: " + exception.getMessage());
     }
 
+    /*
+     * (non-Javadoc)
+     * 
+     * @see org.xml.sax.ErrorHandler#error(org.xml.sax.SAXParseException)
+     */
     public void error(SAXParseException exception) throws SAXException {
         comment("ERROR: " + exception.getMessage());
     }
 
+    /*
+     * (non-Javadoc)
+     * 
+     * @see org.xml.sax.ErrorHandler#fatalError(org.xml.sax.SAXParseException)
+     */
     public void fatalError(SAXParseException exception) throws SAXException {
         comment("FATAL ERROR: " + exception.getMessage());
     }

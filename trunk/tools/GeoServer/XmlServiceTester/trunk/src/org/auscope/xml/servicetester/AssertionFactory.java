@@ -12,12 +12,9 @@ import org.auscope.xml.servicetester.generated.ElementCountAssertionType;
  */
 public class AssertionFactory {
 
-    private static final AssertionFactory INSTANCE = new AssertionFactory();
-
-    public static AssertionFactory getInstance() {
-        return INSTANCE;
-    }
-
+    /**
+     * Prevent instantiation.
+     */
     private AssertionFactory() {
     }
 
@@ -28,7 +25,7 @@ public class AssertionFactory {
      * @param assertionType
      * @return
      */
-    public Assertion build(AssertionType assertionType) {
+    public static Assertion build(AssertionType assertionType) {
         if (assertionType instanceof ElementCountAssertionType) {
             return build((ElementCountAssertionType) assertionType);
         } else {
@@ -44,7 +41,7 @@ public class AssertionFactory {
      * @param assertionType
      * @return
      */
-    private Assertion build(ElementCountAssertionType assertionType) {
+    private static Assertion build(ElementCountAssertionType assertionType) {
         try {
             return new ElementCountAssertion(new URI(assertionType
                     .getNamespaceUri()), assertionType.getElementName(),
