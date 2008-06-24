@@ -1,7 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!--Example mapped feature from BGS data.-->
-<GSML xmlns="urn:cgi:xmlns:CGI:GeoSciML:2.0" gml:id="mf.1" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:gml="http://www.opengis.net/gml" xmlns:swe="http://www.opengis.net/swe/1.0" xmlns:om="http://www.opengis.net/om/1.0" xmlns:sa="http://www.opengis.net/sampling/1.0" xmlns:cv="http://www.opengis.net/cv/0.2" xmlns:geox="http://www.opengis.net/geomExt/0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="
-	urn:cgi:xmlns:CGI:GeoSciML:2.0	http://www.geosciml.org/schemas/geosciml/2.0_rc1/geosciml.xsd">
+<GSML xmlns="urn:cgi:xmlns:CGI:GeoSciML:2.0" gml:id="mf.1" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:gml="http://www.opengis.net/gml" xmlns:om="http://www.opengis.net/om/1.0" xmlns:sa="http://www.opengis.net/sampling/1.0"  xmlns:geox="http://www.opengis.net/geomExt/0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="
+	http://www.opengis.net/gml 		http://schemas.opengis.net/gml/3.1.1/base/gml.xsd
+	urn:cgi:xmlns:CGI:GeoSciML:2.0	https://www.seegrid.csiro.au/subversion/GeoSciML/trunk/schema/GeoSciML/geosciml.xsd
+	http://www.opengis.net/om/1.0 		http://schemas.opengis.net/om/1.0.0/om.xsd 
+	http://www.opengis.net/sampling/1.0 	http://schemas.opengis.net/sampling/1.0.0/sampling.xsd">
 	<member>
 		<MappedFeature>
 			<observationMethod>
@@ -143,7 +146,25 @@
 									</lithology>
 									<proportion>
 										<CGI_NumericValue>
-											<principalValue uom="percent">100</principalValue>
+											<principalValue uom="percent">50</principalValue>
+										</CGI_NumericValue>
+									</proportion>
+								</CompositionPart>
+							</composition>
+							<composition>
+								<CompositionPart>
+									<role codeSpace="urn:cgi:classifierScheme:BGS:RoleVocab">dominantConstituent</role>
+									<lithology>
+										<ControlledConcept gml:id="RCS3" >
+											<gml:name codeSpace="urn:ietf:rfc:2141">urn:cgi:classifier:BGS:RCS:LMST</gml:name>
+											<identifier codeSpace="urn:ietf:rfc:2141">urn:cgi:classifier:BGS:RCS:LMST</identifier>
+											<name xml:lang="en" codeSpace="urn:cgi:classifierScheme:BGS:RCS">LIMESTONE</name>
+											<vocabulary xlink:href="urn:cgi:classifierScheme:BGS:RCS"/>
+										</ControlledConcept>
+									</lithology>
+									<proportion>
+										<CGI_NumericValue>
+											<principalValue uom="percent">50</principalValue>
 										</CGI_NumericValue>
 									</proportion>
 								</CompositionPart>
@@ -153,6 +174,7 @@
 					<vocabulary xlink:href="urn:cgi:classifierScheme:BGS:StratigraphicLexicon"/>
 				</ControlledConcept>
 			</gml:definitionMember>
+			<identifier codeSpace="urn:ietf:rfc:2141">urn:cgi:classifierScheme:BGS:RCS</identifier>
 		</StratigraphicLexicon>
 	</member>
 </GSML>
