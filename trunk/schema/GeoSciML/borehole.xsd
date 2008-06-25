@@ -76,7 +76,7 @@ These are often plotted on a map. </documentation>
     </element>
     <complexType name="BoreholeDetailsType">
         <sequence>
-            <element name="operator" type="gml:ReferenceType">
+            <element name="operator" type="gml:ReferenceType" minOccurs="0">
                 <annotation>
                     <appinfo>
                         <gml:targetElement>CI_ResponsibleParty</gml:targetElement>
@@ -84,7 +84,7 @@ These are often plotted on a map. </documentation>
                     <documentation>Organisation responsible for commissioning the borehole (as opposed to drilling the borehole)</documentation>
                 </annotation>
             </element>
-            <element name="driller" type="gml:ReferenceType">
+            <element name="driller" type="gml:ReferenceType" minOccurs="0">
                 <annotation>
                     <appinfo>
                         <gml:targetElement>CI_ResponsibleParty</gml:targetElement>
@@ -107,7 +107,7 @@ These are often plotted on a map. </documentation>
                     <documentation>Indicates the position relative to ground surface where the borehole commenced. Appropriate terms would include Drilled from Ground Surface; Drilled Underground;  Drilled from Quarry Floor etc </documentation>
                 </annotation>
             </element>
-            <element name="nominalDiameter" type="gml:MeasureType">
+            <element name="nominalDiameter" type="gml:MeasureType" minOccurs="0">
                 <annotation>
                     <documentation>The starting diameter</documentation>
                 </annotation>
@@ -115,6 +115,19 @@ These are often plotted on a map. </documentation>
             <element name="inclinationType" type="gsml:BoreholeInclinationCodeType">
                 <annotation>
                     <documentation>Indicates the inclination of the borehole. Appropriate terms would include vertical; inclined up; inclined down, horizontal</documentation>
+                </annotation>
+            </element>
+			<element name="coredInterval" type="gml:BoundingShapeType" minOccurs="0" maxOccurs="unbounded">
+                <annotation>
+                    <documentation>Interval(s) within the borehole from which core was recovered</documentation>
+                </annotation>
+            </element>
+            <element name="coreCustodian" type="gml:ReferenceType" minOccurs="0">
+                <annotation>
+                    <appinfo>
+                        <gml:targetElement>CI_ResponsibleParty</gml:targetElement>
+                    </appinfo>
+                    <documentation>Organisation that is custodian of the core recovered from the borehole</documentation>
                 </annotation>
             </element>
         </sequence>
