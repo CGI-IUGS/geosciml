@@ -55,9 +55,32 @@
 			<id>MappedFeatureUseCase2A</id>
 			<parameters>
 				<Parameter>
-					<name>directory</name>
-					<!-- path can be relative to this file if starts with "file: -->
-					<value>file:./</value>
+					<name>dbtype</name>
+					<value>postgis</value>
+				</Parameter>
+				<Parameter>
+					<name>host</name>
+					<value>PUT_YOUR_POSTGIS_SERVER_NAME_HERE</value>
+				</Parameter>
+				<Parameter>
+					<name>port</name>
+					<value>5432</value>
+				</Parameter>
+				<Parameter>
+					<name>database</name>
+					<value>gsmltb3</value>
+				</Parameter>
+				<Parameter>
+					<name>schema</name>
+					<value>gsv</value>
+				</Parameter>
+				<Parameter>
+					<name>user</name>
+					<value>gsmltb3</value>
+				</Parameter>
+				<Parameter>
+					<name>passwd</name>
+					<value>PUT_YOUR_POSTGIS_USER_PASSWORD_HERE</value>
 				</Parameter>
 			</parameters>
 		</DataStore>
@@ -77,8 +100,11 @@
 
 		<FeatureTypeMapping>
 
+			<!-- this is the data store id given above -->
 			<sourceDataStore>MappedFeatureUseCase2A</sourceDataStore>
-			<sourceType>MappedFeatureUseCase2A</sourceType>
+
+			<!-- the name of the table in the database -->
+			<sourceType>mapped_feature_use_case_2a</sourceType>
 
 			<targetElement>gsml:MappedFeatureUseCase2A</targetElement>
 
@@ -96,208 +122,20 @@
 				</AttributeMapping>
 
 				<AttributeMapping>
-					<targetAttribute>gml:name[1]</targetAttribute>
-					<sourceExpression>
-						<OCQL>LEX_D</OCQL>
-					</sourceExpression>
-				</AttributeMapping>
-
-				<AttributeMapping>
-					<targetAttribute>gsml:shape</targetAttribute>
-					<sourceExpression>
-						<OCQL>SHAPE</OCQL>
-					</sourceExpression>
-				</AttributeMapping>
-
-				<!-- GeologicUnit -->
-
-				<AttributeMapping>
-					<targetAttribute>
-						gsml:specification
-					</targetAttribute>
-					<targetAttributeNode>
-						gsml:GeologicUnitPropertyType
-					</targetAttributeNode>
-				</AttributeMapping>
-
-				<AttributeMapping>
-					<targetAttribute>
-						gsml:specification/gsml:GeologicUnit/gsml:observationMethod/gsml:CGI_TermValue/gsml:value
-					</targetAttribute>
-					<sourceExpression>
-						<OCQL>'creative imagination'</OCQL>
-					</sourceExpression>
-					<ClientProperty>
-						<name>codeSpace</name>
-						<value>
-							'urn:some:authority:on:geologicunit:observationmethods'
-						</value>
-					</ClientProperty>
-				</AttributeMapping>
-
-				<AttributeMapping>
-					<targetAttribute>
-						gsml:specification/gsml:GeologicUnit/gsml:purpose
-					</targetAttribute>
-					<sourceExpression>
-						<OCQL>'instance'</OCQL>
-					</sourceExpression>
-				</AttributeMapping>
-
-				<AttributeMapping>
-					<targetAttribute>
-						gsml:specification/gsml:GeologicUnit/gsml:bodyMorphology/gsml:CGI_TermValue/gsml:value
-					</targetAttribute>
-					<sourceExpression>
-						<OCQL>'fan'</OCQL>
-					</sourceExpression>
-					<ClientProperty>
-						<name>codeSpace</name>
-						<value>
-							'urn:some:authority:on:morphologies'
-						</value>
-					</ClientProperty>
-				</AttributeMapping>
-
-				<AttributeMapping>
-					<targetAttribute>
-						gsml:specification/gsml:GeologicUnit/gsml:compositionCategory/gsml:CGI_TermValue/gsml:value
-					</targetAttribute>
-					<sourceExpression>
-						<OCQL>'carbonate'</OCQL>
-					</sourceExpression>
-					<ClientProperty>
-						<name>codeSpace</name>
-						<value>
-							'urn:some:authority:on:compositioncategories'
-						</value>
-					</ClientProperty>
-				</AttributeMapping>
-
-				<AttributeMapping>
-					<targetAttribute>
-						gsml:specification/gsml:GeologicUnit/gsml:exposureColor/gsml:CGI_TermValue/gsml:value
-					</targetAttribute>
-					<sourceExpression>
-						<OCQL>'bisque'</OCQL>
-					</sourceExpression>
-					<ClientProperty>
-						<name>codeSpace</name>
-						<value>
-							'urn:some:authority:on:exposurecolors'
-						</value>
-					</ClientProperty>
-				</AttributeMapping>
-
-
-				<AttributeMapping>
-					<targetAttribute>
-						gsml:specification/gsml:GeologicUnit/gsml:outcropCharacter/gsml:CGI_TermValue/gsml:value
-					</targetAttribute>
-					<sourceExpression>
-						<OCQL>'poorly exposed'</OCQL>
-					</sourceExpression>
-					<ClientProperty>
-						<name>codeSpace</name>
-						<value>
-							'urn:some:authority:on:outcropcharacters'
-						</value>
-					</ClientProperty>
-				</AttributeMapping>
-
-				<AttributeMapping>
-					<targetAttribute>
-						gsml:specification/gsml:GeologicUnit/gsml:rank
-					</targetAttribute>
-					<sourceExpression>
-						<OCQL>'formation'</OCQL>
-					</sourceExpression>
-					<ClientProperty>
-						<name>codeSpace</name>
-						<value>'urn:some:authority:on:ranks'</value>
-					</ClientProperty>
-				</AttributeMapping>
-
-				<AttributeMapping>
-					<targetAttribute>
-						gsml:specification/gsml:GeologicUnit/gsml:classifier/gsml:ControlledConcept
-					</targetAttribute>
-					<ClientProperty>
-						<name>gml:id</name>
-						<value>strConcat('gml.id.', MSLINK)</value>
-					</ClientProperty>
-				</AttributeMapping>
-
-				<AttributeMapping>
-					<targetAttribute>
-						gsml:specification/gsml:GeologicUnit/gsml:classifier/gsml:ControlledConcept/gml:name
-					</targetAttribute>
-					<sourceExpression>
-						<OCQL>'The gml name of the concept'</OCQL>
-					</sourceExpression>
-				</AttributeMapping>
-
-
-				<AttributeMapping>
-					<targetAttribute>
-						gsml:specification/gsml:GeologicUnit/gsml:classifier/gsml:ControlledConcept/gsml:identifier
-					</targetAttribute>
-					<sourceExpression>
-						<OCQL>'urn:classifier:some:concept'</OCQL>
-					</sourceExpression>
-					<ClientProperty>
-						<name>codeSpace</name>
-						<value>'urn:ieft:rfc:2141'</value>
-					</ClientProperty>
-				</AttributeMapping>
-
-				<AttributeMapping>
-					<targetAttribute>
-						gsml:specification/gsml:GeologicUnit/gsml:classifier/gsml:ControlledConcept/gsml:name
-					</targetAttribute>
-					<sourceExpression>
-						<OCQL>'Concept name goes here'</OCQL>
-					</sourceExpression>
-					<ClientProperty>
-						<name>xml:lang</name>
-						<value>'en-GB'</value>
-					</ClientProperty>
-				</AttributeMapping>
-
-				<AttributeMapping>
-					<targetAttribute>
-						gsml:specification/gsml:GeologicUnit/gsml:classifier/gsml:ControlledConcept/gsml:vocabulary
-					</targetAttribute>
-					<ClientProperty>
-						<name>xlink:href</name>
-						<value>
-							'http://example.org/we/have/serialised/enough/for/one/day'
-						</value>
-					</ClientProperty>
-				</AttributeMapping>
-
-				<!--  End of GeologicUnit -->
-
-				<AttributeMapping>
 					<targetAttribute>
 						gsml:observationMethod/gsml:CGI_TermValue/gsml:value
 					</targetAttribute>
 					<sourceExpression>
-						<OCQL>'dummy'</OCQL>
+						<OCQL>interpretationmethod</OCQL>
 					</sourceExpression>
 					<ClientProperty>
 						<name>codeSpace</name>
 						<value>
-							'urn:some:authority:on:mappedfeature:observationmethods'
+							'urn:cgi:classifierScheme:GSV:ObservationMethod'
 						</value>
 					</ClientProperty>
 				</AttributeMapping>
 
-				<!--
-					gsml:positionalAccuracy is abstract so need to give it a concrete type.
-					This mapping must come before the mapping for
-					gsml:positionalAccuracy/gsml:CGI_NumericValue/gsml:principalValue
-				-->
 				<AttributeMapping>
 					<targetAttribute>
 						gsml:positionalAccuracy
@@ -312,11 +150,11 @@
 						gsml:positionalAccuracy/gsml:CGI_NumericValue/gsml:principalValue
 					</targetAttribute>
 					<sourceExpression>
-						<OCQL>500</OCQL>
+						<OCQL>locationalaccuracy</OCQL>
 					</sourceExpression>
 					<ClientProperty>
 						<name>uom</name>
-						<value>'urn:ogc:def:uom:UCUM:m'</value>
+						<value>locationalaccuracy_uom</value>
 					</ClientProperty>
 				</AttributeMapping>
 
@@ -327,9 +165,204 @@
 					<ClientProperty>
 						<name>xlink:href</name>
 						<value>
-							'http://example.com/get/your/sampling/frame/here'
+							'urn:cgi:feature:CGI:EarthNaturalSurface'
 						</value>
 					</ClientProperty>
+				</AttributeMapping>
+
+				<AttributeMapping>
+					<targetAttribute>
+						gsml:specification
+					</targetAttribute>
+					<targetAttributeNode>
+						gsml:GeologicUnitPropertyType
+					</targetAttributeNode>
+				</AttributeMapping>
+
+				<AttributeMapping>
+					<targetAttribute>
+						gsml:specification/gsml:GeologicUnit/gml:name[1]
+					</targetAttribute>
+					<sourceExpression>
+						<OCQL>gsv.geologicalfeature_urn</OCQL>
+					</sourceExpression>
+					<ClientProperty>
+						<name>codeSpace</name>
+						<value>'urn:ietf:rfc:2141'</value>
+					</ClientProperty>
+				</AttributeMapping>
+
+				<AttributeMapping>
+					<targetAttribute>
+						gsml:specification/gsml:GeologicUnit/gml:name[2]
+					</targetAttribute>
+					<sourceExpression>
+						<OCQL>abbreviation</OCQL>
+					</sourceExpression>
+					<ClientProperty>
+						<name>codeSpace</name>
+						<value>abbreviation_cdspace</value>
+					</ClientProperty>
+				</AttributeMapping>
+
+				<AttributeMapping>
+					<targetAttribute>
+						gsml:specification/gsml:GeologicUnit/gml:name[3]
+					</targetAttribute>
+					<sourceExpression>
+						<OCQL>name</OCQL>
+					</sourceExpression>
+					<ClientProperty>
+						<name>codeSpace</name>
+						<value>name_cdspace</value>
+					</ClientProperty>
+				</AttributeMapping>
+
+				<AttributeMapping>
+					<targetAttribute>
+						gsml:specification/gsml:GeologicUnit/gml:description
+					</targetAttribute>
+					<sourceExpression>
+						<OCQL>textdescription</OCQL>
+					</sourceExpression>
+				</AttributeMapping>
+
+				<AttributeMapping>
+					<targetAttribute>
+						gsml:specification/gsml:GeologicUnit/gsml:observationMethod/gsml:CGI_TermValue/gsml:value
+					</targetAttribute>
+					<sourceExpression>
+						<OCQL>'urn:ogc:def:nil:OGC:missing'</OCQL>
+					</sourceExpression>
+					<ClientProperty>
+						<name>codeSpace</name>
+						<value>'urn:ietf:rfc:2141'</value>
+					</ClientProperty>
+				</AttributeMapping>
+
+				<AttributeMapping>
+					<targetAttribute>
+						gsml:specification/gsml:GeologicUnit/gsml:purpose
+					</targetAttribute>
+					<sourceExpression>
+						<OCQL>'typicalNorm'</OCQL>
+					</sourceExpression>
+				</AttributeMapping>
+
+				<AttributeMapping>
+					<targetAttribute>
+						gsml:specification/gsml:GeologicUnit/gsml:preferredAge/gsml:GeologicEvent/gsml:eventAge
+					</targetAttribute>
+					<targetAttributeNode>
+						gsml:CGI_TermRangePropertyType
+					</targetAttributeNode>
+				</AttributeMapping>
+
+
+				<AttributeMapping>
+					<targetAttribute>
+						gsml:specification/gsml:GeologicUnit/gsml:preferredAge/gsml:GeologicEvent/gsml:eventAge/gsml:CGI_TermRange/gsml:lower/gsml:CGI_TermValue/gsml:value
+					</targetAttribute>
+					<sourceExpression>
+						<OCQL>minage</OCQL>
+					</sourceExpression>
+					<ClientProperty>
+						<name>codeSpace</name>
+						<value>minage_cdspace</value>
+					</ClientProperty>
+				</AttributeMapping>
+
+				<AttributeMapping>
+					<targetAttribute>
+						gsml:specification/gsml:GeologicUnit/gsml:preferredAge/gsml:GeologicEvent/gsml:eventAge/gsml:CGI_TermRange/gsml:upper/gsml:CGI_TermValue/gsml:value
+					</targetAttribute>
+					<sourceExpression>
+						<OCQL>maxage</OCQL>
+					</sourceExpression>
+					<ClientProperty>
+						<name>codeSpace</name>
+						<value>maxage_cdspace</value>
+					</ClientProperty>
+				</AttributeMapping>
+
+				<AttributeMapping>
+					<targetAttribute>
+						gsml:specification/gsml:GeologicUnit/gsml:preferredAge/gsml:GeologicEvent/gsml:eventProcess/gsml:CGI_TermValue/gsml:value
+					</targetAttribute>
+					<sourceExpression>
+						<OCQL>process</OCQL>
+					</sourceExpression>
+					<ClientProperty>
+						<name>codeSpace</name>
+						<value>process_cdspace</value>
+					</ClientProperty>
+				</AttributeMapping>
+
+				<AttributeMapping>
+					<targetAttribute>
+						gsml:specification/gsml:GeologicUnit/gsml:rank
+					</targetAttribute>
+					<sourceExpression>
+						<OCQL>rank</OCQL>
+					</sourceExpression>
+					<ClientProperty>
+						<name>codeSpace</name>
+						<value>rank_cdspace</value>
+					</ClientProperty>
+				</AttributeMapping>
+
+				<AttributeMapping>
+					<targetAttribute>
+						gsml:specification/gsml:GeologicUnit/gsml:composition/gsml:CompositionPart/gsml:role
+					</targetAttribute>
+					<sourceExpression>
+						<OCQL>role</OCQL>
+					</sourceExpression>
+					<ClientProperty>
+						<name>codeSpace</name>
+						<value>role_cdspace</value>
+					</ClientProperty>
+				</AttributeMapping>
+
+				<AttributeMapping>
+					<targetAttribute>
+						gsml:specification/gsml:GeologicUnit/gsml:composition/gsml:CompositionPart/gsml:lithology
+					</targetAttribute>
+					<ClientProperty>
+						<name>xlink:href</name>
+						<value>lithology</value>
+					</ClientProperty>
+				</AttributeMapping>
+
+				<AttributeMapping>
+					<targetAttribute>
+						gsml:specification/gsml:GeologicUnit/gsml:composition/gsml:CompositionPart/gsml:proportion
+					</targetAttribute>
+					<targetAttributeNode>
+						gsml:CGI_TermValuePropertyType
+					</targetAttributeNode>
+				</AttributeMapping>
+
+
+				<AttributeMapping>
+					<targetAttribute>
+						gsml:specification/gsml:GeologicUnit/gsml:composition/gsml:CompositionPart/gsml:proportion/gsml:CGI_TermValue/gsml:value
+					</targetAttribute>
+					<sourceExpression>
+						<OCQL>proportion</OCQL>
+					</sourceExpression>
+					<ClientProperty>
+						<name>codeSpace</name>
+						<value>proportion_cdspace</value>
+					</ClientProperty>
+				</AttributeMapping>
+
+
+				<AttributeMapping>
+					<targetAttribute>gsml:shape</targetAttribute>
+					<sourceExpression>
+						<OCQL>shape</OCQL>
+					</sourceExpression>
 				</AttributeMapping>
 
 			</attributeMappings>
