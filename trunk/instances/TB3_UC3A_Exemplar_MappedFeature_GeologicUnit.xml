@@ -48,7 +48,6 @@
                     generally follow the pattern urn:cgi:feature:{your_registered_organization}:{your_unique_feature_id}.
                    (This is a temporary convention prior to upgrading to GML 3.2 and gml:identifier property.) -->
                     <gml:name codeSpace="urn:ietf:rfc:2141">urn:cgi:feature:BGS:StratigraphicLexicon:DECO</gml:name>
-                    <!-- TB3 Profile Note: The below example name may be wrong; need some email discussion to clarify.  -->
                     <gml:name codeSpace="urn:cgi:classifierScheme:BGS:StratigraphicLexicon">DECO</gml:name>
                     <!-- We have not put a gml:description in as this is not explicitly stored with our DigMapGB 50K data although
             it would be possible to get one; BGS ToDo - add description. -->
@@ -63,14 +62,10 @@
                             <value codeSpace="urn:cgi:classifierScheme:BGS:ObservationMethod">Summary of published description</value>
                         </CGI_TermValue>
                     </observationMethod>
-                    <!-- TB3 Profile Note: Everyone except GA has used instance here. GA has put typicalNorm. Suggestion is that everyone uses
-                    instance for TB3. This is because MappedUnits are specified by real world geologic features which are instances by definitions
-                    according to John Laxton. However, the DescriptionPurpose documentation at http://www.cgi-iugs.org/GeoSciML/index.html for
-                    typicalNorm, definingNorm and instance says something slightly different and we need to decide whether the official model
-                    documentation needs altering / clarifiying in the light of these attempts to serialize the data. -->
+                    <!-- TB3 Profile Note: typicalNorm, definingNorm and instance are acceptable. -->
                     <purpose>instance</purpose>
                     <!-- TB3 Profile Note: occurrence is optional. -->
-                    <!-- TB3 Profile Note: For Use Cases 2A and 3A it is OK to have a range value for the preferredAge as we are not querying on this. -->
+                    <!-- TB3 Profile Note: For Use Cases 2A and 3A it is OK to have any CGI_Term for the preferredAge as we are not querying on this. -->
                     <!-- TB3 Profile Note: Notes on Descriptive terms on https://www.seegrid.csiro.au/twiki/bin/view/CGIModel/CGIIdentifierScheme
                     would suggest string inside value should be a URN but want to clarify this with some further email discussion. -->
                     <preferredAge>
@@ -79,19 +74,16 @@
                                 <CGI_TermRange>
                                     <lower>
                                         <CGI_TermValue>
-                                            <value codeSpace="urn:cgi:classifier:ICS:StratChart:2008">LOCHKOVIAN</value>
+                                            <value codeSpace="urn:cgi:classifierScheme:ICS:StratChart:2008">LOCHKOVIAN</value>
                                         </CGI_TermValue>
                                     </lower>
                                     <upper>
                                         <CGI_TermValue>
-                                            <value codeSpace="urn:cgi:classifier:ICS:StratChart:2008">PRAGIAN</value>
+                                            <value codeSpace="urn:cgi:classifierScheme:ICS:StratChart:2008">PRAGIAN</value>
                                         </CGI_TermValue>
                                     </upper>
                                 </CGI_TermRange>
                             </eventAge>
-                            <!-- BGS does not explicitly store any information on the event process with our DigMapGB 50K data although it possibly
-                    be indirectly deduced with some rules applied to our Rock Classification Terms but we are not sure that we could implement
-                    this for Testbed 3. So below is just an example and we might have to put unknown, but will look into further.-->
                             <!-- Again check whether there is any CGI URN scheme that we should try to map to? -->
                             <eventProcess>
                                 <CGI_TermValue>
@@ -100,16 +92,13 @@
                             </eventProcess>
                         </GeologicEvent>
                     </preferredAge>
-                    <!-- TB3 Profile Note: For Use Case 2A it is OK to put a geologicHistory property if you have that information. However, note that GA example
-                    instance seems to have included a geologicHistory with only one event; perhaps doing this so they could put a range in there but we suggest
-                    not putting a geologicHistory unless there are actually more than one event (or potentially some data instances could have more than one
-                    event.)-->
+                    <!-- TB3 Profile Note: For Use Case 2A it is OK to put a geologicHistory property if you have that information.
+                        Note that it is acceptable to have a geologicHistory with only one event.--> 
                     <!-- TB3 Profile Note: For Use Case 2A can include compositionCategory property if you have the data but can omit if you don't. -->
                     <!-- TB3 Profile Note: For Use Case 2A can include or omit rank depending on whether you have data. -->
                     <!-- BGS Note: To Do: add rank information.  -->
                     <!-- TB3 Profile Note: It is optional whether to return part property. Refer to email discussion on whether this is appropriate or not. -->
-                    <!-- TB3 Profile Note: All other properties of GeologicUnit and subtypes are optional and can be included if you have the data but only
-                    go to the extent of filling in CGI_Values not the further links to associated protolithLithology, weatheringProduct etc. -->
+                    <!-- TB3 Profile Note: All other properties of GeologicUnit and subtypes are optional and can be included if you have the data.. -->
                     <composition>
                         <CompositionPart>
                             <role codeSpace="urn:cgi:classifierScheme:BGS:RoleVocab">dominantConstituent</role>

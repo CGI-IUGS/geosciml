@@ -83,12 +83,9 @@ urn:cgi:xmlns:CGI:GeoSciML:2.0 http://www.geosciml.org/schemas/geosciml/2.0_rc1/
 					<om:samplingTime  xlink:href="urn:ogc:def:nil:OGC:unknown"/>
 					<om:procedure xlink:href="urn:cgi:classifier:CGI:ObservationMethod:Direct_observation"/>
 					<om:observedProperty xlink:href="urn:cgi:propertyType:CGI:GeoSciML:2.0:CompositionPart:lithology"/>
-					<!-- TB3 Profile Note: Not sure what should be put here; need guidance from Simon Cox.
-					It can't be a borehole as here because the OandM standard says the feature of interest should be
-					of a type which carries the properties we are observing. In this case this would imply a GeologicUnit as for
-					the sampledFeature property above; what difference should there be if any? (A subset of the sampleFeature's
-					if the Observation is only on a subset?-->
-					<om:featureOfInterest xlink:href="#bh.303031333558303031382F53"/>
+					<!-- TB3 Profile Note: See https://www.seegrid.csiro.au/twiki/bin/view/AppSchemas/ObservationsAndSampling#Unknown_features 
+					for notes on suitable values for featureOfInterest particularly when there isn't a specific known feature. -->
+					<om:featureOfInterest xlink:role="urn:cgi:featureType:CGI:GeoSciML:2.0:GeologicUnit" xlink:href="urn:ogc:def:nil:OGC:unknown" />
 					<om:result>
 						<cv:CV_DiscreteCoverage>
 							<cv:domainExtent xlink:href="#bh.303031333558303031382F53.Shape"/>

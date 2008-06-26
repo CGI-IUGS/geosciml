@@ -1,12 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!-- This is an example  -->
 <wfs:FeatureCollection xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.opengis.net/wfs http://schemas.opengis.net/wfs/1.1.0/wfs.xsd urn:cgi:xmlns:CGI:GeoSciML:2.0 http://www.geosciml.org/schemas/geosciml/2.0_rc1/geosciml.xsd" xmlns:gml="http://www.opengis.net/gml" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:wfs="http://www.opengis.net/wfs" xmlns:gsml="urn:cgi:xmlns:CGI:GeoSciML:2.0">
     <gml:featureMember>
         <MappedFeature xmlns="urn:cgi:xmlns:CGI:GeoSciML:2.0" gml:id="mf.1">
             <!-- TB3 Profile Note: gml:id can be used to retrieve a particular feature by id from the WFS so each WFS should ensure it
             assigns unique values for each feature it can return. -->
-            <!-- TB3 Profile Note: There is no real gml:name appropriate for mapped polygons advise not populating this.
-                The gml:description is not worth using unless there is some specific descriptive information available for the particular MappedFeature; 
+            <!-- TB3 Profile Note: There is no real gml:name appropriate for mapped polygons advise not populating this. -->
+             <!-- The gml:description is not worth using unless there is some specific descriptive information available for the particular MappedFeature; 
                 so don't use this to put a generic description like 'geological polygon' or similar. -->
             <!-- TB3 Profile Note: All organizations examples to date have very generic values for observation method meaning basically
             "geological mapping procedures" which suggests that no-one actually explicitly stores this information at the moment. Thus it
@@ -23,19 +22,18 @@
                     <value codeSpace="urn:cgi:classifierScheme:BGS:ObservationMethod">Boreholes</value>
                 </CGI_TermValue>
             </observationMethod>
-            <!-- BGS do not explicitly store accuracy information for each polygon with our DigMapGB 50K data. -->
-            <!-- TB3 Profile Note: Check that there is no CGI URN scheme for positional accuracy that we should use.  
-                   Some people have put numerical values in here; that is also fine.-->
+            <!-- TB3 Profile Note: You may use numerical values or your own term values using your own codeSpace.
+            For nil values it is preferable to use the OGC URNs although, if you have your own dictionary and this complicates
+            the mapping implementation we won't insist. -->
             <positionalAccuracy>
                 <CGI_TermValue>
-                    <value codeSpace="urn:cgi:classifierScheme:BGS:PositionalAccuracy">unknown</value>
+                    <value codeSpace="urn:ietf:rfc:2141">urn:ogc:def:nil:OGC:unknown</value>
                 </CGI_TermValue>
             </positionalAccuracy>
-            <!-- TB3 Profile Note: For most geological maps the sampling frame can be identified by one of the two global features
-             urn:cgi:feature:CGI:EarthBedrockSurface or urn:cgi:feature:CGI:EarthNaturalSurface which are in the CGI Register at
-             https://www.seegrid.csiro.au/twiki/bin/view/CGIModel/CGIFeatureRegister. Email the Testbed mailing list if you think you
-            might want to use a different value here. -->
-            <samplingFrame xlink:href="urn:cgi:feature:CGI:EarthBedrockSurface"/>
+            <!-- TB3 Profile Note: See https://www.seegrid.csiro.au/twiki/bin/view/CGIModel/CGIFeatureRegister to check if there is a suitable already
+                registered suitable feature for your surface of mapping (e.g. urn:cgi:feature:CGI:EarthNaturalSurface). If not you may need to create an
+            organisation specific one. -->
+            <samplingFrame xlink:href="urn:cgi:feature:BGS:EarthBedrockSurface"/>
             <specification>
                 <!-- To Do: consider whether we should try to correctly specify which particular subtype of GeologicUnit this is in each case.
                 Would require us to do some mapping from our Rock Classification Scheme to the correct subtype. -->
@@ -48,7 +46,6 @@
                     generally follow the pattern urn:cgi:feature:{your_registered_organization}:{your_unique_feature_id}.
                    (This is a temporary convention prior to upgrading to GML 3.2 and gml:identifier property.) -->
                     <gml:name codeSpace="urn:ietf:rfc:2141">urn:cgi:feature:BGS:StratigraphicLexicon:DECO</gml:name>
-                    <!-- TB3 Profile Note: The below example name may be wrong; need some email discussion to clarify.  -->
                     <gml:name codeSpace="urn:cgi:classifierScheme:BGS:StratigraphicLexicon">DECO</gml:name>
                     <!-- We have not put a gml:description in as this is not explicitly stored with our DigMapGB 50K data although
             it would be possible to get one; BGS ToDo - add description. -->
