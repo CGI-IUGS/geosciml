@@ -117,7 +117,7 @@
 						gsml:MappedFeatureUseCase2A
 					</targetAttribute>
 					<idExpression>
-						<OCQL>getId()</OCQL>
+						<OCQL>strConcat('mf.', id)</OCQL>
 					</idExpression>
 				</AttributeMapping>
 
@@ -136,27 +136,61 @@
 					</ClientProperty>
 				</AttributeMapping>
 
+				<!--
+					
+					Disabled until locationalaccuracy and locationalaccuracy_uom are not null
+					
+					<AttributeMapping>
+					<targetAttribute>
+					gsml:positionalAccuracy
+					</targetAttribute>
+					<targetAttributeNode>
+					gsml:CGI_NumericValuePropertyType
+					</targetAttributeNode>
+					</AttributeMapping>
+					
+					<AttributeMapping>
+					<targetAttribute>
+					gsml:positionalAccuracy/gsml:CGI_NumericValue/gsml:principalValue
+					</targetAttribute>
+					<sourceExpression>
+					<OCQL>locationalaccuracy</OCQL>
+					</sourceExpression>
+					<ClientProperty>
+					<name>uom</name>
+					<value>locationalaccuracy_uom</value>
+					</ClientProperty>
+					</AttributeMapping>
+					
+				-->
+
+				<!-- begin workaround -->
+
 				<AttributeMapping>
 					<targetAttribute>
 						gsml:positionalAccuracy
 					</targetAttribute>
 					<targetAttributeNode>
-						gsml:CGI_NumericValuePropertyType
+						gsml:CGI_TermValuePropertyType
 					</targetAttributeNode>
 				</AttributeMapping>
 
 				<AttributeMapping>
 					<targetAttribute>
-						gsml:positionalAccuracy/gsml:CGI_NumericValue/gsml:principalValue
+						gsml:positionalAccuracy/gsml:CGI_TermValue/gsml:value
 					</targetAttribute>
 					<sourceExpression>
-						<OCQL>locationalaccuracy</OCQL>
+						<OCQL>'unknown'</OCQL>
 					</sourceExpression>
 					<ClientProperty>
-						<name>uom</name>
-						<value>locationalaccuracy_uom</value>
+						<name>codeSpace</name>
+						<value>
+							'urn:cgi:classifierScheme:GSV:PositionalAccuracy'
+						</value>
 					</ClientProperty>
 				</AttributeMapping>
+
+				<!-- end workaround -->
 
 				<AttributeMapping>
 					<targetAttribute>
@@ -184,7 +218,7 @@
 						gsml:specification/gsml:GeologicUnit/gml:name[1]
 					</targetAttribute>
 					<sourceExpression>
-						<OCQL>gsv.geologicalfeature_urn</OCQL>
+						<OCQL>geologicalfeature_urn</OCQL>
 					</sourceExpression>
 					<ClientProperty>
 						<name>codeSpace</name>

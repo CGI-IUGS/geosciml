@@ -25,8 +25,16 @@
 
 			<fileset dir="." includes="featureTypes/MappedFeaturePropertyfile/**" />
 			<fileset dir="." includes="featureTypes/MappedFeatureShapefile/**" />
-			<fileset dir="." includes="featureTypes/MappedFeatureUseCase2A/**" />
 
+			<!--
+			Excludes do not work!
+			Do not include featureTypes/MappedFeatureUseCase2A/MappedFeatureUseCase2A.xml
+			as it may contain a password.
+			-->
+			<fileset dir="." includes="featureTypes/MappedFeatureUseCase2A/ComplexDataStore.xsd" />
+			<fileset dir="." includes="featureTypes/MappedFeatureUseCase2A/info.xml" />
+			<fileset dir="." includes="featureTypes/MappedFeatureUseCase2A/MappedFeatureUseCase2A.template.xml" />
+			
 			<fileset dir="." includes="images/**" />
 			<fileset dir="." includes="profiles/**" />
 			<fileset dir="." includes="requests/**" />
