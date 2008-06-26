@@ -117,7 +117,8 @@
 						gsml:MappedFeatureUseCase2A
 					</targetAttribute>
 					<idExpression>
-						<OCQL>strConcat('mf.', id)</OCQL>
+						<!-- <OCQL>strConcat('MF.', id)</OCQL>  FIXME: id not unique -->
+						<OCQL>getId()</OCQL>
 					</idExpression>
 				</AttributeMapping>
 
@@ -213,6 +214,34 @@
 					</targetAttributeNode>
 				</AttributeMapping>
 
+				<!--
+					
+					Many-to-one relationship between features and units
+					causes duplicate gml:id values
+					
+					<AttributeMapping>
+					<targetAttribute>
+					gsml:specification/gsml:GeologicUnit
+					</targetAttribute>
+					<ClientProperty>
+					<name>gml:id</name>
+					<value>
+					strConcat('GU.', geologicalfeature_id)
+					</value>
+					</ClientProperty>
+					</AttributeMapping>
+					
+				-->
+
+				<AttributeMapping>
+					<targetAttribute>
+						gsml:specification/gsml:GeologicUnit/gml:description
+					</targetAttribute>
+					<sourceExpression>
+						<OCQL>textdescription</OCQL>
+					</sourceExpression>
+				</AttributeMapping>
+
 				<AttributeMapping>
 					<targetAttribute>
 						gsml:specification/gsml:GeologicUnit/gml:name[1]
@@ -250,15 +279,6 @@
 						<name>codeSpace</name>
 						<value>name_cdspace</value>
 					</ClientProperty>
-				</AttributeMapping>
-
-				<AttributeMapping>
-					<targetAttribute>
-						gsml:specification/gsml:GeologicUnit/gml:description
-					</targetAttribute>
-					<sourceExpression>
-						<OCQL>textdescription</OCQL>
-					</sourceExpression>
 				</AttributeMapping>
 
 				<AttributeMapping>
@@ -350,11 +370,11 @@
 						gsml:specification/gsml:GeologicUnit/gsml:composition/gsml:CompositionPart/gsml:role
 					</targetAttribute>
 					<sourceExpression>
-						<OCQL>role</OCQL>
+						<OCQL>componentrole</OCQL>
 					</sourceExpression>
 					<ClientProperty>
 						<name>codeSpace</name>
-						<value>role_cdspace</value>
+						<value>componentrole_cdspace</value>
 					</ClientProperty>
 				</AttributeMapping>
 
