@@ -10,10 +10,6 @@
 	xmlns:xlink="http://www.w3.org/1999/xlink" 
 	xmlns:mo="urn:cgi:xmlns:GGIC:MineralOccurrence:1.0" 
 	gml:id="GA_1M_GeologicUnits_Collection_000001">
-	
-<!--  ================================================================================================================
-####   This instance document describes MappedFeature polygons of two GeologicUnits from the Eastern Australia 1:1million scale data.  ####  
-====================================================================================================================-->
 	<gml:boundedBy>
 		<gml:Envelope srsName="urn:ogc:def:crs:EPSG:4326">
 			<gml:lowerCorner>142.17 -18.56</gml:lowerCorner>
@@ -22,45 +18,46 @@
 	</gml:boundedBy>
 	<gml:featureMember>
 		<gsml:MappedFeature gml:id="MappedFeature_5555">  <!-- Concatenate "MappedFeature_" and gsml_geology_1m.objectid -->
-			<!-- TB3 Profile Note: gml:id can be used to retrieve a particular feature by id. 
-				There is no real gml:name appropriate for mapped polygons advise not populating this.
-				The gml:description is not worth using unless there is some specific descriptive information available for the particular MappedFeature; 
+			<!-- TB3 Profile Note: gml:id can be used to retrieve a particular feature by id from the WFS so each WFS should ensure it
+				assigns unique values for each feature it can return. -->
+			<!-- TB3 Profile Note: There is no real gml:name appropriate for mapped polygons advise not populating this. -->
+			<!-- The gml:description is not worth using unless there is some specific descriptive information available for the particular MappedFeature; 
 				so don't use this to put a generic description like 'geological polygon' or similar. -->
-			<gml:description>Geological unit polygon</gml:description> <!-- Constant for this dataset -->
-			<gml:name>1M_geology_polygon_5555</gml:name>  <!-- Concatenate "1M_geology_polygon_" and gsml_geology_1m.objectid  -->
 			<!-- TB3 Profile Note: All organizations examples to date have very generic values for observation method meaning basically
 				"geological mapping procedures" which suggests that no-one actually explicitly stores this information at the moment. Thus it
 				would be possible to use a CDTG defined term registered in the  	 urn:cgi:classifierScheme:CGI:ObservationMethod:2008 codeSpace.
 				As this information will not be the basis of any queries, however, we will not constrain whether people use the cgi codeSpace or their
 				own. Need to clarify whether all codeSpaces should be recorded in CGIClassifierSchemeRegister .-->
 			<gsml:observationMethod>
-				<gsml:CGI_TermValue>     <!--  Constant codespace.  Value = gsml_geology_1m.SRC_DATA -->
+				<gsml:CGI_TermValue>
 					<gsml:value codeSpace="urn:cgi:classifierScheme:GA:1MillionGeology_ObservationMethods">Geological Survey of Queensland, 1:100,000 scale geological maps, July 2004. Simplified, edge matched and modified for representation at 1:1 million scale.</gsml:value>
 				</gsml:CGI_TermValue>
 			</gsml:observationMethod>
-			<!-- TB3 Profile Note: Check that there is no CGI URN scheme for positional accuracy that we should use.  
-				Some people have put numerical values in here; that is also fine.-->
+			<!-- TB3 Profile Note: You may use numerical values or your own term values for positionalAccuracy using your own codeSpace.
+				For nil values it is preferable to use the OGC URNs although, if you have your own dictionary and this complicates
+				the mapping implementation we won't insist. -->
 			<gsml:positionalAccuracy>
-				<gsml:CGI_NumericValue>   <!--  gsml_geology_1m.LOC_ACC.  Constant URN for UOM -->
+				<gsml:CGI_NumericValue>
 					<gsml:principalValue uom="urn:ogc:def:uom:UCUM:m">500</gsml:principalValue>
 				</gsml:CGI_NumericValue>
 			</gsml:positionalAccuracy>
-			<!-- TB3 Profile Note: For most geological maps the sampling frame can be identified by one of the two global features
-				urn:cgi:feature:CGI:EarthBedrockSurface or urn:cgi:feature:CGI:EarthNaturalSurface which are in the CGI Register at
-				https://www.seegrid.csiro.au/twiki/bin/view/CGIModel/CGIFeatureRegister. Email the Testbed mailing list if you think you
-				might want to use a different value here. -->
-			<gsml:samplingFrame xlink:href="urn:cgi:feature:CGI:EarthNaturalSurface"/>   <!-- Constant xlink value for this dataset  -->
-			<gsml:specification>    <!-- First occurrence of  unit is described in line, then by reference to gml:id.   -->
+			<!-- TB3 Profile Note: See https://www.seegrid.csiro.au/twiki/bin/view/CGIModel/CGIFeatureRegister to check if there is a suitable already
+				registered suitable feature for your surface of mapping (e.g. urn:cgi:feature:CGI:EarthNaturalSurface). If not you may need to create an
+				organisation specific one. -->
+			<gsml:samplingFrame xlink:href="urn:cgi:feature:CGI:EarthNaturalSurface"/>
+			<gsml:specification>
 				<!-- TB3 Profile Note: Organizations are free to return GeologicUnit or  a subtype like LithodemicUnit etc.
 					However, do not return DeformationUnits (which require links to GeologicStructures and are getting too complex for this UseCase. -->
-				<gsml:GeologicUnit gml:id="GA_GeologicUnit_Stratno_38485">   <!-- Concatenate "GA_GeologicUnit_Stratno" and gsml_geology_1m.STRATNO -->
+				<gsml:GeologicUnit gml:id="GA_GeologicUnit_Stratno_38485">
 					<!-- TB3 Profile Note: Suggest everyone includes a name and description here. -->
-					<!-- TB3 Profile Note: Some organizations have included a URN name with codeSpace urn:ietf:rfc:2141. Is this necessary / desirable?
-						Do we need to register all these URNs?-->
 					<gml:description>Channel and flood plain alluvium; gravel, sand, silt, clay</gml:description>  <!-- gsml_geol_stratnames.description  -->
-					<gml:name codeSpace="urn:ietf:rfc:2141">urn:cgi:feature:GA:StratigraphicLexicon:Stratno:38485</gml:name>  <!-- Constant codespace.  Concatenate "urn:cgi:feature:GA:StratigraphicLexicon:Stratno:" and gsml_geology_1m.STRATNO   -->
-					<gml:name codeSpace="urn:cgi:classifierScheme:GA:StratigraphicLexicon:Stratname">alluvium 38485</gml:name>   <!-- Constant codespace.  Value = gsml_geol_stratnames.stratname -->
-					<gml:name codeSpace="urn:cgi:classifierScheme:GA:StratigraphicLexicon:Map_symbol">Qa</gml:name>   <!-- Constant codespace.  Value = gsml_geology_1m.MAP_SYMB  -->
+					<!-- TB3 Profile Note: A name with a codeSpace of urn:ietf:rfc:2141 should be a URN which uniquely identifies the feature.
+						For Testbed participants this will
+						generally follow the pattern urn:cgi:feature:{your_registered_organization}:{your_unique_feature_id}.
+						(This is a temporary convention prior to upgrading to GML 3.2 and gml:identifier property.) -->
+					<gml:name codeSpace="urn:ietf:rfc:2141">urn:cgi:feature:GA:StratigraphicLexicon:Stratno:38485</gml:name>
+					<gml:name codeSpace="urn:cgi:classifierScheme:GA:StratigraphicLexicon:Stratname">alluvium 38485</gml:name>
+					<gml:name codeSpace="urn:cgi:classifierScheme:GA:StratigraphicLexicon:Map_symbol">Qa</gml:name>
 					<!-- TB3 Profile Note: All organizations examples to date have very generic values for observation method meaning basically
 						"published description" which suggests that no-one actually explicitly stores this information at the moment. Thus it
 						would be possible to use a CDTG defined term registered in the  
@@ -72,108 +69,93 @@
 							<gsml:value codeSpace="urn:cgi:classifierScheme:GA:ObservationMethods">published description</gsml:value>    <!-- Constant value for this dataset-->
 						</gsml:CGI_TermValue>
 					</gsml:observationMethod>
-					<!-- TB3 Profile Note: Everyone except GA has used instance here. GA has put typicalNorm (in the Use Case 2A examples). Suggestion is that everyone uses
-						instance for TB3. This is because MappedUnits are specified by real world geologic features which are instances by definitions
-						according to John Laxton. However, the DescriptionPurpose documentation at http://www.cgi-iugs.org/GeoSciML/index.html for
-						typicalNorm, definingNorm and instance says something slightly different and we need to decide whether the official model
-						documentation needs altering / clarifiying in the light of these attempts to serialize the data. -->
-					<gsml:purpose>typicalNorm</gsml:purpose>    <!-- Constant value -->
-					<!-- TB3 Profile Note: Do note include ocurrence property here. It is not appropriate for Use Case 2A where we are starting with
-						returning MappedFeature; specified by the GeologicUnit properties. Following the GeologicUnit back to where it occurs would be
-						circular and not sensible. Only GSC included this property and has agreed to remove. -->
-					<!-- TB3 Profile Note: For Use Case 2A it is OK to have a range value for the preferredAge as we are not querying on this. -->
+					<!-- TB3 Profile Note: typicalNorm, definingNorm and instance are acceptable. -->
+					<gsml:purpose>typicalNorm</gsml:purpose>
+					<!-- TB3 Profile Note: occurrence is optional. -->
+					<!-- TB3 Profile Note: It is OK to have any CGI_Term for the preferredAge as we are not querying on this. -->
 					<gsml:preferredAge>
 						<gsml:GeologicEvent>
 							<gsml:eventAge>
-								<gsml:CGI_TermValue>  <!-- Constant codespace.  Concatenate "urn:cgi:classifier:ICS:StratChart:2008:" and gsml_geol_stratnames.preferred_age. Note that no spaces allowed in URN  -->
+								<gsml:CGI_TermValue>
 									<gsml:value codeSpace="urn:cgi:classifierScheme:ICS:StratChart:2008">urn:cgi:classifier:ICS:StratChart:2008:Quaternary</gsml:value>
 								</gsml:CGI_TermValue>
 							</gsml:eventAge>
-							<gsml:eventEnvironment>     <!-- from gsml_geol_environment.environment.  If no data, populate with "unknown" -->
+							<gsml:eventEnvironment>
 								<gsml:CGI_TermValue>
 									<gsml:value codeSpace="urn:cgi:classifierScheme:GA:Process">fluvial</gsml:value>
 								</gsml:CGI_TermValue>
 							</gsml:eventEnvironment>
 							<gsml:eventProcess>
-								<gsml:CGI_TermValue>   <!-- from gsml_geol_environment.environment.  If no data, populate with "unknown" -->
+								<gsml:CGI_TermValue>
 									<gsml:value codeSpace="urn:cgi:classifierScheme:GA:Process">deposition</gsml:value>
 								</gsml:CGI_TermValue>
 							</gsml:eventProcess>
 						</gsml:GeologicEvent>
 					</gsml:preferredAge>
+					<!-- TB3 Profile Note: It is OK to put a geologicHistory property if you have that information.
+						Note that it is acceptable to have a geologicHistory with only one event.--> 
 					<gsml:geologicHistory>
 						<gsml:GeologicEvent>
 							<gsml:eventAge>
 								<gsml:CGI_TermRange>
 									<gsml:lower>
-										<gsml:CGI_TermValue>  <!-- Constant codespace. Concatenate "urn:cgi:classifier:ICS:StratChart:2008:" and gsml_geol_stratnames.basemaxage.  Note that no spaces allowed in URN -->
+										<gsml:CGI_TermValue>
 											<gsml:value codeSpace="urn:cgi:classifierScheme:ICS:StratChart:2008">urn:cgi:classifier:ICS:StratChart:2008:Quaternary</gsml:value>
 										</gsml:CGI_TermValue>
 									</gsml:lower>
 									<gsml:upper>
-										<gsml:CGI_TermValue>    <!-- Constant codespace. Concatenate "urn:cgi:classifier:ICS:StratChart:2008:" and gsml_geol_stratnames.topminage. Note that no spaces allowed in URN -->
+										<gsml:CGI_TermValue>
 											<gsml:value codeSpace="urn:cgi:classifierScheme:ICS:StratChart:2008">urn:cgi:classifier:ICS:StratChart:2008:Quaternary</gsml:value>
 										</gsml:CGI_TermValue>
 									</gsml:upper>
 								</gsml:CGI_TermRange>
 							</gsml:eventAge>	
-							<gsml:eventEnvironment>     <!-- from gsml_geol_environment.environment.  If no data, populate with "unknown" -->
+							<gsml:eventEnvironment>
 								<gsml:CGI_TermValue>
 									<gsml:value codeSpace="urn:cgi:classifierScheme:GA:Process">fluvial</gsml:value>
 								</gsml:CGI_TermValue>
 							</gsml:eventEnvironment>
 							<gsml:eventProcess>
-								<gsml:CGI_TermValue>        <!-- from gsml_geol_environment.environment.  If no data, populate with "unknown" -->
+								<gsml:CGI_TermValue>
 									<gsml:value codeSpace="urn:cgi:classifierScheme:GA:Process">deposition</gsml:value>
 								</gsml:CGI_TermValue>
 							</gsml:eventProcess>
 						</gsml:GeologicEvent>
 					</gsml:geologicHistory>
-					<!-- TB3 Profile Note: For Use Case 2B it is OK to put a geologicHistory property if you have that information. However, note that GA example
-						instance seems to have included a geologicHistory with only one event; perhaps doing this so they could put a range in there but we suggest
-						not putting a geologicHistory unless there are actually more than one event (or potentially some data instances could have more than one
-						event.)-->
-					<!-- TB3 Profile Note: For Use Case 2B can include compositionCategory property if you have the data but can omit if you don't. -->
-					<gsml:compositionCategory>    <!-- Constant codespace. Value = gsml_geol_stratnames.composition_category -->
+					<!-- TB3 Profile Note: Can include compositionCategory property if you have the data but can omit if you don't. -->
+					<gsml:compositionCategory>
 						<gsml:CGI_TermValue>
 							<gsml:value codeSpace="urn:cgi:classifierScheme:GA:CompositionCategory">silicate</gsml:value>
 						</gsml:CGI_TermValue>
 					</gsml:compositionCategory>
-					<!-- TB3 Profile Note: For Use Case 2B can include or omit rank depending on whether you have data. -->
-					<gsml:rank codeSpace="urn:cgi:classifierScheme:GA:Rank">formation</gsml:rank>   <!-- Constant codespace. Value = gsml_geol_stratnames.rank -->
-					<!-- TB3 Profile Note: It is inappropriate to return the part property for Use Case 2B. This would be effectively returning the hierarchical
-						structure of your lexicon for each feature here. Also no one has included this to date. Therefore do note include part. -->
-					<!-- TB3 Profile Note: All other properties of GeologicUnit and subtypes are optional and can be included if you have the data but only
-						go to the extent of filling in CGI_Values not the further links to associated protolithLithology, weatheringProduct etc. -->
-					<gsml:classifier xlink:href="urn:cgi:classifier:GA:StratigraphicLexicon:Stratno:38485"/>  <!-- Concatenate "urn:cgi:classifier:GA:StratigraphicLexicon:Stratno:" and gsml_geol_stratnames.stratno -->
-	
-	<!-- 		**** Omit this ControlledConcept stuff in favour of a URN reference to Strat Lexicon ****	
-						
-						<gsml:ControlledConcept  gml:id="GA_Stratno_38485">   **** Omit ControlledConcept stuff in favour of a URN reference to Strat Lexicon ****
-						<gml:name codeSpace="urn:ietf:rfc:2141">urn:cgi:classifier:GA:StratigraphicLexicon:Stratno:38485</gml:name>
-						<gsml:identifier codeSpace="urn:ietf:rfc:2141">urn:cgi:classifier:GA:StratigraphicLexicon:Stratno:38485</gsml:identifier>
-						<gsml:name xml:lang="en" codeSpace="urn:cgi:classifierScheme:GA:StratigraphicLexicon:Stratname">alluvium 38485</gsml:name>
-						<gsml:name xml:lang="en" codeSpace="urn:cgi:classifierScheme:GA:StratigraphicLexicon:Map_symbol">Qa</gsml:name>
-						<gsml:vocabulary xlink:href="urn:cgi:classifierScheme:GA:StratigraphicLexicon"/>
-						</gsml:ControlledConcept>
--->
-					<gsml:composition>  <!-- This data comes from gsml_geol_strat_liths table.  (0..* gsml:composition elements with each GeolUnit)     -->
+					<!-- TB3 Profile Note: Can include or omit rank depending on whether you have data. -->
+					<gsml:rank codeSpace="urn:cgi:classifierScheme:GA:Rank">formation</gsml:rank>
+					<!-- TB3 Profile Note: It is optional whether to return part property. Refer to TB3_UC3B_GSV_GeologicUnit_All.xml for example. -->
+					<!-- TB3 Profile Note: All other properties of GeologicUnit and subtypes are optional and can be included if you have the data.. -->
+					<gsml:classifier xlink:href="urn:cgi:classifier:GA:StratigraphicLexicon:Stratno:38485"/>
+					<gsml:composition>
 						<gsml:CompositionPart>
-							<gsml:role codeSpace="urn:cgi:classifierScheme:GA:Role">part of</gsml:role>  <!-- Constant value -->
-							<gsml:lithology>  <!-- First occurence in line, then by reference to controlled concept id -->
-								<gsml:ControlledConcept gml:id="CGILith_036">  <!--  from the Testbed SimpleLlithology vocabulary.  Note mixed case"Lith" -->
-									<gml:name codeSpace="urn:ietf:rfc:2141">urn:cgi:classifier:CGI:SimpleLithology:2008:clastic sediment</gml:name>  <!-- concatenate "urn:cgi:classifier:CGI:SimpleLithology:2008:" and gsml_geol_strat_liths.gsml_lithology-->
-									<gsml:identifier codeSpace="urn:ietf:rfc:2141">urn:cgi:classifier:CGI:SimpleLithology:2008:clastic_sediment</gsml:identifier>  <!-- concatenate "urn:cgi:classifier:CGI:SimpleLithology:2008:" and gsml_geol_strat_liths.gsml_lithology with underscores instead of spaces  -->
-									<gsml:name xml:lang="en" codeSpace="urn:cgi:classifierScheme:CGI:SimpleLithology:2008">clastic sediment</gsml:name>  <!-- gsml_geol_strat_liths.gsml_lithology -->
-									<gsml:vocabulary xlink:href="urn:cgi:classifierScheme:CGI:SimpleLithology:2008"/>  <!-- constant -->
+							<gsml:role codeSpace="urn:cgi:classifierScheme:GA:Role">part of</gsml:role>
+							<!-- TB3 Profile Note: BGS has included ControlledConcept inline, others have used xlink:href with a URN value. Will these URNs
+								be registered with the registry? No consensus on email discussion yet? -->
+							<gsml:lithology>
+								<!-- TB3 Profile Note: Should use the CGI Simple Lithology terms at
+									.http://tellus.brgm.fr/exist/brgm_geosciml/concept.xql?request=GetResource&resourcetype=vocabulary&resourcepath=CGI_SimpleLithology_2008.xml -->
+								<!-- TB3 Profile Note: Could also include extra lithology properties using your own dictionaries if you wish. -->
+								<!-- TB3 Profile Note: Example has same gml:id as in register vocabulary for convenience but this cannot be a requirement. -->
+								<gsml:ControlledConcept gml:id="CGILith_036">
+									<gml:name codeSpace="urn:ietf:rfc:2141">urn:cgi:classifier:CGI:SimpleLithology:2008:clastic_sediment</gml:name>
+									<gsml:identifier codeSpace="urn:ietf:rfc:2141">urn:cgi:classifier:CGI:SimpleLithology:2008:clastic_sediment</gsml:identifier>
+									<gsml:name xml:lang="en" codeSpace="urn:cgi:classifierScheme:CGI:SimpleLithology:2008">clastic sediment</gsml:name>
+									<gsml:vocabulary xlink:href="urn:cgi:classifierScheme:CGI:SimpleLithology:2008"/>
 								</gsml:ControlledConcept>
 							</gsml:lithology>
-							<gsml:material>   <!-- If gsml_geol_stratnames.GeneticCategory = “regolith”, then use gsml:UnconsolidatedMaterial, otherwise use gsml:Rock  -->
+							<gsml:material>
 								<gsml:UnconsolidatedMaterial> 
-									<gsml:purpose>instance</gsml:purpose>  <!-- Constant -->
+									<gsml:purpose>instance</gsml:purpose> 
 									<gsml:compositionCategory>
 										<gsml:CGI_TermValue>
-											<gsml:value codeSpace="urn:cgi:classifierScheme:GA:CompositionCategory">unknown</gsml:value>  <!-- gsml_geol_stratnames.composition_category for the stratno-->
+											<gsml:value codeSpace="urn:cgi:classifierScheme:GA:CompositionCategory">unknown</gsml:value>
 										</gsml:CGI_TermValue>
 									</gsml:compositionCategory>
 									<gsml:geneticCategory>
@@ -191,16 +173,19 @@
 									<gsml:lithology xlink:href="#CGILith_036"/>  <!-- Use gml:id of gsml:CompositionPart/lithology   -->
 								</gsml:UnconsolidatedMaterial>					
 							</gsml:material>
+							<!-- TB3 Profile Note: For proportion use either a numerical percentage or a value from the  dictionary at
+								http://tellus.brgm.fr/exist/brgm_geosciml/concept.xql?request=GetResource&resourcetype=vocabulary&resourcepath=CGI_CompositionPartProportion.xml
+							-->
 							<gsml:proportion>
 								<gsml:CGI_TermValue>
-									<gsml:value codeSpace="urn:cgi:classifierScheme:GA:Proportion">unknown</gsml:value>  <!-- constant -->
+									<gsml:value codeSpace="urn:ietf:rfc:2141">urn:ogc:def:nil:OGC:unknown</gsml:value> 
 								</gsml:CGI_TermValue>
 							</gsml:proportion>
 						</gsml:CompositionPart>
 					</gsml:composition>
 				</gsml:GeologicUnit>
 			</gsml:specification>
-			<gsml:shape>  <!-- gsml_geology_1M.geom -->
+			<gsml:shape>
 				<gml:Polygon srsName="urn:ogc:def:crs:EPSG:4326">
 					<gml:outerBoundaryIs>
 						<gml:LinearRing>
