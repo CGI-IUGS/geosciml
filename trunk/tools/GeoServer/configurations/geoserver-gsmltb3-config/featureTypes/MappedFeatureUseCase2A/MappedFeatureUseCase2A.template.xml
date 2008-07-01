@@ -108,7 +108,9 @@
 
 			<targetElement>gsml:MappedFeatureUseCase2A</targetElement>
 
-			<groupBy />
+			<groupBy>
+				<GroupByAttribute>id</GroupByAttribute>
+			</groupBy>
 
 			<attributeMappings>
 
@@ -117,8 +119,7 @@
 						gsml:MappedFeatureUseCase2A
 					</targetAttribute>
 					<idExpression>
-						<!-- <OCQL>strConcat('MF.', id)</OCQL>  FIXME: id not unique -->
-						<OCQL>getId()</OCQL>
+						<OCQL>strConcat('MF.', id)</OCQL>
 					</idExpression>
 				</AttributeMapping>
 
@@ -217,7 +218,8 @@
 				<!--
 					
 					Many-to-one relationship between features and units
-					causes duplicate gml:id values
+					causes duplicate gml:id values as all specifications
+					serialised inline.
 					
 					<AttributeMapping>
 					<targetAttribute>
@@ -367,6 +369,13 @@
 
 				<AttributeMapping>
 					<targetAttribute>
+						gsml:specification/gsml:GeologicUnit/gsml:composition
+					</targetAttribute>
+					<isMultiple>true</isMultiple>
+				</AttributeMapping>
+
+				<AttributeMapping>
+					<targetAttribute>
 						gsml:specification/gsml:GeologicUnit/gsml:composition/gsml:CompositionPart/gsml:role
 					</targetAttribute>
 					<sourceExpression>
@@ -397,7 +406,6 @@
 					</targetAttributeNode>
 				</AttributeMapping>
 
-
 				<AttributeMapping>
 					<targetAttribute>
 						gsml:specification/gsml:GeologicUnit/gsml:composition/gsml:CompositionPart/gsml:proportion/gsml:CGI_TermValue/gsml:value
@@ -410,7 +418,6 @@
 						<value>proportion_cdspace</value>
 					</ClientProperty>
 				</AttributeMapping>
-
 
 				<AttributeMapping>
 					<targetAttribute>gsml:shape</targetAttribute>
