@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!--========================================================================-->
+<!--                                                                        -->
+<!--                      sdi WMS Feature Info Profile                      -->
+<!--                                                                        -->
+<!--========================================================================-->
+<!-- $Id: sdi_wms_fi_profile.xml 282 2007-06-03 10:51:50Z jacekrad $ -->
+<!--========================================================================-->
+
+<pr:profile id="sdi-wms-fi" xmlns:ds="http://www.w3.org/2000/09/xmldsig#"
+  xmlns:gwsit="http://qld.gov.au/sdi/wsi/testing/1.0"
+  xmlns:pr="urn:ws-profile-mgr:schemas:profiles:profiles.xsd" xmlns:qg="http://qld.gov.au/wsi/1.0"
+  xmlns:rim="urn:oasis:names:tc:ebxml-regrep:xsd:rim:3.0"
+  xmlns:ud="http://utf-x.sourceforge.net/xsd/utfxdoc_1_0/utfxdoc.xsd"
+  xmlns:xml="http://www.w3.org/XML/1998/namespace" xmlns:xs="http://www.w3.org/2001/XMLSchema"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="urn:ws-profile-mgr:schemas:profiles:profiles.xsd http://ws-profile-mgr.sf.net/schemas/profiles.xsd">
+  <ud:version>$Revision: 282 $</ud:version>
+  <ud:date>$Date: 2007-06-03 20:51:50 +1000 (Sun, 03 Jun 2007) $</ud:date>
+  <ud:copyright year="2007">Queensland Government Chief Information Office</ud:copyright>
+  <!--
+  <ud:logo>
+    <ud:img src="&qgcio-logo;" width="100%"/>
+  </ud:logo>
+  -->
+  <pr:name>sdi WMS Feature Info</pr:name>
+  <pr:description>This profile describes the behaviour of WMS services that allow a user to
+    interrogate a displayed image to identify objects portrayed at a particular location. If one or
+    more WMS_LAYER resources supports GetFeatureInfo operation the WMS service MUST support this
+    specific profile.</pr:description>
+  <pr:identifier>urn:au:gov:qld:sdi:standards:profiles:sdi-wms-feature-info</pr:identifier>
+  <pr:inherits-from>sdi-display-wms</pr:inherits-from>
+
+  <pr:artefacts>
+    <pr:artefact-extension artifact="WMS_CAPABILITIES">
+      <pr:conformance-target id="WMS_GETFEATUREINFO_FORMAT">
+        <pr:name>WMS_GETFEATUREINFO_FORMAT</pr:name>
+        <pr:description>Supported response formats for the get map operation</pr:description>
+        <pr:xpath-locator>//Capabilities/Request/GetFeatureInfo/Format</pr:xpath-locator>
+      </pr:conformance-target>
+    </pr:artefact-extension>
+  </pr:artefacts>
+
+  <pr:requirements>
+    <pr:requirement id="sdiWMSF1">
+      <pr:normative-content><pr:target-ref>WMS_GETFEATUREINFO_FORMAT</pr:target-ref>
+        <pr:rfc2119-keyword>MUST</pr:rfc2119-keyword> support valid GML 2.1 and
+          <pr:rfc2119-keyword>SHOULD</pr:rfc2119-keyword> support GML 3.1.1 format responses
+          <pr:comment>[SHANE] - Benchmark technology support</pr:comment></pr:normative-content>
+      <pr:xpath-assertion id="sdiWMSF1.A1">
+        <pr:target-ref>WMS_GETFEATUREINFO_FORMAT</pr:target-ref>
+        <pr:rfc2119-keyword>MUST</pr:rfc2119-keyword>
+        <pr:assert-true>
+          <pr:xpath-expression>count(./Format = 'application/vnd.ogc.gml') = 1</pr:xpath-expression>
+        </pr:assert-true>
+      </pr:xpath-assertion>
+      <pr:xpath-assertion id="sdiWMSF1.A2">
+        <pr:target-ref>WMS_GETFEATUREINFO_FORMAT</pr:target-ref>
+        <pr:rfc2119-keyword>SHOULD</pr:rfc2119-keyword>
+        <pr:assert-true>
+          <pr:xpath-expression>count(./Format = 'application/vnd.ogc.gml; subtype=gml/3.1.1') =
+          1</pr:xpath-expression>
+        </pr:assert-true>
+      </pr:xpath-assertion>
+    </pr:requirement>
+    <pr:requirement id="sdiWMSF2">
+      <pr:normative-content>Response from GetFeatureInfo
+        <pr:rfc2119-keyword>SHOULD</pr:rfc2119-keyword> be identical to a response from a WFS
+        request for the same Feature. <pr:comment>[SHANE] - I think this may be a part of the
+          benchmarking process: This is probably a key area to put pressure on vendors, and wrappers
+          in short term - a single data source providing WMS and WFS should share a common config
+          and common output schema</pr:comment></pr:normative-content>
+    </pr:requirement>
+
+  </pr:requirements>
+
+
+</pr:profile>
