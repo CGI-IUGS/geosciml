@@ -139,34 +139,12 @@
 				</AttributeMapping>
 
 				<!--
-					
-					Disabled until locationalaccuracy and locationalaccuracy_uom are not null
-					
-					<AttributeMapping>
-					<targetAttribute>
-					gsml:positionalAccuracy
-					</targetAttribute>
-					<targetAttributeNode>
-					gsml:CGI_NumericValuePropertyType
-					</targetAttributeNode>
-					</AttributeMapping>
-					
-					<AttributeMapping>
-					<targetAttribute>
-					gsml:positionalAccuracy/gsml:CGI_NumericValue/gsml:principalValue
-					</targetAttribute>
-					<sourceExpression>
-					<OCQL>locationalaccuracy</OCQL>
-					</sourceExpression>
-					<ClientProperty>
-					<name>uom</name>
-					<value>locationalaccuracy_uom</value>
-					</ClientProperty>
-					</AttributeMapping>
-					
+					Cannot encode positionalAccuracy because type
+					is different for missing data (CGI_TermValue)
+					and real data (CGI_NumericValue). GeoServer
+					requires one type. At the moment, the GSV data
+					set locationalaccuracy is not yet populated.
 				-->
-
-				<!-- begin workaround -->
 
 				<AttributeMapping>
 					<targetAttribute>
@@ -191,8 +169,6 @@
 						</value>
 					</ClientProperty>
 				</AttributeMapping>
-
-				<!-- end workaround -->
 
 				<AttributeMapping>
 					<targetAttribute>
@@ -373,6 +349,11 @@
 					</targetAttribute>
 					<isMultiple>true</isMultiple>
 				</AttributeMapping>
+
+				<!-- 
+					Because GeologicUnits and their CompositionParts are repeated,
+					they cannot have gml:ids, because these would not be unique.
+				-->
 
 				<AttributeMapping>
 					<targetAttribute>
