@@ -1,5 +1,8 @@
-This directory contains copies of the Utilities schema used by GeoSciML v2.0
-The current contents are a preliminary version, corresponding to "stable" version described at 
-https://www.seegrid.csiro.au/twiki/bin/view/CGIModel/GeoSciMLModel#GeoSciML_v2_stable_version
+This directory contains the Utilities schema issued by CGI and used by GeoSciML v2.0
+It defines XML components for 
+   * NAME LOCALIZATION
+which extend components defined in GML 3.1.1
 
 SJDC 2008-02-26
+SJDC 2008-04-14
+SJDC 2008-05-05

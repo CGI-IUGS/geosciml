@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="ISO-8859-1"?>
 <schema xmlns="http://www.w3.org/2001/XMLSchema" xmlns:gml="http://www.opengis.net/gml"
     xmlns:cgu="urn:cgi:xmlns:CGI:Utilities:1.0" targetNamespace="urn:cgi:xmlns:CGI:Utilities:1.0"
-    xmlns:xml="http://www.w3.org/XML/1998/namespace" elementFormDefault="qualified" attributeFormDefault="unqualified">
+    elementFormDefault="qualified" attributeFormDefault="unqualified">
     <annotation>
         <documentation>This package contains classes that have a canonical encoding so must be packaged separately from
             the packages from which the XML encoding will be generated automatically.</documentation>
     </annotation>
     <import namespace="http://www.opengis.net/gml" schemaLocation="http://schemas.opengis.net/gml/3.1.1/base/gml.xsd"/>
-    <import namespace="http://www.w3.org/XML/1998/namespace" schemaLocation="http://www.w3.org/2001/xml.xsd"/>
+    <import namespace="http://www.w3.org/XML/1998/namespace"/>
     <element name="LocalizedScopedName" type="cgu:LocalizedScopedNameType" substitutionGroup="gml:name"/>
     <complexType name="LocalizedScopedNameType">
         <annotation>
@@ -68,4 +68,14 @@
             </restriction>
         </simpleContent>
     </complexType>
+	<!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
+	<complexType name="WildCardPropertyType">
+		<annotation>
+			<documentation>A wildcard for use in properties</documentation>
+		</annotation>
+		<sequence minOccurs="0">
+			<any namespace="##any" processContents="lax"/>
+		</sequence>
+        	<attributeGroup ref="gml:AssociationAttributeGroup"/>
+	</complexType>
 </schema>
