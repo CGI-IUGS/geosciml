@@ -1,17 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!-- This is an example  -->
+<!-- BGS UC2A and UC3A instances are identical -->
 <wfs:FeatureCollection xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.opengis.net/wfs http://schemas.opengis.net/wfs/1.1.0/wfs.xsd urn:cgi:xmlns:CGI:GeoSciML:2.0 http://www.geosciml.org/schemas/geosciml/2.0_rc2/geosciml.xsd" xmlns:gml="http://www.opengis.net/gml" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:wfs="http://www.opengis.net/wfs" xmlns:gsml="urn:cgi:xmlns:CGI:GeoSciML:2.0">
     <gml:featureMember>
         <MappedFeature xmlns="urn:cgi:xmlns:CGI:GeoSciML:2.0" gml:id="mf.1">
-            <!-- TB3 Profile Note: gml:id can be used to retrieve a particular feature by id. 
-                There is no real gml:name appropriate for mapped polygons advise not populating this.
-                The gml:description is not worth using unless there is some specific descriptive information available for the particular MappedFeature; 
-                so don't use this to put a generic description like 'geological polygon' or similar. -->
-            <!-- TB3 Profile Note: All organizations examples to date have very generic values for observation method meaning basically
-            "geological mapping procedures" which suggests that no-one actually explicitly stores this information at the moment. Thus it
-            would be possible to use a CDTG defined term registered in the  	 urn:cgi:classifierScheme:CGI:ObservationMethod:2008 codeSpace.
-            As this information will not be the basis of any queries, however, we will not constrain whether people use the cgi codeSpace or their
-            own. Need to clarify whether all codeSpaces should be recorded in CGIClassifierSchemeRegister .-->
+            <!-- BGS do not record the observation method explicitly for our DigMapGB 50K data so the below are generic values to cover most cases. -->
+            <!-- Should / can we use terms from Concept Definitions  TG? -->
             <observationMethod>
                 <CGI_TermValue>
                     <value codeSpace="urn:cgi:classifierScheme:BGS:ObservationMethod">fieldObservation</value>
@@ -23,74 +16,47 @@
                 </CGI_TermValue>
             </observationMethod>
             <!-- BGS do not explicitly store accuracy information for each polygon with our DigMapGB 50K data. -->
-            <!-- TB3 Profile Note: Check that there is no CGI URN scheme for positional accuracy that we should use.  
-                   Some people have put numerical values in here; that is also fine.-->
+            <!-- To Do: Check that there is no CGI URN scheme for positional accuracy that we should use.  -->
             <positionalAccuracy>
                 <CGI_TermValue>
-                    <value codeSpace="urn:cgi:classifierScheme:BGS:PositionalAccuracy">unknown</value>
+                    <value codeSpace="urn:ietf:rfc:2141">urn:ogc:def:nil:OGC:unknown</value>
                 </CGI_TermValue>
             </positionalAccuracy>
             <!-- samplingFrame is the same for all our solid data. Drift data would be "topographic surface" or similar; we do have a dictionary of 
-    surface of mapping which is used by GSD data but not explicitly by DigMapGB 50K data. -->
-            <!-- TB3 Profile Note: BGS has made a different kind of specification here (rockhead, ground surface etc.) whereas other organizations
-            have put geographical specifications here. BGS is 'right' :-) E.g. in a borehole you would specify the borehole track as the samplingFrame
-            along which the depth coordinates would be projected to find the full position in 3D. Similarly these mapped polygons could be projected onto
-            the ground surface or rockhead surface to get their 3D position. It is not useful to say that the mapped polygon whose geographical coordinates
-            you have has been mapped within the UK or France or Australia...
-            side note; what convention do we want to put for href values pointing to generic concepts like this if we don' actually have the coord data?-->
-            <samplingFrame xlink:href="urn:cgi:classifier:BGS:SurfaceOfMapping:Rockhead"/>
+                surface of mapping which is used by GSD data but not explicitly by DigMapGB 50K data. -->
+            <samplingFrame xlink:href="urn:cgi:feature:BGS:EarthBedrockSurface"/>
             <specification>
                 <!-- To Do: consider whether we should try to correctly specify which particular subtype of GeologicUnit this is in each case.
-                Would require us to do some mapping from our Rock Classification Scheme to the correct subtype. -->
-                <!-- TB3 Profile Note: Organizations are free to return GeologicUnit or  a subtype like LithodemicUnit etc.
-                However, do not return DeformationUnits (which require links to GeologicStructures and are getting too complex for this UseCase. -->
+                    Would require us to do some mapping from our Rock Classification Scheme to the correct subtype. -->
                 <GeologicUnit>
-                    <!-- TB3 Profile Note: Suggest everyone includes a name and description here. -->
-                    <!-- TB3 Profile Note: Some organizations have included a URN name with codeSpace urn:ietf:rfc:2141. Is this necessary / desirable?
-                    Do we need to register all these URNs?-->
                     <gml:name codeSpace="urn:cgi:classifierScheme:BGS:StratigraphicLexicon">DECO</gml:name>
                     <!-- We have not put a gml:description in as this is not explicitly stored with our DigMapGB 50K data although
-            it would be possible to get one; BGS ToDo - add description. -->
-                    <!-- TB3 Profile Note: All organizations examples to date have very generic values for observation method meaning basically
-                        "published description" which suggests that no-one actually explicitly stores this information at the moment. Thus it
-                        would be possible to use a CDTG defined term registered in the  
-                        urn:cgi:classifierScheme:CGI:ObservationMethod:2008 codeSpace.
-                        As this information will not be the basis of any queries, however, we will not constrain whether people use the cgi codeSpace or their
-                        own. Need to clarify whether all codeSpaces should be recorded in CGIClassifierSchemeRegister .-->
+                        it would be possible to get one from our Lexicon -->
                     <observationMethod>
                         <CGI_TermValue>
                             <value codeSpace="urn:cgi:classifierScheme:BGS:ObservationMethod">Summary of published description</value>
                         </CGI_TermValue>
                     </observationMethod>
-                    <!-- TB3 Profile Note: Everyone except GA has used instance here. GA has put typicalNorm. Suggestion is that everyone uses
-                    instance for TB3. This is because MappedUnits are specified by real world geologic features which are instances by definitions
-                    according to John Laxton. However, the DescriptionPurpose documentation at http://www.cgi-iugs.org/GeoSciML/index.html for
-                    typicalNorm, definingNorm and instance says something slightly different and we need to decide whether the official model
-                    documentation needs altering / clarifiying in the light of these attempts to serialize the data. -->
                     <purpose>instance</purpose>
-                    <!-- TB3 Profile Note: Do note include ocurrence property here. It is not appropriate for Use Case 2A where we are starting with
-                    returning MappedFeature; specified by the GeologicUnit properties. Following the GeologicUnit back to where it occurs would be
-                    circular and not sensible. Only GSC included this property and has agreed to remove. -->
-                    <!-- TB3 Profile Note: For Use Case 2A it is OK to have a range value for the preferredAge as we are not querying on this. -->
                     <preferredAge>
                         <GeologicEvent>
                             <eventAge>
                                 <CGI_TermRange>
                                     <lower>
                                         <CGI_TermValue>
-                                            <value codeSpace="urn:cgi:classifierScheme:ICS:InternationalStratigraphicChart:2004">LOCHKOVIAN</value>
+                                            <value codeSpace="urn:cgi:classifierScheme:ICS:StratChart:2008">urn:cgi:classifier:ICS:StratChart:2008:Lochkovian</value>
                                         </CGI_TermValue>
                                     </lower>
                                     <upper>
                                         <CGI_TermValue>
-                                            <value codeSpace="urn:cgi:classifierScheme:ICS:InternationalStratigraphicChart:2004">PRAGHIAN</value>
+                                            <value codeSpace="urn:cgi:classifierScheme:ICS:StratChart:2008">urn:cgi:classifier:ICS:StratChart:2008:Pragian</value>
                                         </CGI_TermValue>
                                     </upper>
                                 </CGI_TermRange>
                             </eventAge>
                             <!-- BGS does not explicitly store any information on the event process with our DigMapGB 50K data although it possibly
-                    be indirectly deduced with some rules applied to our Rock Classification Terms but we are not sure that we could implement
-                    this for Testbed 3. So below is just an example and we might have to put unknown, but will look into further.-->
+                                be indirectly deduced with some rules applied to our Rock Classification Terms but we are not sure that we could implement
+                                this for Testbed 3. So below is just an example and we might have to put unknown, but will look into further.-->
                             <!-- Again check whether there is any CGI URN scheme that we should try to map to? -->
                             <eventProcess>
                                 <CGI_TermValue>
@@ -99,35 +65,20 @@
                             </eventProcess>
                         </GeologicEvent>
                     </preferredAge>
-                    <!-- TB3 Profile Note: For Use Case 2A it is OK to put a geologicHistory property if you have that information. However, note that GA example
-                    instance seems to have included a geologicHistory with only one event; perhaps doing this so they could put a range in there but we suggest
-                    not putting a geologicHistory unless there are actually more than one event (or potentially some data instances could have more than one
-                    event.)-->
-                    <!-- TB3 Profile Note: For Use Case 2A can include compositionCategory property if you have the data but can omit if you don't. -->
-                    <!-- TB3 Profile Note: For Use Case 2A can include or omit rank depending on whether you have data. -->
-                    <!-- BGS Note: To Do: add rank information.  -->
-                    <!-- TB3 Profile Note: It is inappropriate to return the part property for Use Case 2A. This would be effectively returning the hierarchical
-                    structure of your lexicon for each feature here. Also no one has included this to date. Therefore do note include part. -->
-                    <!-- TB3 Profile Note: All other properties of GeologicUnit and subtypes are optional and can be included if you have the data but only
-                    go to the extent of filling in CGI_Values not the further links to associated protolithLithology, weatheringProduct etc. -->
                     <composition>
                         <CompositionPart>
                             <role codeSpace="urn:cgi:classifierScheme:BGS:RoleVocab">dominantConstituent</role>
-                            <!-- TB3 Profile Note: BGS has included ControlledConcept inline, others have used xlink:href with a URN value. Will these URNs
-                            be registered with the registry? Can't see any reason to restrict to one or the other for TB3.-->
                             <lithology>
-                                <!-- To do: consider whether we can map to CGI lithology terms. -->
-                                <ControlledConcept gml:id="RCS1">
-                                    <gml:name codeSpace="urn:ietf:rfc:2141">urn:cgi:classifier:BGS:RCS:CONG</gml:name>
-                                    <identifier codeSpace="urn:ietf:rfc:2141">urn:cgi:classifier:BGS:RCS:CONG</identifier>
-                                    <name xml:lang="en" codeSpace="urn:cgi:classifierScheme:BGS:RCS">CONGLOMERATE</name>
-                                    <vocabulary xlink:href="urn:cgi:classifierScheme:BGS:RCS"/>
+                                <ControlledConcept gml:id="CGILith_042">
+                                    <gml:name codeSpace="urn:ietf:rfc:2141">urn:cgi:classifier:CGI:SimpleLithology:2008:conglomerate</gml:name>
+                                    <identifier codeSpace="urn:ietf:rfc:2141">urn:cgi:classifier:CGI:SimpleLithology:2008:conglomerate</identifier>
+                                    <name xml:lang="en" codeSpace="urn:cgi:classifierScheme:CGI:SimpleLithology:2008">conglomerate</name>
+                                    <vocabulary xlink:href="urn:cgi:classifierScheme:CGI:SimpleLithology:2008"/>
                                 </ControlledConcept>
                             </lithology>
-                            <!-- TB3 Profile Note: For use case 2A the material property is not required. -->
                             <proportion>
                                 <CGI_NumericValue>
-                                    <principalValue uom="percent">100</principalValue>
+                                    <principalValue uom="urn:ogc:def:uom:UCUM:%25">100</principalValue>
                                 </CGI_NumericValue>
                             </proportion>
                         </CompositionPart>
