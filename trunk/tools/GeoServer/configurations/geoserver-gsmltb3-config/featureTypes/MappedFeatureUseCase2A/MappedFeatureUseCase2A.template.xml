@@ -132,18 +132,15 @@
 					</sourceExpression>
 					<ClientProperty>
 						<name>codeSpace</name>
-						<value>
-							'urn:cgi:classifierScheme:GSV:ObservationMethod'
-						</value>
+						<value>interpretationmethod_cdspace</value>
 					</ClientProperty>
 				</AttributeMapping>
 
 				<!--
-					Cannot encode positionalAccuracy because type
-					is different for missing data (CGI_TermValue)
+					Cannot encode correct positionalAccuracy because
+					type is different for missing data (CGI_TermValue)
 					and real data (CGI_NumericValue). GeoServer
-					requires one type. At the moment, the GSV data
-					set locationalaccuracy is not yet populated.
+					requires one type for this property.
 				-->
 
 				<AttributeMapping>
@@ -280,6 +277,11 @@
 						<OCQL>'typicalNorm'</OCQL>
 					</sourceExpression>
 				</AttributeMapping>
+
+				<!--
+					No gml:id on preferredAge/GeologicEvent because inlining would
+					cause duplicates and schema-invalidity.
+				-->
 
 				<AttributeMapping>
 					<targetAttribute>
