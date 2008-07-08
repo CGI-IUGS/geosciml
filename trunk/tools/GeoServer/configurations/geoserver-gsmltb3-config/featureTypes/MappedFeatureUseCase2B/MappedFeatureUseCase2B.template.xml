@@ -332,6 +332,72 @@
 					</ClientProperty>
 				</AttributeMapping>
 
+				<!--
+					No gml:id on geologicHistory/GeologicEvent because inlining would
+					cause duplicates and schema-invalidity.
+				-->
+
+				<AttributeMapping>
+					<targetAttribute>
+						gsml:specification/gsml:GeologicUnit/gsml:geologicHistory/gsml:GeologicEvent/gsml:eventAge
+					</targetAttribute>
+					<targetAttributeNode>
+						gsml:CGI_TermRangePropertyType
+					</targetAttributeNode>
+				</AttributeMapping>
+
+				<AttributeMapping>
+					<targetAttribute>
+						gsml:specification/gsml:GeologicUnit/gsml:geologicHistory/gsml:GeologicEvent/gsml:eventAge/gsml:CGI_TermRange/gsml:lower/gsml:CGI_TermValue/gsml:value
+					</targetAttribute>
+					<sourceExpression>
+						<OCQL>ghminage</OCQL>
+					</sourceExpression>
+					<ClientProperty>
+						<name>codeSpace</name>
+						<value>ghminage_cdspace</value>
+					</ClientProperty>
+				</AttributeMapping>
+
+				<AttributeMapping>
+					<targetAttribute>
+						gsml:specification/gsml:GeologicUnit/gsml:geologicHistory/gsml:GeologicEvent/gsml:eventAge/gsml:CGI_TermRange/gsml:upper/gsml:CGI_TermValue/gsml:value
+					</targetAttribute>
+					<sourceExpression>
+						<OCQL>ghmaxage</OCQL>
+					</sourceExpression>
+					<ClientProperty>
+						<name>codeSpace</name>
+						<value>ghmaxage_cdspace</value>
+					</ClientProperty>
+				</AttributeMapping>
+
+				<AttributeMapping>
+					<targetAttribute>
+						gsml:specification/gsml:GeologicUnit/gsml:geologicHistory/gsml:GeologicEvent/gsml:eventEnvironment/gsml:CGI_TermValue/gsml:value
+					</targetAttribute>
+					<sourceExpression>
+						<OCQL>ghenvironment</OCQL>
+					</sourceExpression>
+					<ClientProperty>
+						<name>codeSpace</name>
+						<value>ghenvironment_cdspace</value>
+					</ClientProperty>
+				</AttributeMapping>
+
+				<AttributeMapping>
+					<targetAttribute>
+						gsml:specification/gsml:GeologicUnit/gsml:geologicHistory/gsml:GeologicEvent/gsml:eventProcess/gsml:CGI_TermValue/gsml:value
+					</targetAttribute>
+					<sourceExpression>
+						<OCQL>ghprocess</OCQL>
+					</sourceExpression>
+					<ClientProperty>
+						<name>codeSpace</name>
+						<value>ghprocess_cdspace</value>
+					</ClientProperty>
+				</AttributeMapping>
+
 				<AttributeMapping>
 					<targetAttribute>
 						gsml:specification/gsml:GeologicUnit/gsml:rank
