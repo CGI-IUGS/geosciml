@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<gsml:Borehole
+  xmlns:gsml="urn:cgi:xmlns:CGI:GeoSciML:2.0" 
+  xmlns:gml="http://www.opengis.net/gml" 
+  xmlns:ogc="http://www.opengis.net/ogc"
+  xmlns:sa="http://www.opengis.net/sampling/1.0"
+  xmlns:cv="http://www.opengis.net/cv/0.2.1"
+  xmlns:om="http://www.opengis.net/om/1.0"
+  xmlns:tb3d="https://www.seegrid.csiro.au/twiki/bin/view/CGIModel/TestBed3UseCase3DProfile"
+  xmlns:proc="urn:x-lcnp:proc" 
+  xmlns:xlink="http://www.w3.org/1999/xlink"
+  mappedType="tb3d:WaterWell">
+  <!-- the catalog does not use namespaces in the query (i should fix this)
+<proc:namespace name="prefix">some.uri</proc:namespace>  -->
+<!-- constant element, appears whatever the query,none in this case -->
+ <proc:namespaces>
+<proc:namespace name="gsml">urn:cgi:xmlns:CGI:GeoSciML:2.0</proc:namespace>
+<proc:namespace name="gml">http://www.opengis.net/gml</proc:namespace> 
+<proc:namespace name="xlink">http://www.w3.org/1999/xlink</proc:namespace>
+<proc:namespace name="sa">http://www.opengis.net/sampling/1.0</proc:namespace>
+<proc:namespace name="om">http://www.opengis.net/om/1.0</proc:namespace>
+<proc:namespace name="cv">http://www.opengis.net/cv/0.2.1</proc:namespace>
+<proc:namespace name="tb3d">https://www.seegrid.csiro.au/twiki/bin/view/CGIModel/TestBed3UseCase3DProfile</proc:namespace>
+</proc:namespaces>
+<gml:name>tb3d:guid</gml:name>
+<gml:name codeSpace="urn:ietf:rfc:2141">tb3d:guid</gml:name>
+<gsml:collarLocation>
+	<gsml:BoreholeCollar>
+		<gsml:location>tb3d:geom</gsml:location>
+	</gsml:BoreholeCollar>
+</gsml:collarLocation>
+<sa:relatedObservation>
+	<om:Observation>
+		<om:result>
+			<cv:CV_DiscreteCoverage>
+				<cv:element>
+					<cv:CV_GeometryValuePair>
+						<cv:value xlink:href="tb3d:litho/tb3d:Lithology/tb3d:iugs_code"/>
+					</cv:CV_GeometryValuePair>
+				</cv:element>
+			</cv:CV_DiscreteCoverage>
+		</om:result>
+	</om:Observation>
+</sa:relatedObservation>
+<sa:length>tb3d:length</sa:length>
+</gsml:Borehole>

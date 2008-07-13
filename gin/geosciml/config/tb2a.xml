@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<proc:config xmlns:proc="urn:x-lcnp:proc">
+	<!-- LCNP GeoSciML service wrapper configuration -->
+	<proc:defaultPrefixMapping>
+		<!-- some WFS clients do not declare namespace when requesting a FeatureType, but just pick the name as is in the GetCapabilities document.  If this name has a prefix (as it should), this namespace must be declared in the request as well.. which is not always done by client applications.  To overcome this problem, you can declare some default mapping here that matches what you registered in your GetCapabilities document 
+just add lines as required
+<proc:ns prefix="app">http://www.myapp.com</proc:ns>
+<proc:ns prefix="myns">http://www.myns.com</proc:ns>-->
+		<proc:ns prefix="gsml">urn:cgi:xmlns:CGI:GeoSciML:2.0</proc:ns>
+		<proc:ns prefix="gwml">http://www.nrcan.gc.ca/xml/gwml/1</proc:ns>
+	</proc:defaultPrefixMapping>
+	<proc:maxFeatures>1000</proc:maxFeatures>
+	<proc:defaultGeometries>
+		<!-- for BBOX queries in HTTP/GET mode, there are no ways to tell the service which geometry is to be filtered, it can be defined here..., otherwise, the defaultGeometry is used.  The geometry property must be provided with the target Feature as the context node-->
+		<proc:featureGeometry typeName="gsml:MappedFeature">gsml:shape</proc:featureGeometry>
+		<proc:defaultGeometry>gsml:occurrence/gsml:MappedFeature/gsml:shape</proc:defaultGeometry>
+	</proc:defaultGeometries>
+	<proc:datasources>
+		<proc:datasource name="ngwd">
+			<proc:handledFeature name="gsml:GeologicUnit" handler="GeologicUnit"/>
+			<proc:handledFeature name="gsml:MappedFeature" handler="MappedFeature"/>
+			<proc:processor name="cat"/>
+		</proc:datasource>
+	</proc:datasources>
+</proc:config>

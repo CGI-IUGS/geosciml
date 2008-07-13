@@ -1,0 +1,102 @@
+<xsd:schema targetNamespace="http://www.deegree.org/app" xmlns:gml="http://www.opengis.net/gml" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:deegreewfs="http://www.deegree.org/wfs" xmlns:ogc="http://www.opengis.net/ogc" xmlns:app="http://www.deegree.org/app" elementFormDefault="qualified" attributeFormDefault="unqualified">
+    <xsd:import namespace="http://www.opengis.net/gml" schemaLocation="http://schemas.opengis.net/gml/3.1.1/base/feature.xsd"/>
+    <xsd:import namespace="http://www.opengis.net/gml" schemaLocation="http://schemas.opengis.net/gml/3.1.1/base/geometryAggregates.xsd"/>
+    <!-- configuration for the persistence backend to be used -->
+    <xsd:annotation>
+        <xsd:appinfo>
+            <deegreewfs:Prefix>app</deegreewfs:Prefix>
+            <deegreewfs:Backend>POSTGIS</deegreewfs:Backend>
+            <deegreewfs:DefaultSRS>Enter A CRS!!!!!!</deegreewfs:DefaultSRS>
+            <JDBCConnection xmlns="http://www.deegree.org/jdbc">
+                <Driver>org.postgresql.Driver</Driver>
+                <Url>jdbc:postgresql://s5-stf-ngwd:5432/okanagan</Url>
+                <User>okanagan</User>
+                <Password>kelokelo</Password>
+                <SecurityConstraints/>
+                <Encoding>iso-8859-1</Encoding>
+            </JDBCConnection>
+        </xsd:appinfo>
+    </xsd:annotation><!-- ============================================================== -->
+<xsd:element name='tbl_well' type='app:tbl_wellType' substitutionGroup="gml:_Feature">
+        <xsd:annotation>
+       <xsd:appinfo>
+          <deegreewfs:table>tbl_well</deegreewfs:table>
+                <deegreewfs:gmlId prefix="ID_">
+          <deegreewfs:MappingField field='smp_id' type="INTEGER"/>
+                </deegreewfs:gmlId>
+      </xsd:appinfo>
+   </xsd:annotation>
+</xsd:element>
+<!-- ============================================================== -->
+    <xsd:complexType name='tbl_wellType'>
+        <xsd:complexContent>
+            <xsd:extension base="gml:AbstractFeatureType">
+                <xsd:sequence>
+<xsd:element name='smp_id' type='xsd:integer'>
+    <xsd:annotation>
+        <xsd:appinfo>
+            <deegreewfs:Content>
+                <deegreewfs:MappingField field='smp_id' type='BIGINT'/>
+            </deegreewfs:Content>
+        </xsd:appinfo>
+    </xsd:annotation>
+</xsd:element>
+<xsd:element name='uname' type='xsd:string'>
+    <xsd:annotation>
+        <xsd:appinfo>
+            <deegreewfs:Content>
+                <deegreewfs:MappingField field='uname' type='CHAR'/>
+            </deegreewfs:Content>
+        </xsd:appinfo>
+    </xsd:annotation>
+</xsd:element>
+<xsd:element name='org_name' type='xsd:string'>
+    <xsd:annotation>
+        <xsd:appinfo>
+            <deegreewfs:Content>
+                <deegreewfs:MappingField field='org_name' type='VARCHAR'/>
+            </deegreewfs:Content>
+        </xsd:appinfo>
+    </xsd:annotation>
+</xsd:element>
+<xsd:element name='elev' type='xsd:double'>
+    <xsd:annotation>
+        <xsd:appinfo>
+            <deegreewfs:Content>
+                <deegreewfs:MappingField field='elev' type='NUMERIC'/>
+            </deegreewfs:Content>
+        </xsd:appinfo>
+    </xsd:annotation>
+</xsd:element>
+<xsd:element name='total_depth' type='xsd:double'>
+    <xsd:annotation>
+        <xsd:appinfo>
+            <deegreewfs:Content>
+                <deegreewfs:MappingField field='total_depth' type='NUMERIC'/>
+            </deegreewfs:Content>
+        </xsd:appinfo>
+    </xsd:annotation>
+</xsd:element>
+<xsd:element name='geom' type='gml:GeometryPropertyType'>
+    <xsd:annotation>
+        <xsd:appinfo>
+            <deegreewfs:Content>
+                <deegreewfs:MappingField field='geom' type='GEOMETRY' srs='-1'/>
+            </deegreewfs:Content>
+        </xsd:appinfo>
+    </xsd:annotation>
+</xsd:element>
+<xsd:element name='drill_date' type='xsd:dateTime'>
+    <xsd:annotation>
+        <xsd:appinfo>
+            <deegreewfs:Content>
+                <deegreewfs:MappingField field='drill_date' type='DATE'/>
+            </deegreewfs:Content>
+        </xsd:appinfo>
+    </xsd:annotation>
+</xsd:element>
+ </xsd:sequence>
+            </xsd:extension>
+        </xsd:complexContent>
+    </xsd:complexType>
+</xsd:schema>

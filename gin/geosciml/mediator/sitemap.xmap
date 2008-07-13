@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  Copyright 1999-2004 The Apache Software Foundation
+
+  Licensed under the Apache License, Version 2.0 (the "License");
+  you may not use this file except in compliance with the License.
+  You may obtain a copy of the License at
+
+      http://www.apache.org/licenses/LICENSE-2.0
+
+  Unless required by applicable law or agreed to in writing, software
+  distributed under the License is distributed on an "AS IS" BASIS,
+  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  See the License for the specific language governing permissions and
+  limitations under the License.
+-->
+<!--+
+    | This is the 'heart' of Cocoon. The sitemap maps URI space to
+    | resources. It consists basicaly of two parts: components and
+    | pipelines. Pipelines are made out of components. There is such a
+    | vast number of components available that it would be impossible to
+    | describe them here, please refer to the accompanying
+    | documentation. For specific components, have a look also at the
+    | javadocs for them. Most pipelines are present to demonstrate some
+    | feature or technique, often they are explained in more detail in
+    | the accompanying documentation. The sitemaps which come with each
+    | sample and each block will help to explain.
+    |
+    | CVS $Id: sitemap.xmap 389028 2006-03-27 06:21:40Z rgoers $
+    +-->
+<map:sitemap xmlns:map="http://apache.org/cocoon/sitemap/1.0">
+	<!-- MEDIATOR site map -->
+	<map:pipelines>
+	<map:pipeline>
+	<!-- SPECIAL PURPOSE , just to get rid of functions -->
+			<map:match pattern="gsml_is_pref_age">
+				<map:generate type="stream">
+					<map:parameter name="defaultContentType" value="text/xml"/>
+				</map:generate>
+				<map:transform type="saxon" src="style/removefunc.xslt"/>
+				<map:serialize type="xml"/>
+			</map:match>
+			<!-- SPECIAL PURPOSE , just to get rid of functions -->
+			<map:match pattern="gsml_is_litho">
+			<map:generate type="stream">
+					<map:parameter name="defaultContentType" value="text/xml"/>
+				</map:generate>
+				<map:transform type="saxon" src="style/removefunc.xslt"/>
+				<map:serialize type="xml"/>
+			</map:match>
+			<!-- process a onto map by merging an ontology and a mapping -->
+			<map:match pattern="ontomap/*">
+				<map:generate src="mapping/{1}.xml"/>
+				<map:transform type="saxon" src="style/include_ext.xslt"/>
+				<map:transform type="include"/>
+				<map:serialize type="xml"/>
+			</map:match>
+			<map:match pattern="ontology/*/*">
+				<map:generate src="{1}/{2}.xml"/>
+				<map:serialize type="xml"/>
+			</map:match>
+			</map:pipeline>
+			</map:pipelines>
+</map:sitemap>

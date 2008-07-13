@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<stx:transform xmlns:stx="http://stx.sourceforge.net/2002/ns" version="1.0" 
+xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+xmlns:gsml="urn:cgi:xmlns:CGI:GeoSciML:2.0"
+xmlns:wfs="http://www.opengis.net/wfs" 
+xmlns:xlink="http://www.w3.org/1999/xlink" 
+xmlns:gml="http://www.opengis.net/gml" 
+xmlns:cat="urn:x-ngwd:cat"
+xmlns:sf="http://stx.sourceforge.net/2003/functions"
+pass-through="none" output-method="xml" strip-space="no">
+<stx:param name="xslt"/>
+<stx:param name="host"/>
+<stx:variable name="path">url('<stx:value-of select="$host"/>/<stx:value-of select="$xslt"/>.pxslt')</stx:variable>
+<stx:template match="/">
+<Reponse>
+<stx:process-children/>
+</Reponse>
+</stx:template>
+<stx:template match="cat:Catalog">
+<wfs:FeatureCollection gml:id="cat.1">
+
+<gml:boundedBy>
+<gml:Envelope srsName="EPSG:4326">
+	<gml:lowerCorner>-140 40</gml:lowerCorner>
+	<gml:upperCorner>-50 90</gml:upperCorner>
+</gml:Envelope>
+</gml:boundedBy>
+<stx:process-children/></wfs:FeatureCollection>
+</stx:template>
+<stx:template match="cat:catalogMember">
+<stx:choose>
+	<stx:when test="@inner_ref"><gml:featureMember xlink:href="{@inner_ref}"/></stx:when>
+	<stx:when test="@outer_ref"><gml:featureMember xlink:href="{@outer_ref}"/></stx:when>
+	<stx:otherwise>
+	<gml:featureMember>
+<stx:process-children filter-method="http://www.w3.org/1999/XSL/Transform" filter-src="$path"/>
+</gml:featureMember></stx:otherwise>
+</stx:choose>
+
+</stx:template>
+</stx:transform>

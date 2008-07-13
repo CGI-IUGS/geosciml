@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<stx:transform xmlns:stx="http://stx.sourceforge.net/2002/ns" version="1.0" 
+xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+xmlns:sf="http://stx.sourceforge.net/2003/functions"
+xmlns:proc="urn:x-lcnp:proc" 
+pass-through="all" output-method="xml" strip-space="yes">
+<stx:variable name="service-url"/>
+<stx:param name="source"/>
+<stx:buffer name="command"/>
+<!-- matches a datasource that correspond to the source passed in parameter -->
+<stx:template match="proc:datasource[@name=$source]">
+	<stx:assign name="service-url" select="@service-url"/>
+</stx:template>
+<!-- when we hit a query , send it to the source 
+in this processor, we are garanteed that there is only one query , therefore, only one source
+TODO : We should improve the code so the proc:query has an @service-url, in case whe have many source in other processor -->
+
+<stx:template match="proc:remote/*">
+<stx:result-buffer name="command" clear="yes">
+	<stx:process-self/>
+</stx:result-buffer>
+<stx:process-buffer filter-method="http://www.ietf.org/rfc/rfc2616.txt#POST" name="command">
+<stx:with-param name="target" select="$service-url"/>
+</stx:process-buffer>
+</stx:template>
+
+<!-- debug version of the POST engine-->
+
+<!--<stx:template match="proc:remote/*">
+<debug>
+<target><stx:value-of select="$service-url"/></target>
+<stx:process-self/>
+</debug>
+</stx:template>-->
+</stx:transform>

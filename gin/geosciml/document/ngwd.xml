@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<wfs:GetFeature 
+xmlns:wfs="http://www.opengis.net/wfs" 
+xmlns:ogc="http://www.opengis.net/ogc" 
+xmlns:gsml="urn:cgi:xmlns:CGI:GeoSciML:2.0"  
+xmlns:sa="http://www.opengis.net/sampling/1.0"
+maxFeatures="50" service="WFS" version="1.1.0">
+	<wfs:Query srsName="EPSG:4326" typeName="gsml:Borehole">
+		<ogc:Filter>
+			<ogc:PropertyIsGreaterThan>
+				<ogc:PropertyName>sa:length</ogc:PropertyName>
+				<ogc:Literal>300</ogc:Literal>
+			</ogc:PropertyIsGreaterThan>>
+		</ogc:Filter>
+	</wfs:Query>
+</wfs:GetFeature>
+

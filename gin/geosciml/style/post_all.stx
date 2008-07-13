@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<stx:transform xmlns:stx="http://stx.sourceforge.net/2002/ns" version="1.0" pass-through="all" output-method="xml" strip-space="yes">
+<stx:param name="url"/>
+<stx:template match="/">
+<debug>
+	<stx:process-children filter-method="http://www.ietf.org/rfc/rfc2616.txt#POST">
+<stx:with-param name="target" select="$url"/>
+</stx:process-children>
+</debug>
+</stx:template>
+</stx:transform>

@@ -1,0 +1,611 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  Copyright 1999-2004 The Apache Software Foundation
+
+  Licensed under the Apache License, Version 2.0 (the "License");
+  you may not use this file except in compliance with the License.
+  You may obtain a copy of the License at
+
+      http://www.apache.org/licenses/LICENSE-2.0
+
+  Unless required by applicable law or agreed to in writing, software
+  distributed under the License is distributed on an "AS IS" BASIS,
+  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  See the License for the specific language governing permissions and
+  limitations under the License.
+-->
+<!--+
+    | This is the 'heart' of Cocoon. The sitemap maps URI space to
+    | resources. It consists basicaly of two parts: components and
+    | pipelines. Pipelines are made out of components. There is such a
+    | vast number of components available that it would be impossible to
+    | describe them here, please refer to the accompanying
+    | documentation. For specific components, have a look also at the
+    | javadocs for them. Most pipelines are present to demonstrate some
+    | feature or technique, often they are explained in more detail in
+    | the accompanying documentation. The sitemaps which come with each
+    | sample and each block will help to explain.
+    |
+    | CVS $Id: sitemap.xmap 389028 2006-03-27 06:21:40Z rgoers $
+    +-->
+<map:sitemap xmlns:map="http://apache.org/cocoon/sitemap/1.0">
+	<!-- =========================== Components ================================ -->
+	<map:components>
+		<map:generators>
+			<map:generator label="content" logger="sitemap.generator.request" name="xmlStream" pool-grow="2" pool-max="16" pool-min="2" src="org.apache.cocoon.generation.XmlStreamGenerator"/>
+		</map:generators>
+		<map:transformers default="xslt">
+			<map:transformer name="DeegreeService" logger="deegree.transformer" src="org.apache.cocoon.transformation.DeegreeService"/>
+			<map:transformer name="PostClient" logger="ngwd.transformer" src="org.apache.cocoon.transformation.PostClient"/>
+			<map:transformer name="NgwdCatalog" logger="ngwd.transformer" src="org.apache.cocoon.transformation.NgwdCatalogQueryTransformer"/>
+			<map:transformer name="FilterRewrite" logger="ngwd.transformer" src="org.apache.cocoon.transformation.FilterMappingTransformer"/>
+			<map:transformer name="RemoveDuplicates" logger="ngwd.transformer" src="org.apache.cocoon.transformation.RemoveDuplicatesTransformer"/>
+		</map:transformers>
+		<map:serializers default="html">
+			<map:serializer logger="ngwd.serialization" name="getmap" mime-type="image/gif" src="org.apache.cocoon.serialization.GetMapSerializer"/>
+		</map:serializers>
+		<map:actions>
+			<map:action logger="sitemap.action.xsp-action" name="xsp-action" src="org.apache.cocoon.acting.ServerPagesAction"/>
+		</map:actions>
+	</map:components>
+	<map:pipelines>
+		<map:component-configurations>
+			<global-variables>
+				<!-- this is the url of the original wfs -->
+				<wfs-host>http://localhost:8888/geosciml/wfs</wfs-host>
+				<wfs-conn>ngwd</wfs-conn>
+			</global-variables>
+		</map:component-configurations>
+		<map:pipeline>
+			<map:match pattern="page/**">
+				<map:read src="html/{1}"/>
+			</map:match>
+		</map:pipeline>
+		<!-- sub sections -->
+		<map:pipeline>
+			<map:match pattern="res/**">
+				<map:read src="res/{1}"/>
+			</map:match>
+			<map:match pattern="**.js">
+				<map:read src="js/{1}.js"/>
+			</map:match>
+			<!--
+	<map:match pattern="**.html">
+		<map:read src="html/{1}.html"/>
+	</map:match>
+-->
+			<map:match pattern="**.gif">
+				<map:read src="js/{1}.gif"/>
+			</map:match>
+		</map:pipeline>
+		<map:pipeline>
+			<map:match pattern="sld/processor/*/*/*">
+				<!-- from the urn of a sld, turn it into a local urn according to profile/layer/urn -->
+				<map:aggregate element="page" ns="urn:x-lcnp:proc">
+					<map:part element="sld" ns="urn:x-lcnp:proc" src="cocoon:/resolver/{3}"/>
+					<map:part element="schema" ns="urn:x-lcnp:proc" src="sld/{1}/{2}.xml"/>
+					<map:part element="semantic" ns="urn:x-lcnp:proc" src="cocoon:/sld/getMapping/{1}/{2}"/>
+				</map:aggregate>
+				<map:transform type="saxon" src="style/procsld.xslt"/>
+				<map:serialize type="xml"/>
+			</map:match>
+			<map:match pattern="sld/getMapping/*/*">
+				<!-- depending of what kind of resource exist, will use a static mapping or a sql generated mapping -->
+				<map:select type="resource-exists">
+					<map:when test="sld/{1}/{2}.map">
+						<map:generate src="sld/{1}/{2}.map"/>
+					</map:when>
+					<map:otherwise>
+						<map:generate src="sld/{1}/{2}.sql"/>
+						<map:transform type="sql">
+							<map:parameter name="use-connection" value="gsml"/>
+							<map:parameter name="show-nr-of-rows" value="true"/>
+							<map:paramater name="clob-encoding" value="UTF-8"/>
+						</map:transform>
+						<map:transform type="saxon" src="style/sql2map.xslt"/>
+					</map:otherwise>
+				</map:select>
+				<map:serialize type="xml"/>
+			</map:match>
+			<map:match pattern="sld/*">
+				<map:generate src="sld/{1}.sld"/>
+				<map:serialize type="xml"/>
+			</map:match>
+			<map:match pattern="legend/*">
+				<map:generate src="sld/{1}.sld"/>
+				<map:transform src="style/sld2svg.xslt">
+					<map:parameter name="w" value="250"/>
+				</map:transform>
+				<map:serialize type="svg2png"/>
+			</map:match>
+		</map:pipeline>
+		<map:pipeline>
+			<map:match pattern="dev/bc">
+				<!-- test STX POST trick -->
+				<map:generate src="document/bc.xml"/>
+				<!--<map:transform type="saxon" src="style/dev_bcbbox.xslt">
+		<map:parameter name="bbox" value="{request-param:BBOX}"/>
+		</map:transform>-->
+				<map:transform type="stx" src="style/post_debug.stx"/>
+				<map:transform type="saxon" src="handler/bc/out_waterwell.xslt"/>
+				<map:serialize type="xml"/>
+			</map:match>
+		</map:pipeline>
+		<!-- GeoSciML / GWML wms wrapper -->
+		<!-- WMS -->
+		<map:pipeline type="noncaching">
+			<map:parameter name="outputBufferSize" value="8192"/>
+			<map:match pattern="wms">
+				<map:generate type="request"/>
+				<map:transform type="stx" src="style/analyse_get_request.stx">
+					<map:parameter name="config" value="wms-default"/>
+				</map:transform>
+				<map:transform type="include"/>
+				<map:transform type="saxon" src="style/wms_ms_bridge.xslt"/>
+				<map:transform type="include"/>
+				<map:select type="parameter">
+					<map:parameter name="parameter-selector-test" value="{c-request-param:request||u}"/>
+					<map:when test="GETMAP">
+						<!-- TODO -->
+						<map:transform type="saxon" src="style/toGetMap.xslt"/>
+						<map:serialize type="getmap"/>
+					</map:when>
+					<map:when test="GETFEATUREINFO">
+						<!-- it should be GWML at this point -->
+						<map:transform type="stx" src="style/deProc-gfi.stx"/>
+						<map:transform type="saxon" src="style/gwml2html.xslt"/>
+						<map:serialize type="html"/>
+						<!--<map:serialize type="xml"/>-->
+					</map:when>
+					<map:otherwise>
+						<map:transform type="stx" src="style/deProc.stx"/>
+						<map:serialize type="xml"/>
+					</map:otherwise>
+				</map:select>
+			</map:match>
+			<!--
+	<map:match pattern="wms-getmap">
+	<map:generate src="http://s5-stf-ngwd.nrn.nrcan.gc.ca/WebScripts/Mapserver_Sb/mapserv.exe?map={request-param:m_map}&amp;mapext={url-encode:{request-param:m_mapext}}&amp;layers={url-encode:{request-param:m_layers}}&amp;mwidth={request-param:m_width}&amp;height={request-param:m_height}&amp;mode=browse"/>
+	<map:transform type="saxon" src="style/wms_ms_extract_image.xslt"/>
+	<map:serialize type="xml"/>
+	</map:match>
+-->
+			<map:match pattern="wms-getcapabilities">
+				<map:generate src="capabilities/wms-default.xml"/>
+				<map:serialize type="xml"/>
+			</map:match>
+			<map:match pattern="wms-getfeatureinfo">
+				<map:generate type="request"/>
+				<map:transform type="stx" src="style/analyse_get_request.stx">
+					<map:parameter name="config" value="wms-default"/>
+				</map:transform>
+				<map:transform type="include"/>
+				<map:transform type="saxon" src="style/wms_ms_gfi.xslt"/>
+				<map:transform type="include"/>
+				<map:transform type="saxon" src="style/extractFeatureMember.xslt"/>
+				<map:serialize type="xml"/>
+			</map:match>
+		</map:pipeline>
+		<map:pipeline type="noncaching">
+			<map:parameter name="outputBufferSize" value="8192"/>
+			<map:match pattern="wfs-form/*">
+				<map:generate type="stream">
+					<!--<map:parameter name="defaultContentType" value="text/xml"/>-->
+					<map:parameter name="form-name" value="request"/>
+				</map:generate>
+				<map:serialize type="xml"/>
+			</map:match>
+		</map:pipeline>
+		<map:pipeline>
+			<map:match pattern="deegree/*">
+				<map:generate src="document/{1}.xml"/>
+				<map:transform type="DeegreeService"/>
+				<map:serialize type="xml"/>
+			</map:match>
+		</map:pipeline>
+		<!-- GeoSciML/ GWML mediator engine -->
+		<!-- ============================================================= -->
+		<!-- ============================================================= -->
+		<!-- ============================================================= -->
+		<map:pipeline type="noncaching">
+			<map:parameter name="outputBufferSize" value="8192"/>
+			<!-- INIT SECTION -->
+			<map:match pattern="wfs">
+				<map:redirect-to uri="cocoon:/wfs/wfs-default"/>
+			</map:match>
+			<map:match pattern="wfs/handler/**">
+				<map:read src="handler/{1}"/>
+			</map:match>
+			<map:match pattern="wfs/wfs-stx-generator">
+				<map:generate type="request"/>
+				<map:transform type="saxon" src="style/generate_stx.xslt">
+					<map:parameter name="host" value="{global:wfs-host}"/>
+				</map:transform>
+				<map:serialize type="xml"/>
+			</map:match>
+			<map:match pattern="wfs/wfs-wfsstx-generator">
+				<map:generate type="request"/>
+				<map:transform type="saxon" src="style/generate_wfsstx.xslt">
+					<map:parameter name="host" value="{global:wfs-host}"/>
+				</map:transform>
+				<map:serialize type="xml"/>
+			</map:match>
+			<map:match pattern="wfs/*">
+				<map:select type="parameter">
+					<map:parameter name="parameter-selector-test" value="{request-param:DEBUG}"/>
+					<map:when test="true">
+						<map:generate src="document/{request-param:SRC}.xml"/>
+					</map:when>
+					<map:when test="form">
+						<map:generate type="stream">
+							<map:parameter name="form-name" value="request"/>
+						</map:generate>
+						<map:transform type="saxon" src="style/addns.xslt"/>
+					</map:when>
+					<map:otherwise>
+						<map:select type="request-method">
+							<map:when test="GET">
+								<!-- REQUEST SUBMITTED IN GET FORMAT, must be translated in POST/XML -->
+								<map:generate type="request"/>
+								<map:transform type="stx" src="style/analyse_get_request.stx">
+									<map:parameter name="config" value="{1}"/>
+								</map:transform>
+								<map:transform type="cinclude"/>
+								<map:transform type="saxon" src="style/GetToPostWfs.xslt"/>
+								<map:transform type="stx" src="style/clean_get_request.stx"/>
+							</map:when>
+							<map:otherwise>
+								<!-- handle POST requests -->
+								<map:generate type="xmlStream">
+									<map:parameter name="defaultContentType" value="text/xml"/>
+								</map:generate>
+								<map:transform type="saxon" src="style/addns.xslt"/>
+							</map:otherwise>
+						</map:select>
+					</map:otherwise>
+				</map:select>
+				<!-- check for a DEBUG=true parameter -->
+				<!-- This section writes a copy of the request in a temps file, and loads the config in memory. -->
+				
+				<map:transform src="style/pre-process-job.xslt" type="saxon">
+					<!-- invoke the configuration file, which is a profile -->
+					<map:parameter name="config" value="{1}"/>
+				</map:transform>
+				
+				<map:transform type="write-source"/>
+				<map:transform type="cinclude"/>
+				
+				<!--This block turns the query into a job sequence ; a series of calls to the process pipelines-->
+				<map:transform src="style/job.xslt" type="saxon">
+					<map:parameter name="config" value="{1}"/>
+				</map:transform>
+				
+				<!-- DEBUG<map:serialize type="xml"/>  -->
+				<!-- the include transformer sends the command to the relevant pipelines -->
+				<map:transform type="include">
+					<!-- some processors can actually bounce back to another 1..* processor -->
+					<map:parameter name="recursive" value="false"/>
+				</map:transform>
+				<!-- ??
+<map:transform src="style/extract-query.xslt" type="saxon"/>
+				<map:transform src="style/redirectService.stx" type="stx">
+					<map:parameter name="requester" value="{request:remoteAddr}"/>
+					<map:parameter name="targetService" value="http://s5-stf-ngwd.nrn.nrcan.gc.ca:8080"/>
+				</map:transform>
+		-->
+				<!-- this last transformer extract from data the XML streams that otherwise also contains configurations,commands and results status-->
+				<map:transform type="stx" src="style/deProc.stx"/>
+				
+				<map:serialize type="xml"/>
+			</map:match>
+			<!-- 
+cleans from the temp directory the query document passed in {1} 
+invocation:		wfs-process-clean/[key]
+-->
+			<map:match pattern="wfs-process-clean/*">
+				<map:generate type="serverpages" src="xsp/delete_req.xsp">
+					<map:parameter name="key" value="{1}"/>
+				</map:generate>
+				<map:transform type="write-source"/>
+				<map:serialize type="xml"/>
+			</map:match>
+			<!--
+Get a GetFeatureRequest and get only then nth Query node
+invocation: wfs-GetRequest/[key]/[n]
+-->
+			<map:match pattern="wfs-GetRequest/*/*">
+				<map:generate src="temp/req_{1}.xml"/>
+				<map:transform type="saxon" src="style/subsetQuery.xslt">
+					<map:parameter name="pos" value="{2}"/>
+				</map:transform>
+				<map:serialize type="xml"/>
+			</map:match>
+			<!-- SPECIFIC OP SECTIONS 
+=====================================
+=====================================-->
+			<map:match pattern="wfs-process-DescribeFeatureType/*/*">
+				<map:generate src="schemas/geosciml.xsd"/>
+				<map:serialize type="xml"/>
+			</map:match>
+			<map:match pattern="wfs-process-GetCapabilities/*">
+				<!-- we ignore the key for now, since we deal with a static GetCap file.  The capabilities file has been doctored so some part can be replaced , ie, the host location.  But the same principle can be used to automatically replace some other parts dynamically -->
+				<map:select type="resource-exists">
+					<map:when test="capabilities/{1}.xml">
+						<map:generate src="capabilities/{1}.xml"/>
+					</map:when>
+					<map:otherwise>
+						<map:generate src="capabilities/wfs-default.xml"/>
+					</map:otherwise>
+				</map:select>
+				<!-- replaces the [host] placeholders with a host , so the code can be moved from one server to the other -->
+				<map:transform src="style/replaceHost.stx" type="stx">
+					<map:parameter name="host" value="{global:wfs-host}/{1}"/>
+				</map:transform>
+				<map:serialize type="xml"/>
+			</map:match>
+			<map:match pattern="wfs-process-ExceptionReport/*/*">
+				<map:generate src="temp/req_{1}.xml"/>
+				<map:serialize type="xml"/>
+			</map:match>
+			<!-- ========================  GET FEATURE PROCESSORS =============== -->
+			<!-- Get feature processor 
+There could be as many GetFeature processor as required, they are normally organised by datasource because each datasource might have different processing requirement (ie, a different chaining of component) and of course a different targets.  This is where the wrapping is really resolved .  
+
+1= config
+2= key
+3=handler
+4=source
+5=pos
+
+		-->
+			<!-- deegree processor send the query to a deegree mapping engine instead of a remote server -->
+			<map:match pattern="wfs-process-GetFeature-deegree/*/*/*/*/*">
+				<map:generate src="cocoon:/wfs-GetRequest/{2}/{5}"/>
+				<!--<map:generate src="document/gaia.xml"/>-->
+				<!-- transform the incoming request to a private request, according to the source -->
+				<map:transform type="FilterRewrite" src="mapping/{1}/{4}/{3}.map"/>
+				<!--
+				<map:transform type="cinclude"/>
+				<map:transform type="saxon" src="style/dbg_identity.xslt"/>-->
+				<!-- old handler, must be transformed using the document handler 
+				<map:transform type="saxon" src="handler/{4}/in_{3}.xslt"/>-->
+				<!-- this works with ArcIMS, wonder what harm it will do to wfs: query  - to be tested -->
+				<map:transform type="DeegreeService"/>
+				<!--the result is fed to a out_handler that transform the result into a gsml document -->
+				<map:select type="resource-exists">
+					<map:when test="handler/{1}/{4}/{3}.stx">
+						<map:transform type="stx" src="handler/{1}/{4}/{3}.stx"/>
+					</map:when>
+					<map:when test="handler/{1}/{4}/{3}.pxslt">
+						<map:transform type="stx" src="cocoon:/wfs/wfs-stx-generator?xslt=handler/{1}/{4}/{3}"/>
+					</map:when>
+					<map:when test="handler/{1}/{4}/{3}.xslt">
+						<map:transform type="saxon" src="handler/{1}/{4}/{3}.xslt"/>
+					</map:when>
+				</map:select>
+				<map:transform type="RemoveDuplicates"/>
+				<map:serialize type="xml"/>
+			</map:match>
+			<!-- NGWD catalog service 
+	this service reads data directly in the NGWD postgres catalog
+	-->
+			<map:match pattern="wfs-process-GetFeature-cat/*/*/*/*/*">
+				<map:generate src="cocoon:/wfs-GetRequest/{2}/{5}"/>
+				<map:transform type="FilterRewrite" src="mapping/{1}/{4}/{3}.map"/>
+				<!--<map:transform type="saxon" src="style/inc_mapping.xslt">
+				<map:parameter name="mapping" value="{1}/{4}/{3}.map"/>
+			</map:transform>
+			<map:transform type="cinclude"/>	-->
+				<!-- this is where the translation happens
+			<map:transform type="saxon" src="style/dbg_cat_identity.xslt"/>-->
+				<map:transform type="saxon" src="style/gf2gfcat.xslt"/>
+				<!--<map:serialize type="xml"/>DEBUG -->
+				<map:transform type="NgwdCatalog">
+					<map:parameter name="use-connection" value="ngwd"/>
+				</map:transform>
+				<!-- this section transform the output in community domain -->
+				<map:select type="resource-exists">
+					<map:when test="handler/{1}/{4}/{3}.stx">
+						<map:transform type="stx" src="handler/{1}/{4}/{3}.stx"/>
+					</map:when>
+					<map:when test="handler/{1}/{4}/{3}.pxslt">
+						<map:transform type="stx" src="cocoon:/wfs/wfs-stx-generator?xslt=handler/{1}/{4}/{3}"/>
+					</map:when>
+					<map:when test="handler/{1}/{4}/{3}.xslt">
+						<map:transform type="saxon" src="handler/{1}/{4}/{3}.xslt"/>
+					</map:when>
+					
+				</map:select>
+				<!---->
+				<map:serialize type="xml"/>
+			</map:match>
+			<map:match pattern="wfs-process-GetFeature-debug/*/*/*/*/*">
+				<map:generate src="cocoon:/wfs-GetRequest/{2}/{5}"/>
+				<map:transform type="FilterRewrite" src="mapping/{1}/{4}/{3}.map"/>
+				<map:serialize type="xml"/>
+			</map:match>
+			<!-- 
+GENERIC REMOTE GETFEATURE HANDLER 
+This installation provides a  generic remote pipeline, it transforms the incoming request and POST it to
+some remote server.  The location of the server is taken by matching the [source] = {3} with the global list at the top
+invocation: wfs-process-GetFeature-[processor]/[config]/[key]/[handler]/[source]/[pos] that matches any processor. 
+1 = processor
+2= config
+3= key
+4=handler
+5=source
+6=pos
+
+WARNING:  This processor should remain the last in the list because this one matches all possible processors therefore any processor listed after this one will never be matched
+-->
+			<map:match pattern="wfs-process-GetFeature-*/*/*/*/*/*">
+				<map:generate src="cocoon:/wfs-GetRequest/{3}/{6}"/>
+				<map:transform type="FilterRewrite" src="mapping/{2}/{5}/{4}.map"/>
+				<!-- this works with ArcIMS, wonder what harm it will do to wfs: query  - to be tested -->
+				<!--<map:transform type="saxon" src="style/removeNs.xslt"/>-->
+				<!-- must add a transformer that loads the config, to get the address of the server, merge it with the query and have the stx to resolve it. then the next in line should remove the root nodes and leave only the result node -->
+				<map:transform type="saxon" src="style/submit_wrapper.xslt">
+					<map:parameter name="config" value="{2}"/>
+				</map:transform>
+				<map:transform type="include"/>
+				<!-- send the request to the server -->
+				<map:transform type="stx" src="style/post.stx">
+					<map:parameter name="source" value="{5}"/>
+				</map:transform>
+				<map:transform type="stx" src="style/extract_result.stx"/>
+				<!-- 
+				This is the previous method, now superceeded by the STX trick
+					<map:transform type="PostClient">
+					<map:parameter name="server" value="{global:url-{4}}"/>
+				</map:transform>-->
+				<!-- the result is fed to a out_handler that transform the result into a gsml document -->
+				<map:select type="parameter">
+					<map:parameter name="parameter-selector-test" value="{1}"/>
+					<map:when test="wfs-only">
+						<!-- do nothing -->
+					</map:when>
+					<map:otherwise>
+						<map:select type="resource-exists">
+							<map:when test="handler/{2}/{5}/{4}.stx">
+								<map:transform type="stx" src="handler/{2}/{5}/{4}.stx"/>
+							</map:when>
+							<map:when test="handler/{2}/{5}/{4}.pxslt">
+								<map:transform type="stx" src="cocoon:/wfs/wfs-wfsstx-generator?xslt=handler/{2}/{5}/{4}"/>
+							</map:when>
+							<map:when test="handler/{2}/{5}/{4}.xslt">
+								<map:transform type="saxon" src="handler/{2}/{5}/{4}.xslt"/>
+							</map:when>
+						</map:select>
+					</map:otherwise>
+				</map:select>
+				<map:transform type="RemoveDuplicates"/>
+				<map:serialize type="xml"/>
+			</map:match>
+		</map:pipeline>
+			
+		<!-- mounting point for mediator -->
+	<map:pipeline>
+	<map:match pattern="mediator/**">
+      <map:mount check-reload="yes" src="mediator/" uri-prefix="mediator"/>
+    </map:match>		
+	</map:pipeline>
+		
+		
+		<!-- ============================================-->
+		<!-- DEBUG STUFF  please ignore -->
+		<!-- ============================================-->
+		<!-- ============================================-->
+		<!-- ============================================-->
+		<map:pipeline>
+			<map:match pattern="debug/post">
+				<map:generate type="xmlStream"/>
+				<map:serialize type="xml"/>
+			</map:match>
+			<map:match pattern="debug/deegree/*">
+				<map:generate src="document/{1}.xml"/>
+				<!---->
+				<map:transform type="DeegreeService"/>
+				<map:serialize type="xml"/>
+			</map:match>
+			<map:match pattern="debug/wfs/*">
+				<map:generate src="document/{1}.xml"/>
+				<!---->
+				<map:transform type="DeegreeService"/>
+				<map:serialize type="xml"/>
+			</map:match>
+		</map:pipeline>
+		<map:pipeline>
+			<map:match pattern="testbed/*">
+				<map:generate src="request/{1}.xml"/>
+				<map:transform type="stx" src="style/post_all.stx">
+					<map:parameter name="url" value="http://localhost:8888/geosciml/wfs"/>
+				</map:transform>
+				<map:serialize type="xml"/>
+			</map:match>
+		</map:pipeline>
+		<map:pipeline>
+			<map:match pattern="resolver">
+				<map:generate type="request"/>
+				<!---->
+				<map:transform type="saxon" src="style/res2cat.xslt"/>
+				<map:transform type="NgwdCatalog">
+					<map:parameter name="use-connection" value="ngwd"/>
+				</map:transform>
+				<map:serialize type="xml"/>
+			</map:match>
+		</map:pipeline>
+		<!--
+<map:pipeline>
+	<map:match pattern="resolver/urn:cgi:document:CGI:*:SLD:*">
+		<map:generate src="document/{1}.sld"/>
+		<map:serialize type="xml"/>
+	</map:match>
+	<map:match pattern="dev/age">
+		<map:generate src="cocoon:/resolver/urn:cgi:document:CGI:age:SLD:1.0.0"/>
+		<map:serialize type="xml"/>
+	</map:match>
+</map:pipeline>
+-->
+		<map:pipeline>
+			<map:match pattern="catalog">
+				<map:generate src="document/getrecord.xml"/>
+				<map:transform type="PostClient">
+					<map:parameter name="server" value="http://tellus.brgm.fr/geonetwork/srv/en/csw?service=CSW&amp;version=2.0.1"/>
+				</map:transform>
+				<map:serialize type="xml"/>
+			</map:match>
+		</map:pipeline>
+		<map:pipeline>
+			<map:match pattern="debug/cat">
+				<map:generate src="document/bbox.xml"/>
+				<map:transform type="NgwdCatalog">
+					<map:parameter name="use-connection" value="ngwd"/>
+				</map:transform>
+				<map:serialize type="xml"/>
+			</map:match>
+		</map:pipeline>
+		<map:pipeline>
+		<map:match pattern="debug/geoserver">
+			<map:generate src="document/geoserver.xml"/>
+			<map:transform type="PostClient">
+					<map:parameter name="server" value="http://www.gis.bgs.ac.uk:8080/geoserverGR2/wfs?service=WFS"/>
+				</map:transform>
+			<map:serialize type="xml"/>
+			</map:match>
+		<map:match pattern="debug/sld">
+			<map:generate src="document/age_2008.sld"/>
+			<map:transform type="FilterRewrite" src="mapping/debug/ngwd/MappedFeature.map"/>
+			<map:serialize type="xml"/>
+		</map:match>
+		</map:pipeline>
+		<map:pipeline>
+			<map:match pattern="filter">
+				<map:generate src="document/gf_filter.xml"/>
+				<map:transform type="FilterRewrite" src="mapping/debug/GeologicUnit.map"/>
+				<map:serialize type="xml"/>
+			</map:match>
+		</map:pipeline>
+		<map:pipeline>
+			<map:match pattern="duplicates">
+				<map:generate src="document/sa.xml"/>
+				<map:transform type="RemoveDuplicates"/>
+				<map:serialize type="xml"/>
+			</map:match>
+		</map:pipeline>
+		<map:pipeline>
+			
+			<map:match pattern="bgs/debug">
+				<map:generate src="document/bgs_mf.xml"/>
+				<map:transform type="saxon" src="style_dbg/mappedfeature.xslt"/>
+				<map:serialize type="xml"/>
+			</map:match>
+			
+		</map:pipeline>
+		<map:pipeline>
+			<map:match pattern="registry/*/*">
+				<map:generate src="http://tellus.brgm.fr/exist/brgm_geosciml/concept.xql?request=GetResource&amp;resourcetype={1}&amp;resourcepath={2}"/>
+				<map:serialize type="xml"/>
+			</map:match>
+		</map:pipeline>
+	</map:pipelines>
+</map:sitemap>

@@ -1,0 +1,331 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wfs:WFS_Capabilities xmlns:deegree="http://www.deegree.org/wfs"
+  xmlns:ows="http://www.opengis.net/ows" xmlns:ogc="http://www.opengis.net/ogc"
+  xmlns:wfs="http://www.opengis.net/wfs" xmlns:gml="http://www.opengis.net/gml"
+  xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1.0" updateSequence="0">
+  <!-- ================================================================== -->
+  <!-- DEEGREE PARAMETERS                                                                                              -->
+  <!-- ================================================================== -->
+  <deegree:deegreeParams>
+    <!-- mandatory; used as the default URL for omitted DCP-elements (in the OperationMetadata section) -->
+    <deegree:DefaultOnlineResource xmlns:xlink="http://www.w3.org/1999/xlink" xlink:type="simple"
+      xlink:href="http://localhost:8080/deegree-wfs/services" />
+    <!-- optional; default = 100 (MB); cache size available for storing feature instances in memory,
+      not implemented yet -->
+    <deegree:CacheSize>250</deegree:CacheSize>
+    <!-- optional; default = 30 (seconds); maximum time allowed for the execution of a request  -->
+    <deegree:RequestTimeLimit>120</deegree:RequestTimeLimit>
+    <!-- optional; default = same directory as configuration; list of directories to be scanned for featuretypes/datastores to be served by the WFS -->
+    <deegree:DataDirectoryList>
+      <deegree:DataDirectory>featuretypes</deegree:DataDirectory>
+    </deegree:DataDirectoryList>
+    <!-- optional; default = directory from system property "java.io.tmpdir" -->
+    <!-- <deegree:LockManagerDirectory>/tmp</deegree:LockManagerDirectory> -->
+  </deegree:deegreeParams>
+  <!-- ================================================================== -->
+  <!-- SERVICE IDENTIFICATION SECTION                                                                             -->
+  <!-- ================================================================== -->
+  <ows:ServiceIdentification>
+    <ows:ServiceType>WFS</ows:ServiceType>
+    <ows:ServiceTypeVersion>1.1.0</ows:ServiceTypeVersion>
+    <ows:Fees>None</ows:Fees>
+    <ows:AccessConstraints>None</ows:AccessConstraints>
+  </ows:ServiceIdentification>
+  <!-- ================================================================== -->
+  <!-- SERVICE PROVIDER SECTION                                                                                     -->
+  <!-- ================================================================== -->
+  <ows:ServiceProvider>
+    <ows:ProviderName>NGWD - BDNES</ows:ProviderName>
+    <ows:ProviderSite xlink:href="http://ngwd-bdnes.cits.rncan.gc.ca" />
+    <ows:ServiceContact>
+      <ows:IndividualName>Eric Boisvert</ows:IndividualName>
+      <ows:PositionName>Research officer</ows:PositionName>
+      <ows:ContactInfo>
+        <ows:Phone>
+          <ows:Voice>+01 418 654 3705</ows:Voice>
+          <ows:Facsimile>+01 418 654 2615</ows:Facsimile>
+        </ows:Phone>
+        <ows:Address>
+          <ows:DeliveryPoint>490 de la Couronne</ows:DeliveryPoint>
+          <ows:City>Québec</ows:City>
+          <ows:AdministrativeArea>Québec</ows:AdministrativeArea>
+          <ows:PostalCode>G1K 9A9</ows:PostalCode>
+          <ows:Country>Canada</ows:Country>
+          <ows:ElectronicMailAddress>eboisver@nrcan.gc.ca</ows:ElectronicMailAddress>
+        </ows:Address>
+        <ows:OnlineResource xlink:href="http://localhost:8080/deegree-wfs/services" />
+        <ows:HoursOfService>24x7</ows:HoursOfService>
+        <ows:ContactInstructions>8h30-16h00 GMT-5</ows:ContactInstructions>
+      </ows:ContactInfo>
+      <ows:Role>PointOfContact</ows:Role>
+    </ows:ServiceContact>
+  </ows:ServiceProvider>
+  <!-- ================================================================== -->
+  <!-- OPERATIONS METADATA SECTION                                                                            -->
+  <!-- ================================================================== -->
+  <ows:OperationsMetadata>
+    <ows:Operation name="GetCapabilities">
+      <!-- ows:DCP element omitted -> filled automatically with DefaultOnlineResource value -->
+      <ows:Parameter name="AcceptVersions">
+        <ows:Value>1.1.0</ows:Value>
+        <!-- Just Version 1.1.0 is supported -->
+        <!-- <ows:Value>1.0.0</ows:Value>-->
+      </ows:Parameter>
+      <ows:Parameter name="AcceptFormats">
+        <ows:Value>text/xml</ows:Value>
+      </ows:Parameter>
+      <ows:Parameter name="Sections">
+        <ows:Value>ServiceIdentification</ows:Value>
+        <ows:Value>ServiceProvider</ows:Value>
+        <ows:Value>OperationsMetadata</ows:Value>
+        <ows:Value>FeatureTypeList</ows:Value>
+        <ows:Value>ServesGMLObjectTypeList</ows:Value>
+        <ows:Value>SupportsGMLObjectTypeList</ows:Value>
+        <ows:Value>Filter_Capabilities</ows:Value>
+      </ows:Parameter>
+    </ows:Operation>
+    <ows:Operation name="DescribeFeatureType">
+      <!-- ows:DCP element omitted -> filled automatically with DefaultOnlineResource value -->
+      <ows:Parameter name="outputFormat">
+        <ows:Value>text/xml; subtype=gml/3.1.1</ows:Value>
+      </ows:Parameter>
+    </ows:Operation>
+    <ows:Operation name="GetFeature">
+      <!-- ows:DCP element omitted -> filled automatically with DefaultOnlineResource value -->
+      <ows:Parameter name="resultType">
+        <ows:Value>results</ows:Value>
+        <ows:Value>hits</ows:Value>
+      </ows:Parameter>
+      <ows:Parameter name="outputFormat">
+        <ows:Value>text/xml; subtype=gml/3.1.1</ows:Value>
+      </ows:Parameter>
+    </ows:Operation>
+    <ows:Operation name="Transaction">
+      <!-- ows:DCP element omitted -> filled automatically with DefaultOnlineResource value -->
+      <ows:Parameter name="inputFormat">
+        <ows:Value>text/xml; subtype=gml/3.1.1</ows:Value>
+      </ows:Parameter>
+      <ows:Parameter name="idgen">
+        <ows:Value>GenerateNew</ows:Value>
+        <ows:Value>UseExisting</ows:Value>
+        <!--  <ows:Value>ReplaceDuplicate</ows:Value> -->
+      </ows:Parameter>
+      <ows:Parameter name="releaseAction">
+        <ows:Value>ALL</ows:Value>
+        <!--  <ows:Value>SOME</ows:Value> -->
+      </ows:Parameter>
+    </ows:Operation>
+    <!--  -->
+    <ows:Operation name="LockFeature" />
+    <ows:Operation name="GetFeatureWithLock" />
+    <!-- Sets default CRS   -->
+    <ows:Parameter name="srsName">
+      <ows:Value>EPSG:4326</ows:Value>
+    </ows:Parameter>
+    <!-- Maximum number of features, which the WFS will return to the client  -->
+    <ows:Constraint name="DefaultMaxFeatures">
+      <ows:Value>15000</ows:Value>
+    </ows:Constraint>
+    <!-- time in minutes until locked features expire; not evaluated yet -->
+    <ows:Constraint name="DefaultLockExpiry">
+      <ows:Value>5</ows:Value>
+    </ows:Constraint>
+  </ows:OperationsMetadata>
+  <!-- ================================================================== -->
+  <!-- FEATURE TYPE LIST SECTION                                          -->
+  <!-- ================================================================== -->
+  <!-- The wfs:FeatureTypeList can ususally be left empty, as it gets filled with information
+    automatically by evaluation of the defined featuretype definitons located in
+    <deegree:DataDirectory>s. It has to be filled, if you wish to offer featuretypes in different
+    SRSs. There still has to be a featuretype definition in the <deegree:DataDirectory>.
+    You can also define deegreewfs:inFilter and deegreewfs:outFilter attributs to the <wfs:OutputFormats>
+    to change GML format. Refer documentation for this topic.  -->
+  <wfs:FeatureTypeList xmlns:app="http://www.deegree.org/app" xmlns:moee="http://www.ene.gov.on.ca/moee" xmlns:mef="http://www.mddep.gouv.qc.ca/sih">
+    <wfs:FeatureType>
+      <wfs:Name>app:Springs</wfs:Name>
+      <wfs:Title>Spring in Utah</wfs:Title>
+      <wfs:Abstract>All Spring in Utah</wfs:Abstract>
+      <ows:Keywords>
+        <ows:Keyword>Springs</ows:Keyword>
+      </ows:Keywords>
+      <wfs:DefaultSRS>EPSG:26912</wfs:DefaultSRS>
+      <wfs:OtherSRS>EPSG:4326</wfs:OtherSRS>
+      <wfs:OutputFormats>
+        <wfs:Format>text/xml; subtype=gml/3.1.1</wfs:Format>
+      </wfs:OutputFormats>
+      <ows:WGS84BoundingBox>
+        <ows:LowerCorner>-180 -90</ows:LowerCorner>
+        <ows:UpperCorner>180 90</ows:UpperCorner>
+      </ows:WGS84BoundingBox>
+    </wfs:FeatureType>
+        <wfs:FeatureType>
+      <wfs:Name>app:tbl_well</wfs:Name>
+      <wfs:Title>Okanagan wells</wfs:Title>
+      <wfs:Abstract>All Okanagan wells near Kelowna</wfs:Abstract>
+      <ows:Keywords>
+        <ows:Keyword>wells</ows:Keyword>
+      </ows:Keywords>
+      <wfs:DefaultSRS>EPSG:26912</wfs:DefaultSRS>
+      <wfs:OtherSRS>EPSG:4326</wfs:OtherSRS>
+      <wfs:OutputFormats>
+        <wfs:Format>text/xml; subtype=gml/3.1.1</wfs:Format>
+      </wfs:OutputFormats>
+      <ows:WGS84BoundingBox>
+        <ows:LowerCorner>-180 -90</ows:LowerCorner>
+        <ows:UpperCorner>180 90</ows:UpperCorner>
+      </ows:WGS84BoundingBox>
+    </wfs:FeatureType>
+            <wfs:FeatureType>
+	      <wfs:Name>app:esker_geo</wfs:Name>
+	      <wfs:Title>Esker Stuff</wfs:Title>
+	      <wfs:Abstract>All esker stuff</wfs:Abstract>
+	      <ows:Keywords>
+	        <ows:Keyword>esker</ows:Keyword>
+	      </ows:Keywords>
+	      <wfs:DefaultSRS>EPSG:26912</wfs:DefaultSRS>
+	      <wfs:OtherSRS>EPSG:4326</wfs:OtherSRS>
+	      <wfs:OutputFormats>
+	        <wfs:Format>text/xml; subtype=gml/3.1.1</wfs:Format>
+	      </wfs:OutputFormats>
+	      <ows:WGS84BoundingBox>
+	        <ows:LowerCorner>-180 -90</ows:LowerCorner>
+	        <ows:UpperCorner>180 90</ows:UpperCorner>
+	      </ows:WGS84BoundingBox>
+    </wfs:FeatureType>
+    
+    <wfs:FeatureType>
+    	<wfs:Name>moee:WaterWell</wfs:Name>
+    	<wfs:Title>Simplified Ministry of Environment and Energy (MOEE) on Ontario water well database</wfs:Title>
+    	<wfs:Abstract>This dataset is a demo set to test well mapping tool.  It contains only lithology logs.  Well are only described by a unit name.</wfs:Abstract>
+    	<ows:Keywords>
+    		<ows:Keyword>WaterWell Borehole groundwater Ontario</ows:Keyword>
+    	</ows:Keywords>
+    	<wfs:DefaultSRS>EPSG:4326</wfs:DefaultSRS>
+    	<wfs:OtherSRS>EPSG:4326</wfs:OtherSRS>
+	      <wfs:OutputFormats>
+	        <wfs:Format>text/xml; subtype=gml/3.1.1</wfs:Format>
+	      </wfs:OutputFormats>
+	      <ows:WGS84BoundingBox>
+	        <ows:LowerCorner>-90.90292 41.91444</ows:LowerCorner>
+	        <ows:UpperCorner>-74.34599 55.094077</ows:UpperCorner>
+	      </ows:WGS84BoundingBox>
+	  </wfs:FeatureType>
+	  
+	  <wfs:FeatureType>
+    	<wfs:Name>mef:WaterWell</wfs:Name>
+    	<wfs:Title>Puits du système SIH de la province de Quebec</wfs:Title>
+    	<wfs:Abstract>L’information hydrogéologique qui vous est rendue disponible par le système d’information hydrogéologique (SIH) provient, en grande partie, de rapports de forages réalisés par les puisatiers pour des ouvrages de captage desservant des résidences privées en eau potable.
+
+Le système d’information hydrogéologique (SIH) n’offre pas un inventaire exhaustif de tous les ouvrages de captage existants au Québec. Il contient seulement l’information sur des puits profonds (ou tubulaires) réalisés sur le territoire du Québec depuis 1967. De plus, un certain nombre des puits profonds forés depuis 1967 n’y figurent pas. Enfin, les puits de surface tout comme les captages de sources n’y sont pas répertoriés.</wfs:Abstract>
+    	<ows:Keywords>
+    		<ows:Keyword>WaterWell Puits eau souterraines Québec</ows:Keyword>
+    	</ows:Keywords>
+    	<wfs:DefaultSRS>EPSG:4326</wfs:DefaultSRS>
+    	<wfs:OtherSRS>EPSG:4326</wfs:OtherSRS>
+	      <wfs:OutputFormats>
+	        <wfs:Format>text/xml; subtype=gml/3.1.1</wfs:Format>
+	      </wfs:OutputFormats>
+	      <ows:WGS84BoundingBox>
+	        <ows:LowerCorner>-79.55519 44.9928</ows:LowerCorner>
+	        <ows:UpperCorner>-61.4347 50.1379</ows:UpperCorner>
+	      </ows:WGS84BoundingBox>
+	  </wfs:FeatureType>
+    	<!---->
+    <!-- <wfs:FeatureType>
+      <wfs:Name>app:Philosopher</wfs:Name>
+      <wfs:Title>European philosopher</wfs:Title>
+      <wfs:Abstract>Describes famous European philosophers</wfs:Abstract>
+      <ows:Keywords>
+        <ows:Keyword>philosopher</ows:Keyword>
+        <ows:Keyword>test</ows:Keyword>
+      </ows:Keywords>
+      <wfs:DefaultSRS>EPSG:4326</wfs:DefaultSRS>
+      <wfs:OtherSRS>EPSG:23031</wfs:OtherSRS>
+      <wfs:OtherSRS>EPSG:23032</wfs:OtherSRS>
+      <wfs:OtherSRS>EPSG:23033</wfs:OtherSRS>
+      <wfs:OtherSRS>EPSG:31466</wfs:OtherSRS>
+      <wfs:OtherSRS>EPSG:31467</wfs:OtherSRS>
+      <wfs:OtherSRS>EPSG:31468</wfs:OtherSRS>
+      <wfs:OtherSRS>EPSG:31469</wfs:OtherSRS>
+      <wfs:OutputFormats>
+        <wfs:Format>text/xml; subtype=gml/3.1.1</wfs:Format>
+      </wfs:OutputFormats>
+      <ows:WGS84BoundingBox>
+        <ows:LowerCorner>-180 -90</ows:LowerCorner>
+        <ows:UpperCorner>180 90</ows:UpperCorner>
+      </ows:WGS84BoundingBox>
+    </wfs:FeatureType>
+    <wfs:FeatureType>
+      <wfs:Name>app:Country</wfs:Name>
+      <wfs:Title>European countries</wfs:Title>
+      <wfs:Abstract>Borders of some european countries</wfs:Abstract>
+      <ows:Keywords>
+        <ows:Keyword>country</ows:Keyword>
+        <ows:Keyword>test</ows:Keyword>
+      </ows:Keywords>
+      <wfs:DefaultSRS>EPSG:4326</wfs:DefaultSRS>
+      <wfs:OtherSRS>EPSG:23031</wfs:OtherSRS>
+      <wfs:OtherSRS>EPSG:23032</wfs:OtherSRS>
+      <wfs:OtherSRS>EPSG:23033</wfs:OtherSRS>
+      <wfs:OtherSRS>EPSG:31466</wfs:OtherSRS>
+      <wfs:OtherSRS>EPSG:31467</wfs:OtherSRS>
+      <wfs:OtherSRS>EPSG:31468</wfs:OtherSRS>
+      <wfs:OtherSRS>EPSG:31469</wfs:OtherSRS>
+      <wfs:OutputFormats>
+        <wfs:Format>text/xml; subtype=gml/3.1.1</wfs:Format>
+      </wfs:OutputFormats>
+      <ows:WGS84BoundingBox>
+        <ows:LowerCorner>-180 -90</ows:LowerCorner>
+        <ows:UpperCorner>180 90</ows:UpperCorner>
+      </ows:WGS84BoundingBox>
+    </wfs:FeatureType>
+    -->
+
+  </wfs:FeatureTypeList>
+  <!-- ================================================================== -->
+  <!-- FILTER CAPABILITIES SECTION                                                                                   -->
+  <!-- ================================================================== -->
+  <ogc:Filter_Capabilities>
+    <!-- Don't change <ogc:Filter_Capabilities>, its client information only -->
+    <ogc:Spatial_Capabilities>
+      <ogc:GeometryOperands>
+        <ogc:GeometryOperand>gml:Envelope</ogc:GeometryOperand>
+        <ogc:GeometryOperand>gml:Point</ogc:GeometryOperand>
+        <ogc:GeometryOperand>gml:LineString</ogc:GeometryOperand>
+        <ogc:GeometryOperand>gml:Polygon</ogc:GeometryOperand>
+      </ogc:GeometryOperands>
+      <ogc:SpatialOperators>
+        <ogc:SpatialOperator name="BBOX" />
+        <ogc:SpatialOperator name="Equals" />
+        <ogc:SpatialOperator name="Disjoint" />
+        <ogc:SpatialOperator name="Intersects" />
+        <ogc:SpatialOperator name="Touches" />
+        <ogc:SpatialOperator name="Crosses" />
+        <ogc:SpatialOperator name="Within" />
+        <ogc:SpatialOperator name="Contains" />
+        <ogc:SpatialOperator name="Overlaps" />
+        <ogc:SpatialOperator name="Beyond" />
+      </ogc:SpatialOperators>
+    </ogc:Spatial_Capabilities>
+    <ogc:Scalar_Capabilities>
+      <ogc:LogicalOperators />
+      <ogc:ComparisonOperators>
+        <ogc:ComparisonOperator>LessThan</ogc:ComparisonOperator>
+        <ogc:ComparisonOperator>GreaterThan</ogc:ComparisonOperator>
+        <ogc:ComparisonOperator>LessThanEqualTo</ogc:ComparisonOperator>
+        <ogc:ComparisonOperator>GreaterThanEqualTo</ogc:ComparisonOperator>
+        <ogc:ComparisonOperator>EqualTo</ogc:ComparisonOperator>
+        <ogc:ComparisonOperator>Like</ogc:ComparisonOperator>
+        <ogc:ComparisonOperator>Between</ogc:ComparisonOperator>
+        <ogc:ComparisonOperator>NullCheck</ogc:ComparisonOperator>
+      </ogc:ComparisonOperators>
+      <ogc:ArithmeticOperators>
+        <ogc:SimpleArithmetic />
+      </ogc:ArithmeticOperators>
+    </ogc:Scalar_Capabilities>
+    <ogc:Id_Capabilities>
+      <ogc:EID />
+      <ogc:FID />
+    </ogc:Id_Capabilities>
+  </ogc:Filter_Capabilities>
+</wfs:WFS_Capabilities>
