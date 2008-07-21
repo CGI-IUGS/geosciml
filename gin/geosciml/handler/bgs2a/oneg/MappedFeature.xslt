@@ -29,7 +29,7 @@ xmlns:ms="http://mapserver.gis.umn.edu/mapserver"
 	</xsl:template>
 	
 	<xsl:template match="ms:GBR_BGS_625K_BLT">
-	<gsml:MappedFeature gml:id="{ms:RCS_D}">
+	<gsml:MappedFeature gml:id="oneg-bgs-mf-{@fid}">
 	<gsml:observationMethod>
 				<gsml:CGI_TermValue>
 					<gsml:value codeSpace="urn:cgi:classifierScheme:BGS:ObservationMethod">unknown</gsml:value>

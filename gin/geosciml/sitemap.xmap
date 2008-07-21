@@ -384,7 +384,12 @@ There could be as many GetFeature processor as required, they are normally organ
 						<map:transform type="saxon" src="handler/{1}/{4}/{3}.xslt"/>
 					</map:when>
 				</map:select>
+					<map:select type="parameter">
+					<map:parameter name="parameter-selector-test" value="{request-param:KEEPDUP}"/>
+					<map:when test="false">
 				<map:transform type="RemoveDuplicates"/>
+				</map:when>
+				</map:select>
 				<map:serialize type="xml"/>
 			</map:match>
 			<!-- NGWD catalog service 
@@ -479,7 +484,12 @@ WARNING:  This processor should remain the last in the list because this one mat
 						</map:select>
 					</map:otherwise>
 				</map:select>
+					<map:select type="parameter">
+					<map:parameter name="parameter-selector-test" value="{request-param:KEEPDUP}"/>
+					<map:when test="false">
 				<map:transform type="RemoveDuplicates"/>
+				</map:when>
+				</map:select>
 				<map:serialize type="xml"/>
 			</map:match>
 		</map:pipeline>
