@@ -36,6 +36,7 @@
 		</map:generators>
 		<map:transformers default="xslt">
 			<map:transformer name="DeegreeService" logger="deegree.transformer" src="org.apache.cocoon.transformation.DeegreeService"/>
+			
 			<map:transformer name="PostClient" logger="ngwd.transformer" src="org.apache.cocoon.transformation.PostClient"/>
 			<map:transformer name="NgwdCatalog" logger="ngwd.transformer" src="org.apache.cocoon.transformation.NgwdCatalogQueryTransformer"/>
 			<map:transformer name="FilterRewrite" logger="ngwd.transformer" src="org.apache.cocoon.transformation.FilterMappingTransformer"/>
@@ -132,6 +133,7 @@
 				<map:serialize type="xml"/>
 			</map:match>
 		</map:pipeline>
+
 		<!-- GeoSciML / GWML wms wrapper -->
 		<!-- WMS -->
 		<map:pipeline type="noncaching">
@@ -271,6 +273,7 @@
 				<map:transform src="style/pre-process-job.xslt" type="saxon">
 					<!-- invoke the configuration file, which is a profile -->
 					<map:parameter name="config" value="{1}"/>
+					<map:parameter name="tempDirectory" value="{request:requestURI}"/>
 				</map:transform>
 				
 				<map:transform type="write-source"/>
@@ -295,8 +298,8 @@
 				</map:transform>
 		-->
 				<!-- this last transformer extract from data the XML streams that otherwise also contains configurations,commands and results status-->
-				<map:transform type="stx" src="style/deProc.stx"/>
 				
+				<map:transform type="stx" src="style/deProc.stx"/>
 				<map:serialize type="xml"/>
 			</map:match>
 			<!-- 
@@ -306,6 +309,7 @@ invocation:		wfs-process-clean/[key]
 			<map:match pattern="wfs-process-clean/*">
 				<map:generate type="serverpages" src="xsp/delete_req.xsp">
 					<map:parameter name="key" value="{1}"/>
+					<map:parameter name="tempDirectory" value="{request:requestURI}"/>
 				</map:generate>
 				<map:transform type="write-source"/>
 				<map:serialize type="xml"/>
@@ -373,6 +377,7 @@ There could be as many GetFeature processor as required, they are normally organ
 				<!-- this works with ArcIMS, wonder what harm it will do to wfs: query  - to be tested -->
 				<map:transform type="DeegreeService"/>
 				<!--the result is fed to a out_handler that transform the result into a gsml document -->
+				
 				<map:select type="resource-exists">
 					<map:when test="handler/{1}/{4}/{3}.stx">
 						<map:transform type="stx" src="handler/{1}/{4}/{3}.stx"/>
@@ -384,12 +389,16 @@ There could be as many GetFeature processor as required, they are normally organ
 						<map:transform type="saxon" src="handler/{1}/{4}/{3}.xslt"/>
 					</map:when>
 				</map:select>
+				
 					<map:select type="parameter">
 					<map:parameter name="parameter-selector-test" value="{request-param:KEEPDUP}"/>
 					<map:when test="false">
 				<map:transform type="RemoveDuplicates"/>
 				</map:when>
+				
 				</map:select>
+				
+				
 				<map:serialize type="xml"/>
 			</map:match>
 			<!-- NGWD catalog service 
