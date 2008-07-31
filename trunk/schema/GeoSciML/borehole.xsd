@@ -117,7 +117,7 @@ These are often plotted on a map. </documentation>
                     <documentation>Indicates the inclination of the borehole. Appropriate terms would include vertical; inclined up; inclined down, horizontal</documentation>
                 </annotation>
             </element>
-			<element name="coredInterval" type="gml:BoundingShapeType" minOccurs="0" maxOccurs="unbounded">
+        	<element name="coredInterval" type="gml:BoundingShapeType" minOccurs="0" maxOccurs="unbounded">
                 <annotation>
                     <documentation>Interval(s) within the borehole from which core was recovered</documentation>
                 </annotation>
@@ -248,4 +248,27 @@ These are often plotted on a map. </documentation>
             <pattern value="other: \w{2,}"/>
         </restriction>
     </simpleType>
+	<!-- prototype curve-interval - not used (yet?) -->
+	<element name="CurveInterval" type="gsml:CurveIntervalType" substitutionGroup="gml:_Curve"><annotation><documentation>Part of a Curve, defined by its two end points, which are in turn defined by offset relative to a designated end of the curve</documentation></annotation></element>
+	<complexType name="CurveIntervalType"><complexContent><extension base="gml:AbstractCurveType">
+		<sequence>
+			<element name="curve" type="gml:ReferenceType"/>
+			<element name="origin" type="gsml:OffsetOriginPropertyType"/>
+			<element name="startOffset" type="gml:MeasureType"/>
+			<element name="endOffset" type="gml:MeasureType"/>
+		</sequence>
+	</extension></complexContent></complexType>
+	<complexType name="CurveIntervalPropertyType">
+		<sequence minOccurs="0">
+			<element ref="gsml:CurveInterval"/>
+		</sequence>
+		<attributeGroup ref="gml:AssociationAttributeGroup"/>
+		
+	</complexType>
+	<simpleType name="OffsetOriginPropertyType">
+		<restriction base="string">
+			<enumeration value="start"/>
+			<enumeration value="end"/>
+		</restriction>
+	</simpleType>
 </schema>
