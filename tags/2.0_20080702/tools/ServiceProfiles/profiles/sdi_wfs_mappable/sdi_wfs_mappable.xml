@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!--========================================================================-->
+<!--                                                                        -->
+<!--                        GEA WFS Mappable Profile                        -->
+<!--                                                                        -->
+<!--========================================================================-->
+<!-- $Id$ -->
+<!--========================================================================-->
+  
+<pr:profile id="sdi-wfs-mappable" xmlns:ds="http://www.w3.org/2000/09/xmldsig#"
+    xmlns:gwsit="http://qld.gov.au/gea/wsi/testing/1.0" xmlns:pr="urn:ws-profile-mgr:schemas:profiles:profiles.xsd"
+    xmlns:qg="http://qld.gov.au/wsi/1.0" xmlns:rim="urn:oasis:names:tc:ebxml-regrep:xsd:rim:3.0"
+    xmlns:ud="http://utf-x.sourceforge.net/xsd/utfxdoc_1_0/utfxdoc.xsd"
+    xmlns:wfs="http://www.opengis.net/wfs" xmlns:xml="http://www.w3.org/XML/1998/namespace"
+    xmlns:xs="http://www.w3.org/2001/XMLSchema"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="urn:ws-profile-mgr:schemas:profiles:profiles.xsd http://ws-profile-mgr.sf.net/schemas/profiles.xsd">
+    <ud:version>$Revision: 282 $</ud:version>
+    <ud:date>$Date: 2007-06-03 20:51:50 +1000 (Sun, 03 Jun 2007) $</ud:date>
+    <ud:copyright year="2007">CGI GeoSciML </ud:copyright>
+    <!--
+    <ud:logo>
+        <ud:img src="&qgcio-logo;" width="100%"/>
+    </ud:logo>
+    -->
+    <pr:name>SDI WFS Mappable</pr:name>
+    <pr:description>This profile constrains the behaviour of a service delivers data objects
+        (Features) via the OGC Web feature Service 1.0 interface. This generic profile will be
+        implemented through binding a WFS to a specific data product, and is specialised according
+        to the usage patterns expected to be supported.</pr:description>
+    <pr:identifier>urn:au:gov:qld:gea:standards:profiles:gea-wfs-mappable</pr:identifier>
+    <pr:inherits-from>sdi-wfs</pr:inherits-from>
+
+    <pr:artefacts>
+    <pr:conformance-target id="feature_type">
+        <pr:name>FEATURE_TYPE</pr:name>
+        <pr:description>FeatureTypes exposed by WFS service</pr:description>
+        <pr:xpath-locator>/WFS_Capabilities/FeatureTypeList/FeatureType</pr:xpath-locator>
+    </pr:conformance-target>
+    </pr:artefacts>
+    
+    <pr:requirements>
+        <pr:requirement id="SDIWFSM1">
+            <pr:normative-content>TBD: performance, # of features, single geometry property,
+                FeatureType exposed must conform to a mappable type (exactly one simple
+            geometry)</pr:normative-content>
+        </pr:requirement>
+        <pr:requirement id="SDIWFSM2">
+            <pr:normative-content><pr:target-ref>FEATURE_TYPE</pr:target-ref>  <pr:rfc2119-keyword>MUST</pr:rfc2119-keyword> equal urn:cgi:geosciml:testbed:fatborehole 
+            </pr:normative-content>
+            <pr:xpath-assertion id="SDIWFSM2.A1">
+                <pr:target-ref>FEATURE_TYPE</pr:target-ref>
+                <pr:rfc2119-keyword>MUST</pr:rfc2119-keyword>
+                <pr:assert-true>
+                    <pr:xpath-expression>count(./Name="urn:cgi:geosciml:testbed:fatborehole") = 1</pr:xpath-expression>
+                </pr:assert-true>
+            </pr:xpath-assertion>
+        </pr:requirement>
+    </pr:requirements>
+</pr:profile>
