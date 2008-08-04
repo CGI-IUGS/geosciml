@@ -1,0 +1,170 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<wfs:WFS_Capabilities xmlns:wfs="http://www.opengis.net/wfs" xmlns:gml="http://www.opengis.net/gml" xmlns:ogc="http://www.opengis.net/ogc" xmlns:gsml="urn:cgi:xmlns:CGI:GeoSciML:2.0" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" updateSequence="0" version="1.1.0">
+	<ows:ServiceIdentification xmlns:ows="http://www.opengis.net/ows">
+		<ows:ServiceType>WFS</ows:ServiceType>
+		<ows:ServiceTypeVersion>1.1.0</ows:ServiceTypeVersion>
+		<ows:Fees>None</ows:Fees>
+		<ows:AccessConstraints>None</ows:AccessConstraints>
+	</ows:ServiceIdentification>
+	<ows:ServiceProvider xmlns:ows="http://www.opengis.net/ows">
+		<ows:ProviderName>APAT-SGI (Geological Survey of Italy)</ows:ProviderName>
+		<ows:ProviderSite xlink:href="http://ngwd-bdnes.cits.rncan.gc.ca/api_ngwds/en/index.html" xlink:type="simple"/>
+		<ows:ServiceContact>
+			<ows:IndividualName>Carlo Cipolloni</ows:IndividualName>
+			<ows:PositionName>Research officer</ows:PositionName>
+			<ows:ContactInfo>
+				<ows:Phone>
+					<ows:Voice>+0390650074262</ows:Voice>
+					<ows:Facsimile>+0390650074333</ows:Facsimile>
+				</ows:Phone>
+				<ows:Address>
+					<ows:DeliveryPoint>Via Curtatone 5</ows:DeliveryPoint>
+					<ows:City>Roma</ows:City>
+					<ows:AdministrativeArea>Roma</ows:AdministrativeArea>
+					<ows:PostalCode>00185</ows:PostalCode>
+					<ows:Country>Italy</ows:Country>
+					<ows:ElectronicMailAddress>carlo.cipolloni@apat.it</ows:ElectronicMailAddress>
+				</ows:Address>
+				<ows:OnlineResource xlink:href="[host]" xlink:type="simple"/>
+				<ows:HoursOfService>24x7</ows:HoursOfService>
+				<ows:ContactInstructions>8h30-16h00 GMT-5</ows:ContactInstructions>
+			</ows:ContactInfo>
+			<ows:Role>PointOfContact</ows:Role>
+		</ows:ServiceContact>
+	</ows:ServiceProvider>
+	<ows:OperationsMetadata xmlns:ows="http://www.opengis.net/ows">
+		<ows:Operation name="GetFeature">
+			<ows:DCP>
+				<ows:HTTP>
+					<ows:Get xlink:href="[host]?" xlink:type="simple"/>
+					<ows:Post xlink:href="[host]" xlink:type="simple"/>
+				</ows:HTTP>
+			</ows:DCP>
+			<ows:Parameter name="resultType">
+				<ows:Value>results</ows:Value>
+				<ows:Value>hits</ows:Value>
+			</ows:Parameter>
+			<ows:Parameter name="outputFormat">
+				<ows:Value>text/xml; subtype=gml/3.1.1</ows:Value>
+			</ows:Parameter>
+		</ows:Operation>
+		<ows:Operation name="DescribeFeatureType">
+			<ows:DCP>
+				<ows:HTTP>
+					<ows:Get xlink:href="[host]?" xlink:type="simple"/>
+					<ows:Post xlink:href="[host]" xlink:type="simple"/>
+				</ows:HTTP>
+			</ows:DCP>
+			<ows:Parameter name="outputFormat">
+				<ows:Value>text/xml; subtype=gml/3.1.1</ows:Value>
+			</ows:Parameter>
+		</ows:Operation>
+		<ows:Operation name="GetCapabilities">
+			<ows:DCP>
+				<ows:HTTP>
+					<ows:Get xlink:href="[host]?" xlink:type="simple"/>
+					<ows:Post xlink:href="[host]" xlink:type="simple"/>
+				</ows:HTTP>
+			</ows:DCP>
+			<ows:Parameter name="AcceptVersions">
+				<ows:Value>1.1.0</ows:Value>
+			</ows:Parameter>
+			<ows:Parameter name="AcceptFormats">
+				<ows:Value>text/xml</ows:Value>
+			</ows:Parameter>
+			<ows:Parameter name="Sections">
+				<ows:Value>ServiceIdentification</ows:Value>
+				<ows:Value>ServiceProvider</ows:Value>
+				<ows:Value>OperationsMetadata</ows:Value>
+				<ows:Value>FeatureTypeList</ows:Value>
+				<ows:Value>ServesGMLObjectTypeList</ows:Value>
+				<ows:Value>SupportsGMLObjectTypeList</ows:Value>
+				<ows:Value>Filter_Capabilities</ows:Value>
+			</ows:Parameter>
+		</ows:Operation>
+		<ows:Parameter name="srsName">
+			<ows:Value>EPSG:4326</ows:Value>
+		</ows:Parameter>
+		<ows:Constraint name="DefaultMaxFeatures">
+			<ows:Value>50</ows:Value>
+		</ows:Constraint>
+	</ows:OperationsMetadata>
+	<wfs:FeatureTypeList>
+		<wfs:FeatureType>
+			<wfs:Name>gsml:GeologicUnit</wfs:Name>
+			<wfs:Title>Geologic Unit</wfs:Title>
+			<wfs:Abstract>Demonstration of extracting GeologicUnit from a remote service</wfs:Abstract>
+			<ows:Keywords xmlns:ows="http://www.opengis.net/ows">
+				<ows:Keyword>GeoSciML Geologic Unit IUGS</ows:Keyword>
+			</ows:Keywords>
+			<wfs:DefaultSRS>EPSG:23032</wfs:DefaultSRS>
+			<wfs:OtherSRS>EPSG:4326</wfs:OtherSRS>
+			<wfs:OutputFormats>
+				<wfs:Format>text/xml; subtype=gml/3.1.1</wfs:Format>
+			</wfs:OutputFormats>
+			<ows:WGS84BoundingBox xmlns:ows="http://www.opengis.net/ows">
+				<ows:LowerCorner>3 30</ows:LowerCorner>
+				<ows:UpperCorner>15 50</ows:UpperCorner>
+			</ows:WGS84BoundingBox>
+		</wfs:FeatureType>
+		<wfs:FeatureType>
+			<wfs:Name>gsml:MappedFeature</wfs:Name>
+			<wfs:Title>Mapped features</wfs:Title>
+			<wfs:Abstract>Demonstrating estraction of MappedFeatures</wfs:Abstract>
+			<ows:Keywords xmlns:ows="http://www.opengis.net/ows">
+				<ows:Keyword>GeoSciML Geologic Unit IUGS</ows:Keyword>
+			</ows:Keywords>
+			<wfs:DefaultSRS>EPSG:23032</wfs:DefaultSRS>
+			<wfs:OtherSRS>EPSG:4326</wfs:OtherSRS>
+			<wfs:OutputFormats>
+				<wfs:Format>text/xml; subtype=gml/3.1.1</wfs:Format>
+			</wfs:OutputFormats>
+			<ows:WGS84BoundingBox xmlns:ows="http://www.opengis.net/ows">
+				<ows:LowerCorner>3 30</ows:LowerCorner>
+				<ows:UpperCorner>15 50</ows:UpperCorner>
+			</ows:WGS84BoundingBox>
+		</wfs:FeatureType>
+	</wfs:FeatureTypeList>
+	<ogc:Filter_Capabilities>
+		<ogc:Spatial_Capabilities>
+			<ogc:GeometryOperands>
+				<ogc:GeometryOperand>gml:Envelope</ogc:GeometryOperand>
+				<ogc:GeometryOperand>gml:Point</ogc:GeometryOperand>
+				<ogc:GeometryOperand>gml:LineString</ogc:GeometryOperand>
+				<ogc:GeometryOperand>gml:Polygon</ogc:GeometryOperand>
+			</ogc:GeometryOperands>
+			<ogc:SpatialOperators>
+				<ogc:SpatialOperator name="Within"/>
+				<ogc:SpatialOperator name="Intersects"/>
+				<ogc:SpatialOperator name="Overlaps"/>
+				<ogc:SpatialOperator name="BBOX"/>
+				<ogc:SpatialOperator name="Crosses"/>
+				<ogc:SpatialOperator name="Contains"/>
+				<ogc:SpatialOperator name="Disjoint"/>
+				<ogc:SpatialOperator name="Beyond"/>
+				<ogc:SpatialOperator name="Equals"/>
+				<ogc:SpatialOperator name="Touches"/>
+			</ogc:SpatialOperators>
+		</ogc:Spatial_Capabilities>
+		<ogc:Scalar_Capabilities>
+			<ogc:LogicalOperators/>
+			<ogc:ComparisonOperators>
+				<ogc:ComparisonOperator>LessThanEqualTo</ogc:ComparisonOperator>
+				<ogc:ComparisonOperator>Between</ogc:ComparisonOperator>
+				<ogc:ComparisonOperator>EqualTo</ogc:ComparisonOperator>
+				<ogc:ComparisonOperator>GreaterThanEqualTo</ogc:ComparisonOperator>
+				<ogc:ComparisonOperator>Like</ogc:ComparisonOperator>
+				<ogc:ComparisonOperator>GreaterThan</ogc:ComparisonOperator>
+				<ogc:ComparisonOperator>NullCheck</ogc:ComparisonOperator>
+				<ogc:ComparisonOperator>LessThan</ogc:ComparisonOperator>
+			</ogc:ComparisonOperators>
+			<ogc:ArithmeticOperators>
+				<ogc:SimpleArithmetic/>
+			</ogc:ArithmeticOperators>
+		</ogc:Scalar_Capabilities>
+		<ogc:Id_Capabilities>
+			<ogc:EID/>
+			<ogc:FID/>
+		</ogc:Id_Capabilities>
+	</ogc:Filter_Capabilities>
+</wfs:WFS_Capabilities>
