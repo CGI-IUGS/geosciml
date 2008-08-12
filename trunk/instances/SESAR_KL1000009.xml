@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<sa:SamplingFeatureCollection
+	xmlns:sa="http://www.opengis.net/sampling/1.0"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:xlink="http://www.w3.org/1999/xlink"
+	xmlns:gml="http://www.opengis.net/gml"
+	xsi:schemaLocation="http://www.opengis.net/sampling/1.0 http://schemas.opengis.net/sampling/1.0.0/sampling.xsd">
+	<gml:description>Example of sample from SESAR database expressed using the OGC Sampling Features
+		model. Example data taken from 
+		http://www.geosamples.org/applications/sesarSearch/setSampleInfo.do?sampleId=6871</gml:description>
+	<gml:name>Collection 1</gml:name>
+	<gml:boundedBy>
+		<gml:Envelope
+			srsName="urn:ogc:def:crs:EPSG::4326">
+			<!-- this CRS is inherited by all coordinates in the collection, unless overridden locally  -->
+			<gml:lowerCorner>-83.7303 1.22685</gml:lowerCorner>
+			<gml:upperCorner>-83.7303 1.2268</gml:upperCorner>
+		</gml:Envelope>
+	</gml:boundedBy>
+	<sa:sampledFeature
+		xlink:href="urn:cgi:feature:CGI:EarthOceanFloor"/>
+	<sa:member>
+		<sa:SamplingFeatureCollection>
+			<gml:description>Joides Resolution cruise ODP0111
+				PACIFIC:OCEAN</gml:description>
+			<!-- this URI identifies the cruise -->
+			<!-- implies we must add "ODP" to the CGI register of recognised authorities
+				https://www.seegrid.csiro.au/twiki/bin/view/CGIModel/CGIAuthorityRegister -->
+			<gml:name
+				codeSpace="urn:ietf:rfc:2141">urn:cgi:feature:ODP:ODP0111</gml:name>
+			<!-- this ODP code identifies the cruise -->
+			<!-- is "http://www-odp.tamu.edu/odpwww.htm" a good identifier for the naming system? 
+				or maybe use urn:cgi:party:CGI:ODP -->
+			<gml:name
+				codeSpace="http://www-odp.tamu.edu/odpwww.htm">ODP0111</gml:name>
+			<!-- implies we must add "EarthOceanCrust" to the CGI register of features 
+				https://www.seegrid.csiro.au/twiki/bin/view/CGIModel/CGIFeatureRegister -->
+			<sa:sampledFeature
+			xlink:href="urn:cgi:feature:CGI:EarthOceanCrust"/>
+			<!-- this cruise is composed of a set of sites -->
+			<sa:member
+				xlink:href="urn:cgi:feature:ODP:ODP0111:0504"/>
+		</sa:SamplingFeatureCollection>
+
+	</sa:member>
+	<sa:member>
+		<sa:SamplingPoint>
+			<gml:description>201 KM SOUTH OF THE COSTA RICA RIFT, ON 5.9 MA OLD CRUST </gml:description>
+			<!-- this URI identifies the site -->
+			<!-- implies we must add "ODP" to the CGI register of recognised authorities
+				https://www.seegrid.csiro.au/twiki/bin/view/CGIModel/CGIAuthorityRegister -->
+			<gml:name
+				codeSpace="urn:ietf:rfc:2141">urn:cgi:feature:ODP:ODP0111:0504</gml:name>
+			<!-- this ODP code identifies the sample -->
+			<!-- is "http://www-odp.tamu.edu/odpwww.htm" a good identifier for the naming system? 
+				or maybe use urn:cgi:party:CGI:ODP -->
+			<gml:name
+				codeSpace="http://www-odp.tamu.edu/odpwww.htm">ODP0111-0504</gml:name>
+			<!-- implies we must add "EarthOceanCrust" to the CGI register of features 
+				https://www.seegrid.csiro.au/twiki/bin/view/CGIModel/CGIFeatureRegister -->
+			<sa:sampledFeature
+			xlink:href="urn:cgi:feature:CGI:EarthOceanCrust"/>
+			<!-- the next two elements link the site back to the cruise and forward to the specimen -->
+			<sa:relatedSamplingFeature>
+				<sa:SamplingFeatureRelation>
+					<sa:role>cruise</sa:role>
+					<sa:target
+						xlink:href="urn:cgi:feature:ODP:ODP0111"/>
+				</sa:SamplingFeatureRelation>
+			</sa:relatedSamplingFeature>
+			<sa:relatedSamplingFeature>
+				<sa:SamplingFeatureRelation>
+					<sa:role>specimen</sa:role>
+					<sa:target
+						xlink:href="urn:cgi:feature:IGSN:KL1000009"/>
+				</sa:SamplingFeatureRelation>
+			</sa:relatedSamplingFeature>
+			<sa:position>
+				<gml:Point>
+					<gml:pos>-83.7303 1.22685</gml:pos>
+				</gml:Point>
+			</sa:position>
+		</sa:SamplingPoint>
+
+	</sa:member>
+	<sa:member>
+		<sa:Specimen>
+			<gml:description>marine core</gml:description>
+			<!-- this URI identifies the sample -->
+			<!-- implies we must add "IGSN" to the CGI register of recognised authorities
+				https://www.seegrid.csiro.au/twiki/bin/view/CGIModel/CGIAuthorityRegister -->
+			<gml:name
+				codeSpace="urn:ietf:rfc:2141">urn:cgi:feature:IGSN:KL1000009</gml:name>
+			<!-- this IGSN identifies the sample -->
+			<!-- is "http://www-odp.tamu.edu/odpwww.htm" a good identifier for the naming system? 
+				or maybe use urn:cgi:party:CGI:IGSN -->
+			<gml:name
+				codeSpace="http://www.geosamples.org/">KL1000009</gml:name>
+			<!-- this ODP code identifies the sample -->
+			<!-- is "http://www-odp.tamu.edu/odpwww.htm" a good identifier for the naming system? 
+				or maybe use urn:cgi:party:CGI:ODP -->
+			<gml:name
+				codeSpace="http://www-odp.tamu.edu/odpwww.htm">ODP0111-0504B</gml:name>
+			<!-- implies we must add "EarthOceanCrust" to the CGI register of features 
+				https://www.seegrid.csiro.au/twiki/bin/view/CGIModel/CGIFeatureRegister -->
+			<sa:sampledFeature
+				xlink:href="urn:cgi:feature:CGI:EarthOceanCrust"/>
+			<!-- the next elements links the specimen back to the site -->
+			<sa:relatedSamplingFeature>
+				<sa:SamplingFeatureRelation>
+					<sa:role>site</sa:role>
+					<sa:target
+						xlink:href="urn:cgi:feature:ODP:ODP0111:0504"/>
+				</sa:SamplingFeatureRelation>
+			</sa:relatedSamplingFeature>
+			<sa:materialClass>Rock</sa:materialClass>
+			<sa:samplingMethod
+				xlink:href="urn:cgi:classifier:SESAR:samplingMethod:2008:drillCore"/>
+			<sa:samplingTime
+				xlink:href="urn:ogc:def:nil:missing"/>
+		</sa:Specimen>
+	</sa:member>
+</sa:SamplingFeatureCollection>
