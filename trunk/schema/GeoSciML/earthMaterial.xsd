@@ -5,7 +5,7 @@
 Earth Material represents material composition or substance, and is thus independent of quantity or location. Ideally, Earth Materials are defined strictly based on physical properties, but because of standard geological usage, genetic interpretations may enter into the description as well. </documentation>
     </annotation>
     <import namespace="http://www.opengis.net/gml" schemaLocation="http://schemas.opengis.net/gml/3.1.1/base/gml.xsd"/>
-    <import namespace="http://www.isotc211.org/2005/gmd" schemaLocation=""/>
+    <import namespace="http://www.isotc211.org/2005/gmd" schemaLocation="http://standards.iso.org/ittf/PubliclyAvailableStandards/ISO_19139_Schemas/gmd/gmd.xsd"/>
     <import namespace="urn:cgi:xmlns:CGI:Utilities:1.0" schemaLocation="http://www.geosciml.org/schemas/cgiutilities/1.0/cgiUtilities.xsd"/>
     <include schemaLocation="geosciml.xsd"/>
     <element name="MaterialRelation" substitutionGroup="gsml:GeologicRelation" type="gsml:MaterialRelationType">
@@ -38,12 +38,12 @@ association: </documentation>
         </sequence>
         <attributeGroup ref="gml:AssociationAttributeGroup"/>
     </complexType>
-    <element name="RockMaterial" substitutionGroup="gsml:EarthMaterial" type="gsml:RockMaterialType">
+    <element name="CompoundMaterial" substitutionGroup="gsml:EarthMaterial" type="gsml:CompoundMaterialType">
         <annotation>
-            <documentation>An EarthMaterial composed of particles composed of EarthMaterials, possibly including other CompoundMaterials. Includes consolidated and unconsolidated materials as well as mixtures of consolidated and unconsolidated materials.</documentation>
+            <documentation>An EarthMaterial composed of particles composed of EarthMaterials, possibly including other CompoundMaterials. </documentation>
         </annotation>
     </element>
-    <complexType name="RockMaterialType">
+    <complexType name="CompoundMaterialType">
         <complexContent>
             <extension base="gsml:EarthMaterialType">
                 <sequence>
@@ -57,12 +57,31 @@ association: </documentation>
                             <documentation>A term that represents a summary geologic history of the material. (ie, a genetic process classifier term)  Examples include igneous, sedimentary, metamorphic, shock metamorphic, volcanic, pyroclastic.</documentation>
                         </annotation>
                     </element>
+                    <element maxOccurs="unbounded" minOccurs="0" name="part" type="gsml:ConstituentPartPropertyType"/>
+                    <element maxOccurs="1" minOccurs="0" name="particleGeometry" type="gsml:ParticleGeometryDescriptionPropertyType"/>
+                </sequence>
+            </extension>
+        </complexContent>
+    </complexType>
+    <complexType name="CompoundMaterialPropertyType">
+        <sequence minOccurs="0">
+            <element ref="gsml:CompoundMaterial"/>
+        </sequence>
+        <attributeGroup ref="gml:AssociationAttributeGroup"/>
+    </complexType>
+    <element name="RockMaterial" substitutionGroup="gsml:CompoundMaterial" type="gsml:RockMaterialType">
+        <annotation>
+            <documentation>Rock material includes consolidated and unconsolidated materials as well as mixtures of consolidated and unconsolidated materials.</documentation>
+        </annotation>
+    </element>
+    <complexType name="RockMaterialType">
+        <complexContent>
+            <extension base="gsml:CompoundMaterialType">
+                <sequence>
                     <element name="consolidationDegree" type="gsml:CGI_TermValuePropertyType"/>
                     <element maxOccurs="unbounded" minOccurs="1" name="lithology" type="gsml:ControlledConceptPropertyType"/>
                     <element maxOccurs="unbounded" minOccurs="0" name="fabric" type="gsml:FabricDescriptionPropertyType"/>
                     <element maxOccurs="1" minOccurs="0" name="metamorphicProperties" type="gsml:MetamorphicDescriptionPropertyType"/>
-                    <element maxOccurs="unbounded" minOccurs="0" name="part" type="gsml:ConstituentPartPropertyType"/>
-                    <element maxOccurs="1" minOccurs="0" name="particleGeometry" type="gsml:ParticleGeometryDescriptionPropertyType"/>
                     <element maxOccurs="1" minOccurs="0" name="physicalProperty" type="gsml:PhysicalDescriptionPropertyType"/>
                 </sequence>
             </extension>
