@@ -31,8 +31,8 @@ This is not the concept identifier. </documentation>
                     </element>
                     <element name="vocabulary" type="gsml:GeologicVocabularyPropertyType"/>
                     <element maxOccurs="unbounded" minOccurs="0" name="linkToTarget" type="gsml:VocabRelationPropertyType"/>
-                    <element maxOccurs="1" minOccurs="0" name="prototype" type="gml:ReferenceType"/>
-                    <element maxOccurs="1" minOccurs="0" name="metadata" type="gml:ReferenceType"/>
+                    <element maxOccurs="1" minOccurs="0" name="prototype" type="anyType"/>
+                    <element maxOccurs="1" minOccurs="0" name="metadata" type="gmd:MD_Metadata_PropertyType"/>
                 </sequence>
             </extension>
         </complexContent>
@@ -54,7 +54,7 @@ In GeoSciML this is normally identified using a URN in the "classifierScheme" br
         <complexContent>
             <extension base="gml:DictionaryType">
                 <sequence>
-                    <element maxOccurs="1" minOccurs="0" name="metadata" type="gml:ReferenceType"/>
+                    <element maxOccurs="1" minOccurs="0" name="metadata" type="gmd:MD_Metadata_PropertyType"/>
                 </sequence>
             </extension>
         </complexContent>
@@ -110,34 +110,4 @@ VocabRelation and some other components may be replaced by another mechanism (OW
         </sequence>
         <attributeGroup ref="gml:AssociationAttributeGroup"/>
     </complexType>
-    <group name="GeologicEntity">
-        <annotation>
-            <documentation>Union class to allow prototype descriptions for ControlledConcepts to be GeologicFeature (e.g. geologic unit or geologic structure), or EarthMaterial.</documentation>
-        </annotation>
-        <choice>
-            <element ref="gsml:GeologicFeature">
-                <annotation>
-                    <documentation>An element that specifies properties for a GeologicUnit or GeologicStructure.</documentation>
-                </annotation>
-            </element>
-            <element ref="gsml:EarthMaterial">
-                <annotation>
-                    <documentation>An element that specifies properties of an EarthMaterial</documentation>
-                </annotation>
-            </element>
-        </choice>
-    </group>
-    <complexType name="GeologicEntityPropertyType">
-        <sequence minOccurs="0">
-            <group ref="gsml:GeologicEntity"/>
-        </sequence>
-        <attributeGroup ref="gml:AssociationAttributeGroup"/>
-        <attribute name="unionSemantics" type="gsml:GeologicEntityUnionSemantics"/>
-    </complexType>
-    <simpleType name="GeologicEntityUnionSemantics">
-        <restriction base="string">
-            <enumeration value="featureEntity"/>
-            <enumeration value="materialEntity"/>
-        </restriction>
-    </simpleType>
 </schema>

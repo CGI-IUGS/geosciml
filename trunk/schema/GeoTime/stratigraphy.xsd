@@ -3,11 +3,15 @@
         <documentation>[WARN-A001] - No package description in UML model</documentation>
     </annotation>
     <import namespace="http://www.opengis.net/gml" schemaLocation="http://schemas.opengis.net/gml/3.1.1/base/gml.xsd"/>
-    <import namespace="http://www.opengis.net/gml" schemaLocation="http://schemas.opengis.net/gml/3.1.1/base/gml.xsd"/>
-    <import namespace="urn:cgi:xmlns:CGI:GeoSciML:2.0" schemaLocation="http://www.geosciml.org/schemas/geosciml/2.0_rc3/geosciml.xsd"/>
+    <import namespace="urn:cgi:xmlns:CGI:GeoSciML:2.0" schemaLocation="https://www.seegrid.csiro.au/subversion/GeoSciML/trunk/schema/GeoSciML/geosciml.xsd"/>
     <include schemaLocation="geologicTime.xsd"/>
     <element name="ChronostratigraphicBoundary" substitutionGroup="gt:StratigraphicBoundary" type="gt:ChronostratigraphicBoundaryType"/>
     <complexType name="ChronostratigraphicBoundaryType">
+        <annotation>
+            <documentation>The following properties inherited from parent classes are overridden in Schematron assertions:
+
+association: </documentation>
+        </annotation>
         <complexContent>
             <extension base="gt:StratigraphicBoundaryType">
                 <sequence>
@@ -47,6 +51,11 @@ This constrast with an"event-chronologic" approach, by which the event would be 
         </annotation>
     </element>
     <complexType name="StratigraphicEventType">
+        <annotation>
+            <documentation>The following properties inherited from parent classes are overridden in Schematron assertions:
+
+association: </documentation>
+        </annotation>
         <complexContent>
             <extension base="gsml:GeologicEventType">
                 <sequence>
@@ -67,6 +76,12 @@ This constrast with an"event-chronologic" approach, by which the event would be 
         </annotation>
     </element>
     <complexType name="ChronostratigraphicUnitType">
+        <annotation>
+            <documentation>The following properties inherited from parent classes are overridden in Schematron assertions:
+
+attribute: 
+association: </documentation>
+        </annotation>
         <complexContent>
             <extension base="gsml:GeologicUnitType">
                 <sequence>

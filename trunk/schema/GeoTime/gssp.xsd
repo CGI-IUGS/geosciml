@@ -3,11 +3,16 @@
         <documentation>[WARN-A001] - No package description in UML model</documentation>
     </annotation>
     <import namespace="http://www.opengis.net/gml" schemaLocation="http://schemas.opengis.net/gml/3.1.1/base/gml.xsd"/>
-    <import namespace="http://www.opengis.net/gml" schemaLocation="http://schemas.opengis.net/gml/3.1.1/base/gml.xsd"/>
     <import namespace="http://www.opengis.net/sampling/1.0" schemaLocation="http://schemas.opengis.net/sampling/1.0.0/sampling.xsd"/>
     <include schemaLocation="geologicTime.xsd"/>
     <element name="StratigraphicPoint" substitutionGroup="sa:SamplingPoint" type="gt:StratigraphicPointType"/>
     <complexType name="StratigraphicPointType">
+        <annotation>
+            <documentation>The following properties inherited from parent classes are overridden in Schematron assertions:
+
+attribute: 
+association: </documentation>
+        </annotation>
         <complexContent>
             <extension base="sa:SamplingPointType">
                 <sequence>
@@ -15,7 +20,6 @@
                     <element maxOccurs="unbounded" minOccurs="0" name="additionalCorrelationProperty" type="string"/>
                     <element name="status" type="string"/>
                     <element name="boundary" type="gt:GeochronologicBoundaryPropertyType"/>
-                    <element maxOccurs="unbounded" minOccurs="1" name="event" type="gt:StratigraphicEventPropertyType"/>
                 </sequence>
             </extension>
         </complexContent>
@@ -52,6 +56,12 @@
     </complexType>
     <element name="StratigraphicSection" substitutionGroup="sa:SamplingCurve" type="gt:StratigraphicSectionType"/>
     <complexType name="StratigraphicSectionType">
+        <annotation>
+            <documentation>The following properties inherited from parent classes are overridden in Schematron assertions:
+
+attribute: 
+association: </documentation>
+        </annotation>
         <complexContent>
             <extension base="sa:SamplingCurveType">
                 <sequence>
