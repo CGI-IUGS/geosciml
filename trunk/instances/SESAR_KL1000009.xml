@@ -23,20 +23,23 @@
 	<sa:member>
 		<sa:SamplingFeatureCollection
 			gml:id="ODP0111">
-			<gml:description>Joides Resolution cruise ODP0111 PACIFIC:OCEAN</gml:description>
+			<gml:description>Joides Resolution cruise 111 PACIFIC:OCEAN</gml:description>
 			<!-- this URI identifies the cruise -->
 			<gml:name
-				codeSpace="urn:ietf:rfc:2141">urn:cgi:feature:ODP:ODP0111</gml:name>
+				codeSpace="urn:ietf:rfc:2141">urn:cgi:feature:ODP:111</gml:name>
 			<!-- this ODP code identifies the cruise -->
 			<gml:name
-				codeSpace="http://www-odp.tamu.edu/odpwww.htm">ODP0111</gml:name>
+				codeSpace="http://www-odp.tamu.edu/odpwww.htm">ODP 111</gml:name>
 			<sa:sampledFeature
 				xlink:href="urn:cgi:feature:CGI:EarthOceanCrust"/>
 			<!-- this cruise is composed of a set of sites -->
 			<sa:member
 				xlink:href="urn:cgi:feature:ODP:ODP0111:0504"/>
+			<sa:member
+				xlink:href="urn:cgi:feature:ODP:ODP0111:0505"/>
+			<sa:member
+				xlink:href="urn:cgi:feature:ODP:ODP0111:0506"/>
 		</sa:SamplingFeatureCollection>
-
 	</sa:member>
 	<sa:member>
 		<sa:SamplingPoint
@@ -44,7 +47,7 @@
 			<gml:description>201 KM SOUTH OF THE COSTA RICA RIFT, ON 5.9 MA OLD CRUST </gml:description>
 			<!-- this URI identifies the site -->
 			<gml:name
-				codeSpace="urn:ietf:rfc:2141">urn:cgi:feature:ODP:ODP0111:0504</gml:name>
+				codeSpace="urn:ietf:rfc:2141">urn:cgi:feature:ODP:111:0504</gml:name>
 			<!-- this ODP code identifies the sample -->
 			<gml:name
 				codeSpace="http://www-odp.tamu.edu/odpwww.htm">ODP0111-0504</gml:name>
@@ -55,7 +58,7 @@
 				<sa:SamplingFeatureRelation>
 					<sa:role>cruise</sa:role>
 					<sa:target
-						xlink:href="urn:cgi:feature:ODP:ODP0111"/>
+						xlink:href="urn:cgi:feature:ODP:111"/>
 				</sa:SamplingFeatureRelation>
 			</sa:relatedSamplingFeature>
 			<sa:relatedSamplingFeature>
@@ -73,7 +76,6 @@
 				</gml:Point>
 			</sa:position>
 		</sa:SamplingPoint>
-
 	</sa:member>
 	<sa:member>
 		<sa:Specimen
@@ -95,7 +97,7 @@
 			<!-- the next elements links the specimen back to the site -->
 			<sa:relatedSamplingFeature>
 				<sa:SamplingFeatureRelation>
-					<sa:role>site</sa:role>
+					<sa:role>site</sa:role><!-- also sub-samples, adjacent samples, etc - must  be agreed by the ODP community -->
 					<sa:target
 						xlink:href="urn:cgi:feature:ODP:ODP0111:0504"/>
 				</sa:SamplingFeatureRelation>
