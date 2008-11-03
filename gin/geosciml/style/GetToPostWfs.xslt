@@ -65,7 +65,13 @@ NAMESPACE=xmlns(myns=http://my.server),xmlns(app=http://www.app.com) -->
 				</wfs:DescribeFeatureType>
 			</xsl:when>
 			<xsl:when test="$request='GETFEATURE'">
-			<wfs:GetFeature service="WFS" version="{/h:request/h:requestParameters/h:parameter[@name='VERSION']/h:value}">
+			<xsl:variable name="vers">
+			<xsl:choose>
+				<xsl:when test="/h:request/h:requestParameters/h:parameter[@name='VERSION']/h:value"><xsl:value-of select="/h:request/h:requestParameters/h:parameter[@name='VERSION']/h:value"/></xsl:when>
+				<xsl:otherwise>1.1.0</xsl:otherwise>
+			</xsl:choose>
+			</xsl:variable>
+			<wfs:GetFeature service="WFS" version="{$vers}">
 			<!-- deal with some optional parameters 
 outputFormat="text/xml; subtype=gml/3.1.1"
 traverseXlinkDepth="1"
@@ -126,7 +132,7 @@ traverseXlinkExpiry="1"
 								<xsl:when test="$qtype='bbox'">
 								<!-- this is a bbox query, depending of the type, the shape to consider is different, must find this in the configuration file -->
 								<ogc:Filter>
-									<ogc:Within>
+									<ogc:BBOX>
 										<ogc:PropertyName>
 										<xsl:choose>
 											<xsl:when test="$root/h:request/proc:config/proc:defaultGeometries/proc:featureGeometry[@typeName=$currentType]"><xsl:value-of select="$root/h:request/proc:config/proc:defaultGeometries/proc:featureGeometry[@typeName=$currentType]"/></xsl:when>
@@ -140,12 +146,19 @@ traverseXlinkExpiry="1"
 											<xsl:otherwise>EPSG:4326</xsl:otherwise>
 										</xsl:choose>
 										</xsl:variable>
-										<gml:Envelope srsName="{$srs}">
-										<!-- parse a bounding box in their individual elements -->
+										
+										<gml:Box srsName="{$srs}">
+											<gml:coordinates><xsl:value-of select="$bbox[1]"/>,<xsl:value-of select="$bbox[2]"/><xsl:text> </xsl:text><xsl:value-of select="$bbox[3]"/><xsl:text>,</xsl:text><xsl:value-of select="$bbox[4]"/></gml:coordinates>
+										</gml:Box>
+
+										<!--
+										<gml:Envelope srsName="">
+										
 											<gml:lowerCorner><xsl:value-of select="$bbox[1]"/><xsl:text> </xsl:text><xsl:value-of select="$bbox[2]"/></gml:lowerCorner>
 											<gml:upperCorner><xsl:value-of select="$bbox[3]"/><xsl:text> </xsl:text><xsl:value-of select="$bbox[4]"/></gml:upperCorner>
 										</gml:Envelope>
-										</ogc:Within>
+-->
+										</ogc:BBOX>
 								</ogc:Filter>
 								</xsl:when>
 								<xsl:when test="$qtype='fid'">
