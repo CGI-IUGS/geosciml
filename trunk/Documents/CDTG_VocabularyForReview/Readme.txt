@@ -17,3 +17,5 @@ The 'GeoSciML Draft' worksheet contains the actual vocabulary. The column CGI_UR
 The full CGI_URN for each term is the concatenation of CGI_Vocabulary_Prefix & Version & CGI_URN
 
 The ClassifierScheme name is the last part of the CGI_Vocabulary_Prefix string.
+
+string in 'Parent Column' is the Term string, not the CGI_URN string
