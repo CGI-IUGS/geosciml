@@ -9,3 +9,5 @@ The previous location https://www.seegrid.csiro.au/subversion/xmml/GeoSciML/ has
 The UML model files of type .eap are Enterprise Architect documents.
 
 A free viewer or 30-day trial edition are available from http://www.sparxsystems.com.au/products/ea_downloads.html
+
+Comment - just to test svn
