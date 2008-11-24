@@ -18,7 +18,7 @@
 		match="gsml:GeologicVocabulary">
 		<xsl:variable
 			name="vocabulary"
-			select="gsml:identifier[@codeSpace='urn:ietf:rfc:2141']"/>
+			select="( gml:identifier[@codeSpace='urn:ietf:rfc:2141'] | gsml:identifier[@codeSpace='urn:ietf:rfc:2141'] | gml:name[@codeSpace='urn:ietf:rfc:2141'] )[position()=1]"/>
 		<rdf:RDF>
 			<owl:Ontology
 				rdf:about="{$vocabulary}">
