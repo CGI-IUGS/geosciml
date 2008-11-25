@@ -1,226 +1,296 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<gsml:Borehole xmlns:om="http://www.opengis.net/om/1.0" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:sa="http://www.opengis.net/sampling/1.0" xmlns:gml="http://www.opengis.net/gml" xmlns:cv="http://www.opengis.net/cv/0.2.1" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:gsml="urn:cgi:xmlns:CGI:GeoSciML:2.0" xmlns:wfs="http://www.opengis.net/wfs" xsi:schemaLocation="http://www.opengis.net/wfs http://schemas.opengis.net/wfs/1.1.0/wfs.xsd http://www.opengis.net/cv/0.2.1 http://bp.schemas.opengis.net/06-188r1/cv/0.2.1/cv.xsd http://www.opengis.net/om/1.0 http://schemas.opengis.net/om/1.0.0/om.xsd http://www.opengis.net/sampling/1.0 http://schemas.opengis.net/sampling/1.0.0/sampling.xsd urn:cgi:xmlns:CGI:GeoSciML:2.0 http://www.geosciml.org/schemas/geosciml/2.0_rc3/geosciml.xsd" gml:id="bh.30303336325830303630">
-	<gml:description>00362X0060 borehole</gml:description>
-	<gml:name codeSpace="urn:ietf:rfc:2141">urn:cgi:feature:BRGM:00362X0060</gml:name>
+<!-- Example of a BRGM borehole encoded 	as a collection of geologic units crossed by the borehole
+      Ages and lithologies are interpretations encoded as properties of geologic units.
+      As a result, we don't use the O&M approach but we use the mapped feature approach -->
+<gsml:Borehole xmlns:om="http://www.opengis.net/om/1.0" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:sa="http://www.opengis.net/sampling/1.0" xmlns:gml="http://www.opengis.net/gml" xmlns:cv="http://www.opengis.net/cv/0.2.1" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:gsml="urn:cgi:xmlns:CGI:GeoSciML:2.0" xmlns:wfs="http://www.opengis.net/wfs" xsi:schemaLocation="http://www.opengis.net/wfs http://schemas.opengis.net/wfs/1.1.0/wfs.xsd http://www.opengis.net/cv/0.2.1 http://bp.schemas.opengis.net/06-188r1/cv/0.2.1/cv.xsd http://www.opengis.net/om/1.0 http://schemas.opengis.net/om/1.0.0/om.xsd http://www.opengis.net/sampling/1.0 http://schemas.opengis.net/sampling/1.0.0/sampling.xsd urn:cgi:xmlns:CGI:GeoSciML:2.0 http://www.geosciml.org/geosciml/2.0/xsd/geosciml.xsd" gml:id="bh.30303239375830303131">
+	<gml:name codeSpace="urn:ietf:rfc:2141">urn:cgi:feature:BRGM:00297X0011</gml:name>
 	<gml:boundedBy>
-		<gml:Envelope srsName="#bh.30303336325830303630.BoreholeShape">
-			<gml:lowerCorner>647642.4 2579731.5 17</gml:lowerCorner>
-			<gml:upperCorner>647642.4 2579731.5 62</gml:upperCorner>
+		<!-- The envelope is not mandatory. EPSG:6.15:7412 is the 3D projection system of France -->
+		<gml:Envelope srsName="urn:ogc:def:crs:EPSG:6.15:7412">
+			<gml:lowerCorner>709211 2582700 119.9</gml:lowerCorner>
+			<gml:upperCorner>709211 2582700 137.6</gml:upperCorner>
 		</gml:Envelope>
 	</gml:boundedBy>
-	<!-- List of geologic units crossed by the borehole -->
-	<sa:sampledFeature>
-		<gsml:MappedFeature>
-			<gsml:observationMethod>
-				<gsml:CGI_TermValue>
-					<gsml:value codeSpace="urn:ietf:rfc:2141">urn:ogc:def:nil:OGC:missing</gsml:value>
-				</gsml:CGI_TermValue>
-			</gsml:observationMethod>
-			<!-- The geometry of the interval is accurate -->
-			<gsml:positionalAccuracy>
-				<gsml:CGI_NumericValue>
-					<gsml:principalValue uom="urn:ogc:def:uom:UCUM:m">0</gsml:principalValue>
-				</gsml:CGI_NumericValue>
-			</gsml:positionalAccuracy>
-			<!-- Sampling frame : the borehole itself -->
-			<gsml:samplingFrame xlink:href="#bh.30303336325830303630"/>
-			<!-- The geologic unit crossed by the interval -->
-			<gsml:specification xlink:href="urn:cgi:classifier:BRGM:StratigraphicLexicon:50K:F007"/>
-			<!-- The geometry of the interval -->
-			<gsml:shape>
-				<gml:LineString srsName="#bh.30303336325830303630.Shape" srsDimension="1" gml:id="bh.30303336325830303630.1">
-					<gml:pos>0</gml:pos> 
-					<gml:pos>4.5</gml:pos> 
-				</gml:LineString>
-			</gsml:shape>
-		</gsml:MappedFeature>
-	</sa:sampledFeature>			
-	<sa:sampledFeature>
-		<gsml:MappedFeature>
-			<gsml:observationMethod>
-				<gsml:CGI_TermValue>
-					<gsml:value codeSpace="urn:ietf:rfc:2141">urn:ogc:def:nil:OGC:missing</gsml:value>
-				</gsml:CGI_TermValue>
-			</gsml:observationMethod>
-			<!-- The geometry of the interval is accurate -->
-			<gsml:positionalAccuracy>
-				<gsml:CGI_NumericValue>
-					<gsml:principalValue uom="urn:ogc:def:uom:UCUM:m">0</gsml:principalValue>
-				</gsml:CGI_NumericValue>
-			</gsml:positionalAccuracy>
-			<!-- Sampling frame : the borehole itself -->
-			<gsml:samplingFrame xlink:href="#bh.30303336325830303630"/>
-			<!-- The geologic unit crossed by the interval -->
-			<gsml:specification xlink:href="urn:cgi:classifier:BRGM:StratigraphicLexicon:50K:F051"/>
-			<!-- The geometry of the interval -->
-			<gsml:shape>
-				<gml:LineString srsName="#bh.30303336325830303630.Shape" srsDimension="1" gml:id="bh.30303336325830303630.2">
-					<gml:pos>4.5</gml:pos> 
-					<gml:pos>9</gml:pos> 
-				</gml:LineString>
-			</gsml:shape>
-		</gsml:MappedFeature>
-	</sa:sampledFeature>			
-	<sa:sampledFeature>
-		<gsml:MappedFeature>
-			<gsml:observationMethod>
-				<gsml:CGI_TermValue>
-					<gsml:value codeSpace="urn:ietf:rfc:2141">urn:ogc:def:nil:OGC:missing</gsml:value>
-				</gsml:CGI_TermValue>
-			</gsml:observationMethod>
-			<!-- The geometry of the interval is accurate -->
-			<gsml:positionalAccuracy>
-				<gsml:CGI_NumericValue>
-					<gsml:principalValue uom="urn:ogc:def:uom:UCUM:m">0</gsml:principalValue>
-				</gsml:CGI_NumericValue>
-			</gsml:positionalAccuracy>
-			<!-- Sampling frame : the borehole itself -->
-			<gsml:samplingFrame xlink:href="#bh.30303336325830303630"/>
-			<!-- The geologic unit crossed by the interval -->
-			<gsml:specification xlink:href="urn:cgi:classifier:BRGM:StratigraphicLexicon:50K:F052"/>
-			<!-- The geometry of the interval -->
-			<gsml:shape>
-				<gml:LineString srsName="#bh.30303336325830303630.Shape" srsDimension="1" gml:id="bh.30303336325830303630.3">
-					<gml:pos>9</gml:pos> 
-					<gml:pos>36</gml:pos> 
-				</gml:LineString>
-			</gsml:shape>
-		</gsml:MappedFeature>
-	</sa:sampledFeature>			
-	<sa:sampledFeature>
-		<gsml:MappedFeature>
-			<gsml:observationMethod>
-				<gsml:CGI_TermValue>
-					<gsml:value codeSpace="urn:ietf:rfc:2141">urn:ogc:def:nil:OGC:missing</gsml:value>
-				</gsml:CGI_TermValue>
-			</gsml:observationMethod>
-			<!-- The geometry of the interval is accurate -->
-			<gsml:positionalAccuracy>
-				<gsml:CGI_NumericValue>
-					<gsml:principalValue uom="urn:ogc:def:uom:UCUM:m">0</gsml:principalValue>
-				</gsml:CGI_NumericValue>
-			</gsml:positionalAccuracy>
-			<!-- Sampling frame : the borehole itself -->
-			<gsml:samplingFrame xlink:href="#bh.30303336325830303630"/>
-			<!-- The geologic unit crossed by the interval -->
-			<gsml:specification xlink:href="urn:cgi:classifier:BRGM:StratigraphicLexicon:50K:F052"/>
-			<!-- The geometry of the interval -->
-			<gsml:shape>
-				<gml:LineString srsName="#bh.30303336325830303630.Shape" srsDimension="1"  gml:id="bh.30303336325830303630.4">
-					<gml:pos>36</gml:pos> 
-					<gml:pos>43</gml:pos> 
-				</gml:LineString>
-			</gsml:shape>
-		</gsml:MappedFeature>
-	</sa:sampledFeature>			
-	<sa:sampledFeature>
-		<gsml:MappedFeature>
-			<gsml:observationMethod>
-				<gsml:CGI_TermValue>
-					<gsml:value codeSpace="urn:ietf:rfc:2141">urn:ogc:def:nil:OGC:missing</gsml:value>
-				</gsml:CGI_TermValue>
-			</gsml:observationMethod>
-			<!-- The geometry of the interval is accurate -->
-			<gsml:positionalAccuracy>
-				<gsml:CGI_NumericValue>
-					<gsml:principalValue uom="urn:ogc:def:uom:UCUM:m">0</gsml:principalValue>
-				</gsml:CGI_NumericValue>
-			</gsml:positionalAccuracy>
-			<!-- Sampling frame : the borehole itself -->
-			<gsml:samplingFrame xlink:href="#bh.30303336325830303630"/>
-			<!-- The geologic unit crossed by the interval -->
-			<gsml:specification xlink:href="urn:cgi:classifier:BRGM:StratigraphicLexicon:50K:F065"/>
-			<!-- The geometry of the interval -->
-			<gsml:shape>
-				<gml:LineString srsName="#bh.30303336325830303630.Shape" srsDimension="1"  gml:id="bh.30303336325830303630.5">
-					<gml:pos>43</gml:pos> 
-					<gml:pos>45</gml:pos> 
-				</gml:LineString>
-			</gsml:shape>
-		</gsml:MappedFeature>
-	</sa:sampledFeature>
-	<!-- Lithology in the intervals -->
-	<sa:relatedObservation>
-		<om:Observation gml:id="bh.30303336325830303630.lithology.1">   
-			<gml:description>Lithology</gml:description>
-			<om:samplingTime/>
-			<om:procedure xlink:href="urn:cgi:classifier:CGI:ObservationMethod:Direct_observation"/>
-			<om:observedProperty xlink:href="urn:cgi:propertyType:CGI:GeoSciML:2.0:CompositionPart:lithology"/>
-			<om:featureOfInterest xlink:href="#bh.30303336325830303630"/>
-			<om:result>
-				<cv:CV_DiscreteCoverage>
-					<cv:domainExtent xlink:href="#bh.30303336325830303630.Shape"/>
-					<cv:rangeType/>
-					<cv:element>
-						<cv:CV_GeometryValuePair>
-							<cv:geometry>
-								<cv:CV_DomainObject>
-									<cv:spatialElement xlink:href="#bh30303336325830303630.1"/>
-								</cv:CV_DomainObject>
-							</cv:geometry>
-							<cv:value xsi:type="gml:ReferenceType" xlink:href="urn:cgi:classifier:CGI:SimpleLithology:2008:sedimentary_rock"/>
-						</cv:CV_GeometryValuePair>
-					</cv:element>
-					<cv:element>
-						<cv:CV_GeometryValuePair>
-							<cv:geometry>
-								<cv:CV_DomainObject>
-									<cv:spatialElement xlink:href="#bh30303336325830303630.2"/>
-								</cv:CV_DomainObject>
-							</cv:geometry>
-							<cv:value xsi:type="gml:ReferenceType" xlink:href="urn:cgi:classifier:CGI:SimpleLithology:2008:calcareous_carbonate_sedimentary_rock"/>
-						</cv:CV_GeometryValuePair>
-					</cv:element>
-					<cv:element>
-						<cv:CV_GeometryValuePair>
-							<cv:geometry>
-								<cv:CV_DomainObject>
-									<cv:spatialElement xlink:href="#bh30303336325830303630.3"/>
-								</cv:CV_DomainObject>
-							</cv:geometry>
-							<cv:value xsi:type="gml:ReferenceType" xlink:href="urn:cgi:classifier:CGI:SimpleLithology:2008:calcareous_carbonate_sedimentary_rock"/>
-						</cv:CV_GeometryValuePair>
-					</cv:element>
-					<cv:element>
-						<cv:CV_GeometryValuePair>
-							<cv:geometry>
-								<cv:CV_DomainObject>
-									<cv:spatialElement xlink:href="#bh30303336325830303630.4"/>
-								</cv:CV_DomainObject>
-							</cv:geometry>
-							<cv:value xsi:type="gml:ReferenceType" xlink:href="urn:cgi:classifier:CGI:SimpleLithology:2008:calcareous_carbonate_sedimentary_rock"/>
-						</cv:CV_GeometryValuePair>
-					</cv:element>
-					<cv:element>
-						<cv:CV_GeometryValuePair>
-							<cv:geometry>
-								<cv:CV_DomainObject>
-									<cv:spatialElement xlink:href="#bh30303336325830303630.5"/>
-								</cv:CV_DomainObject>
-							</cv:geometry>
-							<cv:value xsi:type="gml:ReferenceType" xlink:href="urn:cgi:classifier:CGI:SimpleLithology:2008:calcareous_carbonate_sedimentary_rock"/>
-						</cv:CV_GeometryValuePair>
-					</cv:element>
-				</cv:CV_DiscreteCoverage>
-			</om:result>
-		</om:Observation>
-	</sa:relatedObservation>
+	<!-- Geologic units are sampled -->
+	<sa:sampledFeature xlink:role="urn:cgi:featureType:CGI:GeoSciML:2.0:GeologicUnit" xlink:href="urn:ogc:def:nil:OGC:unknown" />
 	<sa:shape>
-		<gml:LineString gml:id="bh.30303336325830303630.Shape" srsName="urn:ogc:def:crs:EPSG:6.15:7412" srsDimension="3">
-			<gml:pos>647642.4 2579731.5 62</gml:pos>
-			<gml:pos>647642.4 2579731.5 17</gml:pos>
+		<!-- EPSG:7412 is a 3D coordinate projection system composed of the 2D coordinate projection system EPSG:27582 for X and Y and of the the 1D coordinate projection system EPSG:5719 for the elevation -->
+		<gml:LineString gml:id="bh.30303239375830303131.Shape" srsName="urn:ogc:def:crs:EPSG:6.15:7412" srsDimension="3">
+			<gml:pos>709211 2582700 137.6</gml:pos>
+			<gml:pos>709211 2582700 119.9</gml:pos>
 		</gml:LineString>
 	</sa:shape>
-	<sa:length uom="urn:ogc:def:uom:UCUM:m">45</sa:length>
+	<sa:length uom="urn:ogc:def:uom:UCUM:m">17.7</sa:length>
 	<gsml:collarLocation>
 		<gsml:BoreholeCollar>
-			<!-- X and Y location of the borehole -->
-			<gsml:location>
+		    <gsml:location>
+				<!-- 2D location of the collar. EPSG:6.15:27582 is the 2D projection system of France -->
 				<gml:Point srsName="urn:ogc:def:crs:EPSG:6.15:27582" srsDimension="2">
-					<gml:pos>647642.4 2579731.5</gml:pos>
+					<gml:pos>709211 2582700</gml:pos>
 				</gml:Point>
 			</gsml:location>
-			<gsml:elevation srsName="#bh.30303336325830303630.Shape" srsDimension="1">62</gsml:elevation>
+			<!-- Elevation of the collar. EPSG:6.15:5719 is the elevation projection system of France -->
+			<gsml:elevation srsName="urn:ogc:def:crs:EPSG:6.15:5719">137.6</gsml:elevation>
 		</gsml:BoreholeCollar>
 	</gsml:collarLocation>
+	<!-- The list of intervals -->
+	<gsml:logElement>
+		<gsml:MappedInterval>
+			<gsml:observationMethod>
+				<gsml:CGI_TermValue>
+					<gsml:value codeSpace="http://urn.opengis.net">urn:ogc:def:nil:OGC:missing</gsml:value>
+				</gsml:CGI_TermValue>
+			</gsml:observationMethod>
+			<!-- The geometry of the interval is accurate -->
+			<gsml:positionalAccuracy>
+				<gsml:CGI_NumericValue>
+					<gsml:principalValue uom="urn:ogc:def:uom:UCUM:m">0</gsml:principalValue>
+				</gsml:CGI_NumericValue>
+			</gsml:positionalAccuracy>
+			<!-- Sampling frame : the borehole itself -->
+			<gsml:samplingFrame xlink:href="#bh.30303239375830303131"/>
+			<!-- The geologic unit crossed by this interval -->
+			<gsml:specification>
+				<gsml:GeologicUnit gml:id="bh.30303239375830303131.gu1">
+					<!-- This geologic unit we are defining inherits from a geologic unit described in the BRGM stratigraphic lexicon.
+						  That's the reason why we won't encode the age. To age will be the one of the geologic unit in the stratigraphic lexicon -->
+					<gml:name codeSpace="urn:cgi:classifierScheme:BRGM:StratigraphicLexicon">urn:cgi:classifier:BRGM:StratigraphicLexicon:50K:F001</gml:name>
+					<gsml:observationMethod>
+						 <gsml:CGI_TermValue>
+							  <gsml:value codeSpace="urn:cgi:classifierScheme:CGI:FeatureObservationMethod">urn:cgi:classifier:CGI:FeatureObservationMethod:synthesis_of_multiple_published_descriptions</gsml:value>
+						 </gsml:CGI_TermValue>
+					</gsml:observationMethod>
+					<gsml:purpose>instance</gsml:purpose>
+					<gsml:geologicUnitType xlink:href="urn:cgi:classifier:CGI:GeologicalUnitType:lithostratigraphic"/>
+					<gsml:classifier xlink:href="urn:cgi:classifier:BRGM:StratigraphicLexicon:50K:F001" />
+  					<gsml:composition>
+						<gsml:CompositionPart>
+							<gsml:role codeSpace="urn:cgi:classifierScheme:CGI:CompositionPartRole:2008">urn:cgi:classifier:CGI:CompositionPartRole:2008:dominant_constituent</gsml:role>
+							<!-- Lithology according to the CGI simple lithology dictionary -->
+							<gsml:lithology xlink:href="urn:cgi:classifier:CGI:SimpleLithology:2008:anthropogenic_unconsolidated_material"/>
+							<gsml:proportion>
+								<gsml:CGI_TermValue>
+									<gsml:value codeSpace="urn:cgi:classifierScheme:CGI:ProportionTerm:2008">urn:cgi:classifier:CGI:ProportionTerm:2008:all</gsml:value> 
+								</gsml:CGI_TermValue>
+							</gsml:proportion>
+						</gsml:CompositionPart>
+					</gsml:composition>
+				</gsml:GeologicUnit>
+			</gsml:specification>
+			<!-- The geometry of the interval -->
+			<gsml:shape>
+				<gml:LineString srsName="#bh.30303239375830303131.Shape" srsDimension="1">
+					<gml:pos>0</gml:pos> 
+					<gml:pos>0.4</gml:pos> 
+				</gml:LineString>
+			</gsml:shape>
+		</gsml:MappedInterval>
+	</gsml:logElement>
+	<gsml:logElement>
+		<gsml:MappedInterval>
+			<gsml:observationMethod>
+				<gsml:CGI_TermValue>
+					<gsml:value codeSpace="http://urn.opengis.net">urn:ogc:def:nil:OGC:missing</gsml:value>
+				</gsml:CGI_TermValue>
+			</gsml:observationMethod>
+			<!-- The geometry of the interval is accurate -->
+			<gsml:positionalAccuracy>
+				<gsml:CGI_NumericValue>
+					<gsml:principalValue uom="urn:ogc:def:uom:UCUM:m">0</gsml:principalValue>
+				</gsml:CGI_NumericValue>
+			</gsml:positionalAccuracy>
+			<!-- Sampling frame : the borehole itself -->
+			<gsml:samplingFrame xlink:href="#bh.30303239375830303131"/>
+			<!-- The geologic unit crossed by this interval -->
+			<gsml:specification>
+				<gsml:GeologicUnit gml:id="bh.30303239375830303131.gu2">
+					<!-- This geologic unit we are defining inherits from a geologic unit described in the BRGM stratigraphic lexicon.
+						  That's the reason why we won't encode the age. To age will be the one of the geologic unit in the stratigraphic lexicon -->
+					<gml:name codeSpace="urn:cgi:classifierScheme:BRGM:StratigraphicLexicon">urn:cgi:classifier:BRGM:StratigraphicLexicon:50K:F010</gml:name>
+					<gsml:observationMethod>
+						 <gsml:CGI_TermValue>
+							  <gsml:value codeSpace="urn:cgi:classifierScheme:CGI:FeatureObservationMethod">urn:cgi:classifier:CGI:FeatureObservationMethod:synthesis_of_multiple_published_descriptions</gsml:value>
+						 </gsml:CGI_TermValue>
+					</gsml:observationMethod>
+					<gsml:purpose>instance</gsml:purpose>
+					<gsml:geologicUnitType xlink:href="urn:cgi:classifier:CGI:GeologicalUnitType:lithostratigraphic"/>
+					<gsml:classifier xlink:href="urn:cgi:classifier:BRGM:StratigraphicLexicon:50K:F010" />
+  					<gsml:composition>
+						<gsml:CompositionPart>
+							<gsml:role codeSpace="urn:cgi:classifierScheme:CGI:CompositionPartRole:2008">urn:cgi:classifier:CGI:CompositionPartRole:2008:dominant_constituent</gsml:role>
+							<!-- Lithology according to the CGI simple lithology dictionary -->
+							<gsml:lithology xlink:href="urn:cgi:classifier:CGI:SimpleLithology:2008:sedimentary_rock"/>
+							<gsml:proportion>
+								<gsml:CGI_TermValue>
+									<gsml:value codeSpace="urn:cgi:classifierScheme:CGI:ProportionTerm:2008">urn:cgi:classifier:CGI:ProportionTerm:2008:all</gsml:value> 
+								</gsml:CGI_TermValue>
+							</gsml:proportion>
+						</gsml:CompositionPart>
+					</gsml:composition>
+				</gsml:GeologicUnit>
+			</gsml:specification>
+			<!-- The geometry of the interval -->
+			<gsml:shape>
+				<gml:LineString srsName="#bh.30303239375830303131.Shape" srsDimension="1">
+					<gml:pos>0.4</gml:pos> 
+					<gml:pos>2</gml:pos> 
+				</gml:LineString>
+			</gsml:shape>
+		</gsml:MappedInterval>
+	</gsml:logElement>
+	<gsml:logElement>
+		<gsml:MappedInterval>
+			<gsml:observationMethod>
+				<gsml:CGI_TermValue>
+					<gsml:value codeSpace="http://urn.opengis.net">urn:ogc:def:nil:OGC:missing</gsml:value>
+				</gsml:CGI_TermValue>
+			</gsml:observationMethod>
+			<!-- The geometry of the interval is accurate -->
+			<gsml:positionalAccuracy>
+				<gsml:CGI_NumericValue>
+					<gsml:principalValue uom="urn:ogc:def:uom:UCUM:m">0</gsml:principalValue>
+				</gsml:CGI_NumericValue>
+			</gsml:positionalAccuracy>
+			<!-- Sampling frame : the borehole itself -->
+			<gsml:samplingFrame xlink:href="#bh.30303239375830303131"/>
+			<!-- The geologic unit crossed by this interval -->
+			<gsml:specification>
+				<gsml:GeologicUnit gml:id="bh.30303239375830303131.gu3">
+					<!-- This geologic unit we are defining inherits from a geologic unit described in the BRGM stratigraphic lexicon.
+						  That's the reason why we won't encode the age. To age will be the one of the geologic unit in the stratigraphic lexicon -->
+					<gml:name codeSpace="urn:cgi:classifierScheme:BRGM:StratigraphicLexicon">urn:cgi:classifier:BRGM:StratigraphicLexicon:50K:F010</gml:name>
+					<gsml:observationMethod>
+						 <gsml:CGI_TermValue>
+							  <gsml:value codeSpace="urn:cgi:classifierScheme:CGI:FeatureObservationMethod">urn:cgi:classifier:CGI:FeatureObservationMethod:synthesis_of_multiple_published_descriptions</gsml:value>
+						 </gsml:CGI_TermValue>
+					</gsml:observationMethod>
+					<gsml:purpose>instance</gsml:purpose>
+					<gsml:geologicUnitType xlink:href="urn:cgi:classifier:CGI:GeologicalUnitType:lithostratigraphic"/>
+					<gsml:classifier xlink:href="urn:cgi:classifier:BRGM:StratigraphicLexicon:50K:F010" />
+  					<gsml:composition>
+						<gsml:CompositionPart>
+							<gsml:role codeSpace="urn:cgi:classifierScheme:CGI:CompositionPartRole:2008">urn:cgi:classifier:CGI:CompositionPartRole:2008:dominant_constituent</gsml:role>
+							<!-- Lithology according to the CGI simple lithology dictionary -->
+							<gsml:lithology xlink:href="urn:cgi:classifier:CGI:SimpleLithology:2008:sand"/>
+							<gsml:proportion>
+								<gsml:CGI_TermValue>
+									<gsml:value codeSpace="urn:cgi:classifierScheme:CGI:ProportionTerm:2008">urn:cgi:classifier:CGI:ProportionTerm:2008:all</gsml:value> 
+								</gsml:CGI_TermValue>
+							</gsml:proportion>
+						</gsml:CompositionPart>
+					</gsml:composition>
+				</gsml:GeologicUnit>
+			</gsml:specification>
+			<!-- The geometry of the interval -->
+			<gsml:shape>
+				<gml:LineString srsName="#bh.30303239375830303131.Shape" srsDimension="1">
+					<gml:pos>2</gml:pos> 
+					<gml:pos>10.8</gml:pos> 
+				</gml:LineString>
+			</gsml:shape>
+		</gsml:MappedInterval>
+	</gsml:logElement>
+	<gsml:logElement>
+		<gsml:MappedInterval>
+			<gsml:observationMethod>
+				<gsml:CGI_TermValue>
+					<gsml:value codeSpace="http://urn.opengis.net">urn:ogc:def:nil:OGC:missing</gsml:value>
+				</gsml:CGI_TermValue>
+			</gsml:observationMethod>
+			<!-- The geometry of the interval is accurate -->
+			<gsml:positionalAccuracy>
+				<gsml:CGI_NumericValue>
+					<gsml:principalValue uom="urn:ogc:def:uom:UCUM:m">0</gsml:principalValue>
+				</gsml:CGI_NumericValue>
+			</gsml:positionalAccuracy>
+			<!-- Sampling frame : the borehole itself -->
+			<gsml:samplingFrame xlink:href="#bh.30303239375830303131"/>
+			<!-- The geologic unit crossed by this interval -->
+			<gsml:specification>
+				<gsml:GeologicUnit gml:id="bh.30303239375830303131.gu4">
+					<!-- This geologic unit we are defining inherits from a geologic unit described in the BRGM stratigraphic lexicon.
+						  That's the reason why we won't encode the age. To age will be the one of the geologic unit in the stratigraphic lexicon -->
+					<gml:name codeSpace="urn:cgi:classifierScheme:BRGM:StratigraphicLexicon">urn:cgi:classifier:BRGM:StratigraphicLexicon:50K:F145</gml:name>
+					<gsml:observationMethod>
+						 <gsml:CGI_TermValue>
+							  <gsml:value codeSpace="urn:cgi:classifierScheme:CGI:FeatureObservationMethod">urn:cgi:classifier:CGI:FeatureObservationMethod:synthesis_of_multiple_published_descriptions</gsml:value>
+						 </gsml:CGI_TermValue>
+					</gsml:observationMethod>
+					<gsml:purpose>instance</gsml:purpose>
+					<gsml:geologicUnitType xlink:href="urn:cgi:classifier:CGI:GeologicalUnitType:lithostratigraphic"/>
+					<gsml:classifier xlink:href="urn:cgi:classifier:BRGM:StratigraphicLexicon:50K:F145" />
+  					<gsml:composition>
+						<gsml:CompositionPart>
+							<gsml:role codeSpace="urn:cgi:classifierScheme:CGI:CompositionPartRole:2008">urn:cgi:classifier:CGI:CompositionPartRole:2008:dominant_constituent</gsml:role>
+							<!-- Lithology according to the CGI simple lithology dictionary -->
+							<gsml:lithology xlink:href="urn:cgi:classifier:CGI:SimpleLithology:2008:non_clastic_siliceous_sediment"/>
+							<gsml:proportion>
+								<gsml:CGI_TermValue>
+									<gsml:value codeSpace="urn:cgi:classifierScheme:CGI:ProportionTerm:2008">urn:cgi:classifier:CGI:ProportionTerm:2008:all</gsml:value> 
+								</gsml:CGI_TermValue>
+							</gsml:proportion>
+						</gsml:CompositionPart>
+					</gsml:composition>
+				</gsml:GeologicUnit>
+			</gsml:specification>
+			<!-- The geometry of the interval -->
+			<gsml:shape>
+				<gml:LineString srsName="#bh.30303239375830303131.Shape" srsDimension="1">
+					<gml:pos>10.8</gml:pos> 
+					<gml:pos>17.5</gml:pos> 
+				</gml:LineString>
+			</gsml:shape>
+		</gsml:MappedInterval>
+	</gsml:logElement>	<gsml:logElement>
+		<gsml:MappedInterval>
+			<gsml:observationMethod>
+				<gsml:CGI_TermValue>
+					<gsml:value codeSpace="http://urn.opengis.net">urn:ogc:def:nil:OGC:missing</gsml:value>
+				</gsml:CGI_TermValue>
+			</gsml:observationMethod>
+			<!-- The geometry of the interval is accurate -->
+			<gsml:positionalAccuracy>
+				<gsml:CGI_NumericValue>
+					<gsml:principalValue uom="urn:ogc:def:uom:UCUM:m">0</gsml:principalValue>
+				</gsml:CGI_NumericValue>
+			</gsml:positionalAccuracy>
+			<!-- Sampling frame : the borehole itself -->
+			<gsml:samplingFrame xlink:href="#bh.30303239375830303131"/>
+			<!-- The geologic unit crossed by this interval -->
+			<gsml:specification>
+				<gsml:GeologicUnit gml:id="bh.30303239375830303131.gu5">
+					<!-- This geologic unit we are defining inherits from a geologic unit described in the BRGM stratigraphic lexicon.
+						  That's the reason why we won't encode the age. To age will be the one of the geologic unit in the stratigraphic lexicon -->
+					<gml:name codeSpace="urn:cgi:classifierScheme:BRGM:StratigraphicLexicon">urn:cgi:classifier:BRGM:StratigraphicLexicon:50K:F145</gml:name>
+					<gsml:observationMethod>
+						 <gsml:CGI_TermValue>
+							  <gsml:value codeSpace="urn:cgi:classifierScheme:CGI:FeatureObservationMethod">urn:cgi:classifier:CGI:FeatureObservationMethod:synthesis_of_multiple_published_descriptions</gsml:value>
+						 </gsml:CGI_TermValue>
+					</gsml:observationMethod>
+					<gsml:purpose>instance</gsml:purpose>
+					<gsml:geologicUnitType xlink:href="urn:cgi:classifier:CGI:GeologicalUnitType:lithostratigraphic"/>
+					<gsml:classifier xlink:href="urn:cgi:classifier:BRGM:StratigraphicLexicon:50K:F145" />
+  					<gsml:composition>
+						<gsml:CompositionPart>
+							<gsml:role codeSpace="urn:cgi:classifierScheme:CGI:CompositionPartRole:2008">urn:cgi:classifier:CGI:CompositionPartRole:2008:dominant_constituent</gsml:role>
+							<!-- Lithology according to the CGI simple lithology dictionary -->
+							<gsml:lithology xlink:href="urn:cgi:classifier:CGI:SimpleLithology:2008:calcareous_carbonate_sedimentary_rock"/>
+							<gsml:proportion>
+								<gsml:CGI_TermValue>
+									<gsml:value codeSpace="urn:cgi:classifierScheme:CGI:ProportionTerm:2008">urn:cgi:classifier:CGI:ProportionTerm:2008:all</gsml:value> 
+								</gsml:CGI_TermValue>
+							</gsml:proportion>
+						</gsml:CompositionPart>
+					</gsml:composition>
+				</gsml:GeologicUnit>
+			</gsml:specification>
+			<!-- The geometry of the interval -->
+			<gsml:shape>
+				<gml:LineString srsName="#bh.30303239375830303131.Shape" srsDimension="1">
+					<gml:pos>17.5</gml:pos> 
+					<gml:pos>17.7</gml:pos> 
+				</gml:LineString>
+			</gsml:shape>
+		</gsml:MappedInterval>
+	</gsml:logElement>
 </gsml:Borehole>
