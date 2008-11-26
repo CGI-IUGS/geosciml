@@ -7,7 +7,7 @@ Geologic units includes both formal units (i.e. formally adopted and named in th
 A number of specialized unit classes are provided. </documentation>
     </annotation>
     <import namespace="http://www.opengis.net/gml" schemaLocation="http://schemas.opengis.net/gml/3.1.1/base/gml.xsd"/>
-    <import namespace="urn:cgi:xmlns:CGI:Utilities:1.0" schemaLocation="http://www.geosciml.org/schemas/cgiutilities/1.0/cgiUtilities.xsd"/>
+    <import namespace="urn:cgi:xmlns:CGI:Utilities:1.0" schemaLocation="http://www.geosciml.org/cgiutilities/1.0/xsd/cgiUtilities.xsd"/>
     <include schemaLocation="geosciml.xsd"/>
     <element name="GeologicUnit" substitutionGroup="gsml:GeologicFeature" type="gsml:GeologicUnitType">
         <annotation>
@@ -21,12 +21,6 @@ Will be made Abstract when a complete (enough) set of specialized subtypes is de
         </annotation>
     </element>
     <complexType name="GeologicUnitType">
-        <annotation>
-            <documentation>The following properties inherited from parent classes are overridden in Schematron assertions:
-
-attribute: 
-association: </documentation>
-        </annotation>
         <complexContent>
             <extension base="gsml:GeologicFeatureType">
                 <sequence>
@@ -69,14 +63,53 @@ Examples: group, subgroup, formation, member, bed, intrusion, complex, batholith
                             <documentation>Typical thickness of the geologic unit.</documentation>
                         </annotation>
                     </element>
-                    <element maxOccurs="1" minOccurs="0" name="classifier" type="gsml:ControlledConceptPropertyType"/>
-                    <element maxOccurs="unbounded" minOccurs="0" name="composition" type="gsml:CompositionPartPropertyType"/>
-                    <element maxOccurs="1" minOccurs="0" name="metamorphicCharacter" type="gsml:MetamorphicDescriptionPropertyType"/>
-                    <element maxOccurs="unbounded" minOccurs="0" name="part" type="gsml:GeologicUnitPartPropertyType"/>
-                    <element maxOccurs="1" minOccurs="0" name="physicalProperty" type="gsml:PhysicalDescriptionPropertyType"/>
-                    <element maxOccurs="1" minOccurs="0" name="weatheringCharacter" type="gsml:WeatheringDescriptionPropertyType"/>
+                    <element maxOccurs="1" minOccurs="0" name="classifier" type="gml:ReferenceType">
+                        <annotation>
+                            <appinfo>
+                                <gml:targetElement>gsml:ControlledConcept</gml:targetElement>
+                            </appinfo>
+                            <documentation>The classifier indicates the kind of thing a GeologicUnit instance is meant to represent.
+For example the GeologicUnit could be 'classified' by a ControlledConcept that is a name, such as 'Good Hope Formation',  from a Stratigraphic Lexicon.</documentation>
+                        </annotation>
+                    </element>
+                    <element maxOccurs="unbounded" minOccurs="0" name="composition" type="gsml:CompositionPartPropertyType">
+                        <annotation>
+                            <documentation>Describes the composition (detailed, instance specific, lithologic description) of the GeologicUnit</documentation>
+                        </annotation>
+                    </element>
+                    <element maxOccurs="1" minOccurs="0" name="metamorphicCharacter" type="gsml:MetamorphicDescriptionPropertyType">
+                        <annotation>
+                            <documentation>Contains the description of the metamorphic character</documentation>
+                        </annotation>
+                    </element>
+                    <element maxOccurs="unbounded" minOccurs="0" name="part">
+                        <annotation>
+                            <documentation>indicates a subsiduary unit with its role and proportion with respect to the container unit</documentation>
+                        </annotation>
+                        <complexType>
+                            <sequence>
+                                <element ref="gsml:GeologicUnitPart"/>
+                            </sequence>
+                        </complexType>
+                    </element>
+                    <element maxOccurs="1" minOccurs="0" name="physicalProperty" type="gsml:PhysicalDescriptionPropertyType">
+                        <annotation>
+                            <documentation>Describes the physical description values</documentation>
+                        </annotation>
+                    </element>
+                    <element maxOccurs="1" minOccurs="0" name="weatheringCharacter" type="gsml:WeatheringDescriptionPropertyType">
+                        <annotation>
+                            <documentation>Describes the weathering character of the GeologicUnit
+</documentation>
+                        </annotation>
+                    </element>
                     <element maxOccurs="1" minOccurs="0" name="bedding" type="gsml:BeddingDescriptionPropertyType"/>
-                    <element maxOccurs="1" minOccurs="0" name="definingStructure" type="gsml:GeologicStructurePropertyType"/>
+                    <element maxOccurs="1" minOccurs="0" name="definingStructure" type="gsml:GeologicStructurePropertyType">
+                        <annotation>
+                            <documentation>Specifies the GeologicStructure associated with the DeformationUnit
+cardinality is 1 because defining structure could be compound.</documentation>
+                        </annotation>
+                    </element>
                 </sequence>
             </extension>
         </complexContent>
@@ -210,52 +243,4 @@ Examples: thinning upward, thickening upward</documentation>
             <element ref="gsml:CompositionPart"/>
         </sequence>
     </complexType>
-    <simpleType name="GeologicUnitTypeType">
-        <union memberTypes="gsml:GeologicUnitTypeEnumerationType gsml:GeologicUnitTypeOtherType"/>
-    </simpleType>
-    <simpleType name="GeologicUnitTypeEnumerationType">
-        <restriction base="string">
-            <enumeration value="Allostratigraphic"/>
-            <enumeration value="Alteration"/>
-            <enumeration value="ArtificialGround"/>
-            <enumeration value="Biostratigraphic"/>
-            <enumeration value="Chronostratigraphic"/>
-            <enumeration value="Deformation"/>
-            <enumeration value="Excavation"/>
-            <enumeration value="Geomorphologic"/>
-            <enumeration value="LithotectonicUnit">
-                <annotation>
-                    <documentation>a unit defined by geologic history or deformation
-Placeholder for units defined by a distinctive fabric</documentation>
-                </annotation>
-            </enumeration>
-            <enumeration value="PolarityChronostratigraphicUnit">
-                <annotation>
-                    <documentation>a body of rock that contains its primary magnetic-polarity record</documentation>
-                </annotation>
-            </enumeration>
-            <enumeration value="Pedostratigraphic"/>
-            <enumeration value="Pedoderm"/>
-            <enumeration value="MassMovement"/>
-            <enumeration value="MagnetostratigraphicUnit">
-                <annotation>
-                    <documentation>a body of rock defined by specific remanent-magnetic properties </documentation>
-                </annotation>
-            </enumeration>
-            <enumeration value="Lithostratigraphic"/>
-            <enumeration value="Lithologic"/>
-            <enumeration value="Lithogenetic"/>
-            <enumeration value="GeophysicalUnit">
-                <annotation>
-                    <documentation>a body of rock defined by its geophysical characteristics</documentation>
-                </annotation>
-            </enumeration>
-            <enumeration value="Lithodemic"/>
-        </restriction>
-    </simpleType>
-    <simpleType name="GeologicUnitTypeOtherType">
-        <restriction base="string">
-            <pattern value="other: \w{2,}"/>
-        </restriction>
-    </simpleType>
 </schema>

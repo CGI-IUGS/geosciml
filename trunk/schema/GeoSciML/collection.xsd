@@ -12,16 +12,21 @@
         </annotation>
     </element>
     <complexType name="GSMLType">
-        <annotation>
-            <documentation>The following properties inherited from parent classes are overridden in Schematron assertions:
-
-association: </documentation>
-        </annotation>
         <complexContent>
             <extension base="gml:AbstractFeatureType">
                 <sequence>
-                    <element maxOccurs="unbounded" minOccurs="0" name="member" type="gsml:GSMLitemPropertyType"/>
-                    <element maxOccurs="1" minOccurs="0" name="metadata" type="gmd:MD_Metadata_PropertyType"/>
+                    <element maxOccurs="unbounded" minOccurs="0" name="member" type="gsml:GSMLitemPropertyType">
+                        <annotation>
+                            <documentation>Points to a member of a GSML collection, which can be any of the GeoSciML classes that are listed in the GSMLitem union class.</documentation>
+                        </annotation>
+                    </element>
+                    <element maxOccurs="1" minOccurs="0" name="metadata" type="gml:ReferenceType">
+                        <annotation>
+                            <appinfo>
+                                <gml:targetElement>gmd:MD_Metadata</gml:targetElement>
+                            </appinfo>
+                        </annotation>
+                    </element>
                 </sequence>
             </extension>
         </complexContent>

@@ -47,11 +47,6 @@ Kept so that instance documents have a "Layering" tag</documentation>
         </annotation>
     </element>
     <complexType name="LayeringType">
-        <annotation>
-            <documentation>The following properties inherited from parent classes are overridden in Schematron assertions:
-
-association: </documentation>
-        </annotation>
         <complexContent>
             <extension base="gsml:FoliationType">
                 <sequence>
@@ -75,11 +70,6 @@ Class also includes discrete linear structures like boudin, channel axis, tool m
         </annotation>
     </element>
     <complexType name="LineationType">
-        <annotation>
-            <documentation>The following properties inherited from parent classes are overridden in Schematron assertions:
-
-attribute: </documentation>
-        </annotation>
         <complexContent>
             <extension base="gsml:GeologicStructureType">
                 <sequence>
@@ -125,15 +115,14 @@ Examples include: flow lines, scratches, striae, slickenlines, linear arrangemen
         </annotation>
     </element>
     <complexType name="BoundaryRelationshipType">
-        <annotation>
-            <documentation>The following properties inherited from parent classes are overridden in Schematron assertions:
-
-association: </documentation>
-        </annotation>
         <complexContent>
             <extension base="gsml:GeologicFeatureRelationType">
                 <sequence>
-                    <element maxOccurs="unbounded" minOccurs="0" name="boundaryOccurrence" type="gsml:ContactPropertyType"/>
+                    <element maxOccurs="unbounded" minOccurs="0" name="boundaryOccurrence" type="gsml:ContactPropertyType">
+                        <annotation>
+                            <documentation>Specifies the Contact that is associated with the BoundaryRelationship</documentation>
+                        </annotation>
+                    </element>
                 </sequence>
             </extension>
         </complexContent>
@@ -150,12 +139,6 @@ association: </documentation>
         </annotation>
     </element>
     <complexType name="FoldSystemType">
-        <annotation>
-            <documentation>The following properties inherited from parent classes are overridden in Schematron assertions:
-
-attribute: 
-association: </documentation>
-        </annotation>
         <complexContent>
             <extension base="gsml:GeologicStructureType">
                 <sequence>
@@ -169,7 +152,11 @@ association: </documentation>
                             <documentation>Quantitative specification of length between adjacent antiforms (or synforms) in a fold train.</documentation>
                         </annotation>
                     </element>
-                    <element maxOccurs="unbounded" minOccurs="1" name="foldSystemMember" type="gsml:FoldPropertyType"/>
+                    <element maxOccurs="unbounded" minOccurs="1" name="foldSystemMember" type="gsml:FoldPropertyType">
+                        <annotation>
+                            <documentation>Specifies the Fold that is a member of the FoldSystem</documentation>
+                        </annotation>
+                    </element>
                 </sequence>
             </extension>
         </complexContent>
@@ -187,11 +174,6 @@ Includes small-scale structures that are characteristic of the geologic unit, e.
         </annotation>
     </element>
     <complexType name="NonDirectionalStructureType">
-        <annotation>
-            <documentation>The following properties inherited from parent classes are overridden in Schematron assertions:
-
-attribute: </documentation>
-        </annotation>
         <complexContent>
             <extension base="gsml:GeologicStructureType">
                 <sequence>
@@ -217,15 +199,15 @@ attribute: </documentation>
         </annotation>
     </element>
     <complexType name="FaultType">
-        <annotation>
-            <documentation>The following properties inherited from parent classes are overridden in Schematron assertions:
-
-association: </documentation>
-        </annotation>
         <complexContent>
             <extension base="gsml:ShearDisplacementStructureType">
                 <sequence>
-                    <element maxOccurs="unbounded" minOccurs="0" name="segment" type="gsml:FaultPropertyType"/>
+                    <element maxOccurs="unbounded" minOccurs="0" name="segment" type="gsml:FaultPropertyType">
+                        <annotation>
+                            <documentation>In some use cases, eg., active seismology and fluid flow modelling, it is important to be able to segment the ShearDisplacementStructures where there is a change in orientation and/or dip and/or nature of the character of the fault. This segmentation can be scale dependent.
+"segment" is the name of the role that a subsidiary Fault plays with respect to a Fault that it is part of. They are both Faults, and "segment" is the label on the composition. The distinction between Fault and FaultSystem is a question of the scale of description and the perspective of the observer; a Fault is composed of segments that are individually identified, but all considered part of a single Fault. Fault segments are usually collinear on the map, and generally do not overlap significantly along strike. A Fault may have 0..* segment parts (a part of/composition relationship.</documentation>
+                        </annotation>
+                    </element>
                 </sequence>
             </extension>
         </complexContent>
@@ -247,12 +229,6 @@ Bedding measured as discrete surfaces in the case that those are the feature of 
         </annotation>
     </element>
     <complexType name="ContactType">
-        <annotation>
-            <documentation>The following properties inherited from parent classes are overridden in Schematron assertions:
-
-attribute: 
-association: </documentation>
-        </annotation>
         <complexContent>
             <extension base="gsml:GeologicStructureType">
                 <sequence>
@@ -271,7 +247,11 @@ association: </documentation>
                             <documentation>orientation of the contact surface</documentation>
                         </annotation>
                     </element>
-                    <element maxOccurs="1" minOccurs="0" name="boundedUnitLink" type="gsml:BoundaryRelationshipPropertyType"/>
+                    <element maxOccurs="1" minOccurs="0" name="boundedUnitLink" type="gsml:BoundaryRelationshipPropertyType">
+                        <annotation>
+                            <documentation>Specifies the BoundaryRelationship that describes the participating GeologicUnits</documentation>
+                        </annotation>
+                    </element>
                 </sequence>
             </extension>
         </complexContent>
@@ -288,15 +268,14 @@ association: </documentation>
         </annotation>
     </element>
     <complexType name="DisplacementEventType">
-        <annotation>
-            <documentation>The following properties inherited from parent classes are overridden in Schematron assertions:
-
-association: </documentation>
-        </annotation>
         <complexContent>
             <extension base="gsml:GeologicEventType">
                 <sequence>
-                    <element maxOccurs="1" minOccurs="0" name="incrementalDisplacement" type="gsml:DisplacementValuePropertyType"/>
+                    <element maxOccurs="1" minOccurs="0" name="incrementalDisplacement" type="gsml:DisplacementValuePropertyType">
+                        <annotation>
+                            <documentation>The amount of displacement that occurred during that single DisplacementEvent</documentation>
+                        </annotation>
+                    </element>
                 </sequence>
             </extension>
         </complexContent>
@@ -313,12 +292,6 @@ association: </documentation>
         </annotation>
     </element>
     <complexType name="ShearDisplacementStructureType">
-        <annotation>
-            <documentation>The following properties inherited from parent classes are overridden in Schematron assertions:
-
-attribute: 
-association: </documentation>
-        </annotation>
         <complexContent>
             <extension base="gsml:GeologicStructureType">
                 <sequence>
@@ -327,8 +300,16 @@ association: </documentation>
                             <documentation>allows capturing the orientation of the plane of the structure</documentation>
                         </annotation>
                     </element>
-                    <element maxOccurs="unbounded" minOccurs="0" name="physicalProperty" type="gsml:PhysicalDescriptionPropertyType"/>
-                    <element maxOccurs="1" minOccurs="0" name="totalDisplacement" type="gsml:DisplacementValuePropertyType"/>
+                    <element maxOccurs="unbounded" minOccurs="0" name="physicalProperty" type="gsml:PhysicalDescriptionPropertyType">
+                        <annotation>
+                            <documentation>The PhysicalDescription of the ShearDisplacementStructure</documentation>
+                        </annotation>
+                    </element>
+                    <element maxOccurs="1" minOccurs="0" name="totalDisplacement" type="gsml:DisplacementValuePropertyType">
+                        <annotation>
+                            <documentation>Describes the total displacement DisplacementValues</documentation>
+                        </annotation>
+                    </element>
                 </sequence>
             </extension>
         </complexContent>
@@ -348,15 +329,15 @@ a discrete tabular zone (very thin compared to its along-strike and down dip dim
         </annotation>
     </element>
     <complexType name="DuctileShearStructureType">
-        <annotation>
-            <documentation>The following properties inherited from parent classes are overridden in Schematron assertions:
-
-association: </documentation>
-        </annotation>
         <complexContent>
             <extension base="gsml:ShearDisplacementStructureType">
                 <sequence>
-                    <element maxOccurs="unbounded" minOccurs="0" name="segment" type="gsml:DuctileShearStructurePropertyType"/>
+                    <element maxOccurs="unbounded" minOccurs="0" name="segment" type="gsml:DuctileShearStructurePropertyType">
+                        <annotation>
+                            <documentation>In some use cases, eg., active seismology and fluid flow modelling, it is important to be able to segment the ShearDisplacementStructures where there is a change in orientation and/or dip and/or nature of the character of the fault. This segmentation can be scale dependent.
+"segment" is the name of the role that a subsidiary DuctileShearStructure plays with respect to a DuctileShearStructure that it is part of. They are both DuctileShearStructures, and "segment" is the label on the composition. The distinction between DuctileShearStructure and FaultSystem is a question of the scale of description and the perspective of the observer; a DuctileShearStructure  is composed of segments that are individually identified, but all considered part of a single DuctileShearStructure. DuctileShearStructure segments are usually collinear on the map, and generally do not overlap significantly along strike. A DuctileShearStructure may have 0..* segment parts (a part of/composition relationship.</documentation>
+                        </annotation>
+                    </element>
                 </sequence>
             </extension>
         </complexContent>
@@ -373,11 +354,6 @@ association: </documentation>
         </annotation>
     </element>
     <complexType name="FoldType">
-        <annotation>
-            <documentation>The following properties inherited from parent classes are overridden in Schematron assertions:
-
-attribute: </documentation>
-        </annotation>
         <complexContent>
             <extension base="gsml:GeologicStructureType">
                 <sequence>
@@ -453,11 +429,6 @@ Bedding as a fabric representing the average orientation of paleodepositional su
         </annotation>
     </element>
     <complexType name="FoliationType">
-        <annotation>
-            <documentation>The following properties inherited from parent classes are overridden in Schematron assertions:
-
-attribute: </documentation>
-        </annotation>
         <complexContent>
             <extension base="gsml:GeologicStructureType">
                 <sequence>
@@ -512,15 +483,14 @@ attribute: </documentation>
         </annotation>
     </element>
     <complexType name="FaultSystemType">
-        <annotation>
-            <documentation>The following properties inherited from parent classes are overridden in Schematron assertions:
-
-association: </documentation>
-        </annotation>
         <complexContent>
             <extension base="gsml:ShearDisplacementStructureType">
                 <sequence>
-                    <element maxOccurs="unbounded" minOccurs="1" name="faultSystemMember" type="gsml:ShearDisplacementStructurePropertyType"/>
+                    <element maxOccurs="unbounded" minOccurs="1" name="faultSystemMember" type="gsml:ShearDisplacementStructurePropertyType">
+                        <annotation>
+                            <documentation>Specifies the ShearDisplacementStructures that are members of the FaultSystem</documentation>
+                        </annotation>
+                    </element>
                 </sequence>
             </extension>
         </complexContent>
