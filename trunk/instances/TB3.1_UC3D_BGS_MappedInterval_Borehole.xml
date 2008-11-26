@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!-- Example of encoding a BGS borehole using the MappedInterval approach -->
-<wfs:FeatureCollection xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.opengis.net/wfs http://schemas.opengis.net/wfs/1.1.0/wfs.xsd urn:cgi:xmlns:CGI:GeoSciML:2.0 https://www.seegrid.csiro.au/subversion/GeoSciML/trunk/schema/GeoSciML/geosciml.xsd" xmlns:gml="http://www.opengis.net/gml" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:wfs="http://www.opengis.net/wfs" xmlns:gsml="urn:cgi:xmlns:CGI:GeoSciML:2.0">
+<wfs:FeatureCollection xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.opengis.net/wfs http://schemas.opengis.net/wfs/1.1.0/wfs.xsd urn:cgi:xmlns:CGI:GeoSciML:2.0 http://www.geosciml.org/geosciml/2.0/xsd/geologicAge.xsd" xmlns:gml="http://www.opengis.net/gml" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:wfs="http://www.opengis.net/wfs" xmlns:gsml="urn:cgi:xmlns:CGI:GeoSciML:2.0">
 	<gml:featureMember>
 		<gsml:Borehole xmlns="urn:cgi:xmlns:CGI:GeoSciML:2.0" gml:id="bh.TR34SWBJ90" xmlns:om="http://www.opengis.net/om/1.0" xmlns:sa="http://www.opengis.net/sampling/1.0" xmlns:cv="http://www.opengis.net/cv/0.2.1" >
-			<gml:name codeSpace="urn:cgi:classifierScheme:BGS:SOBI:BORE_NAME">ELMS VALE</gml:name>
-			<gml:name codeSpace="urn:cgi:classifierScheme:BGS:SOBI:QSKEY">TR34SW/BJ/90/.</gml:name>
+			<gml:name codeSpace="http://www.cgi-iugs.org/uri">urn:cgi:feature:BGS:SOBI:TR34SW/BJ/90/.</gml:name>
+			<gml:name>ELMS VALE</gml:name>
 			<sa:sampledFeature xlink:role="urn:cgi:featureType:CGI:GeoSciML:2.0:GeologicUnit" xlink:href="urn:ogc:def:nil:OGC:unknown"/>
 			<sa:shape>
 				<gml:LineString gml:id="bh.TR34SWBJ90.shape" srsName="urn:ogc:def:crs:EPSG:6.15:7405" srsDimension="3">
@@ -27,7 +27,7 @@
 				<gsml:MappedInterval>
 					 <gsml:observationMethod>
 							 <gsml:CGI_TermValue>
-								 <gsml:value codeSpace="urn:cgi:classifierScheme:BGS:ObservationMethod">coreLogging</gsml:value>
+								 <gsml:value codeSpace="http://www.cgi-iugs.org/uri">urn:cgi:classifier:CGI:FeatureObservationMethod:drill_core_observation</gsml:value>
 							 </gsml:CGI_TermValue>
 					 </gsml:observationMethod>
 					 <gsml:positionalAccuracy>
@@ -38,35 +38,23 @@
 					 <gsml:samplingFrame xlink:href="#bh.TR34SWBJ90"/>
 					 <gsml:specification>
 						<gsml:GeologicUnit>
-							<gml:name codeSpace="urn:cgi:classifierScheme:BGS:StratigraphicLexicon">MADE GROUND</gml:name> 
+							<gml:name codeSpace="urn:cgi:classifierScheme:BGS:StratigraphicLexicon">urn:cgi:classifier:BGS:StratigraphicLexicon:MADE_GROUND</gml:name> 
 							<gsml:observationMethod>
 								<gsml:CGI_TermValue>
-									<gsml:value codeSpace="urn:cgi:classifierScheme:BGS:ObservationMethods">coreLogging</gsml:value> 
+									<gsml:value codeSpace="http://www.cgi-iugs.org/uri">urn:cgi:classifier:CGI:FeatureObservationMethod:drill_core_observation</gsml:value> 
 								</gsml:CGI_TermValue>
 							</gsml:observationMethod>
 							<gsml:purpose>instance</gsml:purpose> 
-							<gsml:geologicUnitType>
-								<gsml:ControlledConcept gml:id="CC1">
-									<gml:name codeSpace="urn:cgi:classifierScheme:CGI:GeologicUnitClassification">Lithostratigraphic</gml:name> 
-									<gsml:name codeSpace="urn:cgi:classifierScheme:CGI:GeologicUnitClassification" xml:lang="en">Lithostratigraphic</gsml:name> 
-									<gsml:vocabulary xlink:href="urn:ogc:def:nil:OGC:missing"/> 
-								</gsml:ControlledConcept>
-							</gsml:geologicUnitType>
-							<gsml:classifier xlink:href="urn:cgi:classifier:BGS:StratigraphicLexicon:MADE GROUND" />
+							<gsml:geologicUnitType xlink:href="urn:cgi:classifier:CGI:GeologicUnitClassification:ArtificialGround" />
+							<gsml:classifier xlink:href="urn:cgi:classifier:BGS:StratigraphicLexicon:MADE_GROUND" />
 							<gsml:composition>
 								<gsml:CompositionPart>
-									<gsml:role codeSpace="urn:cgi:classifierScheme:BGS:RoleVocab">dominantConstituent</gsml:role> 
-									<gsml:lithology>
-										<gsml:ControlledConcept gml:id="CC2" >
-											<gml:name codeSpace="http://www.cgi-iugs.org/uri">urn:cgi:classifier:CGI:SimpleLithology:2008:anthropogenic material</gml:name> 
-											<gsml:name xml:lang="en" codeSpace="urn:cgi:classifierScheme:CGI::SimpleLithology:2008">anthropogenic material</gsml:name> 
-											<gsml:vocabulary xlink:href="urn:cgi:classifierScheme:CGI:SimpleLithology:2008" /> 
-										</gsml:ControlledConcept>
-									</gsml:lithology>
+									<gsml:role codeSpace="urn:cgi:classifierScheme:BGS:RoleVocab">urn:cgi:classifier:BGS:RoleVocab:dominantConstituent</gsml:role> 
+									<gsml:lithology xlink:href="urn:cgi:classifier:CGI:SimpleLithology:2008:anthropogenic_material" />
 									<gsml:proportion>
-										<gsml:CGI_NumericValue>
-											<gsml:principalValue uom="percent">100</gsml:principalValue> 
-										</gsml:CGI_NumericValue>
+										<gsml:CGI_TermValue>
+											<gsml:value codeSpace="http://www.cgi-iugs.org/uri">urn:cgi:classifier:CGI:ProportionTerm:2008:all</gsml:value>
+										</gsml:CGI_TermValue>
 									</gsml:proportion>
 								</gsml:CompositionPart>
 							</gsml:composition>
@@ -84,7 +72,7 @@
 				<gsml:MappedInterval>
 					 <gsml:observationMethod>
 							 <gsml:CGI_TermValue>
-								 <gsml:value codeSpace="urn:cgi:classifierScheme:BGS:ObservationMethod">coreLogging</gsml:value>
+								 <gsml:value codeSpace="http://www.cgi-iugs.org/uri">urn:cgi:classifier:CGI:FeatureObservationMethod:drill_core_observation</gsml:value>
 							 </gsml:CGI_TermValue>
 					 </gsml:observationMethod>
 					 <gsml:positionalAccuracy>
@@ -95,35 +83,23 @@
 					 <gsml:samplingFrame xlink:href="#bh.TR34SWBJ90"/>
 					 <gsml:specification>
 						<gsml:GeologicUnit>
-							<gml:name codeSpace="urn:cgi:classifierScheme:BGS:StratigraphicLexicon">UPPER CHALK</gml:name> 
+							<gml:name codeSpace="urn:cgi:classifierScheme:BGS:StratigraphicLexicon">urn:cgi:classifier:BGS:StratigraphicLexicon:UPPER_CHALK</gml:name> 
 							<gsml:observationMethod>
 								<gsml:CGI_TermValue>
-									<gsml:value codeSpace="urn:cgi:classifierScheme:BGS:ObservationMethods">coreLogging</gsml:value> 
+									<gsml:value codeSpace="http://www.cgi-iugs.org/uri">urn:cgi:classifier:CGI:FeatureObservationMethod:drill_core_observation</gsml:value> 
 								</gsml:CGI_TermValue>
 							</gsml:observationMethod>
 							<gsml:purpose>instance</gsml:purpose> 
-							<gsml:geologicUnitType>
-								<gsml:ControlledConcept gml:id="CC3">
-									<gml:name codeSpace="urn:cgi:classifierScheme:CGI:GeologicUnitClassification">Lithostratigraphic</gml:name> 
-									<gsml:name codeSpace="urn:cgi:classifierScheme:CGI:GeologicUnitClassification" xml:lang="en">Lithostratigraphic</gsml:name> 
-									<gsml:vocabulary xlink:href="urn:ogc:def:nil:OGC:missing"/> 
-								</gsml:ControlledConcept>
-							</gsml:geologicUnitType>
+							<gsml:geologicUnitType xlink:href="urn:cgi:classifier:CGI:GeologicUnitClassification:Lithostratigraphic" />
 							<gsml:classifier xlink:href="urn:cgi:classifier:BGS:StratigraphicLexicon:UPPER CHALK" />
 							<gsml:composition>
 								<gsml:CompositionPart>
-									<gsml:role codeSpace="urn:cgi:classifierScheme:BGS:RoleVocab">dominantConstituent</gsml:role> 
-									<gsml:lithology>
-										<gsml:ControlledConcept gml:id="CC4" >
-											<gml:name codeSpace="http://www.cgi-iugs.org/uri">urn:cgi:classifier:CGI:SimpleLithology:2008:calcareous carbonate sedimentary rock</gml:name> 
-											<gsml:name xml:lang="en" codeSpace="urn:cgi:classifierScheme:CGI::SimpleLithology:2008">calcareous carbonate sedimentary rock</gsml:name> 
-											<gsml:vocabulary xlink:href="urn:cgi:classifierScheme:CGI:SimpleLithology:2008" /> 
-										</gsml:ControlledConcept>
-									</gsml:lithology>
+									<gsml:role codeSpace="urn:cgi:classifierScheme:BGS:RoleVocab">urn:cgi:classifier:BGS:RoleVocab:dominantConstituent</gsml:role> 
+									<gsml:lithology xlink:href="urn:cgi:classifier:CGI:SimpleLithology:2008:calcareous_carbonate_sedimentary_rock" />
 									<gsml:proportion>
-										<gsml:CGI_NumericValue>
-											<gsml:principalValue uom="percent">100</gsml:principalValue> 
-										</gsml:CGI_NumericValue>
+										<gsml:CGI_TermValue>
+											<gsml:value codeSpace="http://www.cgi-iugs.org/uri">urn:cgi:classifier:CGI:ProportionTerm:2008:all</gsml:value>
+										</gsml:CGI_TermValue>
 									</gsml:proportion>
 								</gsml:CompositionPart>
 							</gsml:composition>
@@ -141,7 +117,7 @@
 				<gsml:MappedInterval>
 					 <gsml:observationMethod>
 							 <gsml:CGI_TermValue>
-								 <gsml:value codeSpace="urn:cgi:classifierScheme:BGS:ObservationMethod">coreLogging</gsml:value>
+								 <gsml:value codeSpace="http://www.cgi-iugs.org/uri">urn:cgi:classifier:CGI:FeatureObservationMethod:drill_core_observation</gsml:value>
 							 </gsml:CGI_TermValue>
 					 </gsml:observationMethod>
 					 <gsml:positionalAccuracy>
@@ -152,35 +128,23 @@
 					 <gsml:samplingFrame xlink:href="#bh.TR34SWBJ90"/>
 					 <gsml:specification>
 						<gsml:GeologicUnit>
-							<gml:name codeSpace="urn:cgi:classifierScheme:BGS:StratigraphicLexicon">MIDDLE CHALK</gml:name> 
+							<gml:name codeSpace="urn:cgi:classifierScheme:BGS:StratigraphicLexicon">urn:cgi:classifier:BGS:StratigraphicLexicon:MIDDLE_CHALK</gml:name> 
 							<gsml:observationMethod>
 								<gsml:CGI_TermValue>
-									<gsml:value codeSpace="urn:cgi:classifierScheme:BGS:ObservationMethods">coreLogging</gsml:value> 
+									<gsml:value codeSpace="http://www.cgi-iugs.org/uri">urn:cgi:classifier:CGI:FeatureObservationMethod:drill_core_observation</gsml:value> 
 								</gsml:CGI_TermValue>
 							</gsml:observationMethod>
 							<gsml:purpose>instance</gsml:purpose> 
-							<gsml:geologicUnitType>
-								<gsml:ControlledConcept gml:id="CC5">
-									<gml:name codeSpace="urn:cgi:classifierScheme:CGI:GeologicUnitClassification">Lithostratigraphic</gml:name> 
-									<gsml:name codeSpace="urn:cgi:classifierScheme:CGI:GeologicUnitClassification" xml:lang="en">Lithostratigraphic</gsml:name> 
-									<gsml:vocabulary xlink:href="urn:ogc:def:nil:OGC:missing"/> 
-								</gsml:ControlledConcept>
-							</gsml:geologicUnitType>
+							<gsml:geologicUnitType xlink:href="urn:cgi:classifier:CGI:GeologicUnitClassification:Lithostratigraphic" />
 							<gsml:classifier xlink:href="urn:cgi:classifier:BGS:StratigraphicLexicon:MIDDLE CHALK" />
 							<gsml:composition>
 								<gsml:CompositionPart>
-									<gsml:role codeSpace="urn:cgi:classifierScheme:BGS:RoleVocab">dominantConstituent</gsml:role> 
-									<gsml:lithology>
-										<gsml:ControlledConcept gml:id="CC6" >
-											<gml:name codeSpace="http://www.cgi-iugs.org/uri">urn:cgi:classifier:CGI:SimpleLithology:2008:calcareous carbonate sedimentary rock</gml:name> 
-											<gsml:name xml:lang="en" codeSpace="urn:cgi:classifierScheme:CGI::SimpleLithology:2008">calcareous carbonate sedimentary rock</gsml:name> 
-											<gsml:vocabulary xlink:href="urn:cgi:classifierScheme:CGI:SimpleLithology:2008" /> 
-										</gsml:ControlledConcept>
-									</gsml:lithology>
+									<gsml:role codeSpace="urn:cgi:classifierScheme:BGS:RoleVocab">urn:cgi:classifier:BGS:RoleVocab:dominantConstituent</gsml:role> 
+									<gsml:lithology xlink:href="urn:cgi:classifier:CGI:SimpleLithology:2008:calcareous_carbonate_sedimentary_rock" />
 									<gsml:proportion>
-										<gsml:CGI_NumericValue>
-											<gsml:principalValue uom="percent">100</gsml:principalValue> 
-										</gsml:CGI_NumericValue>
+										<gsml:CGI_TermValue>
+											<gsml:value codeSpace="http://www.cgi-iugs.org/uri">urn:cgi:classifier:CGI:ProportionTerm:2008:all</gsml:value>
+										</gsml:CGI_TermValue>
 									</gsml:proportion>
 								</gsml:CompositionPart>
 							</gsml:composition>
