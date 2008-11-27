@@ -24,9 +24,17 @@ Will be made Abstract when a complete (enough) set of specialized subtypes is de
         <complexContent>
             <extension base="gsml:GeologicFeatureType">
                 <sequence>
-                    <element name="geologicUnitType" type="gsml:ControlledConceptPropertyType">
+                    <element name="geologicUnitType" type="gml:ReferenceType">
                         <annotation>
-                            <documentation>controlled concept defining the type of unit. Logical constraints of definition of unit and valid property cardinalities should be contained in the definition</documentation>
+                            <appinfo>
+                                <gml:targetElement>gsml:ControlledConcept</gml:targetElement>
+                            </appinfo>
+                            <documentation>Controlled concept defining the type of unit. Logical constraints of definition of unit and valid property cardinalities should be contained in the definition. 
+
+Use of the CGI Geologic Unit Type vocabulary 
+   urn:cgi:classifierScheme:CGI:GeologicUnitType:200811
+is preferred. 
+That includes members similar to those in the GeologicUnitType class in this package, but arranged as an ontology. </documentation>
                         </annotation>
                     </element>
                     <element maxOccurs="unbounded" minOccurs="0" name="bodyMorphology" type="gsml:CGI_TermValuePropertyType">
