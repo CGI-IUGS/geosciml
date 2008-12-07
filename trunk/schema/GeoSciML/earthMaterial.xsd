@@ -8,39 +8,6 @@ Earth Material represents material composition or substance, and is thus indepen
     <import namespace="http://www.isotc211.org/2005/gmd" schemaLocation="http://schemas.opengis.net/iso/19139/20070417/gmd/gmd.xsd"/>
     <import namespace="urn:cgi:xmlns:CGI:Utilities:1.0" schemaLocation="http://www.geosciml.org/cgiutilities/1.0/xsd/cgiUtilities.xsd"/>
     <include schemaLocation="geosciml.xsd"/>
-    <element name="MaterialRelation" substitutionGroup="gsml:GeologicRelation" type="gsml:MaterialRelationType">
-        <annotation>
-            <documentation>The concrete MaterialRelation class is a subtype of the abstract GeologicRelation class which describes the relationships between constituent parts in an Earth Material (eg: A mineral overgrowth on a phenocryst within a granite). 
-
-Relationships are always binary and directional.  There is always a single source and a single target.  The relationship is always defined from the perspective of the Source and is generally an active verb.
-
-Example:  Consider an overgrowth of albite on plagioclase in a granite.  The  Source would point to the albite mineral description.  In this case, the Target would point to the plagioclase mineral description and the relationship attribute would be 'overgrowth' and the sourceRole is 'overgrows' and the targetRole is 'overgrown'.  Other appropriate role attributes might include: crosscuts, replaces, etc. for crosscutting and replacement relationships.</documentation>
-        </annotation>
-    </element>
-    <complexType name="MaterialRelationType">
-        <complexContent>
-            <extension base="gsml:GeologicRelationType">
-                <sequence>
-                    <element name="source" type="gsml:ConstituentPartPropertyType">
-                        <annotation>
-                            <documentation>Specifies the ConstituentPart that is playing the role 'source' in the MaterialRelation</documentation>
-                        </annotation>
-                    </element>
-                    <element name="target" type="gsml:ConstituentPartPropertyType">
-                        <annotation>
-                            <documentation>Specifies the ConstituentPart that is playing the role 'target' in the MaterialRelation</documentation>
-                        </annotation>
-                    </element>
-                </sequence>
-            </extension>
-        </complexContent>
-    </complexType>
-    <complexType name="MaterialRelationPropertyType">
-        <sequence minOccurs="0">
-            <element ref="gsml:MaterialRelation"/>
-        </sequence>
-        <attributeGroup ref="gml:AssociationAttributeGroup"/>
-    </complexType>
     <element name="CompoundMaterial" substitutionGroup="gsml:EarthMaterial" type="gsml:CompoundMaterialType">
         <annotation>
             <documentation>An EarthMaterial composed of particles composed of EarthMaterials, possibly including other CompoundMaterials. 
@@ -254,14 +221,17 @@ Note that volume magnetic susceptibility is dimensionless, being magnetization (
     </complexType>
     <element name="ParticleGeometryDescription" type="gsml:ParticleGeometryDescriptionType">
         <annotation>
-            <documentation>ParticleGeometryDescription describes particles in a CompoundMaterial independent of their relationship to each other or orientation. It is distinguished from Fabric in that the ParticleGeometryDescription remains constant if the material is disaggregated into its constituent particles, whereas Fabric is lost if the material is disaggregated.  Properties include the particle size (grainsize), particle sorting (size distribution, eg: well sorted, poorly sorted, bimodal sorting), particle shape (surface rounding or crystal face development, eg: well rounded, euhedral, anhedral), and particle aspectRatio (eg: elongated, platy, bladed, compact, acicular).</documentation>
+            <documentation>ParticleGeometryDescription describes particles in a CompoundMaterial independent of their relationship to each other or orientation. It is distinguished from Fabric in that the ParticleGeometryDescription remains constant if the material is disaggregated into its constituent particles, whereas Fabric is lost if the material is disaggregated.  Properties include the particle size (grainsize), particle sorting (size distribution, eg: well sorted, poorly sorted, bimodal sorting), particle shape (surface rounding or crystal face development, eg: well rounded, euhedral, anhedral), and particle aspectRatio (eg: elongated, platy, bladed, compact, acicular).
+
+[Association from ConstituentPart to ParticleGeometryDescription has been removed from GeoSciML v2 and will be re-considered from GeoSciML v3]</documentation>
         </annotation>
     </element>
     <complexType name="ParticleGeometryDescriptionType">
         <sequence>
             <element maxOccurs="unbounded" minOccurs="0" name="particleType" type="gsml:CGI_TermValuePropertyType">
                 <annotation>
-                    <documentation>Terms to specify the nature of individual particles of each constituent in an Earth Material aggregation, based mostly on their genesis.  If applied on ParticleDescription for CompoundMaterial, then would characterize all particles in aggregate. Use this property on CompoundMaterial to distinguish rocks composed of crystals (crystalline rocks) from rocks composed of granular particles (clasts, fragments). Examples include oolith, crystals, pore space. Constituent type is determined based on the nature of the particles, and ideally is independent of the relationship between particles in a compound material aggregation.</documentation>
+                    <documentation>Terms to specify the nature of individual particles of each constituent in an Earth Material aggregation, based mostly on their genesis.  If applied on ParticleDescription for CompoundMaterial, then would characterize all particles in aggregate. Use this property on CompoundMaterial to distinguish rocks composed of crystals (crystalline rocks) from rocks composed of granular particles (clasts, fragments). Examples include oolith, crystals, pore space. Constituent type is determined based on the nature of the particles, and ideally is independent of the relationship between particles in a compound material aggregation.
+See discussion of particleType vs ConstituentPart.role in the scope notes for ConstituentPart.</documentation>
                 </annotation>
             </element>
             <element maxOccurs="unbounded" minOccurs="0" name="aspectRatio" type="gsml:CGI_ValuePropertyType">
@@ -333,7 +303,7 @@ Indicates in a general way the P-T environment in which the metamorphism took pl
     </complexType>
     <element name="ConstituentPart" type="gsml:ConstituentPartType">
         <annotation>
-            <documentation>The Constituent Part class describes how Earth Materials may be made up of other Earth Materials, including the proportion of the constituent part in the whole (eg: 20%, minor, dominant); the role that the constituent plays in the whole (eg: matrix, groundmass, framework, phenocryst, xenolith, vein); and type of particle (eg: grain, clast, crystal, fossil, oolite)
+            <documentation>The Constituent Part class describes how Earth Materials may be made up of other Earth Materials, including the proportion of the constituent part in the whole (eg: 20%, minor, dominant); the role that the constituent plays in the whole (eg: matrix, groundmass, framework, phenocryst, xenolith, vein). The particleType property that specifies type of particle (eg: grain, clast, crystal, fossil, oolite) has been moved to the ParticleGeometryDescription data type, associated with both ConstituentPart and CompoundMaterial (GeoSciMLv2, RC3, Uppsala, Sweden).
 
 The distinction between "role" and "particleType" is subtle.  An operational test is that constituentType may be determined independent of relationship between particles in the aggregation, whereas role requires consideration of the relationship to other particles. A particle may be identified as clast, independent of its material composition, and independent of its relationship to other grains in a rock. The term 'floating clast' is a role, because it is dependent on the relationship 'not in contact with other clasts'. Consider Dunham's textural classification of carbonate rocks (wackestone, packstone, grainstone...) in the description of carbonate rocks. The description is predicated on identification of two kinds of intraclasts (grains) and matrix (carbonate mud), and then uses this distinction to establish relationships--mud supported vs. grain supported -- that define roles for the two types of constituents (framework, matrix...).
 
@@ -360,8 +330,7 @@ particle type: crystal Role: overgrowth
 
 particle type: biogenic particle Role: floating particle
 
-particle type: ooid Role: framework 
-</documentation>
+particle type: ooid Role: framework </documentation>
         </annotation>
     </element>
     <complexType name="ConstituentPartType">
@@ -379,7 +348,6 @@ Quantity that specifies the fraction of the Earth Material formed by the part (e
                 </annotation>
             </element>
             <element maxOccurs="1" minOccurs="0" name="material" type="gsml:EarthMaterialPropertyType"/>
-            <element maxOccurs="1" minOccurs="0" name="particleGeometry" type="gsml:ParticleGeometryDescriptionPropertyType"/>
         </sequence>
     </complexType>
     <complexType name="ConstituentPartPropertyType">
