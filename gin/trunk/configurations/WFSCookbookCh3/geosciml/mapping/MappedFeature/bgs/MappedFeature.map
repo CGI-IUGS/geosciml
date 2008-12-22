@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<gsml:MappedFeature xmlns:gsml="urn:cgi:xmlns:CGI:GeoSciML:2.0" xmlns:gml="http://www.opengis.net/gml" xmlns:ogc="http://www.opengis.net/ogc" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:proc="urn:x-lcnp:proc" xmlns:t="http://www.iugs.org/cgi/tempInternal" mappedType="t:MappedFeature">
+ <!-- the catalog does not use namespaces in the query (i should fix this)
+<proc:namespace name="prefix">some.uri</proc:namespace>  -->
+ <!-- constant element, appears whatever the query,none in this case -->
+ <proc:namespaces>
+  <proc:namespace name="gsml">urn:cgi:xmlns:CGI:GeoSciML:2.0</proc:namespace>
+  <proc:namespace name="gml">http://www.opengis.net/gml</proc:namespace>
+  <proc:namespace name="xlink">http://www.w3.org/1999/xlink</proc:namespace>
+  <proc:namespace name="t">http://www.iugs.org/cgi/tempInternal</proc:namespace>
+ </proc:namespaces>
+ <proc:targetVersion>1.1.0</proc:targetVersion>
+ <gml:name>name</gml:name>
+ <gsml:specification>
+  <gsml:GeologicUnit>
+   <gml:name codeSpace="http://www.cgi-iugs.org/uri">t:specification/t:GeologicUnit/t:name_urn</gml:name>
+   <gml:name codeSpace="urn:cgi:classifierScheme:BGS:StratigraphicLexicon:description">t:specification/t:GeologicUnit/t:descriptive_name</gml:name>
+   <gsml:preferredAge>
+    <gsml:GeologicEvent>
+     <gsml:eventAge>
+      <gsml:CGI_TermValue>
+       <gsml:value codeSpace="urn:cgi:classifierScheme:ICS:StratChart:2008">t:specification/t:GeologicUnit/t:age</gsml:value>
+      </gsml:CGI_TermValue>
+     </gsml:eventAge>
+    </gsml:GeologicEvent>
+   </gsml:preferredAge>
+   <gsml:rank codeSpace="urn:cgi:classifierScheme:BGS:Rank">t:specification/t:GeologicUnit/t:rank</gsml:rank>
+   <gsml:composition>
+    <gsml:CompositionPart>
+     <gsml:lithology xlink:href="t:specification/t:GeologicUnit/t:lithology_1"/>
+     <gsml:lithology xlink:href="t:specification/t:GeologicUnit/t:lithology_2"/>
+     <gsml:lithology>
+      <gsml:ControlledConcept>
+       <gsml:identifier codeSpace="http://www.cgi-iugs.org/uri">t:specification/t:GeologicUnit/t:lithology_1</gsml:identifier>
+       <gsml:identifier codeSpace="http://www.cgi-iugs.org/uri">t:specification/t:GeologicUnit/t:lithology_2</gsml:identifier>
+      </gsml:ControlledConcept>
+     </gsml:lithology>
+    </gsml:CompositionPart>
+   </gsml:composition>
+  </gsml:GeologicUnit>
+ </gsml:specification>
+ <gsml:shape>t:geom</gsml:shape>
+</gsml:MappedFeature>

@@ -1,0 +1,152 @@
+<xsd:schema xmlns:gml="http://www.opengis.net/gml" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:deegreewfs="http://www.deegree.org/wfs" xmlns:ogc="http://www.opengis.net/ogc" xmlns:t="http://www.iugs.org/cgi/tempInternal" targetNamespace="http://www.iugs.org/cgi/tempInternal" elementFormDefault="qualified" attributeFormDefault="unqualified">
+    <xsd:import namespace="http://www.opengis.net/gml" schemaLocation="http://schemas.opengis.net/gml/3.1.1/base/feature.xsd"/>
+    <xsd:import namespace="http://www.opengis.net/gml" schemaLocation="http://schemas.opengis.net/gml/3.1.1/base/geometryAggregates.xsd"/>
+    <!-- configuration for the persistence backend to be used -->
+    <xsd:annotation>
+        <xsd:appinfo>
+            <deegreewfs:Prefix>t</deegreewfs:Prefix>
+            <deegreewfs:Backend>[database type]</deegreewfs:Backend>
+            <deegreewfs:DefaultSRS>EPSG:4326</deegreewfs:DefaultSRS>
+            <JDBCConnection xmlns="http://www.deegree.org/jdbc">
+                <Driver>[jdbc driver]</Driver>
+                <Url>[connection string]</Url>
+                <User>[db user]</User>
+                <Password>[db password]</Password>
+                <SecurityConstraints/>
+                <Encoding>utf-8</Encoding>
+            </JDBCConnection>
+            <deegreewfs:SuppressXLinkOutput>true</deegreewfs:SuppressXLinkOutput>
+        </xsd:appinfo>
+    </xsd:annotation>
+    <!-- ============================================================== -->
+    <xsd:element name="MappedFeature" type="t:MappedFeatureType" substitutionGroup="gml:_Feature">
+        <xsd:annotation>
+            <xsd:appinfo>
+                <deegreewfs:table>OGC.EW141_LOUGHBOROUGH_V4_BEDROCK</deegreewfs:table>
+                <deegreewfs:gmlId prefix="t.mf.">
+                    <deegreewfs:MappingField field="OBJECTID" type="INTEGER"/>
+                </deegreewfs:gmlId>
+            </xsd:appinfo>
+        </xsd:annotation>
+    </xsd:element>
+    <!-- ============================================================== -->
+    <xsd:complexType name="MappedFeatureType">
+        <xsd:complexContent>
+            <xsd:extension base="gml:AbstractFeatureType">
+                <xsd:sequence>
+                    <xsd:element name="gid" type="xsd:integer">
+                        <xsd:annotation>
+                            <xsd:appinfo>
+                                <deegreewfs:Content>
+                                    <deegreewfs:MappingField field="MSLINK" type="INTEGER"/>
+                                </deegreewfs:Content>
+                            </xsd:appinfo>
+                        </xsd:annotation>
+                    </xsd:element>
+                    <xsd:element name="specification" type="gml:FeaturePropertyType" minOccurs="0" maxOccurs="unbounded">
+                        <xsd:annotation>
+                            <xsd:appinfo>
+                                <deegreewfs:Content type="t:GeologicUnit">
+                                    <deegreewfs:Relation>
+                                        <deegreewfs:From>
+                                            <deegreewfs:MappingField field="LEX" type="VARCHAR"/>
+                                            <deegreewfs:MappingField field="RCS" type="VARCHAR"/>
+                                        </deegreewfs:From>
+                                        <deegreewfs:To>
+                                            <deegreewfs:MappingField field="LEX" type="VARCHAR"/>
+                                            <deegreewfs:MappingField field="RCS" type="VARCHAR"/>
+                                        </deegreewfs:To>
+                                    </deegreewfs:Relation>
+                                </deegreewfs:Content>
+                            </xsd:appinfo>
+                        </xsd:annotation>
+                    </xsd:element>
+                    <xsd:element name="geom" type="gml:GeometryPropertyType">
+                        <xsd:annotation>
+                            <xsd:appinfo>
+                                <deegreewfs:Content>
+                                    <deegreewfs:MappingField field="SHAPE" type="GEOMETRY" srs="4326"/>
+                                </deegreewfs:Content>
+                            </xsd:appinfo>
+                        </xsd:annotation>
+                    </xsd:element>
+                </xsd:sequence>
+            </xsd:extension>
+        </xsd:complexContent>
+    </xsd:complexType>
+    <xsd:element name="GeologicUnit" type="t:GeologicUnitType" substitutionGroup="gml:_Feature">
+        <xsd:annotation>
+            <xsd:appinfo>
+                <deegreewfs:table>OGC.EW141_LB_BEDROCK_GEOL_UNIT</deegreewfs:table>
+                <deegreewfs:gmlId prefix="t.gu.">
+                    <deegreewfs:MappingField field="LEX" type="VARCHAR"/>
+                    <deegreewfs:MappingField field="RCS" type="VARCHAR"/>
+                </deegreewfs:gmlId>
+                <deegreewfs:visible>true</deegreewfs:visible>
+            </xsd:appinfo>
+        </xsd:annotation>
+    </xsd:element>
+    <xsd:complexType name="GeologicUnitType">
+        <xsd:complexContent>
+            <xsd:extension base="gml:AbstractFeatureType">
+                <xsd:sequence>
+                    <xsd:element name="name_urn" type="xsd:string">
+                        <xsd:annotation>
+                            <xsd:appinfo>
+                                <deegreewfs:Content>
+                                    <deegreewfs:MappingField field="NAME_URN" type="VARCHAR"/>
+                                </deegreewfs:Content>
+                            </xsd:appinfo>
+                        </xsd:annotation>
+                    </xsd:element>
+                    <xsd:element name="descriptive_name" type="xsd:string">
+                        <xsd:annotation>
+                            <xsd:appinfo>
+                                <deegreewfs:Content>
+                                    <deegreewfs:MappingField field="LEX_D" type="VARCHAR"/>
+                                </deegreewfs:Content>
+                            </xsd:appinfo>
+                        </xsd:annotation>
+                    </xsd:element>
+                    <xsd:element name="age" type="xsd:string">
+                        <xsd:annotation>
+                            <xsd:appinfo>
+                                <deegreewfs:Content>
+                                    <deegreewfs:MappingField field="ICS_URN" type="VARCHAR"/>
+                                </deegreewfs:Content>
+                            </xsd:appinfo>
+                        </xsd:annotation>
+                    </xsd:element>
+                    <xsd:element name="rank" type="xsd:string">
+                        <xsd:annotation>
+                            <xsd:appinfo>
+                                <deegreewfs:Content>
+                                    <deegreewfs:MappingField field="RANK" type="VARCHAR"/>
+                                </deegreewfs:Content>
+                            </xsd:appinfo>
+                        </xsd:annotation>
+                    </xsd:element>
+                    <xsd:element name="lithology_1" type="xsd:string">
+                        <xsd:annotation>
+                            <xsd:appinfo>
+                                <deegreewfs:Content>
+                                    <deegreewfs:MappingField field="CGI_SIMPLE_LITH_1_URN" type="VARCHAR"/>
+                                </deegreewfs:Content>
+                            </xsd:appinfo>
+                        </xsd:annotation>
+                    </xsd:element>
+                    <xsd:element name="lithology_2" type="xsd:string">
+                        <xsd:annotation>
+                            <xsd:appinfo>
+                                <deegreewfs:Content>
+                                    <deegreewfs:MappingField field="CGI_SIMPLE_LITH_2_URN" type="VARCHAR"/>
+                                </deegreewfs:Content>
+                            </xsd:appinfo>
+                        </xsd:annotation>
+                    </xsd:element>
+                </xsd:sequence>
+            </xsd:extension>
+        </xsd:complexContent>
+    </xsd:complexType>
+    <!-- ============================================================== -->
+</xsd:schema>

@@ -1,0 +1,1 @@
+Example sets of GIN mediator configuration files for particular services.
