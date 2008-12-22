@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<xsp:page
+	language="java"
+	xmlns:esql="http://apache.org/cocoon/SQL/v2"
+	xmlns:xsp="http://apache.org/xsp"
+	xmlns:src="http://apache.org/cocoon/source/1.0"
+	xmlns:xsp-request="http://apache.org/xsp/request/2.0">
+<process>
+<xsp:logic>
+String wid = parameters.getParameter("key",null);
+String uri= <xsp-request:get-uri/>;
+int wfsPos = uri.indexOf("/wfs");
+String  tempPath = uri.substring(0,wfsPos);
+</xsp:logic>
+<src:delete>
+	<src:source>context:<xsp:expr>tempPath</xsp:expr>/temp/req_<xsp:expr>wid</xsp:expr>.xml</src:source>
+</src:delete>
+</process>
+</xsp:page>

@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<wmsc:config xmlns:wmsc="urn:x-lcnp:wmsc">
+	<wmsc:mapserver>http://s5-stf-ngwd.nrn.nrcan.gc.ca/WebScripts/Mapserver_Sb/mapserv.exe</wmsc:mapserver>
+	<!-- ie, the map parameter -->
+	<wmsc:template>/ngwd/map/xml_template/wells.map</wmsc:template>
+	<wmsc:layers>
+		<wmsc:layer name="OntarioWaterWell">
+			<wmsc:proxiedLayers names="well_moee,wells"/>
+			<!-- requests are redirected to this layer -->
+			<wmsc:proxiedGetFeatureInfo layer="wells"/>
+		</wmsc:layer>
+	</wmsc:layers>
+	<wmsc:layers>
+		<wmsc:layer name="QuebecWaterWell">
+			<wmsc:proxiedLayers names="wellmef,mef_raster"/>
+			<wmsc:proxiedGetFeatureInfo layer="wellmef"/>
+		</wmsc:layer>
+	</wmsc:layers>
+			<!--<wmsc:layers>
+		<wmsc:layer name="BCWaterWell">
+			<wmsc:proxiedLayers names="well_moee,wells"/>
+			<wmsc:proxiedGetFeatureInfo url=""/>
+		</wmsc:layer>
+	</wmsc:layers>
+-->
+</wmsc:config>

@@ -1,0 +1,218 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<stx:transform xmlns:stx="http://stx.sourceforge.net/2002/ns" xmlns:sf="http://stx.sourceforge.net/2003/functions" version="1.0" xmlns:gml="http://www.opengis.net/gml" xmlns:wfs="http://www.opengis.net/wfs" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:app="http://www.deegree.org/app" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:moee="http://www.deegree.org/app" xmlns:sa="http://www.opengis.net/sampling/1.0.0" xmlns:om="http://www.opengis.net/om/1.0.0" xmlns:cv="http://www.opengis.net/cv/0.2" xmlns:gsml="http://www.cgi-iugs.org/xml/GeoSciML/2" xmlns:gwml="http://www.nrcan.gc.ca/xml/gwml/1" pass-through="all" output-method="xml" strip-space="yes">
+	<stx:template match="wfs:FeatureCollection">
+		<!--	<stx:variable name="num"/>-->
+		<!--	<stx:process-attributes/>-->
+		<wfs:FeatureCollection numberOfFeatures="{@numberOfFeatures}">
+			<stx:comment>Translated by NGWD (moee/out_WaterWell.stx)</stx:comment>
+			<stx:process-children/>
+		</wfs:FeatureCollection>
+	</stx:template>
+	<stx:template match="gml:featureMember">
+		<gml:featureMember>
+			<stx:process-children/>
+		</gml:featureMember>
+	</stx:template>
+	<stx:group name="WaterWell">
+		<stx:variable name="gui"/>
+		<stx:variable name="length"/>
+		<stx:variable name="elevation"/>
+		<stx:buffer name="geometry"/>
+		<stx:buffer name="litho"/>
+		<stx:buffer name="envelope"/>
+		<stx:template match="moee:WaterWell" public="yes">
+			<stx:result-buffer name="litho" clear="yes"/>
+			<stx:process-children/>
+			<gwml:WaterWell gml:id="urn.x-ngwd.on.waterwell.{$gui}">
+				<gml:name codeSpace="ngwd">urn:x-ngwd:on:moee:well_<stx:value-of select="$gui"/>
+				</gml:name>
+				<gml:name codeSpace="moee">
+					<stx:value-of select="$gui"/>
+				</gml:name>
+				<gml:boundedBy>
+					<stx:process-buffer name="envelope"/>
+				</gml:boundedBy>
+				<sa:sampledFeature xlink:href="urn:x-ogc:def:nil:OGC:unknown"/>
+				<sa:relatedObservation>
+					<om:Observation>
+						<om:samplingTime xlink:href="urn:x-ogc:def:nil:OGC:unknown"/>
+						<om:procedure xlink:href="urn:x-ogc:def:nil:OGC:unknown"/>
+						<om:observedProperty xlink:href="urn:ogc:def:phenomenon:CGI:2007:lithology"/>
+						<om:featureOfInterest xlink:href="urn:x-ogc:def:nil:OGC:unknown"/>
+						<om:result>
+							<cv:CV_DiscreteCoverage>
+								<cv:domainExtent xlink:href="#{@gml:id}"/>
+								<cv:rangeType xlink:href="urn:ogc:def:phenomenon:CGI:2007:lithology"/>
+								<stx:process-buffer name="litho"/>
+							</cv:CV_DiscreteCoverage>
+						</om:result>
+					</om:Observation>
+				</sa:relatedObservation>
+				<!-- param to transfer -->
+				<sa:surveyDetails xlink:href="urn:x-ogc:def:nil:OGC:unknown"/>
+				<!-- must add this from the database -->
+				<sa:length uom="m">
+					<stx:value-of select="$length"/>
+				</sa:length>
+				<gwml:wellStatus xlink:href="urn:x-ogc:def:nil:OGC:unknown"/>
+				<gwml:wellLocation>
+					<stx:process-buffer name="geometry"/>
+				</gwml:wellLocation>
+				<gwml:referenceElevation uom="m">
+					<stx:value-of select="$elevation"/>
+				</gwml:referenceElevation>
+				<gwml:contact xlink:title="custodian" xlink:href="urn:x-ngwd:contact:custodian:on:moee"/>
+				<gwml:drillingProcedure xlink:href="urn:x-ogc:def:nil:OGC:unknown"/>
+				<gwml:construction xlink:href="urn:x-ogc:def:nil:OGC:unknown"/>
+			</gwml:WaterWell>
+		</stx:template>
+		<stx:template match="moee:geom">
+			<stx:result-buffer name="geometry" clear="yes">
+				<stx:process-children/>
+			</stx:result-buffer>
+		</stx:template>
+		<stx:template match="gml:boundedBy/gml:Envelope">
+			<stx:result-buffer name="envelope" clear="yes">
+				<gml:Envelope srsName="{@srsName}">
+					<gml:coordinates>
+						<stx:process-children/>
+					</gml:coordinates>
+				</gml:Envelope>
+			</stx:result-buffer>
+		</stx:template>
+		<stx:template match="gml:pos">
+			<stx:value-of select="sf:replace(.,' ',',')"/>
+			<stx:text> </stx:text>
+		</stx:template>
+		<stx:template match="moee:litho">
+			<stx:result-buffer name="litho" clear="no">
+				<stx:process-children/>
+			</stx:result-buffer>
+		</stx:template>
+		<stx:group name="WellLitho">
+			<stx:variable name="top"/>
+			<stx:variable name="bot"/>
+			<stx:variable name="n"/>
+			<stx:variable name="code"/>
+			<stx:template match="moee:Lithology" public="yes">
+				<stx:process-children/>
+				<cv:element>
+					<cv:CV_GeometryValuePair>
+						<cv:geometry>
+							<cv:CV_DomainObject>
+								<cv:spatialElement>
+									<gml:LineString srsName="#{$gui}" srsDimension="1">
+										<!-- old encoding
+										<gml:pos>
+											<stx:value-of select="$top"/>
+										</gml:pos>
+										<gml:pos>
+											<stx:value-of select="$bot"/>
+										</gml:pos>
+-->
+										<gml:coordinates>
+											<stx:value-of select="$top"/>
+											<stx:text> </stx:text>
+											<stx:value-of select="$bot"/>
+										</gml:coordinates>
+									</gml:LineString>
+								</cv:spatialElement>
+							</cv:CV_DomainObject>
+						</cv:geometry>
+						<!-- old encoding, replace with EarthMaterial encoding
+						<cv:value xlink:href="urn:x-ngwd:def:phenomenon:lithology:{$code}"/>-->
+						<cv:value xsi:type="gsml:EarthMaterial">
+							<!-- if the code is 1, it's a rock, otherwise, it's unconsolidated -->
+							<stx:variable name="elem">
+								<stx:if test="$code='1' or sf:starts-with($code,'1-')">Rock</stx:if>
+								<stx:else>UnsoncolidatedMaterial</stx:else>
+							</stx:variable>
+							<stx:variable name="consol">
+								<stx:if test="$code='1' or sf:starts-with($code,'1-')">Consolidated</stx:if>
+								<stx:else>Unsoncolidated</stx:else>
+							</stx:variable>
+							
+							<stx:element name="{$elem}" namespace="http://www.cgi-iugs.org/xml/GeoSciML/2">
+								<gml:description>
+									<stx:choose>
+										<stx:when test="$code = '1'">bedrock</stx:when>
+										<stx:when test="$code = '10'">fill (incl topsoil, waste)</stx:when>
+										<stx:when test="$code = '11'">covered, missing, previously bored</stx:when>
+										<stx:when test="$code = '1-1'">limestone</stx:when>
+										<stx:when test="$code = '1-2'">shale</stx:when>
+										<stx:when test="$code = '1-3'">granite</stx:when>
+										<stx:when test="$code = '1-4'">dolomite</stx:when>
+										<stx:when test="$code = '1-5'">potential bedrock</stx:when>
+										<stx:when test="$code = '1-6'">sandstone</stx:when>
+										<stx:when test="$code = '1-7'">interbedded limestone/shale</stx:when>
+										<stx:when test="$code = '2'">diamicton: si/sa to sa matrix</stx:when>
+										<stx:when test="$code = '2-1'">diamicton: si/sa to sa, stoney</stx:when>
+										<stx:when test="$code = '2-2'">diamicton: si/sa to sa with gr/sa/si/cl interbeds</stx:when>
+										<stx:when test="$code = '2-9'">diamicton: si/sa to sa with muck, peat, wood frags.</stx:when>
+										<stx:when test="$code = '3'">diamicton: si to sa/si matrix</stx:when>
+										<stx:when test="$code = '3-1'">diamicton: si to sa/si, stoney</stx:when>
+										<stx:when test="$code = '3-2'">diamicton: si to sa/si with gr/sa/si/cl interbeds</stx:when>
+										<stx:when test="$code = '3-3'">diamicton: texture unknown</stx:when>
+										<stx:when test="$code = '3-8'">diamicton: si to sa/si, topsoil</stx:when>
+										<stx:when test="$code = '3-9'">diamicton: si to sa/si with muck, peat, wood frags.</stx:when>
+										<stx:when test="$code = '4'">diamicton: cl to cl/si matrix</stx:when>
+										<stx:when test="$code = '4-1'">diamicton: cl to cl/si, stoney</stx:when>
+										<stx:when test="$code = '4-2'">diamicton: cl to cl/si with gr/sa/si/cl interbeds</stx:when>
+										<stx:when test="$code = '4-8'">diamicton: cl to cl/si, topsoil</stx:when>
+										<stx:when test="$code = '4-9'">diamicton: cl to cl/si, with muck, peat, wood frags.</stx:when>
+										<stx:when test="$code = '5'">gravel</stx:when>
+										<stx:when test="$code = '5-1'">gravel, gravelly sand, with rhythmic/graded bedding</stx:when>
+										<stx:when test="$code = '5-8'">gravel, gravelly sand, topsoil</stx:when>
+										<stx:when test="$code = '5-9'">gravel, gravelly sand, with muck, peat, wood frags.</stx:when>
+										<stx:when test="$code = '6'">sand</stx:when>
+										<stx:when test="$code = '6-1'">sand, silty sand, with rhythmic/graded bedding</stx:when>
+										<stx:when test="$code = '6-8'">sand, silty sand, topsoil</stx:when>
+										<stx:when test="$code = '6-9'">sand, silty sand, with muck, peat, wood frags.</stx:when>
+										<stx:when test="$code = '7'">silt</stx:when>
+										<stx:when test="$code = '7-1'">silt, sandy silt, clayey silt, with rhythmic/graded bedding</stx:when>
+										<stx:when test="$code = '7-8'">silt, sandy silt, clayey silt, topsoil</stx:when>
+										<stx:when test="$code = '7-9'">silt, sandy silt, clayey silt, with muck, peat, wood frags.</stx:when>
+										<stx:when test="$code = '8'">clay</stx:when>
+										<stx:when test="$code = '8-1'">clay, silty clay, with rhythmic/graded bedding</stx:when>
+										<stx:when test="$code = '8-8'">clay, silty clay, topsoil</stx:when>
+										<stx:when test="$code = '8-9'">clay, silty clay, with muck, peat, wood frags.</stx:when>
+										<stx:when test="$code = '9'">organic</stx:when>
+										<stx:when test="$code = '9-8'">organic, topsoil</stx:when>
+										<stx:when test="$code = '99'">unknown</stx:when>
+									</stx:choose>
+								</gml:description>
+								<gml:name codeSpace="moee"><stx:value-of select="$code"/>
+								</gml:name>
+								<gsml:purpose>instance</gsml:purpose>
+								<gsml:consolidationDegree>
+									<gsml:CGI_TermValue>
+										<gsml:value codeSpace="urn:cgi:classifier:GSC:Consolidation"><stx:value-of select="$consol"/></gsml:value>
+									</gsml:CGI_TermValue>
+								</gsml:consolidationDegree>
+								<gsml:lithology xlink:href="urn:x-moee:def:phenomenon:lithology:{$code}"/>
+							</stx:element>
+						</cv:value>
+					</cv:CV_GeometryValuePair>
+				</cv:element>
+			</stx:template>
+			<stx:template match="moee:depth_from">
+				<stx:assign name="top" select="."/>
+			</stx:template>
+			<stx:template match="moee:depth_to">
+				<stx:assign name="bot" select="."/>
+			</stx:template>
+			<stx:template match="moee:mat_code">
+				<stx:assign name="code" select="."/>
+			</stx:template>
+		</stx:group>
+		<stx:template match="moee:guid">
+			<stx:assign name="gui" select="."/>
+		</stx:template>
+		<stx:template match="moee:length">
+			<stx:assign name="length" select="."/>
+		</stx:template>
+		<stx:template match="moee:elevation">
+			<stx:assign name="elevation" select="."/>
+		</stx:template>
+	</stx:group>
+</stx:transform>

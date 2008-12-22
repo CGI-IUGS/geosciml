@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<stx:transform xmlns:stx="http://stx.sourceforge.net/2002/ns" version="1.0" 
+xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+xmlns:proc="urn:x-lcnp:proc" 
+xmlns:src="http://apache.org/cocoon/source/1.0"
+xmlns:sf="http://stx.sourceforge.net/2003/functions"
+xmlns:xlink="http://www.w3.org/1999/xlink"
+pass-through="all" output-method="xml" strip-space="yes">
+<stx:param name="host"/>
+<!-- must figure out how this thing works, want to replace the content of  attribute-->
+<stx:template match="*[@xlink:href]">
+<stx:copy attributes="*[not(name() = 'xlink:href')]">
+<stx:attribute name="xlink:href"><stx:value-of select="sf:replace(@xlink:href,'\[host\]',$host)"/></stx:attribute>
+</stx:copy>
+</stx:template>
+<stx:template match="text()">
+<!-- just watch all the text and search for all the [host], and replace them with real host-->
+<stx:value-of select="sf:replace(.,'\[host\]',$host)"/>
+<stx:process-children/>
+</stx:template>
+
+</stx:transform>

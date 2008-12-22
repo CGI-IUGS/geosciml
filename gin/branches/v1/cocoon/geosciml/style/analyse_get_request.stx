@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<stx:transform xmlns:stx="http://stx.sourceforge.net/2002/ns" version="1.0" 
+xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+xmlns:h="http://apache.org/cocoon/request/2.0"
+xmlns:sf="http://stx.sourceforge.net/2003/functions"
+pass-through="all" output-method="xml" strip-space="yes">
+<stx:param name="config"/>
+<stx:template match="h:request">
+<h:request>
+<stx:process-children/>
+<!-- include the configuration at the end of the parameters document-->
+<cinclude:include xmlns:cinclude="http://apache.org/cocoon/include/1.0" src="config/{$config}.xml"/>
+</h:request>
+</stx:template>
+<!-- capitaliser turns all paramters in UPPER CASE to ease matching (XSLT is case-sensitive) -->
+<stx:template match="h:parameter">
+<h:parameter name="{translate(@name,'abcdefghijklmnopqrstuvwxyz','ABCDEFGHIJKLMNOPQRSTUVWXYZ')}">
+<stx:process-children/>
+</h:parameter>
+</stx:template>
+</stx:transform>
