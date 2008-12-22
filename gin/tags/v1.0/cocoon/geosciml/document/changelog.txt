@@ -1,0 +1,8 @@
+Change log to geosciml GIN mediator
+
+2008-07-19 : added a debug parameter to prevent the remove duplicate transformer 
+to be used when the private document is not transformed.  Some GML2 document
+don't follow the Class/property/Class rule when it comes to geometry, so it 
+confuses the RemoveDuplicate transformer and end up in malformed document.
+When invoking the service, you can now add &KEEPDUP param (no value) to remove 
+RemoveDuplicate transformer from the flow of transformation
