@@ -17,35 +17,44 @@
 	<xsl:template
 		match="gsml:GeologicVocabulary">
 		<xsl:variable
-			name="vocabulary"
-			select="( gml:identifier[@codeSpace='urn:ietf:rfc:2141'] | gsml:identifier[@codeSpace='urn:ietf:rfc:2141'] | gml:name[@codeSpace='urn:ietf:rfc:2141'] )[position()=1]"/>
+			name="conceptScheme"
+			select="( gml:name[@codeSpace='http://www.cgi-iugs.org/uri'] )"/>
+		<!-- if need to select identifier using a priority sequence, then try ...
+	select="( gml:identifier[@codeSpace='http://www.cgi-iugs.org/uri'] | gsml:identifier[@codeSpace='http://www.cgi-iugs.org/uri'] | gml:name[@codeSpace='http://www.cgi-iugs.org/uri'] )[position()=1]" -->
 		<rdf:RDF>
 			<owl:Ontology
-				rdf:about="{$vocabulary}">
+				rdf:about="{$conceptScheme}">
 				<owl:imports
 					rdf:resource="./GSMLControlledConceptSKOS.rdf"/>
 			</owl:Ontology>
 			<skos:ConceptScheme
-				rdf:about="{$vocabulary}"/>
-			<xsl:apply-templates>
+				rdf:about="{$conceptScheme}">
+				<xsl:apply-templates
+					select="gml:name[ not(@codeSpace='http://www.cgi-iugs.org/uri') ] | gml:description"/>
+			</skos:ConceptScheme>
+			<xsl:apply-templates
+				select="gml:definitionMember/gsml:ControlledConcept">
 				<xsl:with-param
-					name="vocabulary"
-					select="$vocabulary"/>
+					name="conceptScheme"
+					select="$conceptScheme"/>
 			</xsl:apply-templates>
 		</rdf:RDF>
 	</xsl:template>
 	<xsl:template
 		match="gml:definitionMember/gsml:ControlledConcept">
 		<xsl:param
-			name="vocabulary"/>
+			name="conceptScheme"/>
 		<xsl:variable
 			name="concept"
-			select="gsml:identifier[@codeSpace='urn:ietf:rfc:2141']"/>
+			select="gml:name[@codeSpace='http://www.cgi-iugs.org/uri']"/>
 		<skos:Concept
-			rdf:about="{gsml:identifier[@codeSpace='urn:ietf:rfc:2141']}">
+			rdf:about="{gml:name[@codeSpace='http://www.cgi-iugs.org/uri']}">
+			<!-- unclear about syntax of how to use a param passed in from calling template 
 			<skos:inScheme
-				rdf:resource="{$vocabulary}"/>
-			<xsl:apply-templates>
+				rdf:resource="{$conceptScheme}"/> -->
+			<xsl:apply-templates
+				select="gsml:name | gml:description | gsml:vocabulary | gsml:prototype |
+				gsml:linkToTarget/gsml:VocabRelation">
 				<xsl:with-param
 					name="concept"
 					select="$concept"/>
@@ -63,7 +72,12 @@
 	<xsl:template
 		match="gsml:identifier"/>
 	<xsl:template
-		match="gml:name"/>
+		match="gml:name">
+		<skos:prefLabel>
+			<xsl:value-of
+				select="."/>
+		</skos:prefLabel>
+	</xsl:template>
 	<xsl:template
 		match="gml:description">
 		<skos:definition>
@@ -91,6 +105,11 @@
 			</xsl:when>
 			<xsl:when
 				test="gsml:role = 'broader term'">
+				<skos:narrower
+					rdf:resource="{gsml:target/@xlink:href}"/>
+			</xsl:when>
+			<xsl:when
+				test="gsml:role = 'Target is member of source'">
 				<skos:narrower
 					rdf:resource="{gsml:target/@xlink:href}"/>
 			</xsl:when>
