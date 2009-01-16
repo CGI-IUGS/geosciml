@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map:ontology xmlns:map="urn:x-lcnp:map" xmlns:xlink="http://www.w3.org/1999/xlink">
+	<map:global-ontology xlink:href="cocoon:/ontology/global/SimpleLitho2008"/>
+	<map:local-ontology>
+	<!-- Inner vocabulary of lithology terms -->
+		<map:concepts>
+			<map:concept name="non definito"/>
+			<map:concept name="breccia"/>
+			<map:concept name="roccia"><!-- livello base -->
+				<map:concept name="roccia modificata o trasformata"/>
+				<map:concept name="roccia metamorfica"><!-- livello padre-->
+					<map:concept name="anfibolite">
+						<map:concept name="gneiss"/>
+						<map:concept name="fillade"/>
+						<map:concept name="scisto"/>
+					</map:concept>
+					<map:concept name="eclogite"/>
+					<map:concept name="granofels"/>
+					<map:concept name="marmo"/>
+					<map:concept name="migmatite"/>
+					<map:concept name="serpentinite"/>
+				</map:concept>
+				<map:concept name="roccia ignea"><!-- livello padre-->
+					<map:concept name="roccia ignea a grana fine"><!-- livello figlio --> 
+						<map:concept name="andesite"/>
+						<map:concept name="basalto"/>
+						<map:concept name="dacite"/>
+						<map:concept name="fonolite"/>
+						<map:concept name="riolite"/>
+						<map:concept name="trachite"/>
+					</map:concept>
+					<map:concept name="rocci ignea faneritica"><!-- livello figlio -->
+						<map:concept name="anortosite"/>
+						<map:concept name="diorite"/>
+						<map:concept name="roccia dioritica"><!-- livello nipote -->
+							<map:concept name="monzodiorite"/>
+						</map:concept>
+						<map:concept name="roccia gabbroide"><!-- livello nipote -->
+							<map:concept name="gabbro"/>
+						</map:concept>
+						<map:concept name="roccia granitoide"><!-- livello nipote -->
+							<map:concept name="granito"/>
+							<map:concept name="granodiorite"/>
+						</map:concept>
+						<map:concept name="monzonite"/>
+					</map:concept>
+					<map:concept name="rocci ignea ultrabasica"><!-- livello figlio -->
+						<map:concept name="peridotite"/>
+					</map:concept>
+				</map:concept>
+				<map:concept name="roccia sedimentaria"><!-- livello padre-->
+					<map:concept name="rocci sedimentaria carbonatica"><!-- livello figlio -->
+						<map:concept name="calcare"/>
+						<map:concept name="dolomia"/>
+					</map:concept>
+					<map:concept name="rocci detritica"><!-- livello figlio -->
+						<map:concept name="conglomerato"/>
+						<map:concept name="marna"><!-- livello nipote -->
+							<map:concept name="argillite"/>
+						</map:concept>
+						<map:concept name="arenaria"/>
+					</map:concept>
+					<map:concept name="evaporite"/>
+				</map:concept>
+				<map:concept name="materiale sedimentario"><!-- livello padre-->
+				<map:concept name="materiale non consolidato"><!-- livello padre-->	
+					<map:concept name="sedimento"><!-- livello figlio -->
+						<map:concept name="sedimento clastico"><!-- livello nipote -->
+							<map:concept name="diamicton"/>
+							<map:concept name="argilla"/>
+							<map:concept name="sabbia"/>
+						</map:concept>
+					</map:concept>
+				</map:concept>
+			</map:concept>
+			</map:concept>
+		</map:concepts>
+	</map:local-ontology>
+	<map:rules>
+		<map:rule global="urn:cgi:classifier:CGI:SimpleLithology:2008:breccia" local="breccia"/>
+ 		<map:rule global="urn:cgi:classifier:CGI:SimpleLithology:2008:rock" local="roccia"/>
+		<map:rule global="urn:cgi:classifier:CGI:SimpleLithology:2008:composite_genesis_rock" local="roccia modificata o trasformata"/>
+ 		<map:rule global="urn:cgi:classifier:CGI:SimpleLithology:2008:metamorphic_rock" local="roccia metamorfica"/>
+		 <map:rule global="urn:cgi:classifier:CGI:SimpleLithology:2008:amphibolite" local="anfibolite"/>
+		 <map:rule global="urn:cgi:classifier:CGI:SimpleLithology:2008:eclogite" local="eclogite"/>
+		 <map:rule global="urn:cgi:classifier:CGI:SimpleLithology:2008:gneiss" local="gneiss"/>
+		 <map:rule global="urn:cgi:classifier:CGI:SimpleLithology:2008:phyllite" local="fillade"/>
+		 <map:rule global="urn:cgi:classifier:CGI:SimpleLithology:2008:schist" local="scisto"/>
+		 <map:rule global="urn:cgi:classifier:CGI:SimpleLithology:2008:granofels" local="granofels"/>
+		 <map:rule global="urn:cgi:classifier:CGI:SimpleLithology:2008:marble" local="marmo"/>
+		 <map:rule global="urn:cgi:classifier:CGI:SimpleLithology:2008:migmatite" local="migmatite"/>
+		 <map:rule global="urn:cgi:classifier:CGI:SimpleLithology:2008:serpentinite" local="serpentinite"/>
+		 <map:rule global="urn:cgi:classifier:CGI:SimpleLithology:2008:igneous_rock" local="roccia ignea"/>
+		 <map:rule global="urn:cgi:classifier:CGI:SimpleLithology:2008:fine_grained_igneous_rock" local="roccia ignea a grana fine"/>
+		 <map:rule global="urn:cgi:classifier:CGI:SimpleLithology:2008:andesitic_rock" local="andesite"/>
+		 <map:rule global="urn:cgi:classifier:CGI:SimpleLithology:2008:basaltic_rock" local="basalto"/>
+		 <map:rule global="᤽urn:cgi:classifier:CGI:SimpleLithology:2008:dacitic_rock" local="dacite"/>
+		 <map:rule global="urn:cgi:classifier:CGI:SimpleLithology:2008:phonolitic_rock" local="fonolite"/>
+		 <map:rule global="urn:cgi:classifier:CGI:SimpleLithology:2008:rhyolitic_rock" local="riolite"/>
+		 <map:rule global="urn:cgi:classifier:CGI:SimpleLithology:2008:trachytic_rock" local="trachite"/>
+		 <map:rule global="urn:cgi:classifier:CGI:SimpleLithology:2008:phaneritic_igneous_rock" local="rocci ignea faneritica"/>
+		 <map:rule global="᤽urn:cgi:classifier:CGI:SimpleLithology:2008:anorthositic_rock" local="anortosite"/>
+		 <map:rule global="urn:cgi:classifier:CGI:SimpleLithology:2008:aplite" local=""/>
+		 <map:rule global="urn:cgi:classifier:CGI:SimpleLithology:2008:diorite" local="diorite"/>
+		 <map:rule global="urn:cgi:classifier:CGI:SimpleLithology:2008:dioritic_rock" local="roccia diorita"/>
+		 <map:rule global="urn:cgi:classifier:CGI:SimpleLithology:2008:monzodiorite" local="monzodiorite"/>
+		 <map:rule global="urn:cgi:classifier:CGI:SimpleLithology:2008:gabbroic_rock" local="roccia gabbroide"/>
+		 <map:rule global="urn:cgi:classifier:CGI:SimpleLithology:2008:gabbro" local="gabbro"/>
+		 <map:rule global="urn:cgi:classifier:CGI:SimpleLithology:2008:monzogabbro" local="monzogabbro"/>
+		 <map:rule global="urn:cgi:classifier:CGI:SimpleLithology:2008:granitic_rock" local="roccia granitoide"/>
+		 <map:rule global="urn:cgi:classifier:CGI:SimpleLithology:2008:granite" local="granito"/>
+		 <map:rule global="urn:cgi:classifier:CGI:SimpleLithology:2008:granodiorite" local="granodiorite"/>
+		 <map:rule global="urn:cgi:classifier:CGI:SimpleLithology:2008:monzonite" local="monzonite"/>
+		 <map:rule global="urn:cgi:classifier:CGI:SimpleLithology:2008:ultrabasic_igneous_rock" local="roccia ignea ultrabasica"/>
+		 <map:rule global="urn:cgi:classifier:CGI:SimpleLithology:2008:peridotite" local="peridotite"/>
+		 <map:rule global="urn:cgi:classifier:CGI:SimpleLithology:2008:sedimentary_rock" local="roccia sedimentaria"/>
+		 <map:rule global="urn:cgi:classifier:CGI:SimpleLithology:2008:carbonate_sedimentary_rock" local="roccia sedimentaria carbonatica"/>
+		 <map:rule global="urn:cgi:classifier:CGI:SimpleLithology:2008:calcareous_carbonate_sedimentary_rock" local="calcari"/>
+		 <map:rule global="urn:cgi:classifier:CGI:SimpleLithology:2008:dolomitic_or_magnesian_sedimentary_rock" local="dolomia"/>
+		 <map:rule global="urn:cgi:classifier:CGI:SimpleLithology:2008:clastic_sedimentary_rock" local="roccia detritica"/>
+		 <map:rule global="urn:cgi:classifier:CGI:SimpleLithology:2008:conglomerate" local="conglomerato"/>
+		 <map:rule global="urn:cgi:classifier:CGI:SimpleLithology:2008:mudstone" local="marna"/>
+		 <map:rule global="urn:cgi:classifier:CGI:SimpleLithology:2008:shale" local="rgillite"/>
+		 <map:rule global="urn:cgi:classifier:CGI:SimpleLithology:2008:sandstone" local="arenaria"/>
+		 <map:rule global="urn:cgi:classifier:CGI:SimpleLithology:2008:evaporite" local="evaporite"/>
+		 <map:rule global="urn:cgi:classifier:CGI:SimpleLithology:2008:sedimentary_material" local="materiale sedimentario"/>
+		 <map:rule global="urn:cgi:classifier:CGI:SimpleLithology:2008:unconsolidated_material" local="materiale non consolidato"/>
+		 <map:rule global="urn:cgi:classifier:CGI:SimpleLithology:2008:sediment" local="sedimento"/>
+		 <map:rule global="urn:cgi:classifier:CGI:SimpleLithology:2008:clastic_sediment" local="sedimento clastico"/>
+		 <map:rule global="urn:cgi:classifier:CGI:SimpleLithology:2008:diamicton" local="diamicton"/>
+		 <map:rule global="urn:cgi:classifier:CGI:SimpleLithology:2008:mud" local="argilla"/>
+		 <map:rule global="urn:cgi:classifier:CGI:SimpleLithology:2008:sand" local="sabbia"/>
+	</map:rules>
+</map:ontology>

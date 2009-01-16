@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<stx:transform xmlns:stx="http://stx.sourceforge.net/2002/ns" version="1.0" 
+xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+xmlns:sf="http://stx.sourceforge.net/2003/functions"
+xmlns:proc="urn:x-lcnp:proc" 
+pass-through="none" output-method="xml" strip-space="yes">
+<!-- this stx assumes there is only one result tag -->
+<stx:template match="proc:remote">
+	<stx:process-children group="pass"/>
+</stx:template>
+<stx:group name="pass" pass-through="all">
+</stx:group>
+</stx:transform>

@@ -1,0 +1,173 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<stx:transform xmlns:stx="http://stx.sourceforge.net/2002/ns" xmlns:sf="http://stx.sourceforge.net/2003/functions" version="1.0" xmlns:gml="http://www.opengis.net/gml" xmlns:wfs="http://www.opengis.net/wfs" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:app="http://www.deegree.org/app" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mef="http://www.deegree.org/app" xmlns:sa="http://www.opengis.net/sampling/1.0.0" xmlns:om="http://www.opengis.net/om/1.0.0" xmlns:cv="http://www.opengis.net/cv/0.2" xmlns:gsml="http://www.cgi-iugs.org/xml/GeoSciML/2" xmlns:gwml="http://www.nrcan.gc.ca/xml/gwml/1" pass-through="all" output-method="xml" strip-space="yes">
+	<stx:template match="wfs:FeatureCollection">
+		<!--	<stx:variable name="num"/>-->
+		<!--	<stx:process-attributes/>-->
+		<wfs:FeatureCollection numberOfFeatures="{@numberOfFeatures}">
+			<stx:comment>Translated by NGWD (mef/out_WaterWell.stx)</stx:comment>
+			<stx:process-children/>
+		</wfs:FeatureCollection>
+	</stx:template>
+	<stx:template match="gml:featureMember">
+		<gml:featureMember>
+			<stx:process-children/>
+		</gml:featureMember>
+	</stx:template>
+	<stx:group name="WaterWell">
+		<stx:variable name="gui"/>
+		<stx:variable name="length"/>
+		<stx:variable name="elevation"/>
+		<stx:buffer name="geometry"/>
+		<stx:buffer name="litho"/>
+		<stx:buffer name="envelope"/>
+		<stx:template match="mef:WaterWell" public="yes">
+			<stx:result-buffer name="litho" clear="yes"/>
+			<stx:process-children/>
+			<gwml:WaterWell gml:id="urn.x-ngwd.qc.waterwell.{$gui}">
+				<gml:name codeSpace="ngwd">urn:x-ngwd:qc:mef:well_<stx:value-of select="$gui"/>
+				</gml:name>
+				<gml:name codeSpace="mef">
+					<stx:value-of select="$gui"/>
+				</gml:name>
+				<gml:boundedBy>
+					<stx:process-buffer name="envelope"/>
+				</gml:boundedBy>
+				<sa:sampledFeature xlink:href="urn:x-ogc:def:nil:OGC:unknown"/>
+				<sa:relatedObservation>
+					<om:Observation>
+						<om:samplingTime xlink:href="urn:x-ogc:def:nil:OGC:unknown"/>
+						<om:procedure xlink:href="urn:x-ogc:def:nil:OGC:unknown"/>
+						<om:observedProperty xlink:href="urn:ogc:def:phenomenon:CGI:2007:lithology"/>
+						<om:featureOfInterest xlink:href="urn:x-ogc:def:nil:OGC:unknown"/>
+						<om:result>
+							<cv:CV_DiscreteCoverage>
+								<cv:domainExtent xlink:href="#{@gml:id}"/>
+								<cv:rangeType xlink:href="urn:ogc:def:phenomenon:CGI:2007:lithology"/>
+								<stx:process-buffer name="litho"/>
+							</cv:CV_DiscreteCoverage>
+						</om:result>
+					</om:Observation>
+				</sa:relatedObservation>
+				<!-- param to transfer -->
+				<sa:surveyDetails xlink:href="urn:x-ogc:def:nil:OGC:unknown"/>
+				<!-- must add this from the database -->
+				<sa:length uom="m">
+					<stx:value-of select="$length"/>
+				</sa:length>
+				<gwml:wellStatus xlink:href="urn:x-ogc:def:nil:OGC:unknown"/>
+				<gwml:wellLocation>
+					<stx:process-buffer name="geometry"/>
+				</gwml:wellLocation>
+				<gwml:referenceElevation uom="m">
+					<stx:value-of select="$elevation"/>
+				</gwml:referenceElevation>
+				<gwml:contact xlink:title="custodian" xlink:href="urn:x-ngwd:contact:custodian:qc:mef"/>
+				<gwml:drillingProcedure xlink:href="urn:x-ogc:def:nil:OGC:unknown"/>
+				<gwml:construction xlink:href="urn:x-ogc:def:nil:OGC:unknown"/>
+			</gwml:WaterWell>
+		</stx:template>
+		<stx:template match="mef:geom">
+			<stx:result-buffer name="geometry" clear="yes">
+				<stx:process-children/>
+			</stx:result-buffer>
+		</stx:template>
+		<stx:template match="gml:boundedBy/gml:Envelope">
+			<stx:result-buffer name="envelope" clear="yes">
+				<gml:Envelope srsName="{@srsName}">
+					<gml:coordinates>
+						<stx:process-children/>
+					</gml:coordinates>
+				</gml:Envelope>
+			</stx:result-buffer>
+		</stx:template>
+		<stx:template match="gml:pos">
+			<stx:value-of select="sf:replace(.,' ',',')"/>
+			<stx:text> </stx:text>
+		</stx:template>
+		<stx:template match="mef:litho">
+			<stx:result-buffer name="litho" clear="no">
+				<stx:process-children/>
+			</stx:result-buffer>
+		</stx:template>
+		<stx:group name="WellLitho">
+			<stx:variable name="top"/>
+			<stx:variable name="bot"/>
+			<stx:variable name="n"/>
+			<stx:variable name="code"/>
+			<stx:template match="mef:Lithology" public="yes">
+				<stx:process-children/>
+				<cv:element>
+					<cv:CV_GeometryValuePair>
+						<cv:geometry>
+							<cv:CV_DomainObject>
+								<cv:spatialElement>
+									<gml:LineString srsName="#{$gui}" srsDimension="1">
+										<!-- old encoding
+										<gml:pos>
+											<stx:value-of select="$top"/>
+										</gml:pos>
+										<gml:pos>
+											<stx:value-of select="$bot"/>
+										</gml:pos>
+-->
+										<gml:coordinates>
+											<stx:value-of select="$top"/>
+											<stx:text> </stx:text>
+											<stx:value-of select="$bot"/>
+										</gml:coordinates>
+									</gml:LineString>
+								</cv:spatialElement>
+							</cv:CV_DomainObject>
+						</cv:geometry>
+						<!-- old encoding, replace with EarthMaterial encoding
+						<cv:value xlink:href="urn:x-ngwd:def:phenomenon:lithology:{$code}"/>-->
+						<cv:value xsi:type="gsml:EarthMaterial">
+							<!-- if the code is 1, it's a rock, otherwise, it's unconsolidated -->
+							<stx:variable name="elem">
+								<stx:if test="$code='ROCH' or $code='GRAN' or $code='GRES' or $code='SHLE' or $code='GRGN' or $code='IGME' or $code='CALC'">Rock</stx:if>
+								<stx:else>UnconsolidatedMaterial</stx:else>
+							</stx:variable>
+							<stx:variable name="consol">
+								<stx:if test="$code='ROCH' or $code='GRAN' or $code='GRES' or $code='SHLE' or $code='GRGN' or $code='IGME' or $code='CALC'">Consolidated</stx:if>
+								<stx:else>Unsoncolidated</stx:else>
+							</stx:variable>
+							
+							<stx:element name="{$elem}" namespace="http://www.cgi-iugs.org/xml/GeoSciML/2">
+								<gml:description>
+									Matériel de type '<stx:value-of select="$code"/>'
+								</gml:description>
+								<gml:name codeSpace="mef"><stx:value-of select="$code"/>
+								</gml:name>
+								<gsml:purpose>instance</gsml:purpose>
+								<gsml:consolidationDegree>
+									<gsml:CGI_TermValue>
+										<gsml:value codeSpace="urn:cgi:classifier:GSC:Consolidation"><stx:value-of select="$consol"/></gsml:value>
+									</gsml:CGI_TermValue>
+								</gsml:consolidationDegree>
+								<gsml:lithology xlink:href="urn:x-mef:def:phenomenon:lithology:{$code}"/>
+							</stx:element>
+						</cv:value>
+					</cv:CV_GeometryValuePair>
+				</cv:element>
+			</stx:template>
+			<stx:template match="mef:depth_from">
+				<stx:assign name="top" select="."/>
+			</stx:template>
+			<stx:template match="mef:depth_to">
+				<stx:assign name="bot" select="."/>
+			</stx:template>
+			<stx:template match="mef:mat_code">
+				<stx:assign name="code" select="."/>
+			</stx:template>
+		</stx:group>
+		<stx:template match="mef:guid">
+			<stx:assign name="gui" select="."/>
+		</stx:template>
+		<stx:template match="mef:length">
+			<stx:assign name="length" select="."/>
+		</stx:template>
+		<stx:template match="mef:elevation">
+			<stx:assign name="elevation" select="."/>
+		</stx:template>
+	</stx:group>
+</stx:transform>
