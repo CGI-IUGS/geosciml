@@ -17,8 +17,10 @@
 	<xsl:template
 		match="gsml:GeologicVocabulary">
 		<xsl:variable
-			name="conceptScheme"
-			select="( gml:name[@codeSpace='http://www.cgi-iugs.org/uri'] )"/>
+			name="conceptScheme">
+			<xsl:value-of
+				select="( gml:name[@codeSpace='http://www.cgi-iugs.org/uri'] )"/>
+		</xsl:variable>
 		<!-- if need to select identifier using a priority sequence, then try ...
 	select="( gml:identifier[@codeSpace='http://www.cgi-iugs.org/uri'] | gsml:identifier[@codeSpace='http://www.cgi-iugs.org/uri'] | gml:name[@codeSpace='http://www.cgi-iugs.org/uri'] )[position()=1]" -->
 		<rdf:RDF>
@@ -30,7 +32,8 @@
 			<skos:ConceptScheme
 				rdf:about="{$conceptScheme}">
 				<xsl:apply-templates
-					select="gml:name[ not(@codeSpace='http://www.cgi-iugs.org/uri') ] | gml:description"/>
+					select="gml:name[ not(@codeSpace='http://www.cgi-iugs.org/uri') ] |
+					gml:description"/>
 			</skos:ConceptScheme>
 			<xsl:apply-templates
 				select="gml:definitionMember/gsml:ControlledConcept">
