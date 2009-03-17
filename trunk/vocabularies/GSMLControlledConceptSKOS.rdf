@@ -1,6 +1,5 @@
 <?xml version="1.0"?>
 <rdf:RDF
-	xmlns="http://geosciml.org/release/3.0_alpha/rdf/gsmlCC#"
 	xml:base="file:///C:/projects/SVN_xmml/ontologies/GSML/GSMLControlledConceptSKOS.xml"
 	xmlns:dc="http://purl.org/dc/elements/1.1/"
 	xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
@@ -21,7 +20,7 @@
 		<dc:title
 			xml:lang="en">GeoSciML Controlled Concept vocabulary</dc:title>
 		<owl:imports
-			rdf:resource="file:///C:/projects/SVN_xmml/w3c/skos/2004_02_core.rdf"/>
+			rdf:resource="http://www.w3.org/2004/02/skos/core"/>
 	</owl:Ontology>
 
 	<!-- 
@@ -34,36 +33,19 @@
 
 	<!-- http://geosciml.org/release/3.0_alpha/rdf/gsmlCC#prototype -->
 
-	<owl:ObjectProperty
+	<rdf:Property
 		rdf:about="#prototype">
 		<rdfs:label
 			xml:lang="en">prototype</rdfs:label>
 		<rdfs:isDefinedBy
-			rdf:datatype="http://www.w3.org/2001/XMLSchema#anyURI">http://geosciml.org/release/2.0_rc3/doc</rdfs:isDefinedBy>
+			rdf:datatype="http://www.w3.org/2001/XMLSchema#anyURI">http://www.geosciml.org/geosciml/2.0/doc/</rdfs:isDefinedBy>
 		<rdfs:comment
 			xml:lang="en">This property may be used directly.</rdfs:comment>
-		<rdfs:domain
-			rdf:resource="http://www.w3.org/2004/02/skos/core#Concept"/>
 		<rdfs:subPropertyOf
 			rdf:resource="http://www.w3.org/2004/02/skos/core#semanticRelation"/>
-	</owl:ObjectProperty>
-
-	<!-- 
-    ///////////////////////////////////////////////////////////////////////////////////////
-    //
-    // Individuals
-    //
-    ///////////////////////////////////////////////////////////////////////////////////////
-     -->
-
-	<!-- http://geosciml.org/release/3.0_alpha/rdf/gsmlCC#prototype -->
-
-	<rdf:Description
-		rdf:about="#prototype">
-		<terms:issued>2008-10-27</terms:issued>
 		<skos:definition
-			xml:lang="en">The prototype links the ControlledConcept to one special geologic entity
-			(e.g. GeologicFeature or EarthMaterial) that defines the
+			xml:lang="en">The prototype links a ControlledConcept to one geologic entity
+			(e.g. GeologicFeature or EarthMaterial) that is the exemplar of this
 			ControlledConcept.</skos:definition>
 		<skos:changeNote>
 			<rdf:Description>
@@ -76,6 +58,20 @@
 				<dc:creator>Simon Cox</dc:creator>
 			</rdf:Description>
 		</skos:changeNote>
-	</rdf:Description>
+		<skos:changeNote>
+			<rdf:Description>
+				<rdf:value>Cleaned up in response to comments from Luis Bermudez:
+				1. changed to an rdf:Property (owl:ObjectProperty is implied by subPropertyOf semanticRelation)
+				2. deleted the redundant rdf:Description (individual)
+				3. fixed isDefinedBy link to point to GeoSciML 2.0 release</rdf:value>
+			</rdf:Description>
+			<rdf:Description>
+				<dc:date>2009-03-18</dc:date>
+			</rdf:Description>
+			<rdf:Description>
+				<dc:creator>Simon Cox</dc:creator>
+			</rdf:Description>
+		</skos:changeNote>
+	</rdf:Property>
 
 </rdf:RDF>
