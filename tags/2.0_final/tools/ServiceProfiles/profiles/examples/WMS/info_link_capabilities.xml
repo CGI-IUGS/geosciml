@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- 
+<!DOCTYPE WMT_MS_Capabilities SYSTEM "c:/ogc\wms/1.1.1\WMS_MS_Capabilities.dtd" [ <!ELEMENT VendorSpecificCapabilities EMPTY> ] >
+-->
+<!-- $Id$ -->
+
+<WMT_MS_Capabilities>
+  <Service>
+    <Name>OGC:WMS</Name>
+    <Title>Infolink Web Map Service</Title>
+    <Abstract>WMS Maintained by Information Queensland, contact Information.Queensland@qld.gov.au
+      for more information</Abstract>
+    <OnlineResource xlink:href="http://www.iie.qld.gov.au" xlink:type="simple"
+      xmlns:xlink="http://www.w3.org/1999/xlink"/>
+    <ContactInformation>
+      <ContactPersonPrimary>
+        <ContactPerson>Shane Marshall</ContactPerson>
+        <ContactOrganization>Expert XML Encoders Consultancy</ContactOrganization>
+      </ContactPersonPrimary>
+      <ContactVoiceTelephone>+617 34056789</ContactVoiceTelephone>
+      <ContactElectronicMailAddress>joseph.bloggs@nrw.qld.gov.au</ContactElectronicMailAddress>
+    </ContactInformation>
+  </Service>
+  <Capability>
+    <Request>
+      <GetCapabilities>
+        <Format>application/vnd.ogc.wms_xml</Format>
+        <DCPType>
+          <HTTP>
+            <Get>
+              <OnlineResource xlink:href="http://gis.govnet.qld.gov.au:80/soap/servlet/wms"
+                xlink:type="simple" xmlns:xlink="http://www.w3.org/1999/xlink"/>
+            </Get>
+          </HTTP>
+        </DCPType>
+      </GetCapabilities>
+      <GetMap>
+        <Format>image/png</Format>
+        <Format>image/jpeg</Format>
+        <DCPType>
+          <HTTP>
+            <Get>
+              <OnlineResource xlink:href="http://gis.govnet.qld.gov.au:80/soap/servlet/wms"
+                xlink:type="simple" xmlns:xlink="http://www.w3.org/1999/xlink"/>
+            </Get>
+          </HTTP>
+        </DCPType>
+      </GetMap>
+      <GetFeatureInfo>
+        <Format>text/html</Format>
+        <DCPType>
+          <HTTP>
+            <Get>
+              <OnlineResource xlink:href="http://gis.govnet.qld.gov.au:80/soap/servlet/wms"
+                xlink:type="simple" xmlns:xlink="http://www.w3.org/1999/xlink"/>
+            </Get>
+          </HTTP>
+        </DCPType>
+      </GetFeatureInfo>
+    </Request>
+    <Exception>
+      <Format>application/vnd.ogc.gml</Format>
+    </Exception>
+    <VendorSpecificCapabilities/>
+    <UserDefinedSymbolization RemoteWFS="0" SupportSLD="1" UserLayer="0" UserStyle="1"/>
+    <Layer>
+      <Title>Queensland - State Coverages</Title>
+      <KeywordList>
+        <Keyword> society </Keyword>
+        <Keyword> structure </Keyword>
+        <Keyword> utilitiesCommunication </Keyword>
+        <Keyword>urn:asdi:marine:data:currency:current</Keyword>
+        <Keyword>urn:au:gov:gea:.....(URN of the profile the service conforms to)</Keyword>
+      </KeywordList>
+      <SRS>EPSG:4326</SRS>
+      <!-- 4326=WGS84, geodetic-->
+      <LatLonBoundingBox maxx="154" maxy="-10" minx="110" miny="-44"/>
+      <Layer cascaded="0" fixedHeight="0" fixedWidth="0" noSubsets="0" opaque="1" queryable="0">
+        <Name>QLD_CADASTRE_P_100K</Name>
+        <Title>Cadastre for the State of Queensland</Title>
+        <KeywordList>
+          <Keyword>structure</Keyword>
+          <Keyword>urn:asdi:marine:data:currency:historical</Keyword>
+        </KeywordList>
+        <SRS>EPSG:20855</SRS>
+        <LatLonBoundingBox maxx="154" maxy="-10" minx="110" miny="-44"/>
+        <MetadataURL type="TC211">
+          <Format>text/xml</Format>
+          <OnlineResource xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="http://mymetadatarecord/cadastre.xml"/>
+        </MetadataURL>
+      </Layer>
+      <Layer cascaded="0" fixedHeight="0" fixedWidth="0" noSubsets="0" opaque="1" queryable="0">
+        <Name>QLD_VEG_P_100K</Name>
+        <Title>Vegetation Mapping for the State of Queensland</Title>
+        <KeywordList>
+          <keyword>biota</keyword>
+          <Keyword>urn:asdi:marine:data:currency:predicted</Keyword>
+        </KeywordList>
+        <SRS>EPSG:20856</SRS>
+        <LatLonBoundingBox maxx="154" maxy="-10" minx="110" miny="-44"/>
+        <MetadataURL type="TC211">
+          <Format>text/xml</Format>
+          <OnlineResource xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="http://mymetadatarecord/vegetation.xml"/>
+        </MetadataURL>
+      </Layer>
+      <Layer cascaded="0" fixedHeight="0" fixedWidth="0" noSubsets="0" opaque="1" queryable="0">
+        <Name>QLD_SPOT_IMAGERY_5mPAN</Name>
+        <Title>SPOT 5 Panchromatic</Title>
+        <KeywordList>
+          
+          <Keyword>urn:asdi:marine:data:currency:historical</Keyword>
+        </KeywordList>
+        <LatLonBoundingBox maxx="154" maxy="-10" minx="110" miny="-44"/>
+        <MetadataURL type="TC211">
+          <Format>text/xml</Format>
+          <OnlineResource xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="http://mymetadatarecord/imagery.xml"/>
+        </MetadataURL>
+        <ScaleHint max="" min="3000"/>
+      </Layer>
+    </Layer>
+  </Capability>
+</WMT_MS_Capabilities>
