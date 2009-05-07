@@ -1,5 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform" xmlns:gsml="urn:cgi:xmlns:CGI:GeoSciML:2.0" xmlns:gml="http://www.opengis.net/gml" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#" xmlns:skos="http://www.w3.org/2004/02/skos/core#" xmlns:owl="http://www.w3.org/2002/07/owl#" xmlns:gsmlCC="http://geosciml.org/release/3.0_alpha/rdf/gsmlCC#" version="2.0">
+<xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform" xmlns:gsml="urn:cgi:xmlns:CGI:GeoSciML:2.0" xmlns:gml="http://www.opengis.net/gml" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#" xmlns:skos="http://www.w3.org/2004/02/skos/core#" xmlns:owl="http://www.w3.org/2002/07/owl#" version="2.0">
+<!-- 2009-05-06 - SJDC
+	replace gsmlCC:prototype with rdfs:isDefinedBy 
+	delete xmlns:gsmlCC declaration
+-->
 	<xsl:output indent="yes"/>
 	<xsl:strip-space elements="*"/>
 	<xsl:template match="gsml:GeologicVocabulary">
@@ -58,7 +62,7 @@
 		<skos:inScheme rdf:resource="{@xlink:href}"/>
 	</xsl:template>
 	<xsl:template match="gsml:prototype">
-		<gsmlCC:prototype rdf:resource="{@xlink:href}"/>
+		<rdfs:isDefinedBy rdf:resource="{@xlink:href}"/>
 	</xsl:template>
 	<xsl:template match="gsml:linkToTarget/gsml:VocabRelation">
 		<xsl:choose>
