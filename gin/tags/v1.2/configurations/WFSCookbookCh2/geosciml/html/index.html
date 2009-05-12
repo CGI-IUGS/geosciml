@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+                      "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+    <head>
+        <title>BGS OneGeology Level 2 WFS Services</title>
+    </head>
+    <body>
+        <h1>BGS OneGeology Level 2 WFS Services</h1>
+
+        <h2>Notes on configuration of services</h2>
+        
+        <p>The <cite>OneGeology Cookbook 1 - How to Serve a OneGeology Level 1 Conformant WMS Using MapServer</cite>
+        leaves people with a working WMS service that also happens by default to provide a simple WFS as well because of the
+        default way MapServer works. This isn't discussed in Cookbook 1 but is being taken advantage of here, with the addition
+        of a GIN Mediator middleware application to turn the simple WFS into valid GeoSciML. The GeoSciML is very basic as
+        there are only a small number of data fields in the underlying simple WFS. One chapter of the proposed OneGeology/GeoSciML
+        Cookbook 3 on serving GeoSciML with a WFS will give (as far as possible) step-by-step instructions for organisations that
+        have set up a WMS following using the Cookbook 1 template application to be able to move towards a basic Level 2 WFS
+        service by using a pre-packaged Cocoon web application with GIN mediator additions and BGS example configuration files
+        for copying and editing.</p>
+        
+        <p>The mapping to GeoSciML depends on what data fields are available from the underlying WFS so there is going to have
+        to be some configuration by each organization that requires a bit of an understanding of GeoSciML to be sensible and will
+        be more difficult than the Level 1 WMS service. We can give the BGS examples as illustrations but it may not be so easy as just
+        to do a few simple find and replace operations to customise them for different organisations. For the BGS examples we
+        actually altered the underlying shapefiles to have a column suitable for using in gml:id attributes as these are mandatory
+        and the existing data fields had characters that would be illegal in gml:id attributes. Converting these illegal characters
+        in the handler stylesheet could be done but is error-prone and wouldn't help with queries on the id attributes either. Other
+        organisations will have to examine their own data to see if they already have suitable fields or not. We give a unique id
+        for each MappedFeature/specification/GeologicUnit even if their real properties are all the same so they appear as distinct
+        GeologicUnits for each MappedFeature. We are therefore avoiding the issue of making repeated references to the
+        same GeologicUnit into xlink:href 's.</p>
+        
+        <h2>Example Queries to Services</h2>
+        
+        <h3>Bedrock Lithostratigraphy</h3>
+        
+        <p>In line with the WMS GetFeatureInfo return for the Lithostrat layer we use three fields (BGS Stratigraphic Lexicon field,
+        Age in ICS terms and BGS Rock Classification field) to populate the GeoSciML. You can see these fields in the underlying
+        WFS service query below. For the GeoSciML the Lexicon code has been mapped to the MappedFeature/specification/GeologicUnit/name and description.
+        The age has been put in the preferredAge part and the rock classification into the composition.</p>
+        <p><a href="/cgi-bin/BGS_Bedrock_and_Superficial_Geology/wms?outputformat=GML3&amp;service=WFS&amp;version=1.0.0&amp;request=GetFeature&amp;maxfeatures=20&amp;typename=GBR_BGS_625k_BLS&amp;">Underlying MapServer WFS</a></p>
+        <p></p>
+        <p><a href="/cocoon/geosciml/wfs/oneg_gbr_bls?service=WFS&amp;version=1.0.0&amp;request=GetFeature&amp;maxfeatures=20&amp;typename=gsml:MappedFeature&amp;">Mediated OneGeology Level 2 WFS</a></p>
+        
+        <h3>Bedrock Lithology</h3>
+
+        <p>The underlying WFS has only one field (apart from the numerical id) which has just been mapped to the name and description
+        of the GeologicUnit.</p>
+        <p><a href="/cgi-bin/BGS_Bedrock_and_Superficial_Geology/wms?outputformat=GML3&amp;service=WFS&amp;version=1.0.0&amp;request=GetFeature&amp;maxfeatures=20&amp;typename=GBR_BGS_625k_BLT&amp;">Underlying MapServer WFS</a></p>
+        <p></p>
+        <p><a href="/cocoon/geosciml/wfs/oneg_gbr_blt?service=WFS&amp;version=1.0.0&amp;request=GetFeature&amp;maxfeatures=20&amp;typename=gsml:MappedFeature&amp;">Mediated OneGeology Level 2 WFS</a></p>
+
+        <h3>Bedrock Age</h3>
+
+        <p>The underlying WFS has only one field (apart from the numerical id) which has just been mapped to the name and description
+            of the GeologicUnit</p>
+        <p><a href="/cgi-bin/BGS_Bedrock_and_Superficial_Geology/wms?outputformat=GML3&amp;service=WFS&amp;version=1.0.0&amp;request=GetFeature&amp;maxfeatures=20&amp;typename=GBR_BGS_625k_BA&amp;">Underlying MapServer WFS</a></p>
+        <p></p>
+        <p><a href="/cocoon/geosciml/wfs/oneg_gbr_ba?service=WFS&amp;version=1.0.0&amp;request=GetFeature&amp;maxfeatures=20&amp;typename=gsml:MappedFeature&amp;">Mediated OneGeology Level 2 WFS</a></p>
+
+        <h3>Superficial Lithostratigraphy</h3>
+        
+        <p>The underlying WFS has only one field (apart from the numerical id) which has just been mapped to the name and description
+            of the GeologicUnit</p>
+        <p><a href="/cgi-bin/BGS_Bedrock_and_Superficial_Geology/wms?outputformat=GML3&amp;service=WFS&amp;version=1.0.0&amp;request=GetFeature&amp;maxfeatures=20&amp;typename=GBR_BGS_625k_SLS&amp;">Underlying MapServer WFS</a></p>
+        <p></p>
+        <p><a href="/cocoon/geosciml/wfs/oneg_gbr_sls?service=WFS&amp;version=1.0.0&amp;request=GetFeature&amp;maxfeatures=20&amp;typename=gsml:MappedFeature&amp;">Mediated OneGeology Level 2 WFS</a></p>
+        
+        <h3>Superficial Litholology</h3>
+
+        <p>The underlying WFS has only one field (apart from the numerical id) which has just been mapped to the name and description
+            of the GeologicUnit</p>
+        <p><a href="/cgi-bin/BGS_Bedrock_and_Superficial_Geology/wms?outputformat=GML3&amp;service=WFS&amp;version=1.0.0&amp;request=GetFeature&amp;maxfeatures=20&amp;typename=GBR_BGS_625k_SLT&amp;">Underlying MapServer WFS</a></p>
+        <p></p>
+        <p><a href="/cocoon/geosciml/wfs/oneg_gbr_slt?service=WFS&amp;version=1.0.0&amp;request=GetFeature&amp;maxfeatures=20&amp;typename=gsml:MappedFeature&amp;">Mediated OneGeology Level 2 WFS</a></p>
+
+        <h2>Template queries</h2>
+
+        <p>These do not address any real services but are for copying and editing to query individual services as they are set up.</p>
+
+        <p>GetCapabilities <a href="{service_url}?service=WFS&amp;request=GetCapabilities&amp;">{service_url}?service=WFS&amp;request=GetCapabilities&amp;</a></p>
+        <p>Note loose definition of namespace prefixes in request with feature type name.</p>
+        <p>DescribeFeatureType  <a href="{service_url}?service=WFS&amp;version=1.0.0&amp;request=DescribeFeatureType&amp;typename={Feature_Name}&amp;">{service_url}?service=WFS&amp;version=1.0.0&amp;request=DescribeFeatureType&amp;typename={Feature_Name}&amp;</a></p>
+
+    </body>
+</html>

@@ -1,0 +1,811 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<sld:StyledLayerDescriptor xmlns:gml="http://www.opengis.net/gml" xmlns:gsml="http://www.cgi-iugs.org/xml/GeoSciML/1" xmlns:ogc="http://www.opengis.net/ogc" xmlns:sld="http://www.opengis.net/sld" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.0.0">
+	<sld:UserLayer>
+		<sld:Name>GeologyByType</sld:Name>
+		<sld:LayerFeatureConstraints>
+			<sld:FeatureTypeContraint>
+				<sld:FeatureTypeName>gwml:WaterWell</sld:FeatureTypeName>
+			</sld:FeatureTypeContraint>
+		</sld:LayerFeatureConstraints>
+		<sld:UserStyle>
+			<sld:Name>ColorByLithology</sld:Name>
+			<sld:Title>Color unit by Lithology</sld:Title>
+			<sld:Abstract>Color that should be used to render lithological logs, taken from moee water well database</sld:Abstract>
+			<sld:IsDefault>1</sld:IsDefault>
+			<sld:FeatureTypeStyle>
+				<sld:Rule>
+					<sld:Name>1</sld:Name>
+					<sld:Title>bedrock</sld:Title>
+					<ogc:Filter>
+						<ogc:PropertyIsEqualTo>
+							<ogc:PropertyName>sa:sampledFeature/om:Observation/om:results//cv:value/@xlink:href</ogc:PropertyName>
+							<ogc:Literal>urn:x-moee:def:phenomenon:lithology:1</ogc:Literal>
+						</ogc:PropertyIsEqualTo>
+					</ogc:Filter>
+					<sld:PolygonSymboliser>
+						<sld:Geometry>
+							<ogc:PropertyName>sa:sampledFeature/om:Observation/om:results//cv:spatialElement</ogc:PropertyName>
+						</sld:Geometry>
+						<sld:Fill>
+							<sld:CssParameter name="fill">#FF0000</sld:CssParameter>
+						</sld:Fill>
+					</sld:PolygonSymboliser>
+				</sld:Rule>
+				<sld:Rule>
+					<sld:Name>10</sld:Name>
+					<sld:Title>fill (incl topsoil, waste)</sld:Title>
+					<ogc:Filter>
+						<ogc:PropertyIsEqualTo>
+							<ogc:PropertyName>sa:sampledFeature/om:Observation/om:results//cv:value/@xlink:href</ogc:PropertyName>
+							<ogc:Literal>urn:x-moee:def:phenomenon:lithology:10</ogc:Literal>
+						</ogc:PropertyIsEqualTo>
+					</ogc:Filter>
+					<sld:PolygonSymboliser>
+						<sld:Geometry>
+							<ogc:PropertyName>sa:sampledFeature/om:Observation/om:results//cv:spatialElement</ogc:PropertyName>
+						</sld:Geometry>
+						<sld:Fill>
+							<sld:CssParameter name="fill">#FFE8D0</sld:CssParameter>
+						</sld:Fill>
+					</sld:PolygonSymboliser>
+				</sld:Rule>
+				<sld:Rule>
+					<sld:Name>11</sld:Name>
+					<sld:Title>covered, missing, previously bored</sld:Title>
+					<ogc:Filter>
+						<ogc:PropertyIsEqualTo>
+							<ogc:PropertyName>sa:sampledFeature/om:Observation/om:results//cv:value/@xlink:href</ogc:PropertyName>
+							<ogc:Literal>urn:x-moee:def:phenomenon:lithology:11</ogc:Literal>
+						</ogc:PropertyIsEqualTo>
+					</ogc:Filter>
+					<sld:PolygonSymboliser>
+						<sld:Geometry>
+							<ogc:PropertyName>sa:sampledFeature/om:Observation/om:results//cv:spatialElement</ogc:PropertyName>
+						</sld:Geometry>
+						<sld:Fill>
+							<sld:CssParameter name="fill">#D0D0FF</sld:CssParameter>
+						</sld:Fill>
+					</sld:PolygonSymboliser>
+				</sld:Rule>
+				<sld:Rule>
+					<sld:Name>1-1</sld:Name>
+					<sld:Title>limestone</sld:Title>
+					<ogc:Filter>
+						<ogc:PropertyIsEqualTo>
+							<ogc:PropertyName>sa:sampledFeature/om:Observation/om:results//cv:value/@xlink:href</ogc:PropertyName>
+							<ogc:Literal>urn:x-moee:def:phenomenon:lithology:1-1</ogc:Literal>
+						</ogc:PropertyIsEqualTo>
+					</ogc:Filter>
+					<sld:PolygonSymboliser>
+						<sld:Geometry>
+							<ogc:PropertyName>sa:sampledFeature/om:Observation/om:results//cv:spatialElement</ogc:PropertyName>
+						</sld:Geometry>
+						<sld:Fill>
+							<sld:CssParameter name="fill">#FF0000</sld:CssParameter>
+						</sld:Fill>
+					</sld:PolygonSymboliser>
+				</sld:Rule>
+				<sld:Rule>
+					<sld:Name>1-2</sld:Name>
+					<sld:Title>shale</sld:Title>
+					<ogc:Filter>
+						<ogc:PropertyIsEqualTo>
+							<ogc:PropertyName>sa:sampledFeature/om:Observation/om:results//cv:value/@xlink:href</ogc:PropertyName>
+							<ogc:Literal>urn:x-moee:def:phenomenon:lithology:1-2</ogc:Literal>
+						</ogc:PropertyIsEqualTo>
+					</ogc:Filter>
+					<sld:PolygonSymboliser>
+						<sld:Geometry>
+							<ogc:PropertyName>sa:sampledFeature/om:Observation/om:results//cv:spatialElement</ogc:PropertyName>
+						</sld:Geometry>
+						<sld:Fill>
+							<sld:CssParameter name="fill">#FF0000</sld:CssParameter>
+						</sld:Fill>
+					</sld:PolygonSymboliser>
+				</sld:Rule>
+				<sld:Rule>
+					<sld:Name>1-3</sld:Name>
+					<sld:Title>granite</sld:Title>
+					<ogc:Filter>
+						<ogc:PropertyIsEqualTo>
+							<ogc:PropertyName>sa:sampledFeature/om:Observation/om:results//cv:value/@xlink:href</ogc:PropertyName>
+							<ogc:Literal>urn:x-moee:def:phenomenon:lithology:1-3</ogc:Literal>
+						</ogc:PropertyIsEqualTo>
+					</ogc:Filter>
+					<sld:PolygonSymboliser>
+						<sld:Geometry>
+							<ogc:PropertyName>sa:sampledFeature/om:Observation/om:results//cv:spatialElement</ogc:PropertyName>
+						</sld:Geometry>
+						<sld:Fill>
+							<sld:CssParameter name="fill">#FF0000</sld:CssParameter>
+						</sld:Fill>
+					</sld:PolygonSymboliser>
+				</sld:Rule>
+				<sld:Rule>
+					<sld:Name>1-4</sld:Name>
+					<sld:Title>dolomite</sld:Title>
+					<ogc:Filter>
+						<ogc:PropertyIsEqualTo>
+							<ogc:PropertyName>sa:sampledFeature/om:Observation/om:results//cv:value/@xlink:href</ogc:PropertyName>
+							<ogc:Literal>urn:x-moee:def:phenomenon:lithology:1-4</ogc:Literal>
+						</ogc:PropertyIsEqualTo>
+					</ogc:Filter>
+					<sld:PolygonSymboliser>
+						<sld:Geometry>
+							<ogc:PropertyName>sa:sampledFeature/om:Observation/om:results//cv:spatialElement</ogc:PropertyName>
+						</sld:Geometry>
+						<sld:Fill>
+							<sld:CssParameter name="fill">#FF0000</sld:CssParameter>
+						</sld:Fill>
+					</sld:PolygonSymboliser>
+				</sld:Rule>
+				<sld:Rule>
+					<sld:Name>1-5</sld:Name>
+					<sld:Title>potential bedrock</sld:Title>
+					<ogc:Filter>
+						<ogc:PropertyIsEqualTo>
+							<ogc:PropertyName>sa:sampledFeature/om:Observation/om:results//cv:value/@xlink:href</ogc:PropertyName>
+							<ogc:Literal>urn:x-moee:def:phenomenon:lithology:1-5</ogc:Literal>
+						</ogc:PropertyIsEqualTo>
+					</ogc:Filter>
+					<sld:PolygonSymboliser>
+						<sld:Geometry>
+							<ogc:PropertyName>sa:sampledFeature/om:Observation/om:results//cv:spatialElement</ogc:PropertyName>
+						</sld:Geometry>
+						<sld:Fill>
+							<sld:CssParameter name="fill">#FF0000</sld:CssParameter>
+						</sld:Fill>
+					</sld:PolygonSymboliser>
+				</sld:Rule>
+				<sld:Rule>
+					<sld:Name>1-6</sld:Name>
+					<sld:Title>sandstone</sld:Title>
+					<ogc:Filter>
+						<ogc:PropertyIsEqualTo>
+							<ogc:PropertyName>sa:sampledFeature/om:Observation/om:results//cv:value/@xlink:href</ogc:PropertyName>
+							<ogc:Literal>urn:x-moee:def:phenomenon:lithology:1-6</ogc:Literal>
+						</ogc:PropertyIsEqualTo>
+					</ogc:Filter>
+					<sld:PolygonSymboliser>
+						<sld:Geometry>
+							<ogc:PropertyName>sa:sampledFeature/om:Observation/om:results//cv:spatialElement</ogc:PropertyName>
+						</sld:Geometry>
+						<sld:Fill>
+							<sld:CssParameter name="fill">#FF0000</sld:CssParameter>
+						</sld:Fill>
+					</sld:PolygonSymboliser>
+				</sld:Rule>
+				<sld:Rule>
+					<sld:Name>1-7</sld:Name>
+					<sld:Title>interbedded limestone/shale</sld:Title>
+					<ogc:Filter>
+						<ogc:PropertyIsEqualTo>
+							<ogc:PropertyName>sa:sampledFeature/om:Observation/om:results//cv:value/@xlink:href</ogc:PropertyName>
+							<ogc:Literal>urn:x-moee:def:phenomenon:lithology:1-7</ogc:Literal>
+						</ogc:PropertyIsEqualTo>
+					</ogc:Filter>
+					<sld:PolygonSymboliser>
+						<sld:Geometry>
+							<ogc:PropertyName>sa:sampledFeature/om:Observation/om:results//cv:spatialElement</ogc:PropertyName>
+						</sld:Geometry>
+						<sld:Fill>
+							<sld:CssParameter name="fill">#FF0000</sld:CssParameter>
+						</sld:Fill>
+					</sld:PolygonSymboliser>
+				</sld:Rule>
+				<sld:Rule>
+					<sld:Name>2</sld:Name>
+					<sld:Title>diamicton: si/sa to sa matrix</sld:Title>
+					<ogc:Filter>
+						<ogc:PropertyIsEqualTo>
+							<ogc:PropertyName>sa:sampledFeature/om:Observation/om:results//cv:value/@xlink:href</ogc:PropertyName>
+							<ogc:Literal>urn:x-moee:def:phenomenon:lithology:2</ogc:Literal>
+						</ogc:PropertyIsEqualTo>
+					</ogc:Filter>
+					<sld:PolygonSymboliser>
+						<sld:Geometry>
+							<ogc:PropertyName>sa:sampledFeature/om:Observation/om:results//cv:spatialElement</ogc:PropertyName>
+						</sld:Geometry>
+						<sld:Fill>
+							<sld:CssParameter name="fill">#C0FF60</sld:CssParameter>
+						</sld:Fill>
+					</sld:PolygonSymboliser>
+				</sld:Rule>
+				<sld:Rule>
+					<sld:Name>2-1</sld:Name>
+					<sld:Title>diamicton: si/sa to sa, stoney</sld:Title>
+					<ogc:Filter>
+						<ogc:PropertyIsEqualTo>
+							<ogc:PropertyName>sa:sampledFeature/om:Observation/om:results//cv:value/@xlink:href</ogc:PropertyName>
+							<ogc:Literal>urn:x-moee:def:phenomenon:lithology:2-1</ogc:Literal>
+						</ogc:PropertyIsEqualTo>
+					</ogc:Filter>
+					<sld:PolygonSymboliser>
+						<sld:Geometry>
+							<ogc:PropertyName>sa:sampledFeature/om:Observation/om:results//cv:spatialElement</ogc:PropertyName>
+						</sld:Geometry>
+						<sld:Fill>
+							<sld:CssParameter name="fill">#C0FF60</sld:CssParameter>
+						</sld:Fill>
+					</sld:PolygonSymboliser>
+				</sld:Rule>
+				<sld:Rule>
+					<sld:Name>2-2</sld:Name>
+					<sld:Title>diamicton: si/sa to sa with gr/sa/si/cl interbeds</sld:Title>
+					<ogc:Filter>
+						<ogc:PropertyIsEqualTo>
+							<ogc:PropertyName>sa:sampledFeature/om:Observation/om:results//cv:value/@xlink:href</ogc:PropertyName>
+							<ogc:Literal>urn:x-moee:def:phenomenon:lithology:2-2</ogc:Literal>
+						</ogc:PropertyIsEqualTo>
+					</ogc:Filter>
+					<sld:PolygonSymboliser>
+						<sld:Geometry>
+							<ogc:PropertyName>sa:sampledFeature/om:Observation/om:results//cv:spatialElement</ogc:PropertyName>
+						</sld:Geometry>
+						<sld:Fill>
+							<sld:CssParameter name="fill">#C0FF60</sld:CssParameter>
+						</sld:Fill>
+					</sld:PolygonSymboliser>
+				</sld:Rule>
+				<sld:Rule>
+					<sld:Name>2-9</sld:Name>
+					<sld:Title>diamicton: si/sa to sa with muck, peat, wood frags.</sld:Title>
+					<ogc:Filter>
+						<ogc:PropertyIsEqualTo>
+							<ogc:PropertyName>sa:sampledFeature/om:Observation/om:results//cv:value/@xlink:href</ogc:PropertyName>
+							<ogc:Literal>urn:x-moee:def:phenomenon:lithology:2-9</ogc:Literal>
+						</ogc:PropertyIsEqualTo>
+					</ogc:Filter>
+					<sld:PolygonSymboliser>
+						<sld:Geometry>
+							<ogc:PropertyName>sa:sampledFeature/om:Observation/om:results//cv:spatialElement</ogc:PropertyName>
+						</sld:Geometry>
+						<sld:Fill>
+							<sld:CssParameter name="fill">#C0FF60</sld:CssParameter>
+						</sld:Fill>
+					</sld:PolygonSymboliser>
+				</sld:Rule>
+				<sld:Rule>
+					<sld:Name>3</sld:Name>
+					<sld:Title>diamicton: si to sa/si matrix</sld:Title>
+					<ogc:Filter>
+						<ogc:PropertyIsEqualTo>
+							<ogc:PropertyName>sa:sampledFeature/om:Observation/om:results//cv:value/@xlink:href</ogc:PropertyName>
+							<ogc:Literal>urn:x-moee:def:phenomenon:lithology:3</ogc:Literal>
+						</ogc:PropertyIsEqualTo>
+					</ogc:Filter>
+					<sld:PolygonSymboliser>
+						<sld:Geometry>
+							<ogc:PropertyName>sa:sampledFeature/om:Observation/om:results//cv:spatialElement</ogc:PropertyName>
+						</sld:Geometry>
+						<sld:Fill>
+							<sld:CssParameter name="fill">#50FF50</sld:CssParameter>
+						</sld:Fill>
+					</sld:PolygonSymboliser>
+				</sld:Rule>
+				<sld:Rule>
+					<sld:Name>3-1</sld:Name>
+					<sld:Title>diamicton: si to sa/si, stoney</sld:Title>
+					<ogc:Filter>
+						<ogc:PropertyIsEqualTo>
+							<ogc:PropertyName>sa:sampledFeature/om:Observation/om:results//cv:value/@xlink:href</ogc:PropertyName>
+							<ogc:Literal>urn:x-moee:def:phenomenon:lithology:3-1</ogc:Literal>
+						</ogc:PropertyIsEqualTo>
+					</ogc:Filter>
+					<sld:PolygonSymboliser>
+						<sld:Geometry>
+							<ogc:PropertyName>sa:sampledFeature/om:Observation/om:results//cv:spatialElement</ogc:PropertyName>
+						</sld:Geometry>
+						<sld:Fill>
+							<sld:CssParameter name="fill">#50FF50</sld:CssParameter>
+						</sld:Fill>
+					</sld:PolygonSymboliser>
+				</sld:Rule>
+				<sld:Rule>
+					<sld:Name>3-2</sld:Name>
+					<sld:Title>diamicton: si to sa/si with gr/sa/si/cl interbeds</sld:Title>
+					<ogc:Filter>
+						<ogc:PropertyIsEqualTo>
+							<ogc:PropertyName>sa:sampledFeature/om:Observation/om:results//cv:value/@xlink:href</ogc:PropertyName>
+							<ogc:Literal>urn:x-moee:def:phenomenon:lithology:3-2</ogc:Literal>
+						</ogc:PropertyIsEqualTo>
+					</ogc:Filter>
+					<sld:PolygonSymboliser>
+						<sld:Geometry>
+							<ogc:PropertyName>sa:sampledFeature/om:Observation/om:results//cv:spatialElement</ogc:PropertyName>
+						</sld:Geometry>
+						<sld:Fill>
+							<sld:CssParameter name="fill">#50FF50</sld:CssParameter>
+						</sld:Fill>
+					</sld:PolygonSymboliser>
+				</sld:Rule>
+				<sld:Rule>
+					<sld:Name>3-3</sld:Name>
+					<sld:Title>diamicton: texture unknown</sld:Title>
+					<ogc:Filter>
+						<ogc:PropertyIsEqualTo>
+							<ogc:PropertyName>sa:sampledFeature/om:Observation/om:results//cv:value/@xlink:href</ogc:PropertyName>
+							<ogc:Literal>urn:x-moee:def:phenomenon:lithology:3-3</ogc:Literal>
+						</ogc:PropertyIsEqualTo>
+					</ogc:Filter>
+					<sld:PolygonSymboliser>
+						<sld:Geometry>
+							<ogc:PropertyName>sa:sampledFeature/om:Observation/om:results//cv:spatialElement</ogc:PropertyName>
+						</sld:Geometry>
+						<sld:Fill>
+							<sld:CssParameter name="fill">#50FF50</sld:CssParameter>
+						</sld:Fill>
+					</sld:PolygonSymboliser>
+				</sld:Rule>
+				<sld:Rule>
+					<sld:Name>3-8</sld:Name>
+					<sld:Title>diamicton: si to sa/si, topsoil</sld:Title>
+					<ogc:Filter>
+						<ogc:PropertyIsEqualTo>
+							<ogc:PropertyName>sa:sampledFeature/om:Observation/om:results//cv:value/@xlink:href</ogc:PropertyName>
+							<ogc:Literal>urn:x-moee:def:phenomenon:lithology:3-8</ogc:Literal>
+						</ogc:PropertyIsEqualTo>
+					</ogc:Filter>
+					<sld:PolygonSymboliser>
+						<sld:Geometry>
+							<ogc:PropertyName>sa:sampledFeature/om:Observation/om:results//cv:spatialElement</ogc:PropertyName>
+						</sld:Geometry>
+						<sld:Fill>
+							<sld:CssParameter name="fill">#50FF50</sld:CssParameter>
+						</sld:Fill>
+					</sld:PolygonSymboliser>
+				</sld:Rule>
+				<sld:Rule>
+					<sld:Name>3-9</sld:Name>
+					<sld:Title>diamicton: si to sa/si with muck, peat, wood frags.</sld:Title>
+					<ogc:Filter>
+						<ogc:PropertyIsEqualTo>
+							<ogc:PropertyName>sa:sampledFeature/om:Observation/om:results//cv:value/@xlink:href</ogc:PropertyName>
+							<ogc:Literal>urn:x-moee:def:phenomenon:lithology:3-9</ogc:Literal>
+						</ogc:PropertyIsEqualTo>
+					</ogc:Filter>
+					<sld:PolygonSymboliser>
+						<sld:Geometry>
+							<ogc:PropertyName>sa:sampledFeature/om:Observation/om:results//cv:spatialElement</ogc:PropertyName>
+						</sld:Geometry>
+						<sld:Fill>
+							<sld:CssParameter name="fill">#50FF50</sld:CssParameter>
+						</sld:Fill>
+					</sld:PolygonSymboliser>
+				</sld:Rule>
+				<sld:Rule>
+					<sld:Name>4</sld:Name>
+					<sld:Title>diamicton: cl to cl/si matrix</sld:Title>
+					<ogc:Filter>
+						<ogc:PropertyIsEqualTo>
+							<ogc:PropertyName>sa:sampledFeature/om:Observation/om:results//cv:value/@xlink:href</ogc:PropertyName>
+							<ogc:Literal>urn:x-moee:def:phenomenon:lithology:4</ogc:Literal>
+						</ogc:PropertyIsEqualTo>
+					</ogc:Filter>
+					<sld:PolygonSymboliser>
+						<sld:Geometry>
+							<ogc:PropertyName>sa:sampledFeature/om:Observation/om:results//cv:spatialElement</ogc:PropertyName>
+						</sld:Geometry>
+						<sld:Fill>
+							<sld:CssParameter name="fill">#00D068</sld:CssParameter>
+						</sld:Fill>
+					</sld:PolygonSymboliser>
+				</sld:Rule>
+				<sld:Rule>
+					<sld:Name>4-1</sld:Name>
+					<sld:Title>diamicton: cl to cl/si, stoney</sld:Title>
+					<ogc:Filter>
+						<ogc:PropertyIsEqualTo>
+							<ogc:PropertyName>sa:sampledFeature/om:Observation/om:results//cv:value/@xlink:href</ogc:PropertyName>
+							<ogc:Literal>urn:x-moee:def:phenomenon:lithology:4-1</ogc:Literal>
+						</ogc:PropertyIsEqualTo>
+					</ogc:Filter>
+					<sld:PolygonSymboliser>
+						<sld:Geometry>
+							<ogc:PropertyName>sa:sampledFeature/om:Observation/om:results//cv:spatialElement</ogc:PropertyName>
+						</sld:Geometry>
+						<sld:Fill>
+							<sld:CssParameter name="fill">#00D068</sld:CssParameter>
+						</sld:Fill>
+					</sld:PolygonSymboliser>
+				</sld:Rule>
+				<sld:Rule>
+					<sld:Name>4-2</sld:Name>
+					<sld:Title>diamicton: cl to cl/si with gr/sa/si/cl interbeds</sld:Title>
+					<ogc:Filter>
+						<ogc:PropertyIsEqualTo>
+							<ogc:PropertyName>sa:sampledFeature/om:Observation/om:results//cv:value/@xlink:href</ogc:PropertyName>
+							<ogc:Literal>urn:x-moee:def:phenomenon:lithology:4-2</ogc:Literal>
+						</ogc:PropertyIsEqualTo>
+					</ogc:Filter>
+					<sld:PolygonSymboliser>
+						<sld:Geometry>
+							<ogc:PropertyName>sa:sampledFeature/om:Observation/om:results//cv:spatialElement</ogc:PropertyName>
+						</sld:Geometry>
+						<sld:Fill>
+							<sld:CssParameter name="fill">#00D068</sld:CssParameter>
+						</sld:Fill>
+					</sld:PolygonSymboliser>
+				</sld:Rule>
+				<sld:Rule>
+					<sld:Name>4-8</sld:Name>
+					<sld:Title>diamicton: cl to cl/si, topsoil</sld:Title>
+					<ogc:Filter>
+						<ogc:PropertyIsEqualTo>
+							<ogc:PropertyName>sa:sampledFeature/om:Observation/om:results//cv:value/@xlink:href</ogc:PropertyName>
+							<ogc:Literal>urn:x-moee:def:phenomenon:lithology:4-8</ogc:Literal>
+						</ogc:PropertyIsEqualTo>
+					</ogc:Filter>
+					<sld:PolygonSymboliser>
+						<sld:Geometry>
+							<ogc:PropertyName>sa:sampledFeature/om:Observation/om:results//cv:spatialElement</ogc:PropertyName>
+						</sld:Geometry>
+						<sld:Fill>
+							<sld:CssParameter name="fill">#00D068</sld:CssParameter>
+						</sld:Fill>
+					</sld:PolygonSymboliser>
+				</sld:Rule>
+				<sld:Rule>
+					<sld:Name>4-9</sld:Name>
+					<sld:Title>diamicton: cl to cl/si, with muck, peat, wood frags.</sld:Title>
+					<ogc:Filter>
+						<ogc:PropertyIsEqualTo>
+							<ogc:PropertyName>sa:sampledFeature/om:Observation/om:results//cv:value/@xlink:href</ogc:PropertyName>
+							<ogc:Literal>urn:x-moee:def:phenomenon:lithology:4-9</ogc:Literal>
+						</ogc:PropertyIsEqualTo>
+					</ogc:Filter>
+					<sld:PolygonSymboliser>
+						<sld:Geometry>
+							<ogc:PropertyName>sa:sampledFeature/om:Observation/om:results//cv:spatialElement</ogc:PropertyName>
+						</sld:Geometry>
+						<sld:Fill>
+							<sld:CssParameter name="fill">#00D068</sld:CssParameter>
+						</sld:Fill>
+					</sld:PolygonSymboliser>
+				</sld:Rule>
+				<sld:Rule>
+					<sld:Name>5</sld:Name>
+					<sld:Title>gravel</sld:Title>
+					<ogc:Filter>
+						<ogc:PropertyIsEqualTo>
+							<ogc:PropertyName>sa:sampledFeature/om:Observation/om:results//cv:value/@xlink:href</ogc:PropertyName>
+							<ogc:Literal>urn:x-moee:def:phenomenon:lithology:5</ogc:Literal>
+						</ogc:PropertyIsEqualTo>
+					</ogc:Filter>
+					<sld:PolygonSymboliser>
+						<sld:Geometry>
+							<ogc:PropertyName>sa:sampledFeature/om:Observation/om:results//cv:spatialElement</ogc:PropertyName>
+						</sld:Geometry>
+						<sld:Fill>
+							<sld:CssParameter name="fill">#FFD040</sld:CssParameter>
+						</sld:Fill>
+					</sld:PolygonSymboliser>
+				</sld:Rule>
+				<sld:Rule>
+					<sld:Name>5-1</sld:Name>
+					<sld:Title>gravel, gravelly sand, with rhythmic/graded bedding</sld:Title>
+					<ogc:Filter>
+						<ogc:PropertyIsEqualTo>
+							<ogc:PropertyName>sa:sampledFeature/om:Observation/om:results//cv:value/@xlink:href</ogc:PropertyName>
+							<ogc:Literal>urn:x-moee:def:phenomenon:lithology:5-1</ogc:Literal>
+						</ogc:PropertyIsEqualTo>
+					</ogc:Filter>
+					<sld:PolygonSymboliser>
+						<sld:Geometry>
+							<ogc:PropertyName>sa:sampledFeature/om:Observation/om:results//cv:spatialElement</ogc:PropertyName>
+						</sld:Geometry>
+						<sld:Fill>
+							<sld:CssParameter name="fill">#FFD040</sld:CssParameter>
+						</sld:Fill>
+					</sld:PolygonSymboliser>
+				</sld:Rule>
+				<sld:Rule>
+					<sld:Name>5-8</sld:Name>
+					<sld:Title>gravel, gravelly sand, topsoil</sld:Title>
+					<ogc:Filter>
+						<ogc:PropertyIsEqualTo>
+							<ogc:PropertyName>sa:sampledFeature/om:Observation/om:results//cv:value/@xlink:href</ogc:PropertyName>
+							<ogc:Literal>urn:x-moee:def:phenomenon:lithology:5-8</ogc:Literal>
+						</ogc:PropertyIsEqualTo>
+					</ogc:Filter>
+					<sld:PolygonSymboliser>
+						<sld:Geometry>
+							<ogc:PropertyName>sa:sampledFeature/om:Observation/om:results//cv:spatialElement</ogc:PropertyName>
+						</sld:Geometry>
+						<sld:Fill>
+							<sld:CssParameter name="fill">#FFD040</sld:CssParameter>
+						</sld:Fill>
+					</sld:PolygonSymboliser>
+				</sld:Rule>
+				<sld:Rule>
+					<sld:Name>5-9</sld:Name>
+					<sld:Title>gravel, gravelly sand, with muck, peat, wood frags.</sld:Title>
+					<ogc:Filter>
+						<ogc:PropertyIsEqualTo>
+							<ogc:PropertyName>sa:sampledFeature/om:Observation/om:results//cv:value/@xlink:href</ogc:PropertyName>
+							<ogc:Literal>urn:x-moee:def:phenomenon:lithology:5-9</ogc:Literal>
+						</ogc:PropertyIsEqualTo>
+					</ogc:Filter>
+					<sld:PolygonSymboliser>
+						<sld:Geometry>
+							<ogc:PropertyName>sa:sampledFeature/om:Observation/om:results//cv:spatialElement</ogc:PropertyName>
+						</sld:Geometry>
+						<sld:Fill>
+							<sld:CssParameter name="fill">#FFD040</sld:CssParameter>
+						</sld:Fill>
+					</sld:PolygonSymboliser>
+				</sld:Rule>
+				<sld:Rule>
+					<sld:Name>6</sld:Name>
+					<sld:Title>sand</sld:Title>
+					<ogc:Filter>
+						<ogc:PropertyIsEqualTo>
+							<ogc:PropertyName>sa:sampledFeature/om:Observation/om:results//cv:value/@xlink:href</ogc:PropertyName>
+							<ogc:Literal>urn:x-moee:def:phenomenon:lithology:6</ogc:Literal>
+						</ogc:PropertyIsEqualTo>
+					</ogc:Filter>
+					<sld:PolygonSymboliser>
+						<sld:Geometry>
+							<ogc:PropertyName>sa:sampledFeature/om:Observation/om:results//cv:spatialElement</ogc:PropertyName>
+						</sld:Geometry>
+						<sld:Fill>
+							<sld:CssParameter name="fill">#FFFF90</sld:CssParameter>
+						</sld:Fill>
+					</sld:PolygonSymboliser>
+				</sld:Rule>
+				<sld:Rule>
+					<sld:Name>6-1</sld:Name>
+					<sld:Title>sand, silty sand, with rhythmic/graded bedding</sld:Title>
+					<ogc:Filter>
+						<ogc:PropertyIsEqualTo>
+							<ogc:PropertyName>sa:sampledFeature/om:Observation/om:results//cv:value/@xlink:href</ogc:PropertyName>
+							<ogc:Literal>urn:x-moee:def:phenomenon:lithology:6-1</ogc:Literal>
+						</ogc:PropertyIsEqualTo>
+					</ogc:Filter>
+					<sld:PolygonSymboliser>
+						<sld:Geometry>
+							<ogc:PropertyName>sa:sampledFeature/om:Observation/om:results//cv:spatialElement</ogc:PropertyName>
+						</sld:Geometry>
+						<sld:Fill>
+							<sld:CssParameter name="fill">#FFFF90</sld:CssParameter>
+						</sld:Fill>
+					</sld:PolygonSymboliser>
+				</sld:Rule>
+				<sld:Rule>
+					<sld:Name>6-8</sld:Name>
+					<sld:Title>sand, silty sand, topsoil</sld:Title>
+					<ogc:Filter>
+						<ogc:PropertyIsEqualTo>
+							<ogc:PropertyName>sa:sampledFeature/om:Observation/om:results//cv:value/@xlink:href</ogc:PropertyName>
+							<ogc:Literal>urn:x-moee:def:phenomenon:lithology:6-8</ogc:Literal>
+						</ogc:PropertyIsEqualTo>
+					</ogc:Filter>
+					<sld:PolygonSymboliser>
+						<sld:Geometry>
+							<ogc:PropertyName>sa:sampledFeature/om:Observation/om:results//cv:spatialElement</ogc:PropertyName>
+						</sld:Geometry>
+						<sld:Fill>
+							<sld:CssParameter name="fill">#FFFF90</sld:CssParameter>
+						</sld:Fill>
+					</sld:PolygonSymboliser>
+				</sld:Rule>
+				<sld:Rule>
+					<sld:Name>6-9</sld:Name>
+					<sld:Title>sand, silty sand, with muck, peat, wood frags.</sld:Title>
+					<ogc:Filter>
+						<ogc:PropertyIsEqualTo>
+							<ogc:PropertyName>sa:sampledFeature/om:Observation/om:results//cv:value/@xlink:href</ogc:PropertyName>
+							<ogc:Literal>urn:x-moee:def:phenomenon:lithology:6-9</ogc:Literal>
+						</ogc:PropertyIsEqualTo>
+					</ogc:Filter>
+					<sld:PolygonSymboliser>
+						<sld:Geometry>
+							<ogc:PropertyName>sa:sampledFeature/om:Observation/om:results//cv:spatialElement</ogc:PropertyName>
+						</sld:Geometry>
+						<sld:Fill>
+							<sld:CssParameter name="fill">#FFFF90</sld:CssParameter>
+						</sld:Fill>
+					</sld:PolygonSymboliser>
+				</sld:Rule>
+				<sld:Rule>
+					<sld:Name>7</sld:Name>
+					<sld:Title>silt</sld:Title>
+					<ogc:Filter>
+						<ogc:PropertyIsEqualTo>
+							<ogc:PropertyName>sa:sampledFeature/om:Observation/om:results//cv:value/@xlink:href</ogc:PropertyName>
+							<ogc:Literal>urn:x-moee:def:phenomenon:lithology:7</ogc:Literal>
+						</ogc:PropertyIsEqualTo>
+					</ogc:Filter>
+					<sld:PolygonSymboliser>
+						<sld:Geometry>
+							<ogc:PropertyName>sa:sampledFeature/om:Observation/om:results//cv:spatialElement</ogc:PropertyName>
+						</sld:Geometry>
+						<sld:Fill>
+							<sld:CssParameter name="fill">#A0E0FF</sld:CssParameter>
+						</sld:Fill>
+					</sld:PolygonSymboliser>
+				</sld:Rule>
+				<sld:Rule>
+					<sld:Name>7-1</sld:Name>
+					<sld:Title>silt, sandy silt, clayey silt, with rhythmic/graded bedding</sld:Title>
+					<ogc:Filter>
+						<ogc:PropertyIsEqualTo>
+							<ogc:PropertyName>sa:sampledFeature/om:Observation/om:results//cv:value/@xlink:href</ogc:PropertyName>
+							<ogc:Literal>urn:x-moee:def:phenomenon:lithology:7-1</ogc:Literal>
+						</ogc:PropertyIsEqualTo>
+					</ogc:Filter>
+					<sld:PolygonSymboliser>
+						<sld:Geometry>
+							<ogc:PropertyName>sa:sampledFeature/om:Observation/om:results//cv:spatialElement</ogc:PropertyName>
+						</sld:Geometry>
+						<sld:Fill>
+							<sld:CssParameter name="fill">#A0E0FF</sld:CssParameter>
+						</sld:Fill>
+					</sld:PolygonSymboliser>
+				</sld:Rule>
+				<sld:Rule>
+					<sld:Name>7-8</sld:Name>
+					<sld:Title>silt, sandy silt, clayey silt, topsoil</sld:Title>
+					<ogc:Filter>
+						<ogc:PropertyIsEqualTo>
+							<ogc:PropertyName>sa:sampledFeature/om:Observation/om:results//cv:value/@xlink:href</ogc:PropertyName>
+							<ogc:Literal>urn:x-moee:def:phenomenon:lithology:7-8</ogc:Literal>
+						</ogc:PropertyIsEqualTo>
+					</ogc:Filter>
+					<sld:PolygonSymboliser>
+						<sld:Geometry>
+							<ogc:PropertyName>sa:sampledFeature/om:Observation/om:results//cv:spatialElement</ogc:PropertyName>
+						</sld:Geometry>
+						<sld:Fill>
+							<sld:CssParameter name="fill">#A0E0FF</sld:CssParameter>
+						</sld:Fill>
+					</sld:PolygonSymboliser>
+				</sld:Rule>
+				<sld:Rule>
+					<sld:Name>7-9</sld:Name>
+					<sld:Title>silt, sandy silt, clayey silt, with muck, peat, wood frags.</sld:Title>
+					<ogc:Filter>
+						<ogc:PropertyIsEqualTo>
+							<ogc:PropertyName>sa:sampledFeature/om:Observation/om:results//cv:value/@xlink:href</ogc:PropertyName>
+							<ogc:Literal>urn:x-moee:def:phenomenon:lithology:7-9</ogc:Literal>
+						</ogc:PropertyIsEqualTo>
+					</ogc:Filter>
+					<sld:PolygonSymboliser>
+						<sld:Geometry>
+							<ogc:PropertyName>sa:sampledFeature/om:Observation/om:results//cv:spatialElement</ogc:PropertyName>
+						</sld:Geometry>
+						<sld:Fill>
+							<sld:CssParameter name="fill">#A0E0FF</sld:CssParameter>
+						</sld:Fill>
+					</sld:PolygonSymboliser>
+				</sld:Rule>
+				<sld:Rule>
+					<sld:Name>8</sld:Name>
+					<sld:Title>clay</sld:Title>
+					<ogc:Filter>
+						<ogc:PropertyIsEqualTo>
+							<ogc:PropertyName>sa:sampledFeature/om:Observation/om:results//cv:value/@xlink:href</ogc:PropertyName>
+							<ogc:Literal>urn:x-moee:def:phenomenon:lithology:8</ogc:Literal>
+						</ogc:PropertyIsEqualTo>
+					</ogc:Filter>
+					<sld:PolygonSymboliser>
+						<sld:Geometry>
+							<ogc:PropertyName>sa:sampledFeature/om:Observation/om:results//cv:spatialElement</ogc:PropertyName>
+						</sld:Geometry>
+						<sld:Fill>
+							<sld:CssParameter name="fill">#40C0FF</sld:CssParameter>
+						</sld:Fill>
+					</sld:PolygonSymboliser>
+				</sld:Rule>
+				<sld:Rule>
+					<sld:Name>8-1</sld:Name>
+					<sld:Title>clay, silty clay, with rhythmic/graded bedding</sld:Title>
+					<ogc:Filter>
+						<ogc:PropertyIsEqualTo>
+							<ogc:PropertyName>sa:sampledFeature/om:Observation/om:results//cv:value/@xlink:href</ogc:PropertyName>
+							<ogc:Literal>urn:x-moee:def:phenomenon:lithology:8-1</ogc:Literal>
+						</ogc:PropertyIsEqualTo>
+					</ogc:Filter>
+					<sld:PolygonSymboliser>
+						<sld:Geometry>
+							<ogc:PropertyName>sa:sampledFeature/om:Observation/om:results//cv:spatialElement</ogc:PropertyName>
+						</sld:Geometry>
+						<sld:Fill>
+							<sld:CssParameter name="fill">#40C0FF</sld:CssParameter>
+						</sld:Fill>
+					</sld:PolygonSymboliser>
+				</sld:Rule>
+				<sld:Rule>
+					<sld:Name>8-8</sld:Name>
+					<sld:Title>clay, silty clay, topsoil</sld:Title>
+					<ogc:Filter>
+						<ogc:PropertyIsEqualTo>
+							<ogc:PropertyName>sa:sampledFeature/om:Observation/om:results//cv:value/@xlink:href</ogc:PropertyName>
+							<ogc:Literal>urn:x-moee:def:phenomenon:lithology:8-8</ogc:Literal>
+						</ogc:PropertyIsEqualTo>
+					</ogc:Filter>
+					<sld:PolygonSymboliser>
+						<sld:Geometry>
+							<ogc:PropertyName>sa:sampledFeature/om:Observation/om:results//cv:spatialElement</ogc:PropertyName>
+						</sld:Geometry>
+						<sld:Fill>
+							<sld:CssParameter name="fill">#40C0FF</sld:CssParameter>
+						</sld:Fill>
+					</sld:PolygonSymboliser>
+				</sld:Rule>
+				<sld:Rule>
+					<sld:Name>8-9</sld:Name>
+					<sld:Title>clay, silty clay, with muck, peat, wood frags.</sld:Title>
+					<ogc:Filter>
+						<ogc:PropertyIsEqualTo>
+							<ogc:PropertyName>sa:sampledFeature/om:Observation/om:results//cv:value/@xlink:href</ogc:PropertyName>
+							<ogc:Literal>urn:x-moee:def:phenomenon:lithology:8-9</ogc:Literal>
+						</ogc:PropertyIsEqualTo>
+					</ogc:Filter>
+					<sld:PolygonSymboliser>
+						<sld:Geometry>
+							<ogc:PropertyName>sa:sampledFeature/om:Observation/om:results//cv:spatialElement</ogc:PropertyName>
+						</sld:Geometry>
+						<sld:Fill>
+							<sld:CssParameter name="fill">#40C0FF</sld:CssParameter>
+						</sld:Fill>
+					</sld:PolygonSymboliser>
+				</sld:Rule>
+				<sld:Rule>
+					<sld:Name>9</sld:Name>
+					<sld:Title>organic</sld:Title>
+					<ogc:Filter>
+						<ogc:PropertyIsEqualTo>
+							<ogc:PropertyName>sa:sampledFeature/om:Observation/om:results//cv:value/@xlink:href</ogc:PropertyName>
+							<ogc:Literal>urn:x-moee:def:phenomenon:lithology:9</ogc:Literal>
+						</ogc:PropertyIsEqualTo>
+					</ogc:Filter>
+					<sld:PolygonSymboliser>
+						<sld:Geometry>
+							<ogc:PropertyName>sa:sampledFeature/om:Observation/om:results//cv:spatialElement</ogc:PropertyName>
+						</sld:Geometry>
+						<sld:Fill>
+							<sld:CssParameter name="fill">#E0E0E0</sld:CssParameter>
+						</sld:Fill>
+					</sld:PolygonSymboliser>
+				</sld:Rule>
+				<sld:Rule>
+					<sld:Name>9-8</sld:Name>
+					<sld:Title>organic, topsoil</sld:Title>
+					<ogc:Filter>
+						<ogc:PropertyIsEqualTo>
+							<ogc:PropertyName>sa:sampledFeature/om:Observation/om:results//cv:value/@xlink:href</ogc:PropertyName>
+							<ogc:Literal>urn:x-moee:def:phenomenon:lithology:9-8</ogc:Literal>
+						</ogc:PropertyIsEqualTo>
+					</ogc:Filter>
+					<sld:PolygonSymboliser>
+						<sld:Geometry>
+							<ogc:PropertyName>sa:sampledFeature/om:Observation/om:results//cv:spatialElement</ogc:PropertyName>
+						</sld:Geometry>
+						<sld:Fill>
+							<sld:CssParameter name="fill">#E0E0E0</sld:CssParameter>
+						</sld:Fill>
+					</sld:PolygonSymboliser>
+				</sld:Rule>
+				<sld:Rule>
+					<sld:Name>99</sld:Name>
+					<sld:Title>unknown</sld:Title>
+					<ogc:Filter>
+						<ogc:PropertyIsEqualTo>
+							<ogc:PropertyName>sa:sampledFeature/om:Observation/om:results//cv:value/@xlink:href</ogc:PropertyName>
+							<ogc:Literal>urn:x-moee:def:phenomenon:lithology:99</ogc:Literal>
+						</ogc:PropertyIsEqualTo>
+					</ogc:Filter>
+					<sld:PolygonSymboliser>
+						<sld:Geometry>
+							<ogc:PropertyName>sa:sampledFeature/om:Observation/om:results//cv:spatialElement</ogc:PropertyName>
+						</sld:Geometry>
+						<sld:Fill>
+							<sld:CssParameter name="fill">#FFFFFF</sld:CssParameter>
+						</sld:Fill>
+					</sld:PolygonSymboliser>
+				</sld:Rule>
+			</sld:FeatureTypeStyle>
+		</sld:UserStyle>
+	</sld:UserLayer>
+</sld:StyledLayerDescriptor>

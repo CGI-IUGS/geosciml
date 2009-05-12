@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<stx:transform xmlns:stx="http://stx.sourceforge.net/2002/ns" version="1.0" 
+xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+xmlns:proc="urn:x-lcnp:proc" 
+xmlns:sf="http://stx.sourceforge.net/2003/functions"
+xmlns:wfs="http://www.opengis.net/wfs"
+xmlns:gml="http://www.opengis.net/gml"
+xmlns:xlink="http://www.w3.org/1999/xlink" 
+pass-through="all" output-method="xml" strip-space="yes" exclude-result-prefixes=" #all">
+<stx:template match="/proc:job">
+<!-- this template just removes all the proc: that might remains on the document -->
+<stx:process-children/>
+</stx:template>
+<stx:template match="proc:query">
+<stx:process-children/>
+</stx:template>
+<stx:template match="proc:status"/>
+<stx:template match="proc:features">
+<stx:process-children/>
+</stx:template>
+<stx:template match="wfs:FeatureCollection">
+	<!-- this is the result of the a GetFeature, we must rebuild a FeatureCollection-->
+	<stx:copy attributes="*">
+	<!--<wfs:FeatureCollection>-->
+		<stx:comment>
+		WFS service processed by Groundwater Information Network (GIN) Mediator
+		Groundwater Mapping Program / Geological Survey of Canada - Québec / LCNP 
+		(c) 2008 Earth Sciences Secteur / Natural Resources Canada / Government of Canada</stx:comment>
+		<stx:process-children/>
+		</stx:copy>
+</stx:template>
+<stx:template match="gml:featureMember">
+	<stx:copy attributes="*">
+		<stx:process-children group="features"/>
+	</stx:copy>
+</stx:template>
+<stx:template match="gml:boundedBy"/>
+<stx:group name="features">
+<!-- I don't know what this bb is doing there !! -->
+<stx:template match="gml:featureMember/gml:boundedBy"/>
+<!-- full pass-through -->
+</stx:group>
+</stx:transform>

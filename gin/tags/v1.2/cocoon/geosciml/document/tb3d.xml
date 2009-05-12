@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wfs:GetFeature 
+ xmlns:wfs="http://www.opengis.net/wfs" 
+ xmlns:ogc="http://www.opengis.net/ogc" 
+ xmlns:sa="http://www.opengis.net/sampling/1.0"
+ xmlns:cv="http://www.opengis.net/cv/0.2.1"
+ xmlns:om="http://www.opengis.net/om/1.0"
+ xmlns:gsml="urn:cgi:xmlns:CGI:GeoSciML:2.0"
+ maxFeatures="5" service="WFS" 
+ version="1.1.0">
+	<wfs:Query typeName="gsml:Borehole">
+	<ogc:Filter>
+		<ogc:PropertyIsEqualTo>
+			<ogc:PropertyName>sa:relatedObservation/om:Observation/om:result/cv:CV_DiscreteCoverage/cv:element/cv:CV_GeometryValuePair/cv:value/@xlink:href</ogc:PropertyName>
+			<ogc:Literal>urn:cgi:classifier:CGI:SimpleLithology:2008:diamicton</ogc:Literal>
+		</ogc:PropertyIsEqualTo>
+	</ogc:Filter>
+	</wfs:Query>
+</wfs:GetFeature>
+

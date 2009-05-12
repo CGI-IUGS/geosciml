@@ -1,0 +1,212 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xsl:stylesheet version="1.0" 
+ xmlns:xsl="http://www.w3.org/1999/XSL/Transform" 
+ xmlns:cat="urn:x-ngwd:cat"
+ xmlns:xlink="http://www.w3.org/1999/xlink" 
+xmlns:gml="http://www.opengis.net/gml" 
+xmlns:wfs="http://www.opengis.net/wfs"
+xmlns:gsml="urn:cgi:xmlns:CGI:GeoSciML:2.0" 
+>
+	<xsl:output method="xml" version="1.0" encoding="UTF-8" indent="yes"/>
+	<!--
+	<xsl:template match="/">
+	<xsl:apply-templates/>
+	</xsl:template>
+	<xsl:template match="cat:Catalog">
+	<wfs:FeatureCollection gml:id="wfs.gsc.tb3.featureCollection">
+	<xsl:apply-templates/>
+	</wfs:FeatureCollection>
+	</xsl:template>
+	<xsl:template match="cat:catalogMember">
+	<gml:featureMember>
+	<xsl:apply-templates/>
+	</gml:featureMember>
+	</xsl:template>
+-->
+	<xsl:template match="cat:Geologicunit">
+	<xsl:choose>
+		<xsl:when test="cat:gu_type = 'LS'">
+		<gsml:LithostratigraphicUnit gml:id="{@id}">
+		<xsl:apply-templates select="." mode="content"/>
+		</gsml:LithostratigraphicUnit>
+		</xsl:when>
+		<xsl:when test="cat:gu_type = 'LD'">
+		<gsml:LithodemicUnit gml:id="{@id}">
+		<xsl:apply-templates select="." mode="content"/>
+		</gsml:LithodemicUnit>
+		</xsl:when>
+		<xsl:otherwise>
+			<gsml:GeologicUnit gml:id="{@id}">
+		<xsl:apply-templates select="." mode="content"/>
+		</gsml:GeologicUnit>
+		</xsl:otherwise>
+	</xsl:choose>
+	</xsl:template>
+	<xsl:template match="cat:Geologicunit" mode="content">
+	<gml:description><xsl:value-of select="cat:f_desc"/></gml:description>
+	<gml:name codeSpace="urn:ietf:rfc:2141"><xsl:value-of select="cat:guid"/></gml:name>
+	<gml:name><xsl:value-of select="cat:f_name"/></gml:name>
+			<gsml:observationMethod>
+				<gsml:CGI_TermValue>
+					<gsml:value codeSpace="urn:cgi:classifierScheme:GSC:ObservationMethod"><xsl:value-of select="cat:observation_method1"/></gsml:value>
+				</gsml:CGI_TermValue>
+			</gsml:observationMethod>
+			<gsml:purpose>instance</gsml:purpose>
+			<xsl:apply-templates select="cat:occurrence"/>
+			<xsl:apply-templates select="cat:preferredAge"/>
+			<xsl:apply-templates select="cat:composition"/>
+			<gsml:rank codeSpace="urn:cgi:classifierScheme:GSC:Rank"><xsl:value-of select="cat:rank"/></gsml:rank>	
+	</xsl:template>
+	<xsl:template match="cat:preferredAge">
+	<!-- we only serialize IUGS ages in this profile, I know they are id > 17934
+	 this is an "interesting" consequence of the way my implementation works.  Transformation is 1) event based, so I don't have a full view of the document, therefore xlink:href (my inner_ref and outer_ref) cannot be resolved and 2) the XLST is applied in isolation from feature to feature (STX just send the request for each cat:member).  Since MY datamodel can have many ages and gsml requires one and only one preferredAge, I must pick only one cat:preferred age without the ability, for some instance, to know what they point to, unless I use the id (but this requires an intimate knowledge of the THIS database instance and it's not quite transportable)-->
+	 <xsl:choose>
+			<xsl:when test="@inner_ref">
+			<xsl:variable name="ref_id" select="number(substring-after(@inner_ref,'#cat.'))"/>
+			<xsl:if test="$ref_id  &gt; 17933">
+				<gsml:preferredAge xlink:href="{@inner_ref}"/>
+			</xsl:if>
+	</xsl:when>
+	<xsl:when test="@outer_ref">
+			<xsl:variable name="ref_id" select="number(substring-after(@outer_ref,'#cat.'))"/>
+			<xsl:if test="$ref_id &gt; 17933">
+				<gsml:preferredAge xlink:href="{@outer_ref}"/>
+			</xsl:if>
+	</xsl:when>
+	<xsl:otherwise>
+		<!-- we have a full Event -->
+		<xsl:variable name="ref_id" select="number(substring-after(cat:Geologicevent/@id,'cat.'))"/>
+		<xsl:if test="$ref_id &gt; 17933">
+				<gsml:preferredAge><xsl:apply-templates /></gsml:preferredAge>
+			</xsl:if>
+	</xsl:otherwise>
+	</xsl:choose>
+	</xsl:template>
+	<!-- GeologicEvent -->
+	<xsl:template match="cat:Geologicevent">
+	<gsml:GeologicEvent gml:id="{@id}">
+		<gsml:eventAge>
+						<gsml:CGI_TermValue>
+							<gsml:value codeSpace="urn:cgi:classifierScheme:ICS:StratChart2008"><xsl:value-of select="cat:age/cat:ControlledConcept/cat:identifier"/></gsml:value>
+						</gsml:CGI_TermValue>
+					</gsml:eventAge>
+					<gsml:eventEnvironment>
+						<gsml:CGI_TermValue>
+							<gsml:value codeSpace="urn:cgi:classifierScheme:GSC:FormationEnvironment"><xsl:value-of select="cat:environment"/></gsml:value>
+						</gsml:CGI_TermValue>
+					</gsml:eventEnvironment>
+					<gsml:eventProcess>
+						<gsml:CGI_TermValue>
+							<gsml:value codeSpace="urn:cgi:classifierScheme:GSV:EventProcesses"><xsl:value-of select="cat:process"/></gsml:value>
+						</gsml:CGI_TermValue>
+					</gsml:eventProcess>
+	</gsml:GeologicEvent>
+	</xsl:template>
+	<xsl:template match="cat:occurrence">
+	<xsl:choose>
+		<xsl:when test="@inner_ref"><gsml:occurrence xlink:href="{@inner_ref}"/></xsl:when>
+		<xsl:when test="@outer_ref"><gsml:occurrence xlink:href="{@outer_ref}"/></xsl:when>
+		<xsl:otherwise>
+			<gsml:occurrence>
+				<xsl:apply-templates/>
+			</gsml:occurrence>
+	</xsl:otherwise>
+	</xsl:choose>
+	</xsl:template>
+	<xsl:template match="cat:Mappedfeature">
+	<gsml:MappedFeature gml:id="{@id}">
+	<gsml:observationMethod>
+				<gsml:CGI_TermValue>
+					<gsml:value codeSpace="urn:cgi:classifierScheme:GSC:ObservationMethod"><xsl:value-of select="cat:observation_method"/></gsml:value>
+				</gsml:CGI_TermValue>
+			</gsml:observationMethod>
+			<gsml:positionalAccuracy>
+				<gsml:CGI_TermValue>
+					<gsml:value codeSpace="urn:cgi:classifierScheme:GSC:PositionalAccuracy">unknown</gsml:value>
+				</gsml:CGI_TermValue>
+			</gsml:positionalAccuracy>
+			<gsml:samplingFrame xlink:href="urn:cgi:classifier:GSC:SurfaceOfMapping:CanadaBedrock"/>
+			<!-- we know in this particular case that specification will always be an inner_ref -->
+			<xsl:apply-templates select="cat:specification"/>
+			
+						<!--
+			<gsml:shape><xsl:copy-of select="cat:geom/gml:Polygon"/></gsml:shape>
+-->
+<gsml:shape><xsl:apply-templates select="cat:geom/*"/></gsml:shape>
+	</gsml:MappedFeature>
+	</xsl:template>
+	<!-- must fix GML generated by my WFS engine (deegree) -->
+	<xsl:template match="gml:Polygon">
+	<gml:Polygon srsName="{@srsName}" gml:id="{@gml:id}">
+	<gml:exterior>
+	<gml:LinearRing>
+		<xsl:copy-of select="gml:exterior/gml:LineString/*"/>
+	</gml:LinearRing>
+	</gml:exterior>
+	<xsl:for-each select="gml:interior">
+	<gml:interior>
+	<gml:LinearRing>
+		<xsl:copy-of select="gml:interior/gml:LineString/*"/>
+	</gml:LinearRing>
+	</gml:interior>
+	</xsl:for-each>
+	</gml:Polygon>
+	</xsl:template>
+	<xsl:template match="cat:composition">
+		<gsml:composition>
+			<xsl:choose>
+				<xsl:when test="@inner_ref"><xsl:attribute name="href" namespace="http://www.w3.org/1999/xlink"><xsl:value-of select="@inner_ref"/></xsl:attribute></xsl:when>
+				<xsl:when test="@outer_ref"><xsl:attribute name="href" namespace="http://www.w3.org/1999/xlink"><xsl:value-of select="@outer_ref"/></xsl:attribute></xsl:when>
+				<xsl:otherwise>
+				<xsl:apply-templates/>
+				</xsl:otherwise>
+			</xsl:choose>
+		</gsml:composition>
+	</xsl:template>
+	<xsl:template match="cat:Compositionpart">
+	<gsml:CompositionPart gml:id="{cat:CompositionPart/@id}">
+					<gsml:role codeSpace="gsc"><xsl:value-of select="cat:role"/></gsml:role>
+					<gsml:lithology>
+						<xsl:choose>
+						<xsl:when test="cat:lithology/@inner_ref"><xsl:attribute name="href" namespace="http://www.w3.org/1999/xlink"><xsl:value-of select="cat:lithology/@inner_ref"/></xsl:attribute></xsl:when>
+				<xsl:when test="cat:lithology/@outer_ref"><xsl:attribute name="href" namespace="http://www.w3.org/1999/xlink"><xsl:value-of select="cat:lithology/@outer_ref"/></xsl:attribute></xsl:when>
+							<xsl:otherwise><xsl:apply-templates select="cat:lithology/cat:Controlledconcept"/></xsl:otherwise>
+						</xsl:choose>
+					</gsml:lithology>
+				</gsml:CompositionPart>
+	</xsl:template>
+	<xsl:template match="cat:Controlledconcept">
+		<gsml:ControlledConcept gml:id="{@id}">
+			<gml:description><xsl:value-of select="cat:description"/></gml:description>
+			<gml:name codeSpace="urn:ietf:rfc:2141"><xsl:value-of select="cat:guid"/></gml:name>
+			<gsml:identifier codeSpace="{cat:identifier_scope}"><xsl:value-of select="cat:identifier"/></gsml:identifier>
+			<xsl:apply-templates select="cat:linkToTarget"/>
+		</gsml:ControlledConcept>
+	</xsl:template>
+	<xsl:template match="cat:linkToTarget">
+	<gsml:linkToTarget>
+	<xsl:choose>
+						<xsl:when test="@inner_ref"><xsl:attribute name="href" namespace="http://www.w3.org/1999/xlink"><xsl:value-of select="@inner_ref"/></xsl:attribute></xsl:when>
+				<xsl:when test="@outer_ref"><xsl:attribute name="href" namespace="http://www.w3.org/1999/xlink"><xsl:value-of select="@outer_ref"/></xsl:attribute></xsl:when>
+							<xsl:otherwise><xsl:apply-templates/></xsl:otherwise>
+						</xsl:choose>
+	</gsml:linkToTarget>
+	</xsl:template>
+	<xsl:template match="cat:VocabRelation">
+	
+	</xsl:template>
+	<xsl:template match="cat:specification">
+	<xsl:choose>
+		<xsl:when test="@inner_ref"><gsml:specification xlink:href="{@inner_ref}"/></xsl:when>
+		<xsl:when test="@outer_ref"><gsml:specification xlink:href="{@outer_ref}"/></xsl:when>
+		<xsl:otherwise>
+			<gsml:specification>
+				<xsl:apply-templates/>
+			</gsml:specification>
+	</xsl:otherwise>
+	</xsl:choose>
+	</xsl:template>
+	<!-- this template gets rid of all stuff that has not been trapped -->
+	<xsl:template match="*|@*"/>
+	
+</xsl:stylesheet>

@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<stx:transform 
+xmlns:stx="http://stx.sourceforge.net/2002/ns"
+xmlns:gsml="http://cgi-iugs.org/GeoSciML/2.0"
+xmlns:gml="http://www.opengis.net/gml"
+xmlns:xlink="http://www.w3.org/1999/xlink"
+xmlns:wfs="http://www.opengis.net/wfs"
+version="1.0"
+output-encoding="iso-8859-1">
+<stx:template match="/ARCXML/RESPONSE/FEATURES">
+	<wfs:FeatureCollection>
+	<stx:process-children group="feature"/>
+	</wfs:FeatureCollection>
+</stx:template>
+<stx:group name="feature">
+<stx:variable name="id"/>
+<stx:variable name="desc"/>
+<stx:template match="FEATURE/POLYGON">
+<!-- if we hit the first polygon -->
+	<gml:featureMember>
+		<gsml:GeologicUnit gml:id="ca.gc.nrcan.gdr.geologicUnit.{$id}">
+		<gml:description><stx:value-of select="$desc"/></gml:description>
+		<gml:name><stx:value-of select="$id"/></gml:name>
+		<gsml:purpose xlink:href="http://www.iugs-cgi.org/default#urn:x-ogc:def:nil:OGC:unknown"/>
+		<gsml:age>
+        		<gsml:GeologicAge>
+          		<gsml:value>
+           		<CGI_TermValue>
+              			<gsml:value codeBase="http://www.cgi-iugs.org/period">unknown</gsml:value>
+            		</CGI_TermValue>
+          		</gsml:value>
+        		</gsml:GeologicAge>
+      		</gsml:age>
+      		<gsml:metadata xlink:href="http://www.iugs-cgi.org/default#urn:x-ogc:def:nil:OGC:unknown"/>
+      		 <gsml:occurence>
+        	<gsml:MappedFeature>
+          		<gsml:shape>
+            		<gml:Polygon>
+      			<stx:process-children/>
+      			</gml:Polygon>
+      			</gsml:shape>
+      		</gsml:MappedFeature>
+      		</gsml:occurence>
+      <gsml:classifier xlink:href="http://www.iugs-cgi.org/default#urn:x-ogc:def:nil:OGC:unknown"/>
+      <gsml:bodyMorphology xlink:href="http://www.iugs-cgi.org/default#urn:x-ogc:def:nil:OGC:unknown"/>
+      <gsml:outcropCharacter xlink:href="http://www.iugs-cgi.org/default#urn:x-ogc:def:nil:OGC:unknown"/>
+      <gsml:genesis xlink:href="http://www.iugs-cgi.org/default#urn:x-ogc:def:nil:OGC:unknown"/>
+      <gsml:exposureColor xlink:href="http://www.iugs-cgi.org/default#urn:x-ogc:def:nil:OGC:unknown"/>
+      <gsml:grossChemistry/>
+      <gsml:composition>
+        <gsml:CGI_TermValue>
+          <gsml:value codeBase="http://www.cgi-iugs.org/composition">unknow</gsml:value>
+        </gsml:CGI_TermValue>
+      </gsml:composition>
+      <gsml:rank xlink:href="http://www.iugs-cgi.org/default#urn:x-ogc:def:nil:OGC:unknown"/>
+      <gsml:weatheringCharacter xlink:href="http://www.cgi-iugs.org/weathering#undefined"/>
+      <gsml:unitThickness xlink:href="http://www.cgi-iugs.org/unitThickness#undefined"/>
+      <gsml:beddingStyle xlink:href="http://www.cgi-iugs.org/beddingStyle#undefined"/>
+      <gsml:beddingPattern xlink:href="http://www.cgi-iugs.org/beddingPattern#undefined"/>
+      <gsml:beddingThickness xlink:href="http://www.cgi-iugs.org/beddingThickness#undefined"/>
+		</gsml:GeologicUnit>
+	</gml:featureMember>
+</stx:template>
+
+<stx:template match="FEATURE">
+ <stx:process-children/>
+</stx:template>
+
+<stx:template match="FIELD[@name='CARTOBASE.GEO.geology500k.OBJECTID']">
+	<stx:assign name="id" select="@value"/>
+</stx:template>
+
+<stx:template match="FIELD[@name='CARTOBASE.GEO.geology500k.FORMATION_1']">
+	<stx:assign name="desc" select="@value"/>
+</stx:template>
+
+<stx:template match="RING[1]">
+	<gml:outerBoundaryIs>
+	<gml:LinearRing>
+        <gml:coordinates>
+	<stx:process-children/>
+	</gml:coordinates>
+	</gml:LinearRing>
+	</gml:outerBoundaryIs>
+</stx:template>
+
+<stx:template match="RING">
+	<gml:innerBoundaryIs>
+	<gml:LinearRing>
+        <gml:coordinates>
+	<stx:process-children/>
+	</gml:coordinates>
+	</gml:LinearRing>
+	</gml:innerBoundaryIs>
+</stx:template>
+
+<stx:template match="POINT">
+<stx:text><stx:value-of select="@x"/>,<stx:value-of select="@y"/> </stx:text>
+</stx:template>
+
+</stx:group>
+</stx:transform>

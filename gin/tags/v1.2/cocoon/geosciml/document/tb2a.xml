@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wfs:GetFeature
+ xmlns:wfs="http://www.opengis.net/wfs"
+ xmlns:ogc="http://www.opengis.net/ogc"
+ xmlns:gml="http://www.opengis.net/gml"
+ xmlns:proc="urn:x-lcnp:proc"
+ maxFeatures="1" service="WFS"
+ traverseXlinkDepth = "20"
+ version="1.1.0" xmlns:gsml="urn:cgi:xmlns:CGI:GeoSciML:2.0">
+	<wfs:Query typeName="gsml:MappedFeature">
+	<ogc:Filter xmlns:ogc="http://www.opengis.net/ogc">
+    <ogc:BBOX><ogc:PropertyName>gsml:shape</ogc:PropertyName>
+    <gml:Envelope srsName="EPSG:4326"><gml:lowerCorner>-72 45</gml:lowerCorner>
+    <gml:upperCorner>-70 50</gml:upperCorner>
+    </gml:Envelope>
+    </ogc:BBOX>
+  </ogc:Filter>
+	</wfs:Query>
+</wfs:GetFeature>
+

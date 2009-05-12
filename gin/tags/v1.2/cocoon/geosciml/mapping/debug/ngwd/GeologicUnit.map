@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<gsml:GeologicUnit 
+  xmlns:gsml="urn:cgi:xmlns:CGI:GeoSciML:2.0" 
+  xmlns:gml="http://www.opengis.net/gml" 
+  xmlns:ogc="http://www.opengis.net/ogc"
+  xmlns:proc="urn:x-lcnp:proc" 
+  mappedType="Geologicunit">
+  <!-- the catalog does not use namespaces in the query (i should fix this) 
+  Explicit declaration of namespace and prefix is used to overcome a limitation
+  java DOM Node.lookupNamespaceURI(String prefix) method that only knows of ns 
+  of all the nodes from this context node and all ancestors but does not consider 
+  xmlns: declarations of supplemental namespaces (ie, just see the ns that are actually
+  used by current node and its ancestors).  The xpath in the PropertyName does not count, as it
+  considered as a regular string.  This solution works on the assumption that xpath
+  will always be explicitly prefixed (not always true) and the prefix will remains the
+  same for a given namespace (generally true)
+  If somebody knows how to make lookupNamespaceURI (or any other method) to see all ns, please tell me.
+  -->
+  <proc:namespaces>
+<proc:namespace name="gsml">urn:cgi:xmlns:CGI:GeoSciML:2.0</proc:namespace>
+<proc:namespace name="gml">http://www.opengis.net/gml</proc:namespace> 
+<proc:namespace name="xlink">http://www.w3.org/1999/xlink</proc:namespace>
+</proc:namespaces>
+<!-- constant element, appears whatever the query,none in this case 
+<proc:constants>
+<ogc:PropertyIsEqualTo>
+  <ogc:PropertyName>gu_type</ogc:PropertyName>
+  <ogc:Literal>LS</ogc:Literal>
+</ogc:PropertyIsEqualTo>
+<ogc:PropertyIsEqualTo>
+  <ogc:PropertyName>mappingFrame</ogc:PropertyName>
+  <ogc:Literal>0</ogc:Literal>
+</ogc:PropertyIsEqualTo>
+</proc:constants>-->
+<gml:name>f_name</gml:name>
+<gml:name codeSpace="urn:ietf:rfc:2141">guid</gml:name>
+	<gsml:preferredAge>
+		<gsml:GeologicEvent>
+		<gsml:eventAge>
+			<gsml:CGI_TermValue>
+				<gsml:value>preferredAge/GeologicEvent/age/ControlledConcept/guid</gsml:value>
+			</gsml:CGI_TermValue>
+			</gsml:eventAge>
+		</gsml:GeologicEvent>
+	</gsml:preferredAge>
+	<!-- gsml:occurrence/gsml:MappedFeature/gsml:shape -->
+	<gsml:occurrence>
+	 <gsml:MappedFeature>
+	 <gsml:shape>occurrence/Mappedfeature/shape</gsml:shape>
+	 </gsml:MappedFeature>
+	 </gsml:occurrence>
+	 <proc:resolvers>
+	 <!---->
+		 <proc:replace name="gsml_is_pref_age" type="function" pipeline="http://localhost:8888/geosciml/mediate/gsml_is_pref_age"/>
+
+		 <!-- invoke a function when a specific property is called -->
+		 <proc:vocab name="age_vocab" ontology="cocoon:/mediate/ontology/age_bgs" property="preferredAge/GeologicEvent/age/ControlledConcept/guid">
+			 <proc:parameter name="mode" value="all"/>
+		 </proc:vocab>
+		 </proc:resolvers>
+</gsml:GeologicUnit>

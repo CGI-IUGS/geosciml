@@ -1,0 +1,157 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<wfs:WFS_Capabilities xmlns:wfs="http://www.opengis.net/wfs" xmlns:gml="http://www.opengis.net/gml" xmlns:ogc="http://www.opengis.net/ogc" xmlns:gsml="urn:cgi:xmlns:CGI:GeoSciML:2.0" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" updateSequence="0" version="1.1.0">
+	<ows:ServiceIdentification xmlns:ows="http://www.opengis.net/ows">
+		<ows:Title>BGS Bedrock and Superficial geology</ows:Title>
+		<ows:Abstract>The 1:625k DiGMap data covering the whole of the United Kingdom is available in this OGC WFS service for your personal, non-commercial use only and is being served as a contribution to the OneGeology initiative(www.onegeology.org).
+			For information about more of the British Geological Survey's maps that are available digitally please visit http://www.bgs.ac.uk/products/digitalmaps/digmapgb.html
+		</ows:Abstract>
+		<ows:ServiceType>WFS</ows:ServiceType>
+		<ows:ServiceTypeVersion>1.1.0</ows:ServiceTypeVersion>
+		<ows:Fees>None</ows:Fees>
+		<ows:AccessConstraints>The 1:625k DiGMap data is available for free download for your personal, teaching, research or non-commercial use as described on the previous web-page. Your use of any information provided by the British Geological Survey (BGS) is at your own risk. Neither BGS nor the Natural Environment Research Council (NERC) gives any warranty, condition or representation as to the quality, accuracy or completeness of the information or its suitability for any use or purpose. All implied conditions relating to the quality or suitability of the information, and all liabilities arising from the supply of the information (including any liability arising in negligence) are excluded to the fullest extent permitted by law.</ows:AccessConstraints>
+	</ows:ServiceIdentification>
+	<ows:ServiceProvider xmlns:ows="http://www.opengis.net/ows">
+		<ows:ProviderName>British Geological Survey</ows:ProviderName>
+		<ows:ProviderSite xlink:href="http://www.bgs.ac.uk" xlink:type="simple"/>
+		<ows:ServiceContact>
+			<ows:IndividualName>Marcus Sen</ows:IndividualName>
+			<ows:PositionName></ows:PositionName>
+			<ows:ContactInfo>
+				<ows:Phone>
+					<ows:Voice>+44 115 936 3100</ows:Voice>
+					<ows:Facsimile>+44 115 936 3200</ows:Facsimile>
+				</ows:Phone>
+				<ows:Address>
+					<ows:DeliveryPoint>British Geological Survey</ows:DeliveryPoint>
+					<ows:City>Keyworth</ows:City>
+					<ows:AdministrativeArea>Nottinghamshire</ows:AdministrativeArea>
+					<ows:PostalCode>NG12 5GG</ows:PostalCode>
+					<ows:Country>United Kingdom</ows:Country>
+					<ows:ElectronicMailAddress></ows:ElectronicMailAddress>
+				</ows:Address>
+				<ows:OnlineResource xlink:href="[host]" xlink:type="simple"/>
+				<ows:HoursOfService>Variable</ows:HoursOfService>
+				<ows:ContactInstructions></ows:ContactInstructions>
+			</ows:ContactInfo>
+			<ows:Role>PointOfContact</ows:Role>
+		</ows:ServiceContact>
+	</ows:ServiceProvider>
+	<ows:OperationsMetadata xmlns:ows="http://www.opengis.net/ows">
+		<ows:Operation name="GetFeature">
+			<ows:DCP>
+				<ows:HTTP>
+					<ows:Get xlink:href="[host]?" xlink:type="simple"/>
+					<ows:Post xlink:href="[host]" xlink:type="simple"/>
+				</ows:HTTP>
+			</ows:DCP>
+			<ows:Parameter name="resultType">
+				<ows:Value>results</ows:Value>
+				<ows:Value>hits</ows:Value>
+			</ows:Parameter>
+			<ows:Parameter name="outputFormat">
+				<ows:Value>text/xml; subtype=gml/3.1.1</ows:Value>
+			</ows:Parameter>
+		</ows:Operation>
+		<ows:Operation name="DescribeFeatureType">
+			<ows:DCP>
+				<ows:HTTP>
+					<ows:Get xlink:href="[host]?" xlink:type="simple"/>
+					<ows:Post xlink:href="[host]" xlink:type="simple"/>
+				</ows:HTTP>
+			</ows:DCP>
+			<ows:Parameter name="outputFormat">
+				<ows:Value>text/xml; subtype=gml/3.1.1</ows:Value>
+			</ows:Parameter>
+		</ows:Operation>
+		<ows:Operation name="GetCapabilities">
+			<ows:DCP>
+				<ows:HTTP>
+					<ows:Get xlink:href="[host]?" xlink:type="simple"/>
+					<ows:Post xlink:href="[host]" xlink:type="simple"/>
+				</ows:HTTP>
+			</ows:DCP>
+			<ows:Parameter name="AcceptVersions">
+				<ows:Value>1.1.0</ows:Value>
+			</ows:Parameter>
+			<ows:Parameter name="AcceptFormats">
+				<ows:Value>text/xml</ows:Value>
+			</ows:Parameter>
+			<ows:Parameter name="Sections">
+				<ows:Value>ServiceIdentification</ows:Value>
+				<ows:Value>ServiceProvider</ows:Value>
+				<ows:Value>OperationsMetadata</ows:Value>
+				<ows:Value>FeatureTypeList</ows:Value>
+				<ows:Value>ServesGMLObjectTypeList</ows:Value>
+				<ows:Value>SupportsGMLObjectTypeList</ows:Value>
+				<ows:Value>Filter_Capabilities</ows:Value>
+			</ows:Parameter>
+		</ows:Operation>
+		<ows:Parameter name="srsName">
+			<ows:Value>EPSG:4326</ows:Value>
+		</ows:Parameter>
+		<ows:Constraint name="DefaultMaxFeatures">
+			<ows:Value>50</ows:Value>
+		</ows:Constraint>
+	</ows:OperationsMetadata>
+	<wfs:FeatureTypeList>
+		<wfs:FeatureType>
+			<wfs:Name>gsml:MappedFeature</wfs:Name>
+			<wfs:Title>Mapped superficial geologic units by lithostratigraphy</wfs:Title>
+			<wfs:Abstract></wfs:Abstract>
+			<ows:Keywords xmlns:ows="http://www.opengis.net/ows">
+				<ows:Keyword>GeoSciML OneGeology</ows:Keyword>
+			</ows:Keywords>
+			<wfs:DefaultSRS>EPSG:4326</wfs:DefaultSRS>
+			<wfs:OtherSRS>EPSG:4326</wfs:OtherSRS>
+			<wfs:OutputFormats>
+				<wfs:Format>text/xml; subtype=gml/3.1.1</wfs:Format>
+			</wfs:OutputFormats>
+			<ows:WGS84BoundingBox xmlns:ows="http://www.opengis.net/ows">
+				<ows:LowerCorner>-9 49</ows:LowerCorner>
+				<ows:UpperCorner>2 61</ows:UpperCorner>
+			</ows:WGS84BoundingBox>
+		</wfs:FeatureType>
+	</wfs:FeatureTypeList>
+	<ogc:Filter_Capabilities>
+		<ogc:Spatial_Capabilities>
+			<ogc:GeometryOperands>
+				<ogc:GeometryOperand>gml:Envelope</ogc:GeometryOperand>
+				<ogc:GeometryOperand>gml:Point</ogc:GeometryOperand>
+				<ogc:GeometryOperand>gml:LineString</ogc:GeometryOperand>
+				<ogc:GeometryOperand>gml:Polygon</ogc:GeometryOperand>
+			</ogc:GeometryOperands>
+			<ogc:SpatialOperators>
+				<ogc:SpatialOperator name="Within"/>
+				<ogc:SpatialOperator name="Intersects"/>
+				<ogc:SpatialOperator name="Overlaps"/>
+				<ogc:SpatialOperator name="BBOX"/>
+				<ogc:SpatialOperator name="Crosses"/>
+				<ogc:SpatialOperator name="Contains"/>
+				<ogc:SpatialOperator name="Disjoint"/>
+				<ogc:SpatialOperator name="Beyond"/>
+				<ogc:SpatialOperator name="Equals"/>
+				<ogc:SpatialOperator name="Touches"/>
+			</ogc:SpatialOperators>
+		</ogc:Spatial_Capabilities>
+		<ogc:Scalar_Capabilities>
+			<ogc:LogicalOperators/>
+			<ogc:ComparisonOperators>
+				<ogc:ComparisonOperator>LessThanEqualTo</ogc:ComparisonOperator>
+				<ogc:ComparisonOperator>Between</ogc:ComparisonOperator>
+				<ogc:ComparisonOperator>EqualTo</ogc:ComparisonOperator>
+				<ogc:ComparisonOperator>GreaterThanEqualTo</ogc:ComparisonOperator>
+				<ogc:ComparisonOperator>Like</ogc:ComparisonOperator>
+				<ogc:ComparisonOperator>GreaterThan</ogc:ComparisonOperator>
+				<ogc:ComparisonOperator>NullCheck</ogc:ComparisonOperator>
+				<ogc:ComparisonOperator>LessThan</ogc:ComparisonOperator>
+			</ogc:ComparisonOperators>
+			<ogc:ArithmeticOperators>
+				<ogc:SimpleArithmetic/>
+			</ogc:ArithmeticOperators>
+		</ogc:Scalar_Capabilities>
+		<ogc:Id_Capabilities>
+			<ogc:EID/>
+			<ogc:FID/>
+		</ogc:Id_Capabilities>
+	</ogc:Filter_Capabilities>
+</wfs:WFS_Capabilities>
