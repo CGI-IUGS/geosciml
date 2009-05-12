@@ -5,7 +5,6 @@
 This package is viewed as interim until suitable ontology models and systems are identified. </documentation>
     </annotation>
     <import namespace="http://www.opengis.net/gml" schemaLocation="http://schemas.opengis.net/gml/3.1.1/base/gml.xsd"/>
-    <import namespace="http://www.isotc211.org/2005/gmd" schemaLocation="http://schemas.opengis.net/iso/19139/20070417/gmd/gmd.xsd"/>
     <import namespace="http://www.opengis.net/sampling/1.0" schemaLocation="http://schemas.opengis.net/sampling/1.0.0/sampling.xsd"/>
     <import namespace="urn:cgi:xmlns:CGI:Utilities:1.0" schemaLocation="http://www.geosciml.org/cgiutilities/1.0/xsd/cgiUtilities.xsd"/>
     <include schemaLocation="geosciml.xsd"/>
@@ -32,7 +31,13 @@ This is not the concept identifier. </documentation>
                     <element name="vocabulary" type="gsml:GeologicVocabularyPropertyType"/>
                     <element maxOccurs="unbounded" minOccurs="0" name="linkToTarget" type="gsml:VocabRelationPropertyType"/>
                     <element maxOccurs="1" minOccurs="0" name="prototype" type="gml:AssociationType"/>
-                    <element maxOccurs="1" minOccurs="0" name="metadata" type="gmd:MD_Metadata_PropertyType"/>
+                    <element maxOccurs="1" minOccurs="0" name="metadata" type="gml:ReferenceType">
+                        <annotation>
+                            <appinfo>
+                                <gml:targetElement>gmd:MD_Metadata</gml:targetElement>
+                            </appinfo>
+                        </annotation>
+                    </element>
                 </sequence>
             </extension>
         </complexContent>
@@ -54,7 +59,13 @@ In GeoSciML this is normally identified using a URN in the "classifierScheme" br
         <complexContent>
             <extension base="gml:DictionaryType">
                 <sequence>
-                    <element maxOccurs="1" minOccurs="0" name="metadata" type="gmd:MD_Metadata_PropertyType"/>
+                    <element maxOccurs="1" minOccurs="0" name="metadata" type="gml:ReferenceType">
+                        <annotation>
+                            <appinfo>
+                                <gml:targetElement>gmd:MD_Metadata</gml:targetElement>
+                            </appinfo>
+                        </annotation>
+                    </element>
                 </sequence>
             </extension>
         </complexContent>

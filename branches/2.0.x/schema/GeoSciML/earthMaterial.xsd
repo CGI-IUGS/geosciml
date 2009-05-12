@@ -5,7 +5,6 @@
 Earth Material represents material composition or substance, and is thus independent of quantity or location. Ideally, Earth Materials are defined strictly based on physical properties, but because of standard geological usage, genetic interpretations may enter into the description as well. </documentation>
     </annotation>
     <import namespace="http://www.opengis.net/gml" schemaLocation="http://schemas.opengis.net/gml/3.1.1/base/gml.xsd"/>
-    <import namespace="http://www.isotc211.org/2005/gmd" schemaLocation="http://schemas.opengis.net/iso/19139/20070417/gmd/gmd.xsd"/>
     <import namespace="urn:cgi:xmlns:CGI:Utilities:1.0" schemaLocation="http://www.geosciml.org/cgiutilities/1.0/xsd/cgiUtilities.xsd"/>
     <include schemaLocation="geosciml.xsd"/>
     <element name="CompoundMaterial" substitutionGroup="gsml:EarthMaterial" type="gsml:CompoundMaterialType">
@@ -94,7 +93,13 @@ Igneous rock definitions are governed by IUGS agreed vocabulary</documentation>
 Values: Instance, TypicalNorm, IdentifyingNorm.</documentation>
                         </annotation>
                     </element>
-                    <element maxOccurs="1" minOccurs="0" name="metadata" type="gmd:MD_Metadata_PropertyType"/>
+                    <element maxOccurs="1" minOccurs="0" name="metadata" type="gml:ReferenceType">
+                        <annotation>
+                            <appinfo>
+                                <gml:targetElement>gmd:MD_Metadata</gml:targetElement>
+                            </appinfo>
+                        </annotation>
+                    </element>
                 </sequence>
             </extension>
         </complexContent>
