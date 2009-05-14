@@ -18,12 +18,12 @@
 			<xsl:apply-templates select="gml:boundedBy"/>
 			<gsml:observationMethod>
 				<gsml:CGI_TermValue>
-					<gsml:value codeSpace="http://urn.opengis.net">urn:ogc:def:nil:OGC:unknown</gsml:value>
+					<gsml:value codeSpace="http://urn.opengis.net">urn:ogc:def:nil:OGC::unknown</gsml:value>
 				</gsml:CGI_TermValue>
 			</gsml:observationMethod>
 			<gsml:positionalAccuracy>
 				<gsml:CGI_TermValue>
-					<gsml:value codeSpace="http://urn.opengis.net">urn:ogc:def:nil:OGC:unknown</gsml:value>
+					<gsml:value codeSpace="http://urn.opengis.net">urn:ogc:def:nil:OGC::unknown</gsml:value>
 				</gsml:CGI_TermValue>
 			</gsml:positionalAccuracy>
 			<gsml:samplingFrame xlink:href="urn:cgi:feature:BGS:EarthBedrockSurface"/>
@@ -49,12 +49,12 @@
 							</gsml:eventAge>
 							<gsml:eventEnvironment>
 								<gsml:CGI_TermValue>
-									<gsml:value codeSpace="http://urn.opengis.net">urn:ogc:def:nil:OGC:unknown</gsml:value>
+									<gsml:value codeSpace="http://urn.opengis.net">urn:ogc:def:nil:OGC::unknown</gsml:value>
 								</gsml:CGI_TermValue>
 							</gsml:eventEnvironment>
 							<gsml:eventProcess>
 								<gsml:CGI_TermValue>
-									<gsml:value codeSpace="http://urn.opengis.net">urn:ogc:def:nil:OGC:unknown</gsml:value>
+									<gsml:value codeSpace="http://urn.opengis.net">urn:ogc:def:nil:OGC::unknown</gsml:value>
 								</gsml:CGI_TermValue>
 							</gsml:eventProcess>
 						</gsml:GeologicEvent>
@@ -67,7 +67,7 @@
 							<gsml:lithology xlink:href="{concat('urn:cgi:classifier:BGS:Lithology:description:', translate(ms:RCS_D, ' ,', '__'))}" />
 							<gsml:proportion>
 								<gsml:CGI_NumericValue>
-									<gsml:principalValue uom="urn:ogc:def:uom:UCUM:%25">100</gsml:principalValue>
+									<gsml:principalValue uom="urn:ogc:def:uom:UCUM::%25">100</gsml:principalValue>
 								</gsml:CGI_NumericValue>
 							</gsml:proportion>
 						</gsml:CompositionPart>

@@ -18,12 +18,12 @@
 			<xsl:apply-templates select="gml:boundedBy"/>
 			<gsml:observationMethod>
 				<gsml:CGI_TermValue>
-					<gsml:value codeSpace="http://urn.opengis.net">urn:ogc:def:nil:OGC:unknown</gsml:value>
+					<gsml:value codeSpace="http://urn.opengis.net">urn:ogc:def:nil:OGC::unknown</gsml:value>
 				</gsml:CGI_TermValue>
 			</gsml:observationMethod>
 			<gsml:positionalAccuracy>
 				<gsml:CGI_TermValue>
-					<gsml:value codeSpace="http://urn.opengis.net">urn:ogc:def:nil:OGC:unknown</gsml:value>
+					<gsml:value codeSpace="http://urn.opengis.net">urn:ogc:def:nil:OGC::unknown</gsml:value>
 				</gsml:CGI_TermValue>
 			</gsml:positionalAccuracy>
 			<gsml:samplingFrame xlink:href="urn:cgi:feature:BGS:EarthBedrockSurface"/>
