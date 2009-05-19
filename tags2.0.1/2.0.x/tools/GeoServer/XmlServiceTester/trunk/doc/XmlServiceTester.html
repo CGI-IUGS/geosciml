@@ -1,0 +1,74 @@
+<html>
+
+<head>
+<title>XmlServiceTester</title>
+</head>
+
+<body>
+
+<h1 align="center">XmlServiceTester</h1>
+
+<h2>Name</h2>
+XmlServiceTester - schema-validate responses from XML services
+
+<h2>Synopsis</h2>
+
+<pre>
+XmlServiceTester.sh test-suite.xml
+</pre>
+
+<pre>
+XmlServiceTester.bat test-suite.xml
+</pre>
+
+<h2>Description</h2>
+
+<p>XmlServiceTester is a command-line tool that obtains XML
+responses from web services or local files and uses the Xerces-2 SAX
+parser to schema-validate these responses. Rudimentary content
+validation (element counting) is also supported.</p>
+
+<p>XmlServiceTester is configured with a test-suite XML document
+that conforms to the schema:</p>
+
+<ul>
+	<li><a
+		href="http://schemas.auscope.org/servicetester/test-suite-1.0.xsd">http://schemas.auscope.org/servicetester/test-suite-1.0.xsd</a></li>
+</ul>
+
+All file paths must be URIs (i.e. forward slashes). Relative URIs are
+relative to the containing document.
+
+<h2>Validation</h2>
+Any warnings are considered errors. Schema are validated as well as the
+XML documents.
+
+<h2>Return code</h2>
+XmlServiceTester exits with return code 0 on success, and with return
+code 1 if any error occurs.
+
+<h2>Requirements</h2>
+Java 5 or later.
+
+<h2>Example</h2>
+
+See the example test-suite file:
+
+<ul>
+	<li><a href="test-suite.example.xml">test-suite.example.xml</a></li>
+</ul>
+
+<h2>Issues</h2>
+
+<ul>
+	<li>HTTP GET not supported</li>
+	<li>Validation of HTTP POST request not performed</li>
+	<li>No-namespace schema location support incomplete</li>
+	<li>Request bodies not schema-validated</li>
+</ul>
+
+</body>
+
+</html>
+
+
