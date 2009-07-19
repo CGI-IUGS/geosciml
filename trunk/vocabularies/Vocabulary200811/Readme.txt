@@ -1,4 +1,5 @@
-These vocabularies are part of the GeoSciML v2 release of November, 2008.
+These vocabularies were released with GeoSciML v2 release of November, 2008.
+Files in this directory are most current bug fixes.
 
 CGI URNs in spreadsheets are generated from 'Term' column string using formula '=SUBSTITUTE(SUBSTITUTE(SUBSTITUTE(SUBSTITUTE(TRIM(LOWER(Term)),", ","_"), ":","_"),"-", "_")," ", "_")'
 This formula replaces "-", " " (space),", ", ":" with "_". That is any special character or space in the term becomes an underscore, and all characters are lower case.
