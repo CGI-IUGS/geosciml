@@ -69,9 +69,21 @@
     
 
 
+    <!-- http://www.w3.org/2004/02/skos/core#hasTopConcept -->
+
+    <owl:ObjectProperty rdf:about="&skos;hasTopConcept"/>
+    
+
+
     <!-- http://www.w3.org/2004/02/skos/core#inScheme -->
 
     <owl:ObjectProperty rdf:about="&skos;inScheme"/>
+    
+
+
+    <!-- http://www.w3.org/2004/02/skos/core#topConceptOf -->
+
+    <owl:ObjectProperty rdf:about="&skos;topConceptOf"/>
     
 
 
@@ -162,7 +174,7 @@
     
 
 
-    <!-- #genid2 -->
+    <!-- #genid1 -->
 
     <rdf:Description>
         <dc:creator
@@ -171,7 +183,7 @@
     
 
 
-    <!-- #genid3 -->
+    <!-- #genid2 -->
 
     <rdf:Description>
         <rdf:value
@@ -180,7 +192,7 @@
     
 
 
-    <!-- #genid4 -->
+    <!-- #genid3 -->
 
     <rdf:Description>
         <dc:date>2009-07-14</dc:date>
@@ -881,7 +893,18 @@
 
     <!-- urn:cgi:classifier:CGI:GeologicUnitMorphology:200811#three_dimensional_body -->
 
-    <owl:Thing rdf:about="&GeologicUnitMorphology200811;three_dimensional_body"/>
+    <owl:Thing rdf:about="&GeologicUnitMorphology200811;three_dimensional_body">
+        <rdf:type rdf:resource="&skos;Concept"/>
+        <skos:notation rdf:datatype="LocalHierarchyKey">1..</skos:notation>
+        <skos:notation rdf:datatype="urn:cgi:classifierScheme:CGI:GeologicUnitMorphology:200811"
+            >three_dimensional_body</skos:notation>
+        <skos:definition
+            >any three dimensional body</skos:definition>
+        <skos:prefLabel xml:lang="en"
+            >three dimensional body</skos:prefLabel>
+        <skos:inScheme rdf:resource=""/>
+        <skos:topConceptOf rdf:resource=""/>
+    </owl:Thing>
     
 
 
@@ -908,6 +931,7 @@
             >GeologicUnitMorphology</skos:prefLabel>
         <skos:editorialNote
             >This file contains the 200811 version of CGI Geologic Unit Morphology vocabulary. Use to specify the geometry or form of a GeologicUnit. Examples include: dike, cone, fan, sheet, etc. Morphology is independent of the substance (EarthMaterial) that composes the GeologicUnit.</skos:editorialNote>
+        <skos:hasTopConcept rdf:resource="&GeologicUnitMorphology200811;three_dimensional_body"/>
         <skos:changeNote>
             <rdf:Description/>
         </skos:changeNote>
