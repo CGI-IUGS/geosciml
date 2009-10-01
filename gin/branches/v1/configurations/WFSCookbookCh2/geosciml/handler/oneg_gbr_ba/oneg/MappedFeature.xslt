@@ -13,25 +13,25 @@
 			<xsl:apply-templates />
 		</wfs:FeatureCollection>
 	</xsl:template>
-	<xsl:template match="ms:GBR_BGS_625k_BLT">
+	<xsl:template match="ms:GBR_BGS_625k_BA">
 		<gsml:MappedFeature gml:id="{@gml:id}">
 			<xsl:apply-templates select="gml:boundedBy"/>
 			<gsml:observationMethod>
 				<gsml:CGI_TermValue>
-					<gsml:value codeSpace="http://urn.opengis.net">urn:ogc:def:nil:OGC:unknown</gsml:value>
+					<gsml:value codeSpace="http://urn.opengis.net">urn:ogc:def:nil:OGC::unknown</gsml:value>
 				</gsml:CGI_TermValue>
 			</gsml:observationMethod>
 			<gsml:positionalAccuracy>
 				<gsml:CGI_TermValue>
-					<gsml:value codeSpace="http://urn.opengis.net">urn:ogc:def:nil:OGC:unknown</gsml:value>
+					<gsml:value codeSpace="http://urn.opengis.net">urn:ogc:def:nil:OGC::unknown</gsml:value>
 				</gsml:CGI_TermValue>
 			</gsml:positionalAccuracy>
 			<gsml:samplingFrame xlink:href="urn:cgi:feature:BGS:EarthBedrockSurface"/>
 			<!-- we know in this particular case that specification will always be an inner_ref -->
 			<gsml:specification>
 				<gsml:GeologicUnit gml:id="gu.{@gml:id}">
-					<gml:description><xsl:value-of select="ms:RCS_D"/></gml:description>
-					<gml:name codeSpace="urn:cgi:classifierScheme:BGS:Lithology:description"><xsl:value-of select="ms:RCS_D"/></gml:name>
+					<gml:description><xsl:value-of select="ms:AGE_ONEGL"/></gml:description>
+					<gml:name codeSpace="urn:cgi:classifierScheme:ICS:StratChart:2008:description"><xsl:value-of select="ms:AGE_ONEGL"/></gml:name>
 					<gsml:observationMethod>
 						<gsml:CGI_TermValue>
 							<gsml:value codeSpace="urn:cgi:classifier:BGS:ObservationMethod">Summary of published description</gsml:value>

@@ -30,7 +30,7 @@
 			<!-- To Do: Check that there is no CGI URN scheme for positional accuracy that we should use.  -->
 			<gsml:positionalAccuracy>
 				<gsml:CGI_TermValue>
-					<gsml:value codeSpace="http://urn.opengis.net">urn:ogc:def:nil:OGC:unknown</gsml:value>
+					<gsml:value codeSpace="http://urn.opengis.net">urn:ogc:def:nil:OGC::unknown</gsml:value>
 				</gsml:CGI_TermValue>
 			</gsml:positionalAccuracy>
 			<!-- samplingFrame is the same for all our solid data. Drift data would be "topographic surface" or similar; we do have a dictionary of 
@@ -76,12 +76,12 @@
 						this for Testbed 3.-->
 					<gsml:eventEnvironment>
 						<gsml:CGI_TermValue>
-							<gsml:value codeSpace="http://urn.opengis.net">urn:ogc:def:nil:OGC:unknown</gsml:value>
+							<gsml:value codeSpace="http://urn.opengis.net">urn:ogc:def:nil:OGC::unknown</gsml:value>
 						</gsml:CGI_TermValue>
 					</gsml:eventEnvironment>
 					<gsml:eventProcess>
 						<gsml:CGI_TermValue>
-							<gsml:value codeSpace="http://urn.opengis.net">urn:ogc:def:nil:OGC:unknown</gsml:value>
+							<gsml:value codeSpace="http://urn.opengis.net">urn:ogc:def:nil:OGC::unknown</gsml:value>
 						</gsml:CGI_TermValue>
 					</gsml:eventProcess>
 				</gsml:GeologicEvent>
@@ -102,7 +102,7 @@
 					</xsl:if>
 					<gsml:proportion>
 						<gsml:CGI_NumericValue>
-							<gsml:principalValue uom="urn:ogc:def:uom:UCUM:%25">100</gsml:principalValue>
+							<gsml:principalValue uom="urn:ogc:def:uom:UCUM::%25">100</gsml:principalValue>
 						</gsml:CGI_NumericValue>
 					</gsml:proportion>
 				</gsml:CompositionPart>
