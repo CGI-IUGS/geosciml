@@ -232,6 +232,22 @@
     
 
 
+    <!-- #alkali_feldspar_rhyolite -->
+
+    <owl:Thing rdf:about="#alkali_feldspar_rhyolite">
+        <rdf:type rdf:resource="&skos;Concept"/>
+        <skos:prefLabel xml:lang="en"
+            >Alkali feldspar rhyolite</skos:prefLabel>
+        <skos:definition xml:lang="en"
+            >Rhyolitoid in which the ratio of plagioclase to alkali feldspar is less than 0.1</skos:definition>
+        <rdfs:seeAlso xml:lang="en"
+            >alkali feldspar liparite, peralkaline rhyolite</rdfs:seeAlso>
+        <skos:broader rdf:resource="#rhyolitoid"/>
+        <skos:inScheme rdf:resource=""/>
+    </owl:Thing>
+    
+
+
     <!-- #alkali_feldspar_syenite -->
 
     <skos:Concept rdf:about="#alkali_feldspar_syenite">
@@ -263,6 +279,36 @@
         <skos:broader rdf:resource="#syenitoid"/>
         <skos:inScheme rdf:resource=""/>
     </owl:Thing>
+    
+
+
+    <!-- #alkali_feldspar_trachyte -->
+
+    <skos:Concept rdf:about="#alkali_feldspar_trachyte">
+        <rdf:type rdf:resource="&owl;Thing"/>
+        <skos:prefLabel xml:lang="en"
+            >Alkali feldspar trachyte</skos:prefLabel>
+        <skos:historyNote xml:lang="en"
+            >Le Maitre et al., 2002</skos:historyNote>
+        <skos:definition xml:lang="en"
+            >Trachytoid that has a plagioclase to alkali feldspar ratio less than 0.1,  between 0 and 5 percent quartz in the QAPF fraction, and no feldspathoid minerals.  QAPF fields 6.</skos:definition>
+        <skos:broader rdf:resource="#alkali_feldspar_trachytic_rock"/>
+        <skos:inScheme rdf:resource=""/>
+    </skos:Concept>
+    
+
+
+    <!-- #alkali_feldspar_trachytic_rock -->
+
+    <skos:Concept rdf:about="#alkali_feldspar_trachytic_rock">
+        <rdf:type rdf:resource="&owl;Thing"/>
+        <skos:historyNote xml:lang="en"
+            >Trachytoid that has a plagioclase to alkali feldspar ratio less than 0.1. QAPF fields 6, 6&#39;, and 6*.</skos:historyNote>
+        <skos:narrower rdf:resource="#foid_bearing_alkalk_feldspar_trachyte"/>
+        <skos:narrower rdf:resource="#quartz_alkali_feldspar_trachyte"/>
+        <skos:broader rdf:resource="#trachytoid"/>
+        <skos:inScheme rdf:resource=""/>
+    </skos:Concept>
     
 
 
@@ -305,8 +351,12 @@
         <skos:historyNote
             >after LeMaitre et al. 2002</skos:historyNote>
         <skos:prefLabel xml:lang="en">Andesitic rock</skos:prefLabel>
-        <skos:definition
-            >Fine grained crystalline rock, usually porphyritic, consisting of plagioclase (frequently zoned from labradorite to oligoclase), pyroxene, hornblende and/or biotite; color index M less than 35. Includes rocks defined modally in QAPF fields 9 and 10 or chemically in TAS field O2 as andesite. Fine grained equivalent of dioritic rock.</skos:definition>
+        <skos:definition xml:lang="en"
+            >Fine-grained or porphyritic igneous rock with less than 20 percent quartz and less than 10 percent feldspathoid minerals in the QAPF fraction, in which the ratio of plagioclase to alkali feldspar is greater 0.65.  Includes rocks defined modally in QAPF fields 9 and 10 or chemically in TAS field O2 as andesite. Basalt and andesite, which share the same QAPF fields, are distinguished chemically based on silica content, with basalt defined to contain less than 52 weight percent silica.  If chemical data are not available, the color index is used to distinguish the categories, with basalt defined to contain greater than 35 percent mafic minerals by volume or greater than 40 percent mafic minerals by weight. Typically consists of plagioclase (frequently zoned from labradorite to oligoclase), pyroxene, hornblende and/or biotite. Fine grained equivalent of dioritic rock.</skos:definition>
+        <rdfs:seeAlso xml:lang="en"
+            >mela-andesite, leuco-basalt</rdfs:seeAlso>
+        <rdfs:comment xml:lang="en"
+            >note the mela-andesite and leuco-basalt categories are not recommended in this system. If chemical analytical data are available to constrain the silica content, the basalt or andesite category should be used.</rdfs:comment>
         <skos:broader rdf:resource="#fine_grained_igneous_rock"/>
         <skos:broader rdf:resource="#intermediate_composition_igneous_rock"/>
         <skos:inScheme rdf:resource=""/>
@@ -405,7 +455,7 @@
         <skos:prefLabel xml:lang="en">Aplite</skos:prefLabel>
         <skos:definition
             >Light coloured crystalline rock, characterized by a fine grained allotriomorphic-granular (aplitic, saccharoidal or xenomorphic) texture; typically granitic composition, consisting of quartz, alkali feldspar and sodic plagioclase.</skos:definition>
-        <skos:broader rdf:resource="#phaneritic_igneous_rock"/>
+        <skos:broader rdf:resource="#glass_rich_igneous_rock"/>
         <skos:inScheme rdf:resource=""/>
     </owl:Thing>
     
@@ -463,12 +513,43 @@
     <skos:Concept rdf:about="#basalt">
         <rdf:type rdf:resource="&owl;Thing"/>
         <skos:prefLabel xml:lang="en">Basaltic rock</skos:prefLabel>
-        <skos:definition
-            >Fine-grained or porphyritic igneous rock with less than 20 percent quartz, and less than 10 percent feldspathoid minerals, in which the ratio of plagioclase to alkali feldspar is greater than 66 percent, and the color index is greater than 35. Typically composed of calcic plagioclase and clinopyroxene; phenocrysts typically include one or more of calcic plagioclase, clinopyroxene, orthopyroxene, and olivine. Includes rocks defined modally in QAPF fields 9 and 10 or chemically in TAS field B as basalt.</skos:definition>
+        <skos:definition xml:lang="en"
+            >Fine-grained or porphyritic igneous rock with less than 20 percent quartz, and less than 10 percent feldspathoid minerals, in which the ratio of plagioclase to alkali feldspar is greater 0.65. Typically composed of calcic plagioclase and clinopyroxene; phenocrysts typically include one or more of calcic plagioclase, clinopyroxene, orthopyroxene, and olivine. Includes rocks defined modally in QAPF fields 9 and 10 or chemically in TAS field B as basalt. Basalt and andesite are distinguished chemically based on silica content, with basalt defined to contain less than 52 weight percent silica.  If chemical data are not available, the color index is used to distinguish the categories, with basalt defined to contain greater than 35 percent mafic minerals by volume or greater than 40 percent mafic minerals by weight.</skos:definition>
         <skos:historyNote
             >after LeMaitre et al. 2002</skos:historyNote>
+        <rdfs:seeAlso xml:lang="en"
+            >mela-andesite, leuco-basalt</rdfs:seeAlso>
         <skos:broader rdf:resource="#basic_igneous_rock"/>
         <skos:broader rdf:resource="#fine_grained_igneous_rock"/>
+        <skos:inScheme rdf:resource=""/>
+    </skos:Concept>
+    
+
+
+    <!-- #basanite -->
+
+    <skos:Concept rdf:about="#basanite">
+        <rdf:type rdf:resource="&owl;Thing"/>
+        <skos:prefLabel xml:lang="en">Basanite</skos:prefLabel>
+        <skos:historyNote xml:lang="en"
+            >LeMaitre et al., 2002</skos:historyNote>
+        <skos:definition xml:lang="en"
+            >Tephritoid that has a plagioclase to alkali feldspar ratio greater than 0.9, and contains more than 10 percent normative (CIPW) olivine.</skos:definition>
+        <skos:broader rdf:resource="#tephritoid"/>
+        <skos:inScheme rdf:resource=""/>
+    </skos:Concept>
+    
+
+
+    <!-- #basanitic_foidite -->
+
+    <skos:Concept rdf:about="#basanitic_foidite">
+        <rdf:type rdf:resource="&owl;Thing"/>
+        <skos:prefLabel xml:lang="en"
+            >Basanitic foidite</skos:prefLabel>
+        <skos:historyNote xml:lang="en"
+            >Foiditoid that contains less than 90 percent feldspathoid minerals in the QAPF fraction, and has a plagioclase to alkali feldspar ratio greater than 0.5, and contains more than 10 percent normative (CIPW) olivine.</skos:historyNote>
+        <skos:broader rdf:resource="#foiditoid"/>
         <skos:inScheme rdf:resource=""/>
     </skos:Concept>
     
@@ -1072,11 +1153,12 @@
 
     <skos:Concept rdf:about="#dacite">
         <rdf:type rdf:resource="&owl;Thing"/>
-        <skos:definition
-            >Fine grained or porphyritic crystalline rock composed of quartz and sodic plagioclase with minor amounts of biotite and/or hornblende and/or pyroxene; volcanic equivalent of granodiorite and tonalite. Includes rocks defined modally in QAPF fields 4 and 5 or chemically in TAS Field O3.</skos:definition>
         <skos:historyNote
             >LeMaitre et al. 2002</skos:historyNote>
         <skos:prefLabel xml:lang="en">Dacitic rock</skos:prefLabel>
+        <skos:definition xml:lang="en"
+            >Fine grained or porphyritic crystalline rock that contains less than 90 percent mafic minerals,  between 20 and 60 percent quartz in the QAPF fraction, and has a plagioclase to alkali feldspar ratio greater than 0.65.  Includes rocks defined modally in QAPF fields 4 and 5 or chemically in TAS Field O3. Typcially composed of quartz and sodic plagioclase with minor amounts of biotite and/or hornblende and/or pyroxene; fine-grained equivalent of granodiorite and tonalite.</skos:definition>
+        <rdfs:seeAlso xml:lang="en">rhyodacite</rdfs:seeAlso>
         <skos:broader rdf:resource="#acidic_igneous_rock"/>
         <skos:broader rdf:resource="#fine_grained_igneous_rock"/>
         <skos:inScheme rdf:resource=""/>
@@ -1175,6 +1257,10 @@
         <skos:definition
             >Dark colored gabbroic (basaltic) or dioritic (andesitic) rock intermediate in grain size between basalt and gabbro and composed of plagioclase, pyroxene and opaque minerals; often with ophitic texture. Typically occurs as hypabyssal intrusions. Includes dolerite, microdiorite, diabase and microgabbro.</skos:definition>
         <skos:prefLabel xml:lang="en">Doleritic rock</skos:prefLabel>
+        <skos:related rdf:resource="#andesite"/>
+        <skos:related rdf:resource="#basic_igneous_material"/>
+        <skos:related rdf:resource="#dioritic_rock"/>
+        <skos:related rdf:resource="#gabbroid"/>
         <skos:broader rdf:resource="#igneous_rock"/>
         <skos:inScheme rdf:resource=""/>
     </owl:Thing>
@@ -1353,7 +1439,7 @@
     <owl:Thing rdf:about="#fine_grained_igneous_rock">
         <rdf:type rdf:resource="&skos;Concept"/>
         <skos:definition
-            >Aphanitic or porphyritic igneous rock composed of greater than 10 percent groundmass, in which most of the crystals cannot be distinguished with the unaided eye; grainsize is typically less than 1mm. Igneous rocks with &#39;exotic&#39; composition are excluded from this concept.</skos:definition>
+            >Aphanitic or porphyritic igneous_rock composed of greater than 10 percent groundmass, in which most of the crystals cannot be distinguished with the unaided eye; grainsize is typically less than 1mm. Igneous rocks with &#39;exotic&#39; composition are excluded from this concept.</skos:definition>
         <skos:prefLabel xml:lang="en"
             >Fine grained igneous rock</skos:prefLabel>
         <skos:historyNote
@@ -1375,6 +1461,22 @@
         <skos:historyNote xml:lang="en"
             >LeMaitre et al., 2002</skos:historyNote>
         <skos:broader rdf:resource="#alkali_feldspar_syenitic_rock"/>
+        <skos:inScheme rdf:resource=""/>
+    </skos:Concept>
+    
+
+
+    <!-- #foid_bearing_alkalk_feldspar_trachyte -->
+
+    <skos:Concept rdf:about="#foid_bearing_alkalk_feldspar_trachyte">
+        <rdf:type rdf:resource="&owl;Thing"/>
+        <skos:definition xml:lang="en"
+            >Alkali feldspar trachytic rock that contains no quartz and between 0 and 10 percent feldspathoid mineral in the QAPF fraction. QAPF field 6&#39;.</skos:definition>
+        <skos:prefLabel xml:lang="en"
+            >Foid bearing alkali feldspar trachyte</skos:prefLabel>
+        <skos:historyNote xml:lang="en"
+            >Le Maitre et al., 2002</skos:historyNote>
+        <skos:broader rdf:resource="#alkali_feldspar_trachytic_rock"/>
         <skos:inScheme rdf:resource=""/>
     </skos:Concept>
     
@@ -1421,6 +1523,22 @@
         <skos:historyNote xml:lang="en"
             >LeMaitre et al., 2002</skos:historyNote>
         <skos:broader rdf:resource="#gabbroic_rock"/>
+        <skos:inScheme rdf:resource=""/>
+    </skos:Concept>
+    
+
+
+    <!-- #foid_bearing_latite -->
+
+    <skos:Concept rdf:about="#foid_bearing_latite">
+        <rdf:type rdf:resource="&owl;Thing"/>
+        <skos:prefLabel xml:lang="en"
+            >Foid bearing latite</skos:prefLabel>
+        <skos:historyNote xml:lang="en"
+            >Latitic rock that contains no quartz and between 0 and 10 percent feldspathoid minerals in the QAPF fraction. QAPF field 8&#39;.</skos:historyNote>
+        <skos:historyNote xml:lang="en"
+            >Le Maitre et al., 2002</skos:historyNote>
+        <skos:broader rdf:resource="#latitic_rock"/>
         <skos:inScheme rdf:resource=""/>
     </skos:Concept>
     
@@ -1483,6 +1601,22 @@
         <skos:broader rdf:resource="#syenitic_rock"/>
         <skos:inScheme rdf:resource=""/>
     </owl:Thing>
+    
+
+
+    <!-- #foid_bearing_trachyte -->
+
+    <skos:Concept rdf:about="#foid_bearing_trachyte">
+        <rdf:type rdf:resource="&owl;Thing"/>
+        <skos:prefLabel xml:lang="en"
+            >Foid bearing trachyte</skos:prefLabel>
+        <skos:definition xml:lang="en"
+            >Le Maitre et al. 2002</skos:definition>
+        <skos:definition xml:lang="en"
+            >Trachytic rock that contains between 0 and 10 percent feldspathoid in the QAPF fraction, and no quartz. QAPF field 7&#39;.</skos:definition>
+        <skos:broader rdf:resource="#trachytic_rock"/>
+        <skos:inScheme rdf:resource=""/>
+    </skos:Concept>
     
 
 
@@ -1629,18 +1763,38 @@
     
 
 
+    <!-- #foidite -->
+
+    <owl:Thing rdf:about="#foidite">
+        <rdf:type rdf:resource="&skos;Concept"/>
+        <skos:prefLabel xml:lang="en">Foidite</skos:prefLabel>
+        <skos:definition xml:lang="en"
+            >Foiditoid that contains greater than 90 percent feldspathoid minerals in the QAPF fraction.</skos:definition>
+        <skos:broader rdf:resource="#foiditoid"/>
+        <skos:inScheme rdf:resource=""/>
+    </owl:Thing>
+    
+
+
     <!-- #foiditoid -->
 
-    <skos:Concept rdf:about="#foiditoid">
-        <rdf:type rdf:resource="&owl;Thing"/>
+    <owl:Thing rdf:about="#foiditoid">
+        <rdf:type rdf:resource="&skos;Concept"/>
         <skos:historyNote
             >LeMaitre et al. 2002</skos:historyNote>
-        <skos:definition
-            >Fine grained crystalline rock containing more than 60 percent feldspathoids in total light-coloured constituents. Includes rocks defined modally in QAPF field 15 or chemically in TAS field F.</skos:definition>
-        <skos:prefLabel xml:lang="en">Foiditic rock</skos:prefLabel>
+        <skos:definition xml:lang="en"
+            >Fine grained crystalline rock containing less than 90 percent mafic minerals and more than 60 percent feldspathoid minerals in the QAPF fraction. Includes rocks defined modally in QAPF field 15 or chemically in TAS field F.</skos:definition>
+        <skos:altLabel xml:lang="en"
+            >Foidite (sensu lato)</skos:altLabel>
+        <skos:altLabel xml:lang="en">Foiditic rock</skos:altLabel>
+        <skos:prefLabel xml:lang="en">Foiditoid</skos:prefLabel>
+        <skos:narrower rdf:resource="#basanitic_foidite"/>
         <skos:broader rdf:resource="#fine_grained_igneous_rock"/>
+        <skos:narrower rdf:resource="#foidite"/>
+        <skos:narrower rdf:resource="#phonolitic_foidite"/>
+        <skos:narrower rdf:resource="#tephritic_foidite"/>
         <skos:inScheme rdf:resource=""/>
-    </skos:Concept>
+    </owl:Thing>
     
 
 
@@ -1684,7 +1838,7 @@
         <skos:historyNote
             >CGI concepts task group</skos:historyNote>
         <skos:definition
-            >Igneous material of unspecified consolidation state in which greater than 75 percent of the rock consists of fragments produced as a result of igneous rock-forming process.</skos:definition>
+            >igneous_material of unspecified consolidation state in which greater than 75 percent of the rock consists of fragments produced as a result of igneous rock-forming process.</skos:definition>
         <skos:prefLabel xml:lang="en"
             >Fragmental igneous material</skos:prefLabel>
         <skos:broader rdf:resource="#igneous_material"/>
@@ -1746,15 +1900,16 @@
 
     <skos:Concept rdf:about="#gabbroic_rock">
         <rdf:type rdf:resource="&owl;Thing"/>
-        <skos:historyNote
-            >LeMaitre et al. 2002</skos:historyNote>
         <rdfs:seeAlso xml:lang="en"
             >Gabbro (sensu stricto), Norite, Troctolite, Gabbronorite.</rdfs:seeAlso>
         <skos:prefLabel xml:lang="en">Gabbroic rock</skos:prefLabel>
         <skos:definition xml:lang="en"
             >Gabbroid that has a plagioclase to alkali feldspar ratio greater than 0.9 in the QAPF fraction.  Includes QAPF fields 10*, 10, and 10&#39;. This category includes the various categories defined in LeMaitre et al. (2002) based on the mafic mineralogy, but apparently not subdivided based on the quartz/feldspathoid content.</skos:definition>
+        <skos:historyNote
+            >LeMaitre et al. 2002</skos:historyNote>
         <skos:historyNote xml:lang="en"
             >LeMaitre et al., 2002</skos:historyNote>
+        <skos:broader rdf:resource="#basic_igneous_rock"/>
         <skos:narrower rdf:resource="#foid_bearing_gabbro"/>
         <skos:broader rdf:resource="#gabbroid"/>
         <skos:narrower rdf:resource="#quartz_gabbro"/>
@@ -1863,8 +2018,6 @@
 
     <skos:Concept rdf:about="#glassy_igneous_rock">
         <rdf:type rdf:resource="&owl;Thing"/>
-        <skos:notation rdf:datatype="&SimpleLithology2;xx"
-            >glassy_igneous_rock</skos:notation>
         <skos:historyNote>This vocabulary</skos:historyNote>
         <skos:historyNote xml:lang="en"
             >Change percent criteria from 90 to 80 percent for version 2009.</skos:historyNote>
@@ -2042,8 +2195,8 @@
         <skos:historyNote
             >Neuendorf et al 2005</skos:historyNote>
         <skos:prefLabel xml:lang="en">Igneous rock</skos:prefLabel>
-        <skos:definition
-            >Rock formed as a result of igneous processes, for example intrusion and cooling of magma in the crust, or volcanic eruption.</skos:definition>
+        <skos:definition xml:lang="en"
+            >rock formed as a result of igneous processes, for example intrusion and cooling of magma in the crust, or volcanic eruption.</skos:definition>
         <skos:narrower rdf:resource="#glass_rich_igneous_rock"/>
         <skos:broader rdf:resource="#igneous_material"/>
         <skos:broader rdf:resource="#rock"/>
@@ -2139,8 +2292,6 @@
 
     <owl:Thing rdf:about="#intermediate_composition_igneous_rock">
         <rdf:type rdf:resource="&skos;Concept"/>
-        <skos:notation rdf:datatype="&SimpleLithology2;xx"
-            >intermediate_composition_igneous_rock</skos:notation>
         <skos:historyNote
             >after LeMaitre et al. 2002</skos:historyNote>
         <skos:definition
@@ -2219,6 +2370,39 @@
         <skos:prefLabel xml:lang="en">Komatiitic rock</skos:prefLabel>
         <skos:broader rdf:resource="#fine_grained_igneous_rock"/>
         <skos:broader rdf:resource="#ultramafic_igneous_rock"/>
+        <skos:inScheme rdf:resource=""/>
+    </skos:Concept>
+    
+
+
+    <!-- #latite -->
+
+    <owl:Thing rdf:about="#latite">
+        <rdf:type rdf:resource="&skos;Concept"/>
+        <skos:prefLabel xml:lang="en">Latite</skos:prefLabel>
+        <skos:definition xml:lang="en"
+            >Latitic rock that contains between 0 and 5 percent quartz and no feldspathoid in the QAPF fraction. QAPF field 8.</skos:definition>
+        <skos:historyNote xml:lang="en"
+            >LeMaitre et al., 2002</skos:historyNote>
+        <skos:broader rdf:resource="#latitic_rock"/>
+        <skos:inScheme rdf:resource=""/>
+    </owl:Thing>
+    
+
+
+    <!-- #latitic_rock -->
+
+    <skos:Concept rdf:about="#latitic_rock">
+        <rdf:type rdf:resource="&owl;Thing"/>
+        <skos:prefLabel xml:lang="en">Latitic rock</skos:prefLabel>
+        <skos:historyNote xml:lang="en"
+            >Le Maitre et al., 2002</skos:historyNote>
+        <skos:definition xml:lang="en"
+            >Trachytoid that has a plagioclase to alkali feldspar ratio between 0.35 and 0.65. QAPF fields 8, 8&#39; and 8*.</skos:definition>
+        <skos:narrower rdf:resource="#foid_bearing_latite"/>
+        <skos:narrower rdf:resource="#latite"/>
+        <skos:narrower rdf:resource="#quartz_latite"/>
+        <skos:broader rdf:resource="#trachytoid"/>
         <skos:inScheme rdf:resource=""/>
     </skos:Concept>
     
@@ -2691,16 +2875,84 @@
     
 
 
+    <!-- #phonolilte -->
+
+    <skos:Concept rdf:about="#phonolilte">
+        <rdf:type rdf:resource="&owl;Thing"/>
+        <skos:historyNote xml:lang="en"
+            >LeMaitre et al., 2002</skos:historyNote>
+        <skos:prefLabel xml:lang="en">Phonolite</skos:prefLabel>
+        <skos:definition xml:lang="en"
+            >Phonolitoid in which the plagioclase to alkali feldspar ratio is less than 0.1. Rock consists of alkali feldspar, feldspathoid minerals, and mafic minerals.</skos:definition>
+        <rdfs:seeAlso xml:lang="en"
+            >peralkaline phonolite</rdfs:seeAlso>
+        <skos:broader rdf:resource="#phonolitoid"/>
+        <skos:inScheme rdf:resource=""/>
+    </skos:Concept>
+    
+
+
+    <!-- #phonolitic_basanite -->
+
+    <owl:Thing rdf:about="#phonolitic_basanite">
+        <rdf:type rdf:resource="&skos;Concept"/>
+        <skos:historyNote xml:lang="en"
+            >Le Maitre et al., 2002</skos:historyNote>
+        <skos:prefLabel xml:lang="en"
+            >Phonolitic basanite</skos:prefLabel>
+        <skos:definition xml:lang="en"
+            >Tephritoid that has a plagioclase to alkali feldspar ratio between 0.5 and  0.9, and contains more than 10 percent normative (CIPW) olivine.</skos:definition>
+        <skos:broader rdf:resource="#tephritoid"/>
+        <skos:inScheme rdf:resource=""/>
+    </owl:Thing>
+    
+
+
+    <!-- #phonolitic_foidite -->
+
+    <owl:Thing rdf:about="#phonolitic_foidite">
+        <rdf:type rdf:resource="&skos;Concept"/>
+        <skos:definition xml:lang="en"
+            >Foiditoid that contains less than 90 percent feldspathoid minerals in the QAPF fraction, and has a  plagioclase to alkali feldspar ratio that is less than 0.5</skos:definition>
+        <skos:historyNote xml:lang="en"
+            >LeMaitre et al., 2002</skos:historyNote>
+        <skos:prefLabel xml:lang="en"
+            >Phonolitic foidite</skos:prefLabel>
+        <skos:broader rdf:resource="#foiditoid"/>
+        <skos:inScheme rdf:resource=""/>
+    </owl:Thing>
+    
+
+
+    <!-- #phonolitic_tephrite -->
+
+    <skos:Concept rdf:about="#phonolitic_tephrite">
+        <rdf:type rdf:resource="&owl;Thing"/>
+        <skos:historyNote xml:lang="en"
+            >Le Maitre et al., 2002</skos:historyNote>
+        <skos:prefLabel xml:lang="en"
+            >Phonolitic tephrite</skos:prefLabel>
+        <skos:definition xml:lang="en"
+            >Tephritoid that has a plagioclase to alkali feldspar ratio between 0.5 and 0.9, and contains less than 10 percent normative (CIPW) olivine.</skos:definition>
+        <skos:broader rdf:resource="#tephritoid"/>
+        <skos:inScheme rdf:resource=""/>
+    </skos:Concept>
+    
+
+
     <!-- #phonolitoid -->
 
     <skos:Concept rdf:about="#phonolitoid">
         <rdf:type rdf:resource="&owl;Thing"/>
-        <skos:definition
-            >Fine grained igneous rock containing feldspathoids and in which alkali feldspar is thought to be more abundant than plagioclase. Includes rocks defined modally in QAPF fields 11 and 12, and TAS field Ph.</skos:definition>
         <skos:historyNote
             >LeMaitre et al. 2002</skos:historyNote>
-        <skos:prefLabel xml:lang="en">Phonolitic rock</skos:prefLabel>
+        <skos:definition xml:lang="en"
+            >Fine grained igneous rock than contains less than 90 percent mafic minerals, between 10 and 60 percent feldspathoid mineral in the QAPF fraction and has a plagioclase to alkali feldspar ratio less than 0.5. Includes rocks defined modally in QAPF fields 11 and 12, and TAS field Ph.</skos:definition>
+        <skos:altLabel xml:lang="en">Phonolitic rock</skos:altLabel>
+        <skos:prefLabel xml:lang="en">Phonolitoid</skos:prefLabel>
         <skos:broader rdf:resource="#fine_grained_igneous_rock"/>
+        <skos:narrower rdf:resource="#phonolilte"/>
+        <skos:narrower rdf:resource="#tephritic_phonolite"/>
         <skos:inScheme rdf:resource=""/>
     </skos:Concept>
     
@@ -2915,6 +3167,22 @@
     
 
 
+    <!-- #quartz_alkali_feldspar_trachyte -->
+
+    <skos:Concept rdf:about="#quartz_alkali_feldspar_trachyte">
+        <rdf:type rdf:resource="&owl;Thing"/>
+        <skos:definition xml:lang="en"
+            >Alkali feldspar trachytic rock that contains and between 5 and 20 percent quartz  mineral in the QAPF fraction. QAPF field 6*.</skos:definition>
+        <skos:historyNote xml:lang="en"
+            >Le Maitre et al., 2002</skos:historyNote>
+        <skos:prefLabel xml:lang="en"
+            >Quartz alkali feldspar trachyte</skos:prefLabel>
+        <skos:broader rdf:resource="#alkali_feldspar_trachytic_rock"/>
+        <skos:inScheme rdf:resource=""/>
+    </skos:Concept>
+    
+
+
     <!-- #quartz_anorthosite -->
 
     <skos:Concept rdf:about="#quartz_anorthosite">
@@ -2956,6 +3224,21 @@
         <skos:broader rdf:resource="#gabbroic_rock"/>
         <skos:inScheme rdf:resource=""/>
     </skos:Concept>
+    
+
+
+    <!-- #quartz_latite -->
+
+    <owl:Thing rdf:about="#quartz_latite">
+        <rdf:type rdf:resource="&skos;Concept"/>
+        <skos:definition xml:lang="en"
+            >Latitic rock that contains between 5 and 20 percent quartz in the QAPF fraction. QAPF field 8*.</skos:definition>
+        <skos:historyNote xml:lang="en"
+            >Le Maitre et al., 2002</skos:historyNote>
+        <skos:prefLabel xml:lang="en">Quartz latite</skos:prefLabel>
+        <skos:broader rdf:resource="#latitic_rock"/>
+        <skos:inScheme rdf:resource=""/>
+    </owl:Thing>
     
 
 
@@ -3005,22 +3288,21 @@
     
 
 
-    <!-- #quartz_rich_phaneritic_igneous_rock -->
+    <!-- #quartz_rich_igneous_rock -->
 
-    <owl:Thing rdf:about="#quartz_rich_phaneritic_igneous_rock">
+    <owl:Thing rdf:about="#quartz_rich_igneous_rock">
         <rdf:type rdf:resource="&skos;Concept"/>
         <skos:historyNote
             >Gillespie and Styles 1999; LeMaitre et al. 2002</skos:historyNote>
         <rdfs:comment xml:lang="en"
             >Occurrence of igneous rocks meeting this criteria seems to be vanishingly rare, thus subdividing the category does not seem warranted for the purposes of this vocabulary. Future usage of the vocabulary may motivate including quatzolite and quartz-rich granitoid in future revisions</rdfs:comment>
         <skos:definition xml:lang="en"
-            >Phaneritic crystalline igneous rock that contains greater than 60 percent quartz in the QAPF fraction</skos:definition>
+            >Phaneritic crystalline igneous rock that contains less than 90 percent mafic minerals and contains greater than 60 percent quartz in the QAPF fraction.</skos:definition>
         <skos:prefLabel xml:lang="en"
-            >Quartz rich phaneritic igneous rock</skos:prefLabel>
+            >Quartz rich igneous rock</skos:prefLabel>
         <rdfs:seeAlso xml:lang="en"
             >quartzolite, quartz-rich granitoid</rdfs:seeAlso>
         <skos:broader rdf:resource="#acidic_igneous_rock"/>
-        <skos:broader rdf:resource="#phaneritic_igneous_rock"/>
         <skos:inScheme rdf:resource=""/>
     </owl:Thing>
     
@@ -3034,6 +3316,21 @@
         <skos:definition xml:lang="en"
             >Syenitic rock that contains between 5 and 20 percent quartz in the QAPF fraction. Defined modally in QAPF Field 7*.</skos:definition>
         <skos:broader rdf:resource="#syenitic_rock"/>
+        <skos:inScheme rdf:resource=""/>
+    </owl:Thing>
+    
+
+
+    <!-- #quartz_trachyte -->
+
+    <owl:Thing rdf:about="#quartz_trachyte">
+        <rdf:type rdf:resource="&skos;Concept"/>
+        <skos:historyNote xml:lang="en"
+            >Le Maitre et al., 2002</skos:historyNote>
+        <skos:prefLabel xml:lang="en">Quartz trachyte</skos:prefLabel>
+        <skos:definition xml:lang="en"
+            >Trachytic rock that contains between 5 and 20 percent quartz in the QAPF fraction. QAPF field 7*.</skos:definition>
+        <skos:broader rdf:resource="#trachytic_rock"/>
         <skos:inScheme rdf:resource=""/>
     </owl:Thing>
     
@@ -3092,17 +3389,17 @@
         <rdf:type rdf:resource="&owl;Thing"/>
         <skos:historyNote
             >LeMaitre et al. 2002</skos:historyNote>
-        <skos:definition xml:lang="en"
-            >Fine-grained igneous rock consisting of quartz and alkali feldspar, with minor plagioclase and biotite, in a microcrystalline, cryptocrystalline or glassy groundmass. Flow texture is common. Includes rocks defined modally in QAPF fields 2 and 3 or chemically in TAS Field R as rhyolite. QAPF normative definition is based on modal mineralogy thus: less than 90 percent mafic minerals, between 10 and 60 percent quartz in the QAPF fraction, and ratio of plagioclse to alkali feldspar is less than 0.65.</skos:definition>
         <rdfs:comment xml:lang="en"
             >Note that technical definition, based on modal mineralogy plotted in a QAPF triangle may be applied qualitatively, based on phenocryst mineralogy when ground mass mineralogy can not be determined optically, or based on CIPW norm. Although TAS categories are defined based on chemical analyses, the correspondence with the QAPF defined categories is generally close enough that QAPF categories are commonly used interchangeably with TAS categories. It is important to note the basis for assignment of fine-grained igneous rocks to a specifice lithology category.</rdfs:comment>
         <skos:altLabel xml:lang="en">Rhyolitic rock</skos:altLabel>
         <skos:prefLabel xml:lang="en">Rhyolitoid</skos:prefLabel>
+        <skos:definition xml:lang="en"
+            >fine_grained_igneous_rock consisting of quartz and alkali feldspar, with minor plagioclase and biotite, in a microcrystalline, cryptocrystalline or glassy groundmass. Flow texture is common. Includes rocks defined modally in QAPF fields 2 and 3 or chemically in TAS Field R as rhyolite. QAPF normative definition is based on modal mineralogy thus: less than 90 percent mafic minerals, between 10 and 60 percent quartz in the QAPF fraction, and ratio of plagioclse to alkali feldspar is less than 0.65.</skos:definition>
         <skos:broader rdf:resource="#acidic_igneous_rock"/>
+        <skos:narrower rdf:resource="#alkali_feldspar_rhyolite"/>
         <skos:broader rdf:resource="#fine_grained_igneous_rock"/>
         <skos:narrower rdf:resource="#rhyolite"/>
         <skos:inScheme rdf:resource=""/>
-        <skos:narrower rdf:resource="#alkali_feldspar_rhyolite"/>
     </skos:Concept>
     
 
@@ -3191,8 +3488,6 @@
 
     <owl:Thing rdf:about="#sedimentary_material">
         <rdf:type rdf:resource="&skos;Concept"/>
-        <skos:notation rdf:datatype="&SimpleLithology2;xx"
-            >sedimentary_material</skos:notation>
         <skos:definition
             >Material formed by accumulation of solid fragmental material deposited by air, water or ice, or material that accumulated by other natural agents such as chemical precipitation from solution or secretion by organisms. Includes both sediment and sedimentary rock. Includes epiclastic deposits.</skos:definition>
         <skos:historyNote>SLTTs 2004</skos:historyNote>
@@ -3375,18 +3670,68 @@
     
 
 
+    <!-- #tephrite -->
+
+    <skos:Concept rdf:about="#tephrite">
+        <rdf:type rdf:resource="&owl;Thing"/>
+        <skos:prefLabel xml:lang="en">Tephrite</skos:prefLabel>
+        <skos:historyNote xml:lang="en"
+            >Tephritoid that has a plagioclase to alkali feldspar ratio greater than 0.9, and contains less than 10 percent normative (CIPW) olivine.</skos:historyNote>
+        <skos:broader rdf:resource="#tephritoid"/>
+        <skos:inScheme rdf:resource=""/>
+    </skos:Concept>
+    
+
+
+    <!-- #tephritic_foidite -->
+
+    <skos:Concept rdf:about="#tephritic_foidite">
+        <rdf:type rdf:resource="&owl;Thing"/>
+        <skos:historyNote xml:lang="en"
+            >Foiditoid that contains less than 90 percent feldspathoid minerals in the QAPF fraction, and has a plagioclase to alkali feldspar ratio greater than 0.5, and contains less than 10 precent normative (CIPW) olivine.</skos:historyNote>
+        <skos:prefLabel xml:lang="en"
+            >Tephritic foidite</skos:prefLabel>
+        <skos:broader rdf:resource="#foiditoid"/>
+        <skos:inScheme rdf:resource=""/>
+    </skos:Concept>
+    
+
+
+    <!-- #tephritic_phonolite -->
+
+    <skos:Concept rdf:about="#tephritic_phonolite">
+        <rdf:type rdf:resource="&owl;Thing"/>
+        <skos:historyNote xml:lang="en"
+            >LeMaitre et al., 2002</skos:historyNote>
+        <skos:definition xml:lang="en"
+            >Phonolitoid that has a plagioclase to alkali feldspar ratio between 0.1 and 0.5. Broadly corresponds to TAS tephriphonolite of TAS field U3.</skos:definition>
+        <skos:prefLabel xml:lang="en"
+            >Tephritic phonolite</skos:prefLabel>
+        <rdfs:seeAlso xml:lang="en">tephriphonolite</rdfs:seeAlso>
+        <skos:broader rdf:resource="#phonolitoid"/>
+        <skos:inScheme rdf:resource=""/>
+    </skos:Concept>
+    
+
+
     <!-- #tephritoid -->
 
-    <owl:Thing rdf:about="#tephritoid">
-        <rdf:type rdf:resource="&skos;Concept"/>
-        <skos:definition
-            >Fine grained crystalline igneous rock containing essential feldspathoids and in which plagioclase is more abundant than alkali feldspar. Includes rocks classified in QAPF field 14 or chemically in TAS field U1 as basanite or tephrite.</skos:definition>
+    <skos:Concept rdf:about="#tephritoid">
+        <rdf:type rdf:resource="&owl;Thing"/>
+        <skos:definition xml:lang="en"
+            >Fine grained igneous rock than contains less than 90 percent mafic minerals, between 10 and 60 percent feldspathoid mineral in the QAPF fraction and has a plagioclase to alkali feldspar ratio greater than 0.5.  Includes rocks classified in QAPF field 13 and 14 or chemically in TAS field U1 as basanite or tephrite.</skos:definition>
         <skos:historyNote
             >LeMaitre et al. 2002</skos:historyNote>
+        <skos:historyNote xml:lang="en"
+            >Le Maitre et al., 2002</skos:historyNote>
         <skos:prefLabel xml:lang="en">Tephritic rock</skos:prefLabel>
+        <skos:narrower rdf:resource="#basanite"/>
         <skos:broader rdf:resource="#fine_grained_igneous_rock"/>
+        <skos:narrower rdf:resource="#phonolitic_basanite"/>
+        <skos:narrower rdf:resource="#phonolitic_tephrite"/>
+        <skos:narrower rdf:resource="#tephrite"/>
         <skos:inScheme rdf:resource=""/>
-    </owl:Thing>
+    </skos:Concept>
     
 
 
@@ -3407,16 +3752,54 @@
     
 
 
+    <!-- #trachyte -->
+
+    <skos:Concept rdf:about="#trachyte">
+        <rdf:type rdf:resource="&owl;Thing"/>
+        <skos:historyNote xml:lang="en"
+            >Le Maitre et al., 2002</skos:historyNote>
+        <skos:prefLabel xml:lang="en">Trachyte</skos:prefLabel>
+        <skos:definition xml:lang="en"
+            >Trachytoid that has a plagioclase to alkali feldspar ratio between 0.1 and 0.35,  between 0 and 5 percent quartz in the QAPF fraction, and no feldspathoid minerals. QAPF field 7.</skos:definition>
+        <skos:broader rdf:resource="#trachytic_rock"/>
+        <skos:inScheme rdf:resource=""/>
+    </skos:Concept>
+    
+
+
+    <!-- #trachytic_rock -->
+
+    <skos:Concept rdf:about="#trachytic_rock">
+        <rdf:type rdf:resource="&owl;Thing"/>
+        <rdfs:comment xml:lang="en"
+            >Le Maitre et al. (2002) used &#39;trachyte&#39; to refer to QAPF fields 7, 7&#39;, and 7* in the text (p. 30) as well as to the more restrictive category (QAPF field 7 only). The term Trachytic rock is introduced here to label this more general category of trachyte.</rdfs:comment>
+        <skos:historyNote xml:lang="en"
+            >Le Maitre et al., 2002</skos:historyNote>
+        <skos:prefLabel xml:lang="en">Trachytic rock</skos:prefLabel>
+        <skos:definition xml:lang="en"
+            >Trachytoid that has a plagioclase to alkali feldspar ratio between 0.1 and 0.35. QAPF fields 7, 7&#39;, and 7*.</skos:definition>
+        <skos:narrower rdf:resource="#foid_bearing_trachyte"/>
+        <skos:narrower rdf:resource="#quartz_trachyte"/>
+        <skos:broader rdf:resource="#trachytoid"/>
+        <skos:inScheme rdf:resource=""/>
+    </skos:Concept>
+    
+
+
     <!-- #trachytoid -->
 
     <skos:Concept rdf:about="#trachytoid">
         <rdf:type rdf:resource="&owl;Thing"/>
-        <skos:definition
-            >Fine-grained volcanic rock consisting of alkali feldspar and minor mafic minerals, typically amphibole or mica; typically porphyritic. Includes rocks defined modally in QAPF fields 6, 7 and 8 or chemically in TAS Field T as trachyte or latite.</skos:definition>
         <skos:historyNote
             >LeMaitre et al. 2002</skos:historyNote>
-        <skos:prefLabel xml:lang="en">Trachytic rock</skos:prefLabel>
+        <skos:definition xml:lang="en"
+            >Fine grained igneous rock than contains less than 90 percent mafic minerals, less than 10 percent feldspathoid mineral and less than 20 percent quartz in the QAPF fraction and has a plagioclase to alkali feldspar ratio less than 0.65.   Mafic minerals typically include amphibole or mica; typically porphyritic. Includes rocks defined modally in QAPF fields 6, 7 and 8 (with subdivisions) or chemically in TAS Field T as trachyte or latite.</skos:definition>
+        <skos:altLabel xml:lang="en">Trachytic rock</skos:altLabel>
+        <skos:prefLabel xml:lang="en">Trachytoid</skos:prefLabel>
+        <skos:narrower rdf:resource="#alkali_feldspar_trachytic_rock"/>
         <skos:broader rdf:resource="#fine_grained_igneous_rock"/>
+        <skos:narrower rdf:resource="#latitic_rock"/>
+        <skos:narrower rdf:resource="#trachytic_rock"/>
         <skos:inScheme rdf:resource=""/>
     </skos:Concept>
     
@@ -3458,8 +3841,12 @@
 
     <skos:Concept rdf:about="#ultramafic_igneous_rock">
         <rdf:type rdf:resource="&owl;Thing"/>
+        <skos:definition xml:lang="en"
+            >Igneous rock that consists of greater than 90 percent mafic minerals.</skos:definition>
         <skos:historyNote xml:lang="en"
-            >Igneous rock that consists of greater than 90 percent mafic minerals.</skos:historyNote>
+            >Le Maitre et al., 2002; Gillespie and Styles, 1999</skos:historyNote>
+        <skos:prefLabel xml:lang="en"
+            >Ultramafic igneous rock</skos:prefLabel>
         <skos:broader rdf:resource="#igneous_rock"/>
         <skos:inScheme rdf:resource=""/>
     </skos:Concept>
@@ -3513,22 +3900,6 @@
             <rdf:Description/>
         </skos:changeNote>
     </skos:ConceptScheme>
-    
-
-
-    <!-- urn:cgi:classifierScheme:CGI:SimpleLithology:2009xx#alkali_feldspar_rhyolite -->
-
-    <skos:Concept rdf:about="#alkali_feldspar_rhyolite">
-        <rdf:type rdf:resource="&owl;Thing"/>
-        <skos:prefLabel xml:lang="en"
-            >Alkali feldspar rhyolite</skos:prefLabel>
-        <skos:definition xml:lang="en"
-            >Rhyolitoid in which the ratio of plagioclase to alkali feldspar is less than 0.1</skos:definition>
-        <rdfs:seeAlso xml:lang="en"
-            >alkali feldspar liparite, peralkaline rhyolite</rdfs:seeAlso>
-        <skos:broader rdf:resource="#rhyolitoid"/>
-        <skos:inScheme rdf:resource=""/>
-    </skos:Concept>
 </rdf:RDF>
 
 
