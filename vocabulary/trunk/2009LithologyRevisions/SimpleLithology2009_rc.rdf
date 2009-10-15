@@ -42,6 +42,7 @@
      -->
 
     <owl:AnnotationProperty rdf:about="&dc;date"/>
+    <owl:AnnotationProperty rdf:about="&dc;source"/>
     <owl:AnnotationProperty rdf:about="&skos;historyNote"/>
     <owl:AnnotationProperty rdf:about="&dc;creator"/>
     
@@ -145,12 +146,6 @@
     
 
 
-    <!-- http://www.w3.org/2004/02/skos/core#notation -->
-
-    <owl:DatatypeProperty rdf:about="&skos;notation"/>
-    
-
-
     <!-- http://www.w3.org/2004/02/skos/core#prefLabel -->
 
     <owl:DatatypeProperty rdf:about="&skos;prefLabel">
@@ -203,12 +198,12 @@
 
     <skos:Concept rdf:about="#acidic_igneous_material">
         <rdf:type rdf:resource="&owl;Thing"/>
-        <skos:historyNote
-            >after LeMaitre et al. 2002</skos:historyNote>
         <skos:definition
             >Igneous material with more than 63 percent SiO2.</skos:definition>
         <skos:prefLabel xml:lang="en"
             >Acidic igneous material</skos:prefLabel>
+        <skos:historyNote xml:lang="en"
+            >after LeMaitre et al. 2002</skos:historyNote>
         <skos:broader rdf:resource="#igneous_material"/>
         <skos:inScheme rdf:resource=""/>
     </skos:Concept>
@@ -225,8 +220,28 @@
             >Igneous rock with more than 63 percent SiO2.</skos:definition>
         <skos:historyNote
             >after LeMaitre et al. 2002</skos:historyNote>
+        <rdfs:seeAlso xml:lang="en"
+            >siliceous igneous rock</rdfs:seeAlso>
         <skos:broader rdf:resource="#acidic_igneous_material"/>
-        <skos:broader rdf:resource="#igneous_rock"/>
+        <skos:broader rdf:resource="#normal_crystalline_igneous_rock"/>
+        <skos:inScheme rdf:resource=""/>
+    </owl:Thing>
+    
+
+
+    <!-- #alkali_feldspar_granite -->
+
+    <owl:Thing rdf:about="#alkali_feldspar_granite">
+        <rdf:type rdf:resource="&skos;Concept"/>
+        <skos:prefLabel xml:lang="en"
+            >Alkali feldspar granite</skos:prefLabel>
+        <skos:definition xml:lang="en"
+            >Granitic rock  that has a plagioclase to total feldspar ratio is  less than 0.1. QAPF field 2.</skos:definition>
+        <skos:historyNote xml:lang="en"
+            >LeMaitre et al. 2002</skos:historyNote>
+        <rdfs:seeAlso xml:lang="en"
+            >peralkaline granite, alaskite</rdfs:seeAlso>
+        <skos:broader rdf:resource="#granitoid"/>
         <skos:inScheme rdf:resource=""/>
     </owl:Thing>
     
@@ -239,7 +254,7 @@
         <skos:prefLabel xml:lang="en"
             >Alkali feldspar rhyolite</skos:prefLabel>
         <skos:definition xml:lang="en"
-            >Rhyolitoid in which the ratio of plagioclase to alkali feldspar is less than 0.1</skos:definition>
+            >Rhyolitoid in which the ratio of plagioclase to total feldspar is less than 0.1</skos:definition>
         <rdfs:seeAlso xml:lang="en"
             >alkali feldspar liparite, peralkaline rhyolite</rdfs:seeAlso>
         <skos:broader rdf:resource="#rhyolitoid"/>
@@ -273,7 +288,7 @@
         <skos:historyNote xml:lang="en"
             >LeMaitre et al., 2002</skos:historyNote>
         <skos:definition xml:lang="en"
-            >Syenitoid with a plagioclase to alkali feldspar ratio of less than 0.1. QAPF fields 6, 6*, and 6&#39;.</skos:definition>
+            >Syenitoid with a plagioclase to total feldspar ratio of less than 0.1. QAPF fields 6, 6*, and 6&#39;.</skos:definition>
         <skos:narrower rdf:resource="#foid_bearing_alkali_feldspar_syenite"/>
         <skos:narrower rdf:resource="#quartz_alkali_feldspar_syenite"/>
         <skos:broader rdf:resource="#syenitoid"/>
@@ -291,7 +306,7 @@
         <skos:historyNote xml:lang="en"
             >Le Maitre et al., 2002</skos:historyNote>
         <skos:definition xml:lang="en"
-            >Trachytoid that has a plagioclase to alkali feldspar ratio less than 0.1,  between 0 and 5 percent quartz in the QAPF fraction, and no feldspathoid minerals.  QAPF fields 6.</skos:definition>
+            >Trachytoid that has a plagioclase to total feldspar ratio less than 0.1,  between 0 and 5 percent quartz in the QAPF fraction, and no feldspathoid minerals.  QAPF fields 6.</skos:definition>
         <skos:broader rdf:resource="#alkali_feldspar_trachytic_rock"/>
         <skos:inScheme rdf:resource=""/>
     </skos:Concept>
@@ -303,7 +318,7 @@
     <skos:Concept rdf:about="#alkali_feldspar_trachytic_rock">
         <rdf:type rdf:resource="&owl;Thing"/>
         <skos:historyNote xml:lang="en"
-            >Trachytoid that has a plagioclase to alkali feldspar ratio less than 0.1. QAPF fields 6, 6&#39;, and 6*.</skos:historyNote>
+            >Trachytoid that has a plagioclase to total feldspar ratio less than 0.1. QAPF fields 6, 6&#39;, and 6*.</skos:historyNote>
         <skos:narrower rdf:resource="#foid_bearing_alkalk_feldspar_trachyte"/>
         <skos:narrower rdf:resource="#quartz_alkali_feldspar_trachyte"/>
         <skos:broader rdf:resource="#trachytoid"/>
@@ -312,30 +327,13 @@
     
 
 
-    <!-- #alkali_granite -->
-
-    <owl:Thing rdf:about="#alkali_granite">
-        <rdf:type rdf:resource="&skos;Concept"/>
-        <skos:prefLabel xml:lang="en">Alkali granite</skos:prefLabel>
-        <skos:definition xml:lang="en"
-            >Granitic rock that contains less than 90 percent mafic minerals, and in the QAPF fraction, contains between 20 and 60 percent quartz with P/(A+P) less than 10. Streckiesen field 2.</skos:definition>
-        <skos:historyNote xml:lang="en"
-            >LeMaitre et al. 2002</skos:historyNote>
-        <rdfs:seeAlso xml:lang="en"
-            >peralkaline granite, alaskite</rdfs:seeAlso>
-        <skos:broader rdf:resource="#granitic_rock"/>
-        <skos:inScheme rdf:resource=""/>
-    </owl:Thing>
-    
-
-
     <!-- #amphibolite -->
 
     <skos:Concept rdf:about="#amphibolite">
         <rdf:type rdf:resource="&owl;Thing"/>
-        <skos:historyNote
-            >Coutinho et al. 2007, IUGS SCMR chapter 8 (http://www.bgs.ac.uk/SCMR/)</skos:historyNote>
         <skos:prefLabel xml:lang="en">Amphibolite</skos:prefLabel>
+        <skos:historyNote xml:lang="en"
+            >Coutinho et al. 2007, IUGS SCMR chapter 8 (http://www.bgs.ac.uk/SCMR/)</skos:historyNote>
         <skos:definition
             >Metamorphic rock mainly consisting of green, brown or black amphibole and plagioclase (including albite), which combined form 75 percent or more of the rock, and both of which are present as major constituents. The amphibole constitutes 50 percent or more of the total mafic constituents and is present in an amount of 30 percent or more; other common minerals include quartz, clinopyroxene, garnet, epidote-group minerals, biotite, titanite and scapolite.</skos:definition>
         <skos:broader rdf:resource="#metamorphic_rock"/>
@@ -348,13 +346,13 @@
 
     <owl:Thing rdf:about="#andesite">
         <rdf:type rdf:resource="&skos;Concept"/>
-        <skos:historyNote
-            >after LeMaitre et al. 2002</skos:historyNote>
         <skos:prefLabel xml:lang="en">Andesitic rock</skos:prefLabel>
         <skos:definition xml:lang="en"
-            >Fine-grained or porphyritic igneous rock with less than 20 percent quartz and less than 10 percent feldspathoid minerals in the QAPF fraction, in which the ratio of plagioclase to alkali feldspar is greater 0.65.  Includes rocks defined modally in QAPF fields 9 and 10 or chemically in TAS field O2 as andesite. Basalt and andesite, which share the same QAPF fields, are distinguished chemically based on silica content, with basalt defined to contain less than 52 weight percent silica.  If chemical data are not available, the color index is used to distinguish the categories, with basalt defined to contain greater than 35 percent mafic minerals by volume or greater than 40 percent mafic minerals by weight. Typically consists of plagioclase (frequently zoned from labradorite to oligoclase), pyroxene, hornblende and/or biotite. Fine grained equivalent of dioritic rock.</skos:definition>
+            >Fine-grained igneous rock with less than 20 percent quartz and less than 10 percent feldspathoid minerals in the QAPF fraction, in which the ratio of plagioclase to total feldspar is greater 0.65.  Includes rocks defined modally in QAPF fields 9 and 10 or chemically in TAS field O2 as andesite. Basalt and andesite, which share the same QAPF fields, are distinguished chemically based on silica content, with basalt defined to contain less than 52 weight percent silica.  If chemical data are not available, the color index is used to distinguish the categories, with basalt defined to contain greater than 35 percent mafic minerals by volume or greater than 40 percent mafic minerals by weight. Typically consists of plagioclase (frequently zoned from labradorite to oligoclase), pyroxene, hornblende and/or biotite. Fine grained equivalent of dioritic rock.</skos:definition>
+        <skos:historyNote xml:lang="en"
+            >after LeMaitre et al. 2002</skos:historyNote>
         <rdfs:seeAlso xml:lang="en"
-            >mela-andesite, leuco-basalt</rdfs:seeAlso>
+            >mela-andesite, leuco-basalt, boninite</rdfs:seeAlso>
         <rdfs:comment xml:lang="en"
             >note the mela-andesite and leuco-basalt categories are not recommended in this system. If chemical analytical data are available to constrain the silica content, the basalt or andesite category should be used.</rdfs:comment>
         <skos:broader rdf:resource="#fine_grained_igneous_rock"/>
@@ -388,7 +386,7 @@
         <skos:historyNote xml:lang="en"
             >LeMaitre et al. 2002; this vocabulary</skos:historyNote>
         <skos:definition xml:lang="en"
-            >Leucocratic phaneritic crystalline igneous rock consisting essentially of plagioclase, often with small amounts of pyroxene. By definition, colour index M is less than 10, and plagiclase to alkali feldspar ratio is greater than 0.9. Less than 20 percent quartz and less than 10 percent feldspathoid in the QAPF fraction. QAPF field 10, 10*, and 10&#39;.</skos:definition>
+            >Leucocratic phaneritic crystalline igneous rock consisting essentially of plagioclase, often with small amounts of pyroxene. By definition, colour index M is less than 10, and plagiclase to total feldspar ratio is greater than 0.9. Less than 20 percent quartz and less than 10 percent feldspathoid in the QAPF fraction. QAPF field 10, 10*, and 10&#39;.</skos:definition>
         <rdfs:comment xml:lang="en"
             >anorthositic rock term invented to label the combined QAPF fields 10, 10*, and 10&#39;, in order to construct hierarchy in this vocabulary.</rdfs:comment>
         <skos:narrower rdf:resource="#anorthosite"/>
@@ -404,11 +402,11 @@
 
     <owl:Thing rdf:about="#anthropogenic_material">
         <rdf:type rdf:resource="&skos;Concept"/>
-        <skos:historyNote>this vocabulary</skos:historyNote>
         <skos:prefLabel xml:lang="en"
             >Anthropogenic material</skos:prefLabel>
         <skos:definition
             >Material known to have artificial (human-related) origin; insufficient information to classify in more detail.</skos:definition>
+        <skos:historyNote xml:lang="en">this vocabulary</skos:historyNote>
         <skos:broader rdf:resource="#compound_material"/>
         <skos:inScheme rdf:resource=""/>
     </owl:Thing>
@@ -421,9 +419,9 @@
         <rdf:type rdf:resource="&skos;Concept"/>
         <skos:definition
             >Unconsolidated material known to have artificial (human-related) origin.</skos:definition>
-        <skos:historyNote>this vocabulary</skos:historyNote>
         <skos:prefLabel xml:lang="en"
             >Anthropogenic unconsolidated material</skos:prefLabel>
+        <skos:historyNote xml:lang="en">this vocabulary</skos:historyNote>
         <skos:broader rdf:resource="#anthropogenic_material"/>
         <skos:broader rdf:resource="#unconsolidated_material"/>
         <skos:inScheme rdf:resource=""/>
@@ -435,11 +433,10 @@
 
     <owl:Thing rdf:about="#aphanite">
         <rdf:type rdf:resource="&skos;Concept"/>
-        <skos:notation rdf:datatype="&SimpleLithology2;xx">aphanite</skos:notation>
         <skos:definition
             >Rock that is too fine grained to categorize in more detail.</skos:definition>
         <skos:prefLabel xml:lang="en">Aphanite</skos:prefLabel>
-        <skos:historyNote>this vocabulary</skos:historyNote>
+        <skos:historyNote xml:lang="en">this vocabulary</skos:historyNote>
         <skos:broader rdf:resource="#rock"/>
         <skos:inScheme rdf:resource=""/>
     </owl:Thing>
@@ -450,11 +447,11 @@
 
     <owl:Thing rdf:about="#aplite">
         <rdf:type rdf:resource="&skos;Concept"/>
-        <skos:historyNote
-            >Neuendorf et al. 2005</skos:historyNote>
         <skos:prefLabel xml:lang="en">Aplite</skos:prefLabel>
         <skos:definition
             >Light coloured crystalline rock, characterized by a fine grained allotriomorphic-granular (aplitic, saccharoidal or xenomorphic) texture; typically granitic composition, consisting of quartz, alkali feldspar and sodic plagioclase.</skos:definition>
+        <skos:historyNote xml:lang="en"
+            >Neuendorf et al. 2005</skos:historyNote>
         <skos:broader rdf:resource="#glass_rich_igneous_rock"/>
         <skos:inScheme rdf:resource=""/>
     </owl:Thing>
@@ -465,11 +462,11 @@
 
     <owl:Thing rdf:about="#ash_and_lapilli">
         <rdf:type rdf:resource="&skos;Concept"/>
-        <skos:definition
-            >Tephra in which less than 25 percent of fragments are greater than 64 mm in longest dimension</skos:definition>
         <skos:prefLabel xml:lang="en">Ash and lapilli</skos:prefLabel>
-        <skos:historyNote
+        <skos:historyNote xml:lang="en"
             >Schmid 1981; LeMaitre et al. 2002</skos:historyNote>
+        <skos:definition xml:lang="en"
+            >Tephra in which less than 25 percent of fragments are greater than 64 mm in longest dimension</skos:definition>
         <skos:broader rdf:resource="#tephra"/>
         <skos:inScheme rdf:resource=""/>
     </owl:Thing>
@@ -480,12 +477,12 @@
 
     <skos:Concept rdf:about="#ash_breccia_bomb_or_block_tephra">
         <rdf:type rdf:resource="&owl;Thing"/>
-        <skos:historyNote
-            >Schmid 1981; LeMaitre et al. 2002</skos:historyNote>
-        <skos:definition
-            >Tephra in which more than 25 percent of particles are greater than 64 mm in largest dimension. Includes ash breccia, bomb tephra and block tephra of Gillespie and Styles (1999)</skos:definition>
         <skos:prefLabel xml:lang="en"
             >Ash breccia, bomb, or block tephra</skos:prefLabel>
+        <skos:historyNote xml:lang="en"
+            >Schmid 1981; LeMaitre et al. 2002</skos:historyNote>
+        <skos:definition xml:lang="en"
+            >Tephra in which more than 25 percent of particles are greater than 64 mm in largest dimension. Includes ash breccia, bomb tephra and block tephra of Gillespie and Styles (1999)</skos:definition>
         <skos:broader rdf:resource="#tephra"/>
         <skos:inScheme rdf:resource=""/>
     </skos:Concept>
@@ -498,9 +495,9 @@
         <rdf:type rdf:resource="&skos;Concept"/>
         <skos:prefLabel xml:lang="en"
             >Ash tuff, lapillistone, and lapilli tuff</skos:prefLabel>
-        <skos:definition
+        <skos:definition xml:lang="en"
             >Pyroclastic rock in which less than 25 percent of rock by volume are more than 64 mm in longest diameter. Includes tuff, lapilli tuff, and lapillistone.</skos:definition>
-        <skos:historyNote
+        <skos:historyNote xml:lang="en"
             >Schmid 1981; LeMaitre et al. 2002</skos:historyNote>
         <skos:broader rdf:resource="#pyroclastic_rock"/>
         <skos:inScheme rdf:resource=""/>
@@ -514,11 +511,11 @@
         <rdf:type rdf:resource="&owl;Thing"/>
         <skos:prefLabel xml:lang="en">Basaltic rock</skos:prefLabel>
         <skos:definition xml:lang="en"
-            >Fine-grained or porphyritic igneous rock with less than 20 percent quartz, and less than 10 percent feldspathoid minerals, in which the ratio of plagioclase to alkali feldspar is greater 0.65. Typically composed of calcic plagioclase and clinopyroxene; phenocrysts typically include one or more of calcic plagioclase, clinopyroxene, orthopyroxene, and olivine. Includes rocks defined modally in QAPF fields 9 and 10 or chemically in TAS field B as basalt. Basalt and andesite are distinguished chemically based on silica content, with basalt defined to contain less than 52 weight percent silica.  If chemical data are not available, the color index is used to distinguish the categories, with basalt defined to contain greater than 35 percent mafic minerals by volume or greater than 40 percent mafic minerals by weight.</skos:definition>
-        <skos:historyNote
+            >Fine-grained or porphyritic igneous rock with less than 20 percent quartz, and less than 10 percent feldspathoid minerals, in which the ratio of plagioclase to total feldspar is greater 0.65. Typically composed of calcic plagioclase and clinopyroxene; phenocrysts typically include one or more of calcic plagioclase, clinopyroxene, orthopyroxene, and olivine. Includes rocks defined modally in QAPF fields 9 and 10 or chemically in TAS field B as basalt. Basalt and andesite are distinguished chemically based on silica content, with basalt defined to contain less than 52 weight percent silica.  If chemical data are not available, the color index is used to distinguish the categories, with basalt defined to contain greater than 35 percent mafic minerals by volume or greater than 40 percent mafic minerals by weight.</skos:definition>
+        <skos:historyNote xml:lang="en"
             >after LeMaitre et al. 2002</skos:historyNote>
         <rdfs:seeAlso xml:lang="en"
-            >mela-andesite, leuco-basalt</rdfs:seeAlso>
+            >mela-andesite, leuco-basalt, picrite, picrobasalt</rdfs:seeAlso>
         <skos:broader rdf:resource="#basic_igneous_rock"/>
         <skos:broader rdf:resource="#fine_grained_igneous_rock"/>
         <skos:inScheme rdf:resource=""/>
@@ -534,7 +531,7 @@
         <skos:historyNote xml:lang="en"
             >LeMaitre et al., 2002</skos:historyNote>
         <skos:definition xml:lang="en"
-            >Tephritoid that has a plagioclase to alkali feldspar ratio greater than 0.9, and contains more than 10 percent normative (CIPW) olivine.</skos:definition>
+            >Tephritoid that has a plagioclase to total feldspar ratio greater than 0.9, and contains more than 10 percent normative (CIPW) olivine.</skos:definition>
         <skos:broader rdf:resource="#tephritoid"/>
         <skos:inScheme rdf:resource=""/>
     </skos:Concept>
@@ -548,7 +545,7 @@
         <skos:prefLabel xml:lang="en"
             >Basanitic foidite</skos:prefLabel>
         <skos:historyNote xml:lang="en"
-            >Foiditoid that contains less than 90 percent feldspathoid minerals in the QAPF fraction, and has a plagioclase to alkali feldspar ratio greater than 0.5, and contains more than 10 percent normative (CIPW) olivine.</skos:historyNote>
+            >Foiditoid that contains less than 90 percent feldspathoid minerals in the QAPF fraction, and has a plagioclase to total feldspar ratio greater than 0.5, and contains more than 10 percent normative (CIPW) olivine.</skos:historyNote>
         <skos:broader rdf:resource="#foiditoid"/>
         <skos:inScheme rdf:resource=""/>
     </skos:Concept>
@@ -559,12 +556,12 @@
 
     <owl:Thing rdf:about="#basic_igneous_material">
         <rdf:type rdf:resource="&skos;Concept"/>
-        <skos:historyNote
-            >after LeMaitre et al. 2002</skos:historyNote>
-        <skos:definition
-            >Igneous material with between 45 and 52 percent SiO2.</skos:definition>
         <skos:prefLabel xml:lang="en"
             >Basic igneous material</skos:prefLabel>
+        <skos:definition xml:lang="en"
+            >Igneous material with between 45 and 52 percent SiO2.</skos:definition>
+        <skos:historyNote xml:lang="en"
+            >after LeMaitre et al. 2002</skos:historyNote>
         <skos:broader rdf:resource="#igneous_material"/>
         <skos:inScheme rdf:resource=""/>
     </owl:Thing>
@@ -575,14 +572,14 @@
 
     <skos:Concept rdf:about="#basic_igneous_rock">
         <rdf:type rdf:resource="&owl;Thing"/>
-        <skos:definition
-            >Igneous rock with between 45 and 52 percent SiO2.</skos:definition>
         <skos:prefLabel xml:lang="en"
             >Basic igneous rock</skos:prefLabel>
-        <skos:historyNote
+        <skos:definition xml:lang="en"
+            >Igneous rock with between 45 and 52 percent SiO2.</skos:definition>
+        <skos:historyNote xml:lang="en"
             >after LeMaitre et al. 2002</skos:historyNote>
         <skos:broader rdf:resource="#basic_igneous_material"/>
-        <skos:broader rdf:resource="#igneous_rock"/>
+        <skos:broader rdf:resource="#normal_crystalline_igneous_rock"/>
         <skos:inScheme rdf:resource=""/>
     </skos:Concept>
     
@@ -606,12 +603,12 @@
 
     <owl:Thing rdf:about="#biogenic_sediment">
         <rdf:type rdf:resource="&skos;Concept"/>
-        <skos:notation rdf:datatype="&SimpleLithology2;xx"
-            >biogenic_sediment</skos:notation>
         <skos:definition
             >Sediment composed of greater than 50 percent material of biogenic origin.</skos:definition>
         <skos:prefLabel xml:lang="en"
             >Biogenic sediment</skos:prefLabel>
+        <rdfs:comment xml:lang="en"
+            >Corresponding biogenic sedimentary material and biogenic sedimentary rock categories are not included based on the interpretation that biogenic sedimetnary rock will be in a different category, e.g. carbonate sedimentary rock or organic rich sedimentary rock.</rdfs:comment>
         <skos:historyNote>SLTTs 2004</skos:historyNote>
         <skos:related rdf:resource="#carbonate_sediment"/>
         <skos:related rdf:resource="#non_clastic_siliceous_sediment"/>
@@ -625,8 +622,6 @@
 
     <skos:Concept rdf:about="#biogenic_silica_sedimentary_rock">
         <rdf:type rdf:resource="&owl;Thing"/>
-        <skos:notation rdf:datatype="&SimpleLithology2;xx"
-            >biogenic_silica_sedimentary_rock</skos:notation>
         <skos:definition
             >Sedimentary rock that consists of at least 50 percent silicate mineral material, deposited directly by biological processes at the depositional surface, or in particles formed by biological processes within the basin of deposition.</skos:definition>
         <skos:historyNote
@@ -658,7 +653,6 @@
 
     <skos:Concept rdf:about="#boundstone">
         <rdf:type rdf:resource="&owl;Thing"/>
-        <skos:notation rdf:datatype="&SimpleLithology2;xx">boundstone</skos:notation>
         <skos:definition
             >Sedimentary carbonate rock with preserved biogenic texture, whose original components were bound and encrusted together during deposition by the action of plants and animals during deposition, and remained substantially in the position of growth.</skos:definition>
         <skos:prefLabel xml:lang="en">Boundstone</skos:prefLabel>
@@ -704,8 +698,6 @@
 
     <skos:Concept rdf:about="#calcareous_carbonate_sediment">
         <rdf:type rdf:resource="&owl;Thing"/>
-        <skos:notation rdf:datatype="&SimpleLithology2;xx"
-            >calcareous_carbonate_sediment</skos:notation>
         <skos:historyNote
             >after Hallsworth &amp; Knox 1999</skos:historyNote>
         <skos:prefLabel xml:lang="en"
@@ -725,8 +717,6 @@
 
     <skos:Concept rdf:about="#calcareous_carbonate_sedimentary_material">
         <rdf:type rdf:resource="&owl;Thing"/>
-        <skos:notation rdf:datatype="&SimpleLithology2;xx"
-            >calcareous_carbonate_sedimentary_material</skos:notation>
         <skos:historyNote
             >after Hallsworth &amp; Knox 1999</skos:historyNote>
         <skos:definition
@@ -743,8 +733,6 @@
 
     <owl:Thing rdf:about="#calcareous_carbonate_sedimentary_rock">
         <rdf:type rdf:resource="&skos;Concept"/>
-        <skos:notation rdf:datatype="&SimpleLithology2;xx"
-            >calcareous_carbonate_sedimentary_rock</skos:notation>
         <skos:historyNote
             >SLTTs 2004; Hallsworth &amp; Knox 1999</skos:historyNote>
         <skos:definition
@@ -753,6 +741,8 @@
             >Calcareous carbonate sedimentary rock</skos:prefLabel>
         <skos:broader rdf:resource="#calcareous_carbonate_sedimentary_material"/>
         <skos:broader rdf:resource="#carbonate_sedimentary_rock"/>
+        <skos:narrower rdf:resource="#impure_limestone"/>
+        <skos:narrower rdf:resource="#limestone"/>
         <skos:inScheme rdf:resource=""/>
     </owl:Thing>
     
@@ -762,8 +752,6 @@
 
     <skos:Concept rdf:about="#carbonate_gravel">
         <rdf:type rdf:resource="&owl;Thing"/>
-        <skos:notation rdf:datatype="&SimpleLithology2;xx"
-            >carbonate_gravel</skos:notation>
         <skos:prefLabel xml:lang="en"
             >Carbonate gravel</skos:prefLabel>
         <skos:definition
@@ -780,7 +768,6 @@
 
     <owl:Thing rdf:about="#carbonate_mud">
         <rdf:type rdf:resource="&skos;Concept"/>
-        <skos:notation rdf:datatype="&SimpleLithology2;xx">carbonate_mud</skos:notation>
         <skos:historyNote xml:lang="en"
             >2009 update definition so that carbonated sand, gravel, and mud categories cover entire grain size space</skos:historyNote>
         <skos:prefLabel xml:lang="en">Carbonate mud</skos:prefLabel>
@@ -799,15 +786,20 @@
 
     <owl:Thing rdf:about="#carbonate_mudstone">
         <rdf:type rdf:resource="&skos;Concept"/>
-        <skos:notation rdf:datatype="&SimpleLithology2;xx"
-            >carbonate_mudstone</skos:notation>
-        <skos:definition
-            >Carbonate sedimentary rock with matrix-supported fabric, composed of more than 75 percent mud-sized grains (maximum diameter less than 32 microns). The original depositional texture is preserved.</skos:definition>
-        <skos:historyNote
-            >Hallsworth &amp; Knox 1999; SLTTs, 2004</skos:historyNote>
         <skos:prefLabel xml:lang="en"
             >Carbonate mudstone</skos:prefLabel>
-        <skos:broader rdf:resource="#carbonate_sedimentary_rock"/>
+        <skos:definition xml:lang="en"
+            >Mudstone that consists of greater than 50 percent carbonate minerals of any origin in the mud size fraction.</skos:definition>
+        <rdfs:comment xml:lang="en"
+            >Not a subcategory of carbonate sedimentary rock because definition does not specify &#39;carbonate minerals of intrabasinal origin&#39;, but is agnostic on origin of carbonate.</rdfs:comment>
+        <rdfs:comment xml:lang="en"
+            >Schnurrenberger et al. 2003 point out that it is very difficult (at least in lacustrine rocks) to distinguish chemically precipitated or diagenetic carbonate from primary biogenic carbonate. This distinction between biogenic, detrital, and pedogenic or authigenic carbonate material is thus not a good one to use in a general purpose classification system. 
+Schnurrenberger, D., Russell, J. and Kelts, K., 2003, Classification of lacustrine sediments based on sedimentary components: Journal of Paleolimnology, v.29, p141-154.</rdfs:comment>
+        <rdfs:seeAlso xml:lang="en"
+            >marlstone, calcareous loess</rdfs:seeAlso>
+        <skos:historyNote xml:lang="en">this vocabulary</skos:historyNote>
+        <skos:related rdf:resource="#carbonate_sedimentary_rock"/>
+        <skos:broader rdf:resource="#mudstone"/>
         <skos:inScheme rdf:resource=""/>
     </owl:Thing>
     
@@ -831,11 +823,32 @@
     
 
 
+    <!-- #carbonate_rich_mudstone -->
+
+    <skos:Concept rdf:about="#carbonate_rich_mudstone">
+        <rdf:type rdf:resource="&owl;Thing"/>
+        <rdfs:comment xml:lang="en"
+            >&#39;carbonate-rich mudstone&#39; definition limits carbonate to mud-size fraction to avoid overlap with &#39;impure carbonate sedimentary rock&#39;. If carbonate minerals are in sand or gravel size fractions, use &#39;impure carbonate sedimentary rock&#39;
+The operational test typically used to identify this category is if the rock fizzes when hydrochloric acid is applied. The &#39;10 percent carbonate&#39; criteria is a fuzzy boundary.
+Rocks typcially called marlstone are subdivided into a carbonate rich variety, and a</rdfs:comment>
+        <skos:prefLabel xml:lang="en"
+            >Carbonate rich mudstone</skos:prefLabel>
+        <skos:definition xml:lang="en"
+            >Mudstone that contains between 10 and 50 percent carbonate minerals in the mud size fraction. Carbonate origin is not specified.</skos:definition>
+        <rdfs:seeAlso xml:lang="en"
+            >marlstone, calcareous loess</rdfs:seeAlso>
+        <skos:historyNote xml:lang="en">this vocabulary</skos:historyNote>
+        <skos:related rdf:resource="#clastic_sedimentary_rock"/>
+        <skos:broader rdf:resource="#mudstone"/>
+        <skos:inScheme rdf:resource=""/>
+    </skos:Concept>
+    
+
+
     <!-- #carbonate_sand -->
 
     <owl:Thing rdf:about="#carbonate_sand">
         <rdf:type rdf:resource="&skos;Concept"/>
-        <skos:notation rdf:datatype="&SimpleLithology2;xx">carbonate_sand</skos:notation>
         <skos:historyNote xml:lang="en"
             >2009 update definition so that carbonated sand, gravel, and mud categories cover entire grain size space</skos:historyNote>
         <skos:prefLabel xml:lang="en">Carbonate sand</skos:prefLabel>
@@ -853,8 +866,6 @@
 
     <skos:Concept rdf:about="#carbonate_sediment">
         <rdf:type rdf:resource="&owl;Thing"/>
-        <skos:notation rdf:datatype="&SimpleLithology2;xx"
-            >carbonate_sediment</skos:notation>
         <skos:prefLabel xml:lang="en"
             >Carbonate sediment</skos:prefLabel>
         <skos:definition
@@ -873,8 +884,6 @@
 
     <skos:Concept rdf:about="#carbonate_sedimentary_material">
         <rdf:type rdf:resource="&owl;Thing"/>
-        <skos:notation rdf:datatype="&SimpleLithology2;xx"
-            >carbonate_sedimentary_material</skos:notation>
         <skos:prefLabel xml:lang="en"
             >Carbonate sedimentary material</skos:prefLabel>
         <skos:definition
@@ -888,19 +897,23 @@
 
     <!-- #carbonate_sedimentary_rock -->
 
-    <skos:Concept rdf:about="#carbonate_sedimentary_rock">
-        <rdf:type rdf:resource="&owl;Thing"/>
-        <skos:notation rdf:datatype="&SimpleLithology2;xx"
-            >carbonate_sedimentary_rock</skos:notation>
+    <owl:Thing rdf:about="#carbonate_sedimentary_rock">
+        <rdf:type rdf:resource="&skos;Concept"/>
         <skos:historyNote>SLTTs 2004</skos:historyNote>
+        <rdfs:comment xml:lang="en"
+            >Carbonate rock subcatgories are defined on two orthogonal dimensions--mineralogy (calcitic vs. dolomitic vs non-carbonate impurities), and texture. The texture categories used here are those of Dunham (1962), and involve grain size (matrix vs. grains/allochems), fabric (matrix vs. grain supported), and genesis (bound, frame, or fragmental). The textural approach used for carbonate rocks is conceptually incompatible with that used for clastic sedimentary rocks, which is solely grain size or mineralogy based. This leads to problems in the vocabulary for rocks of mixed siliclastic/carbonate mineralogy (grainstone vs. sandstone, carbonate mudstone vs. carbonate rich mudstone, how to accomodate marlstone...).</rdfs:comment>
         <skos:prefLabel xml:lang="en"
             >Carbonate sedimentary rock</skos:prefLabel>
-        <skos:definition
-            >Sedimentary rock in which at least 50 percent of the primary and/or recrystallized constituents are composed of one (or more) of the carbonate minerals calcite, aragonite and dolomite, in particles of intrabasinal origin.</skos:definition>
+        <rdfs:comment xml:lang="en"
+            >Particularly for fine-grained sedimentary rocks, distinction of &#39;intrabasinal&#39; versus &#39;clastic&#39; genesis can be very interpretive. In practice the use of clastic mudstone terminology as opposed to carbonate mudstone terminology may be dermined by a priori knowledge about the rock being categorized. If it is associated with other clastic rocks, the clastic categories will be favored, if with cabonate rocks, the carbonate categories will be favored.</rdfs:comment>
+        <skos:definition xml:lang="en"
+            >Sedimentary rock in which at least 50 percent of the primary and/or recrystallized constituents are composed of one (or more) of the carbonate minerals calcite, aragonite, magnesite or dolomite.</skos:definition>
         <skos:broader rdf:resource="#carbonate_sedimentary_material"/>
+        <skos:narrower rdf:resource="#impure_carbonate_sedimentary_rock"/>
+        <skos:narrower rdf:resource="#pure_carbonate_sedimentary_rock"/>
         <skos:broader rdf:resource="#sedimentary_rock"/>
         <skos:inScheme rdf:resource=""/>
-    </skos:Concept>
+    </owl:Thing>
     
 
 
@@ -908,13 +921,12 @@
 
     <skos:Concept rdf:about="#carbonate_wackestone">
         <rdf:type rdf:resource="&owl;Thing"/>
-        <skos:notation rdf:datatype="&SimpleLithology2;xx"
-            >carbonate_wackestone</skos:notation>
+        <skos:definition xml:lang="en"
+            >Carbonate sedimentary rock with discernible mud supported depositional texture and containing greater than 10 percent allochems, and constituent particles are of intrabasinal origin. If particles are not intrabasinal, categorization as a mudstone or wackestone should be considered.</skos:definition>
         <skos:historyNote>Dunham 1962</skos:historyNote>
-        <skos:definition
-            >Carbonate sedimentary rock with discernible mud supported depositional texture and containing greater than 10 percent grains.</skos:definition>
         <skos:prefLabel xml:lang="en"
             >Carbonate wackestone</skos:prefLabel>
+        <skos:related rdf:resource="#carbonate_mudstone"/>
         <skos:broader rdf:resource="#carbonate_sedimentary_rock"/>
         <skos:inScheme rdf:resource=""/>
     </skos:Concept>
@@ -952,12 +964,26 @@
     
 
 
+    <!-- #chalk -->
+
+    <skos:Concept rdf:about="#chalk">
+        <rdf:type rdf:resource="&owl;Thing"/>
+        <skos:definition xml:lang="en"
+            >A generally soft, white, very fine-grained, extremely pure, porous limestone. It forms under marine conditions from the gradual accumulation of skeletal elements from minute planktonic green algae (cocoliths), associated with varying proportions of larger microscopic fragments of bivalves, foraminifera and ostracods. It is common to find flint and chert nodules embedded in chalk.</skos:definition>
+        <skos:prefLabel xml:lang="en">Chalk</skos:prefLabel>
+        <skos:historyNote xml:lang="en"
+            >http://en.wikipedia.org/wiki/Chalk; C.S. Harris, 2009, unpublished web page, http://www.geologyshop.co.uk/chalk.htm</skos:historyNote>
+        <skos:broader rdf:resource="#limestone"/>
+        <skos:related rdf:resource="#pure_carbonate_mudstone"/>
+        <skos:inScheme rdf:resource=""/>
+    </skos:Concept>
+    
+
+
     <!-- #chemical_sedimentary_material -->
 
     <skos:Concept rdf:about="#chemical_sedimentary_material">
         <rdf:type rdf:resource="&owl;Thing"/>
-        <skos:notation rdf:datatype="&SimpleLithology2;xx"
-            >chemical_sedimentary_material</skos:notation>
         <skos:historyNote>SLTTs 2004</skos:historyNote>
         <skos:prefLabel xml:lang="en"
             >Chemical sedimentary material</skos:prefLabel>
@@ -969,12 +995,29 @@
     
 
 
+    <!-- #chlorite_actinolite_epidote_metamorphic_rock -->
+
+    <owl:Thing rdf:about="#chlorite_actinolite_epidote_metamorphic_rock">
+        <rdf:type rdf:resource="&skos;Concept"/>
+        <skos:prefLabel xml:lang="en"
+            >Chlorite actinolite epidote metamorphic rock</skos:prefLabel>
+        <skos:definition xml:lang="en"
+            >Metamorphic rock characterized by 50 percent or more of combined chlorite, actinolite and epidote. Category for rocks generally named greenschist or greenstone.</skos:definition>
+        <rdfs:comment xml:lang="en"
+            >Rock classified as Greenschist is difficult to categorize in the CGI SimpleLithology scheme. This stems in part from the variation in usage and the general fuzzy definition of the term. The definition of greenschist is generally something along the lines of &#8216;metamorphosed rock with a greenish colour, characterized by the presence of actinolite, chlorite and epidote, and containing a planar or linear fabric. The presence or absence of schistose fabric in rocks called &#8216;greenschist&#8217; is problematic. The fabric present in many rocks called greenschist is too weak or variably developed to meet the definition of &#8216;schist&#8217; per CGI SimpleLithology. Generally if the rock has achieved metamorphic grade such that the term &#8216;gneiss&#8217; is applicable, it would not be called greenschist. Thus, &#8216;greenschist&#8217; would correspond most closely to a chlorite + actinolite rich &#8216;Foliated metamorphic rock&#8217;, but if it actually meets the definition of &#8216;Schist&#8217; it would be a chlorite + actinolite &#8216;Schist&#8217;.</rdfs:comment>
+        <rdfs:seeAlso xml:lang="en"
+            >greenschist, greenstone, spilite</rdfs:seeAlso>
+        <skos:historyNote xml:lang="en">this vocabulary</skos:historyNote>
+        <skos:broader rdf:resource="#metamorphic_rock"/>
+        <skos:inScheme rdf:resource=""/>
+    </owl:Thing>
+    
+
+
     <!-- #clastic_sediment -->
 
     <owl:Thing rdf:about="#clastic_sediment">
         <rdf:type rdf:resource="&skos;Concept"/>
-        <skos:notation rdf:datatype="&SimpleLithology2;xx"
-            >clastic_sediment</skos:notation>
         <skos:historyNote
             >SLTTs, 2004; Neuendorf et al., 2005</skos:historyNote>
         <rdfs:comment xml:lang="en"
@@ -994,8 +1037,6 @@
 
     <owl:Thing rdf:about="#clastic_sedimentary_material">
         <rdf:type rdf:resource="&skos;Concept"/>
-        <skos:notation rdf:datatype="&SimpleLithology2;xx"
-            >clastic_sedimentary_material</skos:notation>
         <skos:definition
             >Sedimentary material of unspecified consolidation state in which at least 50 percent of the constituent particles were derived from erosion, weathering, or mass-wasting of pre-existing earth materials, and transported to the place of deposition by mechanical agents such as water, wind, ice and gravity.</skos:definition>
         <skos:historyNote
@@ -1012,14 +1053,14 @@
 
     <owl:Thing rdf:about="#clastic_sedimentary_rock">
         <rdf:type rdf:resource="&skos;Concept"/>
-        <skos:notation rdf:datatype="&SimpleLithology2;xx"
-            >clastic_sedimentary_rock</skos:notation>
         <skos:historyNote
             >SLTTs, 2004; Neuendorf et al., 2005</skos:historyNote>
         <skos:definition
             >Sedimentary rock in which at least 50 percent of the constituent particles were derived from erosion, weathering, or mass-wasting of pre-existing earth materials, and transported to the place of deposition by mechanical agents such as water, wind, ice and gravity.</skos:definition>
         <skos:prefLabel xml:lang="en"
             >Clastic sedimentary rock</skos:prefLabel>
+        <rdfs:comment xml:lang="en"
+            >Particularly for fine-grained sedimentary rocks, distinction of &#39;intrabasinal&#39; versus &#39;clastic&#39; genesis can be very interpretive. In practice the use of clastic mudstone terminology as opposed to carbonate mudstone terminology may be dermined by a priori knowledge about the rock being categorized. If it is associated with other clastic rocks, the clastic categories will be favored, if with cabonate rocks, the carbonate categories will be favored. A completely descriptive categorization of these rocks would probably require raising a &#39;fine-grained sedimentary rock&#39; category that parallels the &#39;clastic&#39; and &#39;carbonate (intrabasinal)&#39; system in this version of the vocabulary.</rdfs:comment>
         <skos:broader rdf:resource="#clastic_sedimentary_material"/>
         <skos:broader rdf:resource="#sedimentary_rock"/>
         <skos:inScheme rdf:resource=""/>
@@ -1042,11 +1083,25 @@
     
 
 
+    <!-- #claystone -->
+
+    <owl:Thing rdf:about="#claystone">
+        <rdf:type rdf:resource="&skos;Concept"/>
+        <skos:prefLabel xml:lang="en">Claystone</skos:prefLabel>
+        <skos:definition xml:lang="en"
+            >Mudstone that contains no detectable silt, inferred to consist virtually entirely of clay-size particles</skos:definition>
+        <skos:historyNote xml:lang="en">This vocabulary</skos:historyNote>
+        <skos:related rdf:resource="#clastic_sedimentary_rock"/>
+        <skos:broader rdf:resource="#mudstone"/>
+        <skos:inScheme rdf:resource=""/>
+    </owl:Thing>
+    
+
+
     <!-- #coal -->
 
     <owl:Thing rdf:about="#coal">
         <rdf:type rdf:resource="&skos;Concept"/>
-        <skos:notation rdf:datatype="&SimpleLithology2;xx">coal</skos:notation>
         <skos:historyNote
             >ASTM 2002; Schopf 1956</skos:historyNote>
         <skos:definition
@@ -1095,6 +1150,7 @@
             >Rock formed by geological modification of pre-existing rocks outside the realm of igneous and sedimentary processes. Includes rocks formed by impact metamorphism, standard dynamothermal metamorphism, brittle deformation, weathering, metasomatism and hydrothermal alteration (diagenesis is a sedimentary process in this context).</skos:definition>
         <skos:historyNote>SLTTm 2004</skos:historyNote>
         <skos:broader rdf:resource="#composite_genesis_material"/>
+        <skos:narrower rdf:resource="#metasomatic_rock"/>
         <skos:broader rdf:resource="#rock"/>
         <skos:inScheme rdf:resource=""/>
     </owl:Thing>
@@ -1120,13 +1176,13 @@
 
     <skos:Concept rdf:about="#conglomerate">
         <rdf:type rdf:resource="&owl;Thing"/>
-        <skos:notation rdf:datatype="&SimpleLithology2;xx">conglomerate</skos:notation>
         <skos:historyNote
             >Neuendorf et al. 2005; SLTTs 2004</skos:historyNote>
-        <skos:definition
-            >Coarse grained sedimentary rock composed of at least 30 percent rounded to subangular fragments larger than 2 mm in diameter; typically contains finer grained material in interstices between larger fragments.</skos:definition>
         <skos:prefLabel xml:lang="en">Conglomerate</skos:prefLabel>
-        <skos:broader rdf:resource="#clastic_sedimentary_rock"/>
+        <skos:definition xml:lang="en"
+            >Sedimentary rock composed of at least 30 percent rounded to subangular fragments larger than 2 mm in diameter; typically contains finer grained material in interstices between larger fragments. If more than 15 percent of the fine grained matrix is of indeterminant clastic or diagenetic origin and the fabric is matrix supported, may also be categorized as wackestone. If rock has unsorted or poorly sorted texture with a wide range of particle sizes, may also be categorized as diamictite.</skos:definition>
+        <skos:related rdf:resource="#clastic_sedimentary_rock"/>
+        <skos:broader rdf:resource="#sedimentary_rock"/>
         <skos:inScheme rdf:resource=""/>
     </skos:Concept>
     
@@ -1136,8 +1192,6 @@
 
     <owl:Thing rdf:about="#crystalline_carbonate">
         <rdf:type rdf:resource="&skos;Concept"/>
-        <skos:notation rdf:datatype="&SimpleLithology2;xx"
-            >crystalline_carbonate</skos:notation>
         <skos:historyNote>SLTTs 2004</skos:historyNote>
         <skos:definition
             >Carbonate rock of indeterminate mineralogy in which diagenetic processes have obliterated any original depositional texture.</skos:definition>
@@ -1157,7 +1211,7 @@
             >LeMaitre et al. 2002</skos:historyNote>
         <skos:prefLabel xml:lang="en">Dacitic rock</skos:prefLabel>
         <skos:definition xml:lang="en"
-            >Fine grained or porphyritic crystalline rock that contains less than 90 percent mafic minerals,  between 20 and 60 percent quartz in the QAPF fraction, and has a plagioclase to alkali feldspar ratio greater than 0.65.  Includes rocks defined modally in QAPF fields 4 and 5 or chemically in TAS Field O3. Typcially composed of quartz and sodic plagioclase with minor amounts of biotite and/or hornblende and/or pyroxene; fine-grained equivalent of granodiorite and tonalite.</skos:definition>
+            >Fine grained or porphyritic crystalline rock that contains less than 90 percent mafic minerals,  between 20 and 60 percent quartz in the QAPF fraction, and has a plagioclase to total feldspar ratio greater than 0.65.  Includes rocks defined modally in QAPF fields 4 and 5 or chemically in TAS Field O3. Typcially composed of quartz and sodic plagioclase with minor amounts of biotite and/or hornblende and/or pyroxene; fine-grained equivalent of granodiorite and tonalite.</skos:definition>
         <rdfs:seeAlso xml:lang="en">rhyodacite</rdfs:seeAlso>
         <skos:broader rdf:resource="#acidic_igneous_rock"/>
         <skos:broader rdf:resource="#fine_grained_igneous_rock"/>
@@ -1170,13 +1224,14 @@
 
     <skos:Concept rdf:about="#diamictite">
         <rdf:type rdf:resource="&owl;Thing"/>
-        <skos:notation rdf:datatype="&SimpleLithology2;xx">diamictite</skos:notation>
-        <skos:definition
-            >Unsorted or poorly sorted, clastic sedimentary rock with a wide range of particle sizes such that it cannot be assigned to any other class.</skos:definition>
         <skos:historyNote
             >Fairbridge and Bourgeois 1978</skos:historyNote>
         <skos:prefLabel xml:lang="en">Diamictite</skos:prefLabel>
+        <skos:definition xml:lang="en"
+            >Unsorted or poorly sorted, clastic sedimentary rock with a wide range of particle sizes including a muddy matrix.  Biogenic materials that have such texture are excluded. Distinguished from conglomerate, sandstone, mudstone based on polymodality and  lack of structures related to transport and deposition of sediment by moving air or water.  If more than 15 percent of the fine grained matrix is of indeterminant clastic or diagenetic origin and the fabric is matrix supported, may also be categorized as wackestone.</skos:definition>
         <skos:broader rdf:resource="#clastic_sedimentary_rock"/>
+        <skos:related rdf:resource="#conglomerate"/>
+        <skos:related rdf:resource="#wackestone"/>
         <skos:inScheme rdf:resource=""/>
     </skos:Concept>
     
@@ -1186,7 +1241,6 @@
 
     <skos:Concept rdf:about="#diamicton">
         <rdf:type rdf:resource="&owl;Thing"/>
-        <skos:notation rdf:datatype="&SimpleLithology2;xx">diamicton</skos:notation>
         <skos:prefLabel xml:lang="en">Diamicton</skos:prefLabel>
         <skos:historyNote
             >Fairbridge and Bourgeois 1978</skos:historyNote>
@@ -1204,7 +1258,6 @@
 
     <skos:Concept rdf:about="#diorite">
         <rdf:type rdf:resource="&owl;Thing"/>
-        <skos:notation rdf:datatype="&SimpleLithology2;xx">diorite</skos:notation>
         <skos:prefLabel xml:lang="en">Diorite</skos:prefLabel>
         <skos:historyNote
             >LeMaitre et al. 2002</skos:historyNote>
@@ -1224,7 +1277,7 @@
             >LeMaitre et al. 2002</skos:historyNote>
         <skos:prefLabel xml:lang="en">Dioritic rock</skos:prefLabel>
         <skos:definition xml:lang="en"
-            >Phaneritic crystalline rock with M less than 90, consisting of intermediate plagioclase, commonly with hornblende and often with biotite or augite. A dioritoid with a plagioclase to alkali feldspar ratio (in the QAPF fraction) greater than 0.9.  Includes rocks defined modally in QAPF fields 10, 10&#39; and 10*.</skos:definition>
+            >Phaneritic crystalline rock with M less than 90, consisting of intermediate plagioclase, commonly with hornblende and often with biotite or augite. A dioritoid with a plagioclase to total feldspar ratio (in the QAPF fraction) greater than 0.9.  Includes rocks defined modally in QAPF fields 10, 10&#39; and 10*.</skos:definition>
         <skos:broader rdf:resource="#dioritoid"/>
         <skos:inScheme rdf:resource=""/>
     </owl:Thing>
@@ -1239,7 +1292,7 @@
         <skos:historyNote xml:lang="en"
             >LeMaitre et al., 2002</skos:historyNote>
         <skos:definition xml:lang="en"
-            >Phaneritic crystalline igneous rock with M less than 90, consisting of intermediate plagioclase, commonly with hornblende and often with biotite or augite. Plagioclase to alkali feldspar ratio is greater that 0.65, and anorthite content of plagioclase is less than 50 percent. Less than 10 percent feldspathoid mineral and less than 20 percent quartz in the QAPF fraction.  Includes rocks defined modally in QAPF fields 9 and 10 (and their subdivisions).</skos:definition>
+            >Phaneritic crystalline igneous rock with M less than 90, consisting of intermediate plagioclase, commonly with hornblende and often with biotite or augite. Plagioclase to total feldspar ratio is greater that 0.65, and anorthite content of plagioclase is less than 50 percent. Less than 10 percent feldspathoid mineral and less than 20 percent quartz in the QAPF fraction.  Includes rocks defined modally in QAPF fields 9 and 10 (and their subdivisions).</skos:definition>
         <skos:related rdf:resource="#doleritic_rock"/>
         <skos:narrower rdf:resource="#monzodioritic_rock"/>
         <skos:broader rdf:resource="#phaneritic_igneous_rock"/>
@@ -1261,7 +1314,7 @@
         <skos:related rdf:resource="#basic_igneous_material"/>
         <skos:related rdf:resource="#dioritic_rock"/>
         <skos:related rdf:resource="#gabbroid"/>
-        <skos:broader rdf:resource="#igneous_rock"/>
+        <skos:broader rdf:resource="#normal_crystalline_igneous_rock"/>
         <skos:inScheme rdf:resource=""/>
     </owl:Thing>
     
@@ -1271,8 +1324,6 @@
 
     <skos:Concept rdf:about="#dolomitic_or_magnesian_sedimentary_material">
         <rdf:type rdf:resource="&owl;Thing"/>
-        <skos:notation rdf:datatype="&SimpleLithology2;xx"
-            >dolomitic_or_magnesian_sedimentary_material</skos:notation>
         <skos:historyNote
             >after SLTTs 2004, Hallsworth and Knox 1999</skos:historyNote>
         <skos:definition
@@ -1289,8 +1340,6 @@
 
     <skos:Concept rdf:about="#dolomitic_or_magnesian_sedimentary_rock">
         <rdf:type rdf:resource="&owl;Thing"/>
-        <skos:notation rdf:datatype="&SimpleLithology2;xx"
-            >dolomitic_or_magnesian_sedimentary_rock</skos:notation>
         <skos:historyNote
             >after SLTTs 2004, Hallsworth and Knox 1999</skos:historyNote>
         <skos:definition
@@ -1299,6 +1348,8 @@
             >Dolomitic or magnesian sedimentary rock</skos:prefLabel>
         <skos:broader rdf:resource="#carbonate_sedimentary_rock"/>
         <skos:broader rdf:resource="#dolomitic_or_magnesian_sedimentary_material"/>
+        <skos:narrower rdf:resource="#dolostone"/>
+        <skos:narrower rdf:resource="#impure_dolostone"/>
         <skos:inScheme rdf:resource=""/>
     </skos:Concept>
     
@@ -1308,8 +1359,6 @@
 
     <owl:Thing rdf:about="#dolomitic_sediment">
         <rdf:type rdf:resource="&skos;Concept"/>
-        <skos:notation rdf:datatype="&SimpleLithology2;xx"
-            >dolomitic_sediment</skos:notation>
         <skos:historyNote
             >after SLTTs 2004, Hallsworth and Knox 1999</skos:historyNote>
         <skos:definition
@@ -1320,6 +1369,21 @@
         <skos:broader rdf:resource="#dolomitic_or_magnesian_sedimentary_material"/>
         <skos:narrower rdf:resource="#impure_dolomitic_sediment"/>
         <skos:narrower rdf:resource="#pure_dolomitic_sediment"/>
+        <skos:inScheme rdf:resource=""/>
+    </owl:Thing>
+    
+
+
+    <!-- #dolostone -->
+
+    <owl:Thing rdf:about="#dolostone">
+        <rdf:type rdf:resource="&skos;Concept"/>
+        <skos:prefLabel xml:lang="en">Dolostone</skos:prefLabel>
+        <skos:definition xml:lang="en"
+            >Pure carbonate sedimentary rock with a ratio of magnesium carbonate to calcite (plus aragonite) greater than 1 to 1.</skos:definition>
+        <skos:historyNote xml:lang="en">this vocabulary</skos:historyNote>
+        <skos:broader rdf:resource="#dolomitic_or_magnesian_sedimentary_rock"/>
+        <skos:broader rdf:resource="#pure_carbonate_sedimentary_rock"/>
         <skos:inScheme rdf:resource=""/>
     </owl:Thing>
     
@@ -1358,13 +1422,15 @@
 
     <skos:Concept rdf:about="#evaporite">
         <rdf:type rdf:resource="&owl;Thing"/>
-        <skos:notation rdf:datatype="&SimpleLithology2;xx">evaporite</skos:notation>
         <skos:prefLabel xml:lang="en">Evaporite</skos:prefLabel>
         <skos:historyNote
             >Jackson 1997; SLTTs 2004</skos:historyNote>
         <skos:definition
             >Nonclastic sedimentary rock composed of at least 50 percent non-carbonate salts, including chloride, sulfate or borate minerals; formed through precipitation of mineral salts from a saline solution (non-carbonate salt rock).</skos:definition>
         <skos:broader rdf:resource="#chemical_sedimentary_material"/>
+        <skos:narrower rdf:resource="#exotic_evaporite"/>
+        <skos:narrower rdf:resource="#rock_gypsum_or_anhydrite"/>
+        <skos:narrower rdf:resource="#rock_salt"/>
         <skos:inScheme rdf:resource=""/>
     </skos:Concept>
     
@@ -1390,12 +1456,14 @@
 
     <skos:Concept rdf:about="#exotic_alkaline_rock">
         <rdf:type rdf:resource="&owl;Thing"/>
-        <skos:definition
-            >Kimberlite, lamproite, or lamprophyre. Generally are potassic, mafic or ultramafic rocks. Olivine (commonly serpentinized in kimberlite), and phlogopite are significant constituents.</skos:definition>
         <skos:historyNote
             >based on LeMaitre et al. 2002</skos:historyNote>
         <skos:prefLabel xml:lang="en"
             >Exotic alkaline rock</skos:prefLabel>
+        <skos:definition xml:lang="en"
+            >Kimberlite, lamproite, or lamprophyre. Generally are potassic, mafic or ultramafic rocks. Olivine (commonly serpentinized in kimberlite), and phlogopite are significant constituents.</skos:definition>
+        <rdfs:seeAlso
+            >kimberlite, lamproite, lamprophyre</rdfs:seeAlso>
         <skos:broader rdf:resource="#exotic_composition_igneous_rock"/>
         <skos:inScheme rdf:resource=""/>
     </skos:Concept>
@@ -1411,10 +1479,27 @@
         <skos:historyNote
             >Gillespie and Styles 1999; LeMaitre et al. 2002</skos:historyNote>
         <skos:definition xml:lang="en"
-            >Rock with &#39;exotic&#39; mineralogical, textural or field setting characteristics; typically dark colored, with abundant phenocrysts. Criteria include: presence of greater than 10 percent melilite or leucite, or presence of kalsilite, or greater than 50 percent carbonate minerals.</skos:definition>
+            >Rock with &#39;exotic&#39; mineralogical, textural or field setting characteristics; typically dark colored, with abundant phenocrysts. Criteria include: presence of greater than 10 percent melilite or leucite, or presence of kalsilite, or greater than 50 percent carbonate minerals. Includes Carbonatite, Melilitic rock, Kalsilitic rocks, Kimberlite, Lamproite, Leucitic rock and Lamprophyres.</skos:definition>
         <skos:broader rdf:resource="#igneous_rock"/>
         <skos:inScheme rdf:resource=""/>
     </skos:Concept>
+    
+
+
+    <!-- #exotic_evaporite -->
+
+    <owl:Thing rdf:about="#exotic_evaporite">
+        <rdf:type rdf:resource="&skos;Concept"/>
+        <rdfs:comment xml:lang="en"
+            >Category represents evaporite material that is not mostly gypsum/anhydrite or halite. These are generally not very common, thus the &#39;exotic&#39; name</rdfs:comment>
+        <skos:definition xml:lang="en"
+            >Evaporite that is not 50 percent halite or 50 percent gypsum or anhydrite.</skos:definition>
+        <skos:prefLabel xml:lang="en"
+            >Exotic evaporite</skos:prefLabel>
+        <skos:historyNote xml:lang="en">This vocabulary</skos:historyNote>
+        <skos:broader rdf:resource="#evaporite"/>
+        <skos:inScheme rdf:resource=""/>
+    </owl:Thing>
     
 
 
@@ -1438,13 +1523,13 @@
 
     <owl:Thing rdf:about="#fine_grained_igneous_rock">
         <rdf:type rdf:resource="&skos;Concept"/>
-        <skos:definition
-            >Aphanitic or porphyritic igneous_rock composed of greater than 10 percent groundmass, in which most of the crystals cannot be distinguished with the unaided eye; grainsize is typically less than 1mm. Igneous rocks with &#39;exotic&#39; composition are excluded from this concept.</skos:definition>
+        <skos:definition xml:lang="en"
+            >Crystalline igneous rock in which the framework of the rock consists of crystals that are too small to determine mineralogy with the unaided eye. A significant percentage of the rock by volume may be phenocrysts. Igneous rocks with &#39;exotic&#39; composition are excluded from this concept.</skos:definition>
         <skos:prefLabel xml:lang="en"
             >Fine grained igneous rock</skos:prefLabel>
         <skos:historyNote
             >Gillespie and Styles 1999; LeMaitre et al. 2002</skos:historyNote>
-        <skos:broader rdf:resource="#igneous_rock"/>
+        <skos:broader rdf:resource="#normal_crystalline_igneous_rock"/>
         <skos:inScheme rdf:resource=""/>
     </owl:Thing>
     
@@ -1628,7 +1713,7 @@
             >LeMaitre et al. 2002</skos:historyNote>
         <skos:prefLabel xml:lang="en">Foid diorite</skos:prefLabel>
         <skos:definition xml:lang="en"
-            >Foid dioritoid in which the plagioclase to alkali feldspar ratio is greater than 0.9.  Includes rocks defined modally in QAPF field 14.</skos:definition>
+            >Foid dioritoid in which the plagioclase to total feldspar ratio is greater than 0.9.  Includes rocks defined modally in QAPF field 14.</skos:definition>
         <skos:broader rdf:resource="#foid_dioritoid"/>
         <skos:inScheme rdf:resource=""/>
     </owl:Thing>
@@ -1643,7 +1728,7 @@
         <skos:historyNote xml:lang="en"
             >LeMaitre et al., 2002</skos:historyNote>
         <skos:definition xml:lang="en"
-            >Phaneritic crystalline igneous rock in which M is less than 90, the Plagioclase to alkali feldspar ratio is greater than 0.5,  feldspathoids form 10-60 percent of the QAPF fraction,  plagioclase has anorthite content less than 50 percent. These rocks typically contain large amounts of mafic minerals. Includes rocks defined modally in QAPF fields 13 and 14.</skos:definition>
+            >Phaneritic crystalline igneous rock in which M is less than 90, the plagioclase to total feldspar ratio is greater than 0.5,  feldspathoid minerals form 10-60 percent of the QAPF fraction,  plagioclase has anorthite content less than 50 percent. These rocks typically contain large amounts of mafic minerals. Includes rocks defined modally in QAPF fields 13 and 14.</skos:definition>
         <skos:narrower rdf:resource="#foid_monzodiorite"/>
         <skos:broader rdf:resource="#phaneritic_igneous_rock"/>
         <skos:inScheme rdf:resource=""/>
@@ -1656,10 +1741,10 @@
     <owl:Thing rdf:about="#foid_gabbro">
         <rdf:type rdf:resource="&skos;Concept"/>
         <skos:prefLabel xml:lang="en">Foid gabbro</skos:prefLabel>
-        <skos:definition xml:lang="en"
-            >Foid gabbroid that has a plagioclase to alkali feldspar ratio greater than 0.9. Includes rocks defined modally in QAPF field 14.</skos:definition>
         <skos:historyNote
             >LeMaitre et al. 2002</skos:historyNote>
+        <skos:definition xml:lang="en"
+            >Foid gabbroid that has a plagioclase to total feldspar ratio greater than 0.9. Includes rocks defined modally in QAPF field 14.</skos:definition>
         <rdfs:seeAlso xml:lang="en"
             >theralite (nepheline gabbro), teschenite (analcime gabbro)</rdfs:seeAlso>
         <skos:broader rdf:resource="#foid_gabbroid"/>
@@ -1674,7 +1759,7 @@
         <rdf:type rdf:resource="&owl;Thing"/>
         <skos:prefLabel xml:lang="en">Foid gabbroid</skos:prefLabel>
         <skos:definition xml:lang="en"
-            >Phaneritic crystalline igneous rock in which M is less than 90, the Plagioclase to alkali feldspar ratio is greater than 0.5,  feldspathoids form 10-60 percent of the QAPF fraction, and plagioclase has anorthite content greater than 50 percent. These rocks typically contain large amounts of mafic minerals. Includes rocks defined modally in QAPF fields 13 and 14.</skos:definition>
+            >Phaneritic crystalline igneous rock in which M is less than 90, the plagioclase to total feldspar ratio is greater than 0.5,  feldspathoids form 10-60 percent of the QAPF fraction, and plagioclase has anorthite content greater than 50 percent. These rocks typically contain large amounts of mafic minerals. Includes rocks defined modally in QAPF fields 13 and 14.</skos:definition>
         <skos:narrower rdf:resource="#foid_monzogabbro"/>
         <skos:broader rdf:resource="#phaneritic_igneous_rock"/>
         <skos:inScheme rdf:resource=""/>
@@ -1687,7 +1772,7 @@
     <skos:Concept rdf:about="#foid_monzodiorite">
         <rdf:type rdf:resource="&owl;Thing"/>
         <skos:definition xml:lang="en"
-            >Foid dioritoid in which the plagioclase to alkali feldspar ratio is between 0.1 and 0.9.  Includes rocks defined modally in QAPF field 13.</skos:definition>
+            >Foid dioritoid in which the plagioclase to total feldspar ratio is between 0.1 and 0.9.  Includes rocks defined modally in QAPF field 13.</skos:definition>
         <skos:prefLabel xml:lang="en"
             >Foid monzodiorite</skos:prefLabel>
         <skos:historyNote xml:lang="en"
@@ -1704,7 +1789,7 @@
     <owl:Thing rdf:about="#foid_monzogabbro">
         <rdf:type rdf:resource="&skos;Concept"/>
         <skos:definition xml:lang="en"
-            >Foid gabbroid that has a plagioclase to alkali feldspar ratio between 0.5 and 0.9. Includes rocks defined modally in QAPF field 13.</skos:definition>
+            >Foid gabbroid that has a plagioclase to total feldspar ratio between 0.5 and 0.9. Includes rocks defined modally in QAPF field 13.</skos:definition>
         <skos:prefLabel xml:lang="en"
             >Foid monzogabbro</skos:prefLabel>
         <skos:historyNote xml:lang="en"
@@ -1723,7 +1808,7 @@
         <skos:prefLabel xml:lang="en"
             >Foid monzosyenite</skos:prefLabel>
         <skos:definition xml:lang="en"
-            >Foid syenitoid rock that has a plagioclase to alkali feldspar ratio of between 0.1 and 0.5.  Includes rocks defined modally in QAPF Field 12.</skos:definition>
+            >Foid syenitoid rock that has a plagioclase to total feldspar ratio of between 0.1 and 0.5.  Includes rocks defined modally in QAPF Field 12.</skos:definition>
         <skos:historyNote xml:lang="en"
             >LeMaitre et al., 2002</skos:historyNote>
         <skos:broader rdf:resource="#foid_syenitoid"/>
@@ -1738,7 +1823,7 @@
         <rdf:type rdf:resource="&owl;Thing"/>
         <skos:prefLabel xml:lang="en">Foid syenite</skos:prefLabel>
         <skos:definition xml:lang="en"
-            >Foid syenitoid that has a plagioclase to alkali feldspar ratio of less than 0.1. Includes rocks defined modally in QAPF field 11.</skos:definition>
+            >Foid syenitoid that has a plagioclase to total feldspar ratio of less than 0.1. Includes rocks defined modally in QAPF field 11.</skos:definition>
         <skos:historyNote
             >LeMaitre et al. 2002</skos:historyNote>
         <skos:broader rdf:resource="#foid_syenitoid"/>
@@ -1755,7 +1840,7 @@
         <skos:historyNote xml:lang="en"
             >LeMaitre et al., 2002</skos:historyNote>
         <skos:definition xml:lang="en"
-            >Phaneritic crystalline igneous rock with M less than 90, contains between 10 and 60 percent feldspathoid mineral in the QAPF fraction, and has a plagioclase to alkali feldspar ratio less than 0.5. Includes QAPF fields 11 and 12.</skos:definition>
+            >Phaneritic crystalline igneous rock with M less than 90, contains between 10 and 60 percent feldspathoid mineral in the QAPF fraction, and has a plagioclase to total feldspar ratio less than 0.5. Includes QAPF fields 11 and 12.</skos:definition>
         <skos:narrower rdf:resource="#foid_monzosyenite"/>
         <skos:broader rdf:resource="#phaneritic_igneous_rock"/>
         <skos:inScheme rdf:resource=""/>
@@ -1825,6 +1910,8 @@
             >based on NADM SLTT metamorphic</skos:historyNote>
         <skos:definition
             >Metamorphic rock in which 10 percent or more of the contained mineral grains are elements in a planar or linear fabric. Cataclastic or glassy character precludes classification with this concept.</skos:definition>
+        <rdfs:seeAlso xml:lang="en"
+            >tectonite, whiteschist</rdfs:seeAlso>
         <skos:broader rdf:resource="#metamorphic_rock"/>
         <skos:inScheme rdf:resource=""/>
     </skos:Concept>
@@ -1867,7 +1954,6 @@
 
     <owl:Thing rdf:about="#framestone">
         <rdf:type rdf:resource="&skos;Concept"/>
-        <skos:notation rdf:datatype="&SimpleLithology2;xx">framestone</skos:notation>
         <skos:historyNote
             >Hallsworth &amp; Knox 1999; SLTTs, 2004, Table 15-3-1</skos:historyNote>
         <skos:definition
@@ -1904,9 +1990,7 @@
             >Gabbro (sensu stricto), Norite, Troctolite, Gabbronorite.</rdfs:seeAlso>
         <skos:prefLabel xml:lang="en">Gabbroic rock</skos:prefLabel>
         <skos:definition xml:lang="en"
-            >Gabbroid that has a plagioclase to alkali feldspar ratio greater than 0.9 in the QAPF fraction.  Includes QAPF fields 10*, 10, and 10&#39;. This category includes the various categories defined in LeMaitre et al. (2002) based on the mafic mineralogy, but apparently not subdivided based on the quartz/feldspathoid content.</skos:definition>
-        <skos:historyNote
-            >LeMaitre et al. 2002</skos:historyNote>
+            >Gabbroid that has a plagioclase to total feldspar ratio greater than 0.9 in the QAPF fraction.  Includes QAPF fields 10*, 10, and 10&#39;. This category includes the various categories defined in LeMaitre et al. (2002) based on the mafic mineralogy, but apparently not subdivided based on the quartz/feldspathoid content.</skos:definition>
         <skos:historyNote xml:lang="en"
             >LeMaitre et al., 2002</skos:historyNote>
         <skos:broader rdf:resource="#basic_igneous_rock"/>
@@ -1926,7 +2010,7 @@
         <skos:historyNote xml:lang="en"
             >LeMaitre et al., 2002</skos:historyNote>
         <skos:definition xml:lang="en"
-            >Phaneritic crystalline igneous rock that contains less than 90 percent mafic minerals, and up to 20 percent quartz or up to 10 percent feldspathoid in the QAPF fraction. The ratio of plagioclase to alkali feldspar is greater than 0.65, and anorthite content of the plagioclase is greater than 50 percent. Includes rocks defined modally in QAPF fields 9 and 10 and their subdivisions.</skos:definition>
+            >Phaneritic crystalline igneous rock that contains less than 90 percent mafic minerals, and up to 20 percent quartz or up to 10 percent feldspathoid in the QAPF fraction. The ratio of plagioclase to total feldspar is greater than 0.65, and anorthite content of the plagioclase is greater than 50 percent. Includes rocks defined modally in QAPF fields 9 and 10 and their subdivisions.</skos:definition>
         <skos:related rdf:resource="#doleritic_rock"/>
         <skos:narrower rdf:resource="#monzogabbroic_rock"/>
         <skos:broader rdf:resource="#phaneritic_igneous_rock"/>
@@ -1938,8 +2022,8 @@
     <!-- #genid1 -->
 
     <rdf:Description>
-        <rdfs:comment
-            >S. M. Richard generate SKOS from Excel, open in Protege 4.0.113 as rdf/xml. Add some relationships between terms, new language term. seems to save OK. Add topConcept for ConceptScheme.</rdfs:comment>
+        <rdfs:comment xml:lang="en"
+            >Converted from original CDTG Excel spreadsheet using P. Golodinc xl2xml tool.</rdfs:comment>
     </rdf:Description>
     
 
@@ -1953,8 +2037,7 @@
     <!-- #genid3 -->
 
     <rdf:Description>
-        <dc:creator
-            >Stephen M Richard</dc:creator>
+        <dc:date>2009-07-14</dc:date>
     </rdf:Description>
     
 
@@ -1962,7 +2045,8 @@
     <!-- #genid4 -->
 
     <rdf:Description>
-        <dc:date>07-14-2009</dc:date>
+        <dc:creator
+            >Stephen M Richard</dc:creator>
     </rdf:Description>
     
 
@@ -1970,8 +2054,7 @@
     <!-- #genid5 -->
 
     <rdf:Description>
-        <rdfs:comment xml:lang="en"
-            >Converted from original CDTG Excel spreadsheet using P. Golodinc xl2xml tool.</rdfs:comment>
+        <dc:date>07-14-2009</dc:date>
     </rdf:Description>
     
 
@@ -1987,7 +2070,8 @@
     <!-- #genid7 -->
 
     <rdf:Description>
-        <dc:date>2009-07-14</dc:date>
+        <rdfs:comment
+            >S. M. Richard generate SKOS from Excel, open in Protege 4.0.113 as rdf/xml. Add some relationships between terms, new language term. seems to save OK. Add topConcept for ConceptScheme.</rdfs:comment>
     </rdf:Description>
     
 
@@ -2033,6 +2117,25 @@
     
 
 
+    <!-- #glaucophane_lawsonite_epidote_metamorphic_rock -->
+
+    <owl:Thing rdf:about="#glaucophane_lawsonite_epidote_metamorphic_rock">
+        <rdf:type rdf:resource="&skos;Concept"/>
+        <skos:definition xml:lang="en"
+            >A metamorphic rock of roughly basaltic composition, defined by the presence of glaucophane with lawsonite or epidote. Other minerals that may be present include jadeite, albite, chlorite, garnet, and muscovite (phengitic white mica). Typically fine-grained, dark colored.</skos:definition>
+        <rdfs:comment xml:lang="en"
+            >Fabric is weakly developed in this rock in many cases, so the fabric categories &#39;foliated metamorphic rock, &#39;schist&#39; or &#39;granofels&#39; may apply.</rdfs:comment>
+        <skos:prefLabel xml:lang="en"
+            >Glaucophane lawsonite epidote metamorphic rock</skos:prefLabel>
+        <rdfs:seeAlso xml:lang="en"
+            >blueschist, glaucophanite</rdfs:seeAlso>
+        <skos:historyNote xml:lang="en">this vocabulary</skos:historyNote>
+        <skos:broader rdf:resource="#metamorphic_rock"/>
+        <skos:inScheme rdf:resource=""/>
+    </owl:Thing>
+    
+
+
     <!-- #gneiss -->
 
     <skos:Concept rdf:about="#gneiss">
@@ -2043,6 +2146,8 @@
         <skos:historyNote
             >Neuendorf et al. 2005</skos:historyNote>
         <skos:broader rdf:resource="#foliated_metamorphic_rock"/>
+        <skos:narrower rdf:resource="#orthogneiss"/>
+        <skos:narrower rdf:resource="#paragneiss"/>
         <skos:inScheme rdf:resource=""/>
     </skos:Concept>
     
@@ -2052,12 +2157,12 @@
 
     <skos:Concept rdf:about="#grainstone">
         <rdf:type rdf:resource="&owl;Thing"/>
-        <skos:notation rdf:datatype="&SimpleLithology2;xx">grainstone</skos:notation>
-        <skos:definition
-            >Carbonate sedimentary rock with recognizable depositional fabric that is grain-supported; contains little or no mud matrix.</skos:definition>
+        <skos:definition xml:lang="en"
+            >Carbonate sedimentary rock with recognizable depositional fabric that is grain-supported, and constituent particles are of intrabasinal origin; contains little or no mud matrix. Distinction from sandstone is based on interpretation of intrabasinal origin of clasts and grain-supported fabric.</skos:definition>
         <skos:historyNote>Dunham 1962</skos:historyNote>
         <skos:prefLabel xml:lang="en">Grainstone</skos:prefLabel>
         <skos:broader rdf:resource="#carbonate_sedimentary_rock"/>
+        <skos:related rdf:resource="#sandstone"/>
         <skos:inScheme rdf:resource=""/>
     </skos:Concept>
     
@@ -2072,7 +2177,7 @@
         <skos:prefLabel xml:lang="en">Granite</skos:prefLabel>
         <skos:definition
             >Phaneritic crystalline rock consisting of quartz, alkali feldspar and plagioclase (typically sodic) in variable amounts, usually with biotite and/or hornblende. Includes rocks defined modally in QAPF Field 3.</skos:definition>
-        <skos:broader rdf:resource="#granitic_rock"/>
+        <skos:broader rdf:resource="#granitoid"/>
         <skos:narrower rdf:resource="#monzogranite"/>
         <skos:narrower rdf:resource="#syenogranite"/>
         <skos:inScheme rdf:resource=""/>
@@ -2080,21 +2185,22 @@
     
 
 
-    <!-- #granitic_rock -->
+    <!-- #granitoid -->
 
-    <skos:Concept rdf:about="#granitic_rock">
-        <rdf:type rdf:resource="&owl;Thing"/>
+    <owl:Thing rdf:about="#granitoid">
+        <rdf:type rdf:resource="&skos;Concept"/>
+        <skos:definition
+            >Phaneritic crystalline igneous rock consisting of quartz, alkali feldspar and/or plagioclase. Includes rocks defined modally in QAPF fields 2, 3, 4 and 5 as alkali feldspar granite, granite, granodiorite or tonalite.</skos:definition>
         <skos:historyNote
             >LeMaitre et al. 2002</skos:historyNote>
-        <skos:definition
-            >Phaneritic crystalline igneous rock consisting of quartz, alkali feldspar and/or plagioclase. Includes rocks defined modally in QAPF fields 2, 3, 4 and 5 as alkali granite, granite, granodiorite or tonalite.</skos:definition>
         <skos:altLabel xml:lang="en">Granitic rock</skos:altLabel>
         <skos:prefLabel xml:lang="en">Granitoid</skos:prefLabel>
+        <rdfs:seeAlso xml:lang="en">charnockite</rdfs:seeAlso>
         <skos:broader rdf:resource="#acidic_igneous_rock"/>
-        <skos:narrower rdf:resource="#alkali_granite"/>
+        <skos:narrower rdf:resource="#alkali_feldspar_granite"/>
         <skos:broader rdf:resource="#phaneritic_igneous_rock"/>
         <skos:inScheme rdf:resource=""/>
-    </skos:Concept>
+    </owl:Thing>
     
 
 
@@ -2107,7 +2213,7 @@
         <skos:prefLabel xml:lang="en">Granodiorite</skos:prefLabel>
         <skos:definition
             >Phaneritic crystalline rock consisting essentially of quartz, sodic plagioclase and lesser amounts of alkali feldspar with minor hornblende and biotite. Includes rocks defined modally in QAPF field 4.</skos:definition>
-        <skos:broader rdf:resource="#granitic_rock"/>
+        <skos:broader rdf:resource="#granitoid"/>
         <skos:inScheme rdf:resource=""/>
     </skos:Concept>
     
@@ -2127,16 +2233,38 @@
     
 
 
+    <!-- #granulite -->
+
+    <owl:Thing rdf:about="#granulite">
+        <rdf:type rdf:resource="&skos;Concept"/>
+        <rdfs:comment xml:lang="en"
+            >According to Fettes and Desmons (2007) the main calc-silicate minerals are calcic garnet, calcic plagioclase, calcic scapolite, diopside-hedenbergite, epidote group minerals, hydrogrossular, johannsenite, prehnite, pumpellyite, titanite, vesuvianite, wollastonite.
+It is unclear from definitions in Fettes and Desmons (2002) if calcic plagioclase is to be considered part of the required feldspar content of a granulite, or a calc-silicate phase.</rdfs:comment>
+        <dc:source xml:lang="en"
+            >Fettes and Desmons (2007).  See also  Wimmenauer (1985), Winkler (1979) (D.R. Bowes (1989), The Encyclopedia of Igneous and Metamorphic Petrology; Van Nostrand Reinhold ISBN: 0-442-20623-2 ; wikipedia, http://en.wikipedia.org/wiki/Granulite accessed 5/30/09</dc:source>
+        <skos:prefLabel xml:lang="en">Granulite</skos:prefLabel>
+        <skos:definition xml:lang="en"
+            >Metamorphic rock of high metamorphic grade in which Fe-Mg silicate minerals are dominantly hydroxl-free; feldspar must be present, and muscovite is absent; rock contains less than 90 percent mafic minerals,  less than 75 percent calcite and/or dolomite, less than 75 percent quartz, less than 50 percent iron-bearing minerals (hematite, magnetite, limonite-group, siderite, iron-sulfides), and less than 50 percent calc-silicate minerals.</skos:definition>
+        <rdfs:comment xml:lang="en"
+            >Wimmenauer (1985) requires granulite to consist of at least 20 percent feldspar. Garnet is frequently present; some hornblende or biotite may be present. The rock has a granoblastic texture and gneissose to massive structure; grain size and fabric may be variable on a decimetric scale. Foliation is less well developed than in rock that would typically be called gneiss. The minerals present in a granulite vary depending on the protolith and the temperature and pressure conditions experienced during metamorphism.</rdfs:comment>
+        <rdfs:seeAlso xml:lang="en">nebulite</rdfs:seeAlso>
+        <skos:related rdf:resource="#gneiss"/>
+        <skos:related rdf:resource="#granofels"/>
+        <skos:broader rdf:resource="#metamorphic_rock"/>
+        <skos:inScheme rdf:resource=""/>
+    </owl:Thing>
+    
+
+
     <!-- #gravel -->
 
     <skos:Concept rdf:about="#gravel">
         <rdf:type rdf:resource="&owl;Thing"/>
-        <skos:notation rdf:datatype="&SimpleLithology2;xx">gravel</skos:notation>
         <skos:historyNote>SLTTs 2004</skos:historyNote>
         <skos:prefLabel xml:lang="en">Gravel</skos:prefLabel>
-        <skos:definition
+        <skos:definition xml:lang="en"
             >Sediment containing greater than 30 percent gravel-size particles (greater than 2.0 mm diameter).</skos:definition>
-        <skos:broader rdf:resource="#clastic_sediment"/>
+        <skos:broader rdf:resource="#sediment"/>
         <skos:inScheme rdf:resource=""/>
     </skos:Concept>
     
@@ -2162,14 +2290,46 @@
 
     <skos:Concept rdf:about="#hornfels">
         <rdf:type rdf:resource="&owl;Thing"/>
-        <skos:definition
-            >Granofels composed of a mosaic of equidimensional grains in a characteristically granoblastic or decussate matrix; porphyroblasts or relict phenocrysts may be present. Typically formed by contact metamorphism.</skos:definition>
+        <skos:definition xml:lang="en"
+            >Granofels formed by contact metamorphism, composed of a mosaic of equidimensional grains in a characteristically granoblastic or decussate matrix; porphyroblasts or relict phenocrysts may be present. Typically fine grained.</skos:definition>
         <skos:prefLabel xml:lang="en">Hornfels</skos:prefLabel>
         <skos:historyNote
             >IUGS SCMR 2007 (http://www.bgs.ac.uk/SCMR/)</skos:historyNote>
-        <skos:broader rdf:resource="#metamorphic_rock"/>
+        <rdfs:seeAlso xml:lang="en">skarn</rdfs:seeAlso>
+        <skos:broader rdf:resource="#granofels"/>
         <skos:inScheme rdf:resource=""/>
     </skos:Concept>
+    
+
+
+    <!-- #hybrid_sediment -->
+
+    <owl:Thing rdf:about="#hybrid_sediment">
+        <rdf:type rdf:resource="&skos;Concept"/>
+        <skos:historyNote xml:lang="en"
+            >Hallsworth and Knox, 1999</skos:historyNote>
+        <skos:prefLabel xml:lang="en">Hybrid sediment</skos:prefLabel>
+        <skos:definition xml:lang="en"
+            >Sediment that does not fit any of the other sediment composition/genesis categories. Sediment consisting of three or more components which form more than 5 percent but less than 50 precent  of the material.</skos:definition>
+        <skos:broader rdf:resource="#sediment"/>
+        <skos:inScheme rdf:resource=""/>
+    </owl:Thing>
+    
+
+
+    <!-- #hybrid_sedimentary_rock -->
+
+    <owl:Thing rdf:about="#hybrid_sedimentary_rock">
+        <rdf:type rdf:resource="&skos;Concept"/>
+        <skos:historyNote xml:lang="en"
+            >Hallsworth and Knox, 1999</skos:historyNote>
+        <skos:prefLabel xml:lang="en"
+            >Hybrid sedimentary rock</skos:prefLabel>
+        <skos:definition xml:lang="en"
+            >Sedimentary rock that does not fit any of the other  composition/genesis categories. Sedimentary rock consisting of three or more components which form more than 5 percent but less than 50 precent  of the material.</skos:definition>
+        <skos:broader rdf:resource="#sedimentary_rock"/>
+        <skos:inScheme rdf:resource=""/>
+    </owl:Thing>
     
 
 
@@ -2199,8 +2359,8 @@
             >rock formed as a result of igneous processes, for example intrusion and cooling of magma in the crust, or volcanic eruption.</skos:definition>
         <skos:narrower rdf:resource="#glass_rich_igneous_rock"/>
         <skos:broader rdf:resource="#igneous_material"/>
+        <skos:narrower rdf:resource="#normal_crystalline_igneous_rock"/>
         <skos:broader rdf:resource="#rock"/>
-        <skos:narrower rdf:resource="#ultramafic_igneous_rock"/>
         <skos:inScheme rdf:resource=""/>
     </skos:Concept>
     
@@ -2216,6 +2376,8 @@
             >Rock that contains features indicative of shock metamorphism, such as microscopic planar deformation features within grains or shatter cones. Includes breccias and melt rocks.</skos:definition>
         <skos:historyNote
             >St&#246;ffler and Grieve 2007; Jackson 1997</skos:historyNote>
+        <rdfs:seeAlso xml:lang="en"
+            >suevite, impact breccia, tagamite, tektite</rdfs:seeAlso>
         <skos:broader rdf:resource="#composite_genesis_rock"/>
         <skos:inScheme rdf:resource=""/>
     </owl:Thing>
@@ -2254,6 +2416,22 @@
     
 
 
+    <!-- #impure_carbonate_sedimentary_rock -->
+
+    <owl:Thing rdf:about="#impure_carbonate_sedimentary_rock">
+        <rdf:type rdf:resource="&skos;Concept"/>
+        <skos:prefLabel xml:lang="en"
+            >Impure carbonate sedimentary rock</skos:prefLabel>
+        <skos:definition xml:lang="en"
+            >Sedimentary rock in which between 50 and 90 percent of the primary and/or recrystallized constituents are composed of carbonate minerals.</skos:definition>
+        <skos:historyNote xml:lang="en">This vocabulary</skos:historyNote>
+        <rdfs:seeAlso xml:lang="en">marlstone</rdfs:seeAlso>
+        <skos:broader rdf:resource="#carbonate_sedimentary_rock"/>
+        <skos:inScheme rdf:resource=""/>
+    </owl:Thing>
+    
+
+
     <!-- #impure_dolomitic_sediment -->
 
     <skos:Concept rdf:about="#impure_dolomitic_sediment">
@@ -2270,12 +2448,44 @@
     
 
 
+    <!-- #impure_dolostone -->
+
+    <skos:Concept rdf:about="#impure_dolostone">
+        <rdf:type rdf:resource="&owl;Thing"/>
+        <skos:definition xml:lang="en"
+            >Impure carbonate sedimentary rock with a ratio of magnesium carbonate to calcite (plus aragonite) greater than 1 to 1.</skos:definition>
+        <skos:prefLabel xml:lang="en"
+            >Impure dolostone</skos:prefLabel>
+        <skos:historyNote xml:lang="en">This vocabulary</skos:historyNote>
+        <rdfs:seeAlso xml:lang="en">marlstone</rdfs:seeAlso>
+        <skos:broader rdf:resource="#dolomitic_or_magnesian_sedimentary_rock"/>
+        <skos:broader rdf:resource="#impure_carbonate_sedimentary_rock"/>
+        <skos:inScheme rdf:resource=""/>
+    </skos:Concept>
+    
+
+
+    <!-- #impure_limestone -->
+
+    <owl:Thing rdf:about="#impure_limestone">
+        <rdf:type rdf:resource="&skos;Concept"/>
+        <skos:definition xml:lang="en"
+            >Impure carbonate sedimentary rock with a calcite (plus aragonite) to dolomite ratio greater than 1 to 1.</skos:definition>
+        <skos:prefLabel xml:lang="en"
+            >Impure limestone</skos:prefLabel>
+        <rdfs:seeAlso xml:lang="en">marlstone</rdfs:seeAlso>
+        <skos:definition xml:lang="en">this vocabulary</skos:definition>
+        <skos:broader rdf:resource="#calcareous_carbonate_sedimentary_rock"/>
+        <skos:broader rdf:resource="#impure_carbonate_sedimentary_rock"/>
+        <skos:inScheme rdf:resource=""/>
+    </owl:Thing>
+    
+
+
     <!-- #intermediate_composition_igneous_material -->
 
     <skos:Concept rdf:about="#intermediate_composition_igneous_material">
         <rdf:type rdf:resource="&owl;Thing"/>
-        <skos:notation rdf:datatype="&SimpleLithology2;xx"
-            >intermediate_composition_igneous_material</skos:notation>
         <skos:definition
             >Igneous material with between 52 and 63 percent SiO2.</skos:definition>
         <skos:prefLabel xml:lang="en"
@@ -2298,8 +2508,8 @@
             >Igneous rock with between 52 and 63 percent SiO2.</skos:definition>
         <skos:prefLabel xml:lang="en"
             >Intermediate composition igneous rock</skos:prefLabel>
-        <skos:broader rdf:resource="#igneous_rock"/>
         <skos:broader rdf:resource="#intermediate_composition_igneous_material"/>
+        <skos:broader rdf:resource="#normal_crystalline_igneous_rock"/>
         <skos:inScheme rdf:resource=""/>
     </owl:Thing>
     
@@ -2309,8 +2519,6 @@
 
     <skos:Concept rdf:about="#iron_rich_sediment">
         <rdf:type rdf:resource="&owl;Thing"/>
-        <skos:notation rdf:datatype="&SimpleLithology2;xx"
-            >iron_rich_sediment</skos:notation>
         <skos:definition
             >Sediment that consists of at least 50 percent iron-bearing minerals (hematite, magnetite, limonite-group, siderite, iron-sulfides), as determined by hand-lens or petrographic analysis. Corresponds to a rock typically containing 15 percent iron by weight.</skos:definition>
         <skos:historyNote>SLTTs 2004</skos:historyNote>
@@ -2327,8 +2535,6 @@
 
     <skos:Concept rdf:about="#iron_rich_sedimentary_material">
         <rdf:type rdf:resource="&owl;Thing"/>
-        <skos:notation rdf:datatype="&SimpleLithology2;xx"
-            >iron_rich_sedimentary_material</skos:notation>
         <skos:definition
             >Sedimentary material of unspecified consolidation state that consists of at least 50 percent iron-bearing minerals (hematite, magnetite, limonite-group, siderite, iron-sulfides), as determined by hand-lens or petrographic analysis. Corresponds to a rock typically containing 15 percent iron by weight.</skos:definition>
         <skos:historyNote>SLTTs 2004</skos:historyNote>
@@ -2344,8 +2550,6 @@
 
     <skos:Concept rdf:about="#iron_rich_sedimentary_rock">
         <rdf:type rdf:resource="&owl;Thing"/>
-        <skos:notation rdf:datatype="&SimpleLithology2;xx"
-            >iron_rich_sedimentary_rock</skos:notation>
         <skos:definition
             >Sedimentary rock that consists of at least 50 percent iron-bearing minerals (hematite, magnetite, limonite-group, siderite, iron-sulfides), as determined by hand-lens or petrographic analysis. Corresponds to a rock typically containing 15 percent iron by weight.</skos:definition>
         <skos:historyNote
@@ -2365,9 +2569,13 @@
         <rdf:type rdf:resource="&owl;Thing"/>
         <skos:historyNote
             >LeMaitre et al. 2002</skos:historyNote>
-        <skos:definition
-            >Ultramafic volcanic rock, typically with spinifex texture of intergrown skeletal and bladed olivine and pyroxene crystals set in abundant glass. Includes picrite, komatiite and meimechite.</skos:definition>
+        <rdfs:comment xml:lang="en"
+            >Is komatiite a normal composition or exotic composition?</rdfs:comment>
         <skos:prefLabel xml:lang="en">Komatiitic rock</skos:prefLabel>
+        <skos:definition xml:lang="en"
+            >Ultramafic, magnesium-rich volcanic rock, typically with spinifex texture of intergrown skeletal and bladed olivine and pyroxene crystals set in abundant glass. Includes komatiite and meimechite.</skos:definition>
+        <rdfs:seeAlso xml:lang="en"
+            >komatiite, meimechite</rdfs:seeAlso>
         <skos:broader rdf:resource="#fine_grained_igneous_rock"/>
         <skos:broader rdf:resource="#ultramafic_igneous_rock"/>
         <skos:inScheme rdf:resource=""/>
@@ -2398,11 +2606,44 @@
         <skos:historyNote xml:lang="en"
             >Le Maitre et al., 2002</skos:historyNote>
         <skos:definition xml:lang="en"
-            >Trachytoid that has a plagioclase to alkali feldspar ratio between 0.35 and 0.65. QAPF fields 8, 8&#39; and 8*.</skos:definition>
+            >Trachytoid that has a plagioclase to total feldspar ratio between 0.35 and 0.65. QAPF fields 8, 8&#39; and 8*.</skos:definition>
         <skos:narrower rdf:resource="#foid_bearing_latite"/>
         <skos:narrower rdf:resource="#latite"/>
         <skos:narrower rdf:resource="#quartz_latite"/>
         <skos:broader rdf:resource="#trachytoid"/>
+        <skos:inScheme rdf:resource=""/>
+    </skos:Concept>
+    
+
+
+    <!-- #lignite -->
+
+    <skos:Concept rdf:about="#lignite">
+        <rdf:type rdf:resource="&owl;Thing"/>
+        <skos:prefLabel xml:lang="en">Lignite</skos:prefLabel>
+        <skos:definition xml:lang="en"
+            >Organic-rich sedimentary rock containing less than 75 percent moisture, less than 8,300 Btu on a moist, mineral-matter-free basis, and less than 69 percent fixed carbon (ASTM, 2002). A consolidated, dull, soft brown to black coal having many readily discernible plant fragments set in a finer grained organic matrix. Tends to crack and fall apart on drying. Distinguished from petroliferous sedimentary rock by presence of greater than 30 percent humic organic matter (derived from plant material).</skos:definition>
+        <skos:historyNote xml:lang="en"
+            >SLTTs 2004,  ASTM 2002, Schopf 1956</skos:historyNote>
+        <skos:broader rdf:resource="#organic_rich_sedimentary_rock"/>
+        <skos:inScheme rdf:resource=""/>
+    </skos:Concept>
+    
+
+
+    <!-- #limestone -->
+
+    <skos:Concept rdf:about="#limestone">
+        <rdf:type rdf:resource="&owl;Thing"/>
+        <skos:prefLabel xml:lang="en">Limestone</skos:prefLabel>
+        <skos:definition xml:lang="en"
+            >Pure carbonate sedimentary rock with a calcite (plus aragonite) to dolomite ratio greater than 1 to 1.  Includes limestone and dolomitic limestone.</skos:definition>
+        <skos:historyNote xml:lang="en">This vocabulary</skos:historyNote>
+        <rdfs:seeAlso xml:lang="en"
+            >dolomitic limestone</rdfs:seeAlso>
+        <skos:broader rdf:resource="#calcareous_carbonate_sedimentary_rock"/>
+        <skos:narrower rdf:resource="#chalk"/>
+        <skos:broader rdf:resource="#pure_carbonate_sedimentary_rock"/>
         <skos:inScheme rdf:resource=""/>
     </skos:Concept>
     
@@ -2441,14 +2682,57 @@
 
     <!-- #metamorphic_rock -->
 
-    <owl:Thing rdf:about="#metamorphic_rock">
-        <rdf:type rdf:resource="&skos;Concept"/>
-        <skos:definition
-            >Rock formed by solid-state mineralogical, chemical and/or structural changes to a pre-existing rock, in response to marked changes in temperature, pressure, shearing stress and chemical environment; generally at depth in the crust.</skos:definition>
+    <skos:Concept rdf:about="#metamorphic_rock">
+        <rdf:type rdf:resource="&owl;Thing"/>
         <skos:historyNote>Jackson 1997</skos:historyNote>
         <skos:prefLabel xml:lang="en"
             >Metamorphic rock</skos:prefLabel>
+        <rdfs:comment xml:lang="en"
+            >Robertson (1999) defines the boundary between diagenesis and metamorphism in sedimentary rocks as follows:
+&#8220;&#8230;the boundary between diagenesis and metamorphism is somewhat arbitrary and strongly dependent on the lithologies involved.  For example changes take place in organic materials at lower temperatures than in rocks dominated by silicate minerals.  In mudrocks, a white mica (illite) crystallinity value of &lt; 0.42D.2U obtained by X-ray diffraction analysis, is used to define the onset of metamorphism (Kisch, 1991).  In this scheme, the first appearance of glaucophane, lawsonite, paragonite, prehnite, pumpellyite or stilpnomelane is taken to indicate the lower limit of metamorphism (Frey and Kisch, 1987; Bucher and Frey, 1994; Frey and Robinson, 1998).  Most workers agree that such mineral growth starts at 150 &#177; 50&#176; C in silicate rocks.  Many lithologies may show no change in mineralogy under these conditions and hence the recognition of the onset of metamorphism will vary with bulk composition.&#8221;</rdfs:comment>
+        <skos:definition xml:lang="en"
+            >Rock formed by solid-state mineralogical, chemical and/or structural changes to a pre-existing rock, in response to marked changes in temperature, pressure, shearing stress and chemical environment; generally at depth in the crust.</skos:definition>
+        <rdfs:seeAlso xml:lang="en"
+            >buchite, rock containing at least 20 percent glass produced by contact metamorphic melting or combustion metamorphism.</rdfs:seeAlso>
+        <rdfs:seeAlso xml:lang="en"
+            >fulgurite, rock produced by lightening metamorphism</rdfs:seeAlso>
+        <skos:narrower rdf:resource="#chlorite_actinolite_epidote_metamorphic_rock"/>
         <skos:broader rdf:resource="#composite_genesis_rock"/>
+        <skos:narrower rdf:resource="#glaucophane_lawsonite_epidote_metamorphic_rock"/>
+        <skos:narrower rdf:resource="#granulite"/>
+        <skos:inScheme rdf:resource=""/>
+    </skos:Concept>
+    
+
+
+    <!-- #metasomatic_rock -->
+
+    <owl:Thing rdf:about="#metasomatic_rock">
+        <rdf:type rdf:resource="&skos;Concept"/>
+        <rdfs:seeAlso xml:lang="en"
+            >Aceite, argillisite, beresite, gumbeite, greisen, endoskarn, exoskarn, fenite, propylite, rodingite, skarn, spilite</rdfs:seeAlso>
+        <skos:definition xml:lang="en"
+            >Rock that has fabric and composition indicating open-system mineralogical and chemical changes in response to interaction with a fluid phase, typically water rich.</skos:definition>
+        <rdfs:comment xml:lang="en"
+            >SLTTm (2004) proposed the following criteria to distinguish hydrothermally altered or metasomatic rock from igneous rock.  &quot;The rock is classified as metamorphic if (1) the texture has been modified such that it can no longer be considered igneous, (2) the bulk composition of the rock is inconsistent with compositions that can be derived purely from a magma and associated processes such as assimilation and differentiation, or (3) minerals inconsistent with magmatic crystallization are present.&quot;</rdfs:comment>
+        <skos:historyNote xml:lang="en">this vocabulary</skos:historyNote>
+        <skos:broader rdf:resource="#composite_genesis_rock"/>
+        <skos:inScheme rdf:resource=""/>
+    </owl:Thing>
+    
+
+
+    <!-- #mica_schist -->
+
+    <owl:Thing rdf:about="#mica_schist">
+        <rdf:type rdf:resource="&skos;Concept"/>
+        <skos:definition xml:lang="en"
+            >A schist that consists of more than 50 percent mica minerals, typically muscovite or biotite. Special type included to distinguish this common variety of schist.</skos:definition>
+        <rdfs:comment xml:lang="en"
+            >Include single subcategory of schist to indicate this common kind of schist. &#8216;Mica rich metamorphic rock&#8217; for compound use with schist fabric term would be more compatible with treatment of blueschist (Glaucophane lawsonite epidote metamorphic rock) and greenschist (Chlorite actinolite epidote metamorphic rock), but based on the assumption that schist is the only rock type that will meet the mica-rich criteria, it seems reasonable to include as a subtype of schist.</rdfs:comment>
+        <skos:prefLabel xml:lang="en">Mica schist</skos:prefLabel>
+        <skos:historyNote xml:lang="en">this vocabulary</skos:historyNote>
+        <skos:broader rdf:resource="#schist"/>
         <skos:inScheme rdf:resource=""/>
     </owl:Thing>
     
@@ -2458,11 +2742,13 @@
 
     <owl:Thing rdf:about="#migmatite">
         <rdf:type rdf:resource="&skos;Concept"/>
-        <skos:prefLabel xml:lang="en">Migmatite</skos:prefLabel>
         <skos:definition
-            >Silicate metamorphic rock that is pervasively heterogeneous on a meso- to megascopic scale that typically consists of darker and lighter parts; the darker parts usually exhibit features of metamorphic rocks whereas the lighter parts are of igneous-looking appearance.</skos:definition>
-        <skos:historyNote
-            >after IUGS SCMR 2007 (http://www.bgs.ac.uk/SCMR/)</skos:historyNote>
+            >Silicate metamorphic rock that is pervasively heterogeneous on a decimeter to meter scale that typically consists of darker and lighter parts; the darker parts usually exhibit features of metamorphic rocks whereas the lighter parts are of igneous-looking appearance.</skos:definition>
+        <skos:historyNote xml:lang="en"
+            >Fette and Desmons (2007) (http://www.bgs.ac.uk/SCMR/)</skos:historyNote>
+        <skos:prefLabel xml:lang="en">Migmatite</skos:prefLabel>
+        <rdfs:seeAlso xml:lang="en"
+            >agmatite, ditexite, diatectite, dictyonite, metatexite, nebulite, phlebite, stromatite, venite</rdfs:seeAlso>
         <skos:broader rdf:resource="#metamorphic_rock"/>
         <skos:inScheme rdf:resource=""/>
     </owl:Thing>
@@ -2491,7 +2777,7 @@
         <skos:prefLabel xml:lang="en"
             >Monzodioritic rock</skos:prefLabel>
         <skos:definition xml:lang="en"
-            >Phaneritic crystalline igneous rock consisting of sodic plagioclase (An0 to An50), alkali feldspar, hornblende and biotite, with or without pyroxene, and 0 to 10 percent feldspathoid or 0 to 20 percent quartz in the QAPF fraction. Plagioclase to alkali feldspar ratio in the QAPF fraction is between 0.65 and 0.9.  Includes rocks defined modally in QAPF field 9, 9&#39; and 9* as monzodiorite, foid-beaing  monzodiorite, and quartz monzodiorite.</skos:definition>
+            >Phaneritic crystalline igneous rock consisting of sodic plagioclase (An0 to An50), alkali feldspar, hornblende and biotite, with or without pyroxene, and 0 to 10 percent feldspathoid or 0 to 20 percent quartz in the QAPF fraction. Plagioclase to total feldspar ratio in the QAPF fraction is between 0.65 and 0.9.  Includes rocks defined modally in QAPF field 9, 9&#39; and 9* as monzodiorite, foid-beaing  monzodiorite, and quartz monzodiorite.</skos:definition>
         <skos:historyNote xml:lang="en"
             >This vocabulary; LeMaitre et al., 2002</skos:historyNote>
         <skos:broader rdf:resource="#dioritoid"/>
@@ -2522,7 +2808,7 @@
     <owl:Thing rdf:about="#monzogabbroic_rock">
         <rdf:type rdf:resource="&skos;Concept"/>
         <skos:definition xml:lang="en"
-            >Gabbroid with a plagioclase to alkali feldspar ratio between 0.65 and 0.9.</skos:definition>
+            >Gabbroid with a plagioclase to total feldspar ratio between 0.65 and 0.9.</skos:definition>
         <skos:prefLabel xml:lang="en"
             >Monzogabbroic rock</skos:prefLabel>
         <skos:narrower rdf:resource="#foid_bearing_monzogabbro"/>
@@ -2538,7 +2824,7 @@
     <owl:Thing rdf:about="#monzogranite">
         <rdf:type rdf:resource="&skos;Concept"/>
         <skos:definition xml:lang="en"
-            >Granite that has a plagiolcase to alkali feldspar ratio between 0.35 and 0.65. QAPF field 3b.</skos:definition>
+            >Granite that has a plagiolcase to total feldspar ratio between 0.35 and 0.65. QAPF field 3b.</skos:definition>
         <skos:historyNote xml:lang="en"
             >LeMaitre et al. 2002</skos:historyNote>
         <skos:prefLabel xml:lang="en">Monzogranite</skos:prefLabel>
@@ -2571,7 +2857,7 @@
             >LeMaitre et al., 2002</skos:historyNote>
         <skos:prefLabel xml:lang="en">Monzonitic rock</skos:prefLabel>
         <skos:definition xml:lang="en"
-            >Syenitoid with a plagioclase to alkali feldspar ratio between 0.35 and 0.65. Includes rocks in QAPF fields 8, 8*, and 8&#39;.</skos:definition>
+            >Syenitoid with a plagioclase to total feldspar ratio between 0.35 and 0.65. Includes rocks in QAPF fields 8, 8*, and 8&#39;.</skos:definition>
         <skos:narrower rdf:resource="#foid_bearing_monzonite"/>
         <skos:narrower rdf:resource="#quartz_monzonite"/>
         <skos:broader rdf:resource="#syenitoid"/>
@@ -2582,21 +2868,20 @@
 
     <!-- #mud -->
 
-    <skos:Concept rdf:about="#mud">
-        <rdf:type rdf:resource="&owl;Thing"/>
-        <skos:notation rdf:datatype="&SimpleLithology2;xx">mud</skos:notation>
-        <skos:definition
-            >Clastic sediment consisting of less than 30 percent gravel-size (2 mm) particles and with a mud to sand ratio greater than 1. Clasts may be of any composition or origin.</skos:definition>
-        <skos:prefLabel xml:lang="en">Mud</skos:prefLabel>
+    <owl:Thing rdf:about="#mud">
+        <rdf:type rdf:resource="&skos;Concept"/>
         <skos:historyNote
             >based on SLTTs 2004; Neuendorf et al. 2005; particle size from Wentworth grade scale</skos:historyNote>
+        <skos:prefLabel xml:lang="en">Mud</skos:prefLabel>
+        <skos:definition xml:lang="en"
+            >Sediment consisting of less than 30 percent gravel-size (2 mm) particles and with a mud to sand ratio greater than 1. Clasts may be of any composition or origin.</skos:definition>
         <skos:narrower rdf:resource="#carbonate_rich_mud"/>
-        <skos:broader rdf:resource="#clastic_sediment"/>
         <skos:narrower rdf:resource="#clay"/>
+        <skos:broader rdf:resource="#sediment"/>
         <skos:narrower rdf:resource="#silicate_mud"/>
         <skos:narrower rdf:resource="#silt"/>
         <skos:inScheme rdf:resource=""/>
-    </skos:Concept>
+    </owl:Thing>
     
 
 
@@ -2604,13 +2889,23 @@
 
     <owl:Thing rdf:about="#mudstone">
         <rdf:type rdf:resource="&skos;Concept"/>
-        <skos:notation rdf:datatype="&SimpleLithology2;xx">mudstone</skos:notation>
-        <skos:definition
-            >Clastic sedimentary rock consisting of less than 30 percent gravel-size (2 mm) particles and with a mud to sand ratio greater than 1. Clasts may be of any composition or origin.</skos:definition>
         <skos:historyNote
             >Pettijohn et al. 1987 referenced in Hallsworth &amp; Knox 1999; extrapolated from Folk, 1954, Figure 1a</skos:historyNote>
+        <rdfs:comment xml:lang="en"
+            >Distinction of intrabasinal, diagenetic, or clastic genesis for very fine-grained carbonate minerals is so interpretive that it is proposed to not define the mudstone category based on intrabasinal vs epiclastic distinction required for clastic sedimentary rock-carbonate sedimentary rock categorization in this system.  
+Schnurrenberger, D., Russell, J. and Kelts, K., 2003, Classification of lacustrine sediments based on sedimentary components: Journal of Paleolimnology, v.29, p141-154.</rdfs:comment>
         <skos:prefLabel xml:lang="en">Mudstone</skos:prefLabel>
-        <skos:broader rdf:resource="#clastic_sedimentary_rock"/>
+        <rdfs:comment xml:lang="en"
+            >Note that the shale and silt-bearing mudstone categories may apply to any of the mineralogically defined mudstone categories.</rdfs:comment>
+        <skos:definition
+            >Sedimentary rock consisting of less than 30 percent gravel-size (2 mm) particles and with a mud to sand ratio greater than 1. Clasts may be of any composition or origin.</skos:definition>
+        <rdfs:seeAlso xml:lang="en">argillite</rdfs:seeAlso>
+        <skos:narrower rdf:resource="#carbonate_rich_mudstone"/>
+        <skos:narrower rdf:resource="#claystone"/>
+        <skos:narrower rdf:resource="#pure_carbonate_mudstone"/>
+        <skos:broader rdf:resource="#sedimentary_rock"/>
+        <skos:narrower rdf:resource="#silicate_mudstone"/>
+        <skos:narrower rdf:resource="#silt_bearing_mudstone"/>
         <skos:inScheme rdf:resource=""/>
     </owl:Thing>
     
@@ -2622,9 +2917,13 @@
         <rdf:type rdf:resource="&skos;Concept"/>
         <skos:historyNote
             >Marshak &amp; Mitra 1988</skos:historyNote>
+        <skos:definition xml:lang="en"
+            >Metamorphic rock characterised by a foliation resulting from tectonic grain size reduction, in which more than 10 percent of the rock volume has undergone grain size reduction. Includes protomylonite, mylonite, ultramylonite, and blastomylonite.</skos:definition>
         <skos:definition
             >Metamorphic rock characterised by a foliation resulting from tectonic grain size reduction, in which more than 10 percent of the rock volume has undergone grain size reduction. Includes protomylonite, mylonite, ultramylonite, phyllonite and blastomylonite.</skos:definition>
         <skos:prefLabel xml:lang="en">Mylonitic rock</skos:prefLabel>
+        <rdfs:seeAlso xml:lang="en"
+            >protomylonite, mylonite, ultramylonite, blastomylonite, mesomylonite</rdfs:seeAlso>
         <skos:broader rdf:resource="#foliated_metamorphic_rock"/>
         <skos:inScheme rdf:resource=""/>
     </owl:Thing>
@@ -2635,8 +2934,6 @@
 
     <skos:Concept rdf:about="#natural_unconsolidated_material">
         <rdf:type rdf:resource="&owl;Thing"/>
-        <skos:notation rdf:datatype="&SimpleLithology2;xx"
-            >natural_unconsolidated_material</skos:notation>
         <skos:historyNote>this vocabulary</skos:historyNote>
         <skos:definition
             >Unconsolidated material known to have natural, ie. not human-made, origin.</skos:definition>
@@ -2652,8 +2949,6 @@
 
     <skos:Concept rdf:about="#non_clastic_siliceous_sediment">
         <rdf:type rdf:resource="&owl;Thing"/>
-        <skos:notation rdf:datatype="&SimpleLithology2;xx"
-            >non_clastic_siliceous_sediment</skos:notation>
         <skos:historyNote
             >NGMDB 2008; Hallsworth and Knox 1999</skos:historyNote>
         <skos:prefLabel xml:lang="en"
@@ -2671,8 +2966,6 @@
 
     <owl:Thing rdf:about="#non_clastic_siliceous_sedimentary_material">
         <rdf:type rdf:resource="&skos;Concept"/>
-        <skos:notation rdf:datatype="&SimpleLithology2;xx"
-            >non_clastic_siliceous_sedimentary_material</skos:notation>
         <skos:definition
             >Sedimentary material that consists of at least 50 percent silicate mineral material, deposited directly by chemical or biological processes at the depositional surface, or in particles formed by chemical or biological processes within the basin of deposition.</skos:definition>
         <skos:prefLabel xml:lang="en"
@@ -2688,8 +2981,6 @@
 
     <skos:Concept rdf:about="#non_clastic_siliceous_sedimentary_rock">
         <rdf:type rdf:resource="&owl;Thing"/>
-        <skos:notation rdf:datatype="&SimpleLithology2;xx"
-            >non_clastic_siliceous_sedimentary_rock</skos:notation>
         <skos:historyNote>SLTTs 2004</skos:historyNote>
         <skos:definition
             >Sedimentary rock that consists of at least 50 percent silicate mineral material, deposited directly by chemical or biological processes at the depositional surface, or in particles formed by chemical or biological processes within the basin of deposition.</skos:definition>
@@ -2702,11 +2993,26 @@
     
 
 
+    <!-- #normal_crystalline_igneous_rock -->
+
+    <owl:Thing rdf:about="#normal_crystalline_igneous_rock">
+        <rdf:type rdf:resource="&skos;Concept"/>
+        <skos:definition xml:lang="en"
+            >Crystalline igneous rock that does not meet the criteria for exotic composition igneous rock. Includes igneous rocks that are composed dominantly or entirely of quartz, feldspar, feldspathoid minerals, and mafic minerals like olivine, mica, pyroxene or hornblende.</skos:definition>
+        <skos:historyNote xml:lang="en"
+            >Gillespie and Styles, 1999</skos:historyNote>
+        <skos:prefLabel xml:lang="en"
+            >Normal composition crystalline igneous rock</skos:prefLabel>
+        <skos:broader rdf:resource="#igneous_rock"/>
+        <skos:inScheme rdf:resource=""/>
+    </owl:Thing>
+    
+
+
     <!-- #ooze -->
 
     <owl:Thing rdf:about="#ooze">
         <rdf:type rdf:resource="&skos;Concept"/>
-        <skos:notation rdf:datatype="&SimpleLithology2;xx">ooze</skos:notation>
         <skos:definition xml:lang="en"
             >Biogenic sediment consisting of less than 1 percent gravel-size (greater than or equal to 2 mm) particles, with a sand to mud ratio less than 1 to 9, and less than 50 percent carbonate minerals.</skos:definition>
         <skos:prefLabel xml:lang="en">Ooze</skos:prefLabel>
@@ -2725,15 +3031,15 @@
 
     <skos:Concept rdf:about="#organic_rich_sediment">
         <rdf:type rdf:resource="&owl;Thing"/>
-        <skos:notation rdf:datatype="&SimpleLithology2;xx"
-            >organic_rich_sediment</skos:notation>
         <skos:definition
             >Sediment with color, composition, texture and apparent density indicating greater than 50 percent organic content by weight on a moisture-free basis.</skos:definition>
         <skos:prefLabel xml:lang="en"
             >Organic rich sediment</skos:prefLabel>
         <skos:historyNote>SLTTs 2004</skos:historyNote>
+        <rdfs:comment xml:lang="en"
+            >The broader relation from organic rich sediment to biogenic sediment is based on the inference that organic rich material is always biogenic in origin. Biogenic is a broader category because not all biogenic materials are organic rich, for example shells or phosphatic bone.</rdfs:comment>
+        <skos:broader rdf:resource="#biogenic_sediment"/>
         <skos:broader rdf:resource="#organic_rich_sedimentary_material"/>
-        <skos:broader rdf:resource="#sediment"/>
         <skos:inScheme rdf:resource=""/>
     </skos:Concept>
     
@@ -2743,8 +3049,6 @@
 
     <skos:Concept rdf:about="#organic_rich_sedimentary_material">
         <rdf:type rdf:resource="&owl;Thing"/>
-        <skos:notation rdf:datatype="&SimpleLithology2;xx"
-            >organic_rich_sedimentary_material</skos:notation>
         <skos:prefLabel xml:lang="en"
             >Organic rich sedimentary material</skos:prefLabel>
         <skos:historyNote>SLTTs 2004</skos:historyNote>
@@ -2760,15 +3064,28 @@
 
     <owl:Thing rdf:about="#organic_rich_sedimentary_rock">
         <rdf:type rdf:resource="&skos;Concept"/>
-        <skos:notation rdf:datatype="&SimpleLithology2;xx"
-            >organic_rich_sedimentary_rock</skos:notation>
         <skos:historyNote>SLTTs 2004</skos:historyNote>
         <skos:prefLabel xml:lang="en"
             >Organic rich sedimentary rock</skos:prefLabel>
         <skos:definition
             >Sedimentary rock with color, composition, texture and apparent density indicating greater than 50 percent organic content by weight on a moisture-free basis.</skos:definition>
+        <skos:narrower rdf:resource="#lignite"/>
         <skos:broader rdf:resource="#organic_rich_sedimentary_material"/>
         <skos:broader rdf:resource="#sedimentary_rock"/>
+        <skos:inScheme rdf:resource=""/>
+    </owl:Thing>
+    
+
+
+    <!-- #orthogneiss -->
+
+    <owl:Thing rdf:about="#orthogneiss">
+        <rdf:type rdf:resource="&skos;Concept"/>
+        <skos:definition xml:lang="en"
+            >A gneiss with mineralogy and texture indicating derivation from a phaneritic igneous rock protolith.  Typically consists of abundant feldspar, with quartz, and variable hornblende, biotite, and muscovite, with a relatively homogeneous character.</skos:definition>
+        <skos:prefLabel xml:lang="en">Orthogneiss</skos:prefLabel>
+        <skos:historyNote xml:lang="en">this vocabulary</skos:historyNote>
+        <skos:broader rdf:resource="#gneiss"/>
         <skos:inScheme rdf:resource=""/>
     </owl:Thing>
     
@@ -2778,11 +3095,12 @@
 
     <owl:Thing rdf:about="#packstone">
         <rdf:type rdf:resource="&skos;Concept"/>
-        <skos:notation rdf:datatype="&SimpleLithology2;xx">packstone</skos:notation>
-        <skos:definition
-            >Carbonate sedimentary rock with discernible grain supported depositional texture, containing greater than 10 percent grains; intergranular spaces are filled by matrix.</skos:definition>
         <skos:historyNote
             >Hallsworth &amp; Knox 1999</skos:historyNote>
+        <skos:definition xml:lang="en"
+            >Carbonate sedimentary rock with discernible grain supported depositional texture, containing greater than 10 percent grains, and constituent particles are of intrabasinal origin; intergranular spaces are filled by matrix.</skos:definition>
+        <rdfs:comment xml:lang="en"
+            >Note that this category overlaps with &#39;carbonate mudstone&#39;.</rdfs:comment>
         <skos:prefLabel xml:lang="en">Packstone</skos:prefLabel>
         <skos:broader rdf:resource="#carbonate_sedimentary_rock"/>
         <skos:inScheme rdf:resource=""/>
@@ -2790,11 +3108,24 @@
     
 
 
+    <!-- #paragneiss -->
+
+    <skos:Concept rdf:about="#paragneiss">
+        <rdf:type rdf:resource="&owl;Thing"/>
+        <skos:definition xml:lang="en"
+            >A gneiss with mineralogy and texture indicating derivation from a sedimentary rock protolith. Typically consists of abundant quartz, mica, or calcsilicate minerals; aluminosilicate minerals or garnet commonly present. Composition of rock tends to be more variable on a decimetric scale that in orthogneiss.</skos:definition>
+        <skos:prefLabel xml:lang="en">Paragneiss</skos:prefLabel>
+        <skos:historyNote xml:lang="en">this vocabulary</skos:historyNote>
+        <skos:broader rdf:resource="#gneiss"/>
+        <skos:inScheme rdf:resource=""/>
+    </skos:Concept>
+    
+
+
     <!-- #peat -->
 
     <skos:Concept rdf:about="#peat">
         <rdf:type rdf:resource="&owl;Thing"/>
-        <skos:notation rdf:datatype="&SimpleLithology2;xx">peat</skos:notation>
         <skos:definition
             >Unconsolidated organic-rich sediment composed of at least 50 percent semi-carbonised plant remains; individual remains commonly seen with unaided eye; yellowish brown to brownish black; generally fibrous texture; can be plastic or friable. In its natural state it can be readily cut and has a very high moisture content, generally greater than 90 percent.</skos:definition>
         <skos:historyNote
@@ -2862,13 +3193,15 @@
             >Neuendorf et al. 2005</skos:historyNote>
         <skos:definition
             >Igneous rock in which greater than 10 percent of rock is individual crystals that can be discerned with the unaided eye. Bounding grain size is on the order of 32 to 100 microns. Igneous rocks with &#39;exotic&#39; composition are excluded from this concept.</skos:definition>
+        <skos:altLabel xml:lang="en"
+            >Coarse grained crystalline igneous rock</skos:altLabel>
         <skos:prefLabel xml:lang="en"
             >Phaneritic igneous rock</skos:prefLabel>
         <skos:narrower rdf:resource="#dioritoid"/>
         <skos:narrower rdf:resource="#foid_dioritoid"/>
         <skos:narrower rdf:resource="#foid_syenitoid"/>
         <skos:narrower rdf:resource="#gabbroid"/>
-        <skos:broader rdf:resource="#igneous_rock"/>
+        <skos:broader rdf:resource="#normal_crystalline_igneous_rock"/>
         <skos:narrower rdf:resource="#syenitoid"/>
         <skos:inScheme rdf:resource=""/>
     </skos:Concept>
@@ -2883,7 +3216,7 @@
             >LeMaitre et al., 2002</skos:historyNote>
         <skos:prefLabel xml:lang="en">Phonolite</skos:prefLabel>
         <skos:definition xml:lang="en"
-            >Phonolitoid in which the plagioclase to alkali feldspar ratio is less than 0.1. Rock consists of alkali feldspar, feldspathoid minerals, and mafic minerals.</skos:definition>
+            >Phonolitoid in which the plagioclase to total feldspar ratio is less than 0.1. Rock consists of alkali feldspar, feldspathoid minerals, and mafic minerals.</skos:definition>
         <rdfs:seeAlso xml:lang="en"
             >peralkaline phonolite</rdfs:seeAlso>
         <skos:broader rdf:resource="#phonolitoid"/>
@@ -2901,7 +3234,7 @@
         <skos:prefLabel xml:lang="en"
             >Phonolitic basanite</skos:prefLabel>
         <skos:definition xml:lang="en"
-            >Tephritoid that has a plagioclase to alkali feldspar ratio between 0.5 and  0.9, and contains more than 10 percent normative (CIPW) olivine.</skos:definition>
+            >Tephritoid that has a plagioclase to total feldspar ratio between 0.5 and  0.9, and contains more than 10 percent normative (CIPW) olivine.</skos:definition>
         <skos:broader rdf:resource="#tephritoid"/>
         <skos:inScheme rdf:resource=""/>
     </owl:Thing>
@@ -2913,7 +3246,7 @@
     <owl:Thing rdf:about="#phonolitic_foidite">
         <rdf:type rdf:resource="&skos;Concept"/>
         <skos:definition xml:lang="en"
-            >Foiditoid that contains less than 90 percent feldspathoid minerals in the QAPF fraction, and has a  plagioclase to alkali feldspar ratio that is less than 0.5</skos:definition>
+            >Foiditoid that contains less than 90 percent feldspathoid minerals in the QAPF fraction, and has a  plagioclase to total feldspar ratio that is less than 0.5</skos:definition>
         <skos:historyNote xml:lang="en"
             >LeMaitre et al., 2002</skos:historyNote>
         <skos:prefLabel xml:lang="en"
@@ -2933,7 +3266,7 @@
         <skos:prefLabel xml:lang="en"
             >Phonolitic tephrite</skos:prefLabel>
         <skos:definition xml:lang="en"
-            >Tephritoid that has a plagioclase to alkali feldspar ratio between 0.5 and 0.9, and contains less than 10 percent normative (CIPW) olivine.</skos:definition>
+            >Tephritoid that has a plagioclase to total feldspar ratio between 0.5 and 0.9, and contains less than 10 percent normative (CIPW) olivine.</skos:definition>
         <skos:broader rdf:resource="#tephritoid"/>
         <skos:inScheme rdf:resource=""/>
     </skos:Concept>
@@ -2947,7 +3280,7 @@
         <skos:historyNote
             >LeMaitre et al. 2002</skos:historyNote>
         <skos:definition xml:lang="en"
-            >Fine grained igneous rock than contains less than 90 percent mafic minerals, between 10 and 60 percent feldspathoid mineral in the QAPF fraction and has a plagioclase to alkali feldspar ratio less than 0.5. Includes rocks defined modally in QAPF fields 11 and 12, and TAS field Ph.</skos:definition>
+            >Fine grained igneous rock than contains less than 90 percent mafic minerals, between 10 and 60 percent feldspathoid mineral in the QAPF fraction and has a plagioclase to total feldspar ratio less than 0.5. Includes rocks defined modally in QAPF fields 11 and 12, and TAS field Ph.</skos:definition>
         <skos:altLabel xml:lang="en">Phonolitic rock</skos:altLabel>
         <skos:prefLabel xml:lang="en">Phonolitoid</skos:prefLabel>
         <skos:broader rdf:resource="#fine_grained_igneous_rock"/>
@@ -2962,8 +3295,6 @@
 
     <owl:Thing rdf:about="#phosphate_rich_sediment">
         <rdf:type rdf:resource="&skos;Concept"/>
-        <skos:notation rdf:datatype="&SimpleLithology2;xx"
-            >phosphate_rich_sediment</skos:notation>
         <skos:prefLabel xml:lang="en"
             >Phosphate rich sediment</skos:prefLabel>
         <skos:definition
@@ -2982,8 +3313,6 @@
 
     <skos:Concept rdf:about="#phosphate_rich_sedimentary_material">
         <rdf:type rdf:resource="&owl;Thing"/>
-        <skos:notation rdf:datatype="&SimpleLithology2;xx"
-            >phosphate_rich_sedimentary_material</skos:notation>
         <skos:historyNote>SLTTs 2004</skos:historyNote>
         <skos:prefLabel xml:lang="en"
             >Phosphate rich sedimentary material</skos:prefLabel>
@@ -2999,7 +3328,6 @@
 
     <skos:Concept rdf:about="#phosphorite">
         <rdf:type rdf:resource="&owl;Thing"/>
-        <skos:notation rdf:datatype="&SimpleLithology2;xx">phosphorite</skos:notation>
         <skos:prefLabel xml:lang="en">Phosphorite</skos:prefLabel>
         <skos:definition
             >Sedimentary rock in which at least 50 percent of the primary or recrystallized constituents are phosphate minerals. Most commonly occurs as a bedded primary or reworked secondary marine rock, composed of microcrystalline carbonate fluorapatite in the form of lamina, pellets, oolites and nodules, and skeletal, shell and bone fragments.</skos:definition>
@@ -3046,7 +3374,6 @@
 
     <skos:Concept rdf:about="#porphyry">
         <rdf:type rdf:resource="&owl;Thing"/>
-        <skos:notation rdf:datatype="&SimpleLithology2;xx">porphyry</skos:notation>
         <skos:historyNote
             >LeMaitre et al. 2002</skos:historyNote>
         <skos:definition
@@ -3074,6 +3401,22 @@
     
 
 
+    <!-- #pure_carbonate_mudstone -->
+
+    <owl:Thing rdf:about="#pure_carbonate_mudstone">
+        <rdf:type rdf:resource="&skos;Concept"/>
+        <skos:historyNote xml:lang="en">Dunham 1962</skos:historyNote>
+        <skos:definition xml:lang="en"
+            >Mudstone that consists of greater than 90 percent carbonate minerals of intrabasinal orign in the mud fraction, and contains less than 10 percent allochems.  The original depositional texture is preserved and fabric is matrix supported. Carbonate mudstone of Dunham (1962)</skos:definition>
+        <skos:prefLabel xml:lang="en"
+            >Pure carbonate mudstone</skos:prefLabel>
+        <skos:broader rdf:resource="#carbonate_sedimentary_rock"/>
+        <skos:broader rdf:resource="#mudstone"/>
+        <skos:inScheme rdf:resource=""/>
+    </owl:Thing>
+    
+
+
     <!-- #pure_carbonate_sediment -->
 
     <skos:Concept rdf:about="#pure_carbonate_sediment">
@@ -3086,6 +3429,21 @@
         <skos:broader rdf:resource="#carbonate_sediment"/>
         <skos:inScheme rdf:resource=""/>
     </skos:Concept>
+    
+
+
+    <!-- #pure_carbonate_sedimentary_rock -->
+
+    <owl:Thing rdf:about="#pure_carbonate_sedimentary_rock">
+        <rdf:type rdf:resource="&skos;Concept"/>
+        <skos:prefLabel xml:lang="en"
+            >Pure carbonate sedimentary rock</skos:prefLabel>
+        <skos:definition xml:lang="en"
+            >Sedimentary rock in which greater than 90 percent of the primary and/or recrystallized constituents are carbonate minerals.</skos:definition>
+        <skos:historyNote xml:lang="en">this vocabulary</skos:historyNote>
+        <skos:broader rdf:resource="#carbonate_sedimentary_rock"/>
+        <skos:inScheme rdf:resource=""/>
+    </owl:Thing>
     
 
 
@@ -3345,6 +3703,7 @@
         <skos:prefLabel xml:lang="en">Quartzite</skos:prefLabel>
         <skos:historyNote
             >after Neuendorf et al. 2005</skos:historyNote>
+        <rdfs:seeAlso xml:lang="en">itacolumite</rdfs:seeAlso>
         <skos:broader rdf:resource="#metamorphic_rock"/>
         <skos:inScheme rdf:resource=""/>
     </skos:Concept>
@@ -3356,7 +3715,7 @@
     <skos:Concept rdf:about="#residual_material">
         <rdf:type rdf:resource="&owl;Thing"/>
         <skos:definition xml:lang="en"
-            >Material of composite origin resulting from weathering processes at the Earths surface, in the absence of significant epiclastic or chemical input, mostly involving removal of chemical constituents by aqueous leaching. Consolidation state is not inherent in definition. Minor input from wind-born constituents may be present</skos:definition>
+            >Material of composite origin resulting from weathering processes at the Earth&#8217;s surface, with minor clastic, chemical, or organic input, and removal of chemical constituents by aqueous leaching. Consolidation state is not inherent in definition.</skos:definition>
         <skos:prefLabel xml:lang="en"
             >residual material</skos:prefLabel>
         <skos:historyNote xml:lang="en">this vocabulary</skos:historyNote>
@@ -3376,7 +3735,7 @@
             >liparite, rhyodacite</rdfs:seeAlso>
         <skos:prefLabel xml:lang="en">rhyolite</skos:prefLabel>
         <skos:definition xml:lang="en"
-            >rhyolitoid in which the ratio of plagioclase to alkali feldspar is between 0.1 and 0.65.</skos:definition>
+            >rhyolitoid in which the ratio of plagioclase to total feldspar is between 0.1 and 0.65.</skos:definition>
         <skos:broader rdf:resource="#rhyolitoid"/>
         <skos:inScheme rdf:resource=""/>
     </owl:Thing>
@@ -3394,7 +3753,7 @@
         <skos:altLabel xml:lang="en">Rhyolitic rock</skos:altLabel>
         <skos:prefLabel xml:lang="en">Rhyolitoid</skos:prefLabel>
         <skos:definition xml:lang="en"
-            >fine_grained_igneous_rock consisting of quartz and alkali feldspar, with minor plagioclase and biotite, in a microcrystalline, cryptocrystalline or glassy groundmass. Flow texture is common. Includes rocks defined modally in QAPF fields 2 and 3 or chemically in TAS Field R as rhyolite. QAPF normative definition is based on modal mineralogy thus: less than 90 percent mafic minerals, between 10 and 60 percent quartz in the QAPF fraction, and ratio of plagioclse to alkali feldspar is less than 0.65.</skos:definition>
+            >fine_grained_igneous_rock consisting of quartz and alkali feldspar, with minor plagioclase and biotite, in a microcrystalline, cryptocrystalline or glassy groundmass. Flow texture is common. Includes rocks defined modally in QAPF fields 2 and 3 or chemically in TAS Field R as rhyolite. QAPF normative definition is based on modal mineralogy thus: less than 90 percent mafic minerals, between 20 and 60 percent quartz in the QAPF fraction, and ratio of plagioclse to total feldspar is less than 0.65.</skos:definition>
         <skos:broader rdf:resource="#acidic_igneous_rock"/>
         <skos:narrower rdf:resource="#alkali_feldspar_rhyolite"/>
         <skos:broader rdf:resource="#fine_grained_igneous_rock"/>
@@ -3408,16 +3767,44 @@
 
     <skos:Concept rdf:about="#rock">
         <rdf:type rdf:resource="&owl;Thing"/>
-        <skos:notation rdf:datatype="&SimpleLithology2;xx">rock</skos:notation>
         <skos:historyNote
             >Jackson, 1997; NADM C1 2004; Neuendorf et al 2005</skos:historyNote>
         <skos:definition
             >Consolidated aggregate of one or more EarthMaterials, or a body of undifferentiated mineral matter, or of solid organic material. Includes mineral aggregates such as granite, shale, marble; glassy matter such as obsidian; and organic material such a coal. Excludes unconsolidated materials.</skos:definition>
         <skos:prefLabel xml:lang="en">Rock</skos:prefLabel>
-        <skos:prefLabel xml:lang="es">piedra</skos:prefLabel>
+        <skos:prefLabel xml:lang="es">Piedra</skos:prefLabel>
         <skos:broader rdf:resource="#compound_material"/>
         <skos:inScheme rdf:resource=""/>
     </skos:Concept>
+    
+
+
+    <!-- #rock_gypsum_or_anhydrite -->
+
+    <skos:Concept rdf:about="#rock_gypsum_or_anhydrite">
+        <rdf:type rdf:resource="&owl;Thing"/>
+        <skos:definition xml:lang="en"
+            >Evaporite composed of at least 50 percent gypsum or anhydrite.</skos:definition>
+        <skos:prefLabel xml:lang="en"
+            >Gypsum or anhydrite</skos:prefLabel>
+        <skos:historyNote xml:lang="en">This vocabulary</skos:historyNote>
+        <skos:broader rdf:resource="#evaporite"/>
+        <skos:inScheme rdf:resource=""/>
+    </skos:Concept>
+    
+
+
+    <!-- #rock_salt -->
+
+    <owl:Thing rdf:about="#rock_salt">
+        <rdf:type rdf:resource="&skos;Concept"/>
+        <skos:definition xml:lang="en"
+            >Evaporite composed of at least 50 percent halite.</skos:definition>
+        <skos:prefLabel xml:lang="en">Rock salt</skos:prefLabel>
+        <skos:historyNote xml:lang="en">This vocabulary</skos:historyNote>
+        <skos:broader rdf:resource="#evaporite"/>
+        <skos:inScheme rdf:resource=""/>
+    </owl:Thing>
     
 
 
@@ -3425,13 +3812,12 @@
 
     <owl:Thing rdf:about="#sand">
         <rdf:type rdf:resource="&skos;Concept"/>
-        <skos:notation rdf:datatype="&SimpleLithology2;xx">sand</skos:notation>
-        <skos:definition
-            >Clastic sediment in which less than 30 percent of particles are gravel (greater than 2 mm in diameter) and the sand to mud ratio is at least 1.</skos:definition>
         <skos:historyNote
             >Neuendorf et al. 2005; NGMDB</skos:historyNote>
         <skos:prefLabel xml:lang="en">Sand</skos:prefLabel>
-        <skos:broader rdf:resource="#clastic_sediment"/>
+        <skos:definition xml:lang="en"
+            >Sediment in which less than 30 percent of particles are gravel (greater than 2 mm in diameter) and the sand to mud ratio is at least 1.</skos:definition>
+        <skos:broader rdf:resource="#sediment"/>
         <skos:inScheme rdf:resource=""/>
     </owl:Thing>
     
@@ -3441,13 +3827,12 @@
 
     <owl:Thing rdf:about="#sandstone">
         <rdf:type rdf:resource="&skos;Concept"/>
-        <skos:notation rdf:datatype="&SimpleLithology2;xx">sandstone</skos:notation>
-        <skos:definition
-            >Clastic sedimentary rock in which less than 30 percent of particles are greater than 2 mm in diameter (gravel) and the sand to mud ratio is at least 1.</skos:definition>
         <skos:historyNote
             >SLTTs 2004; Neuendorf et al. 2005; particle size from Wentworth grade scale</skos:historyNote>
         <skos:prefLabel xml:lang="en">Sandstone</skos:prefLabel>
-        <skos:broader rdf:resource="#clastic_sedimentary_rock"/>
+        <skos:definition xml:lang="en"
+            >Sedimentary rock in which less than 30 percent of particles are greater than 2 mm in diameter (gravel) and the sand to mud ratio is at least 1.</skos:definition>
+        <skos:broader rdf:resource="#sedimentary_rock"/>
         <skos:inScheme rdf:resource=""/>
     </owl:Thing>
     
@@ -3459,10 +3844,11 @@
         <rdf:type rdf:resource="&skos;Concept"/>
         <skos:historyNote
             >SLTTm 2004; Neuendorf et al. 2005</skos:historyNote>
-        <skos:definition
-            >Foliated phaneritic metamorphic rock with well developed, continuous schistosity (greater than 50 percent of mineral grains with a tabular, lamellar, or prismatic crystallographic habit that are oriented in a continuous planar or linear fabric).</skos:definition>
+        <skos:definition xml:lang="en"
+            >Foliated phaneritic metamorphic rock with well developed, continuous schistosity, meaning that greater than 50 percent of the rock by volume is mineral grains with a thin tabular, lamellar, or acicular prismatic crystallographic habit that are oriented in a continuous planar or linear fabric.</skos:definition>
         <skos:prefLabel xml:lang="en">Schist</skos:prefLabel>
         <skos:broader rdf:resource="#foliated_metamorphic_rock"/>
+        <skos:narrower rdf:resource="#mica_schist"/>
         <skos:inScheme rdf:resource=""/>
     </owl:Thing>
     
@@ -3472,11 +3858,11 @@
 
     <skos:Concept rdf:about="#sediment">
         <rdf:type rdf:resource="&owl;Thing"/>
-        <skos:notation rdf:datatype="&SimpleLithology2;xx">sediment</skos:notation>
         <skos:prefLabel xml:lang="en">Sediment</skos:prefLabel>
         <skos:definition
             >Unconsolidated material consisting of an aggregation of particles transported or deposited by air, water or ice, or that accumulated by other natural agents, such as chemical precipitation, and that forms in layers on the Earth&#39;s surface. Includes epiclastic deposits.</skos:definition>
         <skos:historyNote>SLTTs 2004</skos:historyNote>
+        <skos:narrower rdf:resource="#hybrid_sediment"/>
         <skos:broader rdf:resource="#natural_unconsolidated_material"/>
         <skos:broader rdf:resource="#sedimentary_material"/>
         <skos:inScheme rdf:resource=""/>
@@ -3503,13 +3889,12 @@
 
     <skos:Concept rdf:about="#sedimentary_rock">
         <rdf:type rdf:resource="&owl;Thing"/>
-        <skos:notation rdf:datatype="&SimpleLithology2;xx"
-            >sedimentary_rock</skos:notation>
         <skos:historyNote>SLTTs 2004</skos:historyNote>
         <skos:definition
             >Rock formed by accumulation and cementation of solid fragmental material deposited by air, water or ice, or as a result of other natural agents, such as precipitation from solution, the accumulation of organic material, or from biogenic processes, including secretion by organisms. Includes epiclastic deposits.</skos:definition>
         <skos:prefLabel xml:lang="en"
             >Sedimentary rock</skos:prefLabel>
+        <skos:narrower rdf:resource="#hybrid_sedimentary_rock"/>
         <skos:broader rdf:resource="#rock"/>
         <skos:broader rdf:resource="#sedimentary_material"/>
         <skos:inScheme rdf:resource=""/>
@@ -3536,12 +3921,14 @@
 
     <owl:Thing rdf:about="#shale">
         <rdf:type rdf:resource="&skos;Concept"/>
-        <skos:notation rdf:datatype="&SimpleLithology2;xx">shale</skos:notation>
         <skos:historyNote
             >NADM SLTT sedimentary; Neuendorf et al. 2005</skos:historyNote>
         <skos:definition
             >Laminated mudstone that will part or break along thin, closely spaced layers parallel to stratification.</skos:definition>
+        <rdfs:comment xml:lang="en"
+            >Note definition does not specify carbonate vs. siliclastic nature of mud.</rdfs:comment>
         <skos:prefLabel xml:lang="en">Shale</skos:prefLabel>
+        <skos:related rdf:resource="#clastic_sedimentary_rock"/>
         <skos:broader rdf:resource="#mudstone"/>
         <skos:inScheme rdf:resource=""/>
     </owl:Thing>
@@ -3559,6 +3946,24 @@
     
 
 
+    <!-- #silicate_mudstone -->
+
+    <skos:Concept rdf:about="#silicate_mudstone">
+        <rdf:type rdf:resource="&owl;Thing"/>
+        <skos:definition xml:lang="en"
+            >Mudstone that contains less than 10 percent carbonate minerals.</skos:definition>
+        <rdfs:comment xml:lang="en"
+            >Operational distinction of this category will typically be based on whether or not the rock fizzes when hydrochloric acid is applied--the rock is silicate mudstone if it does not fizz. The quantitative &#39;10 percent&#39; criteria is fuzzy.</rdfs:comment>
+        <skos:prefLabel xml:lang="en"
+            >Silicate mudstone</skos:prefLabel>
+        <skos:historyNote xml:lang="en">this vocabulary</skos:historyNote>
+        <skos:related rdf:resource="#clastic_sedimentary_rock"/>
+        <skos:broader rdf:resource="#mudstone"/>
+        <skos:inScheme rdf:resource=""/>
+    </skos:Concept>
+    
+
+
     <!-- #silt -->
 
     <skos:Concept rdf:about="#silt">
@@ -3570,6 +3975,25 @@
         <skos:altLabel xml:lang="en">loess</skos:altLabel>
         <skos:prefLabel xml:lang="en">silt</skos:prefLabel>
         <skos:broader rdf:resource="#mud"/>
+        <skos:inScheme rdf:resource=""/>
+    </skos:Concept>
+    
+
+
+    <!-- #silt_bearing_mudstone -->
+
+    <skos:Concept rdf:about="#silt_bearing_mudstone">
+        <rdf:type rdf:resource="&owl;Thing"/>
+        <skos:definition xml:lang="en"
+            >Mudstone that contains detectable silt. (see comments)</skos:definition>
+        <skos:prefLabel xml:lang="en"
+            >Silt bearing mudstone</skos:prefLabel>
+        <rdfs:comment xml:lang="en"
+            >Use of &#39;dectable silt&#39; in the criteria for this category is based on the observation that in practice, distinction of claystone from &#39;siltstone&#39; is typically based on a qualitative assessment of &#39;grittiness&#39; (e.g. rubbing with fingers, or chewing); the property that these tests can determine is the presence or absence of silty particles in the material. Quantitative grain size analysis in the the clay/silt fraction of a lithified sediment is difficult at best, and of questionable significance because diagensis has altered the size and mineralogy of original sedimentary particles.</rdfs:comment>
+        <rdfs:seeAlso xml:lang="en">siltstone</rdfs:seeAlso>
+        <skos:historyNote xml:lang="en">this vocabulary</skos:historyNote>
+        <skos:related rdf:resource="#clastic_sedimentary_rock"/>
+        <skos:broader rdf:resource="#mudstone"/>
         <skos:inScheme rdf:resource=""/>
     </skos:Concept>
     
@@ -3613,7 +4037,7 @@
             >LeMaitre et al. 2002</skos:historyNote>
         <skos:prefLabel xml:lang="en">Syenitic rock</skos:prefLabel>
         <skos:definition xml:lang="en"
-            >Syenitoid with a plagioclase to alkali feldspar ratio between 0.1 and 0.35.  Includes rocks in QAPF fields 7, 7*, and 7&#39;.</skos:definition>
+            >Syenitoid with a plagioclase to total feldspar ratio between 0.1 and 0.35.  Includes rocks in QAPF fields 7, 7*, and 7&#39;.</skos:definition>
         <skos:narrower rdf:resource="#foid_bearing_syenitic_rock"/>
         <skos:narrower rdf:resource="#quartz_syenite"/>
         <skos:broader rdf:resource="#syenitoid"/>
@@ -3629,7 +4053,7 @@
         <skos:historyNote xml:lang="en"
             >LeMaitre et al., 2002</skos:historyNote>
         <skos:definition xml:lang="en"
-            >Phaneritic crystalline igneous rock with M less than 90, consisting mainly of alkali feldspar and plagioclase; minor quartz or nepheline may be present, along with pyroxene, amphibole or biotite. Ratio of plagioclase to alkali feldspar is less than 0.65, quartz forms less than 20 percent of QAPF fraction, and feldspathoid minerals form less than 10 percent of QAPF fraction.  Includes rocks classified in QAPF fields 6, 7 and 8 and their subdivisions.</skos:definition>
+            >Phaneritic crystalline igneous rock with M less than 90, consisting mainly of alkali feldspar and plagioclase; minor quartz or nepheline may be present, along with pyroxene, amphibole or biotite. Ratio of plagioclase to total feldspar is less than 0.65, quartz forms less than 20 percent of QAPF fraction, and feldspathoid minerals form less than 10 percent of QAPF fraction.  Includes rocks classified in QAPF fields 6, 7 and 8 and their subdivisions.</skos:definition>
         <skos:prefLabel xml:lang="en">Syenitoid</skos:prefLabel>
         <skos:narrower rdf:resource="#alkali_feldspar_syenitic_rock"/>
         <skos:narrower rdf:resource="#monzonitic_rock"/>
@@ -3644,7 +4068,7 @@
     <skos:Concept rdf:about="#syenogranite">
         <rdf:type rdf:resource="&owl;Thing"/>
         <skos:definition xml:lang="en"
-            >Granite that has a plagiolcase to alkali feldspar ratio between 0.10 and 0.35. QAPF field 3a.</skos:definition>
+            >Granite that has a plagiolcase to total feldspar ratio between 0.10 and 0.35. QAPF field 3a.</skos:definition>
         <skos:historyNote xml:lang="en"
             >LeMaitre et al., 2002</skos:historyNote>
         <skos:prefLabel xml:lang="en">Syenogranite</skos:prefLabel>
@@ -3676,7 +4100,7 @@
         <rdf:type rdf:resource="&owl;Thing"/>
         <skos:prefLabel xml:lang="en">Tephrite</skos:prefLabel>
         <skos:historyNote xml:lang="en"
-            >Tephritoid that has a plagioclase to alkali feldspar ratio greater than 0.9, and contains less than 10 percent normative (CIPW) olivine.</skos:historyNote>
+            >Tephritoid that has a plagioclase to total feldspar ratio greater than 0.9, and contains less than 10 percent normative (CIPW) olivine.</skos:historyNote>
         <skos:broader rdf:resource="#tephritoid"/>
         <skos:inScheme rdf:resource=""/>
     </skos:Concept>
@@ -3688,7 +4112,7 @@
     <skos:Concept rdf:about="#tephritic_foidite">
         <rdf:type rdf:resource="&owl;Thing"/>
         <skos:historyNote xml:lang="en"
-            >Foiditoid that contains less than 90 percent feldspathoid minerals in the QAPF fraction, and has a plagioclase to alkali feldspar ratio greater than 0.5, and contains less than 10 precent normative (CIPW) olivine.</skos:historyNote>
+            >Foiditoid that contains less than 90 percent feldspathoid minerals in the QAPF fraction, and has a plagioclase to total feldspar ratio greater than 0.5, and contains less than 10 precent normative (CIPW) olivine.</skos:historyNote>
         <skos:prefLabel xml:lang="en"
             >Tephritic foidite</skos:prefLabel>
         <skos:broader rdf:resource="#foiditoid"/>
@@ -3704,7 +4128,7 @@
         <skos:historyNote xml:lang="en"
             >LeMaitre et al., 2002</skos:historyNote>
         <skos:definition xml:lang="en"
-            >Phonolitoid that has a plagioclase to alkali feldspar ratio between 0.1 and 0.5. Broadly corresponds to TAS tephriphonolite of TAS field U3.</skos:definition>
+            >Phonolitoid that has a plagioclase to total feldspar ratio between 0.1 and 0.5. Broadly corresponds to TAS tephriphonolite of TAS field U3.</skos:definition>
         <skos:prefLabel xml:lang="en"
             >Tephritic phonolite</skos:prefLabel>
         <rdfs:seeAlso xml:lang="en">tephriphonolite</rdfs:seeAlso>
@@ -3719,7 +4143,7 @@
     <skos:Concept rdf:about="#tephritoid">
         <rdf:type rdf:resource="&owl;Thing"/>
         <skos:definition xml:lang="en"
-            >Fine grained igneous rock than contains less than 90 percent mafic minerals, between 10 and 60 percent feldspathoid mineral in the QAPF fraction and has a plagioclase to alkali feldspar ratio greater than 0.5.  Includes rocks classified in QAPF field 13 and 14 or chemically in TAS field U1 as basanite or tephrite.</skos:definition>
+            >Fine grained igneous rock than contains less than 90 percent mafic minerals, between 10 and 60 percent feldspathoid mineral in the QAPF fraction and has a plagioclase to total feldspar ratio greater than 0.5.  Includes rocks classified in QAPF field 13 and 14 or chemically in TAS field U1 as basanite or tephrite.</skos:definition>
         <skos:historyNote
             >LeMaitre et al. 2002</skos:historyNote>
         <skos:historyNote xml:lang="en"
@@ -3739,14 +4163,14 @@
 
     <skos:Concept rdf:about="#tonalite">
         <rdf:type rdf:resource="&owl;Thing"/>
+        <skos:definition rdf:datatype="&xsd;string"
+            >Granitoid consisting of quartz and intermediate plagioclase, usually with biotite and amphibole. Includes rocks defined modally in QAPF field 5; ratio of plagioclase to total feldspar is greater than 0.9.</skos:definition>
         <skos:historyNote
             >LeMaitre et al. 2002</skos:historyNote>
-        <skos:definition
-            >Phaneritic crystalline rock consisting of quartz and intermediate plagioclase, usually with biotite and amphibole. Includes rocks defined modally in QAPF field 5.</skos:definition>
         <skos:prefLabel xml:lang="en">Tonalite</skos:prefLabel>
         <rdfs:seeAlso xml:lang="en"
             >trondhjemite, plagiogranite</rdfs:seeAlso>
-        <skos:broader rdf:resource="#granitic_rock"/>
+        <skos:broader rdf:resource="#granitoid"/>
         <skos:inScheme rdf:resource=""/>
     </skos:Concept>
     
@@ -3760,7 +4184,7 @@
             >Le Maitre et al., 2002</skos:historyNote>
         <skos:prefLabel xml:lang="en">Trachyte</skos:prefLabel>
         <skos:definition xml:lang="en"
-            >Trachytoid that has a plagioclase to alkali feldspar ratio between 0.1 and 0.35,  between 0 and 5 percent quartz in the QAPF fraction, and no feldspathoid minerals. QAPF field 7.</skos:definition>
+            >Trachytoid that has a plagioclase to total feldspar ratio between 0.1 and 0.35,  between 0 and 5 percent quartz in the QAPF fraction, and no feldspathoid minerals. QAPF field 7.</skos:definition>
         <skos:broader rdf:resource="#trachytic_rock"/>
         <skos:inScheme rdf:resource=""/>
     </skos:Concept>
@@ -3777,7 +4201,7 @@
             >Le Maitre et al., 2002</skos:historyNote>
         <skos:prefLabel xml:lang="en">Trachytic rock</skos:prefLabel>
         <skos:definition xml:lang="en"
-            >Trachytoid that has a plagioclase to alkali feldspar ratio between 0.1 and 0.35. QAPF fields 7, 7&#39;, and 7*.</skos:definition>
+            >Trachytoid that has a plagioclase to total feldspar ratio between 0.1 and 0.35. QAPF fields 7, 7&#39;, and 7*.</skos:definition>
         <skos:narrower rdf:resource="#foid_bearing_trachyte"/>
         <skos:narrower rdf:resource="#quartz_trachyte"/>
         <skos:broader rdf:resource="#trachytoid"/>
@@ -3793,9 +4217,10 @@
         <skos:historyNote
             >LeMaitre et al. 2002</skos:historyNote>
         <skos:definition xml:lang="en"
-            >Fine grained igneous rock than contains less than 90 percent mafic minerals, less than 10 percent feldspathoid mineral and less than 20 percent quartz in the QAPF fraction and has a plagioclase to alkali feldspar ratio less than 0.65.   Mafic minerals typically include amphibole or mica; typically porphyritic. Includes rocks defined modally in QAPF fields 6, 7 and 8 (with subdivisions) or chemically in TAS Field T as trachyte or latite.</skos:definition>
-        <skos:altLabel xml:lang="en">Trachytic rock</skos:altLabel>
+            >Fine grained igneous rock than contains less than 90 percent mafic minerals, less than 10 percent feldspathoid mineral and less than 20 percent quartz in the QAPF fraction and has a plagioclase to total feldspar ratio less than 0.65.   Mafic minerals typically include amphibole or mica; typically porphyritic. Includes rocks defined modally in QAPF fields 6, 7 and 8 (with subdivisions) or chemically in TAS Field T as trachyte or latite.</skos:definition>
         <skos:prefLabel xml:lang="en">Trachytoid</skos:prefLabel>
+        <rdfs:seeAlso xml:lang="en"
+            >trachyte(TAS), trachydacite, trachyandesite, basaltic-trachyandesite, tracybasalt, benmoreite,mugearite, shoshonite, hawaiite, potassic-trachybasalt</rdfs:seeAlso>
         <skos:narrower rdf:resource="#alkali_feldspar_trachytic_rock"/>
         <skos:broader rdf:resource="#fine_grained_igneous_rock"/>
         <skos:narrower rdf:resource="#latitic_rock"/>
@@ -3831,7 +4256,7 @@
             >Ultrabasic igneous rock</skos:prefLabel>
         <skos:historyNote
             >after LeMaitre et al. 2002</skos:historyNote>
-        <skos:broader rdf:resource="#igneous_rock"/>
+        <skos:broader rdf:resource="#normal_crystalline_igneous_rock"/>
         <skos:inScheme rdf:resource=""/>
     </owl:Thing>
     
@@ -3841,13 +4266,14 @@
 
     <skos:Concept rdf:about="#ultramafic_igneous_rock">
         <rdf:type rdf:resource="&owl;Thing"/>
+        <rdfs:seeAlso xml:lang="en">Alkremite</rdfs:seeAlso>
         <skos:definition xml:lang="en"
             >Igneous rock that consists of greater than 90 percent mafic minerals.</skos:definition>
         <skos:historyNote xml:lang="en"
             >Le Maitre et al., 2002; Gillespie and Styles, 1999</skos:historyNote>
         <skos:prefLabel xml:lang="en"
             >Ultramafic igneous rock</skos:prefLabel>
-        <skos:broader rdf:resource="#igneous_rock"/>
+        <skos:broader rdf:resource="#normal_crystalline_igneous_rock"/>
         <skos:inScheme rdf:resource=""/>
     </skos:Concept>
     
@@ -3857,8 +4283,6 @@
 
     <owl:Thing rdf:about="#unconsolidated_material">
         <rdf:type rdf:resource="&skos;Concept"/>
-        <skos:notation rdf:datatype="&SimpleLithology2;xx"
-            >unconsolidated_material</skos:notation>
         <skos:historyNote>NGMDB</skos:historyNote>
         <skos:definition
             >CompoundMaterial composed of an aggregation of particles that do not adhere to each other strongly enough that the aggregate can be considered a solid in its own right.</skos:definition>
@@ -3874,12 +4298,18 @@
 
     <owl:Thing rdf:about="#wackestone">
         <rdf:type rdf:resource="&skos;Concept"/>
-        <skos:notation rdf:datatype="&SimpleLithology2;xx">wackestone</skos:notation>
         <skos:historyNote>this vocabulary</skos:historyNote>
-        <skos:definition
-            >Sandstone that contains between 15 and 75 percent matrix of unspecified origin.</skos:definition>
+        <rdfs:comment xml:lang="en"
+            >Distinction from mudstone is based on inference that less that 50 percent of the mud size fraction (matrix) is original mud size detrital particles. May also be categorized as diamictite or conglomerate based on size distribution of discernible particles. If more than 50 percent of rock is detrital particles of intrabasinal orgin and carbonate composition, categorize as carbonate wackestone.</rdfs:comment>
+        <skos:definition xml:lang="en"
+            >Sedimentary rock with matrix supported texture, in which the detrital or diagenetic nature of the matrix material is indeterminant. Matrix is mud size silicate minerals (clay, feldspar, quartz, rock fragments, and alteration products). Term is typically applied to diagenetically altered volcanic-lithic clastic rocks in which the definition of the original clasts has been obscured.</skos:definition>
+        <rdfs:comment xml:lang="en"
+            >See Dickinson (1970) for discussion of interpretation of undiscernible matrix in diagenetically altered lithic clastic rocks.
+Dickinson, W.R., 1970, Interpreting detrital modes of graywacke and arkose:  Journal of Sedimentary Petrology, v. 40, p. 695-707.</rdfs:comment>
         <skos:prefLabel xml:lang="en">Wackestone</skos:prefLabel>
-        <skos:broader rdf:resource="#clastic_sedimentary_rock"/>
+        <rdfs:seeAlso xml:lang="en">graywacke</rdfs:seeAlso>
+        <skos:related rdf:resource="#clastic_sedimentary_rock"/>
+        <skos:broader rdf:resource="#sedimentary_rock"/>
         <skos:inScheme rdf:resource=""/>
     </owl:Thing>
     
