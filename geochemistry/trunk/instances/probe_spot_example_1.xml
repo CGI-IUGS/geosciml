@@ -1,0 +1,183 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wfs:FeatureCollection 
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+	xsi:schemaLocation="http://www.opengis.net/wfs  http://schemas.opengis.net/wfs/1.1.0/wfs.xsd
+	http://www.opengis.net/gml  http://schemas.opengis.net/gml/3.1.1/base/gml.xsd
+	urn:cgi:xmlns:CGI:GeoSciML:2.0  http://www.geosciml.org/geosciml/2.0/xsd/geosciml.xsd
+	http://www.opengis.net/om/1.0  http://schemas.opengis.net/om/1.0.0/om.xsd
+	http://www.opengis.net/sampling/1.0  http://schemas.opengis.net/sampling/1.0.0/sampling.xsd
+	http://www.opengis.net/omx/1.0   http://schemas.opengis.net/omx/1.0.0/om_extended.xsd
+	http://www.opengis.net/swe/1.0.1 http://schemas.opengis.net/sweCommon/1.0.1/swe.xsd"
+	xmlns:wfs="http://www.opengis.net/wfs" 
+	xmlns:gml="http://www.opengis.net/gml" 
+	xmlns:gmd="http://standards.iso.org/ittf/PubliclyAvailableStandards/ISO_19139_Schemas/gmd" 
+	xmlns:gco="http://www.isotc211.org/2005/gco" 
+	xmlns:cgu="urn:cgi:xmlns:CGI:Utilities:1.0" 
+	xmlns:gsml="urn:cgi:xmlns:CGI:GeoSciML:2.0" 
+	xmlns:sa="http://www.opengis.net/sampling/1.0" 
+	xmlns:om="http://www.opengis.net/om/1.0" 
+	xmlns:omx="http://www.opengis.net/omx/1.0"
+	xmlns:swe="http://www.opengis.net/swe/1.0.1" 
+	xmlns:xlink="http://www.w3.org/1999/xlink" 
+	xmlns:xs="http://www.w3.org/2001/XMLSchema" 
+	gml:id="GA_FieldSites_Collection_000001">
+	<gml:featureMember>
+		<gspec:GeologicSpecimen gml:id="GA26459_grain001_spot001">
+			<gml:description>A SHRIMP probe burn spot</gml:description>
+			<gml:name>Probe Spot GA26459_grain001_spot001</gml:name>
+			<sa:sampledFeature xlink:href="urn:geologicUnit:6789"/>
+			<sa:relatedObservation>
+				<om:Observation>
+					<om:samplingTime xlink:href="Today"/>
+					<om:procedure>
+						<gcm:AnalyticalInstrument>
+							<omx:method>SHRIMP</omx:method>
+							<gcm:instrumentType>Sensitive High Resolution Ion Microprobe</gcm:instrumentType>
+							<gcm:instrumentLocation xlink:href="GeoscienceAustralia"/>
+							<gcm:instrumentSerialNumber>63HRP-73585-HJ98</gcm:instrumentSerialNumber>
+							
+							<!-- Option 1 for encoding detection limits.  Association is with the instrument batch run, not with each individual analysis. -->
+							
+							<gcm:detectionLimits>
+								<gcm:AnalyteSensitivity>
+									<gcm:analyte>Pb206</gcm:analyte>
+									<gcm:lowerDetectionLimit>
+										<swe:Quantity gml:id="Pb206_standard_detection_limit">
+											<gml:name>Pb206 detection limit</gml:name>
+											<swe:uom>
+												<gml:UnitDefinition gml:id="ppm">
+													<gml:name codeSpace="urn:ogc:def:uom:UCUM">ppm</gml:name>
+													<gml:quantityType>chemical concentration - parts per million</gml:quantityType>
+												</gml:UnitDefinition>
+											</swe:uom>
+											<swe:value>5</swe:value>
+										</swe:Quantity>
+									</gcm:lowerDetectionLimit>
+								</gcm:AnalyteSensitivity>
+								<gcm:AnalyteSensitivity>
+									<gcm:analyte>U</gcm:analyte>
+									<gcm:lowerDetectionLimit>
+										<swe:Quantity gml:id="U_standard_detection_limit">
+											<gml:name>U detection limit</gml:name>
+											<swe:uom xlink:href="#ppm"/>
+											<swe:value>1</swe:value>
+										</swe:Quantity>
+									</gcm:lowerDetectionLimit>
+								</gcm:AnalyteSensitivity>
+								<gcm:AnalyteSensitivity>
+									<gcm:analyte>Th</gcm:analyte>
+									<gcm:lowerDetectionLimit>
+										<swe:Quantity gml:id="Th_standard_detection_limit">
+											<gml:name>Th detection limit</gml:name>
+											<swe:uom xlink:href="#ppm"/>
+											<swe:value>2</swe:value>
+										</swe:Quantity>
+									</gcm:lowerDetectionLimit>
+								</gcm:AnalyteSensitivity>
+							</gcm:detectionLimits>
+						</gcm:AnalyticalInstrument>
+					</om:procedure>
+					<om:observedProperty xlink:href="urn:cgi:propertyType:CGI:ChemicalComposition"/>  <!-- We will have to create a property to observe... -->
+					<om:featureOfInterest xlink:href="#GA26459_grain001"/>
+					<om:result>
+						<swe:DataRecord>
+							<gml:name>Multi-element data measured from a single burn spot</gml:name>
+							<swe:field name="Pb206">
+								<swe:Quantity>
+									<swe:uom xlink:href="#ppm"/>
+									<swe:quality>
+										<swe:Quantity gml:id="Pb206_standard_analytical_error">
+											<gml:name>2 sigma analytical error</gml:name>
+											<swe:uom xlink:href="#ppm"/>
+											<swe:value>1</swe:value>
+										</swe:Quantity>
+									</swe:quality>
+									
+									<!-- Option 2 for encoding detection limits.  Association is with each individual analysis result, not the instrument run as a whole. -->
+									
+									<swe:quality>
+										<swe:Quantity gml:id="Pb206_detection_limit">
+											<gml:name>detection limit</gml:name>
+											<swe:uom xlink:href="#ppm"/>
+											<swe:value>5</swe:value>
+										</swe:Quantity>
+									</swe:quality>
+									<swe:value>768</swe:value>
+								</swe:Quantity>
+							</swe:field>
+							<swe:field name="U">
+								<swe:Quantity>
+									<swe:uom xlink:href="#ppm"/>
+									<swe:quality>
+										<swe:Quantity gml:id="U_standard_analytical_error">
+											<gml:name>2 sigma analytical error</gml:name>
+											<swe:uom xlink:href="#ppm"/>
+											<swe:value>3</swe:value>
+										</swe:Quantity>
+									</swe:quality>
+									<swe:quality>
+										<swe:Quantity gml:id="U_standard_detection_limit">
+											<gml:name>detection limit</gml:name>
+											<swe:uom xlink:href="#ppm"/>
+											<swe:value>3</swe:value>
+										</swe:Quantity>
+									</swe:quality>
+									<swe:value>205</swe:value>
+								</swe:Quantity>
+							</swe:field>
+							<swe:field name="U238/Pb206">  <!-- a ratio calculation.  ie; no units of measure -->
+								<swe:Quantity>
+									<swe:quality>
+										<swe:Quantity gml:id="U238/Pb206_ratio_error_GA26459_grain001_spot001">
+											<gml:name>1 sigma error</gml:name>
+											<swe:value>0.055</swe:value>
+										</swe:Quantity>
+									</swe:quality>
+									<swe:value>3.157</swe:value>
+								</swe:Quantity>
+							</swe:field>
+						</swe:DataRecord>
+					</om:result>
+				</om:Observation>
+			</sa:relatedObservation>
+			<sa:relatedSamplingFeature>  <!-- The parent rock specimen -->
+				<sa:SamplingFeatureRelation> 
+					<sa:role>parent rock specimen</sa:role>
+					<sa:target>
+						<sa:LocatedSpecimen gml:id="GA26459">
+							<gml:name>Core Specimen GA26459</gml:name>
+							<sa:sampledFeature xlink:href="urn:geologicUnit:6789"/>
+							<sa:materialClass>whole rock</sa:materialClass>
+							<sa:samplingMethod xlink:href="DiamondDrilling"/>   <!-- How was this parent specimen obtained -->
+							<sa:samplingTime xlink:href="Yesterday"/> 
+							<sa:processingDetails xlink:href="RockCrushing"/>  <!-- What processing was applied to this specimen.  An ordered list. -->
+							<sa:processingDetails xlink:href="MineralSeparation"/>
+							<sa:processingDetails xlink:href="MountAndPolishGrain"/>
+							<sa:samplingLocation xlink:href="Location_GA26459"/>
+						</sa:LocatedSpecimen>
+					</sa:target>
+				</sa:SamplingFeatureRelation>
+			</sa:relatedSamplingFeature>
+			<sa:relatedSamplingFeature>  <!-- The parent mineral grain -->
+				<sa:SamplingFeatureRelation>
+					<sa:role>parent mineral grain</sa:role>
+					<sa:target>
+						<sa:LocatedSpecimen gml:id="GA26459_grain001">
+							<gml:name>Mineral Grain GA26459_grain001</gml:name>
+							<sa:sampledFeature xlink:href="urn:geologicUnit:6789"/>
+							<sa:materialClass>mineral</sa:materialClass>
+							<sa:samplingMethod xlink:href="MineralSeparation"/>  <!-- How was this parent specimen obtained -->
+							<sa:samplingTime xlink:href="Yesterday"/>
+							<sa:processingDetails xlink:href="MountAndPolishGrain"/>   <!-- What processing was applied to this specimen.  -->
+							<sa:samplingLocation xlink:href="Location_GA26459"/>
+						</sa:LocatedSpecimen>
+					</sa:target>
+				</sa:SamplingFeatureRelation>
+			</sa:relatedSamplingFeature>
+			<sa:materialClass>mineral</sa:materialClass>
+			<sa:samplingMethod xlink:href="MineralMaterialVapourisedByParticleBeam"/>  <!-- How was this specimen obtained -->
+			<sa:samplingTime xlink:href="Today"/>
+			<sa:samplingLocation xlink:href="Location_GA26459"/>
+		</gspec:GeologicSpecimen>
+	</gml:featureMember>
+</wfs:FeatureCollection>
