@@ -2,9 +2,7 @@
 <!-- TB3 Profile Note: UC2D and UC3D Exemplar instances are identical.  -->
 <!-- BRGM profile for WFS delivering boreholes with lithology and age encoded as gml:ReferenceType values -->
 <!-- General BRGM rules for encoding boreholes: (the same ones as TB3_UC3_BRGM_Boreholes_ReferenceToGeologicalUnits.xml)
-		- BRGM boreholes are all vertical
 		- Lithology values are encoded as gml:Reference values
-		- Lithology references refer to the BRGM dictionary of lithology
 		- Note that when the lithology is unknown, there is no xlink:href in the cv:value tag
 		- There is no observation on points.
 		- All the intervals are sorted by increasing values of depth
@@ -23,11 +21,18 @@
 			Property name for lithology is urn:cgi:propertyType:CGI:GeoSciML:2.0:CompositionPart:lithology
 			Property name for age is urn:cgi:propertyType:CGI:GeoSciML:2.0:GeologicEvent:eventAge
 		- In all boreholes, observations of lithology and age must be in the same order
-		- Although the sa:length element is optional, we must use it and give it a value in order to query it (filter boreholes with length greater than)
-		- Although the gsml:collarLocation element is optional, we must use it and give it values in order to query it (BBOX filter to get boreholes inside a 2D bounding box)
-		- For vertical boreholes, we only need the starting point and the end point to define the 3D line string of the borehole -->
+		- Lithology encoded using CGI simple  lithology vocabulary.
+		- The geometry of your borehole can be complex (deviated) in GeoSciML but different applications
+		may have restrictions on the geometries they can deal with. In Testbed all boreholes are vertical
+		and encoded as line strings.
+		- Although the sa:length element is optional, we wish to report it for the testbed (to check our queries
+		on length are working)
+		- Cookbook note: The model does not enforce having logged intervals lie within stated length but if
+		your data does not satisfy this constraint this may cause problems for consumers of your data.
+		- Cookbook note: the Borehole/shape stores calculated geometry of your borehole. If you wish to
+record the survey information for your borehole this will need to be a log in the relatedObservations. 
+- Age references refer to the ICS dictionary in the testbed and in general it will improve interoperability if you use it. -->
 <!-- Special rules for encoding BRGM boreholes with age encoded as gml:ReferenceType values
-		- Age references refer to the ICS dictionary
 		- Lithology and age are observed on the same intervals -->
 <wfs:FeatureCollection 
 xmlns:wfs="http://www.opengis.net/wfs" 
@@ -43,7 +48,11 @@ http://www.opengis.net/cv/0.2.1 http://bp.schemas.opengis.net/06-188r1/cv/0.2.1/
 http://www.opengis.net/om/1.0 http://schemas.opengis.net/om/1.0.0/om.xsd 
 http://www.opengis.net/sampling/1.0 http://schemas.opengis.net/sampling/1.0.0/sampling.xsd
 urn:cgi:xmlns:CGI:GeoSciML:2.0 http://www.geosciml.org/schemas/geosciml/2.0_rc2/geosciml.xsd">
-	<!-- The 3D envelope of all the boreholes expressed in the same projection system as all the boreholes -->
+	<!-- Cookbook note: The semantics of your bounding box (if you include one) depend on how you 
+		want your data indexed.
+	e.g. you can make a 2D bounding box to index by the 2D borehole locations, or a 3D bounding box
+	to index the 3D extent of your boreholes. For a collection of boreholes the bounding box should include 
+	the full extent (in 2D or 3D) of your boreholes. -->
 	<gml:boundedBy>
 		<gml:Envelope srsName="urn:ogc:def:crs:EPSG:6.15:7412">
 			<gml:lowerCorner>631154.1 2622191.9 -112</gml:lowerCorner>
@@ -87,17 +96,29 @@ urn:cgi:xmlns:CGI:GeoSciML:2.0 http://www.geosciml.org/schemas/geosciml/2.0_rc2/
 					<!-- TB3 Profile Note: See https://www.seegrid.csiro.au/twiki/bin/view/AppSchemas/ObservationsAndSampling#Unknown_features 
 					for notes on suitable values for featureOfInterest particularly when there isn't a specific known feature. -->
 					<om:featureOfInterest xlink:role="urn:cgi:featureType:CGI:GeoSciML:2.0:GeologicUnit" xlink:href="urn:ogc:def:nil:OGC:unknown" />
+					<!-- Cookbook note: We have only tested logs done on discrete intervals in the testbed although potentially others such
+					as geophysical logs would be point value logs and other types may exist.
+					For discrete coverages you may have different properties specified on the same intervals or different intervals. The former
+					could in theory be encoded with tuple values on the intervals but we recommend you make separate coverage logs with
+					scalar values and use internal href's if you wish to refer more than once to the same interval. -->
 					<om:result>
 						<cv:CV_DiscreteCoverage>
 							<cv:domainExtent xlink:href="#bh.303031333558303031382F53.Shape"/>
 							<!-- TB3 Profile Note: What's the difference between the rangeType here and the parent Observation observedProperty ?
-							There should really be at least an xlink:href value put here rather than an empty element. -->
+							There should really be at least an xlink:href value put here rather than an empty element. 
+							Answer: rangeType should specify encoding as well as meaning of range but for the moment
+							how to specify this is for future discussion. Put xlink:href="urn:cgi:recordType:...tbd" -->
 							<cv:rangeType/>
 							<cv:element>
 								<cv:CV_GeometryValuePair>
 									<cv:geometry>
 										<cv:CV_DomainObject>
 											<cv:spatialElement>
+												<!-- Cookbook note: the coordinate reference system is the borehole shape itself
+												and coordinates are the distance along the borehole curve . The href points
+												to the borehole shape property.
+												The units of measurement are implicitly the same as those for the coordinate reference system
+												the borehole shape is expressed in.-->
 												<gml:LineString srsName="#bh.303031333558303031382F53.Shape" srsDimension="1" gml:id="bh.303031333558303031382F53.1">
 													<gml:pos>0</gml:pos>
 													<gml:pos>34</gml:pos>
@@ -221,7 +242,10 @@ urn:cgi:xmlns:CGI:GeoSciML:2.0 http://www.geosciml.org/schemas/geosciml/2.0_rc2/
 			<sa:surveyDetails>
 				<sa:SurveyProcedure gml:id="bh.303031333558303031382F53.sp">
 					<!-- TB3 Profile Note: Use urn:ogc:def:uom:UCUM:* for units specification.
-						See https://www.seegrid.csiro.au/twiki/bin/view/CGIModel/OgcURNScheme -->
+					See https://www.seegrid.csiro.au/twiki/bin/view/CGIModel/OgcURNScheme -->
+					<!-- Cookbook note: With GML 3.2 it will be possible to specify uom simply as the
+					UCUM symbol (i.e. the bit after the last colon in the urns we are using here but
+					no need to urn escape; e.g. '%' does not need to be escaped to '%25'. -->
 					<sa:elevationAccuracy uom="urn:ogc:def:uom:UCUM:m">0.1</sa:elevationAccuracy>
 					<sa:positionMethod xlink:href="urn:ogc:def:nil:OGC:missing"/>
 					<sa:positionAccuracy uom="urn:ogc:def:uom:UCUM:m">10</sa:positionAccuracy>
@@ -244,9 +268,6 @@ urn:cgi:xmlns:CGI:GeoSciML:2.0 http://www.geosciml.org/schemas/geosciml/2.0_rc2/
 					</gsml:location>
 				</gsml:BoreholeCollar>
 			</gsml:collarLocation>
-			<!-- TB3 Profile Note: we would like to include indexData if available but at the moment the model restricts drillingMethod to a fixed
-			list of codes which don't include unknown or other and so may be impossible to fill except with wrong data to produce a valid instance
-			Therefore awaiting a proposed change to model not to restrict this list before providing this data in any instances. -->
 		</gsml:Borehole>
     </gml:featureMember>
 </wfs:FeatureCollection>

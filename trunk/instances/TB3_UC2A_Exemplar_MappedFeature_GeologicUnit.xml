@@ -1,18 +1,32 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!-- TB3 Profile Note: The exemplar instances for UC2A and UC3A are identical.  -->
-<wfs:FeatureCollection xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.opengis.net/wfs http://schemas.opengis.net/wfs/1.1.0/wfs.xsd urn:cgi:xmlns:CGI:GeoSciML:2.0 http://www.geosciml.org/schemas/geosciml/2.0_rc2/geosciml.xsd" xmlns:gml="http://www.opengis.net/gml" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:wfs="http://www.opengis.net/wfs" xmlns:gsml="urn:cgi:xmlns:CGI:GeoSciML:2.0">
+<wfs:FeatureCollection 
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.opengis.net/wfs http://schemas.opengis.net/wfs/1.1.0/wfs.xsd urn:cgi:xmlns:CGI:GeoSciML:2.0 http://www.geosciml.org/schemas/geosciml/2.0_rc2/geosciml.xsd" 
+    xmlns:gml="http://www.opengis.net/gml" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:wfs="http://www.opengis.net/wfs" xmlns:gsml="urn:cgi:xmlns:CGI:GeoSciML:2.0">
     <gml:featureMember>
         <MappedFeature xmlns="urn:cgi:xmlns:CGI:GeoSciML:2.0" gml:id="mf.1">
-            <!-- TB3 Profile Note: gml:id can be used to retrieve a particular feature by id from the WFS so each WFS should ensure it
+            <!--  Cookbook note: gml:id can be used to retrieve a particular feature by id from the WFS so each WFS should ensure it
             assigns unique values for each feature it can return. -->
-            <!-- TB3 Profile Note: There is no real gml:name appropriate for mapped polygons advise not populating this. -->
-             <!-- The gml:description is not worth using unless there is some specific descriptive information available for the particular MappedFeature; 
-                so don't use this to put a generic description like 'geological polygon' or similar. -->
-            <!-- TB3 Profile Note: All organizations examples to date have very generic values for observation method meaning basically
-            "geological mapping procedures" which suggests that no-one actually explicitly stores this information at the moment. Thus it
-            would be possible to use a CDTG defined term registered in the  	 urn:cgi:classifierScheme:CGI:ObservationMethod:2008 codeSpace.
-            As this information will not be the basis of any queries, however, we will not constrain whether people use the cgi codeSpace or their
-            own. Need to clarify whether all codeSpaces should be recorded in CGIClassifierSchemeRegister .-->
+            <!--  Cookbook note: General comments on names:
+            When move to GML 3.2 the gml:identifier element will be available for assigning any unique identifier you wish
+            to expose for each feature.
+            Pre-GML 3.2 use gml:name with codeSpace="urn:ietf:rfc:2141" for any unique identifier expressed as a URN you 
+            wish to expose.
+            Use of other gml:names with other codeSpaces one MappedFeature is open to your discretion and has no
+            meaning within GeoSciML  -->
+            <!-- Cookbook note: Use of gml:description on MappedFeature is open to your discretion and has no meaning 
+                within GeoSciML -->
+            <!--  Cookbook note: A CGI vocabulary for MappedFeature observationMethod exists (ref TBD), If you can use the terms from this 
+                vocabulary you will improve interoperability.
+                This is a mandatory property; if you have no value to put here put an appropriate OGC nil value 
+                (see https://www.seegrid.csiro.au/twiki/bin/view/CGIModel/CgiModel?topic=OgcURNScheme) such as
+                <value codeSpace="urn:ietf:rfc:2141">urn:ogc:def:nil:OGC:missing</value>
+                TBD: Must revisit whole question of CGI_Value and ways of  specifying nulls vs omitting optional properties
+                and nulling numerical values etc. etc. (Also check relevance of xsi:nillable in XML Schema?) When do we
+                want to make properties mandatory and force explicit null values to be put in if nothing there and when
+                just make properties optional which can be left out?
+                .-->
             <observationMethod>
                 <CGI_TermValue>
                     <value codeSpace="urn:cgi:classifierScheme:BGS:ObservationMethod">fieldObservation</value>
@@ -23,23 +37,23 @@
                     <value codeSpace="urn:cgi:classifierScheme:BGS:ObservationMethod">Boreholes</value>
                 </CGI_TermValue>
             </observationMethod>
-            <!-- TB3 Profile Note: You may use numerical values or your own term values for positionalAccuracy using your own codeSpace.
-            For nil values it is preferable to use the OGC URNs although, if you have your own dictionary and this complicates
-            the mapping implementation we won't insist. -->
+            <!-- Cookbook Note: You may use numerical values or your own term values for positionalAccuracy using your own
+                codeSpace. For nil values it is preferable to use the OGC URNs. -->
             <positionalAccuracy>
                 <CGI_TermValue>
                     <value codeSpace="urn:ietf:rfc:2141">urn:ogc:def:nil:OGC:unknown</value>
                 </CGI_TermValue>
             </positionalAccuracy>
-            <!-- TB3 Profile Note: See https://www.seegrid.csiro.au/twiki/bin/view/CGIModel/CGIFeatureRegister to check if there is a suitable already
+            <!-- Cookbook Note: See https://www.seegrid.csiro.au/twiki/bin/view/CGIModel/CGIFeatureRegister to check if there is a suitable already
                 registered suitable feature for your surface of mapping (e.g. urn:cgi:feature:CGI:EarthNaturalSurface). If not you may need to create an
             organisation specific one. -->
             <samplingFrame xlink:href="urn:cgi:feature:BGS:EarthBedrockSurface"/>
             <specification>
-                <!-- TB3 Profile Note: Organizations are free to return GeologicUnit or  a subtype like LithodemicUnit etc.
-                However, do not return DeformationUnits (which require links to GeologicStructures and are getting too complex for this UseCase. -->
+                <!-- Cookbook Note: In test bed said could return GeologicUnit or sub-type. We need to discus in model
+                    group the issue of modelling with sub-types vs. eg. having a unit type property etc.
+               -->
                 <GeologicUnit>
-                    <!-- TB3 Profile Note: Suggest everyone includes a name and description here. -->
+                    <!-- Cookbook Note: Description should be used to capture a legend description if available. -->
                     <gml:description>
                         Lithology: 
                         A pebbly and cobbly, well-rounded, clast-supported conglomerate of lava, psammite, quartzite and feldspar-porphyry in a matrix of poorly-sorted, fine- to medium-grained lithic sandstone, commonly with lenses of trough cross-bedded pebbly sandstone. 
@@ -52,27 +66,33 @@
                         Geographical Limits:
                         North-eastern Midland Valley, between Drumlithie and the River South Esk.
                     </gml:description>
-                    <!-- TB3 Profile Note: A name with a codeSpace of urn:ietf:rfc:2141 should be a URN which uniquely identifies the feature.
-                     For Testbed participants this will
-                    generally follow the pattern urn:cgi:feature:{your_registered_organization}:{your_unique_feature_id}.
-                   (This is a temporary convention prior to upgrading to GML 3.2 and gml:identifier property.) -->
+                    <!-- Cookbook Note: Usual convention with gml:name with a codeSpace of urn:ietf:rfc:2141 should be a URN
+                        which uniquely identifies the GeologicUnit feature (if this feature can be uniquely identified; otherwise
+                        omit). (To be superseded by gml:identifier in GML 3.2).
+                -->
                     <gml:name codeSpace="urn:ietf:rfc:2141">urn:cgi:feature:BGS:StratigraphicLexicon:DECO</gml:name>
                     <gml:name codeSpace="urn:cgi:classifierScheme:BGS:StratigraphicLexicon">DECO</gml:name>
-                    <!-- TB3 Profile Note: All organizations examples to date have very generic values for observation method meaning basically
-                        "published description" which suggests that no-one actually explicitly stores this information at the moment. Thus it
-                        would be possible to use a CDTG defined term registered in the  
-                        urn:cgi:classifierScheme:CGI:ObservationMethod:2008 codeSpace.
-                        As this information will not be the basis of any queries, however, we will not constrain whether people use the cgi codeSpace or their
-                        own. Need to clarify whether all codeSpaces should be recorded in CGIClassifierSchemeRegister .-->
+                    <!--  Cookbook note: A CGI vocabulary for GeologicFeature/observationMethod exists (ref TBD), If you can 
+                        use the terms from this vocabulary you will improve interoperability.
+                        This is a mandatory property; if you have no value to put here put an appropriate OGC nil value 
+                        (see https://www.seegrid.csiro.au/twiki/bin/view/CGIModel/OgcURNScheme) such as
+                        <value codeSpace="urn:ietf:rfc:2141">urn:ogc:def:nil:OGC:missing</value>
+                        TBD: Must revisit whole question of CGI_Value and ways of  specifying nulls vs omitting optional properties
+                        and nulling numerical values etc. etc. (Also check relevance of xsi:nillable in XML Schema?) When do we
+                        want to make properties mandatory and force explicit null values to be put in if nothing there and when
+                        just make properties optional which can be left out?
+                        .-->
                     <observationMethod>
                         <CGI_TermValue>
                             <value codeSpace="urn:cgi:classifierScheme:BGS:ObservationMethod">Summary of published description</value>
                         </CGI_TermValue>
                     </observationMethod>
-                    <!-- TB3 Profile Note: typicalNorm, definingNorm and instance are acceptable. -->
-                    <purpose>instance</purpose>
-                    <!-- TB3 Profile Note: occurrence is optional. -->
-                    <!-- TB3 Profile Note: It is OK to have any CGI_Term for the preferredAge as we are not querying on this. -->
+                     <purpose>instance</purpose>
+                    <!-- Cookbook Note: For a GeologicUnit inside MappedFeature/specification do not include occurrence. -->
+                    <!-- Cookbook Note: preferredAge and history have to be discussed by model group. 
+                    GeologicEvents may be uniquely identified features and so the same event should not appear more than
+                    once in the document so use href if you want to e.g. make your preferredAge point to one event in your
+                    history. -->
                     <preferredAge>
                         <GeologicEvent>
                             <eventAge>
@@ -96,23 +116,19 @@
                             </eventProcess>
                         </GeologicEvent>
                     </preferredAge>
-                    <!-- TB3 Profile Note: It is OK to put a geologicHistory property if you have that information.
-                        Note that it is acceptable to have a geologicHistory with only one event.--> 
-                    <!-- TB3 Profile Note: Can include compositionCategory property if you have the data but can omit if you don't. -->
+                     <!-- TB3 Profile Note: Can include compositionCategory property if you have the data -->
                     <!-- TB3 Profile Note: Can include or omit rank depending on whether you have data. -->
                     <!-- TB3 Profile Note: It is optional whether to return part property. Refer to TB3_UC3B_GSV_GeologicUnit_All.xml for example. -->
                     <!-- TB3 Profile Note: All other properties of GeologicUnit and subtypes are optional and can be included if you have the data.. -->
                     <composition>
                         <CompositionPart>
                             <role codeSpace="urn:cgi:classifierScheme:BGS:RoleVocab">dominantConstituent</role>
-                            <!-- TB3 Profile Note: BGS has included ControlledConcept inline, others have used xlink:href with a URN value. Will these URNs
-                            be registered with the registry? No consensus on email discussion yet? -->
+                            <!-- Cookbook note: see documentation note on including more than one lithology. -->
                             <lithology>
-                                <!-- TB3 Profile Note: Should use the CGI Simple Lithology terms at
-                                .http://tellus.brgm.fr/exist/brgm_geosciml/concept.xql?request=GetResource&resourcetype=vocabulary&resourcepath=CGI_SimpleLithology_2008.xml -->
-                                <!-- TB3 Profile Note: Could also include extra lithology properties using your own dictionaries if you wish. -->
-                                <!-- TB3 Profile Note: Example has same gml:id as in register vocabulary for convenience but this cannot be a requirement. -->
-                                <ControlledConcept gml:id="CGILith_042">
+                                <!-- Cookbook note: Controlled concepts may be returned by reference or inline. The inline version may 
+                                    include some or all of the properties present in the reference ControlledConcept-->
+                                <!-- Cookbook Note: Including CGI Simple Lithology terms will increase interoperability. -->
+                                <ControlledConcept gml:id="X3847384">
                                     <gml:name codeSpace="urn:ietf:rfc:2141">urn:cgi:classifier:CGI:SimpleLithology:2008:conglomerate</gml:name>
                                     <identifier codeSpace="urn:ietf:rfc:2141">urn:cgi:classifier:CGI:SimpleLithology:2008:conglomerate</identifier>
                                     <name xml:lang="en" codeSpace="urn:cgi:classifierScheme:CGI:SimpleLithology:2008">conglomerate</name>
@@ -120,11 +136,12 @@
                                 </ControlledConcept>
                             </lithology>
                             <!-- TB3 Profile Note: For use cases 2A and 3A the material property is not required. -->
-                            <!-- TB3 Profile Note: For proportion use either a numerical percentage or a value from the  dictionary at
-                                http://tellus.brgm.fr/exist/brgm_geosciml/concept.xql?request=GetResource&resourcetype=vocabulary&resourcepath=CGI_CompositionPartProportion.xml
+                            <!-- TB3 Profile Note: For proportion use either a numerical percentage or a value from the  
+                                CGI_CompositionPartProportion dictionary.
                                 -->
                             <proportion>
                                 <CGI_NumericValue>
+                                    <!-- See https://www.seegrid.csiro.au/twiki/bin/view/CGIModel/OgcURNScheme for standard uom URNs. -->
                                     <principalValue uom="urn:ogc:def:uom:UCUM:%25">100</principalValue>
                                 </CGI_NumericValue>
                             </proportion>
@@ -132,7 +149,7 @@
                     </composition>
                 </GeologicUnit>
             </specification>
-            <!-- To do: put some example polygon data in the shape property. -->
+            <!-- Cookbook note: A MappedFeature must have a real geometry value for it's shape. -->
             <shape/>
         </MappedFeature>
     </gml:featureMember>
