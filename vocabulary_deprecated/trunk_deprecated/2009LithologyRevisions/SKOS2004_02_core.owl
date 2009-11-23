@@ -1,0 +1,1450 @@
+<?xml version="1.0"?>
+
+
+<!DOCTYPE rdf:RDF [
+    <!ENTITY dct "http://purl.org/dc/terms/" >
+    <!ENTITY foaf "http://xmlns.com/foaf/0.1/" >
+    <!ENTITY examples2 "http://www.w3.org/examples/" >
+    <!ENTITY dcmitype "http://purl.org/dc/dcmitype/" >
+    <!ENTITY owl "http://www.w3.org/2002/07/owl#" >
+    <!ENTITY skos2 "http://www.w3.org/2004/02/skos/" >
+    <!ENTITY swrl "http://www.w3.org/2003/11/swrl#" >
+    <!ENTITY dc "http://purl.org/dc/elements/1.1/" >
+    <!ENTITY swrlb "http://www.w3.org/2003/11/swrlb#" >
+    <!ENTITY xsd "http://www.w3.org/2001/XMLSchema#" >
+    <!ENTITY skos-xl "http://www.w3.org/2008/05/skos-xl#" >
+    <!ENTITY owl2xml "http://www.w3.org/2006/12/owl2-xml#" >
+    <!ENTITY skos "http://www.w3.org/2004/02/skos/core#" >
+    <!ENTITY rdfs "http://www.w3.org/2000/01/rdf-schema#" >
+    <!ENTITY extensions "http://www.w3.org/2004/02/skos/extensions#" >
+    <!ENTITY rdf "http://www.w3.org/1999/02/22-rdf-syntax-ns#" >
+    <!ENTITY examples "http://www.w3.org/2004/02/skos/core/examples/" >
+    <!ENTITY vs "http://www.w3.org/2003/06/sw-vocab-status/ns#" >
+    <!ENTITY protege "http://protege.stanford.edu/plugins/owl/protege#" >
+    <!ENTITY xsp "http://www.owl-ontologies.com/2005/08/07/xsp.owl#" >
+]>
+
+
+<rdf:RDF xmlns="&skos2;core#"
+     xml:base="&skos2;core"
+     xmlns:dc="http://purl.org/dc/elements/1.1/"
+     xmlns:protege="http://protege.stanford.edu/plugins/owl/protege#"
+     xmlns:foaf="http://xmlns.com/foaf/0.1/"
+     xmlns:xsp="http://www.owl-ontologies.com/2005/08/07/xsp.owl#"
+     xmlns:examples2="http://www.w3.org/examples/"
+     xmlns:dcmitype="http://purl.org/dc/dcmitype/"
+     xmlns:vs="http://www.w3.org/2003/06/sw-vocab-status/ns#"
+     xmlns:extensions="&skos2;extensions#"
+     xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
+     xmlns:swrl="http://www.w3.org/2003/11/swrl#"
+     xmlns:owl2xml="http://www.w3.org/2006/12/owl2-xml#"
+     xmlns:skos2="http://www.w3.org/2004/02/skos/"
+     xmlns:dct="http://purl.org/dc/terms/"
+     xmlns:swrlb="http://www.w3.org/2003/11/swrlb#"
+     xmlns:owl="http://www.w3.org/2002/07/owl#"
+     xmlns:xsd="http://www.w3.org/2001/XMLSchema#"
+     xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+     xmlns:skos-xl="http://www.w3.org/2008/05/skos-xl#"
+     xmlns:examples="&skos2;core/examples/"
+     xmlns:skos="&skos2;core#">
+    <owl:Ontology rdf:about="">
+        <dc:creator rdf:datatype="&xsd;string">Alistair Miles</dc:creator>
+        <dc:creator rdf:datatype="&xsd;string">Dave Beckett</dc:creator>
+        <dc:contributor rdf:datatype="&xsd;string"
+            >Members of the public-esw-thes@w3.org mailing list.</dc:contributor>
+        <dc:creator rdf:datatype="&xsd;string">Nikki Rogers</dc:creator>
+        <rdfs:seeAlso rdf:datatype="&xsd;anyURI"
+            >http://www.w3.org/2004/02/skos/core_de</rdfs:seeAlso>
+        <rdfs:seeAlso rdf:datatype="&xsd;anyURI"
+            >http://www.w3.org/2004/02/skos/core_fr</rdfs:seeAlso>
+        <rdfs:seeAlso rdf:datatype="&xsd;anyURI"
+            >http://www.w3.org/2004/02/skos/core_nl</rdfs:seeAlso>
+        <rdfs:seeAlso rdf:datatype="&xsd;anyURI"
+            >http://www.w3.org/2004/02/skos/core_pt</rdfs:seeAlso>
+        <dc:description xml:lang="en"
+            >An RDF vocabulary for describing the basic structure and content of concept schemes such as thesauri, classification schemes, subject heading lists, taxonomies, &#39;folksonomies&#39;, other types of controlled vocabulary, and also concept schemes embedded in glossaries and terminologies.</dc:description>
+        <dc:title xml:lang="en"
+            >SKOS Core Vocabulary</dc:title>
+        <owl:imports rdf:resource=""/>
+    </owl:Ontology>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Annotation properties
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    <owl:AnnotationProperty rdf:about="#scopeNote"/>
+    <owl:AnnotationProperty rdf:about="&dc;title"/>
+    <owl:AnnotationProperty rdf:about="#note"/>
+    <owl:AnnotationProperty rdf:about="&rdfs;label"/>
+    <owl:AnnotationProperty rdf:about="#editorialNote"/>
+    <owl:AnnotationProperty rdf:about="#changeNote"/>
+    <owl:AnnotationProperty rdf:about="&dc;creator"/>
+    <owl:AnnotationProperty rdf:about="#prefLabel"/>
+    <owl:AnnotationProperty rdf:about="#definition">
+        <rdfs:label xml:lang="en">definition</rdfs:label>
+        <rdfs:isDefinedBy rdf:datatype="&xsd;anyURI"
+            >http://www.w3.org/2004/02/skos/core</rdfs:isDefinedBy>
+    </owl:AnnotationProperty>
+    <owl:AnnotationProperty rdf:about="#example"/>
+    <owl:AnnotationProperty rdf:about="#hiddenLabel"/>
+    <owl:AnnotationProperty rdf:about="&rdfs;seeAlso"/>
+    <owl:AnnotationProperty rdf:about="&dc;description"/>
+    <owl:AnnotationProperty rdf:about="#altLabel"/>
+    <owl:AnnotationProperty rdf:about="#historyNote"/>
+    <owl:AnnotationProperty rdf:about="&dc;contributor"/>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Object Properties
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    
+
+
+    <!-- http://purl.org/dc/elements/1.1/subject -->
+
+    <owl:ObjectProperty rdf:about="&dc;subject"/>
+    
+
+
+    <!-- http://purl.org/dc/terms/hasPart -->
+
+    <owl:ObjectProperty rdf:about="&dct;hasPart"/>
+    
+
+
+    <!-- http://purl.org/dc/terms/hasVersion -->
+
+    <owl:ObjectProperty rdf:about="&dct;hasVersion"/>
+    
+
+
+    <!-- http://purl.org/dc/terms/isPartOf -->
+
+    <owl:ObjectProperty rdf:about="&dct;isPartOf"/>
+    
+
+
+    <!-- http://purl.org/dc/terms/isReplacedBy -->
+
+    <owl:ObjectProperty rdf:about="&dct;isReplacedBy"/>
+    
+
+
+    <!-- http://purl.org/dc/terms/isVersionOf -->
+
+    <owl:ObjectProperty rdf:about="&dct;isVersionOf"/>
+    
+
+
+    <!-- http://purl.org/dc/terms/replaces -->
+
+    <owl:ObjectProperty rdf:about="&dct;replaces"/>
+    
+
+
+    <!-- http://www.w3.org/1999/02/22-rdf-syntax-ns#type -->
+
+    <owl:ObjectProperty rdf:about="&rdf;type"/>
+    
+
+
+    <!-- http://www.w3.org/1999/02/22-rdf-syntax-ns#value -->
+
+    <owl:ObjectProperty rdf:about="&rdf;value"/>
+    
+
+
+    <!-- http://www.w3.org/2000/01/rdf-schema#label -->
+
+    <owl:ObjectProperty rdf:about="&rdfs;label">
+        <rdf:type rdf:resource="&owl;AnnotationProperty"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.w3.org/2000/01/rdf-schema#seeAlso -->
+
+    <owl:AnnotationProperty rdf:about="&rdfs;seeAlso">
+        <rdf:type rdf:resource="&owl;ObjectProperty"/>
+    </owl:AnnotationProperty>
+    
+
+
+    <!-- http://www.w3.org/2000/01/rdf-schema#subClassOf -->
+
+    <owl:ObjectProperty rdf:about="&rdfs;subClassOf"/>
+    
+
+
+    <!-- http://www.w3.org/2004/02/skos/core#altSymbol -->
+
+    <owl:ObjectProperty rdf:about="#altSymbol">
+        <rdfs:label xml:lang="en"
+            >alternative symbolic label</rdfs:label>
+        <rdfs:isDefinedBy rdf:datatype="&xsd;anyURI"
+            >http://www.w3.org/2004/02/skos/core</rdfs:isDefinedBy>
+        <rdfs:subPropertyOf rdf:resource="#symbol"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.w3.org/2004/02/skos/core#broadMatch -->
+
+    <owl:ObjectProperty rdf:about="#broadMatch">
+        <rdfs:subPropertyOf rdf:resource="#broader"/>
+        <owl:propertyDisjointWith rdf:resource="#exactMatch"/>
+        <rdfs:subPropertyOf rdf:resource="#mappingRelation"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.w3.org/2004/02/skos/core#broader -->
+
+    <owl:ObjectProperty rdf:about="#broader">
+        <rdfs:label xml:lang="en">has broader</rdfs:label>
+        <rdfs:isDefinedBy rdf:datatype="&xsd;anyURI"
+            >http://www.w3.org/2004/02/skos/core</rdfs:isDefinedBy>
+        <rdfs:comment xml:lang="en"
+            >Broader concepts are typically rendered as parents in a concept hierarchy (tree).</rdfs:comment>
+        <rdfs:subPropertyOf rdf:resource="#broaderTransitive"/>
+        <owl:inverseOf rdf:resource="#narrower"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.w3.org/2004/02/skos/core#broaderGeneric -->
+
+    <owl:ObjectProperty rdf:about="#broaderGeneric">
+        <rdf:type rdf:resource="&owl;TransitiveProperty"/>
+        <rdfs:label xml:lang="en">sub-class of</rdfs:label>
+        <rdfs:comment rdf:datatype="&xsd;string"
+            >An extension of the &#39;broader&#39; property to specify the class subsumption (sub-class/super-class) relationship between two concepts.  This property is semantically equivalent to the &#39;rdfs:subClassOf&#39; property.</rdfs:comment>
+        <owl:versionInfo rdf:datatype="&xsd;string"
+            >This term has been moved to the &#39;SKOS Extensions&#39; vocabulary.  See http://www.w3.org/2004/02/skos/extensions/</owl:versionInfo>
+        <rdfs:isDefinedBy rdf:datatype="&xsd;anyURI"
+            >http://www.w3.org/2004/02/skos/core</rdfs:isDefinedBy>
+        <rdfs:seeAlso rdf:datatype="&xsd;anyURI"
+            >http://www.w3.org/2004/02/skos/extensions.rdf</rdfs:seeAlso>
+        <rdfs:seeAlso rdf:datatype="&xsd;anyURI"
+            >http://www.w3.org/2004/02/skos/extensions/</rdfs:seeAlso>
+        <rdfs:subPropertyOf rdf:resource="&rdfs;subClassOf"/>
+        <rdfs:subPropertyOf rdf:resource="#broader"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.w3.org/2004/02/skos/core#broaderPartitive -->
+
+    <owl:ObjectProperty rdf:about="#broaderPartitive">
+        <rdf:type rdf:resource="&owl;TransitiveProperty"/>
+        <rdfs:label xml:lang="en">part of</rdfs:label>
+        <rdfs:comment rdf:datatype="&xsd;string"
+            >An extension of the &#39;broader&#39; property to specify a partitive (part of) relationship between two concepts.</rdfs:comment>
+        <owl:versionInfo rdf:datatype="&xsd;string"
+            >This term has been moved to the &#39;SKOS Extensions&#39; vocabulary.  See http://www.w3.org/2004/02/skos/extensions/</owl:versionInfo>
+        <rdfs:isDefinedBy rdf:datatype="&xsd;anyURI"
+            >http://www.w3.org/2004/02/skos/core</rdfs:isDefinedBy>
+        <rdfs:seeAlso rdf:datatype="&xsd;anyURI"
+            >http://www.w3.org/2004/02/skos/extensions.rdf</rdfs:seeAlso>
+        <rdfs:seeAlso rdf:datatype="&xsd;anyURI"
+            >http://www.w3.org/2004/02/skos/extensions/</rdfs:seeAlso>
+        <rdfs:subPropertyOf rdf:resource="&dct;isPartOf"/>
+        <rdfs:subPropertyOf rdf:resource="#broader"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.w3.org/2004/02/skos/core#broaderTransitive -->
+
+    <owl:ObjectProperty rdf:about="#broaderTransitive">
+        <rdf:type rdf:resource="&owl;TransitiveProperty"/>
+        <owl:propertyDisjointWith rdf:resource="#related"/>
+        <rdfs:subPropertyOf rdf:resource="#semanticRelation"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.w3.org/2004/02/skos/core#changeNote -->
+
+    <owl:ObjectProperty rdf:about="#changeNote">
+        <rdfs:label xml:lang="en">change note</rdfs:label>
+        <rdfs:isDefinedBy rdf:datatype="&xsd;anyURI"
+            >http://www.w3.org/2004/02/skos/core</rdfs:isDefinedBy>
+        <rdfs:subPropertyOf rdf:resource="#note"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.w3.org/2004/02/skos/core#closeMatch -->
+
+    <owl:ObjectProperty rdf:about="#closeMatch">
+        <rdf:type rdf:resource="&owl;SymmetricProperty"/>
+        <rdfs:subPropertyOf rdf:resource="#mappingRelation"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.w3.org/2004/02/skos/core#definition -->
+
+    <owl:ObjectProperty rdf:about="#definition">
+        <rdfs:subPropertyOf rdf:resource="#note"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.w3.org/2004/02/skos/core#editorialNote -->
+
+    <owl:ObjectProperty rdf:about="#editorialNote">
+        <rdfs:label xml:lang="en">editorial note</rdfs:label>
+        <rdfs:isDefinedBy rdf:datatype="&xsd;anyURI"
+            >http://www.w3.org/2004/02/skos/core</rdfs:isDefinedBy>
+        <rdfs:subPropertyOf rdf:resource="#note"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.w3.org/2004/02/skos/core#exactMatch -->
+
+    <owl:ObjectProperty rdf:about="#exactMatch">
+        <rdf:type rdf:resource="&owl;SymmetricProperty"/>
+        <rdf:type rdf:resource="&owl;TransitiveProperty"/>
+        <rdfs:subPropertyOf rdf:resource="#closeMatch"/>
+        <owl:propertyDisjointWith rdf:resource="#relatedMatch"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.w3.org/2004/02/skos/core#example -->
+
+    <owl:ObjectProperty rdf:about="#example">
+        <rdfs:label xml:lang="en">example</rdfs:label>
+        <rdfs:isDefinedBy rdf:datatype="&xsd;anyURI"
+            >http://www.w3.org/2004/02/skos/core</rdfs:isDefinedBy>
+        <rdfs:subPropertyOf rdf:resource="#note"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.w3.org/2004/02/skos/core#hasTopConcept -->
+
+    <owl:ObjectProperty rdf:about="#hasTopConcept">
+        <rdfs:label xml:lang="en">has top concept</rdfs:label>
+        <owl:versionInfo rdf:datatype="&xsd;string"
+            >This property replaces the deprecated skos:TopConcept class.</owl:versionInfo>
+        <rdfs:isDefinedBy rdf:datatype="&xsd;anyURI"
+            >http://www.w3.org/2004/02/skos/core</rdfs:isDefinedBy>
+        <rdfs:range rdf:resource="#Concept"/>
+        <rdfs:domain rdf:resource="#ConceptScheme"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.w3.org/2004/02/skos/core#historyNote -->
+
+    <owl:ObjectProperty rdf:about="#historyNote">
+        <rdfs:label xml:lang="en">history note</rdfs:label>
+        <rdfs:isDefinedBy rdf:datatype="&xsd;anyURI"
+            >http://www.w3.org/2004/02/skos/core</rdfs:isDefinedBy>
+        <rdfs:subPropertyOf rdf:resource="#note"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.w3.org/2004/02/skos/core#inScheme -->
+
+    <owl:ObjectProperty rdf:about="#inScheme">
+        <rdfs:label xml:lang="en">in scheme</rdfs:label>
+        <rdfs:isDefinedBy rdf:datatype="&xsd;anyURI"
+            >http://www.w3.org/2004/02/skos/core</rdfs:isDefinedBy>
+        <rdfs:comment xml:lang="en"
+            >A concept may be a member of more than one concept scheme.</rdfs:comment>
+        <rdfs:domain rdf:resource="#Concept"/>
+        <rdfs:range rdf:resource="#ConceptScheme"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.w3.org/2004/02/skos/core#isPrimarySubjectOf -->
+
+    <owl:ObjectProperty rdf:about="#isPrimarySubjectOf">
+        <rdfs:label xml:lang="en"
+            >is primary subject of</rdfs:label>
+        <rdfs:isDefinedBy rdf:datatype="&xsd;anyURI"
+            >http://www.w3.org/2004/02/skos/core</rdfs:isDefinedBy>
+        <rdfs:subPropertyOf rdf:resource="#isSubjectOf"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.w3.org/2004/02/skos/core#isSubjectOf -->
+
+    <owl:ObjectProperty rdf:about="#isSubjectOf">
+        <rdfs:label xml:lang="en">is subject of</rdfs:label>
+        <rdfs:isDefinedBy rdf:datatype="&xsd;anyURI"
+            >http://www.w3.org/2004/02/skos/core</rdfs:isDefinedBy>
+        <rdfs:domain rdf:resource="#Concept"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.w3.org/2004/02/skos/core#mappingRelation -->
+
+    <owl:ObjectProperty rdf:about="#mappingRelation">
+        <rdfs:subPropertyOf rdf:resource="#semanticRelation"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.w3.org/2004/02/skos/core#member -->
+
+    <owl:ObjectProperty rdf:about="#member">
+        <rdfs:label xml:lang="en">member</rdfs:label>
+        <rdfs:isDefinedBy rdf:datatype="&xsd;anyURI"
+            >http://www.w3.org/2004/02/skos/core</rdfs:isDefinedBy>
+        <rdfs:domain rdf:resource="#Collection"/>
+        <rdfs:range>
+            <owl:Class>
+                <owl:unionOf rdf:parseType="Collection">
+                    <rdf:Description rdf:about="#Collection"/>
+                    <rdf:Description rdf:about="#Concept"/>
+                </owl:unionOf>
+            </owl:Class>
+        </rdfs:range>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.w3.org/2004/02/skos/core#memberList -->
+
+    <owl:ObjectProperty rdf:about="#memberList">
+        <rdf:type rdf:resource="&owl;FunctionalProperty"/>
+        <rdfs:label xml:lang="en">member list</rdfs:label>
+        <rdfs:isDefinedBy rdf:datatype="&xsd;anyURI"
+            >http://www.w3.org/2004/02/skos/core</rdfs:isDefinedBy>
+        <rdfs:comment xml:lang="en"
+            >The following rule applies for this property: [(?c skos:memberList ?l) elementOfList(?e,?l) implies (?c skos:member ?e)]</rdfs:comment>
+        <rdfs:range rdf:resource="&rdf;List"/>
+        <rdfs:domain rdf:resource="#OrderedCollection"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.w3.org/2004/02/skos/core#narrowMatch -->
+
+    <owl:ObjectProperty rdf:about="#narrowMatch">
+        <owl:inverseOf rdf:resource="#broadMatch"/>
+        <rdfs:subPropertyOf rdf:resource="#mappingRelation"/>
+        <rdfs:subPropertyOf rdf:resource="#narrower"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.w3.org/2004/02/skos/core#narrower -->
+
+    <owl:ObjectProperty rdf:about="#narrower">
+        <rdfs:label xml:lang="en">has narrower</rdfs:label>
+        <rdfs:isDefinedBy rdf:datatype="&xsd;anyURI"
+            >http://www.w3.org/2004/02/skos/core</rdfs:isDefinedBy>
+        <rdfs:comment xml:lang="en"
+            >Narrower concepts are typically rendered as children in a concept hierarchy (tree).</rdfs:comment>
+        <rdfs:subPropertyOf rdf:resource="#narrowerTransitive"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.w3.org/2004/02/skos/core#narrowerGeneric -->
+
+    <owl:ObjectProperty rdf:about="#narrowerGeneric">
+        <rdf:type rdf:resource="&owl;TransitiveProperty"/>
+        <rdfs:label xml:lang="en">super-class of</rdfs:label>
+        <rdfs:comment rdf:datatype="&xsd;string"
+            >This property is the inverse of the &#39;broaderGeneric&#39; property.</rdfs:comment>
+        <owl:versionInfo rdf:datatype="&xsd;string"
+            >This term has been moved to the &#39;SKOS Extensions&#39; vocabulary.  See http://www.w3.org/2004/02/skos/extensions/</owl:versionInfo>
+        <rdfs:isDefinedBy rdf:datatype="&xsd;anyURI"
+            >http://www.w3.org/2004/02/skos/core</rdfs:isDefinedBy>
+        <rdfs:seeAlso rdf:datatype="&xsd;anyURI"
+            >http://www.w3.org/2004/02/skos/extensions.rdf</rdfs:seeAlso>
+        <rdfs:seeAlso rdf:datatype="&xsd;anyURI"
+            >http://www.w3.org/2004/02/skos/extensions/</rdfs:seeAlso>
+        <owl:inverseOf rdf:resource="#broaderGeneric"/>
+        <rdfs:subPropertyOf rdf:resource="#narrower"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.w3.org/2004/02/skos/core#narrowerPartitive -->
+
+    <owl:ObjectProperty rdf:about="#narrowerPartitive">
+        <rdf:type rdf:resource="&owl;TransitiveProperty"/>
+        <rdfs:label xml:lang="en">has part</rdfs:label>
+        <rdfs:comment rdf:datatype="&xsd;string"
+            >This property is the inverse of the &#39;broaderPartitive&#39; property.</rdfs:comment>
+        <owl:versionInfo rdf:datatype="&xsd;string"
+            >This term has been moved to the &#39;SKOS Extensions&#39; vocabulary.  See http://www.w3.org/2004/02/skos/extensions/</owl:versionInfo>
+        <rdfs:isDefinedBy rdf:datatype="&xsd;anyURI"
+            >http://www.w3.org/2004/02/skos/core</rdfs:isDefinedBy>
+        <rdfs:seeAlso rdf:datatype="&xsd;anyURI"
+            >http://www.w3.org/2004/02/skos/extensions.rdf</rdfs:seeAlso>
+        <rdfs:seeAlso rdf:datatype="&xsd;anyURI"
+            >http://www.w3.org/2004/02/skos/extensions/</rdfs:seeAlso>
+        <rdfs:subPropertyOf rdf:resource="&dct;hasPart"/>
+        <owl:inverseOf rdf:resource="#broaderPartitive"/>
+        <rdfs:subPropertyOf rdf:resource="#narrower"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.w3.org/2004/02/skos/core#narrowerTransitive -->
+
+    <owl:ObjectProperty rdf:about="#narrowerTransitive">
+        <rdf:type rdf:resource="&owl;TransitiveProperty"/>
+        <owl:inverseOf rdf:resource="#broaderTransitive"/>
+        <rdfs:subPropertyOf rdf:resource="#semanticRelation"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.w3.org/2004/02/skos/core#note -->
+
+    <owl:ObjectProperty rdf:about="#note">
+        <rdfs:label xml:lang="en">note</rdfs:label>
+        <rdfs:isDefinedBy rdf:datatype="&xsd;anyURI"
+            >http://www.w3.org/2004/02/skos/core</rdfs:isDefinedBy>
+        <rdfs:comment xml:lang="en"
+            >This property may be used directly, or as a super-property for more specific note types.</rdfs:comment>
+        <owl:versionInfo xml:lang="en"
+            >This property replaces the two deprecated properties skos:privateNote and skos:publicNote.  To describe a note for a particular audience (e.g. &#39;editor&#39;, &#39;indexer&#39;, &#39;general user&#39;) use a note property with a related resource description and the dc:audience property.</owl:versionInfo>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.w3.org/2004/02/skos/core#prefSymbol -->
+
+    <owl:ObjectProperty rdf:about="#prefSymbol">
+        <rdfs:label xml:lang="en"
+            >preferred symbolic label</rdfs:label>
+        <rdfs:isDefinedBy rdf:datatype="&xsd;anyURI"
+            >http://www.w3.org/2004/02/skos/core</rdfs:isDefinedBy>
+        <rdfs:comment xml:lang="en"
+            >No two concepts in the same concept scheme may have the same value for skos:prefSymbol.</rdfs:comment>
+        <rdfs:subPropertyOf rdf:resource="#symbol"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.w3.org/2004/02/skos/core#primarySubject -->
+
+    <owl:ObjectProperty rdf:about="#primarySubject">
+        <rdfs:label xml:lang="en"
+            >has primary subject</rdfs:label>
+        <rdfs:isDefinedBy rdf:datatype="&xsd;anyURI"
+            >http://www.w3.org/2004/02/skos/core</rdfs:isDefinedBy>
+        <rdfs:comment xml:lang="en"
+            >A resource may have only one primary subject per concept scheme.</rdfs:comment>
+        <owl:inverseOf rdf:resource="#isPrimarySubjectOf"/>
+        <rdfs:subPropertyOf rdf:resource="#subject"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.w3.org/2004/02/skos/core#related -->
+
+    <owl:ObjectProperty rdf:about="#related">
+        <rdf:type rdf:resource="&owl;SymmetricProperty"/>
+        <rdfs:label xml:lang="en">related to</rdfs:label>
+        <rdfs:isDefinedBy rdf:datatype="&xsd;anyURI"
+            >http://www.w3.org/2004/02/skos/core</rdfs:isDefinedBy>
+        <rdfs:subPropertyOf rdf:resource="&rdfs;seeAlso"/>
+        <rdfs:subPropertyOf rdf:resource="#semanticRelation"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.w3.org/2004/02/skos/core#relatedHasPart -->
+
+    <owl:ObjectProperty rdf:about="#relatedHasPart">
+        <rdf:type rdf:resource="&owl;TransitiveProperty"/>
+        <rdfs:label xml:lang="en">has part</rdfs:label>
+        <rdfs:comment rdf:datatype="&xsd;string"
+            >This property is the inverse of the &#39;relatedPartOf&#39; property.</rdfs:comment>
+        <owl:versionInfo rdf:datatype="&xsd;string"
+            >This term has been moved to the &#39;SKOS Extensions&#39; vocabulary.  See http://www.w3.org/2004/02/skos/extensions/</owl:versionInfo>
+        <rdfs:isDefinedBy rdf:datatype="&xsd;anyURI"
+            >http://www.w3.org/2004/02/skos/core</rdfs:isDefinedBy>
+        <rdfs:seeAlso rdf:datatype="&xsd;anyURI"
+            >http://www.w3.org/2004/02/skos/extensions.rdf</rdfs:seeAlso>
+        <rdfs:seeAlso rdf:datatype="&xsd;anyURI"
+            >http://www.w3.org/2004/02/skos/extensions/</rdfs:seeAlso>
+        <rdfs:subPropertyOf rdf:resource="&dct;hasPart"/>
+        <rdfs:subPropertyOf rdf:resource="#related"/>
+        <owl:inverseOf rdf:resource="#relatedPartOf"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.w3.org/2004/02/skos/core#relatedMatch -->
+
+    <owl:ObjectProperty rdf:about="#relatedMatch">
+        <rdf:type rdf:resource="&owl;SymmetricProperty"/>
+        <rdfs:subPropertyOf rdf:resource="#mappingRelation"/>
+        <rdfs:subPropertyOf rdf:resource="#related"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.w3.org/2004/02/skos/core#relatedPartOf -->
+
+    <owl:ObjectProperty rdf:about="#relatedPartOf">
+        <rdf:type rdf:resource="&owl;TransitiveProperty"/>
+        <rdfs:label xml:lang="en">part of</rdfs:label>
+        <rdfs:comment rdf:datatype="&xsd;string"
+            >An extension of the &#39;related&#39; property.  Use this property to express a partitive relationship between concepts, where it is desired that such a relationship be treated as associative (i.e. linking separate branches of a hierarchy) and NOT hierarchical.</rdfs:comment>
+        <owl:versionInfo rdf:datatype="&xsd;string"
+            >This term has been moved to the &#39;SKOS Extensions&#39; vocabulary.  See http://www.w3.org/2004/02/skos/extensions/</owl:versionInfo>
+        <rdfs:isDefinedBy rdf:datatype="&xsd;anyURI"
+            >http://www.w3.org/2004/02/skos/core</rdfs:isDefinedBy>
+        <rdfs:seeAlso rdf:datatype="&xsd;anyURI"
+            >http://www.w3.org/2004/02/skos/extensions.rdf</rdfs:seeAlso>
+        <rdfs:seeAlso rdf:datatype="&xsd;anyURI"
+            >http://www.w3.org/2004/02/skos/extensions/</rdfs:seeAlso>
+        <rdfs:subPropertyOf rdf:resource="&dct;isPartOf"/>
+        <rdfs:subPropertyOf rdf:resource="#related"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.w3.org/2004/02/skos/core#scopeNote -->
+
+    <owl:ObjectProperty rdf:about="#scopeNote">
+        <rdfs:label xml:lang="en">scope note</rdfs:label>
+        <rdfs:isDefinedBy rdf:datatype="&xsd;anyURI"
+            >http://www.w3.org/2004/02/skos/core</rdfs:isDefinedBy>
+        <rdfs:subPropertyOf rdf:resource="#note"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.w3.org/2004/02/skos/core#semanticRelation -->
+
+    <owl:ObjectProperty rdf:about="#semanticRelation">
+        <rdfs:label xml:lang="en"
+            >semantic relation</rdfs:label>
+        <rdfs:isDefinedBy rdf:datatype="&xsd;anyURI"
+            >http://www.w3.org/2004/02/skos/core</rdfs:isDefinedBy>
+        <rdfs:comment xml:lang="en"
+            >This property should not be used directly, but as a super-property for all properties denoting a relationship of meaning between concepts.</rdfs:comment>
+        <rdfs:range rdf:resource="#Concept"/>
+        <rdfs:domain rdf:resource="#Concept"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.w3.org/2004/02/skos/core#subject -->
+
+    <owl:ObjectProperty rdf:about="#subject">
+        <rdfs:label xml:lang="en">has subject</rdfs:label>
+        <rdfs:isDefinedBy rdf:datatype="&xsd;anyURI"
+            >http://www.w3.org/2004/02/skos/core</rdfs:isDefinedBy>
+        <rdfs:comment xml:lang="en"
+            >The following rule may be applied for this property: [(?d skos:subject ?x)(?x skos:broader ?y) implies (?d skos:subject ?y)]</rdfs:comment>
+        <rdfs:subPropertyOf rdf:resource="&dc;subject"/>
+        <rdfs:range rdf:resource="#Concept"/>
+        <owl:inverseOf rdf:resource="#isSubjectOf"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.w3.org/2004/02/skos/core#subjectIndicator -->
+
+    <owl:ObjectProperty rdf:about="#subjectIndicator">
+        <rdf:type rdf:resource="&owl;InverseFunctionalProperty"/>
+        <rdfs:label xml:lang="en"
+            >subject indicator</rdfs:label>
+        <rdfs:seeAlso rdf:datatype="&xsd;anyURI"
+            >http://www.isotopicmaps.org/sam/sam-model/</rdfs:seeAlso>
+        <rdfs:seeAlso rdf:datatype="&xsd;anyURI"
+            >http://www.oasis-open.org/committees/tm-pubsubj/docs/recommendations/general.htm</rdfs:seeAlso>
+        <rdfs:seeAlso rdf:datatype="&xsd;anyURI"
+            >http://www.topicmaps.org/xtm/1.0/</rdfs:seeAlso>
+        <rdfs:isDefinedBy rdf:datatype="&xsd;anyURI"
+            >http://www.w3.org/2004/02/skos/core</rdfs:isDefinedBy>
+        <rdfs:comment xml:lang="en"
+            >This property allows subject indicators to be used for concept identification in place of or in addition to directly assigned URIs.</rdfs:comment>
+        <rdfs:domain rdf:resource="#Concept"/>
+        <rdfs:range rdf:resource="&foaf;Document"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.w3.org/2004/02/skos/core#symbol -->
+
+    <owl:ObjectProperty rdf:about="#symbol">
+        <rdfs:label xml:lang="en">symbolic label</rdfs:label>
+        <rdfs:isDefinedBy rdf:datatype="&xsd;anyURI"
+            >http://www.w3.org/2004/02/skos/core</rdfs:isDefinedBy>
+        <rdfs:comment xml:lang="en"
+            >This property is roughly analagous to rdfs:label, but for labelling resources with images that have retrievable representations, rather than RDF literals.</rdfs:comment>
+        <rdfs:range rdf:resource="&dcmitype;Image"/>
+        <rdfs:domain rdf:resource="&rdfs;Resource"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.w3.org/2004/02/skos/core#topConceptOf -->
+
+    <owl:ObjectProperty rdf:about="#topConceptOf">
+        <rdfs:comment rdf:datatype="&xsd;string"
+            >added by SMR based on http://www.w3.org/TR/2009/PR-skos-reference-20090615/
+item S3</rdfs:comment>
+        <owl:inverseOf rdf:resource="#hasTopConcept"/>
+        <rdfs:subPropertyOf rdf:resource="#inScheme"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://xmlns.com/foaf/0.1/homepage -->
+
+    <owl:ObjectProperty rdf:about="&foaf;homepage"/>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Data properties
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    
+
+
+    <!-- http://purl.org/dc/terms/issued -->
+
+    <owl:DatatypeProperty rdf:about="&dct;issued"/>
+    
+
+
+    <!-- http://purl.org/dc/terms/modified -->
+
+    <owl:DatatypeProperty rdf:about="&dct;modified"/>
+    
+
+
+    <!-- http://www.w3.org/1999/02/22-rdf-syntax-ns#value -->
+
+    <owl:DatatypeProperty rdf:about="&rdf;value"/>
+    
+
+
+    <!-- http://www.w3.org/2003/06/sw-vocab-status/ns#term_status -->
+
+    <owl:DatatypeProperty rdf:about="&vs;term_status"/>
+    
+
+
+    <!-- http://www.w3.org/2004/02/skos/core#changeNote -->
+
+    <owl:DatatypeProperty rdf:about="#changeNote"/>
+    
+
+
+    <!-- http://www.w3.org/2004/02/skos/core#definition -->
+
+    <owl:DatatypeProperty rdf:about="#definition"/>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Classes
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    
+
+
+    <!-- http://purl.org/dc/dcmitype/Image -->
+
+    <owl:Class rdf:about="&dcmitype;Image"/>
+    
+
+
+    <!-- http://www.w3.org/1999/02/22-rdf-syntax-ns#List -->
+
+    <owl:Class rdf:about="&rdf;List"/>
+    
+
+
+    <!-- http://www.w3.org/2000/01/rdf-schema#Resource -->
+
+    <owl:Class rdf:about="&rdfs;Resource"/>
+    
+
+
+    <!-- http://www.w3.org/2002/07/owl#DeprecatedProperty -->
+
+    <owl:Class rdf:about="&owl;DeprecatedProperty"/>
+    
+
+
+    <!-- http://www.w3.org/2002/07/owl#Thing -->
+
+    <owl:Class rdf:about="&owl;Thing"/>
+    
+
+
+    <!-- http://www.w3.org/2004/02/skos/core#CollectableProperty -->
+
+    <owl:Class rdf:about="#CollectableProperty">
+        <rdfs:label xml:lang="en"
+            >Collectable Property</rdfs:label>
+        <rdfs:isDefinedBy rdf:datatype="&xsd;anyURI"
+            >http://www.w3.org/2004/02/skos/core</rdfs:isDefinedBy>
+        <rdfs:comment xml:lang="en"
+            >The following rule applies for this property: [(?x ?p ?c) (?c skos:member ?y) (?p rdf:type skos:CollectableProperty) implies (?x ?p ?y)]</rdfs:comment>
+    </owl:Class>
+    
+
+
+    <!-- http://www.w3.org/2004/02/skos/core#Collection -->
+
+    <owl:Class rdf:about="#Collection">
+        <rdfs:label xml:lang="en">Collection</rdfs:label>
+        <owl:disjointWith rdf:resource="#Concept"/>
+        <owl:disjointWith rdf:resource="#ConceptScheme"/>
+        <owl:disjointWith rdf:resource="#Label"/>
+        <rdfs:isDefinedBy rdf:datatype="&xsd;anyURI"
+            >http://www.w3.org/2004/02/skos/core</rdfs:isDefinedBy>
+        <rdfs:comment xml:lang="en"
+            >Labelled collections can be used with collectable semantic relation properties e.g. skos:narrower, where you would like a set of concepts to be displayed under a &#39;node label&#39; in the hierarchy.</rdfs:comment>
+    </owl:Class>
+    
+
+
+    <!-- http://www.w3.org/2004/02/skos/core#Concept -->
+
+    <owl:Class rdf:about="#Concept">
+        <rdfs:label xml:lang="en">Concept</rdfs:label>
+        <owl:disjointWith rdf:resource="#ConceptScheme"/>
+        <owl:disjointWith rdf:resource="#Label"/>
+        <rdfs:isDefinedBy rdf:datatype="&xsd;anyURI"
+            >http://www.w3.org/2004/02/skos/core</rdfs:isDefinedBy>
+    </owl:Class>
+    
+
+
+    <!-- http://www.w3.org/2004/02/skos/core#ConceptScheme -->
+
+    <owl:Class rdf:about="#ConceptScheme">
+        <rdfs:label xml:lang="en">Concept Scheme</rdfs:label>
+        <owl:disjointWith rdf:resource="#Label"/>
+        <rdfs:isDefinedBy rdf:datatype="&xsd;anyURI"
+            >http://www.w3.org/2004/02/skos/core</rdfs:isDefinedBy>
+        <rdfs:comment xml:lang="en"
+            >A concept scheme may be defined to include concepts from different sources.</rdfs:comment>
+        <rdfs:comment xml:lang="en"
+            >Thesauri, classification schemes, subject heading lists, taxonomies, &#39;folksonomies&#39;, and other types of controlled vocabulary are all examples of concept schemes.  Concept schemes are also embedded in glossaries and terminologies.</rdfs:comment>
+    </owl:Class>
+    
+
+
+    <!-- http://www.w3.org/2004/02/skos/core#Label -->
+
+    <owl:Class rdf:about="#Label"/>
+    
+
+
+    <!-- http://www.w3.org/2004/02/skos/core#OrderedCollection -->
+
+    <owl:Class rdf:about="#OrderedCollection">
+        <rdfs:label xml:lang="en"
+            >Ordered Collection</rdfs:label>
+        <rdfs:subClassOf rdf:resource="#Collection"/>
+        <rdfs:isDefinedBy rdf:datatype="&xsd;anyURI"
+            >http://www.w3.org/2004/02/skos/core</rdfs:isDefinedBy>
+        <rdfs:comment xml:lang="en"
+            >Ordered collections can be used with collectable semantic relation properties, where you would like a set of concepts to be displayed in a specific order, and optionally under a &#39;node label&#39;.</rdfs:comment>
+    </owl:Class>
+    
+
+
+    <!-- http://www.w3.org/2004/02/skos/core#TopConcept -->
+
+    <owl:Class rdf:about="#TopConcept">
+        <rdfs:label xml:lang="en">Top Concept</rdfs:label>
+        <rdfs:comment rdf:datatype="&xsd;string"
+            >A concept that sits at the top of the concept hierarchy.</rdfs:comment>
+        <owl:versionInfo rdf:datatype="&xsd;string"
+            >This class is now deprecated.  To indicate that a concept is a top concept in a scheme, now use the skos:hasTopConcept property.</owl:versionInfo>
+        <rdfs:isDefinedBy rdf:datatype="&xsd;anyURI"
+            >http://www.w3.org/2004/02/skos/core</rdfs:isDefinedBy>
+    </owl:Class>
+    
+
+
+    <!-- http://xmlns.com/foaf/0.1/Document -->
+
+    <owl:Class rdf:about="&foaf;Document"/>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Individuals
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    
+
+
+    <!-- http://www.w3.org/ -->
+
+    <owl:Thing rdf:about="http://www.w3.org/"/>
+    
+
+
+    <!-- http://www.w3.org/2004/02/skos/core -->
+
+    <owl:Thing rdf:about="">
+        <dct:modified rdf:datatype="&xsd;string">2006-04-18</dct:modified>
+        <changeNote rdf:datatype="&rdfs;Literal"
+            >Stephen Richard update to match statements in http://www.w3.org/TR/2009/PR-skos-reference-20090615/</changeNote>
+        <foaf:homepage rdf:resource="http://www.w3.org/"/>
+        <dct:hasVersion rdf:resource="http://www.w3.org/history/2006-04-18"/>
+    </owl:Thing>
+    
+
+
+    <!-- http://www.w3.org/2004/02/skos/core#CollectableProperty -->
+
+    <owl:Thing rdf:about="#CollectableProperty">
+        <dct:issued rdf:datatype="&xsd;string">2004-10-20</dct:issued>
+        <dct:modified rdf:datatype="&xsd;string">2005-09-29</dct:modified>
+        <vs:term_status rdf:datatype="&xsd;string">unstable</vs:term_status>
+        <definition xml:lang="en"
+            >A property which can be used with a skos:Collection.</definition>
+    </owl:Thing>
+    
+
+
+    <!-- http://www.w3.org/2004/02/skos/core#Collection -->
+
+    <owl:Thing rdf:about="#Collection">
+        <dct:issued rdf:datatype="&xsd;string">2004-10-20</dct:issued>
+        <dct:modified rdf:datatype="&xsd;string">2005-09-29</dct:modified>
+        <vs:term_status rdf:datatype="&xsd;string">unstable</vs:term_status>
+        <definition xml:lang="en"
+            >A meaningful collection of concepts.</definition>
+    </owl:Thing>
+    
+
+
+    <!-- http://www.w3.org/2004/02/skos/core#Concept -->
+
+    <owl:Thing rdf:about="#Concept">
+        <dct:issued rdf:datatype="&xsd;string">2004-03-26</dct:issued>
+        <dct:modified rdf:datatype="&xsd;string">2005-09-29</dct:modified>
+        <vs:term_status rdf:datatype="&xsd;string">testing</vs:term_status>
+        <definition xml:lang="en"
+            >An abstract idea or notion; a unit of thought.</definition>
+    </owl:Thing>
+    
+
+
+    <!-- http://www.w3.org/2004/02/skos/core#ConceptScheme -->
+
+    <owl:Thing rdf:about="#ConceptScheme">
+        <dct:issued rdf:datatype="&xsd;string">2004-03-26</dct:issued>
+        <dct:modified rdf:datatype="&xsd;string">2005-10-14</dct:modified>
+        <vs:term_status rdf:datatype="&xsd;string">testing</vs:term_status>
+        <definition xml:lang="en"
+            >A set of concepts, optionally including statements about semantic relationships between those concepts.</definition>
+    </owl:Thing>
+    
+
+
+    <!-- http://www.w3.org/2004/02/skos/core#OrderedCollection -->
+
+    <owl:Thing rdf:about="#OrderedCollection">
+        <dct:issued rdf:datatype="&xsd;string">2004-10-20</dct:issued>
+        <dct:modified rdf:datatype="&xsd;string">2005-09-29</dct:modified>
+        <vs:term_status rdf:datatype="&xsd;string">unstable</vs:term_status>
+        <definition xml:lang="en"
+            >An ordered collection of concepts, where both the grouping and the ordering are meaningful.</definition>
+    </owl:Thing>
+    
+
+
+    <!-- http://www.w3.org/2004/02/skos/core#TopConcept -->
+
+    <owl:Thing rdf:about="#TopConcept">
+        <dct:issued rdf:datatype="&xsd;string">2004-03-26</dct:issued>
+        <dct:modified rdf:datatype="&xsd;string">2004-08-19</dct:modified>
+        <vs:term_status rdf:datatype="&xsd;string">unstable</vs:term_status>
+        <dct:isReplacedBy rdf:resource="#hasTopConcept"/>
+    </owl:Thing>
+    
+
+
+    <!-- http://www.w3.org/2004/02/skos/core#altSymbol -->
+
+    <owl:Thing rdf:about="#altSymbol">
+        <dct:issued rdf:datatype="&xsd;string">2004-03-26</dct:issued>
+        <dct:modified rdf:datatype="&xsd;string">2005-10-06</dct:modified>
+        <vs:term_status rdf:datatype="&xsd;string">testing</vs:term_status>
+        <definition xml:lang="en"
+            >An alternative symbolic label for a resource.</definition>
+    </owl:Thing>
+    
+
+
+    <!-- http://www.w3.org/2004/02/skos/core#broader -->
+
+    <owl:Thing rdf:about="#broader">
+        <dct:issued rdf:datatype="&xsd;string">2004-03-26</dct:issued>
+        <dct:modified rdf:datatype="&xsd;string">2005-09-29</dct:modified>
+        <vs:term_status rdf:datatype="&xsd;string">testing</vs:term_status>
+        <definition xml:lang="en"
+            >A concept that is more general in meaning.</definition>
+    </owl:Thing>
+    
+
+
+    <!-- http://www.w3.org/2004/02/skos/core#broaderGeneric -->
+
+    <owl:Thing rdf:about="#broaderGeneric">
+        <rdf:type rdf:resource="&owl;DeprecatedProperty"/>
+        <dct:issued rdf:datatype="&xsd;string">2004-03-26</dct:issued>
+        <dct:modified rdf:datatype="&xsd;string">2004-10-18</dct:modified>
+        <vs:term_status rdf:datatype="&xsd;string">unstable</vs:term_status>
+        <dct:isReplacedBy rdf:resource="&skos2;extensions#broaderGeneric"/>
+    </owl:Thing>
+    
+
+
+    <!-- http://www.w3.org/2004/02/skos/core#broaderPartitive -->
+
+    <owl:Thing rdf:about="#broaderPartitive">
+        <rdf:type rdf:resource="&owl;DeprecatedProperty"/>
+        <dct:issued rdf:datatype="&xsd;string">2004-03-26</dct:issued>
+        <dct:modified rdf:datatype="&xsd;string">2004-10-18</dct:modified>
+        <vs:term_status rdf:datatype="&xsd;string">unstable</vs:term_status>
+        <dct:isReplacedBy rdf:resource="&skos2;extensions#broaderPartitive"/>
+    </owl:Thing>
+    
+
+
+    <!-- http://www.w3.org/2004/02/skos/core#changeNote -->
+
+    <owl:Thing rdf:about="#changeNote">
+        <dct:issued rdf:datatype="&xsd;string">2004-10-21</dct:issued>
+        <dct:modified rdf:datatype="&xsd;string">2005-10-05</dct:modified>
+        <vs:term_status rdf:datatype="&xsd;string">unstable</vs:term_status>
+        <definition xml:lang="en"
+            >A note about a modification to a concept.</definition>
+    </owl:Thing>
+    
+
+
+    <!-- http://www.w3.org/2004/02/skos/core#definition -->
+
+    <owl:Thing rdf:about="#definition">
+        <rdf:type rdf:resource="&owl;DatatypeProperty"/>
+        <dct:issued rdf:datatype="&xsd;string">2004-03-26</dct:issued>
+        <dct:modified rdf:datatype="&xsd;string">2005-10-05</dct:modified>
+        <vs:term_status rdf:datatype="&xsd;string">testing</vs:term_status>
+        <definition xml:lang="en"
+            >A statement or formal explanation of the meaning of a     concept.</definition>
+    </owl:Thing>
+    
+
+
+    <!-- http://www.w3.org/2004/02/skos/core#editorialNote -->
+
+    <owl:Thing rdf:about="#editorialNote">
+        <dct:issued rdf:datatype="&xsd;string">2004-10-21</dct:issued>
+        <dct:modified rdf:datatype="&xsd;string">2005-10-05</dct:modified>
+        <vs:term_status rdf:datatype="&xsd;string">unstable</vs:term_status>
+        <definition xml:lang="en"
+            >A note for an editor, translator or maintainer of the vocabulary.</definition>
+    </owl:Thing>
+    
+
+
+    <!-- http://www.w3.org/2004/02/skos/core#example -->
+
+    <owl:Thing rdf:about="#example">
+        <dct:issued rdf:datatype="&xsd;string">2004-03-26</dct:issued>
+        <dct:modified rdf:datatype="&xsd;string">2005-10-05</dct:modified>
+        <vs:term_status rdf:datatype="&xsd;string">testing</vs:term_status>
+        <definition xml:lang="en"
+            >An example of the use of a concept.</definition>
+    </owl:Thing>
+    
+
+
+    <!-- http://www.w3.org/2004/02/skos/core#hasTopConcept -->
+
+    <owl:Thing rdf:about="#hasTopConcept">
+        <dct:issued rdf:datatype="&xsd;string">2004-08-19</dct:issued>
+        <dct:modified rdf:datatype="&xsd;string">2005-09-29</dct:modified>
+        <vs:term_status rdf:datatype="&xsd;string">testing</vs:term_status>
+        <definition xml:lang="en"
+            >A top level concept in the concept scheme.</definition>
+        <dct:replaces rdf:resource="#TopConcept"/>
+    </owl:Thing>
+    
+
+
+    <!-- http://www.w3.org/2004/02/skos/core#historyNote -->
+
+    <owl:Thing rdf:about="#historyNote">
+        <dct:issued rdf:datatype="&xsd;string">2004-10-21</dct:issued>
+        <dct:modified rdf:datatype="&xsd;string">2005-10-05</dct:modified>
+        <vs:term_status rdf:datatype="&xsd;string">unstable</vs:term_status>
+        <definition xml:lang="en"
+            >A note about the past state/use/meaning of a concept.</definition>
+    </owl:Thing>
+    
+
+
+    <!-- http://www.w3.org/2004/02/skos/core#inScheme -->
+
+    <owl:Thing rdf:about="#inScheme">
+        <dct:issued rdf:datatype="&xsd;string">2004-03-26</dct:issued>
+        <dct:modified rdf:datatype="&xsd;string">2005-09-29</dct:modified>
+        <vs:term_status rdf:datatype="&xsd;string">testing</vs:term_status>
+        <definition xml:lang="en"
+            >A concept scheme in which the concept is included.</definition>
+    </owl:Thing>
+    
+
+
+    <!-- http://www.w3.org/2004/02/skos/core#isPrimarySubjectOf -->
+
+    <owl:Thing rdf:about="#isPrimarySubjectOf">
+        <dct:issued rdf:datatype="&xsd;string">2004-10-22</dct:issued>
+        <dct:modified rdf:datatype="&xsd;string">2005-09-29</dct:modified>
+        <vs:term_status rdf:datatype="&xsd;string">unstable</vs:term_status>
+        <definition xml:lang="en"
+            >A resource for which the concept is the primary subject.</definition>
+    </owl:Thing>
+    
+
+
+    <!-- http://www.w3.org/2004/02/skos/core#isSubjectOf -->
+
+    <owl:Thing rdf:about="#isSubjectOf">
+        <dct:issued rdf:datatype="&xsd;string">2004-10-22</dct:issued>
+        <dct:modified rdf:datatype="&xsd;string">2005-09-29</dct:modified>
+        <vs:term_status rdf:datatype="&xsd;string">unstable</vs:term_status>
+        <definition xml:lang="en"
+            >A resource for which the concept is a subject.</definition>
+    </owl:Thing>
+    
+
+
+    <!-- http://www.w3.org/2004/02/skos/core#member -->
+
+    <owl:Thing rdf:about="#member">
+        <dct:issued rdf:datatype="&xsd;string">2004-10-20</dct:issued>
+        <dct:modified rdf:datatype="&xsd;string">2005-09-29</dct:modified>
+        <vs:term_status rdf:datatype="&xsd;string">unstable</vs:term_status>
+        <definition xml:lang="en"
+            >A member of a collection.</definition>
+    </owl:Thing>
+    
+
+
+    <!-- http://www.w3.org/2004/02/skos/core#memberList -->
+
+    <owl:Thing rdf:about="#memberList">
+        <dct:issued rdf:datatype="&xsd;string">2004-10-20</dct:issued>
+        <dct:modified rdf:datatype="&xsd;string">2005-09-29</dct:modified>
+        <vs:term_status rdf:datatype="&xsd;string">unstable</vs:term_status>
+        <definition xml:lang="en"
+            >An RDF list containing the members of an ordered collection.</definition>
+    </owl:Thing>
+    
+
+
+    <!-- http://www.w3.org/2004/02/skos/core#narrower -->
+
+    <owl:Thing rdf:about="#narrower">
+        <dct:issued rdf:datatype="&xsd;string">2004-03-26</dct:issued>
+        <dct:modified rdf:datatype="&xsd;string">2005-09-29</dct:modified>
+        <vs:term_status rdf:datatype="&xsd;string">testing</vs:term_status>
+        <definition xml:lang="en"
+            >A concept that is more specific in meaning.</definition>
+    </owl:Thing>
+    
+
+
+    <!-- http://www.w3.org/2004/02/skos/core#narrowerGeneric -->
+
+    <owl:Thing rdf:about="#narrowerGeneric">
+        <rdf:type rdf:resource="&owl;DeprecatedProperty"/>
+        <dct:issued rdf:datatype="&xsd;string">2004-03-26</dct:issued>
+        <dct:modified rdf:datatype="&xsd;string">2004-10-18</dct:modified>
+        <vs:term_status rdf:datatype="&xsd;string">unstable</vs:term_status>
+        <dct:isReplacedBy rdf:resource="&skos2;extensions#narrowerGeneric"/>
+    </owl:Thing>
+    
+
+
+    <!-- http://www.w3.org/2004/02/skos/core#narrowerPartitive -->
+
+    <owl:Thing rdf:about="#narrowerPartitive">
+        <rdf:type rdf:resource="&owl;DeprecatedProperty"/>
+        <dct:issued rdf:datatype="&xsd;string">2004-03-26</dct:issued>
+        <dct:modified rdf:datatype="&xsd;string">2004-10-18</dct:modified>
+        <vs:term_status rdf:datatype="&xsd;string">unstable</vs:term_status>
+        <dct:isReplacedBy rdf:resource="&skos2;extensions#narrowerPartitive"/>
+    </owl:Thing>
+    
+
+
+    <!-- http://www.w3.org/2004/02/skos/core#note -->
+
+    <owl:Thing rdf:about="#note">
+        <dct:issued rdf:datatype="&xsd;string">2005-10-05</dct:issued>
+        <vs:term_status rdf:datatype="&xsd;string">unstable</vs:term_status>
+        <definition xml:lang="en"
+            >A general note, for any purpose.</definition>
+        <dct:replaces rdf:resource="#privateNote"/>
+        <dct:replaces rdf:resource="#publicNote"/>
+    </owl:Thing>
+    
+
+
+    <!-- http://www.w3.org/2004/02/skos/core#prefSymbol -->
+
+    <owl:Thing rdf:about="#prefSymbol">
+        <dct:issued rdf:datatype="&xsd;string">2004-03-26</dct:issued>
+        <dct:modified rdf:datatype="&xsd;string">2005-10-06</dct:modified>
+        <vs:term_status rdf:datatype="&xsd;string">testing</vs:term_status>
+        <definition xml:lang="en"
+            >The preferred symbolic label for a resource.</definition>
+    </owl:Thing>
+    
+
+
+    <!-- http://www.w3.org/2004/02/skos/core#primarySubject -->
+
+    <owl:Thing rdf:about="#primarySubject">
+        <dct:issued rdf:datatype="&xsd;string">2004-10-22</dct:issued>
+        <dct:modified rdf:datatype="&xsd;string">2005-09-29</dct:modified>
+        <vs:term_status rdf:datatype="&xsd;string">unstable</vs:term_status>
+        <definition xml:lang="en"
+            >A concept that is the primary subject of the resource.</definition>
+    </owl:Thing>
+    
+
+
+    <!-- http://www.w3.org/2004/02/skos/core#privateNote -->
+
+    <owl:Thing rdf:about="#privateNote">
+        <rdf:type rdf:resource="&owl;DeprecatedProperty"/>
+        <rdfs:label xml:lang="en">private note</rdfs:label>
+        <dct:issued rdf:datatype="&xsd;string">2004-10-21</dct:issued>
+        <dct:modified rdf:datatype="&xsd;string">2005-10-05</dct:modified>
+        <rdfs:isDefinedBy rdf:datatype="&xsd;anyURI"
+            >http://www.w3.org/2004/02/skos/core</rdfs:isDefinedBy>
+        <vs:term_status rdf:datatype="&xsd;string">unstable</vs:term_status>
+        <definition xml:lang="en"
+            >A general note not intended for public consumption.</definition>
+        <rdfs:comment xml:lang="en"
+            >This property can be used directly for general notes, or as a super-property for more specific note types where the notes are NOT intended for public consumption.</rdfs:comment>
+        <owl:versionInfo xml:lang="en"
+            >This property now replaced by skos:note.  To describe a note for a particular audience (e.g. &#39;editor&#39;, &#39;indexer&#39;, &#39;general user&#39;) use a note property with a related resource description and the dc:audience property.</owl:versionInfo>
+        <dct:isReplacedBy rdf:resource="#note"/>
+    </owl:Thing>
+    
+
+
+    <!-- http://www.w3.org/2004/02/skos/core#publicNote -->
+
+    <owl:Thing rdf:about="#publicNote">
+        <rdf:type rdf:resource="&owl;DeprecatedProperty"/>
+        <rdfs:label xml:lang="en">public note</rdfs:label>
+        <dct:issued rdf:datatype="&xsd;string">2004-10-21</dct:issued>
+        <dct:modified rdf:datatype="&xsd;string">2005-10-05</dct:modified>
+        <rdfs:isDefinedBy rdf:datatype="&xsd;anyURI"
+            >http://www.w3.org/2004/02/skos/core</rdfs:isDefinedBy>
+        <vs:term_status rdf:datatype="&xsd;string">unstable</vs:term_status>
+        <definition xml:lang="en"
+            >A general note intended for public consumption.</definition>
+        <rdfs:comment xml:lang="en"
+            >This property can be used directly for general notes, or as a super-property for more specific note types where the notes are intended for public consumption.</rdfs:comment>
+        <owl:versionInfo xml:lang="en"
+            >This property now replaced by skos:note.  To describe a note for a particular audience (e.g. &#39;editor&#39;, &#39;indexer&#39;, &#39;general user&#39;) use a note property with a related resource description and the dc:audience property.</owl:versionInfo>
+        <dct:isReplacedBy rdf:resource="#note"/>
+    </owl:Thing>
+    
+
+
+    <!-- http://www.w3.org/2004/02/skos/core#related -->
+
+    <owl:Thing rdf:about="#related">
+        <dct:issued rdf:datatype="&xsd;string">2004-03-26</dct:issued>
+        <dct:modified rdf:datatype="&xsd;string">2005-09-29</dct:modified>
+        <vs:term_status rdf:datatype="&xsd;string">testing</vs:term_status>
+        <definition xml:lang="en"
+            >A concept with which there is an associative semantic relationship.</definition>
+    </owl:Thing>
+    
+
+
+    <!-- http://www.w3.org/2004/02/skos/core#relatedHasPart -->
+
+    <owl:Thing rdf:about="#relatedHasPart">
+        <rdf:type rdf:resource="&owl;DeprecatedProperty"/>
+        <dct:issued rdf:datatype="&xsd;string">2004-03-26</dct:issued>
+        <dct:modified rdf:datatype="&xsd;string">2004-10-18</dct:modified>
+        <vs:term_status rdf:datatype="&xsd;string">unstable</vs:term_status>
+        <dct:isReplacedBy rdf:resource="&skos2;extensions#relatedHasPart"/>
+    </owl:Thing>
+    
+
+
+    <!-- http://www.w3.org/2004/02/skos/core#relatedPartOf -->
+
+    <owl:Thing rdf:about="#relatedPartOf">
+        <rdf:type rdf:resource="&owl;DeprecatedProperty"/>
+        <dct:issued rdf:datatype="&xsd;string">2004-03-26</dct:issued>
+        <dct:modified rdf:datatype="&xsd;string">2004-10-18</dct:modified>
+        <vs:term_status rdf:datatype="&xsd;string">unstable</vs:term_status>
+        <dct:isReplacedBy rdf:resource="&skos2;extensions#relatedPartOf"/>
+    </owl:Thing>
+    
+
+
+    <!-- http://www.w3.org/2004/02/skos/core#scopeNote -->
+
+    <owl:Thing rdf:about="#scopeNote">
+        <dct:issued rdf:datatype="&xsd;string">2004-03-26</dct:issued>
+        <dct:modified rdf:datatype="&xsd;string">2005-10-05</dct:modified>
+        <vs:term_status rdf:datatype="&xsd;string">testing</vs:term_status>
+        <definition xml:lang="en"
+            >A note that helps to clarify the meaning of a concept.</definition>
+    </owl:Thing>
+    
+
+
+    <!-- http://www.w3.org/2004/02/skos/core#semanticRelation -->
+
+    <owl:Thing rdf:about="#semanticRelation">
+        <dct:issued rdf:datatype="&xsd;string">2004-03-26</dct:issued>
+        <dct:modified rdf:datatype="&xsd;string">2005-09-29</dct:modified>
+        <vs:term_status rdf:datatype="&xsd;string">testing</vs:term_status>
+        <definition xml:lang="en"
+            >A concept related by meaning.</definition>
+    </owl:Thing>
+    
+
+
+    <!-- http://www.w3.org/2004/02/skos/core#subject -->
+
+    <owl:Thing rdf:about="#subject">
+        <dct:issued rdf:datatype="&xsd;string">2004-10-22</dct:issued>
+        <dct:modified rdf:datatype="&xsd;string">2005-09-29</dct:modified>
+        <vs:term_status rdf:datatype="&xsd;string">unstable</vs:term_status>
+        <definition xml:lang="en"
+            >A concept that is a subject of the resource.</definition>
+    </owl:Thing>
+    
+
+
+    <!-- http://www.w3.org/2004/02/skos/core#subjectIndicator -->
+
+    <owl:Thing rdf:about="#subjectIndicator">
+        <dct:issued rdf:datatype="&xsd;string">2004-11-11</dct:issued>
+        <dct:modified rdf:datatype="&xsd;string">2005-09-29</dct:modified>
+        <vs:term_status rdf:datatype="&xsd;string">unstable</vs:term_status>
+        <definition xml:lang="en"
+            >A subject indicator for a concept.  [The notion of &#39;subject indicator&#39; is defined here with reference to the latest definition endorsed by the OASIS Published Subjects Technical Committee.]</definition>
+    </owl:Thing>
+    
+
+
+    <!-- http://www.w3.org/2004/02/skos/core#symbol -->
+
+    <owl:Thing rdf:about="#symbol">
+        <dct:issued rdf:datatype="&xsd;string">2005-10-06</dct:issued>
+        <vs:term_status rdf:datatype="&xsd;string">unstable</vs:term_status>
+        <definition xml:lang="en"
+            >An image that is a symbolic label for the resource.</definition>
+    </owl:Thing>
+    
+
+
+    <!-- http://www.w3.org/2004/02/skos/extensions#broaderGeneric -->
+
+    <owl:Thing rdf:about="&skos2;extensions#broaderGeneric"/>
+    
+
+
+    <!-- http://www.w3.org/2004/02/skos/extensions#broaderPartitive -->
+
+    <owl:Thing rdf:about="&skos2;extensions#broaderPartitive"/>
+    
+
+
+    <!-- http://www.w3.org/2004/02/skos/extensions#narrowerGeneric -->
+
+    <owl:Thing rdf:about="&skos2;extensions#narrowerGeneric"/>
+    
+
+
+    <!-- http://www.w3.org/2004/02/skos/extensions#narrowerPartitive -->
+
+    <owl:Thing rdf:about="&skos2;extensions#narrowerPartitive"/>
+    
+
+
+    <!-- http://www.w3.org/2004/02/skos/extensions#relatedHasPart -->
+
+    <owl:Thing rdf:about="&skos2;extensions#relatedHasPart"/>
+    
+
+
+    <!-- http://www.w3.org/2004/02/skos/extensions#relatedPartOf -->
+
+    <owl:Thing rdf:about="&skos2;extensions#relatedPartOf"/>
+    
+
+
+    <!-- http://www.w3.org/history/2006-04-18 -->
+
+    <owl:Thing rdf:about="http://www.w3.org/history/2006-04-18">
+        <dct:issued rdf:datatype="&xsd;string">2006-04-18</dct:issued>
+        <dc:description rdf:datatype="&xsd;string"
+            >The 2006-04-18 &#39;2nd W3C Public Working Draft (Amended)&#39; edition of the SKOS Core Vocabulary, amended to fix an error in the namespace for the &#39;Resource&#39; class.</dc:description>
+        <dc:title xml:lang="en"
+            >SKOS Core Vocabulary 2006-04-18 &#39;2nd W3C Public Working Draft (Amended)&#39; Edition</dc:title>
+        <dct:isVersionOf rdf:resource=""/>
+    </owl:Thing>
+</rdf:RDF>
+
+
+
+<!-- Generated by the OWL API (version 2.2.1.1138) http://owlapi.sourceforge.net -->
+
