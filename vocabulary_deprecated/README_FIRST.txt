@@ -1,1 +1,0 @@
-This repository has been deprectated and will be removed in March, 2010. The content in this repository is not at https://www.seegrid.csiro.au/subversion/CGI_CDTGVocabulary. Please check out that repository and use the files there.
