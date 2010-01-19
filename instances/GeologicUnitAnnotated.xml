@@ -1,6 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<gsml:GSML xmlns:gml="http://www.opengis.net/gml" xmlns:wfs="http://www.opengis.net/wfs" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:gsml="urn:cgi:xmlns:CGI:GeoSciML:2.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="urn:cgi:xmlns:CGI:GeoSciML:2.0 http://www.geosciml.org/schemas/geosciml/2.0_rc1/geosciml.xsd">
+<gsml:GSML xmlns:gml="http://www.opengis.net/gml" xmlns:wfs="http://www.opengis.net/wfs" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:gsml="urn:cgi:xmlns:CGI:GeoSciML:2.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="urn:cgi:xmlns:CGI:GeoSciML:2.0 http://www.geosciml.org/geosciml/2.0/xsd/geosciml.xsd">
 	<!-- namespaces and schema added by SMR -->
+	<!-- repair so validates against references geosciml schema
+                     SMR 2010-01-19 -->
 	<!--  0..* gml:metadataProperty elements. Best Practice: use gsml:metadata to href ISO19115 metadata -->
 	<!-- one gml:description may be used to describe this collection -->
 	<!-- 0..* gml Name elements to identify the collection, see discussion of gml:name below under LithostratigraphicUnit -->
@@ -9,7 +11,7 @@
 	<!-- wfs:featureCollection [gsml:gsml] includs 0..* gml:featureMember [gsml:member] elements. wfs also allows grouping of features in a gml:featureMembers element following any featureMember elements. This is designed to represent an array of features. Best Practice: include GeoSciML features as featureMember elements. -->
 	<gsml:member>
 		<!-- wfs:featureCollection elements must be in gml:_Feature substitution group; gsml:gsml members must be gml:_Geometry substitution group (based on XMLspy 2005 schema view) -->
-		<gsml:LithostratigraphicUnit>
+		<gsml:GeologicUnit>
 			<!-- NGMDB p3 use gsml:LithologicUnit if no thickness is reported -->
 			<!-- gml:metaDataProperty 0 to many; use gsml:metadata-->
 			<!-- one gml:description is optional. Best Practice: any text description associated with the geologic unit (e.g. map legend description text) is included verbatim in this element-->
@@ -69,6 +71,8 @@
 			<!--optional feature level ISO 19115 metadata here -->
 			<!-- ISO19115v1:MD_metadata/ -->
 			<!-- The geometry or form of a GeologicUnit.  Examples include: dike, cone, fan, sheet, etc. Morphology is independent of the substance (EarthMaterial) that composes the GeologicUnit.  0..* CGI_TermValue -->
+			<gsml:geologicUnitType  xlink:href="urn:cgi:classifier:CGI:GeologicUnitType:200811:lithostratigraphic_unit"/>
+			
 			<gsml:bodyMorphology>
 				<gsml:CGI_TermValue>
 					<gsml:value codeSpace="None">null</gsml:value>
@@ -83,20 +87,29 @@
 			<!-- rank is required for Lithostratigraphic unit, specified by a scoped name -->
 			<gsml:rank codeSpace="GeoUnitRankTerms">Not specified	</gsml:rank>
 			<!-- start association links to other classes ******************************************************** -->
-			<!--one classifier is optional; this is a link to a controlled concept that specifies the kind of thing that this feature instance describes. In this case the classifier would be a geologic unit, either a non-situated unit 'type' (e.g. Lithostratigraphic unit),  in the case of observation data, or to a specific geologic unit  (e.g. Martin Formation) in the case that the description is applied to an already defined unit.-->
+				<!-- unitThickness is 0..*, specified by CGI_NumericValue  or CGI_NumericValueRange-->
+			<gsml:unitThickness>
+				<gsml:CGI_NumericRange>
+					<gsml:lower>
+						<gsml:CGI_NumericValue>
+							<gsml:principalValue uom="meter"> 100</gsml:principalValue>
+						</gsml:CGI_NumericValue>
+					</gsml:lower>
+					<gsml:upper>
+						<gsml:CGI_NumericValue>
+							<gsml:minusDelta uom="">0</gsml:minusDelta>
+							<gsml:plusDelta uom="">0</gsml:plusDelta>
+							<gsml:principalValue uom="meter">200</gsml:principalValue>
+						</gsml:CGI_NumericValue>
+					</gsml:upper>
+				</gsml:CGI_NumericRange>
+			</gsml:unitThickness>
+
+<!--one classifier is optional; this is a link to a controlled concept that specifies the kind of thing that this feature instance describes. In this case the classifier would be a geologic unit, either a non-situated unit 'type' (e.g. Lithostratigraphic unit),  in the case of observation data, or to a specific geologic unit  (e.g. Martin Formation) in the case that the description is applied to an already defined unit.-->
 			<!-- Best Practice: Classifier ControlledConcepts should be defined in a separate vocabulary document that includes the prototype GeologicEntity instances. In this example the prototype for the  associated classifier would be a GeologicFeature.GeologicUnit.LithostratigraphicUnit instance.  In the best practice case, classifer element wouldhave xlink:href pointer to the ControlledConcept. ControlledConcept element is included in line here for demonstration -->
 			<!-- for NGMDB p3, since only one classifier is allowed on each GeologicUnit, will have to generate empty classifier for cases for which have >1 associated GeoLex unit, until we think of abetter way. Logical method would be to create an artificial aggregation unit in a GeolgoicVocabulary element that is part of the gsml collection, using VocabRelation 'partOf' to aggregate units that are included, and then using the local 'aggregation unit' as the classifier here. That's a fair amount of work, probably don't want to do now. See LithologyLexicon.xml instance document for exampl of how these sort of vocab relationship would be constructed-->
-			<gsml:classifier>
-				<gsml:ControlledConcept gml:id="e9907">
-					<!-- gml:id is internal identifier, just has to be unique, don't use anything that's required to have external significance -->
-					<gml:name codeSpace="GeoLEX GenRemID">put GeoLex integer ID here e.g. 4997</gml:name>
-					<gsml:identifier codeSpace="GeoLEX SysGUID">put GeoLex SysGUID here</gsml:identifier>
-					<gsml:name codeSpace="none" xml:lang="EN">preferred formation name here, e.g. Dakota Sandstone</gsml:name>
-					<gsml:prototype xlink:href="null"/>
-					<gsml:vocabulary xlink:href="http://URL for GeoLex e.g. http://ngmdb.usgs.gov/Geolex/"/>
-					<gsml:metadata/>
-				</gsml:ControlledConcept>
-			</gsml:classifier>
+			<gsml:classifier xlink:href="http://ngmdb.usgs.gov/Geolex/99206" />
+				
 			<!-- composition is 0..*, specified by a CompositionPart element; this is used to represent composition of geologic unit in terms of EarthMaterial.CompoundMaterial (rock or unconsolidated material) -->
 			<!-- Best Practice: The material element of a CompositionPart should be included in line if it is specified by a compoundMaterial instance (material.unionSemantics = materialInstance); these represent descriptions of gsml:valuea lithologic constituent specific to the geologic unit.   Material elements for composition parts that have a material specified by a lithology term from a vocabulary (material.unionSemantics = materialTerm) should be by reference to a controlled vocabulary term-->
 			<gsml:composition>
@@ -108,9 +121,8 @@
 						<gsml:ControlledConcept gml:id="rhjle55">
 							<!-- gml:id is internal identifier, just has to be unique, don't use anything that's required to have external significance -->
 							<gml:name codeSpace="StandardLithology SysGUID">put GeoLex SysGUID here</gml:name>
-							<gsml:identifier codeSpace="none">some URN</gsml:identifier>
 							<gsml:name codeSpace="NONE" xml:lang="EN">Granite</gsml:name>
-							<gsml:prototype xlink:href="null"/>
+
 							<gsml:vocabulary xlink:href="http://URL for lexicon e.g. http://ngmdb.usgs.gov/StandardLithology/"/>
 							<gsml:metadata/>
 						</gsml:ControlledConcept>
@@ -138,6 +150,8 @@
 				</gsml:CompositionPart>
 			</gsml:composition>
 			<!-- Term(s) specifying patterns of bedding thickness or relationships between bedding packages, e.g. thinning upward, thickening upward CGI_TermValue 0..* -->
+			<gsml:bedding>
+				<gsml:BeddingDescription>
 			<gsml:beddingPattern>
 				<gsml:CGI_TermValue>
 					<gsml:value codeSpace="None">Null</gsml:value>
@@ -155,28 +169,14 @@
 					<gsml:value codeSpace="None">Null</gsml:value>
 				</gsml:CGI_TermValue>
 			</gsml:beddingThickness>
-			<!-- unitThickness is 0..*, specified by CGI_NumericValue  or CGI_NumericValueRange-->
-			<gsml:unitThickness>
-				<gsml:CGI_NumericRange>
-					<gsml:lower>
-						<gsml:CGI_NumericValue>
-							<gsml:principalValue uom="meter"> 100</gsml:principalValue>
-						</gsml:CGI_NumericValue>
-					</gsml:lower>
-					<gsml:upper>
-						<gsml:CGI_NumericValue>
-							<gsml:minusDelta uom="">0</gsml:minusDelta>
-							<gsml:plusDelta uom="">0</gsml:plusDelta>
-							<gsml:principalValue uom="meter">200</gsml:principalValue>
-						</gsml:CGI_NumericValue>
-					</gsml:upper>
-				</gsml:CGI_NumericRange>
-			</gsml:unitThickness>
-		</gsml:LithostratigraphicUnit>
+			</gsml:BeddingDescription>
+			</gsml:bedding>
+		
+		</gsml:GeologicUnit>
 	</gsml:member>
 	<gsml:member>
 		<!-- 0..* -->
-		<gsml:LithologicUnit>
+		<gsml:GeologicUnit>
 			<!-- any gml:StandardObjectProperties could be included here, 
           e.g. gml:metaDataProperty, gml:description, gml:name... -->
 			<!-- gml:boundedBy could be included here -->
@@ -240,6 +240,8 @@
 				</gsml:GeologicEvent>
 			</gsml:geologicHistory>
 			<!-- start attributes of GeologicUnit ******************************************************************************* -->
+			
+			<gsml:geologicUnitType  xlink:href="urn:cgi:classifier:CGI:GeologicUnitType:200811:lithologic_unit"/>
 			<!--bodyMorphology CGI_TermValue 0..* -->
 			<gsml:bodyMorphology>
 				<gsml:CGI_TermValue>
@@ -328,7 +330,7 @@
 					</gsml:peakTemperatureValue>
 					<!-- optional Rock as protolith 0..* -->
 					<gsml:protolithLithology>
-						<gsml:Rock>
+						<gsml:RockMaterial>
 							<gsml:purpose>instance</gsml:purpose>
 							<gsml:consolidationDegree>
 								<gsml:CGI_TermValue>
@@ -336,7 +338,7 @@
 								</gsml:CGI_TermValue>
 							</gsml:consolidationDegree>
 							<gsml:lithology xlink:href="http://my.favorite.vocabulary/sandstone.htm"/>
-						</gsml:Rock>
+						</gsml:RockMaterial>
 					</gsml:protolithLithology>
 				</gsml:MetamorphicDescription>
 			</gsml:metamorphicCharacter>
@@ -386,7 +388,7 @@
 						</gsml:CGI_TermValue>
 					</gsml:weatheringProcess>
 					<gsml:weatheringProduct>
-						<gsml:Rock>
+						<gsml:RockMaterial>
 							<gsml:purpose>instance</gsml:purpose>
 							<gsml:consolidationDegree>
 								<gsml:CGI_TermValue>
@@ -396,16 +398,16 @@
 							<gsml:lithology>
 								<gsml:ControlledConcept gml:id="cc3464267">
 									<gml:name>granitic regolith</gml:name>
-									<gsml:identifier codeSpace="none">some urn</gsml:identifier>
+									
 									<gsml:name codeSpace="none" xml:lang="EN">granitic regolith</gsml:name>
 									<gsml:vocabulary xlink:href="url for vocabulary"/>
 								</gsml:ControlledConcept>
 							</gsml:lithology>
-						</gsml:Rock>
+						</gsml:RockMaterial>
 					</gsml:weatheringProduct>
 				</gsml:WeatheringDescription>
 			</gsml:weatheringCharacter>
 			<!-- end weathering character -->
-		</gsml:LithologicUnit>
+		</gsml:GeologicUnit>
 	</gsml:member>
 </gsml:GSML>

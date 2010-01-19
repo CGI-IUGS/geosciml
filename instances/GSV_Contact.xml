@@ -1,6 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<gsml:GSML xmlns="http://www.w3.org/2001/XMLSchema" xmlns:gml="http://www.opengis.net/gml" xmlns:gsml="urn:cgi:xmlns:CGI:GeoSciML:2.0" xmlns:mo="urn:cgi:xmlns:GGIC:MineralOccurrence:1.0" xmlns:om="http://www.opengis.net/om/1.0.0" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:cgu="urn:cgi:xmlns:CGI:Utilities:1.0" xsi:schemaLocation="urn:cgi:xmlns:CGI:GeoSciML:2.0 http://www.geosciml.org/schemas/geosciml/2.0_rc1/geosciml.xsd">
+<gsml:GSML xmlns="http://www.w3.org/2001/XMLSchema" xmlns:gml="http://www.opengis.net/gml" xmlns:gsml="urn:cgi:xmlns:CGI:GeoSciML:2.0" xmlns:mo="urn:cgi:xmlns:GGIC:MineralOccurrence:1.0" xmlns:om="http://www.opengis.net/om/1.0.0" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:cgu="urn:cgi:xmlns:CGI:Utilities:1.0" xsi:schemaLocation="urn:cgi:xmlns:CGI:GeoSciML:2.0 http://www.geosciml.org/geosciml/2.0/xsd/geosciml.xsd">
 	<!-- =========================================
+
+change log:
+2010-01-19 SMR change schema location to geosciml repository,  repair so will validate with referenced schema 
+
 This instance document contains an example of a Contact between a granitic body and Ordovician metasediments 
 ========================================= -->
 	<!-- =========================================  
@@ -82,13 +86,13 @@ others can only be inferred from observing the results of the process.
 			<!-- ======================================== 
 This is the start of the BoundaryRelationship that links the two GeologicUnits to the Contact
 ========================================= -->
-			<gsml:sourceLink>
+			<gsml:targetLink>
 				<gsml:BoundaryRelationship>
 					<gsml:relationship codeSpace="urn:cgi:classifierScheme:GSV:IntrusiveRelationship">intrusive</gsml:relationship>
 					<gsml:sourceRole codeSpace="urn:cgi:classifierScheme:GSV:IntrusiveRelationshipRole">intrudes</gsml:sourceRole>
 					<gsml:targetRole codeSpace="urn:cgi:classifierScheme:GSV:IntrusiveRelationshipRole">is intruded by</gsml:targetRole>
 					<gsml:target>
-						<gsml:LithodemicUnit>
+						<gsml:GeologicUnit>
 							<!-- ========================================= 
 Using gml:name seems to be the only way to reference the external unique identifier for the associated GeologicUnits
 ========================================= -->
@@ -103,10 +107,11 @@ However, this then requires the observationMethod and purpose of the Feature to 
 								</gsml:CGI_TermValue>
 							</gsml:observationMethod>
 							<gsml:purpose>instance</gsml:purpose>
-						</gsml:LithodemicUnit>
+							<gsml:geologicUnitType  xlink:href="urn:cgi:classifier:CGI:GeologicUnitType:200811:lithologic_unit"/>
+						</gsml:GeologicUnit>
 					</gsml:target>
 					<gsml:source>
-						<gsml:LithologicUnit>
+						<gsml:GeologicUnit>
 							<gml:name codeSpace="urn:ietf:rfc:2141">urn:cgi:feature:GSV:GeoDataVic_ID:HD5I9931-EEG8-7059-DIEH-3966G699H3H1</gml:name>
 							<gsml:observationMethod>
 								<gsml:CGI_TermValue>
@@ -114,7 +119,8 @@ However, this then requires the observationMethod and purpose of the Feature to 
 								</gsml:CGI_TermValue>
 							</gsml:observationMethod>
 							<gsml:purpose>instance</gsml:purpose>
-						</gsml:LithologicUnit>
+							<gsml:geologicUnitType  xlink:href="urn:cgi:classifier:CGI:GeologicUnitType:200811:lithostratigraphic_unit"/>
+						</gsml:GeologicUnit>
 					</gsml:source>
 					<gsml:boundaryOccurrence xlink:href="id_gs01">
 						<gsml:Contact>
@@ -128,7 +134,9 @@ However, this then requires the observationMethod and purpose of the Feature to 
 						</gsml:Contact>
 					</gsml:boundaryOccurrence>
 				</gsml:BoundaryRelationship>
-			</gsml:sourceLink>
+			</gsml:targetLink>
+
+
 			<!-- ========================================= 
 Metadata - What is intended to go in gsml:metadata that is not covered by gml:metaDataProperty?
 ========================================= -->
@@ -160,13 +168,13 @@ This is the start of the ControlledConcepts
 					<gml:description><![CDATA[the boundary between an intrusive body and its host]]></gml:description>
 					<!-- gml:name is used for the GSV identifier for the concept -->
 					<gml:name codeSpace="urn:ietf:rfc:2141">urn:cgi:classifier:GSV:ContactType:UIUZH1245NN00</gml:name>
-					<!-- the gsml:identifier attribute appears redundant -->
-					<gsml:identifier codeSpace="urn:ietf:rfc:2141">urn:cgi:classifier:GSV:ContactType:UIUZH1245NN00</gsml:identifier>
+					<!-- the gml:name attribute appears redundant -->
+					<gml:name codeSpace="urn:ietf:rfc:2141">urn:cgi:classifier:GSV:ContactType:UIUZH1245NN00</gml:name>
 					<gsml:name codeSpace="urn:cgi:classifierScheme:GSV:ContactType" xml:lang="en">intrusive contact</gsml:name>
 					<gsml:vocabulary xlink:href="urn:cgi:classifierScheme:GSV:ContactType"/>
 				</gsml:ControlledConcept>
 			</gml:definitionMember>
-			<gsml:identifier codeSpace="urn:ietf:rfc:2141">urn:cgi:classifierScheme:GSV:ContactType</gsml:identifier>
+			
 		</gsml:GeologicVocabulary>
 	</gsml:member>
 	<!-- =========================================  
