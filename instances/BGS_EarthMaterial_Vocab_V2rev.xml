@@ -1,0 +1,327 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--Example of Earth Material vocabulary from BGS Rock Classification System.-->
+<GSML xmlns="urn:cgi:xmlns:CGI:GeoSciML:2.0" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:gml="http://www.opengis.net/gml" xmlns:om="http://www.opengis.net/om/1.0" xmlns:sa="http://www.opengis.net/sampling/1.0" xmlns:geox="http://www.opengis.net/geomExt/0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="
+	http://www.opengis.net/gml 		http://schemas.opengis.net/gml/3.1.1/base/gml.xsd
+	urn:cgi:xmlns:CGI:GeoSciML:2.0	 http://www.geosciml.org/geosciml/2.0/xsd/geosciml.xsd
+		http://www.opengis.net/om/1.0 		http://schemas.opengis.net/om/1.0.0/om.xsd 
+	http://www.opengis.net/sampling/1.0 	http://schemas.opengis.net/sampling/1.0.0/sampling.xsd">
+	
+	<!-- revised from BGS_EarthMaterial_Vocab_V2 by SMR 2010-01-31
+change schema location for GeoSciML:2.0 to repository.
+remove some unused namespaces with invalid schema locations.
+represent banded marble using constituentParts of a banded metalimestone category instead of 
+requiring a material relation between constituent parts. -->
+	
+	<member>
+		<GeologicVocabulary gml:id="RCS">
+			<gml:name>codeSpace="urn:ietf:rfc:2141">urn:cgi:classifier:BGS:RCS</gml:name>
+			<gml:definitionMember>
+				<ControlledConcept gml:id="RCS1">
+					<gml:description>There should be a text definition here in some language that users will understand</gml:description>
+					<gml:name codeSpace="urn:ietf:rfc:2141">urn:cgi:classifier:BGS:RCS:METR</gml:name>
+					<name xml:lang="en" codeSpace="urn:cgi:classifierScheme:BGS:RCS">METAMORPHIC ROCK</name>
+					<vocabulary xlink:href="urn:cgi:classifierScheme:BGS:RCS"/>
+					<prototype>
+						<RockMaterial>
+							<purpose>definingNorm</purpose>
+							<geneticCategory>
+								<CGI_TermValue>
+									<value codeSpace="urn:cgi:classifierScheme:BGS:geneticCatTerms">METAMORPHIC</value>
+								</CGI_TermValue>
+							</geneticCategory>
+							<consolidationDegree>
+								<CGI_TermValue>
+									<value codeSpace="urn:cgi:classifierScheme:BGS:consolidationTerms">INDURATED</value>
+								</CGI_TermValue>
+							</consolidationDegree>
+							<?This is circular - lithology should be non-mandatory for Earth Material norms?>
+							<lithology>
+								<ControlledConcept gml:id="RCS2">
+									<gml:name codeSpace="urn:ietf:rfc:2141">urn:cgi:classifier:BGS:RCS:METR</gml:name>
+									<gml:name codeSpace="urn:ietf:rfc:2141">urn:cgi:classifier:BGS:RCS:METR</gml:name>
+									<name xml:lang="en" codeSpace="urn:cgi:classifierScheme:BGS:RCS">METAMORPHIC ROCK</name>
+									<vocabulary xlink:href="urn:cgi:classifierScheme:BGS:RCS"/>
+								</ControlledConcept>
+							</lithology>
+						</RockMaterial>
+					</prototype>
+				</ControlledConcept>
+			</gml:definitionMember>
+			<gml:definitionMember>
+				<ControlledConcept gml:id="RCS3">
+					<gml:description>There should be a text definition here in some language that users will understand</gml:description>
+					<gml:name codeSpace="urn:ietf:rfc:2141">urn:cgi:classifier:BGS:RCS:MSDR</gml:name>
+					<name xml:lang="en" codeSpace="urn:cgi:classifierScheme:BGS:RCS">METASEDIMENTARY ROCK</name>
+					<vocabulary xlink:href="urn:cgi:classifierScheme:BGS:RCS"/>
+					<prototype>
+						<RockMaterial>
+							<purpose>definingNorm</purpose>
+							<geneticCategory>
+								<CGI_TermValue>
+									<value codeSpace="urn:cgi:classifierScheme:BGS:geneticCatTerms">METAMORPHIC</value>
+								</CGI_TermValue>
+							</geneticCategory>
+							<part>
+								<ConstituentPart>
+									<proportion>
+										<CGI_TermValue>
+											<value codeSpace="urn:cgi:classifierScheme:CGI:proportionTerm">all</value>
+										</CGI_TermValue>
+									</proportion>
+									<role codeSpace="urn:cgi:classifierScheme:BGS:constituentRoleTerms">Whole</role>
+									<material>
+										<RockMaterial>
+											<purpose>instance</purpose>
+											<consolidationDegree>
+												<CGI_TermValue>
+													<value codeSpace=""/>
+												</CGI_TermValue>
+											</consolidationDegree>
+											<lithology xlink:href="urn:CGI:classifier:CGI:simpleLithology:200811:metamorphic_rock"/>
+											<metamorphicProperties>
+												<MetamorphicDescription>
+													<protolithLithology xlink:href="urn:CGI:classifier:CGI:simpleLithology:200811:sedimentary_rock"/>
+												</MetamorphicDescription>
+											</metamorphicProperties>
+										</RockMaterial>
+									</material>
+								</ConstituentPart>
+							</part>
+							<consolidationDegree>
+								<CGI_TermValue>
+									<value codeSpace="urn:cgi:classifierScheme:BGS:consolidationTerms">INDURATED</value>
+								</CGI_TermValue>
+							</consolidationDegree>
+							<!--  Normative definition, so classifier is self-->
+							<lithology xlink:href="RCS3"/>
+							<fabric>
+								<FabricDescription>
+									<fabricType xlink:href="nil:missing"/>
+								</FabricDescription>
+							</fabric>
+							<metamorphicProperties>
+								<MetamorphicDescription/>
+							</metamorphicProperties>
+							<physicalProperty>
+								<PhysicalDescription/>
+							</physicalProperty>
+						</RockMaterial>
+					</prototype>
+				</ControlledConcept>
+			</gml:definitionMember>
+			<gml:definitionMember>
+				<VocabRelation gml:id="ROCKRELATION1">
+					<gml:name>METAMORPHIC ROCKS BROADER THAN METASEDIMENT</gml:name>
+					<role codeSpace="urn:cgi:classifierScheme:BGS:VocabRoleTerms">BROADER THAN</role>
+					<source xlink:href="urn:cgi:classifier:BGS:RCS:METR"/>
+					<target xlink:href="urn:cgi:classifier:BGS:RCS:MSDR"/>
+					<vocabulary xlink:href="urn:cgi:classifierScheme:BGS:RCS"/>
+				</VocabRelation>
+			</gml:definitionMember>
+			<gml:definitionMember>
+				<ControlledConcept gml:id="RCS5">
+					<gml:description>There should be a text definition here in some language that users will understand</gml:description>
+					<gml:name codeSpace="urn:ietf:rfc:2141">urn:cgi:classifier:BGS:RCS:MLMST</gml:name>
+					<name xml:lang="en" codeSpace="urn:cgi:classifierScheme:BGS:RCS">METALIMESTONE</name>
+					<vocabulary xlink:href="urn:cgi:classifierScheme:BGS:RCS"/>
+					<prototype>
+						<RockMaterial gml:id="MLMST_desc">
+							<purpose>definingNorm</purpose>
+							<geneticCategory>
+								<CGI_TermValue>
+									<value codeSpace="urn:cgi:classifierScheme:BGS:geneticCatTerms">METAMORPHIC</value>
+								</CGI_TermValue>
+							</geneticCategory>
+							<part>
+								<ConstituentPart>
+									<proportion>
+										<CGI_TermValue>
+											<value codeSpace="urn:cgi:classifierScheme:BGS:proportionTerms">ALL</value>
+										</CGI_TermValue>
+									</proportion>
+									<role codeSpace="urn:cgi:classifierScheme:BGS:constituentRoleTerms">WHOLE</role>
+									<material>
+										<RockMaterial>
+											<gml:name codeSpace="urn:cgi:classifierScheme:BGS:RCS">MLMSTDesc</gml:name>
+											<purpose>instance</purpose>
+											<consolidationDegree>
+												<CGI_TermValue>
+													<value codeSpace="urn:cgi:classifierScheme:BGS:consolidationTerms">INDURATED</value>
+												</CGI_TermValue>
+											</consolidationDegree>
+											<lithology xlink:href="urn:cgi:classifierScheme:CGI:SimpleLithology:200811:metamorphic_rock"/>
+											<metamorphicProperties>
+												<MetamorphicDescription>
+													<protolithLithology xlink:href="urn:cgi:classifierScheme:CGI:SimpleLithology:200811:limestone"/>
+												</MetamorphicDescription>
+											</metamorphicProperties>
+										</RockMaterial>
+									</material>
+								</ConstituentPart>
+							</part>
+							<consolidationDegree>
+								<CGI_TermValue>
+									<value codeSpace="urn:cgi:classifierScheme:BGS:consolidationTerms">INDURATED</value>
+								</CGI_TermValue>
+							</consolidationDegree>
+							<!--normative lithology in controlled concept definition, classifer is self -->
+							<lithology xlink:href="RCS5"/>
+						</RockMaterial>
+					</prototype>
+				</ControlledConcept>
+			</gml:definitionMember>
+			<gml:definitionMember>
+				<ControlledConcept gml:id="RCS222">
+					<gml:description>There should be a text definition here in some language that users will understand</gml:description>
+					<gml:name codeSpace="urn:ietf:rfc:2141">urn:cgi:classifier:BGS:RCS:BMLMST</gml:name>
+					<name xml:lang="en" codeSpace="urn:cgi:classifierScheme:BGS:RCS">BANDED_METALIMESTONE</name>
+					<vocabulary xlink:href="urn:cgi:classifierScheme:BGS:RCS"/>
+					<prototype>
+						<RockMaterial>
+							<purpose>definingNorm</purpose>
+							<geneticCategory>
+								<CGI_TermValue>
+									<value codeSpace="urn:cgi:classifierScheme:BGS:geneticCatTerms">METAMORPHIC</value>
+								</CGI_TermValue>
+							</geneticCategory>
+							<!-- has two constituent parts, the framework and the bands, or could represent both as bands, depending on how penetrative the bands are. Reference materials to calcsilicate and metalimestone material descriptions in those controlled concept elements -->
+							<part>
+								<ConstituentPart>
+									<proportion>
+										<CGI_TermValue>
+											<value codeSpace="urn:cgi:classifierScheme:BGS:proportionTerms">SUBSIDIARY LITHOLOGY</value>
+										</CGI_TermValue>
+									</proportion>
+									<role codeSpace="urn:cgi:classifierScheme:BGS:constituentRoleTerms">BANDS</role>
+									<!-- the material element could contain a RockMaterial with the Lithology referencing the ControlledConcept that defines calcsilicate, but this requires duplicating more content. Best practice for how to do this will emerge with usage -->
+									<material xlink:href="#CalSiR_desc"/>
+								</ConstituentPart>
+							</part>
+							<part>
+								<ConstituentPart>
+									<proportion>
+										<CGI_TermValue>
+											<value codeSpace="urn:cgi:classifierScheme:BGS:proportionTerms">MAIN LITHOLOGY</value>
+										</CGI_TermValue>
+									</proportion>
+									<role codeSpace="urn:cgi:classifierScheme:BGS:constituentRoleTerms">FRAMEWORK</role>
+									<!-- reuse normative description for metalimestone -->
+									<material xlink:href="#MLMST_desc"/>
+								</ConstituentPart>
+							</part>
+							<consolidationDegree>
+								<CGI_TermValue>
+									<value codeSpace="urn:cgi:classifierScheme:BGS:consolidationTerms">INDURATED</value>
+								</CGI_TermValue>
+							</consolidationDegree>
+							<!--normative lithology in controlled concept definition, classifer is self -->
+							<lithology xlink:href="RCS5"/>
+						</RockMaterial>
+					</prototype>
+				</ControlledConcept>
+			</gml:definitionMember>
+			<gml:definitionMember>
+				<VocabRelation gml:id="ROCKRELATION2">
+					<gml:name>METASEDIMENT BROADER THAN METALIMESTONE</gml:name>
+					<role codeSpace="urn:cgi:classifierScheme:BGS:VocabRoleTerms">BROADER THAN</role>
+					<source xlink:href="urn:cgi:classifier:BGS:RCS:MSDR"/>
+					<target xlink:href="urn:cgi:classifier:BGS:RCS:MLMST"/>
+					<vocabulary xlink:href="urn:cgi:classifierScheme:BGS:RCS"/>
+				</VocabRelation>
+			</gml:definitionMember>
+			<gml:definitionMember>
+				<VocabRelation gml:id="ROCKRELATION222">
+					<gml:name>MetaLimestone BROADER THAN BANDED_METALIMESTONE</gml:name>
+					<role codeSpace="urn:cgi:classifierScheme:BGS:VocabRoleTerms">BROADER THAN</role>
+					<source xlink:href="urn:cgi:classifier:BGS:RCS:MLMST"/>
+					<target xlink:href="urn:cgi:classifier:BGS:RCS:BMLMST"/>
+					<vocabulary xlink:href="urn:cgi:classifierScheme:BGS:RCS"/>
+				</VocabRelation>
+			</gml:definitionMember>
+			<gml:definitionMember>
+				<ControlledConcept gml:id="RCS7">
+					<gml:description>There should be a text definition here in some language that users will understand</gml:description>
+					<gml:name codeSpace="urn:ietf:rfc:2141">urn:cgi:classifier:BGS:RCS:CALSIR</gml:name>
+					<name xml:lang="en" codeSpace="urn:cgi:classifierScheme:BGS:RCS">CALCSILICATE ROCK</name>
+					<vocabulary xlink:href="urn:cgi:classifierScheme:BGS:RCS"/>
+					<prototype>
+						<RockMaterial gml:id="CalSiR_desc">
+							<purpose>definingNorm</purpose>
+							<!-- this is where calcsilicate rock is defined using GeoSciML properties -->
+							<compositionCategory>
+								<CGI_TermValue>
+									<value codeSpace="urn:cgi:classifier:UNK:compositionCategory">Calcsilicate</value>
+								</CGI_TermValue>
+							</compositionCategory>
+							<geneticCategory>
+								<CGI_TermValue>
+									<value codeSpace="urn:cgi:classifierScheme:BGS:geneticCatTerms">METAMORPHIC</value>
+								</CGI_TermValue>
+							</geneticCategory>
+							<!-- could use constituentPart to identify minerals that characterize calc silicate rocks -->
+							<consolidationDegree>
+								<CGI_TermValue>
+									<value codeSpace="urn:cgi:classifierScheme:BGS:consolidationTerms">INDURATED</value>
+								</CGI_TermValue>
+							</consolidationDegree>
+							<lithology xlink:href="#RCS7"/>
+							<!-- in a normative vocabulary, the classifer is 'self'
+							<ControlledConcept gml:id="RCS8">
+									<gml:name codeSpace="urn:ietf:rfc:2141">urn:cgi:classifier:BGS:RCS:CALSIR</gml:name>
+									<gml:name codeSpace="urn:ietf:rfc:2141">urn:cgi:classifier:BGS:RCS:CALSIR</gml:name>
+									<name xml:lang="en" codeSpace="urn:cgi:classifierScheme:BGS:RCS">CALCSILICATE ROCK</name>
+									<vocabulary xlink:href="urn:cgi:classifierScheme:BGS:RCS"/>
+								</ControlledConcept>
+							</lithology> -->
+						</RockMaterial>
+					</prototype>
+				</ControlledConcept>
+			</gml:definitionMember>
+			<gml:definitionMember>
+				<VocabRelation gml:id="ROCKRELATION3">
+					<gml:name>METASEDIMENT BROADER THAN CALCSILICATE ROCK</gml:name>
+					<role codeSpace="urn:cgi:classifierScheme:BGS:VocabRoleTerms">BROADER THAN</role>
+					<source xlink:href="urn:cgi:classifier:BGS:RCS:MSDR"/>
+					<target xlink:href="urn:cgi:classifier:BGS:RCS:CALSIR"/>
+					<vocabulary xlink:href="urn:cgi:classifierScheme:BGS:RCS"/>
+				</VocabRelation>
+			</gml:definitionMember>
+		</GeologicVocabulary>
+	</member>
+	<!-- capture banded metalimestone using constituent parts in a new lithology category -->
+	<!-- At present it isn't possible to incorporate Earth Material definitions involving a Material Relation into a vocabulary, so the definition below is given separately?>
+	<member>
+		<GeologicFeatureRelation>
+			<gml:name codeSpace="urn:cgi:classifierScheme:BGS:RCS">MECA</gml:name>
+			<gml:name codeSpace="urn:cgi:classifierScheme:BGS:RCS">METALIMESTONE  WITH BANDS OF CALCSILICATE ROCK</gml:name>
+			<relationship codeSpace="urn:cgi:classifierScheme:BGS:MaterialRelationTerms">INCLUDES BANDS OF</relationship>
+			<target>
+				<ConstituentPart>
+					<proportion>
+						<CGI_TermValue>
+							<value codeSpace="urn:cgi:classifierScheme:BGS:proportionTerms">SUBSIDIARY LITHOLOGY</value>
+						</CGI_TermValue>
+					</proportion>
+					<role codeSpace="urn:cgi:classifierScheme:BGS:constituentRoleTerms">BANDS</role>
+					<material>
+						<RockMaterial>
+							<gml:name codeSpace="urn:cgi:classifier:BGS:RCS">CALSIR</gml:name>
+							<purpose>definingNorm</purpose>
+							<lithology>
+								<ControlledConcept gml:id="RCS10">
+									<gml:name codeSpace="urn:ietf:rfc:2141">urn:cgi:classifier:BGS:RCS:CALSIR</gml:name>
+									<gml:name codeSpace="urn:ietf:rfc:2141">urn:cgi:classifier:BGS:RCS:CALSIR</gml:name>
+									<name xml:lang="en" codeSpace="urn:cgi:classifierScheme:BGS:RCS">CALCSILICATE ROCK</name>
+									<vocabulary xlink:href="urn:cgi:classifierScheme:BGS:RCS"/>
+								</ControlledConcept>
+							</lithology>
+						</RockMaterial>
+					</material>
+				</ConstituentPart>
+			</target>
+			<source>
+				
+			</source>
+		</GeologicFeatureRelation>
+	</member> -->
+</GSML>
