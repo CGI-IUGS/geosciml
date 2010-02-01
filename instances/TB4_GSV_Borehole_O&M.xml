@@ -1,0 +1,259 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Example of a GSV borehole encoded as a collection of lithology observations and age observations
+      As in this example we assume that lithologies and ages are observations, lithologies and ages are encoded according to the O&M schema -->
+<gsml:Borehole
+	xmlns:om="http://www.opengis.net/om/1.0"
+	xmlns:xs="http://www.w3.org/2001/XMLSchema"
+	xmlns:sa="http://www.opengis.net/sampling/1.0"
+	xmlns:gml="http://www.opengis.net/gml"
+	xmlns:cv="http://www.opengis.net/cv/0.2.1"
+	xmlns:xlink="http://www.w3.org/1999/xlink"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:gsml="urn:cgi:xmlns:CGI:GeoSciML:2.0"
+	xmlns:wfs="http://www.opengis.net/wfs"
+	xsi:schemaLocation="http://www.opengis.net/wfs http://schemas.opengis.net/wfs/1.1.0/wfs.xsd
+	http://www.opengis.net/cv/0.2.1 http://bp.schemas.opengis.net/06-188r1/cv/0.2.1/cv.xsd
+	http://www.opengis.net/om/1.0 http://schemas.opengis.net/om/1.0.0/om.xsd
+	http://www.opengis.net/sampling/1.0 http://schemas.opengis.net/sampling/1.0.0/sampling.xsd
+	urn:cgi:xmlns:CGI:GeoSciML:2.0 http://www.geosciml.org/geosciml/2.0/xsd/geosciml.xsd"
+	gml:id="bh.352865">
+	<gml:name
+		codeSpace="http://www.cgi-iugs.org/uri">urn:cgi:feature:GSV:bh.352865</gml:name>
+	<gml:name codeSpace="urn:cgi:def:GSV:BoreholeNameType:RIG">21/90/002</gml:name>
+	<gml:name codeSpace="urn:cgi:def:GSV:BoreholeNameType:PARISH">WARRACBARUNAH 20001</gml:name>	
+	<gml:name codeSpace="urn:cgi:def:GSV:BoreholeNameType:LOCAL">WARRACBARUNAH 2</gml:name>
+	<gml:name codeSpace="urn:cgi:def:GSV:BoreholeNameType:PREV">21/90/002 EMSCO GB 250T (#21)</gml:name>
+	<gml:name codeSpace="urn:cgi:def:GSV:BoreholeNameType:BMRNO"></gml:name>
+	<gml:name codeSpace="urn:cgi:def:GSV:BoreholeNameType:CONST"></gml:name>
+	<gml:name codeSpace="urn:cgi:def:GSV:BoreholeNameType:GRID"></gml:name>
+	<gml:name codeSpace="urn:cgi:def:GSV:BoreholeNameType:LINE"></gml:name>
+	<gml:name codeSpace="urn:cgi:def:GSV:BoreholeNameType:LOCN"></gml:name>
+	<gml:name codeSpace="urn:cgi:def:GSV:BoreholeNameType:OGRIG"></gml:name>
+	<gml:name codeSpace="urn:cgi:def:GSV:BoreholeNameType:PFILE"></gml:name>
+	<gml:name codeSpace="urn:cgi:def:GSV:BoreholeNameType:PLAT"></gml:name>
+	<gml:name codeSpace="urn:cgi:def:GSV:BoreholeNameType:PROSP"></gml:name>
+	<gml:name codeSpace="urn:cgi:def:GSV:BoreholeNameType:RWC"></gml:name>
+	<gml:name codeSpace="urn:cgi:def:GSV:BoreholeNameType:SEC"></gml:name>
+	<gml:boundedBy>
+		<!-- The envelope is not mandatory. Use the 3D projection system of Australia -->
+		<gml:Envelope
+			srsName="urn:ogc:def:crs:EPSG:XXXXXXX">
+			<gml:lowerCorner>709211 2582700 -1398.76</gml:lowerCorner>
+			<gml:upperCorner>709211 2582700 128.7</gml:upperCorner>
+		</gml:Envelope>
+	</gml:boundedBy>
+	<!-- List the geologic units crossed by the borehole as sa:sampledFeatures -->
+	<sa:sampledFeature
+		xlink:href="urn:cgi:feature:GSV:GeologicalFeatureID:16777549126930665"/>
+	<sa:sampledFeature
+		xlink:href="urn:cgi:feature:GSV:GeologicalFeatureID:16777549126930689"/>
+	<sa:sampledFeature
+		xlink:href="urn:cgi:feature:GSV:GeologicalFeatureID:16777549126931319"/>
+	<!-- Lithologies encoded according to the O&M schema 
+In TestBed 3 these were done as a series of cv:CV_DiscreteCoverage/cv:elements in the om:Observation/om:result.
+Here each borehole interval is treated as a separate Observation.  This allows describing the gsml:RockMaterial result for each interval, rather than a simple href to a lithology value.
+The downside is that each om:Observation is a separate om:relatedObservation. This makes it difficult to group sets of Observations. For Example set of Lithology Observations from Drillers Log vs Geologists log, or a set of Age observations etc. A possible solution is to use om:Observation/gml:id as a grouping device -->
+	<sa:relatedObservation>
+		<om:Observation gml:id="bh.352865.lithology.1.1">
+			<gml:description>SURFACE CLAY</gml:description>
+			<om:samplingTime>
+				<gml:TimeInstant>
+					<gml:timePosition>26/03/1991</gml:timePosition>
+				</gml:TimeInstant>
+			</om:samplingTime>
+			<om:procedure>
+				<om:Process>Drillers Log</om:Process>
+			</om:procedure>
+			<om:observedProperty
+				xlink:href="urn:cgi:propertyType:CGI:GeoSciML:2.0:CompositionPart:material"/>
+			<om:featureOfInterest
+				xlink:role="urn:cgi:featureType:CGI:GeoSciML:2.0:GeologicUnit"
+				xlink:href="urn:ogc:def:nil:OGC:unknown"/>
+			<om:result>
+				<gsml:RockMaterial>
+					<gsml:purpose>instance</gsml:purpose>
+					<gsml:consolidationDegree>
+						<gsml:CGI_TermValue>
+							<gsml:value codeSpace="urn:cgi:classifier:CGI:ConsolidationDegree:2008:unconsolidated">Unconsolidated</gsml:value>
+						</gsml:CGI_TermValue>
+					</gsml:consolidationDegree>
+					<gsml:lithology xlink:href="urn:cgi:classifier:CGI:SimpleLithology:2008:clay"></gsml:lithology>
+					<!-- A lithology mapping to CGI will be required as GEDIS Boreholes doesn't use the GUS standards -->
+				</gsml:RockMaterial>
+				<gml:LineString srsName="#bh.352865.shape" srsDimension="1">
+				<!-- An identifier is not defined for the geometry of the interval as the interval geometry is repeated for any other observations on this interval (none in GSV data - each set of observations has its own set of intervals) -->
+					<gml:pos>0</gml:pos>
+					<gml:pos>2.50</gml:pos>
+				</gml:LineString>
+			</om:result>
+		</om:Observation>
+	</sa:relatedObservation>
+	<sa:relatedObservation>
+		<om:Observation gml:id="bh.352865.lithology.1.2">
+		<!-- Second lithology observation in borehole - repeat these for each lithology value in the log -->
+			<gml:description>BASALT</gml:description>
+			<om:samplingTime>
+				<gml:TimeInstant>
+					<gml:timePosition>26/03/1991</gml:timePosition>
+				</gml:TimeInstant>
+			</om:samplingTime>
+			<om:procedure>
+				<om:Process>Drillers Log</om:Process>
+			</om:procedure>
+			<om:observedProperty
+				xlink:href="urn:cgi:propertyType:CGI:GeoSciML:2.0:CompositionPart:material"/>
+			<om:featureOfInterest
+				xlink:role="urn:cgi:featureType:CGI:GeoSciML:2.0:GeologicUnit"
+				xlink:href="urn:ogc:def:nil:OGC:unknown"/>
+			<om:result>
+				<gsml:RockMaterial>
+					<gsml:purpose>instance</gsml:purpose>
+					<gsml:consolidationDegree>
+						<gsml:CGI_TermValue>
+							<gsml:value codeSpace="urn:cgi:classifier:CGI:ConsolidationDegree:2008:consolidated">Consolidated</gsml:value>
+						</gsml:CGI_TermValue>
+					</gsml:consolidationDegree>
+					<gsml:lithology xlink:href="urn:cgi:classifier:CGI:SimpleLithology:2008:basalt"></gsml:lithology>
+					<!-- A lithology mapping to CGI will be required as GEDIS Boreholes doesn't use the GUS standards -->
+				</gsml:RockMaterial>
+				<gml:LineString srsName="#bh.352865.shape" srsDimension="1">
+				<!-- An identifier is not defined for the geometry of the interval as the interval geometry is repeated for any other observations on this interval (none in GSV data - each set of observations has its own set of intervals) -->
+					<gml:pos>2.50</gml:pos>
+					<gml:pos>11.80</gml:pos>
+				</gml:LineString>
+			</om:result>
+		</om:Observation>
+	</sa:relatedObservation> 	
+	<!-- TB3 Profile note: surveyDetails are optional include only if you have the data. -->
+	<sa:surveyDetails>
+		<sa:SurveyProcedure gml:id="bh.352865.procedure">
+					<!-- TB3 Profile Note: Use urn:ogc:def:uom:UCUM:* for units specification.
+					See https://www.seegrid.csiro.au/twiki/bin/view/CGIModel/OgcURNScheme -->
+					<!-- Cookbook note: With GML 3.2 it will be possible to specify uom simply as the
+					UCUM symbol (i.e. the bit after the last colon in the urns we are using here but
+					no need to urn escape; e.g. '%' does not need to be escaped to '%25'. -->
+			<sa:elevationAccuracy uom="urn:ogc:def:nil:OGC:unknown">0</sa:elevationAccuracy>
+			<!-- sa:elevationAccuracy requires a number. GSV does not have any values for this -->
+			<sa:positionMethod>
+				<om:Process>DMID survey</om:Process>
+			</sa:positionMethod>
+			<sa:positionAccuracy uom="urn:ogc:def:uom:UCUM:m">250</sa:positionAccuracy>
+		</sa:SurveyProcedure>
+	</sa:surveyDetails>
+	<sa:shape>
+		<!-- EPSG:7412 is a 3D coordinate projection system composed of the 2D coordinate projection system EPSG:27582 for X and Y and of the the 1D coordinate projection system EPSG:5719 for the elevation -->
+		<gml:LineString
+			gml:id="bh.352865.shape"
+			srsName="urn:ogc:def:crs:EPSG:6.15:7412"
+			srsDimension="3">
+			<gml:pointProperty xlink:href="#bh.352865.collar"></gml:pointProperty>
+			<gml:pos>709211 2582700 -1398.76</gml:pos>
+			<gml:pos>709211 2582700 128.7</gml:pos>
+		</gml:LineString>
+	</sa:shape>
+	<sa:length
+		uom="urn:ogc:def:uom:UCUM:m">1527.46</sa:length>
+	<gsml:collarLocation>
+		<gsml:BoreholeCollar gml:id="bh.352865.collar">
+			<gsml:location>
+				<!-- 2D location of the collar. EPSG:6.15:27582 is the 2D projection system of France -->
+				<gml:Point
+					srsName="urn:ogc:def:crs:EPSG:6.15:27582"
+					srsDimension="2">
+					<gml:pos>709211 2582700</gml:pos>
+				</gml:Point>
+			</gsml:location>
+			<!-- Elevation of the collar. EPSG:6.15:5719 is the elevation projection system of France -->
+			<gsml:elevation
+				srsName="urn:ogc:def:crs:EPSG:6.15:5719">137.6</gsml:elevation>
+		</gsml:BoreholeCollar>
+	</gsml:collarLocation>
+	<gsml:indexData>
+		<gsml:BoreholeDetails>
+			<gsml:operator xlink:href="urn:ogc:def:nil:OGC:withheld"/>
+			<!-- gsml:operator dataType is CI_ResponsibleParty. in GML3.1 this can be byReference only.
+GSV will need to create URNs for each of the operators in the databases or use  urn:ogc:def:nil:OGC:unknown, urn:ogc:def:nil:OGC:unspecified or urn:ogc:def:nil:OGC:withheld -->
+			<gsml:driller xlink:href="urn:ogc:def:nil:OGC:withheld"/>
+			<!-- gsml:driller dataType is CI_ResponsibleParty. in GML3.1 this can be byReference only.
+GSV will need to create URNs for each of the operators in the databases or use  urn:ogc:def:nil:OGC:unknown, urn:ogc:def:nil:OGC:unspecified or urn:ogc:def:nil:OGC:withheld -->
+<gsml:dateOfDrilling>1991-03-26</gsml:dateOfDrilling>
+			<gsml:drillingMethod>cable tool</gsml:drillingMethod>
+			<gsml:startPoint>natural ground surface</gsml:startPoint>
+			<!-- <gsml:nominalDiameter></gsml:nominalDiameter> -->
+			<!-- GSV GEDIS database does not store borehole diameter information -->
+			<gsml:inclinationType>vertical</gsml:inclinationType>					
+			<gsml:coredInterval>
+			<!-- Requires gml:Envelope, which is different to gml:LineString.  We should change this datatype to gml:LineString so gml:id can be used to refer back to the borehole geometry. -->
+				<gml:Envelope>
+					<gml:lowerCorner>709211 2582700 296.65</gml:lowerCorner>
+					<gml:upperCorner>709211 2582700 290.65</gml:upperCorner>
+				</gml:Envelope>
+			</gsml:coredInterval>
+			<gsml:coredInterval>
+				<gml:Envelope>
+					<gml:lowerCorner>709211 2582700 433.09</gml:lowerCorner>
+					<gml:upperCorner>709211 2582700 428.44</gml:upperCorner>
+				</gml:Envelope>
+			</gsml:coredInterval>
+			<gsml:coreCustodian xlink:href="urn:ogc:def:nil:OGC:withheld"></gsml:coreCustodian>
+			<!-- gsml:coreCustodian dataType is CI_ResponsibleParty. In GML3.1 this can be byReference only.
+GSV will need to create URNs for each of the core custoduians in the databases or use  urn:ogc:def:nil:OGC:unknown, urn:ogc:def:nil:OGC:unspecified or urn:ogc:def:nil:OGC:withheld or not deliver any information (cardinality is 0..1) -->
+		</gsml:BoreholeDetails>
+	</gsml:indexData>
+	<gsml:logElement>
+	<!-- Allows specifying the GeologicUnit for each interval.
+Future versions of GeoSciML will need to allow specifying additional information about the associated GeologicUnits such as when identified, who by -->
+		<gsml:MappedInterval>
+			<gml:name>Northern Margin Project stratigraphy</gml:name>
+			<gsml:observationMethod>
+				<gsml:CGI_TermValue>
+					<gsml:value codeSpace="http://www.cgi-iugs.org/uri">urn:cgi:classifier:CGI:FeatureObservationMethod:2008:drillhole_interpretation</gsml:value>
+					<!-- Vocabulary for observationMethod needs checking to see if there is an appropriate method available for interpretation of core, cuttings and wireline logs -->
+				</gsml:CGI_TermValue>
+			</gsml:observationMethod>
+			<gsml:positionalAccuracy>
+				<gsml:CGI_NumericValue>
+					<gsml:principalValue	uom="urn:ogc:def:uom:UCUM:m">0.01</gsml:principalValue>
+				</gsml:CGI_NumericValue>
+			</gsml:positionalAccuracy>
+			<gsml:samplingFrame xlink:href="#bh.352865.shape"/>
+			<!-- BGS & BRGM here use the borehole id (#bh.352865). I believe it should be the sa:shape id for the borehole (bh.352865.shape) -->
+			<gsml:specification xlink:href="urn:cgi:feature:GSV:GeologicalFeatureID:16777549126930665"/>
+			<gsml:shape>
+				<gml:LineString gml:id="bh.352865.GeologicUnit.1.1" srsName="#bh.352865.shape" srsDimension="1">
+				<!-- gml:id to come from "bh.[SITE_ID].GeologicUnit.[STRAT_LOG_SEQ_NO].[STRAT_FORMATION_SEQ_NO]". srsName to come from borehole shape. -->
+					<gml:pos>0</gml:pos>
+					<gml:pos>51.0</gml:pos>
+				</gml:LineString>
+				
+			</gsml:shape>
+		</gsml:MappedInterval>
+	</gsml:logElement>
+	<gsml:logElement>
+	<!-- Allows specifying the GeologicUnit for each interval -->
+		<gsml:MappedInterval>		
+			<gml:name>Northern Margin Project stratigraphy</gml:name>
+			<gsml:observationMethod>
+				<gsml:CGI_TermValue>
+					<gsml:value codeSpace="http://www.cgi-iugs.org/uri">urn:cgi:classifier:CGI:FeatureObservationMethod:2008:drillhole_interpretation</gsml:value>
+					<!-- Voacbulary for observationMethod needs checking to see if there is an appropriate method available for interpretation of core, cuttings and wireline logs -->
+				</gsml:CGI_TermValue>
+			</gsml:observationMethod>
+			<gsml:positionalAccuracy>
+				<gsml:CGI_NumericValue>
+					<gsml:principalValue	uom="urn:ogc:def:uom:UCUM:m">0.01</gsml:principalValue>
+				</gsml:CGI_NumericValue>
+			</gsml:positionalAccuracy>
+			<gsml:samplingFrame xlink:href="#bh.352865.shape"/>
+			<!-- BGS & BRGM here use the borehole id (#bh.352865). I believe it should be the sa:shape id for the borehole (bh.352865.shape) -->
+			<gsml:specification xlink:href="urn:cgi:feature:GSV:GeologicalFeatureID:16777549126930689"/>
+			<gsml:shape>
+				<gml:LineString gml:id="bh.352865.GeologicUnit.1.2" srsName="#bh.352865.shape" srsDimension="1">
+				<!-- gml:id to come from "bh.[SITE_ID].GeologicUnit.[STRAT_LOG_SEQ_NO].[STRAT_FORMATION_SEQ_NO]". srsName to come from borehole shape. -->
+					<gml:pos>51.0</gml:pos>
+					<gml:pos>398.0</gml:pos>
+				</gml:LineString>
+			</gsml:shape>
+		</gsml:MappedInterval>
+	</gsml:logElement>
+</gsml:Borehole>

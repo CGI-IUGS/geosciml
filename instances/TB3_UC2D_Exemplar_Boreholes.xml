@@ -35,19 +35,21 @@ record the survey information for your borehole this will need to be a log in th
 <!-- Special rules for encoding BRGM boreholes with age encoded as gml:ReferenceType values
 		- Lithology and age are observed on the same intervals -->
 <wfs:FeatureCollection 
-xmlns:wfs="http://www.opengis.net/wfs" 
-xmlns:om="http://www.opengis.net/om/1.0"
-xmlns:sa="http://www.opengis.net/sampling/1.0"
-xmlns:gml="http://www.opengis.net/gml"
-xmlns:cv="http://www.opengis.net/cv/0.2.1"
-xmlns:xlink="http://www.w3.org/1999/xlink"
-xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-xmlns:gsml="urn:cgi:xmlns:CGI:GeoSciML:2.0"
-xsi:schemaLocation="http://www.opengis.net/wfs http://schemas.opengis.net/wfs/1.1.0/wfs.xsd 
-http://www.opengis.net/cv/0.2.1 http://bp.schemas.opengis.net/06-188r1/cv/0.2.1/cv.xsd 
-http://www.opengis.net/om/1.0 http://schemas.opengis.net/om/1.0.0/om.xsd 
-http://www.opengis.net/sampling/1.0 http://schemas.opengis.net/sampling/1.0.0/sampling.xsd
-urn:cgi:xmlns:CGI:GeoSciML:2.0 http://www.geosciml.org/schemas/geosciml/2.0_rc2/geosciml.xsd">
+
+	xmlns:om="http://www.opengis.net/om/1.0"
+	xmlns:xs="http://www.w3.org/2001/XMLSchema"
+	xmlns:sa="http://www.opengis.net/sampling/1.0"
+	xmlns:gml="http://www.opengis.net/gml"
+	xmlns:cv="http://www.opengis.net/cv/0.2.1"
+	xmlns:xlink="http://www.w3.org/1999/xlink"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:gsml="urn:cgi:xmlns:CGI:GeoSciML:2.0"
+	xmlns:wfs="http://www.opengis.net/wfs"
+	xsi:schemaLocation="http://www.opengis.net/wfs http://schemas.opengis.net/wfs/1.1.0/wfs.xsd
+	http://www.opengis.net/cv/0.2.1 http://bp.schemas.opengis.net/06-188r1/cv/0.2.1/cv.xsd
+	http://www.opengis.net/om/1.0 http://schemas.opengis.net/om/1.0.0/om.xsd
+	http://www.opengis.net/sampling/1.0 http://schemas.opengis.net/sampling/1.0.0/sampling.xsd
+	urn:cgi:xmlns:CGI:GeoSciML:2.0 http://www.geosciml.org/geosciml/2.0/xsd/geosciml.xsd">
 	<!-- Cookbook note: The semantics of your bounding box (if you include one) depend on how you 
 		want your data indexed.
 	e.g. you can make a 2D bounding box to index by the 2D borehole locations, or a 3D bounding box
@@ -261,11 +263,17 @@ urn:cgi:xmlns:CGI:GeoSciML:2.0 http://www.geosciml.org/schemas/geosciml/2.0_rc2/
 			<sa:length uom="urn:ogc:def:uom:UCUM:m">130</sa:length>
 			<gsml:collarLocation>
 				<gsml:BoreholeCollar>
-					<gsml:location>
-						<gml:Point gml:id="bh.303031333558303031382F53.CollarLocation" srsName="#bh.303031333558303031382F53.Shape">
-							<gml:pos>631154.1 2622191.9 18</gml:pos>
-						</gml:Point>
-					</gsml:location>
+			<gsml:location>
+				<!-- 2D location of the collar. EPSG:6.15:27582 is the 2D projection system of France -->
+				<gml:Point
+					srsName="urn:ogc:def:crs:EPSG:6.15:27582"
+					srsDimension="2">
+					<gml:pos>709211 2582700</gml:pos>
+				</gml:Point>
+			</gsml:location>
+			<!-- Elevation of the collar. EPSG:6.15:5719 is the elevation projection system of France -->
+			<gsml:elevation
+				srsName="urn:ogc:def:crs:EPSG:6.15:5719">137.6</gsml:elevation>
 				</gsml:BoreholeCollar>
 			</gsml:collarLocation>
 		</gsml:Borehole>
