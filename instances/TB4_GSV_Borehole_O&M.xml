@@ -51,8 +51,8 @@
 		xlink:href="urn:cgi:feature:GSV:GeologicalFeatureID:16777549126931319"/>
 	<!-- Lithologies encoded according to the O&M schema 
 In TestBed 3 these were done as a series of cv:CV_DiscreteCoverage/cv:elements in the om:Observation/om:result.
-Here each borehole interval is treated as a separate Observation.  This allows describing the gsml:RockMaterial result for each interval, rather than a simple href to a lithology value.
-The downside is that each om:Observation is a separate om:relatedObservation. This makes it difficult to group sets of Observations. For Example set of Lithology Observations from Drillers Log vs Geologists log, or a set of Age observations etc. A possible solution is to use om:Observation/gml:id as a grouping device -->
+Here each borehole interval is treated as a separate Observation.  This allows describing the gsml:RockMaterial result for each interval, rather than a simple href to a lithology value.  It also allows multiple entries under om:result, so gsml:RockMaterial, gsml:Fault, gsml:Fossil, gsml:Foliation etc, could all be described from the one interval. Is this against the 'spirit' of om:Observation?
+The downside is that each om:Observation is a separate om:relatedObservation. This makes it difficult to group sets of Observations. For example, a set of Lithology Observations from Drillers Log vs Geologists log, or a set of Age observations etc. A possible solution is to use om:Observation/gml:id as a grouping device. -->
 	<sa:relatedObservation>
 		<om:Observation gml:id="bh.352865.lithology.1.1">
 			<gml:description>SURFACE CLAY</gml:description>
@@ -78,7 +78,7 @@ The downside is that each om:Observation is a separate om:relatedObservation. Th
 						</gsml:CGI_TermValue>
 					</gsml:consolidationDegree>
 					<gsml:lithology xlink:href="urn:cgi:classifier:CGI:SimpleLithology:2008:clay"></gsml:lithology>
-					<!-- A lithology mapping to CGI will be required as GEDIS Boreholes doesn't use the GUS standards -->
+					<!-- A lithology mapping to CGI will be required as GSV's GEDIS Boreholes doesn't use the GUS standards -->
 				</gsml:RockMaterial>
 				<gml:LineString srsName="#bh.352865.shape" srsDimension="1">
 				<!-- An identifier is not defined for the geometry of the interval as the interval geometry is repeated for any other observations on this interval (none in GSV data - each set of observations has its own set of intervals) -->
