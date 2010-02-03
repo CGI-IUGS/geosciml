@@ -33,10 +33,8 @@
 	<sa:sampledFeature xlink:href="urn:cgi:feature:GSV:GeologicalFeatureID:16777549126930665"/>
 	<sa:sampledFeature xlink:href="urn:cgi:feature:GSV:GeologicalFeatureID:16777549126930689"/>
 	<sa:sampledFeature xlink:href="urn:cgi:feature:GSV:GeologicalFeatureID:16777549126931319"/>
-	<!-- Lithologies encoded according to the O&M schema 
-In TestBed 3 these were done as a series of cv:CV_DiscreteCoverage/cv:elements in the om:Observation/om:result.
-Here each borehole interval is treated as a separate Observation.  This allows describing the gsml:RockMaterial result for each interval, rather than a simple href to a lithology value.  It also allows multiple entries under om:result, so gsml:RockMaterial, gsml:Fault, gsml:Fossil, gsml:Foliation etc, could all be described from the one interval. Is this against the 'spirit' of om:Observation?
-The downside is that each om:Observation is a separate om:relatedObservation. This makes it difficult to group sets of Observations. For example, a set of Lithology Observations from Drillers Log vs Geologists log, or a set of Age observations etc. A possible solution is to use om:Observation/gml:id as a grouping device. -->
+	<!-- Lithologies encoded according to the O&M schema.
+In TestBed 3 the results were for a gsml:lithology value with a series of a hrefs to a lithology vocabulary value. Here the result value is the gsml:material property.  This allows describing the gsml:RockMaterial result for each interval, rather than just a simple lithology value.  Is this against the 'spirit' of om:Observation? -->
 	<sa:relatedObservation>
 		<om:Observation>
 			<om:samplingTime>
@@ -113,7 +111,8 @@ The downside is that each om:Observation is a separate om:relatedObservation. Th
 				</cv:CV_DiscreteCoverage>
 			</om:result>
 		</om:Observation>
-	</sa:relatedObservation>
+	</sa:relatedObservation>				
+	<!-- Set of Age Observations for different intervals.  These intervals are the same as those that the GeologicUnit is described for and so refer to those geometries rather than repeated here -->
 	<sa:relatedObservation>
 		<!-- Set of EventAge observations down the borehole. The geometry of these is the same as the MappedInterval geometries used for the GeologicUnit specification so they are referred to here rather than being repeated -->
 		<om:Observation>
@@ -135,7 +134,7 @@ The downside is that each om:Observation is a separate om:relatedObservation. Th
 						<cv:CV_GeometryValuePair>
 							<cv:geometry>
 								<cv:CV_DomainObject>
-									<!-- The geometry of these is the same as the MappedInterval geometries used for the GeologicUnit specification so they are referred to here rather than being repeated -->
+									<!-- The geometry of these is the same as the GeologicUnit geometries so they are referred to here rather than being repeated -->
 									<cv:spatialElement xlink:href="#bh.352865.GeologicUnit.1.1"/>
 								</cv:CV_DomainObject>
 							</cv:geometry>
@@ -160,7 +159,7 @@ The downside is that each om:Observation is a separate om:relatedObservation. Th
 						<cv:CV_GeometryValuePair>
 							<cv:geometry>
 								<cv:CV_DomainObject>
-									<!-- The geometry of these is the same as the MappedInterval geometries used for the GeologicUnit specification so they are referred to here rather than being repeated -->
+									<!-- The geometry of these is the same as the GeologicUnit geometries so they are referred to here rather than being repeated -->
 									<cv:spatialElement xlink:href="#bh.352865.GeologicUnit.1.2"/>
 								</cv:CV_DomainObject>
 							</cv:geometry>
@@ -173,10 +172,159 @@ The downside is that each om:Observation is a separate om:relatedObservation. Th
 									</gsml:eventAge>
 									<gsml:eventProcess>
 										<gsml:CGI_TermValue>
+											<gsml:value codeSpace="http://www.cgi-iugs.org/uri">urn:cgi:classifier:CGI:EventProcess:2008:extrusion</gsml:value>
+										</gsml:CGI_TermValue>
+									</gsml:eventProcess>
+								</gsml:GeologicEvent>
+							</cv:value>
+						</cv:CV_GeometryValuePair>
+					</cv:element>
+					<cv:element>					
+					<!-- Third age observation in borehole related to the third GeologicUnit Observation -->
+						<cv:CV_GeometryValuePair>
+							<cv:geometry>
+								<cv:CV_DomainObject>
+								<!-- The geometry of these is the same as the GeologicUnit geometries so they are referred to here rather than being repeated -->
+									<cv:spatialElement xlink:href="#bh.352865.GeologicUnit.1.3"/>
+								</cv:CV_DomainObject>
+							</cv:geometry>
+							<cv:value>
+								<gsml:GeologicEvent>
+									<gsml:eventAge>
+									<gsml:CGI_TermRange>
+										<gsml:lower>
+											<gsml:CGI_TermValue>
+												<gsml:value codeSpace="http://www.cgi-iugs.org/uri">urn:cgi:classifier:ICS:StratChart:2008:Oligocene</gsml:value>
+											</gsml:CGI_TermValue>
+										</gsml:lower>
+										<gsml:upper>
+											<gsml:CGI_TermValue>
+												<gsml:value codeSpace="http://www.cgi-iugs.org/uri">urn:cgi:classifier:ICS:StratChart:2008:Miocene</gsml:value>
+											</gsml:CGI_TermValue>
+										</gsml:upper>
+									</gsml:CGI_TermRange>
+									</gsml:eventAge>
+									<gsml:eventProcess>
+										<gsml:CGI_TermValue>
 											<gsml:value codeSpace="http://www.cgi-iugs.org/uri">urn:cgi:classifier:CGI:EventProcess:2008:deposition</gsml:value>
 										</gsml:CGI_TermValue>
 									</gsml:eventProcess>
 								</gsml:GeologicEvent>
+							</cv:value>
+						</cv:CV_GeometryValuePair>
+					</cv:element>
+				</cv:CV_DiscreteCoverage>
+			</om:result>
+		</om:Observation>
+	</sa:relatedObservation>
+	<!-- Set of GeologicUnits observations down the borehole. The geometry of these is the same as the  geometries used for the EventAge specification so they are identified here and referred to in the EventAge geometries rather than being repeated -->
+	<sa:relatedObservation>
+		<om:Observation>
+			<om:samplingTime>
+				<gml:TimeInstant>
+					<gml:timePosition>12-August-2003</gml:timePosition>
+				</gml:TimeInstant>
+			</om:samplingTime>
+			<om:procedure/>
+			<!-- Procedure for age determination not specified in GSV's dbMap database -->
+			<om:observedProperty xlink:href="urn:cgi:propertyType:CGI:GeoSciML:2.0:GeologicEvent:eventAge"/>
+			<!-- GeoSciML 3.0 has different GeologicEvent properties that will need to be remapped -->
+			<om:featureOfInterest xlink:role="urn:cgi:featureType:CGI:GeoSciML:2.0:GeologicUnit" xlink:href="urn:cgi:feature:GSV:GeologicalFeatureID:16777549126930665"/>
+			<om:result>
+				<cv:CV_DiscreteCoverage>
+					<cv:domainExtent xlink:href="#bh.352865.Shape"/>
+					<cv:rangeType xlink:href="urn:ogc:def:nil:OGC:unknown"/>
+					<cv:element>
+						<cv:CV_GeometryValuePair>
+							<cv:geometry>
+								<cv:CV_DomainObject>
+									<!-- The geometry of these is the same as the  geometries used for the eventAge observations so they are provided with a gml:id so they can be href to. -->
+									<cv:spatialElement>
+										<gml:LineString gml:id="bh.352865.GeologicUnit.1.1" srsName="#bh.352865.shape" srsDimension="1">
+											<!-- gml:id to come from "bh.[SITE_ID].GeologicUnit.[STRAT_LOG_SEQ_NO].[STRAT_FORMATION_SEQ_NO]". srsName to come from borehole shape. -->
+											<gml:pos>0</gml:pos>
+											<gml:pos>3.7</gml:pos>
+										</gml:LineString>
+									</cv:spatialElement>
+								</cv:CV_DomainObject>
+							</cv:geometry>
+							<cv:value>
+								<gsml:GeologicUnit>
+									<gml:name codeSpace="http://www.cgi-iugs.org/uri">urn:cgi:feature:GSV:GeologicalFeatureID:16777549126930665</gml:name>
+									<gml:name>unnamed alluvium</gml:name>
+									<gml:name>Qa</gml:name>
+									<gsml:observationMethod>
+										<gsml:CGI_TermValue>
+											<gsml:value codeSpace="http://www.cgi-iugs.org/uri">urn:cgi:classifier:CGI:FeatureObservationMethod:2008:drillhole_interpretation></gsml:value>
+										</gsml:CGI_TermValue>
+									</gsml:observationMethod>
+									<gsml:purpose>instance</gsml:purpose>
+									<gsml:geologicUnitType xlink:href="urn:cgi:classifier:CGI:GeologicUnitType200811:lithostratigraphic_unit"/>
+									<gsml:classifier xlink:href="urn:cgi:feature:GSV:GeologicalFeatureID:16777549126930665"></gsml:classifier>
+								</gsml:GeologicUnit>
+							</cv:value>
+						</cv:CV_GeometryValuePair>
+					</cv:element>
+					<cv:element>
+						<cv:CV_GeometryValuePair>
+							<cv:geometry>
+								<cv:CV_DomainObject>
+									<!-- The geometry of these is the same as the  geometries used for the eventAge observations so they are provided with a gml:id so they can be href to. -->
+									<cv:spatialElement>
+										<gml:LineString gml:id="bh.352865.GeologicUnit.1.2" srsName="#bh.352865.shape" srsDimension="1">
+											<!-- gml:id to come from "bh.[SITE_ID].GeologicUnit.[STRAT_LOG_SEQ_NO].[STRAT_FORMATION_SEQ_NO]". srsName to come from borehole shape. -->
+											<gml:pos>3.7</gml:pos>
+											<gml:pos>51.0</gml:pos>
+										</gml:LineString>
+									</cv:spatialElement>
+								</cv:CV_DomainObject>
+							</cv:geometry>
+							<cv:value>
+								<gsml:GeologicUnit>
+									<gml:name codeSpace="http://www.cgi-iugs.org/uri">urn:cgi:feature:GSV:GeologicalFeatureID:16777549126930689</gml:name>
+									<gml:name>Newer Volcanics</gml:name>
+									<gml:name>Qvn</gml:name>
+									<gsml:observationMethod>
+										<gsml:CGI_TermValue>
+											<gsml:value codeSpace="http://www.cgi-iugs.org/uri">urn:cgi:classifier:CGI:FeatureObservationMethod:2008:drillhole_interpretation></gsml:value>
+										</gsml:CGI_TermValue>
+									</gsml:observationMethod>
+									<gsml:purpose>instance</gsml:purpose>
+									<gsml:geologicUnitType xlink:href="urn:cgi:classifier:CGI:GeologicUnitType200811:lithostratigraphic_unit"/>
+									<gsml:classifier xlink:href="urn:cgi:feature:GSV:GeologicalFeatureID:16777549126930689"></gsml:classifier>
+								</gsml:GeologicUnit>
+							</cv:value>
+						</cv:CV_GeometryValuePair>
+					</cv:element>
+					
+					<cv:element>
+						<cv:CV_GeometryValuePair>
+							<cv:geometry>
+								<cv:CV_DomainObject>
+									<!-- The geometry of these is the same as the  geometries used for the eventAge observations so they are provided with a gml:id so they can be href to. -->
+									<cv:spatialElement>
+										<gml:LineString gml:id="bh.352865.GeologicUnit.1.3" srsName="#bh.352865.shape" srsDimension="1">
+											<!-- gml:id to come from "bh.[SITE_ID].GeologicUnit.[STRAT_LOG_SEQ_NO].[STRAT_FORMATION_SEQ_NO]". srsName to come from borehole shape. -->
+											<gml:pos>51.0</gml:pos>
+											<gml:pos>398.0</gml:pos>
+										</gml:LineString>
+									</cv:spatialElement>
+								</cv:CV_DomainObject>
+							</cv:geometry>
+							<cv:value>
+								<gsml:GeologicUnit>
+									<gml:name codeSpace="http://www.cgi-iugs.org/uri">urn:cgi:feature:GSV:GeologicalFeatureID:16777549126931319</gml:name>
+									<gml:name>Gellibrand Marl</gml:name>
+									<gml:name>Ntg</gml:name>
+									<gsml:observationMethod>
+										<gsml:CGI_TermValue>
+											<gsml:value codeSpace="http://www.cgi-iugs.org/uri">urn:cgi:classifier:CGI:FeatureObservationMethod:2008:drillhole_interpretation></gsml:value>
+										</gsml:CGI_TermValue>
+									</gsml:observationMethod>
+									<gsml:purpose>instance</gsml:purpose>
+									<gsml:geologicUnitType xlink:href="urn:cgi:classifier:CGI:GeologicUnitType200811:lithostratigraphic_unit"/>
+									<gsml:classifier xlink:href="urn:cgi:feature:GSV:GeologicalFeatureID:16777549126931319"></gsml:classifier>
+								</gsml:GeologicUnit>
 							</cv:value>
 						</cv:CV_GeometryValuePair>
 					</cv:element>
@@ -252,59 +400,5 @@ GSV will need to create URNs for each of the operators in the databases or use  
 GSV will need to create URNs for each of the core custoduians in the databases or use  urn:ogc:def:nil:OGC:unknown, urn:ogc:def:nil:OGC:unspecified or urn:ogc:def:nil:OGC:withheld or not deliver any information (cardinality is 0..1) -->
 		</gsml:BoreholeDetails>
 	</gsml:indexData>
-	<gsml:logElement>
-		<!-- Allows specifying the GeologicUnit for each interval.
-Future versions of GeoSciML will need to allow specifying additional information about the associated GeologicUnits such as when identified, who by -->
-		<gsml:MappedInterval>
-			<gml:name>Northern Margin Project stratigraphy</gml:name>
-			<gsml:observationMethod>
-				<gsml:CGI_TermValue>
-					<gsml:value codeSpace="http://www.cgi-iugs.org/uri">urn:cgi:classifier:CGI:FeatureObservationMethod:2008:drillhole_interpretation</gsml:value>
-					<!-- Vocabulary for observationMethod needs checking to see if there is an appropriate method available for interpretation of core, cuttings and wireline logs -->
-				</gsml:CGI_TermValue>
-			</gsml:observationMethod>
-			<gsml:positionalAccuracy>
-				<gsml:CGI_NumericValue>
-					<gsml:principalValue uom="urn:ogc:def:uom:UCUM:m">0.01</gsml:principalValue>
-				</gsml:CGI_NumericValue>
-			</gsml:positionalAccuracy>
-			<gsml:samplingFrame xlink:href="#bh.352865.shape"/>
-			<!-- BGS & BRGM here use the borehole id (#bh.352865). I believe it should be the sa:shape id for the borehole (bh.352865.shape) -->
-			<gsml:specification xlink:href="urn:cgi:feature:GSV:GeologicalFeatureID:16777549126930665"/>
-			<gsml:shape>
-				<gml:LineString gml:id="bh.352865.GeologicUnit.1.1" srsName="#bh.352865.shape" srsDimension="1">
-					<!-- gml:id to come from "bh.[SITE_ID].GeologicUnit.[STRAT_LOG_SEQ_NO].[STRAT_FORMATION_SEQ_NO]". srsName to come from borehole shape. -->
-					<gml:pos>0</gml:pos>
-					<gml:pos>51.0</gml:pos>
-				</gml:LineString>
-			</gsml:shape>
-		</gsml:MappedInterval>
-	</gsml:logElement>
-	<gsml:logElement>
-		<!-- Allows specifying the GeologicUnit for each interval -->
-		<gsml:MappedInterval>
-			<gml:name>Northern Margin Project stratigraphy</gml:name>
-			<gsml:observationMethod>
-				<gsml:CGI_TermValue>
-					<gsml:value codeSpace="http://www.cgi-iugs.org/uri">urn:cgi:classifier:CGI:FeatureObservationMethod:2008:drillhole_interpretation</gsml:value>
-					<!-- Voacbulary for observationMethod needs checking to see if there is an appropriate method available for interpretation of core, cuttings and wireline logs -->
-				</gsml:CGI_TermValue>
-			</gsml:observationMethod>
-			<gsml:positionalAccuracy>
-				<gsml:CGI_NumericValue>
-					<gsml:principalValue uom="urn:ogc:def:uom:UCUM:m">0.01</gsml:principalValue>
-				</gsml:CGI_NumericValue>
-			</gsml:positionalAccuracy>
-			<gsml:samplingFrame xlink:href="#bh.352865.shape"/>
-			<!-- BGS & BRGM here use the borehole id (#bh.352865). I believe it should be the sa:shape id for the borehole (bh.352865.shape) -->
-			<gsml:specification xlink:href="urn:cgi:feature:GSV:GeologicalFeatureID:16777549126930689"/>
-			<gsml:shape>
-				<gml:LineString gml:id="bh.352865.GeologicUnit.1.2" srsName="#bh.352865.shape" srsDimension="1">
-					<!-- gml:id to come from "bh.[SITE_ID].GeologicUnit.[STRAT_LOG_SEQ_NO].[STRAT_FORMATION_SEQ_NO]". srsName to come from borehole shape. -->
-					<gml:pos>51.0</gml:pos>
-					<gml:pos>398.0</gml:pos>
-				</gml:LineString>
-			</gsml:shape>
-		</gsml:MappedInterval>
-	</gsml:logElement>
+	
 </gsml:Borehole>
