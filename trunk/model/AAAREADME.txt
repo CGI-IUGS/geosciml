@@ -1,12 +1,15 @@
-This directory contains XMI documents representing the various packages of the GeoSciML UML model: 
+This directory is obsolete.  Trunk development of the GeoSciML UML model is now conducted in the following directories:
 
-CGIWorld.xml - top level model, containing stubs for the sub-packages
-GeoSciML.xml - the core GeoSciML model containing MappedFeature, GeologicFeature, GeologicUnit, GeologicStructure, etc
-GeologicTime.xml - geologic timescale model
+../GeoSciML/borehole/trunk
+../GeoSciML/core/trunk
+../GeoSciML/fossil/trunk
+../GeoSciML/geochemistry/trunk
+../GeoSciML/specimen/trunk
+../GeoSciML/timescale/trunk
+../GeoSciML/utilities/trunk
+../GeoSciML/vocabulary/trunk
 
-GGIPACWorld - GGIC (Australia) extension for mineral occurrences
+OLR  4-02-2010
 
-For instructions for how to load these into Enterprise Architect, see https://www.seegrid.csiro.au/twiki/bin/view/CGIModel/ConfiguringEnterpriseArchitectForGeoSciML 
 
-SJDC 2007-07-04
-BAS 2009-04-23
+
