@@ -1,7 +1,5 @@
 GeoSciML version 2.1 schema files
 
-These schema files are minor extensions of the v2.0 GeoSciML schemas.
+These schema files are minor extensions of the v2.0 GeoSciML schemas.  Refer to documentation in the 'doc' directory.
 
-Note that there is currently no supporting HTML documentation until we sort out some FullMoon issues.
-
-Ollie Raymond 10 Feb 2010
+Ollie Raymond 3 Mar 2010
