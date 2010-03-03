@@ -6,12 +6,12 @@
 		xmlns:gml="http://www.opengis.net/gml" 
 		xmlns:xlink="http://www.w3.org/1999/xlink" 
 		xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
-		xsi:schemaLocation="http://www.opengis.net/wfs http://schemas.opengis.net/wfs/1.1.0/wfs.xsd urn:cgi:xmlns:CGI:GeoSciML:2.1 file:/C:/oraymond/GeoSciML_Model/catalog_home/cgi-iugs.org/geosciml/2.1/xsd/geosciml.xsd" gml:id="test1">
+		xsi:schemaLocation="http://www.opengis.net/wfs http://schemas.opengis.net/wfs/1.1.0/wfs.xsd urn:cgi:xmlns:CGI:GeoSciML:2.1 http://www.geosciml.org/geosciml/2.1/xsd/geosciml.xsd" gml:id="test1">
 		<gml:featureMember>
 			<gsml:MappedFeature gml:id="MappedFeature_8630">
 				<gsml:observationMethod>
 					<gsml:CGI_TermValue>
-						<gsml:value codeSpace="A_vocab">air photo</gsml:value>
+						<gsml:value codeSpace="Mapped_feature_observation_method_vocab">air photo</gsml:value>
 					</gsml:CGI_TermValue>
 				</gsml:observationMethod>
 				<gsml:positionalAccuracy>
@@ -24,24 +24,24 @@
 					<gsml21:ShearDisplacementStructure>
 						<gsml:observationMethod>
 							<gsml:CGI_TermValue>
-								<gsml:value codeSpace="A_vocab">mapping</gsml:value>
+								<gsml:value codeSpace="Structure_observation_method_vocab">mapping</gsml:value>
 							</gsml:CGI_TermValue>
 						</gsml:observationMethod>
 						<gsml:purpose>instance</gsml:purpose>
-						<gsml21:faultType>                                                     <!-- xlink:href works here too -->
+						<gsml21:faultType>                                                     <!-- An xlink:href works here too -->
 							<gsml:ControlledConcept gml:id="rev_flt">
 								<gml:name>reverse fault</gml:name>
 								<gsml:name xml:lang="en">reverse fault</gsml:name>
 								<gsml:vocabulary>
-									<gsml:GeologicVocabulary gml:id="CGI_fault_types">
-										<gml:name>CGI fault types vocab</gml:name>
+									<gsml:GeologicVocabulary gml:id="fault_types">
+										<gml:name>My fault types vocabulary</gml:name>
 									</gsml:GeologicVocabulary>
 								</gsml:vocabulary>
 							</gsml:ControlledConcept>
 						</gsml21:faultType>
 					</gsml21:ShearDisplacementStructure>
 				</gsml:specification>
-				<gsml:shape></gsml:shape>
+				<gsml:shape></gsml:shape>  <!-- A coordinate string -->
 			</gsml:MappedFeature>
 		</gml:featureMember>
 </wfs:FeatureCollection>
