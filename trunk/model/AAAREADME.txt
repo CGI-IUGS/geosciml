@@ -1,15 +1,18 @@
-This directory is obsolete.  Trunk development of the GeoSciML UML model is now conducted in the following directories:
+This directory is obsolete.  Trunk development of the GeoSciML model is now conducted in the following directories:
 
-../GeoSciML/borehole/trunk
-../GeoSciML/core/trunk
-../GeoSciML/fossil/trunk
-../GeoSciML/geochemistry/trunk
-../GeoSciML/specimen/trunk
-../GeoSciML/timescale/trunk
-../GeoSciML/utilities/trunk
-../GeoSciML/vocabulary/trunk
+../../GeoSciML/model
+../../GeoSciML/borehole/trunk
+../../GeoSciML/core/trunk
+../../GeoSciML/fossil/trunk
+../../GeoSciML/geochemistry/trunk
+../../GeoSciML/specimen/trunk
+../../GeoSciML/timescale/trunk
+../../GeoSciML/utilities/trunk
+../../GeoSciML/vocabulary/trunk
 
-OLR  4-02-2010
+Previously released versions of GeoSciML are found in ../../GeoSciML/tags
+
+OLR  24-March-2010
 
 
 
