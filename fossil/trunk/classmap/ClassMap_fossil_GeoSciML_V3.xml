@@ -3,31 +3,34 @@
 	xmlns:xsd="http://www.w3.org/2001/XMLSchema"
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xmlns:gsml="urn:cgi:xmlns:CGI:GeoSciML:3.0"
-	xmlns:gfos="urn:cgi:cmlns:CGI:xxxxxxxxxxxxx:3.0"   <!--  Need to register Fossil namespace?  -->
+	xmlns:gfos="urn:cgi:xmlns:CGI:Fossil:3.0"   <!--  Do we need to register a Fossil namespace?  -->
 	xmlns="urn:x-auscope:xmlns:CSIRO:FullMoon:package-class-map:3.0"
 	xsi:schemaLocation="urn:x-auscope:xmlns:CSIRO:FullMoon:package-class-map:3.0 http://projects.arcs.org.au/svn/fullmoon/trunk/resources/dependency-util/package-class-map.xsd"
 	id="ClassMap_fossil_GeoSciML_V3.xml">
 	<description>Provides a mapping of classes from the fossil module of GeoSciML to elements from GeoSciML XML Schema Version 3.0.</description>
-	<imports>
-		<schema prefix="gsml" namespace="urn:cgi:xmlns:CGI:GeoSciML:3.0" schemaLocation="http://www.geosciml.org/geosciml/3.0/xsd/geosciml.xsd" />
+	<imports>  <!-- What goes in here? -->
+<!--		<schema prefix="gsml" namespace="urn:cgi:xmlns:CGI:GeoSciML:3.0" schemaLocation="http://www.geosciml.org/geosciml/3.0/xsd/geosciml.xsd" />-->
+		<schema prefix="gfos" namespace="urn:cgi:xmlns:CGI:Fossil:3.0" schemaLocation="http://www.geosciml.org/fossil/3.0/xsd/fossil.xsd" />		
 	</imports>
 	<entry>
 		<umlClass>FossilMold</umlClass>
-		<gmlObjectElement>gsml:FossilMold</gmlObjectElement>
-		<gmlType>gsml:FossilMoldType</gmlType>
-		<gmlPropertyType>gsml:FossilMoldPropertyType</gmlPropertyType>
+		<umlStereotype>FeatureType</umlStereotype>
+		<gmlObjectElement>gfos:FossilMold</gmlObjectElement>
+		<gmlType>gfos:FossilMoldType</gmlType>
+		<gmlPropertyType>gfos:FossilMoldPropertyType</gmlPropertyType>
 	</entry>
 	<entry>
 		<umlClass>Organism</umlClass>
-		<umlStereotype>Type</umlStereotype>
-		<gmlObjectElement>gsml:Organism</gmlObjectElement>
-		<gmlType>gsml:OrganismType</gmlType>
-		<gmlPropertyType>gsml:OrganismPropertyType</gmlPropertyType>
+		<umlStereotype>FeatureType</umlStereotype>
+		<gmlObjectElement>gfos:Organism</gmlObjectElement>
+		<gmlType>gfos:OrganismType</gmlType>
+		<gmlPropertyType>gfos:OrganismPropertyType</gmlPropertyType>
 	</entry>
 	<entry>
 		<umlClass>TraceFossil</umlClass>
-		<gmlObjectElement>gsml:TraceFossil</gmlObjectElement>
-		<gmlType>gsml:TraceFossilType</gmlType>
-		<gmlPropertyType>gsml:TraceFossilPropertyType</gmlPropertyType>
+		<umlStereotype>FeatureType</umlStereotype>
+		<gmlObjectElement>gfos:TraceFossil</gmlObjectElement>
+		<gmlType>gfos:TraceFossilType</gmlType>
+		<gmlPropertyType>gfos:TraceFossilPropertyType</gmlPropertyType>
 	</entry>
 </mapping>
