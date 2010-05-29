@@ -1,121 +1,72 @@
-<!-- Editing of this ClassMap file is NOT complete -->
-
 <?xml version="1.0" encoding="UTF-8"?>
 <mapping xmlns:xsd="http://www.w3.org/2001/XMLSchema"
-  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
   xmlns:isp="https://www.seegrid.csiro.au/subversion/GeoSciML/ISO19115_Proxy/xsd"
   xmlns="urn:x-auscope:xmlns:CSIRO:FullMoon:package-class-map:2.0"
   xsi:schemaLocation="urn:x-auscope:xmlns:CSIRO:FullMoon:package-class-map:2.0 http://projects.arcs.org.au/svn/fullmoon/trunk/resources/dependency-util/package-class-map.xsd"
   id="ClassMap_ISO19115_Proxy.xml">
-	
-	<!-- Do we need to change anything in the FullMoon lines?? -->
-	
-	<description>Provides a mapping of some of the classes in the ISO 19115 model to a GML3.1-compliant temporary proxy implementation of the schema.  Designed for use with GeoSciML 3.0 BETA until a GML3.2-capable implementation platform is availalbe.</description>
+  <description>Provides a mapping of some of the classes in the ISO 19115 model to a GML3.1-compliant temporary proxy implementation of the schema. Designed for use with GeoSciML 3.0 BETA until a GML3.2-capable implementation platform is available.</description>
   <imports>
-<!--    <schema prefix="gmd" namespace="http://www.isotc211.org/2005/gmd"
-      schemaLocation="http://schemas.opengis.net/iso/19139/20070417/gmd/gmd.xsd"/>
-    <schema prefix="xsd" namespace="http://www.w3.org/2001/XMLSchema"/>        -->
+    <schema prefix="isp" namespace="urn:cgi:xmlns:CGI:ISOProxy:3.0" schemaLocation="http://www.geosciml.org/geosciml/3.0/xsd/ISOProxy.xsd"/>
   </imports>
   <entry>
-    <umlClass>DateTime</umlClass>
-    <gmlObjectElement xsi:nil="true"/>
-    <gmlType xsi:nil="true"/>
-    <gmlPropertyType>xsd:dateTime</gmlPropertyType>
-  </entry>
-  <entry>
-    <umlClass>MD_Metadata</umlClass>
-    <gmlObjectElement>gmd:MD_Metadata</gmlObjectElement>
-    <gmlType>gmd:MD_Metadata_Type</gmlType>
-    <gmlPropertyType>gmd:MD_Metadata_PropertyType</gmlPropertyType>
-  </entry>
-  <entry>
-    <umlClass>CI_Address</umlClass>
-    <gmlObjectElement>gmd:CI_Address</gmlObjectElement>
-    <gmlType>gmd:CI_Address_Type</gmlType>
-    <gmlPropertyType>gmd:CI_Address_PropertyType</gmlPropertyType>
-  </entry>
-  <entry>
     <umlClass>CI_Citation</umlClass>
-    <gmlObjectElement>gmd:CI_Citation</gmlObjectElement>
-    <gmlType>gmd:CI_Citation_Type</gmlType>
-    <gmlPropertyType>gmd:CI_Citation_PropertyType</gmlPropertyType>
-  </entry>
-  <entry>
-    <umlClass>CI_Contact</umlClass>
-    <gmlObjectElement>gmd:CI_Contact</gmlObjectElement>
-    <gmlType>gmd:CI_Contact_Type</gmlType>
-    <gmlPropertyType>gmd:CI_Contact_PropertyType</gmlPropertyType>
+    <gmlObjectElement>isp:CI_Citation</gmlObjectElement>   <!-- original namespace = gmd -->
+    <gmlType>isp:CI_Citation_Type</gmlType>
+    <gmlPropertyType>isp:CI_Citation_PropertyType</gmlPropertyType>
   </entry>
   <entry>
     <umlClass>CI_ResponsibleParty</umlClass>
-    <gmlObjectElement>gmd:CI_ResponsibleParty</gmlObjectElement>
-    <gmlType>gmd:CI_ResponsibleParty_Type</gmlType>
-    <gmlPropertyType>gmd:CI_ResponsibleParty_PropertyType</gmlPropertyType>
+    <gmlObjectElement>isp:CI_ResponsibleParty</gmlObjectElement>    <!-- original namespace = gmd -->
+    <gmlType>isp:CI_ResponsibleParty_Type</gmlType>
+    <gmlPropertyType>isp:CI_ResponsibleParty_PropertyType</gmlPropertyType>
   </entry>
   <entry>
     <umlClass>CI_RoleCode</umlClass>
-    <gmlObjectElement>gmd:CI_RoleCode</gmlObjectElement>
+    <gmlObjectElement>isp:CI_RoleCode</gmlObjectElement>    <!-- original namespace = gmd -->
     <gmlType>gco:CodeListValue_Type</gmlType>
-    <gmlPropertyType>gmd:CI_RoleCode_PropertyType</gmlPropertyType>
-  </entry>
-  <entry>
-    <umlClass>CI_Telephone</umlClass>
-    <gmlObjectElement>gmd:CI_Telephone</gmlObjectElement>
-    <gmlType>gmd:CI_Telephone_Type</gmlType>
-    <gmlPropertyType>gmd:CI_Telephone_PropertyType</gmlPropertyType>
-  </entry>
-  <entry>
-    <umlClass>DQ_AbsoluteExternalPositionalAccuracy</umlClass>
-    <gmlObjectElement>gmd:DQ_AbsoluteExternalPositionalAccuracy</gmlObjectElement>
-    <gmlType>gmd:DQ_AbsoluteExternalPositionalAccuracy_Type</gmlType>
-    <gmlPropertyType>gmd:DQ_AbsoluteExternalPositionalAccuracy_PropertyType</gmlPropertyType>
-  </entry>
-  <entry>
-    <umlClass>DQ_DataQuality</umlClass>
-    <gmlObjectElement>gmd:DQ_DataQuality</gmlObjectElement>
-    <gmlType>gmd:DQ_DataQuality_Type</gmlType>
-    <gmlPropertyType>gmd:DQ_DataQuality_PropertyType</gmlPropertyType>
+    <gmlPropertyType>isp:CI_RoleCode_PropertyType</gmlPropertyType>
   </entry>
   <entry>
     <umlClass>DQ_Element</umlClass>
-    <gmlObjectElement>gmd:AbstractDQ_Element</gmlObjectElement>
-    <gmlType>gmd:AbstractDQ_Element_Type</gmlType>
-    <gmlPropertyType>gmd:DQ_Element_PropertyType</gmlPropertyType>
-  </entry>
-  <entry>
-    <umlClass>DQ_NonQuantitativeAttributeAccuracy</umlClass>
-    <gmlObjectElement>gmd:DQ_NonQuantitativeAttributeAccuracy</gmlObjectElement>
-    <gmlType>gmd:DQ_NonQuantitativeAttributeAccuracy_Type</gmlType>
-    <gmlPropertyType>gmd:DQ_NonQuantitativeAttributeAccuracy_PropertyType</gmlPropertyType>
-  </entry>
-  <entry>
-    <umlClass>DQ_PositionalAccuracy</umlClass>
-    <gmlObjectElement>gmd:AbstractDQ_PositionalAccuracy</gmlObjectElement>
-    <gmlType>gmd:AbstractDQ_PositionalAccuracy_Type</gmlType>
-    <gmlPropertyType>gmd:DQ_PositionalAccuracy_PropertyType</gmlPropertyType>
+    <gmlObjectElement>isp:AbstractDQ_Element</gmlObjectElement>      <!-- original namespace = gmd -->
+    <gmlType>isp:AbstractDQ_Element_Type</gmlType>
+    <gmlPropertyType>isp:DQ_Element_PropertyType</gmlPropertyType>
   </entry>
   <entry>
     <umlClass>DQ_QuantitativeAttributeAccuracy</umlClass>
-    <gmlObjectElement>gmd:DQ_QuantitativeAttributeAccuracy</gmlObjectElement>
-    <gmlType>gmd:DQ_QuantitativeAttributeAccuracy_Type</gmlType>
-    <gmlPropertyType>gmd:DQ_QuantitativeAttributeAccuracy_PropertyType</gmlPropertyType>
+    <gmlObjectElement>isp:DQ_QuantitativeAttributeAccuracy</gmlObjectElement>    <!-- original namespace = gmd -->
+    <gmlType>isp:DQ_QuantitativeAttributeAccuracy_Type</gmlType>
+    <gmlPropertyType>isp:DQ_QuantitativeAttributeAccuracy_PropertyType</gmlPropertyType>
   </entry>
   <entry>
     <umlClass>DQ_QuantitativeResult</umlClass>
-    <gmlObjectElement>gmd:DQ_QuantitativeResult</gmlObjectElement>
-    <gmlType>gmd:DQ_QuantitativeResult_Type</gmlType>
-    <gmlPropertyType>gmd:DQ_QuantitativeResult_PropertyType</gmlPropertyType>
+    <gmlObjectElement>isp:DQ_QuantitativeResult</gmlObjectElement>    <!-- original namespace = gmd -->
+    <gmlType>isp:DQ_QuantitativeResult_Type</gmlType>
+    <gmlPropertyType>isp:DQ_QuantitativeResult_PropertyType</gmlPropertyType>
   </entry>
   <entry>
     <umlClass>DQ_Result</umlClass>
-    <gmlObjectElement>gmd:AbstractDQ_Result</gmlObjectElement>
-    <gmlType>gmd:AbstractDQ_Result_Type</gmlType>
-    <gmlPropertyType>gmd:DQ_Result_PropertyType</gmlPropertyType>
+    <gmlObjectElement>isp:AbstractDQ_Result</gmlObjectElement>    <!-- original namespace = gmd -->
+    <gmlType>isp:AbstractDQ_Result_Type</gmlType>
+    <gmlPropertyType>isp:DQ_Result_PropertyType</gmlPropertyType>
   </entry>
   <entry>
     <umlClass>DQ_ThematicAccuracy</umlClass>
-    <gmlObjectElement>gmd:AbstractDQ_ThematicAccuracy</gmlObjectElement>
-    <gmlType>gmd:AbstractDQ_ThematicAccuracy_Type</gmlType>
-    <gmlPropertyType>gmd:DQ_ThematicAccuracy_PropertyType</gmlPropertyType>
+    <gmlObjectElement>isp:AbstractDQ_ThematicAccuracy</gmlObjectElement>     <!-- original namespace = gmd -->
+    <gmlType>isp:AbstractDQ_ThematicAccuracy_Type</gmlType>
+    <gmlPropertyType>isp:DQ_ThematicAccuracy_PropertyType</gmlPropertyType>
+  </entry>
+  <entry>
+    <umlClass>MD_Metadata</umlClass>
+    <gmlObjectElement>isp:MD_Metadata</gmlObjectElement>   <!-- original namespace = gmd -->
+    <gmlType>isp:MD_Metadata_Type</gmlType>
+    <gmlPropertyType>isp:MD_Metadata_PropertyType</gmlPropertyType>
+  </entry>
+  - <entry>
+    <umlClass>MD_RepresentativeFraction</umlClass> 
+    <gmlObjectElement>isp:MD_RepresentativeFraction</gmlObjectElement>      <!-- original namespace = gmd -->
+    <gmlType>isp:MD_RepresentativeFraction_Type</gmlType> 
+    <gmlPropertyType>isp:MD_RepresentativeFraction_PropertyType</gmlPropertyType> 
   </entry>
 </mapping>
