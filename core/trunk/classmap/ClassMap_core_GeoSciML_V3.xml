@@ -6,16 +6,36 @@
 	xmlns="urn:x-auscope:xmlns:CSIRO:FullMoon:package-class-map:3.0"
 	xsi:schemaLocation="urn:x-auscope:xmlns:CSIRO:FullMoon:package-class-map:3.0 http://projects.arcs.org.au/svn/fullmoon/trunk/resources/dependency-util/package-class-map.xsd"
 	id="ClassMap_core_GeoSciML_V3.xml">
-	<description>Provides a mapping of classes from the core module of GeoSciML to elements from GeoSciML XML Schema Version 3.0.</description>
+	<description>Provides a mapping of classes from the core module of GeoSciML to elements from GeoSciML XML Schema Version 3.0.0</description>
 	<imports>
-		<schema prefix="gsml" namespace="urn:cgi:xmlns:CGI:GeoSciML:3.0" schemaLocation="http://www.geosciml.org/geosciml/3.0/xsd/geosciml.xsd" />
+		<schema prefix="gsml" namespace="urn:cgi:xmlns:CGI:GeoSciML:3.0" schemaLocation="http://www.geosciml.org/geosciml/3.0.0/xsd/geosciml-core.xsd" />
 	</imports>
 	<entry>
-		<umlClass>AlterationDescription</umlClass>
-		<umlStereotype>DataType</umlStereotype>
-		<gmlObjectElement>gsml:AlterationDescription</gmlObjectElement>
-		<gmlType>gsml:AlterationDescriptionType</gmlType>
-		<gmlPropertyType>gsml:AlterationDescriptionPropertyType</gmlPropertyType>
+		<umlClass>DescriptionPurpose</umlClass>
+		<umlStereotype>CodeList</umlStereotype>
+		<gmlObjectElement xsi:nil="true"/>
+		<gmlType xsi:nil="true"/>
+		<gmlPropertyType>gsml:DescriptionPurposeType</gmlPropertyType>
+	</entry>
+	<entry>
+		<umlClass>GeologicFeature</umlClass>
+		<gmlObjectElement>gsml:GeologicFeature</gmlObjectElement>
+		<gmlType>gsml:GeologicFeatureType</gmlType>
+		<gmlPropertyType>gsml:GeologicFeaturePropertyType</gmlPropertyType>
+	</entry>
+	<entry>
+		<umlClass>GeologicFeatureRelation</umlClass>
+		<umlStereotype>FeatureType</umlStereotype>
+		<gmlObjectElement>gsml:GeologicFeatureRelation</gmlObjectElement>
+		<gmlType>gsml:GeologicFeatureRelationType</gmlType>
+		<gmlPropertyType>gsml:GeologicFeatureRelationPropertyType</gmlPropertyType>
+	</entry>
+	<entry>
+		<umlClass>MappedFeature</umlClass>
+		<umlStereotype>FeatureType</umlStereotype>
+		<gmlObjectElement>gsml:MappedFeature</gmlObjectElement>
+		<gmlType>gsml:MappedFeatureType</gmlType>
+		<gmlPropertyType>gsml:MappedFeaturePropertyType</gmlPropertyType>
 	</entry>
 	<entry>
 		<umlClass>BeddingDescription</umlClass>
@@ -25,10 +45,11 @@
 		<gmlPropertyType>gsml:BeddingDescriptionPropertyType</gmlPropertyType>
 	</entry>
 	<entry>
-		<umlClass>BoundaryRelationship</umlClass>
-		<gmlObjectElement>gsml:BoundaryRelationship</gmlObjectElement>
-		<gmlType>gsml:BoundaryRelationshipType</gmlType>
-		<gmlPropertyType>gsml:BoundaryRelationshipPropertyType</gmlPropertyType>
+		<umlClass>ChemicalComposition</umlClass>
+		<umlStereotype>DataType</umlStereotype>
+		<gmlObjectElement>gsml:ChemicalComposition</gmlObjectElement>
+		<gmlType>gsml:ChemicalCompositionType</gmlType>
+		<gmlPropertyType>gsml:ChemicalCompositionPropertyType</gmlPropertyType>
 	</entry>
 	<entry>
 		<umlClass>CompositionPart</umlClass>
@@ -36,6 +57,67 @@
 		<gmlObjectElement>gsml:CompositionPart</gmlObjectElement>
 		<gmlType>gsml:CompositionPartType</gmlType>
 		<gmlPropertyType>gsml:CompositionPartPropertyType</gmlPropertyType>
+	</entry>
+	<entry>
+		<umlClass>CompositionPartRoleTerm</umlClass>
+		<umlStereotype>DataType</umlStereotype>
+		<gmlObjectElement>gsml:CompositionPartRoleTerm</gmlObjectElement>
+		<gmlType>gsml:CompositionPartRoleTermType</gmlType>
+		<gmlPropertyType>gsml:CompositionPartRoleTermPropertyType</gmlPropertyType>
+	</entry>
+	<entry>
+		<umlClass>GeologicUnit</umlClass>
+		<gmlObjectElement>gsml:GeologicUnit</gmlObjectElement>
+		<gmlType>gsml:GeologicUnitType</gmlType>
+		<gmlPropertyType>gsml:GeologicUnitPropertyType</gmlPropertyType>
+	</entry>
+	<entry>
+		<umlClass>GeologicUnitPart</umlClass>
+		<umlStereotype>DataType</umlStereotype>
+		<gmlObjectElement>gsml:GeologicUnitPart</gmlObjectElement>
+		<gmlType>gsml:GeologicUnitPartType</gmlType>
+		<gmlPropertyType>gsml:GeologicUnitPartPropertyType</gmlPropertyType>
+	</entry>
+	<entry>
+		<umlClass>GeologicUnitPartRoleTerm</umlClass>
+		<umlStereotype>DataType</umlStereotype>
+		<gmlObjectElement>gsml:GeologicUnitPartRoleTerm</gmlObjectElement>
+		<gmlType>gsml:GeologicUnitPartRoleTermType</gmlType>
+		<gmlPropertyType>gsml:GeologicUnitPartRoleTermPropertyType</gmlPropertyType>
+	</entry>
+	<entry>
+		<umlClass>GeologicUnitType</umlClass>
+		<gmlObjectElement xsi:nil="true"/>
+		<gmlType xsi:nil="true"/>
+		<gmlPropertyType>gsml:GeologicUnitTypePropertyType</gmlPropertyType>
+	</entry>
+	<entry>
+		<umlClass>GeologicUnitTypeTerm</umlClass>
+		<umlStereotype>DataType</umlStereotype>
+		<gmlObjectElement>gsml:GeologicUnitTypeTerm</gmlObjectElement>
+		<gmlType>gsml:GeologicUnitTypeTermType</gmlType>
+		<gmlPropertyType>gsml:GeologicUnitTypeTermPropertyType</gmlPropertyType>
+	</entry>
+	<entry>
+		<umlClass>RankTerm</umlClass>
+		<umlStereotype>DataType</umlStereotype>
+		<gmlObjectElement>gsml:RankTerm</gmlObjectElement>
+		<gmlType>gsml:RankTermType</gmlType>
+		<gmlPropertyType>gsml:RankTermPropertyType</gmlPropertyType>
+	</entry>
+	<entry>
+		<umlClass>AlterationDescription</umlClass>
+		<umlStereotype>DataType</umlStereotype>
+		<gmlObjectElement>gsml:AlterationDescription</gmlObjectElement>
+		<gmlType>gsml:AlterationDescriptionType</gmlType>
+		<gmlPropertyType>gsml:AlterationDescriptionPropertyType</gmlPropertyType>
+	</entry>
+	<entry>
+		<umlClass>AlterationTypeTerm</umlClass>
+		<umlStereotype>DataType</umlStereotype>
+		<gmlObjectElement>gsml:AlterationTypeTerm</gmlObjectElement>
+		<gmlType>gsml:AlterationTypeTermType</gmlType>
+		<gmlPropertyType>gsml:AlterationTypeTermPropertyType</gmlPropertyType>
 	</entry>
 	<entry>
 		<umlClass>CompoundMaterial</umlClass>
@@ -52,37 +134,11 @@
 		<gmlPropertyType>gsml:ConstituentPartPropertyType</gmlPropertyType>
 	</entry>
 	<entry>
-		<umlClass>Contact</umlClass>
-		<gmlObjectElement>gsml:Contact</gmlObjectElement>
-		<gmlType>gsml:ContactType</gmlType>
-		<gmlPropertyType>gsml:ContactPropertyType</gmlPropertyType>
-	</entry>
-<!--	<entry>
-		<umlClass>ControlledConcept</umlClass>
-		<umlStereotype>Type</umlStereotype>
-		<gmlObjectElement>gsml:ControlledConcept</gmlObjectElement>
-		<gmlType>gsml:ControlledConceptType</gmlType>
-		<gmlPropertyType>gsml:ControlledConceptPropertyType</gmlPropertyType>
-	</entry>-->
-	<entry>
-		<umlClass>DescriptionPurpose</umlClass>
-		<umlStereotype>CodeList</umlStereotype>
-		<gmlObjectElement xsi:nil="true"/>
-		<gmlType xsi:nil="true"/>
-		<gmlPropertyType>gsml:DescriptionPurposeType</gmlPropertyType>
-	</entry>
-	<entry>
-		<umlClass>DisplacementValue</umlClass>
+		<umlClass>ConstituentPartRoleTerm</umlClass>
 		<umlStereotype>DataType</umlStereotype>
-		<gmlObjectElement>gsml:DisplacementValue</gmlObjectElement>
-		<gmlType>gsml:DisplacementValueType</gmlType>
-		<gmlPropertyType>gsml:DisplacementValuePropertyType</gmlPropertyType>
-	</entry>
-	<entry>
-		<umlClass>DuctileShearStructure</umlClass>
-		<gmlObjectElement>gsml:DuctileShearStructure</gmlObjectElement>
-		<gmlType>gsml:DuctileShearStructureType</gmlType>
-		<gmlPropertyType>gsml:DuctileShearStructurePropertyType</gmlPropertyType>
+		<gmlObjectElement>gsml:ConstituentPartRoleTerm</gmlObjectElement>
+		<gmlType>gsml:ConstituentPartRoleTermType</gmlType>
+		<gmlPropertyType>gsml:ConstituentPartRoleTermPropertyType</gmlPropertyType>
 	</entry>
 	<entry>
 		<umlClass>EarthMaterial</umlClass>
@@ -99,6 +155,109 @@
 		<gmlPropertyType>gsml:FabricDescriptionPropertyType</gmlPropertyType>
 	</entry>
 	<entry>
+		<umlClass>InorganicFluid</umlClass>
+		<umlStereotype>Type</umlStereotype>
+		<gmlObjectElement>gsml:InorganicFluid</gmlObjectElement>
+		<gmlType>gsml:InorganicFluidType</gmlType>
+		<gmlPropertyType>gsml:InorganicFluidPropertyType</gmlPropertyType>
+	</entry>
+	<entry>
+		<umlClass>MaterialRelation</umlClass>
+		<umlStereotype>DataType</umlStereotype>
+		<gmlObjectElement>gsml:MaterialRelation</gmlObjectElement>
+		<gmlType>gsml:MaterialRelationType</gmlType>
+		<gmlPropertyType>gsml:MaterialRelationPropertyType</gmlPropertyType>
+	</entry>
+	<entry>
+		<umlClass>MaterialRelationSourceRoleTerm</umlClass>
+		<umlStereotype>DataType</umlStereotype>
+		<gmlObjectElement>gsml:MaterialRelationSourceRoleTerm</gmlObjectElement>
+		<gmlType>gsml:MaterialRelationSourceRoleTermType</gmlType>
+		<gmlPropertyType>gsml:MaterialRelationSourceRoleTermPropertyType</gmlPropertyType>
+	</entry>
+	<entry>
+		<umlClass>MaterialRelationshipTypeTerm</umlClass>
+		<umlStereotype>DataType</umlStereotype>
+		<gmlObjectElement>gsml:MaterialRelationshipTypeTerm</gmlObjectElement>
+		<gmlType>gsml:MaterialRelationshipTypeTermType</gmlType>
+		<gmlPropertyType>gsml:MaterialRelationshipTypeTermPropertyType</gmlPropertyType>
+	</entry>
+	<entry>
+		<umlClass>MetamorphicDescription</umlClass>
+		<umlStereotype>DataType</umlStereotype>
+		<gmlObjectElement>gsml:MetamorphicDescription</gmlObjectElement>
+		<gmlType>gsml:MetamorphicDescriptionType</gmlType>
+		<gmlPropertyType>gsml:MetamorphicDescriptionPropertyType</gmlPropertyType>
+	</entry>
+	<entry>
+		<umlClass>Mineral</umlClass>
+		<umlStereotype>Type</umlStereotype>
+		<gmlObjectElement>gsml:Mineral</gmlObjectElement>
+		<gmlType>gsml:MineralType</gmlType>
+		<gmlPropertyType>gsml:MineralPropertyType</gmlPropertyType>
+	</entry>
+	<entry>
+		<umlClass>MineralNameTerm</umlClass>
+		<umlStereotype>DataType</umlStereotype>
+		<gmlObjectElement>gsml:MineralNameTerm</gmlObjectElement>
+		<gmlType>gsml:MineralNameTermType</gmlType>
+		<gmlPropertyType>gsml:MineralNameTermPropertyType</gmlPropertyType>
+	</entry>
+	<entry>
+		<umlClass>OrganicMaterial</umlClass>
+		<umlStereotype>Type</umlStereotype>
+		<gmlObjectElement>gsml:OrganicMaterial</gmlObjectElement>
+		<gmlType>gsml:OrganicMaterialType</gmlType>
+		<gmlPropertyType>gsml:OrganicMaterialPropertyType</gmlPropertyType>
+	</entry>
+	<entry>
+		<umlClass>ParticleGeometryDescription</umlClass>
+		<umlStereotype>DataType</umlStereotype>
+		<gmlObjectElement>gsml:ParticleGeometryDescription</gmlObjectElement>
+		<gmlType>gsml:ParticleGeometryDescriptionType</gmlType>
+		<gmlPropertyType>gsml:ParticleGeometryDescriptionPropertyType</gmlPropertyType>
+	</entry>
+	<entry>
+		<umlClass>ParticleTypeTerm</umlClass>
+		<umlStereotype>DataType</umlStereotype>
+		<gmlObjectElement>gsml:ParticleTypeTerm</gmlObjectElement>
+		<gmlType>gsml:ParticleTypeTermType</gmlType>
+		<gmlPropertyType>gsml:ParticleTypeTermPropertyType</gmlPropertyType>
+	</entry>
+	<entry>
+		<umlClass>RockMaterial</umlClass>
+		<umlStereotype>Type</umlStereotype>
+		<gmlObjectElement>gsml:RockMaterial</gmlObjectElement>
+		<gmlType>gsml:RockMaterialType</gmlType>
+		<gmlPropertyType>gsml:RockMaterialPropertyType</gmlPropertyType>
+	</entry>
+	
+	<entry>
+		<umlClass>BoundaryRelationship</umlClass>
+		<gmlObjectElement>gsml:BoundaryRelationship</gmlObjectElement>
+		<gmlType>gsml:BoundaryRelationshipType</gmlType>
+		<gmlPropertyType>gsml:BoundaryRelationshipPropertyType</gmlPropertyType>
+	</entry>
+	<entry>
+		<umlClass>Contact</umlClass>
+		<gmlObjectElement>gsml:Contact</gmlObjectElement>
+		<gmlType>gsml:ContactType</gmlType>
+		<gmlPropertyType>gsml:ContactPropertyType</gmlPropertyType>
+	</entry>
+	<entry>
+		<umlClass>DisplacementValue</umlClass>
+		<umlStereotype>DataType</umlStereotype>
+		<gmlObjectElement>gsml:DisplacementValue</gmlObjectElement>
+		<gmlType>gsml:DisplacementValueType</gmlType>
+		<gmlPropertyType>gsml:DisplacementValuePropertyType</gmlPropertyType>
+	</entry>
+	<entry>
+		<umlClass>DuctileShearStructure</umlClass>
+		<gmlObjectElement>gsml:DuctileShearStructure</gmlObjectElement>
+		<gmlType>gsml:DuctileShearStructureType</gmlType>
+		<gmlPropertyType>gsml:DuctileShearStructurePropertyType</gmlPropertyType>
+	</entry>
+	<entry>
 		<umlClass>Fault</umlClass>
 		<gmlObjectElement>gsml:Fault</gmlObjectElement>
 		<gmlType>gsml:FaultType</gmlType>
@@ -110,6 +269,15 @@
 		<gmlType>gsml:FaultSystemType</gmlType>
 		<gmlPropertyType>gsml:FaultSystemPropertyType</gmlPropertyType>
 	</entry>
+	
+	
+	
+	------------------------------------------------------------------------------------------------------------------
+	
+	
+
+
+
 	<entry>
 		<umlClass>Fold</umlClass>
 		<gmlObjectElement>gsml:Fold</gmlObjectElement>
@@ -141,18 +309,6 @@
 		<gmlPropertyType>gsml:GeologicEventPropertyType</gmlPropertyType>
 	</entry>
 	<entry>
-		<umlClass>GeologicFeature</umlClass>
-		<gmlObjectElement>gsml:GeologicFeature</gmlObjectElement>
-		<gmlType>gsml:GeologicFeatureType</gmlType>
-		<gmlPropertyType>gsml:GeologicFeaturePropertyType</gmlPropertyType>
-	</entry>
-	<entry>
-		<umlClass>GeologicFeatureRelation</umlClass>
-		<gmlObjectElement>gsml:GeologicFeatureRelation</gmlObjectElement>
-		<gmlType>gsml:GeologicFeatureRelationType</gmlType>
-		<gmlPropertyType>gsml:GeologicFeatureRelationPropertyType</gmlPropertyType>
-	</entry>
-	<entry>
 		<umlClass>GeologicRelation</umlClass>
 		<gmlObjectElement>gsml:GeologicRelation</gmlObjectElement>
 		<gmlType>gsml:GeologicRelationType</gmlType>
@@ -164,19 +320,8 @@
 		<gmlType>gsml:GeologicStructureType</gmlType>
 		<gmlPropertyType>gsml:GeologicStructurePropertyType</gmlPropertyType>
 	</entry>
-	<entry>
-		<umlClass>GeologicUnit</umlClass>
-		<gmlObjectElement>gsml:GeologicUnit</gmlObjectElement>
-		<gmlType>gsml:GeologicUnitType</gmlType>
-		<gmlPropertyType>gsml:GeologicUnitPropertyType</gmlPropertyType>
-	</entry>
-	<entry>
-		<umlClass>GeologicUnitPart</umlClass>
-		<umlStereotype>DataType</umlStereotype>
-		<gmlObjectElement>gsml:GeologicUnitPart</gmlObjectElement>
-		<gmlType>gsml:GeologicUnitPartType</gmlType>
-		<gmlPropertyType>gsml:GeologicUnitPartPropertyType</gmlPropertyType>
-	</entry>
+
+
 	<entry>
 		<umlClass>GeologicUnitType</umlClass>
 		<gmlObjectElement xsi:nil="true"/>
@@ -205,13 +350,6 @@
 		<gmlPropertyType>gsml:GSMLitemPropertyType</gmlPropertyType>
 	</entry>
 	<entry>
-		<umlClass>InorganicFluid</umlClass>
-		<umlStereotype>Type</umlStereotype>
-		<gmlObjectElement>gsml:InorganicFluid</gmlObjectElement>
-		<gmlType>gsml:InorganicFluidType</gmlType>
-		<gmlPropertyType>gsml:InorganicFluidPropertyType</gmlPropertyType>
-	</entry>
-	<entry>
 		<umlClass>Joint</umlClass>
 		<gmlObjectElement>gsml:Joint</gmlObjectElement>
 		<gmlType>gsml:JointType</gmlType>
@@ -230,33 +368,6 @@
 		<gmlPropertyType>gsml:LineationPropertyType</gmlPropertyType>
 	</entry>
 	<entry>
-		<umlClass>MappedFeature</umlClass>
-		<gmlObjectElement>gsml:MappedFeature</gmlObjectElement>
-		<gmlType>gsml:MappedFeatureType</gmlType>
-		<gmlPropertyType>gsml:MappedFeaturePropertyType</gmlPropertyType>
-	</entry>
-	<entry>
-		<umlClass>MaterialRelation</umlClass>
-		<umlStereotype>DataType</umlStereotype>
-		<gmlObjectElement>gsml:MaterialRelation</gmlObjectElement>
-		<gmlType>gsml:MaterialRelationType</gmlType>
-		<gmlPropertyType>gsml:MaterialRelationPropertyType</gmlPropertyType>
-	</entry>
-	<entry>
-		<umlClass>MetamorphicDescription</umlClass>
-		<umlStereotype>DataType</umlStereotype>
-		<gmlObjectElement>gsml:MetamorphicDescription</gmlObjectElement>
-		<gmlType>gsml:MetamorphicDescriptionType</gmlType>
-		<gmlPropertyType>gsml:MetamorphicDescriptionPropertyType</gmlPropertyType>
-	</entry>
-	<entry>
-		<umlClass>Mineral</umlClass>
-		<umlStereotype>Type</umlStereotype>
-		<gmlObjectElement>gsml:Mineral</gmlObjectElement>
-		<gmlType>gsml:MineralType</gmlType>
-		<gmlPropertyType>gsml:MineralPropertyType</gmlPropertyType>
-	</entry>
-	<entry>
 		<umlClass>NetSlipValue</umlClass>
 		<umlStereotype>DataType</umlStereotype>
 		<gmlObjectElement>gsml:NetSlipValue</gmlObjectElement>
@@ -269,20 +380,8 @@
 		<gmlType>gsml:NonDirectionalStructureType</gmlType>
 		<gmlPropertyType>gsml:NonDirectionalStructurePropertyType</gmlPropertyType>
 	</entry>
-	<entry>
-		<umlClass>OrganicMaterial</umlClass>
-		<umlStereotype>Type</umlStereotype>
-		<gmlObjectElement>gsml:OrganicMaterial</gmlObjectElement>
-		<gmlType>gsml:OrganicMaterialType</gmlType>
-		<gmlPropertyType>gsml:OrganicMaterialPropertyType</gmlPropertyType>
-	</entry>
-	<entry>
-		<umlClass>ParticleGeometryDescription</umlClass>
-		<umlStereotype>DataType</umlStereotype>
-		<gmlObjectElement>gsml:ParticleGeometryDescription</gmlObjectElement>
-		<gmlType>gsml:ParticleGeometryDescriptionType</gmlType>
-		<gmlPropertyType>gsml:ParticleGeometryDescriptionPropertyType</gmlPropertyType>
-	</entry>
+
+
 	<entry>
 		<umlClass>PhysicalDescription</umlClass>
 		<umlStereotype>DataType</umlStereotype>
@@ -290,13 +389,7 @@
 		<gmlType>gsml:PhysicalDescriptionType</gmlType>
 		<gmlPropertyType>gsml:PhysicalDescriptionPropertyType</gmlPropertyType>
 	</entry>
-	<entry>
-		<umlClass>RockMaterial</umlClass>
-		<umlStereotype>Type</umlStereotype>
-		<gmlObjectElement>gsml:RockMaterial</gmlObjectElement>
-		<gmlType>gsml:RockMaterialType</gmlType>
-		<gmlPropertyType>gsml:RockMaterialPropertyType</gmlPropertyType>
-	</entry>
+
 	<entry>
 		<umlClass>SeparationValue</umlClass>
 		<umlStereotype>DataType</umlStereotype>
@@ -330,5 +423,12 @@
 		<gmlObjectElement>gsml:VocabRelation</gmlObjectElement>
 		<gmlType>gsml:VocabRelationType</gmlType>
 		<gmlPropertyType>gsml:VocabRelationPropertyType</gmlPropertyType>
-	</entry>-->
+		</entry>-->
+	<!--	<entry>
+		<umlClass>ControlledConcept</umlClass>
+		<umlStereotype>Type</umlStereotype>
+		<gmlObjectElement>gsml:ControlledConcept</gmlObjectElement>
+		<gmlType>gsml:ControlledConceptType</gmlType>
+		<gmlPropertyType>gsml:ControlledConceptPropertyType</gmlPropertyType>
+		</entry>-->
 </mapping>
