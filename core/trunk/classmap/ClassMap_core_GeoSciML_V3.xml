@@ -8,8 +8,10 @@
 	id="ClassMap_core_GeoSciML_V3.xml">
 	<description>Provides a mapping of classes from the core module of GeoSciML to elements from GeoSciML XML Schema Version 3.0.0</description>
 	<imports>
-		<schema prefix="gsml" namespace="urn:cgi:xmlns:CGI:GeoSciML:3.0" schemaLocation="http://www.geosciml.org/geosciml/3.0.0/xsd/geosciml-core.xsd" />
+		<schema prefix="gsml" namespace="urn:cgi:xmlns:CGI:GeoSciML:3.0.0" schemaLocation="http://www.geosciml.org/geosciml/3.0.0/xsd/geosciml-core.xsd" />
 	</imports>
+<!-- ================================================================= -->
+	<!-- GeologicFeature Leaf -->
 	<entry>
 		<umlClass>DescriptionPurpose</umlClass>
 		<umlStereotype>CodeList</umlStereotype>
@@ -37,6 +39,8 @@
 		<gmlType>gsml:MappedFeatureType</gmlType>
 		<gmlPropertyType>gsml:MappedFeaturePropertyType</gmlPropertyType>
 	</entry>
+<!-- ================================================================= -->
+	<!-- GeologicUnit Leaf -->
 	<entry>
 		<umlClass>BeddingDescription</umlClass>
 		<umlStereotype>DataType</umlStereotype>
@@ -105,6 +109,8 @@
 		<gmlType>gsml:RankTermType</gmlType>
 		<gmlPropertyType>gsml:RankTermPropertyType</gmlPropertyType>
 	</entry>
+<!-- ================================================================= -->
+	<!-- EarthMaterial Leaf -->
 	<entry>
 		<umlClass>AlterationDescription</umlClass>
 		<umlStereotype>DataType</umlStereotype>
@@ -231,18 +237,28 @@
 		<gmlType>gsml:RockMaterialType</gmlType>
 		<gmlPropertyType>gsml:RockMaterialPropertyType</gmlPropertyType>
 	</entry>
-	
+<!-- ================================================================= -->
+	<!-- GeologicStructure Leaf -->
 	<entry>
 		<umlClass>BoundaryRelationship</umlClass>
+		<umlStereotype>FeatureType</umlStereotype>
 		<gmlObjectElement>gsml:BoundaryRelationship</gmlObjectElement>
 		<gmlType>gsml:BoundaryRelationshipType</gmlType>
 		<gmlPropertyType>gsml:BoundaryRelationshipPropertyType</gmlPropertyType>
 	</entry>
 	<entry>
 		<umlClass>Contact</umlClass>
+		<umlStereotype>FeatureType</umlStereotype>
 		<gmlObjectElement>gsml:Contact</gmlObjectElement>
 		<gmlType>gsml:ContactType</gmlType>
 		<gmlPropertyType>gsml:ContactPropertyType</gmlPropertyType>
+	</entry>
+	<entry>
+		<umlClass>ContactTypeTerm</umlClass>
+		<umlStereotype>DataType</umlStereotype>
+		<gmlObjectElement>gsml:ContactTypeTerm</gmlObjectElement>
+		<gmlType>gsml:ContactTypeTermType</gmlType>
+		<gmlPropertyType>gsml:ContactTypeTermPropertyType</gmlPropertyType>
 	</entry>
 	<entry>
 		<umlClass>DisplacementValue</umlClass>
@@ -253,12 +269,14 @@
 	</entry>
 	<entry>
 		<umlClass>DuctileShearStructure</umlClass>
+		<umlStereotype>FeatureType</umlStereotype>
 		<gmlObjectElement>gsml:DuctileShearStructure</gmlObjectElement>
 		<gmlType>gsml:DuctileShearStructureType</gmlType>
 		<gmlPropertyType>gsml:DuctileShearStructurePropertyType</gmlPropertyType>
 	</entry>
 	<entry>
 		<umlClass>Fault</umlClass>
+		<umlStereotype>FeatureType</umlStereotype>
 		<gmlObjectElement>gsml:Fault</gmlObjectElement>
 		<gmlType>gsml:FaultType</gmlType>
 		<gmlPropertyType>gsml:FaultPropertyType</gmlPropertyType>
@@ -269,73 +287,194 @@
 		<gmlType>gsml:FaultSystemType</gmlType>
 		<gmlPropertyType>gsml:FaultSystemPropertyType</gmlPropertyType>
 	</entry>
-	
-	
-	
-	------------------------------------------------------------------------------------------------------------------
-	
-	
-
-
-
+	<entry>
+		<umlClass>FaultTypeTerm</umlClass>
+		<umlStereotype>DataType</umlStereotype>
+		<gmlObjectElement>gsml:FaultTypeTerm</gmlObjectElement>
+		<gmlType>gsml:FaultTypeTermType</gmlType>
+		<gmlPropertyType>gsml:FaultTypeTermPropertyType</gmlPropertyType>
+	</entry>
 	<entry>
 		<umlClass>Fold</umlClass>
+		<umlStereotype>FeatureType</umlStereotype>
 		<gmlObjectElement>gsml:Fold</gmlObjectElement>
 		<gmlType>gsml:FoldType</gmlType>
 		<gmlPropertyType>gsml:FoldPropertyType</gmlPropertyType>
 	</entry>
 	<entry>
+		<umlClass>FoldProfileTypeTerm</umlClass>
+		<umlStereotype>DataType</umlStereotype>
+		<gmlObjectElement>gsml:FoldProfileTypeTerm</gmlObjectElement>
+		<gmlType>gsml:FoldProfileTypeTermType</gmlType>
+		<gmlPropertyType>gsml:FoldProfileTypeTermPropertyType</gmlPropertyType>
+	</entry>
+	<entry>
 		<umlClass>FoldSystem</umlClass>
+		<umlStereotype>FeatureType</umlStereotype>
 		<gmlObjectElement>gsml:FoldSystem</gmlObjectElement>
 		<gmlType>gsml:FoldSystemType</gmlType>
 		<gmlPropertyType>gsml:FoldSystemPropertyType</gmlPropertyType>
 	</entry>
 	<entry>
 		<umlClass>Foliation</umlClass>
+		<umlStereotype>FeatureType</umlStereotype>
 		<gmlObjectElement>gsml:Foliation</gmlObjectElement>
 		<gmlType>gsml:FoliationType</gmlType>
 		<gmlPropertyType>gsml:FoliationPropertyType</gmlPropertyType>
 	</entry>
 	<entry>
+		<umlClass>FoliationTypeTerm</umlClass>
+		<umlStereotype>DataType</umlStereotype>
+		<gmlObjectElement>gsml:FoliationTypeTerm</gmlObjectElement>
+		<gmlType>gsml:FoliationTypeTermType</gmlType>
+		<gmlPropertyType>gsml:FoliationTypeTermPropertyType</gmlPropertyType>
+	</entry>
+	<entry>
 		<umlClass>Fracture</umlClass>
+		<umlStereotype>FeatureType</umlStereotype>
 		<gmlObjectElement>gsml:Fracture</gmlObjectElement>
 		<gmlType>gsml:FractureType</gmlType>
 		<gmlPropertyType>gsml:FracturePropertyType</gmlPropertyType>
 	</entry>
 	<entry>
-		<umlClass>GeologicEvent</umlClass>
-		<gmlObjectElement>gsml:GeologicEvent</gmlObjectElement>
-		<gmlType>gsml:GeologicEventType</gmlType>
-		<gmlPropertyType>gsml:GeologicEventPropertyType</gmlPropertyType>
-	</entry>
-	<entry>
-		<umlClass>GeologicRelation</umlClass>
-		<gmlObjectElement>gsml:GeologicRelation</gmlObjectElement>
-		<gmlType>gsml:GeologicRelationType</gmlType>
-		<gmlPropertyType>gsml:GeologicRelationPropertyType</gmlPropertyType>
-	</entry>
-	<entry>
 		<umlClass>GeologicStructure</umlClass>
+		<umlStereotype>FeatureType</umlStereotype>
 		<gmlObjectElement>gsml:GeologicStructure</gmlObjectElement>
 		<gmlType>gsml:GeologicStructureType</gmlType>
 		<gmlPropertyType>gsml:GeologicStructurePropertyType</gmlPropertyType>
 	</entry>
-
-
 	<entry>
-		<umlClass>GeologicUnitType</umlClass>
-		<gmlObjectElement xsi:nil="true"/>
-		<gmlType xsi:nil="true"/>
-		<gmlPropertyType>gsml:GeologicUnitTypePropertyType</gmlPropertyType>
+		<umlClass>Joint</umlClass>
+		<umlStereotype>FeatureType</umlStereotype>
+		<gmlObjectElement>gsml:Joint</gmlObjectElement>
+		<gmlType>gsml:JointType</gmlType>
+		<gmlPropertyType>gsml:JointPropertyType</gmlPropertyType>
 	</entry>
-<!--	<entry>
-		<umlClass>GeologicVocabulary</umlClass>
-		<umlStereotype>Type</umlStereotype>
-		<gmlObjectElement>gsml:GeologicVocabulary</gmlObjectElement>
-		<gmlType>gsml:GeologicVocabularyType</gmlType>
-		<gmlPropertyType>gsml:GeologicVocabularyPropertyType</gmlPropertyType>
-	</entry>-->
 	<entry>
+		<umlClass>Layering</umlClass>
+		<umlStereotype>FeatureType</umlStereotype>
+		<gmlObjectElement>gsml:Layering</gmlObjectElement>
+		<gmlType>gsml:LayeringType</gmlType>
+		<gmlPropertyType>gsml:LayeringPropertyType</gmlPropertyType>
+	</entry>
+	<entry>
+		<umlClass>Lineation</umlClass>
+		<umlStereotype>FeatureType</umlStereotype>
+		<gmlObjectElement>gsml:Lineation</gmlObjectElement>
+		<gmlType>gsml:LineationType</gmlType>
+		<gmlPropertyType>gsml:LineationPropertyType</gmlPropertyType>
+	</entry>
+	<entry>
+		<umlClass>LineationTypeTerm</umlClass>
+		<umlStereotype>DataType</umlStereotype>
+		<gmlObjectElement>gsml:LineationTypeTerm</gmlObjectElement>
+		<gmlType>gsml:LineationTypeTermType</gmlType>
+		<gmlPropertyType>gsml:LineationTypeTermPropertyType</gmlPropertyType>
+	</entry>
+	<entry>
+		<umlClass>LineationTypeTerm</umlClass>
+		<umlStereotype>DataType</umlStereotype>
+		<gmlObjectElement>gsml:LineationTypeTerm</gmlObjectElement>
+		<gmlType>gsml:LineationTypeTermType</gmlType>
+		<gmlPropertyType>gsml:LineationTypeTermPropertyType</gmlPropertyType>
+	</entry>
+	<entry>
+		<umlClass>MovementSenseTerm</umlClass>
+		<umlStereotype>DataType</umlStereotype>
+		<gmlObjectElement>gsml:MovementSenseTerm</gmlObjectElement>
+		<gmlType>gsml:MovementSenseTermType</gmlType>
+		<gmlPropertyType>gsml:MovementSenseTermPropertyType</gmlPropertyType>
+	</entry>
+	<entry>
+		<umlClass>MovementTypeTerm</umlClass>
+		<umlStereotype>DataType</umlStereotype>
+		<gmlObjectElement>gsml:MovementTypeTerm</gmlObjectElement>
+		<gmlType>gsml:MovementTypeTermType</gmlType>
+		<gmlPropertyType>gsml:MovementTypeTermPropertyType</gmlPropertyType>
+	</entry>
+	<entry>
+		<umlClass>NetSlipValue</umlClass>
+		<umlStereotype>DataType</umlStereotype>
+		<gmlObjectElement>gsml:NetSlipValue</gmlObjectElement>
+		<gmlType>gsml:NetSlipValueType</gmlType>
+		<gmlPropertyType>gsml:NetSlipValuePropertyType</gmlPropertyType>
+	</entry>
+	<entry>
+		<umlClass>NonDirectionalStructure</umlClass>
+		<umlStereotype>FeatureType</umlStereotype>
+		<gmlObjectElement>gsml:NonDirectionalStructure</gmlObjectElement>
+		<gmlType>gsml:NonDirectionalStructureType</gmlType>
+		<gmlPropertyType>gsml:NonDirectionalStructurePropertyType</gmlPropertyType>
+	</entry>
+	<entry>
+		<umlClass>NonDirectionalStructureTypeTerm</umlClass>
+		<umlStereotype>DataType</umlStereotype>
+		<gmlObjectElement>gsml:NonDirectionalStructureTypeTerm</gmlObjectElement>
+		<gmlType>gsml:NonDirectionalStructureTypeTermType</gmlType>
+		<gmlPropertyType>gsml:NonDirectionalStructureTypeTermPropertyType</gmlPropertyType>
+	</entry>
+	<entry>
+		<umlClass>SeparationValue</umlClass>
+		<umlStereotype>DataType</umlStereotype>
+		<gmlObjectElement>gsml:SeparationValue</gmlObjectElement>
+		<gmlType>gsml:SeparationValueType</gmlType>
+		<gmlPropertyType>gsml:SeparationValuePropertyType</gmlPropertyType>
+	</entry>
+	<entry>
+		<umlClass>ShearDisplacementStructure</umlClass>
+		<umlStereotype>FeatureType</umlStereotype>
+		<gmlObjectElement>gsml:ShearDisplacementStructure</gmlObjectElement>
+		<gmlType>gsml:ShearDisplacementStructureType</gmlType>
+		<gmlPropertyType>gsml:ShearDisplacementStructurePropertyType</gmlPropertyType>
+	</entry>
+	<entry>
+		<umlClass>SlipComponents</umlClass>
+		<umlStereotype>DataType</umlStereotype>
+		<gmlObjectElement>gsml:SlipComponents</gmlObjectElement>
+		<gmlType>gsml:SlipComponentsType</gmlType>
+		<gmlPropertyType>gsml:SlipComponentsPropertyType</gmlPropertyType>
+	</entry>
+	<!-- ==================================================================== -->
+	<!-- GeologicAge leaf -->
+	<entry>
+		<umlClass>EventProcessTerm</umlClass>
+		<umlStereotype>DataType</umlStereotype>
+		<gmlObjectElement>gsml:EventProcessTerm</gmlObjectElement>
+		<gmlType>gsml:EventProcessTermType</gmlType>
+		<gmlPropertyType>gsml:EventProcessTermPropertyType</gmlPropertyType>
+	</entry>
+	<entry>
+		<umlClass>GeologicEvent</umlClass>
+		<umlStereotype>FeatureType</umlStereotype>
+		<gmlObjectElement>gsml:GeologicEvent</gmlObjectElement>
+		<gmlType>gsml:GeologicEventType</gmlType>
+		<gmlPropertyType>gsml:GeologicEventPropertyType</gmlPropertyType>
+	</entry>	
+	<!-- ==================================================================== -->
+	<!-- GeologicRelation leaf -->	
+	<entry>
+		<umlClass>GeologicRelation</umlClass>
+		<umlStereotype>FeatureType</umlStereotype>
+		<gmlObjectElement>gsml:GeologicRelation</gmlObjectElement>
+		<gmlType>gsml:GeologicRelationType</gmlType>
+		<gmlPropertyType>gsml:GeologicRelationPropertyType</gmlPropertyType>
+	</entry>	
+	<entry>
+		<umlClass>GeologicRelationshipTerm</umlClass>
+		<umlStereotype>DataType</umlStereotype>
+		<gmlObjectElement>gsml:GeologicRelationshipTerm</gmlObjectElement>
+		<gmlType>gsml:GeologicRelationshipTermType</gmlType>
+		<gmlPropertyType>gsml:GeologicRelationshipTermPropertyType</gmlPropertyType>
+	</entry>
+	<entry>
+		<umlClass>RelationRoleTerm</umlClass>
+		<umlStereotype>DataType</umlStereotype>
+		<gmlObjectElement>gsml:RelationRoleTerm</gmlObjectElement>
+		<gmlType>gsml:RelationRoleTermType</gmlType>
+		<gmlPropertyType>gsml:RelationRoleTermPropertyType</gmlPropertyType>
+	</entry>
+	<!-- ==================================================================== -->
+	<!-- Collection leaf -->	
 		<umlClass>GSML</umlClass>
 		<umlStereotype>FeatureType</umlStereotype>
 		<gmlObjectElement>gsml:GSML</gmlObjectElement>
@@ -349,86 +488,4 @@
 		<gmlType xsi:nil="true"/>
 		<gmlPropertyType>gsml:GSMLitemPropertyType</gmlPropertyType>
 	</entry>
-	<entry>
-		<umlClass>Joint</umlClass>
-		<gmlObjectElement>gsml:Joint</gmlObjectElement>
-		<gmlType>gsml:JointType</gmlType>
-		<gmlPropertyType>gsml:JointPropertyType</gmlPropertyType>
-	</entry>
-	<entry>
-		<umlClass>Layering</umlClass>
-		<gmlObjectElement>gsml:Layering</gmlObjectElement>
-		<gmlType>gsml:LayeringType</gmlType>
-		<gmlPropertyType>gsml:LayeringPropertyType</gmlPropertyType>
-	</entry>
-	<entry>
-		<umlClass>Lineation</umlClass>
-		<gmlObjectElement>gsml:Lineation</gmlObjectElement>
-		<gmlType>gsml:LineationType</gmlType>
-		<gmlPropertyType>gsml:LineationPropertyType</gmlPropertyType>
-	</entry>
-	<entry>
-		<umlClass>NetSlipValue</umlClass>
-		<umlStereotype>DataType</umlStereotype>
-		<gmlObjectElement>gsml:NetSlipValue</gmlObjectElement>
-		<gmlType>gsml:NetSlipValueType</gmlType>
-		<gmlPropertyType>gsml:NetSlipValuePropertyType</gmlPropertyType>
-	</entry>
-	<entry>
-		<umlClass>NonDirectionalStructure</umlClass>
-		<gmlObjectElement>gsml:NonDirectionalStructure</gmlObjectElement>
-		<gmlType>gsml:NonDirectionalStructureType</gmlType>
-		<gmlPropertyType>gsml:NonDirectionalStructurePropertyType</gmlPropertyType>
-	</entry>
-
-
-	<entry>
-		<umlClass>PhysicalDescription</umlClass>
-		<umlStereotype>DataType</umlStereotype>
-		<gmlObjectElement>gsml:PhysicalDescription</gmlObjectElement>
-		<gmlType>gsml:PhysicalDescriptionType</gmlType>
-		<gmlPropertyType>gsml:PhysicalDescriptionPropertyType</gmlPropertyType>
-	</entry>
-
-	<entry>
-		<umlClass>SeparationValue</umlClass>
-		<umlStereotype>DataType</umlStereotype>
-		<gmlObjectElement>gsml:SeparationValue</gmlObjectElement>
-		<gmlType>gsml:SeparationValueType</gmlType>
-		<gmlPropertyType>gsml:SeparationValuePropertyType</gmlPropertyType>
-	</entry>
-	<entry>
-		<umlClass>ShearDisplacementStructure</umlClass>
-		<gmlObjectElement>gsml:ShearDisplacementStructure</gmlObjectElement>
-		<gmlType>gsml:ShearDisplacementStructureType</gmlType>
-		<gmlPropertyType>gsml:ShearDisplacementStructurePropertyType</gmlPropertyType>
-	</entry>
-	<entry>
-		<umlClass>SlipComponents</umlClass>
-		<umlStereotype>DataType</umlStereotype>
-		<gmlObjectElement>gsml:SlipComponents</gmlObjectElement>
-		<gmlType>gsml:SlipComponentsType</gmlType>
-		<gmlPropertyType>gsml:SlipComponentsPropertyType</gmlPropertyType>
-	</entry>
-<!--	<entry>
-		<umlClass>StratigraphicLexicon</umlClass>
-		<umlStereotype>Type</umlStereotype>
-		<gmlObjectElement>gsml:StratigraphicLexicon</gmlObjectElement>
-		<gmlType>gsml:StratigraphicLexiconType</gmlType>
-		<gmlPropertyType>gsml:StratigraphicLexiconPropertyType</gmlPropertyType>
-	</entry>-->
-<!--	<entry>
-		<umlClass>VocabRelation</umlClass>
-		<umlStereotype>Type</umlStereotype>
-		<gmlObjectElement>gsml:VocabRelation</gmlObjectElement>
-		<gmlType>gsml:VocabRelationType</gmlType>
-		<gmlPropertyType>gsml:VocabRelationPropertyType</gmlPropertyType>
-		</entry>-->
-	<!--	<entry>
-		<umlClass>ControlledConcept</umlClass>
-		<umlStereotype>Type</umlStereotype>
-		<gmlObjectElement>gsml:ControlledConcept</gmlObjectElement>
-		<gmlType>gsml:ControlledConceptType</gmlType>
-		<gmlPropertyType>gsml:ControlledConceptPropertyType</gmlPropertyType>
-		</entry>-->
 </mapping>
