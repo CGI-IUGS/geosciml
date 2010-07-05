@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<schema xmlns="http://www.w3.org/2001/XMLSchema" xmlns:gml="http://www.opengis.net/gml/3.2" xmlns:swes="http://www.opengis.net/swes/2.0" xmlns:swe="http://www.opengis.net/swe/2.0" xmlns:sos="http://www.opengis.net/sos/2.0" targetNamespace="http://www.opengis.net/sos/2.0" elementFormDefault="qualified" attributeFormDefault="unqualified">
+    <import namespace="http://www.opengis.net/gml/3.2" schemaLocation="http://schemas.opengis.net/gml/3.2.1/gml.xsd"/>
+    <import namespace="http://www.opengis.net/swe/2.0" schemaLocation="http://schemas.opengis.net/sweCommon/2.0.0/swe.xsd"/>
+    <import namespace="http://www.opengis.net/swes/2.0" schemaLocation="http://schemas.opengis.net/swes/2.0.0/swes.xsd"/><!-- ================================================= -->
+    <element name="ObservationOffering" substitutionGroup="swes:AbstractOffering" type="sos:ObservationOfferingType"/>
+    <complexType name="ObservationOfferingType">
+        <complexContent>
+            <extension base="swes:AbstractOfferingType">
+                <sequence>
+                    <element maxOccurs="1" minOccurs="0" name="observedArea" type="gml:BoundingShapeType"/>
+                    <element maxOccurs="1" minOccurs="0" name="phenomenonTime">
+                        <complexType>
+                            <sequence>
+                                <element ref="gml:TimePeriod"/>
+                            </sequence>
+                        </complexType>
+                    </element>
+                    <element maxOccurs="1" minOccurs="0" name="resultTime">
+                        <complexType>
+                            <sequence>
+                                <element ref="gml:TimePeriod"/>
+                            </sequence>
+                        </complexType>
+                    </element>
+                    <element maxOccurs="unbounded" minOccurs="0" name="responseMode" type="sos:ResponseModeTypeType"/>
+                    <element maxOccurs="unbounded" minOccurs="0" name="responseFormat" type="gml:CodeType">
+                        <annotation>
+                            <documentation>Default is defined by specification.</documentation>
+                        </annotation>
+                    </element>
+                    <element maxOccurs="unbounded" minOccurs="0" name="observationType" type="gml:CodeType">
+                        <annotation>
+                            <documentation>More specialized O&amp;amp;M formats (shall be in observation substitution group)</documentation>
+                        </annotation>
+                    </element>
+                    <element maxOccurs="unbounded" minOccurs="0" name="resultType" type="gml:CodeType">
+                        <annotation>
+                            <documentation>Shall be provided when generic observation type is used.</documentation>
+                        </annotation>
+                    </element>
+                    <element maxOccurs="unbounded" minOccurs="0" name="featureOfInterestType" type="gml:CodeType"/>
+                </sequence>
+            </extension>
+        </complexContent>
+    </complexType>
+    <complexType name="ObservationOfferingPropertyType">
+        <sequence minOccurs="0">
+            <element ref="sos:ObservationOffering"/>
+        </sequence>
+        <attributeGroup ref="gml:AssociationAttributeGroup"/>
+        <attributeGroup ref="gml:OwnershipAttributeGroup"/>
+    </complexType><!-- ================================================= -->
+    <element name="Contents" substitutionGroup="swes:AbstractContents" type="sos:ContentsType"/>
+    <complexType name="ContentsType">
+        <complexContent>
+            <extension base="swes:AbstractContentsType">
+                <sequence>
+                    <element maxOccurs="unbounded" minOccurs="0" name="responseMode" type="sos:ResponseModeTypeType"/>
+                    <element maxOccurs="unbounded" minOccurs="0" name="responseFormat" type="gml:CodeType"/>
+                    <element maxOccurs="unbounded" minOccurs="0" name="observationType" type="gml:CodeType"/>
+                    <element maxOccurs="unbounded" minOccurs="0" name="resultType" type="gml:CodeType"/>
+                    <element maxOccurs="unbounded" minOccurs="0" name="featureOfInterestType" type="gml:CodeType"/>
+                </sequence>
+            </extension>
+        </complexContent>
+    </complexType>
+    <complexType name="ContentsPropertyType">
+        <sequence minOccurs="0">
+            <element ref="sos:Contents"/>
+        </sequence>
+        <attributeGroup ref="gml:AssociationAttributeGroup"/>
+        <attributeGroup ref="gml:OwnershipAttributeGroup"/>
+    </complexType><!-- ================================================= -->
+    <simpleType name="ResponseModeTypeType">
+        <union memberTypes="sos:ResponseModeTypeEnumerationType sos:ResponseModeTypeOtherType"/>
+    </simpleType>
+    <simpleType name="ResponseModeTypeEnumerationType">
+        <restriction base="string">
+            <enumeration value="INLINE"/>
+        </restriction>
+    </simpleType>
+    <simpleType name="ResponseModeTypeOtherType">
+        <restriction base="string">
+            <pattern value="other: [A-Za-z0-9_]{2,}"/>
+        </restriction>
+    </simpleType>
+</schema>

@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<schema xmlns="http://www.w3.org/2001/XMLSchema" xmlns:gml="http://www.opengis.net/gml/3.2" xmlns:fes="http://www.opengis.net/fes/2.0" xmlns:swes="http://www.opengis.net/swes/2.0" xmlns:om="http://www.opengis.net/om/2.0" xmlns:sos="http://www.opengis.net/sos/2.0" targetNamespace="http://www.opengis.net/sos/2.0" elementFormDefault="qualified" attributeFormDefault="unqualified">
+    <import namespace="http://www.opengis.net/gml/3.2" schemaLocation="http://schemas.opengis.net/gml/3.2.1/gml.xsd"/>
+    <import namespace="http://www.opengis.net/swes/2.0" schemaLocation="http://schemas.opengis.net/swes/2.0.0/swes.xsd"/>
+    <import namespace="http://www.opengis.net/om/2.0" schemaLocation="http://schemas.opengis.net/om/2.0.0/observation.xsd"/>
+    <import namespace="http://www.opengis.net/fes/2.0" schemaLocation="http://schemas.opengis.net/filter/2.0.0/filterAll.xsd"/>
+    <include schemaLocation="sosContents.xsd"/><!-- ================================================= -->
+    <element name="GetObservation" substitutionGroup="swes:ExtensibleRequest" type="sos:GetObservationType"/>
+    <complexType name="GetObservationType">
+        <complexContent>
+            <extension base="swes:ExtensibleRequestType">
+                <sequence>
+                    <element maxOccurs="unbounded" minOccurs="0" name="offeringIdentifier" type="gml:CodeType"/>
+                    <element maxOccurs="unbounded" minOccurs="0" name="observedProperty" type="gml:CodeType"/>
+                    <element maxOccurs="unbounded" minOccurs="0" name="procedureIdentifier" type="gml:CodeType"/>
+                    <element maxOccurs="1" minOccurs="0" name="temporalFilter">
+                        <complexType>
+                            <sequence>
+                                <element ref="fes:temporalOps"/>
+                            </sequence>
+                        </complexType>
+                    </element>
+                    <element maxOccurs="1" minOccurs="0" name="spatialFilter">
+                        <complexType>
+                            <sequence>
+                                <element ref="fes:spatialOps"/>
+                            </sequence>
+                        </complexType>
+                    </element>
+                    <element maxOccurs="unbounded" minOccurs="0" name="featureOfInterestIdentifier" type="gml:CodeType"/>
+                    <element maxOccurs="1" minOccurs="0" name="responseFormat" type="gml:CodeType">
+                        <annotation>
+                            <documentation>Indicate overall type of response ... e.g. O&amp;amp;M 1.0 or KML 2.1</documentation>
+                        </annotation>
+                    </element>
+                    <element maxOccurs="1" minOccurs="0" name="responseMode" type="sos:ResponseModeTypeType"/>
+                </sequence>
+            </extension>
+        </complexContent>
+    </complexType>
+    <complexType name="GetObservationPropertyType">
+        <sequence minOccurs="0">
+            <element ref="sos:GetObservation"/>
+        </sequence>
+        <attributeGroup ref="gml:AssociationAttributeGroup"/>
+        <attributeGroup ref="gml:OwnershipAttributeGroup"/>
+    </complexType>
+    <complexType name="GetObservationPropertyByValueType">
+        <sequence>
+            <element ref="sos:GetObservation"/>
+        </sequence>
+        <attributeGroup ref="gml:OwnershipAttributeGroup"/>
+    </complexType><!-- ================================================= -->
+    <element name="GetObservationResponse" substitutionGroup="swes:ExtensibleResponse" type="sos:GetObservationResponseType"/>
+    <complexType name="GetObservationResponseType">
+        <complexContent>
+            <extension base="swes:ExtensibleResponseType">
+                <sequence>
+                    <element maxOccurs="unbounded" minOccurs="0" name="observationData" type="om:OM_ObservationPropertyType"/>
+                </sequence>
+            </extension>
+        </complexContent>
+    </complexType>
+    <complexType name="GetObservationResponsePropertyType">
+        <sequence minOccurs="0">
+            <element ref="sos:GetObservationResponse"/>
+        </sequence>
+        <attributeGroup ref="gml:AssociationAttributeGroup"/>
+        <attributeGroup ref="gml:OwnershipAttributeGroup"/>
+    </complexType>
+    <complexType name="GetObservationResponsePropertyByValueType">
+        <sequence>
+            <element ref="sos:GetObservationResponse"/>
+        </sequence>
+        <attributeGroup ref="gml:OwnershipAttributeGroup"/>
+    </complexType>
+</schema>

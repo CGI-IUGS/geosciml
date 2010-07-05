@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<schema xmlns="http://www.w3.org/2001/XMLSchema" xmlns:gml="http://www.opengis.net/gml/3.2" xmlns:swes="http://www.opengis.net/swes/2.0" xmlns:sos="http://www.opengis.net/sos/2.0" targetNamespace="http://www.opengis.net/sos/2.0" elementFormDefault="qualified" attributeFormDefault="unqualified">
+    <import namespace="http://www.opengis.net/gml/3.2" schemaLocation="http://schemas.opengis.net/gml/3.2.1/gml.xsd"/>
+    <import namespace="http://www.opengis.net/swes/2.0" schemaLocation="http://schemas.opengis.net/swes/2.0.0/swes.xsd"/><!-- ================================================= -->
+    <element name="DescribeResultTypeResponse" substitutionGroup="swes:ExtensibleResponse" type="sos:DescribeResultTypeResponseType"/>
+    <complexType name="DescribeResultTypeResponseType">
+        <complexContent>
+            <extension base="swes:ExtensibleResponseType">
+                <sequence>
+                    <element name="schema" type="anyType"/>
+                </sequence>
+            </extension>
+        </complexContent>
+    </complexType>
+    <complexType name="DescribeResultTypeResponsePropertyType">
+        <sequence minOccurs="0">
+            <element ref="sos:DescribeResultTypeResponse"/>
+        </sequence>
+        <attributeGroup ref="gml:AssociationAttributeGroup"/>
+        <attributeGroup ref="gml:OwnershipAttributeGroup"/>
+    </complexType><!-- ================================================= -->
+    <element name="DescribeResultType" substitutionGroup="swes:ExtensibleRequest" type="sos:DescribeResultTypeType"/>
+    <complexType name="DescribeResultTypeType">
+        <complexContent>
+            <extension base="swes:ExtensibleRequestType">
+                <sequence>
+                    <element name="resultType" type="gml:CodeType"/>
+                </sequence>
+            </extension>
+        </complexContent>
+    </complexType>
+    <complexType name="DescribeResultTypePropertyType">
+        <sequence minOccurs="0">
+            <element ref="sos:DescribeResultType"/>
+        </sequence>
+        <attributeGroup ref="gml:AssociationAttributeGroup"/>
+        <attributeGroup ref="gml:OwnershipAttributeGroup"/>
+    </complexType>
+</schema>

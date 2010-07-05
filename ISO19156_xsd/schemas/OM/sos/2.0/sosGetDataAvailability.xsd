@@ -1,0 +1,337 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<schema xmlns="http://www.w3.org/2001/XMLSchema" xmlns:gml="http://www.opengis.net/gml/3.2" xmlns:swes="http://www.opengis.net/swes/2.0" xmlns:swe="http://www.opengis.net/swe/2.0" xmlns:sos="http://www.opengis.net/sos/2.0" targetNamespace="http://www.opengis.net/sos/2.0" elementFormDefault="qualified" attributeFormDefault="unqualified">
+    <import namespace="http://www.opengis.net/gml/3.2" schemaLocation="http://schemas.opengis.net/gml/3.2.1/gml.xsd"/>
+    <import namespace="http://www.opengis.net/swes/2.0" schemaLocation="http://schemas.opengis.net/swes/2.0.0/swes.xsd"/>
+    <import namespace="http://www.opengis.net/swe/2.0" schemaLocation="http://schemas.opengis.net/sweCommon/2.0.0/swe.xsd"/><!-- ================================================= -->
+    <element name="FeaturePropertyTemporalRelationship" substitutionGroup="swes:AbstractSWES" type="sos:FeaturePropertyTemporalRelationshipType"/>
+    <complexType name="FeaturePropertyTemporalRelationshipType">
+        <complexContent>
+            <extension base="swes:AbstractSWESType">
+                <sequence>
+                    <element name="targetProperty" type="gml:ReferenceType">
+                        <annotation>
+                            <appinfo>
+                                <gml:targetElement>sos:ObservedPropertyInfo</gml:targetElement>
+                            </appinfo>
+                        </annotation>
+                    </element>
+                    <element name="targetFeature" type="gml:ReferenceType">
+                        <annotation>
+                            <appinfo>
+                                <gml:targetElement>sos:FeatureOfInterestInfo</gml:targetElement>
+                            </appinfo>
+                        </annotation>
+                    </element>
+                    <element maxOccurs="unbounded" minOccurs="1" name="phenomenonTime">
+                        <complexType>
+                            <sequence>
+                                <element ref="gml:AbstractTimeGeometricPrimitive"/>
+                            </sequence>
+                        </complexType>
+                    </element>
+                </sequence>
+            </extension>
+        </complexContent>
+    </complexType>
+    <complexType name="FeaturePropertyTemporalRelationshipPropertyType">
+        <sequence minOccurs="0">
+            <element ref="sos:FeaturePropertyTemporalRelationship"/>
+        </sequence>
+        <attributeGroup ref="gml:AssociationAttributeGroup"/>
+        <attributeGroup ref="gml:OwnershipAttributeGroup"/>
+    </complexType><!-- ================================================= -->
+    <element name="ObservedPropertyInfo" substitutionGroup="swes:AbstractSWES" type="sos:ObservedPropertyInfoType"/>
+    <complexType name="ObservedPropertyInfoType">
+        <complexContent>
+            <extension base="swes:AbstractSWESType">
+                <sequence>
+                    <element name="propertyIdentifier" type="gml:CodeType"/>
+                    <element maxOccurs="unbounded" minOccurs="0" name="observedFor" type="gml:ReferenceType">
+                        <annotation>
+                            <appinfo>
+                                <gml:targetElement>sos:FeaturePropertyTemporalRelationship</gml:targetElement>
+                            </appinfo>
+                        </annotation>
+                    </element>
+                    <element maxOccurs="unbounded" minOccurs="0" name="observedBy" type="gml:ReferenceType">
+                        <annotation>
+                            <appinfo>
+                                <gml:targetElement>sos:ProcedurePropertyTemporalRelationship</gml:targetElement>
+                            </appinfo>
+                        </annotation>
+                    </element>
+                </sequence>
+            </extension>
+        </complexContent>
+    </complexType>
+    <complexType name="ObservedPropertyInfoPropertyType">
+        <sequence minOccurs="0">
+            <element ref="sos:ObservedPropertyInfo"/>
+        </sequence>
+        <attributeGroup ref="gml:AssociationAttributeGroup"/>
+        <attributeGroup ref="gml:OwnershipAttributeGroup"/>
+    </complexType><!-- ================================================= -->
+    <element name="ProcedureFeatureTemporalRelationship" substitutionGroup="swes:AbstractSWES" type="sos:ProcedureFeatureTemporalRelationshipType"/>
+    <complexType name="ProcedureFeatureTemporalRelationshipType">
+        <complexContent>
+            <extension base="swes:AbstractSWESType">
+                <sequence>
+                    <element name="targetProcedure" type="gml:ReferenceType">
+                        <annotation>
+                            <appinfo>
+                                <gml:targetElement>sos:ProcedureInfo</gml:targetElement>
+                            </appinfo>
+                        </annotation>
+                    </element>
+                    <element name="targetFeature" type="gml:ReferenceType">
+                        <annotation>
+                            <appinfo>
+                                <gml:targetElement>sos:FeatureOfInterestInfo</gml:targetElement>
+                            </appinfo>
+                        </annotation>
+                    </element>
+                    <element maxOccurs="unbounded" minOccurs="1" name="phenomenonTime">
+                        <complexType>
+                            <sequence>
+                                <element ref="gml:AbstractTimeGeometricPrimitive"/>
+                            </sequence>
+                        </complexType>
+                    </element>
+                </sequence>
+            </extension>
+        </complexContent>
+    </complexType>
+    <complexType name="ProcedureFeatureTemporalRelationshipPropertyType">
+        <sequence minOccurs="0">
+            <element ref="sos:ProcedureFeatureTemporalRelationship"/>
+        </sequence>
+        <attributeGroup ref="gml:AssociationAttributeGroup"/>
+        <attributeGroup ref="gml:OwnershipAttributeGroup"/>
+    </complexType><!-- ================================================= -->
+    <element name="ProcedurePropertyTemporalRelationship" substitutionGroup="swes:AbstractSWES" type="sos:ProcedurePropertyTemporalRelationshipType">
+        <annotation>
+            <documentation>Note that this does NOT also provide information on which procedure is capable of observing which properties - at least not in general. Maybe the sensor in principle can observe the list of properties listed in the capabilities, but has not done so as of the time when the client requested the observation availability!</documentation>
+        </annotation>
+    </element>
+    <complexType name="ProcedurePropertyTemporalRelationshipType">
+        <complexContent>
+            <extension base="swes:AbstractSWESType">
+                <sequence>
+                    <element name="targetProcedure" type="gml:ReferenceType">
+                        <annotation>
+                            <appinfo>
+                                <gml:targetElement>sos:ProcedureInfo</gml:targetElement>
+                            </appinfo>
+                        </annotation>
+                    </element>
+                    <element name="targetProperty" type="gml:ReferenceType">
+                        <annotation>
+                            <appinfo>
+                                <gml:targetElement>sos:ObservedPropertyInfo</gml:targetElement>
+                            </appinfo>
+                        </annotation>
+                    </element>
+                    <element maxOccurs="unbounded" minOccurs="1" name="phenomenonTime">
+                        <complexType>
+                            <sequence>
+                                <element ref="gml:AbstractTimeGeometricPrimitive"/>
+                            </sequence>
+                        </complexType>
+                    </element>
+                </sequence>
+            </extension>
+        </complexContent>
+    </complexType>
+    <complexType name="ProcedurePropertyTemporalRelationshipPropertyType">
+        <sequence minOccurs="0">
+            <element ref="sos:ProcedurePropertyTemporalRelationship"/>
+        </sequence>
+        <attributeGroup ref="gml:AssociationAttributeGroup"/>
+        <attributeGroup ref="gml:OwnershipAttributeGroup"/>
+    </complexType><!-- ================================================= -->
+    <element name="ProcedureInfo" substitutionGroup="swes:AbstractSWES" type="sos:ProcedureInfoType"/>
+    <complexType name="ProcedureInfoType">
+        <complexContent>
+            <extension base="swes:AbstractSWESType">
+                <sequence>
+                    <element name="procedureIdentifier" type="gml:CodeType"/>
+                    <element maxOccurs="unbounded" minOccurs="0" name="observedFeatureOfInterest" type="gml:ReferenceType">
+                        <annotation>
+                            <appinfo>
+                                <gml:targetElement>sos:ProcedureFeatureTemporalRelationship</gml:targetElement>
+                            </appinfo>
+                        </annotation>
+                    </element>
+                    <element maxOccurs="unbounded" minOccurs="0" name="observedProperty" type="gml:ReferenceType">
+                        <annotation>
+                            <appinfo>
+                                <gml:targetElement>sos:ProcedurePropertyTemporalRelationship</gml:targetElement>
+                            </appinfo>
+                        </annotation>
+                    </element>
+                </sequence>
+            </extension>
+        </complexContent>
+    </complexType>
+    <complexType name="ProcedureInfoPropertyType">
+        <sequence minOccurs="0">
+            <element ref="sos:ProcedureInfo"/>
+        </sequence>
+        <attributeGroup ref="gml:AssociationAttributeGroup"/>
+        <attributeGroup ref="gml:OwnershipAttributeGroup"/>
+    </complexType><!-- ================================================= -->
+    <element name="FeatureOfInterestInfo" substitutionGroup="swes:AbstractSWES" type="sos:FeatureOfInterestInfoType"/>
+    <complexType name="FeatureOfInterestInfoType">
+        <complexContent>
+            <extension base="swes:AbstractSWESType">
+                <sequence>
+                    <element name="featureIdentifier" type="gml:CodeType"/>
+                    <element maxOccurs="1" minOccurs="0" name="featureReference" type="gml:ReferenceType">
+                        <annotation>
+                            <appinfo>
+                                <gml:targetElement>gml:AbstractFeature</gml:targetElement>
+                            </appinfo>
+                        </annotation>
+                    </element>
+                    <element maxOccurs="unbounded" minOccurs="0" name="relatedProperty" type="gml:ReferenceType">
+                        <annotation>
+                            <appinfo>
+                                <gml:targetElement>sos:FeaturePropertyTemporalRelationship</gml:targetElement>
+                            </appinfo>
+                        </annotation>
+                    </element>
+                    <element maxOccurs="unbounded" minOccurs="0" name="observedBy" type="gml:ReferenceType">
+                        <annotation>
+                            <appinfo>
+                                <gml:targetElement>sos:ProcedureFeatureTemporalRelationship</gml:targetElement>
+                            </appinfo>
+                        </annotation>
+                    </element>
+                </sequence>
+            </extension>
+        </complexContent>
+    </complexType>
+    <complexType name="FeatureOfInterestInfoPropertyType">
+        <sequence minOccurs="0">
+            <element ref="sos:FeatureOfInterestInfo"/>
+        </sequence>
+        <attributeGroup ref="gml:AssociationAttributeGroup"/>
+        <attributeGroup ref="gml:OwnershipAttributeGroup"/>
+    </complexType><!-- ================================================= -->
+    <element name="GetDataAvailability" substitutionGroup="swes:ExtensibleRequest" type="sos:GetDataAvailabilityType">
+        <annotation>
+            <documentation>Operation semantics: 1) Retrieve all observations belonging to the listed offering(s) (or from all offerings) - removing duplicates - which have a sampling time that is interacting (see CR 09-066r1 [tbd]) with the given availabilityTimeframe. 2) For each procedure property and featureOfInterest identified in the request (useAll*=true then all are targeted, otherwise either the listed ones or none of them): for each combination of individual procedure &amp;amp; property, procedure &amp;amp; featureOfInterest, property &amp;amp; featureOfInterest (unless one or more components of the combination is not identified by the request), create an internal list and add the sampling times of all observations that have that specific combination to that list. 3) In the response, create info elements for all procedures, observedProperties and featuresOfInterest that belong to at least one combination which is not empty. 4) Create the relationships between the two components (procedure, observedProperty, featureOfInterest) of each non-empty combination and add it to the response. 5) Sort the list of sampling times belonging to each non-empty combination in ascending temporal order. Grab the first sampling time and all subsequent ones which have a temporal difference to the previous one which is greater than the given minimumTimeGap. Create the temporal union of all these sampling times and add the result as one samplingTime in the association object belonging to the combination under consideration. Repeat this for all remaining observations in the ordered list.</documentation>
+        </annotation>
+    </element>
+    <complexType name="GetDataAvailabilityType">
+        <complexContent>
+            <extension base="swes:ExtensibleRequestType">
+                <sequence>
+                    <element maxOccurs="unbounded" minOccurs="0" name="offeringIdentifier" type="gml:CodeType">
+                        <annotation>
+                            <documentation>One or more offering identifiers can be provided to restrict the pool of observations used in the availability analysis. If not present, all observations of all offerings are targeted.</documentation>
+                        </annotation>
+                    </element>
+                    <element name="availabilityTimeframe">
+                        <annotation>
+                            <documentation>Time interval for which the data availability shall be retrieved.</documentation>
+                        </annotation>
+                        <complexType>
+                            <sequence>
+                                <element ref="gml:TimePeriod"/>
+                            </sequence>
+                        </complexType>
+                    </element>
+                    <element maxOccurs="1" minOccurs="0" name="minimumTimeGap" type="duration">
+                        <annotation>
+                            <documentation>The minimum duration that needs to span between two consecutive observations made by one sensor in order for the service to make a new relationship for the second observation. Whenever the time between two consecutive observations is smaller than the given duration, the service shall aggregate the sampling times of these two operations by creating their temporal bounding box.</documentation>
+                        </annotation>
+                    </element>
+                    <element maxOccurs="unbounded" minOccurs="0" name="procedureIdentifier" type="gml:CodeType"/>
+                    <element name="useAllProcedures" type="boolean"/>
+                    <element maxOccurs="unbounded" minOccurs="0" name="observedPropertyIdentifier" type="gml:CodeType"/>
+                    <element name="useAllObservedProperties" type="boolean"/>
+                    <element maxOccurs="unbounded" minOccurs="0" name="featureOfInterestIdentifier" type="gml:CodeType"/>
+                    <element name="useAllFeaturesOfInterest" type="boolean"/>
+                </sequence>
+            </extension>
+        </complexContent>
+    </complexType>
+    <complexType name="GetDataAvailabilityPropertyType">
+        <sequence minOccurs="0">
+            <element ref="sos:GetDataAvailability"/>
+        </sequence>
+        <attributeGroup ref="gml:AssociationAttributeGroup"/>
+        <attributeGroup ref="gml:OwnershipAttributeGroup"/>
+    </complexType>
+    <complexType name="GetDataAvailabilityPropertyByValueType">
+        <sequence>
+            <element ref="sos:GetDataAvailability"/>
+        </sequence>
+        <attributeGroup ref="gml:OwnershipAttributeGroup"/>
+    </complexType><!-- ================================================= -->
+    <element name="GetDataAvailabilityResponse" substitutionGroup="swes:ExtensibleResponse" type="sos:GetDataAvailabilityResponseType"/>
+    <complexType name="GetDataAvailabilityResponseType">
+        <complexContent>
+            <extension base="swes:ExtensibleResponseType">
+                <sequence>
+                    <element maxOccurs="unbounded" minOccurs="0" name="featureOfInterestEntryPoint">
+                        <complexType>
+                            <sequence>
+                                <element ref="sos:FeatureOfInterestInfo"/>
+                            </sequence>
+                        </complexType>
+                    </element>
+                    <element maxOccurs="unbounded" minOccurs="0" name="propertyEntryPoint">
+                        <complexType>
+                            <sequence>
+                                <element ref="sos:ObservedPropertyInfo"/>
+                            </sequence>
+                        </complexType>
+                    </element>
+                    <element maxOccurs="unbounded" minOccurs="0" name="procedureEntryPoint">
+                        <complexType>
+                            <sequence>
+                                <element ref="sos:ProcedureInfo"/>
+                            </sequence>
+                        </complexType>
+                    </element>
+                    <element maxOccurs="unbounded" minOccurs="0" name="featurePropertyRelationship">
+                        <complexType>
+                            <sequence>
+                                <element ref="sos:FeaturePropertyTemporalRelationship"/>
+                            </sequence>
+                        </complexType>
+                    </element>
+                    <element maxOccurs="unbounded" minOccurs="0" name="procedurePropertyRelationship">
+                        <complexType>
+                            <sequence>
+                                <element ref="sos:ProcedurePropertyTemporalRelationship"/>
+                            </sequence>
+                        </complexType>
+                    </element>
+                    <element maxOccurs="unbounded" minOccurs="0" name="procedureFeatureRelationship">
+                        <complexType>
+                            <sequence>
+                                <element ref="sos:ProcedureFeatureTemporalRelationship"/>
+                            </sequence>
+                        </complexType>
+                    </element>
+                </sequence>
+            </extension>
+        </complexContent>
+    </complexType>
+    <complexType name="GetDataAvailabilityResponsePropertyType">
+        <sequence minOccurs="0">
+            <element ref="sos:GetDataAvailabilityResponse"/>
+        </sequence>
+        <attributeGroup ref="gml:AssociationAttributeGroup"/>
+        <attributeGroup ref="gml:OwnershipAttributeGroup"/>
+    </complexType>
+    <complexType name="GetDataAvailabilityResponsePropertyByValueType">
+        <sequence>
+            <element ref="sos:GetDataAvailabilityResponse"/>
+        </sequence>
+        <attributeGroup ref="gml:OwnershipAttributeGroup"/>
+    </complexType>
+</schema>

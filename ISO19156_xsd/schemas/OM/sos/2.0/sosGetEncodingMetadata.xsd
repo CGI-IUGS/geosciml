@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<schema xmlns="http://www.w3.org/2001/XMLSchema" xmlns:gml="http://www.opengis.net/gml/3.2" xmlns:swes="http://www.opengis.net/swes/2.0" xmlns:sos="http://www.opengis.net/sos/2.0" targetNamespace="http://www.opengis.net/sos/2.0" elementFormDefault="qualified" attributeFormDefault="unqualified">
+    <import namespace="http://www.opengis.net/gml/3.2" schemaLocation="http://schemas.opengis.net/gml/3.2.1/gml.xsd"/>
+    <import namespace="http://www.opengis.net/swes/2.0" schemaLocation="http://schemas.opengis.net/swes/2.0.0/swes.xsd"/><!-- ================================================= -->
+    <element name="ObservationEncodingMetadata" substitutionGroup="swes:AbstractSWES" type="sos:ObservationEncodingMetadataType"/>
+    <complexType name="ObservationEncodingMetadataType">
+        <complexContent>
+            <extension base="swes:AbstractSWESType">
+                <sequence>
+                    <element name="observationType" type="gml:CodeType"/>
+                    <element maxOccurs="unbounded" minOccurs="0" name="resultType" type="gml:CodeType">
+                        <annotation>
+                            <documentation>cardinality 0..* if a procedure would really provide measurement of a certain property in different ways - this should not be the case (JE)</documentation>
+                        </annotation>
+                    </element>
+                </sequence>
+            </extension>
+        </complexContent>
+    </complexType>
+    <complexType name="ObservationEncodingMetadataPropertyType">
+        <sequence minOccurs="0">
+            <element ref="sos:ObservationEncodingMetadata"/>
+        </sequence>
+        <attributeGroup ref="gml:AssociationAttributeGroup"/>
+        <attributeGroup ref="gml:OwnershipAttributeGroup"/>
+    </complexType><!-- ================================================= -->
+    <element name="PropertyFormatPair" substitutionGroup="swes:AbstractSWES" type="sos:PropertyFormatPairType"/>
+    <complexType name="PropertyFormatPairType">
+        <complexContent>
+            <extension base="swes:AbstractSWESType">
+                <sequence>
+                    <element name="observablePropertyIdentifier" type="gml:CodeType"/>
+                    <element name="responseFormat" type="gml:CodeType">
+                        <annotation>
+                            <documentation>om20 has to be explicitly listed so that observation type is provided</documentation>
+                        </annotation>
+                    </element>
+                    <element maxOccurs="unbounded" minOccurs="0" name="encoding" type="sos:ObservationEncodingMetadataPropertyType"/>
+                </sequence>
+            </extension>
+        </complexContent>
+    </complexType>
+    <complexType name="PropertyFormatPairPropertyType">
+        <sequence minOccurs="0">
+            <element ref="sos:PropertyFormatPair"/>
+        </sequence>
+        <attributeGroup ref="gml:AssociationAttributeGroup"/>
+        <attributeGroup ref="gml:OwnershipAttributeGroup"/>
+    </complexType><!-- ================================================= -->
+    <element name="GetEncodingMetadata" substitutionGroup="swes:ExtensibleRequest" type="sos:GetEncodingMetadataType"/>
+    <complexType name="GetEncodingMetadataType">
+        <complexContent>
+            <extension base="swes:ExtensibleRequestType">
+                <sequence>
+                    <element maxOccurs="unbounded" minOccurs="0" name="observablePropertyIdentifier" type="gml:CodeType"/>
+                    <element maxOccurs="unbounded" minOccurs="1" name="procedureIdentifier" type="gml:CodeType"/>
+                </sequence>
+            </extension>
+        </complexContent>
+    </complexType>
+    <complexType name="GetEncodingMetadataPropertyType">
+        <sequence minOccurs="0">
+            <element ref="sos:GetEncodingMetadata"/>
+        </sequence>
+        <attributeGroup ref="gml:AssociationAttributeGroup"/>
+        <attributeGroup ref="gml:OwnershipAttributeGroup"/>
+    </complexType><!-- ================================================= -->
+    <element name="ProcedureMetadata" type="sos:ProcedureMetadataType"/>
+    <complexType name="ProcedureMetadataType">
+        <sequence>
+            <element name="procedureIdentifier" type="gml:CodeType"/>
+            <element maxOccurs="unbounded" minOccurs="1" name="propertyFormat" type="sos:PropertyFormatPairPropertyType"/>
+        </sequence>
+    </complexType>
+    <complexType name="ProcedureMetadataPropertyType">
+        <sequence minOccurs="0">
+            <element ref="sos:ProcedureMetadata"/>
+        </sequence>
+        <attributeGroup ref="gml:AssociationAttributeGroup"/>
+        <attributeGroup ref="gml:OwnershipAttributeGroup"/>
+    </complexType><!-- ================================================= -->
+    <element name="GetEncodingMetadataResponse" substitutionGroup="swes:ExtensibleResponse" type="sos:GetEncodingMetadataResponseType"/>
+    <complexType name="GetEncodingMetadataResponseType">
+        <complexContent>
+            <extension base="swes:ExtensibleResponseType">
+                <sequence>
+                    <element maxOccurs="unbounded" minOccurs="1" name="result">
+                        <complexType>
+                            <sequence>
+                                <element ref="sos:ProcedureMetadata"/>
+                            </sequence>
+                        </complexType>
+                    </element>
+                </sequence>
+            </extension>
+        </complexContent>
+    </complexType>
+    <complexType name="GetEncodingMetadataResponsePropertyType">
+        <sequence minOccurs="0">
+            <element ref="sos:GetEncodingMetadataResponse"/>
+        </sequence>
+        <attributeGroup ref="gml:AssociationAttributeGroup"/>
+        <attributeGroup ref="gml:OwnershipAttributeGroup"/>
+    </complexType>
+</schema>
