@@ -61,14 +61,14 @@
 		<attributeGroup ref="gml:AssociationAttributeGroup"/>
 		<attributeGroup ref="gml:OwnershipAttributeGroup"/>
 	</complexType>
-	<element name="ProcessStep" type="glab:ProcessStepType" substitutionGroup="gmd:LI_ProcessStep">
+	<element name="ProcessStep" type="glab:ProcessStep_Type" substitutionGroup="gmd:LI_ProcessStep">
 		<annotation>
 			<documentation>A calculation or computation process.  This process step(s)may be applied to results from an AnalyticalSession in order to obtain result quality information or to adjust results values according to some conditions.</documentation>
 		</annotation>
 	</element>
-	<complexType name="ProcessStepType">
+	<complexType name="ProcessStep_Type">
 		<complexContent>
-			<extension base="gmd:LI_ProcessStepType">
+			<extension base="gmd:LI_ProcessStep_Type">
 				<sequence>
 					<element name="quality" type="glab:ResultQualityDescriptionPropertyType" minOccurs="0" maxOccurs="unbounded"/>
 				</sequence>
