@@ -21,6 +21,7 @@ These values are usually obtained as the result of an observation. The descripti
 	<import namespace="http://www.opengis.net/gml/3.2" schemaLocation="http://schemas.opengis.net/gml/3.2.1/gml.xsd"/>
 	<import namespace="http://www.isotc211.org/2005/gmd" schemaLocation="http://schemas.opengis.net/iso/19139/20070417/gmd/gmd.xsd"/>
 	<import namespace="http://www.opengis.net/om/2.0" schemaLocation="https://www.seegrid.csiro.au/subversion/GeoSciML/ISO19156_xsd/schemas/OM/om/2.0/observation.xsd"/>
+	<import namespace="http://www.opengis.net/swe/1.0/gml32" schemaLocation="http://dp.schemas.opengis.net/08-127/sweCommon/1.0.1_gml32/swe.xsd"/> <!-- FL added missing swe import -->
 	<element name="CGI_NumericAgeRange" type="cgu:CGI_NumericAgeRangeType" substitutionGroup="gml:AbstractObject">
 		<annotation>
 			<documentation>Class to represent general age assignment using numeric measurement results. All attributes have cardinality 1; report with nilReason="missing" if a value is absent.</documentation>
@@ -80,13 +81,13 @@ These values are usually obtained as the result of an observation. The descripti
 		<complexContent>
 			<extension base="cgu:CGI_ValueType">
 				<sequence>
-					<element name="estimatedValue">
+					<element name="estimatedValue" type="swe:QuantityPropertyType"> <!-- FL/OR: Added reference to swe:Quantity -->
 						<annotation>
 							<documentation>A single measured value chosen on some basis (eg; mean, mode, median, best guess) that is representative for the measurement.  Best practice to consider the value, uom, and quality attributes of swe:Quantity to be mandatory.</documentation>
 						</annotation>
 					</element>
-					<element name="lower"/>
-					<element name="upper"/>
+					<element name="lower" type="swe:QuantityPropertyType">/> <!-- FL/OR: Added reference to swe:Quantity -->
+					<element name="upper" type="swe:QuantityPropertyType">/> <!-- FL/OR: Added reference to swe:Quantity -->
 				</sequence>
 			</extension>
 		</complexContent>
