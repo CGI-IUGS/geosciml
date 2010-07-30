@@ -13,7 +13,7 @@ GeologicFeature represents a conceptual feature that is hypothesized to exist co
 	<import namespace="urn:cgi:xmlns:CGI:Vocabulary:3.0.0" schemaLocation="https://www.seegrid.csiro.au/subversion/GeoSciML/tags/3.0.0_rc1_gml3.2/vocabulary/3.0.0/xsd/vocabulary.xsd"/>
 	<import namespace="urn:cgi:xmlns:CGI:Utilities:3.0.0" schemaLocation="https://www.seegrid.csiro.au/subversion/GeoSciML/tags/3.0.0_rc1_gml3.2/cgiUtilities/3.0.0/xsd/cgiUtilities.xsd"/>
 	<import namespace="urn:cgi:xmlns:CGI:GeologicTime:3.0.0" schemaLocation="https://www.seegrid.csiro.au/subversion/GeoSciML/tags/3.0.0_rc1_gml3.2/geotime/3.0.0/xsd/geologicTime.xsd"/>
-	<import namespace="http://www.opengis.net/swe/1.0.1" schemaLocation="http://schemas.opengis.net/sweCommon/1.0.1/swe.xsd"/>   <!-- Manually added SWE import - OLR 30-7-2010 -->
+	<import namespace="http://www.opengis.net/swe/1.0.1" schemaLocation="http://dp.schemas.opengis.net/08-127/sweCommon/1.0.1_gml32/swe.xsd"/>   <!-- Manually added SWE import - OLR 30-7-2010. Changed to point to GML 3.2 compatible SWE schema at dp.schemas.opengis.net, Marcus Sen 30-7-2010. -->
 	<element name="GeologicFeature" type="gsmlcore:GeologicFeatureType" abstract="true" substitutionGroup="gml:AbstractFeature">
 		<annotation>
 			<documentation>The abstract GeologicFeature class represents a conceptual feature that is hypothesized to exist coherently in the world.
@@ -124,7 +124,7 @@ A Mapped Feature is always associated with some sampling feature - e.g. a mappin
 							<documentation>MappedFeature ObservationMethod is a metadata snippet indicating how the spatial extent of the mapped feature was determined, and the basis for association of the geometry with some GeologicFeature specification to define a MappedFeature. For a borehole, the MappedInterval observation method indicates how the boundaries of the interval were defined (eg, linear measurement from borehole collar). ObservationMethod is a convenience property that provides a quick and dirty approach to  observation metadata when data are reported using a feature view (as opposed to observation view). This property corresponds (loosely) to ISO19115 Lineage.  (eg: digitised,  Global Positioning System, published map, fieldObservation, downhole survey, aerial photography, field survey)</documentation>
 						</annotation>
 					</element>
-					<element name="positionalAccuracy">
+					<element name="positionalAccuracy" type="swe:QuantityPropertyType">
 						<annotation>
 							<documentation>Quantitative values define the radius of an uncertainty buffer around a mappedFeature (eg: a positionAccuracy of 100 m for a line feature defines a buffer polygon of total width 200 m centred on the line).  Corresponds to ISO19115 DQ_PositionalAccuracy.</documentation>
 						</annotation>
