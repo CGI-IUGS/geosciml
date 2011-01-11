@@ -15,14 +15,16 @@
 	<import namespace="http://www.opengis.net/sampling/2.0" schemaLocation="https://www.seegrid.csiro.au/subversion/GeoSciML/ISO19156_xsd/schemas/OM/sampling/2.0/samplingFeature.xsd"/>
 	<import namespace="http://www.opengis.net/samplingSpecimen/2.0" schemaLocation="https://www.seegrid.csiro.au/subversion/GeoSciML/ISO19156_xsd/schemas/OM/samplingSpecimen/2.0/specimen.xsd"/>
 	<include schemaLocation="http://schemas.geosciml.org/laboratoryanalysis-specimen/3.0/laboratoryAnalysis-Specimen.xsd"/>
-	<element name="GeologicSpecimenPreparation" type="glab:GeologicSpecimenPreparationType">
+	<element name="GeologicSpecimenPreparation" type="glab:GeologicSpecimenPreparationType" substitutionGroup="gml:AbstractFeature">
+<!--		<element name="GeologicSpecimenPreparation" type="glab:GeologicSpecimenPreparationType">    fixed incorrect extension base - OLR 11-01-2011    -->
 		<annotation>
 			<documentation>Implementation of SF_Process to describe sample preparation applied to geologic specimens, typically in preparation for analytical processes like geochemistry or microscopy.</documentation>
 		</annotation>
 	</element>
 	<complexType name="GeologicSpecimenPreparationType">
 		<complexContent>
-			<extension base="sam:SF_ProcessType">
+			<!--			<extension base="sam:SF_ProcessType">        fixed incorrect extension base - OLR 11-01-2011   -->
+			<extension base="gml:AbstractFeatureType">
 				<sequence>
 					<element name="preparationProcess" type="gml:ReferenceType">
 						<annotation>
@@ -43,7 +45,8 @@
 		<attributeGroup ref="gml:AssociationAttributeGroup"/>
 		<attributeGroup ref="gml:OwnershipAttributeGroup"/>
 	</complexType>
-	<element name="GeologicSamplingMethod" type="glab:GeologicSamplingMethodType">
+	<element name="GeologicSamplingMethod" type="glab:GeologicSamplingMethodType" substitutionGroup="gml:AbstractFeature">
+		<!--		<element name="GeologicSamplingMethod" type="glab:GeologicSamplingMethodType">     fixed incorrect extension base - OLR 11-01-2011    -->
 		<annotation>
 			<documentation>Implementation of SF_Process to describe the method used to obtain a geologic specimen
 eg:
@@ -58,7 +61,7 @@ geological hammer</documentation>
 	</element>
 	<complexType name="GeologicSamplingMethodType">
 		<complexContent>
-			<extension base="sam:SF_ProcessType">
+			<extension base="gml:AbstractFeatureType">    <!--fixed incorrect extension base - OLR 11-01-2011 -->
 				<sequence>
 					<element name="method" type="gml:ReferenceType">
 						<annotation>
