@@ -1,10 +1,13 @@
-3 December 2010
+17 February 2011
 
-The most up-to-date GeoSciML model is curently at ../branches/3.0.0_rc2/model.  
-This branch will be rolled into trunk as soon as possible.
+This is the development trunk for GeoSciML v3.
+
+The current GeoSciML model for testing is curently at ../tags/3.0.0_rc2/model.
+
+The current stable, publicly available release of GeoSciML is GeoSciML v2.1 - see www.geosciml.org
 
 Ollie Raymond
 GeoSciML Data Model Design Group
 oliver.raymond@ga.gov.au
 
-3 December 2010
+17 February 2011
