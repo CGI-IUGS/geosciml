@@ -1,0 +1,207 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wfs:FeatureCollection
+    xsi:schemaLocation="http://www.opengis.net/wfs/2.0 http://schemas.opengis.net/wfs/2.0/wfs.xsd
+    http://www.opengis.net/gml/3.2 http://schemas.opengis.net/gml/3.2.1/gml.xsd
+    http://www.opengis.net/samplingSpecimen/2.0 http://schemas.opengis.net/samplingSpecimen/2.0/specimen.xsd
+    http://xmlns.geosciml.org/GeoSciML-Core/3.0 http://schemas.geosciml.org/geosciml/3.0/geosciml.xsd"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+    xmlns:wfs="http://www.opengis.net/wfs/2.0"
+    xmlns:gml="http://www.opengis.net/gml/3.2"
+    xmlns:gsml="http://xmlns.geosciml.org/GeoSciML-Core/3.0"
+    xmlns:gt="http://xmlns.geosciml.org/GeologicTime/3.0"
+    xmlns:trs="http://xmlns.geosciml.org/TemporalReferenceSystem/3.0"
+    xmlns:cgu="http://xmlns.geosciml.org/Utilities/3.0"
+    xmlns:gpp="http://xmlns.geosciml.org/PhysicalProperties/3.0"
+    xmlns:gbh="http://xmlns.geosciml.org/Borehole/3.0"
+    xmlns:glab="http://xmlns.geosciml.org/LaboratoryAnalysis-Specimen/3.0"
+    xmlns:swe="http://www.opengis.net/swe/1.0/gml32"
+    xmlns:sp="http://www.opengis.net/samplingSpecimen/2.0"
+    xmlns:sas="http://www.opengis.net/samplingSpatial/2.0"
+    xmlns:sa="http://www.opengis.net/sampling/2.0"
+    xmlns:om="http://www.opengis.net/om/2.0"
+    xmlns:gmd="http://www.isotc211.org/2005/gmd"
+    xmlns:gco="http://www.isotc211.org/2005/gco" 
+    xmlns:xlink="http://www.w3.org/1999/xlink"
+    timeStamp="2011-01-01T12:00:00" numberMatched="1" numberReturned="1">
+
+    <!-- ================================================================================================================ 	-->
+    <!--  Example GeosciML v3 rc2 instance document for a specimen with whole rock geochemical analysis for Testbed4 WFS.    										-->
+    <!-- ================================================================================================================== 	-->
+
+    <wfs:boundedBy>
+        <gml:Envelope srsName="http://spatialreference.org/ref/epsg/4283/" srsDimension="2">  <!-- SRS is Geocentric Datum of Australia 1994, decimal lat-long degrees -->
+            <gml:lowerCorner>148.25814099 -33.83566207</gml:lowerCorner>
+            <gml:upperCorner>148.25814099 -33.83566207</gml:upperCorner>
+        </gml:Envelope>
+    </wfs:boundedBy>
+
+    <wfs:member>
+        <sp:SF_Specimen gml:id="GASampleNo_1526753">
+            <gml:description>Specimen sampled from GA field site 96846431</gml:description>
+            <gml:identifier codeSpace="http://www.ga.gov.au/sampleNo">1526753</gml:identifier>
+            <sa:type xlink:href="http://www.opengis.net/def/samplingFeatureType/OGC-OM/2.0/SF_Specimen"/>
+            <sa:sampledFeature xlink:href="http://dbforms.ga.gov.au/pls/www/geodx.strat_units.sch_full?wher=stratno=32474" xlink:title="Warrumba Volcanics"/>
+            <sa:lineage>
+                <gmd:LI_Lineage>
+                    <gmd:source>
+                        <gmd:LI_Source>
+                            <gmd:description>
+                                <gco:CharacterString>Lachlan Orogen NGMA mapping survey, Geoscience Australia and New South Wales Geological Survey.</gco:CharacterString>
+                            </gmd:description>
+                        </gmd:LI_Source>
+                    </gmd:source>
+                </gmd:LI_Lineage>
+            </sa:lineage>
+            <sa:relatedObservation>       <!-- Example of a major element oxide analysis  -->
+                <om:OM_Observation gml:id="GAGeochemAnalysis_1526753_SiO2">
+                    <gml:description>SiO2 whole rock geochemcial analysis</gml:description>
+                    <om:phenomenonTime>
+                        <gml:TimeInstant gml:id="GAGeochemAnalysisTime_1526753">
+                            <gml:timePosition>1997-01-21T11:12:00</gml:timePosition>
+                        </gml:TimeInstant>
+                    </om:phenomenonTime>
+                    <om:resultTime xlink:href="#GAGeochemAnalysisTime_1526753"/>
+                    <om:procedure>
+                        <glab:AnalyticalProcess gml:id="GAGeochemAnalysisMethod_1526753">
+                            <glab:method>   <!-- Mandatory -->
+                                <glab:AnalyticalMethod gml:id="GAMethods_XRF">
+                                    <glab:methodName xlink:href="http://www.ga.gov.au/classifier/analyticalMethod/XRF" xlink:title="x-ray fluorescence mass spectrometry"/>
+                                    <glab:citation xlink:href="http://www.ga.gov.au/minerals/disciplines/geochemistry.html"/>
+                                </glab:AnalyticalMethod>
+                            </glab:method>
+                            <glab:acquisition xlink:href="TB4_AnalyticalSession_rc2.xml"/>      
+<!-- *** I have used a xlink:href above to an external document describing analytical session parameters (eg, machine and operator details) and standard reference materials used. ***  
+              This element may be nilled for specimen analyses for which we don't have analytical metadata.   -->
+                            <glab:computation>   <!-- Use this link to LI_ProcessStep if there are data reduction or computation processes that need to be documented. -->
+                                <gmd:LI_ProcessStep>
+                                    <gmd:description>
+                                        <gco:CharacterString>Various fudge factors, matrix effects, and other black magic were applied to the raw data.</gco:CharacterString>
+                                    </gmd:description>
+                                </gmd:LI_ProcessStep>
+                            </glab:computation>
+                        </glab:AnalyticalProcess>
+                    </om:procedure>
+                    <om:observedProperty xlink:href="http://sweet.jpl.nasa.gov/2.0/chemConcentration.owl#Composition" xlink:title="chemical composition"/>
+                    <om:featureOfInterest xlink:href="#GASampleNo_1526753"/>
+                    <om:result>
+                        <swe:Quantity gml:id="GAGeochemAnalysis_1526753_SiO2_Result" definition="SiO2 concentration">
+                            <swe:uom code="%25" xlink:href="http://www.opengis.net/def/uom/UCUM/0/%25" xlink:title="percent"/>
+                            <swe:quality>     <!-- Analytical Error -->
+                                <swe:Quantity gml:id="GAGeochemAnalysis_1526753_SiO2_Error" definition="SiO2 analytical error">
+                                    <swe:uom code="%25" xlink:href="http://www.opengis.net/def/uom/UCUM/0/%25" xlink:title="percent"/>
+                                    <swe:value>0.1</swe:value>
+                                </swe:Quantity>
+                            </swe:quality>
+                            <swe:value>76.4</swe:value>
+                        </swe:Quantity>
+                    </om:result>
+                </om:OM_Observation> 
+            </sa:relatedObservation>
+            <sa:relatedObservation>       <!-- Example of a trace element analysis  -->
+                <om:OM_Observation gml:id="GAGeochemAnalysis_1526753_Ni">   
+                    <om:phenomenonTime xlink:href="GAGeochemAnalysisTime_1526753"/>
+                    <om:resultTime xlink:href="GAGeochemAnalysisTime_1526753"/>
+                    <om:procedure xlink:href="GAGeochemAnalysisMethod_1526753"/>
+                    <om:observedProperty xlink:href="http://sweet.jpl.nasa.gov/2.0/chemConcentration.owl#Composition" xlink:title="chemical composition"/>
+                    <om:featureOfInterest xlink:href="#GASampleNo_1526753"/>
+                    <om:result>
+                        <swe:Quantity gml:id="GAGeochemAnalysis_1526753_Ni_Result" definition="Ni concentration">
+                            <swe:uom code="ppm" xlink:href="http://www.opengis.net/def/uom/UCUM/0/ppm" xlink:title="parts per million"/>
+                            <swe:quality>   <!-- Analytical Error -->
+                                <swe:Quantity gml:id="GAGeochemAnalysis_1526753_Ni_Error" definition="Ni analytical error">
+                                    <swe:uom code="ppm" xlink:href="http://www.opengis.net/def/uom/UCUM/0/ppm" xlink:title="parts per million"/>
+                                    <swe:value>0.2</swe:value>
+                                </swe:Quantity>
+                            </swe:quality>
+                            <swe:quality>    <!-- Detection Limit -->
+                                <swe:Quantity gml:id="GAGeochemAnalysis_1526753_Ni_DetectionLimit" definition="Ni detection limit">
+                                    <swe:uom code="ppm" xlink:href="http://www.opengis.net/def/uom/UCUM/0/ppm" xlink:title="parts per million"/>
+                                    <swe:value>0.5</swe:value>
+                                </swe:Quantity>
+                            </swe:quality>
+    <!-- Alternatively, rather than delivering the detection limit with each result, it could be referenced from the Analytical Session document 
+                                <swe:quality xlink:href="TB4_AnalyticalSession_rc2.xml#Ni_Detection_Limit"/>  -->
+                            <swe:value>-0.5</swe:value>   <!-- This value is below the detection limit of 0.5 ppm Ni.  GA denote "below detection limit" by using a minus sign in front of the detection limit value. 
+                                See TB4_AnalyticalSession_rc2.xml for description of detection limits for each analytical session.  -->
+                        </swe:Quantity>
+                    </om:result>
+                </om:OM_Observation>
+            </sa:relatedObservation>
+<!--            <sa:parameter/>-->
+            <sp:materialClass xlink:href="http://www.ga.gov.au/classifier/materialClass/rock" xlink:title="rock"/>   
+<!-- NOTE: The OGC register of material classes mentioned in the SF_Specimen schema notes (http://www.opengis.net/def/material/OGC-OM/2.0/) does not exist.  OLR 11-May-2011  -->
+            <sp:samplingTime>
+                <gml:TimeInstant gml:id="SamplingTime_GASpecimenID0123456789">
+                    <gml:timePosition>1996-06-03</gml:timePosition>
+                </gml:TimeInstant>
+            </sp:samplingTime>
+            <sp:samplingMethod xlink:href="http://www.ga.gov.au/classifier/samplingMethod/outcropSampling" xlink:title="outcrop sampling"/>
+<!--      <sp:samplingMethod>  *** NOTE:  Do we really need a GeologicSamplingMethod element?  OLR 11-May-2011  ***
+                <glab:GeologicSamplingMethod gml:id="SampleMethod1">
+                    <glab:method xlink:href="http://www.ga.gov.au/classifier/samplingMethod/outcropSampling" xlink:title="outcrop sampling"/>
+                </glab:GeologicSamplingMethod>
+            </sp:samplingMethod>     -->
+            <sp:samplingLocation>
+                <gml:Point gml:id="Location_GASpecimenID0123456789">
+                    <gml:pos srsName="http://spatialreference.org/ref/epsg/4283/" srsDimension="2">148.25814099 -33.83566207</gml:pos>
+                </gml:Point>
+            </sp:samplingLocation>
+            <sp:processingDetails>
+                <sp:PreparationStep>
+                    <sp:time>
+                        <gml:TimeInstant gml:id="CrushTime_GASampleNo_1526753">
+                            <gml:timePosition>2011-05-08</gml:timePosition>
+                        </gml:TimeInstant>
+                    </sp:time>
+                    <sp:processOperator>
+                        <gmd:CI_ResponsibleParty id="GeoscienceAustralia">
+                            <gmd:organisationName>
+                                <gco:CharacterString>Geoscience Australia</gco:CharacterString>
+                            </gmd:organisationName>
+                            <gmd:contactInfo>
+                                <gmd:CI_Contact>
+                                    <gmd:address>
+                                        <gmd:CI_Address>
+                                            <gmd:city>
+                                                <gco:CharacterString>Canberra</gco:CharacterString>
+                                            </gmd:city>
+                                        </gmd:CI_Address>
+                                    </gmd:address>
+                                </gmd:CI_Contact>
+                            </gmd:contactInfo>
+                            <gmd:role>
+                                <gmd:CI_RoleCode codeList="http://www.isotc211.org/2005/resources/Codelist/gmxCodelists.xml#CI_RoleCode" codeListValue="custodian"/>
+                            </gmd:role>
+                        </gmd:CI_ResponsibleParty>
+                    </sp:processOperator>
+                    <sp:processingDetails xlink:href="http://www.ga.gov.au/classifier/specimenProcessing/crush" xlink:title="crush and mill sample to a powder"/>
+                </sp:PreparationStep>
+            </sp:processingDetails>
+            <sp:processingDetails>
+                <sp:PreparationStep>
+                    <sp:time>
+                        <gml:TimeInstant gml:id="GlassDiscTime_GASampleNo_1526753">
+                            <gml:timePosition>2011-05-11</gml:timePosition>
+                        </gml:TimeInstant>
+                    </sp:time>
+                    <sp:processOperator xlink:href="#GeoscienceAustralia"/>
+                    <sp:processingDetails xlink:href="http://www.ga.gov.au/classifier/specimenProcessing/glassDisc" xlink:title="melt powder into a glass disc for XRF analysis"/>
+                </sp:PreparationStep>
+            </sp:processingDetails>
+            <sp:size uom="kg">1.26</sp:size>
+            <sp:currentLocation>
+                <gmd:EX_GeographicDescription>
+                    <gmd:geographicIdentifier>
+                       <gmd:MD_Identifier>
+                           <gmd:code>
+                               <gco:CharacterString>Geoscience Australia rock store, rack 127, shelf 14, box 8</gco:CharacterString>
+                           </gmd:code>
+                       </gmd:MD_Identifier>
+                    </gmd:geographicIdentifier>
+                </gmd:EX_GeographicDescription>
+            </sp:currentLocation>
+<!--      <sp:currentLocation xlink:href="http:www.ga.gov.au/rockStoreLocation/GASampleNo_1526753"/>  Would be simpler to link to a web visible database, if we had one.......  -->   
+            <sp:specimenType xlink:href="http://www.ga.gov.au/classifier/specimenType/handSpecimen" xlink:title="hand specimen"/>
+        </sp:SF_Specimen>
+    </wfs:member>
+</wfs:FeatureCollection>
