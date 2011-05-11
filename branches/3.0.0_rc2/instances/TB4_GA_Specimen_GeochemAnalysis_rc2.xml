@@ -41,6 +41,10 @@
             <gml:identifier codeSpace="http://www.ga.gov.au/sampleNo">1526753</gml:identifier>
             <sa:type xlink:href="http://www.opengis.net/def/samplingFeatureType/OGC-OM/2.0/SF_Specimen"/>
             <sa:sampledFeature xlink:href="http://dbforms.ga.gov.au/pls/www/geodx.strat_units.sch_full?wher=stratno=32474" xlink:title="Warrumba Volcanics"/>
+            
+<!--    =============================================    -->
+<!--    Some information about the origin of the specimen                 -->
+<!--    =============================================    -->   
             <sa:lineage>
                 <gmd:LI_Lineage>
                     <gmd:source>
@@ -52,7 +56,11 @@
                     </gmd:source>
                 </gmd:LI_Lineage>
             </sa:lineage>
-            <sa:relatedObservation>       <!-- Example of a major element oxide analysis  -->
+            
+<!--    ========================================    -->
+<!--    Example of a major element oxide analysis                    -->
+<!--    ========================================     -->    
+            <sa:relatedObservation> 
                 <om:OM_Observation gml:id="GAGeochemAnalysis_1526753_SiO2">
                     <gml:description>SiO2 whole rock geochemcial analysis</gml:description>
                     <om:phenomenonTime>
@@ -62,14 +70,14 @@
                     </om:phenomenonTime>
                     <om:resultTime xlink:href="#GAGeochemAnalysisTime_1526753"/>
                     <om:procedure>
-                        <glab:AnalyticalProcess gml:id="GAGeochemAnalysisMethod_1526753">
+                        <glab:AnalyticalProcess gml:id="GAGeochemAnalysisMethod_XRF_1526753">
                             <glab:method>   <!-- Mandatory -->
                                 <glab:AnalyticalMethod gml:id="GAMethods_XRF">
                                     <glab:methodName xlink:href="http://www.ga.gov.au/classifier/analyticalMethod/XRF" xlink:title="x-ray fluorescence mass spectrometry"/>
                                     <glab:citation xlink:href="http://www.ga.gov.au/minerals/disciplines/geochemistry.html"/>
                                 </glab:AnalyticalMethod>
                             </glab:method>
-                            <glab:acquisition xlink:href="TB4_AnalyticalSession_rc2.xml"/>      
+                            <glab:acquisition xlink:href="TB4_GA_AnalyticalSession_rc2.xml#GAAnalyticalSession_19970121_01"/>      
 <!-- *** I have used a xlink:href above to an external document describing analytical session parameters (eg, machine and operator details) and standard reference materials used. ***  
               This element may be nilled for specimen analyses for which we don't have analytical metadata.   -->
                             <glab:computation>   <!-- Use this link to LI_ProcessStep if there are data reduction or computation processes that need to be documented. -->
@@ -97,7 +105,33 @@
                     </om:result>
                 </om:OM_Observation> 
             </sa:relatedObservation>
-            <sa:relatedObservation>       <!-- Example of a trace element analysis  -->
+            <sa:relatedObservation> 
+                <om:OM_Observation gml:id="GAGeochemAnalysis_1526753_Al2O3">
+                    <gml:description>Al2O3 whole rock geochemcial analysis</gml:description>
+                    <om:phenomenonTime xlink:href="#GAGeochemAnalysisTime_1526753"/>
+                    <om:resultTime xlink:href="#GAGeochemAnalysisTime_1526753"/>
+                    <om:procedure xlink:href="#GAGeochemAnalysisMethod_XRF_1526753"/>
+                    <om:observedProperty xlink:href="http://sweet.jpl.nasa.gov/2.0/chemConcentration.owl#Composition" xlink:title="chemical composition"/>
+                    <om:featureOfInterest xlink:href="#GASampleNo_1526753"/>
+                    <om:result>
+                        <swe:Quantity gml:id="GAGeochemAnalysis_1526753_Al2O3_Result" definition="Al2O3 concentration">
+                            <swe:uom code="%25" xlink:href="http://www.opengis.net/def/uom/UCUM/0/%25" xlink:title="percent"/>
+                            <swe:quality>     <!-- Analytical Error -->
+                                <swe:Quantity gml:id="GAGeochemAnalysis_1526753_Al2O3_Error" definition="Al2O3 analytical error">
+                                    <swe:uom code="%25" xlink:href="http://www.opengis.net/def/uom/UCUM/0/%25" xlink:title="percent"/>
+                                    <swe:value>0.1</swe:value>
+                                </swe:Quantity>
+                            </swe:quality>
+                            <swe:value>14.2</swe:value>
+                        </swe:Quantity>
+                    </om:result>
+                </om:OM_Observation> 
+            </sa:relatedObservation>
+            
+<!--    ========================================    -->
+<!--    Example of a trace element analysis                                -->
+<!--    ========================================     -->    
+            <sa:relatedObservation> 
                 <om:OM_Observation gml:id="GAGeochemAnalysis_1526753_Ni">   
                     <om:phenomenonTime xlink:href="GAGeochemAnalysisTime_1526753"/>
                     <om:resultTime xlink:href="GAGeochemAnalysisTime_1526753"/>
@@ -119,15 +153,20 @@
                                     <swe:value>0.5</swe:value>
                                 </swe:Quantity>
                             </swe:quality>
-    <!-- Alternatively, rather than delivering the detection limit with each result, it could be referenced from the Analytical Session document 
-                                <swe:quality xlink:href="TB4_AnalyticalSession_rc2.xml#Ni_Detection_Limit"/>  -->
-                            <swe:value>-0.5</swe:value>   <!-- This value is below the detection limit of 0.5 ppm Ni.  GA denote "below detection limit" by using a minus sign in front of the detection limit value. 
-                                See TB4_AnalyticalSession_rc2.xml for description of detection limits for each analytical session.  -->
+    <!-- Alternatively, rather than delivering the detection limit with each result, it could be referenced from the Analytical Session document. eg, 
+           <swe:quality xlink:href="TB4_GA_AnalyticalSession_rc2.xml#Ni_Detection_Limit"/>  -->
+                            <swe:value>-0.5</swe:value>   <!-- NOTE: This value is below the detection limit of 0.5 ppm Ni.  GA denote "below detection limit" by using a minus sign in front of the detection limit value. 
+                                See TB4_GA_AnalyticalSession_rc2.xml for description of detection limits for each analytical session.  -->
                         </swe:Quantity>
                     </om:result>
                 </om:OM_Observation>
             </sa:relatedObservation>
-<!--            <sa:parameter/>-->
+            
+<!--     <sa:parameter/>   Use this element for other parameters specific to individual analytical results.  -->
+            
+<!--    ========================================    -->
+<!--    Sampling material, method, time, location                      -->
+<!--    ========================================     -->                
             <sp:materialClass xlink:href="http://www.ga.gov.au/classifier/materialClass/rock" xlink:title="rock"/>   
 <!-- NOTE: The OGC register of material classes mentioned in the SF_Specimen schema notes (http://www.opengis.net/def/material/OGC-OM/2.0/) does not exist.  OLR 11-May-2011  -->
             <sp:samplingTime>
@@ -136,16 +175,20 @@
                 </gml:TimeInstant>
             </sp:samplingTime>
             <sp:samplingMethod xlink:href="http://www.ga.gov.au/classifier/samplingMethod/outcropSampling" xlink:title="outcrop sampling"/>
-<!--      <sp:samplingMethod>  *** NOTE:  Do we really need a GeologicSamplingMethod element?  OLR 11-May-2011  ***
+<!--      <sp:samplingMethod>  *** For discussion:  Do we really need a GeologicSamplingMethod element?  OLR 11-May-2011  ***
                 <glab:GeologicSamplingMethod gml:id="SampleMethod1">
                     <glab:method xlink:href="http://www.ga.gov.au/classifier/samplingMethod/outcropSampling" xlink:title="outcrop sampling"/>
                 </glab:GeologicSamplingMethod>
-            </sp:samplingMethod>     -->
+                </sp:samplingMethod>     -->
             <sp:samplingLocation>
                 <gml:Point gml:id="Location_GASpecimenID0123456789">
                     <gml:pos srsName="http://spatialreference.org/ref/epsg/4283/" srsDimension="2">148.25814099 -33.83566207</gml:pos>
                 </gml:Point>
             </sp:samplingLocation>
+            
+<!--    ==========================================================    -->
+<!--    Specimen preparation (eg, crushing, preparation of glass disc for XRF)           -->
+<!--    ==========================================================    -->    
             <sp:processingDetails>
                 <sp:PreparationStep>
                     <sp:time>
@@ -188,6 +231,10 @@
                     <sp:processingDetails xlink:href="http://www.ga.gov.au/classifier/specimenProcessing/glassDisc" xlink:title="melt powder into a glass disc for XRF analysis"/>
                 </sp:PreparationStep>
             </sp:processingDetails>
+
+<!--    ========================================    -->
+<!--    Specimen size, current location, type                                -->
+<!--    ========================================     -->              
             <sp:size uom="kg">1.26</sp:size>
             <sp:currentLocation>
                 <gmd:EX_GeographicDescription>
