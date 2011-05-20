@@ -60,7 +60,7 @@
 
 	<phase id="full.referential.integrity">
 		<active pattern="internal.referential.integrity"/>
-		<active pattern="referential.integrity"/>
+		<active pattern="external.referential.integrity"/>
 		<active pattern="vocabulary.bindings"/>
 	</phase>
 
@@ -77,14 +77,14 @@
 
 		<rule context="/wfs:FeatureCollection">
 			<assert
-				see="Rule 1.1 - Feature collection schema location"
+				see="https://www.seegrid.csiro.au/wiki/CGIModel/GeoSciML3SchematronRules#Feature_collection_schema_location"
 				test="@xsi:schemaLocation">
 				xsi:schemaLocation attribute must always be provided for wfs:FeatureCollection.
 			</assert>
 
 			<let name="actualNumberOfFeatures" value="count(//child::*[starts-with(local-name(), 'featureMember')]/child::*)" />
 			<assert
-				see="Rule 1.2 - Number of features"
+				see="https://www.seegrid.csiro.au/wiki/CGIModel/GeoSciML3SchematronRules#Number_of_features"
 				test="$actualNumberOfFeatures = @numberOfFeatures">
 				Value of numberOfFeatures attribute (<value-of select="@numberOfFeatures" />) must be consistent with an actual number of features returned (<value-of select="$actualNumberOfFeatures" />).
 			</assert>
@@ -95,41 +95,41 @@
 
 			<let name="isChronostratigraphicUnit" value="contains($geologicUnitType, 'chronostratigraphic_unit')" />
 			<assert
-				see="Rule 1.3 - Geologic unit type"
+				see="https://www.seegrid.csiro.au/wiki/CGIModel/GeoSciML3SchematronRules#Geologic_unit_type"
 				test="not($isChronostratigraphicUnit) or $isChronostratigraphicUnit and count(gsml:geologicHistory) > 0 and count(gsml:geologicHistory) = count(gsml:geologicHistory/gsml:GeologicEvent/gsml:eventAge/gsml:olderNamedAge) and count(gsml:geologicHistory) = count(gsml:geologicHistory/gsml:GeologicEvent/gsml:youngerNamedAge)">
 				ChronostratigraphicUnit geologic unit (<value-of select="@gml:id"/>) must have one valid gsml:geologicHistory property defined.
 			</assert>
 	
 			<report
-				see="Rule 1.3 - Geologic unit type"
+				see="https://www.seegrid.csiro.au/wiki/CGIModel/GeoSciML3SchematronRules#Geologic_unit_type"
 				test="$isChronostratigraphicUnit and count(gsml:geologicHistory) > 1">
 				ChronostratigraphicUnit geologic unit (<value-of select="@gml:id"/>) has more than one gsml:geologicHistory property defined.
 			</report>
 	
 			<let name="isLithologicUnit" value="contains($geologicUnitType, 'lithologic_unit')"/>
 			<assert
-				see="Rule 1.3 - Geologic unit type"
+				see="https://www.seegrid.csiro.au/wiki/CGIModel/GeoSciML3SchematronRules#Geologic_unit_type"
 				test="not($isLithologicUnit) or $isLithologicUnit and count(gsml:composition) > 0 and count(gsml:composition) = count(gsml:composition/gsml:CompositionPart/gsml:material/gsml:RockMaterial/gsml:lithology)">
 				LithologicUnit geologic unit (<value-of select="@gml:id" />) must have at least one valid gsml:composition property defined. 
 			</assert>
 	
 			<let name="isLithostratigraphicUnit" value="contains($geologicUnitType, 'litholostratigraphic_unit')"/>
 			<assert
-				see="Rule 1.3 - Geologic unit type"
+				see="https://www.seegrid.csiro.au/wiki/CGIModel/GeoSciML3SchematronRules#Geologic_unit_type"
 				test="not($isLithostratigraphicUnit) or $isLithostratigraphicUnit and count(gsml:composition) > 0 and count(gsml:composition) = count(gsml:composition/gsml:CompositionPart/gsml:material/gsml:RockMaterial/gsml:lithology)">
 				LithostratigraphicUnit geologic unit (<value-of select="@gml:id" />) must have at least one valid gsml:composition property defined. 
 			</assert>
 			
 			<let name="isLithodemicUnit" value="contains($geologicUnitType, 'lithodemic_unit')"/>
 			<assert
-				see="Rule 1.3 - Geologic unit type"
+				see="https://www.seegrid.csiro.au/wiki/CGIModel/GeoSciML3SchematronRules#Geologic_unit_type"
 				test="not($isLithodemicUnit) or $isLithodemicUnit and count(gsml:composition) > 0 and count(gsml:composition) = count(gsml:composition/gsml:CompositionPart/gsml:material/gsml:RockMaterial/gsml:lithology)">
 				LithodemicUnit geologic unit (<value-of select="@gml:id" />) must have at least one valid gsml:composition property defined.
 			</assert>
 
 			<let name="isDeformationUnit" value="contains($geologicUnitType, 'deformation_unit')"/>
 			<assert
-				see="Rule 1.3 - Geologic unit type"
+				see="https://www.seegrid.csiro.au/wiki/CGIModel/GeoSciML3SchematronRules#Geologic_unit_type"
 				test="not($isDeformationUnit) or $isDeformationUnit and count(gsml:definingStructure) > 0 and gsml:definingStructure/@xlink:href">
 				DeformationUnit geologic unit (<value-of select="@gml:id" />) must have at least one gsml:definingStructure property defined with a valid xlink:href value.
 			</assert>
@@ -142,7 +142,7 @@
 
 		<rule context="/wfs:FeatureCollection/child::*[starts-with(local-name(), 'featureMember')]/child::*">
 			<assert
-				see="Rule 2.1 - Identifiers on persistent features"
+				see="https://www.seegrid.csiro.au/wiki/CGIModel/GeoSciML3SchematronRules#Identifiers_on_persistent_features"
 				test="count(gml:identifier[@codeSpace = 'http://www.ietf.org/rfc/rfc2616']) = 1">
 				Persistent feature <value-of select="name(.)" /> (<value-of select="@gml:id" />) must have a gml:identifier with a specific codeSpace attribute.
 			</assert>
@@ -150,7 +150,7 @@
 
 		<rule context="/wfs:FeatureCollection/child::*[starts-with(local-name(), 'featureMember')]/child::*/gml:name">
 			<assert
-				see="Rule 2.2 - Data provider specific GML names"
+				see="https://www.seegrid.csiro.au/wiki/CGIModel/GeoSciML3SchematronRules#Data_provider_specific_GML names"
 				test="js:isValidHttpUri(string(@codeSpace))">
 				Data provider specific gml:name elements for <value-of select="name(..)" /> (<value-of select="../@gml:id" />) must use HTTP-URIs in codeSpace attributes. 
 			</assert>
@@ -158,7 +158,7 @@
 
 		<rule context="//*[@xlink:href]">
 			<assert
-				see="Rule 2.9 - Presence of xlink:title and xlink:href"
+				see="https://www.seegrid.csiro.au/wiki/CGIModel/GeoSciML3SchematronRules#xlink_href_requires_xlink_title"
 				test="@xlink:title">
 				The property <value-of select="name(.)" /> does not have an xlink:title value.
 			</assert>
@@ -166,7 +166,7 @@
 
 		<rule context="//*[@xlink:title]">
 			<assert
-				see="Rule 2.10 - Presence of xlink:href and xlink:title"
+				see="https://www.seegrid.csiro.au/wiki/CGIModel/GeoSciML3SchematronRules#xlink_title_requires_xlink_href"
 				test="@xlink:href">
 				The property <value-of select="name(.)" /> does not have an xlink:href value.
 			</assert>
@@ -179,7 +179,7 @@
 
 		<rule context="//gml:GeometricComplex | //gml:MultiCurve | //gml:MultiGeometry | //gml:MultiLineString | //gml:MultiPoint | //gml:MultiPolygon | //gml:MultiSolid | //gml:MultiSurface | //gml:Point | //gml:CompositeCurve | //gml:Curve | //gml:LineString | //gml:OrientableCurve | //gml:CompositeSolid | //gml:Solid | //gml:CompositeSurface | //gml:OrientableSurface | //gml:Polygon | //gml:Surface | //gml:PolyhedralSurface | //gml:TriangulatedSurface | //gml:Tin | //gml:Grid | //gml:RectifiedGrid | //gml:LinearRing | //gml:Ring">
 			<report
-				see="Rule 3.1 - Missing attributes on spatial types"
+				see="https://www.seegrid.csiro.au/wiki/CGIModel/GeoSciML3SchematronRules#Missing_attributes_on_spatial_types"
 				test="not(@srsName) or not(@srsDimension)">
 				Spatial object <value-of select="name(.)" /> must have srsName and srsDimension attributes.
 			</report>
@@ -187,7 +187,7 @@
 
 		<rule context="//sa:shape">
 			 <report
-				see="Rule 3.2 - sa:shape format"
+			 	see="https://www.seegrid.csiro.au/wiki/CGIModel/GeoSciML3SchematronRules#sa_shape_gml_LineString_encoding"
 				test="not(gml:LineString/gml:posList)">
 				gml:LineString element of <value-of select="name(.)" /> property must be encoded as gml:posList.
 			</report>			
@@ -203,13 +203,13 @@
 			<let name="isXPointer" value="starts-with(@xlink:href, '#')"/>
 
 			<assert
-				see="Rule 4.1 - Acceptable links"
+				see="https://www.seegrid.csiro.au/wiki/CGIModel/GeoSciML3SchematronRules#Acceptable_links"
 				test="$isValidHttpUri or $isXPointer">
 				Encountered <value-of select="@xlink:href" /> XLink that is neither an internal XPointer or an HTTP-URI.
 			</assert>
 
 			<assert
-				see="Rule 4.2 - Internal XPointers"
+				see="https://www.seegrid.csiro.au/wiki/CGIModel/GeoSciML3SchematronRules#Internal_XPointers"
 				test="not($isXPointer) or ($isXPointer and //*[@gml:id = substring(current()/@xlink:href, 2)])">
 				Internal XLink <value-of select="@xlink:href" /> cannot be resolved within the document.
 			</assert>
@@ -217,7 +217,7 @@
 			<let name="isThisSamplingFrameProperty" value="local-name(.) = 'samplingFrame' and namespace-uri(.) = 'urn:cgi:xmlns:CGI:GeoSciML:3.0'"/>
 			<let name="isThisSamplingFramePropertyOfBorehole" value="$isThisSamplingFrameProperty and local-name(..) = 'Borehole' and namespace-uri(..) = 'urn:cgi:xmlns:CGI:GeoSciML:2.0'"/>
 			<assert
-				see="Rule 4.4 - gsml:samplingFrame in Borehole"
+				see="https://www.seegrid.csiro.au/wiki/CGIModel/GeoSciML3SchematronRules#gsml_samplingFrame_internal links_in_Borehole"
 				test="not($isThisSamplingFramePropertyOfBorehole) or ($isThisSamplingFramePropertyOfBorehole and $isXPointer and //sa:shape[@gml:id = substring(current()/@xlink:href, 2)])">
 				gsml:Borehole/gsml:samplingFrame/@xlink:href (<value-of select="@xlink:href" />) must resolve to the sa:shape object.
 			</assert>
@@ -225,28 +225,28 @@
 
 		<rule context="//*[@codeSpace = 'http://www.ietf.org/rfc/rfc2141']">
 			<assert
-				see="Rule 4.3 - Pseudo-xlinks"
+				see="https://www.seegrid.csiro.au/wiki/CGIModel/GeoSciML3SchematronRules#Pseudo-xlinks"
 				test="js:isValidUrn(string(./text()))">
 				<value-of select="name(.)" /> (<value-of select="./text()" />) must contain a valid URN.
 			</assert>
 		</rule>
 		<rule context="//*[@codeSpace = 'http://www.ietf.org/rfc/rfc2616']">
 			<assert
-				see="Rule 4.3 - Pseudo-xlinks"
+				see="https://www.seegrid.csiro.au/wiki/CGIModel/GeoSciML3SchematronRules#Pseudo-xlinks"
 				test="js:isValidHttpUri(string(./text()))">
 				<value-of select="name(.)" /> (<value-of select="./text()" />) must contain a valid HTTP-URI.
 			</assert>
 		</rule>
 	</pattern>
 
-	<pattern id="referential.integrity">
+	<pattern id="external.referential.integrity">
 		<title>External referential integrity</title>
 		<p>Validate external referential integrity.</p>
 
 		<rule context="//gsml:Borehole/gsml:samplingFrame[js:isValidHttpUri(string(@xlink:href)) and js:isResolvable(string(@xlink:href))]">
 			<let name="target" value="document(@xlink:href)"/>
 			<assert
-				see="Rule 5.3 - gsml:samplingFrame in Borehole"
+				see="https://www.seegrid.csiro.au/wiki/CGIModel/GeoSciML3SchematronRules#gsml_samplingFrame_external_links_in_Borehole"
 				test="local-name($target/*[1]) = 'shape' and namespace-uri($target/*[1]) = 'http://www.opengis.net/sampling/1.0'">
 				gsml:Borehole/gsml:samplingFrame/@xlink:href (<value-of select="@xlink:href" />) must resolve to the sa:shape object.
 			</assert>
@@ -255,7 +255,7 @@
 		<rule context="//*[js:isValidHttpUri(string(@xlink:href))]">
 			<let name="isResolvable" value="js:isResolvable(string(@xlink:href))"/>
 			<assert
-				see="Rule 5.1 - External links"
+				see="https://www.seegrid.csiro.au/wiki/CGIModel/GeoSciML3SchematronRules#External_links"
 				test="$isResolvable">
 				External link (<value-of select="@xlink:href" />) must be resolvable.
 			</assert>
@@ -263,7 +263,7 @@
 
 		<rule context="//*[@codeSpace = 'http://www.ietf.org/rfc/rfc2616' and js:isValidHttpUri(string(./text()))]">
 			<assert
-				see="Rule 5.2 - External pseudo-xlinks"
+				see="https://www.seegrid.csiro.au/wiki/CGIModel/GeoSciML3SchematronRules#External_pseudo-xlinks"
 				test="js:isResolvable(string(./text()))">
 				External link (<value-of select="./text()" />) must be resolvable.
 			</assert>
@@ -294,7 +294,7 @@
 
 		<rule context="//gsml:MappedFeature/gsml:specification">
 			<assert
-				see="Rule 7.1 - MappedFeature always has the specification property encoded inline"
+				see="https://www.seegrid.csiro.au/wiki/CGIModel/GeoSciML3SchematronRules#MappedFeature_specification"
 				test="starts-with(@xlink:href, 'urn:ogc:def:nil:OGC::') or starts-with(@xlink:href, 'http://www.opengis.net/def/nil/OGC/0/') or starts-with(@xlink:href, '#') or (not(@xlink:href) and count(child::*) = 1)">
 				gsml:MappedFeature/gsml:specification property must be encoded inline.
 			</assert>
@@ -302,7 +302,7 @@
 
 		<rule context="//gsml:GeologicFeature/gsml:occurrence">
 			<assert
-				see="Rule 7.2 - GeologicFeature always has the occurrences by reference"
+				see="https://www.seegrid.csiro.au/wiki/CGIModel/GeoSciML3SchematronRules#GeologicFeature_occurrence"
 				test="@xlink:href and count(child::*) = 0">
 				gsml:GeologicFeature/gsml:occurrence property must be encoded by reference.
 			</assert>
@@ -310,7 +310,7 @@
 
 		<rule context="//gsml:GeologicFeature/gsml:part | //gsml:GeologicFeature/gsml:definingStructure | //gsml:GeologicFeatureRelation/gsml:source | //gsml:GeologicFeatureRelation/gsml:target">
 			<assert
-				see="Rule 7.3 - Related GeologicFeatures encoded by reference"
+				see="https://www.seegrid.csiro.au/wiki/CGIModel/GeoSciML3SchematronRules#Related_GeologicFeatures"
 				test="@xlink:href and count(child::*) = 0">
 				Related GeologicFeature <value-of select="name(..)" />/<value-of select="name(.)" /> must be encoded by reference.
 			</assert>
