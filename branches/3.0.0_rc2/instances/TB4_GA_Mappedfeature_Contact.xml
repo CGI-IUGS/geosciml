@@ -1,0 +1,310 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wfs:FeatureCollection 
+	xsi:schemaLocation="http://www.opengis.net/wfs/2.0 http://schemas.opengis.net/wfs/2.0/wfs.xsd
+	http://www.opengis.net/gml/3.2 http://schemas.opengis.net/gml/3.2.1/gml.xsd
+	http://xmlns.geosciml.org/GeoSciML-Core/3.0 http://schemas.geosciml.org/geosciml-core/3.0/geosciml-core.xsd" 
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:wfs="http://www.opengis.net/wfs/2.0"
+	xmlns:gml="http://www.opengis.net/gml/3.2"
+	xmlns:gsml="http://xmlns.geosciml.org/GeoSciML-Core/3.0"
+	xmlns:cgu="http://xmlns.geosciml.org/Utilities/3.0"
+	xmlns:swe="http://www.opengis.net/swe/1.0/gml32"
+	xmlns:gmd="http://www.isotc211.org/2005/gmd"
+	xmlns:gco="http://www.isotc211.org/2005/gco"
+	xmlns:xlink="http://www.w3.org/1999/xlink" 
+	timeStamp="2011-05-24T12:00:00" numberMatched="2" numberReturned="2">
+	
+<!-- ================================================================================================================ 	-->
+<!--  	Testbed4 - GeoSciML v3 Release Candidate 2    				                                                                                                              	-->
+<!--  	Example instance document for MappedFeature-Contacts, including completed examples of all elements					-->
+<!--  	Author: Ollie Raymond, Geoscience Australia                                                                                                                                                                		-->
+<!-- ================================================================================================================== 	-->
+	
+	<wfs:boundedBy>
+		<gml:Envelope srsName="http://spatialreference.org/ref/epsg/4283/" srsDimension="2">
+			<gml:lowerCorner>146.840862410143 -26.3477705861377</gml:lowerCorner>		
+			<gml:upperCorner>146.867309754137 -26.2544119569211</gml:upperCorner>
+		</gml:Envelope>
+	</wfs:boundedBy>
+	<wfs:member>
+		<gsml:MappedFeature gml:id="GA.MappedFeature.ID.Contacts1M.348424">	
+			<gml:identifier codeSpace="http://www.ga.gov.au">GA.MappedFeature.ID.Contacts1M.17102</gml:identifier>	
+			<gml:boundedBy>	
+				<gml:Envelope  srsName="http://spatialreference.org/ref/epsg/4283/" srsDimension="2">	
+					<gml:lowerCorner>146.840862410143 -26.3477705861377</gml:lowerCorner>	
+					<gml:upperCorner>146.867309754137 -26.2544119569211</gml:upperCorner>	
+				</gml:Envelope>
+			</gml:boundedBy>
+			<gsml:observationMethod>	
+				<cgu:CGI_Term>
+					<cgu:qualifier xsi:nil="true" nilReason="missing"/>
+					<cgu:value xlink:href="http://resource.geosciml.org/classifier/cgi/mappedfeatureobservationmethod/0001" xlink:title="Compilation"/>	
+				</cgu:CGI_Term>
+			</gsml:observationMethod>
+			<gsml:positionalAccuracy>
+				<swe:Quantity gml:id="GA.MappedFeature.PositionalAccuracy.Contacts1M.348424">   	
+					<swe:uom code="m" xlink:href="http://www.opengis.net/def/uom/UCUM/0/m" xlink:title="meter"/>	
+					<swe:value>250</swe:value>	
+				</swe:Quantity>		
+			</gsml:positionalAccuracy>
+			<gsml:resolutionScale>
+				<gmd:MD_RepresentativeFraction>
+					<gmd:denominator>
+						<gco:Integer>1000000</gco:Integer>
+					</gmd:denominator>
+				</gmd:MD_RepresentativeFraction>
+			</gsml:resolutionScale>	
+			<gsml:samplingFrame xlink:href="http://sweet.jpl.nasa.gov/1.1/earthrealm.owl#LandSurfaceLayer"/>
+			<gsml:shape> 	
+				<gml:LineString srsName="http://spatialreference.org/ref/epsg/4283/" srsDimension="2" gml:id="GA.MappedFeature.Shape.Contacts1M.348424">
+					<gml:posList>146.840862410143 -26.3477705861377 146.842381372862 -26.3401940847722 146.842773639496 -26.3398264634293</gml:posList> 
+				</gml:LineString>
+			</gsml:shape>
+			<gsml:specification>
+	<!-- ==================================================================================== -->
+	<!--                   A conformable, depositional, usually gradational, upright contact                                                              -->
+	<!-- ==================================================================================== -->
+				<gsml:Contact gml:id="GA.Contact.ID.Contacts1M.348424">  
+					<gml:identifier codeSpace="http://www.ga.gov.au">GA.Contact.ID.Contacts1M.348424</gml:identifier> 
+					<gsml:observationMethod>
+						<cgu:CGI_Term>
+							<cgu:qualifier xsi:nil="true" nilReason="missing"/>
+							<cgu:value xlink:href="http://resource.geosciml.org/classifier/cgi/featureobservationmethod/0016" xlink:title="Synthesis of multiple pulished descriptions"/>
+						</cgu:CGI_Term>
+					</gsml:observationMethod>
+					<gsml:purpose>instance</gsml:purpose>
+					<gsml:geologicHistory>
+						<gsml:GeologicEvent gml:id="GA.Contact.Age.Contacts1M.348424">
+							<gsml:eventProcess xlink:href="http://resource.geosciml.org/classifier/cgi/eventprocess/0016" xlink:title="deposition"/>
+							<gsml:numericAgeDate xsi:nil="true" nilReason="unknown"/>
+							<gsml:olderNamedAge xlink:href="http://www.stratigraphy.org/upload/ISChart2009.pdf#UpperDevonian" xlink:title="Upper Devonian"/>	
+						<!-- Is there a more appropriate xlink:href to use here? -->	
+							<gsml:youngerNamedAge xlink:href="http://www.stratigraphy.org/upload/ISChart2009.pdf#UpperDevonian"  xlink:title="Upper Devonian"/>
+							<gsml:eventEnvironment xsi:nil="true" nilReason="unknown"/>
+							<gsml:incrementalDisplacement xsi:nil="true" nilReason="inapplicable"/>   <!-- Should not be mandatory. Fixed in RC3.  -->
+						</gsml:GeologicEvent>
+					</gsml:geologicHistory>
+					<gsml:contactCharacter>
+						<cgu:CGI_Term>
+							<cgu:qualifier xlink:href="http://resource.geosciml.org/classifier/cgi/valuequalifier/0004" xlink:title="common"/>
+							<cgu:value xlink:href="http://www.ga.gov.au/classifier/GA/contactCharacter/0099" xlink:title="Gradational contact"/>
+						</cgu:CGI_Term>
+					</gsml:contactCharacter>
+					<gsml:contactCharacter>
+						<cgu:CGI_Term>
+							<cgu:qualifier xlink:href="http://resource.geosciml.org/classifier/cgi/valuequalifier/0019" xlink:title="sometimes"/>
+							<cgu:value xlink:href="http://www.ga.gov.au/classifier/GA/contactCharacter/0098" xlink:title="Sharp contact"/>
+						</cgu:CGI_Term>
+					</gsml:contactCharacter>
+					<gsml:contactType xlink:href="http://resource.geosciml.org/classifier/cgi/contacttype/0006" xlink:title="Conformable contact"/>
+					<gsml:orientation>
+						<cgu:CGI_PlanarOrientation>
+							<cgu:determinationMethod xsi:nil="true" nilReason="unknown"/>
+							<cgu:descriptiveOrientation>   <!-- Not appropriate to have a codelist here.  Should be a free text character string. Fixed in RC3. -->
+								<cgu:CGI_Term>
+									<cgu:qualifier xsi:nil="true" nilReason="missing"/>
+									<cgu:value/> 
+								</cgu:CGI_Term>
+							</cgu:descriptiveOrientation>
+							<cgu:convention nilReason="inapplicable"/>   <!-- Needs to be made xsi:nillable for situations where you only want to deliver polarity information. Fixed in RC3 -->
+							<cgu:azimuth xsi:nil="true" nilReason="unknown"/>
+							<cgu:dip xsi:nil="true" nilReason="unknown"/>
+							<cgu:polarity xlink:href="http://resource.geosciml.org/classifier/cgi/planarpolaritycode/001" xlink:title="upright"/>
+						</cgu:CGI_PlanarOrientation>
+					</gsml:orientation>
+					<gsml:boundedUnitLink xsi:nil="true" nilReason="missing"/>
+				</gsml:Contact>
+			</gsml:specification>
+			<gsml:metadata>
+				<gmd:MD_Metadata>
+					<gmd:contact>
+						<gmd:CI_ResponsibleParty id="GeoscienceAustralia">
+							<gmd:organisationName>
+								<gco:CharacterString>GeoscienceAustralia</gco:CharacterString>
+							</gmd:organisationName>
+							<gmd:role>
+								<gmd:CI_RoleCode codeList="http://www.isotc211.org/2005/resources/Codelist/gmxCodelists.xml#CI_RoleCode" codeListValue="custodian"/>
+							</gmd:role>
+						</gmd:CI_ResponsibleParty>
+					</gmd:contact>
+					<gmd:dateStamp>	
+						<gco:Date>2005-02-27</gco:Date>
+					</gmd:dateStamp>
+					<gmd:identificationInfo/>       <!-- Although this property is mandatory, it appears valid to leave it leave blank. -->
+					<gmd:dataQualityInfo>
+						<gmd:DQ_DataQuality>
+							<gmd:scope>
+								<gmd:DQ_Scope id="featureScope">
+									<gmd:level>
+										<gmd:MD_ScopeCode codeList="http://www.isotc211.org/2005/resources/Codelist/gmxCodelists.xml#MD_ScopeCode" codeListValue="feature"></gmd:MD_ScopeCode>	<!-- constant -->
+									</gmd:level>
+								</gmd:DQ_Scope>
+							</gmd:scope>	
+							<gmd:lineage>
+								<gmd:LI_Lineage>
+									<gmd:source>
+										<gmd:LI_Source>
+											<gmd:description>
+												<gco:CharacterString>Published 1:250,000 scale geological maps (Geological Survey of WA, and Geoscience Australia), supplemented in parts by more recent stratigraphic classification in GSWA 1:500,000 scale Solid Geology dataset (2008).</gco:CharacterString>
+											</gmd:description>
+										</gmd:LI_Source>
+									</gmd:source>
+								</gmd:LI_Lineage>
+							</gmd:lineage>
+						</gmd:DQ_DataQuality>
+					</gmd:dataQualityInfo>
+				</gmd:MD_Metadata>
+			</gsml:metadata>
+		</gsml:MappedFeature>
+	</wfs:member>
+	<wfs:member>
+		<gsml:MappedFeature gml:id="GA.MappedFeature.ID.Contacts1M.82237">
+			<gml:identifier codeSpace="http://www.ga.gov.au">GA.MappedFeature.ID.Contacts1M.82237</gml:identifier>
+			<gml:boundedBy>	
+				<gml:Envelope  srsName="http://spatialreference.org/ref/epsg/4283/" srsDimension="2">	
+					<gml:lowerCorner>146.0735 -19.67453</gml:lowerCorner>	
+					<gml:upperCorner>146.11472 -19.59844</gml:upperCorner>
+				</gml:Envelope>
+			</gml:boundedBy>
+			<gsml:observationMethod>
+				<cgu:CGI_Term>
+					<cgu:qualifier xsi:nil="true" nilReason="missing"/>
+					<cgu:value xlink:href="http://resource.geosciml.org/classifier/cgi/mappedfeatureobservationmethod/0001" xlink:title="Compilation"/>
+				</cgu:CGI_Term>
+			</gsml:observationMethod>
+			<gsml:positionalAccuracy>
+				<swe:Quantity gml:id="GA.MappedFeature.PositionalAccuracy.Contacts1M.82237">
+					<swe:uom code="m" xlink:href="http://www.opengis.net/def/uom/UCUM/0/m" xlink:title="meter"/>
+					<swe:value>250</swe:value>
+				</swe:Quantity>		
+			</gsml:positionalAccuracy>
+			<gsml:resolutionScale>
+				<gmd:MD_RepresentativeFraction>
+					<gmd:denominator>
+						<gco:Integer>1000000</gco:Integer>
+					</gmd:denominator>
+				</gmd:MD_RepresentativeFraction>
+			</gsml:resolutionScale>	
+			<gsml:samplingFrame xlink:href="http://sweet.jpl.nasa.gov/1.1/earthrealm.owl#LandSurfaceLayer"/>
+			<gsml:shape> 	
+				<gml:LineString srsName="http://spatialreference.org/ref/epsg/4283/" srsDimension="2" gml:id="GA.MappedFeature.Shape.Contacts1M.82237">
+					<gml:posList>146.0735 -19.67453 146.0935 -19.60453 146.11472 -19.59844</gml:posList> 
+				</gml:LineString>
+			</gsml:shape>
+			<gsml:specification>
+	<!-- ==================================================================================== -->
+	<!--                   A faulted contact with measured dip and azimuth and bounded units	                                                                  -->
+	<!-- ==================================================================================== -->
+				<gsml:Contact gml:id="GA.Contact.ID.Contacts1M.82237">  
+					<gml:identifier codeSpace="http://www.ga.gov.au">GA.Contact.ID.Contacts1M.82237</gml:identifier> 
+					<gsml:observationMethod>
+						<cgu:CGI_Term>
+							<cgu:qualifier xsi:nil="true" nilReason="missing"/>
+							<cgu:value xlink:href="http://resource.geosciml.org/classifier/cgi/featureobservationmethod/0016" xlink:title="Synthesis of multiple pulished descriptions"/>
+						</cgu:CGI_Term>
+					</gsml:observationMethod>
+					<gsml:purpose>instance</gsml:purpose>
+					<gsml:geologicHistory>
+						<gsml:GeologicEvent gml:id="GA.Contact.Age.Contacts1M.82237">
+							<gsml:eventProcess xlink:href="http://resource.geosciml.org/classifier/cgi/eventprocess/0028" xlink:title="faulting"/>
+							<gsml:numericAgeDate xsi:nil="true" nilReason="unknown"/>
+							<gsml:olderNamedAge xlink:href="http://www.stratigraphy.org/upload/ISChart2009.pdf#Visean" xlink:title="Visean"/>	
+									<!-- Is there a more appropriate xlink:href to use here? -->	
+							<gsml:youngerNamedAge xlink:href="http://www.stratigraphy.org/upload/ISChart2009.pdf#Visean"  xlink:title="Visean"/>
+							<gsml:eventEnvironment xsi:nil="true" nilReason="unknown"/>
+							<gsml:incrementalDisplacement xsi:nil="true" nilReason="inapplicable"/>   <!-- Should not be mandatory. Fix in RC3.  -->
+						</gsml:GeologicEvent>
+					</gsml:geologicHistory>
+					<gsml:contactCharacter xsi:nil="true" nilReason="missing"/>
+					<gsml:contactType xlink:href="http://resource.geosciml.org/classifier/cgi/contacttype/0012" xlink:title="Faulted contact"/>
+					<gsml:orientation>
+						<cgu:CGI_PlanarOrientation>
+							<cgu:determinationMethod xlink:href="http://www.ga.gov.au/classifier/GA/determinationmethod/0099" xlink:title="compass and inclinometer"/>
+							<cgu:descriptiveOrientation xsi:nil="true" nilReason="inapplicable"/>
+							<cgu:convention xlink:href="http://resource.geosciml.org/classifier/cgi/conventioncode/0001" xlink:title="dip dip direction"/>
+							<cgu:azimuth>
+								<cgu:CGI_NumericRange>
+									<cgu:estimatedValue>
+										<swe:Quantity gml:id="GA.Contact.AzimuthEstValue.Contacts1M.82237">
+											<swe:uom code="deg" xlink:href="http://www.opengis.net/def/uom/UCUM/0/degree" xlink:title="degree"/>
+											<swe:value>135</swe:value>
+										</swe:Quantity>
+									</cgu:estimatedValue>
+									<cgu:lower>
+										<swe:Quantity gml:id="GA.Contact.AzimuthLower.Contacts1M.82237">
+											<swe:uom code="deg" xlink:href="http://www.opengis.net/def/uom/UCUM/0/degree" xlink:title="degree"/>
+											<swe:value>135</swe:value>
+										</swe:Quantity>
+									</cgu:lower>
+									<cgu:upper>
+										<swe:Quantity gml:id="GA.Contact.AzimuthUpper.Contacts1M.82237">
+											<swe:uom code="deg" xlink:href="http://www.opengis.net/def/uom/UCUM/0/degree" xlink:title="degree"/>
+											<swe:value>135</swe:value>
+										</swe:Quantity>
+									</cgu:upper>
+								</cgu:CGI_NumericRange>
+							</cgu:azimuth>
+							<cgu:dip>
+								<cgu:CGI_NumericRange>
+									<cgu:estimatedValue>
+										<swe:Quantity gml:id="GA.Contact.DipEstValue.Contacts1M.82237">
+											<swe:uom code="deg" xlink:href="http://www.opengis.net/def/uom/UCUM/0/degree" xlink:title="degree"/>
+											<swe:value>60</swe:value>
+										</swe:Quantity>
+									</cgu:estimatedValue>
+									<cgu:lower>
+										<swe:Quantity gml:id="GA.Contact.DipLower.Contacts1M.82237">
+											<swe:uom code="deg" xlink:href="http://www.opengis.net/def/uom/UCUM/0/degree" xlink:title="degree"/>
+											<swe:value>60</swe:value>
+										</swe:Quantity>
+									</cgu:lower>
+									<cgu:upper>
+										<swe:Quantity gml:id="GA.Contact.DipUpper.Contacts1M.82237">
+											<swe:uom code="deg" xlink:href="http://www.opengis.net/def/uom/UCUM/0/degree" xlink:title="degree"/>
+											<swe:value>60</swe:value>
+										</swe:Quantity>
+									</cgu:upper>
+								</cgu:CGI_NumericRange>
+							</cgu:dip>
+							<cgu:polarity xsi:nil="true" nilReason="inapplicable"/>
+						</cgu:CGI_PlanarOrientation>
+					</gsml:orientation>
+					<gsml:boundedUnitLink>
+						<gsml:BoundaryRelationship gml:id="GA.Contact.BoundedUnits.Contacts1M.82237">
+							<gsml:relationship xlink:href="http://resource.geosciml.org/classifier/cgi/geologicrelationshipterm/0099" xlink:title="faulted relationship"/>
+							<gsml:sourceRole xlink:href="http://resource.geosciml.org/classifier/cgi/relationrole/0099" xlink:title="fault-bounded unit"/>
+							<gsml:targetRole xlink:href="http://resource.geosciml.org/classifier/cgi/relationrole/0099" xlink:title="fault-bounded unit"/>
+							<gsml:target xlink:href="http://dbforms.ga.gov.au/pls/www/geodx.strat_units.sch_full?wher=stratno=32474" xlink:title="Warrumba Volcanics"/>
+							<gsml:source xlink:href="http://dbforms.ga.gov.au/pls/www/geodx.strat_units.sch_full?wher=stratno=25947" xlink:title="Hervey Group"></gsml:source>
+						</gsml:BoundaryRelationship>
+					</gsml:boundedUnitLink>
+				</gsml:Contact>
+			</gsml:specification>
+			<gsml:metadata>
+				<gmd:MD_Metadata>
+					<gmd:contact xlink:href="#GeoscienceAustralia"/>
+					<gmd:dateStamp>	
+						<gco:Date>2007-12-06</gco:Date>
+					</gmd:dateStamp>
+					<gmd:identificationInfo/>
+					<gmd:dataQualityInfo>
+						<gmd:DQ_DataQuality>
+							<gmd:scope xlink:href="#featureScope"/>
+							<gmd:lineage>
+								<gmd:LI_Lineage>
+									<gmd:source>
+										<gmd:LI_Source>
+											<gmd:description>
+												<gco:CharacterString>Geological Survey of Queensland, 1:100,000 scale geological maps, July 2004. Simplified, edge matched and modified for representation at 1:1 million scale.</gco:CharacterString>
+											</gmd:description>
+										</gmd:LI_Source>
+									</gmd:source>
+								</gmd:LI_Lineage>
+							</gmd:lineage>
+						</gmd:DQ_DataQuality>
+					</gmd:dataQualityInfo>
+				</gmd:MD_Metadata>
+			</gsml:metadata>
+		</gsml:MappedFeature>
+	</wfs:member>
+</wfs:FeatureCollection>
