@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<sp:SF_Specimen 
+    xmlns:sp="http://www.opengis.net/samplingSpecimen/2.0"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:gpp="http://xmlns.geosciml.org/PhysicalProperties/3.0"
+    xmlns:glab="http://xmlns.geosciml.org/LaboratoryAnalysis-Specimen/3.0"
+    xmlns:swe="http://www.opengis.net/swe/1.0/gml32"
+    xmlns:gml="http://www.opengis.net/gml/3.2"
+    xmlns:om="http://www.opengis.net/om/2.0"
+    xmlns:sa="http://www.opengis.net/sampling/2.0" 
+    xmlns:gmd="http://www.isotc211.org/2005/gmd"
+    xmlns:gco="http://www.isotc211.org/2005/gco"
+    xmlns:xlink="http://www.w3.org/1999/xlink" 
+    xsi:schemaLocation="http://www.opengis.net/samplingSpecimen/2.0 http://schemas.opengis.net/samplingSpecimen/2.0/specimen.xsd
+    http://xmlns.geosciml.org/PhysicalProperties/3.0 http://schemas.geosciml.org/physicalproperties/3.0/physicalProperties.xsd"
+    gml:id="GASampleNo_1526753">
+    
+    <!-- ================================================================================================================ 	-->
+    <!--    Testbed4 - GeoSciML v3 Release Candidate 2    					                                                                                                                     -->
+    <!--     Example instance document for a geological specimen with magnetic susceptibility measurements (maximum, minimum and median values)	-->
+    <!--     Author: Ollie Raymond, Geoscience Australia                                                                                                                                                                                      -->
+    <!-- ================================================================================================================== 	-->
+   
+    <gml:description>Specimen sampled from GA borehole 96846431</gml:description>
+    <gml:identifier codeSpace="http://www.ga.gov.au/sampleNo">1526753</gml:identifier>
+    <sa:type xlink:href="http://www.opengis.net/def/samplingFeatureType/OGC-OM/2.0/SF_Specimen"/>
+    <sa:sampledFeature xlink:href="http://dbforms.ga.gov.au/pls/www/geodx.strat_units.sch_full?wher=stratno=32474" xlink:title="Warrumba Volcanics"/>
+<!--    <sa:lineage/>-->
+    <sa:relatedObservation>
+        <om:OM_Observation gml:id="GASampleNo_1526753_magsusc_max">
+            <om:phenomenonTime>
+                <gml:TimeInstant gml:id="GASampleNo_1526753_date">
+                    <gml:timePosition>2001-10-10</gml:timePosition>
+                </gml:TimeInstant>
+            </om:phenomenonTime>
+            <om:resultTime xlink:href="#GASampleNo_1526753_date"/>
+            <om:procedure>
+                <glab:AnalyticalProcess gml:id="magSuscProcess">
+                    <glab:method>
+                        <glab:AnalyticalMethod gml:id="magSuscMethod">
+                            <glab:methodName xlink:href="http://www.ga.gov.au/classifier/GA/analyticalMethods/0099" xlink:title="hand held magnetic susceptibility meter"/>
+                            <glab:citation xlink:href="http://www.terraplus.com/rentals/kt-10-plus.pdf"/>
+                        </glab:AnalyticalMethod>
+                    </glab:method>
+                    <glab:acquisition/>
+                    <glab:computation/>
+                </glab:AnalyticalProcess>
+            </om:procedure>
+            <om:observedProperty xlink:href="http://sweet.jpl.nasa.gov/2.0/physElecMag.owl#Magnetism" xlink:title="magnetic susceptibility"/>
+            <om:featureOfInterest xlink:href="#GASampleNo_1526753"/>
+            <om:result>
+                <gpp:PhysicalDescription>
+                    <gpp:propertyName xlink:href="http://sweet.jpl.nasa.gov/2.0/physElecMag.owl#Magnetism" xlink:title="magnetic susceptibility"/>  
+<!--       propertyName may appear redundant here (it effectively repeats OM_Observation/observedProperty), but it is required when PhysicalDescription is used outside of O&M (eg, inside a GeologicUnit element). -->
+                    <gpp:propertyMeasure>
+                        <swe:Quantity definition="maximum" gml:id="maxms1">    <!-- I don't know why there is no UncertML definition of "maximum" or "minimum".  -->
+                            <swe:uom code="SI" xlink:href="http://www.opengis.net/def/uom/UCUM/0/SI" xlink:title="SI units"/>
+                            <swe:value>2700e-5</swe:value>
+                        </swe:Quantity>
+                    </gpp:propertyMeasure>
+                </gpp:PhysicalDescription>
+            </om:result>
+        </om:OM_Observation>
+    </sa:relatedObservation>
+    <sa:relatedObservation>
+        <om:OM_Observation gml:id="GASampleNo_1526753_magsusc_min">
+            <om:phenomenonTime xlink:href="#GASampleNo_1526753_date"/>
+            <om:resultTime xlink:href="#GASampleNo_1526753_date"/>
+            <om:procedure xlink:href="#magSuscProcess"/>
+            <om:observedProperty xlink:href="http://sweet.jpl.nasa.gov/2.0/physElecMag.owl#Magnetism" xlink:title="magnetic susceptibility"/>
+            <om:featureOfInterest xlink:href="#GASampleNo_1526753"/>
+            <om:result>
+                <gpp:PhysicalDescription>
+                    <gpp:propertyName xlink:href="http://sweet.jpl.nasa.gov/2.0/physElecMag.owl#Magnetism" xlink:title="magnetic susceptibility"/>  
+                    <gpp:propertyMeasure>
+                        <swe:Quantity definition="minimum" gml:id="minms1">
+                            <swe:uom code="SI" xlink:href="http://www.opengis.net/def/uom/UCUM/0/SI" xlink:title="SI units"/>
+                            <swe:value>1470e-5</swe:value>
+                        </swe:Quantity>
+                    </gpp:propertyMeasure>
+                </gpp:PhysicalDescription>
+            </om:result>
+        </om:OM_Observation>
+    </sa:relatedObservation>
+    <sa:relatedObservation>
+        <om:OM_Observation gml:id="GASampleNo_1526753_magsusc_mode">
+            <om:phenomenonTime xlink:href="#GASampleNo_1526753_date"/>
+            <om:resultTime xlink:href="#GASampleNo_1526753_date"/>
+            <om:procedure xlink:href="#magSuscProcess"/>
+            <om:observedProperty xlink:href="http://sweet.jpl.nasa.gov/2.0/physElecMag.owl#Magnetism" xlink:title="magnetic susceptibility"/>
+            <om:featureOfInterest xlink:href="#GASampleNo_1526753"/>
+            <om:result>
+                <gpp:PhysicalDescription>
+                    <gpp:propertyName xlink:href="http://sweet.jpl.nasa.gov/2.0/physElecMag.owl#Magnetism" xlink:title="magnetic susceptibility"/>  
+                    <gpp:propertyMeasure>
+                        <swe:Quantity definition="http://dictionary.uncertml.org/statistics/median" gml:id="medianms1">
+                            <swe:uom code="SI" xlink:href="http://www.opengis.net/def/uom/UCUM/0/SI" xlink:title="SI units"/>
+                            <swe:value>1600e-5</swe:value>
+                        </swe:Quantity>
+                    </gpp:propertyMeasure>
+                </gpp:PhysicalDescription>
+            </om:result>
+        </om:OM_Observation>
+    </sa:relatedObservation>
+    <sp:materialClass xlink:href="http://resource.geosciml.org/classifier/cgi/materialclass/0001" xlink:title="rock"/>
+    <sp:samplingTime xlink:href="#GASampleNo_1526753_date"/>
+    <sp:samplingMethod>
+        <glab:GeologicSamplingMethod gml:id="diamondDrilling">
+            <glab:method xlink:href="http://resource.geosciml.org/classifier/cgi/samplingethod/0009" xlink:title="diamond drilling"/>
+        </glab:GeologicSamplingMethod>
+    </sp:samplingMethod>
+    <sp:samplingLocation>
+        <gml:Point gml:id="Location_GASpecimenID0123456789">
+            <gml:pos srsName="http://spatialreference.org/ref/epsg/4283/" srsDimension="2">148.25814099 -33.83566207</gml:pos>
+        </gml:Point>
+    </sp:samplingLocation>
+<!--    <sp:processingDetails/>    -->
+<!--    <sp:size/>   -->
+<!--    <sp:currentLocation/>   -->
+    <sp:specimenType xlink:href="http://resource.geosciml.org/classifier/cgi/specimenType/0023" xlink:title="half drill core"/>
+</sp:SF_Specimen>
