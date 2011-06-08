@@ -41,11 +41,11 @@
 		]]>
 	</interop:script>
 	<ns prefix="js" uri="urn:x-csiro:interoperability:js" />
-	<ns prefix="wfs" uri="http://www.opengis.net/wfs" />
+	<ns prefix="wfs" uri="http://www.opengis.net/wfs/2.0" />
 	<ns prefix="xsi" uri="http://www.w3.org/2001/XMLSchema-instance" />
 	<ns prefix="xlink" uri="http://www.w3.org/1999/xlink" />
-	<ns prefix="gml" uri="http://www.opengis.net/gml" />
-	<ns prefix="gsml" uri="urn:cgi:xmlns:CGI:GeoSciML:2.0" />
+	<ns prefix="gml" uri="http://www.opengis.net/gml/3.2" />
+	<ns prefix="gsml" uri="http://xmlns.geosciml.org/GeoSciML-Core/3.0" />
 	<ns prefix="sa" uri="http://www.opengis.net/sampling/1.0" />
 
 	<phase id="structure">
@@ -70,6 +70,32 @@
 		<active pattern="profiling"/>
 	</phase>
 
+	<phase id="gml.deprecations">
+		<active pattern="gml.metaDataProperty"></active>
+		<active pattern="gml.description"></active>
+		<active pattern="gml.location"></active>
+	</phase>
+
+	<pattern id="gml.metaDataProperty">
+		<title>Don't use deprecated GML metaDataProperty</title>
+		<rule context="//gml:metaDataProperty">
+			<report test="true()">gml:metaDataProperty is deprecated. (GML v3.2.1 Section 7.2.6)</report>
+		</rule>
+	</pattern>
+	
+	<pattern id="gml.description">
+		<title>Don't use gml:description by reference</title>
+		<rule context="//gml:description">
+			<report test="@xlink:href">Using gml:description by reference is deprecated. Use gml:descriptionReference instead.</report>
+		</rule>
+	</pattern>
+	
+	<pattern id="gml.location">
+		<title>Don't use deprecated gml:location property</title>
+		<rule context="//gml:location">
+			<report test="true()">gml:location property is deprecated.</report>
+		</rule>
+	</pattern>
 
 	<pattern id="xml.grammar">
 		<title>XML Grammar</title>
