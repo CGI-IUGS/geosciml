@@ -8,7 +8,7 @@
 	id="ClassMap_Core_GeoSciML_v3.xml">
 	<description>Provides a mapping of classes from the core module of GeoSciML to elements from GeoSciML XML Schema Version 3.0.0</description>
 	<imports>
-		<schema prefix="gsml" namespace="http://xmlns.geosciml.org/GeoSciML-Core/3.0" schemaLocation="http://schemas.geosciml.org/geosciml-core/3.0/geosciml-core.xsd" />  <!-- Note prefix = gsml, not gsml-core  -->
+		<schema prefix="gsml" namespace="http://xmlns.geosciml.org/GeoSciML-Core/3.0" schemaLocation="http://schemas.geosciml.org/geosciml-core/3.0/geosciml-core.xsd" />  <!-- Note prefix is "gsml", not "gsml-core"  -->
 	</imports>
 <!-- ================================================================= -->
 <!-- GeologicFeature Leaf -->
@@ -26,16 +26,11 @@
 		<gmlType>gsml:MappedFeatureType</gmlType>
 		<gmlPropertyType>gsml:MappedFeaturePropertyType</gmlPropertyType>
 	</entry>
-<!-- Unstereotyped association class -->
-	<entry>
-		<umlClass>GeologicFeatureRelation</umlClass>
-		<gmlObjectElement>gsml:GeologicFeatureRelation</gmlObjectElement>
-		<gmlType>gsml:GeologicFeatureRelationType</gmlType>
-		<gmlPropertyType>gsml:GeologicFeatureRelationPropertyType</gmlPropertyType>
-	</entry>
+
 <!-- ================================================================= -->
 <!-- GeologicUnit Leaf -->
-	<!-- FeatureTypes -->
+	
+	<!-- FeatureType -->
 	<entry>
 		<umlClass>GeologicUnit</umlClass>
 		<umlStereotype>FeatureType</umlStereotype>
@@ -43,6 +38,7 @@
 		<gmlType>gsml:GeologicUnitType</gmlType>
 		<gmlPropertyType>gsml:GeologicUnitPropertyType</gmlPropertyType>
 	</entry>
+	
 	<!-- DataTypes -->
 	<entry>
 		<umlClass>BeddingDescription</umlClass>
@@ -65,6 +61,7 @@
 		<gmlType>gsml:GeologicUnitPartType</gmlType>
 		<gmlPropertyType>gsml:GeologicUnitPartPropertyType</gmlPropertyType>
 	</entry>
+	
 <!-- by Reference CodeLists, not encoded in schema, for information only -->
 <!-- <entry>
 		<umlClass>CompositionPartRoleTerm</umlClass>
@@ -97,6 +94,7 @@
 -->
 <!-- ==================================================================== -->
 <!-- GeologicAge leaf -->
+	
 	<entry>
 		<umlClass>GeologicEvent</umlClass>
 		<umlStereotype>FeatureType</umlStereotype>
@@ -104,12 +102,7 @@
 		<gmlType>gsml:GeologicEventType</gmlType>
 		<gmlPropertyType>gsml:GeologicEventPropertyType</gmlPropertyType>
 	</entry>	
-	<entry>
-		<umlClass>GeologicHistory</umlClass>
-		<gmlObjectElement>gsml:GeologicHistory</gmlObjectElement>
-		<gmlType>gsml:GeologicHistoryType</gmlType>
-		<gmlPropertyType>gsml:GeologicHistoryPropertyType</gmlPropertyType>
-	</entry>	
+
 <!-- by Reference CodeList, not encoded in schema, for information only -->
 <!--	<entry>
 		<umlClass>EventProcessTerm</umlClass>
@@ -121,6 +114,7 @@
 	-->
 <!-- ================================================================= -->
 <!-- GeologicStructure Leaf -->
+	
 	<!-- Feature types -->
 	<entry>
 		<umlClass>Contact</umlClass>
@@ -131,6 +125,7 @@
 	</entry>
 	<entry>
 		<umlClass>FaultSystem</umlClass>
+		<umlStereotype>FeatureType</umlStereotype>
 		<gmlObjectElement>gsml:FaultSystem</gmlObjectElement>
 		<gmlType>gsml:FaultSystemType</gmlType>
 		<gmlPropertyType>gsml:FaultSystemPropertyType</gmlPropertyType>
@@ -234,19 +229,6 @@
 		<gmlType>gsml:SlipComponentsType</gmlType>
 		<gmlPropertyType>gsml:SlipComponentsPropertyType</gmlPropertyType>
 	</entry>
-<!-- Unstereotyped association classes -->
-	<entry>
-		<umlClass>BoundaryRelationship</umlClass>
-		<gmlObjectElement>gsml:BoundaryRelationship</gmlObjectElement>
-		<gmlType>gsml:BoundaryRelationshipType</gmlType>
-		<gmlPropertyType>gsml:BoundaryRelationshipPropertyType</gmlPropertyType>
-	</entry>
-	<entry>
-		<umlClass>DefiningStructure</umlClass>
-		<gmlObjectElement>gsml:DefiningStructure</gmlObjectElement>
-		<gmlType>gsml:DefiningStructureType</gmlType>
-		<gmlPropertyType>gsml:DefiningStructurePropertyType</gmlPropertyType>
-	</entry>
 <!-- by Reference CodeLists, not encoded in schema, for information only -->
 <!--	<entry>
 		<umlClass>ContactTypeTerm</umlClass>
@@ -314,13 +296,38 @@
 	-->
 <!-- ==================================================================== -->
 <!-- GeologicRelation leaf -->	
+	<!-- Unstereotyped parent class -->
 	<entry>
 		<umlClass>GeologicRelation</umlClass>
-		<umlStereotype>FeatureType</umlStereotype>
 		<gmlObjectElement>gsml:GeologicRelation</gmlObjectElement>
 		<gmlType>gsml:GeologicRelationType</gmlType>
 		<gmlPropertyType>gsml:GeologicRelationPropertyType</gmlPropertyType>
 	</entry>	
+	<!-- Association classes -->
+	<entry>
+		<umlClass>GeologicFeatureRelation</umlClass>
+		<gmlObjectElement>gsml:GeologicFeatureRelation</gmlObjectElement>
+		<gmlType>gsml:GeologicFeatureRelationType</gmlType>
+		<gmlPropertyType>gsml:GeologicFeatureRelationPropertyType</gmlPropertyType>
+	</entry>
+	<entry>
+		<umlClass>GeologicHistory</umlClass>
+		<gmlObjectElement>gsml:GeologicHistory</gmlObjectElement>
+		<gmlType>gsml:GeologicHistoryType</gmlType>
+		<gmlPropertyType>gsml:GeologicHistoryPropertyType</gmlPropertyType>
+	</entry>	
+	<entry>
+		<umlClass>BoundaryRelationship</umlClass>
+		<gmlObjectElement>gsml:BoundaryRelationship</gmlObjectElement>
+		<gmlType>gsml:BoundaryRelationshipType</gmlType>
+		<gmlPropertyType>gsml:BoundaryRelationshipPropertyType</gmlPropertyType>
+	</entry>
+	<entry>
+		<umlClass>DefiningStructure</umlClass>
+		<gmlObjectElement>gsml:DefiningStructure</gmlObjectElement>
+		<gmlType>gsml:DefiningStructureType</gmlType>
+		<gmlPropertyType>gsml:DefiningStructurePropertyType</gmlPropertyType>
+	</entry>
 <!-- by Reference CodeLists, not encoded in schema, for information only -->
 <!-- <entry>
 		<umlClass>GeologicRelationshipTerm</umlClass>
