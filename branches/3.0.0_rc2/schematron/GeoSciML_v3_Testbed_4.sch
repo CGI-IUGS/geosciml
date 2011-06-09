@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<schema xmlns="http://purl.oclc.org/dsdl/schematron" xmlns:interop="urn:csiro:schematron:lib" queryBinding="xslt" defaultPhase="structure">
+<schema xmlns="http://purl.oclc.org/dsdl/schematron" xmlns:interop="urn:csiro:schematron:lib" queryBinding="xslt" defaultPhase="model.constraints">
 	<title>GeoSciML v3 Profile conformance validation.</title>
 	<p>This schema checks GeoSciML v3 Profile conformance by stages.</p>
 	<interop:script language="JavaScript" implements-prefix="js">
@@ -48,10 +48,15 @@
 	<ns prefix="gsml" uri="http://xmlns.geosciml.org/GeoSciML-Core/3.0" />
 	<ns prefix="sa" uri="http://www.opengis.net/sampling/1.0" />
 
-	<phase id="structure">
-		<active pattern="xml.grammar"/>
-		<active pattern="data.consistency"/>
-		<active pattern="spatial.data.integrity"/>
+	<phase id="model.constraints">
+		<p>Check constraints that belong as part of the model that can't be enforced by GeoSciML XML Schema
+			or aren't enforced by imported schemas outside the governance of GeoSciML.. 
+			Some might be included as Schematron constraints embedded in the XML Schema 
+			generated from constraints specified in the UML at some time in the future.</p>
+		<active pattern="GeologicUnit.constraints"/>
+		<active pattern="property.constraints"/>
+		<active pattern="spatial.data.constraints"/>
+		<active pattern="uri.codespace.element"></active>
 	</phase>
 
 	<phase id="referential.integrity">
@@ -65,11 +70,13 @@
 	</phase>
 
 	<phase id="profile">
-		<active pattern="xml.grammar"/>
-		<active pattern="data.consistency"/>
 		<active pattern="profiling"/>
 	</phase>
 
+	<phase id="wfs2">
+		<active pattern="wfs2.collection" />
+	</phase>
+	
 	<phase id="gml.deprecations">
 		<active pattern="gml.metaDataProperty"></active>
 		<active pattern="gml.description"></active>
@@ -97,25 +104,48 @@
 		</rule>
 	</pattern>
 
-	<pattern id="xml.grammar">
-		<title>XML Grammar</title>
-		<p>Validate XML Grammar of the document.</p>
-
+	<pattern id="wfs2.collection">
+		<title>WFS 2 Collection</title>
+		<p>Test that instance is a WFS2 feature collection and any relevant further tests given that.</p>
+		<rule context="/">
+			<assert test="wfs:FeatureCollection">
+				Root element should be a wfs:FeatureCollection
+			</assert>
+		</rule>
 		<rule context="/wfs:FeatureCollection">
 			<assert
 				see="https://www.seegrid.csiro.au/wiki/CGIModel/GeoSciML3SchematronRules#Feature_collection_schema_location"
 				test="@xsi:schemaLocation">
 				xsi:schemaLocation attribute must always be provided for wfs:FeatureCollection.
 			</assert>
-
-			<let name="actualNumberOfFeatures" value="count(//child::*[starts-with(local-name(), 'featureMember')]/child::*)" />
+			<let name="actualNumberOfFeatures" value="count(//wfs:member)" />
 			<assert
 				see="https://www.seegrid.csiro.au/wiki/CGIModel/GeoSciML3SchematronRules#Number_of_features"
-				test="$actualNumberOfFeatures = @numberOfFeatures">
-				Value of numberOfFeatures attribute (<value-of select="@numberOfFeatures" />) must be consistent with an actual number of features returned (<value-of select="$actualNumberOfFeatures" />).
+				test="$actualNumberOfFeatures = @numberReturned">
+				Value of numberOfFeatures attribute (<value-of select="@numberReturned" />) must be consistent with an actual number of features returned (<value-of select="$actualNumberOfFeatures" />).
 			</assert>
 		</rule>
-
+		<rule context="/wfs:FeatureCollection/wfs:member/*">
+			<assert
+				see="https://www.seegrid.csiro.au/wiki/CGIModel/GeoSciML3SchematronRules#Identifiers_on_persistent_features"
+				test="count(gml:identifier[@codeSpace = 'http://www.ietf.org/rfc/rfc2616']) = 1">
+				Persistent feature <value-of select="name(.)" /> (<value-of select="@gml:id" />) must have a gml:identifier with codeSpace http://www.ietf.org/rfc/rfc2616.
+			</assert>
+		</rule>
+		
+		<rule context="/wfs:FeatureCollection/wfs:member/*/gml:name">
+			<assert
+				see="https://www.seegrid.csiro.au/wiki/CGIModel/GeoSciML3SchematronRules#Data_provider_specific_GML names"
+				test="js:isValidHttpUri(string(@codeSpace))">
+				Data provider specific gml:name elements for <value-of select="name(..)" /> (<value-of select="../@gml:id" />) must use HTTP-URIs in codeSpace attributes. 
+			</assert>
+		</rule>
+		
+	</pattern>
+	
+	<pattern id="GeologicUnit.constraints">
+		<title>Geologic Unit Constraints</title>
+		<p>Validate model constraints on GeologicUnit not enforced by XML Schema</p>
 		<rule context="//gsml:GeologicUnit">
 			<let name="geologicUnitType" value="gsml:geologicUnitType/@xlink:href"/>
 
@@ -139,7 +169,7 @@
 				LithologicUnit geologic unit (<value-of select="@gml:id" />) must have at least one valid gsml:composition property defined. 
 			</assert>
 	
-			<let name="isLithostratigraphicUnit" value="contains($geologicUnitType, 'litholostratigraphic_unit')"/>
+			<let name="isLithostratigraphicUnit" value="contains($geologicUnitType, 'lithostratigraphic_unit')"/>
 			<assert
 				see="https://www.seegrid.csiro.au/wiki/CGIModel/GeoSciML3SchematronRules#Geologic_unit_type"
 				test="not($isLithostratigraphicUnit) or $isLithostratigraphicUnit and count(gsml:composition) > 0 and count(gsml:composition) = count(gsml:composition/gsml:CompositionPart/gsml:material/gsml:RockMaterial/gsml:lithology)">
@@ -162,32 +192,28 @@
 		</rule>
 	</pattern>
 
-	<pattern id="data.consistency">
-		<title>Data consistency</title>
-		<p>Validate data for consistency.</p>
-
-		<rule context="/wfs:FeatureCollection/child::*[starts-with(local-name(), 'featureMember')]/child::*">
-			<assert
-				see="https://www.seegrid.csiro.au/wiki/CGIModel/GeoSciML3SchematronRules#Identifiers_on_persistent_features"
-				test="count(gml:identifier[@codeSpace = 'http://www.ietf.org/rfc/rfc2616']) = 1">
-				Persistent feature <value-of select="name(.)" /> (<value-of select="@gml:id" />) must have a gml:identifier with a specific codeSpace attribute.
-			</assert>
-		</rule>
-
-		<rule context="/wfs:FeatureCollection/child::*[starts-with(local-name(), 'featureMember')]/child::*/gml:name">
-			<assert
-				see="https://www.seegrid.csiro.au/wiki/CGIModel/GeoSciML3SchematronRules#Data_provider_specific_GML names"
-				test="js:isValidHttpUri(string(@codeSpace))">
-				Data provider specific gml:name elements for <value-of select="name(..)" /> (<value-of select="../@gml:id" />) must use HTTP-URIs in codeSpace attributes. 
-			</assert>
-		</rule>
-
+	<pattern id="property.constraints">
+		<title>Property Constraints</title>
+		<p>General constraints on feature properties not enforceable by XML Schema. (Expecting @xlink:href's will just be on property
+		elements although these tests will look at any on any elements.)</p>
+		
 		<rule context="//*[@xlink:href]">
+<!--			<let name="isValidHttpUri" value="js:isValidHttpUri(string(@xlink:href))"/>
+			<let name="isXPointer" value="starts-with(@xlink:href, '#')"/>
 			<assert
+				see="https://www.seegrid.csiro.au/wiki/CGIModel/GeoSciML3SchematronRules#Acceptable_links"
+				test="$isValidHttpUri or $isXPointer">
+				Encountered <value-of select="@xlink:href" /> XLink that is neither an internal XPointer or an HTTP-URI.
+			</assert>
+-->			<assert
 				see="https://www.seegrid.csiro.au/wiki/CGIModel/GeoSciML3SchematronRules#xlink_href_requires_xlink_title"
 				test="@xlink:title">
 				The property <value-of select="name(.)" /> does not have an xlink:title value.
 			</assert>
+			<!-- Not sure if people want to be able to include an inline "cached" value as well as reference to authoritative? -->
+			<report test="node()">
+				The property <value-of select="name(.)" /> has inline content as well as a by reference link.
+			</report>
 		</rule>
 
 		<rule context="//*[@xlink:title]">
@@ -199,9 +225,9 @@
 		</rule>
 	</pattern>
 
-	<pattern id="spatial.data.integrity">
-		<title>Spatial data integrity</title>
-		<p>Validate integrity of spatial data.</p>
+	<pattern id="spatial.data.constraints">
+		<title>Spatial Data Constraints</title>
+		<p>Additional constraints on spatial elements not enforced by GML Schema. Are these tighter constraints GeoSciML community wants for some reason?</p>
 
 		<rule context="//gml:GeometricComplex | //gml:MultiCurve | //gml:MultiGeometry | //gml:MultiLineString | //gml:MultiPoint | //gml:MultiPolygon | //gml:MultiSolid | //gml:MultiSurface | //gml:Point | //gml:CompositeCurve | //gml:Curve | //gml:LineString | //gml:OrientableCurve | //gml:CompositeSolid | //gml:Solid | //gml:CompositeSurface | //gml:OrientableSurface | //gml:Polygon | //gml:Surface | //gml:PolyhedralSurface | //gml:TriangulatedSurface | //gml:Tin | //gml:Grid | //gml:RectifiedGrid | //gml:LinearRing | //gml:Ring">
 			<report
@@ -229,26 +255,14 @@
 			<let name="isXPointer" value="starts-with(@xlink:href, '#')"/>
 
 			<assert
-				see="https://www.seegrid.csiro.au/wiki/CGIModel/GeoSciML3SchematronRules#Acceptable_links"
-				test="$isValidHttpUri or $isXPointer">
-				Encountered <value-of select="@xlink:href" /> XLink that is neither an internal XPointer or an HTTP-URI.
-			</assert>
-
-			<assert
 				see="https://www.seegrid.csiro.au/wiki/CGIModel/GeoSciML3SchematronRules#Internal_XPointers"
 				test="not($isXPointer) or ($isXPointer and //*[@gml:id = substring(current()/@xlink:href, 2)])">
 				Internal XLink <value-of select="@xlink:href" /> cannot be resolved within the document.
 			</assert>
-
-			<let name="isThisSamplingFrameProperty" value="local-name(.) = 'samplingFrame' and namespace-uri(.) = 'urn:cgi:xmlns:CGI:GeoSciML:3.0'"/>
-			<let name="isThisSamplingFramePropertyOfBorehole" value="$isThisSamplingFrameProperty and local-name(..) = 'Borehole' and namespace-uri(..) = 'urn:cgi:xmlns:CGI:GeoSciML:2.0'"/>
-			<assert
-				see="https://www.seegrid.csiro.au/wiki/CGIModel/GeoSciML3SchematronRules#gsml_samplingFrame_internal links_in_Borehole"
-				test="not($isThisSamplingFramePropertyOfBorehole) or ($isThisSamplingFramePropertyOfBorehole and $isXPointer and //sa:shape[@gml:id = substring(current()/@xlink:href, 2)])">
-				gsml:Borehole/gsml:samplingFrame/@xlink:href (<value-of select="@xlink:href" />) must resolve to the sa:shape object.
-			</assert>
 		</rule>
-
+	</pattern>
+	
+	<pattern id="uri.codespace.element">
 		<rule context="//*[@codeSpace = 'http://www.ietf.org/rfc/rfc2141']">
 			<assert
 				see="https://www.seegrid.csiro.au/wiki/CGIModel/GeoSciML3SchematronRules#Pseudo-xlinks"
@@ -268,15 +282,6 @@
 	<pattern id="external.referential.integrity">
 		<title>External referential integrity</title>
 		<p>Validate external referential integrity.</p>
-
-		<rule context="//gsml:Borehole/gsml:samplingFrame[js:isValidHttpUri(string(@xlink:href)) and js:isResolvable(string(@xlink:href))]">
-			<let name="target" value="document(@xlink:href)"/>
-			<assert
-				see="https://www.seegrid.csiro.au/wiki/CGIModel/GeoSciML3SchematronRules#gsml_samplingFrame_external_links_in_Borehole"
-				test="local-name($target/*[1]) = 'shape' and namespace-uri($target/*[1]) = 'http://www.opengis.net/sampling/1.0'">
-				gsml:Borehole/gsml:samplingFrame/@xlink:href (<value-of select="@xlink:href" />) must resolve to the sa:shape object.
-			</assert>
-		</rule>
 
 		<rule context="//*[js:isValidHttpUri(string(@xlink:href))]">
 			<let name="isResolvable" value="js:isResolvable(string(@xlink:href))"/>
@@ -300,7 +305,8 @@
 		<title>Vocabulary bindings</title>
 		<p>Validate common vocabulary terms.</p>
 
-		<let name="docUcumUom" value="document('http://aurora.regenstrief.org/~ucum/ucum-essence.xml')" />
+		<!-- This rule is no longer correct as use swe:uom element not gsml:principalValue. Might be able to make a new one? -->
+<!--		<let name="docUcumUom" value="document('http://aurora.regenstrief.org/~ucum/ucum-essence.xml')" />
 		<rule context="//gsml:principalValue">
 			<let name="uom" value="js:urlDecode(substring(@uom, 23))" />
 			<let name="prefix1" value="$docUcumUom/root/prefix[@Code = substring($uom, 1, 1)]/@Code" />
@@ -312,7 +318,7 @@
 				'<value-of select="@uom" />' is not conformant to the Unified Code for Units of Measure.
 			</assert>
 		</rule>
-	</pattern>
+-->	</pattern>
 
 	<pattern id="profiling">
 		<title>Profiling</title>
