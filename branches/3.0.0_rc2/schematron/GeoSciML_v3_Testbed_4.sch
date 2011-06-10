@@ -1,46 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<schema xmlns="http://purl.oclc.org/dsdl/schematron" xmlns:interop="urn:csiro:schematron:lib" queryBinding="xslt" defaultPhase="model.constraints">
+<schema xmlns="http://purl.oclc.org/dsdl/schematron" xmlns:interop="urn:csiro:schematron:lib" queryBinding="xslt2" defaultPhase="model.constraints">
 	<title>GeoSciML v3 Profile conformance validation.</title>
 	<p>This schema checks GeoSciML v3 Profile conformance by stages.</p>
-	<interop:script language="JavaScript" implements-prefix="js">
-		<![CDATA[
-		function urlDecode(uri)
-		{
-			return decodeURI(uri);
-		}
-
-		function matches(value, re)
-		{
-			return value == null ? false : Boolean(value.match(re));
-		}
-
-		function isValidUrn(urn)
-		{
-			return /^urn:([A-Z0-9]([A-Z0-9\-]){1,31}):([A-Z0-9\.:=_\-]|(%[A-F0-9]{2}))+$/i.test(urn);
-		}
-
-		function isValidHttpUri(uri)
-		{
-			return /^https?:\/\/[0-9a-zA-Z]([-.\w]*[0-9a-zA-Z])*(:(0-9)*)*(\/?)([a-zA-Z0-9\-\.\?\,\'\/\\\+&amp;=%\$#_]*)?$/i.test(uri);
-		}
-
-		function isResolvable(url)
-		{
-			try
-			{
-				var xmlHttp = new ActiveXObject("Microsoft.XMLHTTP");
-				xmlHttp.open("GET", url, false);
-				xmlHttp.send(null);
-				return xmlHttp.readyState == 4 && xmlHttp.status == 200;
-			}
-			catch (e)
-			{
-				return false;
-			}
-		}
-		]]>
-	</interop:script>
-	<ns prefix="js" uri="urn:x-csiro:interoperability:js" />
+	<ns prefix="fn" uri="http://www.w3.org/2005/xpath-functions"/>
 	<ns prefix="wfs" uri="http://www.opengis.net/wfs/2.0" />
 	<ns prefix="xsi" uri="http://www.w3.org/2001/XMLSchema-instance" />
 	<ns prefix="xlink" uri="http://www.w3.org/1999/xlink" />
@@ -83,6 +45,10 @@
 		<active pattern="gml.location"></active>
 	</phase>
 
+	<!-- Just copied from Pavel's JavaScript versions with minimal changes to make XPATH2 RE syntax compatible. -->
+	<let name="httpUriRegExp" value="'^https?://[0-9a-zA-Z]([-.\w]*[0-9a-zA-Z])*(:(0-9)*)*(/?)([a-zA-Z0-9\-\.\?,&amp;apos;/\\\+&amp;=%\$#_]*)?$'"/>
+	<let name="urnRegExp" value="'^urn:([A-Z0-9]([A-Z0-9\-]){1,31}):([A-Z0-9\.:=_\-]|(%[A-F0-9]{2}))+$'"/>
+	
 	<pattern id="gml.metaDataProperty">
 		<title>Don't use deprecated GML metaDataProperty</title>
 		<rule context="//gml:metaDataProperty">
@@ -136,7 +102,7 @@
 		<rule context="/wfs:FeatureCollection/wfs:member/*/gml:name">
 			<assert
 				see="https://www.seegrid.csiro.au/wiki/CGIModel/GeoSciML3SchematronRules#Data_provider_specific_GML names"
-				test="js:isValidHttpUri(string(@codeSpace))">
+				test="fn:matches( @codeSpace, $httpUriRegExp, 'i')">
 				Data provider specific gml:name elements for <value-of select="name(..)" /> (<value-of select="../@gml:id" />) must use HTTP-URIs in codeSpace attributes. 
 			</assert>
 		</rule>
@@ -198,14 +164,12 @@
 		elements although these tests will look at any on any elements.)</p>
 		
 		<rule context="//*[@xlink:href]">
-<!--			<let name="isValidHttpUri" value="js:isValidHttpUri(string(@xlink:href))"/>
-			<let name="isXPointer" value="starts-with(@xlink:href, '#')"/>
-			<assert
+			<assert 
 				see="https://www.seegrid.csiro.au/wiki/CGIModel/GeoSciML3SchematronRules#Acceptable_links"
-				test="$isValidHttpUri or $isXPointer">
-				Encountered <value-of select="@xlink:href" /> XLink that is neither an internal XPointer or an HTTP-URI.
+				test="fn:matches(@xlink:href, $httpUriRegExp, 'i' ) or starts-with(@xlink:href, '#')">
+				Encountered <value-of select="@xlink:href"/> XLink that is neither an internal XPointer or an HTTP-URI.
 			</assert>
--->			<assert
+			<assert
 				see="https://www.seegrid.csiro.au/wiki/CGIModel/GeoSciML3SchematronRules#xlink_href_requires_xlink_title"
 				test="@xlink:title">
 				The property <value-of select="name(.)" /> does not have an xlink:title value.
@@ -251,7 +215,6 @@
 		<p>Validate internal referential integrity.</p>
 
 		<rule context="//*[@xlink:href]">
-			<let name="isValidHttpUri" value="js:isValidHttpUri(string(@xlink:href))"/>
 			<let name="isXPointer" value="starts-with(@xlink:href, '#')"/>
 
 			<assert
@@ -266,14 +229,14 @@
 		<rule context="//*[@codeSpace = 'http://www.ietf.org/rfc/rfc2141']">
 			<assert
 				see="https://www.seegrid.csiro.au/wiki/CGIModel/GeoSciML3SchematronRules#Pseudo-xlinks"
-				test="js:isValidUrn(string(./text()))">
+				test="fn:matches( text(), $urnRegExp, 'i')">
 				<value-of select="name(.)" /> (<value-of select="./text()" />) must contain a valid URN.
 			</assert>
 		</rule>
 		<rule context="//*[@codeSpace = 'http://www.ietf.org/rfc/rfc2616']">
 			<assert
 				see="https://www.seegrid.csiro.au/wiki/CGIModel/GeoSciML3SchematronRules#Pseudo-xlinks"
-				test="js:isValidHttpUri(string(./text()))">
+				test="fn:matches( text(), $httpUriRegExp, 'i')">
 				<value-of select="name(.)" /> (<value-of select="./text()" />) must contain a valid HTTP-URI.
 			</assert>
 		</rule>
@@ -282,25 +245,25 @@
 	<pattern id="external.referential.integrity">
 		<title>External referential integrity</title>
 		<p>Validate external referential integrity.</p>
-
-		<rule context="//*[js:isValidHttpUri(string(@xlink:href))]">
-			<let name="isResolvable" value="js:isResolvable(string(@xlink:href))"/>
+		
+		<rule context="//*[fn:matches( @xlink:href, $httpUriRegExp, 'i')]">
+			<let name="isResolvable" value="document(@xlink:href)"/>
 			<assert
 				see="https://www.seegrid.csiro.au/wiki/CGIModel/GeoSciML3SchematronRules#External_links"
 				test="$isResolvable">
 				External link (<value-of select="@xlink:href" />) must be resolvable.
 			</assert>
 		</rule>
-
-		<rule context="//*[@codeSpace = 'http://www.ietf.org/rfc/rfc2616' and js:isValidHttpUri(string(./text()))]">
+		
+		<rule context="//*[@codeSpace = 'http://www.ietf.org/rfc/rfc2616' and fn:matches( text(), $httpUriRegExp, 'i')]">
 			<assert
 				see="https://www.seegrid.csiro.au/wiki/CGIModel/GeoSciML3SchematronRules#External_pseudo-xlinks"
-				test="js:isResolvable(string(./text()))">
+				test="document(text())">
 				External link (<value-of select="./text()" />) must be resolvable.
 			</assert>
 		</rule>
 	</pattern>
-
+	
 	<pattern id="vocabulary.bindings">
 		<title>Vocabulary bindings</title>
 		<p>Validate common vocabulary terms.</p>
