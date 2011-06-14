@@ -16,9 +16,14 @@
 			Some might be included as Schematron constraints embedded in the XML Schema 
 			generated from constraints specified in the UML at some time in the future.</p>
 		<active pattern="GeologicUnit.constraints"/>
+		<active pattern="Borehole.constraints"/>
 		<active pattern="property.constraints"/>
 		<active pattern="spatial.data.constraints"/>
 		<active pattern="uri.codespace.element"></active>
+		<active pattern="gml.metaDataProperty"></active>
+		<active pattern="gml.description"></active>
+		<active pattern="gml.location"></active>
+		<active pattern="internal.referential.integrity"/>
 	</phase>
 
 	<phase id="referential.integrity">
@@ -28,10 +33,12 @@
 	<phase id="full.referential.integrity">
 		<active pattern="internal.referential.integrity"/>
 		<active pattern="external.referential.integrity"/>
-		<active pattern="vocabulary.bindings"/>
 	</phase>
 
-	<phase id="profile">
+	<phase id="cgi.profile">
+		<active pattern="ics.age.vocabulary"/>
+		<active pattern="cgi.lithology.vocabulary"/>
+		<active pattern="ucum.vocabulary"/>
 		<active pattern="profiling"/>
 	</phase>
 
@@ -157,6 +164,33 @@
 			</assert>
 		</rule>
 	</pattern>
+	
+	<pattern id="Borehole.constraints">
+		<title>Borehole Constraints</title>
+		<p>Validate model constraints on Borehole not enforced by XML Schema</p>
+		<rule context="//gsml:Borehole">
+			<assert 
+				see="https://www.seegrid.csiro.au/wiki/CGIModel/GeoSciML3SchematronRules#Borehole_intervals_orientation"
+				test="true()">
+				Placeholder test not yet written.
+			</assert>
+			<assert 
+				see="https://www.seegrid.csiro.au/wiki/CGIModel/GeoSciML3SchematronRules#Borehole_intervals_order"
+				test="true()">
+				Placeholder test not yet written.
+			</assert>
+			<assert 
+				see="https://www.seegrid.csiro.au/wiki/CGIModel/GeoSciML3SchematronRules#Borehole_depth"
+				test="true()">
+				Placeholder test not yet written.
+			</assert>
+			<assert 
+				see="https://www.seegrid.csiro.au/wiki/CGIModel/GeoSciML3SchematronRules#Borehole_length"
+				test="true()">
+				Placeholder test not yet written.
+			</assert>
+		</rule>
+	</pattern>
 
 	<pattern id="property.constraints">
 		<title>Property Constraints</title>
@@ -264,13 +298,46 @@
 		</rule>
 	</pattern>
 	
-	<pattern id="vocabulary.bindings">
-		<title>Vocabulary bindings</title>
-		<p>Validate common vocabulary terms.</p>
-
+	<pattern id="ics.age.vocabulary">
+		<title>IUGS-CGI Age Vocabulary</title>
+		<p>Check that age properties use values from the ICS standard age vocabulary.</p>
+		<!-- To Do. Check this is the prefix we should use. -->
+		<let name="ageUriPrefix" value="http://resource.geosciml.org/classifier/ICS/StratChart/"/>
+		<rule context="//gsml:GeologicEvent">
+			<assert 
+				see="https://www.seegrid.csiro.au/wiki/CGIModel/GeoSciML3SchematronRules#ics.age.vocabulary"
+				test="starts-with(gsml:olderNamedAge/@xlink:href, $ageUriPrefix) or gsml:olderNamedAge/@xsi:nil = true()">
+				olderNamedAge <value-of select="gsml:olderNamedAge/@xlink:href"/> should come from ICS vocabulary or be nil.
+			</assert>
+			<assert 
+				see="https://www.seegrid.csiro.au/wiki/CGIModel/GeoSciML3SchematronRules#ics.age.vocabulary"
+				test="starts-with(gsml:youngerNamedAge/@xlink:href, $ageUriPrefix) or gsml:youngerNamedAge/@xsi:nil = true()">
+				youngerNamedAge <value-of select="gsml:youngerNamedAge/@xlink:href"/> should come from ICS vocabulary or be nil.
+			</assert>
+		</rule>
+	</pattern>
+	
+	<pattern id="cgi.lithology.vocabulary">
+		<title>CGI Lithology Vocabulary</title>
+		<p>Check that lithology properties use values from the CGI simple lithology vocabulary.</p>
+		<!-- To Do. Check this is the prefix we should use. -->
+		<let name="lithologyUriPrefix" value="http://resource.geosciml.org/classifier/CGI/SimpleLithology/"/>
+		<rule context="//gsml:RockMaterial">
+			<assert 
+				see="https://www.seegrid.csiro.au/wiki/CGIModel/GeoSciML3SchematronRules#cgi.lithology.vocabulary"
+				test="starts-with(gsml:lithology/@xlink:href, lithologyUriPrefix)">
+				lithology <value-of select="gsml:lithology/@xlink:href"/> should come from CGI vocabulary.
+			</assert>
+		</rule>
+	</pattern>
+	
+	<pattern id="ucum.vocabulary">
+		<title>UCUM Vocabulary</title>
+		<p>Check units of measure use the Unified Codes for Units of Measure units and symbols.</p>
+		
 		<!-- This rule is no longer correct as use swe:uom element not gsml:principalValue. Might be able to make a new one? -->
-<!--		<let name="docUcumUom" value="document('http://aurora.regenstrief.org/~ucum/ucum-essence.xml')" />
-		<rule context="//gsml:principalValue">
+		<!--		<let name="docUcumUom" value="document('http://aurora.regenstrief.org/~ucum/ucum-essence.xml')" />
+			<rule context="//gsml:principalValue">
 			<let name="uom" value="js:urlDecode(substring(@uom, 23))" />
 			<let name="prefix1" value="$docUcumUom/root/prefix[@Code = substring($uom, 1, 1)]/@Code" />
 			<let name="prefix2" value="$docUcumUom/root/prefix[@Code = substring($uom, 1, 2)]/@Code" />
@@ -278,11 +345,11 @@
 			<let name="uomMatch1" value="$docUcumUom/root[boolean($prefix1)]/*[local-name() = 'base-unit' or local-name() = 'unit']/@Code = substring($uom, 2)" />
 			<let name="uomMatch2" value="$docUcumUom/root[boolean($prefix2)]/*[local-name() = 'base-unit' or local-name() = 'unit']/@Code = substring($uom, 3)" />
 			<assert test="starts-with(@uom, 'urn:ogc:def:nil:OGC::') or starts-with(@uom, 'http://www.opengis.net/def/nil/OGC/0/') or $uomMatch or $uomMatch1 or $uomMatch2">
-				'<value-of select="@uom" />' is not conformant to the Unified Code for Units of Measure.
+			'<value-of select="@uom" />' is not conformant to the Unified Code for Units of Measure.
 			</assert>
-		</rule>
--->	</pattern>
-
+			</rule>
+		-->	</pattern>
+	
 	<pattern id="profiling">
 		<title>Profiling</title>
 		<p>Validate document conformity to community profile.</p>
