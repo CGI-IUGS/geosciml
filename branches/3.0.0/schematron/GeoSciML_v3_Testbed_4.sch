@@ -20,22 +20,20 @@
 		<active pattern="property.constraints"/>
 		<active pattern="spatial.data.constraints"/>
 		<active pattern="uri.codespace.element"></active>
+		<active pattern="internal.referential.integrity"/>
 		<active pattern="gml.metaDataProperty"></active>
 		<active pattern="gml.description"></active>
 		<active pattern="gml.location"></active>
-		<active pattern="internal.referential.integrity"/>
-	</phase>
-
-	<phase id="referential.integrity">
-		<active pattern="internal.referential.integrity"/>
 	</phase>
 
 	<phase id="full.referential.integrity">
+		<p>Check that by reference propeties and URI valued properties point to something appropriate.</p>
 		<active pattern="internal.referential.integrity"/>
 		<active pattern="external.referential.integrity"/>
 	</phase>
 
 	<phase id="cgi.profile">
+		<p>Some extra constraints to conform to a standard "CGI profile", mainly meaning using CGI approved dictionaries where they exist for particualar properties.</p>
 		<active pattern="ics.age.vocabulary"/>
 		<active pattern="cgi.lithology.vocabulary"/>
 		<active pattern="ucum.vocabulary"/>
@@ -43,15 +41,10 @@
 	</phase>
 
 	<phase id="wfs2">
+		<p>Rules particular to instance documents returned by WFS v2 services.</p>
 		<active pattern="wfs2.collection" />
 	</phase>
 	
-	<phase id="gml.deprecations">
-		<active pattern="gml.metaDataProperty"></active>
-		<active pattern="gml.description"></active>
-		<active pattern="gml.location"></active>
-	</phase>
-
 	<!-- Just copied from Pavel's JavaScript versions with minimal changes to make XPATH2 RE syntax compatible. -->
 	<let name="httpUriRegExp" value="'^https?://[0-9a-zA-Z]([-.\w]*[0-9a-zA-Z])*(:(0-9)*)*(/?)([a-zA-Z0-9\-\.\?,&amp;apos;/\\\+&amp;=%\$#_]*)?$'"/>
 	<let name="urnRegExp" value="'^urn:([A-Z0-9]([A-Z0-9\-]){1,31}):([A-Z0-9\.:=_\-]|(%[A-F0-9]{2}))+$'"/>
@@ -77,45 +70,6 @@
 		</rule>
 	</pattern>
 
-	<pattern id="wfs2.collection">
-		<title>WFS 2 Collection</title>
-		<p>Test that instance is a WFS2 feature collection and any relevant further tests given that.</p>
-		<rule context="/">
-			<assert test="wfs:FeatureCollection">
-				Root element should be a wfs:FeatureCollection
-			</assert>
-		</rule>
-		<rule context="/wfs:FeatureCollection">
-			<assert
-				see="https://www.seegrid.csiro.au/wiki/CGIModel/GeoSciML3SchematronRules#Feature_collection_schema_location"
-				test="@xsi:schemaLocation">
-				xsi:schemaLocation attribute must always be provided for wfs:FeatureCollection.
-			</assert>
-			<let name="actualNumberOfFeatures" value="count(//wfs:member)" />
-			<assert
-				see="https://www.seegrid.csiro.au/wiki/CGIModel/GeoSciML3SchematronRules#Number_of_features"
-				test="$actualNumberOfFeatures = @numberReturned">
-				Value of numberOfFeatures attribute (<value-of select="@numberReturned" />) must be consistent with an actual number of features returned (<value-of select="$actualNumberOfFeatures" />).
-			</assert>
-		</rule>
-		<rule context="/wfs:FeatureCollection/wfs:member/*">
-			<assert
-				see="https://www.seegrid.csiro.au/wiki/CGIModel/GeoSciML3SchematronRules#Identifiers_on_persistent_features"
-				test="count(gml:identifier[@codeSpace = 'http://www.ietf.org/rfc/rfc2616']) = 1">
-				Persistent feature <value-of select="name(.)" /> (<value-of select="@gml:id" />) must have a gml:identifier with codeSpace http://www.ietf.org/rfc/rfc2616.
-			</assert>
-		</rule>
-		
-		<rule context="/wfs:FeatureCollection/wfs:member/*/gml:name">
-			<assert
-				see="https://www.seegrid.csiro.au/wiki/CGIModel/GeoSciML3SchematronRules#Data_provider_specific_GML names"
-				test="fn:matches( @codeSpace, $httpUriRegExp, 'i')">
-				Data provider specific gml:name elements for <value-of select="name(..)" /> (<value-of select="../@gml:id" />) must use HTTP-URIs in codeSpace attributes. 
-			</assert>
-		</rule>
-		
-	</pattern>
-	
 	<pattern id="GeologicUnit.constraints">
 		<title>Geologic Unit Constraints</title>
 		<p>Validate model constraints on GeologicUnit not enforced by XML Schema</p>
@@ -244,21 +198,6 @@
 		</rule>
 	</pattern>
 
-	<pattern id="internal.referential.integrity">
-		<title>Internal referential integrity</title>
-		<p>Validate internal referential integrity.</p>
-
-		<rule context="//*[@xlink:href]">
-			<let name="isXPointer" value="starts-with(@xlink:href, '#')"/>
-
-			<assert
-				see="https://www.seegrid.csiro.au/wiki/CGIModel/GeoSciML3SchematronRules#Internal_XPointers"
-				test="not($isXPointer) or ($isXPointer and //*[@gml:id = substring(current()/@xlink:href, 2)])">
-				Internal XLink <value-of select="@xlink:href" /> cannot be resolved within the document.
-			</assert>
-		</rule>
-	</pattern>
-	
 	<pattern id="uri.codespace.element">
 		<rule context="//*[@codeSpace = 'http://www.ietf.org/rfc/rfc2141']">
 			<assert
@@ -276,6 +215,21 @@
 		</rule>
 	</pattern>
 
+	<pattern id="internal.referential.integrity">
+		<title>Internal referential integrity</title>
+		<p>Validate internal referential integrity.</p>
+		
+		<rule context="//*[@xlink:href]">
+			<let name="isXPointer" value="starts-with(@xlink:href, '#')"/>
+			
+			<assert
+				see="https://www.seegrid.csiro.au/wiki/CGIModel/GeoSciML3SchematronRules#Internal_XPointers"
+				test="not($isXPointer) or ($isXPointer and //*[@gml:id = substring(current()/@xlink:href, 2)])">
+				Internal XLink <value-of select="@xlink:href" /> cannot be resolved within the document.
+			</assert>
+		</rule>
+	</pattern>
+	
 	<pattern id="external.referential.integrity">
 		<title>External referential integrity</title>
 		<p>Validate external referential integrity.</p>
@@ -378,4 +332,44 @@
 			</assert>
 		</rule>
 	</pattern>
+
+	<pattern id="wfs2.collection">
+		<title>WFS 2 Collection</title>
+		<p>Test that instance is a WFS2 feature collection and any relevant further tests given that.</p>
+		<rule context="/">
+			<assert test="wfs:FeatureCollection">
+				Root element should be a wfs:FeatureCollection
+			</assert>
+		</rule>
+		<rule context="/wfs:FeatureCollection">
+			<assert
+				see="https://www.seegrid.csiro.au/wiki/CGIModel/GeoSciML3SchematronRules#Feature_collection_schema_location"
+				test="@xsi:schemaLocation">
+				xsi:schemaLocation attribute must always be provided for wfs:FeatureCollection.
+			</assert>
+			<let name="actualNumberOfFeatures" value="count(//wfs:member)" />
+			<assert
+				see="https://www.seegrid.csiro.au/wiki/CGIModel/GeoSciML3SchematronRules#Number_of_features"
+				test="$actualNumberOfFeatures = @numberReturned">
+				Value of numberOfFeatures attribute (<value-of select="@numberReturned" />) must be consistent with an actual number of features returned (<value-of select="$actualNumberOfFeatures" />).
+			</assert>
+		</rule>
+		<rule context="/wfs:FeatureCollection/wfs:member/*">
+			<assert
+				see="https://www.seegrid.csiro.au/wiki/CGIModel/GeoSciML3SchematronRules#Identifiers_on_persistent_features"
+				test="count(gml:identifier[@codeSpace = 'http://www.ietf.org/rfc/rfc2616']) = 1">
+				Persistent feature <value-of select="name(.)" /> (<value-of select="@gml:id" />) must have a gml:identifier with codeSpace http://www.ietf.org/rfc/rfc2616.
+			</assert>
+		</rule>
+		
+		<rule context="/wfs:FeatureCollection/wfs:member/*/gml:name">
+			<assert
+				see="https://www.seegrid.csiro.au/wiki/CGIModel/GeoSciML3SchematronRules#Data_provider_specific_GML names"
+				test="fn:matches( @codeSpace, $httpUriRegExp, 'i')">
+				Data provider specific gml:name elements for <value-of select="name(..)" /> (<value-of select="../@gml:id" />) must use HTTP-URIs in codeSpace attributes. 
+			</assert>
+		</rule>
+		
+	</pattern>
+	
 </schema>
