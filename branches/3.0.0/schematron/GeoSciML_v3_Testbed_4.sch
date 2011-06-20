@@ -33,7 +33,7 @@
 	</phase>
 
 	<phase id="cgi.profile">
-		<p>Some extra constraints to conform to a standard "CGI profile", mainly meaning using CGI approved dictionaries where they exist for particualar properties.</p>
+		<p>Some extra constraints to conform to a standard "CGI profile", mainly meaning using CGI approved dictionaries where they exist for particular properties.</p>
 		<active pattern="ics.age.vocabulary"/>
 		<active pattern="cgi.lithology.vocabulary"/>
 		<active pattern="ucum.vocabulary"/>
@@ -256,7 +256,7 @@
 		<title>IUGS-CGI Age Vocabulary</title>
 		<p>Check that age properties use values from the ICS standard age vocabulary.</p>
 		<!-- To Do. Check this is the prefix we should use. -->
-		<let name="ageUriPrefix" value="http://resource.geosciml.org/classifier/ICS/StratChart/"/>
+		<let name="ageUriPrefix" value="'http://resource.geosciml.org/classifier/ICS/StratChart/'"/>
 		<rule context="//gsml:GeologicEvent">
 			<assert 
 				see="https://www.seegrid.csiro.au/wiki/CGIModel/GeoSciML3SchematronRules#ics.age.vocabulary"
@@ -275,7 +275,7 @@
 		<title>CGI Lithology Vocabulary</title>
 		<p>Check that lithology properties use values from the CGI simple lithology vocabulary.</p>
 		<!-- To Do. Check this is the prefix we should use. -->
-		<let name="lithologyUriPrefix" value="http://resource.geosciml.org/classifier/CGI/SimpleLithology/"/>
+		<let name="lithologyUriPrefix" value="'http://resource.geosciml.org/classifier/CGI/SimpleLithology/'"/>
 		<rule context="//gsml:RockMaterial">
 			<assert 
 				see="https://www.seegrid.csiro.au/wiki/CGIModel/GeoSciML3SchematronRules#cgi.lithology.vocabulary"
@@ -302,7 +302,8 @@
 			'<value-of select="@uom" />' is not conformant to the Unified Code for Units of Measure.
 			</assert>
 			</rule>
-		-->	</pattern>
+		-->
+	</pattern>
 	
 	<pattern id="profiling">
 		<title>Profiling</title>
