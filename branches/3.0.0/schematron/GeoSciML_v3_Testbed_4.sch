@@ -19,11 +19,11 @@
 		<active pattern="Borehole.constraints"/>
 		<active pattern="property.constraints"/>
 		<active pattern="spatial.data.constraints"/>
-		<active pattern="uri.codespace.element"></active>
+		<active pattern="uri.codespace.element"/>
 		<active pattern="internal.referential.integrity"/>
-		<active pattern="gml.metaDataProperty"></active>
-		<active pattern="gml.description"></active>
-		<active pattern="gml.location"></active>
+		<active pattern="gml.metaDataProperty"/>
+		<active pattern="gml.description"/>
+		<active pattern="gml.location"/>
 	</phase>
 
 	<phase id="full.referential.integrity">
@@ -37,6 +37,7 @@
 		<active pattern="ics.age.vocabulary"/>
 		<active pattern="cgi.lithology.vocabulary"/>
 		<active pattern="ucum.vocabulary"/>
+		<active pattern="spatial.crs.uri"/>
 		<active pattern="profiling"/>
 	</phase>
 
@@ -195,6 +196,18 @@
 				test="not(gml:LineString/gml:posList)">
 				gml:LineString element of <value-of select="name(.)" /> property must be encoded as gml:posList.
 			</report>			
+		</rule>
+	</pattern>
+	
+	<pattern id="spatial.crs.uri">
+		<title>Spatial CRS URIs</title>
+		<p>Restrict the values that can be used to identify coordinate reference systems in spatial elements.</p>
+		<rule context="//@srsName">
+			<assert
+				see="https://www.seegrid.csiro.au/wiki/CGIModel/GeoSciML3SchematronRules#spatial.crs.uri"
+				test="starts-with(., 'http://www.opengis.net/def/crs/')">
+				<value-of select="."/> should contain a URI from the OGC set of coordinate reference system identifiers.
+			</assert>
 		</rule>
 	</pattern>
 
