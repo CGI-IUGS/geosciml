@@ -26,7 +26,8 @@
     timeStamp="2011-06-08T12:00:00" numberMatched="1" numberReturned="1">
     <wfs:member>
         <gsml:MappedFeature gml:id="mf.11">
-            <!-- Don't have any BGS scheme for assigning gml:identifier -->
+            <!-- Don't have any BGS system for assigning gml:identifiers for MappedFeatures -->
+<!--            <gml:identifier codeSpace="http://www.ietf.org/rfc/rfc2616">http://x-data.bgs.ac.uk/to.be.done/11</gml:identifier>-->
             <gml:boundedBy>
                 <gml:Envelope srsName="http://www.opengis.net/def/crs/EPSG/0/4326">
                     <gml:lowerCorner>-3.6470548505734 55.4873225351353</gml:lowerCorner>
@@ -72,8 +73,8 @@
             <gsml:specification>
                 <gsml:GeologicUnit gml:id="KKF-WACKE">
                     <gml:description>KIRKCOLM FORMATION</gml:description>
-                    <gml:identifier codeSpace="http://www.cgi-iugs.org/uri"
-                        >urn:cgi:feature:BGS:StratigraphicLexicon:KKF</gml:identifier>
+                    <!-- Don't have any BGS system for assigning gml:identifiers for GeologicUnits -->
+<!--                    <gml:identifier codeSpace="http://www.ietf.org/rfc/rfc2616">http://x-data.bgs.ac.uk/to.be.done/KKF-WACKE</gml:identifier>-->
                     <gsml:observationMethod>
                         <cgu:CGI_Term>
                             <cgu:qualifier
@@ -119,8 +120,22 @@
                         <gsml:CompositionPart>
                             <gsml:role
                                 xlink:href="http://resource.geosciml.org/classifier/CGI/GeologicUnitPartRole/200811/only_part" xlink:title="Only part"/>
-                            <gsml:material
-                                xlink:href="http://resource.geosciml.org/classifier/CGI/SimpleLithology/201001/wacke" xlink:title="Wacke"/>
+                            <gsml:material>
+                                <gsml:RockMaterial gml:id="KKF-WACKE.CP.1">
+                                    <gsml:color nilReason="missing" xsi:nil="true"/>
+                                    <gsml:purpose>typicalNorm</gsml:purpose>
+                                    <gsml:physicalProperty nilReason="missing" xsi:nil="true"/>
+                                    <gsml:geochemistry nilReason="missing" xsi:nil="true"/>
+                                    <gsml:compositionCategory nilReason="missing" xsi:nil="true"/>
+                                    <gsml:geneticCategory nilReason="missing" xsi:nil="true"/>
+                                    <gsml:particleGeometry nilReason="missing" xsi:nil="true"/>
+                                    <gsml:consolidationDegree nilReason="missing" xsi:nil="true"/>
+                                    <gsml:lithology xlink:href="http://resource.geosciml.org/classifier/CGI/SimpleLithology/201001/wacke" xlink:title="Wacke" />
+                                    <gsml:metamorphicProperties nilReason="missing" xsi:nil="true"/>
+                                    <gsml:alterationProperties nilReason="missing" xsi:nil="true"/>
+                                    <gsml:fabric nilReason="missing" xsi:nil="true"/>
+                                </gsml:RockMaterial>
+                            </gsml:material>
                             <gsml:proportion>
                                 <cgu:CGI_NumericRange>
                                     <cgu:estimatedValue>
