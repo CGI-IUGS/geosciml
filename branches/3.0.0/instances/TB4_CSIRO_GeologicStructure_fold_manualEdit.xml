@@ -1,0 +1,396 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<gml:FeatureCollection xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:cgu="http://xmlns.geosciml.org/Utilities/3.0"
+	xmlns:gsml="http://xmlns.geosciml.org/GeoSciML-Core/3.0"
+	xmlns:wfs="http://www.opengis.net/wfs/2.0" xmlns:xlink="http://www.w3.org/1999/xlink"
+	xmlns:gml="http://www.opengis.net/gml/3.2" xmlns:gco="http://www.isotc211.org/2005/gco"
+	xmlns:gmd="http://www.isotc211.org/2005/gmd" xmlns:swe="http://www.opengis.net/swe/1.0/gml32"
+	xsi:schemaLocation="http://www.opengis.net/wfs/2.0 http://schemas.geosciml.org/geosciml-core/3.0/geosciml-core.xsd"
+	gml:id="root_collection">
+
+	<!-- ================================================================================================================ 	-->
+	<!--  	Testbed4 - GeoSciML v3 Release Candidate 2    				                                                 	-->
+	<!--  	Example instance document for GeologicStructure-Fold, version 1.0												-->
+	<!--  	Author: Guillaume Duclaux, CSIRO                                                                          		-->
+	<!-- ================================================================================================================ 	-->
+
+	<gml:featureMember>
+		<gsml:Fold gml:id="fold1">
+			<gml:description>A handcrafted instance document encoding information related to a cylindrical fold</gml:description>
+			<gml:name>first instance fold</gml:name>
+			<gsml:observationMethod>
+				<cgu:CGI_Term>
+					<cgu:qualifier xsi:nil="true" nilReason="missing"/>
+					<cgu:value
+						xlink:href="http://resource.geosciml.org/classifier/cgi/featureobservationmethod/0005"
+						xlink:title="Direct observation"/>
+				</cgu:CGI_Term>
+			</gsml:observationMethod>
+			<gsml:purpose>instance</gsml:purpose>
+			<gsml:geologicHistory>
+				<!-- encoding the age of the deformation event based on geochronology data [age +/- error]-->
+				<gsml:GeologicEvent gml:id="foldingEvent">
+					<gsml:eventProcess
+						xlink:href="http://resource.geosciml.org/classifier/cgi/eventprocess/0014"
+						xlink:title="deformation"/>
+					<gsml:numericAgeDate>
+						<cgu:CGI_NumericAgeRange>
+							<cgu:reportingDate>
+								<cgu:StratigraphicDateEstimate>
+									<!-- Is the term 'StratigraphicDate' generic enought? In this case or for a magmatic/crystallization age or metamorphic age the term would look wrong. How about cgu:EventDateEstimate? -->
+									<cgu:position>
+										<gml:TimeInstant gml:id="foldingEventAge">
+											<gml:timePosition>1690 Ma</gml:timePosition>
+										</gml:TimeInstant>
+									</cgu:position>
+									<cgu:quality>
+										<gmd:DQ_QuantitativeAttributeAccuracy>
+											<gmd:nameOfMeasure>
+												<gco:CharacterString>1 sigma error</gco:CharacterString>
+											</gmd:nameOfMeasure>
+											<gmd:result>
+												<gmd:DQ_QuantitativeResult>
+												<gmd:valueUnit>
+												<gml:DerivedUnit gml:id="Ma">
+												<gml:identifier codeSpace="http://www.ietf.org/rfc/rfc2616">http://www.opengis.net/def/uom/UCUM/0/Ma</gml:identifier>
+												<gml:derivationUnitTerm uom="Ma"/>
+												</gml:DerivedUnit>
+												</gmd:valueUnit>
+												<gmd:value>
+												<gco:Record>12</gco:Record>
+												</gmd:value>
+												</gmd:DQ_QuantitativeResult>
+											</gmd:result>
+										</gmd:DQ_QuantitativeAttributeAccuracy>
+									</cgu:quality>
+								</cgu:StratigraphicDateEstimate>
+							</cgu:reportingDate>
+							<cgu:olderBoundDate>
+								<cgu:StratigraphicDateEstimate>
+									<cgu:position>
+										<gml:TimeInstant gml:id="foldingEventOlderBoundAge">
+											<gml:timePosition>1702 Ma</gml:timePosition>
+										</gml:TimeInstant>
+									</cgu:position>
+									<cgu:quality xsi:nil="true" nilReason="inapplicable"/>
+								</cgu:StratigraphicDateEstimate>
+							</cgu:olderBoundDate>
+							<cgu:youngerBoundDate>
+								<cgu:StratigraphicDateEstimate>
+									<cgu:position>
+										<gml:TimeInstant gml:id="foldingEventYoungerBoundAge">
+											<gml:timePosition>1678 Ma</gml:timePosition>
+										</gml:TimeInstant>
+									</cgu:position>
+									<cgu:quality xsi:nil="true" nilReason="inapplicable"/>
+								</cgu:StratigraphicDateEstimate>
+							</cgu:youngerBoundDate>
+							<!-- cgu:olderBoundDate and cgu:youngerBoundDate are nillable, an alternative solution would be to nil these properties with a nilReason="inapplicable"-->
+						</cgu:CGI_NumericAgeRange>
+					</gsml:numericAgeDate>
+					<gsml:olderNamedAge/>
+					<gsml:youngerNamedAge/>
+					<gsml:eventEnvironment>
+						<cgu:CGI_Term>
+							<cgu:qualifier xsi:nil="true" nilReason="missing"/>
+							<cgu:value
+								xlink:href="http://resource.geosciml.org/classifier/cgi/eventenvironment/0067"
+								xlink:title="Hinterland tectonic setting"/>
+						</cgu:CGI_Term>
+					</gsml:eventEnvironment>
+					<gsml:incrementalDisplacement xsi:nil="true" nilReason="inapplicable"/>
+					<!--<gsml:DisplacementValue>
+							<gsml:hangingWallDirection>
+								<cgu:CGI_LinearOrientation>
+									<cgu:determinationMethod/>
+									<cgu:descriptiveOrientation>
+										<cgu:CGI_Term>
+											<cgu:qualifier/>
+											<cgu:value/>
+										</cgu:CGI_Term>
+									</cgu:descriptiveOrientation>
+									<cgu:directed/>
+									<cgu:plunge>
+										<cgu:CGI_NumericRange>
+											<cgu:estimatedValue>
+												<swe:Quantity gml:id="plunge_id1">
+													<swe:uom xlink:href="http://www.opengis.net/def/uom/UCUM/0/deg"/>
+													<swe:value>NaN</swe:value>
+												</swe:Quantity>
+											</cgu:estimatedValue>
+											<cgu:lower>
+												<swe:Quantity gml:id="plunge_id2"></swe:Quantity>
+											</cgu:lower>
+											<cgu:upper>
+												<swe:Quantity gml:id="plunge_id3"></swe:Quantity>
+											</cgu:upper>
+										</cgu:CGI_NumericRange>
+									</cgu:plunge>
+									<cgu:trend>
+										<cgu:CGI_NumericRange>
+											<cgu:estimatedValue>
+											<swe:Quantity gml:id="trend_id1"></swe:Quantity>
+											</cgu:estimatedValue>
+											<cgu:lower>
+											<swe:Quantity gml:id="trend_id2"></swe:Quantity>
+											</cgu:lower>
+											<cgu:upper>
+											<swe:Quantity gml:id="trend_id3"></swe:Quantity>
+											</cgu:upper>
+										</cgu:CGI_NumericRange>
+									</cgu:trend>
+								</cgu:CGI_LinearOrientation>
+							</gsml:hangingWallDirection>
+							<gsml:movementSense/>
+							<gsml:movementType/>
+							<gsml:displacementEvent/>
+						</gsml:DisplacementValue>
+					</gsml:incrementalDisplacement>-->
+					<!-- Not sure how to implement the content of gsml:incrementalDisplacement property in the case of a fold, I propose to nil the property in the case of a fold because it doesn't seem applicable. Maybe something for a future Schematron rule -->
+				</gsml:GeologicEvent>
+			</gsml:geologicHistory>
+			<gsml:profileType xlink:href="" xlink:title="antiform"/>
+			<!-- This requires an extra cgi vocabulary for foldProfile -->
+			<gsml:amplitude>
+				<!-- gml:Measure would do a great job here, maybe MeasureList could be used if the minimum number of Measure is 2-->
+				<cgu:CGI_NumericRange>
+					<cgu:estimatedValue>
+						<swe:Quantity gml:id="fold1AmplitudeEstimate">
+							<swe:uom xlink:href="http://www.opengis.net/def/uom/UCUM/0/m"
+								xlink:title="m"/>
+							<swe:value>25</swe:value>
+						</swe:Quantity>
+					</cgu:estimatedValue>
+					<cgu:lower>
+						<swe:Quantity gml:id="fold1AmplitudeLower">
+							<swe:uom xlink:href="http://www.opengis.net/def/uom/UCUM/0/m"
+								xlink:title="m"/>
+							<swe:value>20</swe:value>
+						</swe:Quantity>
+					</cgu:lower>
+					<cgu:upper>
+						<swe:Quantity gml:id="fold1AmplitudeUpper">
+							<swe:uom xlink:href="http://www.opengis.net/def/uom/UCUM/0/m"
+								xlink:title="m"/>
+							<swe:value>27</swe:value>
+						</swe:Quantity>
+					</cgu:upper>
+				</cgu:CGI_NumericRange>
+			</gsml:amplitude>
+			<gsml:axialSurfaceOrientation>
+				<cgu:CGI_PlanarOrientation>
+					<cgu:determinationMethod
+						xlink:href="http://resource.geosciml.org/classifier/cgi/determinationmethodorientation/0009"
+						xlink:title="Visual surface estimation on outcrop"/>
+					<cgu:descriptiveOrientation xsi:nil="true" nilReason="unknown"/>
+					<!-- not certain what this property is intended to be in the real world, is this property necessary? -->
+					<cgu:convention
+						xlink:href="http://resource.geosciml.org/classifier/cgi/conventioncode/0002"
+						xlink:title="Strike Dip RHR"/>
+					<cgu:azimuth>
+						<!-- gml:Measure would do a great job here-->
+						<cgu:CGI_NumericRange>
+							<cgu:estimatedValue>
+								<swe:Quantity gml:id="fold1AxialSurfaceAzimuthEstimate">
+									<swe:uom xlink:href="http://www.opengis.net/def/uom/UCUM/0/deg"
+										xlink:title="deg"/>
+									<swe:value>007</swe:value>
+								</swe:Quantity>
+							</cgu:estimatedValue>
+							<cgu:lower>
+								<swe:Quantity gml:id="fold1AxialSurfaceAzimuthLower">
+									<swe:uom xlink:href="http://www.opengis.net/def/uom/UCUM/0/deg"
+										xlink:title="deg"/>
+									<swe:value>005</swe:value>
+								</swe:Quantity>
+							</cgu:lower>
+							<cgu:upper>
+								<swe:Quantity gml:id="fold1AxialSurfaceAzimuthUpper">
+									<swe:uom xlink:href="http://www.opengis.net/def/uom/UCUM/0/deg"
+										xlink:title="deg"/>
+									<swe:value>010</swe:value>
+								</swe:Quantity>
+							</cgu:upper>
+						</cgu:CGI_NumericRange>
+					</cgu:azimuth>
+					<cgu:dip>
+						<!-- gml:Measure would do a great job here-->
+						<cgu:CGI_NumericRange>
+							<cgu:estimatedValue>
+								<swe:Quantity gml:id="fold1DipEstimate">
+									<swe:uom xlink:href="http://www.opengis.net/def/uom/UCUM/0/deg"
+										xlink:title="deg"/>
+									<swe:value>84</swe:value>
+								</swe:Quantity>
+							</cgu:estimatedValue>
+							<cgu:lower>
+								<swe:Quantity gml:id="fold1DipLower">
+									<swe:uom xlink:href="http://www.opengis.net/def/uom/UCUM/0/deg"
+										xlink:title="deg"/>
+									<swe:value>83</swe:value>
+								</swe:Quantity>
+							</cgu:lower>
+							<cgu:upper>
+								<swe:Quantity gml:id="fold1DipUpper">
+									<swe:uom xlink:href="http://www.opengis.net/def/uom/UCUM/0/deg"
+										xlink:title="deg"/>
+									<swe:value>86</swe:value>
+								</swe:Quantity>
+							</cgu:upper>
+						</cgu:CGI_NumericRange>
+					</cgu:dip>
+					<cgu:polarity xlink:href="empty/URI" xlink:title="upright"/>
+					<!-- there is no existing vocabulary for this property -->
+				</cgu:CGI_PlanarOrientation>
+			</gsml:axialSurfaceOrientation>
+			<gsml:geneticModel>
+				<cgu:CGI_Term>
+					<cgu:qualifier/>
+					<cgu:value
+						xlink:href="http://resource.geosciml.org/classifier/cgi/geneticcategory/0008"
+						xlink:title="deformation genesis"/>
+					<!-- not 100% certain this vocab is the intended one -->
+				</cgu:CGI_Term>
+			</gsml:geneticModel>
+			<gsml:hingeLineCurvature>
+				<cgu:CGI_Term>
+					<cgu:qualifier xlink:href="generally"/>
+					<cgu:value xlink:href="empty/URI" xlink:title="cylindrical"/>
+					<!-- there is no existing vocabulary for this property -->
+				</cgu:CGI_Term>
+			</gsml:hingeLineCurvature>
+			<gsml:hingeLineOrientation>
+				<cgu:CGI_LinearOrientation>
+					<cgu:determinationMethod
+						xlink:href="http://resource.geosciml.org/classifier/cgi/determinationmethodorientation/0004"
+						xlink:title="Measure on outcrop"/>
+					<cgu:descriptiveOrientation>
+						<cgu:CGI_Term>
+							<cgu:qualifier xsi:nil="true" nilReason="missing"/>
+							<cgu:value xlink:href="empty/URI" xlink:title="sub-horizontal"/>
+							<!-- there is no existing vocabulary for this property -->
+						</cgu:CGI_Term>
+					</cgu:descriptiveOrientation>
+					<cgu:directed/>
+					<!-- This property can't be defined using the codeList elements as it is defined byReference only -->
+					<cgu:plunge>
+						<cgu:CGI_NumericRange>
+							<!-- gml:Measure would do a great job here-->
+							<cgu:estimatedValue>
+								<swe:Quantity gml:id="fold1HingePlungeEstimate">
+									<swe:uom xlink:href="http://www.opengis.net/def/uom/UCUM/0/deg"
+										xlink:title="deg"/>
+									<swe:value>06</swe:value>
+								</swe:Quantity>
+							</cgu:estimatedValue>
+							<cgu:lower>
+								<swe:Quantity gml:id="fold1HingePlungeLower">
+									<swe:uom xlink:href="http://www.opengis.net/def/uom/UCUM/0/deg"
+										xlink:title="deg"/>
+									<swe:value>04</swe:value>
+								</swe:Quantity>
+							</cgu:lower>
+							<cgu:upper>
+								<swe:Quantity gml:id="fold1HingePlungeUpper">
+									<swe:uom xlink:href="http://www.opengis.net/def/uom/UCUM/0/deg"
+										xlink:title="deg"/>
+									<swe:value>07</swe:value>
+								</swe:Quantity>
+							</cgu:upper>
+						</cgu:CGI_NumericRange>
+					</cgu:plunge>
+					<cgu:trend>
+						<cgu:CGI_NumericRange>
+							<cgu:estimatedValue>
+								<swe:Quantity gml:id="fold1HingeTrendEstimate">
+									<swe:uom xlink:href="http://www.opengis.net/def/uom/UCUM/0/deg"
+										xlink:title="deg"/>
+									<swe:value>06</swe:value>
+								</swe:Quantity>
+							</cgu:estimatedValue>
+							<cgu:lower>
+								<swe:Quantity gml:id="fold1HingeTrendLower">
+									<swe:uom xlink:href="http://www.opengis.net/def/uom/UCUM/0/deg"
+										xlink:title="deg"/>
+									<swe:value>04</swe:value>
+								</swe:Quantity>
+							</cgu:lower>
+							<cgu:upper>
+								<swe:Quantity gml:id="fold1HingeTrendUpper">
+									<swe:uom xlink:href="http://www.opengis.net/def/uom/UCUM/0/deg"
+										xlink:title="deg"/>
+									<swe:value>09</swe:value>
+								</swe:Quantity>
+							</cgu:upper>
+						</cgu:CGI_NumericRange>
+					</cgu:trend>
+				</cgu:CGI_LinearOrientation>
+			</gsml:hingeLineOrientation>
+			<gsml:hingeShape>
+				<cgu:CGI_Term>
+					<cgu:qualifier xsi:nil="true" nilReason="missing"/>
+					<cgu:value xlink:href="empty/URI" xlink:title="round"/>
+					<!-- there is no existing vocabulary for this property -->
+				</cgu:CGI_Term>
+			</gsml:hingeShape>
+			<gsml:interLimbAngle>
+				<cgu:CGI_Term>
+					<cgu:qualifier xsi:nil="true" nilReason="missing"/>
+					<cgu:value xlink:href="empty/URI" xlink:title="tight"/>
+					<!-- there is no existing vocabulary for this property -->
+				</cgu:CGI_Term>
+			</gsml:interLimbAngle>
+			<gsml:limbShape>
+				<cgu:CGI_Term>
+					<cgu:qualifier xsi:nil="true" nilReason="missing"/>
+					<cgu:value xlink:href="empty/URI" xlink:title="straight"/>
+					<!-- there is no existing vocabulary for this property -->
+				</cgu:CGI_Term>
+			</gsml:limbShape>
+			<gsml:span>
+				<!-- gml:Measure would do a great job here-->
+				<cgu:CGI_NumericRange>
+					<cgu:estimatedValue>
+						<swe:Quantity gml:id="fold1SpanEstimate">
+							<swe:uom xlink:href="http://www.opengis.net/def/uom/UCUM/0/m"
+								xlink:title="m"/>
+							<swe:value>56</swe:value>
+						</swe:Quantity>
+					</cgu:estimatedValue>
+					<cgu:lower>
+						<swe:Quantity gml:id="fold1SpanLower">
+							<swe:uom xlink:href="http://www.opengis.net/def/uom/UCUM/0/m"
+								xlink:title="m"/>
+							<swe:value>48</swe:value>
+						</swe:Quantity>
+					</cgu:lower>
+					<cgu:upper>
+						<swe:Quantity gml:id="fold1SpanUpper">
+							<swe:uom xlink:href="http://www.opengis.net/def/uom/UCUM/0/m"
+								xlink:title="m"/>
+							<swe:value>60</swe:value>
+						</swe:Quantity>
+					</cgu:upper>
+				</cgu:CGI_NumericRange>
+			</gsml:span>
+			<gsml:symmetry>
+				<cgu:CGI_Term>
+					<cgu:qualifier xsi:nil="true" nilReason="missing"/>
+					<cgu:value xlink:href="empty/URI" xlink:title="symmetric"/>  <!-- TODO correct typo in assymmetric - see notes for this property -->
+					<!-- there is no existing vocabulary for this property -->
+				</cgu:CGI_Term>
+			</gsml:symmetry>
+			<!-- Depending on the outcome of the discussion regarding the navigability from gsml:GeologicFeature to gsml:MappedFeature, the following comments may apply -->
+			<!--<gsml:occurrence>
+				<gsml:MappedFeature gml:id="">
+					<gsml:observationMethod/>
+					<gsml:positionalAccuracy/>
+					<gsml:resolutionScale/>
+					<gsml:samplingFrame></gsml:samplingFrame>
+					<gsml:shape></gsml:shape>
+					<gsml:specification></gsml:specification>
+				</gsml:MappedFeature>
+			</gsml:occurrence>-->
+		</gsml:Fold>
+	</gml:featureMember>
+</gml:FeatureCollection>
