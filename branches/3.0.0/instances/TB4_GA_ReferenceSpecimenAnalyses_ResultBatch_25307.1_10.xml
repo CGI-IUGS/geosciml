@@ -18,6 +18,8 @@
     <sa:sampledFeature xlink:href="http://www.ga.gov.au/ReferenceSpecimens/AGV2" xlink:title="USGS Andesite standard AGV-2"/>
     <sa:relatedObservation>
         <om:OM_Observation gml:id="GA_ReferenceSpecimen_AGV2_ResultBatch_25307.1_10_SiO2">
+            <gml:identifier codeSpace="http://www.ietf.org/rfc/rfc2616">http://www.ga.gov.au/GeochemicalAnalyses_25307.1.10.SiO2</gml:identifier>
+            <gml:name>SiO2 analysis</gml:name>
             <om:phenomenonTime>
                 <gml:TimeInstant gml:id="GA_ReferenceSpecimen_AGV2_ResultBatch_25307.1_10_SiO2_AnalysisTime">
                     <gml:timePosition>2010-12-15T16:21:00</gml:timePosition>
@@ -97,21 +99,19 @@
                     <glab:computation xsi:nil="true" nilReason="inapplicable"/>   <!-- Should be 0..* ?  -->
                 </glab:AnalyticalProcess>
             </om:procedure>
-            <om:observedProperty xlink:href="http://www.ga.gov.au/classifier/GeochemicalPropertyName/SiO2"/>  
+<!--            <om:observedProperty xlink:href="http://www.ga.gov.au/classifier/GeochemicalPropertyName/SiO2"/>  -->
+            <om:observedProperty xlink:href="http://resource.geosciml.org/GeoSciML/3.0/doc/cgi/ChemicalComposition/chemicalAnalysis"/>
             <!-- Should observedProperty be a generic "chemical composition" property, or should it be the individual analyte (eg, SiO2, or Cu) ? -->
             <om:featureOfInterest xlink:href="#GA_ReferenceSpecimen_1_ResultBatch_25307.1_10"/>
 <!-- ================================================= -->            
-            <om:resultQuality>      <!-- O&M provides this tag for delivering uncertainties.  Should we use this, and not om:result/swe:Quantity/quality ? -->
+            <om:resultQuality>
                 <gmd:DQ_QuantitativeAttributeAccuracy>
                     <gmd:nameOfMeasure>
                         <gco:CharacterString>analytical uncertainty</gco:CharacterString>
                     </gmd:nameOfMeasure>
-                    <gmd:measureDescription>
-                        <gco:CharacterString>An calculated or estimated machine analytical uncertainty.  Does not include possible uncertainty due to sampling methods and specimen preparation.</gco:CharacterString>
-                    </gmd:measureDescription>
                     <gmd:result>
                         <gmd:DQ_QuantitativeResult>
-                            <gmd:valueUnit xlink:href="http://www.opengis.net/def/uom/UCUM/0/%25" xlink:title="%25"/>
+                            <gmd:valueUnit xlink:href="http://www.opengis.net/def/uom/UCUM/0/%25" xlink:title="%"/>
                             <gmd:value>
                                 <gco:Record>
                                     <gco:Real>0.01</gco:Real>
@@ -126,12 +126,9 @@
                     <gmd:nameOfMeasure>
                         <gco:CharacterString>detection limit</gco:CharacterString>
                     </gmd:nameOfMeasure>
-                    <gmd:measureDescription>
-                        <gco:CharacterString>The lower limit of analytical quantitative accuracy</gco:CharacterString>
-                    </gmd:measureDescription>
                     <gmd:result>
                         <gmd:DQ_QuantitativeResult>
-                            <gmd:valueUnit xlink:href="http://www.opengis.net/def/uom/UCUM/0/%25" xlink:title="%25"/>
+                            <gmd:valueUnit xlink:href="http://www.opengis.net/def/uom/UCUM/0/%25" xlink:title="%"/>
                             <gmd:value>
                                 <gco:Record>
                                     <gco:Real>0.1</gco:Real>
@@ -142,25 +139,16 @@
                 </gmd:DQ_QuantitativeAttributeAccuracy>
             </om:resultQuality>
 <!-- ================================================= -->
-            <om:result>
-                <swe:Quantity>     <!-- or "SiO2 weight percent"  ? -->
-                    <swe:label>SiO2 wt%25</swe:label>    <!-- Do I need the "25" here?  It validates without the "25" -->
-<!--     ====  Alternate delivery of result quality within the swe:Quantity element ====     
+            <om:result>            
+                <swe:Quantity definition="http://resource.geosciml.org/classifier/geochemicalanalytecontent/SiO2"> 
+                    <swe:label>SiO2 wt%</swe:label>
                     <swe:quality>
-                        <swe:Quantity definition="http://resource.geosciml.org/classifier/cgi/analyticalparameters/analyticaluncertainty">
-                            <swe:label>Analytical error</swe:label>
-                            <swe:uom code="%25" xlink:href="http://www.opengis.net/def/uom/UCUM/0/%25"/>
-                            <swe:value>0.01</swe:value>
-                        </swe:Quantity>
+                        <swe:Category>
+                            <swe:codeSpace xlink:href="http://resource.geosciml.org/classifierScheme/sweQuantityQualifiers"/>
+                            <swe:value>valid</swe:value>
+                        </swe:Category>
                     </swe:quality>
-                    <swe:quality>
-                        <swe:Quantity definition="http://resource.geosciml.org/classifier/cgi/analyticalparameters/detectionlimit">
-                            <swe:label>Detection limit</swe:label>
-                            <swe:uom code="%25" xlink:href="http://www.opengis.net/def/uom/UCUM/0/%25"/>
-                            <swe:value>0.1</swe:value>
-                        </swe:Quantity>
-                    </swe:quality>               -->
-                    <swe:uom code="%25" xlink:href="http://www.opengis.net/def/uom/UCUM/0/%25"/>
+                    <swe:uom code="%" xlink:href="http://www.opengis.net/def/uom/UCUM/0/%25"/>
                     <swe:value>65.357</swe:value>
                 </swe:Quantity>
             </om:result>
@@ -168,7 +156,7 @@
     </sa:relatedObservation>
     <sa:relatedObservation>
         <om:OM_Observation gml:id="GA_ReferenceSpecimen_1_Batch_25307.1_10_Cu">
-            <gml:identifier codeSpace="">http://www.ga.gov.au/GeochemicalAnalyses_25307.1.10.Cu</gml:identifier>
+            <gml:identifier codeSpace="http://www.ietf.org/rfc/rfc2616">http://www.ga.gov.au/GeochemicalAnalyses_25307.1.10.Cu</gml:identifier>
             <gml:name>Cu analysis</gml:name>
             <om:phenomenonTime xlink:href="#GA_ReferenceSpecimen_1_ResultBatch_25307.1_10_Cu_Time"/>
             <om:resultTime>
@@ -177,12 +165,18 @@
                 </gml:TimeInstant>
             </om:resultTime>
             <om:procedure xlink:href="#GA_AnalyticalProcess_ResultBatch_25307.1_10"/>
-            <om:observedProperty xlink:href="http://www.ga.gov.au/classifier/GeochemicalPropertyName/Cu"/>
+            <om:observedProperty xlink:href="http://resource.geosciml.org/GeoSciML/3.0/doc/cgi/ChemicalComposition/chemicalAnalysis"/>
             <om:featureOfInterest xlink:href="#GA_ReferenceSpecimen_1_ResultBatch_25307.1_10"/>
             <om:result>
-                <swe:Quantity definition="parts per million Cu">     <!-- concatenate analyte and unit of measure -->
+                <swe:Quantity definition="http://resource.geosciml.org/classifier/geochemicalanalytecontent/Cu">
+                    <swe:quality>
+                        <swe:Category>
+                            <swe:codeSpace xlink:href="http://resource.geosciml.org/classifierScheme/sweQuantityQualifiers"/>
+                            <swe:value>below detection</swe:value>
+                        </swe:Category>
+                    </swe:quality>
                     <swe:uom code="ppm" xlink:href="http://www.opengis.net/def/uom/UCUM/0/ppm"/>
-                    <swe:value>-0.5</swe:value>     <!-- This denotes "less than the detection limit of 0.5 ppm -->
+                    <swe:value>0.5</swe:value>     <!-- This denotes "less than the detection limit of 0.5 ppm -->
                 </swe:Quantity>
             </om:result>
         </om:OM_Observation>        
@@ -190,15 +184,6 @@
     <sp:materialClass xlink:href="http://resource.geosciml.org/classifier/cgi/materialclass/0099" xlink:title="rock"/>
     <sp:samplingTime xsi:nil="true" nilReason="unknown"/>
     <sp:samplingMethod nilReason="unknown"/>
-<!--    <sp:processingDetails>
-        <sp:PreparationStep>
-            <sp:time></sp:time>
-            <sp:processOperator></sp:processOperator>
-            <sp:processingDetails/>
-        </sp:PreparationStep>
-    </sp:processingDetails>   -->
-<!--    <size/>-->
-<!--    <sp:currentLocation/>-->
     <sp:specimenType xlink:href="http://resource.geosciml.org/classifier/cgi/specimentype/0099" xlink:title="powder"/>
     <glab:referenceDescription xlink:href="http://www.ga.gov.au/GeochemicalReferenceStandards/TB4_GeoscienceAustraliaGeochemicalReferenceStandard_AGV2.xml"/>  
     <!-- Link to the known standard analytical.  In this case, it is a xlink:href to a swe:DataRecord xml document, but could be to a CI_Citation of a published document. -->
