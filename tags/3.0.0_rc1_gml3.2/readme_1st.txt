@@ -1,6 +1,6 @@
 =========================================
 
-All file previously found in this location are now at ../branches/3.0.0_rc1_gml3.2
+GeoSciML v3.0 Release Candidate 1 (GML3.2 version)
 
 ==========================================
 
