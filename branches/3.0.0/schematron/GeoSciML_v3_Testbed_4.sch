@@ -8,6 +8,8 @@
 	<ns prefix="xlink" uri="http://www.w3.org/1999/xlink" />
 	<ns prefix="gml" uri="http://www.opengis.net/gml/3.2" />
 	<ns prefix="gsml" uri="http://xmlns.geosciml.org/GeoSciML-Core/3.0" />
+	<ns prefix="gsmlgu" uri="http://xmlns.geosciml.org/GeologicUnit/3.0" />
+	<ns prefix="gsmlga" uri="http://xmlns.geosciml.org/GeologicAge/3.0" />
 	<ns prefix="sa" uri="http://www.opengis.net/sampling/1.0" />
 
 	<phase id="model.constraints">
@@ -74,49 +76,58 @@
 	<pattern id="GeologicUnit.constraints">
 		<title>Geologic Unit Constraints</title>
 		<p>Validate model constraints on GeologicUnit not enforced by XML Schema</p>
-		<rule context="//gsml:GeologicUnit">
-			<let name="geologicUnitType" value="gsml:geologicUnitType/@xlink:href"/>
+		<rule context="//gsmlgu:GeologicUnit">
+			<let name="geologicUnitType" value="gsmlgu:geologicUnitType/@xlink:href"/>
 
-			<let name="isChronostratigraphicUnit" value="contains($geologicUnitType, 'chronostratigraphic_unit')" />
+<!-- Need to update so that switch based on complete new HTTP-URIs for geologicUnitType. Dictionary has been finalised. -->
+			<let name="isChronostratigraphicUnit" value="$geologicUnitType = 'http://resource.geosciml.org/classifier/cgi/geologicunittype/0005'" />
+			<!-- Chronostratigraphic units must have at least one GeologicEvent
+			Don't bother with further constraints on content (will be handled by rules on GeologicEvent TODO.
+			On GeologicEvent either numericAgeDate isn't null or (olderNamedAge and youngerNamedAge aren't null).
+			-->
 			<assert
 				see="https://www.seegrid.csiro.au/wiki/CGIModel/GeoSciML3SchematronRules#Geologic_unit_type"
-				test="not($isChronostratigraphicUnit) or $isChronostratigraphicUnit and count(gsml:geologicHistory) > 0 and count(gsml:geologicHistory) = count(gsml:geologicHistory/gsml:GeologicEvent/gsml:eventAge/gsml:olderNamedAge) and count(gsml:geologicHistory) = count(gsml:geologicHistory/gsml:GeologicEvent/gsml:youngerNamedAge)">
-				ChronostratigraphicUnit geologic unit (<value-of select="@gml:id"/>) must have one valid gsml:geologicHistory property defined.
+				test="not($isChronostratigraphicUnit) or $isChronostratigraphicUnit and count(gsml:relatedFeature/gsmlga:GeologicHistory/gsml:relatedFeature/gsmlga:GeologicEvent) > 0">
+				Chronostratigraphic unit (<value-of select="@gml:id"/>) must have at least one Geologic Event defined.
 			</assert>
-	
+	<!-- Covert below to use same properties as above -->
 			<report
 				see="https://www.seegrid.csiro.au/wiki/CGIModel/GeoSciML3SchematronRules#Geologic_unit_type"
 				test="$isChronostratigraphicUnit and count(gsml:geologicHistory) > 1">
 				ChronostratigraphicUnit geologic unit (<value-of select="@gml:id"/>) has more than one gsml:geologicHistory property defined.
 			</report>
 	
+	<!-- Change namespaces. Make sure composition is not null (has a CompositionPart).
+	Change second half of rule so that there is at least one lithology property in one of the nested RockMaterials-->
 			<let name="isLithologicUnit" value="contains($geologicUnitType, 'lithologic_unit')"/>
 			<assert
 				see="https://www.seegrid.csiro.au/wiki/CGIModel/GeoSciML3SchematronRules#Geologic_unit_type"
 				test="not($isLithologicUnit) or $isLithologicUnit and count(gsml:composition) > 0 and count(gsml:composition) = count(gsml:composition/gsml:CompositionPart/gsml:material/gsml:RockMaterial/gsml:lithology)">
 				LithologicUnit geologic unit (<value-of select="@gml:id" />) must have at least one valid gsml:composition property defined. 
 			</assert>
-	
+	<!-- Make same as lithologic unit. -->
 			<let name="isLithostratigraphicUnit" value="contains($geologicUnitType, 'lithostratigraphic_unit')"/>
 			<assert
 				see="https://www.seegrid.csiro.au/wiki/CGIModel/GeoSciML3SchematronRules#Geologic_unit_type"
 				test="not($isLithostratigraphicUnit) or $isLithostratigraphicUnit and count(gsml:composition) > 0 and count(gsml:composition) = count(gsml:composition/gsml:CompositionPart/gsml:material/gsml:RockMaterial/gsml:lithology)">
 				LithostratigraphicUnit geologic unit (<value-of select="@gml:id" />) must have at least one valid gsml:composition property defined. 
 			</assert>
-			
+	<!-- Make same as lithodemic unit -->		
 			<let name="isLithodemicUnit" value="contains($geologicUnitType, 'lithodemic_unit')"/>
 			<assert
 				see="https://www.seegrid.csiro.au/wiki/CGIModel/GeoSciML3SchematronRules#Geologic_unit_type"
 				test="not($isLithodemicUnit) or $isLithodemicUnit and count(gsml:composition) > 0 and count(gsml:composition) = count(gsml:composition/gsml:CompositionPart/gsml:material/gsml:RockMaterial/gsml:lithology)">
 				LithodemicUnit geologic unit (<value-of select="@gml:id" />) must have at least one valid gsml:composition property defined.
 			</assert>
-
+<!-- Add test for lithodemic unit that bedding property is nil inapplicable.  -->
+			<!-- TODO double check substitutable element checking. -->
 			<let name="isDeformationUnit" value="contains($geologicUnitType, 'deformation_unit')"/>
 			<assert
 				see="https://www.seegrid.csiro.au/wiki/CGIModel/GeoSciML3SchematronRules#Geologic_unit_type"
-				test="not($isDeformationUnit) or $isDeformationUnit and count(gsml:definingStructure) > 0 and gsml:definingStructure/@xlink:href">
-				DeformationUnit geologic unit (<value-of select="@gml:id" />) must have at least one gsml:definingStructure property defined with a valid xlink:href value.
+				test="not($isDeformationUnit) or $isDeformationUnit and count(gsml:relatedFeature/gsml:DefiningStructure/gsml:relatedFeature/schema-element(gsmlgs:GeologicStructure) > 0 ">
+				DeformationUnit geologic unit (<value-of select="@gml:id" />) must have at least one Geologic Structure
 			</assert>
+
 		</rule>
 	</pattern>
 	
@@ -163,7 +174,7 @@
 				test="@xlink:title">
 				The property <value-of select="name(.)" /> does not have an xlink:title value.
 			</assert>
-			<!-- Not sure if people want to be able to include an inline "cached" value as well as reference to authoritative? -->
+			<!-- This is actually included in the GML XML Schema as an embedded Schematron rule so if validator uses them it may not be necessary.  -->
 			<report test="node()">
 				The property <value-of select="name(.)" /> has inline content as well as a by reference link.
 			</report>
@@ -181,7 +192,7 @@
 	<pattern id="spatial.data.constraints">
 		<title>Spatial Data Constraints</title>
 		<p>Additional constraints on spatial elements not enforced by GML Schema. Are these tighter constraints GeoSciML community wants for some reason?</p>
-
+<!-- Forget this -->
 		<rule context="//gml:GeometricComplex | //gml:MultiCurve | //gml:MultiGeometry | //gml:MultiLineString | //gml:MultiPoint | //gml:MultiPolygon | //gml:MultiSolid | //gml:MultiSurface | //gml:Point | //gml:CompositeCurve | //gml:Curve | //gml:LineString | //gml:OrientableCurve | //gml:CompositeSolid | //gml:Solid | //gml:CompositeSurface | //gml:OrientableSurface | //gml:Polygon | //gml:Surface | //gml:PolyhedralSurface | //gml:TriangulatedSurface | //gml:Tin | //gml:Grid | //gml:RectifiedGrid | //gml:LinearRing | //gml:Ring">
 			<report
 				see="https://www.seegrid.csiro.au/wiki/CGIModel/GeoSciML3SchematronRules#Missing_attributes_on_spatial_types"
@@ -189,7 +200,7 @@
 				Spatial object <value-of select="name(.)" /> must have srsName and srsDimension attributes.
 			</report>
 		</rule>	
-
+<!-- Forget this -->
 		<rule context="//sa:shape">
 			 <report
 			 	see="https://www.seegrid.csiro.au/wiki/CGIModel/GeoSciML3SchematronRules#sa_shape_gml_LineString_encoding"
@@ -198,7 +209,8 @@
 			</report>			
 		</rule>
 	</pattern>
-	
+
+<!-- Move this rule to a "best practice" phase -->
 	<pattern id="spatial.crs.uri">
 		<title>Spatial CRS URIs</title>
 		<p>Restrict the values that can be used to identify coordinate reference systems in spatial elements.</p>
@@ -301,7 +313,7 @@
 	<pattern id="ucum.vocabulary">
 		<title>UCUM Vocabulary</title>
 		<p>Check units of measure use the Unified Codes for Units of Measure units and symbols.</p>
-		
+		<!-- Just check OGC UCUM uri prefix at first . -->
 		<!-- This rule is no longer correct as use swe:uom element not gsml:principalValue. Might be able to make a new one? -->
 		<!--		<let name="docUcumUom" value="document('http://aurora.regenstrief.org/~ucum/ucum-essence.xml')" />
 			<rule context="//gsml:principalValue">
@@ -325,7 +337,7 @@
 		<rule context="//gsml:MappedFeature/gsml:specification">
 			<assert
 				see="https://www.seegrid.csiro.au/wiki/CGIModel/GeoSciML3SchematronRules#MappedFeature_specification"
-				test="starts-with(@xlink:href, 'urn:ogc:def:nil:OGC::') or starts-with(@xlink:href, 'http://www.opengis.net/def/nil/OGC/0/') or starts-with(@xlink:href, '#') or (not(@xlink:href) and count(child::*) = 1)">
+				test="@xsi:nil = 'true' or starts-with(@xlink:href, '#') or (not(@xlink:href) and count(child::*) = 1)">
 				gsml:MappedFeature/gsml:specification property must be encoded inline.
 			</assert>
 		</rule>
@@ -335,14 +347,6 @@
 				see="https://www.seegrid.csiro.au/wiki/CGIModel/GeoSciML3SchematronRules#GeologicFeature_occurrence"
 				test="@xlink:href and count(child::*) = 0">
 				gsml:GeologicFeature/gsml:occurrence property must be encoded by reference.
-			</assert>
-		</rule>
-
-		<rule context="//gsml:GeologicFeature/gsml:part | //gsml:GeologicFeature/gsml:definingStructure | //gsml:GeologicFeatureRelation/gsml:source | //gsml:GeologicFeatureRelation/gsml:target">
-			<assert
-				see="https://www.seegrid.csiro.au/wiki/CGIModel/GeoSciML3SchematronRules#Related_GeologicFeatures"
-				test="@xlink:href and count(child::*) = 0">
-				Related GeologicFeature <value-of select="name(..)" />/<value-of select="name(.)" /> must be encoded by reference.
 			</assert>
 		</rule>
 	</pattern>
@@ -355,32 +359,20 @@
 				Root element should be a wfs:FeatureCollection
 			</assert>
 		</rule>
+		<!-- See if can add test to check contents of schemaLocation -->
 		<rule context="/wfs:FeatureCollection">
 			<assert
 				see="https://www.seegrid.csiro.au/wiki/CGIModel/GeoSciML3SchematronRules#Feature_collection_schema_location"
 				test="@xsi:schemaLocation">
 				xsi:schemaLocation attribute must always be provided for wfs:FeatureCollection.
 			</assert>
-			<let name="actualNumberOfFeatures" value="count(//wfs:member)" />
-			<assert
-				see="https://www.seegrid.csiro.au/wiki/CGIModel/GeoSciML3SchematronRules#Number_of_features"
-				test="$actualNumberOfFeatures = @numberReturned">
-				Value of numberOfFeatures attribute (<value-of select="@numberReturned" />) must be consistent with an actual number of features returned (<value-of select="$actualNumberOfFeatures" />).
-			</assert>
 		</rule>
+		
 		<rule context="/wfs:FeatureCollection/wfs:member/*">
 			<assert
 				see="https://www.seegrid.csiro.au/wiki/CGIModel/GeoSciML3SchematronRules#Identifiers_on_persistent_features"
 				test="count(gml:identifier[@codeSpace = 'http://www.ietf.org/rfc/rfc2616']) = 1">
 				Persistent feature <value-of select="name(.)" /> (<value-of select="@gml:id" />) must have a gml:identifier with codeSpace http://www.ietf.org/rfc/rfc2616.
-			</assert>
-		</rule>
-		
-		<rule context="/wfs:FeatureCollection/wfs:member/*/gml:name">
-			<assert
-				see="https://www.seegrid.csiro.au/wiki/CGIModel/GeoSciML3SchematronRules#Data_provider_specific_GML names"
-				test="fn:matches( @codeSpace, $httpUriRegExp, 'i')">
-				Data provider specific gml:name elements for <value-of select="name(..)" /> (<value-of select="../@gml:id" />) must use HTTP-URIs in codeSpace attributes. 
 			</assert>
 		</rule>
 		
