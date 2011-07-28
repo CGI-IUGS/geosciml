@@ -2,123 +2,83 @@
 <mapping
 	xmlns:xsd="http://www.w3.org/2001/XMLSchema"
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xmlns:glab="http://xmlns.geosciml.org/LaboratoryAnalysis-Specimen/3.0"
+	xmlns:gsmlla="http://xmlns.geosciml.org/LaboratoryAnalysis-Specimen/3.0"
 	xmlns="urn:x-auscope:xmlns:CSIRO:FullMoon:package-class-map:2.0"
 	xsi:schemaLocation="urn:x-auscope:xmlns:CSIRO:FullMoon:package-class-map:2.0 http://projects.arcs.org.au/svn/fullmoon/trunk/resources/dependency-util/package-class-map.xsd"
 	id="ClassMap_LaboratoryAnalysis_GeoSciML_v3.xml">
-	<description>Provides a mapping of classes from the LaboratoryAnalysis module of GeoSciML to elements from GeoSciML XML Schema Version 3.0.</description>
+	<description>Provides a mapping of classes from the LaboratoryAnalysis-Specimen module of GeoSciML to elements from GeoSciML XML Schema Version 3.0.</description>
 	<imports>
-		<schema prefix="glab" namespace="http://xmlns.geosciml.org/LaboratoryAnalysis-Specimen/3.0" schemaLocation="http://schemas.geosciml.org/laboratoryanalysis-specimen/3.0/laboratoryAnalysis-Specimen.xsd" />
+		<schema prefix="gsmlla" namespace="http://xmlns.geosciml.org/LaboratoryAnalysis-Specimen/3.0" schemaLocation="http://schemas.geosciml.org/laboratoryanalysis-specimen/3.0/laboratoryAnalysis-Specimen.xsd" />
 	</imports>
 <!-- ============================================================================== -->
 <!-- Laboratory Analysis leaf -->
-	<!-- Feature types -->
+     <!-- Feature types -->
 	<entry>
 		<umlClass>AnalyticalInstrument</umlClass>
 		<umlStereotype>FeatureType</umlStereotype>
-		<gmlObjectElement>glab:AnalyticalInstrument</gmlObjectElement>
-		<gmlType>glab:AnalyticalInstrumentType</gmlType>
-		<gmlPropertyType>glab:AnalyticalInstrumentPropertyType</gmlPropertyType>
+		<gmlObjectElement>gsmlla:AnalyticalInstrument</gmlObjectElement>
+		<gmlType>gsmlla:AnalyticalInstrumentType</gmlType>
+		<gmlPropertyType>gsmlla:AnalyticalInstrumentPropertyType</gmlPropertyType>
 	</entry>
 	<entry>
 		<umlClass>AnalyticalProcess</umlClass>
 		<umlStereotype>FeatureType</umlStereotype>
-		<gmlObjectElement>glab:AnalyticalProcess</gmlObjectElement>
-		<gmlType>glab:AnalyticalProcessType</gmlType>
-		<gmlPropertyType>glab:AnalyticalProcessPropertyType</gmlPropertyType>
+		<gmlObjectElement>gsmlla:AnalyticalProcess</gmlObjectElement>
+		<gmlType>gsmlla:AnalyticalProcessType</gmlType>
+		<gmlPropertyType>gsmlla:AnalyticalProcessPropertyType</gmlPropertyType>
 	</entry>
 	<entry>
 		<umlClass>AnalyticalSession</umlClass>
 		<umlStereotype>FeatureType</umlStereotype>
-		<gmlObjectElement>glab:AnalyticalSession</gmlObjectElement>
-		<gmlType>glab:AnalyticalSessionType</gmlType>
-		<gmlPropertyType>glab:AnalyticalSessionPropertyType</gmlPropertyType>
+		<gmlObjectElement>gsmlla:AnalyticalSession</gmlObjectElement>
+		<gmlType>gsmlla:AnalyticalSessionType</gmlType>
+		<gmlPropertyType>gsmlla:AnalyticalSessionPropertyType</gmlPropertyType>
 	</entry>
 	<entry>
 		<umlClass>Image</umlClass>
 		<umlStereotype>FeatureType</umlStereotype>
-		<gmlObjectElement>glab:Image</gmlObjectElement>
-		<gmlType>glab:ImageType</gmlType>
-		<gmlPropertyType>glab:ImagePropertyType</gmlPropertyType>
+		<gmlObjectElement>gsmlla:Image</gmlObjectElement>
+		<gmlType>gsmlla:ImageType</gmlType>
+		<gmlPropertyType>gsmlla:ImagePropertyType</gmlPropertyType>
 	</entry>
-	<!-- Types -->
+      <!-- Types -->
 	<entry>
 		<umlClass>AnalyticalMethod</umlClass>
 		<umlStereotype>Type</umlStereotype>
-		<gmlObjectElement>glab:AnalyticalSessionMethod</gmlObjectElement>
-		<gmlType>glab:AnalyticalSessionMethodType</gmlType>
-		<gmlPropertyType>glab:AnalyticalSessionMethodPropertyType</gmlPropertyType>
+		<gmlObjectElement>gsmlla:AnalyticalMethod</gmlObjectElement>
+		<gmlType>gsmlla:AnalyticalMethodType</gmlType>
+		<gmlPropertyType>gsmlla:AnalyticalMethodPropertyType</gmlPropertyType>
 	</entry>
-<!-- by Reference CodeLists, not encoded in schema, for information only -->
-<!--	<entry>
-		<umlClass>AnalyticalMethodTerm</umlClass>
-		<umlStereotype>CodeList</umlStereotype>		
-		<gmlObjectElement xsi:nil="true"/>
-		<gmlType xsi:nil="true"/>
-		<gmlPropertyType>glab:AnalyticalMethodTermType</gmlPropertyType>
-	</entry>
-	<entry>
-		<umlClass>InstrumentTypeTerm</umlClass>
-		<umlStereotype>CodeList</umlStereotype>		
-		<gmlObjectElement xsi:nil="true"/>
-		<gmlType xsi:nil="true"/>
-		<gmlPropertyType>glab:InstrumentTypeTermType</gmlPropertyType>
-	</entry>-->
 <!-- -=========================================================== -->
 <!-- GeologicSpecimen leaf -->
 	<entry>
+		<umlClass>GeologicSpecimenPreparation</umlClass>
+		<umlStereotype>FeatureType</umlStereotype>
+		<gmlObjectElement>gsmlla:GeologicSpecimenPreparation</gmlObjectElement>
+		<gmlType>gsmlla:GeologicSpecimenPreparationType</gmlType>
+		<gmlPropertyType>gsmlla:GeologicSpecimenPreparationPropertyType</gmlPropertyType>
+	</entry>
+	<entry>
 		<umlClass>GeologicSamplingMethod</umlClass>
 		<umlStereotype>FeatureType</umlStereotype>
-		<gmlObjectElement>glab:GeologicSamplingMethod</gmlObjectElement>
-		<gmlType>glab:GeologicSamplingMethodType</gmlType>
-		<gmlPropertyType>glab:GeologicSamplingMethodPropertyType</gmlPropertyType>
+		<gmlObjectElement>gsmlla:GeologicSamplingMethod</gmlObjectElement>
+		<gmlType>gsmlla:GeologicSamplingMethodType</gmlType>
+		<gmlPropertyType>gsmlla:GeologicSamplingMethodPropertyType</gmlPropertyType>
 	</entry>
 	<entry>
 		<umlClass>ReferenceSpecimen</umlClass>
 		<umlStereotype>FeatureType</umlStereotype>
-		<gmlObjectElement>glab:ReferenceSpecimen</gmlObjectElement>
-		<gmlType>glab:ReferenceSpecimenType</gmlType>
-		<gmlPropertyType>glab:ReferenceSpecimenPropertyType</gmlPropertyType>
+		<gmlObjectElement>gsmlla:ReferenceSpecimen</gmlObjectElement>
+		<gmlType>gsmlla:ReferenceSpecimenType</gmlType>
+		<gmlPropertyType>gsmlla:ReferenceSpecimenPropertyType</gmlPropertyType>
 	</entry>
-<!-- by Reference CodeLists, not encoded in schema, for information only -->
-<!--  <entry>  
-		<umlClass>GeologicSamplingMethodTerm</umlClass>
-		<umlStereotype>CodeList</umlStereotype>
-		<gmlObjectElement xsi:nil="true"/>
-		<gmlType xsi:nil="true"/>
-		<gmlPropertyType>glab:GeologicSamplingMethodTermType</gmlPropertyType>
-	</entry>
-	-->
 <!-- ===================================================== -->
 <!-- Geochronology leaf -->
 	<entry>
 		<umlClass>GeochronologicInterpretation</umlClass>
 		<umlStereotype>FeatureType</umlStereotype>
-		<gmlObjectElement>glab:GeochronologicInterpretation</gmlObjectElement>
-		<gmlType>glab:GeochronologicInterpretationType</gmlType>
-		<gmlPropertyType>glab:GeochronologicInterpretationPropertyType</gmlPropertyType>
+		<gmlObjectElement>gsmlla:GeochronologicInterpretation</gmlObjectElement>
+		<gmlType>gsmlla:GeochronologicInterpretationType</gmlType>
+		<gmlPropertyType>gsmlla:GeochronologicInterpretationPropertyType</gmlPropertyType>
 	</entry>
-<!-- by Reference CodeLists, not encoded in schema, for information only -->
-<!--  <entry>     
-		<umlClass>IsotopicEventType</umlClass>
-		<umlStereotype>CodeList</umlStereotype>
-		<gmlObjectElement xsi:nil="true"/>
-		<gmlType xsi:nil="true"/>
-		<gmlPropertyType>gt:IsotopicEventTypeType</gmlPropertyType>
-	</entry>
-	<entry>
-		<umlClass>IsotopicSystemName</umlClass>
-		<umlStereotype>CodeList</umlStereotype>
-		<gmlObjectElement xsi:nil="true"/>
-		<gmlType xsi:nil="true"/>
-		<gmlPropertyType>gt:IsotopicSystemNameType</gmlPropertyType>
-	</entry>
-	<entry>
-		<umlClass>StatisticalMethodTerm</umlClass>
-		<umlStereotype>CodeList</umlStereotype>
-		<gmlObjectElement xsi:nil="true"/>
-		<gmlType xsi:nil="true"/>
-		<gmlPropertyType>gt:StatisticalMethodTermType</gmlPropertyType>
-	</entry>
-	-->
 </mapping>
