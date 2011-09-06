@@ -12,7 +12,7 @@
 				<UML:Class name="EARootClass" xmi.id="EAID_11111111_5487_4080_A7F4_41526CB0AA00" isRoot="true" isLeaf="false" isAbstract="false"/>
 				<UML:Package name="LaboratoryAnalysis-Specimen" xmi.id="EAPK_D2459A55_0745_4570_AAFE_AE0E38D01E70" isRoot="false" isLeaf="false" isAbstract="false" visibility="public">
 					<UML:ModelElement.stereotype>
-						<UML:Stereotype xmi.idref="EAID_6E1CC70E_DFF5_4e8c_A143_8C9AE8DF96E2"/>
+						<UML:Stereotype xmi.idref="EAID_F0C86B0F_4078_4e33_AEB5_6AEBBF11CF64"/>
 					</UML:ModelElement.stereotype>
 					<UML:ModelElement.taggedValue>
 						<UML:TaggedValue tag="documentation" value="The LaboratoryAnlaysis-Specimen application schema extends the ISO19156 schema for Observations, Measurements and Sampling.  It specifically describes processes and results related to the analysis of (geological) samples using instruments, most commonly in a laboratory environment. (Design of this package is based upon, and extends, the MOLES v3 data model.)"/>
@@ -269,7 +269,7 @@
 								<UML:TaggedValue tag="ea_sourceType" value="Package"/>
 								<UML:TaggedValue tag="ea_targetType" value="Package"/>
 								<UML:TaggedValue tag="ea_sourceID" value="7778"/>
-								<UML:TaggedValue tag="ea_targetID" value="7621"/>
+								<UML:TaggedValue tag="ea_targetID" value="7901"/>
 								<UML:TaggedValue tag="src_visibility" value="Public"/>
 								<UML:TaggedValue tag="src_aggregation" value="0"/>
 								<UML:TaggedValue tag="src_isOrdered" value="false"/>
@@ -557,7 +557,7 @@
 						</UML:Dependency>
 						<UML:Package name="LaboratoryAnalysis" xmi.id="EAPK_224B9E23_415D_452a_9971_D7BE7F0CE7D2" isRoot="false" isLeaf="false" isAbstract="false" visibility="public">
 							<UML:ModelElement.stereotype>
-								<UML:Stereotype xmi.idref="EAID_A5FED9D8_A377_4920_BB20_654D8C9387E8"/>
+								<UML:Stereotype xmi.idref="EAID_BE4D8ED5_D4CE_4791_978C_9925D8365CA0"/>
 							</UML:ModelElement.stereotype>
 							<UML:ModelElement.taggedValue>
 								<UML:TaggedValue tag="documentation" value="The LaboratoryAnalysis leaf package describes processes, instruments and result quality associated with quantitative analysis of samples."/>
@@ -690,6 +690,7 @@
 								</UML:Class>
 								<UML:Association xmi.id="EAID_046E22C1_CEAB_4611_88BE_2C7856287B15" visibility="public" isRoot="false" isLeaf="false" isAbstract="false">
 									<UML:ModelElement.taggedValue>
+										<UML:TaggedValue tag="documentation" value="Description of a computational process used to obtain an observation result."/>
 										<UML:TaggedValue tag="style" value="3"/>
 										<UML:TaggedValue tag="ea_type" value="Association"/>
 										<UML:TaggedValue tag="direction" value="Source -&gt; Destination"/>
@@ -721,6 +722,7 @@
 										</UML:AssociationEnd>
 										<UML:AssociationEnd visibility="public" multiplicity="1" name="computation" aggregation="none" isOrdered="false" targetScope="instance" changeable="none" isNavigable="true" type="EAID_5FFE7C41_0DCE_4479_ACB2_0EB4B3B9B174">
 											<UML:ModelElement.taggedValue>
+												<UML:TaggedValue tag="description" value="Description of a computational process used to obtain an observation result."/>
 												<UML:TaggedValue tag="containment" value="Unspecified"/>
 												<UML:TaggedValue tag="destStereotype" value="voidable"/>
 												<UML:TaggedValue tag="deststyle" value="Union=0;Derived=0;AllowDuplicates=0;Owned=0;Navigable=Navigable;"/>
@@ -733,6 +735,7 @@
 								</UML:Association>
 								<UML:Association xmi.id="EAID_08F7779E_F5F8_4088_B50C_ABAC717E42A3" visibility="public" isRoot="false" isLeaf="false" isAbstract="false">
 									<UML:ModelElement.taggedValue>
+										<UML:TaggedValue tag="documentation" value="Identifies the type of analytical method used to make an observation."/>
 										<UML:TaggedValue tag="style" value="3"/>
 										<UML:TaggedValue tag="ea_type" value="Association"/>
 										<UML:TaggedValue tag="direction" value="Source -&gt; Destination"/>
@@ -766,6 +769,7 @@
 										</UML:AssociationEnd>
 										<UML:AssociationEnd visibility="public" multiplicity="1" name="method" aggregation="none" isOrdered="false" targetScope="instance" changeable="none" isNavigable="true" type="EAID_79050478_59B4_46cf_B3EE_2B3B979B34B2">
 											<UML:ModelElement.taggedValue>
+												<UML:TaggedValue tag="description" value="Identifies the type of analytical method used to make an observation."/>
 												<UML:TaggedValue tag="containment" value="Unspecified"/>
 												<UML:TaggedValue tag="deststyle" value="Union=0;Derived=0;AllowDuplicates=0;Owned=0;Navigable=Navigable;"/>
 												<UML:TaggedValue tag="ea_end" value="target"/>
@@ -814,6 +818,7 @@
 								</UML:Generalization>
 								<UML:Association xmi.id="EAID_CF669115_95C8_4a89_A0ED_8044C6D890EB" visibility="public" isRoot="false" isLeaf="false" isAbstract="false">
 									<UML:ModelElement.taggedValue>
+										<UML:TaggedValue tag="documentation" value="Describes the analytical session (eg, laboratory session) in which an observation was made and data acquired."/>
 										<UML:TaggedValue tag="style" value="3"/>
 										<UML:TaggedValue tag="ea_type" value="Association"/>
 										<UML:TaggedValue tag="direction" value="Source -&gt; Destination"/>
@@ -847,6 +852,7 @@
 										</UML:AssociationEnd>
 										<UML:AssociationEnd visibility="public" multiplicity="1" name="acquisition" aggregation="none" isOrdered="false" targetScope="instance" changeable="none" isNavigable="true" type="EAID_BF1C223A_F0A6_4fc2_9EEF_88DC486F7DB4">
 											<UML:ModelElement.taggedValue>
+												<UML:TaggedValue tag="description" value="Describes the analytical session (eg, laboratory session) in which an observation was made and data acquired."/>
 												<UML:TaggedValue tag="containment" value="Unspecified"/>
 												<UML:TaggedValue tag="destStereotype" value="voidable"/>
 												<UML:TaggedValue tag="deststyle" value="Union=0;Derived=0;AllowDuplicates=0;Owned=0;Navigable=Navigable;"/>
@@ -1049,6 +1055,7 @@
 								</UML:Class>
 								<UML:Association xmi.id="EAID_150BECBB_2F0F_4403_A70D_93B3D58D4EE8" visibility="public" isRoot="false" isLeaf="false" isAbstract="false">
 									<UML:ModelElement.taggedValue>
+										<UML:TaggedValue tag="documentation" value="An association to link analytical instruments to the analytical sessions in which they were used."/>
 										<UML:TaggedValue tag="style" value="3"/>
 										<UML:TaggedValue tag="ea_type" value="Association"/>
 										<UML:TaggedValue tag="direction" value="Bi-Directional"/>
@@ -1077,6 +1084,7 @@
 									<UML:Association.connection>
 										<UML:AssociationEnd visibility="public" multiplicity="1..*" name="usedIn" aggregation="none" isOrdered="false" targetScope="instance" changeable="none" isNavigable="true" type="EAID_BF1C223A_F0A6_4fc2_9EEF_88DC486F7DB4">
 											<UML:ModelElement.taggedValue>
+												<UML:TaggedValue tag="description" value="Identifies one or more analytical sessions which used this instrument"/>
 												<UML:TaggedValue tag="containment" value="Unspecified"/>
 												<UML:TaggedValue tag="sourcestyle" value="Union=0;Derived=0;AllowDuplicates=0;Owned=0;Navigable=Navigable;"/>
 												<UML:TaggedValue tag="ea_end" value="source"/>
@@ -1087,6 +1095,7 @@
 										</UML:AssociationEnd>
 										<UML:AssociationEnd visibility="public" multiplicity="1" name="instrument" aggregation="none" isOrdered="false" targetScope="instance" changeable="none" isNavigable="true" type="EAID_4320F660_2F6E_4f45_98F8_50B996AF05CA">
 											<UML:ModelElement.taggedValue>
+												<UML:TaggedValue tag="description" value="Identifies the instrument used in the analytical session"/>
 												<UML:TaggedValue tag="containment" value="Unspecified"/>
 												<UML:TaggedValue tag="destStereotype" value="voidable"/>
 												<UML:TaggedValue tag="deststyle" value="Union=0;Derived=0;AllowDuplicates=0;Owned=0;Navigable=Navigable;"/>
@@ -1457,6 +1466,7 @@
 								</UML:Class>
 								<UML:Association xmi.id="EAID_05C9F842_ED36_454d_B58A_63BBB8458D09" visibility="public" isRoot="false" isLeaf="false" isAbstract="false">
 									<UML:ModelElement.taggedValue>
+										<UML:TaggedValue tag="documentation" value="An association to link reference specimens (ie, analytical standards, blanks)"/>
 										<UML:TaggedValue tag="style" value="3"/>
 										<UML:TaggedValue tag="ea_type" value="Association"/>
 										<UML:TaggedValue tag="direction" value="Bi-Directional"/>
@@ -1485,6 +1495,7 @@
 									<UML:Association.connection>
 										<UML:AssociationEnd visibility="public" multiplicity="1..*" name="usedIn" aggregation="none" isOrdered="false" targetScope="instance" changeable="none" isNavigable="true" type="EAID_BF1C223A_F0A6_4fc2_9EEF_88DC486F7DB4">
 											<UML:ModelElement.taggedValue>
+												<UML:TaggedValue tag="description" value="Identifies any analytical sessions in which the reference specimens were used"/>
 												<UML:TaggedValue tag="containment" value="Unspecified"/>
 												<UML:TaggedValue tag="sourcestyle" value="Union=0;Derived=0;AllowDuplicates=0;Owned=0;Navigable=Navigable;"/>
 												<UML:TaggedValue tag="ea_end" value="source"/>
@@ -1495,6 +1506,7 @@
 										</UML:AssociationEnd>
 										<UML:AssociationEnd visibility="public" multiplicity="1..*" name="referenceAnalyses" aggregation="none" isOrdered="false" targetScope="instance" changeable="none" isNavigable="true" type="EAID_A953E1E0_629C_4e85_A72E_737CDDDCFAE9">
 											<UML:ModelElement.taggedValue>
+												<UML:TaggedValue tag="description" value="Describes any reference specimens (ie, standards, blanks) used in the analytical session."/>
 												<UML:TaggedValue tag="containment" value="Unspecified"/>
 												<UML:TaggedValue tag="destStereotype" value="voidable"/>
 												<UML:TaggedValue tag="deststyle" value="Union=0;Derived=0;AllowDuplicates=0;Owned=0;Navigable=Navigable;"/>
@@ -1689,7 +1701,7 @@
 						</UML:Package>
 						<UML:Package name="Geochronology" xmi.id="EAPK_94607C32_2900_41bb_96E6_0F49ED622F4C" isRoot="false" isLeaf="false" isAbstract="false" visibility="public">
 							<UML:ModelElement.stereotype>
-								<UML:Stereotype xmi.idref="EAID_A5FED9D8_A377_4920_BB20_654D8C9387E8"/>
+								<UML:Stereotype xmi.idref="EAID_BE4D8ED5_D4CE_4791_978C_9925D8365CA0"/>
 							</UML:ModelElement.stereotype>
 							<UML:ModelElement.taggedValue>
 								<UML:TaggedValue tag="documentation" value="The Dating package allows the delivery of interpretation of geochronological anaylytical data"/>
@@ -2244,7 +2256,7 @@
 								</UML:Class>
 								<UML:Association xmi.id="EAID_2F18154A_BD53_4d58_8445_1EE09FFBF5D9" visibility="public" isRoot="false" isLeaf="false" isAbstract="false">
 									<UML:ModelElement.taggedValue>
-										<UML:TaggedValue tag="documentation" value="Each geochronological interpretation has a mandatory association to a collection of sampling features (eg; a collection of burn spots or craters from SHRIMP analytical session).  &#xA;&#xA;Legacy published data for which the SamplingFeatureCollection is unknown may be delivered with SamplingFeatureCollection = 'unknown'."/>
+										<UML:TaggedValue tag="documentation" value="Each geochronological interpretation has a mandatory association to a collection of sampling features (eg; a collection of burn spots or craters from a SHRIMP analytical session).  &#xA;Legacy published data for which the SamplingFeatureCollection is unknown may be delivered with SamplingFeatureCollection = 'unknown'."/>
 										<UML:TaggedValue tag="style" value="3"/>
 										<UML:TaggedValue tag="ea_type" value="Association"/>
 										<UML:TaggedValue tag="direction" value="Source -&gt; Destination"/>
@@ -2278,6 +2290,7 @@
 										</UML:AssociationEnd>
 										<UML:AssociationEnd visibility="public" multiplicity="1" name="sourceCollection" aggregation="none" isOrdered="false" targetScope="instance" changeable="none" isNavigable="true" type="EAID_82FBB63B_876A_400b_B2ED_374DDEB1D26C">
 											<UML:ModelElement.taggedValue>
+												<UML:TaggedValue tag="description" value="Each geochronological interpretation has a mandatory association to a collection of sampling features (eg; a collection of burn spots or craters from a SHRIMP analytical session).  Legacy published data for which the SamplingFeatureCollection is unknown may be delivered with SamplingFeatureCollection = 'unknown'."/>
 												<UML:TaggedValue tag="containment" value="Unspecified"/>
 												<UML:TaggedValue tag="destStereotype" value="voidable"/>
 												<UML:TaggedValue tag="deststyle" value="Union=0;Derived=0;AllowDuplicates=0;Owned=0;Navigable=Navigable;"/>
@@ -2367,7 +2380,7 @@
 						</UML:Package>
 						<UML:Package name="GeologicSpecimen" xmi.id="EAPK_23107128_C0E4_4f44_BA19_7C0926853370" isRoot="false" isLeaf="false" isAbstract="false" visibility="public">
 							<UML:ModelElement.stereotype>
-								<UML:Stereotype xmi.idref="EAID_A5FED9D8_A377_4920_BB20_654D8C9387E8"/>
+								<UML:Stereotype xmi.idref="EAID_BE4D8ED5_D4CE_4791_978C_9925D8365CA0"/>
 							</UML:ModelElement.stereotype>
 							<UML:ModelElement.taggedValue>
 								<UML:TaggedValue tag="documentation" value="The GeologicSpecimen package extends the ISO19156 O&amp;amp;M schema, and describes processes relevant to the sampling, preparation and analysis of geologic specimens."/>
@@ -2967,10 +2980,10 @@
 						</UML:Package>
 					</UML:Namespace.ownedElement>
 				</UML:Package>
-				<UML:Stereotype xmi.id="EAID_6E1CC70E_DFF5_4e8c_A143_8C9AE8DF96E2" name="Application Schema" isRoot="false" isLeaf="false" isAbstract="false">
+				<UML:Stereotype xmi.id="EAID_F0C86B0F_4078_4e33_AEB5_6AEBBF11CF64" name="Application Schema" isRoot="false" isLeaf="false" isAbstract="false">
 					<UML:Stereotype.baseClass>Package</UML:Stereotype.baseClass>
 				</UML:Stereotype>
-				<UML:Stereotype xmi.id="EAID_A5FED9D8_A377_4920_BB20_654D8C9387E8" name="Leaf" isRoot="false" isLeaf="false" isAbstract="false">
+				<UML:Stereotype xmi.id="EAID_BE4D8ED5_D4CE_4791_978C_9925D8365CA0" name="Leaf" isRoot="false" isLeaf="false" isAbstract="false">
 					<UML:Stereotype.baseClass>Package</UML:Stereotype.baseClass>
 				</UML:Stereotype>
 			</UML:Namespace.ownedElement>
@@ -3080,7 +3093,7 @@
 				<UML:TaggedValue tag="version" value="3.0.0"/>
 				<UML:TaggedValue tag="author" value="CGI Interoperability Working Group"/>
 				<UML:TaggedValue tag="created_date" value="2010-01-20 21:31:46"/>
-				<UML:TaggedValue tag="modified_date" value="2011-08-01 13:14:06"/>
+				<UML:TaggedValue tag="modified_date" value="2011-09-06 12:58:08"/>
 				<UML:TaggedValue tag="package" value="EAPK_224B9E23_415D_452a_9971_D7BE7F0CE7D2"/>
 				<UML:TaggedValue tag="type" value="Logical"/>
 				<UML:TaggedValue tag="swimlanes" value="locked=false;orientation=0;width=0;inbar=false;names=false;color=0;bold=false;fcol=0;;cls=0;"/>
@@ -3168,7 +3181,7 @@
 				<UML:DiagramElement geometry="SX=83;SY=64;EX=0;EY=0;EDGE=1;$LLB=;LLT=;LMT=;LMB=;LRT=;LRB=;IRHS=;ILHS=;Path=;" subject="EAID_49CAFCC2_B5AA_41a4_88DE_59FFE634BAF9" style="Mode=3;EOID=6C1D8F90;SOID=E8D1800E;Color=-1;LWidth=0;Hidden=0;"/>
 				<UML:DiagramElement geometry="SX=-54;SY=-33;EX=-47;EY=19;EDGE=4;$LLB=;LLT=;LMT=CX=42:CY=13:OX=0:OY=0:HDN=1:BLD=0:ITA=0:UND=0:CLR=-1:ALN=0:DIR=0:ROT=0;LMB=;LRT=CX=82:CY=13:OX=0:OY=0:HDN=0:BLD=0:ITA=0:UND=0:CLR=-1:ALN=0:DIR=0:ROT=0;LRB=CX=16:CY=13:OX=0:OY=0:HDN=0:BLD=0:ITA=0:UND=0:CLR=-1:ALN=0:DIR=0:ROT=0;IRHS=;ILHS=;Path=;" subject="EAID_9148A02B_CBDB_40eb_B295_92B6D6C65AE9" style="Mode=3;EOID=6C1D8F90;SOID=422D9280;Color=-1;LWidth=0;Hidden=0;"/>
 				<UML:DiagramElement geometry="SX=38;SY=-33;EX=4;EY=10;EDGE=4;$LLB=;LLT=;LMT=;LMB=;LRT=;LRB=;IRHS=;ILHS=;Path=;" subject="EAID_690D8731_39B2_4aee_AA52_20CD620BA3C7" style="Mode=3;EOID=6C1D8F90;SOID=422D9280;Color=-1;LWidth=0;Hidden=1;"/>
-				<UML:DiagramElement geometry="SX=0;SY=0;EX=0;EY=0;EDGE=2;$LLB=;LLT=;LMT=;LMB=;LRT=CX=57:CY=26:OX=69:OY=-15:HDN=0:BLD=0:ITA=0:UND=0:CLR=-1:ALN=0:DIR=0:ROT=0;LRB=CX=6:CY=13:OX=-2:OY=2:HDN=0:BLD=0:ITA=0:UND=0:CLR=-1:ALN=0:DIR=0:ROT=0;IRHS=;ILHS=;Path=;" subject="EAID_CF669115_95C8_4a89_A0ED_8044C6D890EB" style="Mode=3;EOID=5D33DE5B;SOID=DD2E7B19;Color=-1;LWidth=0;Hidden=0;"/>
+				<UML:DiagramElement geometry="SX=0;SY=-3;EX=0;EY=1;EDGE=2;$LLB=;LLT=;LMT=;LMB=;LRT=CX=57:CY=26:OX=69:OY=-15:HDN=0:BLD=0:ITA=0:UND=0:CLR=-1:ALN=0:DIR=0:ROT=0;LRB=CX=6:CY=13:OX=-2:OY=2:HDN=0:BLD=0:ITA=0:UND=0:CLR=-1:ALN=0:DIR=0:ROT=0;IRHS=;ILHS=;Path=;" subject="EAID_CF669115_95C8_4a89_A0ED_8044C6D890EB" style="Mode=3;EOID=5D33DE5B;SOID=DD2E7B19;Color=-1;LWidth=0;Hidden=0;"/>
 				<UML:DiagramElement geometry="SX=117;SY=-10;EX=-95;EY=50;EDGE=2;$LLB=;LLT=;LMT=CX=32:CY=13:OX=-18:OY=0:HDN=1:BLD=0:ITA=0:UND=0:CLR=-1:ALN=0:DIR=0:ROT=0;LMB=;LRT=CX=95:CY=13:OX=58:OY=-15:HDN=0:BLD=0:ITA=0:UND=0:CLR=-1:ALN=0:DIR=0:ROT=0;LRB=CX=16:CY=13:OX=-3:OY=2:HDN=0:BLD=0:ITA=0:UND=0:CLR=-1:ALN=0:DIR=0:ROT=0;IRHS=;ILHS=;Path=;" subject="EAID_28ACCFBB_05C4_4e26_B2DA_A23ECF00A10F" style="Mode=3;EOID=5A5E8471;SOID=422D9280;Color=-1;LWidth=0;Hidden=0;"/>
 			</UML:Diagram.element>
 		</UML:Diagram>
