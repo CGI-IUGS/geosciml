@@ -16,7 +16,7 @@ GeologicFeature represents a conceptual feature that is hypothesized to exist co
     <import namespace="http://www.isotc211.org/2005/gmd" schemaLocation="http://schemas.opengis.net/iso/19139/20070417/gmd/gmd.xsd"/>
     <import namespace="http://www.opengis.net/swe/2.0" schemaLocation="http://schemas.opengis.net/sweCommon/2.0/swe.xsd"/>
     <import namespace="http://www.opengis.net/sampling/2.0" schemaLocation="http://schemas.opengis.net/sampling/2.0/samplingFeature.xsd"/>
-    <!--    <include schemaLocation="http://schemas.geosciml.org/geosciml-core/3.0/geologicRelation.xsd"/>  -->  <!-- Replaced this include with geosciml-code.xsd - OLR 18-AUG-2011 -->
+    <!--    <include schemaLocation="http://schemas.geosciml.org/geosciml-core/3.0/geologicRelation.xsd"/>  -->  <!-- Replaced this include with geosciml-core.xsd - OLR 18-AUG-2011 -->
     <include schemaLocation="http://schemas.geosciml.org/geosciml-core/3.0/geosciml-core.xsd"/>  <!-- Added  - OLR 18-AUG-2011 -->
 
     <element abstract="true" name="GeologicFeature" substitutionGroup="gml:AbstractFeature" type="gsml:GeologicFeatureType">
@@ -56,9 +56,14 @@ The implemented Geologic Feature instance acts as the "description package"
                             <documentation>Points to any number of mapped features which are occurrences of the geologic feature.  Mapped features may all be from a single map or from several maps.</documentation>
                         </annotation>
                     </element>
-                    <element maxOccurs="unbounded" minOccurs="1" name="relatedFeature" nillable="true" type="gsml:GeologicFeatureRelationPropertyType"/>
+                    <element maxOccurs="unbounded" minOccurs="1" name="relatedFeature" nillable="true" type="gsml:GeologicFeatureRelationPropertyType">
+                        <annotation>    <!-- Annotation added to UML and XSD - OLR 6-SEP-2011 -->
+                            <documentation>Any geologic feature may be related to another geologic feature. For example, one geologic unit may "overlie" another geologic unit; a geologic unit may be "intersected by" a fault.</documentation>
+                        </annotation>
+                    </element>
                     <element name="classifier" type="gml:ReferenceType" nillable="true">   <!-- Added nillable - OLR 19-UG-2011 -->
                         <annotation>
+                            <documentation>A standard description or definition of the feature type (eg; the definition of a particular Geologic Unit in a stratigraphic lexicon)</documentation>  <!-- Annotation documentation added to UML and XSD - OLR 6-SEP-2011 -->
                             <appinfo>
                                 <gml:targetElement>gvoc:ControlledConcept</gml:targetElement>
                             </appinfo>
@@ -122,7 +127,8 @@ A Mapped Feature is always associated with some sampling feature - e.g. a mappin
                         </annotation>
                     </element>
                     <element name="samplingFrame" type="gml:ReferenceType">
-                        <annotation>
+                        <annotation>    <!-- Annotation documentation added to UML and XSD - OLR 6-SEP-2011 -->
+                            <documentation>It is expected in GeoSciML that this byReference association will resolve to a SF_SpatialSamplingFeature instance which may include a spatial (GML) representation of the sampling frame (eg, a map tile, a 3D surface), or may resolve to a concept from a controlled source (eg,http://resource.geosciml.org/feature/cgi/EarthNaturalSurface)</documentation>
                             <appinfo>
                                 <gml:targetElement>sams:SF_SpatialSamplingFeature</gml:targetElement>
                             </appinfo>

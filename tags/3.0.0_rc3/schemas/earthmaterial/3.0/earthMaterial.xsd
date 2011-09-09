@@ -98,6 +98,9 @@ Igneous rock definitions are governed by IUGS agreed vocabulary</documentation>
 						<!-- FL type="gml:ReferenceType" above was type="gsmlem:LithologyTermType" -->
 					</element>
 					<element name="metamorphicProperties" nillable="true">  <!-- Added nillable  - OLR 18-AUG-2011 -->
+						<annotation>   <!-- Added annotation to UML and XSD - OLR 6-SEP-2011 -->
+							<documentation>Describes the character of metamorphism applied to a CompoundMaterial or GeologicUnit using one or more properties including estimated intensity (grade; eg high grade, low grade), characteristic metamorphic mineral assemblages (facies; eg, greenschist, amphibolite), peak P-T estimates, and protolith material if known.</documentation>
+						</annotation>
 						<complexType>  <!-- Added nilReason - OLR 18-AUG-2011 -->
 							<complexContent>
 								<extension base="gsmlem:MetamorphicDescriptionPropertyType">
@@ -107,6 +110,9 @@ Igneous rock definitions are governed by IUGS agreed vocabulary</documentation>
 						</complexType>
 					</element>
 					<element name="alterationProperties" nillable="true">  <!-- Added nillable  - OLR 18-AUG-2011 -->
+						<annotation>	<!-- Added annotation to UML and XSD - OLR 6-SEP-2011 -->
+							<documentation>Decribes aspects of a geologic unit or earth material that are the result of bulk chemical, mineralogical or physical changes related to change in the physical or chemical environment. Includes weathering, supergene alteration, hydrothermal alteration and metasomatic effects not considered metamorphic.</documentation>
+						</annotation>
 						<complexType>  <!-- Added nilReason - OLR 18-AUG-2011 -->
 							<complexContent>
 								<extension base="gsmlem:AlterationDescriptionPropertyType">
@@ -163,6 +169,9 @@ Values: Instance, TypicalNorm, IdentifyingNorm.</documentation>
 						</annotation>
 					</element>
 					<element name="physicalProperty" minOccurs="1" maxOccurs="unbounded" nillable="true">   <!-- Added nillable - OLR 18-AUG-2011 -->
+						<annotation>	<!-- Added annotation to UML and XSD - OLR 6-SEP-2011 -->
+							<documentation>Describes scalar quantity physical property values for rock materials. (eg; density, porosity, magnetic susceptibility, etc)</documentation>
+						</annotation>
 						<complexType>  <!-- Added nilReason - OLR 18-AUG-2011 -->
 							<complexContent>
 								<extension base="gsmlpp:PhysicalDescriptionPropertyType">
@@ -172,6 +181,9 @@ Values: Instance, TypicalNorm, IdentifyingNorm.</documentation>
 						</complexType>
 					</element>
 					<element name="geochemistry" nillable="true">    <!-- Added nillable - OLR 18-AUG-2011 -->
+						<annotation>  <!-- Added annotation to UML and XSD - OLR 6-SEP-2011 -->
+							<documentation>Delivers a representative chemical analysis of the EarthMaterial</documentation>  
+						</annotation>
 						<complexType>  <!-- Added nilReason - OLR 18-AUG-2011 -->
 							<complexContent>
 								<extension base="gsmlem:ChemicalCompositionPropertyType">
@@ -278,6 +290,9 @@ Quantity that specifies the fraction of the Earth Material formed by the part (e
 						</complexType>
 					</element>  <!-- Added nillable - OLR 18-AUG-2011 -->
 					<element name="relatedMaterial" type="gsmlem:MaterialRelationPropertyType" minOccurs="1" maxOccurs="unbounded" nillable="true"> <!-- Added nillable - OLR 18-AUG-2011 -->
+						<annotation>
+							<documentation>Specifies the ConstituentPart that is playing the target role in the MaterialRelation</documentation>	<!-- Annotation documentation added to UML and XSD - OLR 6-SEP-2011 -->
+						</annotation>
 					</element> 
 				</sequence>
 			</extension>
@@ -459,8 +474,11 @@ See discussion of particleType vs ConstituentPart.role in the scope notes for Co
 					</complexContent>
 				</complexType>
 			</element>
-			<element name="sourceOrganism" type="gml:ReferenceType " minOccurs="1" maxOccurs="unbounded" nillable="true"/>   
-			<!-- Added byReference (there was no type encoded by Fullmoon) and nillable - OLR 18-AUG-2011 -->
+			<element name="sourceOrganism" type="gml:ReferenceType " minOccurs="1" maxOccurs="unbounded" nillable="true">  <!-- Added byReference (there was no type encoded by Fullmoon) and nillable - OLR 18-AUG-2011 -->
+				<annotation>  <!-- Added annotation notes - OLR 6-SEP-2009 -->
+					<documentation>A byReference link to a description of an organism that was the source of the fossil particle within a compound material.  This association may only be populated if particleType = "fossil".</documentation>
+				</annotation>
+			</element>   
 		</sequence>
 	</complexType>
 	<complexType name="ParticleGeometryDescriptionPropertyType">
@@ -517,7 +535,11 @@ Thickness of a weathering profile can be delivered as unitThickness of an Altera
 					</complexContent>
 				</complexType>
 			</element>
-			<element name="alterationEvent" type="gsmlga:GeologicEventPropertyType" nillable="true"/>  <!-- Added nillable - OLR 19-AUG-2011 -->
+			<element name="alterationEvent" type="gsmlga:GeologicEventPropertyType" nillable="true">  <!-- Added nillable - OLR 19-AUG-2011 -->
+				<annotation>  <!-- Added annotation to UML and XSD - OLR 6-SEP-2011 -->
+					<documentation>To denote the age, environment and process associated with alteration of a GeologicUnit or material</documentation>
+				</annotation>
+			</element>  
 		</sequence>
 	</complexType>
 	<complexType name="AlterationDescriptionPropertyType">
@@ -603,7 +625,11 @@ Indicates in a general way the P-T environment in which the metamorphism took pl
 					<documentation>An interpretation of the EarthMaterial that constituted the pre-metamorphic lithology for this metamorphosed CompoundMaterial.</documentation>
 				</annotation>
 			</element>
-			<element name="metamorphicEvent" type="gsmlga:GeologicEventPropertyType" nillable="true"/>  <!-- Added nillable - OLR 19-AUG-2011 -->
+			<element name="metamorphicEvent" type="gsmlga:GeologicEventPropertyType" nillable="true">   <!-- Added nillable - OLR 19-AUG-2011 -->
+				<annotation>   <!-- Added annotation to UML and XSD - OLR 6-SEP-2011 -->
+					<documentation>To denote the age, environment and process associated with a particular metamorphic assemblage in a GeologicUnit</documentation>
+				</annotation>
+			</element>  
 		</sequence>
 	</complexType>
 	<complexType name="MetamorphicDescriptionPropertyType">

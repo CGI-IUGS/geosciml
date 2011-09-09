@@ -78,7 +78,12 @@ Ar-Ar, K-Ar, Nd-Sm, Pb-Pb, Rb-Sr, Re-Os, U-Pb, etc</documentation>
                             </simpleContent>
                         </complexType>
                     </element>
-                    <element name="sourceCollection" nillable="true" type="sam:SF_SamplingFeatureCollectionPropertyType"/>
+                    <element name="sourceCollection" nillable="true" type="sam:SF_SamplingFeatureCollectionPropertyType">
+                        <annotation>
+                            <documentation>Each geochronological interpretation has a mandatory association to a collection of sampling features (eg; a collection of burn spots or craters from a SHRIMP analytical session).  
+                                Legacy published data for which the SamplingFeatureCollection is unknown may be delivered with SamplingFeatureCollection = 'unknown'.</documentation>
+                        </annotation>
+                    </element>
                 </sequence>
             </extension>
         </complexContent>

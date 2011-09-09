@@ -146,6 +146,9 @@ Examples: group, subgroup, formation, member, bed, intrusion, complex, batholith
                         </complexType>
                     </element>
                     <element maxOccurs="unbounded" minOccurs="1" name="physicalProperty" nillable="true">
+                        <annotation>  <!-- Added annotation to UML and XSD - OLR 6-SEP-2011 -->
+                            <documentation>Describes the physical properties of the unit (eg; density, porosity, magnetic susceptibility, etc)</documentation>
+                        </annotation>
                         <complexType>  <!-- Added nilReason - OLR 18-AUG-2011 -->
                             <complexContent>
                                 <extension base="gsmlpp:PhysicalDescriptionPropertyType">
@@ -155,8 +158,8 @@ Examples: group, subgroup, formation, member, bed, intrusion, complex, batholith
                         </complexType>
                     </element>
                     <element maxOccurs="unbounded" minOccurs="1" name="alterationCharacter" nillable="true">
-                        <annotation>
-                            <documentation>Describes the weathering character of the GeologicUnit</documentation>
+                        <annotation>  <!-- Amended annotation in UML and XSD - OLR 6-SEP-2011 -->
+                            <documentation>Describes the alteration character (either hydrothermal or weathering) of a GeologicUnit</documentation>
                         </annotation>
                         <complexType>  <!-- Added nilReason - OLR 18-AUG-2011 -->
                             <complexContent>
@@ -167,6 +170,9 @@ Examples: group, subgroup, formation, member, bed, intrusion, complex, batholith
                         </complexType>
                     </element>
                     <element name="bedding" nillable="true">
+                        <annotation>  <!-- Added annotation to UML and XSD - OLR 6-SEP-2011 -->
+                            <documentation>An association to describe the character of bedding in a stratified geologic unit.</documentation>
+                        </annotation>
                         <complexType>  <!-- Added nilReason - OLR 18-AUG-2011 -->
                             <complexContent>
                                 <extension base="gsmlgu:BeddingDescriptionPropertyType">
@@ -176,6 +182,9 @@ Examples: group, subgroup, formation, member, bed, intrusion, complex, batholith
                         </complexType>
                     </element>
                     <element name="geochemistry" nillable="true">
+                        <annotation>   <!-- Added annotation to UML and XSD - OLR 6-SEP-2011 -->
+                            <documentation>Delivers a representative geochemical analysis of the GeologicUnit</documentation>
+                        </annotation>
                         <complexType>  <!-- Added nilReason - OLR 18-AUG-2011 -->
                             <complexContent>
                                 <extension base="gsmlem:ChemicalCompositionPropertyType">
@@ -274,7 +283,11 @@ Examples: thinning upward, thickening upward</documentation>
                     </complexContent>
                 </complexType>
             </element>
-            <element name="containedUnit" type="gsmlgu:GeologicUnitPropertyType"/>
+            <element name="containedUnit" type="gsmlgu:GeologicUnitPropertyType">
+                <annotation>  <!-- Added annotation.  NOTE that FullMoon did not encode this Target Role annotation.  OLR 6-SEP-2011 -->
+                    <documentation>Indicates the parent unit that contains the GeologicUnitPart.</documentation>
+                </annotation>
+            </element>
         </sequence>
     </complexType>
     <complexType name="GeologicUnitPartPropertyType">

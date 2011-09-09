@@ -54,16 +54,18 @@ The general GeologicRelation is used to associate penetrative GeologicStructures
 	</complexType>
 	<element name="Layering" type="gsmlst:LayeringType" substitutionGroup="gsmlst:Foliation">
 		<annotation>
-			<documentation>Planar foliation defined by a tabular succession of layers &amp;gt; 5 mm thick. This definition is based on the proposed definition of gneiss by the NADM Science Language Technical Team, so that the GeologicStructure characteristic of gneiss is layering. The committee discussed the possibility that layering should be considered a kind of foliation, but the majority opinion was that it is a different kind of structure.
-
-Kept so that instance documents have a "Layering" tag</documentation>
+			<documentation>Planar foliation defined by a tabular succession of layers &amp;gt; 5 mm thick. This definition is based on the proposed definition of gneiss by the NADM Science Language Technical Team, so that the GeologicStructure characteristic of gneiss is layering. The committee discussed the possibility that layering should be considered a kind of foliation, but the majority opinion was that it is a different kind of structure. Kept so that instance documents have a "Layering" tag</documentation>
 		</annotation>
 	</element>
 	<complexType name="LayeringType">
 		<complexContent>
 			<extension base="gsmlst:FoliationType">
 				<sequence>
-					<element name="layerComposition" type="gsmlem:RockMaterialPropertyType" nillable="true"/>
+					<element name="layerComposition" type="gsmlem:RockMaterialPropertyType" nillable="true">
+						<annotation>  <!--Added annotation to UML and XSD - 6-SEP-2011 -->
+							<documentation>Describes the rock material that may define compositional layering</documentation>
+						</annotation>
+					</element>
 				</sequence>
 			</extension>
 		</complexContent>
@@ -271,7 +273,11 @@ Bedding measured as discrete surfaces in the case that those are the feature of 
 							</complexContent>
 						</complexType>
 					</element>
-					<element name="correlatesWith" type="gsmlgt:GeochronologicBoundaryPropertyType" nillable="true"/>
+					<element name="correlatesWith" type="gsmlgt:GeochronologicBoundaryPropertyType" nillable="true">
+						<annotation>  <!-- Added annotation to UML and XSD - OLR 6-SEP-2011 -->
+							<documentation>Associates a physical geologic contact with a geochronologic (ie, time zone) boundary that may correlate with it.  Association only allowed if contactType = ChronostratigraphicBoundary.</documentation>
+						</annotation>
+					</element>
 				</sequence>
 			</extension>
 		</complexContent>
@@ -333,6 +339,9 @@ Bedding measured as discrete surfaces in the case that those are the feature of 
 						</complexType>
 					</element>
 					<element name="physicalProperty" nillable="true" minOccurs="1" maxOccurs="unbounded">
+						<annotation>  <!-- Added annotation to UML and XSD - OLR 6-SEP-2011 -->
+							<documentation>Describes the physical properties of a ShearDisplacementStructure, (eg; the magnetic signature of a shear zone)</documentation>
+						</annotation>
 						<complexType>  <!-- Added nilReason - OLR 19-AUG-2011 -->
 							<complexContent>
 								<extension base="gsmlpp:PhysicalDescriptionPropertyType">
@@ -341,7 +350,11 @@ Bedding measured as discrete surfaces in the case that those are the feature of 
 							</complexContent>
 						</complexType>
 					</element>
-					<element name="system" type="gsmlst:FaultSystemPropertyType" nillable="true"/>
+					<element name="system" type="gsmlst:FaultSystemPropertyType" nillable="true">
+						<annotation>  <!-- Added annotation to UML and XSD - OLR 6-SEP-2011 -->
+							<documentation>Describes the fault system to which a ShearDisplacementStructures belongs</documentation>
+						</annotation>
+					</element>
 				</sequence>
 			</extension>
 		</complexContent>
@@ -353,7 +366,11 @@ Bedding measured as discrete surfaces in the case that those are the feature of 
 		<attributeGroup ref="gml:AssociationAttributeGroup"/>
 		<attributeGroup ref="gml:OwnershipAttributeGroup"/>
 	</complexType>
-	<element name="DisplacementEvent" type="gsmlst:DisplacementEventType" substitutionGroup="gsmlga:GeologicEvent"/>
+	<element name="DisplacementEvent" type="gsmlst:DisplacementEventType" substitutionGroup="gsmlga:GeologicEvent">
+		<annotation>  <!-- Added annotation in UML and XSD - OLR 6-SEP-2011 -->
+			<documentation> A description of the age, environment and process of a shear displacement event</documentation>
+		</annotation>
+	</element>
 	<complexType name="DisplacementEventType">
 		<complexContent>
 			<extension base="gsmlga:GeologicEventType">
@@ -505,7 +522,7 @@ Bedding measured as discrete surfaces in the case that those are the feature of 
 					</element>
 					<element name="symmetry" nillable="true">
 						<annotation>
-							<documentation>concordance or discordance of bisecting surface and axial surface, or ratio of length of limbs. Folded surface may have asymmetry defined by limb length ratio if inflection points are defined. Defintion based on bisecting surface/axial surface angle depends on having multiple surfaces defined such that the axial surface may be identified. (symmetric, assymetric)</documentation>
+							<documentation>Concordance or discordance of bisecting surface and axial surface, or ratio of length of limbs. Folded surface may have asymmetry defined by limb length ratio if inflection points are defined. Defintion based on bisecting surface/axial surface angle depends on having multiple surfaces defined such that the axial surface may be identified. (symmetric, assymetric)</documentation>
 						</annotation>
 						<complexType>  <!-- Added nilReason - OLR 19-AUG-2011 -->
 							<complexContent>
@@ -515,7 +532,11 @@ Bedding measured as discrete surfaces in the case that those are the feature of 
 							</complexContent>
 						</complexType>
 					</element>
-					<element name="system" type="gsmlst:FoldSystemPropertyType" nillable="true"/>  <!-- Added nillable - OLR 19-AUG-2011 -->
+					<element name="system" type="gsmlst:FoldSystemPropertyType" nillable="true">  <!-- Added nillable - OLR 19-AUG-2011 -->
+						<annotation>  <!-- Added annotation to UML and XSD - OLR 6-SEP-2011 -->
+							<documentation>Describes a broader system of folds to which an individual fold may belong</documentation>
+						</annotation>
+					</element>  
 				</sequence>
 			</extension>
 		</complexContent>
@@ -713,6 +734,9 @@ Recording observations on FaultSurface should be in observation and measurement.
 						</annotation>
 					</element>
 					<element name="slipComponent" nillable="true">   <!-- Added nillable - OLR 19-AUG-2011 -->
+						<annotation>
+							<documentation>Specifies the value of the individual slip components.</documentation>  <!-- Added from Target Role notes in the UML.  NOTE this was not encoded by FullMoon, but should have been.  OLR 6-SEP-2011 -->
+						</annotation>
 						<complexType>  <!-- Added nilReason - OLR 19-AUG-2011 -->
 							<complexContent>
 								<extension base="gsmlst:SlipComponentsPropertyType">
@@ -766,7 +790,11 @@ Recording observations on FaultSurface should be in observation and measurement.
 					<documentation>Defines the type of movement  (eg dip-slip, strike-slip)</documentation>
 				</annotation>
 			</element>
-			<element name="displacementEvent" type="gsmlst:DisplacementEventPropertyType" minOccurs="1" maxOccurs="unbounded" nillable="true"/>  <!-- Added nillable - OLR 19-AUG-2011 -->
+			<element name="displacementEvent" type="gsmlst:DisplacementEventPropertyType" minOccurs="1" maxOccurs="unbounded" nillable="true">  <!-- Added nillable - OLR 19-AUG-2011 -->
+				<annotation>  <!-- Added annotation to UML and XSD - OLR 6-SEP-2011 -->
+					<documentation> A description of the age, environment and process of a shear displacement event</documentation>
+				</annotation>
+			</element>  
 		</sequence>
 	</complexType>
 	<complexType name="DisplacementValuePropertyType">
@@ -776,8 +804,8 @@ Recording observations on FaultSurface should be in observation and measurement.
 		<attributeGroup ref="gml:OwnershipAttributeGroup"/>
 	</complexType>
 	<element name="SlipComponents" type="gsmlst:SlipComponentsType" substitutionGroup="gsmlst:DisplacementValue">
-		<annotation>
-			<documentation>representation of slip as vector resolved into components resolved into reference frame in which horizontal axes are parallel and perpendicular to the strike of the fault.</documentation>
+		<annotation>  <!-- Amended annotation in UML and XSD - OLR 6-SEP-2011 -->
+			<documentation>Representation of slip as vector resolved into components resolved into reference frame in which horizontal axes are parallel and perpendicular to the strike of the fault.  At least one of heave, horizontalSlip, or throw must not be null.</documentation>
 		</annotation>
 	</element>
 	<complexType name="SlipComponentsType">

@@ -87,7 +87,11 @@ Numeric age range uses StratigraphicDateEstimate to allow incorporation of vario
 							</complexContent>
 						</complexType>
 					</element>
-					<element name="prototype" type="gsmlgt:StratigraphicPointPropertyType" nillable="true"/>  <!-- Added nillable.  This was an omission in the UML (now fixed).  OLR - 19-AUG-2011   -->
+					<element name="prototype" type="gsmlgt:StratigraphicPointPropertyType" nillable="true">   <!-- Added nillable.  This was an omission in the UML (now fixed).  OLR - 19-AUG-2011   -->
+						<annotation>    <!-- Added annotation to UML and XSD - OLR 6-SEP-2011 -->
+							<documentation>Prototype association to StratigraphicPoint may only be used when GeologicEvent is a stratigraphic event</documentation>
+						</annotation>
+					</element>  
 				</sequence>
 			</extension>
 		</complexContent>

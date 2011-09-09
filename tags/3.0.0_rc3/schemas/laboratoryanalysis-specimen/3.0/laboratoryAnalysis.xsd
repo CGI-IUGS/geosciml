@@ -19,9 +19,21 @@
 		<complexContent>
 			<extension base="gml:AbstractFeatureType">
 				<sequence>
-					<element name="method" type="gsmlla:AnalyticalMethodPropertyType"/>
-					<element name="acquisition" type="gsmlla:AnalyticalSessionPropertyType" nillable="true"/>
-					<element name="computation" type="gmd:LI_ProcessStep_PropertyType" nillable="true"/>
+					<element name="method" type="gsmlla:AnalyticalMethodPropertyType">
+						<annotation>  <!-- Added annotation to UML and XSD.  OLR 6-SEP-2011 -->
+							<documentation>Identifies the type of analytical method used to make an observation.</documentation>
+						</annotation>
+					</element>
+					<element name="acquisition" type="gsmlla:AnalyticalSessionPropertyType" nillable="true">
+						<annotation>  <!-- Added annotation to UML and XSD.  OLR 6-SEP-2011 -->
+							<documentation>Describes the analytical session (eg, laboratory session) in which an observation was made and data acquired.</documentation>
+						</annotation>
+					</element>
+					<element name="computation" type="gmd:LI_ProcessStep_PropertyType" nillable="true">
+						<annotation>   <!-- Added annotation to UML and XSD.  OLR 6-SEP-2011 -->
+							<documentation>Description of a computational process used to obtain an observation result.</documentation>
+						</annotation>
+					</element>
 				</sequence>
 			</extension>
 			<!-- FL gml:AbstractFeatureType above was xsd:AnyType -->
@@ -85,7 +97,11 @@
 							<documentation>The location and owner of an instrument</documentation>
 						</annotation>
 					</element>
-					<element name="usedIn" type="gsmlla:AnalyticalSessionPropertyType" nillable="true" minOccurs="1" maxOccurs="unbounded"/>
+					<element name="usedIn" type="gsmlla:AnalyticalSessionPropertyType" nillable="true" minOccurs="1" maxOccurs="unbounded">
+						<annotation>  <!-- Added annotation to UML and XSD - OLR 6-SEP-2011 -->
+							<documentation>Identifies one or more analytical sessions which used this instrument</documentation>
+						</annotation>
+					</element>
 				</sequence>
 			</extension>
 		</complexContent>
@@ -106,7 +122,8 @@
 		<complexContent>
 			<extension base="gml:AbstractFeatureType">
 				<sequence>
-					<element name="time" type="gml:TimeInstantPropertyType">
+<!--					<element name="time" type="gml:TimeInstantPropertyType">-->   <!-- Changed to TimePeriod.  This was an error in the UML.  OLR 9-SEP-2011 -->
+					<element name="time" type="gml:TimePeriodPropertyType">
 						<annotation>
 							<documentation>The time period during which the analysis was performed</documentation>
 						</annotation>
@@ -121,8 +138,16 @@
 							<documentation>This association is analogous to the "parameter" attribute of OM_Observation, but in this case describes environmental or instrument setting parameters that apply to an entire analytical session (eg, voltage, current, temperature, vacuum).  The "name" attribute of NamedValue is implemented in OMXML as a byReference URI to a controlled list.</documentation>
 						</annotation>
 					</element>
-					<element name="instrument" type="gsmlla:AnalyticalInstrumentPropertyType" nillable="true"/>
-					<element name="referenceAnalyses" type="gsmlla:ReferenceSpecimenPropertyType" nillable="true" minOccurs="1" maxOccurs="unbounded"/>
+					<element name="instrument" type="gsmlla:AnalyticalInstrumentPropertyType" nillable="true">
+						<annotation>  <!-- Added annotation to UML and XSD - OLR 6-SEP-2011 -->
+							<documentation>Identifies the instrument used in the analytical session</documentation>
+						</annotation>
+					</element>
+					<element name="referenceAnalyses" type="gsmlla:ReferenceSpecimenPropertyType" nillable="true" minOccurs="1" maxOccurs="unbounded">
+						<annotation>  <!-- Added annotation to UML and XSD - OLR 6-SEP-2011 -->
+							<documentation>Describes any reference specimens (ie, standards, blanks) used in the analytical session.</documentation>
+						</annotation>
+					</element>
 				</sequence>
 			</extension>
 		</complexContent>

@@ -90,7 +90,11 @@ In situations where the origin position changes over the life of the borehole (e
         <complexContent>
             <extension base="sams:SF_SpatialSamplingFeatureType">
                 <sequence>
-                    <element name="referenceLocation" type="gsmlbh:OriginPositionPropertyType"/>                    
+                    <element name="referenceLocation" type="gsmlbh:OriginPositionPropertyType">
+                        <annotation>  <!-- Added annotation to UML and XSD - OLR 6-SEP-2011 -->
+                            <documentation>A Borehole OriginPosition is a feature corresponding to the start point of a borehole log.  This may, but not necessarily, correspond to the borehole collar location (eg, kelly bush).</documentation>
+                        </annotation>
+                    </element>                    
                     <element name="indexData" nillable="true">
                         <annotation>
                             <documentation>Specifies the Borehole details</documentation>
@@ -104,6 +108,9 @@ In situations where the origin position changes over the life of the borehole (e
                         </complexType>
                     </element>
                     <element name="downholeDrillingDetails" nillable="true" maxOccurs="unbounded" minOccurs="1">
+                        <annotation>  <!-- Added annotation to UML and XSD - OLR 6-SEP-2011 -->
+                            <documentation>Specifies the drilling method and borehole diameter for intervals down the borehole</documentation>  
+                        </annotation>
                         <complexType>      <!-- Added nilReason - OLR 18-AUG-2011 -->
                             <complexContent>
                                 <extension base="gsmlbh:DrillingDetailsPropertyType">
@@ -227,7 +234,11 @@ In situations where the origin position changes over the life of the borehole (e
                     </complexContent>
                 </complexType>
             </element>
-            <element name="interval" type="gml:GeometryPropertyType"/>
+            <element name="interval" type="gml:GeometryPropertyType">
+                <annotation>  <!-- Added annotation to UML and XSD.  OLR 6-SEP-2011  -->
+                    <documentation>A shape that is a 1-D interval (eg, a "from" and "to", or "top" and "base" measurement) and uses the SRS of the containing borehole</documentation>
+                </annotation>
+            </element>
         </sequence>
     </complexType>
     <complexType name="DrillingDetailsPropertyType">
