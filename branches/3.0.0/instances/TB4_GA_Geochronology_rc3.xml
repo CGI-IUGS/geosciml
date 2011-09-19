@@ -1,0 +1,439 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wfs:FeatureCollection 
+    xsi:schemaLocation="http://www.opengis.net/wfs/2.0 http://schemas.opengis.net/wfs/2.0/wfs.xsd
+    http://www.opengis.net/gml/3.2 http://schemas.opengis.net/gml/3.2.1/gml.xsd
+    http://xmlns.geosciml.org/GeologicUnit/3.0 http://schemas.geosciml.org/geologicunit/3.0/geologicUnit.xsd
+    http://xmlns.geosciml.org/LaboratoryAnalysis-Specimen/3.0 http://schemas.geosciml.org/laboratoryanalysis-specimen/3.0/laboratoryAnalysis-Specimen.xsd
+    http://www.opengis.net/samplingSpecimen/2.0 http://schemas.opengis.net/samplingSpecimen/2.0/specimen.xsd" 
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:wfs="http://www.opengis.net/wfs/2.0"
+    xmlns:gml="http://www.opengis.net/gml/3.2"
+    xmlns:gsml="http://xmlns.geosciml.org/GeoSciML-Core/3.0"
+    xmlns:gsmlem="http://xmlns.geosciml.org/EarthMaterial/3.0"
+    xmlns:gsmlga="http://xmlns.geosciml.org/GeologicAge/3.0"
+    xmlns:gsmlgu="http://xmlns.geosciml.org/GeologicUnit/3.0"
+    xmlns:gsmlla="http://xmlns.geosciml.org/LaboratoryAnalysis-Specimen/3.0"
+    xmlns:swe="http://www.opengis.net/swe/2.0"
+    xmlns:gmd="http://www.isotc211.org/2005/gmd"
+    xmlns:gco="http://www.isotc211.org/2005/gco"
+    xmlns:om="http://www.opengis.net/om/2.0"
+    xmlns:spec="http://www.opengis.net/samplingSpecimen/2.0"
+    xmlns:sa="http://www.opengis.net/sampling/2.0"
+    xmlns:xlink="http://www.w3.org/1999/xlink" 
+    timeStamp="2011-09-09T00:00:00" numberMatched="1" numberReturned="1">
+    
+    <!-- ================================================================================================================ 	-->
+    <!--																			-->
+    <!--  	Example GeosciML v3 rc3 instance document for the Geochronology package for Testbed4 WFS.    						-->
+    <!--  	Ollie Raymond, Geoscience Australia - September 2011												-->
+    <!--																			-->
+    <!-- ================================================================================================================== 	-->
+    
+    <wfs:boundedBy>
+        <gml:Envelope srsName="http://spatialreference.org/ref/epsg/4283/" srsDimension="2">	<!-- SRS is Geocentric Datum of Australia 1994, decimal lat-long degrees -->
+            <gml:lowerCorner>72.577237 -9.178480</gml:lowerCorner>			
+            <gml:upperCorner>167.998035 -54.777736</gml:upperCorner>		
+        </gml:Envelope>
+    </wfs:boundedBy>
+    <wfs:member>
+        <spec:SF_Specimen gml:id="GA.Specimen.1517948">  <!-- Concatenate "GA.Specimen." & LOCSAMPLE.V_LOCSAMPLE_ALL.SAMPLENO  -->
+            <sa:sampledFeature>
+                <gsmlgu:GeologicUnit gml:id="GA.Specimen.GeologicUnit.1517948">  <!-- Concatenate "GA.Specimen.GeologicUnit." & LOCSAMPLE.V_LOCSAMPLE_ALL.SAMPLENO  -->
+                    <gml:description>qtz-kspar phyric ignimbrite with many limestone lithics, 100m north of a strongly sericitised area</gml:description>   <!-- A.EARTHMATERIALS.REMARK  -->
+                    <gml:name>Warrumba Volcanics</gml:name>  <!-- LOCSAMPLE.V_LOCSAMPLE_ALL.STRATNAME -->
+                    <gsml:observationMethod>
+                        <swe:Category>   <!-- Constant, using CGI vocabulary terms -->
+                            <swe:identifier>http://resource.geosciml.org/classifier/cgi/featureobservationmethod/0010</swe:identifier>
+                            <swe:label>Outcrop observation</swe:label>      
+                            <swe:codeSpace xlink:href="http://resource.geosciml.org/classifierscheme/cgi/201012/featureobservationmethod"/>
+                        </swe:Category>
+                    </gsml:observationMethod>
+                    <gsml:purpose>instance</gsml:purpose>
+                    <gsml:relatedFeature xsi:nil="true" nilReason="inapplicable"/>
+                    <gsml:classifier xlink:href="http://data.geoscience.gov.au/stratigraphicunits/32474" xlink:title="Warrumba Volcanics"/>  <!-- A.EARTHMATERIALS.STRATNO and LOCSAMPLE.V_LOCSAMPLE_ALL.STRATNAME (or GEODX.STRATNAMES.STRATNAME) -->
+                    <gsml:metadata xsi:nil="true" gco:nilReason="inapplicable"/>
+                    <gsmlgu:geologicUnitType xlink:href="http://resource.geosciml.org/classifier/cgi/geologicunittype/0014" xlink:title="Lithostratigraphic Unit"/>  <!-- Mainly constant,  except for intrusive and complex units -->
+                    <gsmlgu:bodyMorphology xsi:nil="true" nilReason="missing"/>
+                    <gsmlgu:unitComposition>
+                        <swe:Category>        
+                            <swe:identifier>http://resource.geoscience.gov.au/classifier/ga/lithologygroup/18</swe:identifier>     <!-- A.LITHOLOGY_GROUPS.LITHGROUPNO -->
+                            <swe:label>igneous felsic volcanic</swe:label>        <!-- A.EARTHMATERIALS.LITHGROUP  -->  
+                            <swe:codeSpace xlink:href="http://resource.geoscience.gov.au/classifierScheme/ga/lithologygroup"/>    <!-- constant -->
+                        </swe:Category>
+                    </gsmlgu:unitComposition>
+                    <gsmlgu:exposureColor xsi:nil="true" nilReason="missing"/>
+                    <gsmlgu:outcropCharacter xsi:nil="true" nilReason="missing"/>
+                    <gsmlgu:rank xlink:href="http://resource.geosciml.org/classifier/cgi/stratigraphicrank/0003" xlink:title="Formation"/>   <!--  LOCSAMPLE.V_LOCSAMPLE_ALL.RANKNAME - mapped to CGI vocabulary terms -->
+                    <gsmlgu:unitThickness xsi:nil="true" nilReason="missing"/>
+                    <gsmlgu:composition>
+                        <gsmlgu:CompositionPart>
+                            <gsmlgu:role xlink:href="http://resource.geosciml.org/classifier/cgi/geologicunitpartrole/0014" xlink:title="Only part"/>  <!-- Constant -->
+                            <gsmlgu:material>
+                                <gsmlem:RockMaterial gml:id="GA.Specimen.Lithology.1517948">   <!-- Concatenate "GA.Specimen.Lithology." & LOCSAMPLE.V_LOCSAMPLE_ALL.SAMPLENO  -->
+                                    <gsmlem:color xsi:nil="true" nilReason="missing"/>
+                                    <gsmlem:purpose>instance</gsmlem:purpose>  <!-- constant -->
+                                    <gsmlem:physicalProperty xsi:nil="true" nilReason="missing"/>
+                                    <gsmlem:geochemistry xsi:nil="true" nilReason="missing"/>
+                                    <gsmlem:metadata xsi:nil="true" gco:nilReason="inapplicable"/>
+                                    <gsmlem:compositionCategory xsi:nil="true" nilReason="missing"/>
+                                    <gsmlem:geneticCategory xsi:nil="true" nilReason="missing"/>
+                                    <gsmlem:constituent xsi:nil="true" nilReason="inapplicable"/>
+                                    <gsmlem:particleGeometry xsi:nil="true" nilReason="missing"/>
+                                    <gsmlem:consolidationDegree xsi:nil="true" nilReason="missing"/>
+                                    <gsmlem:lithology xlink:href="http://resource.geosciml.gov.au/classifier/ga/lithologytype/152" xlink:title="ignimbrite"/>    <!-- A.EARTHMATERIALS.LITHNAME -->
+                                    <gsmlem:metamorphicProperties xsi:nil="true" nilReason="missing"/>
+                                    <gsmlem:alterationProperties xsi:nil="true" nilReason="missing"/>
+                                    <gsmlem:fabric xsi:nil="true" nilReason="missing"/>
+                                </gsmlem:RockMaterial>
+                            </gsmlgu:material>
+                            <gsmlgu:proportion>
+                                <swe:QuantityRange>
+                                    <swe:uom code="%" xlink:href="http://www.opengis.net/def/uom/UCUM/0/%25"/>
+                                    <swe:value>100 100</swe:value>
+                                </swe:QuantityRange>
+                            </gsmlgu:proportion>
+                        </gsmlgu:CompositionPart>
+                    </gsmlgu:composition>
+                    <gsmlgu:metamorphicCharacter xsi:nil="true" nilReason="missing"/>
+                    <gsmlgu:part  xsi:nil="true" nilReason="inapplicable"/>
+                    <gsmlgu:physicalProperty  xsi:nil="true" nilReason="missing"/>
+                    <gsmlgu:alterationCharacter  xsi:nil="true" nilReason="missing"/>
+                    <gsmlgu:bedding  xsi:nil="true" nilReason="missing"/>
+                    <gsmlgu:geochemistry  xsi:nil="true" nilReason="missing"/>
+                </gsmlgu:GeologicUnit>
+            </sa:sampledFeature>
+            <sa:relatedObservation>   <!-- Geochronological observation -->
+                <om:OM_Observation gml:id="GA.Specimen.GeochronologicInterpretation.Observation.1517948.371">   <!-- Concatenate "GA.Specimen.GeochronologicInterpretation.Observation" & LOCSAMPLE.V_LOCSAMPLE_ALL.SAMPLENO & GROUP NO.  -->
+                    <om:phenomenonTime></om:phenomenonTime>
+                    <om:resultTime>
+                        <gml:TimeInstant gml:id="GA.Specimen.GeochronologicInterpretation.ResultTime.1517948.371">    <!-- Concatenate "GA.Specimen.GeochronologicInterpretation.ResultTime" & LOCSAMPLE.V_LOCSAMPLE_ALL.SAMPLENO & GROUP NO.  -->
+                            <gml:timePosition>1998-12-31</gml:timePosition>   <!-- Interpretation Date -->
+                        </gml:TimeInstant>
+                    </om:resultTime>
+                    <om:procedure>
+                        <gsmlla:AnalyticalProcess gml:id="GA.Specimen.GeochronologicInterpretation.AnalyticalProcess.1517948.371">    <!-- Concatenate "GA.Specimen.GeochronologicInterpretation.AnalyticalProcess" & LOCSAMPLE.V_LOCSAMPLE_ALL.SAMPLENO & GROUP NO.  -->
+                            <gsmlla:method>
+                                <gsmlla:AnalyticalMethod gml:id="GA.Specimen.GeochronologicInterpretation.AnalyticalMethod.1517948.371">     <!-- Concatenate "GA.Specimen.GeochronologicInterpretation.AnalyticalMethod" & LOCSAMPLE.V_LOCSAMPLE_ALL.SAMPLENO & GROUP NO.  -->
+                                    <gsmlla:methodName xlink:href="http://resource.geoscience.gov.au/classifier/ga/analyticalmethod/0099" xlink:title="SHRIMP geochonological analysis"/>   <!-- Constant for this dataset -->
+                                    <gsmlla:citation xsi:nil="true" gco:nilReason="missing"/>  <!-- If a published record of the analytical method exists (eg, SoP), put it here. -->
+                                </gsmlla:AnalyticalMethod>
+                            </gsmlla:method>
+                            <gsmlla:acquisition xsi:nil="true" nilReason="missing"/>   <!-- The GeochronologicalInterpretation result is generated by computation.  The acquired raw data is described in documents describing related sample data which could be referenced here. -->
+                            <gsmlla:computation>
+                                <gmd:LI_ProcessStep>
+                                    <gmd:description>
+                                        <gco:CharacterString>Data reduction using the SQUID application.</gco:CharacterString>  <!-- PROCESSING SOFTWARE -->
+                                    </gmd:description>
+                                    <gmd:processor>
+                                        <gmd:CI_ResponsibleParty>
+                                            <gmd:individualName>
+                                                <gco:CharacterString>Lance Black</gco:CharacterString>    <!-- processor name is the same as INTERPRETER -->
+                                            </gmd:individualName>
+                                            <gmd:organisationName>
+                                                <gco:CharacterString>Geoscience Australia</gco:CharacterString>    <!-- Constant -->
+                                            </gmd:organisationName>
+                                            <gmd:role>
+                                                <gmd:CI_RoleCode codeList="" codeListValue="principalInvesigator"></gmd:CI_RoleCode>   <!-- Constant -->
+                                            </gmd:role>
+                                        </gmd:CI_ResponsibleParty>
+                                    </gmd:processor>
+                                </gmd:LI_ProcessStep>
+                            </gsmlla:computation>
+                        </gsmlla:AnalyticalProcess>
+                    </om:procedure>
+                    <om:observedProperty xlink:href="http://resource.geosciml.org/property/cgi/GeologicHistory"/>    <!-- Constant -->
+                    <om:featureOfInterest xlink:href="#GA.Specimen.1517948"/>     <!-- refer back to <spec:SF_Specimen gml:id="GA.Specimen.1517948">  -->
+                    <om:result>
+                        <gsmlla:GeochronologicInterpretation gml:id="GA.GeochronologicInterpretation.1517948.371.269">  <!-- Concatenate "GA.GeochronologicInterpretation." & SAMPLENO & GROUP NO & RESULT NO -->
+                            <gsmlla:interpretedAge>
+                                <gsmlga:GeologicEvent gml:id="GA.GeochronologicInterpretation.Event.1517948.371.269">   <!-- Concatenate "GA.GeochronologicInterpretation.Event." & SAMPLENO & GROUP NO & RESULT NO -->
+                                    <gsml:observationMethod>
+                                        <swe:Category>   <!-- Constant, mapped to CGI terms.  Would like to have a better term to use than "Indirect method". -->
+                                            <swe:identifier>http://resource.geosciml.org/classifier/cgi/featureobservationmethod/0009</swe:identifier>
+                                            <swe:label>Indirect method</swe:label>      
+                                            <swe:codeSpace xlink:href="http://resource.geosciml.org/classifierscheme/cgi/201012/featureobservationmethod"/>
+                                        </swe:Category>
+                                    </gsml:observationMethod>                                 
+                                    <gsml:purpose>instance</gsml:purpose>
+                                    <gsml:relatedFeature xsi:nil="true" nilReason="inapplicable"/>  <!-- Constant -->
+                                    <gsml:classifier xsi:nil="true" nilReason="inapplicable"/>  <!-- Constant -->
+                                    <gsml:metadata xsi:nil="true" gco:nilReason="inapplicable"/>   <!-- Constant -->
+                                    <gsmlga:eventProcess xlink:href="http://resource.geosciml.org/classifier/cgi/eventprocess/0042" xlink:title="Magmatic crystallisation"/>  <!-- GEOLOGICAL INTERPRETATION mapped to CGI vocabulary -->
+                                    <gsmlga:numericAgeDate>
+                                        <gsmlga:NumericAgeRange>
+                                            <gsmlga:reportingDate>
+                                                <gsmlga:GeologicDateEstimate>
+                                                    <gsmlga:position>
+                                                        <gml:TimeInstant frame="" gml:id="GA.GeochronologicInterpretationAge.1517948.371.269">  <!-- Concatenate "GA.GeochronologicInterpretationAge." & SAMPLENO & GROUP NO & RESULT NO -->
+                                                            <gml:timePosition>382.7</gml:timePosition>   <!-- AGE (MA) -->
+                                                        </gml:TimeInstant>
+                                                    </gsmlga:position>
+                                                    <gsmlga:quality>
+                                                        <gmd:DQ_QuantitativeAttributeAccuracy>
+                                                            <gmd:nameOfMeasure>
+                                                                <gco:CharacterString>Age Uncertainty</gco:CharacterString>  <!-- Constant -->
+                                                            </gmd:nameOfMeasure>
+                                                            <gmd:result>
+                                                                <gmd:DQ_QuantitativeResult>
+                                                                    <gmd:valueUnit xlink:href="http://www.opengis.net/def/uom/UCUM/1.0/Ma" xlink:title="Ma"/>    <!-- Constant -->
+                                                                    <gmd:errorStatistic>
+                                                                        <gco:CharacterString>95% confidence</gco:CharacterString>   <!-- UNCERTAINTY -->
+                                                                    </gmd:errorStatistic>
+                                                                    <gmd:value>
+                                                                        <gco:Record>2.8</gco:Record>   <!--   +/- AGE (MA) -->
+                                                                    </gmd:value>
+                                                                </gmd:DQ_QuantitativeResult>
+                                                            </gmd:result>
+                                                        </gmd:DQ_QuantitativeAttributeAccuracy>
+                                                    </gsmlga:quality>
+                                                </gsmlga:GeologicDateEstimate>
+                                            </gsmlga:reportingDate>
+                                            <gsmlga:olderBoundDate xsi:nil="true" nilReason="inapplicable"/>  <!-- Constant -->
+                                            <gsmlga:youngerBoundDate xsi:nil="true" nilReason="inapplicable"/>  <!-- Constant -->
+                                        </gsmlga:NumericAgeRange>
+                                    </gsmlga:numericAgeDate>
+                                    <gsmlga:olderNamedAge xsi:nil="true" nilReason="missing"/>  <!-- Only a numeric age is delivered in this case. -->
+                                    <gsmlga:youngerNamedAge xsi:nil="true" nilReason="missing"/>  <!-- Only a numeric age is delivered in this case. -->
+                                    <gsmlga:eventEnvironment xsi:nil="true" nilReason="missing"/>      <!-- Constant -->
+                                    <gsmlga:prototype xsi:nil="true" nilReason="inapplicable"/>   <!-- Constant -->
+                                </gsmlga:GeologicEvent>
+                            </gsmlla:interpretedAge>       
+                            <gsmlla:isotopicEvent xlink:href="http://resource.geoscience.gov.au/classifier/ga/isotopicprocess/0099" xlink:title="Magmatic crystallization"/>
+                            <gsmlla:isotopicSystem xlink:href="http://resource.geoscience.gov.au/classifier/ga/isotopicsystem/0099" xlink:title="U-Pb"/>  <!-- Constant for SHRIMP data -->
+                            <gsmlla:statisticalMethod xlink:href="http://resource.geoscience.gov.au/classifier/ga/geochronologystatisticalmethod/0010" xlink:title="Weighted mean"/>   <!-- AGE CALCULATION TYPE -->
+                            <gsmlla:interpretedBy>
+                                <gmd:CI_ResponsibleParty>
+                                    <gmd:individualName>
+                                        <gco:CharacterString>Lance Black</gco:CharacterString>    <!--  INTERPRETER -->
+                                    </gmd:individualName>
+                                    <gmd:organisationName>
+                                        <gco:CharacterString>Geoscience Australia</gco:CharacterString>    <!-- Constant -->
+                                    </gmd:organisationName>
+                                    <gmd:role>
+                                        <gmd:CI_RoleCode codeList="http://www.isotc211.org/2005/resources/Codelist/gmxCodelists.xml#CI_RoleCode" codeListValue="principalInvesigator"></gmd:CI_RoleCode>   <!-- Constant -->
+                                    </gmd:role>
+                                </gmd:CI_ResponsibleParty>
+                            </gsmlla:interpretedBy>
+                            <gsmlla:citation xsi:nil="true" gco:nilReason="missing"/>
+                            <gsmlla:preferredInterpretation>true</gsmlla:preferredInterpretation>    <!-- Constant for this dataset -->
+                            <gsmlla:sourceCollection xlink:href="http://data.geoscience.gov.au/geochronology/371"/>  <!-- Use this to link to collection of burn spots  -->
+                        </gsmlla:GeochronologicInterpretation>
+                    </om:result>
+                </om:OM_Observation>
+            </sa:relatedObservation>
+            <spec:materialClass xlink:href="http://resource.geoscience.gov.au/classifier/ga/materialclass/0001" xlink:title="rock"/>   <!-- LOCSAMPLE.V_LOCSAMPLE_ALL.MATERIAL_TYPE -->
+            <spec:samplingTime>
+                <gml:TimeInstant gml:id="GA.Specimen.SamplingTime.1517948">   <!-- Concatenate "GA.Specimen.SamplingTime." & LOCSAMPLE.V_LOCSAMPLE_ALL.SAMPLENO -->
+                    <gml:timePosition frame="#ISO-8601">1997-06-16</gml:timePosition>    <!-- MGD.FIELDSITES.OBSDATE  -  Note this data needs to be migrated into A.ENTITIES.ACQUISITION_DATE so that it gets captured in LOCSAMPLE SPOT.  -->
+                </gml:TimeInstant>                
+            </spec:samplingTime>
+            <spec:samplingMethod>
+                <gsmlla:GeologicSamplingMethod gml:id="GA.Specimen.SamplingMethod.1517948">  <!-- Concatenate "GA.Specimen.SamplingMethod." & LOCSAMPLE.V_LOCSAMPLE_ALL.SAMPLENO   -->
+                    <gsmlla:method xlink:href="http://resource.geoscience.gov.au/classifier/ga/samplingmethod/0001" xlink:title="Outcrop sampling"/>  <!-- constant -->
+                    <gsmlla:parameter xsi:nil="true" nilReason="inapplicable"/>
+                </gsmlla:GeologicSamplingMethod>
+            </spec:samplingMethod>
+            <spec:samplingLocation>
+                <gml:Point srsName="http://spatialreference.org/ref/epsg/4283/" srsDimension="2" gml:id="GA.Specimen.SamplingLocation.1517948">
+                    <gml:pos>148.36863708496 -33.9239540100097</gml:pos>
+                </gml:Point>
+            </spec:samplingLocation>
+            <spec:specimenType xlink:href="http://resource.geoscience.gov.au/classifier/ga/specimentype/0099" xlink:title="outcrop bulk specimen"/>
+        </spec:SF_Specimen>
+    </wfs:member>
+</wfs:FeatureCollection>        
+
+
+<!--
+
+<glab:ReferenceSpecimen 
+    xmlns:glab="http://xmlns.geosciml.org/LaboratoryAnalysis-Specimen/3.0"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:gml="http://www.opengis.net/gml/3.2" 
+    xmlns:xlink="http://www.w3.org/1999/xlink" 
+    xmlns:sa="http://www.opengis.net/sampling/2.0"
+    xmlns:sp="http://www.opengis.net/samplingSpecimen/2.0"
+    xmlns:om="http://www.opengis.net/om/2.0"
+    xmlns:gmd="http://www.isotc211.org/2005/gmd"
+    xmlns:gco="http://www.isotc211.org/2005/gco"
+    xmlns:swe="http://www.opengis.net/swe/2.0"
+    xsi:schemaLocation="http://xmlns.geosciml.org/LaboratoryAnalysis-Specimen/3.0 http://schemas.geosciml.org/laboratoryanalysis-specimen/3.0/laboratoryAnalysis-Specimen.xsd
+    http://www.opengis.net/swe/2.0 http://schemas.opengis.net/sweCommon/2.0/swe.xsd" 
+    gml:id="GA_ReferenceSpecimen_AGV2_ResultBatch_25307.1_10">
+    <gml:identifier codeSpace="http://www.ga.gov.au/ReferenceSpecimenAnalyses">GA_ReferenceSpecimen_AGV2_ResultBatch_25307.1_10</gml:identifier>
+    <sa:type xlink:href="http://www.opengis.net/def/samplingFeatureType/OGC-OM/2.0/SF_Specimen"/>
+    <sa:sampledFeature xlink:href="http://www.ga.gov.au/ReferenceSpecimens/AGV2" xlink:title="USGS Andesite standard AGV-2"/>
+    <sa:relatedObservation>
+        <om:OM_Observation gml:id="GA_ReferenceSpecimen_AGV2_ResultBatch_25307.1_10_SiO2">
+            <gml:identifier codeSpace="http://www.ietf.org/rfc/rfc2616">http://www.ga.gov.au/GeochemicalAnalyses_25307.1.10.SiO2</gml:identifier>
+            <gml:name>SiO2 analysis</gml:name>
+            <om:phenomenonTime>
+                <gml:TimeInstant gml:id="GA_ReferenceSpecimen_AGV2_ResultBatch_25307.1_10_SiO2_AnalysisTime">
+                    <gml:timePosition>2010-12-15T16:21:00</gml:timePosition>
+                </gml:TimeInstant>
+            </om:phenomenonTime>
+            <om:resultTime>
+                <gml:TimeInstant gml:id="GA_ReferenceSpecimen_1_ResultBatch_25307.1_10_SiO2_Time">
+                    <gml:timePosition>2010-12-15T16:21:00</gml:timePosition>
+                </gml:TimeInstant>
+            </om:resultTime>
+            <om:procedure>
+                <glab:AnalyticalProcess gml:id="GA_AnalyticalProcess_ResultBatch_25307.1_10">
+                    <glab:method>
+                        <glab:AnalyticalMethod gml:id="GA_AnalyticalMethod_XRF_1222MAJOR">
+                            <glab:methodName xlink:href="http://www.ga.gov.au/AnalyticalMethods/XRF_1222MAJOR" xlink:title="X-ray flourescence (XRF) - 12:22 Majors"/>  <!-\- GA "Technique Name" -\->
+                            <glab:citation xlink:href="http://www.ga.gov.au/SOP/XRF_1222MAJOR.pdf"/>   <!-\- GA standard operating procedure document -\->
+                        </glab:AnalyticalMethod>
+                    </glab:method>
+                    <glab:acquisition>
+                        <glab:AnalyticalSession gml:id="GA_AnalyticalSession_ResultBatch_25307.1_10">
+                            <gml:identifier codeSpace="http://www.ga.gov.au/GeochemicalAnalysisBatchID">GA_AnalyticalSession_ResultBatch_25307.1_10</gml:identifier>   <!-\- Globally unique ID -\->
+                            <glab:time>
+                                <gml:TimePeriod gml:id="GA_Batch_26367.1_time">
+                                    <gml:begin>
+                                        <gml:TimeInstant gml:id="GA_Batch_26367.1_time_begin">
+                                            <gml:timePosition>2010-12-15T16:21:00</gml:timePosition>
+                                        </gml:TimeInstant>
+                                    </gml:begin>
+                                    <gml:end>
+                                        <gml:TimeInstant gml:id="GA_Batch_26367.1_time_end">
+                                            <gml:timePosition>2010-12-15T18:02:00</gml:timePosition>
+                                        </gml:TimeInstant>
+                                    </gml:end>
+                                </gml:TimePeriod>
+                            </glab:time>
+                            <glab:operator>
+                                <gmd:CI_ResponsibleParty>
+                                    <gmd:individualName>
+                                        <gco:CharacterString>Pappas, Bill</gco:CharacterString>
+                                    </gmd:individualName>
+                                    <gmd:organisationName>
+                                        <gco:CharacterString>Geoscience Australia</gco:CharacterString>
+                                    </gmd:organisationName>
+                                    <gmd:role>
+                                        <gmd:CI_RoleCode codeList="http://www.isotc211.org/2005/resources/Codelist/gmxCodelists.xml#CI_RoleCode" codeListValue="principalInvestigator"/>
+                                    </gmd:role>
+                                </gmd:CI_ResponsibleParty>
+                            </glab:operator>
+                            <glab:parameter xsi:nil="true" nilReason="inapplicable"/>   <!-\-     Should be 0..* ?     -\->
+                         <!-\-   <glab:parameter>  
+                                <om:NamedValue>
+                                    <om:name/>
+                                    <om:value></om:value>
+                                </om:NamedValue>
+                            </glab:parameter>   -\->
+                            <glab:instrument>
+                                <glab:AnalyticalInstrument gml:id="GA_XRF_Phillips_PW1450-10">
+                                    <glab:type xlink:href="http://www.ga.gov.au/classifier/InstrumentType/XRF" xlink:title="XRF"/>
+                                    <glab:model>Philips PW1450/10</glab:model>
+                                    <glab:serialNumber xsi:nil="true" nilReason="missing"/>
+                                    <glab:commissionDate xsi:nil="true" nilReason="missing"/>
+                                    <glab:location>
+                                        <gmd:CI_ResponsibleParty>
+                                            <gmd:organisationName>
+                                                <gco:CharacterString>GA Geochemical Laboratories</gco:CharacterString>    <!-\- GA Laboratory Name -\->
+                                            </gmd:organisationName>
+                                            <gmd:role>
+                                                <gmd:CI_RoleCode codeList="http://www.isotc211.org/2005/resources/Codelist/gmxCodelists.xml#CI_RoleCode" codeListValue="custodian"/>                                
+                                            </gmd:role>
+                                        </gmd:CI_ResponsibleParty>
+                                    </glab:location>
+                                </glab:AnalyticalInstrument>
+                            </glab:instrument>
+                            <glab:referenceAnalyses xsi:nil="true" nilReason="inapplicable"/>  <!-\- This needs to be 0..* ? -\->
+                        </glab:AnalyticalSession>
+                    </glab:acquisition>
+                    <glab:computation xsi:nil="true" gco:nilReason="inapplicable"/>
+                </glab:AnalyticalProcess>
+            </om:procedure>
+<!-\-            <om:observedProperty xlink:href="http://www.ga.gov.au/classifier/GeochemicalPropertyName/SiO2"/>  -\->
+            <om:observedProperty xlink:href="http://resource.geosciml.org/GeoSciML/3.0/doc/cgi/ChemicalComposition/chemicalAnalysis"/>
+            <!-\- Should observedProperty be a generic "chemical composition" property, or should it be the individual analyte (eg, SiO2, or Cu) ? -\->
+            <om:featureOfInterest xlink:href="#GA_ReferenceSpecimen_1_ResultBatch_25307.1_10"/>
+<!-\- ================================================= -\->            
+            <om:resultQuality>
+                <gmd:DQ_QuantitativeAttributeAccuracy>
+                    <gmd:nameOfMeasure>
+                        <gco:CharacterString>analytical uncertainty</gco:CharacterString>
+                    </gmd:nameOfMeasure>
+                    <gmd:result>
+                        <gmd:DQ_QuantitativeResult>
+                            <gmd:valueUnit xlink:href="http://www.opengis.net/def/uom/UCUM/0/%25" xlink:title="%"/>
+                            <gmd:value>
+                                <gco:Record>
+                                    <gco:Real>0.01</gco:Real>
+                                </gco:Record>
+                            </gmd:value>
+                        </gmd:DQ_QuantitativeResult>
+                    </gmd:result>
+                </gmd:DQ_QuantitativeAttributeAccuracy>
+            </om:resultQuality>
+            <om:resultQuality>
+                <gmd:DQ_QuantitativeAttributeAccuracy>
+                    <gmd:nameOfMeasure>
+                        <gco:CharacterString>detection limit</gco:CharacterString>
+                    </gmd:nameOfMeasure>
+                    <gmd:result>
+                        <gmd:DQ_QuantitativeResult>
+                            <gmd:valueUnit xlink:href="http://www.opengis.net/def/uom/UCUM/0/%25" xlink:title="%"/>
+                            <gmd:value>
+                                <gco:Record>
+                                    <gco:Real>0.1</gco:Real>
+                                </gco:Record>
+                            </gmd:value>
+                        </gmd:DQ_QuantitativeResult>
+                    </gmd:result>
+                </gmd:DQ_QuantitativeAttributeAccuracy>
+            </om:resultQuality>
+<!-\- ================================================= -\->
+            <om:result>            
+                <swe:Quantity definition="http://resource.geosciml.org/classifier/geochemicalanalytecontent/SiO2"> 
+                    <swe:label>SiO2 wt%</swe:label>
+                    <swe:quality>
+                        <swe:Category>
+                            <swe:codeSpace xlink:href="http://resource.geosciml.org/classifierScheme/sweQuantityQualifiers"/>
+                            <swe:value>valid</swe:value>
+                        </swe:Category>
+                    </swe:quality>
+                    <swe:uom code="%" xlink:href="http://www.opengis.net/def/uom/UCUM/0/%25"/>
+                    <swe:value>65.357</swe:value>
+                </swe:Quantity>
+            </om:result>
+        </om:OM_Observation>
+    </sa:relatedObservation>
+    <sa:relatedObservation>
+        <om:OM_Observation gml:id="GA_ReferenceSpecimen_1_Batch_25307.1_10_Cu">
+            <gml:identifier codeSpace="http://www.ietf.org/rfc/rfc2616">http://www.ga.gov.au/GeochemicalAnalyses_25307.1.10.Cu</gml:identifier>
+            <gml:name>Cu analysis</gml:name>
+            <om:phenomenonTime xlink:href="#GA_ReferenceSpecimen_1_ResultBatch_25307.1_10_Cu_Time"/>
+            <om:resultTime>
+                <gml:TimeInstant gml:id="GA_ReferenceSpecimen_1_ResultBatch_25307.1_10_Cu_Time">
+                    <gml:timePosition>2010-12-15T16:21:00</gml:timePosition>
+                </gml:TimeInstant>
+            </om:resultTime>
+            <om:procedure xlink:href="#GA_AnalyticalProcess_ResultBatch_25307.1_10"/>
+            <om:observedProperty xlink:href="http://resource.geosciml.org/GeoSciML/3.0/doc/cgi/ChemicalComposition/chemicalAnalysis"/>
+            <om:featureOfInterest xlink:href="#GA_ReferenceSpecimen_1_ResultBatch_25307.1_10"/>
+            <om:result>
+                <swe:Quantity definition="http://resource.geosciml.org/classifier/geochemicalanalytecontent/Cu">
+                    <swe:quality>
+                        <swe:Category>
+                            <swe:codeSpace xlink:href="http://resource.geosciml.org/classifierScheme/sweQuantityQualifiers"/>
+                            <swe:value>below detection</swe:value>
+                        </swe:Category>
+                    </swe:quality>
+                    <swe:uom code="ppm" xlink:href="http://www.opengis.net/def/uom/UCUM/0/ppm"/>
+                    <swe:value>0.5</swe:value>     <!-\- This denotes "less than the detection limit of 0.5 ppm -\->
+                </swe:Quantity>
+            </om:result>
+        </om:OM_Observation>        
+    </sa:relatedObservation>
+    <sp:materialClass xlink:href="http://resource.geosciml.org/classifier/cgi/materialclass/0099" xlink:title="rock"/>
+    <sp:samplingTime xsi:nil="true" nilReason="unknown"/>
+    <sp:samplingMethod nilReason="unknown"/>
+    <sp:specimenType xlink:href="http://resource.geosciml.org/classifier/cgi/specimentype/0099" xlink:title="powder"/>
+    <glab:referenceDescription xlink:href="http://www.ga.gov.au/GeochemicalReferenceStandards/TB4_GeoscienceAustraliaGeochemicalReferenceStandard_AGV2.xml"/>  
+    <!-\- Link to the known standard analytical.  In this case, it is a xlink:href to a swe:DataRecord xml document, but could be to a CI_Citation of a published document. -\->
+    <glab:usedIn xlink:href="#GA_AnalyticalSession_ResultBatch_25307.1_10"/>
+</glab:ReferenceSpecimen>
+-->
