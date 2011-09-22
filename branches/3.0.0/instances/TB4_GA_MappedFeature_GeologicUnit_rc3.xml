@@ -18,12 +18,12 @@
 	xmlns:xlink="http://www.w3.org/1999/xlink" 
 	timeStamp="2011-01-01T12:00:00" numberMatched="1" numberReturned="1">
 	
-<!-- ================================================================================================================ 	-->
+<!-- =============================================================================================================== 	-->
 <!--																					-->
-<!--  	Example GeosciML v3 rc3 instance document for Mapped Feature-Geological Units for Testbed4 WFS.    							-->
-<!--  	Ollie Raymond, Geoscience Australia - September 2011													-->
+<!--  	Example GeosciML v3 rc3 instance document for Mapped Feature-Geological Units for Testbed4 WFS.  						-->
+<!--  	Ollie Raymond, Geoscience Australia - September 2011												-->
 <!--																					-->
-<!--	TO DO: Map GA terms to CGI vocabularies; add more non-nil content to better illustrate the model								-->
+<!--	Note: Identifers denoted "xxx.geoscience.gov.au" are indicative only and may not resolve.								-->
 <!--																					-->
 <!-- =============================================================================================================== 	-->
 	
@@ -56,7 +56,7 @@
 			</gsml:observationMethod>
 			<gsml:positionalAccuracy>
 				<swe:Quantity>   
-					<swe:uom code="m" xlink:href="http://www.opengis.net/def/uom/UCUM/0/m" xlink:title="meter"/>	
+					<swe:uom code="m" xlink:href="http://www.opengis.net/def/uom/OGC/1.0/metre" xlink:title="metre"/>	
 					<swe:value>500</swe:value>	
 				</swe:Quantity>		
 			</gsml:positionalAccuracy>
@@ -67,7 +67,7 @@
 					</gmd:denominator>
 				</gmd:MD_RepresentativeFraction>
 			</gsml:resolutionScale>	
-			<gsml:samplingFrame xlink:href="http://sweet.jpl.nasa.gov/ontology/earthrealm.owl#LandSurface"/>		
+			<gsml:samplingFrame xlink:href="http://sweet.jpl.nasa.gov/1.1/earthrealm.owl#LandSurfaceLayer"/>		
 			<gsml:shape> 	
 				<gml:Polygon gml:id="GA.MappedFeature.Shape.GeologicUnitPolygons1M.104661">		
 					<gml:exterior>
@@ -80,7 +80,8 @@
 			<gsml:specification>
 				<gsmlgu:GeologicUnit gml:id="GA.GeologicUnit.Stratno.GeologicUnitPolygons1M.25467">		
 					<gml:description>Mafic, unfractionated, reduced, I-type biotite monzogranite</gml:description>		
-					<gml:identifier codeSpace="http://data.geoscience.gov.au/stratigraphiclexicon">http://data.geoscience.gov.au/ga/stratigraphiclexicon/25467</gml:identifier>	<!-- This identifier may eventually resolve to http://dbforms.ga.gov.au/pls/www/geodx.strat_units.sch_full?wher=stratno=25467 -->
+					<gml:identifier codeSpace="http://data.geoscience.gov.au/stratigraphiclexicon">http://data.geoscience.gov.au/ga/stratigraphiclexicon/25467</gml:identifier>	
+					<!-- This identifier may eventually resolve to http://dbforms.ga.gov.au/pls/www/geodx.strat_units.sch_full?wher=stratno=25467 -->
 					<gml:name>Sea Elephant Granite</gml:name>		
 					<gsml:observationMethod>
 						<swe:Category>
@@ -89,13 +90,13 @@
 							<swe:codeSpace xlink:href="http://resource.geosciml.org/classifierscheme/cgi/201012/featureobservationmethod"/>
 						</swe:Category>
 					</gsml:observationMethod>
-					<gsml:purpose>typicalNorm</gsml:purpose>	
+					<gsml:purpose>definingNorm</gsml:purpose>	<!-- In this example, the description of the GeologicUnit in this dataset is also the normative description of the unit in the Australian national stratigraphic lexicon. -->
 				<!--	<gsml:occurrence></gsml:occurrence>	-->
 					<gsml:relatedFeature>
 						<gsmlga:GeologicHistory gml:id="GA.GeologicUnit.GeologicHistory.GeologicUnitPolygons1M.25467">
-							<gsml:relationship xlink:href="" xlink:title=""/>
-							<gsml:sourceRole xlink:href="" xlink:title=""/>
-							<gsml:targetRole xlink:href="" xlink:title=""/>
+							<gsml:relationship xlink:href="http://resource.geoscience.gov.au/classifier/ga/geologicrelationship/0099" xlink:title="Age of feature"/>
+							<gsml:sourceRole xlink:href="http://resource.geoscience.gov.au/classifier/ga/geologicalrelationrole/0099" xlink:title="Dated feature"/>
+							<gsml:targetRole xlink:href="http://resource.geoscience.gov.au/classifier/ga/geologicalrelationrole/0098" xlink:title="Geologic event"/>
 							<gsml:relatedFeature>
 								<gsmlga:GeologicEvent gml:id="GA.GeologicUnit.GeologicEvent.GeologicUnitPolygons1M.25467">
 									<gsml:observationMethod/>
@@ -103,24 +104,24 @@
 									<gsml:relatedFeature xsi:nil="true" nilReason="inapplicable"/>
 									<gsml:classifier xsi:nil="true" nilReason="inapplicable"/>
 									<gsml:metadata xsi:nil="true" gco:nilReason="inapplicable"/>
-									<gsmlga:eventProcess xsi:nil="true" nilReason="missing"/>
+									<gsmlga:eventProcess xlink:href="http://resource.geosciml.org/classifier/cgi/eventprocess/0041" xlink:title="intrusion"/>
 									<gsmlga:numericAgeDate>
 										<gsmlga:NumericAgeRange>
 											<gsmlga:reportingDate>
 												<gsmlga:GeologicDateEstimate>
 													<gsmlga:position>
 														<gml:TimeInstant gml:id="GA.GeologicUnit.ReportingNumAge.GeologicUnitPolygons1M.25467">	
-															<gml:timePosition frame="http://resource.geosciml.org/trs/cgi/GeologicNumericTimeCoordinateSystemMa">349</gml:timePosition>		
+															<gml:timePosition frame="http://resource.geosciml.org/classifier/cgi/temporalreferencesystem/geologictimecoordinatesystemMa">349</gml:timePosition>		
 														</gml:TimeInstant>
 													</gsmlga:position>
-													<gsmlga:quality xsi:nil="true" gco:nilReason="unknown"/>
+													<gsmlga:quality xsi:nil="true" gco:nilReason="missing"/>
 												</gsmlga:GeologicDateEstimate>
 											</gsmlga:reportingDate>
 											<gsmlga:olderBoundDate>
 												<gsmlga:GeologicDateEstimate>
 													<gsmlga:position>
 														<gml:TimeInstant gml:id="GA.GeologicUnit.OlderNumAge.GeologicUnitPolygons1M.25467">	
-															<gml:timePosition frame="http://resource.geosciml.org/trs/cgi/GeologicNumericTimeCoordinateSystemMa">343.95</gml:timePosition>		
+															<gml:timePosition frame="http://resource.geosciml.org/classifier/cgi/temporalreferencesystem/geologictimecoordinatesystemMa">343.95</gml:timePosition>		
 														</gml:TimeInstant>
 													</gsmlga:position>
 													<gsmlga:quality xsi:nil="true" gco:nilReason="unknown"/>
@@ -130,7 +131,7 @@
 												<gsmlga:GeologicDateEstimate>
 													<gsmlga:position>
 														<gml:TimeInstant gml:id="GA.GeologicUnit.YoungerNumAge.GeologicUnitPolygons1M.25467">	
-															<gml:timePosition frame="http://resource.geosciml.org/trs/cgi/GeologicNumericTimeCoordinateSystemMa">354.3</gml:timePosition>		
+															<gml:timePosition frame="http://resource.geosciml.org/classifier/cgi/temporalreferencesystem/geologictimecoordinatesystemMa">354.3</gml:timePosition>		
 														</gml:TimeInstant>
 													</gsmlga:position>
 													<gsmlga:quality xsi:nil="true" gco:nilReason="unknown"/>
@@ -138,29 +139,68 @@
 											</gsmlga:youngerBoundDate>
 										</gsmlga:NumericAgeRange>
 									</gsmlga:numericAgeDate>
-									<gsmlga:olderNamedAge xlink:href="http://www.geoscience.gov.au/classifier/ga/timescale/Tournaisian" xlink:title="Tournaisian"/> 	 <!--    TO DO: Named ages not yet mapped to ICS vocabulary terms -->
-									<gsmlga:youngerNamedAge xlink:href="http://www.geoscience.gov.au/classifier/ga/timescale/Visean" xlink:title="Visean"/>  <!--    TO DO: Named ages not yet mapped to ICS vocabulary terms -->
-									<gsmlga:eventEnvironment xsi:nil="true" nilReason="missing"/>
+									<gsmlga:olderNamedAge xlink:href="http://resource.geosciml.org/classifier/ics/ischart/Tournaisian" xlink:title="Tournaisian"/> 	 
+									<gsmlga:youngerNamedAge xlink:href="http://resource.geosciml.org/classifier/ics/ischart/Visean" xlink:title="Visean"/>  
+									<gsmlga:eventEnvironment xlink:href="http://resource.geosciml.org/classifier/cgi/eventenvironment/0083" xlink:title="Lower continental-crustal setting"/>
 									<gsmlga:prototype xsi:nil="true" nilReason="inapplicable"/>
 								</gsmlga:GeologicEvent>
 							</gsml:relatedFeature>
 						</gsmlga:GeologicHistory>
 					</gsml:relatedFeature>
-					<gsml:classifier xsi:nil="true" nilReason="missing"/>
+					<gsml:classifier xlink:href="http://data.geoscience.gov.au/ga/stratigraphiclexicon/25467"/>
 					<gsml:metadata xsi:nil="true" gco:nilReason="missing"/>
 					<gsmlgu:geologicUnitType xlink:href="http://resource.geosciml.org/classifier/cgi/geologicunittype/0011/" xlink:title="Lithodemic Unit"/>
-					<gsmlgu:bodyMorphology xsi:nil="true" nilReason="missing"/>  
+					<gsmlgu:bodyMorphology xlink:href="http://resource.geosciml.org/classifier/cgi/geologicunitmorphology/0061/" xlink:title="rock body geometry not specified"/>  
 					<gsmlgu:unitComposition>
 						<swe:Category>
-							<swe:identifier>http://www.ga.gov.au/classifier/ga/lithologygroup/0099</swe:identifier>   <!-- TO DO:  GA composition terms have not yet been mapped to CGI vocabulary. -->
+							<swe:identifier>http://resource.geoscience.gov.au/classifier/ga/lithologygroup/0099</swe:identifier>   <!-- GA composition terms have not yet been mapped to CGI vocabularies. -->
 							<swe:label>igneous felsic intrusive</swe:label>
-							<swe:codeSpace xlink:href="http://resource.geoscience.gov.au/classifierScheme/ga/2012/lithologygroup"/>    
+							<swe:codeSpace xlink:href="http://resource.geoscience.gov.au/classifierScheme/ga/2012/lithologygroup"/>
 						</swe:Category>
 					</gsmlgu:unitComposition>
-					<gsmlgu:exposureColor xsi:nil="true" nilReason="missing"/>	
-					<gsmlgu:outcropCharacter xsi:nil="true" nilReason="missing"/>	
+					<gsmlgu:unitComposition>
+						<swe:Category>
+							<swe:identifier>http://resource.geoscience.gov.au/classifier/ga/igneousunitcomposition/0099</swe:identifier>
+							<swe:label>I-type</swe:label>
+							<swe:codeSpace xlink:href="http://resource.geoscience.gov.au/classifierScheme/ga/2012/igneousunitcomposition"/>
+						</swe:Category>
+					</gsmlgu:unitComposition>
+					<gsmlgu:exposureColor>
+						<swe:Category>
+							<swe:extension>
+								<swe:Category>
+									<swe:identifier>http://resource.geosciml.org/classifier/cgi/valuequalifier/0004</swe:identifier>
+									<swe:label>common</swe:label>
+									<swe:codeSpace xlink:href="http://resource.geosciml.org/classifierscheme/cgi/201012/valuequalifier"/>
+								</swe:Category>
+							</swe:extension>
+							<swe:identifier>http://resource.geoscience.gov.au/classifier/ga/colour/0099</swe:identifier>   
+							<swe:label>grey</swe:label>
+							<swe:codeSpace xlink:href="http://resource.geoscience.gov.au/classifierScheme/ga/2012/colour"/>
+						</swe:Category>
+					</gsmlgu:exposureColor>
+					<gsmlgu:exposureColor>
+						<swe:Category>
+							<swe:extension>
+								<swe:Category>
+									<swe:identifier>http://resource.geosciml.org/classifier/cgi/valuequalifier/0019</swe:identifier>
+									<swe:label>sometimes</swe:label>
+									<swe:codeSpace xlink:href="http://resource.geosciml.org/classifierscheme/cgi/201012/valuequalifier"/>
+								</swe:Category>
+							</swe:extension>
+							<swe:identifier>http://resource.geoscience.gov.au/classifier/ga/colour/0001</swe:identifier>   
+							<swe:label>white</swe:label>
+							<swe:codeSpace xlink:href="http://resource.geoscience.gov.au/classifierScheme/ga/2012/colour"/>
+						</swe:Category>
+					</gsmlgu:exposureColor>
+					<gsmlgu:outcropCharacter xlink:href="http://resource.geoscience.gov.au/classifier/ga/outcropcharacter/0099" xlink:title="Tors"/>	
 					<gsmlgu:rank xlink:href="http://resource.geosciml.org/classifier/cgi/stratigraphicrank/0003" xlink:title="Formation"/>
-					<gsmlgu:unitThickness xsi:nil="true" nilReason="unknown"/>
+					<gsmlgu:unitThickness>
+						<swe:QuantityRange>
+							<swe:uom code="m" xlink:href="http://www.opengis.net/def/uom/OGC/1.0/metre" xlink:title="metre"/>	
+							<swe:value>500 2000</swe:value>	
+						</swe:QuantityRange>
+					</gsmlgu:unitThickness>
 					<gsmlgu:composition>
 						<gsmlgu:CompositionPart>										
 							<gsmlgu:role xlink:href="http://resource.geosciml.org/classifier/cgi/geologicunitpartrole/0014" xlink:title="Only part"/>
@@ -176,7 +216,7 @@
 									<gsmlem:constituent xsi:nil="true" nilReason="inapplicable"/>      
 									<gsmlem:particleGeometry xsi:nil="true" nilReason="missing"/>		
 									<gsmlem:consolidationDegree xsi:nil="true" nilReason="missing"/>		
-									<gsmlem:lithology xlink:href="http://resource.geoscience.gov.au/classifier/ga/lithologytype/99999" xlink:title="monzogranite"/>		<!--  TO DO:  Lithology terms have not yet been mapped to CGI vocabulary -->
+									<gsmlem:lithology xlink:href="http://resource.geosciml.org/classifier/cgi/lithology/0167" xlink:title="monzogranite"/>
 									<gsmlem:metamorphicProperties xsi:nil="true" nilReason="missing"/>		
 									<gsmlem:alterationProperties xsi:nil="true" nilReason="missing"/>		
 									<gsmlem:fabric xsi:nil="true" nilReason="missing"/>		
@@ -190,12 +230,77 @@
 							</gsmlgu:proportion>
 						</gsmlgu:CompositionPart>
 					</gsmlgu:composition>
-					<gsmlgu:metamorphicCharacter xsi:nil="true" nilReason="missing"/>		
-					<gsmlgu:part xsi:nil="true" nilReason="missing"/>		
-					<gsmlgu:physicalProperty xsi:nil="true" nilReason="missing"/>			
-					<gsmlgu:alterationCharacter xsi:nil="true" nilReason="missing"/>		
+					<gsmlgu:metamorphicCharacter>
+						<gsmlem:MetamorphicDescription>
+							<gsmlem:metamorphicFacies>
+								<swe:Category>
+									<swe:identifier>http://resource.geosciml.org/classifier/cgi/metamorphicfacies/0013</swe:identifier>
+									<swe:label>Zeolite metamorphic facies</swe:label>
+									<swe:codeSpace xlink:href="http://resource.geoscience.gov.au/classifierScheme/ga/2012/metamorphicfacies"/>
+								</swe:Category>
+							</gsmlem:metamorphicFacies>
+							<gsmlem:metamorphicGrade>
+								<swe:Category>
+									<swe:identifier>http://resource.geosciml.org/classifier/cgi/metamorphicgrade/0009</swe:identifier>
+									<swe:label>Very low metamorphic grade</swe:label>
+									<swe:codeSpace xlink:href="http://resource.geoscience.gov.au/classifierScheme/ga/2012/metamorphicgrade"/>
+								</swe:Category>
+							</gsmlem:metamorphicGrade>
+							<gsmlem:peakPressureValue xsi:nil="true" nilReason="unknown"/>
+							<gsmlem:peakTemperatureValue xsi:nil="true" nilReason="unknown"/>
+							<gsmlem:protolithLithology xsi:nil="true" nilReason="inapplicable"/>
+							<gsmlem:metamorphicEvent xsi:nil="true" nilReason="unknown"/>
+						</gsmlem:MetamorphicDescription>
+					</gsmlgu:metamorphicCharacter>		
+					<gsmlgu:part xsi:nil="true" nilReason="inapplicable"/>		
+					<gsmlgu:physicalProperty>
+						<PhysicalDescription xmlns="http://xmlns.geosciml.org/PhysicalProperties/3.0">
+							<propertyName xlink:href="http://resource.geoscience.gov.au/classifier/ga/physicalproperty/0099" xlink:title="Magnetic susceptibility"/>
+							<propertyMeasure>
+								<swe:Quantity>
+									<swe:uom code="SI" xlink:href="http://www.opengis.net/def/uom/UCUM/0/SI" xlink:title="SI units"/>  
+							<!-- Need a better reference for these dimensionless SI units.  http://en.wikipedia.org/wiki/Magnetic_susceptibility ? -->
+									<swe:value>1250e5</swe:value>
+								</swe:Quantity>
+							</propertyMeasure>
+						</PhysicalDescription>
+					</gsmlgu:physicalProperty>			
+					<gsmlgu:alterationCharacter>
+						<gsmlem:AlterationDescription>
+							<gsmlem:alterationType xlink:href="http://resource.geosciml.org/classifier/cgi/alterationtype/0022" xlink:title="silicifiaction"/>
+							<gsmlem:alterationDegree>
+								<swe:Category>
+									<swe:identifier>http://resource.geoscience.gov.au/classifier/ga/alterationdegree/0099</swe:identifier>
+									<swe:label>very weak</swe:label>
+									<swe:codeSpace xlink:href="http://resource.geoscience.gov.au/classifierScheme/ga/2012/alterationdegree"/>
+								</swe:Category>
+							</gsmlem:alterationDegree>
+							<gsmlem:alterationProduct xsi:nil="true" nilReason="missing"/>
+							<gsmlem:alterationDistribution>
+								<swe:Category>
+									<swe:identifier>http://resource.geoscience.gov.au/classifier/ga/alterationdistribution/0099</swe:identifier>
+									<swe:label>patchy</swe:label>
+									<swe:codeSpace xlink:href="http://resource.geoscience.gov.au/classifierScheme/ga/2012/alterationdistribution"/>
+								</swe:Category>
+							</gsmlem:alterationDistribution>
+							<gsmlem:alterationEvent xsi:nil="true" nilReason="unknown"/>
+						</gsmlem:AlterationDescription>
+					</gsmlgu:alterationCharacter>		
 					<gsmlgu:bedding xsi:nil="true" nilReason="inapplicable"/>		
-					<gsmlgu:geochemistry xsi:nil="true" nilReason="missing"/>
+					<gsmlgu:geochemistry>
+						<gsmlem:ChemicalComposition>
+							<gsmlem:chemicalAnalysis>
+								<swe:DataRecord>
+									<swe:field name="AverageSiO2content">
+										<swe:Quantity>
+											<swe:uom code="%" xlink:href="http://www.opengis.net/def/uom/UCUM/0/%25" xlink:title="percent"/>
+											<swe:value>65.8</swe:value>
+										</swe:Quantity>
+									</swe:field>
+								</swe:DataRecord>
+							</gsmlem:chemicalAnalysis>
+						</gsmlem:ChemicalComposition>
+					</gsmlgu:geochemistry>
 				</gsmlgu:GeologicUnit>	
 			</gsml:specification>
 			<gsml:metadata>
