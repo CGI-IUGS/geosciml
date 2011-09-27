@@ -4,24 +4,46 @@
     xmlns:gml="http://www.opengis.net/gml/3.2"
     xmlns:gco="http://www.isotc211.org/2005/gco"
     xmlns:gsml="http://xmlns.geosciml.org/GeoSciML-Core/3.0"
+    xmlns:gsmlga="http://xmlns.geosciml.org/GeologicAge/3.0"
     xmlns:gsmlgu="http://xmlns.geosciml.org/GeologicUnit/3.0"
     xmlns:gsmlem="http://xmlns.geosciml.org/EarthMaterial/3.0"
     xmlns:swe="http://www.opengis.net/swe/2.0"
     xmlns:xlink="http://www.w3.org/1999/xlink"
     xsi:schemaLocation="http://xmlns.geosciml.org/GeologicUnit/3.0 http://schemas.geosciml.org/geologicunit/3.0/geologicUnit.xsd"
-    gml:id="GA.stratigraphiclexicon.geologicunit.8184">
+    gml:id="GA.StratigraphicLexicon.GeologicUnit.8184">
     
     <!-- ================================================================     -->
-    <!--   An example of a swe:DataRecord delivering an average whole rock composition                  -->
-    <!--     of a geologic unit from a stratigraphic lexicon of geologic units                                              -->
-    <!--    Ollie Raymond, Geoscience Australia, September 2011                                                         -->
+    <!--   An example of a swe:DataRecord delivering an average whole rock composition      -->
+    <!--     of a geologic unit from a stratigraphic lexicon of geologic units                                -->
+    <!--    Ollie Raymond, Geoscience Australia, September 2011                                           -->
     <!-- ================================================================     -->  
     
     <gml:identifier codeSpace="">http://resource.geoscience.gov.au/classifier/asc/stratigraphiclexicon/8184</gml:identifier>
     <gml:name>Hawkins Volcanics</gml:name>
     <gsml:observationMethod xsi:nil="true" nilReason="missing"/>
     <gsml:purpose>definingNorm</gsml:purpose>
-    <gsml:relatedFeature xsi:nil="true" nilReason="inapplicable"/>
+    <gsml:relatedFeature>
+        <gsmlga:GeologicHistory gml:id="GA.StratigraphicLexicon.GeologicUnit.GeologicHistory.8184">
+               <gsml:relationship xlink:href="http://resource.geoscience.gov.au/classifier/ga/geologicrelationship/0099" xlink:title="Age of feature"/>
+               <gsml:sourceRole xlink:href="http://resource.geoscience.gov.au/classifier/ga/geologicalrelationrole/0099" xlink:title="Dated feature"/>
+               <gsml:targetRole xlink:href="http://resource.geoscience.gov.au/classifier/ga/geologicalrelationrole/0098" xlink:title="Geologic event"/>
+               <gsml:relatedFeature>
+                   <gsmlga:GeologicEvent gml:id="GA.StratigraphicLexicon.GeologicUnit.GeologicHistory.GeologicEvent.8184">
+                       <gsml:observationMethod xsi:nil="true" nilReason="unknown"/>
+                       <gsml:purpose>instance</gsml:purpose>
+                       <gsml:relatedFeature xsi:nil="true" nilReason="inapplicable"/>
+                       <gsml:classifier xsi:nil="true" nilReason="inapplicable"/>
+                       <gsml:metadata xsi:nil="true" gco:nilReason="inapplicable"/>
+                       <gsmlga:eventProcess xlink:href="http://resource.geosciml.org/classifier/cgi/eventprocess/0025" xlink:title="eruption"/>
+                       <gsmlga:numericAgeDate xsi:nil="true" nilReason="missing"/>
+                       <gsmlga:olderNamedAge xlink:href="http://resource.geosciml.org/classifier/ics/ischart/Silurian" xlink:title="Silurian"/> 	 
+                       <gsmlga:youngerNamedAge xlink:href="http://resource.geosciml.org/classifier/ics/ischart/Silurian" xlink:title="Silurian"/>
+                       <gsmlga:eventEnvironment xsi:nil="true" nilReason="missing"/>
+                       <gsmlga:prototype xsi:nil="true" nilReason="inapplicable"/>
+                   </gsmlga:GeologicEvent>
+               </gsml:relatedFeature>
+       </gsmlga:GeologicHistory>
+    </gsml:relatedFeature>
     <gsml:classifier xlink:href="http://resource.geoscience.gov.au/classifier/asc/stratigraphiclexicon/8184"/>
     <gsml:metadata xsi:nil="true" gco:nilReason="missing"/>
     <gsmlgu:geologicUnitType xlink:href="http://resource.geosciml.org/classifier/cgi/geologicunittype/0012/" xlink:title="Lithostratigraphic Unit"/>
