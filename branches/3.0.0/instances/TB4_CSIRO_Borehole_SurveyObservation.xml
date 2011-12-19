@@ -145,12 +145,28 @@
 			</gsmlbh:referenceLocation>
 			<gsmlbh:indexData>
 				<gsmlbh:BoreholeDetails>
-					<gsmlbh:operator xlink:href="http://www.example.org/au/operator"
-						xlink:title="Borehole Commissioner Ltd"/>
-					<gsmlbh:driller xlink:href="http://www.example.org/au/driller"
-						xlink:title="Borehole Driller Ltd"/>
+					<gsmlbh:operator>
+						<gmd:CI_ResponsibleParty>
+							<gmd:organisationName>
+								<gco:CharacterString>Borehole Commissioner Ltd</gco:CharacterString>
+							</gmd:organisationName>
+							<gmd:role>
+								<gmd:CI_RoleCode codeList="http://www.isotc211.org/2005/resources/Codelist/gmxCodelists.xml#CI_RoleCode" codeListValue="pointOfContact"/>
+							</gmd:role>
+						</gmd:CI_ResponsibleParty>
+					</gsmlbh:operator>
+					<gsmlbh:driller>
+						<gmd:CI_ResponsibleParty>
+							<gmd:organisationName>
+								<gco:CharacterString>Borehole Driller Ltd</gco:CharacterString>
+							</gmd:organisationName>
+							<gmd:role>
+								<gmd:CI_RoleCode codeList="http://www.isotc211.org/2005/resources/Codelist/gmxCodelists.xml#CI_RoleCode" codeListValue="pointOfContact"/>
+							</gmd:role>
+						</gmd:CI_ResponsibleParty>
+					</gsmlbh:driller>
 					<gsmlbh:dateOfDrilling>
-						<gml:TimePeriod gml:id="cisor_borehole_1_drillingPeriod">
+						<gml:TimePeriod gml:id="csiro_borehole_1_drillingPeriod">
 							<gml:begin>
 								<gml:TimeInstant gml:id="csiro_borehole_1_drillingPeriod_begin">
 									<gml:timePosition> 2009-03-18 </gml:timePosition>
@@ -222,13 +238,14 @@
 					<gsml:specification
 						xlink:href="http://www.csiro.au/gsml/geologicunits/example/wfs#GeologicUnit_1.5M_Raymond"/>
 					<gsml:metadata>
-						<gmd:MD_Metadata>
+						<gmd:MD_Metadata id="csiro_borehole_1_log_metadata">
 							<gmd:contact>
 								<gmd:CI_ResponsibleParty>
+									<gmd:individualName>
+										<gco:CharacterString>John Doe</gco:CharacterString>
+									</gmd:individualName>
 									<gmd:role>
-										<gmd:CI_RoleCode codeList="http://www.example.org/au/list/geoscience/exploration" codeListValue="Geologist">
-											John Doe
-										</gmd:CI_RoleCode>
+										<gmd:CI_RoleCode codeList="http://www.isotc211.org/2005/resources/Codelist/gmxCodelists.xml#CI_RoleCode" codeListValue="author"/>
 									</gmd:role>
 								</gmd:CI_ResponsibleParty>
 							</gmd:contact>
@@ -263,31 +280,7 @@
 					</gsml:shape>
 					<gsml:specification
 						xlink:href="http://www.csiro.au/gsml/geologicunits/example/wfs#GeologicUnit_1.5M_Simons"/>
-					<gsml:metadata>
-						<gmd:MD_Metadata>
-							<gmd:contact>
-								<gmd:CI_ResponsibleParty>
-									<gmd:role>
-										<gmd:CI_RoleCode codeList="http://www.example.org/au/list/geoscience/exploration" codeListValue="Geologist">
-											John Doe
-										</gmd:CI_RoleCode>
-									</gmd:role>
-								</gmd:CI_ResponsibleParty>
-							</gmd:contact>
-							<gmd:dateStamp>
-								<gco:Date>2009-03-26</gco:Date>
-							</gmd:dateStamp>
-							<gmd:identificationInfo>
-								<gmd:MD_DataIdentification>
-									<gmd:citation/>
-									<gmd:abstract/>
-									<gmd:language>
-										<gmd:LanguageCode codeList="http://www.loc.gov/standards/iso639-2/php/code_list.php" codeListValue="eng"/>
-									</gmd:language>
-								</gmd:MD_DataIdentification>
-							</gmd:identificationInfo>
-						</gmd:MD_Metadata>
-					</gsml:metadata>
+					<gsml:metadata  xlink:href="#csiro_borehole_1_log_metadata"/>
 				</gsmlbh:MappedInterval>
 			</gsmlbh:logElement>
 			<gsmlbh:logElement>
@@ -305,31 +298,7 @@
 					</gsml:shape>
 					<gsml:specification
 						xlink:href="http://www.csiro.au/gsml/geologicunits/example/wfs#GeologicUnit_1.5M_Ritchie"/>
-					<gsml:metadata>
-						<gmd:MD_Metadata>
-							<gmd:contact>
-								<gmd:CI_ResponsibleParty>
-									<gmd:role>
-										<gmd:CI_RoleCode codeList="http://www.example.org/au/list/geoscience/exploration" codeListValue="Geologist">
-											John Doe
-										</gmd:CI_RoleCode>
-									</gmd:role>
-								</gmd:CI_ResponsibleParty>
-							</gmd:contact>
-							<gmd:dateStamp>
-								<gco:Date>2009-03-26</gco:Date>
-							</gmd:dateStamp>
-							<gmd:identificationInfo>
-								<gmd:MD_DataIdentification>
-									<gmd:citation/>
-									<gmd:abstract/>
-									<gmd:language>
-										<gmd:LanguageCode codeList="http://www.loc.gov/standards/iso639-2/php/code_list.php" codeListValue="eng"/>
-									</gmd:language>
-								</gmd:MD_DataIdentification>
-							</gmd:identificationInfo>
-						</gmd:MD_Metadata>
-					</gsml:metadata>
+					<gsml:metadata  xlink:href="#csiro_borehole_1_log_metadata"/>
 				</gsmlbh:MappedInterval>
 			</gsmlbh:logElement>
 			<gsmlbh:logElement>
@@ -347,31 +316,7 @@
 					</gsml:shape>
 					<gsml:specification
 						xlink:href="http://www.csiro.au/gsml/geologicunits/example/wfs#GeologicUnit_1.5M_Percival"/>
-					<gsml:metadata>
-						<gmd:MD_Metadata>
-							<gmd:contact>
-								<gmd:CI_ResponsibleParty>
-									<gmd:role>
-										<gmd:CI_RoleCode codeList="http://www.example.org/au/list/geoscience/exploration" codeListValue="Geologist">
-											John Doe
-										</gmd:CI_RoleCode>
-									</gmd:role>
-								</gmd:CI_ResponsibleParty>
-							</gmd:contact>
-							<gmd:dateStamp>
-								<gco:Date>2009-03-26</gco:Date>
-							</gmd:dateStamp>
-							<gmd:identificationInfo>
-								<gmd:MD_DataIdentification>
-									<gmd:citation/>
-									<gmd:abstract/>
-									<gmd:language>
-										<gmd:LanguageCode codeList="http://www.loc.gov/standards/iso639-2/php/code_list.php" codeListValue="eng"/>
-									</gmd:language>
-								</gmd:MD_DataIdentification>
-							</gmd:identificationInfo>
-						</gmd:MD_Metadata>
-					</gsml:metadata>
+					<gsml:metadata  xlink:href="#csiro_borehole_1_log_metadata"/>
 				</gsmlbh:MappedInterval>
 			</gsmlbh:logElement>
 		</gsmlbh:Borehole>
