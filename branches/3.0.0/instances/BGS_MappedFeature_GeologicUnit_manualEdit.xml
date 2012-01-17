@@ -2,7 +2,6 @@
 <!-- This instance validates against GeoSciML v3.0.0 RC3 schemas but has a number of issues.
     Not sure about how to represent age of GeologicUnit using relatedFeature property; in particular values for relationship, sourceRole and targetRole properties.
     Have made nil inapplicable properties where they don't seem relevant to me but may be wrong?
-    Haven't put any kind of definitions in the swe:extension elements to indicate that they  are acting as qualifiers.
     Haven't checked what the samplingFrame discussion at Edinburgh concluded.
     Not updated age URIs; is Simon and Steve's work on OWL/RDF version of timescale taking this over?-->
 <wfs:FeatureCollection xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
@@ -101,10 +100,10 @@
                             <gsml:relatedFeature>
                                 <!-- GeologicEvent becoming an extension of GeologicFeature seems to enforce a number of mandatory irrelevant properties? -->
                                 <gsmlga:GeologicEvent gml:id="LOCAL_ID_2">
-                                    <gsml:observationMethod xsi:nil="true" nilReason="inapplicable"/>
+                                    <gsml:observationMethod xsi:nil="true" nilReason="missing"/>
                                     <gsml:purpose>instance</gsml:purpose>
-                                    <gsml:relatedFeature xsi:nil="true" nilReason="inapplicable"/>
-                                    <gsml:classifier xsi:nil="true" nilReason="inapplicable"/>
+                                    <gsml:relatedFeature xsi:nil="true" nilReason="missing"/>
+                                    <gsml:classifier xsi:nil="true" nilReason="missing"/>
                                     <gsml:metadata xsi:nil="true" gco:nilReason="missing"/>
                                     <gsmlga:eventProcess
                                         xlink:href="http://resource.geosciml.org/classifier/cgi/eventprocess/0048" xlink:title="mechanical deposition"/>
@@ -132,7 +131,7 @@
                             </gsml:relatedFeature>
                         </gsmlga:GeologicHistory>
                     </gsml:relatedFeature>
-                    <gsml:classifier xsi:nil="true" nilReason="inapplicable"/>
+                    <gsml:classifier xsi:nil="true" nilReason="missing"/>
                     <gsml:metadata xsi:nil="true" gco:nilReason="missing"/>
                     <gsmlgu:geologicUnitType
                         xlink:href="http://resource.geosciml.org/classifier/cgi/geologicunittype/0014" xlink:title="Lithostratigraphic Unit"/>
