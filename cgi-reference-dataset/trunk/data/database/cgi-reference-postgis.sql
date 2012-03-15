@@ -12,12 +12,14 @@
 
 /* Tidy-up schema, if necessary.
 DROP TABLE cgireference.gsml_mappedfeature CASCADE;
+DELETE FROM public.geometry_columns WHERE f_table_schema = 'cgireference' AND f_table_name = 'gsml_mappedfeature';
 DROP TABLE cgireference.gsml_observationmethod CASCADE;
 DROP TABLE cgireference.gml_name CASCADE;
 DROP TABLE cgireference.gsmlgu_geologicunit CASCADE;
 DROP TABLE cgireference.gsmlgu_geologicunit_gsvr CASCADE;
 DROP TABLE cgireference.gsmlgs_contact CASCADE;
 DROP TABLE cgireference.gsmlgs_sheardispstructure CASCADE;
+DROP TABLE cgireference.gsmlgs_sheardispstructure_gsvr CASCADE;
 DROP TABLE cgireference.gsmlga_geologicevent CASCADE;
 DROP TABLE cgireference.gsmlga_geologichistory CASCADE;
 DROP TABLE cgireference.gsmlga_eventprocess CASCADE;
@@ -5333,28 +5335,54 @@ INSERT INTO cgireference.gsmlgs_contact VALUES (167775491485516347, 'gsmlgs.cont
 -- CREATE cgireference.gsmlgs_sheardispstructure ==
 -- ================================================
 CREATE TABLE cgireference.gsmlgs_sheardispstructure
-  ( id numeric(32,0), gml_id text, gml_identifier text, gml_description text, gml_name text, gsml_purpose text, 
+  ( id numeric(32,0), gml_id text, gml_identifier text, gml_description text, gsml_purpose text, 
     CONSTRAINT pk_gsmlgs_sheardispstructure PRIMARY KEY (id) ) WITH (OIDS=TRUE);
-INSERT INTO cgireference.gsmlgs_sheardispstructure VALUES (1677754911542060973, 'gsmlgs.sheardisplacementstructure.ref-1677754911542060973', 'http://resource.geosciml.org/feature/cgi/sheardisplacementstucture/ref-1677754911542060973', NULL, 'Muckleford Fault', 'typicalNorm');
-INSERT INTO cgireference.gsmlgs_sheardispstructure VALUES (1677754911542061026, 'gsmlgs.sheardisplacementstructure.ref-1677754911542061026', 'http://resource.geosciml.org/feature/cgi/sheardisplacementstucture/ref-1677754911542061026', NULL, 'Quartz Hill Fault', 'typicalNorm');
-INSERT INTO cgireference.gsmlgs_sheardispstructure VALUES (1677754911542061042, 'gsmlgs.sheardisplacementstructure.ref-1677754911542061042', 'http://resource.geosciml.org/feature/cgi/sheardisplacementstucture/ref-1677754911542061042', NULL, 'Schicer Gully Fault', 'typicalNorm');
-INSERT INTO cgireference.gsmlgs_sheardispstructure VALUES (1677754911542061051, 'gsmlgs.sheardisplacementstructure.ref-1677754911542061051', 'http://resource.geosciml.org/feature/cgi/sheardisplacementstucture/ref-1677754911542061051', NULL, 'Break O''Day Fault', 'typicalNorm');
-INSERT INTO cgireference.gsmlgs_sheardispstructure VALUES (1677754911542061067, 'gsmlgs.sheardisplacementstructure.ref-1677754911542061067', 'http://resource.geosciml.org/feature/cgi/sheardisplacementstucture/ref-1677754911542061067', 'Southern extension of the reactivated Whitelaw Fault called the Metcalfe Fault on Malmsbury 50k map by Willman & Radojkovic, 2002. 
+INSERT INTO cgireference.gsmlgs_sheardispstructure VALUES (1677754911542060973, 'gsmlgs.sheardisplacementstructure.ref-1677754911542060973', 'http://resource.geosciml.org/feature/cgi/sheardisplacementstucture/ref-1677754911542060973', NULL, 'typicalNorm');
+INSERT INTO cgireference.gsmlgs_sheardispstructure VALUES (1677754911542061026, 'gsmlgs.sheardisplacementstructure.ref-1677754911542061026', 'http://resource.geosciml.org/feature/cgi/sheardisplacementstucture/ref-1677754911542061026', NULL, 'typicalNorm');
+INSERT INTO cgireference.gsmlgs_sheardispstructure VALUES (1677754911542061042, 'gsmlgs.sheardisplacementstructure.ref-1677754911542061042', 'http://resource.geosciml.org/feature/cgi/sheardisplacementstucture/ref-1677754911542061042', NULL, 'typicalNorm');
+INSERT INTO cgireference.gsmlgs_sheardispstructure VALUES (1677754911542061051, 'gsmlgs.sheardisplacementstructure.ref-1677754911542061051', 'http://resource.geosciml.org/feature/cgi/sheardisplacementstucture/ref-1677754911542061051', NULL, 'typicalNorm');
+INSERT INTO cgireference.gsmlgs_sheardispstructure VALUES (1677754911542061067, 'gsmlgs.sheardisplacementstructure.ref-1677754911542061067', 'http://resource.geosciml.org/feature/cgi/sheardisplacementstucture/ref-1677754911542061067', 'Southern extension of the reactivated Whitelaw Fault called the Metcalfe Fault on Malmsbury 50k map by Willman & Radojkovic, 2002.', 'typicalNorm');
+INSERT INTO cgireference.gsmlgs_sheardispstructure VALUES (1677754911542061116, 'gsmlgs.sheardisplacementstructure.ref-1677754911542061116', 'http://resource.geosciml.org/feature/cgi/sheardisplacementstucture/ref-1677754911542061116', NULL, 'typicalNorm');
+INSERT INTO cgireference.gsmlgs_sheardispstructure VALUES (1677754911542061145, 'gsmlgs.sheardisplacementstructure.ref-1677754911542061145', 'http://resource.geosciml.org/feature/cgi/sheardisplacementstucture/ref-1677754911542061145', 'Interpreted as a splay off the Redesdale Fault.', 'typicalNorm');
+INSERT INTO cgireference.gsmlgs_sheardispstructure VALUES (1677754911542061182, 'gsmlgs.sheardisplacementstructure.ref-1677754911542061182', 'http://resource.geosciml.org/feature/cgi/sheardisplacementstucture/ref-1677754911542061182', NULL, 'typicalNorm');
+INSERT INTO cgireference.gsmlgs_sheardispstructure VALUES (1677754911542061193, 'gsmlgs.sheardisplacementstructure.ref-1677754911542061193', 'http://resource.geosciml.org/feature/cgi/sheardisplacementstucture/ref-1677754911542061193', NULL, 'typicalNorm');
+INSERT INTO cgireference.gsmlgs_sheardispstructure VALUES (1677754911542061217, 'gsmlgs.sheardisplacementstructure.ref-1677754911542061217', 'http://resource.geosciml.org/feature/cgi/sheardisplacementstucture/ref-1677754911542061217', 'Possible extension of Whitelaw Fault.', 'typicalNorm');
+INSERT INTO cgireference.gsmlgs_sheardispstructure VALUES (1677754911542061221, 'gsmlgs.sheardisplacementstructure.ref-1677754911542061221', 'http://resource.geosciml.org/feature/cgi/sheardisplacementstucture/ref-1677754911542061221', NULL, 'typicalNorm');
+INSERT INTO cgireference.gsmlgs_sheardispstructure VALUES (1677754911542061233, 'gsmlgs.sheardisplacementstructure.ref-1677754911542061233', 'http://resource.geosciml.org/feature/cgi/sheardisplacementstucture/ref-1677754911542061233', NULL, 'typicalNorm');
+INSERT INTO cgireference.gsmlgs_sheardispstructure VALUES (1677754911542061244, 'gsmlgs.sheardisplacementstructure.ref-1677754911542061244', 'http://resource.geosciml.org/feature/cgi/sheardisplacementstucture/ref-1677754911542061244', NULL, 'typicalNorm');
+INSERT INTO cgireference.gsmlgs_sheardispstructure VALUES (1677754911542061255, 'gsmlgs.sheardisplacementstructure.ref-1677754911542061255', 'http://resource.geosciml.org/feature/cgi/sheardisplacementstucture/ref-1677754911542061255', NULL, 'typicalNorm');
+INSERT INTO cgireference.gsmlgs_sheardispstructure VALUES (1677754911542061271, 'gsmlgs.sheardisplacementstructure.ref-1677754911542061271', 'http://resource.geosciml.org/feature/cgi/sheardisplacementstucture/ref-1677754911542061271', NULL, 'typicalNorm');
+INSERT INTO cgireference.gsmlgs_sheardispstructure VALUES (1677754911542061282, 'gsmlgs.sheardisplacementstructure.ref-1677754911542061282', 'http://resource.geosciml.org/feature/cgi/sheardisplacementstucture/ref-1677754911542061282', NULL, 'typicalNorm');
+INSERT INTO cgireference.gsmlgs_sheardispstructure VALUES (1677754911542061437, 'gsmlgs.sheardisplacementstructure.ref-1677754911542061437', 'http://resource.geosciml.org/feature/cgi/sheardisplacementstucture/ref-1677754911542061437', NULL, 'typicalNorm');
+INSERT INTO cgireference.gsmlgs_sheardispstructure VALUES (1677754911542061798, 'gsmlgs.sheardisplacementstructure.ref-1677754911542061798', 'http://resource.geosciml.org/feature/cgi/sheardisplacementstucture/ref-1677754911542061798', NULL, 'typicalNorm');
+
+
+-- =====================================================
+-- CREATE cgireference.gsmlgs_sheardispstructure_gsvr ==
+-- =====================================================
+CREATE TABLE cgireference.gsmlgs_sheardispstructure_gsvr
+  ( id numeric(32,0), gml_id text, gml_identifier text, gml_description text, gml_name text, gsml_purpose text, 
+    CONSTRAINT pk_gsmlgs_sheardispstr_gsvr PRIMARY KEY (id) ) WITH (OIDS=TRUE);
+INSERT INTO cgireference.gsmlgs_sheardispstructure_gsvr VALUES (1677754911542060973, 'gsmlgs.sheardisplacementstructure.ref-1677754911542060973', 'http://resource.geosciml.org/feature/cgi/sheardisplacementstucture/ref-1677754911542060973', NULL, 'Muckleford Fault', 'typicalNorm');
+INSERT INTO cgireference.gsmlgs_sheardispstructure_gsvr VALUES (1677754911542061026, 'gsmlgs.sheardisplacementstructure.ref-1677754911542061026', 'http://resource.geosciml.org/feature/cgi/sheardisplacementstucture/ref-1677754911542061026', NULL, 'Quartz Hill Fault', 'typicalNorm');
+INSERT INTO cgireference.gsmlgs_sheardispstructure_gsvr VALUES (1677754911542061042, 'gsmlgs.sheardisplacementstructure.ref-1677754911542061042', 'http://resource.geosciml.org/feature/cgi/sheardisplacementstucture/ref-1677754911542061042', NULL, 'Schicer Gully Fault', 'typicalNorm');
+INSERT INTO cgireference.gsmlgs_sheardispstructure_gsvr VALUES (1677754911542061051, 'gsmlgs.sheardisplacementstructure.ref-1677754911542061051', 'http://resource.geosciml.org/feature/cgi/sheardisplacementstucture/ref-1677754911542061051', NULL, 'Break O''Day Fault', 'typicalNorm');
+INSERT INTO cgireference.gsmlgs_sheardispstructure_gsvr VALUES (1677754911542061067, 'gsmlgs.sheardisplacementstructure.ref-1677754911542061067', 'http://resource.geosciml.org/feature/cgi/sheardisplacementstucture/ref-1677754911542061067', 'Southern extension of the reactivated Whitelaw Fault called the Metcalfe Fault on Malmsbury 50k map by Willman & Radojkovic, 2002. 
  ', 'Whitelaw Fault', 'typicalNorm');
-INSERT INTO cgireference.gsmlgs_sheardispstructure VALUES (1677754911542061116, 'gsmlgs.sheardisplacementstructure.ref-1677754911542061116', 'http://resource.geosciml.org/feature/cgi/sheardisplacementstucture/ref-1677754911542061116', NULL, 'Piper Creek Fault', 'typicalNorm');
-INSERT INTO cgireference.gsmlgs_sheardispstructure VALUES (1677754911542061145, 'gsmlgs.sheardisplacementstructure.ref-1677754911542061145', 'http://resource.geosciml.org/feature/cgi/sheardisplacementstucture/ref-1677754911542061145', 'Interpreted as a splay off the Redesdale Fault.', 'Drummartin Fault', 'typicalNorm');
-INSERT INTO cgireference.gsmlgs_sheardispstructure VALUES (1677754911542061182, 'gsmlgs.sheardisplacementstructure.ref-1677754911542061182', 'http://resource.geosciml.org/feature/cgi/sheardisplacementstucture/ref-1677754911542061182', NULL, 'Blacksmith Gully Fault', 'typicalNorm');
-INSERT INTO cgireference.gsmlgs_sheardispstructure VALUES (1677754911542061193, 'gsmlgs.sheardisplacementstructure.ref-1677754911542061193', 'http://resource.geosciml.org/feature/cgi/sheardisplacementstucture/ref-1677754911542061193', NULL, 'Campbelltown Fault', 'typicalNorm');
-INSERT INTO cgireference.gsmlgs_sheardispstructure VALUES (1677754911542061217, 'gsmlgs.sheardisplacementstructure.ref-1677754911542061217', 'http://resource.geosciml.org/feature/cgi/sheardisplacementstucture/ref-1677754911542061217', 'Possible extension of Whitelaw Fault.
+INSERT INTO cgireference.gsmlgs_sheardispstructure_gsvr VALUES (1677754911542061116, 'gsmlgs.sheardisplacementstructure.ref-1677754911542061116', 'http://resource.geosciml.org/feature/cgi/sheardisplacementstucture/ref-1677754911542061116', NULL, 'Piper Creek Fault', 'typicalNorm');
+INSERT INTO cgireference.gsmlgs_sheardispstructure_gsvr VALUES (1677754911542061145, 'gsmlgs.sheardisplacementstructure.ref-1677754911542061145', 'http://resource.geosciml.org/feature/cgi/sheardisplacementstucture/ref-1677754911542061145', 'Interpreted as a splay off the Redesdale Fault.', 'Drummartin Fault', 'typicalNorm');
+INSERT INTO cgireference.gsmlgs_sheardispstructure_gsvr VALUES (1677754911542061182, 'gsmlgs.sheardisplacementstructure.ref-1677754911542061182', 'http://resource.geosciml.org/feature/cgi/sheardisplacementstucture/ref-1677754911542061182', NULL, 'Blacksmith Gully Fault', 'typicalNorm');
+INSERT INTO cgireference.gsmlgs_sheardispstructure_gsvr VALUES (1677754911542061193, 'gsmlgs.sheardisplacementstructure.ref-1677754911542061193', 'http://resource.geosciml.org/feature/cgi/sheardisplacementstucture/ref-1677754911542061193', NULL, 'Campbelltown Fault', 'typicalNorm');
+INSERT INTO cgireference.gsmlgs_sheardispstructure_gsvr VALUES (1677754911542061217, 'gsmlgs.sheardisplacementstructure.ref-1677754911542061217', 'http://resource.geosciml.org/feature/cgi/sheardisplacementstucture/ref-1677754911542061217', 'Possible extension of Whitelaw Fault.
 ', 'Taradale Fault', 'typicalNorm');
-INSERT INTO cgireference.gsmlgs_sheardispstructure VALUES (1677754911542061221, 'gsmlgs.sheardisplacementstructure.ref-1677754911542061221', 'http://resource.geosciml.org/feature/cgi/sheardisplacementstucture/ref-1677754911542061221', NULL, 'Harris Fault', 'typicalNorm');
-INSERT INTO cgireference.gsmlgs_sheardispstructure VALUES (1677754911542061233, 'gsmlgs.sheardisplacementstructure.ref-1677754911542061233', 'http://resource.geosciml.org/feature/cgi/sheardisplacementstucture/ref-1677754911542061233', NULL, 'Wattle Gully Fault', 'typicalNorm');
-INSERT INTO cgireference.gsmlgs_sheardispstructure VALUES (1677754911542061244, 'gsmlgs.sheardisplacementstructure.ref-1677754911542061244', 'http://resource.geosciml.org/feature/cgi/sheardisplacementstucture/ref-1677754911542061244', NULL, 'Tucker Gully Fault', 'typicalNorm');
-INSERT INTO cgireference.gsmlgs_sheardispstructure VALUES (1677754911542061255, 'gsmlgs.sheardisplacementstructure.ref-1677754911542061255', 'http://resource.geosciml.org/feature/cgi/sheardisplacementstucture/ref-1677754911542061255', NULL, 'Axe Creek Fault', 'typicalNorm');
-INSERT INTO cgireference.gsmlgs_sheardispstructure VALUES (1677754911542061271, 'gsmlgs.sheardisplacementstructure.ref-1677754911542061271', 'http://resource.geosciml.org/feature/cgi/sheardisplacementstucture/ref-1677754911542061271', NULL, 'Whitehorse Fault', 'typicalNorm');
-INSERT INTO cgireference.gsmlgs_sheardispstructure VALUES (1677754911542061282, 'gsmlgs.sheardisplacementstructure.ref-1677754911542061282', 'http://resource.geosciml.org/feature/cgi/sheardisplacementstucture/ref-1677754911542061282', NULL, 'Spring Gully Fault', 'typicalNorm');
-INSERT INTO cgireference.gsmlgs_sheardispstructure VALUES (1677754911542061437, 'gsmlgs.sheardisplacementstructure.ref-1677754911542061437', 'http://resource.geosciml.org/feature/cgi/sheardisplacementstucture/ref-1677754911542061437', NULL, 'Redesdale Fault', 'typicalNorm');
-INSERT INTO cgireference.gsmlgs_sheardispstructure VALUES (1677754911542061798, 'gsmlgs.sheardisplacementstructure.ref-1677754911542061798', 'http://resource.geosciml.org/feature/cgi/sheardisplacementstucture/ref-1677754911542061798', NULL, 'Sebastian Fault', 'typicalNorm');
+INSERT INTO cgireference.gsmlgs_sheardispstructure_gsvr VALUES (1677754911542061221, 'gsmlgs.sheardisplacementstructure.ref-1677754911542061221', 'http://resource.geosciml.org/feature/cgi/sheardisplacementstucture/ref-1677754911542061221', NULL, 'Harris Fault', 'typicalNorm');
+INSERT INTO cgireference.gsmlgs_sheardispstructure_gsvr VALUES (1677754911542061233, 'gsmlgs.sheardisplacementstructure.ref-1677754911542061233', 'http://resource.geosciml.org/feature/cgi/sheardisplacementstucture/ref-1677754911542061233', NULL, 'Wattle Gully Fault', 'typicalNorm');
+INSERT INTO cgireference.gsmlgs_sheardispstructure_gsvr VALUES (1677754911542061244, 'gsmlgs.sheardisplacementstructure.ref-1677754911542061244', 'http://resource.geosciml.org/feature/cgi/sheardisplacementstucture/ref-1677754911542061244', NULL, 'Tucker Gully Fault', 'typicalNorm');
+INSERT INTO cgireference.gsmlgs_sheardispstructure_gsvr VALUES (1677754911542061255, 'gsmlgs.sheardisplacementstructure.ref-1677754911542061255', 'http://resource.geosciml.org/feature/cgi/sheardisplacementstucture/ref-1677754911542061255', NULL, 'Axe Creek Fault', 'typicalNorm');
+INSERT INTO cgireference.gsmlgs_sheardispstructure_gsvr VALUES (1677754911542061271, 'gsmlgs.sheardisplacementstructure.ref-1677754911542061271', 'http://resource.geosciml.org/feature/cgi/sheardisplacementstucture/ref-1677754911542061271', NULL, 'Whitehorse Fault', 'typicalNorm');
+INSERT INTO cgireference.gsmlgs_sheardispstructure_gsvr VALUES (1677754911542061282, 'gsmlgs.sheardisplacementstructure.ref-1677754911542061282', 'http://resource.geosciml.org/feature/cgi/sheardisplacementstucture/ref-1677754911542061282', NULL, 'Spring Gully Fault', 'typicalNorm');
+INSERT INTO cgireference.gsmlgs_sheardispstructure_gsvr VALUES (1677754911542061437, 'gsmlgs.sheardisplacementstructure.ref-1677754911542061437', 'http://resource.geosciml.org/feature/cgi/sheardisplacementstucture/ref-1677754911542061437', NULL, 'Redesdale Fault', 'typicalNorm');
+INSERT INTO cgireference.gsmlgs_sheardispstructure_gsvr VALUES (1677754911542061798, 'gsmlgs.sheardisplacementstructure.ref-1677754911542061798', 'http://resource.geosciml.org/feature/cgi/sheardisplacementstucture/ref-1677754911542061798', NULL, 'Sebastian Fault', 'typicalNorm');
 
 
 -- =============================================
@@ -6102,8 +6130,16 @@ COMMENT ON COLUMN cgireference.gsmlgs_sheardispstructure.id IS 'Value unique ID.
 COMMENT ON COLUMN cgireference.gsmlgs_sheardispstructure.gml_id IS 'Precompiled gml:id.';
 COMMENT ON COLUMN cgireference.gsmlgs_sheardispstructure.gml_identifier IS 'Precompiled gml:identifier.';
 COMMENT ON COLUMN cgireference.gsmlgs_sheardispstructure.gml_description IS 'Maps to gml:description';
-COMMENT ON COLUMN cgireference.gsmlgs_sheardispstructure.gml_name IS 'Maps to gml:name';
 COMMENT ON COLUMN cgireference.gsmlgs_sheardispstructure.gsml_purpose IS 'Maps to gsml:purpose';
+
+COMMENT ON TABLE cgireference.gsmlgs_sheardispstructure_gsvr
+  IS 'Version of gsmlgs_sheardispstructure structured to meet the needs of Geoserver (hence the _gsvr suffix). This table is the result of a view linking gsmlgs_sheardispstructure to gml_name to allow Geoserver to serve multiple gml:name values on a single structure. The contents of this table *must* be ordered on the ID field to ensure each feature is groups together - otherwise data corruption occurs. See here for deatils: http://docs.geoserver.org/stable/en/user/data/app-schema/mapping-file.html#denormalised-sources. See gsmlgs_sheardispstructure for table definition.';
+COMMENT ON COLUMN cgireference.gsmlgs_sheardispstructure_gsvr.id IS 'Value unique ID.';
+COMMENT ON COLUMN cgireference.gsmlgs_sheardispstructure_gsvr.gml_id IS 'Precompiled gml:id.';
+COMMENT ON COLUMN cgireference.gsmlgs_sheardispstructure_gsvr.gml_identifier IS 'Precompiled gml:identifier.';
+COMMENT ON COLUMN cgireference.gsmlgs_sheardispstructure_gsvr.gml_description IS 'Maps to gml:description';
+COMMENT ON COLUMN cgireference.gsmlgs_sheardispstructure_gsvr.gml_name IS 'Maps to gml:name';
+COMMENT ON COLUMN cgireference.gsmlgs_sheardispstructure_gsvr.gsml_purpose IS 'Maps to gsml:purpose';
 
 COMMENT ON TABLE cgireference.gsmlgu_compositionpart
   IS 'Maps to gsmlgu:CompositionPart. Type and property definition at: http://www.geosciml.org/geosciml/3.0/doc/GeoSciML/GeologicUnit/CompositionPart.html';
