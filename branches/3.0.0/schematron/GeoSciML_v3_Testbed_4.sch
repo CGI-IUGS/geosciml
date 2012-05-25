@@ -1,5 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<schema xmlns="http://purl.oclc.org/dsdl/schematron" xmlns:interop="urn:csiro:schematron:lib" queryBinding="xslt2" defaultPhase="model.constraints">
+<schema xmlns="http://purl.oclc.org/dsdl/schematron" xmlns:interop="urn:csiro:schematron:lib" queryBinding="xslt2" defaultPhase="model.constraints"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:gsmlst="http://xmlns.geosciml.org/GeologicStructure/3.0"
+	xsi:schemaLocation="http://xmlns.geosciml.org/GeologicStructure/3.0 http://schemas.geosciml.org/geologicstructure/3.0/geologicStructure.xsd">
 	<title>GeoSciML v3 Profile conformance validation.</title>
 	<p>This schema checks GeoSciML v3 Profile conformance by stages.</p>
 	<ns prefix="fn" uri="http://www.w3.org/2005/xpath-functions"/>
@@ -11,6 +14,7 @@
 	<ns prefix="gsmlgu" uri="http://xmlns.geosciml.org/GeologicUnit/3.0" />
 	<ns prefix="gsmlga" uri="http://xmlns.geosciml.org/GeologicAge/3.0" />
 	<ns prefix="gsmlem" uri="http://xmlns.geosciml.org/EarthMaterial/3.0" />
+	<ns prefix="gsmlst" uri="http://xmlns.geosciml.org/GeologicStructure/3.0" />
 	<ns prefix="sa" uri="http://www.opengis.net/sampling/1.0" />
 
 	<phase id="model.constraints">
@@ -80,8 +84,7 @@
 		<rule context="//gsmlgu:GeologicUnit">
 			<let name="geologicUnitType" value="gsmlgu:geologicUnitType/@xlink:href"/>
 
-<!-- Need to update so that switch based on complete new HTTP-URIs for geologicUnitType. Dictionary has been finalised. -->
-			<let name="isChronostratigraphicUnit" value="$geologicUnitType = 'http://resource.geosciml.org/classifier/cgi/geologicunittype/0005'" />
+			<let name="isChronostratigraphicUnit" value="$geologicUnitType = 'http://resource.geosciml.org/classifier/cgi/geologicunittype/chronostratigraphic_unit'" />
 			<!-- Chronostratigraphic units must have at least one GeologicEvent
 			Maybe this doesn't have to be true; the GeologicEvent information might be implicit in a ControlledConcept pointed to by
 			the classifier property. Therefore, this rule would be part of an "inline profile".
@@ -93,45 +96,43 @@
 				test="not($isChronostratigraphicUnit) or $isChronostratigraphicUnit and count(gsml:relatedFeature/gsmlga:GeologicHistory/gsml:relatedFeature/gsmlga:GeologicEvent) > 0">
 				Chronostratigraphic unit (<value-of select="@gml:id"/>) must have at least one Geologic Event defined.
 			</assert>
-	<!-- Covert below to use same properties as above -->
+	<!-- As this isn't actually an error it should probably be put into a separate optional reporting phase rather than model.constraints phase -->
 			<report
 				see="https://www.seegrid.csiro.au/wiki/CGIModel/GeoSciML3SchematronRules#Geologic_unit_type"
-				test="$isChronostratigraphicUnit and count(gsml:geologicHistory) > 1">
-				ChronostratigraphicUnit geologic unit (<value-of select="@gml:id"/>) has more than one gsml:geologicHistory property defined.
+				test="$isChronostratigraphicUnit and count(gsml:relatedFeature/gsmlga:GeologicHistory/gsml:relatedFeature/gsmlga:GeologicEvent) > 1">
+				ChronostratigraphicUnit geologic unit (<value-of select="@gml:id"/>) has more than one Geologic Event defined.
 			</report>
 	
 	<!-- Change namespaces. Make sure composition is not null (has a CompositionPart).
 	Change second half of rule so that there is at least one lithology property in one of the nested RockMaterials-->
-			<let name="isLithologicUnit" value="contains($geologicUnitType, 'lithologic_unit')"/>
+			<let name="isLithologicUnit" value="$geologicUnitType = 'http://resource.geosciml.org/classifier/cgi/geologicunittype/lithologic_unit'"/>
 			<assert
 				see="https://www.seegrid.csiro.au/wiki/CGIModel/GeoSciML3SchematronRules#Geologic_unit_type"
-				test="not($isLithologicUnit) or $isLithologicUnit and count(gsml:composition) > 0 and count(gsml:composition) = count(gsml:composition/gsml:CompositionPart/gsml:material/gsml:RockMaterial/gsml:lithology)">
+				test="not($isLithologicUnit) or $isLithologicUnit and count(gsmlgu:composition) > 0 and count(gsmlgu:composition) = count(gsmlgu:composition/gsmlgu:CompositionPart/gsmlgu:material/gsmlem:RockMaterial/gsmlem:lithology)">
 				LithologicUnit geologic unit (<value-of select="@gml:id" />) must have at least one valid gsml:composition property defined. 
 			</assert>
-	<!-- Make same as lithologic unit. -->
-			<let name="isLithostratigraphicUnit" value="contains($geologicUnitType, 'lithostratigraphic_unit')"/>
+			<let name="isLithostratigraphicUnit" value="$geologicUnitType = 'http://resource.geosciml.org/classifier/cgi/geologicunittype/lithostratigraphic_unit'"/>
 			<assert
 				see="https://www.seegrid.csiro.au/wiki/CGIModel/GeoSciML3SchematronRules#Geologic_unit_type"
-				test="not($isLithostratigraphicUnit) or $isLithostratigraphicUnit and count(gsml:composition) > 0 and count(gsml:composition) = count(gsml:composition/gsml:CompositionPart/gsml:material/gsml:RockMaterial/gsml:lithology)">
+				test="not($isLithostratigraphicUnit) or $isLithostratigraphicUnit and count(gsmlgu:composition) > 0 and count(gsmlgu:composition) = count(gsmlgu:composition/gsmlgu:CompositionPart/gsmlgu:material/gsmlem:RockMaterial/gsmlem:lithology)">
 				LithostratigraphicUnit geologic unit (<value-of select="@gml:id" />) must have at least one valid gsml:composition property defined. 
 			</assert>
-	<!-- Probably should make lithostratigraphic unit have an age as well. -->
-	<!-- Make same as lithodemic unit -->		
-			<let name="isLithodemicUnit" value="contains($geologicUnitType, 'lithodemic_unit')"/>
+	<!-- Probably should make lithostratigraphic unit have an age as well. -->	
+			<let name="isLithodemicUnit" value="$geologicUnitType = 'http://resource.geosciml.org/classifier/cgi/geologicunittype/lithodemic_unit'"/>
 			<assert
 				see="https://www.seegrid.csiro.au/wiki/CGIModel/GeoSciML3SchematronRules#Geologic_unit_type"
-				test="not($isLithodemicUnit) or $isLithodemicUnit and count(gsml:composition) > 0 and count(gsml:composition) = count(gsml:composition/gsml:CompositionPart/gsml:material/gsml:RockMaterial/gsml:lithology)">
+				test="not($isLithodemicUnit) or $isLithodemicUnit and count(gsmlgu:composition) > 0 and count(gsmlgu:composition) = count(gsmlgu:composition/gsmlgu:CompositionPart/gsmlgu:material/gsmlem:RockMaterial/gsmlem:lithology)">
 				LithodemicUnit geologic unit (<value-of select="@gml:id" />) must have at least one valid gsml:composition property defined.
 			</assert>
 <!-- Add test for lithodemic unit that bedding property is nil inapplicable.  -->
-			<!-- TODO double check substitutable element checking. -->
-			<let name="isDeformationUnit" value="contains($geologicUnitType, 'deformation_unit')"/>
+			<!-- TODO how can I use schema-element function to successfully check substitutable elements; need to import Schema somehow. 
+			<let name="isDeformationUnit" value="$geologicUnitType = 'http://resource.geosciml.org/classifier/cgi/geologicunittype/deformation_unit'"/>
 			<assert
 				see="https://www.seegrid.csiro.au/wiki/CGIModel/GeoSciML3SchematronRules#Geologic_unit_type"
-				test="not($isDeformationUnit) or $isDeformationUnit and count(gsml:relatedFeature/gsml:DefiningStructure/gsml:relatedFeature/schema-element(gsmlgs:GeologicStructure) > 0 ">
+				test="not($isDeformationUnit) or $isDeformationUnit and count(gsml:relatedFeature/gsmlst:DefiningStructure/gsml:relatedFeature/schema-element(gsmlst:GeologicStructure) > 0 ">
 				DeformationUnit geologic unit (<value-of select="@gml:id" />) must have at least one Geologic Structure
 			</assert>
-
+-->
 		</rule>
 	</pattern>
 	
