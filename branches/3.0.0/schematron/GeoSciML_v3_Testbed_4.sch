@@ -82,6 +82,8 @@
 <!-- Need to update so that switch based on complete new HTTP-URIs for geologicUnitType. Dictionary has been finalised. -->
 			<let name="isChronostratigraphicUnit" value="$geologicUnitType = 'http://resource.geosciml.org/classifier/cgi/geologicunittype/0005'" />
 			<!-- Chronostratigraphic units must have at least one GeologicEvent
+			Maybe this doesn't have to be true; the GeologicEvent information might be implicit in a ControlledConcept pointed to by
+			the classifier property. Therefore, this rule would be part of an "inline profile".
 			Don't bother with further constraints on content (will be handled by rules on GeologicEvent TODO.
 			On GeologicEvent either numericAgeDate isn't null or (olderNamedAge and youngerNamedAge aren't null).
 			-->
@@ -112,6 +114,7 @@
 				test="not($isLithostratigraphicUnit) or $isLithostratigraphicUnit and count(gsml:composition) > 0 and count(gsml:composition) = count(gsml:composition/gsml:CompositionPart/gsml:material/gsml:RockMaterial/gsml:lithology)">
 				LithostratigraphicUnit geologic unit (<value-of select="@gml:id" />) must have at least one valid gsml:composition property defined. 
 			</assert>
+	<!-- Probably should make lithostratigraphic unit have an age as well. -->
 	<!-- Make same as lithodemic unit -->		
 			<let name="isLithodemicUnit" value="contains($geologicUnitType, 'lithodemic_unit')"/>
 			<assert
@@ -209,8 +212,9 @@
 			</report>			
 		</rule>
 	</pattern>
+	<!-- For 1GG must support epsg:4326 -->
 
-<!-- Move this rule to a "best practice" phase -->
+<!-- Forget this rule as it is mainly dependent on software behaviour and it isn't really for us to specify, more for OGC to persuade. -->
 	<pattern id="spatial.crs.uri">
 		<title>Spatial CRS URIs</title>
 		<p>Restrict the values that can be used to identify coordinate reference systems in spatial elements.</p>
@@ -223,6 +227,7 @@
 		</rule>
 	</pattern>
 
+<!-- Don't think @codeSpace is used on properties anymore so delete these rules after double checking. -->
 	<pattern id="uri.codespace.element">
 		<rule context="//*[@codeSpace = 'http://www.ietf.org/rfc/rfc2141']">
 			<assert
@@ -267,7 +272,7 @@
 				External link (<value-of select="@xlink:href" />) must be resolvable.
 			</assert>
 		</rule>
-		
+		<!-- Resolving external links might work better using teamengine ctl functions. -->
 		<rule context="//*[@codeSpace = 'http://www.ietf.org/rfc/rfc2616' and fn:matches( text(), $httpUriRegExp, 'i')]">
 			<assert
 				see="https://www.seegrid.csiro.au/wiki/CGIModel/GeoSciML3SchematronRules#External_pseudo-xlinks"
@@ -277,10 +282,12 @@
 		</rule>
 	</pattern>
 	
+	<!-- To do. Save local copies of vocabularies to explicitly test term is from list. -->
 	<pattern id="ics.age.vocabulary">
 		<title>IUGS-CGI Age Vocabulary</title>
 		<p>Check that age properties use values from the ICS standard age vocabulary.</p>
 		<!-- To Do. Check this is the prefix we should use. -->
+		<!-- Add pattern for extra scandinavian ages. -->
 		<let name="ageUriPrefix" value="'http://resource.geosciml.org/classifier/ICS/StratChart/'"/>
 		<rule context="//gsml:GeologicEvent">
 			<assert 
@@ -329,6 +336,59 @@
 			</rule>
 		-->
 	</pattern>
+	
+	<!-- Make some borehole property vocab tests as email from Guillaume Duclaux to auscope list 2011-09-23 07:17 -->
+	
+	<!-- Vocabs by Feature property -->
+	<!-- Abstract pattern for swe:Category -->
+	<pattern abstract="true" id="swe:Category">
+		<rule context="$Category">
+			<assert test="starts-with(swe:identifier, $prefix)">identifier should start with <value-of select="$prefix"/>.</assert>
+			<assert test="swe:label">label should not be empty</assert>
+			<assert test="swe:codeSpace = $prefix">codeSpace should equal <value-of select="$prefix"/></assert>
+		</rule>
+	</pattern>
+	<!-- gsml:MappedFeature -->
+	<!-- gsml:MappedFeature/gml:identifier -->
+	<!-- Will a generic identifier rule do here? In what cases do we make existence compulsory? -->
+	<!-- gsml:MappedFeature/gsml:observationMethod -->
+	<!-- Only dealing with inline content; external content is for different phase, internal links could be checked later. -->
+	<pattern id="MappedFeature_observationMethod">
+		<let name="prefix" value="'http://resource.geosciml.org/classifierscheme/cgi/201012/mappedfeatureobservationmethod'"/>
+		<let name="prefix_ext" value="'http://resource.geosciml.org/classifierscheme/cgi/201012/valuequalifier'"/>
+		<rule context="//gsml:MappedFeature/gsml:observationMethod/swe:Category">
+			<assert test="starts-with(swe:identifier, $prefix)">identifier should start with <value-of select="$prefix"/>.</assert>
+			<assert test="swe:label">label should not be empty</assert>
+			<assert test="swe:codeSpace = $prefix">codeSpace should equal <value-of select="$prefix"/></assert>
+			<assert test="starts-with(swe:extension/swe:Category/swe:identifier, $prefix_ext)">extension identifier should start with <value-of select="$prefix_ext"/>.</assert>
+			<assert test="swe:extension/swe:Category/swe:label">extension label should not be empty</assert>
+			<assert test="swe:extension/swe:Category/swe:codeSpace = $prefix_ext">extension codeSpace should equal <value-of select="$prefix_ext"/></assert>
+		</rule>
+	</pattern>
+	<!-- gsml:MappedFeature/gsml:positionalAccuracy -->
+	<!-- uom should be a length unit, should we fix to m for cgi.profile or SI.profile? -->
+	
+	<!-- gsml:MappedFeature/gsml:samplingFrame -->
+	<!-- Don't know what rules we could have for this -->
+	
+	<!-- gsmlgu:GeologicUnit -->
+	<!-- gsmlgu:GeologicUnit/gml:identifier -->
+	<!-- Will a generic identifier rule do here? In what cases do we make existence compulsory? -->
+	<!-- gsmlgu:GeologicUnit/gsml:observationMethod -->
+	<!-- Only dealing with inline content; external content is for different phase, internal links could be checked later. -->
+	<pattern id="gsmlgu:GeologicUnit_observationMethod">
+		<let name="prefix" value="'http://resource.geosciml.org/classifierscheme/cgi/201012/featureobservationmethod'"/>
+		<let name="prefix_ext" value="'http://resource.geosciml.org/classifierscheme/cgi/201012/valuequalifier'"/>
+		<rule context="//gsmlgu:GeologicUnit/gsml:observationMethod/swe:Category">
+			<assert test="starts-with(swe:identifier, $prefix)">identifier should start with <value-of select="$prefix"/>.</assert>
+			<assert test="swe:label">label should not be empty</assert>
+			<assert test="swe:codeSpace = $prefix">codeSpace should equal <value-of select="$prefix"/></assert>
+			<assert test="starts-with(swe:extension/swe:Category/swe:identifier, $prefix_ext)">extension identifier should start with <value-of select="$prefix_ext"/>.</assert>
+			<assert test="swe:extension/swe:Category/swe:label">extension label should not be empty</assert>
+			<assert test="swe:extension/swe:Category/swe:codeSpace = $prefix_ext">extension codeSpace should equal <value-of select="$prefix_ext"/></assert>
+		</rule>
+	</pattern>
+	
 	
 	<pattern id="profiling">
 		<title>Profiling</title>
