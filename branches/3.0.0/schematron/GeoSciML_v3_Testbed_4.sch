@@ -10,6 +10,7 @@
 	<ns prefix="gsml" uri="http://xmlns.geosciml.org/GeoSciML-Core/3.0" />
 	<ns prefix="gsmlgu" uri="http://xmlns.geosciml.org/GeologicUnit/3.0" />
 	<ns prefix="gsmlga" uri="http://xmlns.geosciml.org/GeologicAge/3.0" />
+	<ns prefix="gsmlem" uri="http://xmlns.geosciml.org/EarthMaterial/3.0" />
 	<ns prefix="sa" uri="http://www.opengis.net/sampling/1.0" />
 
 	<phase id="model.constraints">
@@ -308,12 +309,12 @@
 		<title>CGI Lithology Vocabulary</title>
 		<p>Check that lithology properties use values from the CGI simple lithology vocabulary.</p>
 		<!-- To Do. Check this is the prefix we should use. -->
-		<let name="lithologyUriPrefix" value="'http://resource.geosciml.org/classifier/CGI/SimpleLithology/'"/>
-		<rule context="//gsml:RockMaterial">
+		<let name="lithologyUriPrefix" value="'http://resource.geosciml.org/classifier/cgi/lithology/'"/>
+		<rule context="//gsmlem:RockMaterial">
 			<assert 
 				see="https://www.seegrid.csiro.au/wiki/CGIModel/GeoSciML3SchematronRules#cgi.lithology.vocabulary"
-				test="starts-with(gsml:lithology/@xlink:href, lithologyUriPrefix)">
-				lithology <value-of select="gsml:lithology/@xlink:href"/> should come from CGI vocabulary.
+				test="starts-with(gsmlem:lithology/@xlink:href, $lithologyUriPrefix)">
+				lithology <value-of select="gsmlem:lithology/@xlink:href"/> should come from CGI vocabulary.
 			</assert>
 		</rule>
 	</pattern>
