@@ -341,7 +341,7 @@
 	
 	<!-- Vocabs by Feature property -->
 	<!-- Abstract pattern for swe:Category -->
-	<pattern abstract="true" id="swe:Category">
+	<pattern abstract="true" id="swe_Category">
 		<rule context="$Category">
 			<assert test="starts-with(swe:identifier, $prefix)">identifier should start with <value-of select="$prefix"/>.</assert>
 			<assert test="swe:label">label should not be empty</assert>
@@ -376,7 +376,7 @@
 	<!-- Will a generic identifier rule do here? In what cases do we make existence compulsory? -->
 	<!-- gsmlgu:GeologicUnit/gsml:observationMethod -->
 	<!-- Only dealing with inline content; external content is for different phase, internal links could be checked later. -->
-	<pattern id="gsmlgu:GeologicUnit_observationMethod">
+	<pattern id="gsmlgu_GeologicUnit_observationMethod">
 		<let name="prefix" value="'http://resource.geosciml.org/classifierscheme/cgi/201012/featureobservationmethod'"/>
 		<let name="prefix_ext" value="'http://resource.geosciml.org/classifierscheme/cgi/201012/valuequalifier'"/>
 		<rule context="//gsmlgu:GeologicUnit/gsml:observationMethod/swe:Category">
