@@ -288,17 +288,18 @@
 		<p>Check that age properties use values from the ICS standard age vocabulary.</p>
 		<!-- To Do. Check this is the prefix we should use. -->
 		<!-- Add pattern for extra scandinavian ages. -->
-		<let name="ageUriPrefix" value="'http://resource.geosciml.org/classifier/ics/ischart/'"/>
+		<let name="icsAgeUriPrefix" value="'http://resource.geosciml.org/classifier/ics/ischart/'"/>
+		<let name="cgiAgeUriPrefix" value="'http://resource.geosciml.org/classifier/cgi/stratchart/'"/>
 		<rule context="//gsmlga:GeologicEvent">
 			<assert 
 				see="https://www.seegrid.csiro.au/wiki/CGIModel/GeoSciML3SchematronRules#ics.age.vocabulary"
-				test="starts-with(gsmlga:olderNamedAge/@xlink:href, $ageUriPrefix) or gsmlga:olderNamedAge/@xsi:nil = true()">
-				olderNamedAge <value-of select="gsmlga:olderNamedAge/@xlink:href"/> should come from ICS vocabulary or be nil.
+				test="starts-with(gsmlga:olderNamedAge/@xlink:href, $icsAgeUriPrefix) or starts-with(gsmlga:olderNamedAge/@xlink:href, $cgiAgeUriPrefix) or gsmlga:olderNamedAge/@xsi:nil = true()">
+				olderNamedAge <value-of select="gsmlga:olderNamedAge/@xlink:href"/> should come from ICS / CGI vocabulary or be nil.
 			</assert>
 			<assert 
 				see="https://www.seegrid.csiro.au/wiki/CGIModel/GeoSciML3SchematronRules#ics.age.vocabulary"
-				test="starts-with(gsmlga:youngerNamedAge/@xlink:href, $ageUriPrefix) or gsmlga:youngerNamedAge/@xsi:nil = true()">
-				youngerNamedAge <value-of select="gsmlga:youngerNamedAge/@xlink:href"/> should come from ICS vocabulary or be nil.
+				test="starts-with(gsmlga:youngerNamedAge/@xlink:href, $icsAgeUriPrefix) or starts-with(gsmlga:olderNamedAge/@xlink:href, $cgiAgeUriPrefix) or gsmlga:youngerNamedAge/@xsi:nil = true()">
+				youngerNamedAge <value-of select="gsmlga:youngerNamedAge/@xlink:href"/> should come from ICS / CGI vocabulary or be nil.
 			</assert>
 		</rule>
 	</pattern>
