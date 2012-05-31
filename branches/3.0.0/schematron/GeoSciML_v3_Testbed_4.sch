@@ -16,7 +16,9 @@
 	<ns prefix="gsmlem" uri="http://xmlns.geosciml.org/EarthMaterial/3.0" />
 	<ns prefix="gsmlst" uri="http://xmlns.geosciml.org/GeologicStructure/3.0" />
 	<ns prefix="sa" uri="http://www.opengis.net/sampling/1.0" />
-
+	<ns prefix="rdf" uri="http://www.w3.org/1999/02/22-rdf-syntax-ns#" />
+	<ns prefix="skos" uri="http://www.w3.org/2004/02/skos/core#" />
+	
 	<phase id="model.constraints">
 		<p>Check constraints that belong as part of the model that can't be enforced by GeoSciML XML Schema
 			or aren't enforced by imported schemas outside the governance of GeoSciML.. 
@@ -309,13 +311,12 @@
 	<pattern id="cgi.lithology.vocabulary">
 		<title>CGI Lithology Vocabulary</title>
 		<p>Check that lithology properties use values from the CGI simple lithology vocabulary.</p>
-		<!-- To Do. Check this is the prefix we should use. -->
-		<let name="lithologyUriPrefix" value="'http://resource.geosciml.org/classifier/cgi/lithology/'"/>
+		<let name="cgisimplelithology" value="document('http://resource.geosciml.org/classifierscheme/cgi/201202/simplelithology.rdf')"/>
 		<rule context="//gsmlem:RockMaterial">
 			<assert 
 				see="https://www.seegrid.csiro.au/wiki/CGIModel/GeoSciML3SchematronRules#cgi.lithology.vocabulary"
-				test="starts-with(gsmlem:lithology/@xlink:href, $lithologyUriPrefix)">
-				lithology <value-of select="gsmlem:lithology/@xlink:href"/> should come from CGI vocabulary.
+				test="$cgisimplelithology//rdf:Description/@rdf:about[../skos:inScheme/@rdf:resource = 'http://resource.geosciml.org/classifierscheme/cgi/201202/simplelithology' and . = current()/gsmlem:lithology/@xlink:href]">
+				Lithology <value-of select="gsmlem:lithology/@xlink:href"/> should come from CGI vocabulary  <value-of select="$cgisimplelithology//rdf:Description/@rdf:about[../skos:inScheme/@rdf:resource = 'http://resource.geosciml.org/classifierscheme/cgi/201202/simplelithology']"/>
 			</assert>
 		</rule>
 	</pattern>
