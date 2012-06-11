@@ -72,6 +72,11 @@
 	<let name="httpUriRegExp" value="'^https?://[0-9a-zA-Z]([-.\w]*[0-9a-zA-Z])*(:(0-9)*)*(/?)([a-zA-Z0-9\-\.\?,&amp;apos;/\\\+&amp;=%\$#_]*)?$'"/>
 	<let name="urnRegExp" value="'^urn:([A-Z0-9]([A-Z0-9\-]){1,31}):([A-Z0-9\.:=_\-]|(%[A-F0-9]{2}))+$'"/>
 	
+	<!-- Set prefix on referenced files if using from e.g. web schematron service which needs to access by URL -->
+	<let name="schematron_location_prefix" value="'https://www.seegrid.csiro.au/subversion/GeoSciML/branches/3.0.0/schematron/'"/>
+	<!-- Set prefix to empty string if using local schematron files. -->
+<!--	<let name="schematron_location_prefix" value="''"/>-->
+	
 	<pattern id="gml.metaDataProperty">
 		<title>Don't use deprecated GML metaDataProperty</title>
 		<rule context="//gml:metaDataProperty">
@@ -328,21 +333,21 @@
 		<title>ISC-CGI Age Vocabulary</title>
 		<p>Check that age properties use values from the combined ICS-CGI standard age vocabulary with CGI Fenno-Scandian additions to the ICS ages.</p>
 		<param name="property" value="//gsmlga:GeologicEvent/gsmlga:olderNamedAge[not(@xsi:nil = true())]"/>
-		<param name="vocabulary" value="document('vocabs_isccgi/CGI2011TimeScale.xml')"/>
+		<param name="vocabulary" value="document(concat( $schematron_location_prefix, 'vocabs_isccgi/CGI2011TimeScale.xml'))"/>
 	</pattern>
 	
 	<pattern id="isccgi.age.vocabulary.younger" is-a="by-ref.property.vocabulary">
 		<title>ISC-CGI Age Vocabulary</title>
 		<p>Check that age properties use values from the combined ICS-CGI standard age vocabulary with CGI Fenno-Scandian additions to the ICS ages.</p>
 		<param name="property" value="//gsmlga:GeologicEvent/gsmlga:youngerNamedAge[not(@xsi:nil = true())]"/>
-		<param name="vocabulary" value="document('vocabs_isccgi/CGI2011TimeScale.xml')"/>
+		<param name="vocabulary" value="document(concat( $schematron_location_prefix, 'vocabs_isccgi/CGI2011TimeScale.xml'))"/>
 	</pattern>
 	
 	<pattern id="cgi.lithology.vocabulary" is-a="by-ref.property.vocabulary">
 		<title>CGI Lithology Vocabulary</title>
 		<p>Check that lithology properties use values from the CGI simple lithology vocabulary.</p>
 		<param name="property" value="//gsmlem:RockMaterial/gsmlem:lithology"/>
-		<param name="vocabulary" value="document('vocabs_cgi_201202/SimpleLithology201202.xml')"/>
+		<param name="vocabulary" value="document(concat( $schematron_location_prefix, 'vocabs_cgi_201202/SimpleLithology201202.xml'))"/>
 <!--		<let name="cgisimplelithology" value="document('http://resource.geosciml.org/classifierscheme/cgi/201202/simplelithology.rdf')"/>-->
 <!--			<assert 
 				see="https://www.seegrid.csiro.au/wiki/CGIModel/GeoSciML3SchematronRules#cgi.lithology.vocabulary"
@@ -356,35 +361,35 @@
 		<title>CGI Geologic Unit Type Vocabulary</title>
 		<p>Check that the geologic unit type of a geologic unit comes from the CGI dictionary. This needs to be true for any GeoSciML instance, not just those conforming to a CGI profile.</p>
 		<param name="property" value="//gsmlgu:GeologicUnit/gsmlgu:geologicUnitType"/>
-		<param name="vocabulary" value="document('vocabs_cgi_201202/GeologicUnitType201202.xml')"/>
+		<param name="vocabulary" value="document(concat( $schematron_location_prefix, 'vocabs_cgi_201202/GeologicUnitType201202.xml'))"/>
 	</pattern>
 	
 	<pattern id="cgi.stratigraphicrank.vocabulary" is-a="by-ref.property.vocabulary">
 		<title>CGI Stratigraphic Rank Vocabulary</title>
 		<p>Check that the rank of a geologic unit comes from the CGI dictionary.</p>
 		<param name="property" value="//gsmlgu:GeologicUnit/gsmlgu:rank"/>
-		<param name="vocabulary" value="document('vocabs_cgi_201202/StratigraphicRank201202.xml')"/>
+		<param name="vocabulary" value="document(concat( $schematron_location_prefix, 'vocabs_cgi_201202/StratigraphicRank201202.xml'))"/>
 	</pattern>
 	
 	<pattern id="cgi.eventprocess.vocabulary" is-a="by-ref.property.vocabulary">
 		<title>CGI Event Process Vocabulary</title>
 		<p>Check that the event process of a geologic event comes from the CGI dictionary.</p>
 		<param name="property" value="//gsmlga:GeologicEvent/gsmlga:eventProcess"/>
-		<param name="vocabulary" value="document('vocabs_cgi_201202/EventProcess201202.xml')"/>
+		<param name="vocabulary" value="document(concat( $schematron_location_prefix, 'vocabs_cgi_201202/EventProcess201202.xml'))"/>
 	</pattern>
 	
 	<pattern id="cgi.geologicunitpartrole.vocabulary" is-a="by-ref.property.vocabulary">
 		<title>CGI Geologic Unit Part Role Vocabulary</title>
 		<p>Check that the role of a composition part comes from the CGI dictionary.</p>
 		<param name="property" value="//gsmlgu:CompositionPart/gsmlgu:role"/>
-		<param name="vocabulary" value="document('vocabs_cgi_201202/GeologicUnitPartRole201202.xml')"/>
+		<param name="vocabulary" value="document(concat( $schematron_location_prefix, 'vocabs_cgi_201202/GeologicUnitPartRole201202.xml'))"/>
 	</pattern>
 	
 	<pattern id="cgi.valuequalifier.vocabulary" is-a="swe_Category">
 		<title>CGI Value Qualifier Dictionary</title>
 		<p>Check that the CGI Value Qualifier dictionary is used in swe:extension elements.</p>
 		<param name="category_path" value="//swe:Category/swe:extension/swe:Category"/>
-		<param name="vocabulary" value="document('vocabs_cgi_201202/ValueQualifier201202.xml')"/>
+		<param name="vocabulary" value="document(concat( $schematron_location_prefix, 'vocabs_cgi_201202/ValueQualifier201202.xml'))"/>
 		<param name="vocab_uri" value="'http://resource.geosciml.org/classifierscheme/cgi/201202/valuequalifier'"/>
 	</pattern>
 	
@@ -418,7 +423,7 @@
 	<!-- Only dealing with inline content; external content is for different phase, internal links could be checked later. -->
 	<pattern id="cgi.MappedFeature_observationMethod" is-a="swe_Category">
 		<param name="category_path" value="//gsml:MappedFeature/gsml:observationMethod/swe:Category"/>
-		<param name="vocabulary" value="document('vocabs_cgi_201202/MappedFeatureObservationMethod201202.xml')"/>
+		<param name="vocabulary" value="document(concat( $schematron_location_prefix, 'vocabs_cgi_201202/MappedFeatureObservationMethod201202.xml'))"/>
 		<param name="vocab_uri" value="'http://resource.geosciml.org/classifierscheme/cgi/201202/mappedfeatureobservationmethod'"/>
 	</pattern>
 	<!-- gsml:MappedFeature/gsml:positionalAccuracy -->
@@ -434,25 +439,25 @@
 	<!-- Only dealing with inline content; external content is for different phase, internal links could be checked later. -->
 	<pattern id="cgi.gsmlgu_GeologicUnit_observationMethod" is-a="swe_Category">
 		<param name="category_path" value="//gsmlgu:GeologicUnit/gsml:observationMethod/swe:Category"/>
-		<param name="vocabulary" value="document('vocabs_cgi_201202/FeatureObservationMethod201202.xml')"/>
+		<param name="vocabulary" value="document(concat( $schematron_location_prefix, 'vocabs_cgi_201202/FeatureObservationMethod201202.xml'))"/>
 		<param name="vocab_uri" value="'http://resource.geosciml.org/classifierscheme/cgi/201202/featureobservationmethod'"/>
 	</pattern>
 	
 	<pattern id="cgi.gsmlgu_GeologicUnit_bodyMorphology" is-a="swe_Category">
 		<param name="category_path" value="//gsmlgu:GeologicUnit/gsmlgu:bodyMorphology/swe:Category"/>
-		<param name="vocabulary" value="document('vocabs_cgi_201202/GeologicUnitMorphology201202.xml')"/>
+		<param name="vocabulary" value="document(concat( $schematron_location_prefix, 'vocabs_cgi_201202/GeologicUnitMorphology201202.xml'))"/>
 		<param name="vocab_uri" value="'http://resource.geosciml.org/classifierscheme/cgi/201202/geologicunitmorphology'"/>
 	</pattern>
 	
 	<pattern id="cgi.gsmlga_GeologicEvent_eventEnvironment" is-a="swe_Category">
 		<param name="category_path" value="//gsmlga:GeologicEvent/gsmlga:eventEnvironment/swe:Category"/>
-		<param name="vocabulary" value="document('vocabs_cgi_201202/EventEnvironment201202.xml')"/>
+		<param name="vocabulary" value="document(concat( $schematron_location_prefix, 'vocabs_cgi_201202/EventEnvironment201202.xml'))"/>
 		<param name="vocab_uri" value="'http://resource.geosciml.org/classifierscheme/cgi/201202/eventenvironment'"/>
 	</pattern>
 	
 	<pattern id="cgi.gsmlem_RockMaterial_compositionCategory" is-a="swe_Category">
 		<param name="category_path" value="//gsmlem:RockMaterial/gsmlem:compositionCategory/swe:Category"/>
-		<param name="vocabulary" value="document('vocabs_cgi_201202/CompositionCategory201202.xml')"/>
+		<param name="vocabulary" value="document(concat( $schematron_location_prefix, 'vocabs_cgi_201202/CompositionCategory201202.xml'))"/>
 		<param name="vocab_uri" value="'http://resource.geosciml.org/classifierscheme/cgi/201202/compositioncategory'"/>
 	</pattern>
 	
