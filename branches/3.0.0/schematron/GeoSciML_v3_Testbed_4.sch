@@ -16,6 +16,7 @@
 	<ns prefix="gsmlem" uri="http://xmlns.geosciml.org/EarthMaterial/3.0" />
 	<ns prefix="gsmlst" uri="http://xmlns.geosciml.org/GeologicStructure/3.0" />
 	<ns prefix="sa" uri="http://www.opengis.net/sampling/1.0" />
+	<ns prefix="swe" uri="http://www.opengis.net/swe/2.0" />
 	<ns prefix="rdf" uri="http://www.w3.org/1999/02/22-rdf-syntax-ns#" />
 	<ns prefix="skos" uri="http://www.w3.org/2004/02/skos/core#" />
 	
@@ -27,6 +28,7 @@
 		<active pattern="GeologicUnit.constraints"/>
 		<active pattern="Borehole.constraints"/>
 		<active pattern="property.constraints"/>
+		<active pattern="cgi.geologicunittype.vocabulary"/>
 		<active pattern="spatial.data.constraints"/>
 		<active pattern="uri.codespace.element"/>
 		<active pattern="internal.referential.integrity"/>
@@ -43,8 +45,19 @@
 
 	<phase id="cgi.profile">
 		<p>Some extra constraints to conform to a standard "CGI profile", mainly meaning using CGI approved dictionaries where they exist for particular properties.</p>
-		<active pattern="ics.age.vocabulary"/>
+		<active pattern="isccgi.age.vocabulary.older"/>
+		<active pattern="isccgi.age.vocabulary.younger"/>
 		<active pattern="cgi.lithology.vocabulary"/>
+		<active pattern="cgi.valuequalifier.vocabulary"/>
+		<active pattern="cgi.MappedFeature_observationMethod"/>
+		<active pattern="cgi.geologicunittype.vocabulary"/>
+		<active pattern="cgi.gsmlgu_GeologicUnit_observationMethod"/>
+		<active pattern="cgi.stratigraphicrank.vocabulary"/>
+		<active pattern="cgi.eventprocess.vocabulary"/>
+		<active pattern="cgi.geologicunitpartrole.vocabulary"/>
+		<active pattern="cgi.gsmlgu_GeologicUnit_bodyMorphology"/>
+		<active pattern="cgi.gsmlga_GeologicEvent_eventEnvironment"/>
+		<active pattern="cgi.gsmlem_RockMaterial_compositionCategory"/>
 		<active pattern="ucum.vocabulary"/>
 		<active pattern="spatial.crs.uri"/>
 		<active pattern="profiling"/>
@@ -286,39 +299,93 @@
 		</rule>
 	</pattern>
 	
-	<!-- To do. Save local copies of vocabularies to explicitly test term is from list. -->
-	<pattern id="ics.age.vocabulary">
-		<title>IUGS-CGI Age Vocabulary</title>
-		<p>Check that age properties use values from the ICS standard age vocabulary.</p>
-		<!-- To Do. Check this is the prefix we should use. -->
-		<!-- Add pattern for extra scandinavian ages. -->
-		<let name="icsAgeUriPrefix" value="'http://resource.geosciml.org/classifier/ics/ischart/'"/>
-		<let name="cgiAgeUriPrefix" value="'http://resource.geosciml.org/classifier/cgi/stratchart/'"/>
-		<rule context="//gsmlga:GeologicEvent">
+	<!-- General pattern for testing simple by reference properties against list of URIs in vocabulary -->
+	<pattern abstract="true" id="by-ref.property.vocabulary">
+		<title>Abstract pattern for testing that by reference property href's come from a given vocabulary.</title>
+		<p>Test that the specified property elements xlink:href attributes come from the specified vocabulary.</p>
+		<rule context="$property">
 			<assert 
-				see="https://www.seegrid.csiro.au/wiki/CGIModel/GeoSciML3SchematronRules#ics.age.vocabulary"
-				test="starts-with(gsmlga:olderNamedAge/@xlink:href, $icsAgeUriPrefix) or starts-with(gsmlga:olderNamedAge/@xlink:href, $cgiAgeUriPrefix) or gsmlga:olderNamedAge/@xsi:nil = true()">
-				olderNamedAge <value-of select="gsmlga:olderNamedAge/@xlink:href"/> should come from ICS / CGI vocabulary or be nil.
-			</assert>
-			<assert 
-				see="https://www.seegrid.csiro.au/wiki/CGIModel/GeoSciML3SchematronRules#ics.age.vocabulary"
-				test="starts-with(gsmlga:youngerNamedAge/@xlink:href, $icsAgeUriPrefix) or starts-with(gsmlga:olderNamedAge/@xlink:href, $cgiAgeUriPrefix) or gsmlga:youngerNamedAge/@xsi:nil = true()">
-				youngerNamedAge <value-of select="gsmlga:youngerNamedAge/@xlink:href"/> should come from ICS / CGI vocabulary or be nil.
+				test="$vocabulary//uri/@xlink:href[ . = current()/@xlink:href]">
+				Property value <value-of select="@xlink:href"/> should come from the list <value-of select="$vocabulary//uri/@xlink:href"/>
 			</assert>
 		</rule>
 	</pattern>
 	
-	<pattern id="cgi.lithology.vocabulary">
+	<!-- General pattern testing properties specified by inline swe:Category against list of URIs in vocabulary-->
+	<pattern abstract="true" id="swe_Category">
+		<rule context="$category_path">
+			<assert test="$vocabulary//uri/@xlink:href[ . = current()/swe:identifier]">
+				The category identifier <value-of select="swe:identifier"/> should come from the list <value-of select="$vocabulary//uri/@xlink:href"/>
+			</assert>
+			<assert test="swe:label">label should not be empty</assert>
+			<assert 
+				test="swe:codeSpace/@xlink:href = $vocab_uri">
+				The codeSpace <value-of select="swe:codeSpace/@xlink:href"/> should be "<value-of select="$vocab_uri"/>".</assert>
+		</rule>
+	</pattern>
+	
+	<pattern id="isccgi.age.vocabulary.older" is-a="by-ref.property.vocabulary">
+		<title>ISC-CGI Age Vocabulary</title>
+		<p>Check that age properties use values from the combined ICS-CGI standard age vocabulary with CGI Fenno-Scandian additions to the ICS ages.</p>
+		<param name="property" value="//gsmlga:GeologicEvent/gsmlga:olderNamedAge[not(@xsi:nil = true())]"/>
+		<param name="vocabulary" value="document('vocabs_isccgi/CGI2011TimeScale.xml')"/>
+	</pattern>
+	
+	<pattern id="isccgi.age.vocabulary.younger" is-a="by-ref.property.vocabulary">
+		<title>ISC-CGI Age Vocabulary</title>
+		<p>Check that age properties use values from the combined ICS-CGI standard age vocabulary with CGI Fenno-Scandian additions to the ICS ages.</p>
+		<param name="property" value="//gsmlga:GeologicEvent/gsmlga:youngerNamedAge[not(@xsi:nil = true())]"/>
+		<param name="vocabulary" value="document('vocabs_isccgi/CGI2011TimeScale.xml')"/>
+	</pattern>
+	
+	<pattern id="cgi.lithology.vocabulary" is-a="by-ref.property.vocabulary">
 		<title>CGI Lithology Vocabulary</title>
 		<p>Check that lithology properties use values from the CGI simple lithology vocabulary.</p>
-		<let name="cgisimplelithology" value="document('http://resource.geosciml.org/classifierscheme/cgi/201202/simplelithology.rdf')"/>
-		<rule context="//gsmlem:RockMaterial">
-			<assert 
+		<param name="property" value="//gsmlem:RockMaterial/gsmlem:lithology"/>
+		<param name="vocabulary" value="document('vocabs_cgi_201202/SimpleLithology201202.xml')"/>
+<!--		<let name="cgisimplelithology" value="document('http://resource.geosciml.org/classifierscheme/cgi/201202/simplelithology.rdf')"/>-->
+<!--			<assert 
 				see="https://www.seegrid.csiro.au/wiki/CGIModel/GeoSciML3SchematronRules#cgi.lithology.vocabulary"
 				test="$cgisimplelithology//rdf:Description/@rdf:about[../skos:inScheme/@rdf:resource = 'http://resource.geosciml.org/classifierscheme/cgi/201202/simplelithology' and . = current()/gsmlem:lithology/@xlink:href]">
 				Lithology <value-of select="gsmlem:lithology/@xlink:href"/> should come from CGI vocabulary  <value-of select="$cgisimplelithology//rdf:Description/@rdf:about[../skos:inScheme/@rdf:resource = 'http://resource.geosciml.org/classifierscheme/cgi/201202/simplelithology']"/>
 			</assert>
-		</rule>
+-->
+	</pattern>
+	
+	<pattern id="cgi.geologicunittype.vocabulary" is-a="by-ref.property.vocabulary">
+		<title>CGI Geologic Unit Type Vocabulary</title>
+		<p>Check that the geologic unit type of a geologic unit comes from the CGI dictionary. This needs to be true for any GeoSciML instance, not just those conforming to a CGI profile.</p>
+		<param name="property" value="//gsmlgu:GeologicUnit/gsmlgu:geologicUnitType"/>
+		<param name="vocabulary" value="document('vocabs_cgi_201202/GeologicUnitType201202.xml')"/>
+	</pattern>
+	
+	<pattern id="cgi.stratigraphicrank.vocabulary" is-a="by-ref.property.vocabulary">
+		<title>CGI Stratigraphic Rank Vocabulary</title>
+		<p>Check that the rank of a geologic unit comes from the CGI dictionary.</p>
+		<param name="property" value="//gsmlgu:GeologicUnit/gsmlgu:rank"/>
+		<param name="vocabulary" value="document('vocabs_cgi_201202/StratigraphicRank201202.xml')"/>
+	</pattern>
+	
+	<pattern id="cgi.eventprocess.vocabulary" is-a="by-ref.property.vocabulary">
+		<title>CGI Event Process Vocabulary</title>
+		<p>Check that the event process of a geologic event comes from the CGI dictionary.</p>
+		<param name="property" value="//gsmlga:GeologicEvent/gsmlga:eventProcess"/>
+		<param name="vocabulary" value="document('vocabs_cgi_201202/EventProcess201202.xml')"/>
+	</pattern>
+	
+	<pattern id="cgi.geologicunitpartrole.vocabulary" is-a="by-ref.property.vocabulary">
+		<title>CGI Geologic Unit Part Role Vocabulary</title>
+		<p>Check that the role of a composition part comes from the CGI dictionary.</p>
+		<param name="property" value="//gsmlgu:CompositionPart/gsmlgu:role"/>
+		<param name="vocabulary" value="document('vocabs_cgi_201202/GeologicUnitPartRole201202.xml')"/>
+	</pattern>
+	
+	<pattern id="cgi.valuequalifier.vocabulary" is-a="swe_Category">
+		<title>CGI Value Qualifier Dictionary</title>
+		<p>Check that the CGI Value Qualifier dictionary is used in swe:extension elements.</p>
+		<param name="category_path" value="//swe:Category/swe:extension/swe:Category"/>
+		<param name="vocabulary" value="document('vocabs_cgi_201202/ValueQualifier201202.xml')"/>
+		<param name="vocab_uri" value="'http://resource.geosciml.org/classifierscheme/cgi/201202/valuequalifier'"/>
 	</pattern>
 	
 	<pattern id="ucum.vocabulary">
@@ -344,30 +411,15 @@
 	<!-- Make some borehole property vocab tests as email from Guillaume Duclaux to auscope list 2011-09-23 07:17 -->
 	
 	<!-- Vocabs by Feature property -->
-	<!-- Abstract pattern for swe:Category -->
-	<pattern abstract="true" id="swe_Category">
-		<rule context="$Category">
-			<assert test="starts-with(swe:identifier, $prefix)">identifier should start with <value-of select="$prefix"/>.</assert>
-			<assert test="swe:label">label should not be empty</assert>
-			<assert test="swe:codeSpace = $prefix">codeSpace should equal <value-of select="$prefix"/></assert>
-		</rule>
-	</pattern>
 	<!-- gsml:MappedFeature -->
 	<!-- gsml:MappedFeature/gml:identifier -->
 	<!-- Will a generic identifier rule do here? In what cases do we make existence compulsory? -->
 	<!-- gsml:MappedFeature/gsml:observationMethod -->
 	<!-- Only dealing with inline content; external content is for different phase, internal links could be checked later. -->
-	<pattern id="MappedFeature_observationMethod">
-		<let name="prefix" value="'http://resource.geosciml.org/classifierscheme/cgi/201012/mappedfeatureobservationmethod'"/>
-		<let name="prefix_ext" value="'http://resource.geosciml.org/classifierscheme/cgi/201012/valuequalifier'"/>
-		<rule context="//gsml:MappedFeature/gsml:observationMethod/swe:Category">
-			<assert test="starts-with(swe:identifier, $prefix)">identifier should start with <value-of select="$prefix"/>.</assert>
-			<assert test="swe:label">label should not be empty</assert>
-			<assert test="swe:codeSpace = $prefix">codeSpace should equal <value-of select="$prefix"/></assert>
-			<assert test="starts-with(swe:extension/swe:Category/swe:identifier, $prefix_ext)">extension identifier should start with <value-of select="$prefix_ext"/>.</assert>
-			<assert test="swe:extension/swe:Category/swe:label">extension label should not be empty</assert>
-			<assert test="swe:extension/swe:Category/swe:codeSpace = $prefix_ext">extension codeSpace should equal <value-of select="$prefix_ext"/></assert>
-		</rule>
+	<pattern id="cgi.MappedFeature_observationMethod" is-a="swe_Category">
+		<param name="category_path" value="//gsml:MappedFeature/gsml:observationMethod/swe:Category"/>
+		<param name="vocabulary" value="document('vocabs_cgi_201202/MappedFeatureObservationMethod201202.xml')"/>
+		<param name="vocab_uri" value="'http://resource.geosciml.org/classifierscheme/cgi/201202/mappedfeatureobservationmethod'"/>
 	</pattern>
 	<!-- gsml:MappedFeature/gsml:positionalAccuracy -->
 	<!-- uom should be a length unit, should we fix to m for cgi.profile or SI.profile? -->
@@ -380,19 +432,29 @@
 	<!-- Will a generic identifier rule do here? In what cases do we make existence compulsory? -->
 	<!-- gsmlgu:GeologicUnit/gsml:observationMethod -->
 	<!-- Only dealing with inline content; external content is for different phase, internal links could be checked later. -->
-	<pattern id="gsmlgu_GeologicUnit_observationMethod">
-		<let name="prefix" value="'http://resource.geosciml.org/classifierscheme/cgi/201012/featureobservationmethod'"/>
-		<let name="prefix_ext" value="'http://resource.geosciml.org/classifierscheme/cgi/201012/valuequalifier'"/>
-		<rule context="//gsmlgu:GeologicUnit/gsml:observationMethod/swe:Category">
-			<assert test="starts-with(swe:identifier, $prefix)">identifier should start with <value-of select="$prefix"/>.</assert>
-			<assert test="swe:label">label should not be empty</assert>
-			<assert test="swe:codeSpace = $prefix">codeSpace should equal <value-of select="$prefix"/></assert>
-			<assert test="starts-with(swe:extension/swe:Category/swe:identifier, $prefix_ext)">extension identifier should start with <value-of select="$prefix_ext"/>.</assert>
-			<assert test="swe:extension/swe:Category/swe:label">extension label should not be empty</assert>
-			<assert test="swe:extension/swe:Category/swe:codeSpace = $prefix_ext">extension codeSpace should equal <value-of select="$prefix_ext"/></assert>
-		</rule>
+	<pattern id="cgi.gsmlgu_GeologicUnit_observationMethod" is-a="swe_Category">
+		<param name="category_path" value="//gsmlgu:GeologicUnit/gsml:observationMethod/swe:Category"/>
+		<param name="vocabulary" value="document('vocabs_cgi_201202/FeatureObservationMethod201202.xml')"/>
+		<param name="vocab_uri" value="'http://resource.geosciml.org/classifierscheme/cgi/201202/featureobservationmethod'"/>
 	</pattern>
 	
+	<pattern id="cgi.gsmlgu_GeologicUnit_bodyMorphology" is-a="swe_Category">
+		<param name="category_path" value="//gsmlgu:GeologicUnit/gsmlgu:bodyMorphology/swe:Category"/>
+		<param name="vocabulary" value="document('vocabs_cgi_201202/GeologicUnitMorphology201202.xml')"/>
+		<param name="vocab_uri" value="'http://resource.geosciml.org/classifierscheme/cgi/201202/geologicunitmorphology'"/>
+	</pattern>
+	
+	<pattern id="cgi.gsmlga_GeologicEvent_eventEnvironment" is-a="swe_Category">
+		<param name="category_path" value="//gsmlga:GeologicEvent/gsmlga:eventEnvironment/swe:Category"/>
+		<param name="vocabulary" value="document('vocabs_cgi_201202/EventEnvironment201202.xml')"/>
+		<param name="vocab_uri" value="'http://resource.geosciml.org/classifierscheme/cgi/201202/eventenvironment'"/>
+	</pattern>
+	
+	<pattern id="cgi.gsmlem_RockMaterial_compositionCategory" is-a="swe_Category">
+		<param name="category_path" value="//gsmlem:RockMaterial/gsmlem:compositionCategory/swe:Category"/>
+		<param name="vocabulary" value="document('vocabs_cgi_201202/CompositionCategory201202.xml')"/>
+		<param name="vocab_uri" value="'http://resource.geosciml.org/classifierscheme/cgi/201202/compositioncategory'"/>
+	</pattern>
 	
 	<pattern id="profiling">
 		<title>Profiling</title>
