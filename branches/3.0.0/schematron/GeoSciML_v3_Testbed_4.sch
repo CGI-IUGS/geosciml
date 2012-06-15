@@ -62,6 +62,16 @@
 		<active pattern="spatial.crs.uri"/>
 		<active pattern="profiling"/>
 	</phase>
+	
+	<phase id="onegeology.profile">
+		<p>Constraints for services to be queried by OneGeology WFS query client</p>
+		<active pattern="mappedfeature.geologicunit"/>
+		<active pattern="olderage.exists"/>
+		<active pattern="lithology.exists"/>
+		<active pattern="isccgi.age.vocabulary.older"/>
+		<active pattern="isccgi.age.vocabulary.younger"/>
+		<active pattern="cgi.lithology.vocabulary"/>
+	</phase>
 
 	<phase id="wfs2">
 		<p>Rules particular to instance documents returned by WFS v2 services.</p>
@@ -482,6 +492,36 @@
 		</rule>
 	</pattern>
 
+	<pattern id="mappedfeature.geologicunit">
+		<title>We have MappedFeatueres with GeologicUnit specifications</title>
+		<p>Just tests that there are some MappedFeatures with inline GeologicUnit specifications, not that everything is one or what is at end of links.</p>
+		<rule context="/">
+			<assert test="//gsml:MappedFeature/gsml:specification/gsmlgu:GeologicUnit">
+				There aren't any MappedFeatures with GeologicUnit specification.
+			</assert>
+		</rule>
+	</pattern>
+	
+	<pattern id="olderage.exists">
+		<title>There are some defined olderNamedAge properties</title>
+		<p>OneGeology client queries olderNamedAge so just check there are some</p>
+		<rule context="/">
+			<assert test="//gsml:MappedFeature/gsml:specification/gsmlgu:GeologicUnit/gsml:relatedFeature/gsmlga:GeologicHistory/gsml:relatedFeature/gsmlga:GeologicEvent/gsmlga:olderNamedAge/@xlink:href">
+				There aren't any olderNamedAges defined.
+			</assert>
+		</rule>
+	</pattern>
+	
+	<pattern id="lithology.exists">
+		<title>There are some defined lithology properties</title>
+		<p>OneGeology client queries olderNamedAge so just check there are some</p>
+		<rule context="/">
+			<assert test="//gsml:MappedFeature/gsml:specification/gsmlgu:GeologicUnit/gsmlgu:composition/gsmlgu:CompositionPart/gsmlgu:material/gsmlem:RockMaterial/gsmlem:lithology/@xlink:href">
+				There aren't any lithologies defined.
+			</assert>
+		</rule>
+	</pattern>
+	
 	<pattern id="wfs2.collection">
 		<title>WFS 2 Collection</title>
 		<p>Test that instance is a WFS2 feature collection and any relevant further tests given that.</p>
