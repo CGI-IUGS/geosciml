@@ -139,20 +139,20 @@
 			<assert
 				see="https://www.seegrid.csiro.au/wiki/CGIModel/GeoSciML3SchematronRules#Geologic_unit_type"
 				test="not($isLithologicUnit) or $isLithologicUnit and count(gsmlgu:composition) > 0 and count(gsmlgu:composition) = count(gsmlgu:composition/gsmlgu:CompositionPart/gsmlgu:material/gsmlem:RockMaterial/gsmlem:lithology)">
-				LithologicUnit geologic unit (<value-of select="@gml:id" />) must have at least one valid gsml:composition property defined. 
+				LithologicUnit geologic unit (<value-of select="@gml:id" />) must have at least one valid gsmlgu:composition property defined. 
 			</assert>
 			<let name="isLithostratigraphicUnit" value="$geologicUnitType = 'http://resource.geosciml.org/classifier/cgi/geologicunittype/lithostratigraphic_unit'"/>
 			<assert
 				see="https://www.seegrid.csiro.au/wiki/CGIModel/GeoSciML3SchematronRules#Geologic_unit_type"
 				test="not($isLithostratigraphicUnit) or $isLithostratigraphicUnit and count(gsmlgu:composition) > 0 and count(gsmlgu:composition) = count(gsmlgu:composition/gsmlgu:CompositionPart/gsmlgu:material/gsmlem:RockMaterial/gsmlem:lithology)">
-				LithostratigraphicUnit geologic unit (<value-of select="@gml:id" />) must have at least one valid gsml:composition property defined. 
+				LithostratigraphicUnit geologic unit (<value-of select="@gml:id" />) must have at least one valid gsmlgu:composition property defined. 
 			</assert>
 	<!-- Probably should make lithostratigraphic unit have an age as well. -->	
 			<let name="isLithodemicUnit" value="$geologicUnitType = 'http://resource.geosciml.org/classifier/cgi/geologicunittype/lithodemic_unit'"/>
 			<assert
 				see="https://www.seegrid.csiro.au/wiki/CGIModel/GeoSciML3SchematronRules#Geologic_unit_type"
 				test="not($isLithodemicUnit) or $isLithodemicUnit and count(gsmlgu:composition) > 0 and count(gsmlgu:composition) = count(gsmlgu:composition/gsmlgu:CompositionPart/gsmlgu:material/gsmlem:RockMaterial/gsmlem:lithology)">
-				LithodemicUnit geologic unit (<value-of select="@gml:id" />) must have at least one valid gsml:composition property defined.
+				LithodemicUnit geologic unit (<value-of select="@gml:id" />) must have at least one valid gsmlgu:composition property defined.
 			</assert>
 <!-- Add test for lithodemic unit that bedding property is nil inapplicable.  -->
 			<!-- TODO how can I use schema-element function to successfully check substitutable elements; need to import Schema somehow. 
