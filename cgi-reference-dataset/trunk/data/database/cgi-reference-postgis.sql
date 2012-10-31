@@ -5631,7 +5631,7 @@ INSERT INTO cgireference.gsmlga_eventenvironment VALUES (26777549126932104, 1677
 -- CREATE cgireference.gsmlgu_compositionpart ==
 -- =============================================
 CREATE TABLE cgireference.gsmlgu_compositionpart
-  ( id numeric(32,0), link_geologicunit_id numeric(32,0), link_rockmaterial_id text, role_title text, role_href text,
+  ( id numeric(32,0), link_geologicunit_id numeric(32,0), link_rockmaterial_id numeric(32,0), role_title text, role_href text,
     proportion_lower_value integer, proportion_upper_value integer, proportion_uom_code text, proportion_uom_href text,
     proportion_uom_title text, CONSTRAINT pk_gsmlgu_compositionpart PRIMARY KEY (id) ) WITH (OIDS=TRUE);
 INSERT INTO cgireference.gsmlgu_compositionpart VALUES (167775491936278916, 16777549126930428, '167775491936278918', 'interbedded component', 'http://resource.geosciml.org/classifier/cgi/role/template', 5, 50, '%', 'http://www.opengis.net/def/uom/UCUM/0/%25', 'percent');
