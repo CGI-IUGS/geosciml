@@ -1,20 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <schema xmlns="http://purl.oclc.org/dsdl/schematron" xmlns:interop="urn:csiro:schematron:lib" queryBinding="xslt2" defaultPhase="model.constraints"
-	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xmlns:gsmlst="http://xmlns.geosciml.org/GeologicStructure/3.0"
-	xsi:schemaLocation="http://xmlns.geosciml.org/GeologicStructure/3.0 http://schemas.geosciml.org/geologicstructure/3.0/geologicStructure.xsd">
-	<title>GeoSciML v3 Profile conformance validation.</title>
-	<p>This schema checks GeoSciML v3 Profile conformance by stages.</p>
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+	<title>GeoSciML v3.1 Profile conformance validation.</title>
+	<p>This schema checks GeoSciML v3.1 Profile conformance by stages.</p>
 	<ns prefix="fn" uri="http://www.w3.org/2005/xpath-functions"/>
 	<ns prefix="wfs" uri="http://www.opengis.net/wfs/2.0" />
 	<ns prefix="xsi" uri="http://www.w3.org/2001/XMLSchema-instance" />
 	<ns prefix="xlink" uri="http://www.w3.org/1999/xlink" />
 	<ns prefix="gml" uri="http://www.opengis.net/gml/3.2" />
-	<ns prefix="gsml" uri="http://xmlns.geosciml.org/GeoSciML-Core/3.0" />
-	<ns prefix="gsmlgu" uri="http://xmlns.geosciml.org/GeologicUnit/3.0" />
-	<ns prefix="gsmlga" uri="http://xmlns.geosciml.org/GeologicAge/3.0" />
-	<ns prefix="gsmlem" uri="http://xmlns.geosciml.org/EarthMaterial/3.0" />
-	<ns prefix="gsmlst" uri="http://xmlns.geosciml.org/GeologicStructure/3.0" />
+	<ns prefix="gsml" uri="http://xmlns.geosciml.org/GeoSciML-Core/3.1" />
+	<ns prefix="gsmlgu" uri="http://xmlns.geosciml.org/GeologicUnit/3.1" />
+	<ns prefix="gsmlga" uri="http://xmlns.geosciml.org/GeologicAge/3.1" />
+	<ns prefix="gsmlem" uri="http://xmlns.geosciml.org/EarthMaterial/3.1" />
+	<ns prefix="gsmlst" uri="http://xmlns.geosciml.org/GeologicStructure/3.1" />
 	<ns prefix="sa" uri="http://www.opengis.net/sampling/1.0" />
 	<ns prefix="swe" uri="http://www.opengis.net/swe/2.0" />
 	<ns prefix="rdf" uri="http://www.w3.org/1999/02/22-rdf-syntax-ns#" />
