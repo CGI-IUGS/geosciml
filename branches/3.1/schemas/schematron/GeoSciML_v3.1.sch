@@ -73,7 +73,7 @@
 	<let name="urnRegExp" value="'^urn:([A-Z0-9]([A-Z0-9\-]){1,31}):([A-Z0-9\.:=_\-]|(%[A-F0-9]{2}))+$'"/>
 	
 	<!-- Set prefix on referenced files if using from e.g. web schematron service which needs to access by URL -->
-	<let name="schematron_location_prefix" value="'https://www.seegrid.csiro.au/subversion/GeoSciML/branches/3.0.0/schematron/'"/>
+	<let name="schematron_location_prefix" value="'https://www.seegrid.csiro.au/subversion/GeoSciML/branches/3.1/schemas/schematron/'"/>
 	<!-- Set prefix to empty string if using local schematron files. -->
 <!--	<let name="schematron_location_prefix" value="''"/>-->
 	
