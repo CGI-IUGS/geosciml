@@ -29,18 +29,11 @@
 		<active pattern="Borehole.constraints"/>
 		<active pattern="property.constraints"/>
 		<active pattern="cgi.geologicunittype.vocabulary"/>
-		<active pattern="spatial.data.constraints"/>
 		<active pattern="uri.codespace.element"/>
 		<active pattern="internal.referential.integrity"/>
 		<active pattern="gml.metaDataProperty"/>
 		<active pattern="gml.description"/>
 		<active pattern="gml.location"/>
-	</phase>
-
-	<phase id="full.referential.integrity">
-		<p>Check that by reference propeties and URI valued properties point to something appropriate.</p>
-		<active pattern="internal.referential.integrity"/>
-		<active pattern="external.referential.integrity"/>
 	</phase>
 
 	<phase id="cgi.profile">
@@ -59,7 +52,6 @@
 		<active pattern="cgi.gsmlga_GeologicEvent_eventEnvironment"/>
 		<active pattern="cgi.gsmlem_RockMaterial_compositionCategory"/>
 		<active pattern="ucum.vocabulary"/>
-		<active pattern="spatial.crs.uri"/>
 		<active pattern="profiling"/>
 	</phase>
 	
@@ -155,7 +147,8 @@
 				LithodemicUnit geologic unit (<value-of select="@gml:id" />) must have at least one valid gsmlgu:composition property defined.
 			</assert>
 <!-- Add test for lithodemic unit that bedding property is nil inapplicable.  -->
-			<!-- TODO how can I use schema-element function to successfully check substitutable elements; need to import Schema somehow. 
+			<!-- TODO get schema-element function working with Schema-aware parser. This might restrict validators that can work properly.
+				In theory works with oXygen using EE version of Saxon but bug stopping at the moment. Bug filed with oXygen.
 			<let name="isDeformationUnit" value="$geologicUnitType = 'http://resource.geosciml.org/classifier/cgi/geologicunittype/deformation_unit'"/>
 			<assert
 				see="https://www.seegrid.csiro.au/wiki/CGIModel/GeoSciML3SchematronRules#Geologic_unit_type"
@@ -204,6 +197,8 @@
 				test="fn:matches(@xlink:href, $httpUriRegExp, 'i' ) or starts-with(@xlink:href, '#')">
 				Encountered <value-of select="@xlink:href"/> XLink that is neither an internal XPointer or an HTTP-URI.
 			</assert>
+			<!-- Should I exclude swe:codeSpace elements from below test as it seems a bit OTT to put a title on the "namespace"
+			of the dictionary used in swe:Category elements?-->
 			<assert
 				see="https://www.seegrid.csiro.au/wiki/CGIModel/GeoSciML3SchematronRules#xlink_href_requires_xlink_title"
 				test="@xlink:title">
@@ -220,41 +215,6 @@
 				see="https://www.seegrid.csiro.au/wiki/CGIModel/GeoSciML3SchematronRules#xlink_title_requires_xlink_href"
 				test="@xlink:href">
 				The property <value-of select="name(.)" /> does not have an xlink:href value.
-			</assert>
-		</rule>
-	</pattern>
-
-	<pattern id="spatial.data.constraints">
-		<title>Spatial Data Constraints</title>
-		<p>Additional constraints on spatial elements not enforced by GML Schema. Are these tighter constraints GeoSciML community wants for some reason?</p>
-<!-- Forget this -->
-		<rule context="//gml:GeometricComplex | //gml:MultiCurve | //gml:MultiGeometry | //gml:MultiLineString | //gml:MultiPoint | //gml:MultiPolygon | //gml:MultiSolid | //gml:MultiSurface | //gml:Point | //gml:CompositeCurve | //gml:Curve | //gml:LineString | //gml:OrientableCurve | //gml:CompositeSolid | //gml:Solid | //gml:CompositeSurface | //gml:OrientableSurface | //gml:Polygon | //gml:Surface | //gml:PolyhedralSurface | //gml:TriangulatedSurface | //gml:Tin | //gml:Grid | //gml:RectifiedGrid | //gml:LinearRing | //gml:Ring">
-			<report
-				see="https://www.seegrid.csiro.au/wiki/CGIModel/GeoSciML3SchematronRules#Missing_attributes_on_spatial_types"
-				test="not(@srsName) or not(@srsDimension)">
-				Spatial object <value-of select="name(.)" /> must have srsName and srsDimension attributes.
-			</report>
-		</rule>	
-<!-- Forget this -->
-		<rule context="//sa:shape">
-			 <report
-			 	see="https://www.seegrid.csiro.au/wiki/CGIModel/GeoSciML3SchematronRules#sa_shape_gml_LineString_encoding"
-				test="not(gml:LineString/gml:posList)">
-				gml:LineString element of <value-of select="name(.)" /> property must be encoded as gml:posList.
-			</report>			
-		</rule>
-	</pattern>
-	<!-- For 1GG must support epsg:4326 -->
-
-<!-- Forget this rule as it is mainly dependent on software behaviour and it isn't really for us to specify, more for OGC to persuade. -->
-	<pattern id="spatial.crs.uri">
-		<title>Spatial CRS URIs</title>
-		<p>Restrict the values that can be used to identify coordinate reference systems in spatial elements.</p>
-		<rule context="//@srsName">
-			<assert
-				see="https://www.seegrid.csiro.au/wiki/CGIModel/GeoSciML3SchematronRules#spatial.crs.uri"
-				test="starts-with(., 'http://www.opengis.net/def/crs/')">
-				<value-of select="."/> should contain a URI from the OGC set of coordinate reference system identifiers.
 			</assert>
 		</rule>
 	</pattern>
@@ -288,28 +248,6 @@
 				see="https://www.seegrid.csiro.au/wiki/CGIModel/GeoSciML3SchematronRules#Internal_XPointers"
 				test="not($isXPointer) or ($isXPointer and //*[@gml:id = substring(current()/@xlink:href, 2)])">
 				Internal XLink <value-of select="@xlink:href" /> cannot be resolved within the document.
-			</assert>
-		</rule>
-	</pattern>
-	
-	<pattern id="external.referential.integrity">
-		<title>External referential integrity</title>
-		<p>Validate external referential integrity.</p>
-		
-		<rule context="//*[fn:matches( @xlink:href, $httpUriRegExp, 'i')]">
-			<let name="isResolvable" value="document(@xlink:href)"/>
-			<assert
-				see="https://www.seegrid.csiro.au/wiki/CGIModel/GeoSciML3SchematronRules#External_links"
-				test="$isResolvable">
-				External link (<value-of select="@xlink:href" />) must be resolvable.
-			</assert>
-		</rule>
-		<!-- Resolving external links might work better using teamengine ctl functions. -->
-		<rule context="//*[@codeSpace = 'http://www.ietf.org/rfc/rfc2616' and fn:matches( text(), $httpUriRegExp, 'i')]">
-			<assert
-				see="https://www.seegrid.csiro.au/wiki/CGIModel/GeoSciML3SchematronRules#External_pseudo-xlinks"
-				test="document(text())">
-				External link (<value-of select="./text()" />) must be resolvable.
 			</assert>
 		</rule>
 	</pattern>
