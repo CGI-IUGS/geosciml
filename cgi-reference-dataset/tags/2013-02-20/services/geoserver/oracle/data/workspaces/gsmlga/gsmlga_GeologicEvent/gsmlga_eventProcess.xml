@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<as:AppSchemaDataAccess xmlns:as="http://www.geotools.org/app-schema"
+	xmlns:ogc="http://www.opengis.net/ogc" xmlns:xs="http://www.w3.org/2001/XMLSchema"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.geotools.org/app-schema AppSchemaDataAccess.xsd http://www.opengis.net/ogc http://schemas.opengis.net/filter/1.1.0/expr.xsd">
+	<namespaces>
+		<Namespace><prefix>gml</prefix><uri>http://www.opengis.net/gml/3.2</uri></Namespace>
+		<Namespace><prefix>gsmlga</prefix><uri>http://xmlns.geosciml.org/GeologicAge/3.0</uri></Namespace>
+	</namespaces>	
+	<sourceDataStores>
+		<DataStore>
+			<id>datastore</id>
+			<parameters>
+				<Parameter><name>dbtype</name><value>${cgi.dbtype}</value></Parameter>
+				<!--Parameter><name>jndiReferenceName</name><value>${cgi.jndi}</value></Parameter-->
+				<Parameter><name>host</name><value>${cgi.host}</value></Parameter>
+				<Parameter><name>port</name><value>${cgi.port}</value></Parameter>
+				<Parameter><name>database</name><value>${cgi.database}</value></Parameter>
+				<Parameter><name>user</name><value>${cgi.user}</value></Parameter>
+				<Parameter><name>passwd</name><value>${cgi.passwd}</value></Parameter>
+				<Parameter><name>schema</name><value>${cgi.schema}</value></Parameter>
+				<Parameter><name>Expose primary keys</name><value>true</value></Parameter>
+			</parameters>
+		</DataStore>
+	</sourceDataStores>
+	<!--<catalog>../../../schemas/catalog.xml</catalog>-->
+	<targetTypes>
+		<FeatureType><schemaUri>http://schemas.geosciml.org/geologicage/3.0/geologicAge.xsd</schemaUri></FeatureType>
+	</targetTypes>
+	<typeMappings>
+		<FeatureTypeMapping>
+			<mappingName>gsmlga_eventProcess</mappingName>
+			<sourceDataStore>datastore</sourceDataStore>
+			<sourceType>GSMLGA_EVENTPROCESS</sourceType>
+			<targetElement>gsmlga:GeologicEvent</targetElement>
+			<attributeMappings>
+				<AttributeMapping>
+					<targetAttribute>FEATURE_LINK</targetAttribute>
+					<sourceExpression><OCQL>LINK_GEOLOGICEVENT_ID</OCQL></sourceExpression>
+				</AttributeMapping>
+			</attributeMappings>
+		</FeatureTypeMapping>
+	</typeMappings>
+</as:AppSchemaDataAccess>
