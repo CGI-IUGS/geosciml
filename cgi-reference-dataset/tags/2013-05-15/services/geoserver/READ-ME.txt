@@ -1,0 +1,18 @@
+-- ====================================
+-- CGI-IUGS GEOSCIML REFERENCE DATASET
+-- Geoserver configuration files
+-- ====================================
+
+Configuration files for Geoserver.
+
+REQUIREMENTS
+Geoserver app-schema plug-in
+Oracle datastore plugin (Oracle configuration only)
+
+DEPLOYMENT
+1. Deploy Geoserver according to instructions at:
+2. Either delete the Geoserver data directory and replace with with a copy of the data directory in either the oracle or postgis folder, or update the GEOSERVER_DATA_DIR variable in Geoserver's web.xml file.
+
+NOTES
+1. The only difference between the configurations is the case of the table and column names in the mappings. PostGIS requires lower case, Oracle requires UPPER CASE.
+2. the app-schema.properties files differ only in aspects of the database connection parameters.
