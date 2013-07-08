@@ -1,60 +1,0 @@
-<html  name="{382132EE-C90C-4af9-9CE5-C62354E2E355}/{35AEE937-C216-4d5a-8D68-3F780D9357AA}/{86FBA433-65F3-49e5-AB34-5D9B236128A2}/package-summary" xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><title>Package Detail View</title><meta http-equiv="Content-type" content="text/html;charset=UTF-8"/>
-<link href="../../../default.css" rel="stylesheet"type="text/css"/></head><body><!-- ========= START OF TOP NAVBAR ======= -->
-<div align="left">
-<a name="navbar_top"><!-- --></a>
-<a href="#skip-navbar_top" title="Skip navigation links"></a>
-<table summary="" width="100%" border="0" cellpadding="1" cellspacing="0">
-<tbody>
-<tr>
-    <td class="NavBarCell1" bgcolor="#eeeeff">
-    <a name="navbar_top_firstrow"><!-- --></a>
-    <table summary="" border="0" cellpadding="0" cellspacing="3">
-      <tbody><tr valign="top" align="center">
-      <TD BGCOLOR="#EEEEFF" CLASS="NavBarCell1">    <A HREF="../../../overview-summary.html"><FONT CLASS="NavBarFont1"><B>Overview</B></FONT></A>&nbsp;</TD>
-
-      <TD BGCOLOR="#EEEEFF" CLASS="NavBarCell1">    <A HREF="package-summary.html"><FONT CLASS="NavBarFont1"><B>Package</B></FONT></A>&nbsp;</TD>
-
-      <TD BGCOLOR="#EEEEFF" CLASS="NavBarCell1">    <FONT CLASS="NavBarFont1"><B>Class</B></FONT></A>&nbsp;</TD>
-
-      <TD BGCOLOR="#EEEEFF" CLASS="NavBarCell1">    <A HREF="../../../index/index-1.html"><FONT CLASS="NavBarFont1"><B>Index</B></FONT></A>&nbsp;</TD>
-
-      <TD BGCOLOR="#EEEEFF" CLASS="NavBarCell1">    <A HREF="../../../help.html"><FONT CLASS="NavBarFont1"><B>Help</B></FONT></A>&nbsp;</TD>
-
-     </tr>
-    </tbody></table>
-    </td>
-    <td rowspan=2 valign="top" align="right"><em>
-    <b>GeoSciML<br>3.2.0</b></em>
-    </td>
-</tr>
-<tr>
-<td class="NavBarCell2" bgcolor="white"><font size="-1">
-  <a href="../../../index.html?{382132EE-C90C-4af9-9CE5-C62354E2E355}/{35AEE937-C216-4d5a-8D68-3F780D9357AA}/{86FBA433-65F3-49e5-AB34-5D9B236128A2}/package-summary.html" target="_top"><b>FRAMES</b></a>  &nbsp;
-&nbsp;<a href="package-summary.html" target="_top"><b>NO FRAMES</b></a>  &nbsp;
-&nbsp;
-<script type="text/javascript">
-  <!--
-  if(window==top) {
-    document.writeln('<A HREF="../../../allclasses-frame.html"><B>All Classes</B></A>');
-  }
-  //-->
-</script>
-
-
-</font></td>
-</tr>
-</tbody></table>
-<a name="skip-navbar_top"></a>
-</div>
-<hr>
-
-<!-- ========= END OF TOP NAVBAR ========= -->
-<div id="main"><h1 class="first">Package GeoSciML.GeoSciML-Core.GeologicFeature</h1><table class="description" width="95%"><tr><td width="5%"><b>Author:</b></td><td></td></tr><tr><td width="5%"><b>Version:</b></td><td>3.2.0</td></tr><tr><td width="5%"><b>Notes:</b></td><td>The GeoSciML GeologicFeature package contains the root  Feature classes MappedFeature and GeologicFeature. <br/><br/>GeologicFeature represents a conceptual feature that is hypothesized to exist coherently in the world. Specializated geologic features are contained in other packages. </td></tr></table><table class="details"><tr><td colspan="2"><h2>Class Summary</h2></td></tr><tr><td width="15%">Name</td><td width="85%">Notes</td></tr><tr><td width="15%"><a href="{01F26908-42C5-414c-8147-8353C048F4D8}.html">&lt;&lt;FeatureType&gt;&gt;GeologicFeature</a></td><td width="85%">The abstract GeologicFeature class represents a conceptual feature that is hypothesized to exist coherently in the world.<br/>   * this corresponds with a "legend item" from a traditional geologic map<br/>   * while the bounding coordinates of a Geologic Feature may be described, its shape is not.<br/><br/>The implemented Geologic Feature instance acts as the "description package"<br/><br/>    * the description package is classified according to its purpose as an Instance, TypicalNorm, or DefiningNorm.</td></tr><tr><td width="15%"><a href="{B2F0A8FC-0291-4b72-A4DE-06D9C682A45F}.html">&lt;&lt;FeatureType&gt;&gt;MappedFeature</a></td><td width="85%">A MappedFeature is part of a geological interpretation. <br/>It provides a link between a notional feature (description package) and one spatial representation of it, or part of it. (Exposures, Surface Traces and Intercepts, etc)<br/>    * the specific bounded occurrence, such as an outcrop or map polygon<br/>    * the Mapped Feature carries a geometry or shape<br/>          - the association with a Geologic Feature (legend item) provides specification of all the other descriptors<br/>          - the association with a Sampling Feature provides the context and dimensionality <br/><br/>A Mapped Feature is always associated with some sampling feature - e.g. a mapping surface, a section, a Borehole (see BoreHolesAndObservation) etc. As noted on the diagram, if the associated sampling feature is a Borehole, then the shape associated with the MappedFeature will usually be either a point or an interval. This reconciles the 2-D ("map", section) and 1-D (borehole, traverse) viewpoints in a common abstraction. </td></tr><tr><td width="15%"><a href="{DAA8839D-7845-4799-8EDB-EAF82369974D}.html">&lt;&lt;CodeList&gt;&gt;DescriptionPurpose</a></td><td width="85%">Codes used for the specification of the intended purpose/level of abstraction for a given feature or object instance, ie the reason for the existence of the GeologicFeature. <br/>Values: instance, typicalNorm, definingNorm. </td></tr></table><table class="details"><tr><td colspan="3"><h3>Tagged Value</h3></td></tr><tr><td>Tag</td><td>Value</td><td>Notes</td></tr><tr><td>xsdDocument</td><td>geologicFeature.xsd</td><td>Description: Name of an XML Schema document to create representing the content of this package<br/></td></tr><tr><td>xsdEncodingRule</td><td>iso19136_2007</td><td>Values: iso19136_2007 | iso19139_2007 | iso19136_2007_INSPIRE_Extensions<br/>Default: iso19136_2007<br/>Description: XML Schema encoding rule to apply<br/></td></tr></table><P><h4>UML Diagram: Context Diagram : DescriptionPurpose</h4><img src="../../../Images/EAID_02AACF79_C4B4_4cb3_A7C3_9F5B48D1131F.jpg" atl="UML Diagram"/></p><P><h4>UML Diagram: Context Diagram : GeologicFeature</h4><img src="../../../Images/EAID_B52347C3_398E_47ee_817F_EFCF6B258B48.jpg" atl="UML Diagram"/></p><P><h4>UML Diagram: Context Diagram : MappedFeature</h4><img src="../../../Images/EAID_E1D3A352_8E00_4404_B1D5_0E873FB35971.jpg" atl="UML Diagram"/></p><P><h4>UML Diagram: Context Diagram : SamplingFrame</h4><img src="../../../Images/EAID_0372B29A_5065_4a1d_945A_5A3DD572F249.jpg" atl="UML Diagram"/></p><P><h4>UML Diagram: Summary Diagram : Geologic Feature</h4><img src="../../../Images/EAID_2802251C_3EC7_4dda_A009_0D0C445DEA8E.jpg" atl="UML Diagram"/></p></div></body><div class="clearing">&#160;</div>
-<div id="footer" __skip="skip">
-    <hr class="first"/>
-    <p class="panel">
-		The document set was auto-generated at 28 Jun 2013 17:44:25<br/>
-		using Solid Ground
-    </p>
-</div>
-</html>

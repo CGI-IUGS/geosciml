@@ -1,60 +1,0 @@
-<html  name="{382132EE-C90C-4af9-9CE5-C62354E2E355}/{35AEE937-C216-4d5a-8D68-3F780D9357AA}/{86FBA433-65F3-49e5-AB34-5D9B236128A2}/{B2F0A8FC-0291-4b72-A4DE-06D9C682A45F}.html" xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><title>GeoSciML.GeoSciML-Core.GeologicFeature.MappedFeature</title><meta http-equiv="Content-type" content="text/html;charset=UTF-8"/>
-<link href="../../../default.css" rel="stylesheet"type="text/css"/></head><body><!-- ========= START OF TOP NAVBAR ======= -->
-<div align="left">
-<a name="navbar_top"><!-- --></a>
-<a href="#skip-navbar_top" title="Skip navigation links"></a>
-<table summary="" width="100%" border="0" cellpadding="1" cellspacing="0">
-<tbody>
-<tr>
-    <td class="NavBarCell1" bgcolor="#eeeeff">
-    <a name="navbar_top_firstrow"><!-- --></a>
-    <table summary="" border="0" cellpadding="0" cellspacing="3">
-      <tbody><tr valign="top" align="center">
-      <TD BGCOLOR="#EEEEFF" CLASS="NavBarCell1">    <A HREF="../../../overview-summary.html"><FONT CLASS="NavBarFont1"><B>Overview</B></FONT></A>&nbsp;</TD>
-
-      <TD BGCOLOR="#EEEEFF" CLASS="NavBarCell1">    <A HREF="package-summary.html"><FONT CLASS="NavBarFont1"><B>Package</B></FONT></A>&nbsp;</TD>
-
-      <TD BGCOLOR="#FFFFFF" CLASS="NavBarCell1Rev"> &nbsp;<FONT CLASS="NavBarFont1Rev"><B>Class</B></FONT>&nbsp;</TD>
-
-      <TD BGCOLOR="#EEEEFF" CLASS="NavBarCell1">    <A HREF="../../../index/index-1.html"><FONT CLASS="NavBarFont1"><B>Index</B></FONT></A>&nbsp;</TD>
-
-      <TD BGCOLOR="#EEEEFF" CLASS="NavBarCell1">    <A HREF="../../../help.html"><FONT CLASS="NavBarFont1"><B>Help</B></FONT></A>&nbsp;</TD>
-
-     </tr>
-    </tbody></table>
-    </td>
-    <td rowspan=2 valign="top" align="right"><em>
-    <b>GeoSciML<br>3.2.0</b></em>
-    </td>
-</tr>
-<tr>
-<td class="NavBarCell2" bgcolor="white"><font size="-1">
-  <a href="../../../index.html?{382132EE-C90C-4af9-9CE5-C62354E2E355}/{35AEE937-C216-4d5a-8D68-3F780D9357AA}/{86FBA433-65F3-49e5-AB34-5D9B236128A2}/{B2F0A8FC-0291-4b72-A4DE-06D9C682A45F}.html" target="_top"><b>FRAMES</b></a>  &nbsp;
-&nbsp;<a href="49.html" target="_top"><b>NO FRAMES</b></a>  &nbsp;
-&nbsp;
-<script type="text/javascript">
-  <!--
-  if(window==top) {
-    document.writeln('<A HREF="../../../allclasses-frame.html"><B>All Classes</B></A>');
-  }
-  //-->
-</script>
-
-
-</font></td>
-</tr>
-</tbody></table>
-<a name="skip-navbar_top"></a>
-</div>
-<hr>
-
-<!-- ========= END OF TOP NAVBAR ========= -->
-<div id="main"><h1 class="first"><a href="../../../{382132EE-C90C-4af9-9CE5-C62354E2E355}/{35AEE937-C216-4d5a-8D68-3F780D9357AA}/{86FBA433-65F3-49e5-AB34-5D9B236128A2}/package-summary.html"><font size="-1">GeoSciML.GeoSciML-Core.GeologicFeature</font></a><br>Class:&lt;&lt;FeatureType&gt;&gt;MappedFeature</h1><pre><b>GeoSciML.GeoSciML-Core.GeologicFeature.MappedFeature</b></pre><dl><dt><b>Subclasses: </b></dt><dd><a href="../../../{382132EE-C90C-4af9-9CE5-C62354E2E355}/{3B9AD201-5517-45a2-A68D-ACC35A6D5B40}/{3B885BF4-1A92-481d-98C5-23D9689F40D8}.html">MappedInterval</a></dd></dl><table class="description" width="95%"><tr><td width="5%"><b>Author:</b></td><td>CGI Interoperability Working Group</td></tr><tr><td width="5%"><b>Version:</b></td><td>3.2.0</td></tr><tr><td width="5%"><b>Notes:</b></td><td>A MappedFeature is part of a geological interpretation. <br/>It provides a link between a notional feature (description package) and one spatial representation of it, or part of it. (Exposures, Surface Traces and Intercepts, etc)<br/>    * the specific bounded occurrence, such as an outcrop or map polygon<br/>    * the Mapped Feature carries a geometry or shape<br/>          - the association with a Geologic Feature (legend item) provides specification of all the other descriptors<br/>          - the association with a Sampling Feature provides the context and dimensionality <br/><br/>A Mapped Feature is always associated with some sampling feature - e.g. a mapping surface, a section, a Borehole (see BoreHolesAndObservation) etc. As noted on the diagram, if the associated sampling feature is a Borehole, then the shape associated with the MappedFeature will usually be either a point or an interval. This reconciles the 2-D ("map", section) and 1-D (borehole, traverse) viewpoints in a common abstraction. </td></tr></table><table class="details" width="95%"><tr><td colspan="4"><h2>Attributes</h2></td></tr><tr><td class="stheader">Name</td><td class="stheader">Type</td><td class="stheader">Multiplicity</td><td class="stheader">Notes</td></tr><tr><td rowspan="2"><b>observationMethod</b></td><td>Category</td><td>1...-1</td><td>MappedFeature ObservationMethod is a metadata snippet indicating how the spatial extent of the mapped feature was determined, and the basis for association of the geometry with some GeologicFeature specification to define a MappedFeature. For a borehole, the MappedInterval observation method indicates how the boundaries of the interval were defined (eg, linear measurement from borehole collar). ObservationMethod is a convenience property that provides a quick and dirty approach to observation metadata when data are reported using a feature view (as opposed to observation view). This property corresponds (loosely) to ISO19115 Lineage.  (eg: digitised, Global Positioning System, published map, fieldObservation, downhole survey, aerial photography, field survey)</td></tr><tr><td class="taggedValueTable" colspan="3"><table width="95%"><tr><td width="35%"><table class="details"><caption>Attribute tagged values</caption><th>Tag</th><th>Value</th><tr><td>nillable</td><td>True</td></tr><tr><td>sequenceNumber</td><td>1</td></tr></table></td></tr></table></td></tr><tr><td rowspan="2"><b>&lt;&lt;estimatedProperty&gt;&gt;positionalAccuracy</b></td><td>Quantity</td><td>1...1</td><td>Quantitative values define the radius of an uncertainty buffer around a mappedFeature (eg: a positionAccuracy of 100 m for a line feature defines a buffer polygon of total width 200 m centred on the line).  Corresponds to ISO19115 DQ_PositionalAccuracy.</td></tr><tr><td class="taggedValueTable" colspan="3"><table width="95%"><tr><td width="35%"><table class="details"><caption>Attribute tagged values</caption><th>Tag</th><th>Value</th><tr><td>nillable</td><td>True</td></tr><tr><td>sequenceNumber</td><td>2</td></tr></table></td></tr></table></td></tr><tr><td rowspan="2"><b>&lt;&lt;voidable&gt;&gt;resolutionScale</b></td><td>MD_RepresentativeFraction</td><td>1...1</td><td>Reciprocal of equivalent scale of resolution for delineation of a feature's geometry. This is in contrast to positionAccuracy which is a measure of how well a feature is located relative to other features in the geographic reference system.</td></tr><tr><td class="taggedValueTable" colspan="3"><table width="95%"><tr><td width="35%"><table class="details"><caption>Attribute tagged values</caption><th>Tag</th><th>Value</th><tr><td>nillable</td><td>True</td></tr><tr><td>sequenceNumber</td><td>3</td></tr></table></td></tr></table></td></tr></table><table class="details"><tr><td colspan="5"><h2>Outbound Associations</h2></td></tr><tr><td class="stheader">Name</td><td class="stheader">Type</td><td class="stheader">Target</td><td class="stheader">Multiplicity</td><td class="stheader">Notes</td></tr><tr><td>shape</td><td>Association</td><td></td><td>1...1  --&gt;  1...1</td><td></td></tr><tr><td>samplingFrame</td><td>Association</td><td></td><td>1...1  --&gt;  1...1</td><td>It is expected in GeoSciML that this byReference association will resolve to a SF_SpatialSamplingFeature instance which may include a spatial (GML) representation of the sampling frame (eg, a map tile, a 3D surface), or may resolve to a concept from a controlled source (eg,http://resource.geosciml.org/feature/cgi/EarthNaturalSurface)</td></tr><tr><td>metadata</td><td>Association</td><td></td><td>1...1  --&gt;  0...1</td><td></td></tr></table><table class="details"><tr><td colspan="4"><h2>Constrains</h2></td></tr><tr><td class="stheader">Constraint</td><td class="stheader">Type</td><td class="stheader">Status</td><td class="stheader">Weight</td></tr><tr><td>self.metadata.hierarchyLevel=(feature or dataset or series)</td><td></td><td>Approved</td><td></td></tr><tr><td>self.shape contained in samplingFrame.shape</td><td></td><td>Approved</td><td></td></tr></table><table class="details"><tr><td colspan="3"><h2>Tagged Values</h2></td></tr><tr><td class="stheader">Tag</td><td class="stheader">Value</td><td class="stheader">Notes</td></tr><tr><td>byValuePropertyType</td><td>false</td><td>Values: true,false<br/>Default: false<br/>Description: enforce the 'by value' property pattern without xl<br/></td></tr><tr><td>isCollection</td><td>false</td><td>Values: true,false<br/>Default: false<br/>Description: attribute group gml:AggregationAttributeGroup is a<br/></td></tr><tr><td>noPropertyType</td><td>false</td><td>Values: true,false<br/>Default: false<br/>Description: suppress automatic creation of *PropertyType compl<br/></td></tr></table></div></body><div class="clearing">&#160;</div>
-<div id="footer" __skip="skip">
-    <hr class="first"/>
-    <p class="panel">
-		The document set was auto-generated at 28 Jun 2013 17:44:25<br/>
-		using Solid Ground
-    </p>
-</div>
-</html>
