@@ -1,8 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <schema xmlns="http://purl.oclc.org/dsdl/schematron" xmlns:interop="urn:csiro:schematron:lib" queryBinding="xslt2" defaultPhase="model.constraints"
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
 	xmlns:gsmlst="http://xmlns.geosciml.org/GeologicStructure/3.0"
 	xsi:schemaLocation="http://xmlns.geosciml.org/GeologicStructure/3.0 http://schemas.geosciml.org/geologicstructure/3.0/geologicStructure.xsd">
+  <xsl:import-schema schema-location="http://schemas.opengis.net/gml/3.2.1/gml.xsd" namespace="http://www.opengis.net/gml/3.2"/>
+  <xsl:import-schema schema-location="http://schemas.opengis.net/wfs/2.0/wfs.xsd" namespace="http://www.opengis.net/wfs/2.0"/>
+  <xsl:import-schema schema-location="http://schemas.geosciml.org/geologicstructure/3.0/geologicStructure.xsd"  namespace="http://xmlns.geosciml.org/GeologicStructure/3.0"/>
+  <xsl:import-schema schema-location="http://schemas.geosciml.org/geologicunit/3.0/geologicUnit.xsd" namespace="http://xmlns.geosciml.org/GeologicUnit/3.0"/>
+  <xsl:import-schema schema-location="http://schemas.geosciml.org/geosciml-core/3.0/geosciml-core.xsd" namespace="http://xmlns.geosciml.org/GeoSciML-Core/3.0"/>
 	<title>GeoSciML v3 Profile conformance validation.</title>
 	<p>This schema checks GeoSciML v3 Profile conformance by stages.</p>
 	<ns prefix="fn" uri="http://www.w3.org/2005/xpath-functions"/>
@@ -147,15 +153,15 @@
 				LithodemicUnit geologic unit (<value-of select="@gml:id" />) must have at least one valid gsmlgu:composition property defined.
 			</assert>
 <!-- Add test for lithodemic unit that bedding property is nil inapplicable.  -->
-			<!-- TODO get schema-element function working with Schema-aware parser. This might restrict validators that can work properly.
-				In theory works with oXygen using EE version of Saxon but bug stopping at the moment. Bug filed with oXygen.
+			 <!--TODO get schema-element function working with Schema-aware parser. This might restrict validators that can work properly.
+				In theory works with oXygen using EE version of Saxon but bug stopping at the moment. Bug filed with oXygen.-->
 			<let name="isDeformationUnit" value="$geologicUnitType = 'http://resource.geosciml.org/classifier/cgi/geologicunittype/deformation_unit'"/>
 			<assert
 				see="https://www.seegrid.csiro.au/wiki/CGIModel/GeoSciML3SchematronRules#Geologic_unit_type"
-				test="not($isDeformationUnit) or $isDeformationUnit and count(gsml:relatedFeature/gsmlst:DefiningStructure/gsml:relatedFeature/schema-element(gsmlst:GeologicStructure) > 0 ">
+				test="not($isDeformationUnit) or $isDeformationUnit and	count(gsml:relatedFeature/gsmlst:DefiningStructure/gsml:relatedFeature/schema-element(gsmlst:GeologicStructure)) > 0 ">
 				DeformationUnit geologic unit (<value-of select="@gml:id" />) must have at least one Geologic Structure
 			</assert>
--->
+
 		</rule>
 	</pattern>
 	
