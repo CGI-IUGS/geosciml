@@ -153,8 +153,9 @@
 				LithodemicUnit geologic unit (<value-of select="@gml:id" />) must have at least one valid gsmlgu:composition property defined.
 			</assert>
 <!-- Add test for lithodemic unit that bedding property is nil inapplicable.  -->
-			 <!--TODO get schema-element function working with Schema-aware parser. This might restrict validators that can work properly.
-				In theory works with oXygen using EE version of Saxon but bug stopping at the moment. Bug filed with oXygen.-->
+			 <!-- schema-element function requires Schema-aware parser.  This might restrict validators that can work properly.
+			 Works with oXygen using EE version of Saxon and schema aware preference
+			 settings (Tested with oXygen v15.1. -->
 			<let name="isDeformationUnit" value="$geologicUnitType = 'http://resource.geosciml.org/classifier/cgi/geologicunittype/deformation_unit'"/>
 			<assert
 				see="https://www.seegrid.csiro.au/wiki/CGIModel/GeoSciML3SchematronRules#Geologic_unit_type"
