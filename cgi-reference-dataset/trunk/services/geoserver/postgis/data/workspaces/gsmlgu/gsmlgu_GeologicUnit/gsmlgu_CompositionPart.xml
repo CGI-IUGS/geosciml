@@ -2,10 +2,11 @@
 <as:AppSchemaDataAccess xmlns:as="http://www.geotools.org/app-schema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.geotools.org/app-schema AppSchemaDataAccess.xsd">
 	<namespaces>
 		<Namespace><prefix>gml</prefix><uri>http://www.opengis.net/gml/3.2</uri></Namespace>
-		<Namespace><prefix>gsml</prefix><uri>http://xmlns.geosciml.org/GeoSciML-Core/3.1</uri></Namespace>
-		<Namespace><prefix>gsmlgu</prefix><uri>http://xmlns.geosciml.org/GeologicUnit/3.1</uri></Namespace>
-		<Namespace><prefix>gsmlem</prefix><uri>http://xmlns.geosciml.org/EarthMaterial/3.1</uri></Namespace>
-		<Namespace><prefix>swe</prefix><uri>http://www.opengis.net/swe/2.0</uri></Namespace>
+		<Namespace><prefix>gsml</prefix><uri>http://xmlns.geosciml.org/GeoSciML-Core/3.2</uri></Namespace>
+		<Namespace><prefix>gsmlgu</prefix><uri>http://xmlns.geosciml.org/GeologicUnit/3.2</uri></Namespace>
+	  <Namespace><prefix>gsmlem</prefix><uri>http://xmlns.geosciml.org/EarthMaterial/3.2</uri></Namespace>
+	  <Namespace><prefix>gsmlu</prefix><uri>http://xmlns.geosciml.org/Utilities/3.2</uri></Namespace>
+	  <Namespace><prefix>swe</prefix><uri>http://www.opengis.net/swe/2.0</uri></Namespace>
 		<Namespace><prefix>gmd</prefix><uri>http://www.isotc211.org/2005/gmd</uri></Namespace>
 		<Namespace><prefix>gco</prefix><uri>http://www.isotc211.org/2005/gco</uri></Namespace>
 		<Namespace><prefix>xlink</prefix><uri>http://www.w3.org/1999/xlink</uri></Namespace>
@@ -30,7 +31,8 @@
 	<includedTypes><Include>gsmlem_RockMaterial.xml</Include></includedTypes>
 	<!--<catalog>../../../schemas/catalog.xml</catalog>-->
 	<targetTypes>
-		<FeatureType><schemaUri>http://schemas.geosciml.org/geologicunit/3.1/geologicUnit.xsd</schemaUri></FeatureType>
+		<FeatureType><schemaUri>http://schemas.geosciml.org/geologicunit/3.2/geologicUnit.xsd</schemaUri></FeatureType>
+	  <FeatureType><schemaUri>http://schemas.geosciml.org/cgiutilities/3.2/cgiUtilities.xsd</schemaUri></FeatureType>
 	</targetTypes>
 	<typeMappings>
 		<FeatureTypeMapping>
@@ -67,7 +69,7 @@
 			<mappingName>_gsmlgu_proportion</mappingName>
 			<sourceDataStore>datastore</sourceDataStore>
 			<sourceType>gsmlgu_compositionpart</sourceType>
-			<targetElement>swe:QuantityRange</targetElement>
+		  <targetElement>gsmlu:GSML_QuantityRange</targetElement>
 			<attributeMappings>
 				<AttributeMapping>
 					<targetAttribute>swe:uom</targetAttribute>
@@ -79,6 +81,14 @@
 					<targetAttribute>swe:value</targetAttribute>
 					<sourceExpression><OCQL>strConCat(strConCat(proportion_lower_value,' '),proportion_upper_value)</OCQL></sourceExpression>
 				</AttributeMapping>
+			  <AttributeMapping>
+			    <targetAttribute>gsmlu:lowerValue</targetAttribute>
+			    <sourceExpression><OCQL>proportion_lower_value</OCQL></sourceExpression>
+			  </AttributeMapping>
+			  <AttributeMapping>
+			    <targetAttribute>gsmlu:upperValue</targetAttribute>
+			    <sourceExpression><OCQL>proportion_upper_value</OCQL></sourceExpression>
+			  </AttributeMapping>
 			</attributeMappings>
 		</FeatureTypeMapping>
 	</typeMappings>
