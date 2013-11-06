@@ -38,7 +38,7 @@
 	<typeMappings>
 		<FeatureTypeMapping>
 			<sourceDataStore>datastore</sourceDataStore>
-			<sourceType>gsmlgu_geologicunit_gsvr</sourceType>
+			<sourceType>gsmlgu_geologicunit</sourceType>
 			<targetElement>gsmlgu:GeologicUnit</targetElement>			
 			<attributeMappings>
 				<AttributeMapping>
@@ -56,9 +56,13 @@
 				</AttributeMapping>
 				<AttributeMapping>
 					<targetAttribute>gml:name</targetAttribute>
-					<sourceExpression><OCQL>gml_name</OCQL></sourceExpression>
-					<ClientProperty><name>codeSpace</name><value>'${cgi.codespace}'</value></ClientProperty>
+					<sourceExpression>
+					  <OCQL>id</OCQL>
+					  <linkElement>GU_NAME</linkElement>
+					  <linkField>FEATURE_LINK</linkField>
+					</sourceExpression>
 					<isMultiple>true</isMultiple>
+				  <ClientProperty><name>codeSpace</name><value>'${cgi.codespace}'</value></ClientProperty>
 				</AttributeMapping>
 				<AttributeMapping>
 					<targetAttribute>gsml:observationMethod</targetAttribute>
@@ -165,6 +169,22 @@
 					<sourceExpression><OCQL>id</OCQL></sourceExpression>
 				</AttributeMapping>
 			</attributeMappings>
-		</FeatureTypeMapping>			
+		</FeatureTypeMapping>
+	  <FeatureTypeMapping>
+	    <mappingName>GU_NAME</mappingName>
+	    <sourceDataStore>datastore</sourceDataStore>
+	    <sourceType>gml_name</sourceType>
+	    <targetElement>gml:name</targetElement>
+	    <attributeMappings>
+	      <AttributeMapping>
+	        <targetAttribute>gml:name</targetAttribute>
+	        <sourceExpression><OCQL>gml_name</OCQL></sourceExpression>
+	      </AttributeMapping>
+	      <AttributeMapping>
+	        <targetAttribute>FEATURE_LINK</targetAttribute>
+	        <sourceExpression><OCQL>link_geologicfeature_id</OCQL></sourceExpression>
+	      </AttributeMapping>
+	    </attributeMappings>
+	  </FeatureTypeMapping>
 	</typeMappings>
 </as:AppSchemaDataAccess>
