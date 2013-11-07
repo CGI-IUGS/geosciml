@@ -12,7 +12,8 @@
 		<Namespace><prefix>xlink</prefix><uri>http://www.w3.org/1999/xlink</uri></Namespace>
 		<Namespace><prefix>xsi</prefix><uri>http://www.w3.org/2001/XMLSchema-instance</uri></Namespace>
 	</namespaces>	
-	<sourceDataStores>
+  <includedTypes><Include>gsmlem_RockMaterial.xml</Include></includedTypes>
+  <sourceDataStores>
 		<DataStore>
 			<id>datastore</id>
 			<parameters>
@@ -27,12 +28,13 @@
 				<Parameter><name>Expose primary keys</name><value>true</value></Parameter>
 			</parameters>
 		</DataStore>
-	</sourceDataStores>	
-	<includedTypes><Include>gsmlem_RockMaterial.xml</Include></includedTypes>
+	</sourceDataStores>
 	<!--<catalog>../../../schemas/catalog.xml</catalog>-->
 	<targetTypes>
-		<FeatureType><schemaUri>http://schemas.geosciml.org/geologicunit/3.2/geologicUnit.xsd</schemaUri></FeatureType>
-	  <FeatureType><schemaUri>http://schemas.geosciml.org/cgiutilities/3.2/cgiUtilities.xsd</schemaUri></FeatureType>
+		<FeatureType>
+		  <schemaUri>http://schemas.geosciml.org/geologicunit/3.2/geologicUnit.xsd</schemaUri>
+		  <schemaUri>http://schemas.geosciml.org/cgiutilities/3.2/cgiUtilities.xsd</schemaUri>
+		</FeatureType>
 	</targetTypes>
 	<typeMappings>
 		<FeatureTypeMapping>
