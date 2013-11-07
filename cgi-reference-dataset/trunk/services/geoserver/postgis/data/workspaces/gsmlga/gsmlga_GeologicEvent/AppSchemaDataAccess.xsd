@@ -43,33 +43,33 @@
     <annotation>
       <documentation>
         <![CDATA[
-Use this element _only_ if you're going to do polymorphic mappings. You don't need to
-specify each and every namespace used in the community schemas in this section, since they'll
-be loaded by the schema parser.
-Thus, this section is just needed at the mappings configuration parsing stage, and only if you
-need complex datastore to assign a feature property which is not of the specific type stated
-in the schema for that property, but of a derivate type.
-For example, if you have:
-<xs:complexType name="MyFeatureType">
-<xs:complexContent>
-<xs:extension base="gml:AbstractFeatureType">
-<xs:sequence>
-<xs:element name="station" type="myns:MyBaseType"/>
-</xs:sequence>
-</xs:extension>
-</xs:complexContent>
-</xs:complexType>
+      Use this element _only_ if you're going to do polymorphic mappings. You don't need to
+      specify each and every namespace used in the community schemas in this section, since they'll
+      be loaded by the schema parser.
+      Thus, this section is just needed at the mappings configuration parsing stage, and only if you
+      need complex datastore to assign a feature property which is not of the specific type stated
+      in the schema for that property, but of a derivate type.
+      For example, if you have:
+      <xs:complexType name="MyFeatureType">
+      	<xs:complexContent>
+      		<xs:extension base="gml:AbstractFeatureType">
+      			<xs:sequence>
+      				<xs:element name="station" type="myns:MyBaseType"/>
+                </xs:sequence>
+            </xs:extension>
+        </xs:complexContent>
+      </xs:complexType>
 
-Now, say that myns:MyBaseType is abstract and at runtime you want that MyFeatureType instances
-being assigned an instance of myns2:MyDerivedType, which extends myns:MyBaseType.
-If you don't specify that situation in the mappings config file, complex datastore will have no
-way of inferring that, so the way of telling complex datastore to create an instance of
-myns2:MyDerivedType instead of the one declared in the schema, is by using a
-<targetElement>myns2:MyDerivedType</targetElement> tag in the attribute mapping (see
-TypeMappingsPropertyType documentation below).
-So, for the mappings parser to recognize which type the instance should actually be, you
-need to declare the namespace here, as well as in the actual xsd schema.
-]]>
+      Now, say that myns:MyBaseType is abstract and at runtime you want that MyFeatureType instances
+      being assigned an instance of myns2:MyDerivedType, which extends myns:MyBaseType.
+      If you don't specify that situation in the mappings config file, complex datastore will have no
+      way of inferring that, so the way of telling complex datastore to create an instance of
+      myns2:MyDerivedType instead of the one declared in the schema, is by using  a 
+      <targetElement>myns2:MyDerivedType</targetElement> tag in the attribute mapping (see 
+      TypeMappingsPropertyType documentation below).
+      So, for the mappings parser to recognize which type the instance should actually be, you
+      need to declare the namespace here, as well as in the actual xsd schema.
+    ]]>
       </documentation>
     </annotation>
     <sequence>
@@ -85,37 +85,38 @@ need to declare the namespace here, as well as in the actual xsd schema.
   </complexType>
   
   <complexType name="IncludesPropertyType">
-<annotation>
-<documentation>
+	<annotation>
+		<documentation>
         <![CDATA[
-This is only needed if this type has related types that do not have their own
-Geoserver configuration, ie. not published in Geoserver. The type might be
-mapped separately so they can be reusable (feature chaining concept), e.g.
-If feature type A contains data type B, and feature type C also contains
-data type B, we only want to have one mapping file for data type B.
-The purpose of this is so that the parent type (this mapping) can find the
-related features.
-The type might not be visible on their own because it's not a feature type
-(e.g. a data type), therefore shouldn't appear in requests such as GetCapabilities,
-DescribeFeatureType etc.
-]]>
-</documentation>
-</annotation>
-<sequence>
-<element name="Include" minOccurs="0" maxOccurs="unbounded" />
-</sequence>
+      This is only needed if this type has related types that do not have their own 
+      Geoserver configuration, ie. not published in Geoserver. The type might be
+      mapped separately so they can be reusable (feature chaining concept), e.g. 
+      If feature type A contains data type B, and feature type C also contains
+      data type B, we only want to have one mapping file for data type B. 
+ 
+      The purpose of this is so that the parent type (this mapping) can find the
+      related features.
+      The type might not be visible on their own because it's not a feature type
+      (e.g. a data type), therefore shouldn't appear in requests such as GetCapabilities,
+      DescribeFeatureType etc. 
+    ]]>
+		</documentation>
+	</annotation>
+	<sequence>
+		<element name="Include" minOccurs="0" maxOccurs="unbounded" />
+	</sequence>
   </complexType>
 
   <complexType name="SourceDataStoresPropertyType">
     <annotation>
       <documentation>
         <![CDATA[
-Used to reference the origin datastores containing the source feature types, aka the
-ones that are to be mapped to the community schemas.
-A unique id has to be assigned for each source datastore, as well as all the required
-datastore factory parameters in order to allow complex datastore to find them through
-the DataStoreFactorySpi mechanism.
-]]>
+    Used to reference the origin datastores containing the source feature types, aka the
+    ones that are to be mapped to the community schemas.
+    A unique id has to be assigned for each source datastore, as well as all the required
+    datastore factory parameters in order to allow complex datastore to find them through
+    the DataStoreFactorySpi mechanism.
+    ]]>
       </documentation>
     </annotation>
     <sequence>
@@ -148,26 +149,28 @@ the DataStoreFactorySpi mechanism.
     <annotation>
       <documentation>
         <![CDATA[
-Here you have to specify lo location of the different xsd schema files that comprises
-the community schema. You have to specify each and every involved/relevant xsd schema
-since the current schema parser does not has the ability of following includes and imports.
-Also, it would be very helpful if they're declared in the more sequential fashion possible, since
-even if the schema parser uses proxied types when it finds a type reference that haven't still
-been loaded, setting schema file locations in random order could lead to missing referencing
-of nested types and thus causing an unrecoverable parsing time error.
-As for supported GML 3.1.1 types, complex datastore automatically loads the following gml schema files
-before parsing the community schemas, so if you need more gml types just add them prior to your
-own schemas:
-basicTypes.xsd
-gmlBase.xsd
-dictionary.xsd
-valueObjects.xsd
-coverage.xsd
-measures.xsd
-geometryBasic0d1d.xsd
-Note that though not all the geometry schemas are loaded, you don't need to import the corresponding
-gml schemas for geometry types since (at least for SFS) they're already supported by the geotools type system.
-]]>
+    Here you have to specify lo location of the different xsd schema files that comprises
+    the community schema. You have to specify each and every involved/relevant xsd schema
+    since the current schema parser does not has the ability of following includes and imports.
+    Also, it would be very helpful if they're declared in the more sequential fashion possible, since
+    even if the schema parser uses proxied types when it finds a type reference that haven't still
+    been loaded, setting schema file locations in random order could lead to missing referencing 
+    of nested types and thus causing an unrecoverable parsing time error.
+    
+    As for supported GML 3.1.1 types, complex datastore automatically loads the following gml schema files
+    before parsing the community schemas, so if you need more gml types just add them prior to your
+    own schemas:
+      basicTypes.xsd
+      gmlBase.xsd
+      dictionary.xsd
+      valueObjects.xsd
+      coverage.xsd     
+      measures.xsd
+      geometryBasic0d1d.xsd
+    
+    Note that though not all the geometry schemas are loaded, you don't need to import the corresponding
+    gml schemas for geometry types since (at least for SFS) they're already supported by the geotools type system.
+    ]]>
       </documentation>
     </annotation>
     <sequence>
@@ -185,13 +188,13 @@ gml schemas for geometry types since (at least for SFS) they're already supporte
     <annotation>
       <documentation>
         <![CDATA[
-This is where tha magis happens. The prior sections were just support information for getting
-to this instance. Inside this section, you have to declare one FeatureTypeMapping element
-for each feature type you want to map from an internal structure to the community schema.
-The FeatureTypeMapping element contains information as what is the internat feature type
-you want to map (given by the datastore id and feature type name), the name of the target
-element in the community schema you want to serve, and the attribute mappings between them.
-]]>
+    This is where tha magis happens. The prior sections were just support information for getting 
+    to this instance. Inside this section, you have to declare one FeatureTypeMapping element
+    for each feature type you want to map from an internal structure to the community schema.
+    The FeatureTypeMapping element contains information as what is the internat feature type
+    you want to map (given by the datastore id and feature type name), the name of the target
+    element in the community schema you want to serve, and the attribute mappings between them.
+    ]]>
       </documentation>
     </annotation>
     <sequence>
@@ -230,8 +233,18 @@ element in the community schema you want to serve, and the attribute mappings be
             <element name="isXmlDataStore" type="boolean" default="false" minOccurs="0">
               <annotation>
                 <documentation>
+                  <![CDATA[ 
+                  Flag to indicate that we want to connect to an xml data source]]>
+                </documentation>
+              </annotation>
+            </element>
+            <element name="isDenormalised" type="boolean" default="true" minOccurs="0">
+              <annotation>
+                <documentation>
                   <![CDATA[
-Flag to indicate that we want to connect to an xml data source]]>
+                  Flag to indicate if the data is denormalised or not.  If data is not denormalised
+                  (flag = false) then its safe for us to apply the system configured maxFeatures
+                  value when building the SQL query to run ]]>
                 </documentation>
               </annotation>
             </element>
@@ -239,45 +252,49 @@ Flag to indicate that we want to connect to an xml data source]]>
               <annotation>
                 <documentation>
                   <![CDATA[
-Now it is time to map every target attribute with an expression from the source feature type. Generally,
-you only have to specify attribute mappings for those target attributes that are "leaf", aka, simlpe properties.
-The exception is when you have a multivalued complex attribute, in which case you have to create
-an AttributeMapping for the attribute to tell complex datastore to create as many instances of that
-complex attribute as source features fits the current "group" of a joined result.
-See the documentation for SingleMappingType and AttributeMappingType to lear what the structure of
-an attribute mapping is.
-Examples:
---------------
-The simplest possible mapping, maps the source attribute BGS_ID to the name attribute of Borehole
-<AttributeMapping>
-<targetAttribute>Borehole/name</targetAttribute>
-<sourceExpression><OCQL>BGS_ID</OCQL></sourceExpression>
-</AttributeMapping>
+            Now it is time to map every target attribute with an expression from the source feature type. Generally,
+            you only have to specify attribute mappings for those target attributes that are "leaf", aka, simlpe properties.
+            The exception is when you have a multivalued complex attribute, in which case you have to create
+            an AttributeMapping for the attribute to tell complex datastore to create as many instances of that
+            complex attribute as source features fits the current "group" of a joined result.
+            See the documentation for SingleMappingType and AttributeMappingType to lear what the structure of
+            an attribute mapping is.
+            Examples:
+            
+            --------------
+            The simplest possible mapping, maps the source attribute BGS_ID to the name attribute of Borehole
+            <AttributeMapping>
+              <targetAttribute>Borehole/name</targetAttribute>
+              <sourceExpression><OCQL>BGS_ID</OCQL></sourceExpression>
+            </AttributeMapping>
 
---------------
-Uses a function expression to map the result to the second instance of the name attribute.
-Also adds a "client property" named "codeSpace" with a fixed value. This leads to
-an xml attribute at GML encoding time.
-<AttributeMapping>
-<targetAttribute>Borehole/name[2]</targetAttribute>
-<sourceExpression><OCQL>strConcat(BGS_ID, 'name-#')</OCQL></sourceExpression>
-<ClientProperty>
-<name>codeSpace</name><value>"http://ns.bgs.ac.uk/bgs.ubi.pk"</value>
-</ClientProperty>
-</AttributeMapping>
---------------
-Tells complex datastore to create an instance of range for each "row" of the same "group" of a
-joined result for a joined source feature type. No need to set sourceExpression since "range"
-attribute is complex and thus will have to set the mappings for its childs anyways.
-NOTE in this case we ommited "Borehole/" on the targetAttribute content. It is intentional, as
-and it should work both ways, as the filter encoding spec says that the root element name is
-optional.
-<AttributeMapping>
-<targetAttribute>log/IntervalLog/range</targetAttribute>
-<isMultiple>true</isMultiple>
-</AttributeMapping>
+            --------------
+            Uses a function expression to map the result to the second instance of the name attribute.
+            Also adds a "client property" named "codeSpace" with a fixed value. This leads to
+            an xml attribute at GML encoding time.
+            
+            <AttributeMapping>
+              <targetAttribute>Borehole/name[2]</targetAttribute>
+              <sourceExpression><OCQL>strConcat(BGS_ID, 'name-#')</OCQL></sourceExpression>
+              <ClientProperty>
+                <name>codeSpace</name><value>"http://ns.bgs.ac.uk/bgs.ubi.pk"</value>
+              </ClientProperty>
+            </AttributeMapping>
+            
+            --------------
+            Tells complex datastore to create an instance of range for each "row" of the same "group" of a
+            joined result for a joined source feature type. No need to set sourceExpression since "range"
+            attribute is complex and thus will have to set the mappings for its childs anyways.
+            NOTE in this case we ommited "Borehole/" on the targetAttribute content. It is intentional, as
+            and it should work both ways, as the filter encoding spec says that the root element name is 
+            optional.
+            
+            <AttributeMapping>
+              <targetAttribute>log/IntervalLog/range</targetAttribute>
+              <isMultiple>true</isMultiple>
+            </AttributeMapping>
 
-]]>
+            ]]>
                 </documentation>
               </annotation>
               <complexType>
@@ -296,15 +313,15 @@ optional.
     <annotation>
       <documentation>
         <![CDATA[
-Allows to specify the OGC's Common Query Language expression to be used
-as the source for a community schema element's content.
-]]>
+      Allows to specify the OGC's Common Query Language expression to be used
+      as the source for a community schema element's content.
+    ]]>
       </documentation>
     </annotation>
     <sequence>
       <choice minOccurs="0">
-        <sequence>
-          <element name="OCQL" type="string" />
+        <sequence>            
+          <element name="OCQL" type="string" />          
           <element name="index" type="string" minOccurs="0" maxOccurs="1">
             <annotation>
               <documentation>
@@ -349,12 +366,12 @@ as the source for a community schema element's content.
     <annotation>
       <documentation>
         <![CDATA[
-Allows to specify the OGC's Common Query Language expression to be used
-as the source for a community schema element's content, as long as wether
-it is a multivalued property, which target schema element should be created
-instead of the default declared on the target schema, and any number
-of client properties (aka, xml element attributes)
-]]>
+      Allows to specify the OGC's Common Query Language expression to be used
+      as the source for a community schema element's content, as long as wether
+      it is a multivalued property, which target schema element should be created
+      instead of the default declared on the target schema, and any number
+      of client properties (aka, xml element attributes)
+    ]]>
       </documentation>
     </annotation>
     <sequence>
@@ -371,7 +388,7 @@ of client properties (aka, xml element attributes)
             <![CDATA[ A reference to another attribute which has a label tag. The parentLabel has the name contained in the other attributes label tag. (Used in xml datastores.) ]]>
           </documentation>
         </annotation>
-      </element>
+      </element>      
       <element name="targetAttribute" type="string">
         <annotation>
           <documentation>
@@ -385,22 +402,22 @@ of client properties (aka, xml element attributes)
             <![CDATA[ Used to translate a reference to an attribute in an incoming filter to the element used in an xml datastore.]]>
           </documentation>
         </annotation>
-      </element>
+      </element>      
       <element name="idExpression" minOccurs="0" type="as:AttributeExpressionMappingType">
         <annotation>
           <documentation>
-            <![CDATA[ CQL expression whose evaluated value over the Features of the
-surrogate datastore is to be usedas the ID value for the target schema
-attribute this AttributeMapping refers to ]]>
+            <![CDATA[ CQL expression whose evaluated value over the Features of the 
+            surrogate datastore is to be usedas the ID value for the target schema 
+            attribute this AttributeMapping refers to ]]>
           </documentation>
         </annotation>
       </element>
       <element name="sourceExpression" minOccurs="0" type="as:AttributeExpressionMappingType">
         <annotation>
           <documentation>
-            <![CDATA[ CQL Expression whose evaluated value over the Feature(s) of the
-surrogate datastore is to be used as the value for the target schema attribute
-this AttributeMapping refers to ]]>
+            <![CDATA[ CQL Expression whose evaluated value over the Feature(s) of the 
+            surrogate datastore is to be used as the value for the target schema attribute 
+            this AttributeMapping refers to ]]>
           </documentation>
         </annotation>
       </element>
@@ -415,10 +432,10 @@ this AttributeMapping refers to ]]>
         <annotation>
           <documentation>
             <![CDATA[ name of a top level element declaration in the target schema which has to be instantiated
-when creating this attribute instead of the one declared in the target schema. This is to support
-the cases where the schema states a given element, which might be abstract, and we want an specific
-kind of element to be used, which should be in the schema's declared element substitution group
-according to the GML rules, though AppSchemaDataAccess will not check for it. ]]>
+            when creating this attribute instead of the one declared in the target schema. This is to support
+            the cases where the schema states a given element, which might be abstract, and we want an specific
+            kind of element to be used, which should be in the schema's declared element substitution group
+            according to the GML rules, though AppSchemaDataAccess will not check for it. ]]>
           </documentation>
         </annotation>
       </element>
@@ -426,9 +443,9 @@ according to the GML rules, though AppSchemaDataAccess will not check for it. ]]
         <annotation>
           <documentation>
             <![CDATA[ Flag to indicate the target element addressed by this mapping has to be treated as
-a multivalued property. AppSchemaDataAccess will treat all the attribute mappings having this flag
-set to true as multivalued attributes and will create as many instances of it as Features of
-the surrogate datastore lie inside the FeatureTypeMapping ]]>
+            a multivalued property. AppSchemaDataAccess will treat all the attribute mappings having this flag
+            set to true as multivalued attributes and will create as many instances of it as Features of
+            the surrogate datastore lie inside the FeatureTypeMapping ]]>
           </documentation>
         </annotation>
       </element>
@@ -443,8 +460,8 @@ the surrogate datastore lie inside the FeatureTypeMapping ]]>
         <annotation>
           <documentation>
             <![CDATA[ Flag to indicate the target element addressed by this mapping has to be treated as
-a container of a list of values. This is similar to isMultiple except the values are concatenated
-as one big value instead of multiple elements with each value.]]>
+            a container of a list of values. This is similar to isMultiple except the values are concatenated
+            as one big value instead of multiple elements with each value.]]>
           </documentation>
         </annotation>
       </element>
