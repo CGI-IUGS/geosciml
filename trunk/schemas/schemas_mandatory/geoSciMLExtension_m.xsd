@@ -1,0 +1,1335 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<schema xmlns="http://www.w3.org/2001/XMLSchema" xmlns:gml="http://www.opengis.net/gml/3.2" xmlns:gsmlb="http://xmlns.geosciml.org/geologybasic/4.0" xmlns:gsmle="http://xmlns.geosciml.org/geologyextension/4.0" xmlns:swe="http://www.opengis.net/swe/2.0" targetNamespace="http://xmlns.geosciml.org/geologyextension/4.0" elementFormDefault="qualified" version="4.0.0">
+	<import namespace="http://www.opengis.net/gml/3.2" schemaLocation="http://schemas.opengis.net/gml/3.2.1/gml.xsd"/>
+	<import namespace="http://www.opengis.net/swe/2.0" schemaLocation="http://schemas.opengis.net/sweCommon/2.0/swe.xsd"/>
+	<import namespace="http://xmlns.geosciml.org/geologybasic/4.0" schemaLocation="geoSciMLBasic_m.xsd"/>
+	<!--XML Schema document created by ShapeChange - http://shapechange.net/-->
+	<element name="AlterationDescription" type="gsmle:AlterationDescriptionType" substitutionGroup="gsmlb:ExtensionAbstractDescription"/>
+	<complexType name="AlterationDescriptionType">
+		<complexContent>
+			<extension base="gsmlb:ExtensionAbstractDescriptionType">
+				<sequence>
+					<element name="alterationType" type="gml:CodeType">
+						<annotation>
+							<appinfo>
+								<targetElement xmlns="http://www.opengis.net/gml/3.2">gsmle:AlterationTypeTerm</targetElement>
+							</appinfo>
+						</annotation>
+					</element>
+					<!--replaced--><element minOccurs="1" name="alterationProduct" nillable="true" maxOccurs="unbounded">
+						<complexType>
+							<complexContent>
+								<extension base="gml:AbstractMemberType">
+									<sequence minOccurs="0">
+										<element ref="gsmlb:EarthMaterial"/>
+									</sequence>
+									<attributeGroup ref="gml:AssociationAttributeGroup"/>
+								</extension>
+							</complexContent>
+						</complexType>
+					</element>
+					<!--replaced--><element minOccurs="1" name="alterationDistribution" nillable="true" maxOccurs="unbounded">
+						<complexType>
+							<complexContent>
+								<extension base="gml:AbstractMemberType">
+									<sequence minOccurs="0">
+										<element ref="swe:Category"/>
+									</sequence>
+									<attributeGroup ref="gml:AssociationAttributeGroup"/>
+								</extension>
+							</complexContent>
+						</complexType>
+					</element>
+					<!--replaced--><element name="alterationEvent" type="gsmlb:GeologicEventPropertyType" nillable="true"/>
+				</sequence>
+			</extension>
+		</complexContent>
+	</complexType>
+	<complexType name="AlterationDescriptionPropertyType">
+		<sequence>
+			<element ref="gsmle:AlterationDescription"/>
+		</sequence>
+	</complexType>
+	<element name="BeddingDescription" type="gsmle:BeddingDescriptionType" substitutionGroup="gml:AbstractObject"/>
+	<complexType name="BeddingDescriptionType">
+		<sequence>
+			<!--replaced--><element minOccurs="1" name="beddingPattern" nillable="true" maxOccurs="unbounded">
+				<complexType>
+					<complexContent>
+						<extension base="gml:AbstractMemberType">
+							<sequence minOccurs="0">
+								<element ref="swe:Category"/>
+							</sequence>
+							<attributeGroup ref="gml:AssociationAttributeGroup"/>
+						</extension>
+					</complexContent>
+				</complexType>
+			</element>
+			<!--replaced--><element minOccurs="1" name="beddingStyle" nillable="true" maxOccurs="unbounded">
+				<complexType>
+					<complexContent>
+						<extension base="gml:AbstractMemberType">
+							<sequence minOccurs="0">
+								<element ref="swe:Category"/>
+							</sequence>
+							<attributeGroup ref="gml:AssociationAttributeGroup"/>
+						</extension>
+					</complexContent>
+				</complexType>
+			</element>
+			<!--replaced--><element minOccurs="1" name="beddingThickness" nillable="true" maxOccurs="unbounded">
+				<complexType>
+					<complexContent>
+						<extension base="gml:AbstractMemberType">
+							<sequence minOccurs="0">
+								<element ref="swe:Category"/>
+							</sequence>
+							<attributeGroup ref="gml:AssociationAttributeGroup"/>
+						</extension>
+					</complexContent>
+				</complexType>
+			</element>
+		</sequence>
+	</complexType>
+	<complexType name="BeddingDescriptionPropertyType">
+		<sequence>
+			<element ref="gsmle:BeddingDescription"/>
+		</sequence>
+	</complexType>
+	<element name="ChemicalComposition" type="gsmle:ChemicalCompositionType" substitutionGroup="gsmlb:ExtensionAbstractDescription"/>
+	<complexType name="ChemicalCompositionType">
+		<complexContent>
+			<extension base="gsmlb:ExtensionAbstractDescriptionType">
+				<sequence>
+					<element name="chemicalAnalysis">
+						<complexType>
+							<complexContent>
+								<extension base="gml:AbstractMemberType">
+									<sequence minOccurs="0">
+										<element ref="swe:DataRecord"/>
+									</sequence>
+									<attributeGroup ref="gml:AssociationAttributeGroup"/>
+								</extension>
+							</complexContent>
+						</complexType>
+					</element>
+				</sequence>
+			</extension>
+		</complexContent>
+	</complexType>
+	<complexType name="ChemicalCompositionPropertyType">
+		<sequence>
+			<element ref="gsmle:ChemicalComposition"/>
+		</sequence>
+	</complexType>
+	<element name="CompoundMaterialDescription" type="gsmle:CompoundMaterialDescriptionType" substitutionGroup="gsmlb:ExtensionAbstractDescription"/>
+	<complexType name="CompoundMaterialDescriptionType">
+		<complexContent>
+			<extension base="gsmlb:ExtensionAbstractDescriptionType">
+				<sequence>
+					<!--replaced--><element minOccurs="1" name="particleGeometry" nillable="true">
+						<complexType>
+							<sequence>
+								<element ref="gsmle:ParticleGeometryDescription"/>
+							</sequence>
+							<attribute name="nilReason" type="gml:NilReasonType"/>
+						</complexType>
+					</element>
+					<!--replaced--><element minOccurs="1" name="compositionCategory" nillable="true" maxOccurs="unbounded">
+						<complexType>
+							<complexContent>
+								<extension base="gml:AbstractMemberType">
+									<sequence minOccurs="0">
+										<element ref="swe:Category"/>
+									</sequence>
+									<attributeGroup ref="gml:AssociationAttributeGroup"/>
+								</extension>
+							</complexContent>
+						</complexType>
+					</element>
+					<!--replaced--><element minOccurs="1" name="geneticCategory" nillable="true" maxOccurs="unbounded">
+						<complexType>
+							<complexContent>
+								<extension base="gml:AbstractMemberType">
+									<sequence minOccurs="0">
+										<element ref="swe:Category"/>
+									</sequence>
+									<attributeGroup ref="gml:AssociationAttributeGroup"/>
+								</extension>
+							</complexContent>
+						</complexType>
+					</element>
+					<!--replaced--><element minOccurs="1" name="constituent" nillable="true" maxOccurs="unbounded">
+						<complexType>
+							<complexContent>
+								<extension base="gml:AbstractMemberType">
+									<sequence minOccurs="0">
+										<element ref="gsmle:ConstituentPart"/>
+									</sequence>
+									<attributeGroup ref="gml:AssociationAttributeGroup"/>
+								</extension>
+							</complexContent>
+						</complexType>
+					</element>
+				</sequence>
+			</extension>
+		</complexContent>
+	</complexType>
+	<complexType name="CompoundMaterialDescriptionPropertyType">
+		<sequence>
+			<element ref="gsmle:CompoundMaterialDescription"/>
+		</sequence>
+	</complexType>
+	<element name="ConstituentPart" type="gsmle:ConstituentPartType" substitutionGroup="gml:AbstractGML"/>
+	<complexType name="ConstituentPartType">
+		<complexContent>
+			<extension base="gml:AbstractGMLType">
+				<sequence>
+					<!--replaced--><element minOccurs="1" name="constituentMaterial" nillable="true">
+						<complexType>
+							<complexContent>
+								<extension base="gml:AbstractMemberType">
+									<sequence minOccurs="0">
+										<element ref="gsmlb:EarthMaterial"/>
+									</sequence>
+									<attributeGroup ref="gml:AssociationAttributeGroup"/>
+								</extension>
+							</complexContent>
+						</complexType>
+					</element>
+					<!--replaced--><element minOccurs="1" name="proportion" nillable="true">
+						<complexType>
+							<complexContent>
+								<extension base="gml:AbstractMemberType">
+									<sequence minOccurs="0">
+										<element ref="swe:QuantityRange"/>
+									</sequence>
+									<attributeGroup ref="gml:AssociationAttributeGroup"/>
+								</extension>
+							</complexContent>
+						</complexType>
+					</element>
+					<element name="role" type="gml:CodeType">
+						<annotation>
+							<appinfo>
+								<targetElement xmlns="http://www.opengis.net/gml/3.2">gsmle:ConstituentPartRoleTerm</targetElement>
+							</appinfo>
+						</annotation>
+					</element>
+					<!--replaced--><element minOccurs="1" name="constituentParticleGeometry" nillable="true">
+						<complexType>
+							<sequence>
+								<element ref="gsmle:ParticleGeometryDescription"/>
+							</sequence>
+							<attribute name="nilReason" type="gml:NilReasonType"/>
+						</complexType>
+					</element>
+					<!--replaced--><element minOccurs="1" name="relatedMaterial" nillable="true" maxOccurs="unbounded">
+						<complexType>
+							<complexContent>
+								<extension base="gml:AbstractMemberType">
+									<sequence minOccurs="0">
+										<element ref="gsmle:ConstituentPart"/>
+									</sequence>
+									<attributeGroup ref="gml:AssociationAttributeGroup"/>
+								</extension>
+							</complexContent>
+						</complexType>
+					</element>
+				</sequence>
+			</extension>
+		</complexContent>
+	</complexType>
+	<complexType name="ConstituentPartPropertyType">
+		<sequence minOccurs="0">
+			<element ref="gsmle:ConstituentPart"/>
+		</sequence>
+		<attributeGroup ref="gml:AssociationAttributeGroup"/>
+		<attributeGroup ref="gml:OwnershipAttributeGroup"/>
+	</complexType>
+	<complexType name="ConstituentPartPropertyByValueType">
+		<sequence>
+			<element ref="gsmle:ConstituentPart"/>
+		</sequence>
+	</complexType>
+	<element name="ContactDescription" type="gsmle:ContactDescriptionType" substitutionGroup="gsmlb:ContactAbstractDescription"/>
+	<complexType name="ContactDescriptionType">
+		<complexContent>
+			<extension base="gsmlb:ContactAbstractDescriptionType">
+				<sequence>
+					<!--replaced--><element name="contactCharacter" nillable="true" maxOccurs="unbounded">
+						<complexType>
+							<complexContent>
+								<extension base="gml:AbstractMemberType">
+									<sequence minOccurs="0">
+										<element ref="swe:Category"/>
+									</sequence>
+									<attributeGroup ref="gml:AssociationAttributeGroup"/>
+								</extension>
+							</complexContent>
+						</complexType>
+					</element>
+					<!--replaced--><element name="orientation" nillable="true" maxOccurs="unbounded">
+						<complexType>
+							<sequence>
+								<element ref="gsmlb:CGI_PlanarOrientation"/>
+							</sequence>
+							<attribute name="nilReason" type="gml:NilReasonType"/>
+						</complexType>
+					</element>
+					<!--replaced--><element name="correlatesWith" nillable="true"/>
+				</sequence>
+			</extension>
+		</complexContent>
+	</complexType>
+	<complexType name="ContactDescriptionPropertyType">
+		<sequence>
+			<element ref="gsmle:ContactDescription"/>
+		</sequence>
+	</complexType>
+	<element name="DisplacementEvent" type="gsmle:DisplacementEventType" substitutionGroup="gsmlb:GeologicEvent">
+		<annotation>
+			<documentation>A description of the age, environment and process of a shear displacement event</documentation>
+		</annotation>
+	</element>
+	<complexType name="DisplacementEventType">
+		<complexContent>
+			<extension base="gsmlb:GeologicEventType">
+				<sequence>
+					<element name="incrementalDisplacement" type="gsmle:DisplacementValuePropertyType"/>
+				</sequence>
+			</extension>
+		</complexContent>
+	</complexType>
+	<complexType name="DisplacementEventPropertyType">
+		<sequence minOccurs="0">
+			<element ref="gsmle:DisplacementEvent"/>
+		</sequence>
+		<attributeGroup ref="gml:AssociationAttributeGroup"/>
+		<attributeGroup ref="gml:OwnershipAttributeGroup"/>
+	</complexType>
+	<element name="DisplacementValue" type="gsmle:DisplacementValueType" substitutionGroup="gsmlb:ShearDisplacementStructureAbstractDescription"/>
+	<complexType name="DisplacementValueType">
+		<complexContent>
+			<extension base="gsmlb:ShearDisplacementStructureAbstractDescriptionType">
+				<sequence>
+					<!--replaced--><element name="hangingWallDirection" nillable="true">
+						<complexType>
+							<sequence>
+								<element ref="gsmlb:CGI_LinearOrientation"/>
+							</sequence>
+							<attribute name="nilReason" type="gml:NilReasonType"/>
+						</complexType>
+					</element>
+					<!--replaced--><element name="movementSense" nillable="true">
+						<annotation>
+							<appinfo>
+								<targetElement xmlns="http://www.opengis.net/gml/3.2">gsmle:MovementSenseTerm</targetElement>
+							</appinfo>
+						</annotation>
+						<complexType>
+							<simpleContent>
+								<extension base="gml:CodeType">
+									<attribute name="nilReason" type="gml:NilReasonType"/>
+								</extension>
+							</simpleContent>
+						</complexType>
+					</element>
+					<!--replaced--><element name="movementType" nillable="true">
+						<annotation>
+							<appinfo>
+								<targetElement xmlns="http://www.opengis.net/gml/3.2">gsmle:MovementTypeTerm</targetElement>
+							</appinfo>
+						</annotation>
+						<complexType>
+							<simpleContent>
+								<extension base="gml:CodeType">
+									<attribute name="nilReason" type="gml:NilReasonType"/>
+								</extension>
+							</simpleContent>
+						</complexType>
+					</element>
+					<!--replaced--><element name="displacementEvent" type="gsmle:DisplacementEventPropertyType" nillable="true" maxOccurs="unbounded"/>
+				</sequence>
+			</extension>
+		</complexContent>
+	</complexType>
+	<complexType name="DisplacementValuePropertyType">
+		<sequence>
+			<element ref="gsmle:DisplacementValue"/>
+		</sequence>
+	</complexType>
+	<element name="FabricDescription" type="gsmle:FabricDescriptionType" substitutionGroup="gsmlb:ExtensionAbstractDescription"/>
+	<complexType name="FabricDescriptionType">
+		<complexContent>
+			<extension base="gsmlb:ExtensionAbstractDescriptionType">
+				<sequence>
+					<element name="fabricType" type="gml:CodeType">
+						<annotation>
+							<appinfo>
+								<targetElement xmlns="http://www.opengis.net/gml/3.2">gsmle:FabricTypeTerm</targetElement>
+							</appinfo>
+						</annotation>
+					</element>
+				</sequence>
+			</extension>
+		</complexContent>
+	</complexType>
+	<complexType name="FabricDescriptionPropertyType">
+		<sequence>
+			<element ref="gsmle:FabricDescription"/>
+		</sequence>
+	</complexType>
+	<element name="FoldDescription" type="gsmle:FoldDescriptionType" substitutionGroup="gsmlb:FoldAbstractDescription"/>
+	<complexType name="FoldDescriptionType">
+		<complexContent>
+			<extension base="gsmlb:FoldAbstractDescriptionType">
+				<sequence>
+					<!--replaced--><element name="amplitude" nillable="true">
+						<complexType>
+							<complexContent>
+								<extension base="gml:AbstractMemberType">
+									<sequence minOccurs="0">
+										<element ref="swe:QuantityRange"/>
+									</sequence>
+									<attributeGroup ref="gml:AssociationAttributeGroup"/>
+								</extension>
+							</complexContent>
+						</complexType>
+					</element>
+					<!--replaced--><element name="axialSurfaceOrientation" nillable="true">
+						<complexType>
+							<sequence>
+								<element ref="gsmlb:CGI_PlanarOrientation"/>
+							</sequence>
+							<attribute name="nilReason" type="gml:NilReasonType"/>
+						</complexType>
+					</element>
+					<!--replaced--><element name="geneticModel" nillable="true">
+						<complexType>
+							<complexContent>
+								<extension base="gml:AbstractMemberType">
+									<sequence minOccurs="0">
+										<element ref="swe:Category"/>
+									</sequence>
+									<attributeGroup ref="gml:AssociationAttributeGroup"/>
+								</extension>
+							</complexContent>
+						</complexType>
+					</element>
+					<!--replaced--><element name="hingeLineCurvature" nillable="true">
+						<complexType>
+							<complexContent>
+								<extension base="gml:AbstractMemberType">
+									<sequence minOccurs="0">
+										<element ref="swe:Category"/>
+									</sequence>
+									<attributeGroup ref="gml:AssociationAttributeGroup"/>
+								</extension>
+							</complexContent>
+						</complexType>
+					</element>
+					<!--replaced--><element name="hingeLineOrientation" nillable="true">
+						<complexType>
+							<sequence>
+								<element ref="gsmlb:CGI_LinearOrientation"/>
+							</sequence>
+							<attribute name="nilReason" type="gml:NilReasonType"/>
+						</complexType>
+					</element>
+					<!--replaced--><element name="hingeShape" nillable="true">
+						<complexType>
+							<complexContent>
+								<extension base="gml:AbstractMemberType">
+									<sequence minOccurs="0">
+										<element ref="swe:Category"/>
+									</sequence>
+									<attributeGroup ref="gml:AssociationAttributeGroup"/>
+								</extension>
+							</complexContent>
+						</complexType>
+					</element>
+					<!--replaced--><element name="interLimbAngle" nillable="true">
+						<complexType>
+							<complexContent>
+								<extension base="gml:AbstractMemberType">
+									<sequence minOccurs="0">
+										<element ref="swe:Category"/>
+									</sequence>
+									<attributeGroup ref="gml:AssociationAttributeGroup"/>
+								</extension>
+							</complexContent>
+						</complexType>
+					</element>
+					<!--replaced--><element name="limbShape" nillable="true">
+						<complexType>
+							<complexContent>
+								<extension base="gml:AbstractMemberType">
+									<sequence minOccurs="0">
+										<element ref="swe:Category"/>
+									</sequence>
+									<attributeGroup ref="gml:AssociationAttributeGroup"/>
+								</extension>
+							</complexContent>
+						</complexType>
+					</element>
+					<!--replaced--><element name="span" nillable="true">
+						<complexType>
+							<complexContent>
+								<extension base="gml:AbstractMemberType">
+									<sequence minOccurs="0">
+										<element ref="swe:QuantityRange"/>
+									</sequence>
+									<attributeGroup ref="gml:AssociationAttributeGroup"/>
+								</extension>
+							</complexContent>
+						</complexType>
+					</element>
+					<!--replaced--><element name="symmetry" nillable="true">
+						<complexType>
+							<complexContent>
+								<extension base="gml:AbstractMemberType">
+									<sequence minOccurs="0">
+										<element ref="swe:Category"/>
+									</sequence>
+									<attributeGroup ref="gml:AssociationAttributeGroup"/>
+								</extension>
+							</complexContent>
+						</complexType>
+					</element>
+					<!--replaced--><element name="system" type="gsmle:FoldSystemPropertyType" nillable="true"/>
+				</sequence>
+			</extension>
+		</complexContent>
+	</complexType>
+	<complexType name="FoldDescriptionPropertyType">
+		<sequence>
+			<element ref="gsmle:FoldDescription"/>
+		</sequence>
+	</complexType>
+	<element name="FoldSystem" type="gsmle:FoldSystemType" substitutionGroup="gsmlb:GeologicStructure"/>
+	<complexType name="FoldSystemType">
+		<complexContent>
+			<extension base="gsmlb:GeologicStructureType">
+				<sequence>
+					<!--replaced--><element minOccurs="1" name="foldSystemMember" type="gsmlb:FoldPropertyType" nillable="true" maxOccurs="unbounded"/>
+					<!--replaced--><element minOccurs="1" name="periodic" nillable="true">
+						<complexType>
+							<simpleContent>
+								<extension base="boolean">
+									<attribute name="nilReason" type="gml:NilReasonType"/>
+								</extension>
+							</simpleContent>
+						</complexType>
+					</element>
+					<!--replaced--><element minOccurs="1" name="wavelength" nillable="true">
+						<complexType>
+							<complexContent>
+								<extension base="gml:AbstractMemberType">
+									<sequence minOccurs="0">
+										<element ref="swe:QuantityRange"/>
+									</sequence>
+									<attributeGroup ref="gml:AssociationAttributeGroup"/>
+								</extension>
+							</complexContent>
+						</complexType>
+					</element>
+				</sequence>
+			</extension>
+		</complexContent>
+	</complexType>
+	<complexType name="FoldSystemPropertyType">
+		<sequence minOccurs="0">
+			<element ref="gsmle:FoldSystem"/>
+		</sequence>
+		<attributeGroup ref="gml:AssociationAttributeGroup"/>
+		<attributeGroup ref="gml:OwnershipAttributeGroup"/>
+	</complexType>
+	<element name="FoliationDescription" type="gsmle:FoliationDescriptionType" substitutionGroup="gsmlb:FoliationAbstractDescription"/>
+	<complexType name="FoliationDescriptionType">
+		<complexContent>
+			<extension base="gsmlb:FoliationAbstractDescriptionType">
+				<sequence>
+					<!--replaced--><element name="definingElement" nillable="true" maxOccurs="unbounded">
+						<complexType>
+							<complexContent>
+								<extension base="gml:AbstractMemberType">
+									<sequence minOccurs="0">
+										<element ref="swe:Category"/>
+									</sequence>
+									<attributeGroup ref="gml:AssociationAttributeGroup"/>
+								</extension>
+							</complexContent>
+						</complexType>
+					</element>
+					<!--replaced--><element name="continuity" nillable="true" maxOccurs="unbounded">
+						<complexType>
+							<complexContent>
+								<extension base="gml:AbstractMemberType">
+									<sequence minOccurs="0">
+										<element ref="swe:Category"/>
+									</sequence>
+									<attributeGroup ref="gml:AssociationAttributeGroup"/>
+								</extension>
+							</complexContent>
+						</complexType>
+					</element>
+					<!--replaced--><element name="intensity" nillable="true">
+						<complexType>
+							<complexContent>
+								<extension base="gml:AbstractMemberType">
+									<sequence minOccurs="0">
+										<element ref="swe:Category"/>
+									</sequence>
+									<attributeGroup ref="gml:AssociationAttributeGroup"/>
+								</extension>
+							</complexContent>
+						</complexType>
+					</element>
+					<!--replaced--><element name="mineralElement" nillable="true" maxOccurs="unbounded">
+						<complexType>
+							<complexContent>
+								<extension base="gml:AbstractMemberType">
+									<sequence minOccurs="0">
+										<element ref="gsmle:Mineral"/>
+									</sequence>
+									<attributeGroup ref="gml:AssociationAttributeGroup"/>
+								</extension>
+							</complexContent>
+						</complexType>
+					</element>
+					<!--replaced--><element name="spacing" nillable="true">
+						<complexType>
+							<complexContent>
+								<extension base="gml:AbstractMemberType">
+									<sequence minOccurs="0">
+										<element ref="swe:QuantityRange"/>
+									</sequence>
+									<attributeGroup ref="gml:AssociationAttributeGroup"/>
+								</extension>
+							</complexContent>
+						</complexType>
+					</element>
+				</sequence>
+			</extension>
+		</complexContent>
+	</complexType>
+	<complexType name="FoliationDescriptionPropertyType">
+		<sequence>
+			<element ref="gsmle:FoliationDescription"/>
+		</sequence>
+	</complexType>
+	<element name="Fracture" type="gsmle:FractureType" abstract="true" substitutionGroup="gsmlb:GeologicStructure"/>
+	<complexType name="FractureType" abstract="true">
+		<complexContent>
+			<extension base="gsmlb:GeologicStructureType">
+				<sequence/>
+			</extension>
+		</complexContent>
+	</complexType>
+	<complexType name="FracturePropertyType">
+		<sequence minOccurs="0">
+			<element ref="gsmle:Fracture"/>
+		</sequence>
+		<attributeGroup ref="gml:AssociationAttributeGroup"/>
+		<attributeGroup ref="gml:OwnershipAttributeGroup"/>
+	</complexType>
+	<element name="GeologicDateEstimate" type="gsmle:GeologicDateEstimateType" substitutionGroup="gml:AbstractObject"/>
+	<complexType name="GeologicDateEstimateType">
+		<sequence>
+			<element name="position" type="gml:TimeInstantPropertyType"/>
+			<!--replaced--><element minOccurs="1" name="quality" nillable="true"/>
+		</sequence>
+	</complexType>
+	<complexType name="GeologicDateEstimatePropertyType">
+		<sequence>
+			<element ref="gsmle:GeologicDateEstimate"/>
+		</sequence>
+	</complexType>
+	<element name="GeologicFeatureRelation" type="gsmle:GeologicFeatureRelationType" substitutionGroup="gml:AbstractGML">
+		<annotation>
+			<documentation>The GeologicFeatureRelation class is a concrete subtype of the abstract GeologicRelation class that is used to define relationships between geologic features, ie. structure-structure, unit-unit, and structure-unit relationships.
+
+Relationships are always binary and directional.  There is always a single source and a single target. The relationship is always defined from the perspective of the Source and is generally an active verb.
+
+Example:  a Source may point to an intrusive igneous rock body.  In this case, the Target would point to the appropriate host rock body and the relationship attribute would be 'intrudes'.  Other appropriate relationship attributes might include: overlies, offsets, crosscuts, folds, etc.
+
+Two or more GeologicFeatures are associated in a GeologicFeatureRelation; each has a role in the relationship. Examples of geological roles include "overlies", "is overlain by", "is younger", "is older", "intrudes", "is intruded by", and so forth. In a relationship where an igneous unit intrudes a sedimentary unit, the geological relationship is "intrudes", the intruded sedimentary unit has the role "host", and the igneous unit has the role "intrusion".</documentation>
+		</annotation>
+	</element>
+	<complexType name="GeologicFeatureRelationType">
+		<complexContent>
+			<extension base="gml:AbstractGMLType">
+				<sequence/>
+			</extension>
+		</complexContent>
+	</complexType>
+	<complexType name="GeologicFeatureRelationPropertyType">
+		<sequence minOccurs="0">
+			<element ref="gsmle:GeologicFeatureRelation"/>
+		</sequence>
+		<attributeGroup ref="gml:AssociationAttributeGroup"/>
+		<attributeGroup ref="gml:OwnershipAttributeGroup"/>
+	</complexType>
+	<complexType name="GeologicRelationPropertyType">
+		<choice minOccurs="0">
+			<element ref="gsmle:GeologicFeatureRelation"/>
+			<element ref="gsmle:MaterialRelation"/>
+		</choice>
+		<attributeGroup ref="gml:AssociationAttributeGroup"/>
+	</complexType>
+	<element name="GeologicUnitDescription" type="gsmle:GeologicUnitDescriptionType" substitutionGroup="gsmlb:GeologicUnitAbstractDescription"/>
+	<complexType name="GeologicUnitDescriptionType">
+		<complexContent>
+			<extension base="gsmlb:GeologicUnitAbstractDescriptionType">
+				<sequence>
+					<!--replaced--><element minOccurs="1" name="bedding" nillable="true">
+						<complexType>
+							<sequence>
+								<element ref="gsmle:BeddingDescription"/>
+							</sequence>
+							<attribute name="nilReason" type="gml:NilReasonType"/>
+						</complexType>
+					</element>
+					<!--replaced--><element minOccurs="1" name="bodyMorphology" nillable="true" maxOccurs="unbounded">
+						<complexType>
+							<complexContent>
+								<extension base="gml:AbstractMemberType">
+									<sequence minOccurs="0">
+										<element ref="swe:Category"/>
+									</sequence>
+									<attributeGroup ref="gml:AssociationAttributeGroup"/>
+								</extension>
+							</complexContent>
+						</complexType>
+					</element>
+					<!--replaced--><element minOccurs="1" name="unitComposition" nillable="true" maxOccurs="unbounded">
+						<complexType>
+							<complexContent>
+								<extension base="gml:AbstractMemberType">
+									<sequence minOccurs="0">
+										<element ref="swe:Category"/>
+									</sequence>
+									<attributeGroup ref="gml:AssociationAttributeGroup"/>
+								</extension>
+							</complexContent>
+						</complexType>
+					</element>
+					<!--replaced--><element minOccurs="1" name="outcropCharacter" nillable="true" maxOccurs="unbounded">
+						<complexType>
+							<complexContent>
+								<extension base="gml:AbstractMemberType">
+									<sequence minOccurs="0">
+										<element ref="swe:Category"/>
+									</sequence>
+									<attributeGroup ref="gml:AssociationAttributeGroup"/>
+								</extension>
+							</complexContent>
+						</complexType>
+					</element>
+					<!--replaced--><element name="unitThickness" nillable="true">
+						<complexType>
+							<complexContent>
+								<extension base="gml:AbstractMemberType">
+									<sequence minOccurs="0">
+										<element ref="swe:QuantityRange"/>
+									</sequence>
+									<attributeGroup ref="gml:AssociationAttributeGroup"/>
+								</extension>
+							</complexContent>
+						</complexType>
+					</element>
+				</sequence>
+			</extension>
+		</complexContent>
+	</complexType>
+	<complexType name="GeologicUnitDescriptionPropertyType">
+		<sequence>
+			<element ref="gsmle:GeologicUnitDescription"/>
+		</sequence>
+	</complexType>
+	<element name="InorganicFluid" type="gsmle:InorganicFluidType" substitutionGroup="gsmlb:EarthMaterial"/>
+	<complexType name="InorganicFluidType">
+		<complexContent>
+			<extension base="gsmlb:EarthMaterialType">
+				<sequence/>
+			</extension>
+		</complexContent>
+	</complexType>
+	<complexType name="InorganicFluidPropertyType">
+		<sequence minOccurs="0">
+			<element ref="gsmle:InorganicFluid"/>
+		</sequence>
+		<attributeGroup ref="gml:AssociationAttributeGroup"/>
+		<attributeGroup ref="gml:OwnershipAttributeGroup"/>
+	</complexType>
+	<element name="Joint" type="gsmle:JointType" substitutionGroup="gsmle:Fracture"/>
+	<complexType name="JointType">
+		<complexContent>
+			<extension base="gsmle:FractureType">
+				<sequence/>
+			</extension>
+		</complexContent>
+	</complexType>
+	<complexType name="JointPropertyType">
+		<sequence minOccurs="0">
+			<element ref="gsmle:Joint"/>
+		</sequence>
+		<attributeGroup ref="gml:AssociationAttributeGroup"/>
+		<attributeGroup ref="gml:OwnershipAttributeGroup"/>
+	</complexType>
+	<element name="LayerComposition" type="gsmle:LayerCompositionType" substitutionGroup="gsmle:LayeringAbstractDescription"/>
+	<complexType name="LayerCompositionType">
+		<complexContent>
+			<extension base="gsmle:LayeringAbstractDescriptionType">
+				<sequence>
+					<!--replaced--><element name="lithology" nillable="true">
+						<complexType>
+							<complexContent>
+								<extension base="gml:AbstractMemberType">
+									<sequence minOccurs="0">
+										<element ref="gsmlb:RockMaterial"/>
+									</sequence>
+									<attributeGroup ref="gml:AssociationAttributeGroup"/>
+								</extension>
+							</complexContent>
+						</complexType>
+					</element>
+				</sequence>
+			</extension>
+		</complexContent>
+	</complexType>
+	<complexType name="LayerCompositionPropertyType">
+		<sequence>
+			<element ref="gsmle:LayerComposition"/>
+		</sequence>
+	</complexType>
+	<element name="Layering" type="gsmle:LayeringType" substitutionGroup="gsmlb:Foliation"/>
+	<complexType name="LayeringType">
+		<complexContent>
+			<extension base="gsmlb:FoliationType">
+				<sequence>
+					<element name="layerComposition" type="gsmlb:RockMaterialPropertyType"/>
+					<!--replaced--><element name="stLayerDescription" nillable="true" maxOccurs="unbounded">
+						<complexType>
+							<sequence>
+								<element ref="gsmle:LayeringAbstractDescription"/>
+							</sequence>
+							<attribute name="nilReason" type="gml:NilReasonType"/>
+						</complexType>
+					</element>
+				</sequence>
+			</extension>
+		</complexContent>
+	</complexType>
+	<complexType name="LayeringPropertyType">
+		<sequence minOccurs="0">
+			<element ref="gsmle:Layering"/>
+		</sequence>
+		<attributeGroup ref="gml:AssociationAttributeGroup"/>
+		<attributeGroup ref="gml:OwnershipAttributeGroup"/>
+	</complexType>
+	<element name="LayeringAbstractDescription" type="gsmle:LayeringAbstractDescriptionType" abstract="true" substitutionGroup="gml:AbstractObject"/>
+	<complexType name="LayeringAbstractDescriptionType" abstract="true">
+		<sequence/>
+	</complexType>
+	<complexType name="LayeringAbstractDescriptionPropertyType">
+		<sequence>
+			<element ref="gsmle:LayeringAbstractDescription"/>
+		</sequence>
+	</complexType>
+	<element name="Lineation" type="gsmle:LineationType" substitutionGroup="gsmlb:GeologicStructure"/>
+	<complexType name="LineationType">
+		<complexContent>
+			<extension base="gsmlb:GeologicStructureType">
+				<sequence>
+					<!--replaced--><element minOccurs="1" name="definingElement" nillable="true" maxOccurs="unbounded">
+						<complexType>
+							<complexContent>
+								<extension base="gml:AbstractMemberType">
+									<sequence minOccurs="0">
+										<element ref="swe:Category"/>
+									</sequence>
+									<attributeGroup ref="gml:AssociationAttributeGroup"/>
+								</extension>
+							</complexContent>
+						</complexType>
+					</element>
+					<element name="lineationType" type="gml:CodeType">
+						<annotation>
+							<appinfo>
+								<targetElement xmlns="http://www.opengis.net/gml/3.2">gsmle:LineationTypeTerm</targetElement>
+							</appinfo>
+						</annotation>
+					</element>
+					<!--replaced--><element name="intensity" nillable="true">
+						<complexType>
+							<complexContent>
+								<extension base="gml:AbstractMemberType">
+									<sequence minOccurs="0">
+										<element ref="swe:Category"/>
+									</sequence>
+									<attributeGroup ref="gml:AssociationAttributeGroup"/>
+								</extension>
+							</complexContent>
+						</complexType>
+					</element>
+					<!--replaced--><element minOccurs="1" name="mineralElement" nillable="true" maxOccurs="unbounded">
+						<complexType>
+							<complexContent>
+								<extension base="gml:AbstractMemberType">
+									<sequence minOccurs="0">
+										<element ref="gsmle:Mineral"/>
+									</sequence>
+									<attributeGroup ref="gml:AssociationAttributeGroup"/>
+								</extension>
+							</complexContent>
+						</complexType>
+					</element>
+					<!--replaced--><element minOccurs="1" name="orientation" nillable="true" maxOccurs="unbounded">
+						<complexType>
+							<sequence>
+								<element ref="gsmlb:CGI_LinearOrientation"/>
+							</sequence>
+							<attribute name="nilReason" type="gml:NilReasonType"/>
+						</complexType>
+					</element>
+				</sequence>
+			</extension>
+		</complexContent>
+	</complexType>
+	<complexType name="LineationPropertyType">
+		<sequence minOccurs="0">
+			<element ref="gsmle:Lineation"/>
+		</sequence>
+		<attributeGroup ref="gml:AssociationAttributeGroup"/>
+		<attributeGroup ref="gml:OwnershipAttributeGroup"/>
+	</complexType>
+	<element name="MaterialRelation" type="gsmle:MaterialRelationType" substitutionGroup="gml:AbstractGML">
+		<annotation>
+			<documentation>The MaterialRelation class describes the relationships between constituent parts in an Earth Material (eg: A mineral overgrowth on a phenocryst within a granite). 
+
+Relationships are always binary and directional.  There is always a single source and a single target. The relationship is always defined from the perspective of the Source and is generally an active verb.
+
+Example:  Consider an overgrowth of albite on plagioclase in a granite. The  Source would originate with the albite constituentPart description.  In this case, the Target would point to the plagioclase constituentPart description and the relationship attribute would be 'overgrowth' and the sourceRole is 'overgrows'.  Other appropriate role attributes might include: crosscuts, replaces, etc. for crosscutting and replacement relationships.
+
+Inverse relationships must be explicitly recorded as well or else they are invisible.</documentation>
+		</annotation>
+	</element>
+	<complexType name="MaterialRelationType">
+		<complexContent>
+			<extension base="gml:AbstractGMLType">
+				<sequence/>
+			</extension>
+		</complexContent>
+	</complexType>
+	<complexType name="MaterialRelationPropertyType">
+		<sequence minOccurs="0">
+			<element ref="gsmle:MaterialRelation"/>
+		</sequence>
+		<attributeGroup ref="gml:AssociationAttributeGroup"/>
+		<attributeGroup ref="gml:OwnershipAttributeGroup"/>
+	</complexType>
+	<element name="MetamorphicDescription" type="gsmle:MetamorphicDescriptionType" substitutionGroup="gsmlb:ExtensionAbstractDescription"/>
+	<complexType name="MetamorphicDescriptionType">
+		<complexContent>
+			<extension base="gsmlb:ExtensionAbstractDescriptionType">
+				<sequence>
+					<!--replaced--><element minOccurs="1" name="metamorphicFacies" nillable="true" maxOccurs="unbounded">
+						<complexType>
+							<complexContent>
+								<extension base="gml:AbstractMemberType">
+									<sequence minOccurs="0">
+										<element ref="swe:Category"/>
+									</sequence>
+									<attributeGroup ref="gml:AssociationAttributeGroup"/>
+								</extension>
+							</complexContent>
+						</complexType>
+					</element>
+					<!--replaced--><element minOccurs="1" name="metamorphicGrade" nillable="true">
+						<complexType>
+							<complexContent>
+								<extension base="gml:AbstractMemberType">
+									<sequence minOccurs="0">
+										<element ref="swe:Category"/>
+									</sequence>
+									<attributeGroup ref="gml:AssociationAttributeGroup"/>
+								</extension>
+							</complexContent>
+						</complexType>
+					</element>
+					<!--replaced--><element minOccurs="1" name="peakPressureValue" nillable="true">
+						<complexType>
+							<complexContent>
+								<extension base="gml:AbstractMemberType">
+									<sequence minOccurs="0">
+										<element ref="swe:Quantity"/>
+									</sequence>
+									<attributeGroup ref="gml:AssociationAttributeGroup"/>
+								</extension>
+							</complexContent>
+						</complexType>
+					</element>
+					<!--replaced--><element minOccurs="1" name="peakTemperatureValue" nillable="true">
+						<complexType>
+							<complexContent>
+								<extension base="gml:AbstractMemberType">
+									<sequence minOccurs="0">
+										<element ref="swe:Quantity"/>
+									</sequence>
+									<attributeGroup ref="gml:AssociationAttributeGroup"/>
+								</extension>
+							</complexContent>
+						</complexType>
+					</element>
+					<!--replaced--><element minOccurs="1" name="protolithLithology" nillable="true" maxOccurs="unbounded">
+						<complexType>
+							<complexContent>
+								<extension base="gml:AbstractMemberType">
+									<sequence minOccurs="0">
+										<element ref="gsmlb:EarthMaterial"/>
+									</sequence>
+									<attributeGroup ref="gml:AssociationAttributeGroup"/>
+								</extension>
+							</complexContent>
+						</complexType>
+					</element>
+					<!--replaced--><element name="metamorphicEvent" type="gsmlb:GeologicEventPropertyType" nillable="true"/>
+				</sequence>
+			</extension>
+		</complexContent>
+	</complexType>
+	<complexType name="MetamorphicDescriptionPropertyType">
+		<sequence>
+			<element ref="gsmle:MetamorphicDescription"/>
+		</sequence>
+	</complexType>
+	<element name="Mineral" type="gsmle:MineralType" substitutionGroup="gsmlb:EarthMaterial">
+		<annotation>
+			<documentation>A naturally occurring inorganic element or compound having a periodically repeating arrangement of atoms and a characteristic chemical composition or range of compositions, resulting in distinctive physical properties.  Includes mercury as a general exception to the requirement of crystallinity.  Also includes crypto-crystalline materials such as chalcedony and amorphous silica.</documentation>
+		</annotation>
+	</element>
+	<complexType name="MineralType">
+		<complexContent>
+			<extension base="gsmlb:EarthMaterialType">
+				<sequence>
+					<element name="mineralName" type="gml:CodeType" maxOccurs="unbounded">
+						<annotation>
+							<documentation>Name of the mineral (eg: orthoclase) or mineral family (eg: feldspar), approved by the International Mineralogical Association. (eg: http://www.mindat.org/mineralindex.php)</documentation>
+							<appinfo>
+								<targetElement xmlns="http://www.opengis.net/gml/3.2">gsmle:MineralNameTerm</targetElement>
+							</appinfo>
+						</annotation>
+					</element>
+				</sequence>
+			</extension>
+		</complexContent>
+	</complexType>
+	<complexType name="MineralPropertyType">
+		<sequence minOccurs="0">
+			<element ref="gsmle:Mineral"/>
+		</sequence>
+		<attributeGroup ref="gml:AssociationAttributeGroup"/>
+		<attributeGroup ref="gml:OwnershipAttributeGroup"/>
+	</complexType>
+	<element name="NetSlipValue" type="gsmle:NetSlipValueType" substitutionGroup="gsmle:DisplacementValue"/>
+	<complexType name="NetSlipValueType">
+		<complexContent>
+			<extension base="gsmle:DisplacementValueType">
+				<sequence>
+					<element name="netSlip" type="gsmlb:CGI_VectorPropertyType"/>
+					<!--replaced--><element name="slipComponent" nillable="true">
+						<complexType>
+							<sequence>
+								<element ref="gsmle:SlipComponents"/>
+							</sequence>
+							<attribute name="nilReason" type="gml:NilReasonType"/>
+						</complexType>
+					</element>
+				</sequence>
+			</extension>
+		</complexContent>
+	</complexType>
+	<complexType name="NetSlipValuePropertyType">
+		<sequence>
+			<element ref="gsmle:NetSlipValue"/>
+		</sequence>
+	</complexType>
+	<element name="NonDirectionalStructure" type="gsmle:NonDirectionalStructureType" substitutionGroup="gsmlb:GeologicStructure"/>
+	<complexType name="NonDirectionalStructureType">
+		<complexContent>
+			<extension base="gsmlb:GeologicStructureType">
+				<sequence>
+					<element name="structureType" type="gml:CodeType">
+						<annotation>
+							<appinfo>
+								<targetElement xmlns="http://www.opengis.net/gml/3.2">gsmle:NonDirectionalStructureTypeTerm</targetElement>
+							</appinfo>
+						</annotation>
+					</element>
+				</sequence>
+			</extension>
+		</complexContent>
+	</complexType>
+	<complexType name="NonDirectionalStructurePropertyType">
+		<sequence minOccurs="0">
+			<element ref="gsmle:NonDirectionalStructure"/>
+		</sequence>
+		<attributeGroup ref="gml:AssociationAttributeGroup"/>
+		<attributeGroup ref="gml:OwnershipAttributeGroup"/>
+	</complexType>
+	<element name="OrganicMaterial" type="gsmle:OrganicMaterialType" substitutionGroup="gsmlb:EarthMaterial"/>
+	<complexType name="OrganicMaterialType">
+		<complexContent>
+			<extension base="gsmlb:EarthMaterialType">
+				<sequence/>
+			</extension>
+		</complexContent>
+	</complexType>
+	<complexType name="OrganicMaterialPropertyType">
+		<sequence minOccurs="0">
+			<element ref="gsmle:OrganicMaterial"/>
+		</sequence>
+		<attributeGroup ref="gml:AssociationAttributeGroup"/>
+		<attributeGroup ref="gml:OwnershipAttributeGroup"/>
+	</complexType>
+	<element name="Organism" type="gsmle:OrganismType" substitutionGroup="gml:AbstractObject">
+		<annotation>
+			<documentation>Broad class to represent any living or once living thing. This is the connection to taxonomy/biology for fossils.</documentation>
+		</annotation>
+	</element>
+	<complexType name="OrganismType">
+		<sequence/>
+	</complexType>
+	<complexType name="OrganismPropertyType">
+		<sequence>
+			<element ref="gsmle:Organism"/>
+		</sequence>
+	</complexType>
+	<element name="ParticleGeometryDescription" type="gsmle:ParticleGeometryDescriptionType" substitutionGroup="gml:AbstractObject"/>
+	<complexType name="ParticleGeometryDescriptionType">
+		<sequence>
+			<element name="particleType" type="gml:CodeType">
+				<annotation>
+					<appinfo>
+						<targetElement xmlns="http://www.opengis.net/gml/3.2">gsmle:ParticleTypeTerm</targetElement>
+					</appinfo>
+				</annotation>
+			</element>
+			<!--replaced--><element minOccurs="1" name="aspectRatio" nillable="true" maxOccurs="unbounded">
+				<complexType>
+					<complexContent>
+						<extension base="gml:AbstractMemberType">
+							<sequence minOccurs="0">
+								<element ref="swe:Category"/>
+							</sequence>
+							<attributeGroup ref="gml:AssociationAttributeGroup"/>
+						</extension>
+					</complexContent>
+				</complexType>
+			</element>
+			<!--replaced--><element minOccurs="1" name="shape" nillable="true" maxOccurs="unbounded">
+				<complexType>
+					<complexContent>
+						<extension base="gml:AbstractMemberType">
+							<sequence minOccurs="0">
+								<element ref="swe:Category"/>
+							</sequence>
+							<attributeGroup ref="gml:AssociationAttributeGroup"/>
+						</extension>
+					</complexContent>
+				</complexType>
+			</element>
+			<!--replaced--><element minOccurs="1" name="size" nillable="true">
+				<complexType>
+					<complexContent>
+						<extension base="gml:AbstractMemberType">
+							<sequence minOccurs="0">
+								<element ref="swe:QuantityRange"/>
+							</sequence>
+							<attributeGroup ref="gml:AssociationAttributeGroup"/>
+						</extension>
+					</complexContent>
+				</complexType>
+			</element>
+			<!--replaced--><element minOccurs="1" name="sorting" nillable="true" maxOccurs="unbounded">
+				<complexType>
+					<complexContent>
+						<extension base="gml:AbstractMemberType">
+							<sequence minOccurs="0">
+								<element ref="swe:Category"/>
+							</sequence>
+							<attributeGroup ref="gml:AssociationAttributeGroup"/>
+						</extension>
+					</complexContent>
+				</complexType>
+			</element>
+			<!--replaced--><element minOccurs="1" name="sourceOrganism" nillable="true" maxOccurs="unbounded">
+				<annotation>
+					<appinfo>
+						<targetElement xmlns="http://www.opengis.net/gml/3.2">gsmle:Organism</targetElement>
+					</appinfo>
+				</annotation>
+				<complexType>
+					<sequence/>
+					<attribute name="nilReason" type="gml:NilReasonType"/>
+				</complexType>
+			</element>
+		</sequence>
+	</complexType>
+	<complexType name="ParticleGeometryDescriptionPropertyType">
+		<sequence>
+			<element ref="gsmle:ParticleGeometryDescription"/>
+		</sequence>
+	</complexType>
+	<element name="PhysicalDescription" type="gsmle:PhysicalDescriptionType" substitutionGroup="gsmlb:ExtensionAbstractDescription"/>
+	<complexType name="PhysicalDescriptionType">
+		<complexContent>
+			<extension base="gsmlb:ExtensionAbstractDescriptionType">
+				<sequence>
+					<element name="propertyName" type="gml:CodeType">
+						<annotation>
+							<appinfo>
+								<targetElement xmlns="http://www.opengis.net/gml/3.2">gsmlb:PhysicalPropertyTerm</targetElement>
+							</appinfo>
+						</annotation>
+					</element>
+					<element name="propertyMeasure" minOccurs="0" maxOccurs="unbounded">
+						<complexType>
+							<complexContent>
+								<extension base="gml:AbstractMemberType">
+									<sequence minOccurs="0">
+										<element ref="swe:Quantity"/>
+									</sequence>
+									<attributeGroup ref="gml:AssociationAttributeGroup"/>
+								</extension>
+							</complexContent>
+						</complexType>
+					</element>
+				</sequence>
+			</extension>
+		</complexContent>
+	</complexType>
+	<complexType name="PhysicalDescriptionPropertyType">
+		<sequence>
+			<element ref="gsmle:PhysicalDescription"/>
+		</sequence>
+	</complexType>
+	<element name="RockMaterialDescription" type="gsmle:RockMaterialDescriptionType" substitutionGroup="gsmlb:ExtensionAbstractDescription"/>
+	<complexType name="RockMaterialDescriptionType">
+		<complexContent>
+			<extension base="gsmlb:ExtensionAbstractDescriptionType">
+				<sequence>
+					<!--replaced--><element minOccurs="1" name="consolidationDegree" nillable="true">
+						<complexType>
+							<complexContent>
+								<extension base="gml:AbstractMemberType">
+									<sequence minOccurs="0">
+										<element ref="swe:Category"/>
+									</sequence>
+									<attributeGroup ref="gml:AssociationAttributeGroup"/>
+								</extension>
+							</complexContent>
+						</complexType>
+					</element>
+				</sequence>
+			</extension>
+		</complexContent>
+	</complexType>
+	<complexType name="RockMaterialDescriptionPropertyType">
+		<sequence>
+			<element ref="gsmle:RockMaterialDescription"/>
+		</sequence>
+	</complexType>
+	<element name="SeparationValue" type="gsmle:SeparationValueType" substitutionGroup="gsmle:DisplacementValue"/>
+	<complexType name="SeparationValueType">
+		<complexContent>
+			<extension base="gsmle:DisplacementValueType">
+				<sequence>
+					<element name="separation" type="gsmlb:CGI_VectorPropertyType"/>
+				</sequence>
+			</extension>
+		</complexContent>
+	</complexType>
+	<complexType name="SeparationValuePropertyType">
+		<sequence>
+			<element ref="gsmle:SeparationValue"/>
+		</sequence>
+	</complexType>
+	<element name="ShearDisplacementStructureDescription" type="gsmle:ShearDisplacementStructureDescriptionType" substitutionGroup="gsmlb:ShearDisplacementStructureAbstractDescription"/>
+	<complexType name="ShearDisplacementStructureDescriptionType">
+		<complexContent>
+			<extension base="gsmlb:ShearDisplacementStructureAbstractDescriptionType">
+				<sequence>
+					<!--replaced--><element name="stPhysicalProperty" nillable="true" maxOccurs="unbounded">
+						<complexType>
+							<sequence>
+								<element ref="gsmle:PhysicalDescription"/>
+							</sequence>
+							<attribute name="nilReason" type="gml:NilReasonType"/>
+						</complexType>
+					</element>
+					<element name="deformationStyle" type="gml:CodeType">
+						<annotation>
+							<appinfo>
+								<targetElement xmlns="http://www.opengis.net/gml/3.2">gsmle:DeformationStyleTerm</targetElement>
+							</appinfo>
+						</annotation>
+					</element>
+					<!--replaced--><element name="planeOrientation" nillable="true">
+						<complexType>
+							<sequence>
+								<element ref="gsmlb:CGI_PlanarOrientation"/>
+							</sequence>
+							<attribute name="nilReason" type="gml:NilReasonType"/>
+						</complexType>
+					</element>
+				</sequence>
+			</extension>
+		</complexContent>
+	</complexType>
+	<complexType name="ShearDisplacementStructureDescriptionPropertyType">
+		<sequence>
+			<element ref="gsmle:ShearDisplacementStructureDescription"/>
+		</sequence>
+	</complexType>
+	<element name="SlipComponents" type="gsmle:SlipComponentsType" substitutionGroup="gsmle:DisplacementValue"/>
+	<complexType name="SlipComponentsType">
+		<complexContent>
+			<extension base="gsmle:DisplacementValueType">
+				<sequence>
+					<!--replaced--><element name="heave" nillable="true">
+						<complexType>
+							<sequence>
+								<element ref="gsmlb:CGI_Vector"/>
+							</sequence>
+							<attribute name="nilReason" type="gml:NilReasonType"/>
+						</complexType>
+					</element>
+					<!--replaced--><element name="horizontalSlip" nillable="true">
+						<complexType>
+							<sequence>
+								<element ref="gsmlb:CGI_Vector"/>
+							</sequence>
+							<attribute name="nilReason" type="gml:NilReasonType"/>
+						</complexType>
+					</element>
+					<!--replaced--><element name="throw" nillable="true">
+						<complexType>
+							<sequence>
+								<element ref="gsmlb:CGI_Vector"/>
+							</sequence>
+							<attribute name="nilReason" type="gml:NilReasonType"/>
+						</complexType>
+					</element>
+				</sequence>
+			</extension>
+		</complexContent>
+	</complexType>
+	<complexType name="SlipComponentsPropertyType">
+		<sequence>
+			<element ref="gsmle:SlipComponents"/>
+		</sequence>
+	</complexType>
+</schema>

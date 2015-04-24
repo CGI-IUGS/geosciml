@@ -227,7 +227,7 @@ Allows specifying direction by DirectionVector (eg Dip/Dip Direction), compass p
 	<element name="CompositionPart" type="gsmlb:CompositionPartType" substitutionGroup="gml:AbstractObject"/>
 	<complexType name="CompositionPartType">
 		<sequence>
-			<element name="material" nillable="true" minOccurs="0">
+			<!--replaced--><element minOccurs="1" name="material" nillable="true">
 				<complexType>
 					<complexContent>
 						<extension base="gml:AbstractMemberType">
@@ -246,7 +246,7 @@ Allows specifying direction by DirectionVector (eg Dip/Dip Direction), compass p
 					</appinfo>
 				</annotation>
 			</element>
-			<element name="proportion" nillable="true" minOccurs="0">
+			<!--replaced--><element minOccurs="1" name="proportion" nillable="true">
 				<complexType>
 					<complexContent>
 						<extension base="gml:AbstractMemberType">
@@ -291,7 +291,7 @@ This class is provided primarily as an extensibility point for related domain mo
 		<complexContent>
 			<extension base="gsmlb:GeologicStructureType">
 				<sequence>
-					<element name="stContactDescription" nillable="true" minOccurs="0">
+					<!--replaced--><element minOccurs="1" name="stContactDescription" nillable="true">
 						<complexType>
 							<sequence>
 								<element ref="gsmlb:ContactAbstractDescription"/>
@@ -427,7 +427,7 @@ Values: Instance, TypicalNorm, IdentifyingNorm.</documentation>
 		<complexContent>
 			<extension base="gsmlb:GeologicStructureType">
 				<sequence>
-					<element name="stFoldDescription" nillable="true" minOccurs="0">
+					<!--replaced--><element minOccurs="1" name="stFoldDescription" nillable="true">
 						<complexType>
 							<sequence>
 								<element ref="gsmlb:FoldAbstractDescription"/>
@@ -435,7 +435,7 @@ Values: Instance, TypicalNorm, IdentifyingNorm.</documentation>
 							<attribute name="nilReason" type="gml:NilReasonType"/>
 						</complexType>
 					</element>
-					<element name="profileType" nillable="true" minOccurs="0">
+					<!--replaced--><element minOccurs="1" name="profileType" nillable="true">
 						<annotation>
 							<appinfo>
 								<targetElement xmlns="http://www.opengis.net/gml/3.2">gsmlb:FoldProfileTypeTerm</targetElement>
@@ -474,7 +474,7 @@ Values: Instance, TypicalNorm, IdentifyingNorm.</documentation>
 		<complexContent>
 			<extension base="gsmlb:GeologicStructureType">
 				<sequence>
-					<element name="stFoliationDescription" nillable="true" minOccurs="0">
+					<!--replaced--><element minOccurs="1" name="stFoliationDescription" nillable="true">
 						<complexType>
 							<sequence>
 								<element ref="gsmlb:FoliationAbstractDescription"/>
@@ -489,7 +489,7 @@ Values: Instance, TypicalNorm, IdentifyingNorm.</documentation>
 							</appinfo>
 						</annotation>
 					</element>
-					<element name="orientation" nillable="true" minOccurs="0" maxOccurs="unbounded">
+					<!--replaced--><element minOccurs="1" name="orientation" nillable="true" maxOccurs="unbounded">
 						<complexType>
 							<sequence>
 								<element ref="gsmlb:CGI_PlanarOrientation"/>
@@ -650,7 +650,7 @@ Values: Instance, TypicalNorm, IdentifyingNorm.</documentation>
 		<complexContent>
 			<extension base="gsmlb:GeologicFeatureType">
 				<sequence>
-					<element name="numericAge" nillable="true" minOccurs="0">
+					<!--replaced--><element minOccurs="1" name="numericAge" nillable="true">
 						<complexType>
 							<sequence>
 								<element ref="gsmlb:NumericAgeRange"/>
@@ -658,7 +658,7 @@ Values: Instance, TypicalNorm, IdentifyingNorm.</documentation>
 							<attribute name="nilReason" type="gml:NilReasonType"/>
 						</complexType>
 					</element>
-					<element name="gaEventDescription" nillable="true" minOccurs="0" maxOccurs="unbounded">
+					<!--replaced--><element minOccurs="1" name="gaEventDescription" nillable="true" maxOccurs="unbounded">
 						<complexType>
 							<sequence>
 								<element ref="gsmlb:GeologicEventAbstractDescription"/>
@@ -667,7 +667,7 @@ Values: Instance, TypicalNorm, IdentifyingNorm.</documentation>
 						</complexType>
 					</element>
 					<element name="eventProcess" type="gml:CodeType" maxOccurs="unbounded"/>
-					<element name="olderNamedAge" type="gml:ReferenceType" nillable="true" minOccurs="0">
+					<!--replaced--><element minOccurs="1" name="olderNamedAge" type="gml:ReferenceType" nillable="true">
 						<annotation>
 							<appinfo>
 								<targetElement xmlns="http://www.opengis.net/gml/3.2">gsmlb:GeochronologicEraTerm</targetElement>
@@ -675,7 +675,7 @@ Values: Instance, TypicalNorm, IdentifyingNorm.</documentation>
 							</appinfo>
 						</annotation>
 					</element>
-					<element name="youngerNamedAge" type="gml:ReferenceType" nillable="true" minOccurs="0">
+					<!--replaced--><element minOccurs="1" name="youngerNamedAge" type="gml:ReferenceType" nillable="true">
 						<annotation>
 							<appinfo>
 								<targetElement xmlns="http://www.opengis.net/gml/3.2">gsmlb:GeochronologicEraTerm</targetElement>
@@ -683,7 +683,7 @@ Values: Instance, TypicalNorm, IdentifyingNorm.</documentation>
 							</appinfo>
 						</annotation>
 					</element>
-					<element name="eventEnvironment" nillable="true" minOccurs="0" maxOccurs="unbounded">
+					<!--replaced--><element minOccurs="1" name="eventEnvironment" nillable="true" maxOccurs="unbounded">
 						<complexType>
 							<complexContent>
 								<extension base="gml:AbstractMemberType">
@@ -720,7 +720,7 @@ Values: Instance, TypicalNorm, IdentifyingNorm.</documentation>
 		<complexContent>
 			<extension base="gml:AbstractFeatureType">
 				<sequence>
-					<element name="classifer" nillable="true" minOccurs="0" maxOccurs="unbounded">
+					<!--replaced--><element minOccurs="1" name="classifer" nillable="true" maxOccurs="unbounded">
 						<complexType>
 							<complexContent>
 								<extension base="gml:AbstractMemberType">
@@ -735,7 +735,7 @@ Values: Instance, TypicalNorm, IdentifyingNorm.</documentation>
 					<element name="occurrence" type="gsmlb:MappedFeaturePropertyType" minOccurs="0" maxOccurs="unbounded"/>
 					<element name="relatedFeature" type="gsmlb:AbstractFeatureRelationPropertyType" minOccurs="0" maxOccurs="unbounded"/>
 					<element name="geologicHistory" type="gsmlb:GeologicEventPropertyType" maxOccurs="unbounded"/>
-					<element name="observationMethod" nillable="true" minOccurs="0" maxOccurs="unbounded">
+					<!--replaced--><element minOccurs="1" name="observationMethod" nillable="true" maxOccurs="unbounded">
 						<complexType>
 							<complexContent>
 								<extension base="gml:AbstractMemberType">
@@ -779,7 +779,7 @@ Values: Instance, TypicalNorm, IdentifyingNorm.</documentation>
 		<complexContent>
 			<extension base="gsmlb:GeologicFeatureType">
 				<sequence>
-					<element name="gbUnitDescription" nillable="true" minOccurs="0" maxOccurs="unbounded">
+					<!--replaced--><element minOccurs="1" name="gbUnitDescription" nillable="true" maxOccurs="unbounded">
 						<complexType>
 							<sequence>
 								<element ref="gsmlb:GeologicUnitAbstractDescription"/>
@@ -795,7 +795,7 @@ Values: Instance, TypicalNorm, IdentifyingNorm.</documentation>
 							</appinfo>
 						</annotation>
 					</element>
-					<element name="rank" nillable="true" minOccurs="0">
+					<!--replaced--><element minOccurs="1" name="rank" nillable="true">
 						<annotation>
 							<appinfo>
 								<targetElement xmlns="http://www.opengis.net/gml/3.2">gsmlb:RankTerm</targetElement>
@@ -809,7 +809,7 @@ Values: Instance, TypicalNorm, IdentifyingNorm.</documentation>
 							</simpleContent>
 						</complexType>
 					</element>
-					<element name="composition" nillable="true" minOccurs="0" maxOccurs="unbounded">
+					<!--replaced--><element minOccurs="1" name="composition" nillable="true" maxOccurs="unbounded">
 						<complexType>
 							<sequence>
 								<element ref="gsmlb:CompositionPart"/>
@@ -817,7 +817,7 @@ Values: Instance, TypicalNorm, IdentifyingNorm.</documentation>
 							<attribute name="nilReason" type="gml:NilReasonType"/>
 						</complexType>
 					</element>
-					<element name="hierarchyLink" nillable="true" minOccurs="0" maxOccurs="unbounded">
+					<!--replaced--><element minOccurs="1" name="hierarchyLink" nillable="true" maxOccurs="unbounded">
 						<complexType>
 							<sequence>
 								<element ref="gsmlb:GeologicUnitHierarchy"/>
@@ -855,7 +855,7 @@ Values: Instance, TypicalNorm, IdentifyingNorm.</documentation>
 					</appinfo>
 				</annotation>
 			</element>
-			<element name="proportion" nillable="true" minOccurs="0">
+			<!--replaced--><element minOccurs="1" name="proportion" nillable="true">
 				<complexType>
 					<complexContent>
 						<extension base="gml:AbstractMemberType">
@@ -881,7 +881,7 @@ Values: Instance, TypicalNorm, IdentifyingNorm.</documentation>
 			<extension base="gsmlb:GeologicFeatureType">
 				<sequence>
 					<element name="unitDescription" type="gsmlb:GeologicUnitPropertyType" minOccurs="0"/>
-					<element name="gmFeatureDescription" type="gsmlb:GeomorphologicUnitAbstractDescriptionPropertyType" nillable="true" minOccurs="0" maxOccurs="unbounded"/>
+					<!--replaced--><element minOccurs="1" name="gmFeatureDescription" type="gsmlb:GeomorphologicUnitAbstractDescriptionPropertyType" nillable="true" maxOccurs="unbounded"/>
 				</sequence>
 			</extension>
 		</complexContent>
@@ -915,7 +915,7 @@ Values: Instance, TypicalNorm, IdentifyingNorm.</documentation>
 				<sequence>
 					<element name="shape" type="gml:GeometryPropertyType"/>
 					<element name="specification" type="gml:FeaturePropertyType"/>
-					<element name="observationMethod" nillable="true" minOccurs="0" maxOccurs="unbounded">
+					<!--replaced--><element minOccurs="1" name="observationMethod" nillable="true" maxOccurs="unbounded">
 						<complexType>
 							<complexContent>
 								<extension base="gml:AbstractMemberType">
@@ -927,7 +927,7 @@ Values: Instance, TypicalNorm, IdentifyingNorm.</documentation>
 							</complexContent>
 						</complexType>
 					</element>
-					<element name="resolutionRepresentativeFraction" nillable="true" minOccurs="0">
+					<!--replaced--><element minOccurs="1" name="resolutionRepresentativeFraction" nillable="true">
 						<complexType>
 							<simpleContent>
 								<extension base="integer">
@@ -943,7 +943,7 @@ Values: Instance, TypicalNorm, IdentifyingNorm.</documentation>
 							</appinfo>
 						</annotation>
 					</element>
-					<element name="exposure" nillable="true" minOccurs="0">
+					<!--replaced--><element minOccurs="1" name="exposure" nillable="true">
 						<complexType>
 							<simpleContent>
 								<extension base="gml:CodeType">
@@ -952,7 +952,7 @@ Values: Instance, TypicalNorm, IdentifyingNorm.</documentation>
 							</simpleContent>
 						</complexType>
 					</element>
-					<element name="positionalAccuracy" nillable="true" minOccurs="0">
+					<!--replaced--><element minOccurs="1" name="positionalAccuracy" nillable="true">
 						<complexType>
 							<complexContent>
 								<extension base="gml:AbstractMemberType">
@@ -988,7 +988,7 @@ Values: Instance, TypicalNorm, IdentifyingNorm.</documentation>
 							</appinfo>
 						</annotation>
 					</element>
-					<element name="activity" nillable="true" minOccurs="0">
+					<!--replaced--><element minOccurs="1" name="activity" nillable="true">
 						<complexType>
 							<complexContent>
 								<extension base="gml:AbstractMemberType">
@@ -1097,7 +1097,7 @@ Values: Instance, TypicalNorm, IdentifyingNorm.</documentation>
 		<complexContent>
 			<extension base="gsmlb:GeologicStructureType">
 				<sequence>
-					<element name="stStructureDescription" nillable="true" minOccurs="0">
+					<!--replaced--><element minOccurs="1" name="stStructureDescription" nillable="true">
 						<complexType>
 							<sequence>
 								<element ref="gsmlb:ShearDisplacementStructureAbstractDescription"/>
