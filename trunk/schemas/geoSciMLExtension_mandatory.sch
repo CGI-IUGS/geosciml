@@ -1,426 +1,321 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <schema xmlns="http://purl.oclc.org/dsdl/schematron" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:fn="http://www.w3.org/2005/xpath-functions" xmlns:sch="http://purl.oclc.org/dsdl/schematron" fpi="http://schemas.opengis.net/gwml/2.0/xml-rules.sch" see="http://www.opengis.net/spec/gwml/2.0/req/xsd-xml-rules" queryBinding="xslt2">
 	<title>nillable property rules</title>
-	<p>This sch enforces mandatory nillable properties originally defined in XSD</p>
+	<p>This sch enforces mandatory nillable properties originally defined in XSD.  This series of rules has been generated automatically for a properties that have nillable=true and minOccurs=0</p>
 	<ns prefix="n" uri="http://xmlns.geosciml.org/geologyextension/4.0"/>
-	<pattern id="alterationProduct">
+	<pattern id="AlterationDescriptionType.alterationProduct">
 		<title>Testing presence of property alterationProduct</title>
-		<rule context="n:AlterationDescription">
-			<assert test="n:alterationProduct">Property alterationProduct is mandatory - use nil if a value cannot be provided</assert>
+		<rule context="//n:AlterationDescription">
+			<assert test="n:alterationProduct">Property {http://xmlns.geosciml.org/geologyextension/4.0}alterationProduct is mandatory - use nil if a value cannot be provided</assert>
 		</rule>
-	</pattern>
-	<pattern id="alterationDistribution">
+	</pattern><pattern id="AlterationDescriptionType.alterationDistribution">
 		<title>Testing presence of property alterationDistribution</title>
-		<rule context="n:AlterationDescription">
-			<assert test="n:alterationDistribution">Property alterationDistribution is mandatory - use nil if a value cannot be provided</assert>
+		<rule context="//n:AlterationDescription">
+			<assert test="n:alterationDistribution">Property {http://xmlns.geosciml.org/geologyextension/4.0}alterationDistribution is mandatory - use nil if a value cannot be provided</assert>
 		</rule>
-	</pattern>
-	<pattern id="alterationEvent">
-		<title>Testing presence of property alterationEvent</title>
-		<rule context="n:AlterationDescription">
-			<assert test="n:alterationEvent">Property alterationEvent is mandatory - use nil if a value cannot be provided</assert>
-		</rule>
-	</pattern>
-	<pattern id="beddingPattern">
+	</pattern><pattern id="BeddingDescriptionType.beddingPattern">
 		<title>Testing presence of property beddingPattern</title>
-		<rule context="n:BeddingDescription">
-			<assert test="n:beddingPattern">Property beddingPattern is mandatory - use nil if a value cannot be provided</assert>
+		<rule context="//n:BeddingDescription">
+			<assert test="n:beddingPattern">Property {http://xmlns.geosciml.org/geologyextension/4.0}beddingPattern is mandatory - use nil if a value cannot be provided</assert>
 		</rule>
-	</pattern>
-	<pattern id="beddingStyle">
+	</pattern><pattern id="BeddingDescriptionType.beddingStyle">
 		<title>Testing presence of property beddingStyle</title>
-		<rule context="n:BeddingDescription">
-			<assert test="n:beddingStyle">Property beddingStyle is mandatory - use nil if a value cannot be provided</assert>
+		<rule context="//n:BeddingDescription">
+			<assert test="n:beddingStyle">Property {http://xmlns.geosciml.org/geologyextension/4.0}beddingStyle is mandatory - use nil if a value cannot be provided</assert>
 		</rule>
-	</pattern>
-	<pattern id="beddingThickness">
+	</pattern><pattern id="BeddingDescriptionType.beddingThickness">
 		<title>Testing presence of property beddingThickness</title>
-		<rule context="n:BeddingDescription">
-			<assert test="n:beddingThickness">Property beddingThickness is mandatory - use nil if a value cannot be provided</assert>
+		<rule context="//n:BeddingDescription">
+			<assert test="n:beddingThickness">Property {http://xmlns.geosciml.org/geologyextension/4.0}beddingThickness is mandatory - use nil if a value cannot be provided</assert>
 		</rule>
-	</pattern>
-	<pattern id="particleGeometry">
+	</pattern><pattern id="CompoundMaterialDescriptionType.particleGeometry">
 		<title>Testing presence of property particleGeometry</title>
-		<rule context="n:CompoundMaterialDescription">
-			<assert test="n:particleGeometry">Property particleGeometry is mandatory - use nil if a value cannot be provided</assert>
+		<rule context="//n:CompoundMaterialDescription">
+			<assert test="n:particleGeometry">Property {http://xmlns.geosciml.org/geologyextension/4.0}particleGeometry is mandatory - use nil if a value cannot be provided</assert>
 		</rule>
-	</pattern>
-	<pattern id="compositionCategory">
+	</pattern><pattern id="CompoundMaterialDescriptionType.compositionCategory">
 		<title>Testing presence of property compositionCategory</title>
-		<rule context="n:CompoundMaterialDescription">
-			<assert test="n:compositionCategory">Property compositionCategory is mandatory - use nil if a value cannot be provided</assert>
+		<rule context="//n:CompoundMaterialDescription">
+			<assert test="n:compositionCategory">Property {http://xmlns.geosciml.org/geologyextension/4.0}compositionCategory is mandatory - use nil if a value cannot be provided</assert>
 		</rule>
-	</pattern>
-	<pattern id="geneticCategory">
+	</pattern><pattern id="CompoundMaterialDescriptionType.geneticCategory">
 		<title>Testing presence of property geneticCategory</title>
-		<rule context="n:CompoundMaterialDescription">
-			<assert test="n:geneticCategory">Property geneticCategory is mandatory - use nil if a value cannot be provided</assert>
+		<rule context="//n:CompoundMaterialDescription">
+			<assert test="n:geneticCategory">Property {http://xmlns.geosciml.org/geologyextension/4.0}geneticCategory is mandatory - use nil if a value cannot be provided</assert>
 		</rule>
-	</pattern>
-	<pattern id="constituent">
+	</pattern><pattern id="CompoundMaterialDescriptionType.constituent">
 		<title>Testing presence of property constituent</title>
-		<rule context="n:CompoundMaterialDescription">
-			<assert test="n:constituent">Property constituent is mandatory - use nil if a value cannot be provided</assert>
+		<rule context="//n:CompoundMaterialDescription">
+			<assert test="n:constituent">Property {http://xmlns.geosciml.org/geologyextension/4.0}constituent is mandatory - use nil if a value cannot be provided</assert>
 		</rule>
-	</pattern>
-	<pattern id="constituentMaterial">
+	</pattern><pattern id="ConstituentPartType.constituentMaterial">
 		<title>Testing presence of property constituentMaterial</title>
-		<rule context="n:ConstituentPart">
-			<assert test="n:constituentMaterial">Property constituentMaterial is mandatory - use nil if a value cannot be provided</assert>
+		<rule context="//n:ConstituentPart">
+			<assert test="n:constituentMaterial">Property {http://xmlns.geosciml.org/geologyextension/4.0}constituentMaterial is mandatory - use nil if a value cannot be provided</assert>
 		</rule>
-	</pattern>
-	<pattern id="proportion">
+	</pattern><pattern id="ConstituentPartType.proportion">
 		<title>Testing presence of property proportion</title>
-		<rule context="n:ConstituentPart">
-			<assert test="n:proportion">Property proportion is mandatory - use nil if a value cannot be provided</assert>
+		<rule context="//n:ConstituentPart">
+			<assert test="n:proportion">Property {http://xmlns.geosciml.org/geologyextension/4.0}proportion is mandatory - use nil if a value cannot be provided</assert>
 		</rule>
-	</pattern>
-	<pattern id="constituentParticleGeometry">
+	</pattern><pattern id="ConstituentPartType.constituentParticleGeometry">
 		<title>Testing presence of property constituentParticleGeometry</title>
-		<rule context="n:ConstituentPart">
-			<assert test="n:constituentParticleGeometry">Property constituentParticleGeometry is mandatory - use nil if a value cannot be provided</assert>
+		<rule context="//n:ConstituentPart">
+			<assert test="n:constituentParticleGeometry">Property {http://xmlns.geosciml.org/geologyextension/4.0}constituentParticleGeometry is mandatory - use nil if a value cannot be provided</assert>
 		</rule>
-	</pattern>
-	<pattern id="relatedMaterial">
+	</pattern><pattern id="ConstituentPartType.relatedMaterial">
 		<title>Testing presence of property relatedMaterial</title>
-		<rule context="n:ConstituentPart">
-			<assert test="n:relatedMaterial">Property relatedMaterial is mandatory - use nil if a value cannot be provided</assert>
+		<rule context="//n:ConstituentPart">
+			<assert test="n:relatedMaterial">Property {http://xmlns.geosciml.org/geologyextension/4.0}relatedMaterial is mandatory - use nil if a value cannot be provided</assert>
 		</rule>
-	</pattern>
-	<pattern id="contactCharacter">
-		<title>Testing presence of property contactCharacter</title>
-		<rule context="n:ContactDescription">
-			<assert test="n:contactCharacter">Property contactCharacter is mandatory - use nil if a value cannot be provided</assert>
+	</pattern><pattern id="DisplacementEventType.boundedBy">
+		<title>Testing presence of property boundedBy</title>
+		<rule context="//n:DisplacementEvent">
+			<assert test="n:boundedBy">Property {http://www.opengis.net/gml/3.2}boundedBy is mandatory - use nil if a value cannot be provided</assert>
 		</rule>
-	</pattern>
-	<pattern id="orientation">
-		<title>Testing presence of property orientation</title>
-		<rule context="n:ContactDescription">
-			<assert test="n:orientation">Property orientation is mandatory - use nil if a value cannot be provided</assert>
+	</pattern><pattern id="DisplacementEventType.classifer">
+		<title>Testing presence of property classifer</title>
+		<rule context="//n:DisplacementEvent">
+			<assert test="n:classifer">Property {http://xmlns.geosciml.org/geologybasic/4.0}classifer is mandatory - use nil if a value cannot be provided</assert>
 		</rule>
-	</pattern>
-	<pattern id="correlatesWith">
-		<title>Testing presence of property correlatesWith</title>
-		<rule context="n:ContactDescription">
-			<assert test="n:correlatesWith">Property correlatesWith is mandatory - use nil if a value cannot be provided</assert>
+	</pattern><pattern id="DisplacementEventType.observationMethod">
+		<title>Testing presence of property observationMethod</title>
+		<rule context="//n:DisplacementEvent">
+			<assert test="n:observationMethod">Property {http://xmlns.geosciml.org/geologybasic/4.0}observationMethod is mandatory - use nil if a value cannot be provided</assert>
 		</rule>
-	</pattern>
-	<pattern id="hangingWallDirection">
-		<title>Testing presence of property hangingWallDirection</title>
-		<rule context="n:DisplacementValue">
-			<assert test="n:hangingWallDirection">Property hangingWallDirection is mandatory - use nil if a value cannot be provided</assert>
+	</pattern><pattern id="DisplacementEventType.numericAge">
+		<title>Testing presence of property numericAge</title>
+		<rule context="//n:DisplacementEvent">
+			<assert test="n:numericAge">Property {http://xmlns.geosciml.org/geologybasic/4.0}numericAge is mandatory - use nil if a value cannot be provided</assert>
 		</rule>
-	</pattern>
-	<pattern id="movementSense">
-		<title>Testing presence of property movementSense</title>
-		<rule context="n:DisplacementValue">
-			<assert test="n:movementSense">Property movementSense is mandatory - use nil if a value cannot be provided</assert>
+	</pattern><pattern id="DisplacementEventType.gaEventDescription">
+		<title>Testing presence of property gaEventDescription</title>
+		<rule context="//n:DisplacementEvent">
+			<assert test="n:gaEventDescription">Property {http://xmlns.geosciml.org/geologybasic/4.0}gaEventDescription is mandatory - use nil if a value cannot be provided</assert>
 		</rule>
-	</pattern>
-	<pattern id="movementType">
-		<title>Testing presence of property movementType</title>
-		<rule context="n:DisplacementValue">
-			<assert test="n:movementType">Property movementType is mandatory - use nil if a value cannot be provided</assert>
+	</pattern><pattern id="DisplacementEventType.olderNamedAge">
+		<title>Testing presence of property olderNamedAge</title>
+		<rule context="//n:DisplacementEvent">
+			<assert test="n:olderNamedAge">Property {http://xmlns.geosciml.org/geologybasic/4.0}olderNamedAge is mandatory - use nil if a value cannot be provided</assert>
 		</rule>
-	</pattern>
-	<pattern id="displacementEvent">
-		<title>Testing presence of property displacementEvent</title>
-		<rule context="n:DisplacementValue">
-			<assert test="n:displacementEvent">Property displacementEvent is mandatory - use nil if a value cannot be provided</assert>
+	</pattern><pattern id="DisplacementEventType.youngerNamedAge">
+		<title>Testing presence of property youngerNamedAge</title>
+		<rule context="//n:DisplacementEvent">
+			<assert test="n:youngerNamedAge">Property {http://xmlns.geosciml.org/geologybasic/4.0}youngerNamedAge is mandatory - use nil if a value cannot be provided</assert>
 		</rule>
-	</pattern>
-	<pattern id="amplitude">
-		<title>Testing presence of property amplitude</title>
-		<rule context="n:FoldDescription">
-			<assert test="n:amplitude">Property amplitude is mandatory - use nil if a value cannot be provided</assert>
+	</pattern><pattern id="DisplacementEventType.eventEnvironment">
+		<title>Testing presence of property eventEnvironment</title>
+		<rule context="//n:DisplacementEvent">
+			<assert test="n:eventEnvironment">Property {http://xmlns.geosciml.org/geologybasic/4.0}eventEnvironment is mandatory - use nil if a value cannot be provided</assert>
 		</rule>
-	</pattern>
-	<pattern id="axialSurfaceOrientation">
-		<title>Testing presence of property axialSurfaceOrientation</title>
-		<rule context="n:FoldDescription">
-			<assert test="n:axialSurfaceOrientation">Property axialSurfaceOrientation is mandatory - use nil if a value cannot be provided</assert>
+	</pattern><pattern id="FoldSystemType.boundedBy">
+		<title>Testing presence of property boundedBy</title>
+		<rule context="//n:FoldSystem">
+			<assert test="n:boundedBy">Property {http://www.opengis.net/gml/3.2}boundedBy is mandatory - use nil if a value cannot be provided</assert>
 		</rule>
-	</pattern>
-	<pattern id="geneticModel">
-		<title>Testing presence of property geneticModel</title>
-		<rule context="n:FoldDescription">
-			<assert test="n:geneticModel">Property geneticModel is mandatory - use nil if a value cannot be provided</assert>
+	</pattern><pattern id="FoldSystemType.classifer">
+		<title>Testing presence of property classifer</title>
+		<rule context="//n:FoldSystem">
+			<assert test="n:classifer">Property {http://xmlns.geosciml.org/geologybasic/4.0}classifer is mandatory - use nil if a value cannot be provided</assert>
 		</rule>
-	</pattern>
-	<pattern id="hingeLineCurvature">
-		<title>Testing presence of property hingeLineCurvature</title>
-		<rule context="n:FoldDescription">
-			<assert test="n:hingeLineCurvature">Property hingeLineCurvature is mandatory - use nil if a value cannot be provided</assert>
+	</pattern><pattern id="FoldSystemType.observationMethod">
+		<title>Testing presence of property observationMethod</title>
+		<rule context="//n:FoldSystem">
+			<assert test="n:observationMethod">Property {http://xmlns.geosciml.org/geologybasic/4.0}observationMethod is mandatory - use nil if a value cannot be provided</assert>
 		</rule>
-	</pattern>
-	<pattern id="hingeLineOrientation">
-		<title>Testing presence of property hingeLineOrientation</title>
-		<rule context="n:FoldDescription">
-			<assert test="n:hingeLineOrientation">Property hingeLineOrientation is mandatory - use nil if a value cannot be provided</assert>
-		</rule>
-	</pattern>
-	<pattern id="hingeShape">
-		<title>Testing presence of property hingeShape</title>
-		<rule context="n:FoldDescription">
-			<assert test="n:hingeShape">Property hingeShape is mandatory - use nil if a value cannot be provided</assert>
-		</rule>
-	</pattern>
-	<pattern id="interLimbAngle">
-		<title>Testing presence of property interLimbAngle</title>
-		<rule context="n:FoldDescription">
-			<assert test="n:interLimbAngle">Property interLimbAngle is mandatory - use nil if a value cannot be provided</assert>
-		</rule>
-	</pattern>
-	<pattern id="limbShape">
-		<title>Testing presence of property limbShape</title>
-		<rule context="n:FoldDescription">
-			<assert test="n:limbShape">Property limbShape is mandatory - use nil if a value cannot be provided</assert>
-		</rule>
-	</pattern>
-	<pattern id="span">
-		<title>Testing presence of property span</title>
-		<rule context="n:FoldDescription">
-			<assert test="n:span">Property span is mandatory - use nil if a value cannot be provided</assert>
-		</rule>
-	</pattern>
-	<pattern id="symmetry">
-		<title>Testing presence of property symmetry</title>
-		<rule context="n:FoldDescription">
-			<assert test="n:symmetry">Property symmetry is mandatory - use nil if a value cannot be provided</assert>
-		</rule>
-	</pattern>
-	<pattern id="system">
-		<title>Testing presence of property system</title>
-		<rule context="n:FoldDescription">
-			<assert test="n:system">Property system is mandatory - use nil if a value cannot be provided</assert>
-		</rule>
-	</pattern>
-	<pattern id="foldSystemMember">
+	</pattern><pattern id="FoldSystemType.foldSystemMember">
 		<title>Testing presence of property foldSystemMember</title>
-		<rule context="n:FoldSystem">
-			<assert test="n:foldSystemMember">Property foldSystemMember is mandatory - use nil if a value cannot be provided</assert>
+		<rule context="//n:FoldSystem">
+			<assert test="n:foldSystemMember">Property {http://xmlns.geosciml.org/geologyextension/4.0}foldSystemMember is mandatory - use nil if a value cannot be provided</assert>
 		</rule>
-	</pattern>
-	<pattern id="periodic">
+	</pattern><pattern id="FoldSystemType.periodic">
 		<title>Testing presence of property periodic</title>
-		<rule context="n:FoldSystem">
-			<assert test="n:periodic">Property periodic is mandatory - use nil if a value cannot be provided</assert>
+		<rule context="//n:FoldSystem">
+			<assert test="n:periodic">Property {http://xmlns.geosciml.org/geologyextension/4.0}periodic is mandatory - use nil if a value cannot be provided</assert>
 		</rule>
-	</pattern>
-	<pattern id="wavelength">
+	</pattern><pattern id="FoldSystemType.wavelength">
 		<title>Testing presence of property wavelength</title>
-		<rule context="n:FoldSystem">
-			<assert test="n:wavelength">Property wavelength is mandatory - use nil if a value cannot be provided</assert>
+		<rule context="//n:FoldSystem">
+			<assert test="n:wavelength">Property {http://xmlns.geosciml.org/geologyextension/4.0}wavelength is mandatory - use nil if a value cannot be provided</assert>
 		</rule>
-	</pattern>
-	<pattern id="definingElement">
-		<title>Testing presence of property definingElement</title>
-		<rule context="n:FoliationDescription">
-			<assert test="n:definingElement">Property definingElement is mandatory - use nil if a value cannot be provided</assert>
+	</pattern><pattern id="FractureType.boundedBy">
+		<title>Testing presence of property boundedBy</title>
+		<rule context="//n:Fracture">
+			<assert test="n:boundedBy">Property {http://www.opengis.net/gml/3.2}boundedBy is mandatory - use nil if a value cannot be provided</assert>
 		</rule>
-	</pattern>
-	<pattern id="continuity">
-		<title>Testing presence of property continuity</title>
-		<rule context="n:FoliationDescription">
-			<assert test="n:continuity">Property continuity is mandatory - use nil if a value cannot be provided</assert>
+	</pattern><pattern id="FractureType.classifer">
+		<title>Testing presence of property classifer</title>
+		<rule context="//n:Fracture">
+			<assert test="n:classifer">Property {http://xmlns.geosciml.org/geologybasic/4.0}classifer is mandatory - use nil if a value cannot be provided</assert>
 		</rule>
-	</pattern>
-	<pattern id="intensity">
-		<title>Testing presence of property intensity</title>
-		<rule context="n:FoliationDescription">
-			<assert test="n:intensity">Property intensity is mandatory - use nil if a value cannot be provided</assert>
+	</pattern><pattern id="FractureType.observationMethod">
+		<title>Testing presence of property observationMethod</title>
+		<rule context="//n:Fracture">
+			<assert test="n:observationMethod">Property {http://xmlns.geosciml.org/geologybasic/4.0}observationMethod is mandatory - use nil if a value cannot be provided</assert>
 		</rule>
-	</pattern>
-	<pattern id="mineralElement">
-		<title>Testing presence of property mineralElement</title>
-		<rule context="n:FoliationDescription">
-			<assert test="n:mineralElement">Property mineralElement is mandatory - use nil if a value cannot be provided</assert>
-		</rule>
-	</pattern>
-	<pattern id="spacing">
-		<title>Testing presence of property spacing</title>
-		<rule context="n:FoliationDescription">
-			<assert test="n:spacing">Property spacing is mandatory - use nil if a value cannot be provided</assert>
-		</rule>
-	</pattern>
-	<pattern id="quality">
+	</pattern><pattern id="GeologicDateEstimateType.quality">
 		<title>Testing presence of property quality</title>
-		<rule context="n:GeologicDateEstimate">
-			<assert test="n:quality">Property quality is mandatory - use nil if a value cannot be provided</assert>
+		<rule context="//n:GeologicDateEstimate">
+			<assert test="n:quality">Property {http://xmlns.geosciml.org/geologyextension/4.0}quality is mandatory - use nil if a value cannot be provided</assert>
 		</rule>
-	</pattern>
-	<pattern id="bedding2">
+	</pattern><pattern id="GeologicUnitDescriptionType.bedding">
 		<title>Testing presence of property bedding</title>
-		<rule context="n:GeologicUnitDescription">
-			<assert test="n:bedding">Property bedding is mandatory - use nil if a value cannot be provided</assert>
+		<rule context="//n:GeologicUnitDescription">
+			<assert test="n:bedding">Property {http://xmlns.geosciml.org/geologyextension/4.0}bedding is mandatory - use nil if a value cannot be provided</assert>
 		</rule>
-	</pattern>
-	<pattern id="bodyMorphology">
+	</pattern><pattern id="GeologicUnitDescriptionType.bodyMorphology">
 		<title>Testing presence of property bodyMorphology</title>
-		<rule context="n:GeologicUnitDescription">
-			<assert test="n:bodyMorphology">Property bodyMorphology is mandatory - use nil if a value cannot be provided</assert>
+		<rule context="//n:GeologicUnitDescription">
+			<assert test="n:bodyMorphology">Property {http://xmlns.geosciml.org/geologyextension/4.0}bodyMorphology is mandatory - use nil if a value cannot be provided</assert>
 		</rule>
-	</pattern>
-	<pattern id="unitComposition">
+	</pattern><pattern id="GeologicUnitDescriptionType.unitComposition">
 		<title>Testing presence of property unitComposition</title>
-		<rule context="n:GeologicUnitDescription">
-			<assert test="n:unitComposition">Property unitComposition is mandatory - use nil if a value cannot be provided</assert>
+		<rule context="//n:GeologicUnitDescription">
+			<assert test="n:unitComposition">Property {http://xmlns.geosciml.org/geologyextension/4.0}unitComposition is mandatory - use nil if a value cannot be provided</assert>
 		</rule>
-	</pattern>
-	<pattern id="outcropCharacter">
+	</pattern><pattern id="GeologicUnitDescriptionType.outcropCharacter">
 		<title>Testing presence of property outcropCharacter</title>
-		<rule context="n:GeologicUnitDescription">
-			<assert test="n:outcropCharacter">Property outcropCharacter is mandatory - use nil if a value cannot be provided</assert>
+		<rule context="//n:GeologicUnitDescription">
+			<assert test="n:outcropCharacter">Property {http://xmlns.geosciml.org/geologyextension/4.0}outcropCharacter is mandatory - use nil if a value cannot be provided</assert>
 		</rule>
-	</pattern>
-	<pattern id="unitThickness">
-		<title>Testing presence of property unitThickness</title>
-		<rule context="n:GeologicUnitDescription">
-			<assert test="n:unitThickness">Property unitThickness is mandatory - use nil if a value cannot be provided</assert>
+	</pattern><pattern id="JointType.boundedBy">
+		<title>Testing presence of property boundedBy</title>
+		<rule context="//n:Joint">
+			<assert test="n:boundedBy">Property {http://www.opengis.net/gml/3.2}boundedBy is mandatory - use nil if a value cannot be provided</assert>
 		</rule>
-	</pattern>
-	<pattern id="lithology">
-		<title>Testing presence of property lithology</title>
-		<rule context="n:LayerComposition">
-			<assert test="n:lithology">Property lithology is mandatory - use nil if a value cannot be provided</assert>
+	</pattern><pattern id="JointType.classifer">
+		<title>Testing presence of property classifer</title>
+		<rule context="//n:Joint">
+			<assert test="n:classifer">Property {http://xmlns.geosciml.org/geologybasic/4.0}classifer is mandatory - use nil if a value cannot be provided</assert>
 		</rule>
-	</pattern>
-	<pattern id="stLayerDescription">
-		<title>Testing presence of property stLayerDescription</title>
-		<rule context="n:Layering">
-			<assert test="n:stLayerDescription">Property stLayerDescription is mandatory - use nil if a value cannot be provided</assert>
+	</pattern><pattern id="JointType.observationMethod">
+		<title>Testing presence of property observationMethod</title>
+		<rule context="//n:Joint">
+			<assert test="n:observationMethod">Property {http://xmlns.geosciml.org/geologybasic/4.0}observationMethod is mandatory - use nil if a value cannot be provided</assert>
 		</rule>
-	</pattern>
-	<pattern id="definingElement">
-		<title>Testing presence of property definingElement</title>
-		<rule context="n:Lineation">
-			<assert test="n:definingElement">Property definingElement is mandatory - use nil if a value cannot be provided</assert>
+	</pattern><pattern id="LayeringType.boundedBy">
+		<title>Testing presence of property boundedBy</title>
+		<rule context="//n:Layering">
+			<assert test="n:boundedBy">Property {http://www.opengis.net/gml/3.2}boundedBy is mandatory - use nil if a value cannot be provided</assert>
 		</rule>
-	</pattern>
-	<pattern id="intensity">
-		<title>Testing presence of property intensity</title>
-		<rule context="n:Lineation">
-			<assert test="n:intensity">Property intensity is mandatory - use nil if a value cannot be provided</assert>
+	</pattern><pattern id="LayeringType.classifer">
+		<title>Testing presence of property classifer</title>
+		<rule context="//n:Layering">
+			<assert test="n:classifer">Property {http://xmlns.geosciml.org/geologybasic/4.0}classifer is mandatory - use nil if a value cannot be provided</assert>
 		</rule>
-	</pattern>
-	<pattern id="mineralElement">
-		<title>Testing presence of property mineralElement</title>
-		<rule context="n:Lineation">
-			<assert test="n:mineralElement">Property mineralElement is mandatory - use nil if a value cannot be provided</assert>
+	</pattern><pattern id="LayeringType.observationMethod">
+		<title>Testing presence of property observationMethod</title>
+		<rule context="//n:Layering">
+			<assert test="n:observationMethod">Property {http://xmlns.geosciml.org/geologybasic/4.0}observationMethod is mandatory - use nil if a value cannot be provided</assert>
 		</rule>
-	</pattern>
-	<pattern id="orientation">
+	</pattern><pattern id="LayeringType.stFoliationDescription">
+		<title>Testing presence of property stFoliationDescription</title>
+		<rule context="//n:Layering">
+			<assert test="n:stFoliationDescription">Property {http://xmlns.geosciml.org/geologybasic/4.0}stFoliationDescription is mandatory - use nil if a value cannot be provided</assert>
+		</rule>
+	</pattern><pattern id="LayeringType.orientation">
 		<title>Testing presence of property orientation</title>
-		<rule context="n:Lineation">
-			<assert test="n:orientation">Property orientation is mandatory - use nil if a value cannot be provided</assert>
+		<rule context="//n:Layering">
+			<assert test="n:orientation">Property {http://xmlns.geosciml.org/geologybasic/4.0}orientation is mandatory - use nil if a value cannot be provided</assert>
 		</rule>
-	</pattern>
-	<pattern id="metamorphicFacies">
+	</pattern><pattern id="LineationType.boundedBy">
+		<title>Testing presence of property boundedBy</title>
+		<rule context="//n:Lineation">
+			<assert test="n:boundedBy">Property {http://www.opengis.net/gml/3.2}boundedBy is mandatory - use nil if a value cannot be provided</assert>
+		</rule>
+	</pattern><pattern id="LineationType.classifer">
+		<title>Testing presence of property classifer</title>
+		<rule context="//n:Lineation">
+			<assert test="n:classifer">Property {http://xmlns.geosciml.org/geologybasic/4.0}classifer is mandatory - use nil if a value cannot be provided</assert>
+		</rule>
+	</pattern><pattern id="LineationType.observationMethod">
+		<title>Testing presence of property observationMethod</title>
+		<rule context="//n:Lineation">
+			<assert test="n:observationMethod">Property {http://xmlns.geosciml.org/geologybasic/4.0}observationMethod is mandatory - use nil if a value cannot be provided</assert>
+		</rule>
+	</pattern><pattern id="LineationType.definingElement">
+		<title>Testing presence of property definingElement</title>
+		<rule context="//n:Lineation">
+			<assert test="n:definingElement">Property {http://xmlns.geosciml.org/geologyextension/4.0}definingElement is mandatory - use nil if a value cannot be provided</assert>
+		</rule>
+	</pattern><pattern id="LineationType.mineralElement">
+		<title>Testing presence of property mineralElement</title>
+		<rule context="//n:Lineation">
+			<assert test="n:mineralElement">Property {http://xmlns.geosciml.org/geologyextension/4.0}mineralElement is mandatory - use nil if a value cannot be provided</assert>
+		</rule>
+	</pattern><pattern id="LineationType.orientation">
+		<title>Testing presence of property orientation</title>
+		<rule context="//n:Lineation">
+			<assert test="n:orientation">Property {http://xmlns.geosciml.org/geologyextension/4.0}orientation is mandatory - use nil if a value cannot be provided</assert>
+		</rule>
+	</pattern><pattern id="MetamorphicDescriptionType.metamorphicFacies">
 		<title>Testing presence of property metamorphicFacies</title>
-		<rule context="n:MetamorphicDescription">
-			<assert test="n:metamorphicFacies">Property metamorphicFacies is mandatory - use nil if a value cannot be provided</assert>
+		<rule context="//n:MetamorphicDescription">
+			<assert test="n:metamorphicFacies">Property {http://xmlns.geosciml.org/geologyextension/4.0}metamorphicFacies is mandatory - use nil if a value cannot be provided</assert>
 		</rule>
-	</pattern>
-	<pattern id="metamorphicGrade">
+	</pattern><pattern id="MetamorphicDescriptionType.metamorphicGrade">
 		<title>Testing presence of property metamorphicGrade</title>
-		<rule context="n:MetamorphicDescription">
-			<assert test="n:metamorphicGrade">Property metamorphicGrade is mandatory - use nil if a value cannot be provided</assert>
+		<rule context="//n:MetamorphicDescription">
+			<assert test="n:metamorphicGrade">Property {http://xmlns.geosciml.org/geologyextension/4.0}metamorphicGrade is mandatory - use nil if a value cannot be provided</assert>
 		</rule>
-	</pattern>
-	<pattern id="peakPressureValue">
+	</pattern><pattern id="MetamorphicDescriptionType.peakPressureValue">
 		<title>Testing presence of property peakPressureValue</title>
-		<rule context="n:MetamorphicDescription">
-			<assert test="n:peakPressureValue">Property peakPressureValue is mandatory - use nil if a value cannot be provided</assert>
+		<rule context="//n:MetamorphicDescription">
+			<assert test="n:peakPressureValue">Property {http://xmlns.geosciml.org/geologyextension/4.0}peakPressureValue is mandatory - use nil if a value cannot be provided</assert>
 		</rule>
-	</pattern>
-	<pattern id="peakTemperatureValue">
+	</pattern><pattern id="MetamorphicDescriptionType.peakTemperatureValue">
 		<title>Testing presence of property peakTemperatureValue</title>
-		<rule context="n:MetamorphicDescription">
-			<assert test="n:peakTemperatureValue">Property peakTemperatureValue is mandatory - use nil if a value cannot be provided</assert>
+		<rule context="//n:MetamorphicDescription">
+			<assert test="n:peakTemperatureValue">Property {http://xmlns.geosciml.org/geologyextension/4.0}peakTemperatureValue is mandatory - use nil if a value cannot be provided</assert>
 		</rule>
-	</pattern>
-	<pattern id="protolithLithology">
+	</pattern><pattern id="MetamorphicDescriptionType.protolithLithology">
 		<title>Testing presence of property protolithLithology</title>
-		<rule context="n:MetamorphicDescription">
-			<assert test="n:protolithLithology">Property protolithLithology is mandatory - use nil if a value cannot be provided</assert>
+		<rule context="//n:MetamorphicDescription">
+			<assert test="n:protolithLithology">Property {http://xmlns.geosciml.org/geologyextension/4.0}protolithLithology is mandatory - use nil if a value cannot be provided</assert>
 		</rule>
-	</pattern>
-	<pattern id="metamorphicEvent">
-		<title>Testing presence of property metamorphicEvent</title>
-		<rule context="n:MetamorphicDescription">
-			<assert test="n:metamorphicEvent">Property metamorphicEvent is mandatory - use nil if a value cannot be provided</assert>
+	</pattern><pattern id="NonDirectionalStructureType.boundedBy">
+		<title>Testing presence of property boundedBy</title>
+		<rule context="//n:NonDirectionalStructure">
+			<assert test="n:boundedBy">Property {http://www.opengis.net/gml/3.2}boundedBy is mandatory - use nil if a value cannot be provided</assert>
 		</rule>
-	</pattern>
-	<pattern id="slipComponent">
-		<title>Testing presence of property slipComponent</title>
-		<rule context="n:NetSlipValue">
-			<assert test="n:slipComponent">Property slipComponent is mandatory - use nil if a value cannot be provided</assert>
+	</pattern><pattern id="NonDirectionalStructureType.classifer">
+		<title>Testing presence of property classifer</title>
+		<rule context="//n:NonDirectionalStructure">
+			<assert test="n:classifer">Property {http://xmlns.geosciml.org/geologybasic/4.0}classifer is mandatory - use nil if a value cannot be provided</assert>
 		</rule>
-	</pattern>
-	<pattern id="aspectRatio">
+	</pattern><pattern id="NonDirectionalStructureType.observationMethod">
+		<title>Testing presence of property observationMethod</title>
+		<rule context="//n:NonDirectionalStructure">
+			<assert test="n:observationMethod">Property {http://xmlns.geosciml.org/geologybasic/4.0}observationMethod is mandatory - use nil if a value cannot be provided</assert>
+		</rule>
+	</pattern><pattern id="ParticleGeometryDescriptionType.aspectRatio">
 		<title>Testing presence of property aspectRatio</title>
-		<rule context="n:ParticleGeometryDescription">
-			<assert test="n:aspectRatio">Property aspectRatio is mandatory - use nil if a value cannot be provided</assert>
+		<rule context="//n:ParticleGeometryDescription">
+			<assert test="n:aspectRatio">Property {http://xmlns.geosciml.org/geologyextension/4.0}aspectRatio is mandatory - use nil if a value cannot be provided</assert>
 		</rule>
-	</pattern>
-	<pattern id="shape">
+	</pattern><pattern id="ParticleGeometryDescriptionType.shape">
 		<title>Testing presence of property shape</title>
-		<rule context="n:ParticleGeometryDescription">
-			<assert test="n:shape">Property shape is mandatory - use nil if a value cannot be provided</assert>
+		<rule context="//n:ParticleGeometryDescription">
+			<assert test="n:shape">Property {http://xmlns.geosciml.org/geologyextension/4.0}shape is mandatory - use nil if a value cannot be provided</assert>
 		</rule>
-	</pattern>
-	<pattern id="size">
+	</pattern><pattern id="ParticleGeometryDescriptionType.size">
 		<title>Testing presence of property size</title>
-		<rule context="n:ParticleGeometryDescription">
-			<assert test="n:size">Property size is mandatory - use nil if a value cannot be provided</assert>
+		<rule context="//n:ParticleGeometryDescription">
+			<assert test="n:size">Property {http://xmlns.geosciml.org/geologyextension/4.0}size is mandatory - use nil if a value cannot be provided</assert>
 		</rule>
-	</pattern>
-	<pattern id="sorting">
+	</pattern><pattern id="ParticleGeometryDescriptionType.sorting">
 		<title>Testing presence of property sorting</title>
-		<rule context="n:ParticleGeometryDescription">
-			<assert test="n:sorting">Property sorting is mandatory - use nil if a value cannot be provided</assert>
+		<rule context="//n:ParticleGeometryDescription">
+			<assert test="n:sorting">Property {http://xmlns.geosciml.org/geologyextension/4.0}sorting is mandatory - use nil if a value cannot be provided</assert>
 		</rule>
-	</pattern>
-	<pattern id="sourceOrganism">
+	</pattern><pattern id="ParticleGeometryDescriptionType.sourceOrganism">
 		<title>Testing presence of property sourceOrganism</title>
-		<rule context="n:ParticleGeometryDescription">
-			<assert test="n:sourceOrganism">Property sourceOrganism is mandatory - use nil if a value cannot be provided</assert>
+		<rule context="//n:ParticleGeometryDescription">
+			<assert test="n:sourceOrganism">Property {http://xmlns.geosciml.org/geologyextension/4.0}sourceOrganism is mandatory - use nil if a value cannot be provided</assert>
 		</rule>
-	</pattern>
-	<pattern id="consolidationDegree">
+	</pattern><pattern id="RockMaterialDescriptionType.consolidationDegree">
 		<title>Testing presence of property consolidationDegree</title>
-		<rule context="n:RockMaterialDescription">
-			<assert test="n:consolidationDegree">Property consolidationDegree is mandatory - use nil if a value cannot be provided</assert>
+		<rule context="//n:RockMaterialDescription">
+			<assert test="n:consolidationDegree">Property {http://xmlns.geosciml.org/geologyextension/4.0}consolidationDegree is mandatory - use nil if a value cannot be provided</assert>
 		</rule>
-	</pattern>
-	<pattern id="stPhysicalProperty">
-		<title>Testing presence of property stPhysicalProperty</title>
-		<rule context="n:ShearDisplacementStructureDescription">
-			<assert test="n:stPhysicalProperty">Property stPhysicalProperty is mandatory - use nil if a value cannot be provided</assert>
-		</rule>
-	</pattern>
-	<pattern id="planeOrientation">
-		<title>Testing presence of property planeOrientation</title>
-		<rule context="n:ShearDisplacementStructureDescription">
-			<assert test="n:planeOrientation">Property planeOrientation is mandatory - use nil if a value cannot be provided</assert>
-		</rule>
-	</pattern>
-	<pattern id="heave">
-		<title>Testing presence of property heave</title>
-		<rule context="n:SlipComponents">
-			<assert test="n:heave">Property heave is mandatory - use nil if a value cannot be provided</assert>
-		</rule>
-	</pattern>
-	<pattern id="horizontalSlip">
-		<title>Testing presence of property horizontalSlip</title>
-		<rule context="n:SlipComponents">
-			<assert test="n:horizontalSlip">Property horizontalSlip is mandatory - use nil if a value cannot be provided</assert>
-		</rule>
-	</pattern>
-	<pattern id="throw">
-		<title>Testing presence of property throw</title>
-		<rule context="n:SlipComponents">
-			<assert test="n:throw">Property throw is mandatory - use nil if a value cannot be provided</assert>
-		</rule>
-	</pattern>
-</schema>
+	</pattern></schema>
