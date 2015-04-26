@@ -2,7 +2,7 @@
 <schema xmlns="http://purl.oclc.org/dsdl/schematron" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:fn="http://www.w3.org/2005/xpath-functions" xmlns:sch="http://purl.oclc.org/dsdl/schematron" fpi="http://schemas.opengis.net/gwml/2.0/xml-rules.sch" see="http://www.opengis.net/spec/gwml/2.0/req/xsd-xml-rules" queryBinding="xslt2">
 	<title>nillable property rules</title>
 	<p>This sch enforces mandatory nillable properties originally defined in XSD</p>
-	<ns prefix="n" uri="http://xmlns.geosciml.org/geologybasic/4.0/20150422"/>
+	<ns prefix="n" uri="http://xmlns.geosciml.org/geologybasic/4.0"/>
 	<pattern id="material">
 		<title>Testing presence of property material</title>
 		<rule context="n:CompositionPart">
