@@ -3,12 +3,7 @@
 	<title>nillable property rules</title>
 	<p>This sch enforces mandatory nillable properties originally defined in XSD</p>
 	<ns prefix="n" uri="http://xmlns.geosciml.org/geologybasic/4.0"/>
-	<pattern id="GeologicFeatureType.boundedBy">
-		<title>Testing presence of property boundedBy</title>
-		<rule context="//n:GeologicFeature">
-			<assert test="n:boundedBy">Property {http://www.opengis.net/gml/3.2}boundedBy is mandatory - use nil if a value cannot be provided</assert>
-		</rule>
-	</pattern><pattern id="GeologicFeatureType.classifer">
+	<pattern id="GeologicFeatureType.classifer">
 		<title>Testing presence of property classifer</title>
 		<rule context="//n:GeologicFeature">
 			<assert test="n:classifer">Property {http://xmlns.geosciml.org/geologybasic/4.0}classifer is mandatory - use nil if a value cannot be provided</assert>
@@ -38,12 +33,8 @@
 		<rule context="//n:GeomorphologicFeature">
 			<assert test="n:gmFeatureDescription">Property {http://xmlns.geosciml.org/geologybasic/4.0}gmFeatureDescription is mandatory - use nil if a value cannot be provided</assert>
 		</rule>
-	</pattern><pattern id="AnthropogenicGeomorphologicFeatureType.boundedBy">
-		<title>Testing presence of property boundedBy</title>
-		<rule context="//n:AnthropogenicGeomorphologicFeature">
-			<assert test="n:boundedBy">Property {http://www.opengis.net/gml/3.2}boundedBy is mandatory - use nil if a value cannot be provided</assert>
-		</rule>
-	</pattern><pattern id="AnthropogenicGeomorphologicFeatureType.classifer">
+	</pattern>
+	<pattern id="AnthropogenicGeomorphologicFeatureType.classifer">
 		<title>Testing presence of property classifer</title>
 		<rule context="//n:AnthropogenicGeomorphologicFeature">
 			<assert test="n:classifer">Property {http://xmlns.geosciml.org/geologybasic/4.0}classifer is mandatory - use nil if a value cannot be provided</assert>
@@ -68,12 +59,8 @@
 		<rule context="//n:CompositionPart">
 			<assert test="n:proportion">Property {http://xmlns.geosciml.org/geologybasic/4.0}proportion is mandatory - use nil if a value cannot be provided</assert>
 		</rule>
-	</pattern><pattern id="GeologicStructureType.boundedBy">
-		<title>Testing presence of property boundedBy</title>
-		<rule context="//n:GeologicStructure">
-			<assert test="n:boundedBy">Property {http://www.opengis.net/gml/3.2}boundedBy is mandatory - use nil if a value cannot be provided</assert>
-		</rule>
-	</pattern><pattern id="GeologicStructureType.classifer">
+	</pattern>
+	<pattern id="GeologicStructureType.classifer">
 		<title>Testing presence of property classifer</title>
 		<rule context="//n:GeologicStructure">
 			<assert test="n:classifer">Property {http://xmlns.geosciml.org/geologybasic/4.0}classifer is mandatory - use nil if a value cannot be provided</assert>
@@ -83,7 +70,8 @@
 		<rule context="//n:GeologicStructure">
 			<assert test="n:observationMethod">Property {http://xmlns.geosciml.org/geologybasic/4.0}observationMethod is mandatory - use nil if a value cannot be provided</assert>
 		</rule>
-	</pattern><pattern id="ContactType.boundedBy">
+	</pattern>
+	<pattern id="ContactType.boundedBy">
 		<title>Testing presence of property boundedBy</title>
 		<rule context="//n:Contact">
 			<assert test="n:boundedBy">Property {http://www.opengis.net/gml/3.2}boundedBy is mandatory - use nil if a value cannot be provided</assert>
@@ -103,12 +91,8 @@
 		<rule context="//n:Contact">
 			<assert test="n:stContactDescription">Property {http://xmlns.geosciml.org/geologybasic/4.0}stContactDescription is mandatory - use nil if a value cannot be provided</assert>
 		</rule>
-	</pattern><pattern id="FoldType.boundedBy">
-		<title>Testing presence of property boundedBy</title>
-		<rule context="//n:Fold">
-			<assert test="n:boundedBy">Property {http://www.opengis.net/gml/3.2}boundedBy is mandatory - use nil if a value cannot be provided</assert>
-		</rule>
-	</pattern><pattern id="FoldType.classifer">
+	</pattern>
+	<pattern id="FoldType.classifer">
 		<title>Testing presence of property classifer</title>
 		<rule context="//n:Fold">
 			<assert test="n:classifer">Property {http://xmlns.geosciml.org/geologybasic/4.0}classifer is mandatory - use nil if a value cannot be provided</assert>
@@ -128,12 +112,8 @@
 		<rule context="//n:Fold">
 			<assert test="n:profileType">Property {http://xmlns.geosciml.org/geologybasic/4.0}profileType is mandatory - use nil if a value cannot be provided</assert>
 		</rule>
-	</pattern><pattern id="FoliationType.boundedBy">
-		<title>Testing presence of property boundedBy</title>
-		<rule context="//n:Foliation">
-			<assert test="n:boundedBy">Property {http://www.opengis.net/gml/3.2}boundedBy is mandatory - use nil if a value cannot be provided</assert>
-		</rule>
-	</pattern><pattern id="FoliationType.classifer">
+	</pattern>
+	<pattern id="FoliationType.classifer">
 		<title>Testing presence of property classifer</title>
 		<rule context="//n:Foliation">
 			<assert test="n:classifer">Property {http://xmlns.geosciml.org/geologybasic/4.0}classifer is mandatory - use nil if a value cannot be provided</assert>
@@ -153,17 +133,8 @@
 		<rule context="//n:Foliation">
 			<assert test="n:orientation">Property {http://xmlns.geosciml.org/geologybasic/4.0}orientation is mandatory - use nil if a value cannot be provided</assert>
 		</rule>
-	</pattern><pattern id="GSMLType.boundedBy">
-		<title>Testing presence of property boundedBy</title>
-		<rule context="//n:GSML">
-			<assert test="n:boundedBy">Property {http://www.opengis.net/gml/3.2}boundedBy is mandatory - use nil if a value cannot be provided</assert>
-		</rule>
-	</pattern><pattern id="GeologicEventType.boundedBy">
-		<title>Testing presence of property boundedBy</title>
-		<rule context="//n:GeologicEvent">
-			<assert test="n:boundedBy">Property {http://www.opengis.net/gml/3.2}boundedBy is mandatory - use nil if a value cannot be provided</assert>
-		</rule>
-	</pattern><pattern id="GeologicEventType.classifer">
+	</pattern>
+	<pattern id="GeologicEventType.classifer">
 		<title>Testing presence of property classifer</title>
 		<rule context="//n:GeologicEvent">
 			<assert test="n:classifer">Property {http://xmlns.geosciml.org/geologybasic/4.0}classifer is mandatory - use nil if a value cannot be provided</assert>
@@ -198,12 +169,8 @@
 		<rule context="//n:GeologicEvent">
 			<assert test="n:eventEnvironment">Property {http://xmlns.geosciml.org/geologybasic/4.0}eventEnvironment is mandatory - use nil if a value cannot be provided</assert>
 		</rule>
-	</pattern><pattern id="GeologicUnitType.boundedBy">
-		<title>Testing presence of property boundedBy</title>
-		<rule context="//n:GeologicUnit">
-			<assert test="n:boundedBy">Property {http://www.opengis.net/gml/3.2}boundedBy is mandatory - use nil if a value cannot be provided</assert>
-		</rule>
-	</pattern><pattern id="GeologicUnitType.classifer">
+	</pattern>
+	<pattern id="GeologicUnitType.classifer">
 		<title>Testing presence of property classifer</title>
 		<rule context="//n:GeologicUnit">
 			<assert test="n:classifer">Property {http://xmlns.geosciml.org/geologybasic/4.0}classifer is mandatory - use nil if a value cannot be provided</assert>
@@ -238,12 +205,8 @@
 		<rule context="//n:GeologicUnitHierarchy">
 			<assert test="n:proportion">Property {http://xmlns.geosciml.org/geologybasic/4.0}proportion is mandatory - use nil if a value cannot be provided</assert>
 		</rule>
-	</pattern><pattern id="MappedFeatureType.boundedBy">
-		<title>Testing presence of property boundedBy</title>
-		<rule context="//n:MappedFeature">
-			<assert test="n:boundedBy">Property {http://www.opengis.net/gml/3.2}boundedBy is mandatory - use nil if a value cannot be provided</assert>
-		</rule>
-	</pattern><pattern id="MappedFeatureType.observationMethod">
+	</pattern>
+	<pattern id="MappedFeatureType.observationMethod">
 		<title>Testing presence of property observationMethod</title>
 		<rule context="//n:MappedFeature">
 			<assert test="n:observationMethod">Property {http://xmlns.geosciml.org/geologybasic/4.0}observationMethod is mandatory - use nil if a value cannot be provided</assert>
@@ -263,12 +226,8 @@
 		<rule context="//n:MappedFeature">
 			<assert test="n:positionalAccuracy">Property {http://xmlns.geosciml.org/geologybasic/4.0}positionalAccuracy is mandatory - use nil if a value cannot be provided</assert>
 		</rule>
-	</pattern><pattern id="NaturalGeomorphologicFeatureType.boundedBy">
-		<title>Testing presence of property boundedBy</title>
-		<rule context="//n:NaturalGeomorphologicFeature">
-			<assert test="n:boundedBy">Property {http://www.opengis.net/gml/3.2}boundedBy is mandatory - use nil if a value cannot be provided</assert>
-		</rule>
-	</pattern><pattern id="NaturalGeomorphologicFeatureType.classifer">
+	</pattern>
+	<pattern id="NaturalGeomorphologicFeatureType.classifer">
 		<title>Testing presence of property classifer</title>
 		<rule context="//n:NaturalGeomorphologicFeature">
 			<assert test="n:classifer">Property {http://xmlns.geosciml.org/geologybasic/4.0}classifer is mandatory - use nil if a value cannot be provided</assert>
@@ -288,12 +247,8 @@
 		<rule context="//n:NaturalGeomorphologicFeature">
 			<assert test="n:activity">Property {http://xmlns.geosciml.org/geologybasic/4.0}activity is mandatory - use nil if a value cannot be provided</assert>
 		</rule>
-	</pattern><pattern id="ShearDisplacementStructureType.boundedBy">
-		<title>Testing presence of property boundedBy</title>
-		<rule context="//n:ShearDisplacementStructure">
-			<assert test="n:boundedBy">Property {http://www.opengis.net/gml/3.2}boundedBy is mandatory - use nil if a value cannot be provided</assert>
-		</rule>
-	</pattern><pattern id="ShearDisplacementStructureType.classifer">
+	</pattern>
+	<pattern id="ShearDisplacementStructureType.classifer">
 		<title>Testing presence of property classifer</title>
 		<rule context="//n:ShearDisplacementStructure">
 			<assert test="n:classifer">Property {http://xmlns.geosciml.org/geologybasic/4.0}classifer is mandatory - use nil if a value cannot be provided</assert>
