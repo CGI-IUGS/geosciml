@@ -229,14 +229,46 @@ It is separate to, but harmonized with, GeoSciML and conforms to the level 0 of 
     <complexContent>
       <extension base="gml:AbstractFeatureType">
         <sequence>
-          <element name="identifier" type="anyURI"/>
-          <element minOccurs="0" name="label" type="string"/>
-          <element minOccurs="0" name="description" type="string"/>
-          <element minOccurs="0" name="specimenType" type="string"/>
-          <element name="specimenType_uri" type="anyURI"/>
-          <element minOccurs="0" name="materialClass" type="string"/>
-          <element name="materialClass_uri" type="anyURI"/>
-          <element minOccurs="0" name="positionalAccuracy" type="string"/>
+          <element name="identifier" type="anyURI">
+            <annotation>
+              <documentation>Globally unique identifer.  Use XML anyURI datatype</documentation>
+            </annotation>
+          </element>
+          <element minOccurs="0" name="label" type="string">
+            <annotation>
+              <documentation>short label like sample numbers</documentation>
+            </annotation>
+          </element>
+          <element minOccurs="0" name="description" type="string">
+            <annotation>
+              <documentation>detailed description of the speciment</documentation>
+            </annotation>
+          </element>
+          <element minOccurs="0" name="specimenType" type="string">
+            <annotation>
+              <documentation>specimen type</documentation>
+            </annotation>
+          </element>
+          <element name="specimenType_uri" type="anyURI">
+            <annotation>
+              <documentation>specimen type identifier from a controlled vocabulary</documentation>
+            </annotation>
+          </element>
+          <element minOccurs="0" name="materialClass" type="string">
+            <annotation>
+              <documentation>class of material (rock, sediment, etc)</documentation>
+            </annotation>
+          </element>
+          <element name="materialClass_uri" type="anyURI">
+            <annotation>
+              <documentation>class of material drawn from a controlled vocabulary</documentation>
+            </annotation>
+          </element>
+          <element minOccurs="0" name="positionalAccuracy" type="string">
+            <annotation>
+              <documentation>description of the position accuracy of the specimen</documentation>
+            </annotation>
+          </element>
           <element minOccurs="0" name="samplingTime" type="string">
             <annotation>
               <documentation>Date (+/- time) when the specimen was collected.</documentation>
@@ -252,16 +284,32 @@ It is separate to, but harmonized with, GeoSciML and conforms to the level 0 of 
               <documentation>The current location of the specimen (eg, a warehouse or other repository location)</documentation>
             </annotation>
           </element>
-          <element minOccurs="0" name="source" type="string"/>
-          <element name="metadata_uri" type="anyURI"/>
+          <element minOccurs="0" name="source" type="string">
+            <annotation>
+              <documentation>citation of the source of the data (publication, maps, etc)</documentation>
+            </annotation>
+          </element>
+          <element name="metadata_uri" type="anyURI">
+            <annotation>
+              <documentation>pointer to metadata document</documentation>
+            </annotation>
+          </element>
           <element name="specification_uri" type="anyURI">
             <annotation>
               <documentation>URI referring the the Observation&amp;Measurements (ISO19156) SF_Specimen feature that describes the instance in detail. Mandatory property - if not value is provided then a URI referring to a controlled concept explaining why the value is nil must be provided.</documentation>
             </annotation>
           </element>
-          <element name="genericSymbolizer" type="string"/>
-          <element name="shape" type="gml:GeometryPropertyType"/>
-          <any processContents="lax" minOccurs="0" maxOccurs="unbounded"/>
+          <element name="genericSymbolizer" type="string">
+            <annotation>
+              <documentation>reference to specimen symbolisation</documentation>
+            </annotation>
+          </element>
+          <element name="shape" type="gml:GeometryPropertyType">
+            <annotation>
+              <documentation>map geometry of the specimen (generally a point)</documentation>
+            </annotation>
+          </element>
+         <any processContents="lax" minOccurs="0" maxOccurs="unbounded"/>
         </sequence>
       </extension>
     </complexContent>
@@ -282,13 +330,17 @@ It is separate to, but harmonized with, GeoSciML and conforms to the level 0 of 
     <complexContent>
       <extension base="gml:AbstractFeatureType">
         <sequence>
-          <element minOccurs="0" name="numericOlderAge" type="double"/>
-          <element minOccurs="0" name="numericYoungerAge" type="double"/>
-         
+           <element minOccurs="0" name="numericOlderAge" type="double">
             <annotation>
-              <documentation>A placeholder allowing any user-defined attributes to be delivered in addition to those specified above.</documentation>
+              <documentation>older age in numerical representation</documentation>
             </annotation>
           </element>
+          <element minOccurs="0" name="numericYoungerAge" type="double">
+            <annotation>
+              <documentation>younger age in numerical representation</documentation>
+            </annotation>
+          </element>         
+            
           <element name="identifier" type="anyURI">
             <annotation>
               <documentation>Globally unique identifer. Should have the same value as the corresponding GeoSciML MappedFeature.</documentation>
@@ -384,11 +436,6 @@ It is separate to, but harmonized with, GeoSciML and conforms to the level 0 of 
               <documentation>Geometry defining the extent of the feature of interest.</documentation>
             </annotation>
           </element>
-		    <element maxOccurs="unbounded" minOccurs="0" name="any">
-            <annotation>
-              <documentation>A placeholder allowing any user-defined attributes to be delivered in addition to those specified above.</documentation>
-            </annotation>
-          </element>
 		  <any processContents="lax" minOccurs="0" maxOccurs="unbounded"/>
         </sequence>
 		
@@ -422,8 +469,22 @@ e.g. active, dormant, stable....</documentation>
               <documentation>anthropogenic, natural...</documentation>
             </annotation>
           </element>
-          <element minOccurs="0" name="activity_uri" type="anyURI"/>
-          <element minOccurs="0" name="landformClass_uri" type="anyURI"/>
+          <element minOccurs="0" name="activity_uri" type="anyURI">
+            <annotation>
+              <documentation>Identifier of activity drawn from a controlled vocabulary</documentation>
+              <appinfo>
+                <targetElement xmlns="http://www.opengis.net/gml/3.2">null:URI</targetElement>
+              </appinfo>
+            </annotation>
+          </element>          
+<element minOccurs="0" name="landformClass_uri" type="anyURI">
+<annotation>
+              <documentation>identifier of landform drawn from a controlled vocabulary</documentation>
+              <appinfo>
+                <targetElement xmlns="http://www.opengis.net/gml/3.2">null:URI</targetElement>
+              </appinfo>
+            </annotation>
+          </element>
           <element minOccurs="0" name="representativeNumericAge" type="double"/>
           
             <annotation>
@@ -531,8 +592,16 @@ e.g. active, dormant, stable....</documentation>
     <complexContent>
       <extension base="gml:AbstractFeatureType">
         <sequence>
-          <element minOccurs="0" name="numericOlderAge" type="double"/>
-          <element minOccurs="0" name="numericYoungerAge" type="double"/>
+          <element minOccurs="0" name="numericOlderAge" type="double">
+            <annotation>
+              <documentation>older age in numerical representation</documentation>
+            </annotation>
+          </element>
+          <element minOccurs="0" name="numericYoungerAge" type="double">
+            <annotation>
+              <documentation>younger age in numerical representation</documentation>
+            </annotation>
+          </element>
           <element name="identifier" type="anyURI">
             <annotation>
               <documentation>Globally unique identifer. Should have the same value as the corresponding GeoSciML MappedFeature.</documentation>
@@ -720,8 +789,17 @@ e.g. active, dormant, stable....</documentation>
               <documentation>Text description of measurement procedure, processing, and provenance of data.</documentation>
             </annotation>
           </element>
-          <element name="metadata_uri" type="anyURI"/>
-          <element name="observation_uri" type="anyURI"/>
+          <element name="metadata_uri" type="anyURI">
+            <annotation>
+              <documentation>link to metadata document</documentation>
+            </annotation>
+          </element>
+          <element name="observation_uri" type="anyURI">
+            <annotation>
+              <documentation>link to an O&amp;M  observation</documentation>
+            </annotation>
+          </element>
+
           <element minOccurs="0" name="genericSymbolizer" type="string">
             <annotation>
               <documentation>Identifier for a symbol to portray this observation. Conventions for symbol identifiers can be adopted within information exchange communities. In any given exchange document, the symbols should all be from the same portrayal scheme, which can be specified in the portrayal section of an associated ISO metadata record.</documentation>
@@ -732,7 +810,11 @@ e.g. active, dormant, stable....</documentation>
               <documentation>Integer value between 0 and 360 to specify rotation of symbol at this location, e.g. rotation of a geologic strike and dip symbol to reflect the strike azimuth.</documentation>
             </annotation>
           </element>
-          <element name="shape" type="gml:GeometryPropertyType"/>
+      <element name="shape" type="gml:GeometryPropertyType">
+            <annotation>
+              <documentation>map geometry of the observation site</documentation>
+            </annotation>
+          </element>
           <any processContents="lax" minOccurs="0" maxOccurs="unbounded"/>
         </sequence>
       </extension>
