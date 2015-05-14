@@ -93,10 +93,10 @@
 			<assert test="n0:relatedMaterial">Property {http://xmlns.geosciml.org/geologyextension/4.0}relatedMaterial is mandatory - use nil if a value cannot be provided</assert>
 		</rule>
 	</pattern>
-<pattern id="DisplacementEventType.classifer">
-		<title>Testing presence of property classifer</title>
+<pattern id="DisplacementEventType.classifier">
+		<title>Testing presence of property classifier</title>
 		<rule context="//n0:DisplacementEvent">
-			<assert test="n1:classifer">Property {http://xmlns.geosciml.org/geologybasic/4.0}classifer is mandatory - use nil if a value cannot be provided</assert>
+			<assert test="n1:classifier">Property {http://xmlns.geosciml.org/geologybasic/4.0}classifier is mandatory - use nil if a value cannot be provided</assert>
 		</rule>
 	</pattern>
 <pattern id="DisplacementEventType.observationMethod">
@@ -135,10 +135,10 @@
 			<assert test="n1:eventEnvironment">Property {http://xmlns.geosciml.org/geologybasic/4.0}eventEnvironment is mandatory - use nil if a value cannot be provided</assert>
 		</rule>
 	</pattern>
-<pattern id="FoldSystemType.classifer">
-		<title>Testing presence of property classifer</title>
+<pattern id="FoldSystemType.classifier">
+		<title>Testing presence of property classifier</title>
 		<rule context="//n0:FoldSystem">
-			<assert test="n1:classifer">Property {http://xmlns.geosciml.org/geologybasic/4.0}classifer is mandatory - use nil if a value cannot be provided</assert>
+			<assert test="n1:classifier">Property {http://xmlns.geosciml.org/geologybasic/4.0}classifier is mandatory - use nil if a value cannot be provided</assert>
 		</rule>
 	</pattern>
 <pattern id="FoldSystemType.observationMethod">
@@ -165,10 +165,10 @@
 			<assert test="n0:wavelength">Property {http://xmlns.geosciml.org/geologyextension/4.0}wavelength is mandatory - use nil if a value cannot be provided</assert>
 		</rule>
 	</pattern>
-<pattern id="FractureType.classifer">
-		<title>Testing presence of property classifer</title>
+<pattern id="FractureType.classifier">
+		<title>Testing presence of property classifier</title>
 		<rule context="//n0:Fracture">
-			<assert test="n1:classifer">Property {http://xmlns.geosciml.org/geologybasic/4.0}classifer is mandatory - use nil if a value cannot be provided</assert>
+			<assert test="n1:classifier">Property {http://xmlns.geosciml.org/geologybasic/4.0}classifier is mandatory - use nil if a value cannot be provided</assert>
 		</rule>
 	</pattern>
 <pattern id="FractureType.observationMethod">
@@ -207,10 +207,10 @@
 			<assert test="n0:outcropCharacter">Property {http://xmlns.geosciml.org/geologyextension/4.0}outcropCharacter is mandatory - use nil if a value cannot be provided</assert>
 		</rule>
 	</pattern>
-<pattern id="JointType.classifer">
-		<title>Testing presence of property classifer</title>
+<pattern id="JointType.classifier">
+		<title>Testing presence of property classifier</title>
 		<rule context="//n0:Joint">
-			<assert test="n1:classifer">Property {http://xmlns.geosciml.org/geologybasic/4.0}classifer is mandatory - use nil if a value cannot be provided</assert>
+			<assert test="n1:classifier">Property {http://xmlns.geosciml.org/geologybasic/4.0}classifier is mandatory - use nil if a value cannot be provided</assert>
 		</rule>
 	</pattern>
 <pattern id="JointType.observationMethod">
@@ -219,10 +219,10 @@
 			<assert test="n1:observationMethod">Property {http://xmlns.geosciml.org/geologybasic/4.0}observationMethod is mandatory - use nil if a value cannot be provided</assert>
 		</rule>
 	</pattern>
-<pattern id="LayeringType.classifer">
-		<title>Testing presence of property classifer</title>
+<pattern id="LayeringType.classifier">
+		<title>Testing presence of property classifier</title>
 		<rule context="//n0:Layering">
-			<assert test="n1:classifer">Property {http://xmlns.geosciml.org/geologybasic/4.0}classifer is mandatory - use nil if a value cannot be provided</assert>
+			<assert test="n1:classifier">Property {http://xmlns.geosciml.org/geologybasic/4.0}classifier is mandatory - use nil if a value cannot be provided</assert>
 		</rule>
 	</pattern>
 <pattern id="LayeringType.observationMethod">
@@ -243,10 +243,10 @@
 			<assert test="n1:orientation">Property {http://xmlns.geosciml.org/geologybasic/4.0}orientation is mandatory - use nil if a value cannot be provided</assert>
 		</rule>
 	</pattern>
-<pattern id="LineationType.classifer">
-		<title>Testing presence of property classifer</title>
+<pattern id="LineationType.classifier">
+		<title>Testing presence of property classifier</title>
 		<rule context="//n0:Lineation">
-			<assert test="n1:classifer">Property {http://xmlns.geosciml.org/geologybasic/4.0}classifer is mandatory - use nil if a value cannot be provided</assert>
+			<assert test="n1:classifier">Property {http://xmlns.geosciml.org/geologybasic/4.0}classifier is mandatory - use nil if a value cannot be provided</assert>
 		</rule>
 	</pattern>
 <pattern id="LineationType.observationMethod">
@@ -303,10 +303,10 @@
 			<assert test="n0:protolithLithology">Property {http://xmlns.geosciml.org/geologyextension/4.0}protolithLithology is mandatory - use nil if a value cannot be provided</assert>
 		</rule>
 	</pattern>
-<pattern id="NonDirectionalStructureType.classifer">
-		<title>Testing presence of property classifer</title>
+<pattern id="NonDirectionalStructureType.classifier">
+		<title>Testing presence of property classifier</title>
 		<rule context="//n0:NonDirectionalStructure">
-			<assert test="n1:classifer">Property {http://xmlns.geosciml.org/geologybasic/4.0}classifer is mandatory - use nil if a value cannot be provided</assert>
+			<assert test="n1:classifier">Property {http://xmlns.geosciml.org/geologybasic/4.0}classifier is mandatory - use nil if a value cannot be provided</assert>
 		</rule>
 	</pattern>
 <pattern id="NonDirectionalStructureType.observationMethod">
