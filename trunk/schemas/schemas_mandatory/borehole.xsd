@@ -17,7 +17,6 @@
            schemaLocation="http://schemas.opengis.net/sweCommon/2.0/swe.xsd"/>
   <import namespace="http://www.opengis.net/samplingSpatial/2.0"
            schemaLocation="http://schemas.opengis.net/samplingSpatial/2.0/spatialSamplingFeature.xsd"/>
-
   <!--XML Schema document created by ShapeChange - http://shapechange.net/-->
   <element name="Borehole"
             type="gsmlbh:BoreholeType"
@@ -55,7 +54,8 @@
                <!--replaced-->     <element minOccurs="1"
                         maxOccurs="unbounded"
                         name="logElement"
-                        nillable="true">
+                        nillable="true"
+                        type="gsmlbh:BoreholeIntervalPropertyType">
                   <annotation>
                      <appinfo>
                         <reversePropertyName xmlns="http://www.opengis.net/gml/3.2">gsmlbh:parentBorehole</reversePropertyName>
@@ -169,9 +169,75 @@
          <element ref="gsmlbh:BoreholeDetails"/>
       </sequence>
   </complexType>
+  <element name="BoreholeInterval"
+            substitutionGroup="gsmlb:MappedFeature"
+            type="gml:AbstractFeature"/>
+  <complexType name="BoreholeIntervalType">
+      <complexContent>
+         <extension base="gsmlb:MappedFeatureType">
+            <sequence>
+          <!--replaced-->     <element minOccurs="1"
+                        name="parentBorehole"
+                        nillable="true"
+                        type="gsmlbh:BoreholePropertyType">
+                  <annotation>
+                     <appinfo>
+                        <reversePropertyName xmlns="http://www.opengis.net/gml/3.2">gsmlbh:logElement</reversePropertyName>
+                     </appinfo>
+                  </annotation>
+               </element>
+               <element minOccurs="0" name="mappedIntervalBegin">
+                  <complexType>
+                     <complexContent>
+                        <extension base="gml:AbstractMemberType">
+                           <sequence minOccurs="0">
+                              <element ref="swe:Quantity"/>
+                           </sequence>
+                           <attributeGroup ref="gml:AssociationAttributeGroup"/>
+                        </extension>
+                     </complexContent>
+                  </complexType>
+               </element>
+               <element minOccurs="0" name="mappedIntervalEnd">
+                  <complexType>
+                     <complexContent>
+                        <extension base="gml:AbstractMemberType">
+                           <sequence minOccurs="0">
+                              <element ref="swe:Quantity"/>
+                           </sequence>
+                           <attributeGroup ref="gml:AssociationAttributeGroup"/>
+                        </extension>
+                     </complexContent>
+                  </complexType>
+               </element>
+               <element minOccurs="0"
+                        name="collectionIdentifier"
+                        type="gml:CodeWithAuthorityType"/>
+		             <!--replaced-->           <element minOccurs="1"
+                        name="observationMethod"
+                        nillable="true"
+                        maxOccurs="unbounded">
+						            <complexType>
+							              <complexContent>
+								                <extension base="gml:AbstractMemberType">
+									                  <sequence minOccurs="0">
+										                    <element ref="swe:Category"/>
+									                  </sequence>
+									                  <attributeGroup ref="gml:AssociationAttributeGroup"/>
+								                </extension>
+							              </complexContent>
+						            </complexType>
+					          </element>
+            </sequence>
+         </extension>
+      </complexContent>
+  </complexType>
   <complexType name="BoreholeIntervalPropertyType">
-      <choice minOccurs="0"/>
+      <sequence minOccurs="0">
+         <element ref="gsmlbh:BoreholeInterval"/>
+      </sequence>
       <attributeGroup ref="gml:AssociationAttributeGroup"/>
+      <attributeGroup ref="gml:OwnershipAttributeGroup"/>
   </complexType>
   <element name="DrillingDetails"
             substitutionGroup="gml:AbstractObject"

@@ -38,7 +38,7 @@ xmlns:swe="http://www.opengis.net/swe/2.0" elementFormDefault="qualified" target
               <attribute name="nilReason" type="gml:NilReasonType"/>
             </complexType>
           </element>
-          <element maxOccurs="unbounded" minOccurs="0" name="logElement" nillable="true">
+          <element maxOccurs="unbounded" minOccurs="0" name="logElement" nillable="true" type="gsmlbh:BoreholeIntervalPropertyType">
             <annotation>
               <appinfo>
                 <reversePropertyName xmlns="http://www.opengis.net/gml/3.2">gsmlbh:parentBorehole</reversePropertyName>
@@ -130,9 +130,65 @@ xmlns:swe="http://www.opengis.net/swe/2.0" elementFormDefault="qualified" target
       <element ref="gsmlbh:BoreholeDetails"/>
     </sequence>
   </complexType>
+  <element name="BoreholeInterval" substitutionGroup="gsmlb:MappedFeature" type="gml:AbstractFeature"/>
+  <complexType name="BoreholeIntervalType">
+    <complexContent>
+      <extension base="gsmlb:MappedFeatureType">
+        <sequence>
+          <element minOccurs="0" name="parentBorehole" nillable="true" type="gsmlbh:BoreholePropertyType">
+            <annotation>
+              <appinfo>
+                <reversePropertyName xmlns="http://www.opengis.net/gml/3.2">gsmlbh:logElement</reversePropertyName>
+              </appinfo>
+            </annotation>
+          </element>
+          <element minOccurs="0" name="mappedIntervalBegin">
+            <complexType>
+              <complexContent>
+                <extension base="gml:AbstractMemberType">
+                  <sequence minOccurs="0">
+                    <element ref="swe:Quantity"/>
+                  </sequence>
+                  <attributeGroup ref="gml:AssociationAttributeGroup"/>
+                </extension>
+              </complexContent>
+            </complexType>
+          </element>
+          <element minOccurs="0" name="mappedIntervalEnd">
+            <complexType>
+              <complexContent>
+                <extension base="gml:AbstractMemberType">
+                  <sequence minOccurs="0">
+                    <element ref="swe:Quantity"/>
+                  </sequence>
+                  <attributeGroup ref="gml:AssociationAttributeGroup"/>
+                </extension>
+              </complexContent>
+            </complexType>
+          </element>
+          <element minOccurs="0" name="collectionIdentifier" type="gml:CodeWithAuthorityType"/>
+		  <element name="observationMethod" nillable="true" minOccurs="0" maxOccurs="unbounded">
+						<complexType>
+							<complexContent>
+								<extension base="gml:AbstractMemberType">
+									<sequence minOccurs="0">
+										<element ref="swe:Category"/>
+									</sequence>
+									<attributeGroup ref="gml:AssociationAttributeGroup"/>
+								</extension>
+							</complexContent>
+						</complexType>
+					</element>
+        </sequence>
+      </extension>
+    </complexContent>
+  </complexType>
   <complexType name="BoreholeIntervalPropertyType">
-    <choice minOccurs="0"/>
+    <sequence minOccurs="0">
+      <element ref="gsmlbh:BoreholeInterval"/>
+    </sequence>
     <attributeGroup ref="gml:AssociationAttributeGroup"/>
+    <attributeGroup ref="gml:OwnershipAttributeGroup"/>
   </complexType>
   <element name="DrillingDetails" substitutionGroup="gml:AbstractObject" type="gsmlbh:DrillingDetailsType"/>
   <complexType name="DrillingDetailsType">
