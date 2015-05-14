@@ -45,9 +45,10 @@ xmlns:swe="http://www.opengis.net/swe/2.0" elementFormDefault="qualified" target
               </appinfo>
             </annotation>
             <complexType>
-              <choice minOccurs="0"/>
-              <attributeGroup ref="gml:AssociationAttributeGroup"/>
-              <attributeGroup ref="gml:OwnershipAttributeGroup"/>
+				<sequence>
+					<element ref="gsmlbh:BoreholeInterval"/>
+				</sequence>
+				<attribute name="nilReason" type="gml:NilReasonType"/>
             </complexType>
           </element>
         </sequence>
