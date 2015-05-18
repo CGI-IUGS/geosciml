@@ -1,4 +1,6 @@
-<?xml version="1.0" encoding="UTF-8"?><schema xmlns="http://www.w3.org/2001/XMLSchema" xmlns:gml="http://www.opengis.net/gml/3.2" xmlns:gsmlp="http://xmlns.geosciml.org/geosciml-portrayal/2.0" elementFormDefault="qualified" targetNamespace="http://xmlns.geosciml.org/geosciml-portrayal/2.0" version="2.0.0">
+<?xml version="1.0" encoding="UTF-8"?>
+<schema xmlns="http://www.w3.org/2001/XMLSchema" xmlns:gml="http://www.opengis.net/gml/3.2" 
+xmlns:gsmlp="http://xmlns.geosciml.org/geosciml-portrayal/2.0" elementFormDefault="qualified" targetNamespace="http://xmlns.geosciml.org/geosciml-portrayal/2.0" version="2.0.0" >
   <annotation>
     <documentation>The GeoSciML Thematic View (GeoSciML-TV) schema standardises the interaction (request/response formats) with layer-based map services. It is best thought of as a view of GeoSciML data that denormalizes the data and concatenates complex property values into single, human-readable, labels and returns single, representative, values from controlled vocabularies for properties multi-valued properties that can be used when generating thematic maps, or portrayals, of the data.
 It is separate to, but harmonized with, GeoSciML and conforms to the level 0 of the Simple Features Profile for GML (link). Labels, will be 'free-text' fields that will be, in robust services, well-structured summaries of complex GeoSciML data, while the representative thematic properties will be URIs of concepts in a controlled vocabulary (for example CGI Simple Lithology). There will also be links, via identifier URIs*, providing hooks to full GeoSciML representations of a the geologic feature in question.</documentation>
@@ -14,7 +16,7 @@ It is separate to, but harmonized with, GeoSciML and conforms to the level 0 of 
     <complexContent>
       <extension base="gml:AbstractFeatureType">
         <sequence>
-          <element name="identifier">
+          <element name="identifier" type="anyURI">
             <annotation>
               <documentation>Globally unique identifer.  Use XML anyURI datatype</documentation>
             </annotation>
@@ -89,7 +91,7 @@ It is separate to, but harmonized with, GeoSciML and conforms to the level 0 of 
               <documentation>Compromise approach to supply elevation data, in metres, for the borehole (ie, wellbore) start point.  This is to allow for legacy data without elevation data, and for software that cannot process a 3D GM_Point. The SRS will be a one dimensional vertical SRS (ie, EPSG code in the range 5600-5799).</documentation>
             </annotation>
           </element>
-          <element minOccurs="0" name="elevation_srs">
+          <element minOccurs="0" name="elevation_srs" type="anyURI">
             <annotation>
               <documentation>URI of a spatial reference system of the elevation value. Mandatory if elevation_m is populated.</documentation>
             </annotation>
@@ -104,17 +106,17 @@ It is separate to, but harmonized with, GeoSciML and conforms to the level 0 of 
               <documentation>Text describing details and citations to source materials for the borehole and, if available, providing URLs to reference material and publications describing the borehole. This could be a short text synopsis of key information that would also be in the metadata record referenced by metadata_uri.</documentation>
             </annotation>
           </element>
-          <element name="specification_uri">
+          <element name="specification_uri" type="anyURI">
             <annotation>
               <documentation>URI referring the the GeoSciML GeologicUnit feature that describes the instance in detail. Mandatory property - if not value is provided then a URI referring to a controlled concept explaining why the value is nil must be provided.</documentation>
             </annotation>
           </element>
-          <element minOccurs="0" name="parentBorehole_uri">
+          <element minOccurs="0" name="parentBorehole_uri" type="anyURI">
             <annotation>
               <documentation>URI referring to the unique ID of a parent borehole (eg, parent well of a sidetrack wellbore)</documentation>
             </annotation>
           </element>
-          <element name="metadata_uri">
+          <element name="metadata_uri" type="anyURI">
             <annotation>
               <documentation>URI referring to a metadata record describing the provenance of data.</documentation>
             </annotation>
@@ -129,11 +131,7 @@ It is separate to, but harmonized with, GeoSciML and conforms to the level 0 of 
               <documentation>Geometry defining the extent of the borehole start point.</documentation>
             </annotation>
           </element>
-          <element maxOccurs="unbounded" minOccurs="0" name="any">
-            <annotation>
-              <documentation>A placeholder allowing any user-defined attributes to be delivered in addition to those specified above.</documentation>
-            </annotation>
-          </element>
+          <any processContents="lax" minOccurs="0" maxOccurs="unbounded"/>
         </sequence>
       </extension>
     </complexContent>
@@ -154,7 +152,7 @@ It is separate to, but harmonized with, GeoSciML and conforms to the level 0 of 
     <complexContent>
       <extension base="gml:AbstractFeatureType">
         <sequence>
-          <element name="identifier">
+          <element name="identifier" type="anyURI">
             <annotation>
               <documentation>Globally unique identifier. Should have the same value as the corresponding GeoSciML MappedFeature.</documentation>
             </annotation>
@@ -189,17 +187,17 @@ It is separate to, but harmonized with, GeoSciML and conforms to the level 0 of 
               <documentation>Text describing feature-specific details and citations to source materials, and if available providing URLs to reference material and publications describing the geologic feature. This could be a short text synopsis of key information that would also be in the metadata record referenced by metadata_uri.</documentation>
             </annotation>
           </element>
-          <element name="contactType_uri">
+          <element name="contactType_uri" type="anyURI">
             <annotation>
               <documentation>URI referring to a controlled concept from a vocabulary defining the Contact types. Mandatory property - if not value is provided then a URI referring to a controlled concept explaining why the value is nil must be provided.</documentation>
             </annotation>
           </element>
-          <element name="specification_uri">
+          <element name="specification_uri" type="anyURI">
             <annotation>
               <documentation>URI referring the GeoSciML Contact feature that describes the instance in detail. Mandatory property - if not value is provided then a URI referring to a controlled concept explaining why the value is nil must be provided.</documentation>
             </annotation>
           </element>
-          <element name="metadata_uri">
+          <element name="metadata_uri" type="anyURI">
             <annotation>
               <documentation>URI referring to a metadata record describing the provenance of data.</documentation>
             </annotation>
@@ -214,11 +212,7 @@ It is separate to, but harmonized with, GeoSciML and conforms to the level 0 of 
               <documentation>Geometry defining the extent of the feature of interest.</documentation>
             </annotation>
           </element>
-          <element maxOccurs="unbounded" minOccurs="0" name="any">
-            <annotation>
-              <documentation>A placeholder allowing any user-defined attributes to be delivered in addition to those specified above.</documentation>
-            </annotation>
-          </element>
+		    <any processContents="lax" minOccurs="0" maxOccurs="unbounded"/>
         </sequence>
       </extension>
     </complexContent>
@@ -235,7 +229,7 @@ It is separate to, but harmonized with, GeoSciML and conforms to the level 0 of 
     <complexContent>
       <extension base="gml:AbstractFeatureType">
         <sequence>
-          <element name="identifier">
+          <element name="identifier" type="anyURI">
             <annotation>
               <documentation>Globally unique identifer.  Use XML anyURI datatype</documentation>
             </annotation>
@@ -255,7 +249,7 @@ It is separate to, but harmonized with, GeoSciML and conforms to the level 0 of 
               <documentation>specimen type</documentation>
             </annotation>
           </element>
-          <element name="specimenType_uri">
+          <element name="specimenType_uri" type="anyURI">
             <annotation>
               <documentation>specimen type identifier from a controlled vocabulary</documentation>
             </annotation>
@@ -265,7 +259,7 @@ It is separate to, but harmonized with, GeoSciML and conforms to the level 0 of 
               <documentation>class of material (rock, sediment, etc)</documentation>
             </annotation>
           </element>
-          <element name="materialClass_uri">
+          <element name="materialClass_uri" type="anyURI">
             <annotation>
               <documentation>class of material drawn from a controlled vocabulary</documentation>
             </annotation>
@@ -295,12 +289,12 @@ It is separate to, but harmonized with, GeoSciML and conforms to the level 0 of 
               <documentation>citation of the source of the data (publication, maps, etc)</documentation>
             </annotation>
           </element>
-          <element name="metadata_uri">
+          <element name="metadata_uri" type="anyURI">
             <annotation>
               <documentation>pointer to metadata document</documentation>
             </annotation>
           </element>
-          <element name="specification_uri">
+          <element name="specification_uri" type="anyURI">
             <annotation>
               <documentation>URI referring the the Observation&amp;Measurements (ISO19156) SF_Specimen feature that describes the instance in detail. Mandatory property - if not value is provided then a URI referring to a controlled concept explaining why the value is nil must be provided.</documentation>
             </annotation>
@@ -315,11 +309,7 @@ It is separate to, but harmonized with, GeoSciML and conforms to the level 0 of 
               <documentation>map geometry of the specimen (generally a point)</documentation>
             </annotation>
           </element>
-          <element maxOccurs="unbounded" minOccurs="0" name="any">
-            <annotation>
-              <documentation>user defined properties</documentation>
-            </annotation>
-          </element>
+         <any processContents="lax" minOccurs="0" maxOccurs="unbounded"/>
         </sequence>
       </extension>
     </complexContent>
@@ -340,7 +330,18 @@ It is separate to, but harmonized with, GeoSciML and conforms to the level 0 of 
     <complexContent>
       <extension base="gml:AbstractFeatureType">
         <sequence>
-          <element name="identifier">
+           <element minOccurs="0" name="numericOlderAge" type="double">
+            <annotation>
+              <documentation>older age in numerical representation</documentation>
+            </annotation>
+          </element>
+          <element minOccurs="0" name="numericYoungerAge" type="double">
+            <annotation>
+              <documentation>younger age in numerical representation</documentation>
+            </annotation>
+          </element>         
+            
+          <element name="identifier" type="anyURI">
             <annotation>
               <documentation>Globally unique identifer. Should have the same value as the corresponding GeoSciML MappedFeature.</documentation>
             </annotation>
@@ -390,47 +391,37 @@ It is separate to, but harmonized with, GeoSciML and conforms to the level 0 of 
               <documentation>Text describing feature-specific details and citations to source materials, and if available providing URLs to reference material and publications describing the geologic feature. This could be a short text synopsis of key inforamtion that would also be in the metadata record referenced by metadata_uri.</documentation>
             </annotation>
           </element>
-          <element name="geologicUnitType_uri">
+          <element name="geologicUnitType_uri" type="anyURI">
             <annotation>
               <documentation>URI referring to a controlled concept from a vocabulary defining the GeologicUnit types. Mandatory propery - if not value is provided then a URI referring to a conctrolled concept explaining why the value is nil must be provided.</documentation>
             </annotation>
           </element>
-          <element name="representativeLithology_uri">
+          <element name="representativeLithology_uri" type="anyURI">
             <annotation>
               <documentation>URI referring to a controlled concept specifying the characteristic or represntative lithology of the unit. This may be a concept that defines the super-type of all lithology values present within a GeologicUnit or a concept defining the lithology of the dominant CompositionPart (as defined in GeoSciML) of the unit.</documentation>
             </annotation>
           </element>
-          <element name="representativeAge_uri">
+          <element name="representativeAge_uri" type="anyURI">
             <annotation>
               <documentation>URI referring to a controlled concept specifying the most representative stratigraphic age interval for the GeologicUnit. This will be defined entirely at the discretion of the data provider and  may be a single event selected from the geologic feature's geological history or a value summarising the all or part of the feature's history.</documentation>
             </annotation>
           </element>
-          <element name="representativeOlderAge_uri">
+          <element name="representativeOlderAge_uri" type="anyURI">
             <annotation>
               <documentation>URI referring to a controlled concept specifying the most representative lower value in a range of stratigraphic age intervals for the GeologicUnit. This will be defined entirely at the discretion of the data provider and  may be a single event selected from the geologic feature's geological history or a value summarising the all or part of the feature's history.</documentation>
             </annotation>
           </element>
-          <element name="representativeYoungerAge_uri">
+          <element name="representativeYoungerAge_uri" type="anyURI">
             <annotation>
               <documentation>URI referring to a controlled concept specifying the most representative upper value in a range of stratigraphic age intervals for the GeologicUnit. This will be defined entirely at the discretion of the data provider and  may be a single event selected from the geologic feature's geological history or a value summarising the all or part of the feature's history.</documentation>
             </annotation>
           </element>
-          <element minOccurs="0" name="numericOlderAge" type="double">
-            <annotation>
-              <documentation>older age in numerical representation</documentation>
-            </annotation>
-          </element>
-          <element minOccurs="0" name="numericYoungerAge" type="double">
-            <annotation>
-              <documentation>younger age in numerical representation</documentation>
-            </annotation>
-          </element>
-          <element name="specification_uri">
+          <element name="specification_uri" type="anyURI">
             <annotation>
               <documentation>URI referring the GeoSciML GeologicUnit feature that describes the instance in detail. Mandatory property - if not value is provided then a URI referring to a controlled concept explaining why the value is nil must be provided.</documentation>
             </annotation>
           </element>
-          <element name="metadata_uri">
+          <element name="metadata_uri" type="anyURI">
             <annotation>
               <documentation>URI referring to a metadata record describing the provenance of data.</documentation>
             </annotation>
@@ -445,12 +436,9 @@ It is separate to, but harmonized with, GeoSciML and conforms to the level 0 of 
               <documentation>Geometry defining the extent of the feature of interest.</documentation>
             </annotation>
           </element>
-          <element maxOccurs="unbounded" minOccurs="0" name="any">
-            <annotation>
-              <documentation>A placeholder allowing any user-defined attributes to be delivered in addition to those specified above.</documentation>
-            </annotation>
-          </element>
+		  <any processContents="lax" minOccurs="0" maxOccurs="unbounded"/>
         </sequence>
+		
       </extension>
     </complexContent>
   </complexType>
@@ -470,7 +458,40 @@ It is separate to, but harmonized with, GeoSciML and conforms to the level 0 of 
     <complexContent>
       <extension base="gml:AbstractFeatureType">
         <sequence>
-          <element name="identifier">
+          <element minOccurs="0" name="activity" type="string">
+            <annotation>
+              <documentation>Term to specify if feature is changing and how fast.
+e.g. active, dormant, stable....</documentation>
+            </annotation>
+          </element>
+          <element minOccurs="0" name="landformClass" type="string">
+            <annotation>
+              <documentation>anthropogenic, natural...</documentation>
+            </annotation>
+          </element>
+          <element minOccurs="0" name="activity_uri" type="anyURI">
+            <annotation>
+              <documentation>Identifier of activity drawn from a controlled vocabulary</documentation>
+              <appinfo>
+                <targetElement xmlns="http://www.opengis.net/gml/3.2">null:URI</targetElement>
+              </appinfo>
+            </annotation>
+          </element>          
+<element minOccurs="0" name="landformClass_uri" type="anyURI">
+<annotation>
+              <documentation>identifier of landform drawn from a controlled vocabulary</documentation>
+              <appinfo>
+                <targetElement xmlns="http://www.opengis.net/gml/3.2">null:URI</targetElement>
+              </appinfo>
+            </annotation>
+          </element>
+          <element minOccurs="0" name="representativeNumericAge" type="double">
+          
+            <annotation>
+              <documentation>A placeholder allowing any user-defined attributes to be delivered in addition to those specified above.</documentation>
+            </annotation>
+          </element>
+          <element name="identifier" type="anyURI">
             <annotation>
               <documentation>Globally unique identifer. Should have the same value as the corresponding GeoSciML MappedFeature.</documentation>
             </annotation>
@@ -483,17 +504,6 @@ It is separate to, but harmonized with, GeoSciML and conforms to the level 0 of 
           <element minOccurs="0" name="description" type="string">
             <annotation>
               <documentation>Text description of the GeologicUnit, typically taken from an entry on a geological map legend.</documentation>
-            </annotation>
-          </element>
-          <element minOccurs="0" name="activity" type="string">
-            <annotation>
-              <documentation>Term to specify if feature is changing and how fast.
-e.g. active, dormant, stable....</documentation>
-            </annotation>
-          </element>
-          <element minOccurs="0" name="landformClass" type="string">
-            <annotation>
-              <documentation>anthropogenic, natural...</documentation>
             </annotation>
           </element>
           <element minOccurs="0" name="unitType" type="string">
@@ -526,48 +536,27 @@ e.g. active, dormant, stable....</documentation>
               <documentation>Text describing feature-specific details and citations to source materials, and if available providing URLs to reference material and publications describing the geologic feature. This could be a short text synopsis of key inforamtion that would also be in the metadata record referenced by metadata_uri.</documentation>
             </annotation>
           </element>
-          <element minOccurs="0" name="activity_uri">
-            <annotation>
-              <documentation>Identifier of activity drawn from a controlled vocabulary</documentation>
-              <appinfo>
-                <targetElement xmlns="http://www.opengis.net/gml/3.2">null:URI</targetElement>
-              </appinfo>
-            </annotation>
-          </element>
-          <element minOccurs="0" name="landformClass_uri">
-            <annotation>
-              <documentation>identifier of landform drawn from a controlled vocabulary</documentation>
-              <appinfo>
-                <targetElement xmlns="http://www.opengis.net/gml/3.2">null:URI</targetElement>
-              </appinfo>
-            </annotation>
-          </element>
-          <element minOccurs="0" name="unitType_uri">
+          <element minOccurs="0" name="unitType_uri" type="anyURI">
             <annotation>
               <documentation>URI referring to a controlled concept from a vocabulary defining the GeomorphologicUnit types. Mandatory propery - if not value is provided then a URI referring to a conctrolled concept explaining why the value is nil must be provided.</documentation>
             </annotation>
           </element>
-          <element name="representativeLithology_uri">
+          <element name="representativeLithology_uri" type="anyURI">
             <annotation>
               <documentation>URI referring to a controlled concept specifying the characteristic or represntative lithology of the unit. This may be a concept that defines the super-type of all lithology values present within a GeologicUnit or a concept defining the lithology of the dominant CompositionPart (as defined in GeoSciML) of the unit.</documentation>
             </annotation>
           </element>
-          <element name="representativeAge_uri">
+          <element name="representativeAge_uri" type="anyURI">
             <annotation>
               <documentation>URI referring to a controlled concept specifying the most representative stratigraphic age interval for the GeomorphologicUnit. This will be defined entirely at the discretion of the data provider. typically geomorphic units are not assigned age ranges.</documentation>
             </annotation>
           </element>
-          <element minOccurs="0" name="representativeNumericAge" type="double">
-            <annotation>
-              <documentation>numerical representation of the representative age</documentation>
-            </annotation>
-          </element>
-          <element name="specification_uri">
+          <element name="specification_uri" type="anyURI">
             <annotation>
               <documentation>URI referring the GeoSciML GeologicUnit feature that describes the instance in detail. Mandatory property - if not value is provided then a URI referring to a controlled concept explaining why the value is nil must be provided.</documentation>
             </annotation>
           </element>
-          <element name="metadata_uri">
+          <element name="metadata_uri" type="anyURI">
             <annotation>
               <documentation>URI referring to a metadata record describing the provenance of data.</documentation>
             </annotation>
@@ -582,11 +571,7 @@ e.g. active, dormant, stable....</documentation>
               <documentation>Geometry defining the extent of the feature of interest.</documentation>
             </annotation>
           </element>
-          <element maxOccurs="unbounded" minOccurs="0" name="any">
-            <annotation>
-              <documentation>A placeholder allowing any user-defined attributes to be delivered in addition to those specified above.</documentation>
-            </annotation>
-          </element>
+		  <any processContents="lax" minOccurs="0" maxOccurs="unbounded"/>
         </sequence>
       </extension>
     </complexContent>
@@ -607,7 +592,17 @@ e.g. active, dormant, stable....</documentation>
     <complexContent>
       <extension base="gml:AbstractFeatureType">
         <sequence>
-          <element name="identifier">
+          <element minOccurs="0" name="numericOlderAge" type="double">
+            <annotation>
+              <documentation>older age in numerical representation</documentation>
+            </annotation>
+          </element>
+          <element minOccurs="0" name="numericYoungerAge" type="double">
+            <annotation>
+              <documentation>younger age in numerical representation</documentation>
+            </annotation>
+          </element>
+          <element name="identifier" type="anyURI">
             <annotation>
               <documentation>Globally unique identifer. Should have the same value as the corresponding GeoSciML MappedFeature.</documentation>
             </annotation>
@@ -662,52 +657,42 @@ e.g. active, dormant, stable....</documentation>
               <documentation>Text describing feature-specific details and citations to source materials, and if available providing URLs to reference material and publications describing the geologic feature. This could be a short text synopsis of key inforamtion that would also be in the metadata record referenced by metadata_uri.</documentation>
             </annotation>
           </element>
-          <element name="faultType_uri">
+          <element name="faultType_uri" type="anyURI">
             <annotation>
               <documentation>URI referring to a controlled concept from a vocabulary defining the fault (ShearDisplacementStructure) type. Mandatory propery - if not value is provided then a URI referring to a conctrolled concept explaining why the value is nil must be provided.</documentation>
             </annotation>
           </element>
-          <element name="movementType_uri">
+          <element name="movementType_uri" type="anyURI">
             <annotation>
               <documentation>URI referring to a controlled concept from a vocabulary defining the ShearDisplacementStructure movement type. Mandatory propery - if not value is provided then a URI referring to a conctrolled concept explaining why the value is nil must be provided.</documentation>
             </annotation>
           </element>
-          <element name="deformationStyle_uri">
+          <element name="deformationStyle_uri" type="anyURI">
             <annotation>
               <documentation>URI referring to a controlled concept from a vocabulary defining the ShearDisplacementStructure deformation style. Mandatory propery - if not value is provided then a URI referring to a conctrolled concept explaining why the value is nil must be provided.</documentation>
             </annotation>
           </element>
-          <element name="representativeAge_uri">
+          <element name="representativeAge_uri" type="anyURI">
             <annotation>
               <documentation>URI referring to a controlled concept specifying the most representative stratigraphic age interval for the GeologicUnit. This will be defined entirely at the discretion of the data provider and may be a single event selected from the geologic feature's geological history or a value summarising the all or part of the feature's history.</documentation>
             </annotation>
           </element>
-          <element name="representativeOlderAge_uri">
+          <element name="representativeOlderAge_uri" type="anyURI">
             <annotation>
               <documentation>URI referring to a controlled concept specifying the most representative lower value in a range of stratigraphic age intervals for the GeologicUnit. This will be defined entirely at the discretion of the data provider and  may be a single event selected from the geologic feature's geological history or a value summarising the all or part of the feature's history.</documentation>
             </annotation>
           </element>
-          <element name="representativeYoungerAge_uri">
+          <element name="representativeYoungerAge_uri" type="anyURI">
             <annotation>
               <documentation>URI referring to a controlled concept specifying the most representative upper value in a range of stratigraphic age intervals for the GeologicUnit. This will be defined entirely at the discretion of the data provider and  may be a single event selected from the geologic feature's geological history or a value summarising the all or part of the feature's history.</documentation>
             </annotation>
           </element>
-          <element minOccurs="0" name="numericOlderAge" type="double">
-            <annotation>
-              <documentation>older age in numerical representation</documentation>
-            </annotation>
-          </element>
-          <element minOccurs="0" name="numericYoungerAge" type="double">
-            <annotation>
-              <documentation>younger age in numerical representation</documentation>
-            </annotation>
-          </element>
-          <element name="specification_uri">
+          <element name="specification_uri" type="anyURI">
             <annotation>
               <documentation>URI referring the the GeoSciML ShearDisplacementStructure feature that describes the instance in detail. Mandatory propery - if not value is provided then a URI referring to a conctrolled concept explaining why the value is nil must be provided.</documentation>
             </annotation>
           </element>
-          <element name="metadata_uri">
+          <element name="metadata_uri" type="anyURI">
             <annotation>
               <documentation>URI referring to a metadata record describing the provenance of data.</documentation>
             </annotation>
@@ -722,11 +707,7 @@ e.g. active, dormant, stable....</documentation>
               <documentation>Geometry defining the extent of the feature of interest.</documentation>
             </annotation>
           </element>
-          <element maxOccurs="unbounded" minOccurs="0" name="any">
-            <annotation>
-              <documentation>A placeholder allowing any user-defined attributes to be delivered in addition to those specified above.</documentation>
-            </annotation>
-          </element>
+		  <any processContents="lax" minOccurs="0" maxOccurs="unbounded"/>
         </sequence>
       </extension>
     </complexContent>
@@ -818,6 +799,7 @@ e.g. active, dormant, stable....</documentation>
               <documentation>link to an O&amp;M  observation</documentation>
             </annotation>
           </element>
+
           <element minOccurs="0" name="genericSymbolizer" type="string">
             <annotation>
               <documentation>Identifier for a symbol to portray this observation. Conventions for symbol identifiers can be adopted within information exchange communities. In any given exchange document, the symbols should all be from the same portrayal scheme, which can be specified in the portrayal section of an associated ISO metadata record.</documentation>
@@ -828,16 +810,12 @@ e.g. active, dormant, stable....</documentation>
               <documentation>Integer value between 0 and 360 to specify rotation of symbol at this location, e.g. rotation of a geologic strike and dip symbol to reflect the strike azimuth.</documentation>
             </annotation>
           </element>
-          <element name="shape" type="gml:GeometryPropertyType">
+      <element name="shape" type="gml:GeometryPropertyType">
             <annotation>
               <documentation>map geometry of the observation site</documentation>
             </annotation>
           </element>
-          <element maxOccurs="unbounded" minOccurs="0" name="any">
-            <annotation>
-              <documentation>user defined properties</documentation>
-            </annotation>
-          </element>
+          <any processContents="lax" minOccurs="0" maxOccurs="unbounded"/>
         </sequence>
       </extension>
     </complexContent>

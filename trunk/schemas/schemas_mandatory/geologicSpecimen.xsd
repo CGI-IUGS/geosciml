@@ -5,7 +5,6 @@
         xmlns:gsmlla="http://xmlns.geosciml.org/LaboratoryAnalysis-Specimen/4.0"
         xmlns:om="http://www.opengis.net/om/2.0"
         xmlns:spec="http://www.opengis.net/samplingSpecimen/2.0"
-        xmlns:sam="http://www.opengis.net/sampling/2.0"
         elementFormDefault="qualified"
         targetNamespace="http://xmlns.geosciml.org/LaboratoryAnalysis-Specimen/4.0"
         version="4.0.0">
@@ -21,12 +20,11 @@
            schemaLocation="http://schemas.opengis.net/om/2.0/observation.xsd"/>
   <import namespace="http://www.opengis.net/samplingSpecimen/2.0"
            schemaLocation="http://schemas.opengis.net/samplingSpecimen/2.0/specimen.xsd"/>
-    <import namespace="http://www.opengis.net/sampling/2.0"
-           schemaLocation="http://schemas.opengis.net/sampling/2.0/samplingFeature.xsd"/>
-
-
   <!--XML Schema document created by ShapeChange - http://shapechange.net/-->
-  <element name="GeologicSamplingMethod" type="gsmlla:GeologicSamplingMethodType">
+  <!-- EB 2015/05/18 SF_Process is not a real class, implemented as AbstractFeature -->
+  <element name="GeologicSamplingMethod"
+            substitutionGroup="gml:AbstractFeature"
+            type="gsmlla:GeologicSamplingMethodType">
       <annotation>
          <documentation>Implementation of SF_Process to describe the method used to obtain a geologic specimen
 eg:
@@ -43,7 +41,7 @@ geological hammer</documentation>
       <complexContent>
          <extension base="gml:AbstractFeatureType">
             <sequence>
-               <element name="method" type="gml:CodeType">
+               <element minOccurs="0" name="method" type="gml:CodeType">
                   <annotation>
                      <documentation>Name of the process used to obtain or create a geologic specimen. eg:
 diamond drilling
@@ -91,7 +89,7 @@ geological hammer</documentation>
       <complexContent>
          <extension base="gml:AbstractFeatureType">
             <sequence>
-               <element name="preparationMethod" type="gml:CodeType">
+               <element minOccurs="0" name="preparationMethod" type="gml:CodeType">
                   <annotation>
                      <documentation>A term from a controlled vocabulary to describe the method employed for the preparation of a geologic specimen for further analysis.</documentation>
                      <appinfo>

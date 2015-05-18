@@ -1,32 +1,24 @@
-<?xml version="1.0" encoding="UTF-8"?><schema xmlns="http://www.w3.org/2001/XMLSchema" xmlns:gml="http://www.opengis.net/gml/3.2" xmlns:gsmlb="http://xmlns.geosciml.org/geologybasic/4.0" xmlns:gsmle="http://xmlns.geosciml.org/geologyextension/4.0" xmlns:swe="http://www.opengis.net/swe/2.0" elementFormDefault="qualified" targetNamespace="http://xmlns.geosciml.org/geologyextension/4.0" version="4.0.0">
+<?xml version="1.0" encoding="UTF-8"?><schema xmlns="http://www.w3.org/2001/XMLSchema" xmlns:gml="http://www.opengis.net/gml/3.2" 
+xmlns:gsmlb="http://xmlns.geosciml.org/geologybasic/4.0" 
+xmlns:gsmle="http://xmlns.geosciml.org/geologyextension/4.0" 
+xmlns:swe="http://www.opengis.net/swe/2.0" elementFormDefault="qualified" targetNamespace="http://xmlns.geosciml.org/geologyextension/4.0" version="4.0.0">
   <import namespace="http://www.opengis.net/gml/3.2" schemaLocation="http://schemas.opengis.net/gml/3.2.1/gml.xsd"/>
   <import namespace="http://www.opengis.net/swe/2.0" schemaLocation="http://schemas.opengis.net/sweCommon/2.0/swe.xsd"/>
   <import namespace="http://xmlns.geosciml.org/geologybasic/4.0" schemaLocation="geoSciMLBasic.xsd"/>
   <!--XML Schema document created by ShapeChange - http://shapechange.net/-->
-  <element name="AlterationDescription" substitutionGroup="gsmlb:ExtensionAbstractDescription" type="gsmle:AlterationDescriptionType">
-    <annotation>
-      <documentation>AlterationDescription decribes aspects of a geologic unit or earth material that are the result of bulk chemical, mineralogical or physical changes related to change in the physical or chemical environment. Includes weathering, supergene alteration, hydrothermal alteration and metasomatic effects not considered metamorphic.
-
-A soil profile description would have to be constructed as a GeologicUnit with unit parts representing the various horizons in the profile.
-
-Thickness of a weathering profile can be delivered as unitThickness of an AlterationUnit.</documentation>
-    </annotation>
-  </element>
+  <element name="AlterationDescription" substitutionGroup="gsmlb:ExtensionAbstractDescription" type="gsmle:AlterationDescriptionType"/>
   <complexType name="AlterationDescriptionType">
     <complexContent>
       <extension base="gsmlb:ExtensionAbstractDescriptionType">
         <sequence>
-          <element minOccurs="0" name="alterationType" type="gml:CodeType">
+          <element name="alterationType" type="gml:CodeType">
             <annotation>
               <appinfo>
                 <targetElement xmlns="http://www.opengis.net/gml/3.2">gsmle:AlterationTypeTerm</targetElement>
               </appinfo>
             </annotation>
           </element>
-          <element maxOccurs="unbounded" minOccurs="0" name="alterationProduct">
-            <annotation>
-              <documentation>AlterationProduct is the material result of alteration processes, e.g. alteration minerals, saprolite, ferricrete, clay, calcrete, skarn, etc. Materials observed in a soil profile could be identified using this property.</documentation>
-            </annotation>
+          <element maxOccurs="unbounded" minOccurs="0" name="alterationProduct" nillable="true">
             <complexType>
               <complexContent>
                 <extension base="gml:AbstractMemberType">
@@ -38,10 +30,7 @@ Thickness of a weathering profile can be delivered as unitThickness of an Altera
               </complexContent>
             </complexType>
           </element>
-          <element maxOccurs="unbounded" minOccurs="0" name="alterationDistribution">
-            <annotation>
-              <documentation>AlterationDistribution describes the spatial distribution or geometry of alteration zones. eg: patchy, spotted, banded, viens, vein breccia, pervasive, disseminated, etc</documentation>
-            </annotation>
+          <element maxOccurs="unbounded" minOccurs="0" name="alterationDistribution" nillable="true">
             <complexType>
               <complexContent>
                 <extension base="gml:AbstractMemberType">
@@ -53,11 +42,7 @@ Thickness of a weathering profile can be delivered as unitThickness of an Altera
               </complexContent>
             </complexType>
           </element>
-          <element name="alterationEvent" type="gsmlb:GeologicEventPropertyType">
-            <annotation>
-              <documentation>To denote the age, environment and process associated with alteration of a GeologicUnit or material</documentation>
-            </annotation>
-          </element>
+          <element name="alterationEvent" nillable="true" type="gsmlb:GeologicEventPropertyType"/>
         </sequence>
       </extension>
     </complexContent>
@@ -70,7 +55,7 @@ Thickness of a weathering profile can be delivered as unitThickness of an Altera
   <element name="BeddingDescription" substitutionGroup="gml:AbstractObject" type="gsmle:BeddingDescriptionType"/>
   <complexType name="BeddingDescriptionType">
     <sequence>
-      <element maxOccurs="unbounded" minOccurs="0" name="beddingPattern">
+      <element maxOccurs="unbounded" minOccurs="0" name="beddingPattern" nillable="true">
         <complexType>
           <complexContent>
             <extension base="gml:AbstractMemberType">
@@ -82,7 +67,7 @@ Thickness of a weathering profile can be delivered as unitThickness of an Altera
           </complexContent>
         </complexType>
       </element>
-      <element maxOccurs="unbounded" minOccurs="0" name="beddingStyle">
+      <element maxOccurs="unbounded" minOccurs="0" name="beddingStyle" nillable="true">
         <complexType>
           <complexContent>
             <extension base="gml:AbstractMemberType">
@@ -94,7 +79,7 @@ Thickness of a weathering profile can be delivered as unitThickness of an Altera
           </complexContent>
         </complexType>
       </element>
-      <element maxOccurs="unbounded" minOccurs="0" name="beddingThickness">
+      <element maxOccurs="unbounded" minOccurs="0" name="beddingThickness" nillable="true">
         <complexType>
           <complexContent>
             <extension base="gml:AbstractMemberType">
@@ -119,9 +104,6 @@ Thickness of a weathering profile can be delivered as unitThickness of an Altera
       <extension base="gsmlb:ExtensionAbstractDescriptionType">
         <sequence>
           <element minOccurs="0" name="chemicalAnalysis">
-            <annotation>
-              <documentation>This element delivers a swe:DataRecord of analyte concentrations (ie, swe:Quantity elements) which describe the chemical composition of an earth material or geologic unit</documentation>
-            </annotation>
             <complexType>
               <complexContent>
                 <extension base="gml:AbstractMemberType">
@@ -147,11 +129,15 @@ Thickness of a weathering profile can be delivered as unitThickness of an Altera
     <complexContent>
       <extension base="gsmlb:ExtensionAbstractDescriptionType">
         <sequence>
-          <element minOccurs="0" name="particleGeometry" type="gsmle:ParticleGeometryDescriptionPropertyType"/>
-          <element maxOccurs="unbounded" minOccurs="0" name="compositionCategory">
-            <annotation>
-              <documentation>Term to specify the gross compositional character of a compound material. Composition as used here is loosely construed to include both chemical composition and petrograpic composition, thus multiple values may be applied to a single rock, e.g. metaluminous and alkalic, undersaturated and basic, etc. Terms would typically include broad chemical classifications such as silicate, carbonate, ferromagnesian, oxide.  However, this attribute may have different terminology for different kinds of rocks - for example sandstone petrographic classification terms (e.g. feldspathic) might be placed here.</documentation>
-            </annotation>
+          <element minOccurs="0" name="particleGeometry" nillable="true">
+            <complexType>
+              <sequence>
+                <element ref="gsmle:ParticleGeometryDescription"/>
+              </sequence>
+              <attribute name="nilReason" type="gml:NilReasonType"/>
+            </complexType>
+          </element>
+          <element maxOccurs="unbounded" minOccurs="0" name="compositionCategory" nillable="true">
             <complexType>
               <complexContent>
                 <extension base="gml:AbstractMemberType">
@@ -163,10 +149,7 @@ Thickness of a weathering profile can be delivered as unitThickness of an Altera
               </complexContent>
             </complexType>
           </element>
-          <element maxOccurs="unbounded" minOccurs="0" name="geneticCategory">
-            <annotation>
-              <documentation>A term that represents a summary geologic history of the material. (ie, a genetic process classifier term) Examples include igneous, sedimentary, metamorphic, shock metamorphic, volcanic, pyroclastic.</documentation>
-            </annotation>
+          <element maxOccurs="unbounded" minOccurs="0" name="geneticCategory" nillable="true">
             <complexType>
               <complexContent>
                 <extension base="gml:AbstractMemberType">
@@ -178,10 +161,7 @@ Thickness of a weathering profile can be delivered as unitThickness of an Altera
               </complexContent>
             </complexType>
           </element>
-          <element maxOccurs="unbounded" minOccurs="0" name="constituent">
-            <annotation>
-              <documentation>Specifies the ConstituentPart that makes up part of the CompoundMaterial</documentation>
-            </annotation>
+          <element maxOccurs="unbounded" minOccurs="0" name="constituent" nillable="true">
             <complexType>
               <complexContent>
                 <extension base="gml:AbstractMemberType">
@@ -202,43 +182,12 @@ Thickness of a weathering profile can be delivered as unitThickness of an Altera
       <element ref="gsmle:CompoundMaterialDescription"/>
     </sequence>
   </complexType>
-  <element name="ConstituentPart" substitutionGroup="gml:AbstractGML" type="gsmle:ConstituentPartType">
-    <annotation>
-      <documentation>The Constituent Part class describes how Earth Materials may be made up of other Earth Materials, including the proportion of the constituent part in the whole (eg: 20%, minor, dominant); the role that the constituent plays in the whole (eg: matrix, groundmass, framework, phenocryst, xenolith, vein). The particleType property that specifies type of particle (eg: grain, clast, crystal, fossil, oolite) has been moved to the ParticleGeometryDescription data type, associated with both ConstituentPart and CompoundMaterial (GeoSciMLv2, RC3, Uppsala, Sweden).
-
-The distinction between "role" and "particleType" is subtle.  An operational test is that constituentType may be determined independent of relationship between particles in the aggregation, whereas role requires consideration of the relationship to other particles. A particle may be identified as clast, independent of its material composition, and independent of its relationship to other grains in a rock. The term 'floating clast' is a role, because it is dependent on the relationship 'not in contact with other clasts'. Consider Dunham's textural classification of carbonate rocks (wackestone, packstone, grainstone...) in the description of carbonate rocks. The description is predicated on identification of two kinds of intraclasts (grains) and matrix (carbonate mud), and then uses this distinction to establish relationships--mud supported vs. grain supported -- that define roles for the two types of constituents (framework, matrix...).
-
-examples of type vs. role:
-Particle type: clast. Role: framework, floating particle
-
-particle type: crystal. Role: matrix, pseudomatrix (in case that matrix is interpreted as recrystallized material)
-
-particle type: clast. Role: matrix (in case that matrix is interpreted as very-fine grained detrital fraction)
-
-particle type: crystal. Role: cement (in case that material insterstitial to particles is crystalline material introduced during diagenesis)
-
-particle type: crystal. Role: phenocryst (in igneous rock)
-
-particle type: microlite Role: groundmass (in porphyrytic igneous rock)
-
-particle type: crystal. Role: framework (in igneous rock)
-
-particle type: pyroclast. role: framework (in tuff)
-
-particle type: crystal Role: oikocryst
-
-particle type: crystal Role: overgrowth
-
-particle type: biogenic particle Role: floating particle
-
-particle type: ooid Role: framework</documentation>
-    </annotation>
-  </element>
+  <element name="ConstituentPart" substitutionGroup="gml:AbstractGML" type="gsmle:ConstituentPartType"/>
   <complexType name="ConstituentPartType">
     <complexContent>
       <extension base="gml:AbstractGMLType">
         <sequence>
-          <element minOccurs="0" name="constituentMaterial">
+          <element minOccurs="0" name="constituentMaterial" nillable="true">
             <complexType>
               <complexContent>
                 <extension base="gml:AbstractMemberType">
@@ -250,12 +199,7 @@ particle type: ooid Role: framework</documentation>
               </complexContent>
             </complexType>
           </element>
-          <element minOccurs="0" name="proportion">
-            <annotation>
-              <documentation>The fraction of the whole that is formed by a ConstituentPart in a part/whole relationship.  Used for the ConstituentPart portion in a CompoundMaterial. 
-
-Quantity that specifies the fraction of the Earth Material formed by the part (eg: 20%, minor, dominant)</documentation>
-            </annotation>
+          <element minOccurs="0" name="proportion" nillable="true">
             <complexType>
               <complexContent>
                 <extension base="gml:AbstractMemberType">
@@ -269,21 +213,20 @@ Quantity that specifies the fraction of the Earth Material formed by the part (e
           </element>
           <element minOccurs="0" name="role" type="gml:CodeType">
             <annotation>
-              <documentation>The role a ConstituentPart plays in a CompoundMaterial aggregation. The same EarthMaterial may occur as different ConstituentParts playing different roles within the same CompoundMaterial.  For example, feldspar may be present as groundmass (a ConstituentPart::role) and as phenocrysts (an ConstituentPart::role) within a single igneous rock.</documentation>
               <appinfo>
                 <targetElement xmlns="http://www.opengis.net/gml/3.2">gsmle:ConstituentPartRoleTerm</targetElement>
               </appinfo>
             </annotation>
           </element>
-          <element minOccurs="0" name="constituentParticleGeometry" type="gsmle:ParticleGeometryDescriptionPropertyType">
-            <annotation>
-              <documentation>Description of geometry of individual subset of particles</documentation>
-            </annotation>
+          <element minOccurs="0" name="constituentParticleGeometry" nillable="true">
+            <complexType>
+              <sequence>
+                <element ref="gsmle:ParticleGeometryDescription"/>
+              </sequence>
+              <attribute name="nilReason" type="gml:NilReasonType"/>
+            </complexType>
           </element>
-          <element maxOccurs="unbounded" minOccurs="0" name="relatedMaterial">
-            <annotation>
-              <documentation>Specifies the ConstituentPart that is playing the target role in the MaterialRelation</documentation>
-            </annotation>
+          <element maxOccurs="unbounded" minOccurs="0" name="relatedMaterial" nillable="true">
             <complexType>
               <complexContent>
                 <extension base="gml:AbstractMemberType">
@@ -316,10 +259,7 @@ Quantity that specifies the fraction of the Earth Material formed by the part (e
     <complexContent>
       <extension base="gsmlb:ContactAbstractDescriptionType">
         <sequence>
-          <element maxOccurs="unbounded" name="contactCharacter">
-            <annotation>
-              <documentation>The character of the boundary, as opposed to its type. e.g. abrupt, gradational</documentation>
-            </annotation>
+          <element maxOccurs="unbounded" name="contactCharacter" nillable="true">
             <complexType>
               <complexContent>
                 <extension base="gml:AbstractMemberType">
@@ -331,12 +271,15 @@ Quantity that specifies the fraction of the Earth Material formed by the part (e
               </complexContent>
             </complexType>
           </element>
-          <element maxOccurs="unbounded" name="orientation" type="gsmlb:CGI_PlanarOrientationPropertyType">
-            <annotation>
-              <documentation>orientation of the contact surface</documentation>
-            </annotation>
+          <element maxOccurs="unbounded" name="orientation" nillable="true">
+            <complexType>
+              <sequence>
+                <element ref="gsmlb:CGI_PlanarOrientation"/>
+              </sequence>
+              <attribute name="nilReason" type="gml:NilReasonType"/>
+            </complexType>
           </element>
-          <element name="correlatesWith"/>
+          <element name="correlatesWith" nillable="true"/>
         </sequence>
       </extension>
     </complexContent>
@@ -367,41 +310,48 @@ Quantity that specifies the fraction of the Earth Material formed by the part (e
     <attributeGroup ref="gml:AssociationAttributeGroup"/>
     <attributeGroup ref="gml:OwnershipAttributeGroup"/>
   </complexType>
-  <element name="DisplacementValue" substitutionGroup="gsmlb:ShearDisplacementStructureAbstractDescription" type="gsmle:DisplacementValueType">
-    <annotation>
-      <documentation>Trying to express the displacement on a fault with respect to a planar approximation of its shape</documentation>
-    </annotation>
-  </element>
+  <element name="DisplacementValue" substitutionGroup="gsmlb:ShearDisplacementStructureAbstractDescription" type="gsmle:DisplacementValueType"/>
   <complexType name="DisplacementValueType">
     <complexContent>
       <extension base="gsmlb:ShearDisplacementStructureAbstractDescriptionType">
         <sequence>
-          <element minOccurs="0" name="hangingWallDirection" type="gsmlb:CGI_LinearOrientationPropertyType">
-            <annotation>
-              <documentation>Normally the compass quadrant indicating the hangingwall side of the fault-system for faults that are steep enough to define a hanging-wall on the map trace</documentation>
-            </annotation>
+          <element minOccurs="0" name="hangingWallDirection" nillable="true">
+            <complexType>
+              <sequence>
+                <element ref="gsmlb:CGI_LinearOrientation"/>
+              </sequence>
+              <attribute name="nilReason" type="gml:NilReasonType"/>
+            </complexType>
           </element>
-          <element minOccurs="0" name="movementSense" type="gml:CodeType">
+          <element minOccurs="0" name="movementSense" nillable="true">
             <annotation>
-              <documentation>eg, dextral, sinistral</documentation>
               <appinfo>
                 <targetElement xmlns="http://www.opengis.net/gml/3.2">gsmle:MovementSenseTerm</targetElement>
               </appinfo>
             </annotation>
+            <complexType>
+              <simpleContent>
+                <extension base="gml:CodeType">
+                  <attribute name="nilReason" type="gml:NilReasonType"/>
+                </extension>
+              </simpleContent>
+            </complexType>
           </element>
-          <element minOccurs="0" name="movementType" type="gml:CodeType">
+          <element minOccurs="0" name="movementType" nillable="true">
             <annotation>
-              <documentation>Defines the type of movement  (eg dip-slip, strike-slip)</documentation>
               <appinfo>
                 <targetElement xmlns="http://www.opengis.net/gml/3.2">gsmle:MovementTypeTerm</targetElement>
               </appinfo>
             </annotation>
+            <complexType>
+              <simpleContent>
+                <extension base="gml:CodeType">
+                  <attribute name="nilReason" type="gml:NilReasonType"/>
+                </extension>
+              </simpleContent>
+            </complexType>
           </element>
-          <element maxOccurs="unbounded" name="displacementEvent" type="gsmle:DisplacementEventPropertyType">
-            <annotation>
-              <documentation>A description of the age, environment and process of a shear displacement event</documentation>
-            </annotation>
-          </element>
+          <element maxOccurs="unbounded" name="displacementEvent" nillable="true" type="gsmle:DisplacementEventPropertyType"/>
         </sequence>
       </extension>
     </complexContent>
@@ -411,22 +361,13 @@ Quantity that specifies the fraction of the Earth Material formed by the part (e
       <element ref="gsmle:DisplacementValue"/>
     </sequence>
   </complexType>
-  <element name="FabricDescription" substitutionGroup="gsmlb:ExtensionAbstractDescription" type="gsmle:FabricDescriptionType">
-    <annotation>
-      <documentation>The FabricDescription class describes all types of fabrics associated with a CompoundMaterial (ie, tectonic, metamorphic, sedimentary, igneous fabrics or textures).  It denotes a pattern, defined by one or more CompoundMaterial constituents, that is present throughout a rock body when considered at some scale.  FabricDescription is defined based on the average configuration of many constituents.  Penetrative fabric denotes that these constituents are distributed throughout the rock volume at the scale of observation [Passchier and Trouw, 1998], and are repeated at distances that are small relative to the scale of the whole, such that they can be considered to pervade the whole uniformly (Turner and Weiss [1963] p. 21-24; Hobbs and others [1976], p. 73; Jackson [1997]; Passchier and Trouw [1998]). 
-
-FabricDescription is distinguished from Particle Geometry based on the criteria that Particle Geometry is preserved if a CompoundMaterial is disaggregated, while FabricDescription is not defined if the material is disaggregated.
-
-Use gml:description to capture any free text to indicate any specific or peculiar features of the described fabric in the CompoundMaterial.</documentation>
-    </annotation>
-  </element>
+  <element name="FabricDescription" substitutionGroup="gsmlb:ExtensionAbstractDescription" type="gsmle:FabricDescriptionType"/>
   <complexType name="FabricDescriptionType">
     <complexContent>
       <extension base="gsmlb:ExtensionAbstractDescriptionType">
         <sequence>
           <element minOccurs="0" name="fabricType" type="gml:CodeType">
             <annotation>
-              <documentation>Attribute to denote the type of fabric in the CompoundMaterial (eg, rapikivi texture, autobrecciation, spaced cleavage, porphyroblastic, cross-bedding).  The fabricType describes a pattern, defined by one or more CompoundMaterial constituents, that is present throughout a rock body when considered at some scale. FabricDescription is defined based on the average configuration of many constituents. Penetrative fabric denotes that these constituents are distributed throughout the rock volume at the scale of observation [Passchier and Trouw, 1998], and are repeated at distances that are small relative to the scale of the whole, such that they can be considered to pervade the whole uniformly.</documentation>
               <appinfo>
                 <targetElement xmlns="http://www.opengis.net/gml/3.2">gsmle:FabricTypeTerm</targetElement>
               </appinfo>
@@ -446,10 +387,7 @@ Use gml:description to capture any free text to indicate any specific or peculia
     <complexContent>
       <extension base="gsmlb:FoldAbstractDescriptionType">
         <sequence>
-          <element name="amplitude">
-            <annotation>
-              <documentation>length from line segment connecting inflection points on adjacent fold limbs to the intervening fold hinge</documentation>
-            </annotation>
+          <element name="amplitude" nillable="true">
             <complexType>
               <complexContent>
                 <extension base="gml:AbstractMemberType">
@@ -461,15 +399,15 @@ Use gml:description to capture any free text to indicate any specific or peculia
               </complexContent>
             </complexType>
           </element>
-          <element name="axialSurfaceOrientation" type="gsmlb:CGI_PlanarOrientationPropertyType">
-            <annotation>
-              <documentation>This is used to characterize the geometry of a fold. The axial surface of a particular fold may be located based on observations of the folded geologic structure, but in general it has no direct physical manifestions. As a geologic surface, it has geometric properties, including orientation, which may be specified by observations at one or more locations, or generalized using terminology (upright, inclined, reclined, recumbent, overturned). Dip and Dip Direction are one approach to specifying the value.</documentation>
-            </annotation>
+          <element name="axialSurfaceOrientation" nillable="true">
+            <complexType>
+              <sequence>
+                <element ref="gsmlb:CGI_PlanarOrientation"/>
+              </sequence>
+              <attribute name="nilReason" type="gml:NilReasonType"/>
+            </complexType>
           </element>
-          <element name="geneticModel">
-            <annotation>
-              <documentation>Specification of genetic model for fold, e.g. flexural slip, parallel</documentation>
-            </annotation>
+          <element name="geneticModel" nillable="true">
             <complexType>
               <complexContent>
                 <extension base="gml:AbstractMemberType">
@@ -481,10 +419,7 @@ Use gml:description to capture any free text to indicate any specific or peculia
               </complexContent>
             </complexType>
           </element>
-          <element name="hingeLineCurvature">
-            <annotation>
-              <documentation>variation in orientation of fold hinge along trend of fold, distinguish sheath from cylindrical folds. Specify with terminology eg sheath, dome, basin, cylindrical.</documentation>
-            </annotation>
+          <element name="hingeLineCurvature" nillable="true">
             <complexType>
               <complexContent>
                 <extension base="gml:AbstractMemberType">
@@ -496,15 +431,15 @@ Use gml:description to capture any free text to indicate any specific or peculia
               </complexContent>
             </complexType>
           </element>
-          <element name="hingeLineOrientation" type="gsmlb:CGI_LinearOrientationPropertyType">
-            <annotation>
-              <documentation>Specification of hinge line orientation for fold. CGI_LinearOrientation allows for a term value specification or a numeric specification of either or both the trend and plunge of hinge line. kHinge plunge term examples: sub-vertical, steeply plunging, ... sub-horizontal, reclined and vertical for special cases in which hinge plunge is close to axial surface dip. 0..* cardinality allows for both a numeric specification a term specification.</documentation>
-            </annotation>
+          <element name="hingeLineOrientation" nillable="true">
+            <complexType>
+              <sequence>
+                <element ref="gsmlb:CGI_LinearOrientation"/>
+              </sequence>
+              <attribute name="nilReason" type="gml:NilReasonType"/>
+            </complexType>
           </element>
-          <element name="hingeShape">
-            <annotation>
-              <documentation>Rounded vs. angular hinge zones; has to do with the proportion of the wavelength that is considered part of hinge</documentation>
-            </annotation>
+          <element name="hingeShape" nillable="true">
             <complexType>
               <complexContent>
                 <extension base="gml:AbstractMemberType">
@@ -516,10 +451,7 @@ Use gml:description to capture any free text to indicate any specific or peculia
               </complexContent>
             </complexType>
           </element>
-          <element name="interLimbAngle">
-            <annotation>
-              <documentation>Specify using a tightness term (gentle (120-180), open (70-120), close (30-70), tight (10-30), isoclinal (0-10))</documentation>
-            </annotation>
+          <element name="interLimbAngle" nillable="true">
             <complexType>
               <complexContent>
                 <extension base="gml:AbstractMemberType">
@@ -531,10 +463,7 @@ Use gml:description to capture any free text to indicate any specific or peculia
               </complexContent>
             </complexType>
           </element>
-          <element name="limbShape">
-            <annotation>
-              <documentation>straight vs curved limbs, eg kink, chevron, sinusoidal, box</documentation>
-            </annotation>
+          <element name="limbShape" nillable="true">
             <complexType>
               <complexContent>
                 <extension base="gml:AbstractMemberType">
@@ -546,10 +475,7 @@ Use gml:description to capture any free text to indicate any specific or peculia
               </complexContent>
             </complexType>
           </element>
-          <element name="span">
-            <annotation>
-              <documentation>linear distance between inflection points in a single fold</documentation>
-            </annotation>
+          <element name="span" nillable="true">
             <complexType>
               <complexContent>
                 <extension base="gml:AbstractMemberType">
@@ -561,10 +487,7 @@ Use gml:description to capture any free text to indicate any specific or peculia
               </complexContent>
             </complexType>
           </element>
-          <element name="symmetry">
-            <annotation>
-              <documentation>Concordance or discordance of bisecting surface and axial surface, or ratio of length of limbs. Folded surface may have asymmetry defined by limb length ratio if inflection points are defined. Defintion based on bisecting surface/axial surface angle depends on having multiple surfaces defined such that the axial surface may be identified. (symmetric, assymetric)</documentation>
-            </annotation>
+          <element name="symmetry" nillable="true">
             <complexType>
               <complexContent>
                 <extension base="gml:AbstractMemberType">
@@ -576,11 +499,7 @@ Use gml:description to capture any free text to indicate any specific or peculia
               </complexContent>
             </complexType>
           </element>
-          <element name="system" type="gsmle:FoldSystemPropertyType">
-            <annotation>
-              <documentation>Describes a broader system of folds to which an individual fold may belong</documentation>
-            </annotation>
-          </element>
+          <element name="system" nillable="true" type="gsmle:FoldSystemPropertyType"/>
         </sequence>
       </extension>
     </complexContent>
@@ -590,25 +509,22 @@ Use gml:description to capture any free text to indicate any specific or peculia
       <element ref="gsmle:FoldDescription"/>
     </sequence>
   </complexType>
-  <element name="FoldSystem" substitutionGroup="gsmlb:GeologicStructure" type="gsmle:FoldSystemType">
-    <annotation>
-      <documentation>A collection of congruent folds  (axis and axial surface are parallel) produced by the same tectonic event. Sometimes referred to as a "Fold Train".</documentation>
-    </annotation>
-  </element>
+  <element name="FoldSystem" substitutionGroup="gsmlb:GeologicStructure" type="gsmle:FoldSystemType"/>
   <complexType name="FoldSystemType">
     <complexContent>
       <extension base="gsmlb:GeologicStructureType">
         <sequence>
-          <element maxOccurs="unbounded" minOccurs="0" name="foldSystemMember" type="gsmlb:FoldPropertyType"/>
-          <element minOccurs="0" name="periodic" type="boolean">
-            <annotation>
-              <documentation>True if fold hinges in train are regularly spaced.</documentation>
-            </annotation>
+          <element maxOccurs="unbounded" minOccurs="0" name="foldSystemMember" nillable="true" type="gsmlb:FoldPropertyType"/>
+          <element minOccurs="0" name="periodic" nillable="true">
+            <complexType>
+              <simpleContent>
+                <extension base="boolean">
+                  <attribute name="nilReason" type="gml:NilReasonType"/>
+                </extension>
+              </simpleContent>
+            </complexType>
           </element>
-          <element minOccurs="0" name="wavelength">
-            <annotation>
-              <documentation>Quantitative specification of length between adjacent antiforms (or synforms) in a fold train.</documentation>
-            </annotation>
+          <element minOccurs="0" name="wavelength" nillable="true">
             <complexType>
               <complexContent>
                 <extension base="gml:AbstractMemberType">
@@ -636,10 +552,7 @@ Use gml:description to capture any free text to indicate any specific or peculia
     <complexContent>
       <extension base="gsmlb:FoliationAbstractDescriptionType">
         <sequence>
-          <element maxOccurs="unbounded" minOccurs="0" name="definingElement">
-            <annotation>
-              <documentation>Kinds of describable inhomogeneity in a rock body that may define a GeologicStructure.   Examples include Discontinuity, Shaped Surface, Oriented Particle, Material Boundary, and Layer.</documentation>
-            </annotation>
+          <element maxOccurs="unbounded" minOccurs="0" name="definingElement" nillable="true">
             <complexType>
               <complexContent>
                 <extension base="gml:AbstractMemberType">
@@ -651,10 +564,7 @@ Use gml:description to capture any free text to indicate any specific or peculia
               </complexContent>
             </complexType>
           </element>
-          <element maxOccurs="unbounded" minOccurs="0" name="continuity">
-            <annotation>
-              <documentation>terms to distinguish continuous vs. disjunct cleavages</documentation>
-            </annotation>
+          <element maxOccurs="unbounded" minOccurs="0" name="continuity" nillable="true">
             <complexType>
               <complexContent>
                 <extension base="gml:AbstractMemberType">
@@ -666,10 +576,7 @@ Use gml:description to capture any free text to indicate any specific or peculia
               </complexContent>
             </complexType>
           </element>
-          <element minOccurs="0" name="intensity">
-            <annotation>
-              <documentation>How well the foliation is developed. Terms such as weak, moderate, strong.</documentation>
-            </annotation>
+          <element minOccurs="0" name="intensity" nillable="true">
             <complexType>
               <complexContent>
                 <extension base="gml:AbstractMemberType">
@@ -681,10 +588,7 @@ Use gml:description to capture any free text to indicate any specific or peculia
               </complexContent>
             </complexType>
           </element>
-          <element maxOccurs="unbounded" minOccurs="0" name="mineralElement">
-            <annotation>
-              <documentation>The mineral that defines the foliation</documentation>
-            </annotation>
+          <element maxOccurs="unbounded" minOccurs="0" name="mineralElement" nillable="true">
             <complexType>
               <complexContent>
                 <extension base="gml:AbstractMemberType">
@@ -696,10 +600,7 @@ Use gml:description to capture any free text to indicate any specific or peculia
               </complexContent>
             </complexType>
           </element>
-          <element minOccurs="0" name="spacing">
-            <annotation>
-              <documentation>linear dimension representing the thickness of foliation domains. Also use for thickness of layers of a given composition</documentation>
-            </annotation>
+          <element minOccurs="0" name="spacing" nillable="true">
             <complexType>
               <complexContent>
                 <extension base="gml:AbstractMemberType">
@@ -720,12 +621,7 @@ Use gml:description to capture any free text to indicate any specific or peculia
       <element ref="gsmle:FoliationDescription"/>
     </sequence>
   </complexType>
-  <element abstract="true" name="Fracture" substitutionGroup="gsmlb:GeologicStructure" type="gsmle:FractureType">
-    <annotation>
-      <documentation>Fractures are cracks in the earth surface. If there is no displacement it is a joint. If there is displacement and you are in the brittle zone it is a fault. In the ductile zone, a fracture with displacement with fracture is called a shear.  FaultSurface as a separate class is not considered necessary for GeoSciML 2.
-Recording observations on FaultSurface should be in observation and measurement. The observation needs to be able to distinguish the type of measurement made (PropertyType)</documentation>
-    </annotation>
-  </element>
+  <element abstract="true" name="Fracture" substitutionGroup="gsmlb:GeologicStructure" type="gsmle:FractureType"/>
   <complexType abstract="true" name="FractureType">
     <complexContent>
       <extension base="gsmlb:GeologicStructureType">
@@ -740,23 +636,11 @@ Recording observations on FaultSurface should be in observation and measurement.
     <attributeGroup ref="gml:AssociationAttributeGroup"/>
     <attributeGroup ref="gml:OwnershipAttributeGroup"/>
   </complexType>
-  <element name="GeologicDateEstimate" substitutionGroup="gml:AbstractObject" type="gsmle:GeologicDateEstimateType">
-    <annotation>
-      <documentation>An estimate of a point in geologic time and a link to its observational basis</documentation>
-    </annotation>
-  </element>
+  <element name="GeologicDateEstimate" substitutionGroup="gml:AbstractObject" type="gsmle:GeologicDateEstimateType"/>
   <complexType name="GeologicDateEstimateType">
     <sequence>
-      <element minOccurs="0" name="position" type="gml:TimeInstantPropertyType">
-        <annotation>
-          <documentation>A point in geologic time</documentation>
-        </annotation>
-      </element>
-      <element minOccurs="0" name="quality">
-        <annotation>
-          <documentation>A measure of the accuracy of the estimate of the point in time</documentation>
-        </annotation>
-      </element>
+      <element minOccurs="0" name="position" type="gml:TimeInstantPropertyType"/>
+      <element minOccurs="0" name="quality" nillable="true"/>
     </sequence>
   </complexType>
   <complexType name="GeologicDateEstimatePropertyType">
@@ -764,7 +648,7 @@ Recording observations on FaultSurface should be in observation and measurement.
       <element ref="gsmle:GeologicDateEstimate"/>
     </sequence>
   </complexType>
-  <element name="GeologicFeatureRelation" substitutionGroup="gsmle:GeologicRelation" type="gsmle:GeologicFeatureRelationType">
+  <element name="GeologicFeatureRelation" substitutionGroup="gml:AbstractGML" type="gsmle:GeologicFeatureRelationType">
     <annotation>
       <documentation>The GeologicFeatureRelation class is a concrete subtype of the abstract GeologicRelation class that is used to define relationships between geologic features, ie. structure-structure, unit-unit, and structure-unit relationships.
 
@@ -777,7 +661,7 @@ Two or more GeologicFeatures are associated in a GeologicFeatureRelation; each h
   </element>
   <complexType name="GeologicFeatureRelationType">
     <complexContent>
-      <extension base="gsmle:GeologicRelationType">
+      <extension base="gml:AbstractGMLType">
         <sequence/>
       </extension>
     </complexContent>
@@ -789,64 +673,27 @@ Two or more GeologicFeatures are associated in a GeologicFeatureRelation; each h
     <attributeGroup ref="gml:AssociationAttributeGroup"/>
     <attributeGroup ref="gml:OwnershipAttributeGroup"/>
   </complexType>
-  <element abstract="true" name="GeologicRelation" substitutionGroup="gsmlb:AbstractFeatureRelation" type="gsmle:GeologicRelationType">
-    <annotation>
-      <documentation>The GeologicRelation class is an abstract class that defines the general structure used to define relationships between any feature or object within GeoSciML.  Relationships are always binary and directional.  There is always a single source and a single target.  The relationship is always defined from the perspective of the Source and is generally an active verb.
-
-Example:  a Source may point to an intrusive igneous rock body.  In this case, the Target would point to the appropriate host rock body and the relationship attribute would be 'intrudes'.  Other appropriate relationship attributes might include: overlies, offsets, crosscuts, folds, etc.
-
-Many other types of relationships can also be accommodated via GeologicRelation, for example, topological relations between spatial objects could be described where they are scientifically significant.</documentation>
-    </annotation>
-  </element>
-  <complexType abstract="true" name="GeologicRelationType">
-    <complexContent>
-      <extension base="gsmlb:AbstractFeatureRelationType">
-        <sequence>
-          <element minOccurs="0" name="relationship" type="gml:CodeType">
-            <annotation>
-              <documentation>A term from a controlled vocabulary to describe the geologic relationship</documentation>
-              <appinfo>
-                <targetElement xmlns="http://www.opengis.net/gml/3.2">gsmle:GeologicRelationshipTerm</targetElement>
-              </appinfo>
-            </annotation>
-          </element>
-          <element minOccurs="0" name="sourceRole" type="gml:CodeType">
-            <annotation>
-              <documentation>The role played by the source geologic feature or object</documentation>
-              <appinfo>
-                <targetElement xmlns="http://www.opengis.net/gml/3.2">gsmle:RelationRoleTerm</targetElement>
-              </appinfo>
-            </annotation>
-          </element>
-          <element minOccurs="0" name="targetRole" type="gml:CodeType">
-            <annotation>
-              <documentation>The role played by the target geologic feature or object</documentation>
-              <appinfo>
-                <targetElement xmlns="http://www.opengis.net/gml/3.2">gsmle:RelationRoleTerm</targetElement>
-              </appinfo>
-            </annotation>
-          </element>
-        </sequence>
-      </extension>
-    </complexContent>
-  </complexType>
   <complexType name="GeologicRelationPropertyType">
-    <sequence minOccurs="0">
-      <element ref="gsmle:GeologicRelation"/>
-    </sequence>
+    <choice minOccurs="0">
+      <element ref="gsmle:GeologicFeatureRelation"/>
+      <element ref="gsmle:MaterialRelation"/>
+    </choice>
     <attributeGroup ref="gml:AssociationAttributeGroup"/>
-    <attributeGroup ref="gml:OwnershipAttributeGroup"/>
   </complexType>
   <element name="GeologicUnitDescription" substitutionGroup="gsmlb:GeologicUnitAbstractDescription" type="gsmle:GeologicUnitDescriptionType"/>
   <complexType name="GeologicUnitDescriptionType">
     <complexContent>
       <extension base="gsmlb:GeologicUnitAbstractDescriptionType">
         <sequence>
-          <element minOccurs="0" name="bedding" type="gsmle:BeddingDescriptionPropertyType"/>
-          <element maxOccurs="unbounded" minOccurs="0" name="bodyMorphology">
-            <annotation>
-              <documentation>The geometry or form of a GeologicUnit.  Examples include: dike (dyke), cone, fan, sheet, etc. Morphology is independent of the substance (EarthMaterial) that composes the GeologicUnit or process that formed it.</documentation>
-            </annotation>
+          <element minOccurs="0" name="bedding" nillable="true">
+            <complexType>
+              <sequence>
+                <element ref="gsmle:BeddingDescription"/>
+              </sequence>
+              <attribute name="nilReason" type="gml:NilReasonType"/>
+            </complexType>
+          </element>
+          <element maxOccurs="unbounded" minOccurs="0" name="bodyMorphology" nillable="true">
             <complexType>
               <complexContent>
                 <extension base="gml:AbstractMemberType">
@@ -858,10 +705,7 @@ Many other types of relationships can also be accommodated via GeologicRelation,
               </complexContent>
             </complexType>
           </element>
-          <element maxOccurs="unbounded" minOccurs="0" name="unitComposition">
-            <annotation>
-              <documentation>Composition-based classification that requires integrating the character of the unit over large area, not applicable at the rock-material/specimen level. Examples: alkalic, subaluminous, peraluminous, I-Type, carbonate, phosphate.</documentation>
-            </annotation>
+          <element maxOccurs="unbounded" minOccurs="0" name="unitComposition" nillable="true">
             <complexType>
               <complexContent>
                 <extension base="gml:AbstractMemberType">
@@ -873,10 +717,7 @@ Many other types of relationships can also be accommodated via GeologicRelation,
               </complexContent>
             </complexType>
           </element>
-          <element maxOccurs="unbounded" minOccurs="0" name="outcropCharacter">
-            <annotation>
-              <documentation>Describes the nature of outcrops formed by a geologic unit. Examples: bouldery, cliff-forming, ledge-forming, slope-forming, poorly exposed</documentation>
-            </annotation>
+          <element maxOccurs="unbounded" minOccurs="0" name="outcropCharacter" nillable="true">
             <complexType>
               <complexContent>
                 <extension base="gml:AbstractMemberType">
@@ -888,10 +729,7 @@ Many other types of relationships can also be accommodated via GeologicRelation,
               </complexContent>
             </complexType>
           </element>
-          <element minOccurs="0" name="unitThickness">
-            <annotation>
-              <documentation>Typical thickness of the geologic unit. Always reported as a range. If have a single value, the upper and lower limit of range are the same.</documentation>
-            </annotation>
+          <element minOccurs="0" name="unitThickness" nillable="true">
             <complexType>
               <complexContent>
                 <extension base="gml:AbstractMemberType">
@@ -912,13 +750,7 @@ Many other types of relationships can also be accommodated via GeologicRelation,
       <element ref="gsmle:GeologicUnitDescription"/>
     </sequence>
   </complexType>
-  <element name="InorganicFluid" substitutionGroup="gsmlb:EarthMaterial" type="gsmle:InorganicFluidType">
-    <annotation>
-      <documentation>An inorganic, non-crystalline EarthMaterial (solid, liquid, or gas) that tends to flow or conform to the shape of its container.  Includes glass.  By convention liquid mercury is considered a mineral (examples: water, brine, glass)
-
-This class is an empty placeholder for extension at a later date, or by other domain models.</documentation>
-    </annotation>
-  </element>
+  <element name="InorganicFluid" substitutionGroup="gsmlb:EarthMaterial" type="gsmle:InorganicFluidType"/>
   <complexType name="InorganicFluidType">
     <complexContent>
       <extension base="gsmlb:EarthMaterialType">
@@ -933,11 +765,7 @@ This class is an empty placeholder for extension at a later date, or by other do
     <attributeGroup ref="gml:AssociationAttributeGroup"/>
     <attributeGroup ref="gml:OwnershipAttributeGroup"/>
   </complexType>
-  <element name="Joint" substitutionGroup="gsmle:Fracture" type="gsmle:JointType">
-    <annotation>
-      <documentation>Fracture across which there is no displacement at the scale of interest.</documentation>
-    </annotation>
-  </element>
+  <element name="Joint" substitutionGroup="gsmle:Fracture" type="gsmle:JointType"/>
   <complexType name="JointType">
     <complexContent>
       <extension base="gsmle:FractureType">
@@ -957,7 +785,7 @@ This class is an empty placeholder for extension at a later date, or by other do
     <complexContent>
       <extension base="gsmle:LayeringAbstractDescriptionType">
         <sequence>
-          <element name="lithology">
+          <element name="lithology" nillable="true">
             <complexType>
               <complexContent>
                 <extension base="gml:AbstractMemberType">
@@ -978,17 +806,20 @@ This class is an empty placeholder for extension at a later date, or by other do
       <element ref="gsmle:LayerComposition"/>
     </sequence>
   </complexType>
-  <element name="Layering" substitutionGroup="gsmlb:Foliation" type="gsmle:LayeringType">
-    <annotation>
-      <documentation>Planar foliation defined by a tabular succession of layers &gt; 5 mm thick. This definition is based on the proposed definition of gneiss by the NADM Science Language Technical Team, so that the GeologicStructure characteristic of gneiss is layering. The committee discussed the possibility that layering should be considered a kind of foliation, but the majority opinion was that it is a different kind of structure.  Kept so that instance documents have a "Layering" tag</documentation>
-    </annotation>
-  </element>
+  <element name="Layering" substitutionGroup="gsmlb:Foliation" type="gsmle:LayeringType"/>
   <complexType name="LayeringType">
     <complexContent>
       <extension base="gsmlb:FoliationType">
         <sequence>
           <element name="layerComposition" type="gsmlb:RockMaterialPropertyType"/>
-          <element maxOccurs="unbounded" minOccurs="0" name="stLayerDescription" type="gsmle:LayeringAbstractDescriptionPropertyType"/>
+          <element maxOccurs="unbounded" minOccurs="0" name="stLayerDescription" nillable="true">
+            <complexType>
+              <sequence>
+                <element ref="gsmle:LayeringAbstractDescription"/>
+              </sequence>
+              <attribute name="nilReason" type="gml:NilReasonType"/>
+            </complexType>
+          </element>
         </sequence>
       </extension>
     </complexContent>
@@ -1009,22 +840,12 @@ This class is an empty placeholder for extension at a later date, or by other do
       <element ref="gsmle:LayeringAbstractDescription"/>
     </sequence>
   </complexType>
-  <element name="Lineation" substitutionGroup="gsmlb:GeologicStructure" type="gsmle:LineationType">
-    <annotation>
-      <documentation>GeologicStructure defined by aligned elongate elements. Lineation connotes a pervasive linear structure. Includes: flow lines, scratches, striae, slickenlines, linear arrangements of
-elongate components in sediments, fold hinges (when abundant and closely spaced), elongate minerals, crinkles, and lines of intersection between penetrative planar structures.
-
-Class also includes discrete linear structures like boudin, channel axis, tool marks.</documentation>
-    </annotation>
-  </element>
+  <element name="Lineation" substitutionGroup="gsmlb:GeologicStructure" type="gsmle:LineationType"/>
   <complexType name="LineationType">
     <complexContent>
       <extension base="gsmlb:GeologicStructureType">
         <sequence>
-          <element maxOccurs="unbounded" minOccurs="0" name="definingElement">
-            <annotation>
-              <documentation>Kinds of describable inhomogeneity in a rock body that may define a GeologicStructure.   Examples include Oriented Particle.</documentation>
-            </annotation>
+          <element maxOccurs="unbounded" minOccurs="0" name="definingElement" nillable="true">
             <complexType>
               <complexContent>
                 <extension base="gml:AbstractMemberType">
@@ -1038,17 +859,12 @@ Class also includes discrete linear structures like boudin, channel axis, tool m
           </element>
           <element minOccurs="0" name="lineationType" type="gml:CodeType">
             <annotation>
-              <documentation>Type of lineation.
-Examples include: flow lines, scratches, striae, slickenlines, linear arrangements of elongate components in sediments, elongate minerals, crinkles, and lines of intersection between penetrative planar structures.</documentation>
               <appinfo>
                 <targetElement xmlns="http://www.opengis.net/gml/3.2">gsmle:LineationTypeTerm</targetElement>
               </appinfo>
             </annotation>
           </element>
-          <element name="intensity">
-            <annotation>
-              <documentation>How well the lineation is developed. Terms such as weak, moderate, strong.</documentation>
-            </annotation>
+          <element name="intensity" nillable="true">
             <complexType>
               <complexContent>
                 <extension base="gml:AbstractMemberType">
@@ -1060,10 +876,7 @@ Examples include: flow lines, scratches, striae, slickenlines, linear arrangemen
               </complexContent>
             </complexType>
           </element>
-          <element maxOccurs="unbounded" minOccurs="0" name="mineralElement">
-            <annotation>
-              <documentation>Mineral that defines the lineation</documentation>
-            </annotation>
+          <element maxOccurs="unbounded" minOccurs="0" name="mineralElement" nillable="true">
             <complexType>
               <complexContent>
                 <extension base="gml:AbstractMemberType">
@@ -1075,10 +888,13 @@ Examples include: flow lines, scratches, striae, slickenlines, linear arrangemen
               </complexContent>
             </complexType>
           </element>
-          <element maxOccurs="unbounded" minOccurs="0" name="orientation" type="gsmlb:CGI_LinearOrientationPropertyType">
-            <annotation>
-              <documentation>Orientation of the lineation</documentation>
-            </annotation>
+          <element maxOccurs="unbounded" minOccurs="0" name="orientation" nillable="true">
+            <complexType>
+              <sequence>
+                <element ref="gsmlb:CGI_LinearOrientation"/>
+              </sequence>
+              <attribute name="nilReason" type="gml:NilReasonType"/>
+            </complexType>
           </element>
         </sequence>
       </extension>
@@ -1091,7 +907,7 @@ Examples include: flow lines, scratches, striae, slickenlines, linear arrangemen
     <attributeGroup ref="gml:AssociationAttributeGroup"/>
     <attributeGroup ref="gml:OwnershipAttributeGroup"/>
   </complexType>
-  <element name="MaterialRelation" substitutionGroup="gsmle:GeologicRelation" type="gsmle:MaterialRelationType">
+  <element name="MaterialRelation" substitutionGroup="gml:AbstractGML" type="gsmle:MaterialRelationType">
     <annotation>
       <documentation>The MaterialRelation class describes the relationships between constituent parts in an Earth Material (eg: A mineral overgrowth on a phenocryst within a granite). 
 
@@ -1104,7 +920,7 @@ Inverse relationships must be explicitly recorded as well or else they are invis
   </element>
   <complexType name="MaterialRelationType">
     <complexContent>
-      <extension base="gsmle:GeologicRelationType">
+      <extension base="gml:AbstractGMLType">
         <sequence/>
       </extension>
     </complexContent>
@@ -1116,19 +932,12 @@ Inverse relationships must be explicitly recorded as well or else they are invis
     <attributeGroup ref="gml:AssociationAttributeGroup"/>
     <attributeGroup ref="gml:OwnershipAttributeGroup"/>
   </complexType>
-  <element name="MetamorphicDescription" substitutionGroup="gsmlb:ExtensionAbstractDescription" type="gsmle:MetamorphicDescriptionType">
-    <annotation>
-      <documentation>MetamorphicDescription describes the character of metamorphism applied to a CompoundMaterial or GeologicUnit using one or more properties including estimated intensity (grade; eg high grade, low grade), characteristic metamorphic mineral assemblages (facies; eg, greenschist, amphibolite), peak P-T estimates, and protolith material if known.</documentation>
-    </annotation>
-  </element>
+  <element name="MetamorphicDescription" substitutionGroup="gsmlb:ExtensionAbstractDescription" type="gsmle:MetamorphicDescriptionType"/>
   <complexType name="MetamorphicDescriptionType">
     <complexContent>
       <extension base="gsmlb:ExtensionAbstractDescriptionType">
         <sequence>
-          <element maxOccurs="unbounded" minOccurs="0" name="metamorphicFacies">
-            <annotation>
-              <documentation>A description of characteristic mineral assemblages indicative of certain metamorphic P-T conditions. Examples include Barrovian metasedimentary zones (eg: biotite facies, kyanite facies) or assemblages developed in rocks of more mafic composition (eg: greenschist facies, amphibolite facies).</documentation>
-            </annotation>
+          <element maxOccurs="unbounded" minOccurs="0" name="metamorphicFacies" nillable="true">
             <complexType>
               <complexContent>
                 <extension base="gml:AbstractMemberType">
@@ -1140,11 +949,7 @@ Inverse relationships must be explicitly recorded as well or else they are invis
               </complexContent>
             </complexType>
           </element>
-          <element minOccurs="0" name="metamorphicGrade">
-            <annotation>
-              <documentation>A term to indicate the intensity or rank of metamorphism applied to an EarthMaterial (eg: high metamorphic grade, low metamorphic grade)
-Indicates in a general way the P-T environment in which the metamorphism took place. Determination of metamorphic grade is based on mineral assemblages (ie, facies) present in a rock that are interpreted to have crystallized in equilibrium during a particular metamorphic event.</documentation>
-            </annotation>
+          <element minOccurs="0" name="metamorphicGrade" nillable="true">
             <complexType>
               <complexContent>
                 <extension base="gml:AbstractMemberType">
@@ -1156,10 +961,7 @@ Indicates in a general way the P-T environment in which the metamorphism took pl
               </complexContent>
             </complexType>
           </element>
-          <element minOccurs="0" name="peakPressureValue">
-            <annotation>
-              <documentation>A numerical value to indicate the estimated pressure at peak metamorphic conditions.</documentation>
-            </annotation>
+          <element minOccurs="0" name="peakPressureValue" nillable="true">
             <complexType>
               <complexContent>
                 <extension base="gml:AbstractMemberType">
@@ -1171,10 +973,7 @@ Indicates in a general way the P-T environment in which the metamorphism took pl
               </complexContent>
             </complexType>
           </element>
-          <element minOccurs="0" name="peakTemperatureValue">
-            <annotation>
-              <documentation>A numerical value to indicate the estimated temperature at peak metamorphic conditions.</documentation>
-            </annotation>
+          <element minOccurs="0" name="peakTemperatureValue" nillable="true">
             <complexType>
               <complexContent>
                 <extension base="gml:AbstractMemberType">
@@ -1186,10 +985,7 @@ Indicates in a general way the P-T environment in which the metamorphism took pl
               </complexContent>
             </complexType>
           </element>
-          <element maxOccurs="unbounded" minOccurs="0" name="protolithLithology">
-            <annotation>
-              <documentation>An interpretation of the EarthMaterial that constituted the pre-metamorphic lithology for this metamorphosed CompoundMaterial.</documentation>
-            </annotation>
+          <element maxOccurs="unbounded" minOccurs="0" name="protolithLithology" nillable="true">
             <complexType>
               <complexContent>
                 <extension base="gml:AbstractMemberType">
@@ -1201,11 +997,7 @@ Indicates in a general way the P-T environment in which the metamorphism took pl
               </complexContent>
             </complexType>
           </element>
-          <element name="metamorphicEvent" type="gsmlb:GeologicEventPropertyType">
-            <annotation>
-              <documentation>To denote the age, environment and process associated with a particular metamorphic assemblage in a GeologicUnit</documentation>
-            </annotation>
-          </element>
+          <element name="metamorphicEvent" nillable="true" type="gsmlb:GeologicEventPropertyType"/>
         </sequence>
       </extension>
     </complexContent>
@@ -1243,24 +1035,19 @@ Indicates in a general way the P-T environment in which the metamorphism took pl
     <attributeGroup ref="gml:AssociationAttributeGroup"/>
     <attributeGroup ref="gml:OwnershipAttributeGroup"/>
   </complexType>
-  <element name="NetSlipValue" substitutionGroup="gsmle:DisplacementValue" type="gsmle:NetSlipValueType">
-    <annotation>
-      <documentation>The total amount of slip displacement</documentation>
-    </annotation>
-  </element>
+  <element name="NetSlipValue" substitutionGroup="gsmle:DisplacementValue" type="gsmle:NetSlipValueType"/>
   <complexType name="NetSlipValueType">
     <complexContent>
       <extension base="gsmle:DisplacementValueType">
         <sequence>
-          <element minOccurs="0" name="netSlip" type="gsmlb:CGI_VectorPropertyType">
-            <annotation>
-              <documentation>The value of the net slip</documentation>
-            </annotation>
-          </element>
-          <element minOccurs="0" name="slipComponent" type="gsmle:SlipComponentsPropertyType">
-            <annotation>
-              <documentation>Specifies the value of the individual slip components.</documentation>
-            </annotation>
+          <element minOccurs="0" name="netSlip" type="gsmlb:CGI_VectorPropertyType"/>
+          <element minOccurs="0" name="slipComponent" nillable="true">
+            <complexType>
+              <sequence>
+                <element ref="gsmle:SlipComponents"/>
+              </sequence>
+              <attribute name="nilReason" type="gml:NilReasonType"/>
+            </complexType>
           </element>
         </sequence>
       </extension>
@@ -1271,19 +1058,13 @@ Indicates in a general way the P-T environment in which the metamorphism took pl
       <element ref="gsmle:NetSlipValue"/>
     </sequence>
   </complexType>
-  <element name="NonDirectionalStructure" substitutionGroup="gsmlb:GeologicStructure" type="gsmle:NonDirectionalStructureType">
-    <annotation>
-      <documentation>Structures present in geology that do not have a preferred orientation
-Includes small-scale structures that are characteristic of the geologic unit, e.g. herringbone crossbedding, mudcracks, graded bedding, planar lamination, miarolitic cavities, nebulitic structure, trace fossils, fossil molds</documentation>
-    </annotation>
-  </element>
+  <element name="NonDirectionalStructure" substitutionGroup="gsmlb:GeologicStructure" type="gsmle:NonDirectionalStructureType"/>
   <complexType name="NonDirectionalStructureType">
     <complexContent>
       <extension base="gsmlb:GeologicStructureType">
         <sequence>
           <element minOccurs="0" name="structureType" type="gml:CodeType">
             <annotation>
-              <documentation>The type of non oriented structure.  Examples include miarolitic cavity, flame structure, load cast, shatter cone, trace fossil, fossil mold</documentation>
               <appinfo>
                 <targetElement xmlns="http://www.opengis.net/gml/3.2">gsmle:NonDirectionalStructureTypeTerm</targetElement>
               </appinfo>
@@ -1300,13 +1081,7 @@ Includes small-scale structures that are characteristic of the geologic unit, e.
     <attributeGroup ref="gml:AssociationAttributeGroup"/>
     <attributeGroup ref="gml:OwnershipAttributeGroup"/>
   </complexType>
-  <element name="OrganicMaterial" substitutionGroup="gsmlb:EarthMaterial" type="gsmle:OrganicMaterialType">
-    <annotation>
-      <documentation>An EarthMaterial that belongs to the class of chemical compounds having a reduced carbon basis (as distinct from carbonates), and derived from living organisms.  Includes high-carbon EarthMaterials such as bitumen, peat, and coal.  
-
-This class is an empty placeholder for extension at a later date, or by other domain models</documentation>
-    </annotation>
-  </element>
+  <element name="OrganicMaterial" substitutionGroup="gsmlb:EarthMaterial" type="gsmle:OrganicMaterialType"/>
   <complexType name="OrganicMaterialType">
     <complexContent>
       <extension base="gsmlb:EarthMaterialType">
@@ -1334,26 +1109,17 @@ This class is an empty placeholder for extension at a later date, or by other do
       <element ref="gsmle:Organism"/>
     </sequence>
   </complexType>
-  <element name="ParticleGeometryDescription" substitutionGroup="gml:AbstractObject" type="gsmle:ParticleGeometryDescriptionType">
-    <annotation>
-      <documentation>ParticleGeometryDescription describes particles in a CompoundMaterial independent of their relationship to each other or orientation. It is distinguished from Fabric in that the ParticleGeometryDescription remains constant if the material is disaggregated into its constituent particles, whereas Fabric is lost if the material is disaggregated.  Properties include the particle size (grainsize), particle sorting (size distribution, eg: well sorted, poorly sorted, bimodal sorting), particle shape (surface rounding or crystal face development, eg: well rounded, euhedral, anhedral), and particle aspectRatio (eg: elongated, platy, bladed, compact, acicular).</documentation>
-    </annotation>
-  </element>
+  <element name="ParticleGeometryDescription" substitutionGroup="gml:AbstractObject" type="gsmle:ParticleGeometryDescriptionType"/>
   <complexType name="ParticleGeometryDescriptionType">
     <sequence>
       <element minOccurs="0" name="particleType" type="gml:CodeType">
         <annotation>
-          <documentation>Terms to specify the nature of individual particles of each constituent in an Earth Material aggregation, based mostly on their genesis.  If applied on ParticleDescription for CompoundMaterial, then would characterize all particles in aggregate. Use this property on CompoundMaterial to distinguish rocks composed of crystals (crystalline rocks) from rocks composed of granular particles (clasts, fragments). Examples include oolith, crystals, pore space. Constituent type is determined based on the nature of the particles, and ideally is independent of the relationship between particles in a compound material aggregation.
-See discussion of particleType vs ConstituentPart.role in the scope notes for ConstituentPart.</documentation>
           <appinfo>
             <targetElement xmlns="http://www.opengis.net/gml/3.2">gsmle:ParticleTypeTerm</targetElement>
           </appinfo>
         </annotation>
       </element>
-      <element maxOccurs="unbounded" minOccurs="0" name="aspectRatio">
-        <annotation>
-          <documentation>AspectRatio describes the geometry of particles based on the ratios of lengths of long, intermediate and short axes of grains. Equates to sphericity in sedimentary rocks (ie: the degree to which the shape of a particle approximates a sphere).  A quantitative specification based on the ratio of lengths of long, intermediate and short axes of grain shape (Sneed and Folk, 1958; Zingg, 1935). (eg: prolate, slightly flattened, very bladed, equant, acicular, tabular)</documentation>
-        </annotation>
+      <element maxOccurs="unbounded" minOccurs="0" name="aspectRatio" nillable="true">
         <complexType>
           <complexContent>
             <extension base="gml:AbstractMemberType">
@@ -1365,10 +1131,7 @@ See discussion of particleType vs ConstituentPart.role in the scope notes for Co
           </complexContent>
         </complexType>
       </element>
-      <element maxOccurs="unbounded" minOccurs="0" name="shape">
-        <annotation>
-          <documentation>The Shape attribute describes, a) the development of crystal faces bounding particles in crystalline compond materials, and b) surface rounding of grains in sedimentary rocks. Roundness is a measure of the sharpness of the edges between surfaces bounding a particle (see Jackson, 1997; Wadell, 1932). Terms should be appropriate for the kind of compound material (eg: for crystalline rocks- euhedral, ideoblastic, subhedral, anhedral, xenoblastic; for sedimentary rocks - angular, rounded)</documentation>
-        </annotation>
+      <element maxOccurs="unbounded" minOccurs="0" name="shape" nillable="true">
         <complexType>
           <complexContent>
             <extension base="gml:AbstractMemberType">
@@ -1380,10 +1143,7 @@ See discussion of particleType vs ConstituentPart.role in the scope notes for Co
           </complexContent>
         </complexType>
       </element>
-      <element minOccurs="0" name="size">
-        <annotation>
-          <documentation>The Size attribute specifies particle grainsize.  Values may be reported using absolute measurements (eg: range, mean, median, mode, maximum) or as descriptive terms from a schema appropriate to the type of Compound Material (eg: the Udden-Wentworth sheme for clastic sedimentary rocks - silt, sand, gravel; volcaniclastic rocks - ash, lapilli, bomb; crystalline rocks - fine, medium, coarse, cryptocrystalline)</documentation>
-        </annotation>
+      <element minOccurs="0" name="size" nillable="true">
         <complexType>
           <complexContent>
             <extension base="gml:AbstractMemberType">
@@ -1395,10 +1155,7 @@ See discussion of particleType vs ConstituentPart.role in the scope notes for Co
           </complexContent>
         </complexType>
       </element>
-      <element maxOccurs="unbounded" minOccurs="0" name="sorting">
-        <annotation>
-          <documentation>The Sorting attribute holds text terms to specify size distribution of particles in a CompoundMaterial. Terminology for sorting in sedimentary rocks is based on the quantitative Graphic Standard Deviation (IGSD) scheme proposed by Folk (1968, 1974).  Example terms for this attribute may include sedimentary terms such as well sorted and poorly sorted, or igneous terms such as porphyritic, equigranuilar, seriate.</documentation>
-        </annotation>
+      <element maxOccurs="unbounded" minOccurs="0" name="sorting" nillable="true">
         <complexType>
           <complexContent>
             <extension base="gml:AbstractMemberType">
@@ -1410,7 +1167,7 @@ See discussion of particleType vs ConstituentPart.role in the scope notes for Co
           </complexContent>
         </complexType>
       </element>
-      <element maxOccurs="unbounded" minOccurs="0" name="sourceOrganism">
+      <element maxOccurs="unbounded" minOccurs="0" name="sourceOrganism" nillable="true">
         <annotation>
           <appinfo>
             <targetElement xmlns="http://www.opengis.net/gml/3.2">gsmle:Organism</targetElement>
@@ -1418,6 +1175,7 @@ See discussion of particleType vs ConstituentPart.role in the scope notes for Co
         </annotation>
         <complexType>
           <sequence/>
+          <attribute name="nilReason" type="gml:NilReasonType"/>
         </complexType>
       </element>
     </sequence>
@@ -1427,29 +1185,19 @@ See discussion of particleType vs ConstituentPart.role in the scope notes for Co
       <element ref="gsmle:ParticleGeometryDescription"/>
     </sequence>
   </complexType>
-  <element name="PhysicalDescription" substitutionGroup="gsmlb:ExtensionAbstractDescription" type="gsmle:PhysicalDescriptionType">
-    <annotation>
-      <documentation>A class to describe the numeric physical properties of a geologic unit, earth material, or geologic structure. (eg; density, porosity, magnetic susceptibility, remanent magnetism).  These properties are modelled here as scalar numeric values (swe:Quantity).  
-
-Vector and tensor physical properties are considered to be more applicable to located observations and should be delivered as SamplingFeature/Observations with associated geologic unit or geologic structure features.</documentation>
-    </annotation>
-  </element>
+  <element name="PhysicalDescription" substitutionGroup="gsmlb:ExtensionAbstractDescription" type="gsmle:PhysicalDescriptionType"/>
   <complexType name="PhysicalDescriptionType">
     <complexContent>
       <extension base="gsmlb:ExtensionAbstractDescriptionType">
         <sequence>
           <element minOccurs="0" name="propertyName" type="gml:CodeType">
             <annotation>
-              <documentation>A term from a controlled vocabulary of physical properties of rock materials (eg; density, porosity, magnetic susceptibility, remanent magnetism, permeability, seismic velocity)</documentation>
               <appinfo>
                 <targetElement xmlns="http://www.opengis.net/gml/3.2">gsmlb:PhysicalPropertyTerm</targetElement>
               </appinfo>
             </annotation>
           </element>
           <element maxOccurs="unbounded" minOccurs="0" name="propertyMeasure">
-            <annotation>
-              <documentation>A scalar measurement of the physical property of a rock material, unit or structure</documentation>
-            </annotation>
             <complexType>
               <complexContent>
                 <extension base="gml:AbstractMemberType">
@@ -1475,10 +1223,7 @@ Vector and tensor physical properties are considered to be more applicable to lo
     <complexContent>
       <extension base="gsmlb:ExtensionAbstractDescriptionType">
         <sequence>
-          <element minOccurs="0" name="consolidationDegree">
-            <annotation>
-              <documentation>A property that specifies the degree to which an aggregation of EarthMaterial particles is a distinct solid material. Consolidation and induration are related concepts specified by this property. They define a continuum from unconsolidated material to very hard rock. Induration is the degree to which a consolidated material is made hard, operationally determined by how difficult it is to break a piece of the material. Consolidated materials may have varying degrees of induration (NADMSC, 2004)</documentation>
-            </annotation>
+          <element minOccurs="0" name="consolidationDegree" nillable="true">
             <complexType>
               <complexContent>
                 <extension base="gml:AbstractMemberType">
@@ -1499,20 +1244,12 @@ Vector and tensor physical properties are considered to be more applicable to lo
       <element ref="gsmle:RockMaterialDescription"/>
     </sequence>
   </complexType>
-  <element name="SeparationValue" substitutionGroup="gsmle:DisplacementValue" type="gsmle:SeparationValueType">
-    <annotation>
-      <documentation>The amount of separation displacement</documentation>
-    </annotation>
-  </element>
+  <element name="SeparationValue" substitutionGroup="gsmle:DisplacementValue" type="gsmle:SeparationValueType"/>
   <complexType name="SeparationValueType">
     <complexContent>
       <extension base="gsmle:DisplacementValueType">
         <sequence>
-          <element name="separation" type="gsmlb:CGI_VectorPropertyType">
-            <annotation>
-              <documentation>Reported apparent offset of planar feature, report as vector.</documentation>
-            </annotation>
-          </element>
+          <element name="separation" type="gsmlb:CGI_VectorPropertyType"/>
         </sequence>
       </extension>
     </complexContent>
@@ -1527,19 +1264,28 @@ Vector and tensor physical properties are considered to be more applicable to lo
     <complexContent>
       <extension base="gsmlb:ShearDisplacementStructureAbstractDescriptionType">
         <sequence>
-          <element maxOccurs="unbounded" name="stPhysicalProperty" type="gsmle:PhysicalDescriptionPropertyType"/>
+          <element maxOccurs="unbounded" name="stPhysicalProperty" nillable="true">
+            <complexType>
+              <sequence>
+                <element ref="gsmle:PhysicalDescription"/>
+              </sequence>
+              <attribute name="nilReason" type="gml:NilReasonType"/>
+            </complexType>
+          </element>
           <element name="deformationStyle" type="gml:CodeType">
             <annotation>
-              <documentation>A mandatory element referring to a vocabulary of terms to describe the style of deformation, ie brittle (fault, breccia), ductile (shear), brittle-ductile, unknown.</documentation>
               <appinfo>
                 <targetElement xmlns="http://www.opengis.net/gml/3.2">gsmle:DeformationStyleTerm</targetElement>
               </appinfo>
             </annotation>
           </element>
-          <element name="planeOrientation" type="gsmlb:CGI_PlanarOrientationPropertyType">
-            <annotation>
-              <documentation>Allows capturing the orientation of the plane of the structure</documentation>
-            </annotation>
+          <element name="planeOrientation" nillable="true">
+            <complexType>
+              <sequence>
+                <element ref="gsmlb:CGI_PlanarOrientation"/>
+              </sequence>
+              <attribute name="nilReason" type="gml:NilReasonType"/>
+            </complexType>
           </element>
         </sequence>
       </extension>
@@ -1550,29 +1296,34 @@ Vector and tensor physical properties are considered to be more applicable to lo
       <element ref="gsmle:ShearDisplacementStructureDescription"/>
     </sequence>
   </complexType>
-  <element name="SlipComponents" substitutionGroup="gsmle:DisplacementValue" type="gsmle:SlipComponentsType">
-    <annotation>
-      <documentation>Representation of slip as vector resolved into components resolved into reference frame in which horizontal axes are parallel and perpendicular to the strike of the fault.  At least one of heave, horizontalSlip, or throw must not be null.</documentation>
-    </annotation>
-  </element>
+  <element name="SlipComponents" substitutionGroup="gsmle:DisplacementValue" type="gsmle:SlipComponentsType"/>
   <complexType name="SlipComponentsType">
     <complexContent>
       <extension base="gsmle:DisplacementValueType">
         <sequence>
-          <element minOccurs="0" name="heave" type="gsmlb:CGI_VectorPropertyType">
-            <annotation>
-              <documentation>component of slip in the horizontal, and perpendicular to the strike of the fault</documentation>
-            </annotation>
+          <element minOccurs="0" name="heave" nillable="true">
+            <complexType>
+              <sequence>
+                <element ref="gsmlb:CGI_Vector"/>
+              </sequence>
+              <attribute name="nilReason" type="gml:NilReasonType"/>
+            </complexType>
           </element>
-          <element minOccurs="0" name="horizontalSlip" type="gsmlb:CGI_VectorPropertyType">
-            <annotation>
-              <documentation>slip component that is horizontal and parallel to strike of the fault</documentation>
-            </annotation>
+          <element minOccurs="0" name="horizontalSlip" nillable="true">
+            <complexType>
+              <sequence>
+                <element ref="gsmlb:CGI_Vector"/>
+              </sequence>
+              <attribute name="nilReason" type="gml:NilReasonType"/>
+            </complexType>
           </element>
-          <element minOccurs="0" name="throw" type="gsmlb:CGI_VectorPropertyType">
-            <annotation>
-              <documentation>vertical component of slip</documentation>
-            </annotation>
+          <element minOccurs="0" name="throw" nillable="true">
+            <complexType>
+              <sequence>
+                <element ref="gsmlb:CGI_Vector"/>
+              </sequence>
+              <attribute name="nilReason" type="gml:NilReasonType"/>
+            </complexType>
           </element>
         </sequence>
       </extension>
