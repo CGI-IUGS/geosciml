@@ -3,7 +3,6 @@
         xmlns:gml="http://www.opengis.net/gml/3.2"
         xmlns:gmlexr="http://www.opengis.net/gml/3.3/exr"
         xmlns:gsmlb="http://xmlns.geosciml.org/geologybasic/4.0"
-        xmlns:gsmle="http://xmlns.geosciml.org/geologyextension/4.0"
         xmlns:sam="http://www.opengis.net/sampling/2.0"
         xmlns:swe="http://www.opengis.net/swe/2.0"
         elementFormDefault="qualified"
@@ -17,7 +16,6 @@
            schemaLocation="http://schemas.opengis.net/sampling/2.0/samplingFeature.xsd"/>
   <import namespace="http://www.opengis.net/swe/2.0"
            schemaLocation="http://schemas.opengis.net/sweCommon/2.0/swe.xsd"/>
-  <import namespace="http://xmlns.geosciml.org/geologyextension/4.0"/>
   <!--XML Schema document created by ShapeChange - http://shapechange.net/-->
   <element abstract="true"
             name="AbstractFeatureRelation"
@@ -718,6 +716,17 @@ Bedding as a fabric representing the average orientation of paleodepositional su
          <element ref="gsmlb:GSMLitem"/>
       </sequence>
   </complexType>
+  <simpleType name="GeochronologicEraTermType">
+      <union memberTypes="gsmlb:GeochronologicEraTermEnumerationType gsmlb:GeochronologicEraTermOtherType"/>
+  </simpleType>
+  <simpleType name="GeochronologicEraTermEnumerationType">
+      <restriction base="string"/>
+  </simpleType>
+  <simpleType name="GeochronologicEraTermOtherType">
+      <restriction base="string">
+         <pattern value="other: \w{2,}"/>
+      </restriction>
+  </simpleType>
   <element name="GeologicEvent"
             substitutionGroup="gsmlb:GeologicFeature"
             type="gsmlb:GeologicEventType"/>
@@ -864,7 +873,7 @@ The implemented Geologic Feature instance acts as the "description package"
                <element maxOccurs="unbounded"
                         minOccurs="0"
                         name="relatedFeature"
-                        type="gsmlb:AbstractFeatureRelationPropertyType"/>
+                        type="gsmlb:GeologicFeaturePropertyType"/>
             </sequence>
          </extension>
       </complexContent>
@@ -1160,6 +1169,17 @@ A Mapped Feature is always associated with some sampling feature - e.g. a mappin
       <attributeGroup ref="gml:AssociationAttributeGroup"/>
       <attributeGroup ref="gml:OwnershipAttributeGroup"/>
   </complexType>
+  <simpleType name="MappingFrameTermType">
+      <union memberTypes="gsmlb:MappingFrameTermEnumerationType gsmlb:MappingFrameTermOtherType"/>
+  </simpleType>
+  <simpleType name="MappingFrameTermEnumerationType">
+      <restriction base="string"/>
+  </simpleType>
+  <simpleType name="MappingFrameTermOtherType">
+      <restriction base="string">
+         <pattern value="other: \w{2,}"/>
+      </restriction>
+  </simpleType>
   <element name="NaturalGeomorphologicFeature"
             substitutionGroup="gsmlb:GeomorphologicFeature"
             type="gsmlb:NaturalGeomorphologicFeatureType"/>
