@@ -53,6 +53,18 @@ Thickness of a weathering profile can be delivered as unitThickness of an Altera
               </complexContent>
             </complexType>
           </element>
+          <element maxOccurs="unbounded" minOccurs="0" name="alterationDegree">
+            <complexType>
+              <complexContent>
+                <extension base="gml:AbstractMemberType">
+                  <sequence minOccurs="0">
+                    <element ref="swe:Category"/>
+                  </sequence>
+                  <attributeGroup ref="gml:AssociationAttributeGroup"/>
+                </extension>
+              </complexContent>
+            </complexType>
+          </element>
           <element minOccurs="0" name="alterationEvent" type="gsmlb:GeologicEventPropertyType">
             <annotation>
               <documentation>To denote the age, environment and process associated with alteration of a GeologicUnit or material</documentation>
