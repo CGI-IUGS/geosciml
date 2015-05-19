@@ -29,7 +29,7 @@ Thickness of a weathering profile can be delivered as unitThickness of an Altera
       <complexContent>
          <extension base="gsmlb:ExtensionAbstractDescriptionType">
             <sequence>
-               <element minOccurs="0" name="alterationType" type="gml:CodeType">
+               <element minOccurs="0" name="alterationType" type="gml:ReferenceType">
                   <annotation>
                      <appinfo>
                         <targetElement xmlns="http://www.opengis.net/gml/3.2">gsmle:AlterationTypeTerm</targetElement>
@@ -304,7 +304,7 @@ Quantity that specifies the fraction of the Earth Material formed by the part (e
                      </complexContent>
                   </complexType>
                </element>
-               <element minOccurs="0" name="role" type="gml:CodeType">
+               <element minOccurs="0" name="role" type="gml:ReferenceType">
                   <annotation>
                      <documentation>The role a ConstituentPart plays in a CompoundMaterial aggregation. The same EarthMaterial may occur as different ConstituentParts playing different roles within the same CompoundMaterial.  For example, feldspar may be present as groundmass (a ConstituentPart::role) and as phenocrysts (an ConstituentPart::role) within a single igneous rock.</documentation>
                      <appinfo>
@@ -431,7 +431,7 @@ Quantity that specifies the fraction of the Earth Material formed by the part (e
                      <documentation>Normally the compass quadrant indicating the hangingwall side of the fault-system for faults that are steep enough to define a hanging-wall on the map trace</documentation>
                   </annotation>
                </element>
-               <element minOccurs="0" name="movementSense" type="gml:CodeType">
+               <element minOccurs="0" name="movementSense" type="gml:ReferenceType">
                   <annotation>
                      <documentation>eg, dextral, sinistral</documentation>
                      <appinfo>
@@ -439,7 +439,7 @@ Quantity that specifies the fraction of the Earth Material formed by the part (e
                      </appinfo>
                   </annotation>
                </element>
-               <element minOccurs="0" name="movementType" type="gml:CodeType">
+               <element minOccurs="0" name="movementType" type="gml:ReferenceType">
                   <annotation>
                      <documentation>Defines the type of movement  (eg dip-slip, strike-slip)</documentation>
                      <appinfo>
@@ -478,7 +478,7 @@ Use gml:description to capture any free text to indicate any specific or peculia
       <complexContent>
          <extension base="gsmlb:ExtensionAbstractDescriptionType">
             <sequence>
-               <element minOccurs="0" name="fabricType" type="gml:CodeType">
+               <element minOccurs="0" name="fabricType" type="gml:ReferenceType">
                   <annotation>
                      <documentation>Attribute to denote the type of fabric in the CompoundMaterial (eg, rapikivi texture, autobrecciation, spaced cleavage, porphyroblastic, cross-bedding).  The fabricType describes a pattern, defined by one or more CompoundMaterial constituents, that is present throughout a rock body when considered at some scale. FabricDescription is defined based on the average configuration of many constituents. Penetrative fabric denotes that these constituents are distributed throughout the rock volume at the scale of observation [Passchier and Trouw, 1998], and are repeated at distances that are small relative to the scale of the whole, such that they can be considered to pervade the whole uniformly.</documentation>
                      <appinfo>
@@ -877,7 +877,7 @@ Many other types of relationships can also be accommodated via GeologicRelation,
       <complexContent>
          <extension base="gsmlb:AbstractFeatureRelationType">
             <sequence>
-               <element minOccurs="0" name="relationship" type="gml:CodeType">
+               <element minOccurs="0" name="relationship" type="gml:ReferenceType">
                   <annotation>
                      <documentation>A term from a controlled vocabulary to describe the geologic relationship</documentation>
                      <appinfo>
@@ -885,7 +885,7 @@ Many other types of relationships can also be accommodated via GeologicRelation,
                      </appinfo>
                   </annotation>
                </element>
-               <element minOccurs="0" name="sourceRole" type="gml:CodeType">
+               <element minOccurs="0" name="sourceRole" type="gml:ReferenceType">
                   <annotation>
                      <documentation>The role played by the source geologic feature or object</documentation>
                      <appinfo>
@@ -893,7 +893,7 @@ Many other types of relationships can also be accommodated via GeologicRelation,
                      </appinfo>
                   </annotation>
                </element>
-               <element minOccurs="0" name="targetRole" type="gml:CodeType">
+               <element minOccurs="0" name="targetRole" type="gml:ReferenceType">
                   <annotation>
                      <documentation>The role played by the target geologic feature or object</documentation>
                      <appinfo>
@@ -1131,7 +1131,7 @@ Class also includes discrete linear structures like boudin, channel axis, tool m
                      </complexContent>
                   </complexType>
                </element>
-               <element minOccurs="0" name="lineationType" type="gml:CodeType">
+               <element minOccurs="0" name="lineationType" type="gml:ReferenceType">
                   <annotation>
                      <documentation>Type of lineation.
 Examples include: flow lines, scratches, striae, slickenlines, linear arrangements of elongate components in sediments, elongate minerals, crinkles, and lines of intersection between penetrative planar structures.</documentation>
@@ -1333,7 +1333,7 @@ Indicates in a general way the P-T environment in which the metamorphism took pl
                <element maxOccurs="unbounded"
                         minOccurs="0"
                         name="mineralName"
-                        type="gml:CodeType">
+                        type="gml:ReferenceType">
                   <annotation>
                      <documentation>Name of the mineral (eg: orthoclase) or mineral family (eg: feldspar), approved by the International Mineralogical Association. (eg: http://www.mindat.org/mineralindex.php)</documentation>
                      <appinfo>
@@ -1396,7 +1396,7 @@ Includes small-scale structures that are characteristic of the geologic unit, e.
       <complexContent>
          <extension base="gsmlb:GeologicStructureType">
             <sequence>
-               <element minOccurs="0" name="structureType" type="gml:CodeType">
+               <element minOccurs="0" name="structureType" type="gml:ReferenceType">
                   <annotation>
                      <documentation>The type of non oriented structure.  Examples include miarolitic cavity, flame structure, load cast, shatter cone, trace fossil, fossil mold</documentation>
                      <appinfo>
@@ -1462,7 +1462,7 @@ This class is an empty placeholder for extension at a later date, or by other do
   </element>
   <complexType name="ParticleGeometryDescriptionType">
       <sequence>
-         <element minOccurs="0" name="particleType" type="gml:CodeType">
+         <element minOccurs="0" name="particleType" type="gml:ReferenceType">
             <annotation>
                <documentation>Terms to specify the nature of individual particles of each constituent in an Earth Material aggregation, based mostly on their genesis.  If applied on ParticleDescription for CompoundMaterial, then would characterize all particles in aggregate. Use this property on CompoundMaterial to distinguish rocks composed of crystals (crystalline rocks) from rocks composed of granular particles (clasts, fragments). Examples include oolith, crystals, pore space. Constituent type is determined based on the nature of the particles, and ideally is independent of the relationship between particles in a compound material aggregation.
 See discussion of particleType vs ConstituentPart.role in the scope notes for ConstituentPart.</documentation>
@@ -1561,7 +1561,7 @@ Vector and tensor physical properties are considered to be more applicable to lo
       <complexContent>
          <extension base="gsmlb:ExtensionAbstractDescriptionType">
             <sequence>
-               <element minOccurs="0" name="propertyName" type="gml:CodeType">
+               <element minOccurs="0" name="propertyName" type="gml:ReferenceType">
                   <annotation>
                      <documentation>A term from a controlled vocabulary of physical properties of rock materials (eg; density, porosity, magnetic susceptibility, remanent magnetism, permeability, seismic velocity)</documentation>
                      <appinfo>
@@ -1659,7 +1659,7 @@ Vector and tensor physical properties are considered to be more applicable to lo
                <element maxOccurs="unbounded"
                         name="stPhysicalProperty"
                         type="gsmle:PhysicalDescriptionPropertyType"/>
-               <element name="deformationStyle" type="gml:CodeType">
+               <element name="deformationStyle" type="gml:ReferenceType">
                   <annotation>
                      <documentation>A mandatory element referring to a vocabulary of terms to describe the style of deformation, ie brittle (fault, breccia), ductile (shear), brittle-ductile, unknown.</documentation>
                      <appinfo>

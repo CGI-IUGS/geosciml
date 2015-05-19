@@ -83,19 +83,21 @@ xmlns:swe="http://www.opengis.net/swe/2.0" elementFormDefault="qualified" target
           <documentation>The time period during which drilling of the borehole occurred.</documentation>
         </annotation>
       </element>
-      <element minOccurs="0" name="startPoint" type="gml:CodeType">
+      <element minOccurs="0" name="startPoint" type="gml:ReferenceType">
         <annotation>
           <documentation>Indicates the position relative to ground surface where the borehole commenced. Appropriate terms would include Drilled from Ground Surface; Drilled Underground;  Drilled from Quarry Floor etc</documentation>
           <appinfo>
             <targetElement xmlns="http://www.opengis.net/gml/3.2">gsmlbh:BoreholeStartPointCode</targetElement>
+            <targetCodeList xmlns="http://www.opengis.net/gml/3.3/exr">BoreholeStartPointCode</targetCodeList>
           </appinfo>
         </annotation>
       </element>
-      <element minOccurs="0" name="inclinationType" type="gml:CodeType">
+      <element minOccurs="0" name="inclinationType" type="gml:ReferenceType">
         <annotation>
           <documentation>Indicates the inclination of the borehole. Appropriate terms would include vertical; inclined up; inclined down, horizontal</documentation>
           <appinfo>
             <targetElement xmlns="http://www.opengis.net/gml/3.2">gsmlbh:BoreholeInclinationCode</targetElement>
+            <targetCodeList xmlns="http://www.opengis.net/gml/3.3/exr">BoreholeInclinationCode</targetCodeList>
           </appinfo>
         </annotation>
       </element>
@@ -104,11 +106,12 @@ xmlns:swe="http://www.opengis.net/swe/2.0" elementFormDefault="qualified" target
           <documentation>Organisation that is custodian of the core recovered from the borehole</documentation>
         </annotation>
       </element>
-      <element maxOccurs="unbounded" minOccurs="0" name="purpose" type="gml:CodeType">
+      <element maxOccurs="unbounded" minOccurs="0" name="purpose" type="gml:ReferenceType">
         <annotation>
           <documentation>The purpose for which the borehole was drilled. eg, site investigation, mineral exploration, hydrocarbon exploration, water resources</documentation>
           <appinfo>
             <targetElement xmlns="http://www.opengis.net/gml/3.2">gsmlbh:BoreholePurposeCode</targetElement>
+            <targetCodeList xmlns="http://www.opengis.net/gml/3.3/exr">BoreholePurposeCode</targetCodeList>
           </appinfo>
         </annotation>
       </element>
@@ -205,20 +208,13 @@ xmlns:swe="http://www.opengis.net/swe/2.0" elementFormDefault="qualified" target
   <element name="DrillingDetails" substitutionGroup="gml:AbstractObject" type="gsmlbh:DrillingDetailsType"/>
   <complexType name="DrillingDetailsType">
     <sequence>
-      <element name="interval" type="gml:GeometryPropertyType"/>
-      <element minOccurs="0" name="drillingMethod" nillable="true">
+      <element minOccurs="0" name="interval" type="gml:GeometryPropertyType"/>
+      <element minOccurs="0" name="drillingMethod" nillable="true" type="gml:ReferenceType">
         <annotation>
           <appinfo>
             <targetElement xmlns="http://www.opengis.net/gml/3.2">gsmlbh:BoreholeDrillingMethodCode</targetElement>
           </appinfo>
         </annotation>
-        <complexType>
-          <simpleContent>
-            <extension base="gml:CodeType">
-              <attribute name="nilReason" type="gml:NilReasonType"/>
-            </extension>
-          </simpleContent>
-        </complexType>
       </element>
       <element minOccurs="0" name="boreholeDiameter" nillable="true">
         <complexType>
