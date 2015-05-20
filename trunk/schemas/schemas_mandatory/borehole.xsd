@@ -203,6 +203,7 @@
                      </appinfo>
                   </annotation>
                </element>
+               <element minOccurs="0" name="shape" type="gml:GeometryPropertyType"/>
                <element minOccurs="0" name="mappedIntervalBegin">
                   <annotation>
                      <documentation>The measured distance of the start of the mapped interval along the path of the borehole. The measured value must be less than or equal to the mappedIntervalEnd value.  The "mappedIntervalBegin" and "mappedIntervalEnd" elements are added in version 3.2 as a measure to overcome problems with the delivery and queryability of 1D GML shapes via the "shape" property.</documentation>
@@ -233,12 +234,32 @@
                      </complexContent>
                   </complexType>
                </element>
+               <element maxOccurs="unbounded"
+                        minOccurs="0"
+                        name="specification"
+                        type="gml:FeaturePropertyType">
+                  <annotation>
+                     <documentation>Description of a feature that is sampled by the borehole interval (eg, a geologic unit, a geologic structure)</documentation>
+                  </annotation>
+               </element>
                <element minOccurs="0"
                         name="collectionIdentifier"
                         type="gml:CodeWithAuthorityType">
                   <annotation>
                      <documentation>to group mapped intervals to implement multiple logs on a single borehole. GenericName should identify a particular log observation event.</documentation>
                   </annotation>
+               </element>
+               <element maxOccurs="unbounded" minOccurs="0" name="observationMethod">
+                  <complexType>
+                     <complexContent>
+                        <extension base="gml:AbstractMemberType">
+                           <sequence minOccurs="0">
+                              <element ref="swe:Category"/>
+                           </sequence>
+                           <attributeGroup ref="gml:AssociationAttributeGroup"/>
+                        </extension>
+                     </complexContent>
+                  </complexType>
                </element>
             </sequence>
          </extension>
@@ -309,6 +330,23 @@
       <sequence>
          <element ref="gsmlbh:DrillingDetails"/>
       </sequence>
+  </complexType>
+  <element name="IntervalGeometry"
+            substitutionGroup="gml:AbstractGML"
+            type="gsmlbh:IntervalGeometryType"/>
+  <complexType name="IntervalGeometryType">
+      <complexContent>
+         <extension base="gml:AbstractGMLType">
+            <sequence/>
+         </extension>
+      </complexContent>
+  </complexType>
+  <complexType name="IntervalGeometryPropertyType">
+      <sequence minOccurs="0">
+         <element ref="gsmlbh:IntervalGeometry"/>
+      </sequence>
+      <attributeGroup ref="gml:AssociationAttributeGroup"/>
+      <attributeGroup ref="gml:OwnershipAttributeGroup"/>
   </complexType>
   <element name="OriginPosition"
             substitutionGroup="gml:AbstractFeature"
