@@ -17,176 +17,164 @@
  <ns prefix="gsmlbh" uri="http://xmlns.geosciml.org/borehole/4.0"/>
  <ns prefix="gml" uri="http://www.opengis.net/gml/3.2"/>
  <ns prefix="sa" uri="http://www.opengis.net/sampling/2.0"/>
- 
+
  <!-- MappedFeature -->
  <pattern id="MappedFeature.specification">
   <title>Testing presence of gsmlb:specification</title>
-  <rule context="//gsmlb:MappingFrame">
+  <rule context="//gsmlb:MappedFeature">
    <assert test="gsmlb:specification">Property
-    {http://xmlns.geosciml.org/geologybasic/4.0}specification is mandatory - use nil if a value cannot be provided</assert>
+    {http://xmlns.geosciml.org/geologybasic/4.0}specification is mandatory - use
+    nil if a value cannot be provided</assert>
   </rule>
  </pattern>
  <pattern id="MappedFeature.mappingFrame">
   <title>Testing presence of gsmlb:mappingFrame</title>
-  <rule context="//gsmlb:MappingFrame">
+  <rule context="//gsmlb:MappedFeature">
    <assert test="gsmlb:mappingFrame">Property
-    {http://xmlns.geosciml.org/geologybasic/4.0}mappingFrame is mandatory - use nil if a value cannot be provided</assert>
+    {http://xmlns.geosciml.org/geologybasic/4.0}mappingFrame is mandatory - use
+    nil if a value cannot be provided</assert>
   </rule>
  </pattern>
  <pattern id="MappedFeature.shape">
   <title>Testing presence of gsmlb:shape</title>
-  <rule context="//gsmlb:MappingFrame">
+  <rule context="//gsmlb:MappedFeature">
    <assert test="gsmlb:shape">Property
-    {http://xmlns.geosciml.org/geologybasic/4.0}shape is mandatory - use nil if a value cannot be provided</assert>
+    {http://xmlns.geosciml.org/geologybasic/4.0}shape is mandatory - use nil if
+    a value cannot be provided</assert>
   </rule>
  </pattern>
- 
+
  <!-- GeologicFeature -->
- <!-- Only for use with Schema aware processor
- <pattern id="GeologicFeature.identifier">
-  <title>Testing presence of gml:identifier</title>
-  <rule
-   context="//schema-element(gsmlb:GeologicFeature)[not(self::gsmlb:GeologicEvent)]">
+
+ <pattern abstract="true" id="GeologicFeature.identifier.abstract">
+  <title>Testing presence and content of gml:identifier to encode
+   inspireId</title>
+  <rule context="$feature_path">
    <assert test="gml:identifier">Property
-    {http://www.opengis.net/gml/3.2}identifier is mandatory - use nil if a value
-    cannot be provided</assert>
+    {http://www.opengis.net/gml/3.2}identifier is mandatory</assert>
+   <assert test="
+     string-length(normalize-space(gml:identifier)) >
+     0"
+    >{http://www.opengis.net/gml/3.2}identifier must not be empty</assert>
+   <assert
+    test="
+     string-length(normalize-space(gml:identifier/@codeSpace)) >
+     0"
+    >{http://www.opengis.net/gml/3.2}identifier/@codeSpace must not be
+    empty</assert>
   </rule>
  </pattern>
- <pattern id="GeologicFeature.name">
+
+ <pattern abstract="true" id="GeologicFeature.name.abstract">
   <title>Testing presence of gml:name</title>
-  <rule context="//schema-element(gsmlb:GeologicFeature)">
+  <p>It isn't clear what should be done if there is no value as this is voidable
+   in INSPIRE but gml:name does not have a nilReason attribute. Would it be OK
+   to use a blank name or should it have at least "unnamed" in?</p>
+  <rule context="$feature_path">
    <assert test="gml:name">Property {http://www.opengis.net/gml/3.2}name is
-    mandatory - use nil if a value cannot be provided</assert>
+    mandatory - say "unnamed" if a value cannot be provided</assert>
+   <assert test="
+     string-length(normalize-space(gml:name)) >
+     0"
+    >{http://www.opengis.net/gml/3.2}name must not be empty</assert>
   </rule>
  </pattern>
- <pattern id="GeologicFeature.geologicHistory">
+
+ <pattern abstract="true" id="GeologicFeature.geologicHistory.abstract">
   <title>Testing presence of gsmlb:geologicHistory</title>
-  <rule
-   context="//schema-element(gsmlb:GeologicFeature)[not(self::gsmlb:GeologicEvent)]">
+  <rule context="$feature_path">
    <assert test="gsmlb:geologicHistory">Property
     {http://xmlns.geosciml.org/geologybasic/4.0}geologicHistory is mandatory -
     use nil if a value cannot be provided</assert>
   </rule>
+  <!-- Need to check nil or by ref or inline and this isn't a generic GML
+   property type so will have to apply here specifically. Might re-use a generic
+   rule though? -->
+ </pattern>
+
+ <!-- Only for use with Schema aware processor
+ <pattern id="GeologicFeature.identifier" is-a="GeologicFeature.identifier.abstract">
+  <param name="feature_path" value="//schema-element(gsmlb:GeologicFeature)[not(self::gsmlb:GeologicEvent)]"/>
+ </pattern>
+ <pattern id="GeologicFeature.name" is-a="GeologicFeature.name.abstract">
+  <param name="feature_path" value="//schema-element(gsmlb:GeologicFeature)"/>
+ </pattern>
+ <pattern id="GeologicFeature.geologicHistory" is-a="GeologicFeature.geologicHistory.abstract">
+  <param name="feature_path" value="//schema-element(gsmlb:GeologicFeature)[not(self::gsmlb:GeologicEvent)]"/>
  </pattern>
  -->
+
  <!-- Explicit listing of sub-types of GeologicFeature for non-Schema-aware
   processors -->
- <pattern id="GeologicUnit.identifier">
-  <title>Testing presence of gml:identifier</title>
-  <rule
-   context="//gsmlb:GeologicUnit">
-   <assert test="gml:identifier">Property
-    {http://www.opengis.net/gml/3.2}identifier is mandatory - use nil if a value
-    cannot be provided</assert>
-  </rule>
+
+ <pattern id="GeologicUnit.identifier"
+  is-a="GeologicFeature.identifier.abstract">
+  <param name="feature_path" value="//gsmlb:GeologicUnit"/>
  </pattern>
- <pattern id="ShearDisplacementStructure.identifier">
-  <title>Testing presence of gml:identifier</title>
-  <rule
-   context="//gsmlb:ShearDisplacementStructure">
-   <assert test="gml:identifier">Property
-    {http://www.opengis.net/gml/3.2}identifier is mandatory - use nil if a value
-    cannot be provided</assert>
-  </rule>
+ <pattern id="ShearDisplacementStructure.identifier"
+  is-a="GeologicFeature.identifier.abstract">
+  <param name="feature_path" value="//gsmlb:ShearDisplacementStructure"/>
  </pattern>
- <pattern id="Fold.identifier">
-  <title>Testing presence of gml:identifier</title>
-  <rule
-   context="//gsmlb:Fold">
-   <assert test="gml:identifier">Property
-    {http://www.opengis.net/gml/3.2}identifier is mandatory - use nil if a value
-    cannot be provided</assert>
-  </rule>
+ <pattern id="Fold.identifier" is-a="GeologicFeature.identifier.abstract">
+  <param name="feature_path" value="//gsmlb:Fold"/>
  </pattern>
- <pattern id="AnthropogenicGeomorphologicFeature.identifier">
-  <title>Testing presence of gml:identifier</title>
-  <rule
-   context="//gsmlb:AnthropogenicGeomorphologicFeature">
-   <assert test="gml:identifier">Property
-    {http://www.opengis.net/gml/3.2}identifier is mandatory - use nil if a value
-    cannot be provided</assert>
-  </rule>
+ <pattern id="AnthropogenicGeomorphologicFeature.identifier"
+  is-a="GeologicFeature.identifier.abstract">
+  <param name="feature_path" value="//gsmlb:AnthropogenicGeomorphologicFeature"
+  />
  </pattern>
- <pattern id="NaturalGeomorphologicFeature.identifier">
-  <title>Testing presence of gml:identifier</title>
-  <rule
-   context="//gsmlb:NaturalGeomorphologicFeature">
-   <assert test="gml:identifier">Property
-    {http://www.opengis.net/gml/3.2}identifier is mandatory - use nil if a value
-    cannot be provided</assert>
-  </rule>
+ <pattern id="NaturalGeomorphologicFeature.identifier"
+  is-a="GeologicFeature.identifier.abstract">
+  <param name="feature_path" value="//gsmlb:NaturalGeomorphologicFeature"/>
  </pattern>
- <pattern id="GeologicUnit.name">
-  <title>Testing presence of gml:name</title>
-  <rule context="//gsmlb:GeologicUnit">
-   <assert test="gml:name">Property {http://www.opengis.net/gml/3.2}name is
-    mandatory - use nil if a value cannot be provided</assert>
-  </rule>
+
+ <pattern id="GeologicUnit.name" is-a="GeologicFeature.name.abstract">
+  <param name="feature_path" value="//gsmlb:GeologicUnit"/>
  </pattern>
- <pattern id="ShearDisplacementStructure.name">
-  <title>Testing presence of gml:name</title>
-  <rule context="//gsmlb:ShearDisplacementStructure">
-   <assert test="gml:name">Property {http://www.opengis.net/gml/3.2}name is
-    mandatory - use nil if a value cannot be provided</assert>
-  </rule>
+ <pattern id="ShearDisplacementStructure.name"
+  is-a="GeologicFeature.name.abstract">
+  <param name="feature_path" value="//gsmlb:ShearDisplacementStructure"/>
  </pattern>
- <pattern id="Fold.name">
-  <title>Testing presence of gml:name</title>
-  <rule context="//gsmlb:Fold">
-   <assert test="gml:name">Property {http://www.opengis.net/gml/3.2}name is
-    mandatory - use nil if a value cannot be provided</assert>
-  </rule>
+ <pattern id="Fold.name" is-a="GeologicFeature.name.abstract">
+  <param name="feature_path" value="//gsmlb:Fold"/>
  </pattern>
- <pattern id="AnthropogenicGeomorphologicFeature.name">
-  <title>Testing presence of gml:name</title>
-  <rule context="//gsmlb:AnthropogenicGeomorphologicFeature">
-   <assert test="gml:name">Property {http://www.opengis.net/gml/3.2}name is
-    mandatory - use nil if a value cannot be provided</assert>
-  </rule>
+ <pattern id="AnthropogenicGeomorphologicFeature.name"
+  is-a="GeologicFeature.name.abstract">
+  <param name="feature_path" value="//gsmlb:AnthropogenicGeomorphologicFeature"
+  />
  </pattern>
- <pattern id="NaturalGeomorphologicFeature.name">
-  <title>Testing presence of gml:name</title>
-  <rule context="//gsmlb:NaturalGeomorphologicFeature">
-   <assert test="gml:name">Property {http://www.opengis.net/gml/3.2}name is
-    mandatory - use nil if a value cannot be provided</assert>
-  </rule>
+ <pattern id="NaturalGeomorphologicFeature.name"
+  is-a="GeologicFeature.name.abstract">
+  <param name="feature_path" value="//gsmlb:NaturalGeomorphologicFeature"/>
  </pattern>
- <pattern id="GeologicUnit.geologicHistory">
-  <title>Testing presence of gsmlb:geologicHistory</title>
-  <rule context="//gsmlb:GeologicUnit">
-   <assert test="gsmlb:geologicHistory">Property {http://xmlns.geosciml.org/geologybasic/4.0}geologicHistory is
-    mandatory - use nil if a value cannot be provided</assert>
-  </rule>
+ <!-- In INSPIRE GeologicEvent isn't a sub-type of GeologicFeature but it does
+  have the name property in common. -->
+ <pattern id="GeologicEvent.name" is-a="GeologicFeature.name.abstract">
+  <param name="feature_path" value="//gsmlb:NaturalGeomorphologicFeature"/>
  </pattern>
- <pattern id="ShearDisplacementStructure.geologicHistory">
-  <title>Testing presence of gsmlb:geologicHistory</title>
-  <rule context="//gsmlb:ShearDisplacementStructure">
-   <assert test="gsmlb:geologicHistory">Property {http://xmlns.geosciml.org/geologybasic/4.0}geologicHistory is
-    mandatory - use nil if a value cannot be provided</assert>
-  </rule>
+
+ <pattern id="GeologicUnit.geologicHistory"
+  is-a="GeologicFeature.geologicHistory.abstract">
+  <param name="feature_path" value="//gsmlb:GeologicUnit"/>
  </pattern>
- <pattern id="Fold.geologicHistory">
-  <title>Testing presence of gsmlb:geologicHistory</title>
-  <rule context="//gsmlb:Fold">
-   <assert test="gsmlb:geologicHistory">Property {http://xmlns.geosciml.org/geologybasic/4.0}geologicHistory is
-    mandatory - use nil if a value cannot be provided</assert>
-  </rule>
+ <pattern id="ShearDisplacementStructure.geologicHistory"
+  is-a="GeologicFeature.geologicHistory.abstract">
+  <param name="feature_path" value="//gsmlb:ShearDisplacementStructure"/>
  </pattern>
- <pattern id="AnthropogenicGeomorphologicFeature.geologicHistory">
-  <title>Testing presence of gsmlb:geologicHistory</title>
-  <rule context="//gsmlb:AnthropogenicGeomorphologicFeature">
-   <assert test="gsmlb:geologicHistory">Property {http://xmlns.geosciml.org/geologybasic/4.0}geologicHistory is
-    mandatory - use nil if a value cannot be provided</assert>
-  </rule>
+ <pattern id="Fold.geologicHistory"
+  is-a="GeologicFeature.geologicHistory.abstract">
+  <param name="feature_path" value="//gsmlb:Fold"/>
  </pattern>
- <pattern id="NaturalGeomorphologicFeature.geologicHistory">
-  <title>Testing presence of gsmlb:geologicHistory</title>
-  <rule context="//gsmlb:NaturalGeomorphologicFeature">
-   <assert test="gsmlb:geologicHistory">Property {http://xmlns.geosciml.org/geologybasic/4.0}geologicHistory is
-    mandatory - use nil if a value cannot be provided</assert>
-  </rule>
+ <pattern id="AnthropogenicGeomorphologicFeature.geologicHistory"
+  is-a="GeologicFeature.geologicHistory.abstract">
+  <param name="feature_path" value="//gsmlb:AnthropogenicGeomorphologicFeature"
+  />
  </pattern>
- 
+ <pattern id="NaturalGeomorphologicFeature.geologicHistory"
+  is-a="GeologicFeature.geologicHistory.abstract">
+  <param name="feature_path" value="//gsmlb:NaturalGeomorphologicFeature"/>
+ </pattern>
+
  <!-- GeologicUnit -->
  <pattern id="GeologicUnit.geologicUnitType">
   <title>Testing presence of gsmlb:geologicUnitType</title>
@@ -291,14 +279,14 @@
     value cannot be provided</assert>
   </rule>
  </pattern>
- 
+
  <!-- CompositionPart -->
  <pattern id="CompositionPart.material">
   <title>Testing presence of gsmlb:material</title>
   <rule context="//gsmlb:CompositionPart">
    <assert test="gsmlb:material">Property
-    {http://xmlns.geosciml.org/geologybasic/4.0}material is mandatory - use nil if a
-    value cannot be provided</assert>
+    {http://xmlns.geosciml.org/geologybasic/4.0}material is mandatory - use nil
+    if a value cannot be provided</assert>
   </rule>
  </pattern>
  <pattern id="CompositionPart.role">
@@ -313,16 +301,15 @@
   <title>Testing presence of gsmlb:proportion</title>
   <rule context="//gsmlb:CompositionPart">
    <assert test="gsmlb:proportion">Property
-    {http://xmlns.geosciml.org/geologybasic/4.0}proportion is mandatory - use nil if a
-    value cannot be provided</assert>
+    {http://xmlns.geosciml.org/geologybasic/4.0}proportion is mandatory - use
+    nil if a value cannot be provided</assert>
   </rule>
  </pattern>
- 
+
  <!-- Borehole -->
  <pattern id="Borehole.identifier">
   <title>Testing presence of gml:identifier</title>
-  <rule
-   context="//gsmlbh:Borehole">
+  <rule context="//gsmlbh:Borehole">
    <assert test="gml:identifier">Property
     {http://www.opengis.net/gml/3.2}identifier is mandatory - use nil if a value
     cannot be provided</assert>
@@ -332,8 +319,8 @@
   <title>Testing presence of gsmlbh:referenceLocation</title>
   <rule context="//gsmlbh:Borehole">
    <assert test="gsmlbh:referenceLocation">Property
-    {http://xmlns.geosciml.org/borehole/4.0}referenceLocation is mandatory - use nil if a
-    value cannot be provided</assert>
+    {http://xmlns.geosciml.org/borehole/4.0}referenceLocation is mandatory - use
+    nil if a value cannot be provided</assert>
   </rule>
  </pattern>
 </schema>
