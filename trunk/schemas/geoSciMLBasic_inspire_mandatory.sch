@@ -147,11 +147,6 @@
   is-a="GeologicFeature.name.abstract">
   <param name="feature_path" value="//gsmlb:NaturalGeomorphologicFeature"/>
  </pattern>
- <!-- In INSPIRE GeologicEvent isn't a sub-type of GeologicFeature but it does
-  have the name property in common. -->
- <pattern id="GeologicEvent.name" is-a="GeologicFeature.name.abstract">
-  <param name="feature_path" value="//gsmlb:NaturalGeomorphologicFeature"/>
- </pattern>
 
  <pattern id="GeologicUnit.geologicHistory"
   is-a="GeologicFeature.geologicHistory.abstract">
@@ -239,14 +234,10 @@
   </rule>
  </pattern>
  <!-- GeologicEvent -->
- <pattern id="GeologicEvent.name">
-  <title>Testing presence of gml:name</title>
-  <rule context="//gml:GeologicEvent">
-   <assert test="gml:name">Property
-    {http://xmlns.geosciml.org/geologybasic/4.0}name is mandatory - use nil if a
-    value cannot be provided</assert>
-  </rule>
+ <pattern id="GeologicEvent.name" is-a="GeologicFeature.name.abstract">
+  <param name="feature_path" value="//gsmlb:GeologicEvent"/>
  </pattern>
+
  <pattern id="GeologicEvent.youngerNamedAge">
   <title>Testing presence of gsmlb:youngerNamedAge</title>
   <rule context="//gsmlb:GeologicEvent">
