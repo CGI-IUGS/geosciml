@@ -31,6 +31,7 @@
  </pattern>
  
  <!-- General pattern for testing simple by reference properties against list of URIs in vocabulary -->
+ <!-- Will this fail if no xlink:href because nilReason? -->
  <pattern abstract="true" id="by-ref.property.vocabulary">
   <title>Abstract pattern for testing that by reference property href's come
    from a given vocabulary.</title>
@@ -44,7 +45,10 @@
   </rule>
  </pattern>
 
- <!-- General pattern testing properties specified by inline swe:Category against list of URIs in vocabulary-->
+ <!-- General pattern testing properties specified by inline swe:Category
+  against list of URIs in vocabulary -->
+ <!-- It seems a bit strange using an swe:Category element but not its value
+  property? -->
  <pattern abstract="true" id="swe_Category">
   <rule context="$category_path">
    <assert test="$vocabulary//cl:containeditems/cl:value/@id[ . = current()/swe:identifier]">
@@ -161,15 +165,14 @@
   />
  </pattern>
  
- <pattern id="inspire.vocabulary.GeomorphologicActivityValue" is-a="by-ref.property.vocabulary">
+ <pattern id="inspire.vocabulary.GeomorphologicActivityValue" is-a="swe_Category">
   <title>INSPIRE Vocabulary</title>
   <p>Check that property uses values from the appropriate INSPIRE vocabulary.</p>
-  <param name="property"
-   value="//gsmlb:NaturalGeomorphologicFeature/gsmlb:activity[not(@nilReason)]"/>
+  <param name="category_path" value="//gsmlb:NaturalGeomorphologicFeature/gsmlb:activity/swe:Category"/>
   <param name="vocabulary"
    value="document('http://inspire.ec.europa.eu/codelist/GeomorphologicActivityValue/GeomorphologicActivityValue.en.xml')"
   />
- </pattern>
+  <param name="vocab_uri" value="'http://inspire.ec.europa.eu/codelist/GeomorphologicActivityValue/GeomorphologicActivityValue'"/> </pattern>
  
  <pattern id="inspire.vocabulary.AnthropogenicGeomorphologicFeatureTypeValue" is-a="by-ref.property.vocabulary">
   <title>INSPIRE Vocabulary</title>

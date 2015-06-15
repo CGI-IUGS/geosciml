@@ -17,6 +17,7 @@
  <ns prefix="gsmlbh" uri="http://xmlns.geosciml.org/borehole/4.0"/>
  <ns prefix="gml" uri="http://www.opengis.net/gml/3.2"/>
  <ns prefix="sa" uri="http://www.opengis.net/sampling/2.0"/>
+ <ns prefix="swe" uri="http://www.opengis.net/swe/2.0"/>
 
  <!-- MappedFeature -->
  <pattern id="MappedFeature.specification">
@@ -171,6 +172,7 @@
  </pattern>
 
  <!-- GeologicUnit -->
+ 
  <pattern id="GeologicUnit.geologicUnitType">
   <title>Testing presence of gsmlb:geologicUnitType</title>
   <rule context="//gsmlb:GeologicUnit">
@@ -179,6 +181,7 @@
     use nil if a value cannot be provided</assert>
   </rule>
  </pattern>
+ <!-- Schema enforces having Composition part inside composition element. -->
  <pattern id="GeologicUnit.composition">
   <title>Testing presence of gsmlb:composition</title>
   <rule context="//gsmlb:GeologicUnit">
@@ -187,7 +190,9 @@
     nil if a value cannot be provided</assert>
   </rule>
  </pattern>
+ 
  <!-- ShearDisplacementStructure -->
+ 
  <pattern id="ShearDisplacementStructure.faultType">
   <title>Testing presence of gsmlb:faultType</title>
   <rule context="//gsmlb:ShearDisplacementStructure">
@@ -196,7 +201,9 @@
     if a value cannot be provided</assert>
   </rule>
  </pattern>
+ 
  <!-- Fold -->
+ 
  <pattern id="Fold.profileType">
   <title>Testing presence of gsmlb:profileType</title>
   <rule context="//gsmlb:Fold">
@@ -205,7 +212,9 @@
     nil if a value cannot be provided</assert>
   </rule>
  </pattern>
+ 
  <!-- NaturalGeomorphologicFeature -->
+ 
  <pattern id="NaturalGeomorphologicFeature.naturalGeomorphologicFeatureType">
   <title>Testing presence of gsmlb:naturalGeomorphologicFeatureType</title>
   <rule context="//gsmlb:NaturalGeomorphologicFeature">
@@ -222,7 +231,9 @@
     if a value cannot be provided</assert>
   </rule>
  </pattern>
+ 
  <!-- AnthropogenicGeomorphologicFeature -->
+ 
  <pattern
   id="AnthropogenicGeomorphologicFeature.anthropogenicGeomorphologicFeatureType">
   <title>Testing presence of
@@ -233,17 +244,20 @@
     is mandatory - use nil if a value cannot be provided</assert>
   </rule>
  </pattern>
+ 
  <!-- GeologicEvent -->
+ 
  <pattern id="GeologicEvent.name" is-a="GeologicFeature.name.abstract">
   <param name="feature_path" value="//gsmlb:GeologicEvent"/>
  </pattern>
-
- <pattern id="GeologicEvent.youngerNamedAge">
-  <title>Testing presence of gsmlb:youngerNamedAge</title>
+<!-- eventProcess younger and older NamedAge are gml:ReferenceType so a generic test of
+  nilReason vs xlink attributes should be fine for "content" -->
+ <pattern id="GeologicEvent.eventProcess">
+  <title>Testing presence of gsmlb:eventProcess</title>
   <rule context="//gsmlb:GeologicEvent">
-   <assert test="gsmlb:youngerNamedAge">Property
-    {http://xmlns.geosciml.org/geologybasic/4.0}youngerNamedAge is mandatory -
-    use nil if a value cannot be provided</assert>
+   <assert test="gsmlb:eventProcess">Property
+    {http://xmlns.geosciml.org/geologybasic/4.0}eventProcess is mandatory - use
+    nil if a value cannot be provided</assert>
   </rule>
  </pattern>
  <pattern id="GeologicEvent.olderNamedAge">
@@ -254,14 +268,15 @@
     nil if a value cannot be provided</assert>
   </rule>
  </pattern>
- <pattern id="GeologicEvent.eventProcess">
-  <title>Testing presence of gsmlb:eventProcess</title>
+ <pattern id="GeologicEvent.youngerNamedAge">
+  <title>Testing presence of gsmlb:youngerNamedAge</title>
   <rule context="//gsmlb:GeologicEvent">
-   <assert test="gsmlb:eventProcess">Property
-    {http://xmlns.geosciml.org/geologybasic/4.0}eventProcess is mandatory - use
-    nil if a value cannot be provided</assert>
+   <assert test="gsmlb:youngerNamedAge">Property
+    {http://xmlns.geosciml.org/geologybasic/4.0}youngerNamedAge is mandatory -
+    use nil if a value cannot be provided</assert>
   </rule>
  </pattern>
+ <!-- eventEnvironment will need nil/by-ref/inline checks explicitly applying. -->
  <pattern id="GeologicEvent.eventEnvironment">
   <title>Testing presence of gsmlb:eventEnvironment</title>
   <rule context="//gsmlb:GeologicEvent">
@@ -272,12 +287,15 @@
  </pattern>
 
  <!-- CompositionPart -->
+ 
  <pattern id="CompositionPart.material">
-  <title>Testing presence of gsmlb:material</title>
+  <title>Testing presence of gsmlb:material and contained lithology</title>
   <rule context="//gsmlb:CompositionPart">
-   <assert test="gsmlb:material">Property
-    {http://xmlns.geosciml.org/geologybasic/4.0}material is mandatory - use nil
-    if a value cannot be provided</assert>
+   <assert test="gsmlb:material/gsmlb:RockMaterial/gsmlb:lithology">Mandatory to
+    include
+    {http://xmlns.geosciml.org/geologybasic/4.0}material/{http://xmlns.geosciml.org/geologybasic/4.0}R
+    ockMaterial/{http://xmlns.geosciml.org/geologybasic/4.0}/lithology - use nil
+    on lithology if a value cannot be provided</assert>
   </rule>
  </pattern>
  <pattern id="CompositionPart.role">
@@ -294,10 +312,37 @@
    <assert test="gsmlb:proportion">Property
     {http://xmlns.geosciml.org/geologybasic/4.0}proportion is mandatory - use
     nil if a value cannot be provided</assert>
+   <!-- Do we want to enforce use of GSML_QuantityRange rather than
+  swe:QuantitityRange? INSPIRE Schema only has swe:QuantityRange -->
+   <assert test="gsmlb:proportion/swe:QuantityRange or
+    gsmlb:proportion/gsmlb:GSML_QuantityRange">Must use
+    {http://www.opengis.net/swe/2.0}QuantityRange or
+    {http://xmlns.geosciml.org/geologybasic/4.0}GSML_QuantityRange to encode
+    proportion.</assert>
   </rule>
  </pattern>
 
+<!-- SWE allows value to be omitted for use in template structures but we must
+  have a value for useful data. These rules may belong in a different profile
+  file from other nillable related rules. -->
+ <pattern id="swe_QuantityRange">
+  <rule context="//swe:QuantityRange">
+   <assert test="swe:value">Must include value in data instance document.</assert>
+  </rule>
+ </pattern>
+ <!-- GeoSciML allows lowerValue and upperValue to be omitted from
+  GSML_QuantityRange, presumably just
+  to be consistent with the parent swe:QuantityRange type. -->
+ <pattern id="GSML_QuantityRange">
+  <rule context="//gsmlb:GSML_QuantityRange">
+   <assert test="swe:value">Must include value in data instance document.</assert>
+   <assert test="gsmlb:lowerValue">Must include lowerValue in data instance document.</assert>
+   <assert test="gsmlb:upperValue">Must include upperValue in data instance document.</assert>
+  </rule>
+ </pattern>
+ 
  <!-- Borehole -->
+ 
  <pattern id="Borehole.identifier">
   <title>Testing presence of gml:identifier</title>
   <rule context="//gsmlbh:Borehole">
