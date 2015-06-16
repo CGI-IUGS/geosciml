@@ -11,7 +11,7 @@
  -->
  <title>Properties mandatory for INSPIRE</title>
  <p>This Schematron enforces mandatory properties required by INSPIRE but not
-  the GeoSciML Basic XML Schema</p>
+  the GeoSciML Basic or Borehole XML Schemas</p>
  <ns prefix="xlink" uri="http://www.w3.org/1999/xlink"/>
  <ns prefix="gsmlb" uri="http://xmlns.geosciml.org/geologybasic/4.0"/>
  <ns prefix="gsmlbh" uri="http://xmlns.geosciml.org/borehole/4.0"/>
@@ -322,7 +322,7 @@
   </rule>
  </pattern>
 
-<!-- SWE allows value to be omitted for use in template structures but we must
+ <!-- SWE allows value to be omitted for use in template structures but we must
   have a value for useful data. These rules may belong in a different profile
   file from other nillable related rules. -->
  <pattern id="swe_QuantityRange">
@@ -342,21 +342,74 @@
  </pattern>
  
  <!-- Borehole -->
- 
- <pattern id="Borehole.identifier">
-  <title>Testing presence of gml:identifier</title>
-  <rule context="//gsmlbh:Borehole">
-   <assert test="gml:identifier">Property
-    {http://www.opengis.net/gml/3.2}identifier is mandatory - use nil if a value
-    cannot be provided</assert>
-  </rule>
+
+ <pattern id="Borehole.identifier" is-a="GeologicFeature.identifier.abstract">
+  <param name="feature_path" value="//gsmlbh:Borehole"/>
  </pattern>
+ <!-- Does INSPIRE WFS mapping guide imply that there should be one
+  sampledFeature for each logElement? Or there should be a sampledFeature
+  pointing to each feature in a logElement/BoreholeInterval/specification. 
+  Does this apply for GeoSciML in general or
+  just INSPIRE? Should I make a Schematron rule for this? -->
+ <!-- Do we want to ensure that sams:shape is encoded inline rather than
+by reference? -->
+ <!-- Do we want to check that shape is a gml:LineString with @gml:id (are there other
+ linear geometry elements?) -->
  <pattern id="Borehole.referenceLocation">
   <title>Testing presence of gsmlbh:referenceLocation</title>
   <rule context="//gsmlbh:Borehole">
    <assert test="gsmlbh:referenceLocation">Property
     {http://xmlns.geosciml.org/borehole/4.0}referenceLocation is mandatory - use
     nil if a value cannot be provided</assert>
+  </rule>
+ </pattern>
+ <!-- What other rules on location and elevation?
+  Make sure OriginPosition included inline?
+  Make sure have srsDimension = 2 for location and 1 for elevation?
+  location and elevation have different srs so can't both inherit from some
+  higher up element. Would best practice be to make sure both have an @srsName? -->
+ <pattern id="Borehole.purpose">
+  <title>Testing presence of at least one gsmlbh:purpose</title>
+  <rule context="//gsmlbh:Borehole">
+   <assert test="gsmlbh:indexData/gsmlbh:BoreholeDetails/gsmlbh:purpose">Property
+    {http://xmlns.geosciml.org/borehole/4.0}indexData/{http://xmlns.geosciml.org/borehole/4.0}BoreholeDetails/{http://xmlns.geosciml.org/borehole/4.0}purpose is mandatory - use
+    nil if a value cannot be provided</assert>
+  </rule>
+ </pattern>
+ <pattern id="Borehole.boreholeLength">
+  <title>Testing presence of gsmlbh:boreholeLength</title>
+  <rule context="//gsmlbh:Borehole">
+   <assert test="gsmlbh:indexData/gsmlbh:BoreholeDetails/gsmlbh:boreholeLength">Property
+    {http://xmlns.geosciml.org/borehole/4.0}indexData/{http://xmlns.geosciml.org/borehole/4.0}BoreholeDetails/{http://xmlns.geosciml.org/borehole/4.0}b
+    oreholeLength is mandatory - use
+    nil if a value cannot be provided</assert>
+   <!-- Probably should have some rules on having swe:Quantity inline and maybe
+    uom being an OGC URI, having an swe:value... -->
+   <!-- Should any sanity check be done on values found in
+    mappedInterval's being less that length? -->
+  </rule>
+ </pattern>
+ <pattern id="Borehole.logElement">
+  <title>Testing presence of gsmlbh:logElement</title>
+  <rule context="//gsmlbh:Borehole">
+   <assert test="gsmlbh:logElement">Property
+    {http://xmlns.geosciml.org/borehole/4.0}logElement is mandatory - use nil if
+   a value cannot be provided</assert>
+  </rule>
+ </pattern>
+ <pattern id="BoreholeInterval.mandatoryProperties">
+  <title>Make sure BoreholeInterval properties required by INSPIRE are present</title>
+  <!-- Making sure logElement is encoded inline for convenience of other tests -->
+  <rule context="//gsmlbh:Borehole/gsmlbh:logElement">
+   <assert test="gsmlbh:BoreholeInterval">Must encode {http://xmlns.geosciml.org/borehole/4.0}BoreholeInterval inline
+    to ensure other INSPIRE required properties are included</assert>
+   <assert
+    test="gsmlbh:BoreholeInterval/gsmlbh:shape">{http://xmlns.geosciml.org/borehole/4.0}shape is mandatory</assert>
+   <assert test="gsmlbh:BoreholeInterval/gsmlbh:mappedIntervalBegin">{http://xmlns.geosciml.org/borehole/4.0}mappedIntervalBegin is mandatory</assert>
+   <assert test="gsmlbh:BoreholeInterval/gsmlbh:mappedIntervalEnd">{http://xmlns.geosciml.org/borehole/4.0}mappedIntervalmappedIntervalEnd is mandatory</assert>
+   <assert
+    test="gsmlbh:BoreholeInterval/gsmlbh:specification">{http://xmlns.geosciml.org/borehole/4.0}sp
+    ecification is mandatory - use nil if a value cannot be provided</assert>
   </rule>
  </pattern>
 </schema>
