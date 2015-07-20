@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<schema xmlns="http://www.w3.org/2001/XMLSchema" xmlns:gml="http://www.opengis.net/gml/3.2" xmlns:gmlexr="http://www.opengis.net/gml/3.3/exr" xmlns:gsmlb="http://xmlns.geosciml.org/geologybasic/4.0" xmlns:sam="http://www.opengis.net/sampling/2.0" xmlns:swe="http://www.opengis.net/swe/2.0" targetNamespace="http://xmlns.geosciml.org/geologybasic/4.0" elementFormDefault="qualified" version="4.0.0">
+<schema xmlns="http://www.w3.org/2001/XMLSchema" xmlns:gml="http://www.opengis.net/gml/3.2" xmlns:gmlexr="http://www.opengis.net/gml/3.3/exr" xmlns:gsmlb="http://xmlns.geosciml.org/GeoSciML-Basic/4.0" xmlns:sam="http://www.opengis.net/sampling/2.0" xmlns:swe="http://www.opengis.net/swe/2.0" targetNamespace="http://xmlns.geosciml.org/GeoSciML-Basic/4.0" elementFormDefault="qualified" version="4.0.0">
 	<import namespace="http://www.opengis.net/gml/3.2" schemaLocation="http://schemas.opengis.net/gml/3.2.1/gml.xsd"/>
 	<import namespace="http://www.opengis.net/gml/3.3/exr" schemaLocation="http://schemas.opengis.net/gml/3.3/extdEncRule.xsd"/>
 	<import namespace="http://www.opengis.net/sampling/2.0" schemaLocation="http://schemas.opengis.net/sampling/2.0/samplingFeature.xsd"/>
@@ -27,7 +27,7 @@
 		<complexContent>
 			<extension base="gsmlb:GeomorphologicFeatureType">
 				<sequence>
-					<element name="anthropogenicGeomorphologicFeatureType" type="gml:ReferenceType" minOccurs="0">
+					<element name="anthropogenicGeomorphologicFeatureType" type="gml:ReferenceType" nillable="true" minOccurs="0">
 						<annotation>
 							<appinfo>
 								<targetElement xmlns="http://www.opengis.net/gml/3.2">gsmlb:AnthropogenicGeomorphologicFeatureTypeTerm</targetElement>
@@ -46,187 +46,19 @@
 		<attributeGroup ref="gml:AssociationAttributeGroup"/>
 		<attributeGroup ref="gml:OwnershipAttributeGroup"/>
 	</complexType>
-	<element name="CGI_GeometricDescriptionValue" type="gsmlb:CGI_GeometricDescriptionValueType" abstract="true" substitutionGroup="gml:AbstractObject">
-		<annotation>
-			<documentation>Description of the planar or linear orientation of a geologic feature.   
-Allows specifying direction by DirectionVector (eg Dip/Dip Direction), compass point (NE),  description ("toward fold hinge", "below')</documentation>
-		</annotation>
-	</element>
-	<complexType name="CGI_GeometricDescriptionValueType" abstract="true">
-		<sequence>
-			<element name="determinationMethod" type="gml:ReferenceType" minOccurs="0">
-				<annotation>
-					<documentation>Describes the way the orientation value was determined (eg measured, inferred from dip slope, etc)</documentation>
-					<appinfo>
-						<targetElement xmlns="http://www.opengis.net/gml/3.2">gsmlb:DeterminationMethodTerm</targetElement>
-					</appinfo>
-				</annotation>
-			</element>
-			<element name="descriptiveOrientation" type="string" minOccurs="0">
-				<annotation>
-					<documentation>Textual specification of orientation, possibly referencing some local geography</documentation>
-				</annotation>
-			</element>
-		</sequence>
-	</complexType>
-	<complexType name="CGI_GeometricDescriptionValuePropertyType">
-		<sequence>
-			<element ref="gsmlb:CGI_GeometricDescriptionValue"/>
-		</sequence>
-	</complexType>
-	<element name="CGI_LinearOrientation" type="gsmlb:CGI_LinearOrientationType" substitutionGroup="gsmlb:CGI_GeometricDescriptionValue">
-		<annotation>
-			<documentation>Description of the measured orientation of a line.  At least one of plunge or trend should not be nil.</documentation>
-		</annotation>
-	</element>
-	<complexType name="CGI_LinearOrientationType">
-		<complexContent>
-			<extension base="gsmlb:CGI_GeometricDescriptionValueType">
-				<sequence>
-					<element name="directed" type="gml:ReferenceType" minOccurs="0">
-						<annotation>
-							<documentation>To indicate if orientation represents linear feature that is directed, e.g. clast imbrication, mylonitic lineation with sense of shear, slickenlines with displacement direction, rather than undirected.  A code list to indicate which is the directed end of the linear orientation</documentation>
-							<appinfo>
-								<targetElement xmlns="http://www.opengis.net/gml/3.2">gsmlb:LinearDirectedCode</targetElement>
-							</appinfo>
-						</annotation>
-					</element>
-					<element name="plunge" minOccurs="0">
-						<annotation>
-							<documentation>Magnitude of the plunge.</documentation>
-						</annotation>
-						<complexType>
-							<complexContent>
-								<extension base="gml:AbstractMemberType">
-									<sequence minOccurs="0">
-										<element ref="swe:QuantityRange"/>
-									</sequence>
-									<attributeGroup ref="gml:AssociationAttributeGroup"/>
-								</extension>
-							</complexContent>
-						</complexType>
-					</element>
-					<element name="trend" minOccurs="0">
-						<annotation>
-							<documentation>The azimuth (compass bearing) value of the linear orientation.</documentation>
-						</annotation>
-						<complexType>
-							<complexContent>
-								<extension base="gml:AbstractMemberType">
-									<sequence minOccurs="0">
-										<element ref="swe:QuantityRange"/>
-									</sequence>
-									<attributeGroup ref="gml:AssociationAttributeGroup"/>
-								</extension>
-							</complexContent>
-						</complexType>
-					</element>
-				</sequence>
-			</extension>
-		</complexContent>
-	</complexType>
-	<complexType name="CGI_LinearOrientationPropertyType">
-		<sequence>
-			<element ref="gsmlb:CGI_LinearOrientation"/>
-		</sequence>
-	</complexType>
-	<element name="CGI_PlanarOrientation" type="gsmlb:CGI_PlanarOrientationType" substitutionGroup="gsmlb:CGI_GeometricDescriptionValue">
-		<annotation>
-			<documentation>Description of the geometry of a plane.</documentation>
-		</annotation>
-	</element>
-	<complexType name="CGI_PlanarOrientationType">
-		<complexContent>
-			<extension base="gsmlb:CGI_GeometricDescriptionValueType">
-				<sequence>
-					<element name="convention" type="gml:ReferenceType" minOccurs="0">
-						<annotation>
-							<documentation>The convention used for the measurement</documentation>
-							<appinfo>
-								<targetElement xmlns="http://www.opengis.net/gml/3.2">gsmlb:ConventionCode</targetElement>
-							</appinfo>
-						</annotation>
-					</element>
-					<element name="azimuth" minOccurs="0">
-						<annotation>
-							<documentation>The azimuth (compass point, bearing etc) value of the orientation. Convention reports how azimuth is interpreted; if is quadrant. Allowance of different convention makes querying more difficult.</documentation>
-						</annotation>
-						<complexType>
-							<complexContent>
-								<extension base="gml:AbstractMemberType">
-									<sequence minOccurs="0">
-										<element ref="swe:QuantityRange"/>
-									</sequence>
-									<attributeGroup ref="gml:AssociationAttributeGroup"/>
-								</extension>
-							</complexContent>
-						</complexType>
-					</element>
-					<element name="dip" minOccurs="0">
-						<annotation>
-							<documentation>Dip is the angle that the structural surface (eg bedding, fault plane) makes with the horizontal measured perpindicular to the strike of the structure and in the vertical plane as a numeric or term</documentation>
-						</annotation>
-						<complexType>
-							<complexContent>
-								<extension base="gml:AbstractMemberType">
-									<sequence minOccurs="0">
-										<element ref="swe:QuantityRange"/>
-									</sequence>
-									<attributeGroup ref="gml:AssociationAttributeGroup"/>
-								</extension>
-							</complexContent>
-						</complexType>
-					</element>
-					<element name="polarity" type="gml:ReferenceType" minOccurs="0">
-						<annotation>
-							<documentation>Indicates whether the planar orientation is associated with a directed feature that is overturned, upright, vertical etc.</documentation>
-						</annotation>
-					</element>
-				</sequence>
-			</extension>
-		</complexContent>
-	</complexType>
-	<complexType name="CGI_PlanarOrientationPropertyType">
-		<sequence>
-			<element ref="gsmlb:CGI_PlanarOrientation"/>
-		</sequence>
-	</complexType>
-	<element name="CGI_Vector" type="gsmlb:CGI_VectorType" substitutionGroup="gsmlb:CGI_LinearOrientation">
-		<annotation>
-			<documentation>data type for linear orientation with magnitude. Cardinality on magnitude is 1, if magnitude is unknown use CGI_LinearOrientation</documentation>
-		</annotation>
-	</element>
-	<complexType name="CGI_VectorType">
-		<complexContent>
-			<extension base="gsmlb:CGI_LinearOrientationType">
-				<sequence>
-					<element name="magnitude" minOccurs="0">
-						<annotation>
-							<documentation>The numerical length of a linear vector</documentation>
-						</annotation>
-						<complexType>
-							<complexContent>
-								<extension base="gml:AbstractMemberType">
-									<sequence minOccurs="0">
-										<element ref="swe:QuantityRange"/>
-									</sequence>
-									<attributeGroup ref="gml:AssociationAttributeGroup"/>
-								</extension>
-							</complexContent>
-						</complexType>
-					</element>
-				</sequence>
-			</extension>
-		</complexContent>
-	</complexType>
-	<complexType name="CGI_VectorPropertyType">
-		<sequence>
-			<element ref="gsmlb:CGI_Vector"/>
-		</sequence>
-	</complexType>
+
 	<element name="CompositionPart" type="gsmlb:CompositionPartType" substitutionGroup="gml:AbstractObject"/>
 	<complexType name="CompositionPartType">
 		<sequence>
+			<element name="role" type="gml:ReferenceType" minOccurs="0">
+				<annotation>
+					<documentation>Defines the relationship of the earth material constituent in the geologic unit, e.g. vein, interbedded constituent, layers, dominant constituent. Scoped name because role is asserted by the geologist building the description.</documentation>
+					<appinfo>
+						<targetElement xmlns="http://www.opengis.net/gml/3.2">gsmlb:CompositionPartRoleTerm</targetElement>
+						<targetCodeList xmlns="http://www.opengis.net/gml/3.3/exr">CompositionPartRoleTerm</targetCodeList>
+					</appinfo>
+				</annotation>
+			</element>
 			<element name="material" minOccurs="0">
 				<complexType>
 					<complexContent>
@@ -238,14 +70,6 @@ Allows specifying direction by DirectionVector (eg Dip/Dip Direction), compass p
 						</extension>
 					</complexContent>
 				</complexType>
-			</element>
-			<element name="role" type="gml:ReferenceType" minOccurs="0">
-				<annotation>
-					<documentation>Defines the relationship of the earth material constituent in the geologic unit, e.g. vein, interbedded constituent, layers, dominant constituent. Scoped name because role is asserted by the geologist building the description.</documentation>
-					<appinfo>
-						<targetElement xmlns="http://www.opengis.net/gml/3.2">gsmlb:CompositionPartRoleTerm</targetElement>
-					</appinfo>
-				</annotation>
 			</element>
 			<element name="proportion" minOccurs="0">
 				<annotation>
@@ -292,8 +116,6 @@ This class is provided primarily as an extensibility point for related domain mo
 		<annotation>
 			<documentation>Very general concept representing any kind of surface separating two geologic units including primary boundaries such as depositional contacts, all kinds of unconformities, intrusive contacts, and gradational contacts, as well as faults that separate geologic units.
 
-Permeability of contacts still needs to be modeled; considered out of scope for GeoSciML2.
-
 Bedding measured as discrete surfaces in the case that those are the feature of interest (e.g. individual cross set surfaces for paleocurrent analysis) should be represented here.</documentation>
 		</annotation>
 	</element>
@@ -301,15 +123,16 @@ Bedding measured as discrete surfaces in the case that those are the feature of 
 		<complexContent>
 			<extension base="gsmlb:GeologicStructureType">
 				<sequence>
-					<element name="stContactDescription" type="gsmlb:ContactAbstractDescriptionPropertyType" minOccurs="0"/>
 					<element name="contactType" type="gml:ReferenceType" minOccurs="0">
 						<annotation>
 							<documentation>Classifies the contact (eg intrusive, unconformity, bedding surface, lithologic boundary, phase boundary)</documentation>
 							<appinfo>
 								<targetElement xmlns="http://www.opengis.net/gml/3.2">gsmlb:ContactTypeTerm</targetElement>
+								<targetCodeList xmlns="http://www.opengis.net/gml/3.3/exr">ContactTypeTerm</targetCodeList>
 							</appinfo>
 						</annotation>
 					</element>
+					<element name="stContactDescription" type="gsmlb:ContactAbstractDescriptionPropertyType" minOccurs="0"/>
 				</sequence>
 			</extension>
 		</complexContent>
@@ -321,7 +144,11 @@ Bedding measured as discrete surfaces in the case that those are the feature of 
 		<attributeGroup ref="gml:AssociationAttributeGroup"/>
 		<attributeGroup ref="gml:OwnershipAttributeGroup"/>
 	</complexType>
-	<element name="ContactAbstractDescription" type="gsmlb:ContactAbstractDescriptionType" abstract="true" substitutionGroup="gml:AbstractObject"/>
+	<element name="ContactAbstractDescription" type="gsmlb:ContactAbstractDescriptionType" abstract="true" substitutionGroup="gml:AbstractObject">
+		<annotation>
+			<documentation>An abstract class providing a link between classes in GeoSciMLBasic and GeoSciMLExtended application schemas.</documentation>
+		</annotation>
+	</element>
 	<complexType name="ContactAbstractDescriptionType" abstract="true">
 		<sequence/>
 	</complexType>
@@ -374,8 +201,6 @@ Values: instance, typicalNorm, definingNorm.</documentation>
 		<complexContent>
 			<extension base="gml:AbstractGMLType">
 				<sequence>
-					<element name="gbEarthMaterialDescription" type="gsmlb:EarthMaterialAbstractDescriptionPropertyType" minOccurs="0" maxOccurs="unbounded"/>
-					<element name="gbEarthMaterialExtension" type="gsmlb:ExtensionAbstractDescriptionPropertyType" minOccurs="0" maxOccurs="unbounded"/>
 					<element name="color" minOccurs="0" maxOccurs="unbounded">
 						<annotation>
 							<documentation>Terms to specify color of the earth material.  Color schemes such as the Munsell rock and soil color schemes could be used.</documentation>
@@ -397,6 +222,7 @@ Values: instance, typicalNorm, definingNorm.</documentation>
 Values: Instance, TypicalNorm, IdentifyingNorm.</documentation>
 						</annotation>
 					</element>
+					<element name="gbEarthMaterialDescription" type="gsmlb:EarthMaterialAbstractDescriptionPropertyType" minOccurs="0" maxOccurs="unbounded"/>
 				</sequence>
 			</extension>
 		</complexContent>
@@ -417,15 +243,6 @@ Values: Instance, TypicalNorm, IdentifyingNorm.</documentation>
 			<element ref="gsmlb:EarthMaterialAbstractDescription"/>
 		</sequence>
 	</complexType>
-	<element name="ExtensionAbstractDescription" type="gsmlb:ExtensionAbstractDescriptionType" abstract="true" substitutionGroup="gml:AbstractObject"/>
-	<complexType name="ExtensionAbstractDescriptionType" abstract="true">
-		<sequence/>
-	</complexType>
-	<complexType name="ExtensionAbstractDescriptionPropertyType">
-		<sequence>
-			<element ref="gsmlb:ExtensionAbstractDescription"/>
-		</sequence>
-	</complexType>
 	<element name="Fold" type="gsmlb:FoldType" substitutionGroup="gsmlb:GeologicStructure">
 		<annotation>
 			<documentation>One or more systematically curved layers, surfaces, or lines in a rock body. Fold denotes a structure formed by the deformation of a GeologicStructure to form a structure that may be described by the translation of an abstract line (the fold axis) parallel to itself along some curvilinear path (the fold profile). Folds have a hinge zone (zone of maximum curvature along the surface) and limbs (parts of the deformed surface not in the hinge zone).  Folds are described by an axial surface, hinge line , profile geometry, the solid angle between the limbs, and the relationships between adjacent folded surfaces if the folded structure is a Layering fabric (similar, parallel).</documentation>
@@ -435,15 +252,16 @@ Values: Instance, TypicalNorm, IdentifyingNorm.</documentation>
 		<complexContent>
 			<extension base="gsmlb:GeologicStructureType">
 				<sequence>
-					<element name="stFoldDescription" type="gsmlb:FoldAbstractDescriptionPropertyType" minOccurs="0"/>
 					<element name="profileType" type="gml:ReferenceType" minOccurs="0">
 						<annotation>
 							<documentation>Terminology specifying concave/convex geometry of fold relative to earth surface, and relationship to younging direction in folded strata if known. (eg; antiform, synform, neutral, anticline, syncline, monocline, ptygmatic)</documentation>
 							<appinfo>
 								<targetElement xmlns="http://www.opengis.net/gml/3.2">gsmlb:FoldProfileTypeTerm</targetElement>
+								<targetCodeList xmlns="http://www.opengis.net/gml/3.3/exr">FoldProfileTypeTerm</targetCodeList>
 							</appinfo>
 						</annotation>
 					</element>
+					<element name="stFoldDescription" type="gsmlb:FoldAbstractDescriptionPropertyType" minOccurs="0"/>
 				</sequence>
 			</extension>
 		</complexContent>
@@ -455,7 +273,11 @@ Values: Instance, TypicalNorm, IdentifyingNorm.</documentation>
 		<attributeGroup ref="gml:AssociationAttributeGroup"/>
 		<attributeGroup ref="gml:OwnershipAttributeGroup"/>
 	</complexType>
-	<element name="FoldAbstractDescription" type="gsmlb:FoldAbstractDescriptionType" abstract="true" substitutionGroup="gml:AbstractObject"/>
+	<element name="FoldAbstractDescription" type="gsmlb:FoldAbstractDescriptionType" abstract="true" substitutionGroup="gml:AbstractObject">
+		<annotation>
+			<documentation>An abstract class providing a link between classes in GeoSciMLBasic and GeoSciMLExtended application schemas.</documentation>
+		</annotation>
+	</element>
 	<complexType name="FoldAbstractDescriptionType" abstract="true">
 		<sequence/>
 	</complexType>
@@ -474,20 +296,16 @@ Bedding as a fabric representing the average orientation of paleodepositional su
 		<complexContent>
 			<extension base="gsmlb:GeologicStructureType">
 				<sequence>
-					<element name="stFoliationDescription" type="gsmlb:FoliationAbstractDescriptionPropertyType" minOccurs="0"/>
 					<element name="foliationType" type="gml:ReferenceType" minOccurs="0">
 						<annotation>
 							<documentation>Specifies the type of foliation.  Examples include crenulation cleavage, slaty cleavage, schistosity</documentation>
 							<appinfo>
 								<targetElement xmlns="http://www.opengis.net/gml/3.2">gsmlb:FoliationTypeTerm</targetElement>
+								<targetCodeList xmlns="http://www.opengis.net/gml/3.3/exr">FoliationTypeTerm</targetCodeList>
 							</appinfo>
 						</annotation>
 					</element>
-					<element name="orientation" type="gsmlb:CGI_PlanarOrientationPropertyType" minOccurs="0" maxOccurs="unbounded">
-						<annotation>
-							<documentation>The planar orientation of the foliation</documentation>
-						</annotation>
-					</element>
+					<element name="stFoliationDescription" type="gsmlb:FoliationAbstractDescriptionPropertyType" minOccurs="0"/>
 				</sequence>
 			</extension>
 		</complexContent>
@@ -499,7 +317,11 @@ Bedding as a fabric representing the average orientation of paleodepositional su
 		<attributeGroup ref="gml:AssociationAttributeGroup"/>
 		<attributeGroup ref="gml:OwnershipAttributeGroup"/>
 	</complexType>
-	<element name="FoliationAbstractDescription" type="gsmlb:FoliationAbstractDescriptionType" abstract="true" substitutionGroup="gml:AbstractObject"/>
+	<element name="FoliationAbstractDescription" type="gsmlb:FoliationAbstractDescriptionType" abstract="true" substitutionGroup="gml:AbstractObject">
+		<annotation>
+			<documentation>An abstract class providing a link between classes in GeoSciMLBasic and GeoSciMLExtended application schemas.</documentation>
+		</annotation>
+	</element>
 	<complexType name="FoliationAbstractDescriptionType" abstract="true">
 		<sequence/>
 	</complexType>
@@ -524,7 +346,13 @@ Bedding as a fabric representing the average orientation of paleodepositional su
 		<complexContent>
 			<extension base="gml:AbstractFeatureType">
 				<sequence>
-					<element name="collectionType" type="gml:ReferenceType" minOccurs="0"/>
+					<element name="collectionType" type="gml:ReferenceType" minOccurs="0">
+						<annotation>
+							<appinfo>
+								<targetCodeList xmlns="http://www.opengis.net/gml/3.3/exr">CollectionTypeTerm</targetCodeList>
+							</appinfo>
+						</annotation>
+					</element>
 					<element name="member" type="gsmlb:GSMLitemPropertyType" maxOccurs="unbounded">
 						<annotation>
 							<documentation>Points to a member of a GSML collection, which can be any of the GeoSciML classes that are listed in the GSMLitem union class.</documentation>
@@ -544,8 +372,209 @@ Bedding as a fabric representing the average orientation of paleodepositional su
 		<attributeGroup ref="gml:AssociationAttributeGroup"/>
 		<attributeGroup ref="gml:OwnershipAttributeGroup"/>
 	</complexType>
-	
-	
+	<element name="GSML_GeometricDescriptionValue" type="gsmlb:GSML_GeometricDescriptionValueType" abstract="true" substitutionGroup="gml:AbstractObject">
+		<annotation>
+			<documentation>Description of the planar or linear orientation of a geologic feature.   
+Allows specifying direction by DirectionVector (eg Dip/Dip Direction), compass point (NE),  description ("toward fold hinge", "below')</documentation>
+		</annotation>
+	</element>
+	<complexType name="GSML_GeometricDescriptionValueType" abstract="true">
+		<sequence>
+			<element name="determinationMethod" type="gml:ReferenceType" minOccurs="0">
+				<annotation>
+					<documentation>Describes the way the orientation value was determined (eg measured, inferred from dip slope, etc)</documentation>
+					<appinfo>
+						<targetElement xmlns="http://www.opengis.net/gml/3.2">gsmlb:DeterminationMethodTerm</targetElement>
+						<targetCodeList xmlns="http://www.opengis.net/gml/3.3/exr">DeterminationMethodTerm</targetCodeList>
+					</appinfo>
+				</annotation>
+			</element>
+			<element name="descriptiveOrientation" type="string" minOccurs="0">
+				<annotation>
+					<documentation>Textual specification of orientation, possibly referencing some local geography</documentation>
+				</annotation>
+			</element>
+		</sequence>
+	</complexType>
+	<complexType name="GSML_GeometricDescriptionValuePropertyType">
+		<sequence>
+			<element ref="gsmlb:GSML_GeometricDescriptionValue"/>
+		</sequence>
+	</complexType>
+	<element name="GSML_LinearOrientation" type="gsmlb:GSML_LinearOrientationType" substitutionGroup="gsmlb:GSML_GeometricDescriptionValue">
+		<annotation>
+			<documentation>Description of the measured orientation of a line.  At least one of plunge or trend should not be nil.</documentation>
+		</annotation>
+	</element>
+	<complexType name="GSML_LinearOrientationType">
+		<complexContent>
+			<extension base="gsmlb:GSML_GeometricDescriptionValueType">
+				<sequence>
+					<element name="directed" type="gml:ReferenceType" minOccurs="0">
+						<annotation>
+							<documentation>To indicate if orientation represents linear feature that is directed, e.g. clast imbrication, mylonitic lineation with sense of shear, slickenlines with displacement direction, rather than undirected.  A code list to indicate which is the directed end of the linear orientation</documentation>
+							<appinfo>
+								<targetElement xmlns="http://www.opengis.net/gml/3.2">gsmlb:LinearDirectedCode</targetElement>
+								<targetCodeList xmlns="http://www.opengis.net/gml/3.3/exr">LinearDirectedCode</targetCodeList>
+							</appinfo>
+						</annotation>
+					</element>
+					<element name="plunge" minOccurs="0">
+						<annotation>
+							<documentation>Magnitude of the plunge.</documentation>
+						</annotation>
+						<complexType>
+							<complexContent>
+								<extension base="gml:AbstractMemberType">
+									<sequence minOccurs="0">
+										<element ref="swe:QuantityRange"/>
+									</sequence>
+									<attributeGroup ref="gml:AssociationAttributeGroup"/>
+								</extension>
+							</complexContent>
+						</complexType>
+					</element>
+					<element name="trend" minOccurs="0">
+						<annotation>
+							<documentation>The azimuth (compass bearing) value of the linear orientation.</documentation>
+						</annotation>
+						<complexType>
+							<complexContent>
+								<extension base="gml:AbstractMemberType">
+									<sequence minOccurs="0">
+										<element ref="swe:QuantityRange"/>
+									</sequence>
+									<attributeGroup ref="gml:AssociationAttributeGroup"/>
+								</extension>
+							</complexContent>
+						</complexType>
+					</element>
+				</sequence>
+			</extension>
+		</complexContent>
+	</complexType>
+	<complexType name="GSML_LinearOrientationPropertyType">
+		<sequence>
+			<element ref="gsmlb:GSML_LinearOrientation"/>
+		</sequence>
+	</complexType>
+	<element name="GSML_PlanarOrientation" type="gsmlb:GSML_PlanarOrientationType" substitutionGroup="gsmlb:GSML_GeometricDescriptionValue">
+		<annotation>
+			<documentation>Description of the geometry of a plane.</documentation>
+		</annotation>
+	</element>
+	<complexType name="GSML_PlanarOrientationType">
+		<complexContent>
+			<extension base="gsmlb:GSML_GeometricDescriptionValueType">
+				<sequence>
+					<element name="convention" type="gml:ReferenceType" minOccurs="0">
+						<annotation>
+							<documentation>The convention used for the measurement</documentation>
+							<appinfo>
+								<targetElement xmlns="http://www.opengis.net/gml/3.2">gsmlb:ConventionCode</targetElement>
+								<targetCodeList xmlns="http://www.opengis.net/gml/3.3/exr">ConventionCode</targetCodeList>
+							</appinfo>
+						</annotation>
+					</element>
+					<element name="azimuth" minOccurs="0">
+						<annotation>
+							<documentation>The azimuth (compass point, bearing etc) value of the orientation. Convention reports how azimuth is interpreted; if is quadrant. Allowance of different convention makes querying more difficult.</documentation>
+						</annotation>
+						<complexType>
+							<complexContent>
+								<extension base="gml:AbstractMemberType">
+									<sequence minOccurs="0">
+										<element ref="swe:QuantityRange"/>
+									</sequence>
+									<attributeGroup ref="gml:AssociationAttributeGroup"/>
+								</extension>
+							</complexContent>
+						</complexType>
+					</element>
+					<element name="dip" minOccurs="0">
+						<annotation>
+							<documentation>Dip is the angle that the structural surface (eg bedding, fault plane) makes with the horizontal measured perpindicular to the strike of the structure and in the vertical plane as a numeric or term</documentation>
+						</annotation>
+						<complexType>
+							<complexContent>
+								<extension base="gml:AbstractMemberType">
+									<sequence minOccurs="0">
+										<element ref="swe:QuantityRange"/>
+									</sequence>
+									<attributeGroup ref="gml:AssociationAttributeGroup"/>
+								</extension>
+							</complexContent>
+						</complexType>
+					</element>
+					<element name="polarity" type="gml:ReferenceType" minOccurs="0">
+						<annotation>
+							<documentation>Indicates whether the planar orientation is associated with a directed feature that is overturned, upright, vertical etc.</documentation>
+							<appinfo>
+								<targetCodeList xmlns="http://www.opengis.net/gml/3.3/exr">PlanarPolarityCode</targetCodeList>
+							</appinfo>
+						</annotation>
+					</element>
+				</sequence>
+			</extension>
+		</complexContent>
+	</complexType>
+	<complexType name="GSML_PlanarOrientationPropertyType">
+		<sequence>
+			<element ref="gsmlb:GSML_PlanarOrientation"/>
+		</sequence>
+	</complexType>
+	<element name="GSML_QuantityRange" type="gsmlb:GSML_QuantityRangeType" substitutionGroup="swe:QuantityRange"/>
+	<complexType name="GSML_QuantityRangeType">
+		<complexContent>
+			<extension base="swe:QuantityRangeType">
+				<sequence>
+					<element name="lowerValue" type="double"/>
+					<element name="upperValue" type="double"/>
+				</sequence>
+			</extension>
+		</complexContent>
+	</complexType>
+	<complexType name="GSML_QuantityRangePropertyType">
+		<sequence minOccurs="0">
+			<element ref="gsmlb:GSML_QuantityRange"/>
+		</sequence>
+		<attributeGroup ref="gml:AssociationAttributeGroup"/>
+		<attributeGroup ref="gml:OwnershipAttributeGroup"/>
+	</complexType>
+	<element name="GSML_Vector" type="gsmlb:GSML_VectorType" substitutionGroup="gsmlb:GSML_LinearOrientation">
+		<annotation>
+			<documentation>data type for linear orientation with magnitude. Cardinality on magnitude is 1, if magnitude is unknown use CGI_LinearOrientation</documentation>
+		</annotation>
+	</element>
+	<complexType name="GSML_VectorType">
+		<complexContent>
+			<extension base="gsmlb:GSML_LinearOrientationType">
+				<sequence>
+					<element name="magnitude" minOccurs="0">
+						<annotation>
+							<documentation>The numerical length of a linear vector</documentation>
+						</annotation>
+						<complexType>
+							<complexContent>
+								<extension base="gml:AbstractMemberType">
+									<sequence minOccurs="0">
+										<element ref="swe:QuantityRange"/>
+									</sequence>
+									<attributeGroup ref="gml:AssociationAttributeGroup"/>
+								</extension>
+							</complexContent>
+						</complexType>
+					</element>
+				</sequence>
+			</extension>
+		</complexContent>
+	</complexType>
+	<complexType name="GSML_VectorPropertyType">
+		<sequence>
+			<element ref="gsmlb:GSML_Vector"/>
+		</sequence>
+	</complexType>
+
 	<complexType name="GSMLitemPropertyType">
 		<sequence minOccurs="0">
 			<group ref="gsmlb:GSMLitem"/>
@@ -554,7 +583,6 @@ Bedding as a fabric representing the average orientation of paleodepositional su
 		<attribute name="unionSemantics" type="gsmlb:GSMLitemUnionSemantics"/>
 		<attributeGroup ref="gml:OwnershipAttributeGroup"/>
 	</complexType>
-	
 	<simpleType name="GSMLitemUnionSemantics">
 		<restriction base="string">
 			<enumeration value="earthMaterialItem"/>
@@ -565,8 +593,7 @@ Bedding as a fabric representing the average orientation of paleodepositional su
 			<enumeration value="samplingFeatureItem"/>
 		</restriction>
 	</simpleType>
-	
-		<group name="GSMLitem">
+	<group name="GSMLitem">
 		<annotation>
 			<documentation>GSMLitem is a union class that specifies the types of features that are allowed to be members of the GSML class, and therefore, members of a GML Collection.</documentation>
 		</annotation>
@@ -603,44 +630,25 @@ Bedding as a fabric representing the average orientation of paleodepositional su
 			</element>
 		</choice>
 	</group>
-	
-	
-	
 	<!-- end of manual encoding of GSML collection -->
-	
-	<element name="GSML_QuantityRange" type="gsmlb:GSML_QuantityRangeType" substitutionGroup="swe:QuantityRange"/>
-	<complexType name="GSML_QuantityRangeType">
-		<complexContent>
-			<extension base="swe:QuantityRangeType">
-				<sequence>
-					<element name="lowerValue" type="double" minOccurs="0"/>
-					<element name="upperValue" type="double" minOccurs="0"/>
-				</sequence>
-			</extension>
-		</complexContent>
-	</complexType>
-	<complexType name="GSML_QuantityRangePropertyType">
-		<sequence minOccurs="0">
-			<element ref="gsmlb:GSML_QuantityRange"/>
-		</sequence>
-		<attributeGroup ref="gml:AssociationAttributeGroup"/>
-		<attributeGroup ref="gml:OwnershipAttributeGroup"/>
-	</complexType>
-	
-	
-	
+
 	<element name="GeologicEvent" type="gsmlb:GeologicEventType" substitutionGroup="gsmlb:GeologicFeature"/>
 	<complexType name="GeologicEventType">
 		<complexContent>
 			<extension base="gsmlb:GeologicFeatureType">
 				<sequence>
-					<element name="gaEventDescription" type="gsmlb:GeologicEventAbstractDescriptionPropertyType" minOccurs="0" maxOccurs="unbounded"/>
 					<element name="eventProcess" type="gml:ReferenceType" minOccurs="0" maxOccurs="unbounded">
 						<annotation>
 							<documentation>The eventProcess specifies the process or processes that occurred during the event. Examples include deposition, extrusion, intrusion, cooling.</documentation>
 							<appinfo>
 								<targetElement xmlns="http://www.opengis.net/gml/3.2">gsmlb:EventProcessTerm</targetElement>
+								<targetCodeList xmlns="http://www.opengis.net/gml/3.3/exr">EventProcessTerm</targetCodeList>
 							</appinfo>
+						</annotation>
+					</element>
+					<element name="numericAge" type="gsmlb:NumericAgeRangePropertyType" minOccurs="0">
+						<annotation>
+							<documentation>use of GSML_QuantityRange is recommended to have explicit upper and lower values</documentation>
 						</annotation>
 					</element>
 					<element name="olderNamedAge" type="gml:ReferenceType" minOccurs="0">
@@ -663,7 +671,7 @@ Bedding as a fabric representing the average orientation of paleodepositional su
 					</element>
 					<element name="eventEnvironment" minOccurs="0" maxOccurs="unbounded">
 						<annotation>
-							<documentation>The physical setting within which a GeologicEvent takes place.  GeologicEnvironment is construed broadly to include physical settings on the Earth surface specified by climate, tectonics, physiography or geography, and settings in the Earth’s interior specified by pressure, temperature, chemical environment, or tectonics.</documentation>
+							<documentation>The physical setting within which a GeologicEvent takes place. GeologicEnvironment is construed broadly to include physical settings on the Earth surface specified by climate, tectonics, physiography or geography, and settings in the Earth’s interior specified by pressure, temperature, chemical environment, or tectonics.</documentation>
 						</annotation>
 						<complexType>
 							<complexContent>
@@ -676,11 +684,7 @@ Bedding as a fabric representing the average orientation of paleodepositional su
 							</complexContent>
 						</complexType>
 					</element>
-					<element name="numericAge" type="gsmlb:NumericAgeRangePropertyType" minOccurs="0">
-						<annotation>
-							<documentation>use of GSML_QuantityRange is recommended to have explicit upper and lower values</documentation>
-						</annotation>
-					</element>
+					<element name="gaEventDescription" type="gsmlb:GeologicEventAbstractDescriptionPropertyType" minOccurs="0" maxOccurs="unbounded"/>
 				</sequence>
 			</extension>
 		</complexContent>
@@ -716,8 +720,6 @@ The implemented Geologic Feature instance acts as the "description package"
 		<complexContent>
 			<extension base="gml:AbstractFeatureType">
 				<sequence>
-					<element name="occurrence" type="gsmlb:MappedFeaturePropertyType" minOccurs="0" maxOccurs="unbounded"/>
-					<element name="geologicHistory" type="gsmlb:GeologicEventPropertyType" minOccurs="0" maxOccurs="unbounded"/>
 					<element name="observationMethod" minOccurs="0" maxOccurs="unbounded">
 						<annotation>
 							<documentation>Feature ObservationMethod specifies the approach to acquiring the collection of attribute values that constitute an individual feature instance (e.g. point count, brunton compass on site, air photo interpretation,  field observation, hand specimen, laboratory, aerial photography, creative imagination). ObservationMethod is a convenience property that provides a quick and dirty approach to observation metadata when data are reported using a feature view (as opposed to observation view). For a borehole, the GeologicFeature observation method specifies how the geologic properties were determined (eg, visual observation, or standard AzGS logging procedure (described in detail somewhere else)).  This property corresponds (loosely) to ISO19115 Lineage.</documentation>
@@ -733,11 +735,13 @@ The implemented Geologic Feature instance acts as the "description package"
 							</complexContent>
 						</complexType>
 					</element>
+					<element name="occurrence" type="gsmlb:MappedFeaturePropertyType" minOccurs="0" maxOccurs="unbounded"/>
 					<element name="purpose" type="gsmlb:DescriptionPurposeType" minOccurs="0">
 						<annotation>
 							<documentation>Specification of the intended purpose/level of abstraction for a given feature or object instance. Scoped name because intention is asserted by author of the data instance. Values are: instance, typicalNorm, definingNorm.</documentation>
 						</annotation>
 					</element>
+					<element name="relatedFeature" type="gsmlb:GeologicFeaturePropertyType" minOccurs="0" maxOccurs="unbounded"/>
 					<element name="classifier" minOccurs="0" maxOccurs="unbounded">
 						<complexType>
 							<complexContent>
@@ -750,7 +754,7 @@ The implemented Geologic Feature instance acts as the "description package"
 							</complexContent>
 						</complexType>
 					</element>
-					<element name="relatedFeature" type="gsmlb:GeologicFeaturePropertyType" minOccurs="0" maxOccurs="unbounded"/>
+					<element name="geologicHistory" type="gsmlb:GeologicEventPropertyType" minOccurs="0" maxOccurs="unbounded"/>
 				</sequence>
 			</extension>
 		</complexContent>
@@ -798,13 +802,12 @@ Spatial properties are only available through association with a MappedFeature. 
 		<complexContent>
 			<extension base="gsmlb:GeologicFeatureType">
 				<sequence>
-					<element name="gbUnitDescription" type="gsmlb:GeologicUnitAbstractDescriptionPropertyType" minOccurs="0" maxOccurs="unbounded"/>
-					<element name="gbMaterialDescription" type="gsmlb:ExtensionAbstractDescriptionPropertyType" minOccurs="0" maxOccurs="unbounded"/>
 					<element name="geologicUnitType" type="gml:ReferenceType" minOccurs="0">
 						<annotation>
 							<documentation>A term from a controlled vocabulary defining the type of geologic unit. Logical constraints of definition of unit and valid property cardinalities should be contained in the definition. Use of the CGI Geologic Unit Type vocabulary (eg: something like http://geosciml.org/classifierScheme/CGI/GeologicUnitType/200811) is preferred.</documentation>
 							<appinfo>
 								<targetElement xmlns="http://www.opengis.net/gml/3.2">gsmlb:GeologicUnitTypeTerm</targetElement>
+								<targetCodeList xmlns="http://www.opengis.net/gml/3.3/exr">GeologicUnitTypeTerm</targetCodeList>
 							</appinfo>
 						</annotation>
 					</element>
@@ -814,6 +817,7 @@ Spatial properties are only available through association with a MappedFeature. 
 Examples: group, subgroup, formation, member, bed, intrusion, complex, batholith</documentation>
 							<appinfo>
 								<targetElement xmlns="http://www.opengis.net/gml/3.2">gsmlb:RankTerm</targetElement>
+								<targetCodeList xmlns="http://www.opengis.net/gml/3.3/exr">RankTerm</targetCodeList>
 							</appinfo>
 						</annotation>
 					</element>
@@ -827,6 +831,8 @@ Examples: group, subgroup, formation, member, bed, intrusion, complex, batholith
 							<documentation>indicates a subsiduary unit with its role and proportion with respect to the container unit</documentation>
 						</annotation>
 					</element>
+					<element name="gbMaterialDescription" type="gsmlb:EarthMaterialAbstractDescriptionPropertyType" minOccurs="0" maxOccurs="unbounded"/>
+					<element name="gbUnitDescription" type="gsmlb:GeologicUnitAbstractDescriptionPropertyType" minOccurs="0" maxOccurs="unbounded"/>
 				</sequence>
 			</extension>
 		</complexContent>
@@ -859,6 +865,7 @@ Examples: group, subgroup, formation, member, bed, intrusion, complex, batholith
 					<documentation>Nature of the parts, e.g. facies, stratigraphic, interbeds, geographic, eastern facies,</documentation>
 					<appinfo>
 						<targetElement xmlns="http://www.opengis.net/gml/3.2">gsmlb:GeologicUnitHierarchyRoleTerm</targetElement>
+						<targetCodeList xmlns="http://www.opengis.net/gml/3.3/exr">GeologicUnitHierarchyRoleTerm</targetCodeList>
 					</appinfo>
 				</annotation>
 			</element>
@@ -894,7 +901,7 @@ Examples: group, subgroup, formation, member, bed, intrusion, complex, batholith
 		<complexContent>
 			<extension base="gsmlb:GeologicFeatureType">
 				<sequence>
-					<element name="unitDescription" type="gsmlb:GeologicUnitPropertyType" minOccurs="0"/>
+					<element name="unitDescription" type="gsmlb:GeologicUnitPropertyType" nillable="true" minOccurs="0"/>
 					<element name="gmFeatureDescription" nillable="true" minOccurs="0" maxOccurs="unbounded">
 						<complexType>
 							<sequence>
@@ -939,13 +946,6 @@ A Mapped Feature is always associated with some sampling feature - e.g. a mappin
 		<complexContent>
 			<extension base="gml:AbstractFeatureType">
 				<sequence>
-					<element name="specification" type="gml:FeaturePropertyType" minOccurs="0">
-						<annotation>
-							<appinfo>
-								<targetElement xmlns="http://www.opengis.net/gml/3.2">null:GFI_Feature</targetElement>
-							</appinfo>
-						</annotation>
-					</element>
 					<element name="observationMethod" minOccurs="0" maxOccurs="unbounded">
 						<annotation>
 							<documentation>MappedFeature ObservationMethod is a metadata snippet indicating how the spatial extent of the mapped feature was determined, and the basis for association of the geometry with some GeologicFeature specification to define a MappedFeature. For a borehole, the MappedInterval observation method indicates how the boundaries of the interval were defined (eg, linear measurement from borehole collar). ObservationMethod is a convenience property that provides a quick and dirty approach to observation metadata when data are reported using a feature view (as opposed to observation view). This property corresponds (loosely) to ISO19115 Lineage.  (eg: digitised, Global Positioning System, published map, fieldObservation, downhole survey, aerial photography, field survey)</documentation>
@@ -955,6 +955,21 @@ A Mapped Feature is always associated with some sampling feature - e.g. a mappin
 								<extension base="gml:AbstractMemberType">
 									<sequence minOccurs="0">
 										<element ref="swe:Category"/>
+									</sequence>
+									<attributeGroup ref="gml:AssociationAttributeGroup"/>
+								</extension>
+							</complexContent>
+						</complexType>
+					</element>
+					<element name="positionalAccuracy" minOccurs="0">
+						<annotation>
+							<documentation>Quantitative values define the radius of an uncertainty buffer around a mappedFeature (eg: a positionAccuracy of 100 m for a line feature defines a buffer polygon of total width 200 m centred on the line). Corresponds to ISO19115 DQ_PositionalAccuracy.</documentation>
+						</annotation>
+						<complexType>
+							<complexContent>
+								<extension base="gml:AbstractMemberType">
+									<sequence minOccurs="0">
+										<element ref="swe:Quantity"/>
 									</sequence>
 									<attributeGroup ref="gml:AssociationAttributeGroup"/>
 								</extension>
@@ -976,22 +991,17 @@ A Mapped Feature is always associated with some sampling feature - e.g. a mappin
 					<element name="exposure" type="gml:ReferenceType" minOccurs="0">
 						<annotation>
 							<documentation>Description of the nature of the expression of the mapped feature at the earth's surface (eg, exposed, concealed)</documentation>
+							<appinfo>
+								<targetCodeList xmlns="http://www.opengis.net/gml/3.3/exr">ExposureTerm</targetCodeList>
+							</appinfo>
 						</annotation>
 					</element>
-					<element name="positionalAccuracy" minOccurs="0">
+					<element name="specification" type="gml:FeaturePropertyType" minOccurs="0">
 						<annotation>
-							<documentation>Quantitative values define the radius of an uncertainty buffer around a mappedFeature (eg: a positionAccuracy of 100 m for a line feature defines a buffer polygon of total width 200 m centred on the line). Corresponds to ISO19115 DQ_PositionalAccuracy.</documentation>
+							<appinfo>
+								<targetElement xmlns="http://www.opengis.net/gml/3.2">null:GFI_Feature</targetElement>
+							</appinfo>
 						</annotation>
-						<complexType>
-							<complexContent>
-								<extension base="gml:AbstractMemberType">
-									<sequence minOccurs="0">
-										<element ref="swe:Quantity"/>
-									</sequence>
-									<attributeGroup ref="gml:AssociationAttributeGroup"/>
-								</extension>
-							</complexContent>
-						</complexType>
 					</element>
 					<element name="shape" type="gml:GeometryPropertyType" minOccurs="0">
 						<annotation>
@@ -1014,7 +1024,7 @@ A Mapped Feature is always associated with some sampling feature - e.g. a mappin
 		<complexContent>
 			<extension base="gsmlb:GeomorphologicFeatureType">
 				<sequence>
-					<element name="naturalGeomorphologicFeatureType" type="gml:ReferenceType" minOccurs="0">
+					<element name="naturalGeomorphologicFeatureType" type="gml:ReferenceType" nillable="true" minOccurs="0">
 						<annotation>
 							<appinfo>
 								<targetElement xmlns="http://www.opengis.net/gml/3.2">gsmlb:NaturalGeomorphologicFeatureTypeTerm</targetElement>
@@ -1116,9 +1126,11 @@ A Mapped Feature is always associated with some sampling feature - e.g. a mappin
 					<element name="lithology" type="gml:ReferenceType" minOccurs="0">
 						<annotation>
 							<documentation>lithology class from a controlled vocabulary</documentation>
+							<appinfo>
+								<targetCodeList xmlns="http://www.opengis.net/gml/3.3/exr">LithologyTerm</targetCodeList>
+							</appinfo>
 						</annotation>
 					</element>
-					<element name="emRockDescription" type="gsmlb:ExtensionAbstractDescriptionPropertyType" minOccurs="0" maxOccurs="unbounded"/>
 				</sequence>
 			</extension>
 		</complexContent>
@@ -1139,15 +1151,16 @@ A Mapped Feature is always associated with some sampling feature - e.g. a mappin
 		<complexContent>
 			<extension base="gsmlb:GeologicStructureType">
 				<sequence>
-					<element name="stStructureDescription" type="gsmlb:ShearDisplacementStructureAbstractDescriptionPropertyType" minOccurs="0"/>
 					<element name="faultType" type="gml:ReferenceType" minOccurs="0">
 						<annotation>
 							<documentation>Refers to a vocabulary of terms describing the type of shear displacement structure (eg; thrust fault, normal fault, wrench fault).</documentation>
 							<appinfo>
 								<targetElement xmlns="http://www.opengis.net/gml/3.2">gsmlb:FaultTypeTerm</targetElement>
+								<targetCodeList xmlns="http://www.opengis.net/gml/3.3/exr">FaultTypeTerm</targetCodeList>
 							</appinfo>
 						</annotation>
 					</element>
+					<element name="stStructureDescription" type="gsmlb:ShearDisplacementStructureAbstractDescriptionPropertyType" minOccurs="0"/>
 				</sequence>
 			</extension>
 		</complexContent>
@@ -1159,7 +1172,11 @@ A Mapped Feature is always associated with some sampling feature - e.g. a mappin
 		<attributeGroup ref="gml:AssociationAttributeGroup"/>
 		<attributeGroup ref="gml:OwnershipAttributeGroup"/>
 	</complexType>
-	<element name="ShearDisplacementStructureAbstractDescription" type="gsmlb:ShearDisplacementStructureAbstractDescriptionType" abstract="true" substitutionGroup="gml:AbstractObject"/>
+	<element name="ShearDisplacementStructureAbstractDescription" type="gsmlb:ShearDisplacementStructureAbstractDescriptionType" abstract="true" substitutionGroup="gml:AbstractObject">
+		<annotation>
+			<documentation>An abstract class providing a link between classes in GeoSciMLBasic and GeoSciMLExtended application schemas.</documentation>
+		</annotation>
+	</element>
 	<complexType name="ShearDisplacementStructureAbstractDescriptionType" abstract="true">
 		<sequence/>
 	</complexType>

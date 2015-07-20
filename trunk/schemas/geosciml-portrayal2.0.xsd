@@ -1,7 +1,7 @@
-<?xml version="1.0" encoding="UTF-8"?><schema xmlns="http://www.w3.org/2001/XMLSchema" xmlns:gml="http://www.opengis.net/gml/3.2" xmlns:gsmlp="http://xmlns.geosciml.org/geosciml-portrayal/2.0" elementFormDefault="qualified" targetNamespace="http://xmlns.geosciml.org/geosciml-portrayal/2.0" version="2.0.0">
+<?xml version="1.0" encoding="UTF-8"?><schema xmlns="http://www.w3.org/2001/XMLSchema" xmlns:gml="http://www.opengis.net/gml/3.2" xmlns:gsmlp="http://xmlns.geosciml.org/geosciml-portrayal/4.0" elementFormDefault="qualified" targetNamespace="http://xmlns.geosciml.org/geosciml-portrayal/4.0" version="4.0.0">
   <annotation>
-    <documentation>The GeoSciML Thematic View (GeoSciML-TV) schema standardises the interaction (request/response formats) with layer-based map services. It is best thought of as a view of GeoSciML data that denormalizes the data and concatenates complex property values into single, human-readable, labels and returns single, representative, values from controlled vocabularies for properties multi-valued properties that can be used when generating thematic maps, or portrayals, of the data.
-It is separate to, but harmonized with, GeoSciML and conforms to the level 0 of the Simple Features Profile for GML (link). Labels, will be 'free-text' fields that will be, in robust services, well-structured summaries of complex GeoSciML data, while the representative thematic properties will be URIs of concepts in a controlled vocabulary (for example CGI Simple Lithology). There will also be links, via identifier URIs*, providing hooks to full GeoSciML representations of a the geologic feature in question.</documentation>
+    <documentation>The GeoSciML Portrayal schema standardizes the interaction (request/response formats) with layer-based map services. It is best thought of as a view of GeoSciML and O&amp;M data that denormalizes the data and concatenates complex property values into single, human-readable, labels and returns single, representative, values from controlled vocabularies for properties multi-valued properties that can be used when generating thematic maps, or portrayals, of the data.
+It is separate to, but harmonized with, GeoSciML and O&amp;M and conforms to the level 0 of the Simple Features Profile for GML (link). Labels, will be 'free-text' fields that will be, in robust services, well-structured summaries of complex GeoSciML data, while the representative thematic properties will be URIs of concepts in a controlled vocabulary (for example CGI Simple Lithology). There will also be links, via identifier URIs, providing hooks to full GeoSciML or O&amp;M representations of a the geologic feature in question.</documentation>
   </annotation>
   <import namespace="http://www.opengis.net/gml/3.2" schemaLocation="http://schemas.opengis.net/gml/3.2.1/gml.xsd"/>
   <!--XML Schema document created by ShapeChange - http://shapechange.net/-->
@@ -91,7 +91,7 @@ It is separate to, but harmonized with, GeoSciML and conforms to the level 0 of 
           </element>
           <element minOccurs="0" name="elevation_srs" type="anyURI">
             <annotation>
-              <documentation>URI of a spatial reference system of the elevation value. Mandatory if elevation_m is populated.</documentation>
+              <documentation>URI of a spatial reference system of the elevation value. (eg, mean sea level)  Mandatory if elevation_m is populated.</documentation>
             </annotation>
           </element>
           <element minOccurs="0" name="positionalAccuracy" type="string">
@@ -106,7 +106,7 @@ It is separate to, but harmonized with, GeoSciML and conforms to the level 0 of 
           </element>
           <element name="specification_uri" type="anyURI">
             <annotation>
-              <documentation>URI referring the the GeoSciML GeologicUnit feature that describes the instance in detail. Mandatory property - if not value is provided then a URI referring to a controlled concept explaining why the value is nil must be provided.</documentation>
+              <documentation>URI referring the GeoSciML GeologicUnit feature that describes the instance in detail. Mandatory property - if not value is provided then a URI referring to a controlled concept explaining why the value is nil must be provided.</documentation>
             </annotation>
           </element>
           <element minOccurs="0" name="parentBorehole_uri" type="anyURI">
@@ -129,7 +129,11 @@ It is separate to, but harmonized with, GeoSciML and conforms to the level 0 of 
               <documentation>Geometry defining the extent of the borehole start point.</documentation>
             </annotation>
           </element>
-           <any processContents="lax" minOccurs="0" maxOccurs="unbounded"/>
+           <any processContents="lax" minOccurs="0" maxOccurs="unbounded">
+            <annotation>
+              <documentation>A placeholder allowing any user-defined attributes to be delivered in addition to those specified above.</documentation>
+            </annotation>
+			</any>
         </sequence>
       </extension>
     </complexContent>
@@ -143,7 +147,7 @@ It is separate to, but harmonized with, GeoSciML and conforms to the level 0 of 
   </complexType>
   <element name="ContactView" substitutionGroup="gml:AbstractFeature" type="gsmlp:ContactViewType">
     <annotation>
-      <documentation>Simplified view of a GeoSciML Contact. In GeoSciML terms this will be in instance of a MappedFeature with key property values from the associated Contact feature summarised as labels (unconstrained character strings) or arbitrarily selected classifiers to be used for thematic mapping purposes. The latter are the properties suffixed with '_uri' and will contain URIs referring to controlled concepts in published vocabularies.</documentation>
+      <documentation>Simplified view of a GeoSciML Contact. In GeoSciML terms this will be an instance of a MappedFeature with key property values from the associated Contact feature summarised as labels (unconstrained character strings) or arbitrarily selected classifiers to be used for thematic mapping purposes. The latter are the properties suffixed with '_uri' and will contain URIs referring to controlled concepts in published vocabularies.</documentation>
     </annotation>
   </element>
   <complexType name="ContactViewType">
@@ -210,8 +214,12 @@ It is separate to, but harmonized with, GeoSciML and conforms to the level 0 of 
               <documentation>Geometry defining the extent of the feature of interest.</documentation>
             </annotation>
           </element>
-         <any processContents="lax" minOccurs="0" maxOccurs="unbounded"/>
-        </sequence>
+           <any processContents="lax" minOccurs="0" maxOccurs="unbounded">
+            <annotation>
+              <documentation>A placeholder allowing any user-defined attributes to be delivered in addition to those specified above.</documentation>
+            </annotation>
+			</any>        
+</sequence>
       </extension>
     </complexContent>
   </complexType>
@@ -222,59 +230,53 @@ It is separate to, but harmonized with, GeoSciML and conforms to the level 0 of 
     <attributeGroup ref="gml:AssociationAttributeGroup"/>
     <attributeGroup ref="gml:OwnershipAttributeGroup"/>
   </complexType>
-  <element name="GeologicSpecimenView" substitutionGroup="gml:AbstractFeature" type="gsmlp:GeologicSpecimenViewType"/>
+  <element name="GeologicSpecimenView" substitutionGroup="gml:AbstractFeature" type="gsmlp:GeologicSpecimenViewType">
+    <annotation>
+      <documentation>A simplified view of a point-located specimen from GeoSciML GeologicSpecimen (an extension of Observations &amp; Measurements - ISO19156) with key property values summarised as labels (unconstrained character strings) or arbitrarily selected classifiers to be used for thematic mapping purposes. The latter are the properties suffixed with '_uri' and will contain URIs referring to controlled concepts in published vocabularies.</documentation>
+    </annotation>
+  </element>
   <complexType name="GeologicSpecimenViewType">
     <complexContent>
       <extension base="gml:AbstractFeatureType">
         <sequence>
           <element name="identifier" type="anyURI">
             <annotation>
-              <documentation>Globally unique identifer.  Use XML anyURI datatype</documentation>
+              <documentation>Globally unique identifier (eg, an IGSN sample number).  Use XML anyURI datatype</documentation>
             </annotation>
           </element>
           <element minOccurs="0" name="label" type="string">
             <annotation>
-              <documentation>short label like sample numbers</documentation>
+              <documentation>Short label for map display. (eg, a sample number)</documentation>
             </annotation>
           </element>
           <element minOccurs="0" name="description" type="string">
             <annotation>
-              <documentation>detailed description of the speciment</documentation>
+              <documentation>Detailed description of the specimen.</documentation>
             </annotation>
           </element>
           <element minOccurs="0" name="specimenType" type="string">
             <annotation>
-              <documentation>specimen type</documentation>
-            </annotation>
-          </element>
-          <element name="specimenType_uri" type="anyURI">
-            <annotation>
-              <documentation>specimen type identifier from a controlled vocabulary</documentation>
+              <documentation>Description of the specimen type. Preferably a term from a controlled vocabulary (eg, hand specimen, thin section, drill core).</documentation>
             </annotation>
           </element>
           <element minOccurs="0" name="materialClass" type="string">
             <annotation>
-              <documentation>class of material (rock, sediment, etc)</documentation>
-            </annotation>
-          </element>
-          <element name="materialClass_uri" type="anyURI">
-            <annotation>
-              <documentation>class of material drawn from a controlled vocabulary</documentation>
+              <documentation>Classification of the material that comprises the specimen. Preferably a term from a controlled vocabulary (eg, rock, sediment, etc)</documentation>
             </annotation>
           </element>
           <element minOccurs="0" name="positionalAccuracy" type="string">
             <annotation>
-              <documentation>description of the position accuracy of the specimen</documentation>
+              <documentation>Description of the positional accuracy of the sampling location. (eg, 50 metres)</documentation>
             </annotation>
           </element>
           <element minOccurs="0" name="samplingTime" type="string">
             <annotation>
-              <documentation>Date (+/- time) when the specimen was collected.</documentation>
+              <documentation>Date (+/- time) when the specimen was collected.  (formatted as a gml:timePosition - eg, 2012-03-28)</documentation>
             </annotation>
           </element>
           <element minOccurs="0" name="samplingMethod" type="string">
             <annotation>
-              <documentation>The method by which the specimen was collected</documentation>
+              <documentation>The method used to collect the specimen (eg, diamond drilling, field mapping survey)</documentation>
             </annotation>
           </element>
           <element minOccurs="0" name="currentLocation" type="string">
@@ -284,30 +286,44 @@ It is separate to, but harmonized with, GeoSciML and conforms to the level 0 of 
           </element>
           <element minOccurs="0" name="source" type="string">
             <annotation>
-              <documentation>citation of the source of the data (publication, maps, etc)</documentation>
+              <documentation>Citation of the source of the data (eg, a publication, map, etc)</documentation>
+            </annotation>
+          </element>
+          <element name="specimenType_uri" type="anyURI">
+            <annotation>
+              <documentation>URI link for a specimen type identifier from a controlled vocabulary.</documentation>
+            </annotation>
+          </element>
+          <element name="materialClass_uri" type="anyURI">
+            <annotation>
+              <documentation>URI link for a class of material drawn from a controlled vocabulary.</documentation>
             </annotation>
           </element>
           <element name="metadata_uri" type="anyURI">
             <annotation>
-              <documentation>pointer to metadata document</documentation>
+              <documentation>URI link to a metadata document.</documentation>
             </annotation>
           </element>
           <element name="specification_uri" type="anyURI">
             <annotation>
-              <documentation>URI referring the the Observation&amp;Measurements (ISO19156) SF_Specimen feature that describes the instance in detail. Mandatory property - if not value is provided then a URI referring to a controlled concept explaining why the value is nil must be provided.</documentation>
+              <documentation>URI referring the Observation&amp;Measurements (ISO19156) SF_Specimen feature that describes the instance in detail. Mandatory property - if not value is provided then a URI referring to a controlled concept explaining why the value is nil must be provided.</documentation>
             </annotation>
           </element>
           <element name="genericSymbolizer" type="string">
             <annotation>
-              <documentation>reference to specimen symbolisation</documentation>
+              <documentation>Identifier for a symbol from standard (locally or community defined) symbolization scheme for portrayal.</documentation>
             </annotation>
           </element>
           <element name="shape" type="gml:GeometryPropertyType">
             <annotation>
-              <documentation>map geometry of the specimen (generally a point)</documentation>
+              <documentation>Map geometry of the specimen (generally a point)</documentation>
             </annotation>
           </element>
-         <any processContents="lax" minOccurs="0" maxOccurs="unbounded"/>
+         <any processContents="lax" minOccurs="0" maxOccurs="unbounded">
+            <annotation>
+              <documentation>A placeholder allowing any user-defined attributes to be delivered in addition to those specified above.</documentation>
+            </annotation>
+			</any>        
 		 </sequence>
       </extension>
     </complexContent>
@@ -321,7 +337,7 @@ It is separate to, but harmonized with, GeoSciML and conforms to the level 0 of 
   </complexType>
   <element name="GeologicUnitView" substitutionGroup="gml:AbstractFeature" type="gsmlp:GeologicUnitViewType">
     <annotation>
-      <documentation>Simplified view of a GeoSciML GeologicUnit. In GeoSciML terms this will be in instance of a MappedFeature with key property values from the associated GeologicUnit feature summarised as labels (unconstrained character strings) or arbitrarily selected classifiers to be used for thematic mapping purposes. The latter are the properties suffixed with '_uri' and will contain URIs referring to controlled concepts in published vocabularies.</documentation>
+      <documentation>Simplified view of a GeoSciML GeologicUnit. In GeoSciML terms this will be an instance of a MappedFeature with key property values from the associated GeologicUnit feature summarised as labels (unconstrained character strings) or arbitrarily selected classifiers to be used for thematic mapping purposes. The latter are the properties suffixed with '_uri' and will contain URIs referring to controlled concepts in published vocabularies.</documentation>
     </annotation>
   </element>
   <complexType name="GeologicUnitViewType">
@@ -350,7 +366,7 @@ It is separate to, but harmonized with, GeoSciML and conforms to the level 0 of 
           </element>
           <element minOccurs="0" name="rank" type="string">
             <annotation>
-              <documentation>Rank of GeologicUnit (as defined in GeoSciML).</documentation>
+              <documentation>Rank of GeologicUnit (as defined by ISC. eg; group, formation, member).</documentation>
             </annotation>
           </element>
           <element minOccurs="0" name="lithology" type="string">
@@ -380,7 +396,7 @@ It is separate to, but harmonized with, GeoSciML and conforms to the level 0 of 
           </element>
           <element name="geologicUnitType_uri" type="anyURI">
             <annotation>
-              <documentation>URI referring to a controlled concept from a vocabulary defining the GeologicUnit types. Mandatory propery - if not value is provided then a URI referring to a conctrolled concept explaining why the value is nil must be provided.</documentation>
+              <documentation>URI referring to a controlled concept from a vocabulary defining the GeologicUnit types. Mandatory property - if not value is provided then a URI referring to a controlled concept explaining why the value is nil must be provided.</documentation>
             </annotation>
           </element>
           <element name="representativeLithology_uri" type="anyURI">
@@ -433,7 +449,11 @@ It is separate to, but harmonized with, GeoSciML and conforms to the level 0 of 
               <documentation>Geometry defining the extent of the feature of interest.</documentation>
             </annotation>
           </element>
-         <any processContents="lax" minOccurs="0" maxOccurs="unbounded"/>
+           <any processContents="lax" minOccurs="0" maxOccurs="unbounded">
+            <annotation>
+              <documentation>A placeholder allowing any user-defined attributes to be delivered in addition to those specified above.</documentation>
+            </annotation>
+			</any>
 		 </sequence>
       </extension>
     </complexContent>
@@ -447,7 +467,7 @@ It is separate to, but harmonized with, GeoSciML and conforms to the level 0 of 
   </complexType>
   <element name="GeomorphologicUnitView" substitutionGroup="gml:AbstractFeature" type="gsmlp:GeomorphologicUnitViewType">
     <annotation>
-      <documentation>Simplified view of a GeoSciML GeologicUnit. In GeoSciML terms this will be in instance of a MappedFeature with key property values from the associated GeologicUnit feature summarised as labels (unconstrained character strings) or arbitrarily selected classifiers to be used for thematic mapping purposes. The latter are the properties suffixed with '_uri' and will contain URIs referring to controlled concepts in published vocabularies.</documentation>
+      <documentation>Simplified view of a GeoSciML GeomorphologicUnit. In GeoSciML terms this will be in instance of a MappedFeature with key property values from the associated GeomorphologicUnit feature summarised as labels (unconstrained character strings) or arbitrarily selected classifiers to be used for thematic mapping purposes. The latter are the properties suffixed with '_uri' and will contain URIs referring to controlled concepts in published vocabularies.</documentation>
     </annotation>
   </element>
   <complexType name="GeomorphologicUnitViewType">
@@ -456,48 +476,48 @@ It is separate to, but harmonized with, GeoSciML and conforms to the level 0 of 
         <sequence>
           <element name="identifier" type="anyURI">
             <annotation>
-              <documentation>Globally unique identifer. Should have the same value as the corresponding GeoSciML MappedFeature.</documentation>
+              <documentation>Globally unique identifier. Should have the same value as the corresponding GeoSciML MappedFeature.</documentation>
             </annotation>
           </element>
           <element minOccurs="0" name="name" type="string">
             <annotation>
-              <documentation>Display name for the the GeologicalUnit.</documentation>
+              <documentation>Display name for the GeomorphologicUnit.</documentation>
             </annotation>
           </element>
           <element minOccurs="0" name="description" type="string">
             <annotation>
-              <documentation>Text description of the GeologicUnit, typically taken from an entry on a geological map legend.</documentation>
+              <documentation>Text description of the GeomorphologicUnit, typically taken from an entry on a map legend.</documentation>
             </annotation>
           </element>
           <element minOccurs="0" name="activity" type="string">
             <annotation>
-              <documentation>Term to specify if feature is changing and how fast.
+              <documentation>Term to specify if the feature is changing and how fast.
 e.g. active, dormant, stable....</documentation>
             </annotation>
           </element>
           <element minOccurs="0" name="landformClass" type="string">
             <annotation>
-              <documentation>anthropogenic, natural...</documentation>
+              <documentation>Term to specify a broad classification of landform, preferably from a controlled vocabulary. (eg, anthropogenic, natural)</documentation>
             </annotation>
           </element>
           <element minOccurs="0" name="unitType" type="string">
             <annotation>
-              <documentation>Type of GeomorphologicUnit. Need vocabulary</documentation>
+              <documentation>Type of GeomorphologicUnit. Preferably from a controlled vocabular (eg, hill, crater, moraine, plain)</documentation>
             </annotation>
           </element>
           <element minOccurs="0" name="lithology" type="string">
             <annotation>
-              <documentation>Text (possibly formatted with formal syntax) description of the GeologicUnit's lithology.</documentation>
+              <documentation>Text (possibly formatted with formal syntax) description of the GeomorphologicUnit's lithological composition.</documentation>
             </annotation>
           </element>
           <element minOccurs="0" name="geologicHistory" type="string">
             <annotation>
-              <documentation>Text (possibly formatted with formal syntax) description of the age of the GeologicUnit (where age is a sequence of events and may include process and environment information).</documentation>
+              <documentation>Text (possibly formatted with formal syntax) description of the age of the GeomorphologicUnit (where age is a sequence of events and may include process and environment information).</documentation>
             </annotation>
           </element>
           <element minOccurs="0" name="observationMethod" type="string">
             <annotation>
-              <documentation>Metadata snippet indicating how the spatial extent of the feature was determined. ObservationMethod is a convenience property that provides a quick and dirty approach to observation metadata when data are reported using a feature view (as opposed to observation view).</documentation>
+              <documentation>Metadata snippet indicating how the spatial extent of the feature was determined. ObservationMethod is a convenience property that provides a quick approach to observation metadata when data are reported using a feature view (as opposed to observation view).</documentation>
             </annotation>
           </element>
           <element minOccurs="0" name="positionalAccuracy" type="string">
@@ -507,12 +527,12 @@ e.g. active, dormant, stable....</documentation>
           </element>
           <element minOccurs="0" name="source" type="string">
             <annotation>
-              <documentation>Text describing feature-specific details and citations to source materials, and if available providing URLs to reference material and publications describing the geologic feature. This could be a short text synopsis of key inforamtion that would also be in the metadata record referenced by metadata_uri.</documentation>
+              <documentation>Text describing feature-specific details and citations to source materials, and if available providing URLs to reference material and publications describing the geologic feature. This could be a short text synopsis of key information that would also be in the metadata record referenced by metadata_uri.</documentation>
             </annotation>
           </element>
           <element minOccurs="0" name="activity_uri" type="anyURI">
             <annotation>
-              <documentation>Identifier of activity drawn from a controlled vocabulary</documentation>
+              <documentation>URI identifier of activity term drawn from a controlled vocabulary.</documentation>
               <appinfo>
                 <targetElement xmlns="http://www.opengis.net/gml/3.2">null:URI</targetElement>
               </appinfo>
@@ -520,7 +540,7 @@ e.g. active, dormant, stable....</documentation>
           </element>
           <element minOccurs="0" name="landformClass_uri" type="anyURI">
             <annotation>
-              <documentation>identifier of landform drawn from a controlled vocabulary</documentation>
+              <documentation>URI identifier of landform term drawn from a controlled vocabulary.</documentation>
               <appinfo>
                 <targetElement xmlns="http://www.opengis.net/gml/3.2">null:URI</targetElement>
               </appinfo>
@@ -528,17 +548,17 @@ e.g. active, dormant, stable....</documentation>
           </element>
           <element minOccurs="0" name="unitType_uri" type="anyURI">
             <annotation>
-              <documentation>URI referring to a controlled concept from a vocabulary defining the GeomorphologicUnit types. Mandatory propery - if not value is provided then a URI referring to a conctrolled concept explaining why the value is nil must be provided.</documentation>
+              <documentation>URI referring to a controlled concept from a vocabulary defining the GeomorphologicUnit types. Mandatory property - if no value is provided then a URI referring to a controlled concept explaining why the value is nil must be provided.</documentation>
             </annotation>
           </element>
           <element name="representativeLithology_uri" type="anyURI">
             <annotation>
-              <documentation>URI referring to a controlled concept specifying the characteristic or represntative lithology of the unit. This may be a concept that defines the super-type of all lithology values present within a GeologicUnit or a concept defining the lithology of the dominant CompositionPart (as defined in GeoSciML) of the unit.</documentation>
+              <documentation>URI referring to a controlled concept specifying the characteristic or representative lithology of the unit. This may be a concept that defines the super-type of all lithology values present within a GeomorphologicUnit or a concept defining the lithology of the dominant CompositionPart (as defined in GeoSciML) of the unit.</documentation>
             </annotation>
           </element>
           <element name="representativeAge_uri" type="anyURI">
             <annotation>
-              <documentation>URI referring to a controlled concept specifying the most representative stratigraphic age interval for the GeomorphologicUnit. This will be defined entirely at the discretion of the data provider. typically geomorphic units are not assigned age ranges.</documentation>
+              <documentation>URI referring to a controlled concept specifying the most representative stratigraphic age interval for the GeomorphologicUnit. This will be defined entirely at the discretion of the data provider. Typically geomorphic units are not assigned age ranges.</documentation>
             </annotation>
           </element>
           <element minOccurs="0" name="representativeNumericAge" type="double">
@@ -548,7 +568,7 @@ e.g. active, dormant, stable....</documentation>
           </element>
           <element name="specification_uri" type="anyURI">
             <annotation>
-              <documentation>URI referring the GeoSciML GeologicUnit feature that describes the instance in detail. Mandatory property - if not value is provided then a URI referring to a controlled concept explaining why the value is nil must be provided.</documentation>
+              <documentation>URI referring the GeoSciML GeomorphologicUnit feature that describes the instance in detail. Mandatory property - if not value is provided then a URI referring to a controlled concept explaining why the value is nil must be provided.</documentation>
             </annotation>
           </element>
           <element name="metadata_uri" type="anyURI">
@@ -565,8 +585,12 @@ e.g. active, dormant, stable....</documentation>
             <annotation>
               <documentation>Geometry defining the extent of the feature of interest.</documentation>
             </annotation>
-          </element>
-        <any processContents="lax" minOccurs="0" maxOccurs="unbounded"/>
+          </element>       
+           <any processContents="lax" minOccurs="0" maxOccurs="unbounded">
+            <annotation>
+              <documentation>A placeholder allowing any user-defined attributes to be delivered in addition to those specified above.</documentation>
+            </annotation>
+			</any>
 		</sequence>
       </extension>
     </complexContent>
@@ -580,7 +604,7 @@ e.g. active, dormant, stable....</documentation>
   </complexType>
   <element name="ShearDisplacementStructureView" substitutionGroup="gml:AbstractFeature" type="gsmlp:ShearDisplacementStructureViewType">
     <annotation>
-      <documentation>Simplified view of a GeoSciML ShearDisplacementStructure. In GeoSciML terms this will be in instance of a MappedFeature with key property values from the associated ShearDisplacementStructure feature summarised as labels (unconstrained character strings) or arbitrarily selected classifiers to be used for thematic mapping purposes. The latter are the properties suffixed with '_uri' and will contain URIs referring to controlled concepts in published vocabularies.</documentation>
+      <documentation>Simplified view of a GeoSciML ShearDisplacementStructure. In GeoSciML terms this will be an instance of a MappedFeature with key property values from the associated ShearDisplacementStructure feature summarised as labels (unconstrained character strings) or arbitrarily selected classifiers to be used for thematic mapping purposes. The latter are the properties suffixed with '_uri' and will contain URIs referring to controlled concepts in published vocabularies.</documentation>
     </annotation>
   </element>
   <complexType name="ShearDisplacementStructureViewType">
@@ -701,8 +725,12 @@ e.g. active, dormant, stable....</documentation>
             <annotation>
               <documentation>Geometry defining the extent of the feature of interest.</documentation>
             </annotation>
-          </element>
-          <any processContents="lax" minOccurs="0" maxOccurs="unbounded"/>
+          </element>         
+           <any processContents="lax" minOccurs="0" maxOccurs="unbounded">
+            <annotation>
+              <documentation>A placeholder allowing any user-defined attributes to be delivered in addition to those specified above.</documentation>
+            </annotation>
+			</any>
 		  </sequence>
       </extension>
     </complexContent>
@@ -714,7 +742,11 @@ e.g. active, dormant, stable....</documentation>
     <attributeGroup ref="gml:AssociationAttributeGroup"/>
     <attributeGroup ref="gml:OwnershipAttributeGroup"/>
   </complexType>
-  <element name="SiteObservationView" substitutionGroup="gml:AbstractFeature" type="gsmlp:SiteObservationViewType"/>
+  <element name="SiteObservationView" substitutionGroup="gml:AbstractFeature" type="gsmlp:SiteObservationViewType">
+    <annotation>
+      <documentation>Simplified view of a point-located geological observation, like a structural measurement. This is a simplified instance of a sampling point from Observations &amp; Measurements (ISO19156) with an associated geological observation.  Key property values are summarised as labels (unconstrained character strings) or arbitrarily selected classifiers to be used for thematic mapping purposes. The latter are the properties suffixed with '_uri' and will contain URIs referring to controlled concepts in published vocabularies.</documentation>
+    </annotation>
+  </element>
   <complexType name="SiteObservationViewType">
     <complexContent>
       <extension base="gml:AbstractFeatureType">
@@ -722,6 +754,11 @@ e.g. active, dormant, stable....</documentation>
           <element name="identifier" type="anyURI">
             <annotation>
               <documentation>Unique identifier for this site observation record.</documentation>
+            </annotation>
+          </element>
+          <element minOccurs="0" name="siteName" type="string">
+            <annotation>
+              <documentation>The name of the sampling feature at this location (e.g. a station number, a borehole)</documentation>
             </annotation>
           </element>
           <element minOccurs="0" name="observationName" type="string">
@@ -736,47 +773,37 @@ e.g. active, dormant, stable....</documentation>
           </element>
           <element minOccurs="0" name="description" type="string">
             <annotation>
-              <documentation>Free text providing information about the observation that will be accessible to map service user through a information click (e.g. WMS GetFeatureInfo).</documentation>
-            </annotation>
-          </element>
-          <element minOccurs="0" name="siteName" type="string">
-            <annotation>
-              <documentation>The name of the sampling feature at this location (e.g. a station number, a borehole)</documentation>
+              <documentation>Text string providing descriptive information about the observation.</documentation>
             </annotation>
           </element>
           <element minOccurs="0" name="featureOfInterest" type="string">
             <annotation>
-              <documentation>This is the geologic feature that the observation is intended to characterize, e.g. foliation (observed property= orientation), a geologic unit (observed property = age,magnetic susceptibility, density, uranium content).</documentation>
-            </annotation>
-          </element>
-          <element name="featureOfInterest_uri" type="anyURI">
-            <annotation>
-              <documentation>URI for feature of interest</documentation>
+              <documentation>The geologic feature that the observation is intended to characterize, e.g. foliation (observed property= orientation), a geologic unit (observed property = age,magnetic susceptibility, density, uranium content).</documentation>
             </annotation>
           </element>
           <element minOccurs="0" name="observedProperty" type="string">
             <annotation>
-              <documentation>The property reported in this record. (eg. orientation, age, density, gold content)</documentation>
-            </annotation>
-          </element>
-          <element name="propertyType_uri" type="anyURI">
-            <annotation>
-              <documentation>URI to a term from a controlled vocabulary of observed property types.</documentation>
+              <documentation>The property reported in this record. (eg. orientation, age, density, gold content). Preferably a term from a controlled vocabulary.</documentation>
             </annotation>
           </element>
           <element minOccurs="0" name="observedValue" type="string">
             <annotation>
-              <documentation>Although this field is implemented as a character string to conform with simple feature requirements, it can be encoded as a swe:Record.</documentation>
+              <documentation>Although this field is implemented as a character string to conform with simple feature requirements, it can be encoded as a swe:Record.  This value may be numeric (eg; 235 degrees, 50 ppm) or textual (eg; red).</documentation>
+            </annotation>
+          </element>
+          <element minOccurs="0" name="observedValueUom" type="string">
+            <annotation>
+              <documentation>The unit of measure for a numerical value of an observation or measurement, preferable from a controlled vocabulary.</documentation>
             </annotation>
           </element>
           <element minOccurs="0" name="observationMethod" type="string">
             <annotation>
-              <documentation>Preferably a term from a controlled vocabulary to categorize the observation method. Details on procedure should be put in the source field.</documentation>
+              <documentation>Preferably a term from a controlled vocabulary to categorize the observation method. Further details on procedure can be put in the source field.</documentation>
             </annotation>
           </element>
           <element minOccurs="0" name="positionalAccuracy" type="string">
             <annotation>
-              <documentation>Specification of the position uncertainty for the site location. (eg, 50 metres, poor, good)</documentation>
+              <documentation>Estimate of the position uncertainty for the site location. For numerical measurements, include a unit of measure in the description. (eg, 50 metres, poor, good).</documentation>
             </annotation>
           </element>
           <element minOccurs="0" name="source" type="string">
@@ -784,14 +811,24 @@ e.g. active, dormant, stable....</documentation>
               <documentation>Text description of measurement procedure, processing, and provenance of data.</documentation>
             </annotation>
           </element>
-          <element name="metadata_uri" type="anyURI">
-            <annotation>
-              <documentation>link to metadata document</documentation>
-            </annotation>
-          </element>
           <element name="observation_uri" type="anyURI">
             <annotation>
-              <documentation>link to an O&amp;M  observation</documentation>
+              <documentation>URI link to a full O&amp;M observation description.</documentation>
+            </annotation>
+          </element>
+          <element name="featureOfInterest_uri" type="anyURI">
+            <annotation>
+              <documentation>URI link to a document describing the feature of interest (eg, a GeoSciML geologic unit or structure).</documentation>
+            </annotation>
+          </element>
+          <element name="propertyType_uri" type="anyURI">
+            <annotation>
+              <documentation>URI to a term from a controlled vocabulary of observed property types.</documentation>
+            </annotation>
+          </element>
+          <element name="metadata_uri" type="anyURI">
+            <annotation>
+              <documentation>URI link to metadata document.</documentation>
             </annotation>
           </element>
           <element minOccurs="0" name="genericSymbolizer" type="string">
@@ -806,11 +843,16 @@ e.g. active, dormant, stable....</documentation>
           </element>
           <element name="shape" type="gml:GeometryPropertyType">
             <annotation>
-              <documentation>map geometry of the observation site</documentation>
+              <documentation>Map geometry of the observation site.</documentation>
+
             </annotation>
           </element>
- <any processContents="lax" minOccurs="0" maxOccurs="unbounded"/>
-        </sequence>
+<any processContents="lax" minOccurs="0" maxOccurs="unbounded">
+            <annotation>
+              <documentation>A placeholder allowing any user-defined attributes to be delivered in addition to those specified above.</documentation>
+            </annotation>
+			</any>
+          </sequence>
       </extension>
     </complexContent>
   </complexType>
