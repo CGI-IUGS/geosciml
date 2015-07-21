@@ -164,14 +164,14 @@ Note that the "German School" defines stratigraphic eras conceptually, without r
     <attributeGroup ref="gml:AssociationAttributeGroup"/>
     <attributeGroup ref="gml:OwnershipAttributeGroup"/>
   </complexType>
-  <element name="StratigraphicPoint" type="gsmlgt:StratigraphicPointType">
+  <element name="StratigraphicPoint" type="gsmlgt:StratigraphicPointType" substitutionGroup="sf:SF_SpatialSamplingFeature">
     <annotation>
       <documentation>A point in the stratigraphic record used to define a geochronologic boundary or point in geologic time</documentation>
     </annotation>
   </element>
   <complexType name="StratigraphicPointType">
     <complexContent>
-      <extension base="sf:SF_SpatialSamplingFeature">
+      <extension base="sf:SF_SpatialSamplingFeatureType">
         <sequence>
           <element minOccurs="0" name="primaryGuidingCriterion" type="string">
             <annotation>
@@ -199,14 +199,14 @@ Note that the "German School" defines stratigraphic eras conceptually, without r
     <attributeGroup ref="gml:AssociationAttributeGroup"/>
     <attributeGroup ref="gml:OwnershipAttributeGroup"/>
   </complexType>
-  <element name="StratigraphicSection" type="gsmlgt:StratigraphicSectionType">
+  <element name="StratigraphicSection" type="gsmlgt:StratigraphicSectionType" substitutionGroup="sf:SF_SpatialSamplingFeature">
     <annotation>
       <documentation>A sampled section of the stratigraphic record used to define a period in geologic time</documentation>
     </annotation>
   </element>
   <complexType name="StratigraphicSectionType">
     <complexContent>
-      <extension base="fixme:fixme">
+      <extension base="sf:SF_SpatialSamplingFeatureType">
         <sequence>
           <element minOccurs="0" name="geologicSetting" type="string">
             <annotation>
@@ -332,14 +332,14 @@ Note that the "German School" defines stratigraphic eras conceptually, without r
     <attributeGroup ref="gml:AssociationAttributeGroup"/>
     <attributeGroup ref="gml:OwnershipAttributeGroup"/>
   </complexType>
-  <element name="TimeOrdinalReferenceSystem" type="gsmlgt:TimeOrdinalReferenceSystemType">
+  <element name="TimeOrdinalReferenceSystem" type="gsmlgt:TimeOrdinalReferenceSystemType" substitutionGroup="gml:TimeOrdinalReferenceSystem">
     <annotation>
       <documentation>A time reference system comprised of an ordered set of time periods (time ordinal eras).</documentation>
     </annotation>
   </element>
-  <complexType name="TimeOrdinalReferenceSystemType">
+  <complexType name="gml:TimeOrdinalReferenceSystemType">
     <complexContent>
-      <extension base="fixme:fixme">
+      <extension base="gml:TimeOrReferenceSystemType">
         <sequence>
           <element maxOccurs="unbounded" minOccurs="0" name="component" type="gsmlgt:TimeOrdinalEraPropertyType"/>
           <element maxOccurs="unbounded" minOccurs="2" name="referencePoint" type="gsmlgt:TimeOrdinalEraBoundaryPropertyType"/>
