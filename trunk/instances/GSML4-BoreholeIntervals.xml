@@ -6,40 +6,31 @@
  xmlns:gml="http://www.opengis.net/gml/3.2" 
  xmlns:sam="http://www.opengis.net/sampling/2.0" 
  xmlns:sams="http://www.opengis.net/samplingSpatial/2.0" 
- xmlns:gsmlb="http://xmlns.geosciml.org/geologybasic/4.0" 
- xmlns:gsmlbh="http://xmlns.geosciml.org/borehole/4.0"
+ xmlns:gsmlb="http://xmlns.geosciml.org/GeoSciML-Basic/4.0" 
+ xmlns:gsmlbh="http://xmlns.geosciml.org/Borehole/4.0"
  xmlns:swe="http://www.opengis.net/swe/2.0" 
  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
- xsi:schemaLocation="http://xmlns.geosciml.org/borehole/4.0 ../schemas/borehole.xsd" gml:id="bh.ns94se5">
- <gml:identifier codeSpace="http://data.bgs.ac.uk/id/Borehole">NS94SE5</gml:identifier>
+ xsi:schemaLocation="http://xmlns.geosciml.org/Borehole/4.0 http://schemas.geosciml.org/geosciml/4.0/borehole.xsd http://xmlns.geosciml.org/GeoSciML-Basic/4.0 http://schemas.geosciml.org/geosciml/4.0/geoSciMLBasic.xsd" gml:id="bh.1">
+ <gml:identifier codeSpace="http://data.gov.au/boreholes/id">GA.borehole.276547</gml:identifier>
+ <gml:name>BMR Eromanga 1</gml:name>
  <sam:sampledFeature>
-  <gsmlb:GeologicUnit gml:id="BASIN1">
-   <gml:name>Murray Basin</gml:name>
+  <gsmlb:GeologicUnit gml:id="bh.1.sampledFeature">
+   <gml:name>Eromanga Basin</gml:name>
+   <gsmlb:geologicUnitType xlink:href="http://resource.geoscience.gov.xxx/vocabulary/geologicunittype" xlink:title="sedimentary basin"/>
   </gsmlb:GeologicUnit>
  </sam:sampledFeature>
  <sams:shape>
-  <gml:LineString gml:id="bh.ns94se5.shape" srsName="urn:ogc:def:crs:EPSG:6.15:7405">
-   <gml:posList srsDimension="3" count="7">-30.7111 134.2059 321.0 -30.7112 134.2058 315.0 -30.7113 134.2057 303.0 -30.7114 134.2056 296.0 -30.7115 134.2055 272.0 -30.7116 134.2054 271.0 -30.7117 134.2053 270.0</gml:posList>
+  <gml:LineString gml:id="bh.1.shape" srsName="http://spatialreference.org/ref/epsg/4979/">
+   <gml:posList srsDimension="3" count="3">-25.9020 132.334 27.9 -25.9025 132.334 -30.65 -25.9030 132.334 -215.6</gml:posList>
   </gml:LineString>
  </sams:shape>
- <gsmlbh:referenceLocation>
-  <gsmlbh:OriginPosition gml:id="op1">
-   <gsmlbh:location>
-    <gml:Point gml:id="pt1" srsName="urn:ogc:def:crs:EPSG:6.15:27700" srsDimension="2">
-     <gml:pos>-30.7 134.2</gml:pos>
-    </gml:Point>
-   </gsmlbh:location>
-   <gsmlbh:elevation srsName="urn:ogc:def:crs:EPSG:6.15:5701" srsDimension="1">321.0</gsmlbh:elevation>
-  </gsmlbh:OriginPosition>
- </gsmlbh:referenceLocation>
-<!--   The borehole log is given as a series of logElemants (MappedIntervals)  -->
  <gsmlbh:logElement>
-  <gsmlbh:BoreholeInterval gml:id="mi1">
-   <gsmlbh:shape>
-    <gml:LineString gml:id="ls1" srsName="#bh.ns94se5.shape">
-     <gml:posList srsDimension="1" count="2">0.0 2.0</gml:posList>
-    </gml:LineString>
-   </gsmlbh:shape>
+  <gsmlbh:BoreholeInterval gml:id="bh.1.interval.1">
+   <gsmlbh:specification>
+    <gsmlb:GeologicUnit gml:id="bh1.unit.1">
+     <gml:name>Hooray Sandstone</gml:name>
+    </gsmlb:GeologicUnit>
+   </gsmlbh:specification>
    <gsmlbh:mappedIntervalBegin>
     <swe:Quantity>
      <swe:uom code="m" xlink:href="http://www.opengis.net/def/uom/OGC/1.0/metre" xlink:title="metre"/>
@@ -49,38 +40,44 @@
    <gsmlbh:mappedIntervalEnd>
     <swe:Quantity>
      <swe:uom code="m" xlink:href="http://www.opengis.net/def/uom/OGC/1.0/metre" xlink:title="metre"/>
-     <swe:value>2.0</swe:value>
+     <swe:value>20.0</swe:value>
     </swe:Quantity>
    </gsmlbh:mappedIntervalEnd>
-<!--  The MappedInterval is specified by a GeologicUnit  -->
-   <gsmlbh:specification>
-    <gsmlb:GeologicUnit gml:id="PEAT"/>
-   </gsmlbh:specification>
+   <gsmlbh:collectionIdentifier codeSpace="http://data.gov.xx/BoreholeIntervalCollections">TestBoreholeLog.BH1</gsmlbh:collectionIdentifier>
+   <gsmlbh:shape>
+    <gml:LineString gml:id="ls1" srsName="#bh.1.shape">
+     <gml:posList srsDimension="1" count="2">0.0 20.0</gml:posList>
+    </gml:LineString>
+   </gsmlbh:shape>
+   <gsmlbh:parentBorehole xlink:href="#bh.1"/>
   </gsmlbh:BoreholeInterval>
  </gsmlbh:logElement>
  <gsmlbh:logElement>
-  <gsmlbh:BoreholeInterval gml:id="mi2">
-   <gsmlbh:shape>
-    <gml:LineString gml:id="ls2" srsName="#bh.ns94se5.shape">
-     <gml:posList srsDimension="1" count="2">2.0 4.0</gml:posList>
-    </gml:LineString>
-   </gsmlbh:shape>
+  <gsmlbh:BoreholeInterval gml:id="bh.1.interval.2">
+   <gsmlbh:specification>
+    <gsmlb:GeologicUnit gml:id="bh1.unit.2">
+     <gml:name>Westbourne Formation</gml:name>
+    </gsmlb:GeologicUnit>
+   </gsmlbh:specification>
    <gsmlbh:mappedIntervalBegin>
     <swe:Quantity>
      <swe:uom code="m" xlink:href="http://www.opengis.net/def/uom/OGC/1.0/metre" xlink:title="metre"/>
-     <swe:value>2.0</swe:value>
+     <swe:value>20.0</swe:value>
     </swe:Quantity>
    </gsmlbh:mappedIntervalBegin>
    <gsmlbh:mappedIntervalEnd>
     <swe:Quantity>
      <swe:uom code="m" xlink:href="http://www.opengis.net/def/uom/OGC/1.0/metre" xlink:title="metre"/>
-     <swe:value>4.0</swe:value>
+     <swe:value>56.0</swe:value>
     </swe:Quantity>
    </gsmlbh:mappedIntervalEnd>
-   <!--  The MappedInterval is specified by a new GeologicUnit  -->
-   <gsmlbh:specification>
-    <gsmlb:GeologicUnit gml:id="COAL"/>
-   </gsmlbh:specification>
+   <gsmlbh:collectionIdentifier codeSpace="http://data.gov.xx/BoreholeIntervalCollections">TestBoreholeLog.BH1</gsmlbh:collectionIdentifier>
+   <gsmlbh:shape>
+    <gml:LineString gml:id="ls2" srsName="#bh.1.shape">
+     <gml:posList srsDimension="1" count="2">20.0 56.0</gml:posList>
+    </gml:LineString>
+   </gsmlbh:shape>
+   <gsmlbh:parentBorehole xlink:href="#bh.1"/>
   </gsmlbh:BoreholeInterval>
  </gsmlbh:logElement>
 </gsmlbh:Borehole>
