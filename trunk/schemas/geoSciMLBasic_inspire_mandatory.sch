@@ -4,7 +4,7 @@
  xmlns:xsl="http://www.w3.org/1999/XSL/Transform" queryBinding="xslt2">
  <!-- Only for use with Schema aware processor
  <xsl:import-schema schema-location="geoSciMLBasic.xsd"
-  namespace="http://xmlns.geosciml.org/geologybasic/4.0"/>
+  namespace="http://xmlns.geosciml.org/GeoSciML-Basic/4.0"/>
  -->
  <!-- To Do
   - For complex properties should ensure they have content or are nil
@@ -13,8 +13,8 @@
  <p>This Schematron enforces mandatory properties required by INSPIRE but not
   the GeoSciML Basic or Borehole XML Schemas</p>
  <ns prefix="xlink" uri="http://www.w3.org/1999/xlink"/>
- <ns prefix="gsmlb" uri="http://xmlns.geosciml.org/geologybasic/4.0"/>
- <ns prefix="gsmlbh" uri="http://xmlns.geosciml.org/borehole/4.0"/>
+ <ns prefix="gsmlb" uri="http://xmlns.geosciml.org/GeoSciML-Basic/4.0"/>
+ <ns prefix="gsmlbh" uri="http://xmlns.geosciml.org/Borehole/4.0"/>
  <ns prefix="gml" uri="http://www.opengis.net/gml/3.2"/>
  <ns prefix="sa" uri="http://www.opengis.net/sampling/2.0"/>
  <ns prefix="swe" uri="http://www.opengis.net/swe/2.0"/>

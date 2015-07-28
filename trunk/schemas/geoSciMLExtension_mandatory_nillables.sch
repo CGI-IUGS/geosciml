@@ -4,9 +4,9 @@
 	<p>This sch enforces mandatory nillable properties originally defined in XSD.  This series of rules has been generated automatically for a properties that have nillable=true and minOccurs=0</p>
 <ns prefix= "n10" uri="http://www.isotc211.org/2005/gts"/>
 <ns prefix= "n8" uri="http://www.isotc211.org/2005/gco"/>
-<ns prefix= "n0" uri="http://xmlns.geosciml.org/geologyextension/4.0"/>
+<ns prefix= "n0" uri="http://xmlns.geosciml.org/GeoSciML-Extension/4.0"/>
 <ns prefix= "n7" uri="http://www.w3.org/1999/xlink"/>
-<ns prefix= "n1" uri="http://xmlns.geosciml.org/geologybasic/4.0"/>
+<ns prefix= "n1" uri="http://xmlns.geosciml.org/GeoSciML-Basic/4.0"/>
 <ns prefix= "n2" uri="http://www.opengis.net/gml/3.2"/>
 <ns prefix= "n12" uri="http://www.opengis.net/gml/3.3/exr"/>
 <ns prefix= "n9" uri="http://www.isotc211.org/2005/gss"/>
