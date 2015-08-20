@@ -4,10 +4,11 @@
  xmlns:gml="http://www.opengis.net/gml/3.2" 
  xmlns:sam="http://www.opengis.net/sampling/2.0"
  xmlns:sams="http://www.opengis.net/samplingSpatial/2.0"
- xmlns:gsmlb="http://xmlns.geosciml.org/geologybasic/4.0" 
- xmlns:gsmlbh="http://xmlns.geosciml.org/borehole/4.0" 
+ xmlns:gsmlb="http://xmlns.geosciml.org/GeoSciML-Basic/4.0" 
+ xmlns:gsmlbh="http://xmlns.geosciml.org/Borehole/4.0" 
  xmlns:swe="http://www.opengis.net/swe/2.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
- xsi:schemaLocation="http://xmlns.geosciml.org/borehole/4.0 ../schemas/borehole.xsd" 
+ xsi:schemaLocation="http://xmlns.geosciml.org/Borehole/4.0 ../schemas/borehole.xsd
+ http://xmlns.geosciml.org/GeoSciML-Basic/4.0 ../schemas/geoSciMLBasic.xsd" 
  gml:id="bh.ns94se5">
  <gml:identifier codeSpace="http://data.bgs.ac.uk/id/Borehole">NS94SE5</gml:identifier>
  <sam:sampledFeature xlink:href="#PEAT"/>
@@ -50,25 +51,6 @@
  <!--  -->
  <gsmlbh:logElement>
   <gsmlbh:BoreholeInterval gml:id="mi1">
-   <gsmlbh:shape>
-    <gml:LineString gml:id="ls1" srsName="#bh.ns94se5.shape">
-     <gml:posList srsDimension="1" count="2">0.0 2.0</gml:posList>
-    </gml:LineString>
-   </gsmlbh:shape>
-   <gsmlbh:mappedIntervalBegin>
-    <swe:Quantity>
-     <swe:uom code="m" xlink:href="http://www.opengis.net/def/uom/OGC/1.0/metre"
-      xlink:title="metre"/>
-     <swe:value>0.0</swe:value>
-    </swe:Quantity>
-   </gsmlbh:mappedIntervalBegin>
-   <gsmlbh:mappedIntervalEnd>
-    <swe:Quantity>
-     <swe:uom code="m" xlink:href="http://www.opengis.net/def/uom/OGC/1.0/metre"
-      xlink:title="metre"/>
-     <swe:value>2.0</swe:value>
-    </swe:Quantity>
-   </gsmlbh:mappedIntervalEnd>
    <!--  -->
    <!-- The MappedInterval is specified by a GeologicUnit -->
    <!--  -->
@@ -115,6 +97,8 @@
       xlink:title="lithodemic unit"/>
      <gsmlb:composition>
       <gsmlb:CompositionPart>
+       <gsmlb:role xlink:title="unspecified part role"
+        xlink:href="http://inspire.ec.europa.eu/codelist/CompositionPartRoleValue/unspecifiedPartRole"/>
        <gsmlb:material>
         <gsmlb:RockMaterial gml:id="LOCAL_ID_30">
          <gsmlb:lithology
@@ -122,8 +106,6 @@
           xlink:title="peat"/>
         </gsmlb:RockMaterial>
        </gsmlb:material>
-       <gsmlb:role xlink:title="unspecified part role"
-        xlink:href="http://inspire.ec.europa.eu/codelist/CompositionPartRoleValue/unspecifiedPartRole"/>
        <gsmlb:proportion>
         <gsmlb:GSML_QuantityRange xmlns="http://xmlns.geosciml.org/Utilities/3.2">
          <swe:uom code="%" xlink:href="http://unitsofmeasure/ucum.html#para-29"
@@ -137,30 +119,29 @@
      </gsmlb:composition>
     </gsmlb:GeologicUnit>
    </gsmlbh:specification>
-  </gsmlbh:BoreholeInterval>
- </gsmlbh:logElement>
- <gsmlbh:logElement>
-  <gsmlbh:BoreholeInterval gml:id="mi2">
-   <gsmlbh:shape>
-    <gml:LineString gml:id="ls2" srsName="#bh.ns94se5.shape" srsDimension="1">
-     <gml:pos>2.0</gml:pos>
-     <gml:pos>51.0</gml:pos>
-    </gml:LineString>
-   </gsmlbh:shape>
    <gsmlbh:mappedIntervalBegin>
     <swe:Quantity>
      <swe:uom code="m" xlink:href="http://www.opengis.net/def/uom/OGC/1.0/metre"
       xlink:title="metre"/>
-     <swe:value>2.0</swe:value>
+     <swe:value>0.0</swe:value>
     </swe:Quantity>
    </gsmlbh:mappedIntervalBegin>
    <gsmlbh:mappedIntervalEnd>
     <swe:Quantity>
      <swe:uom code="m" xlink:href="http://www.opengis.net/def/uom/OGC/1.0/metre"
       xlink:title="metre"/>
-     <swe:value>51.0</swe:value>
+     <swe:value>2.0</swe:value>
     </swe:Quantity>
    </gsmlbh:mappedIntervalEnd>
+   <gsmlbh:shape>
+    <gml:LineString gml:id="ls1" srsName="#bh.ns94se5.shape">
+     <gml:posList srsDimension="1" count="2">0.0 2.0</gml:posList>
+    </gml:LineString>
+   </gsmlbh:shape>
+  </gsmlbh:BoreholeInterval>
+ </gsmlbh:logElement>
+ <gsmlbh:logElement>
+  <gsmlbh:BoreholeInterval gml:id="mi2">
    <gsmlbh:specification>
     <gsmlb:GeologicUnit gml:id="INV-MDST">
      <gml:identifier codeSpace="http://data.bgs.ac.uk/id/Lexicon/NamedRockUnit"
@@ -205,6 +186,8 @@
       xlink:title="lithostratigraphic Unit"/>
      <gsmlb:composition>
       <gsmlb:CompositionPart>
+       <gsmlb:role xlink:title="unspecified part role"
+        xlink:href="http://inspire.ec.europa.eu/codelist/CompositionPartRoleValue/unspecifiedPartRole"/>
        <gsmlb:material>
         <gsmlb:RockMaterial gml:id="LOCAL_ID_31">
          <gsmlb:lithology
@@ -212,8 +195,6 @@
           xlink:title="mudstone"/>
         </gsmlb:RockMaterial>
        </gsmlb:material>
-       <gsmlb:role xlink:title="unspecified part role"
-        xlink:href="http://inspire.ec.europa.eu/codelist/CompositionPartRoleValue/unspecifiedPartRole"/>
        <gsmlb:proportion>
         <gsmlb:GSML_QuantityRange xmlns="http://xmlns.geosciml.org/Utilities/3.2">
          <swe:uom code="%" xlink:href="http://unitsofmeasure/ucum.html#para-29"
@@ -227,6 +208,26 @@
      </gsmlb:composition>
     </gsmlb:GeologicUnit>
    </gsmlbh:specification>
+   <gsmlbh:mappedIntervalBegin>
+    <swe:Quantity>
+     <swe:uom code="m" xlink:href="http://www.opengis.net/def/uom/OGC/1.0/metre"
+      xlink:title="metre"/>
+     <swe:value>2.0</swe:value>
+    </swe:Quantity>
+   </gsmlbh:mappedIntervalBegin>
+   <gsmlbh:mappedIntervalEnd>
+    <swe:Quantity>
+     <swe:uom code="m" xlink:href="http://www.opengis.net/def/uom/OGC/1.0/metre"
+      xlink:title="metre"/>
+     <swe:value>51.0</swe:value>
+    </swe:Quantity>
+   </gsmlbh:mappedIntervalEnd>
+   <gsmlbh:shape>
+    <gml:LineString gml:id="ls2" srsName="#bh.ns94se5.shape" srsDimension="1">
+     <gml:pos>2.0</gml:pos>
+     <gml:pos>51.0</gml:pos>
+    </gml:LineString>
+   </gsmlbh:shape>
   </gsmlbh:BoreholeInterval>
  </gsmlbh:logElement>
 </gsmlbh:Borehole>
