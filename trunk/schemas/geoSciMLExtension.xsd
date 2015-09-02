@@ -866,7 +866,13 @@ Two or more GeologicFeatures are associated in a GeologicFeatureRelation; each h
   <complexType name="GeologicFeatureRelationType">
     <complexContent>
       <extension base="gsmle:GeologicRelationType">
-        <sequence/>
+        <sequence>
+		<element name="relatedFeature" type="gsmlb:GeologicFeaturePropertyType" minOccurs="0" maxOccurs="unbounded">
+		<annotation>
+		<documentation>TODO</documentation>
+		</annotation>
+		</element>
+		</sequence>
       </extension>
     </complexContent>
   </complexType>
@@ -1165,7 +1171,13 @@ Inverse relationships must be explicitly recorded as well or else they are invis
   <complexType name="MaterialRelationType">
     <complexContent>
       <extension base="gsmle:GeologicRelationType">
-        <sequence/>
+        <sequence>
+			<element name="relatedMaterial" type="gsmle:ConstituentPartPropertyType" minOccurs="0" maxOccurs="unbounded">
+			<annotation>
+			<documentation>The association between two or more ConstituentParts within a CompoundMaterial</documentation>
+			</annotation>
+			</element>
+		</sequence>
       </extension>
     </complexContent>
   </complexType>
