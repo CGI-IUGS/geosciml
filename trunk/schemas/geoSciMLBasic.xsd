@@ -1,26 +1,21 @@
 <?xml version="1.0" encoding="UTF-8"?>
+<!-- edited with XMLSpy v2015 rel. 4 sp1 (x64) (http://www.altova.com) by Eric Boisvert (Natural Resources Canada) -->
 <schema xmlns="http://www.w3.org/2001/XMLSchema" xmlns:gml="http://www.opengis.net/gml/3.2" xmlns:gmlexr="http://www.opengis.net/gml/3.3/exr" xmlns:gsmlb="http://xmlns.geosciml.org/GeoSciML-Basic/4.0" xmlns:sam="http://www.opengis.net/sampling/2.0" xmlns:swe="http://www.opengis.net/swe/2.0" targetNamespace="http://xmlns.geosciml.org/GeoSciML-Basic/4.0" elementFormDefault="qualified" version="4.0.0">
 	<import namespace="http://www.opengis.net/gml/3.2" schemaLocation="http://schemas.opengis.net/gml/3.2.1/gml.xsd"/>
 	<import namespace="http://www.opengis.net/gml/3.3/exr" schemaLocation="http://schemas.opengis.net/gml/3.3/extdEncRule.xsd"/>
 	<import namespace="http://www.opengis.net/sampling/2.0" schemaLocation="http://schemas.opengis.net/sampling/2.0/samplingFeature.xsd"/>
 	<import namespace="http://www.opengis.net/swe/2.0" schemaLocation="http://schemas.opengis.net/sweCommon/2.0/swe.xsd"/>
 	<!--XML Schema document created by ShapeChange - http://shapechange.net/-->
-	<element name="AbstractFeatureRelation" type="gsmlb:AbstractFeatureRelationType" abstract="true" substitutionGroup="gml:AbstractGML"/>
+	<element name="AbstractFeatureRelation" type="gsmlb:AbstractFeatureRelationType" abstract="true" substitutionGroup="gml:AbstractObject"/>
 	<complexType name="AbstractFeatureRelationType" abstract="true">
-		<complexContent>
-			<extension base="gml:AbstractGMLType">
-				<sequence>
-					<element name="relatedFeature" type="gsmlb:GeologicFeaturePropertyType"/>
-				</sequence>
-			</extension>
-		</complexContent>
+		<sequence>
+			<element name="relatedFeature" type="gsmlb:GeologicFeaturePropertyType" minOccurs="0"/>
+		</sequence>
 	</complexType>
 	<complexType name="AbstractFeatureRelationPropertyType">
-		<sequence minOccurs="0">
+		<sequence>
 			<element ref="gsmlb:AbstractFeatureRelation"/>
 		</sequence>
-		<attributeGroup ref="gml:AssociationAttributeGroup"/>
-		<attributeGroup ref="gml:OwnershipAttributeGroup"/>
 	</complexType>
 	<element name="AnthropogenicGeomorphologicFeature" type="gsmlb:AnthropogenicGeomorphologicFeatureType" substitutionGroup="gsmlb:GeomorphologicFeature"/>
 	<complexType name="AnthropogenicGeomorphologicFeatureType">
@@ -46,7 +41,6 @@
 		<attributeGroup ref="gml:AssociationAttributeGroup"/>
 		<attributeGroup ref="gml:OwnershipAttributeGroup"/>
 	</complexType>
-
 	<element name="CompositionPart" type="gsmlb:CompositionPartType" substitutionGroup="gml:AbstractObject"/>
 	<complexType name="CompositionPartType">
 		<sequence>
@@ -330,18 +324,12 @@ Bedding as a fabric representing the average orientation of paleodepositional su
 			<element ref="gsmlb:FoliationAbstractDescription"/>
 		</sequence>
 	</complexType>
-	
 	<!-- manual edit of UNION pattern EB -->
-	
-	
-	
-	
 	<element name="GSML" type="gsmlb:GSMLType" substitutionGroup="gml:AbstractFeature">
 		<annotation>
 			<documentation>A collection container for items to be bundled in WFS response documents and other applications. FeatureType stereotype allows this to be a FeatureMember in a WFS_FeatureCollection.</documentation>
 		</annotation>
 	</element>
-	
 	<complexType name="GSMLType">
 		<complexContent>
 			<extension base="gml:AbstractFeatureType">
@@ -358,13 +346,10 @@ Bedding as a fabric representing the average orientation of paleodepositional su
 							<documentation>Points to a member of a GSML collection, which can be any of the GeoSciML classes that are listed in the GSMLitem union class.</documentation>
 						</annotation>
 					</element>
-					
 				</sequence>
 			</extension>
 		</complexContent>
 	</complexType>
-	
-	
 	<complexType name="GSMLPropertyType">
 		<sequence minOccurs="0">
 			<element ref="gsmlb:GSML"/>
@@ -574,7 +559,6 @@ Allows specifying direction by DirectionVector (eg Dip/Dip Direction), compass p
 			<element ref="gsmlb:GSML_Vector"/>
 		</sequence>
 	</complexType>
-
 	<complexType name="GSMLitemPropertyType">
 		<sequence minOccurs="0">
 			<group ref="gsmlb:GSMLitem"/>
@@ -631,7 +615,6 @@ Allows specifying direction by DirectionVector (eg Dip/Dip Direction), compass p
 		</choice>
 	</group>
 	<!-- end of manual encoding of GSML collection -->
-
 	<element name="GeologicEvent" type="gsmlb:GeologicEventType" substitutionGroup="gsmlb:GeologicFeature"/>
 	<complexType name="GeologicEventType">
 		<complexContent>
