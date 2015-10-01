@@ -320,7 +320,7 @@ Ar-Ar, K-Ar, Nd-Sm, Pb-Pb, Rb-Sr, Re-Os, U-Pb, etc</documentation>
     <attributeGroup ref="gml:AssociationAttributeGroup"/>
     <attributeGroup ref="gml:OwnershipAttributeGroup"/>
   </complexType>
-  <element name="GeologicSamplingMethod" substitutionGroup="gml:AbstractFeature" type="gml:AbstractFeatureType">
+  <element name="GeologicSamplingMethod" substitutionGroup="gml:AbstractFeature" type="gsmlla:GeologicSamplingMethodType">
     <annotation>
       <documentation>Implementation of SF_Process to describe the method used to obtain a geologic specimen
 eg:
@@ -372,14 +372,14 @@ geological hammer</documentation>
     <attributeGroup ref="gml:AssociationAttributeGroup"/>
     <attributeGroup ref="gml:OwnershipAttributeGroup"/>
   </complexType>
-  <element name="GeologicSpecimenPreparation" substitutionGroup="gml:AbstractFeature" type="gsmlla:GeologicSpecimenPreparationType">
+  <element name="GeologicSpecimenPreparation" substitutionGroup="spec:PreparationStep" type="gsmlla:GeologicSpecimenPreparationType">
     <annotation>
       <documentation>An extension of OGC Specimen:PreparationStep to allow details of preparation steps to be delivered (eg, filtration and mesh size, chemical additives, crushing methods, drying parameters, etc)</documentation>
     </annotation>
   </element>
   <complexType name="GeologicSpecimenPreparationType">
     <complexContent>
-      <extension base="gml:AbstractFeatureType">
+      <extension base="spec:PreparationStepType">
         <sequence>
           <element minOccurs="0" name="preparationMethod" type="gml:ReferenceType">
             <annotation>
