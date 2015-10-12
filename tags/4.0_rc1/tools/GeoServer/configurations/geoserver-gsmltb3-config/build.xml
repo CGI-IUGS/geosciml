@@ -1,0 +1,63 @@
+<project default="zip">
+
+	<target name="zip">
+
+		<zip destfile="geoserver-gsmltb3-config.zip">
+
+			<!--
+			Excludes do not work!
+			Do not include featureTypes/MappedFeatureGaOracle/MappedFeatureGaOracle.xml
+			as it may contain a password.
+			-->
+			<fileset dir="." includes="featureTypes/MappedFeatureGaOracle/ComplexDataStore.xsd" />
+			<fileset dir="." includes="featureTypes/MappedFeatureGaOracle/info.xml" />
+			<fileset dir="." includes="featureTypes/MappedFeatureGaOracle/MappedFeatureGaOracle.template.xml" />
+
+			<!--
+			Excludes do not work!
+			Do not include featureTypes/MappedFeaturePostgis/MappedFeaturePostgis.xml
+			as it may contain a password.
+			-->
+			<fileset dir="." includes="featureTypes/MappedFeaturePostgis/ComplexDataStore.xsd" />
+			<fileset dir="." includes="featureTypes/MappedFeaturePostgis/info.xml" />
+			<fileset dir="." includes="featureTypes/MappedFeaturePostgis/MappedFeaturePostgis.sql" />
+			<fileset dir="." includes="featureTypes/MappedFeaturePostgis/MappedFeaturePostgis.template.xml" />
+
+			<fileset dir="." includes="featureTypes/MappedFeaturePropertyfile/**" />
+			<fileset dir="." includes="featureTypes/MappedFeatureShapefile/**" />
+
+			<!--
+			Excludes do not work!
+			Do not include featureTypes/MappedFeatureUseCase2A/MappedFeatureUseCase2A.xml
+			as it may contain a password.
+			-->
+			<fileset dir="." includes="featureTypes/MappedFeatureUseCase2A/ComplexDataStore.xsd" />
+			<fileset dir="." includes="featureTypes/MappedFeatureUseCase2A/info.xml" />
+			<fileset dir="." includes="featureTypes/MappedFeatureUseCase2A/MappedFeatureUseCase2A.template.xml" />
+			
+			<!--
+			Excludes do not work!
+			Do not include featureTypes/MappedFeatureUseCase2B/MappedFeatureUseCase2B.xml
+			as it may contain a password.
+			-->
+			<fileset dir="." includes="featureTypes/MappedFeatureUseCase2B/ComplexDataStore.xsd" />
+			<fileset dir="." includes="featureTypes/MappedFeatureUseCase2B/info.xml" />
+			<fileset dir="." includes="featureTypes/MappedFeatureUseCase2B/MappedFeatureUseCase2B.template.xml" />
+			
+			<fileset dir="." includes="images/**" />
+			<fileset dir="." includes="profiles/**" />
+			<fileset dir="." includes="requests/**" />
+			<fileset dir="." includes="schemas/**" />
+			<fileset dir="." includes="security/**" />
+			<!-- just empty servicetester/output -->
+			<fileset dir="." includes="servicetester/output" />
+			<fileset dir="." includes="servicetester/test-suite.template.xml" />
+			<fileset dir="." includes="styles/**" />
+			<fileset file="catalog.xml" />
+			<fileset file="services.xml" />
+
+		</zip>
+
+	</target>
+
+</project>

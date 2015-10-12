@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ShapeChangeConfiguration xmlns:xi="http://www.w3.org/2001/XInclude" xmlns="http://www.interactive-instruments.de/ShapeChange/Configuration/1.1" xmlns:sc="http://www.interactive-instruments.de/ShapeChange/Configuration/1.1" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.interactive-instruments.de/ShapeChange/Configuration/1.1 http://shapechange.net/resources/schema/ShapeChangeConfiguration.xsd">
+	<input>
+		<parameter name="inputModelType" value="EA7"/>
+		<!-- location of the EAP file, we should keep it on SVN and pull it from there instead, or actually use the XMI since this is what svn stores -->
+		<parameter name="inputFile" value="/etc/GeoSciML4/GeoSciML4.eap"/>
+		<!-- regexp of the target namespace we want to process -->
+		<parameter name="appSchemaNamespaceRegex" value="^http://xmlns.geosciml.org/.*"/>
+		<parameter name="publicOnly" value="true"/>
+		<parameter name="checkingConstraints" value="disabled"/>
+		<parameter name="sortedSchemaOutput" value="true"/>
+		<xi:include href="http://shapechange.net/resources/config/StandardAliases.xml"/>
+	</input>
+	<!-- logging parameters -->
+	<log>
+		<parameter name="reportLevel" value="INFO"/>
+		<parameter name="logFile" value="/ShapeChange/gsml4/loggsml.xml"/>
+	</log>
+	<!-- destination -->
+	<targets>
+	<!-- shape change works by loading relevant java classes dynamically, this tell which class to use -->
+	<!---->
+		<TargetXmlSchema class="de.interactive_instruments.ShapeChange.Target.XmlSchema.XmlSchema" mode="enabled">
+			<targetParameter name="outputDirectory" value="/ShapeChange/gsml4"/>
+			<targetParameter name="sortedOutput" value="true"/>
+			<targetParameter name="defaultEncodingRule" value="iso19136_2007_ShapeChange_1.0_Extensions"/>
+			<xi:include href="http://shapechange.net/resources/config/StandardRules.xml"/>
+			<rules>
+				<EncodingRule name="union_encoding" extends="gml33">
+					<rule name="rule-xsd-cls-union-asGroup"/>
+				</EncodingRule>
+			</rules>
+			<xi:include href="http://shapechange.net/resources/config/StandardNamespaces.xml"/>
+			<xi:include href="http://shapechange.net/resources/config/StandardMapEntries.xml"/>
+			<xsdMapEntries>
+			
+				<XsdMapEntry type="URI" xsdEncodingRules="gml33" xmlPropertyType="anyURI" xmlType="anyURI" xmlTypeType="simple" xmlTypeContent="simple"/>
+			</xsdMapEntries>
+		</TargetXmlSchema>
+		
+		<!-- not sure what this guy does, it looks like a feature catalog -->
+
+		<Target class="de.interactive_instruments.ShapeChange.Target.FeatureCatalogue.FeatureCatalogue" mode="enabled">
+			<targetParameter name="outputDirectory" value="/ShapeChange/gsml4"/>
+			<targetParameter name="outputFilename" value="gsml4"/>
+			<targetParameter name="sortedOutput" value="true"/>
+			<targetParameter name="inheritedProperties" value="false"/>
+			<targetParameter name="outputFormat" value="HTML"/>
+			<targetParameter name="name" value="'Test application schema'"/>
+			<targetParameter name="scope" value="This feature catalogue ..."/>
+			<targetParameter name="versionNumber" value="4.0.0"/>
+			<targetParameter name="versionDate" value="2015/06/01"/>
+			<targetParameter name="producer" value="GeoSciML4 SWG"/>
+			<targetParameter name="xsltPfad" value="http://shapechange.net/resources/xslt"/>
+			<targetParameter name="xslhtmlFile" value="html.xsl"/>
+		</Target>
+	
+	</targets>
+</ShapeChangeConfiguration>

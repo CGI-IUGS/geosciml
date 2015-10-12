@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!--========================================================================-->
+<!--                                                                        -->
+<!--                            sdi WFS Profile                             -->
+<!--                                                                        -->
+<!--========================================================================-->
+<!-- $Id: sdi_wfs_profile.xml 3758 2011-02-04 03:00:03Z car605 $ -->
+<!--========================================================================-->
+
+<pr:profile id="sdi-wfs" xmlns:gwsit="http://qld.gov.au/sdi/wsi/testing/1.0"
+    xmlns:pr="urn:ws-profile-mgr:schemas:profiles:profiles.xsd" xmlns:qg="http://qld.gov.au/wsi/1.0"
+    xmlns:rim="urn:oasis:names:tc:ebxml-regrep:xsd:rim:3.0"
+    xmlns:ud="http://utf-x.sourceforge.net/xsd/utfxdoc_1_0/utfxdoc.xsd"
+    xmlns:wfs="http://www.opengis.net/wfs" xmlns:xml="http://www.w3.org/XML/1998/namespace"
+    xmlns:xs="http://www.w3.org/2001/XMLSchema"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="urn:ws-profile-mgr:schemas:profiles:profiles.xsd http://ws-profile-mgr.sf.net/schemas/profiles.xsd">
+    <ud:version>$Revision: 350 $</ud:version>
+    <ud:date>$Date: 2007-06-20 15:29:51 +1000 (Wed, 20 Jun 2007) $</ud:date>
+    <ud:copyright>CGI GeoSciML </ud:copyright>
+    <!--
+    <ud:logo>
+        <ud:img src="&qgcio-logo;" width="100%"/>
+    </ud:logo>
+    -->
+    <pr:name>sdi WFS</pr:name>
+    <pr:description>This profile constrains the behaviour of a service delivers data objects
+        (Features) via the OGC Web feature Service 1.0 interface. This generic profile will be
+        implemented through binding a WFS to a specific data product, and is specialised according
+        to the usage patterns expected to be supported.</pr:description>
+    <pr:identifier>urn:au:gov:qld:sdi:standards:profiles:sdi-wfs</pr:identifier>
+    <pr:inherits-from>sdi-data-services</pr:inherits-from>
+
+    <pr:artefacts>
+        <pr:artefact id="capabilities">
+            <pr:name>WFS_CAPABILITIES</pr:name>
+            <pr:description>WFS_CAPABILITIES document, accessed via a GetCapabilities operation</pr:description>
+            <pr:artefact-identifier>
+                <pr:xpath-test>count(/wfs:WFS_Capabilities)  = 1</pr:xpath-test>
+            </pr:artefact-identifier>
+            
+            <pr:conformance-target id="max-features">
+                <pr:name>WFS_MAX_FEATURES</pr:name>
+                <pr:description>Maximum number of features.</pr:description>
+                <pr:xpath-locator>//wfs:GetFeature/@maxFeatures</pr:xpath-locator>
+            </pr:conformance-target>
+
+            <pr:conformance-target id="currency">
+                <pr:name>WFS_CURRENCY</pr:name>
+                <pr:description>(fixed XPath) Temporal currency of the data. Need a more complex
+                    mechanism to model constraints associated with this target. 3</pr:description>
+                <pr:xpath-locator>/FeatureTypeList/FeatureType/Keywords</pr:xpath-locator>
+            </pr:conformance-target>
+            
+            <pr:conformance-target id="feature-types">
+                <pr:name>WFS_FEATURETYPENAMES</pr:name>
+                <pr:description>Available Feature Types</pr:description>
+                <pr:xpath-locator>/FeatureTypeList/FeatureType</pr:xpath-locator>
+            </pr:conformance-target>
+            
+        </pr:artefact>
+
+        <pr:artefact id="WFS_FEATURETYPEMETADATA">
+            <pr:name>WFS_FEATURETYPEMETADATA</pr:name>
+            <pr:description>External metadata document describing content exposed. This is used to
+                inherit various information to control description of the FeatureType when ingested
+                into a service registry</pr:description>
+        </pr:artefact>
+
+        <pr:artefact id="WFS_REQUEST_GETFEATURE">
+            <pr:name>WFS_REQUEST_GETFEATURE</pr:name>
+            <pr:description>A template or "query model" describing the supported queries a WFS
+                service may support for a particular FeatureType. This is a seperately managed
+                document that may be referenced by future versions of WFS, but for now will need to
+                be discovered through registry services.</pr:description>
+        </pr:artefact>
+
+    </pr:artefacts>
+    
+    <!-- need to add assertions for binding  from sdi_data_services requirements to WFS capabilities metadata -->
+</pr:profile>

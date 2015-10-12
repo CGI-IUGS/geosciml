@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!--========================================================================-->
+<!--                                                                        -->
+<!--                          GeoSciML WFS Profile  for Tesbed UC 3                     -->
+<!--                                                                        -->
+<!--========================================================================-->
+<!-- $Id: cgi_geosciml_wfs_UC3_profile.xml 3758 2011-02-04 03:00:03Z car605 $ -->
+<!--========================================================================-->
+
+<pr:profile id="geosciml-wfs-uc3" xmlns:gwsit="http://qld.gov.au/sdi/wsi/testing/1.0"
+  xmlns:pr="urn:ws-profile-mgr:schemas:profiles:profiles.xsd" xmlns:qg="http://qld.gov.au/wsi/1.0"
+  xmlns:rim="urn:oasis:names:tc:ebxml-regrep:xsd:rim:3.0"
+  xmlns:ud="http://utf-x.sourceforge.net/xsd/utfxdoc_1_0/utfxdoc.xsd"
+  xmlns:wfs="http://www.opengis.net/wfs" xmlns:xs="http://www.w3.org/2001/XMLSchema"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="urn:ws-profile-mgr:schemas:profiles:profiles.xsd http://ws-profile-mgr.sf.net/schemas/profiles.xsd">
+  <ud:version>$Revision: 282 $</ud:version>
+  <ud:date>$Date: 2007-06-03 20:51:50 +1000 (Sun, 03 Jun 2007) $</ud:date>
+  <ud:copyright year="2007">CGI GeoSciML </ud:copyright>
+  <!-- 
+    <ud:logo>
+    <ud:img src="&qgcio-logo;" width="100%"/>
+    </ud:logo>
+  -->
+  <pr:name>GeoSciML WFS</pr:name>
+  <pr:description>This profile binds the GeoSciML data products to the basic WFS profile.  </pr:description>
+  <pr:identifier>urn:un:iugs:cgi:geosciml:services:geosciml_wfs</pr:identifier>
+  <pr:inherits-from>geosciml-wfs</pr:inherits-from>
+  
+  <pr:sect1 id="sect1id">
+    <pr:title>Specific requirements for delivering Use Case 3 for GeoSciML testbed 3</pr:title>
+    <pr:para></pr:para>
+  </pr:sect1>
+  
+  <pr:requirements>
+    <pr:requirement>
+      <pr:normative-content><pr:target-ref>WFS_FEATURETYPES</pr:target-ref> <pr:rfc2119-keyword>MUST</pr:rfc2119-keyword> include the relevant GeoSciML FeatureTypes for UC3</pr:normative-content>
+    <pr:xpath-assertion>
+      <pr:target-ref>WFS_FEATURETYPES</pr:target-ref>
+      <pr:rfc2119-keyword>MUST</pr:rfc2119-keyword>
+      <pr:assert-true>
+        <pr:xpath-expression>count(/Name='geosciml:MyFeature') == 1</pr:xpath-expression>
+      </pr:assert-true>
+      
+    </pr:xpath-assertion>    
+    </pr:requirement>
+    
+    <pr:requirement>
+      <pr:normative-content>The WFS service <pr:rfc2119-keyword>MUST</pr:rfc2119-keyword> offer the function defined by UC3</pr:normative-content>
+      <pr:non-normative-content><pr:para>Should probably define the behaviour here, maybe by reference to a URL</pr:para></pr:non-normative-content>
+    <pr:xpath-assertion>
+      <pr:target-ref>WFS_CAPABILITIES</pr:target-ref>
+      <pr:rfc2119-keyword>MUST</pr:rfc2119-keyword>
+      <pr:assert-true>
+        <pr:xpath-expression>count(/ogc:Filter_Capabilities/ogc:ArithmeticOperators/ogc:Functions[ogc:FunctionNames = 'MyFunc']) = 1</pr:xpath-expression>
+      </pr:assert-true>
+      
+    </pr:xpath-assertion>
+      
+    </pr:requirement>
+    
+  </pr:requirements>
+  
+</pr:profile>
