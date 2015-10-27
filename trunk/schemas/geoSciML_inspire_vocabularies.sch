@@ -33,10 +33,9 @@
  <!-- General pattern for testing simple by reference properties against list of URIs in vocabulary -->
  <!-- Will this fail if no xlink:href because nilReason? -->
  <pattern abstract="true" id="by-ref.property.vocabulary">
-  <title>Abstract pattern for testing that by reference property href's come
-   from a given vocabulary.</title>
+  <title>Abstract pattern for testing that by reference property href's come from a given vocabulary.
   <p>Test that the specified property elements xlink:href attributes come from
-   the specified vocabulary.</p>
+   the specified vocabulary.</p></title>
   <rule context="$property">
    <assert test="$vocabulary//cl:containeditems/cl:value/@id[ . = current()/@xlink:href]">
     Property value <value-of select="@xlink:href"/> should come from the list
