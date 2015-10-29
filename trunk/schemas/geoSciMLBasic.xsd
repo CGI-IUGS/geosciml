@@ -22,7 +22,7 @@
 		<complexContent>
 			<extension base="gsmlb:GeomorphologicFeatureType">
 				<sequence>
-					<element name="anthropogenicGeomorphologicFeatureType" type="gml:ReferenceType" minOccurs="0">
+					<element name="anthropogenicGeomorphologicFeatureType" type="gml:ReferenceType" nillable="true" minOccurs="0">
 						<annotation>
 							<appinfo>
 								<targetElement xmlns="http://www.opengis.net/gml/3.2">gsmlb:AnthropogenicGeomorphologicFeatureTypeTerm</targetElement>
@@ -53,7 +53,7 @@
 					</appinfo>
 				</annotation>
 			</element>
-			<element name="material" minOccurs="0" nillable="true" >
+			<element name="material" minOccurs="0">
 				<complexType>
 					<complexContent>
 						<extension base="gml:AbstractMemberType">
@@ -65,7 +65,7 @@
 					</complexContent>
 				</complexType>
 			</element>
-			<element name="proportion" minOccurs="0" nillable="true" >
+			<element name="proportion" minOccurs="0">
 				<annotation>
 					<documentation>Quantity that specifies the fraction of the geologic unit composed of the compound material.</documentation>
 				</annotation>
@@ -117,7 +117,7 @@ Bedding measured as discrete surfaces in the case that those are the feature of 
 		<complexContent>
 			<extension base="gsmlb:GeologicStructureType">
 				<sequence>
-					<element name="contactType" type="gml:ReferenceType" minOccurs="0"  >
+					<element name="contactType" type="gml:ReferenceType" minOccurs="0">
 						<annotation>
 							<documentation>Classifies the contact (eg intrusive, unconformity, bedding surface, lithologic boundary, phase boundary)</documentation>
 							<appinfo>
@@ -126,7 +126,7 @@ Bedding measured as discrete surfaces in the case that those are the feature of 
 							</appinfo>
 						</annotation>
 					</element>
-					<element name="stContactDescription" type="gsmlb:ContactAbstractDescriptionPropertyType" minOccurs="0" nillable="true" />
+					<element name="stContactDescription" type="gsmlb:ContactAbstractDescriptionPropertyType" minOccurs="0"/>
 				</sequence>
 			</extension>
 		</complexContent>
@@ -195,7 +195,7 @@ Values: instance, typicalNorm, definingNorm.</documentation>
 		<complexContent>
 			<extension base="gml:AbstractGMLType">
 				<sequence>
-					<element name="color" minOccurs="0" maxOccurs="unbounded" nillable="true" >
+					<element name="color" minOccurs="0" maxOccurs="unbounded">
 						<annotation>
 							<documentation>Terms to specify color of the earth material.  Color schemes such as the Munsell rock and soil color schemes could be used.</documentation>
 						</annotation>
@@ -210,7 +210,7 @@ Values: instance, typicalNorm, definingNorm.</documentation>
 							</complexContent>
 						</complexType>
 					</element>
-					<element name="purpose" type="gsmlb:DescriptionPurposeType" minOccurs="0" nillable="true" >
+					<element name="purpose" type="gsmlb:DescriptionPurposeType" minOccurs="0">
 						<annotation>
 							<documentation>Specification of the intended purpose/level of abstraction for the given EarthMaterial. Scoped name because intention is asserted by author of the data instance. 
 Values: Instance, TypicalNorm, IdentifyingNorm.</documentation>
@@ -255,7 +255,7 @@ Values: Instance, TypicalNorm, IdentifyingNorm.</documentation>
 							</appinfo>
 						</annotation>
 					</element>
-					<element name="stFoldDescription" type="gsmlb:FoldAbstractDescriptionPropertyType" minOccurs="0" nillable="true" />
+					<element name="stFoldDescription" type="gsmlb:FoldAbstractDescriptionPropertyType" minOccurs="0"/>
 				</sequence>
 			</extension>
 		</complexContent>
@@ -341,7 +341,7 @@ Bedding as a fabric representing the average orientation of paleodepositional su
 							</appinfo>
 						</annotation>
 					</element>
-					<element name="member" type="gsmlb:GSMLitemPropertyType" maxOccurs="unbounded" nillable="true">
+					<element name="member" type="gsmlb:GSMLitemPropertyType" maxOccurs="unbounded">
 						<annotation>
 							<documentation>Points to a member of a GSML collection, which can be any of the GeoSciML classes that are listed in the GSMLitem union class.</documentation>
 						</annotation>
@@ -365,7 +365,7 @@ Allows specifying direction by DirectionVector (eg Dip/Dip Direction), compass p
 	</element>
 	<complexType name="GSML_GeometricDescriptionValueType" abstract="true">
 		<sequence>
-			<element name="determinationMethod" type="gml:ReferenceType" minOccurs="0"  >
+			<element name="determinationMethod" type="gml:ReferenceType" minOccurs="0">
 				<annotation>
 					<documentation>Describes the way the orientation value was determined (eg measured, inferred from dip slope, etc)</documentation>
 					<appinfo>
@@ -374,7 +374,7 @@ Allows specifying direction by DirectionVector (eg Dip/Dip Direction), compass p
 					</appinfo>
 				</annotation>
 			</element>
-			<element name="descriptiveOrientation" type="string" minOccurs="0" nillable="true" >
+			<element name="descriptiveOrientation" type="string" minOccurs="0">
 				<annotation>
 					<documentation>Textual specification of orientation, possibly referencing some local geography</documentation>
 				</annotation>
@@ -404,7 +404,7 @@ Allows specifying direction by DirectionVector (eg Dip/Dip Direction), compass p
 							</appinfo>
 						</annotation>
 					</element>
-					<element name="plunge" minOccurs="0" nillable="true" >
+					<element name="plunge" minOccurs="0">
 						<annotation>
 							<documentation>Magnitude of the plunge.</documentation>
 						</annotation>
@@ -419,7 +419,7 @@ Allows specifying direction by DirectionVector (eg Dip/Dip Direction), compass p
 							</complexContent>
 						</complexType>
 					</element>
-					<element name="trend" minOccurs="0" nillable="true" >
+					<element name="trend" minOccurs="0">
 						<annotation>
 							<documentation>The azimuth (compass bearing) value of the linear orientation.</documentation>
 						</annotation>
@@ -461,7 +461,7 @@ Allows specifying direction by DirectionVector (eg Dip/Dip Direction), compass p
 							</appinfo>
 						</annotation>
 					</element>
-					<element name="azimuth" minOccurs="0" nillable="true" >
+					<element name="azimuth" minOccurs="0">
 						<annotation>
 							<documentation>The azimuth (compass point, bearing etc) value of the orientation. Convention reports how azimuth is interpreted; if is quadrant. Allowance of different convention makes querying more difficult.</documentation>
 						</annotation>
@@ -476,7 +476,7 @@ Allows specifying direction by DirectionVector (eg Dip/Dip Direction), compass p
 							</complexContent>
 						</complexType>
 					</element>
-					<element name="dip" minOccurs="0" nillable="true" >
+					<element name="dip" minOccurs="0">
 						<annotation>
 							<documentation>Dip is the angle that the structural surface (eg bedding, fault plane) makes with the horizontal measured perpindicular to the strike of the structure and in the vertical plane as a numeric or term</documentation>
 						</annotation>
@@ -513,8 +513,8 @@ Allows specifying direction by DirectionVector (eg Dip/Dip Direction), compass p
 		<complexContent>
 			<extension base="swe:QuantityRangeType">
 				<sequence>
-					<element name="lowerValue" type="double" nillable="true" />
-					<element name="upperValue" type="double" nillable="true" />
+					<element name="lowerValue" type="double"/>
+					<element name="upperValue" type="double"/>
 				</sequence>
 			</extension>
 		</complexContent>
@@ -535,7 +535,7 @@ Allows specifying direction by DirectionVector (eg Dip/Dip Direction), compass p
 		<complexContent>
 			<extension base="gsmlb:GSML_LinearOrientationType">
 				<sequence>
-					<element name="magnitude" minOccurs="0" nillable="true" >
+					<element name="magnitude" minOccurs="0">
 						<annotation>
 							<documentation>The numerical length of a linear vector</documentation>
 						</annotation>
@@ -587,7 +587,7 @@ Allows specifying direction by DirectionVector (eg Dip/Dip Direction), compass p
 					<documentation>The earthMaterialItem attribute is a placeholder for the EarthMaterial class that is included as a member of a GSML Collection.</documentation>
 				</annotation>
 			</element>
-			<element ref="gsmlb:GeologicFeature" >
+			<element ref="gsmlb:GeologicFeature">
 				<annotation>
 					<documentation>The featureItem attribute is a placeholder for the GeologicFeature class that is included as a member of a GSML Collection.</documentation>
 				</annotation>
@@ -629,12 +629,12 @@ Allows specifying direction by DirectionVector (eg Dip/Dip Direction), compass p
 							</appinfo>
 						</annotation>
 					</element>
-					<element name="numericAge" type="gsmlb:NumericAgeRangePropertyType" minOccurs="0" nillable="true" >
+					<element name="numericAge" type="gsmlb:NumericAgeRangePropertyType" minOccurs="0">
 						<annotation>
 							<documentation>use of GSML_QuantityRange is recommended to have explicit upper and lower values</documentation>
 						</annotation>
 					</element>
-					<element name="olderNamedAge" type="gml:ReferenceType" minOccurs="0" >
+					<element name="olderNamedAge" type="gml:ReferenceType" minOccurs="0">
 						<annotation>
 							<documentation>Older boundary of age of event expressed using a geochronologic era defined according to a geologic time scale per GeologicTime schema</documentation>
 							<appinfo>
@@ -652,7 +652,7 @@ Allows specifying direction by DirectionVector (eg Dip/Dip Direction), compass p
 							</appinfo>
 						</annotation>
 					</element>
-					<element name="eventEnvironment" minOccurs="0" maxOccurs="unbounded" nillable="true" >
+					<element name="eventEnvironment" minOccurs="0" maxOccurs="unbounded">
 						<annotation>
 							<documentation>The physical setting within which a GeologicEvent takes place. GeologicEnvironment is construed broadly to include physical settings on the Earth surface specified by climate, tectonics, physiography or geography, and settings in the Earth’s interior specified by pressure, temperature, chemical environment, or tectonics.</documentation>
 						</annotation>
@@ -703,7 +703,7 @@ The implemented Geologic Feature instance acts as the "description package"
 		<complexContent>
 			<extension base="gml:AbstractFeatureType">
 				<sequence>
-					<element name="observationMethod" minOccurs="0" maxOccurs="unbounded" nillable="true" >
+					<element name="observationMethod" minOccurs="0" maxOccurs="unbounded">
 						<annotation>
 							<documentation>Feature ObservationMethod specifies the approach to acquiring the collection of attribute values that constitute an individual feature instance (e.g. point count, brunton compass on site, air photo interpretation,  field observation, hand specimen, laboratory, aerial photography, creative imagination). ObservationMethod is a convenience property that provides a quick and dirty approach to observation metadata when data are reported using a feature view (as opposed to observation view). For a borehole, the GeologicFeature observation method specifies how the geologic properties were determined (eg, visual observation, or standard AzGS logging procedure (described in detail somewhere else)).  This property corresponds (loosely) to ISO19115 Lineage.</documentation>
 						</annotation>
@@ -718,14 +718,14 @@ The implemented Geologic Feature instance acts as the "description package"
 							</complexContent>
 						</complexType>
 					</element>
-					<element name="occurrence" type="gsmlb:MappedFeaturePropertyType" minOccurs="0" maxOccurs="unbounded" nillable="true" />
+					<element name="occurrence" type="gsmlb:MappedFeaturePropertyType" minOccurs="0" maxOccurs="unbounded"/>
 					<element name="purpose" type="gsmlb:DescriptionPurposeType" minOccurs="0">
 						<annotation>
 							<documentation>Specification of the intended purpose/level of abstraction for a given feature or object instance. Scoped name because intention is asserted by author of the data instance. Values are: instance, typicalNorm, definingNorm.</documentation>
 						</annotation>
 					</element>
-					<element name="relatedFeature" type="gsmlb:AbstractFeatureRelationPropertyType" minOccurs="0" maxOccurs="unbounded" nillable="true" />
-					<element name="classifier" minOccurs="0" maxOccurs="unbounded" nillable="true" >
+					<element name="relatedFeature" type="gsmlb:AbstractFeatureRelationPropertyType" minOccurs="0" maxOccurs="unbounded"/>
+					<element name="classifier" minOccurs="0" maxOccurs="unbounded">
 						<complexType>
 							<complexContent>
 								<extension base="gml:AbstractMemberType">
@@ -737,7 +737,7 @@ The implemented Geologic Feature instance acts as the "description package"
 							</complexContent>
 						</complexType>
 					</element>
-					<element name="geologicHistory" type="gsmlb:GeologicEventPropertyType" minOccurs="0" maxOccurs="unbounded" nillable="true" />
+					<element name="geologicHistory" type="gsmlb:GeologicEventPropertyType" minOccurs="0" maxOccurs="unbounded"/>
 				</sequence>
 			</extension>
 		</complexContent>
@@ -804,18 +804,18 @@ Examples: group, subgroup, formation, member, bed, intrusion, complex, batholith
 							</appinfo>
 						</annotation>
 					</element>
-					<element name="composition" type="gsmlb:CompositionPartPropertyType" minOccurs="0" maxOccurs="unbounded" nillable="true" >
+					<element name="composition" type="gsmlb:CompositionPartPropertyType" minOccurs="0" maxOccurs="unbounded">
 						<annotation>
 							<documentation>Describes the composition (detailed, instance specific, lithologic description) of the GeologicUnit</documentation>
 						</annotation>
 					</element>
-					<element name="hierarchyLink" type="gsmlb:GeologicUnitHierarchyPropertyType" minOccurs="0" maxOccurs="unbounded" nillable="true" >
+					<element name="hierarchyLink" type="gsmlb:GeologicUnitHierarchyPropertyType" minOccurs="0" maxOccurs="unbounded">
 						<annotation>
 							<documentation>indicates a subsiduary unit with its role and proportion with respect to the container unit</documentation>
 						</annotation>
 					</element>
-					<element name="gbMaterialDescription" type="gsmlb:EarthMaterialAbstractDescriptionPropertyType" minOccurs="0" maxOccurs="unbounded" nillable="true" />
-					<element name="gbUnitDescription" type="gsmlb:GeologicUnitAbstractDescriptionPropertyType" minOccurs="0" maxOccurs="unbounded" nillable="true" />
+					<element name="gbMaterialDescription" type="gsmlb:EarthMaterialAbstractDescriptionPropertyType" minOccurs="0" maxOccurs="unbounded"/>
+					<element name="gbUnitDescription" type="gsmlb:GeologicUnitAbstractDescriptionPropertyType" minOccurs="0" maxOccurs="unbounded"/>
 				</sequence>
 			</extension>
 		</complexContent>
@@ -852,7 +852,7 @@ Examples: group, subgroup, formation, member, bed, intrusion, complex, batholith
 					</appinfo>
 				</annotation>
 			</element>
-			<element name="proportion" minOccurs="0" nillable="true" >
+			<element name="proportion" minOccurs="0">
 				<annotation>
 					<documentation>Quantity that specifies the fraction of the geologic unit formed by the part.</documentation>
 				</annotation>
@@ -867,7 +867,7 @@ Examples: group, subgroup, formation, member, bed, intrusion, complex, batholith
 					</complexContent>
 				</complexType>
 			</element>
-			<element name="targetUnit" type="gsmlb:GeologicUnitPropertyType" nillable="true" >
+			<element name="targetUnit" type="gsmlb:GeologicUnitPropertyType">
 				<annotation>
 					<documentation>Indicates the parent unit that contains the GeologicUnitPart.</documentation>
 				</annotation>
@@ -929,7 +929,7 @@ A Mapped Feature is always associated with some sampling feature - e.g. a mappin
 		<complexContent>
 			<extension base="gml:AbstractFeatureType">
 				<sequence>
-					<element name="observationMethod" minOccurs="0" maxOccurs="unbounded" nillable="true" >
+					<element name="observationMethod" minOccurs="0" maxOccurs="unbounded">
 						<annotation>
 							<documentation>MappedFeature ObservationMethod is a metadata snippet indicating how the spatial extent of the mapped feature was determined, and the basis for association of the geometry with some GeologicFeature specification to define a MappedFeature. For a borehole, the MappedInterval observation method indicates how the boundaries of the interval were defined (eg, linear measurement from borehole collar). ObservationMethod is a convenience property that provides a quick and dirty approach to observation metadata when data are reported using a feature view (as opposed to observation view). This property corresponds (loosely) to ISO19115 Lineage.  (eg: digitised, Global Positioning System, published map, fieldObservation, downhole survey, aerial photography, field survey)</documentation>
 						</annotation>
@@ -944,7 +944,7 @@ A Mapped Feature is always associated with some sampling feature - e.g. a mappin
 							</complexContent>
 						</complexType>
 					</element>
-					<element name="positionalAccuracy" minOccurs="0" nillable="true" >
+					<element name="positionalAccuracy" minOccurs="0">
 						<annotation>
 							<documentation>Quantitative values define the radius of an uncertainty buffer around a mappedFeature (eg: a positionAccuracy of 100 m for a line feature defines a buffer polygon of total width 200 m centred on the line). Corresponds to ISO19115 DQ_PositionalAccuracy.</documentation>
 						</annotation>
@@ -959,7 +959,7 @@ A Mapped Feature is always associated with some sampling feature - e.g. a mappin
 							</complexContent>
 						</complexType>
 					</element>
-					<element name="resolutionRepresentativeFraction" type="integer" minOccurs="0" nillable="true" >
+					<element name="resolutionRepresentativeFraction" type="integer" minOccurs="0">
 						<annotation>
 							<documentation>An integer representing the denominator of the representative scale of the spatial feature.  (ie, 10,000 = the spatial feature is represented at 1:10,000 scale)</documentation>
 						</annotation>
@@ -979,14 +979,14 @@ A Mapped Feature is always associated with some sampling feature - e.g. a mappin
 							</appinfo>
 						</annotation>
 					</element>
-					<element name="specification" type="gml:FeaturePropertyType" minOccurs="0" nillable="true" >
+					<element name="specification" type="gml:FeaturePropertyType" minOccurs="0">
 						<annotation>
 							<appinfo>
 								<targetElement xmlns="http://www.opengis.net/gml/3.2">null:GFI_Feature</targetElement>
 							</appinfo>
 						</annotation>
 					</element>
-					<element name="shape" type="gml:GeometryPropertyType" minOccurs="0" nillable="true" >
+					<element name="shape" type="gml:GeometryPropertyType" minOccurs="0">
 						<annotation>
 							<documentation>map geometry</documentation>
 						</annotation>
@@ -1007,7 +1007,7 @@ A Mapped Feature is always associated with some sampling feature - e.g. a mappin
 		<complexContent>
 			<extension base="gsmlb:GeomorphologicFeatureType">
 				<sequence>
-					<element name="naturalGeomorphologicFeatureType" type="gml:ReferenceType" minOccurs="0">
+					<element name="naturalGeomorphologicFeatureType" type="gml:ReferenceType" nillable="true" minOccurs="0">
 						<annotation>
 							<appinfo>
 								<targetElement xmlns="http://www.opengis.net/gml/3.2">gsmlb:NaturalGeomorphologicFeatureTypeTerm</targetElement>
@@ -1045,7 +1045,7 @@ A Mapped Feature is always associated with some sampling feature - e.g. a mappin
 	</element>
 	<complexType name="NumericAgeRangeType">
 		<sequence>
-			<element name="reportingDate" minOccurs="0" nillable="true" >
+			<element name="reportingDate" minOccurs="0">
 				<annotation>
 					<documentation>Single time coordinate value to report as representative for this NumericAge assignment</documentation>
 				</annotation>
@@ -1060,7 +1060,7 @@ A Mapped Feature is always associated with some sampling feature - e.g. a mappin
 					</complexContent>
 				</complexType>
 			</element>
-			<element name="olderBoundDate" minOccurs="0" nillable="true" >
+			<element name="olderBoundDate" minOccurs="0">
 				<annotation>
 					<documentation>The older bounding time coordinate in an age range</documentation>
 				</annotation>
@@ -1075,7 +1075,7 @@ A Mapped Feature is always associated with some sampling feature - e.g. a mappin
 					</complexContent>
 				</complexType>
 			</element>
-			<element name="youngerBoundDate" minOccurs="0" nillable="true" >
+			<element name="youngerBoundDate" minOccurs="0">
 				<annotation>
 					<documentation>The younger bounding time coordinate in an age range</documentation>
 				</annotation>
@@ -1143,7 +1143,7 @@ A Mapped Feature is always associated with some sampling feature - e.g. a mappin
 							</appinfo>
 						</annotation>
 					</element>
-					<element name="stStructureDescription" type="gsmlb:ShearDisplacementStructureAbstractDescriptionPropertyType" minOccurs="0" nillable="true" />
+					<element name="stStructureDescription" type="gsmlb:ShearDisplacementStructureAbstractDescriptionPropertyType" minOccurs="0"/>
 				</sequence>
 			</extension>
 		</complexContent>
