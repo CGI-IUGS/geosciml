@@ -3,15 +3,14 @@
 	<annotation>
 		<documentation>The GeoSciML Borehole package contains model elements for representing Boreholes. This is primarily through re-use of standard components from the (external) Observations and Measurements package.</documentation>
 	</annotation>
+<!-- namespace for cit added manually, does not fit the one declared in the UML model -->
 	<import namespace="http://standards.iso.org/iso/19115/-3/cit/1.0" schemaLocation="http://standards.iso.org/iso/19115/-3/cit/1.0/cit.xsd"/>
 	<import namespace="http://www.opengis.net/gml/3.2" schemaLocation="http://schemas.opengis.net/gml/3.2.1/gml.xsd"/>
 	<import namespace="http://www.opengis.net/gml/3.3/exr" schemaLocation="http://schemas.opengis.net/gml/3.3/extdEncRule.xsd"/>
+  <import namespace="http://www.opengis.net/samplingSpatial/2.0" schemaLocation="http://schemas.opengis.net/samplingSpatial/2.0/spatialSamplingFeature.xsd"/>
 	<import namespace="http://www.opengis.net/swe/2.0" schemaLocation="http://schemas.opengis.net/sweCommon/2.0/swe.xsd"/>
-	<!--	<import namespace="http://xmlns.geosciml.org/GeoSciML-Basic/4.0" schemaLocation="geoSciMLBasic.xsd"/>-->
-	<!-- Above line manually inserted by Eric, then manually removed by Ollie. Borehole does not import GeoSciML-Basic.  27 July 2015-->
-	<import namespace="http://www.opengis.net/samplingSpatial/2.0" schemaLocation="http://schemas.opengis.net/samplingSpatial/2.0/spatialSamplingFeature.xsd"/>
 	<!--XML Schema document created by ShapeChange - http://shapechange.net/-->
-	<element name="Borehole" type="gsmlbh:BoreholeType" substitutionGroup="sf:SF_SpatialSamplingFeature">
+  <element name="Borehole" substitutionGroup="sf:SF_SpatialSamplingFeature" type="gsmlbh:BoreholeType">
 		<annotation>
 			<documentation>A borehole is the generalized term for any narrow shaft drilled in the ground, either vertically, horizontally, or inclined.</documentation>
 		</annotation>
@@ -20,7 +19,7 @@
 		<complexContent>
 			<extension base="sf:SF_SpatialSamplingFeatureType">
 				<sequence>
-					<element name="referenceLocation" type="gsmlbh:OriginPositionPropertyType" minOccurs="0">
+          <element minOccurs="0" name="referenceLocation" type="gsmlbh:OriginPositionPropertyType">
 						<annotation>
 							<documentation>A Borehole OriginPosition is a feature corresponding to the start point of a borehole log.  This may, but not necessarily, correspond to the borehole collar location (eg, kelly bush).</documentation>
 							<appinfo>
@@ -28,17 +27,17 @@
 							</appinfo>
 						</annotation>
 					</element>
-					<element name="indexData" type="gsmlbh:BoreholeDetailsPropertyType" minOccurs="0">
+          <element minOccurs="0" name="indexData" type="gsmlbh:BoreholeDetailsPropertyType">
 						<annotation>
 							<documentation>Specifies the Borehole details</documentation>
 						</annotation>
 					</element>
-					<element name="downholeDrillingDetails" type="gsmlbh:DrillingDetailsPropertyType" minOccurs="0" maxOccurs="unbounded">
+          <element maxOccurs="unbounded" minOccurs="0" name="downholeDrillingDetails" type="gsmlbh:DrillingDetailsPropertyType">
 						<annotation>
 							<documentation>Specifies the drilling method and borehole diameter for intervals down the borehole</documentation>
 						</annotation>
 					</element>
-					<element name="logElement" type="gsmlbh:BoreholeIntervalPropertyType" minOccurs="0" maxOccurs="unbounded">
+          <element maxOccurs="unbounded" minOccurs="0" name="logElement" type="gsmlbh:BoreholeIntervalPropertyType">
 						<annotation>
 							<documentation>Links to 1-D MappedFeature instances that are logged (interpreted) intervals within a borehole. This requirement is common in geoscience boreholes</documentation>
 							<appinfo>
@@ -48,7 +47,6 @@
 					</element>
 				</sequence>
 			</extension>
-			<!-- manually set -->
 		</complexContent>
 	</complexType>
 	<complexType name="BoreholePropertyType">
@@ -58,29 +56,29 @@
 		<attributeGroup ref="gml:AssociationAttributeGroup"/>
 		<attributeGroup ref="gml:OwnershipAttributeGroup"/>
 	</complexType>
-	<element name="BoreholeDetails" type="gsmlbh:BoreholeDetailsType" substitutionGroup="gml:AbstractObject">
+  <element name="BoreholeDetails" substitutionGroup="gml:AbstractObject" type="gsmlbh:BoreholeDetailsType">
 		<annotation>
 			<documentation>Borehole-specific index or header information. This data does not relate to downhole intervals.</documentation>
 		</annotation>
 	</element>
 	<complexType name="BoreholeDetailsType">
 		<sequence>
-			<element name="operator" type="cit:CI_Responsibility_PropertyType" minOccurs="0">
+      <element minOccurs="0" name="operator" type="cit:CI_Responsibility_PropertyType">
 				<annotation>
 					<documentation>Organisation responsible for commissioning the borehole (as opposed to drilling the borehole)</documentation>
 				</annotation>
 			</element>
-			<element name="driller" type="cit:CI_Responsibility_PropertyType" minOccurs="0">
+      <element minOccurs="0" name="driller" type="cit:CI_Responsibility_PropertyType">
 				<annotation>
 					<documentation>The organisation responsible for drilling the borehole (as opposed to commissioning the borehole)</documentation>
 				</annotation>
 			</element>
-			<element name="dateOfDrilling" type="gml:TimePeriodPropertyType" minOccurs="0">
+      <element minOccurs="0" name="dateOfDrilling" type="gml:TimePeriodPropertyType">
 				<annotation>
 					<documentation>The time period during which drilling of the borehole occurred.</documentation>
 				</annotation>
 			</element>
-			<element name="startPoint" type="gml:ReferenceType" minOccurs="0">
+      <element minOccurs="0" name="startPoint" type="gml:ReferenceType">
 				<annotation>
 					<documentation>Indicates the position relative to ground surface where the borehole commenced. Appropriate terms would include Drilled from Ground Surface; Drilled Underground;  Drilled from Quarry Floor etc</documentation>
 					<appinfo>
@@ -89,7 +87,7 @@
 					</appinfo>
 				</annotation>
 			</element>
-			<element name="inclinationType" type="gml:ReferenceType" minOccurs="0">
+      <element minOccurs="0" name="inclinationType" type="gml:ReferenceType">
 				<annotation>
 					<documentation>Indicates the inclination of the borehole. Appropriate terms would include vertical; inclined up; inclined down, horizontal</documentation>
 					<appinfo>
@@ -98,12 +96,12 @@
 					</appinfo>
 				</annotation>
 			</element>
-			<element name="boreholeMaterialCustodian" type="cit:CI_Responsibility_PropertyType" minOccurs="0" maxOccurs="unbounded">
+      <element maxOccurs="unbounded" minOccurs="0" name="boreholeMaterialCustodian" type="cit:CI_Responsibility_PropertyType">
 				<annotation>
 					<documentation>Organisation that is custodian of the core recovered from the borehole</documentation>
 				</annotation>
 			</element>
-			<element name="purpose" type="gml:ReferenceType" minOccurs="0" maxOccurs="unbounded">
+      <element maxOccurs="unbounded" minOccurs="0" name="purpose" type="gml:ReferenceType">
 				<annotation>
 					<documentation>The purpose for which the borehole was drilled. eg, site investigation, mineral exploration, hydrocarbon exploration, water resources</documentation>
 					<appinfo>
@@ -112,12 +110,12 @@
 					</appinfo>
 				</annotation>
 			</element>
-			<element name="dataCustodian" type="cit:CI_Responsibility_PropertyType" minOccurs="0" maxOccurs="unbounded">
+      <element maxOccurs="unbounded" minOccurs="0" name="dataCustodian" type="cit:CI_Responsibility_PropertyType">
 				<annotation>
 					<documentation>The custodian (person or organisation) that is the custodian of data pertaining to this borehole.</documentation>
 				</annotation>
 			</element>
-			<element name="boreholeLength" minOccurs="0">
+      <element minOccurs="0" name="boreholeLength">
 				<annotation>
 					<documentation>The "length" of a borehole will be determined by the data provider (ie, "length" can have different sources, like drillers measurement, loggers measurement, survey measurement, etc)</documentation>
 				</annotation>
@@ -139,8 +137,7 @@
 			<element ref="gsmlbh:BoreholeDetails"/>
 		</sequence>
 	</complexType>
-	<!--EB 2015/05/18 mixin set manually -->
-	<element name="BoreholeInterval" type="gsmlbh:BoreholeIntervalType" substitutionGroup="gml:AbstractFeature">
+  <element name="BoreholeInterval" substitutionGroup="gml:AbstractFeature" type="gsmlbh:BoreholeIntervalType">
 		<annotation>
 			<documentation>A special kind of Mapped Feature whose shape is 1-D interval and uses the SRS of the containing borehole</documentation>
 		</annotation>
@@ -149,7 +146,10 @@
 		<complexContent>
 			<extension base="gml:AbstractFeatureType">
 				<sequence>
-					<element name="observationMethod" nillable="true" minOccurs="0" maxOccurs="unbounded">
+          <element maxOccurs="unbounded" minOccurs="0" name="observationMethod">
+            <annotation>
+              <documentation>The method used to observe the properties of the borehole</documentation>
+            </annotation>
 						<complexType>
 							<complexContent>
 								<extension base="gml:AbstractMemberType">
@@ -161,12 +161,15 @@
 							</complexContent>
 						</complexType>
 					</element>
-					<element name="specification" type="gml:FeaturePropertyType" nillable="true" minOccurs="0">
+          <element minOccurs="0" name="specification" type="gml:FeaturePropertyType">
 						<annotation>
-							<documentation>The domain feature that is sampled by the interval (eg, a GeologicUnit). Equivalent to O&amp;M "sampledFeature".</documentation>
+              <documentation>The domain feature that is sampled by the interval (eg, a GeologicUnit). Equaivalent to O&amp;M "sampledFeature".</documentation>
 						</annotation>
 					</element>
-					<element name="mappedIntervalBegin" nillable="true" minOccurs="0">
+          <element minOccurs="0" name="mappedIntervalBegin">
+            <annotation>
+              <documentation>The measured distance of the start of the mapped interval along the path of the borehole. The measured value must be less than or equal to the mappedIntervalEnd value.  The "mappedIntervalBegin" and "mappedIntervalEnd" elements are included here as a measure to overcome problems with the delivery and queryability of 1D GML shapes via the "shape" property.</documentation>
+            </annotation>
 						<complexType>
 							<complexContent>
 								<extension base="gml:AbstractMemberType">
@@ -178,7 +181,10 @@
 							</complexContent>
 						</complexType>
 					</element>
-					<element name="mappedIntervalEnd" nillable="true" minOccurs="0">
+          <element minOccurs="0" name="mappedIntervalEnd">
+            <annotation>
+              <documentation>The measured distance of the start of the mapped interval along the path of the borehole. The measured value must be less than or equal to the mappedIntervalEnd value.  The "mappedIntervalBegin" and "mappedIntervalEnd" elements are included here as a measure to overcome problems with the delivery and queryability of 1D GML shapes via the "shape" property.</documentation>
+            </annotation>
 						<complexType>
 							<complexContent>
 								<extension base="gml:AbstractMemberType">
@@ -190,18 +196,19 @@
 							</complexContent>
 						</complexType>
 					</element>
-					<element name="collectionIdentifier" nillable="true" minOccurs="0">
-						<complexType>
-							<simpleContent>
-								<extension base="gml:CodeWithAuthorityType">
-									<attribute name="nilReason" type="gml:NilReasonType"/>
-								</extension>
-							</simpleContent>
-						</complexType>
+          <element minOccurs="0" name="collectionIdentifier" type="gml:CodeWithAuthorityType">
+            <annotation>
+              <documentation>A property to group BoreholeIntervals in order to implement multiple logs on a single borehole. GenericName should identify a particular log observation event.</documentation>
+            </annotation>
+          </element>
+          <element minOccurs="0" name="shape" type="gml:GeometryPropertyType">
+            <annotation>
+              <documentation>Geometry of the interval</documentation>
+            </annotation>
 					</element>
-					<element name="shape" type="gml:GeometryPropertyType" minOccurs="0"/>
-					<element name="parentBorehole" type="gsmlbh:BoreholePropertyType" nillable="true" minOccurs="0">
+          <element minOccurs="0" name="parentBorehole" type="gsmlbh:BoreholePropertyType">
 						<annotation>
+              <documentation>The borehole in which the interval occurs.</documentation>
 							<appinfo>
 								<reversePropertyName xmlns="http://www.opengis.net/gml/3.2">gsmlbh:logElement</reversePropertyName>
 							</appinfo>
@@ -218,18 +225,26 @@
 		<attributeGroup ref="gml:AssociationAttributeGroup"/>
 		<attributeGroup ref="gml:OwnershipAttributeGroup"/>
 	</complexType>
-	<element name="DrillingDetails" type="gsmlbh:DrillingDetailsType" substitutionGroup="gml:AbstractObject"/>
+  <element name="DrillingDetails" substitutionGroup="gml:AbstractObject" type="gsmlbh:DrillingDetailsType">
+    <annotation>
+      <documentation>A class to capture description of drilling methods and hole diameter down the hole.</documentation>
+    </annotation>
+  </element>
 	<complexType name="DrillingDetailsType">
 		<sequence>
-			<element name="drillingMethod" type="gml:ReferenceType" nillable="true" minOccurs="0">
+      <element minOccurs="0" name="drillingMethod" type="gml:ReferenceType">
 				<annotation>
+          <documentation>Indicates the drilling method used. Appropriate terms would include rotary air blast; auger; diamond core; air core; etc</documentation>
 					<appinfo>
 						<targetElement xmlns="http://www.opengis.net/gml/3.2">gsmlbh:BoreholeDrillingMethodCode</targetElement>
 						<targetCodeList xmlns="http://www.opengis.net/gml/3.3/exr">BoreholeDrillingMethodCode</targetCodeList>
 					</appinfo>
 				</annotation>
 			</element>
-			<element name="boreholeDiameter" nillable="true" minOccurs="0">
+      <element minOccurs="0" name="boreholeDiameter">
+        <annotation>
+          <documentation>The diameter of the drilled hole.</documentation>
+        </annotation>
 				<complexType>
 					<complexContent>
 						<extension base="gml:AbstractMemberType">
@@ -241,8 +256,15 @@
 					</complexContent>
 				</complexType>
 			</element>
-			<element name="interval" type="gml:GeometryPropertyType" minOccurs="0"/>
-			<element name="intervalBegin" nillable="true" minOccurs="0">
+      <element minOccurs="0" name="interval" type="gml:GeometryPropertyType">
+        <annotation>
+          <documentation>A shape that is a 1-D interval (eg, a "from" and "to", or "top" and "base" measurement) and uses the SRS of the containing borehole.</documentation>
+        </annotation>
+      </element>
+      <element minOccurs="0" name="intervalBegin">
+        <annotation>
+          <documentation>The measured distance of the start of the interval along the path of the borehole. The measured value must be less than or equal to the IntervalEnd value.  The "IntervalBegin" and "IntervalEnd" elements are added in version 3.2 as a measure to overcome problems with the delivery and queryability of 1D GML shapes via the "shape" property.</documentation>
+        </annotation>
 				<complexType>
 					<complexContent>
 						<extension base="gml:AbstractMemberType">
@@ -254,7 +276,10 @@
 					</complexContent>
 				</complexType>
 			</element>
-			<element name="intervalEnd" nillable="true" minOccurs="0">
+      <element minOccurs="0" name="intervalEnd">
+        <annotation>
+          <documentation>The measured distance of the end of the interval along the path of the borehole. The measured value must be greater than or equal to the IntervalBegin value.  The "IntervalBegin" and "IntervalEnd" elements are added in version 3.2 as a measure to overcome problems with the delivery and queryability of 1D GML shapes via the "shape" property.</documentation>
+        </annotation>
 				<complexType>
 					<complexContent>
 						<extension base="gml:AbstractMemberType">
@@ -273,7 +298,7 @@
 			<element ref="gsmlbh:DrillingDetails"/>
 		</sequence>
 	</complexType>
-	<element name="OriginPosition" type="gsmlbh:OriginPositionType" substitutionGroup="gml:AbstractFeature">
+  <element name="OriginPosition" substitutionGroup="gml:AbstractFeature" type="gsmlbh:OriginPositionType">
 		<annotation>
 			<documentation>A Borehole OriginPosition is a feature corresponding to the start point of a borehole log.  This may, but not necessarily, correspond to the borehole collar location (eg, kelly bush).
 
@@ -288,24 +313,17 @@ In situations where the origin position changes over the life of the borehole (e
 		<complexContent>
 			<extension base="gml:AbstractFeatureType">
 				<sequence>
-					<element name="location" type="gml:PointPropertyType" nillable="true" minOccurs="0">
+          <element minOccurs="0" name="location" type="gml:PointPropertyType">
 						<annotation>
-							<documentation>The location of the BoreholeCollar</documentation>
+              <documentation>The location of the borehole collar.</documentation>
 						</annotation>
 					</element>
-					<element name="elevation" nillable="true" minOccurs="0">
+          <element minOccurs="0" name="elevation" type="gml:DirectPositionType">
 						<annotation>
 							<documentation>Compromise approach to supply elevation explictly for location; this is to allow for software that cannot process 3-D GM_Point. Use null if elevation is unknown. Direct position shall have a dimension of 1, and CRS will be a "vertical" CRS (e.g. EPSG CRSs in the range 5600-5799).</documentation>
 						</annotation>
-						<complexType>
-							<simpleContent>
-								<extension base="gml:DirectPositionType">
-									<attribute name="nilReason" type="gml:NilReasonType"/>
-								</extension>
-							</simpleContent>
-						</complexType>
 					</element>
-					<element name="relatedBorehole" type="gsmlbh:BoreholePropertyType" minOccurs="0" maxOccurs="unbounded">
+          <element maxOccurs="unbounded" minOccurs="0" name="relatedBorehole" type="gsmlbh:BoreholePropertyType">
 						<annotation>
 							<documentation>The hole that has this collar for its start point</documentation>
 							<appinfo>
