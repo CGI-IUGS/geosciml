@@ -1,1 +1,0 @@
-This directory is for miscellaneous bits and pieces related to tools, software etc. that may help dealing with GeoSciML.

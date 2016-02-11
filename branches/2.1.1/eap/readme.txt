@@ -1,1 +1,0 @@
-Note that the GeoSciML v2 model is built on an early unversioned copy of the HollowWorld package that is pre Release 1 of HollowWorld.
