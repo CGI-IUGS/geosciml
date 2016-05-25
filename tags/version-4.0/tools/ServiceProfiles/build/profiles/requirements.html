@@ -1,0 +1,478 @@
+<?xml version="1.0" encoding="utf-8"?><html xmlns:fo="http://www.w3.org/1999/XSL/Format"
+      xmlns:pr="urn:ws-profile-mgr:schemas:profiles:profiles.xsd"
+      xmlns:ud="http://utf-x.sourceforge.net/xsd/utfxdoc_1_0/utfxdoc.xsd">
+   <head>
+      <meta content="text/html; charset=utf-8" http-equiv="Content-Type"></meta>
+      <title>Requirements</title>
+      <style type="text/css">
+         
+         
+         body {
+         color: black;
+         font-family: Arial;
+         font-family: Arial, sans-serif;  
+         }
+         
+         .block {
+         space-before: 2mm;
+         space-after: 2mm;
+         margin-left: 2mm;
+         }
+         
+         .para {
+         padding-left: 2mm;
+         padding-top: 2mm;
+         }    
+         
+         .h1-heading {
+         font-size: 18pt;
+         space-before: 5mm;
+         space-after: 2mm;
+         text-align: left;
+         color: black;
+         }
+         
+         .h2-heading {
+         font-size: 16pt;
+         space-before: 5mm;
+         space-after: 2mm;
+         text-align: left;
+         color: black;
+         }
+         
+         .h3-heading {
+         font-size: 14pt;
+         space-before: 5mm;
+         space-after: 2mm;
+         text-align: left;
+         color: black;
+         }
+         
+         .h1-sect {
+         font-size :12pt;
+         space-after: 2mm;
+         text-align: left;
+         padding-top: 5mm;
+         padding-left: 1mm;
+         color: black;
+         }
+         
+         .h2-sect {
+         font-size :12pt;
+         space-after: 2mm;
+         text-align: left;
+         padding-top: 5mm;
+         padding-left: 1mm;  
+         color: black;
+         }
+         
+         .h3-sect {
+         font-size :12pt;
+         space-after: 2mm;
+         text-align: left;
+         padding-top: 5mm;
+         padding-left: 1mm;  
+         color: black;
+         }
+         
+         .pr-req-id {
+         color: brown;
+         font-size: 12pt;
+         font-weight: bold
+         }
+         
+         .pr-req-ref {
+         color: brown;
+         font-size: 10pt;
+         font-weight: bold
+         }
+         
+         .pr-req-block {
+         space-after: 2mm;
+         margin-left: 5mm;
+         padding: 5mm;
+         text-align: left;
+         font-size: 9pt;
+         }
+         
+         .pr-req-normative-block {
+         space-after: 2mm;
+         padding: 5mm;
+         text-align: left;
+         background-color: #FFFFCC;
+         font-size: 9pt;
+         border-style: solid;
+         border-color: #f5a90b;
+         border-width: 2px;
+         }
+         
+         .pr-assertion-name {
+         color: brown;
+         font-size: 10pt;
+         font-weight: bold;
+         space-after: 1mm;  
+         }
+         
+         .pr-assertion-block {
+         padding: 4mm;
+         text-align: left;
+         background-color: #FFFFCC;
+         font-size: 9pt;
+         border-style: solid;
+         border-color: #f5a90b;
+         border-width: 2px;
+         }
+         
+         .pr-target-id {
+         font-weight: bold;
+         color: #118811;
+         }
+         
+         .pr-target-ref {
+         font-size:10pt;
+         font-weight: bold;
+         color: #118811;
+         }
+         
+         .target-name {
+         font-weight: bold;
+         color: #118811;
+         }
+         
+         .conformance-target-block {
+         padding: 4mm;
+         text-align: left;
+         background-color: #CCFFCC;
+         font-size: 9pt;
+         border-style: solid;
+         border-color: green;
+         border-width: 2px;
+         width: 90%;    
+         }
+         
+         .xpath {
+         font-family: Courier;
+         font-weight: bold;
+         }
+         
+         /* coponent definied in this profile */
+         .defined {
+         padding: 5mm;
+         border-width:2px;
+         border-color: black;
+         border-style:solid;
+         margin-bottom: 5mm;
+         margin-top: 5mm;
+         }
+         
+         /* component inherited from another profile */
+         .inherited {
+         padding: 5mm;
+         border-width:2px;
+         border-color: #AAAAAA;
+         border-style:solid;
+         margin-bottom: 5mm;
+         margin-top: 5mm;
+         color: #AAAAAA;
+         }
+         
+         .error-block {
+         color: white;
+         background-color: red;
+         font-weight: bold;
+         padding: 5mm;
+         font-family: Courier;
+         }
+         
+         /* UTF-X doc styles */
+         h1 {
+         font-family: Arial, sans-serif;
+         font-size: 20pt;
+         color: #000000;
+         background-color: white;
+         }
+         h2 {
+         font-family: Arial, sans-serif;
+         font-size: 18pt;
+         color: #000000;
+         background-color: white;
+         }
+         h3 {
+         font-family: Arial, sans-serif;
+         font-size: 16pt;
+         color: #000000;
+         background-color: white;
+         }
+         p {
+         font-family: Helvetica, sans-serif;
+         font-size:12pt;
+         }
+         .ud-title {
+         font-family: Helvetica, sans-serif;
+         font-size: 50pt;
+         font-weight: bold;
+         color: #000000;
+         background-color: white;
+         text-align: center;
+         }
+         .ud-subtitle {
+         font-family: Helvetica, sans-serif;
+         font-size: 30pt;
+         font-weight: bold;
+         color: #000000;
+         background-color: white;
+         text-align: center;
+         }
+         .ud-author {
+         font-family: Helvetica, sans-serif;
+         font-size: 12pt;
+         text-align: center;
+         }
+         .ud-version {
+         font-family: Helvetica;
+         font-size: 12pt;
+         text-align: center;
+         }
+         .ud-date {
+         font-family: Helvetica;
+         font-size: 12pt;
+         text-align: center;
+         }
+         .ud-copyright {
+         font-family: Helvetica;
+         font-size: 12pt;
+         text-align: center;
+         }
+         .ud-note {
+         padding-top: 2mm;
+         padding-bottom: 2mm;
+         padding-left: 2mm;
+         padding-right: 2mm;
+         background-color: #BBFFEE;
+         border-color: #448877;
+         border-width: 2px;
+         border-style:solid;
+         font-family:Arial;
+         font-size:10pt;
+         }
+         .ud-figure {
+         text-align:left;
+         padding-left:10mm;
+         padding-right:10mm;
+         }
+         .ud-code-block {
+         padding: 5mm;
+         text-align:left;
+         background-color: #FFFFF8;
+         font-family: Courier, monospace;
+         font-size: 10pt;
+         border-style: solid;
+         border-color: #f5a90b;
+         border-width: 2px;
+         width: 90%;
+         }
+         .ud-code-inline {
+         background-color: #FFFFFF;
+         font-family: Courier;
+         font-size: 9pt;
+         }
+         /*
+         a {
+         color:#000000;
+         text-decoration:none;
+         }
+         a:hover {
+         color:#f5a90b;
+         text-decoration:none;
+         }
+         */
+         .ud-caption {
+         font-family: Arial, sans-serif;
+         text-align:left;
+         padding-left:2mm;
+         }
+         .ud-toc {
+         padding-left:5mm;
+         color:#f5a90b;
+         text-decoration:none;
+         }
+         
+         .ud-correct-example-code-block {
+         padding: 4mm;
+         text-align: left;
+         font-family: Courier, monospace;
+         font-size: 9pt;
+         border-style: solid;
+         background-color: #F8FFF8;
+         border-color: green;
+         border-width: 2px;
+         }
+         
+         .ud-incorrect-example-code-block {
+         padding: 5mm;
+         text-align: left;
+         font-family: Courier, monospace;
+         font-size: 9pt;
+         border-style: solid;
+         background-color: #FFF8F8;
+         border-color: red;
+         border-width: 2px;
+         }
+         
+         .ud-highlight {
+         font-weight: bold;
+         }
+         
+         /* xml verbatim styles */
+         .ud-xml-default {
+         color: #334455;
+         background-color:red;
+         font-family: Courier;
+         
+         }
+         .ud-xml-element-name {
+         color: #990000; 
+         }
+         .ud-xml-element-nsprefix {
+         color: #666666; 
+         }
+         .ud-xml-attr-name {
+         color: #660000; 
+         }
+         .ud-xml-attr-content {
+         color: #000099;
+         }
+         .ud-xml-ns-name {
+         color: #666600;
+         }
+         .ud-xml-ns-uri {
+         color: #330099;
+         }
+         .ud-xml-text {
+         color: #000000;
+         }
+         .ud-xml-comment {
+         color: #006600;
+         font-style: italic; 
+         }
+         .ud-xml-pi-name {
+         color: #006600;
+         font-style: italic;
+         }
+         .ud-xml-pi-content {
+         color: #006666;
+         font-style: italic ;
+         }
+         
+         
+         
+      </style>
+   </head>
+   <body>
+      <h1>Requirements</h1>
+      <h2>sdi data services</h2>
+      <span>
+         <a class="pr-req-id" href="SDIDS1.html" target="SDIDS1">SDIDS1</a> 
+      </span>
+      <h2>SDI OWS data services</h2>
+      <span>
+         <a class="pr-req-id" href="sdiODS1.html" target="sdiODS1">sdiODS1</a> 
+      </span>
+      <span>
+         <a class="pr-req-id" href="sdiODS2.html" target="sdiODS2">sdiODS2</a> 
+      </span>
+      <h2>sdi WMS</h2>
+      <span>
+         <a class="pr-req-id" href="sdiWMS0000.html" target="sdiWMS0000">sdiWMS0000</a> 
+      </span>
+      <span>
+         <a class="pr-req-id" href="sdiWMS0001.html" target="sdiWMS0001">sdiWMS0001</a> 
+      </span>
+      <span>
+         <a class="pr-req-id" href="sdiWMS1.html" target="sdiWMS1">sdiWMS1</a> 
+      </span>
+      <span>
+         <a class="pr-req-id" href="sdiWMS0002.html" target="sdiWMS0002">sdiWMS0002</a> 
+      </span>
+      <span>
+         <a class="pr-req-id" href="r0003.html" target="r0003">r0003</a> 
+      </span>
+      <span>
+         <a class="pr-req-id" href="sdiWMS0004.html" target="sdiWMS0004">sdiWMS0004</a> 
+      </span>
+      <span>
+         <a class="pr-req-id" href="sdiWMS0005.html" target="sdiWMS0005">sdiWMS0005</a> 
+      </span>
+      <span>
+         <a class="pr-req-id" href="sdiWMS0006.html" target="sdiWMS0006">sdiWMS0006</a> 
+      </span>
+      <span>
+         <a class="pr-req-id" href="sdiWMS0007.html" target="sdiWMS0007">sdiWMS0007</a> 
+      </span>
+      <span>
+         <a class="pr-req-id" href="sdiWMS0008.html" target="sdiWMS0008">sdiWMS0008</a> 
+      </span>
+      <span>
+         <a class="pr-req-id" href="sdiWMS0009.html" target="sdiWMS0009">sdiWMS0009</a> 
+      </span>
+      <span>
+         <a class="pr-req-id" href="sdiWMS0011.html" target="sdiWMS0011">sdiWMS0011</a> 
+      </span>
+      <span>
+         <a class="pr-req-id" href="sdiWMS0010.html" target="sdiWMS0010">sdiWMS0010</a> 
+      </span>
+      <span>
+         <a class="pr-req-id" href="sdiWMS0013.html" target="sdiWMS0013">sdiWMS0013</a> 
+      </span>
+      <span>
+         <a class="pr-req-id" href="sdiWMS0014.html" target="sdiWMS0014">sdiWMS0014</a> 
+      </span>
+      <span>
+         <a class="pr-req-id" href="sdiWMS0015.html" target="sdiWMS0015">sdiWMS0015</a> 
+      </span>
+      <span>
+         <a class="pr-req-id" href="sdiWMS0016.html" target="sdiWMS0016">sdiWMS0016</a> 
+      </span>
+      <span>
+         <a class="pr-req-id" href="sdiWMS0017.html" target="sdiWMS0017">sdiWMS0017</a> 
+      </span>
+      <span>
+         <a class="pr-req-id" href="sdiWMS0018.html" target="sdiWMS0018">sdiWMS0018</a> 
+      </span>
+      <span>
+         <a class="pr-req-id" href="sdiWMS0019.html" target="sdiWMS0019">sdiWMS0019</a> 
+      </span>
+      <span>
+         <a class="pr-req-id" href="sdiWMS0020.html" target="sdiWMS0020">sdiWMS0020</a> 
+      </span>
+      <h2>sdi Display WMS</h2>
+      <span>
+         <a class="pr-req-id" href="sdiDWMS1.html" target="sdiDWMS1">sdiDWMS1</a> 
+      </span>
+      <span>
+         <a class="pr-req-id" href="sdiDWMS2.html" target="sdiDWMS2">sdiDWMS2</a> 
+      </span>
+      <h2>sdi WMS Feature Info</h2>
+      <span>
+         <a class="pr-req-id" href="sdiWMSF1.html" target="sdiWMSF1">sdiWMSF1</a> 
+      </span>
+      <span>
+         <a class="pr-req-id" href="sdiWMSF2.html" target="sdiWMSF2">sdiWMSF2</a> 
+      </span>
+      <h2>SDI WFS Mappable</h2>
+      <span>
+         <a class="pr-req-id" href="SDIWFSM1.html" target="SDIWFSM1">SDIWFSM1</a> 
+      </span>
+      <span>
+         <a class="pr-req-id" href="SDIWFSM2.html" target="SDIWFSM2">SDIWFSM2</a> 
+      </span>
+      <h2>GeoSciML Data Product</h2>
+      <span>
+         <a class="pr-req-id" href="GEOSCIML1.html" target="GEOSCIML1">GEOSCIML1</a> 
+      </span>
+      <h2>OneGeology WMS</h2>
+      <span>
+         <a class="pr-req-id" href="OGWMS1.html" target="OGWMS1">OGWMS1</a> 
+      </span>
+   </body>
+</html>

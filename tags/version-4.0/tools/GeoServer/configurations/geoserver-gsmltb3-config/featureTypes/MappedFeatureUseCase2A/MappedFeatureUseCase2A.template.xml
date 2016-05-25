@@ -1,0 +1,418 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<c:ComplexDataStore xmlns:c="http://www.geotools.org/complex"
+	xmlns:ogc="http://www.opengis.net/ogc"
+	xmlns:xs="http://www.w3.org/2001/XMLSchema"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.geotools.org/complex ComplexDataStore.xsd
+                      http://www.opengis.net/ogc http://schemas.opengis.net/filter/1.1.0/expr.xsd">
+
+	<namespaces>
+
+		<Namespace>
+			<prefix>gsml</prefix>
+			<uri>urn:cgi:xmlns:CGI:GeoSciML:2.0</uri>
+		</Namespace>
+
+		<Namespace>
+			<prefix>gml</prefix>
+			<uri>http://www.opengis.net/gml</uri>
+		</Namespace>
+
+		<Namespace>
+			<prefix>xlink</prefix>
+			<uri>http://www.w3.org/1999/xlink</uri>
+		</Namespace>
+
+		<Namespace>
+			<prefix>sa</prefix>
+			<uri>http://www.opengis.net/sampling/1.0</uri>
+		</Namespace>
+
+		<Namespace>
+			<prefix>om</prefix>
+			<uri>http://www.opengis.net/om/1.0</uri>
+		</Namespace>
+
+		<Namespace>
+			<prefix>cv</prefix>
+			<uri>http://www.opengis.net/cv/0.2.1</uri>
+		</Namespace>
+
+		<Namespace>
+			<prefix>swe</prefix>
+			<uri>http://www.opengis.net/swe/1.0.1</uri>
+		</Namespace>
+
+		<Namespace>
+			<prefix>sml</prefix>
+			<uri>http://www.opengis.net/sensorML/1.0.1</uri>
+		</Namespace>
+
+	</namespaces>
+
+	<sourceDataStores>
+		<DataStore>
+			<id>MappedFeatureUseCase2A</id>
+			<parameters>
+				<Parameter>
+					<name>dbtype</name>
+					<value>postgis-regfunc</value>
+				</Parameter>
+				<Parameter>
+					<name>host</name>
+					<value>PUT_YOUR_POSTGIS_SERVER_NAME_HERE</value>
+				</Parameter>
+				<Parameter>
+					<name>port</name>
+					<value>5432</value>
+				</Parameter>
+				<Parameter>
+					<name>database</name>
+					<value>gsmltb3</value>
+				</Parameter>
+				<Parameter>
+					<name>schema</name>
+					<value>gsv</value>
+				</Parameter>
+				<Parameter>
+					<name>user</name>
+					<value>gsmltb3</value>
+				</Parameter>
+				<Parameter>
+					<name>passwd</name>
+					<value>PUT_YOUR_POSTGIS_USER_PASSWORD_HERE</value>
+				</Parameter>
+			</parameters>
+		</DataStore>
+	</sourceDataStores>
+
+	<catalog>../../schemas/catalog.xml</catalog>
+
+	<targetTypes>
+		<FeatureType>
+			<schemaUri>
+				../../profiles/MappedFeatureUseCase2A.xsd
+			</schemaUri>
+		</FeatureType>
+	</targetTypes>
+
+	<typeMappings>
+
+		<FeatureTypeMapping>
+
+			<!-- this is the data store id given above -->
+			<sourceDataStore>MappedFeatureUseCase2A</sourceDataStore>
+
+			<!-- the name of the table in the database -->
+			<sourceType>geoserver_uc2a</sourceType>
+
+			<targetElement>gsml:MappedFeatureUseCase2A</targetElement>
+
+			<groupBy>
+				<GroupByAttribute>id</GroupByAttribute>
+			</groupBy>
+
+			<attributeMappings>
+
+				<AttributeMapping>
+					<targetAttribute>
+						gsml:MappedFeatureUseCase2A
+					</targetAttribute>
+					<idExpression>
+						<OCQL>strConcat('MF.', id)</OCQL>
+					</idExpression>
+				</AttributeMapping>
+
+				<AttributeMapping>
+					<targetAttribute>
+						gsml:observationMethod/gsml:CGI_TermValue/gsml:value
+					</targetAttribute>
+					<sourceExpression>
+						<OCQL>interpretationmethod</OCQL>
+					</sourceExpression>
+					<ClientProperty>
+						<name>codeSpace</name>
+						<value>interpretationmethod_cdspace</value>
+					</ClientProperty>
+				</AttributeMapping>
+
+				<!--
+					Cannot encode correct positionalAccuracy because
+					type is different for missing data (CGI_TermValue)
+					and real data (CGI_NumericValue). GeoServer
+					requires one type for this property.
+				-->
+
+				<AttributeMapping>
+					<targetAttribute>
+						gsml:positionalAccuracy
+					</targetAttribute>
+					<targetAttributeNode>
+						gsml:CGI_TermValuePropertyType
+					</targetAttributeNode>
+				</AttributeMapping>
+
+				<AttributeMapping>
+					<targetAttribute>
+						gsml:positionalAccuracy/gsml:CGI_TermValue/gsml:value
+					</targetAttribute>
+					<sourceExpression>
+						<OCQL>'unknown'</OCQL>
+					</sourceExpression>
+					<ClientProperty>
+						<name>codeSpace</name>
+						<value>
+							'urn:cgi:classifierScheme:GSV:PositionalAccuracy'
+						</value>
+					</ClientProperty>
+				</AttributeMapping>
+
+				<AttributeMapping>
+					<targetAttribute>
+						gsml:samplingFrame
+					</targetAttribute>
+					<ClientProperty>
+						<name>xlink:href</name>
+						<value>
+							'urn:cgi:feature:CGI:EarthNaturalSurface'
+						</value>
+					</ClientProperty>
+				</AttributeMapping>
+
+				<AttributeMapping>
+					<targetAttribute>
+						gsml:specification
+					</targetAttribute>
+					<targetAttributeNode>
+						gsml:GeologicUnitPropertyType
+					</targetAttributeNode>
+				</AttributeMapping>
+
+				<!--
+					
+					Many-to-one relationship between features and units
+					causes duplicate gml:id values as all specifications
+					serialised inline.
+					
+					<AttributeMapping>
+					<targetAttribute>
+					gsml:specification/gsml:GeologicUnit
+					</targetAttribute>
+					<ClientProperty>
+					<name>gml:id</name>
+					<value>
+					strConcat('GU.', geologicalfeature_id)
+					</value>
+					</ClientProperty>
+					</AttributeMapping>
+					
+				-->
+
+				<AttributeMapping>
+					<targetAttribute>
+						gsml:specification/gsml:GeologicUnit/gml:description
+					</targetAttribute>
+					<sourceExpression>
+						<OCQL>textdescription</OCQL>
+					</sourceExpression>
+				</AttributeMapping>
+
+				<AttributeMapping>
+					<targetAttribute>
+						gsml:specification/gsml:GeologicUnit/gml:name[1]
+					</targetAttribute>
+					<sourceExpression>
+						<OCQL>geologicalfeature_urn</OCQL>
+					</sourceExpression>
+					<ClientProperty>
+						<name>codeSpace</name>
+						<value>'urn:ietf:rfc:2141'</value>
+					</ClientProperty>
+				</AttributeMapping>
+
+				<AttributeMapping>
+					<targetAttribute>
+						gsml:specification/gsml:GeologicUnit/gml:name[2]
+					</targetAttribute>
+					<sourceExpression>
+						<OCQL>abbreviation</OCQL>
+					</sourceExpression>
+					<ClientProperty>
+						<name>codeSpace</name>
+						<value>abbreviation_cdspace</value>
+					</ClientProperty>
+				</AttributeMapping>
+
+				<AttributeMapping>
+					<targetAttribute>
+						gsml:specification/gsml:GeologicUnit/gml:name[3]
+					</targetAttribute>
+					<sourceExpression>
+						<OCQL>name</OCQL>
+					</sourceExpression>
+					<ClientProperty>
+						<name>codeSpace</name>
+						<value>name_cdspace</value>
+					</ClientProperty>
+				</AttributeMapping>
+
+				<AttributeMapping>
+					<targetAttribute>
+						gsml:specification/gsml:GeologicUnit/gsml:observationMethod/gsml:CGI_TermValue/gsml:value
+					</targetAttribute>
+					<sourceExpression>
+						<OCQL>'urn:ogc:def:nil:OGC:missing'</OCQL>
+					</sourceExpression>
+					<ClientProperty>
+						<name>codeSpace</name>
+						<value>'urn:ietf:rfc:2141'</value>
+					</ClientProperty>
+				</AttributeMapping>
+
+				<AttributeMapping>
+					<targetAttribute>
+						gsml:specification/gsml:GeologicUnit/gsml:purpose
+					</targetAttribute>
+					<sourceExpression>
+						<OCQL>'typicalNorm'</OCQL>
+					</sourceExpression>
+				</AttributeMapping>
+
+				<!--
+					No gml:id on preferredAge/GeologicEvent because inlining would
+					cause duplicates and schema-invalidity.
+				-->
+
+				<AttributeMapping>
+					<targetAttribute>
+						gsml:specification/gsml:GeologicUnit/gsml:preferredAge/gsml:GeologicEvent/gsml:eventAge
+					</targetAttribute>
+					<targetAttributeNode>
+						gsml:CGI_TermRangePropertyType
+					</targetAttributeNode>
+				</AttributeMapping>
+
+
+				<AttributeMapping>
+					<targetAttribute>
+						gsml:specification/gsml:GeologicUnit/gsml:preferredAge/gsml:GeologicEvent/gsml:eventAge/gsml:CGI_TermRange/gsml:lower/gsml:CGI_TermValue/gsml:value
+					</targetAttribute>
+					<sourceExpression>
+						<OCQL>minage</OCQL>
+					</sourceExpression>
+					<ClientProperty>
+						<name>codeSpace</name>
+						<value>minage_cdspace</value>
+					</ClientProperty>
+				</AttributeMapping>
+
+				<AttributeMapping>
+					<targetAttribute>
+						gsml:specification/gsml:GeologicUnit/gsml:preferredAge/gsml:GeologicEvent/gsml:eventAge/gsml:CGI_TermRange/gsml:upper/gsml:CGI_TermValue/gsml:value
+					</targetAttribute>
+					<sourceExpression>
+						<OCQL>maxage</OCQL>
+					</sourceExpression>
+					<ClientProperty>
+						<name>codeSpace</name>
+						<value>maxage_cdspace</value>
+					</ClientProperty>
+				</AttributeMapping>
+
+				<AttributeMapping>
+					<targetAttribute>
+						gsml:specification/gsml:GeologicUnit/gsml:preferredAge/gsml:GeologicEvent/gsml:eventProcess/gsml:CGI_TermValue/gsml:value
+					</targetAttribute>
+					<sourceExpression>
+						<OCQL>process</OCQL>
+					</sourceExpression>
+					<ClientProperty>
+						<name>codeSpace</name>
+						<value>process_cdspace</value>
+					</ClientProperty>
+				</AttributeMapping>
+
+				<AttributeMapping>
+					<targetAttribute>
+						gsml:specification/gsml:GeologicUnit/gsml:rank
+					</targetAttribute>
+					<sourceExpression>
+						<OCQL>rank</OCQL>
+					</sourceExpression>
+					<ClientProperty>
+						<name>codeSpace</name>
+						<value>rank_cdspace</value>
+					</ClientProperty>
+				</AttributeMapping>
+
+				<AttributeMapping>
+					<targetAttribute>
+						gsml:specification/gsml:GeologicUnit/gsml:composition
+					</targetAttribute>
+					<isMultiple>true</isMultiple>
+				</AttributeMapping>
+
+				<!-- 
+					Because GeologicUnits and their CompositionParts are repeated,
+					they cannot have gml:ids, because these would not be unique.
+				-->
+
+				<AttributeMapping>
+					<targetAttribute>
+						gsml:specification/gsml:GeologicUnit/gsml:composition/gsml:CompositionPart/gsml:role
+					</targetAttribute>
+					<sourceExpression>
+						<OCQL>componentrole</OCQL>
+					</sourceExpression>
+					<ClientProperty>
+						<name>codeSpace</name>
+						<value>componentrole_cdspace</value>
+					</ClientProperty>
+				</AttributeMapping>
+
+				<AttributeMapping>
+					<targetAttribute>
+						gsml:specification/gsml:GeologicUnit/gsml:composition/gsml:CompositionPart/gsml:lithology
+					</targetAttribute>
+					<ClientProperty>
+						<name>xlink:href</name>
+						<value>lithology</value>
+					</ClientProperty>
+				</AttributeMapping>
+
+				<AttributeMapping>
+					<targetAttribute>
+						gsml:specification/gsml:GeologicUnit/gsml:composition/gsml:CompositionPart/gsml:proportion
+					</targetAttribute>
+					<targetAttributeNode>
+						gsml:CGI_TermValuePropertyType
+					</targetAttributeNode>
+				</AttributeMapping>
+
+				<AttributeMapping>
+					<targetAttribute>
+						gsml:specification/gsml:GeologicUnit/gsml:composition/gsml:CompositionPart/gsml:proportion/gsml:CGI_TermValue/gsml:value
+					</targetAttribute>
+					<sourceExpression>
+						<OCQL>proportion</OCQL>
+					</sourceExpression>
+					<ClientProperty>
+						<name>codeSpace</name>
+						<value>proportion_cdspace</value>
+					</ClientProperty>
+				</AttributeMapping>
+
+				<AttributeMapping>
+					<targetAttribute>gsml:shape</targetAttribute>
+					<sourceExpression>
+						<OCQL>shape</OCQL>
+					</sourceExpression>
+				</AttributeMapping>
+
+			</attributeMappings>
+
+		</FeatureTypeMapping>
+
+	</typeMappings>
+
+</c:ComplexDataStore>

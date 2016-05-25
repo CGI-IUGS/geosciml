@@ -1,0 +1,1213 @@
+<pr:profile depth="5" id="geosciml-wms" normalised-name="GeoSciML WMS" xml:base="file:///C:/src/ws-profile-mgr/gea-profiles/trunk/profiles/cgi_geosciml_wms_profile/cgi_geosciml_wms_profile.xml" xmlns:gwsit="http://qld.gov.au/sdi/wsi/testing/1.0" xmlns:pr="urn:ws-profile-mgr:schemas:profiles:profiles.xsd" xmlns:qg="http://qld.gov.au/wsi/1.0" xmlns:rim="urn:oasis:names:tc:ebxml-regrep:xsd:rim:3.0" xmlns:ud="http://utf-x.sourceforge.net/xsd/utfxdoc_1_0/utfxdoc.xsd" xmlns:wfs="http://www.opengis.net/wfs" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="urn:ws-profile-mgr:schemas:profiles:profiles.xsd http://ws-profile-mgr.sf.net/schemas/profiles.xsd">
+  <ud:version> Revision: 282  </ud:version>
+  <ud:date> 2007-06-03 20:51:50 +1000 (Sun, 03 Jun 2007)  </ud:date>
+  <ud:copyright year="2007">CGI GeoSciML </ud:copyright>
+  <!-- 
+    <ud:logo>
+    <ud:img src="&qgcio-logo;" width="100%"/>
+  </ud:logo>
+  -->
+  <pr:name>GeoSciML WMS</pr:name>
+  <pr:description>This profile binds the GeoSciML data products to the basic WMS profile.  </pr:description>
+  <pr:identifier>urn:au:gov:qld:sdi:standards:profiles:sdi-cadastre-wms</pr:identifier>
+  <pr:inherits-from>geosciml-data-product</pr:inherits-from>
+  <pr:inherits-from>sdi-wms-fi</pr:inherits-from>
+  
+  <pr:sect1 id="sect1id" name="Section 6" number="6">
+    <pr:title>Content</pr:title>
+    <pr:para>Do we need to specify layer naming approach here?</pr:para>
+  </pr:sect1>
+  
+<components xmlns="urn:ws-profile-mgr:schemas:profiles:profiles.xsd"><requirements-container><pr:requirement defined-in-id="geosciml-data-product" defined-in-name="GeoSciML Data Product" id="GEOSCIML1" inherited="true" normalised-name="GEOSCIML1">
+      <pr:normative-content>Data products will conform to the model defined in the identified version of GeoSciML, using the conformance requirements specified by the GeoSciML data product.</pr:normative-content>
+    <urn>urn:au:gov:qld:sdi:standards:profiles:sdi-cadastre-data-product:requirements:GEOSCIML1</urn></pr:requirement><pr:requirement defined-in-id="sdi-wms-fi" defined-in-name="sdi WMS Feature Info" id="sdiWMSF1" inherited="true" normalised-name="sdiWMSF1">
+      <pr:normative-content><pr:target-ref>WMS_GETFEATUREINFO_FORMAT</pr:target-ref>
+        <pr:rfc2119-keyword>MUST</pr:rfc2119-keyword> support valid GML 2.1 and
+          <pr:rfc2119-keyword>SHOULD</pr:rfc2119-keyword> support GML 3.1.1 format responses
+          <pr:comment id="id768">[SHANE] - Benchmark technology support</pr:comment></pr:normative-content>
+      <pr:xpath-assertion id="sdiWMSF1.A1" normalised-name="sdiWMSF1.A1">
+        <pr:target-ref>WMS_GETFEATUREINFO_FORMAT</pr:target-ref>
+        <pr:rfc2119-keyword>MUST</pr:rfc2119-keyword>
+        <pr:assert-true>
+          <pr:xpath-expression>count(./Format = 'application/vnd.ogc.gml') = 1</pr:xpath-expression>
+        </pr:assert-true>
+      </pr:xpath-assertion>
+      <pr:xpath-assertion id="sdiWMSF1.A2" normalised-name="sdiWMSF1.A2">
+        <pr:target-ref>WMS_GETFEATUREINFO_FORMAT</pr:target-ref>
+        <pr:rfc2119-keyword>SHOULD</pr:rfc2119-keyword>
+        <pr:assert-true>
+          <pr:xpath-expression>count(./Format = 'application/vnd.ogc.gml; subtype=gml/3.1.1') =
+          1</pr:xpath-expression>
+        </pr:assert-true>
+      </pr:xpath-assertion>
+    <urn>urn:au:gov:qld:sdi:standards:profiles:sdi-wms-feature-info:requirements:sdiWMSF1</urn></pr:requirement><pr:requirement defined-in-id="sdi-wms-fi" defined-in-name="sdi WMS Feature Info" id="sdiWMSF2" inherited="true" normalised-name="sdiWMSF2">
+      <pr:normative-content>Response from GetFeatureInfo
+        <pr:rfc2119-keyword>SHOULD</pr:rfc2119-keyword> be identical to a response from a WFS
+        request for the same Feature. <pr:comment id="id782">[SHANE] - I think this may be a part of the
+          benchmarking process: This is probably a key area to put pressure on vendors, and wrappers
+          in short term - a single data source providing WMS and WFS should share a common config
+          and common output schema</pr:comment></pr:normative-content>
+    <urn>urn:au:gov:qld:sdi:standards:profiles:sdi-wms-feature-info:requirements:sdiWMSF2</urn></pr:requirement><pr:requirement defined-in-id="sdi-display-wms" defined-in-name="sdi Display WMS" id="sdiDWMS1" inherited="true" normalised-name="sdiDWMS1">
+            <pr:normative-content>The response time for a getMap operation for an image less than
+                1000 pixels by 1000 pixels <pr:rfc2119-keyword>SHOULD</pr:rfc2119-keyword> be less
+                than 2 seconds, not including network data transfer time.</pr:normative-content>
+        <urn>urn:au:gov:qld:sdi:standards:profiles:sdi-display-wms:requirements:sdiDWMS1</urn></pr:requirement><pr:requirement defined-in-id="sdi-display-wms" defined-in-name="sdi Display WMS" id="sdiDWMS2" inherited="true" normalised-name="sdiDWMS2">
+            <pr:normative-content>The map server <pr:rfc2119-keyword>MUST</pr:rfc2119-keyword>be
+                able to deliver images up to 1000 pixels by 1000 pixels</pr:normative-content>
+        <urn>urn:au:gov:qld:sdi:standards:profiles:sdi-display-wms:requirements:sdiDWMS2</urn></pr:requirement><pr:requirement defined-in-id="sdi-wms" defined-in-name="sdi WMS" id="sdiWMS0000" inherited="true" normalised-name="WMS_VERSION_1_1_1">
+      <pr:name>WMS_VERSION_1_1_1</pr:name>
+      <pr:normative-content>
+        <pr:target-ref>capabilites</pr:target-ref>
+        <pr:rfc2119-keyword>MUST</pr:rfc2119-keyword> have a version attribute with a value of
+        '1.1.1'. WMS 1.1.1 section 6.1 <pr:comment id="id386">This implies that the artefact binding asks for
+          version 1.1.1</pr:comment>
+      </pr:normative-content>
+
+      <pr:non-normative-content>
+        <pr:para>Currently almost all geospatial software vendors support WMS version 1.1.1 and do
+          not yet support the emerging 1.3 WMS version. In addition the relatively small number of
+          Queensland Government WMS services are also utilising version 1.1.1. This requirement will
+          be periodically reviewed and when appropriate will be amended to include susequesnt
+          version releases over time. <pr:comment id="id389">[MARK] - write the non-normative
+          content.</pr:comment>
+        </pr:para>
+
+        <ud:example name="Figure 4.1" number="4.1" type="correct">
+          <ud:xml xml:space="preserve">
+<WMT_MS_Capabilities xmlns="" updateSequence="0" version="1.1.1">
+              
+</WMT_MS_Capabilities>
+          </ud:xml>
+          <ud:caption>Version attribute correctly states version 1.1.1</ud:caption>
+        </ud:example>
+
+        <ud:example name="Figure 4.2" number="4.2" type="incorrect">
+          <ud:xml xml:space="preserve">
+<WMS_Capabilities version="1.3.0" xmlns="http://www.opengis.net/wms" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.opengis.net/wms http://schemas.opengis.net/wms/1.3.0/capabilities_1_3_0.xsd">
+  
+</WMS_Capabilities>              
+          </ud:xml>
+          <ud:caption>Incorrect version of WMS</ud:caption>
+        </ud:example>
+
+      </pr:non-normative-content>
+
+      <pr:xpath-assertion id="sdiWMS0001.A1" normalised-name="sdiWMS0001.A1">
+        <pr:target-ref>capabilites</pr:target-ref>
+        <pr:rfc2119-keyword>MUST</pr:rfc2119-keyword>
+        <pr:assert-true>
+          <pr:xpath-expression>./@version = '1.1.1' </pr:xpath-expression>
+        </pr:assert-true>
+      </pr:xpath-assertion>
+    <urn>urn:au:gov:qld:sdi:standards:profiles:sdi-wms:requirements:sdiWMS0000</urn></pr:requirement><pr:requirement defined-in-id="sdi-wms" defined-in-name="sdi WMS" id="sdiWMS0001" inherited="true" normalised-name="Topic Category">
+      <pr:name>Topic Category</pr:name>
+      <pr:normative-content>For each <ud:element>MD_TopicCategoryCode</ud:element> found in
+        corresponding service metadata document (obtained from the
+        <ud:element>MetadataUrl</ud:element> URL) there
+        <pr:rfc2119-keyword>MUST</pr:rfc2119-keyword> be a corresponding
+        <ud:element>Keyword</ud:element> element. <pr:comment id="id408">Ian to write paragraph on the
+          relationship between wfs/wms capabilities document and the metadata. 14/6 - need to create
+          separate xml metadata docs for each of the 3 layers in the service (export from the CRS).
+          Need to make sure that the topic category in each of the layer metadata records matches
+          the keywords/topic categories in the service metadata and the capabilites
+        document.</pr:comment>
+      </pr:normative-content>
+
+      <pr:non-normative-content>
+        <pr:para>The <ud:element>MD_TopicCategoryCode</ud:element> element is a controlled list of
+          thematic classifications provided in ISO 19115. These classifications assist in
+          categorising like data and information resources so search applications can find resources
+          concerning particular themes. </pr:para>
+        <pr:para>This requirement maps the keywords used for the layers in a service to the ISO
+          19115 Topic Categories. The effectivness of catalogue search functions will be limited if
+          services do not are not categorised similarly to the underlying data layers, therefore
+          will not be allowed under this profile.</pr:para>
+        <pr:para>The examples need to come from the 4 metadata docs and the capabilities doc.</pr:para>
+        <!--
+        <ud:example>
+          <ud:xml>&wms-capabilities;</ud:xml>
+          <ud:caption>WMS capabilities document example</ud:caption>
+        </ud:example>
+
+        <ud:example>
+          <ud:xml>&wms-service-metadata;</ud:xml>
+          <ud:caption>WMS service metadata example</ud:caption>
+        </ud:example>
+-->
+        <ud:example name="Figure 4.3" number="4.3" type="correct">
+          <ud:xml xml:space="preserve">
+
+          </ud:xml>
+          <ud:caption>Topic category correctly listed in the ISO19115 metadata document. The
+            metadata document for this example can be found at URL location
+            http://myservice.org/metadata/infrastructure.xml</ud:caption>
+        </ud:example>
+
+        <ud:example name="Figure 4.4" number="4.4" type="correct">
+          <ud:xml xml:space="preserve">
+
+          </ud:xml>
+          <ud:caption>Keyword list correctly listed in the WMS capabilities document and contains
+            the keyword "infrastructure" as specified in the metadata document for the
+          layer.</ud:caption>
+        </ud:example>
+
+
+        <ud:example name="Figure 4.5" number="4.5" type="incorrect">
+          <ud:xml>
+            <MD_Metadata xmlns="">
+              <topicCategory>
+                <MD_TopicCategoryCode xmlns:gmd="http://www.isotc211.org/2005/gmd">infrastructure
+                </MD_TopicCategoryCode>
+              </topicCategory>
+            </MD_Metadata>
+          </ud:xml>
+          <ud:caption>Topic category correctly listed in the ISO19115 metadata
+          document.</ud:caption>
+        </ud:example>
+
+        <ud:example name="Figure 4.6" number="4.6" type="incorrect">
+          <ud:xml>
+            <Layer xmlns="">
+              <KeywordList>
+                <Keyword>road</Keyword>
+                <Keyword>rail</Keyword>
+              </KeywordList>
+            </Layer>
+          </ud:xml>
+          <ud:caption>Keyword list incorrectly listed in the WMS capabilities document as it does
+            not contain the keyword "infrastructure" as specified in the metadata document for the
+            layer.</ud:caption>
+        </ud:example>
+
+      </pr:non-normative-content>
+
+    <!--  <pr:xpath-assertion>
+        <pr:target-ref>invocable-layer</pr:target-ref>
+        <pr:rfc2119-keyword>MUST</pr:rfc2119-keyword>
+        <pr:assert-true>
+          <pr:xpath-expression>for $code in //MD_TopicCategoryCode ;
+            ${conformancce_target}//Keyword/text() = ${code}; done </pr:xpath-expression>
+        </pr:assert-true>
+      </pr:xpath-assertion>-->
+    <urn>urn:au:gov:qld:sdi:standards:profiles:sdi-wms:requirements:sdiWMS0001</urn></pr:requirement><pr:requirement defined-in-id="sdi-wms" defined-in-name="sdi WMS" id="sdiWMS1" inherited="true" normalised-name="sdiWMS1">
+      <pr:normative-content>
+        <pr:comment id="id428">[SHANE] - Not sure about the need for this given the content below</pr:comment>
+        <pr:target-ref>contact-organisation</pr:target-ref>
+      </pr:normative-content>
+    <urn>urn:au:gov:qld:sdi:standards:profiles:sdi-wms:requirements:sdiWMS1</urn></pr:requirement><pr:requirement defined-in-id="sdi-wms" defined-in-name="sdi WMS" id="sdiWMS0002" inherited="true" normalised-name="Contact Person">
+      <pr:name>Contact Person</pr:name>
+      <pr:extends>sdiWMS1</pr:extends>
+      <pr:normative-content>
+        <pr:comment id="id434">need to make sure that the correct example matches queensland goverment busines
+          rules</pr:comment>
+        <pr:comment id="id435">[MARK] - write the non-normative content for this requirement and provide
+          examples of correct and incorrect usage. sdiWMS0001 -
+          sdiWMS0001_2</pr:comment><pr:target-ref>service</pr:target-ref>
+        <pr:rfc2119-keyword>MUST</pr:rfc2119-keyword> contain exactly one
+          <ud:element>ContactPersonPrimary</ud:element> element. </pr:normative-content>
+
+      <pr:non-normative-content>
+        <pr:para>This is to identify the name of the person currently acting in the role defined in
+          requirement sdiWMS0003 <pr:requirement-ref>sdiWMS0001</pr:requirement-ref>. Each service
+          offering <pr:rfc2119-keyword>MUST</pr:rfc2119-keyword> contain reference to a designated
+          position, responsible for the custodianship and management of the service. It is also
+          desirable that this role is also reflected in the position description of the described
+          position</pr:para>
+
+        <ud:example name="Figure 4.7" number="4.7" type="correct">
+          <ud:xml highlight-xpath="./ContactInformation/ContactPersonPrimary" xml:space="preserve">
+    <ContactInformation xmlns="">
+      <highlight><ContactPersonPrimary>
+        <ContactPerson>Jeff deLaBeaujardiere</ContactPerson>
+        <ContactOrganization>NASA</ContactOrganization>
+      </ContactPersonPrimary></highlight>
+      <ContactPosition>Computer Scientist</ContactPosition>
+      <ContactAddress>
+        <AddressType>postal</AddressType>
+        <Address>NASA Goddard Space Flight Center, Code 933</Address>
+        <City>Greenbelt</City>
+        <StateOrProvince>MD</StateOrProvince>
+        <PostCode>20771</PostCode>
+        <Country>USA</Country>
+      </ContactAddress>
+      <ContactVoiceTelephone>+1 301 286-1569</ContactVoiceTelephone>
+      <ContactFacsimileTelephone>+1 301 286-1777</ContactFacsimileTelephone>
+      <ContactElectronicMailAddress>delabeau@iniki.gsfc.nasa.gov</ContactElectronicMailAddress>
+    </ContactInformation>
+          </ud:xml>
+          <ud:caption>Correct example</ud:caption>
+        </ud:example>
+
+        <ud:example name="Figure 4.8" number="4.8" type="incorrect">
+          <ud:xml xml:space="preserve">
+    <ContactInformation xmlns="">
+      <!-- ContactPersonPrimary is missing -->
+      <ContactPosition>Computer Scientist</ContactPosition>
+      <ContactAddress>
+        <AddressType>postal</AddressType>
+        <Address>NASA Goddard Space Flight Center, Code 933</Address>
+        <City>Greenbelt</City>
+        <StateOrProvince>MD</StateOrProvince>
+        <PostCode>20771</PostCode>
+        <Country>USA</Country>
+      </ContactAddress>
+      <ContactVoiceTelephone>+1 301 286-1569</ContactVoiceTelephone>
+      <ContactFacsimileTelephone>+1 301 286-1777</ContactFacsimileTelephone>
+      <ContactElectronicMailAddress>delabeau@iniki.gsfc.nasa.gov</ContactElectronicMailAddress>
+    </ContactInformation>
+          </ud:xml>
+          <ud:caption>Icorrect example</ud:caption>
+        </ud:example>
+
+      </pr:non-normative-content>
+
+      <pr:xpath-assertion id="sdiWMS0002.A1" normalised-name="sdiWMS0002.A1">
+        <pr:target-ref>service</pr:target-ref>
+        <pr:rfc2119-keyword>MUST</pr:rfc2119-keyword>
+        <pr:assert-true>
+          <pr:xpath-expression>count(./ContactInformation) = 1</pr:xpath-expression>
+        </pr:assert-true>
+      </pr:xpath-assertion>
+    <urn>urn:au:gov:qld:sdi:standards:profiles:sdi-wms:requirements:sdiWMS0002</urn></pr:requirement><pr:requirement defined-in-id="sdi-wms" defined-in-name="sdi WMS" id="r0003" inherited="true" normalised-name="CONTACT_ORGANISATION_REQUIRED">
+      <pr:name>CONTACT_ORGANISATION_REQUIRED</pr:name>
+      <pr:extends>sdiWMS0001</pr:extends>
+      <pr:normative-content>
+        <pr:comment id="id458">[MARK] - write the non-normative content for this requirement and provide
+          examples of correct and incorrect usage.</pr:comment>
+        <pr:target-ref>contact-organisation</pr:target-ref>
+        <pr:rfc2119-keyword>MUST</pr:rfc2119-keyword> contain
+        <ud:element>ContactPersonPrimary</ud:element> or <ud:element>ContactPosition</ud:element>
+      </pr:normative-content>
+      <pr:non-normative-content>
+        <pr:para>This is to identify the Queensland Government position responsible for the
+          custodianship and management of the service. The individual filling this role
+            <pr:rfc2119-keyword>MUST</pr:rfc2119-keyword> have detailed content (but no necessarily
+          technical) knowledge of the service. It is also desirable that this role is also reflected
+          in the position description of the described position.</pr:para>
+        <ud:example name="Figure 4.9" number="4.9">
+          <ud:xml>
+            <need-example xmlns=""/>
+          </ud:xml>
+          <ud:caption>Senior Project Officer - Service Implementation Senior Scientist - Water
+            Resources </ud:caption>
+        </ud:example>
+      </pr:non-normative-content>
+      <pr:xpath-assertion id="sdiWMS0003.A1" normalised-name="sdiWMS0003.A1">
+        <pr:target-ref>contact-organisation</pr:target-ref>
+        <pr:rfc2119-keyword>MUST</pr:rfc2119-keyword>
+        <pr:assert-true>
+          <pr:xpath-expression>count(./ContactPersonPrimary | ./ContactPosition) &gt;
+          1</pr:xpath-expression>
+        </pr:assert-true>
+      </pr:xpath-assertion>
+    <urn>urn:au:gov:qld:sdi:standards:profiles:sdi-wms:requirements:r0003</urn></pr:requirement><pr:requirement defined-in-id="sdi-wms" defined-in-name="sdi WMS" id="sdiWMS0004" inherited="true" normalised-name="sdiWMS0004">
+      <pr:extends>sdiWMS0001</pr:extends>
+      <pr:normative-content>
+        <pr:comment id="id477">[MARK] - write the non-normative content for this requirement and provide
+          examples of correct and incorrect usage.</pr:comment>
+        <pr:target-ref>contact-organisation</pr:target-ref>
+        <pr:rfc2119-keyword>MUST</pr:rfc2119-keyword> contain ContactFacsimileTelephone or
+        ContactElectronicMailAddress </pr:normative-content>
+      <pr:non-normative-content>
+        <pr:para>This describes the contact telephone numbers of the position responsible for the
+          sercive, as described in R0003<pr:requirement-ref>sdiWMS0000</pr:requirement-ref>.</pr:para>
+        <ud:example name="Figure 4.10" number="4.10">
+          <ud:xml>
+            <need-example xmlns=""/>
+          </ud:xml>
+          <ud:caption>+617 1234 5678</ud:caption>
+        </ud:example>
+      </pr:non-normative-content>
+      <pr:xpath-assertion id="sdiWMS0004.A1" normalised-name="sdiWMS0004.A1">
+        <pr:target-ref>contact-organisation</pr:target-ref>
+        <pr:rfc2119-keyword>MUST</pr:rfc2119-keyword>
+        <pr:assert-true>
+          <pr:xpath-expression>count(./ContactFacsimileTelephone | ./ContactElectronicMailAddress)
+            &gt; 1</pr:xpath-expression>
+        </pr:assert-true>
+      </pr:xpath-assertion>
+    <urn>urn:au:gov:qld:sdi:standards:profiles:sdi-wms:requirements:sdiWMS0004</urn></pr:requirement><pr:requirement defined-in-id="sdi-wms" defined-in-name="sdi WMS" id="sdiWMS0005" inherited="true" normalised-name="sdiWMS0005">
+      <pr:normative-content>
+        <pr:target-ref>service</pr:target-ref>
+        <pr:rfc2119-keyword>MUST</pr:rfc2119-keyword> contain exactly one
+        <ud:element>Abstract</ud:element> element. </pr:normative-content>
+      <pr:non-normative-content>
+        <pr:para> The Abstract is a brief narrative summary of the content of the service. Careful
+          consideration should be given when preparing an Abstract as it is an important element for
+          the identification and discovery of a service. Other material to be conveyed in this
+          element may include a description of the purpose for which the service was created, and a
+          textual description of the spatial extent of the data contained in the service. Generally,
+          the Abstract should describe the contents of the service for a non-expert user, in plain
+          language. It should be more than a repeat of the title. While the Abstract element is
+          optional in the WMS 1.1.1. specficiation (see section 7.1.4.5.3), this profile stipulates
+          that an abstract is <pr:rfc2119-keyword>REQUIRED</pr:rfc2119-keyword>.</pr:para>
+        <ud:example name="Figure 4.11" number="4.11" type="correct">
+          <ud:xml highlight-xpath=".//Abstract">
+            <Service xmlns="">
+              <Name>OGC:WMS</Name>
+              <Title>Acme Corp. Map Server</Title>
+              <highlight><Abstract>WMT Map Server maintained by Acme Corporation. Contact:
+                webmaster@wmt.acme.com. High-quality maps showing roadrunner nests and possible
+                ambush locations.</Abstract></highlight>
+              <KeywordList>
+                <Keyword>bird</Keyword>
+                <Keyword>roadrunner</Keyword>
+                <Keyword>ambush</Keyword>
+              </KeywordList>
+            </Service>
+          </ud:xml>
+          <ud:caption>A compliant WMS Service contains an abstract element.</ud:caption>
+        </ud:example>
+
+        <ud:example name="Figure 4.12" number="4.12" type="incorrect">
+          <ud:xml>
+            <Service xmlns="">
+              <Name>OGC:WMS</Name>
+              <Title>Acme Corp. Map Server</Title>
+              <!-- Note the absence of the Abstract -->
+              <KeywordList>
+                <Keyword>bird</Keyword>
+                <Keyword>roadrunner</Keyword>
+                <Keyword>ambush</Keyword>
+              </KeywordList>
+            </Service>
+          </ud:xml>
+          <ud:caption>An non compliant WMS Service that does not contain an abstract
+          element.</ud:caption>
+        </ud:example>
+
+      </pr:non-normative-content>
+
+      <pr:xpath-assertion id="sdiWMS0005.A1" normalised-name="sdiWMS0005.A1">
+        <pr:target-ref>service</pr:target-ref>
+        <pr:rfc2119-keyword>MUST</pr:rfc2119-keyword>
+        <pr:assert-true>
+          <pr:xpath-expression>count(./Abstract) = 1</pr:xpath-expression>
+        </pr:assert-true>
+      </pr:xpath-assertion>
+    <urn>urn:au:gov:qld:sdi:standards:profiles:sdi-wms:requirements:sdiWMS0005</urn></pr:requirement><pr:requirement defined-in-id="sdi-wms" defined-in-name="sdi WMS" id="sdiWMS0006" inherited="true" normalised-name="CURRENCY">
+      <pr:name>CURRENCY</pr:name>
+      <pr:normative-content>
+        <pr:comment id="id513">[IAN] - write the non-normative content for this requirement and provide
+          examples of correct and incorrect usage.</pr:comment>
+        <pr:target-ref>invocable-layer</pr:target-ref>
+        <pr:rfc2119-keyword>MUST</pr:rfc2119-keyword> contain exactly one
+        <pr:target-ref>currency</pr:target-ref> keyword containing a term from the data currency
+        controlled vocabulary [fix xpath]] <pr:comment id="id517">URN of vocabulary (example below) needs to be
+          a published artefact resolvable with sdi architecture. ebRIM classification have been
+          defined.</pr:comment>
+      </pr:normative-content>
+      <pr:non-normative-content>
+        <pr:para>A WMS service can depict information from a wide range of data sources and of
+          varying temporal content. To aid catalogue searching for services depicting current or
+          historical or predicted data content, a keyword is used to give a general indication of
+          the currency of the data depicted within a service. Because keywords are unqualified and
+          multi-valued, each instance must be a fully qualified (unambiguous) URN. The
+          classification scheme used is a controlled vocabulary for "Data Currency" (whose initial
+          content is adopted from the Australian marine SDI community, and includes the keywords
+          "Current", "Historical", "Predicted" and "Unknown".)</pr:para>
+        <ud:example name="Figure 4.13" number="4.13" type="correct">
+          <ud:xml highlight-xpath=".//Keyword" xml:space="preserve">
+<Layer xmlns="">
+  <KeywordList>
+    <highlight><Keyword>urn:asdi:marine:data:currency:current</Keyword></highlight>
+  </KeywordList>
+</Layer>
+            </ud:xml>
+          <ud:caption>Correct usage</ud:caption>
+        </ud:example>
+
+        <ud:example name="Figure 4.14" number="4.14" type="incorrect">
+          <ud:xml highlight-xpath=".//Keyword" xml:space="preserve">
+<Layer xmlns="">
+  <KeywordList>
+    <highlight><Keyword>Current</Keyword></highlight>
+  </KeywordList>
+</Layer>
+          </ud:xml>
+          <ud:caption>Incorrect usage.</ud:caption>
+        </ud:example>
+      </pr:non-normative-content>
+
+
+
+     <!-- <pr:xpath-assertion id="sdiWMS0006.A1">
+        <pr:target-ref>invocable-layer</pr:target-ref>
+        <pr:rfc2119-keyword>MUST</pr:rfc2119-keyword>
+        <pr:assert-true>
+          <pr:xpath-expression>.//Keyword MUST MATCH EXACTLY ONE //rim:ClassificationScheme[@id =
+            'urn:au:gov:qld:sdi:currency']//rim:Name/rim:LocalizedString/@value</pr:xpath-expression>
+        </pr:assert-true>
+      </pr:xpath-assertion>-->
+    <urn>urn:au:gov:qld:sdi:standards:profiles:sdi-wms:requirements:sdiWMS0006</urn></pr:requirement><pr:requirement defined-in-id="sdi-wms" defined-in-name="sdi WMS" id="sdiWMS0007" inherited="true" normalised-name="sdiWMS0007">
+      <pr:normative-content>
+        <pr:comment id="id528">Mark to do</pr:comment>
+        <pr:target-ref>invocable-layer</pr:target-ref>
+        <pr:rfc2119-keyword>MUST</pr:rfc2119-keyword> contain exactly one topic keyword containing a
+        term from the sdi registry topic [get ref] controlled vocabulary <pr:comment id="id531">URN of
+          vocabulary (example below) needs to be a published artefact resolvable with sdi
+          architecture. Isn't this the same as XXXXX555 - no, refers to referencing possibly
+          multiple thesauri e.g. SSQ Govt Categories (Land and Resources, Business and Industry
+          etc), or the Australian Mining Handbook (what ever it's called), ANZLIC, QKey. Jacek to
+          meet with Sam on Monday. Need to determine appropriate custodian for each of the
+        thesauri.</pr:comment>
+      </pr:normative-content>
+      <pr:non-normative-content>
+        <pr:para>Meaningful and representitive keywords are required to ensure simple and
+          consisitant searching for related information. Both the spelling and keywords used should
+          be from one of the keyword lists endorsed by the custodian of keyword lists for Queensland
+          Government. At least one keyword is required to assist in finding required services.
+        </pr:para>
+      </pr:non-normative-content>
+      <pr:xpath-assertion id="sdiWMS0007.A1" normalised-name="sdiWMS0007.A1">
+        <pr:target-ref>invocable-layer</pr:target-ref>
+        <pr:rfc2119-keyword>MUST</pr:rfc2119-keyword>
+        <pr:assert-true>
+          <pr:xpath-expression>count(./KeywordList/Keyword[
+            startsWith('scheme=urn:au:gov:qld:sdi:standards:discoverysemantics:topic') =
+          1</pr:xpath-expression>
+        </pr:assert-true>
+      <error>Could not find function: startsWith</error></pr:xpath-assertion>
+    <urn>urn:au:gov:qld:sdi:standards:profiles:sdi-wms:requirements:sdiWMS0007</urn></pr:requirement><pr:requirement defined-in-id="sdi-wms" defined-in-name="sdi WMS" id="sdiWMS0008" inherited="true" normalised-name="sdiWMS0008">
+      <pr:normative-content>
+        <pr:comment id="id541">[MICAH] - write the non-normative content for this requirement and provide
+          examples of correct and incorrect usage. </pr:comment>
+        <pr:target-ref>invocable-layer</pr:target-ref>
+        <pr:rfc2119-keyword>SHOULD</pr:rfc2119-keyword> contain minimum and maximum display scales
+        supported for each layer by populating the <pr:target-ref>scale-hint</pr:target-ref>
+        element. See table 7 for inheritance by parent from child. </pr:normative-content>
+      <pr:non-normative-content>
+        <pr:para>The inclusion of maximum (max) and minimum (min) scale hints assist in delivering
+          reliable performance of services and aides in limiting misuse of data by restricting the
+          viewable scales to match the data accuracy. Each layer should have a "max" and "min" scale
+          hint. In some cases, it may be acceptable to not include a scale hint such as a map
+          service that provides static images of non-georeferenced data, or a service that provides
+          sparsely populated data that is captured with sufficient accuracy e.g. a statewide GPS
+          point dataset of species locations that contains minimal data. In this case the data is
+          accurate at the property scale and is geographically sparse enough not to adversly effect
+          rendering performance.</pr:para>
+      </pr:non-normative-content>
+      <pr:xpath-assertion id="sdiWMS0008.A1" normalised-name="sdiWMS0008.A1">
+        <pr:target-ref>invocable-layer</pr:target-ref>
+        <pr:rfc2119-keyword>SHOULD</pr:rfc2119-keyword>
+        <pr:assert-true>
+          <pr:xpath-expression>count(ancestor-or-self::Layer/ScaleHint/@min) &gt;
+          0</pr:xpath-expression>
+        </pr:assert-true>
+      </pr:xpath-assertion>
+      <pr:xpath-assertion id="sdiWMS0008.A2" normalised-name="sdiWMS0008.A2">
+        <pr:target-ref>invocable-layer</pr:target-ref>
+        <pr:rfc2119-keyword>SHOULD</pr:rfc2119-keyword>
+        <pr:assert-true>
+          <pr:xpath-expression>count(ancestor-or-self::Layer/ScaleHint/@max) &gt;
+          0</pr:xpath-expression>
+        </pr:assert-true>
+      </pr:xpath-assertion>
+    <urn>urn:au:gov:qld:sdi:standards:profiles:sdi-wms:requirements:sdiWMS0008</urn></pr:requirement><pr:requirement defined-in-id="sdi-wms" defined-in-name="sdi WMS" id="sdiWMS0009" inherited="true" normalised-name="sdiWMS0009">
+      <pr:normative-content>
+        <pr:comment id="id559">[IAN] - write the non-normative content for this requirement and provide
+          examples of correct and incorrect usage. [JACEK] add a paragraph on the technical
+          component, ie linking from the Capabilities document to the Metadata document.</pr:comment>
+        <pr:target-ref>invocable-layer</pr:target-ref>
+        <pr:rfc2119-keyword>MUST</pr:rfc2119-keyword> contain exactly one
+          <pr:target-ref>metadata-url</pr:target-ref> keyword that references a sdi standard dataset
+        metadata profile XML document. This will be an ISO 19139 conformant implementation of the
+        ISO 19115 metadata standard referred to by the keyword "TC211". <pr:comment id="id563">Some services
+          within the QG may already use FGDC. This requirement may need to be deleted.</pr:comment></pr:normative-content>
+      <pr:non-normative-content>
+        <pr:para>Each layer that maybe depicted in a web map service should be described in the
+          metadata document. A web map service must use one or more
+          <ud:element>MetadataURL</ud:element> elements to offer detailed, standardized metadata
+          about the data corresponding to a particular layer. The 'type' attribute indicates the
+          standard to which the metadata complies. Two 'type' attribute values are defined by the
+          International Standard: the value 'TC211' refers the ISO 19115 metadata standard . The
+          target is actually ANZLIC's ISO 19139 conformant implementation profile, which should be
+          separately validated as part of the metadata publishing regime. The enclosed
+          &lt;Format&gt; element indicates the file format MIME type of the metadata record.
+          This must be text/xml, indicating an XML document. MetadataURL elements are not inherited
+          by a parent Layers. Examples in the Infolink capabilities file reflect this
+          non-inheritance.</pr:para>
+        <ud:example name="Figure 4.15" number="4.15" type="correct">
+          <ud:xml highlight-xpath="./MetadataURL[1]" xml:space="preserve">
+            <highlight><MetadataURL xmlns="" type="TC211">
+              <Format>text/xml</Format>
+              <OnlineResource xlink:href="http://gis.govnet.qld.gov.au/layer_metadata/QLD_Roads.xml" xlink:type="simple" xmlns:xlink="http://www.w3.org/1999/xlink"/>
+            </MetadataURL></highlight>
+            <MetadataURL xmlns="" type="FGDC">
+              <Format>text/plain</Format>
+              <OnlineResource xlink:href="http://gis.govnet.qld.gov.au/layer_metadata/QLD_Roads.txt" xlink:type="simple" xmlns:xlink="http://www.w3.org/1999/xlink"/>
+            </MetadataURL>
+          </ud:xml>
+          <ud:caption>Correctly formatted reference to a metadata document.</ud:caption>
+        </ud:example>
+
+
+        <ud:example name="Figure 4.16" number="4.16" type="incorrect">
+          <ud:xml highlight-xpath=".//Format" xml:space="preserve">
+  <MetadataURL xmlns="" type="TC211">
+    <highlight><Format>text/plain</Format></highlight>
+    <OnlineResource xlink:href="http://gis.govnet.qld.gov.au/layer_metadata/QLD_Roads.xml" xlink:type="simple" xmlns:xlink="http://www.w3.org/1999/xlink"/>
+  </MetadataURL>
+            </ud:xml>
+          <ud:caption>Incorrectly formatted reference to a metadata document.</ud:caption>
+        </ud:example>
+
+
+      </pr:non-normative-content>
+      <pr:xpath-assertion id="sdiWMS0009.A1" normalised-name="sdiWMS0009.A1">
+        <pr:target-ref>invocable-layer</pr:target-ref>
+        <pr:rfc2119-keyword>MUST</pr:rfc2119-keyword>
+        <pr:assert-true>
+          <pr:xpath-expression>count(./MetadataURL[@type = 'TC211']/Format[text() = 'text/xml']) =
+          1</pr:xpath-expression>
+        </pr:assert-true>
+      </pr:xpath-assertion>
+
+    <urn>urn:au:gov:qld:sdi:standards:profiles:sdi-wms:requirements:sdiWMS0009</urn></pr:requirement><pr:requirement defined-in-id="sdi-wms" defined-in-name="sdi WMS" id="sdiWMS0011" inherited="true" normalised-name="sdiWMS0011">
+      <pr:normative-content>
+        <pr:comment id="id580">[SHANE] - write the non-normative content for this requirement and provide
+          examples of correct and incorrect usage. Jacek to investigate metadata document structure
+          and find appropriate conformance target for this requirement.</pr:comment>
+        <pr:target-ref>layer-currency-end-date</pr:target-ref>
+        <pr:rfc2119-keyword>MUST</pr:rfc2119-keyword> be present.</pr:normative-content>
+
+      <!--
+      <pr:xpath-assertion id="sdiWMS0011.A1">
+        <pr:target-ref>WMS_LAYER</pr:target-ref>
+        <pr:rfc2119-keyword>MAY</pr:rfc2119-keyword>
+      </pr:xpath-assertion>
+-->
+
+
+    <urn>urn:au:gov:qld:sdi:standards:profiles:sdi-wms:requirements:sdiWMS0011</urn></pr:requirement><pr:requirement defined-in-id="sdi-wms" defined-in-name="sdi WMS" id="sdiWMS0010" inherited="true" normalised-name="sdiWMS0010">
+
+      <pr:normative-content> Both <pr:target-ref>layer-currency-start-date</pr:target-ref> and
+          <pr:target-ref>layer-currency-end-date</pr:target-ref>
+        <pr:rfc2119-keyword>MUST</pr:rfc2119-keyword> use YYYY-MM-DD date format. </pr:normative-content>
+      <pr:non-normative-content>
+        <pr:para> The layer currency start date is the earliest date at which the phenomena in the
+          layer actually occurred. The layer currency end date is the latest date at which the
+          phenomena in the layer actually occurred. This is not necessarily the date on which a
+          record was entered into a database. This element records the age of the data in the layer
+          itself. It is possible that data may be recorded many years after an event eg an
+          earthquake or a flood. It is the date that the event itself occurred which is required in
+          this element. The date of conversion of data from one form to another form or one database
+          to another, or the date of conversion of the dataset to a specific format or to a specific
+          system should not be recorded. The format for the
+          <pr:target-ref>layer-currency-start-date</pr:target-ref> and
+            <pr:target-ref>layer-currency-end-date</pr:target-ref>
+          <pr:rfc2119-keyword>MUST</pr:rfc2119-keyword> use the YYYY-MM-DD date format </pr:para>
+
+        <pr:para> relax asserton to allow timestamps.
+          <pr:rfc2119-keyword>SHOULD</pr:rfc2119-keyword> include timezone </pr:para>
+        <ud:example name="Figure 4.17" number="4.17" type="correct">
+          <ud:xml>
+            <gml:beginPosition xmlns:gml="http://www.opengis.net/gml">2004-01-01</gml:beginPosition>
+            <gml:endPosition xmlns:gml="http://www.opengis.net/gml">2007-01-01</gml:endPosition>
+          </ud:xml>
+          <ud:caption>Correctly formatted currency start and end dates.</ud:caption>
+        </ud:example>
+
+        <ud:example name="Figure 4.18" number="4.18" type="incorrect">
+          <ud:xml>
+            <gml:beginPosition xmlns:gml="http://www.opengis.net/gml">2004/01/01</gml:beginPosition>
+            <gml:endPosition xmlns:gml="http://www.opengis.net/gml">2007/01/01</gml:endPosition>
+          </ud:xml>
+          <ud:caption>Incorrectly formatted currency end date</ud:caption>
+        </ud:example>
+      </pr:non-normative-content>
+
+      <pr:xpath-assertion id="sdiWMS0010.A1" normalised-name="sdiWMS0010.A1">
+        <pr:target-ref>layer-currency-start-date</pr:target-ref>
+        <pr:rfc2119-keyword>MUST</pr:rfc2119-keyword>
+        <pr:assert-true>
+          <pr:xpath-expression>matches(., "\d\d\d\d-\d\d-\d\d")</pr:xpath-expression>
+        </pr:assert-true>
+      <error>Could not find function: matches</error></pr:xpath-assertion>
+      <pr:xpath-assertion id="sdiWMS0010.A2" normalised-name="sdiWMS0010.A2">
+        <pr:target-ref>layer-currency-end-date</pr:target-ref>
+        <pr:rfc2119-keyword>MUST</pr:rfc2119-keyword>
+        <pr:assert-true>
+          <pr:xpath-expression>matches(., "\d\d\d\d-\d\d-\d\d")</pr:xpath-expression>
+        </pr:assert-true>
+      <error>Could not find function: matches</error></pr:xpath-assertion>
+
+    <urn>urn:au:gov:qld:sdi:standards:profiles:sdi-wms:requirements:sdiWMS0010</urn></pr:requirement><pr:requirement defined-in-id="sdi-wms" defined-in-name="sdi WMS" id="sdiWMS0013" inherited="true" normalised-name="sdiWMS0013">
+      <pr:normative-content>
+        <pr:comment id="id613">[SHANE] - write the non-normative content for this requirement and provide
+          examples of correct and incorrect usage.</pr:comment>
+        <pr:target-ref>exception</pr:target-ref>
+        <pr:rfc2119-keyword>MUST</pr:rfc2119-keyword> support XML and in_image format exceptions
+          <pr:comment id="id616">This requires mark to do more technology benchmarking. Probably what the word
+          means...</pr:comment>
+      </pr:normative-content>
+      <pr:non-normative-content>
+        <pr:para>The exception tag provides information about the exception formats a client can ask
+          for when making requests. Examples of clients in this case may refer to custom built
+          desktop applications or browser based applications. The decision to support xml as well as
+          inimage was made to provide the maximum flexibility for application developers. The
+          inimage option will provide users with an exception message embedded in an image - this is
+          predominately useful to provide a visual message of the unavailabiliy of a service, or to
+          relate other relevant error messages. The XML format provides functionality for developers
+          to trap errors as they occur and implement an appropriate solution to deal with the error
+          or exception. </pr:para>
+        <ud:example name="Figure 4.19" number="4.19" type="correct">
+          <ud:xml>
+            <Exception xmlns="">
+              <Format>application/vnd.ogc.se_xml</Format>
+              <Format>application/vnd.ogc.se_inimage</Format>
+            </Exception>
+          </ud:xml>
+          <ud:caption>Correct example of defining the available exception formats in a
+          service.</ud:caption>
+        </ud:example>
+        <ud:example name="Figure 4.20" number="4.20" type="incorrect">
+          <ud:xml>
+            <Exception xmlns="">
+              <Format>xml</Format>
+              <Format>inimage</Format>
+            </Exception>
+          </ud:xml>
+          <ud:caption>Incorrect example of defining the available exception formats in a
+          service.</ud:caption>
+        </ud:example>
+
+
+      </pr:non-normative-content>
+      <pr:xpath-assertion id="sdiWMS0013.A1" normalised-name="sdiWMS0013.A1">
+        <pr:target-ref>exception</pr:target-ref>
+        <pr:rfc2119-keyword>MUST</pr:rfc2119-keyword>
+        <pr:assert-true>
+          <pr:xpath-expression>./Format/text() = 'application/vnd.ogc.se_xml'</pr:xpath-expression>
+        </pr:assert-true>
+      </pr:xpath-assertion>
+      <pr:xpath-assertion id="sdiWMS0013.A2" normalised-name="sdiWMS0013.A2">
+        <pr:target-ref>exception</pr:target-ref>
+        <pr:rfc2119-keyword>MUST</pr:rfc2119-keyword>
+        <pr:assert-true>
+          <pr:xpath-expression>./Format/text() =
+          'application/vnd.ogc.se_inimage'</pr:xpath-expression>
+        </pr:assert-true>
+      </pr:xpath-assertion>
+    <urn>urn:au:gov:qld:sdi:standards:profiles:sdi-wms:requirements:sdiWMS0013</urn></pr:requirement><pr:requirement defined-in-id="sdi-wms" defined-in-name="sdi WMS" id="sdiWMS0014" inherited="true" normalised-name="sdiWMS0014">
+      <pr:normative-content>
+        <pr:comment id="id637">[IAN] - write the non-normative content for this requirement and provide
+          examples of correct and incorrect usage.</pr:comment> Services
+        <pr:rfc2119-keyword>MUST</pr:rfc2119-keyword> be provided using a Spatial Reference System
+        for latitude and longitude coordinates in decimal degrees on the Geocentric Datum of
+        Australia (GDA94). <pr:target-ref>layer</pr:target-ref>
+      </pr:normative-content>
+      <pr:non-normative-content>
+        <pr:para>Services can be offered in a range of different spatial reference systems.
+          Generally the service SRS is defined in the parent layer but an SRS can be defined on a
+          leaf layer as well. Any leaf layer SRS is added to the defined parent layer SRS and is
+          available in all those stated SRS. Users should be aware that a service may not be
+          displayed in a client viewer if the viewer SRS is not specified in the service
+          capabilities file.</pr:para>
+        <pr:para>A full list of EPSG codes can be found in a Microsoft Access .mdb file at
+          http://www.epsg.org/</pr:para>
+        <ud:example name="Figure 4.21" number="4.21" type="correct">
+          <ud:xml xml:space="preserve">
+            <Layer xmlns="">
+              <Title>Parent layer</Title>
+              <SRS>EPSG:4283</SRS>
+              <SRS>EPSG:4326</SRS>
+            </Layer>
+            <Layer xmlns="">
+              <Title>Parent layer</Title>
+              <SRS>EPSG:4283</SRS>
+              <SRS>EPSG:4326</SRS>
+              <Layer>
+                <Title>Leaf Layer</Title>
+                <SRS>EPSG:20855</SRS>
+              </Layer>
+            </Layer>
+          </ud:xml>
+          <ud:caption>Correct format of service SRS definition.</ud:caption>
+        </ud:example>
+
+        <ud:example name="Figure 4.22" number="4.22" type="incorrect">
+          <ud:xml>
+            <Layer xmlns="">
+              <Title>Parent layer</Title>
+              <SRS>EPSG:4283 EPSG:4326</SRS>
+            </Layer>
+          </ud:xml>
+          <ud:caption>Incorrect format of service SRS definition.</ud:caption>
+        </ud:example>
+
+      </pr:non-normative-content>
+      <pr:xpath-assertion id="sdiWMS0014.A1" normalised-name="sdiWMS0014.A1">
+        <pr:target-ref>layer</pr:target-ref>
+        <pr:rfc2119-keyword>MUST</pr:rfc2119-keyword>
+        <pr:assert-true>
+          <pr:xpath-expression>contains(./SRS,"EPSG:4283")</pr:xpath-expression>
+        </pr:assert-true>
+      </pr:xpath-assertion>
+
+    <urn>urn:au:gov:qld:sdi:standards:profiles:sdi-wms:requirements:sdiWMS0014</urn></pr:requirement><pr:requirement defined-in-id="sdi-wms" defined-in-name="sdi WMS" id="sdiWMS0015" inherited="true" normalised-name="sdiWMS0015">
+      <pr:normative-content>
+        <pr:comment id="id656">[MICAH] - write the non-normative content for this requirement and provide
+          examples of correct and incorrect usage.</pr:comment>
+        <pr:target-ref>getmap</pr:target-ref> must include PNG (image/png). This should support
+        transparency and image compression.</pr:normative-content>
+      <pr:xpath-assertion id="sdiWMS0015.A1" normalised-name="sdiWMS0015.A1">
+        <pr:target-ref>getmap</pr:target-ref>
+        <pr:rfc2119-keyword>MUST</pr:rfc2119-keyword>
+        <pr:assert-true>
+          <pr:xpath-expression>count(./Format[text() = 'image/png']) = 1</pr:xpath-expression>
+        </pr:assert-true>
+      </pr:xpath-assertion>
+
+    <urn>urn:au:gov:qld:sdi:standards:profiles:sdi-wms:requirements:sdiWMS0015</urn></pr:requirement><pr:requirement defined-in-id="sdi-wms" defined-in-name="sdi WMS" id="sdiWMS0016" inherited="true" normalised-name="sdiWMS0016">
+      <pr:normative-content>
+        <pr:comment id="id665">[JACEK] to move this requirement to an ancestor profile and document it</pr:comment>
+        <pr:target-ref>service</pr:target-ref> must contain one or more keywords containing the URN
+        of the sdi profile it supports. The URNs of profiles are as defined here. <pr:comment id="id667">Stick
+          profiles into CRS.</pr:comment>
+      </pr:normative-content>
+      <pr:xpath-assertion id="sdiWMS0016.A1" normalised-name="sdiWMS0016.A1">
+        <pr:target-ref>service</pr:target-ref>
+        <pr:rfc2119-keyword>MUST</pr:rfc2119-keyword>
+        <pr:assert-true>
+          <pr:xpath-expression>./KeywordList/Keyword in { set }</pr:xpath-expression>
+        </pr:assert-true>
+      <error>Extra illegal tokens: 'in', '{', 'set', '}'</error></pr:xpath-assertion>
+    <urn>urn:au:gov:qld:sdi:standards:profiles:sdi-wms:requirements:sdiWMS0016</urn></pr:requirement><pr:requirement defined-in-id="sdi-wms" defined-in-name="sdi WMS" id="sdiWMS0017" inherited="true" normalised-name="sdiWMS0017">
+      <pr:normative-content>
+        <pr:comment id="id675">[MICAH] - write the non-normative content for this requirement and provide
+          examples of correct and incorrect usage.</pr:comment>
+        <pr:target-ref>invocable-layer</pr:target-ref>
+        <pr:rfc2119-keyword>SHOULD</pr:rfc2119-keyword>advertise it's opacity.
+          <pr:comment id="id678">Technology benchmark this too!</pr:comment>
+      </pr:normative-content>
+      <pr:non-normative-content>
+        <pr:para>Reference table 7 : Inheritance of layer table properties, section 7.1.4.7, note
+          child properties when defined over-ride those defined properties of the parent</pr:para>
+      </pr:non-normative-content>
+      <pr:xpath-assertion id="sdiWMS0017.A1" normalised-name="sdiWMS0017.A1">
+        <pr:target-ref>invocable-layer</pr:target-ref>
+        <pr:rfc2119-keyword>SHOULD</pr:rfc2119-keyword>
+        <pr:assert-true>
+          <pr:xpath-expression>./@opaque = '0'</pr:xpath-expression>
+        </pr:assert-true>
+      </pr:xpath-assertion>
+    <urn>urn:au:gov:qld:sdi:standards:profiles:sdi-wms:requirements:sdiWMS0017</urn></pr:requirement><pr:requirement defined-in-id="sdi-wms" defined-in-name="sdi WMS" id="sdiWMS0018" inherited="true" normalised-name="sdiWMS0018">
+      <pr:normative-content>
+        <pr:comment id="id688">[IAN] - write the non-normative content for this requirement and provide
+          examples of correct and incorrect usage.</pr:comment>
+        <pr:target-ref>layer</pr:target-ref>
+        <pr:rfc2119-keyword>MUST</pr:rfc2119-keyword>specify the layer is "subsettable" (nosubsets =
+        "0" if declared) (WMS 1.1.1 section 7.1.4.6.4). <pr:comment id="id691">Need to check with Rob if we
+          really want this requirement apply to all WMS services.</pr:comment></pr:normative-content>
+      <pr:xpath-assertion id="sdiWMS0018.A1" normalised-name="sdiWMS0018.A1">
+        <pr:target-ref>layer</pr:target-ref>
+        <pr:rfc2119-keyword>MUST</pr:rfc2119-keyword>
+        <pr:assert-false>
+          <pr:xpath-expression>./@nosubsets = "1"</pr:xpath-expression>
+        </pr:assert-false>
+      </pr:xpath-assertion>
+    <urn>urn:au:gov:qld:sdi:standards:profiles:sdi-wms:requirements:sdiWMS0018</urn></pr:requirement><pr:requirement defined-in-id="sdi-wms" defined-in-name="sdi WMS" id="sdiWMS0019" inherited="true" normalised-name="sdiWMS0019">
+      <pr:normative-content>
+        <pr:comment id="id699">[IAN] - write the non-normative content for this requirement and provide
+          examples of correct and incorrect usage.</pr:comment>
+        <pr:target-ref>layer</pr:target-ref>
+        <pr:rfc2119-keyword>MUST</pr:rfc2119-keyword>specify the layer is not "fixedWidth" or
+        "fixedHeight" (WMS 1.1.1 section 7.1.4.6.4). <pr:comment id="id702">Need to check with Rob if we really
+          want this requirement apply to all WMS services.</pr:comment>
+      </pr:normative-content>
+      <pr:xpath-assertion id="sdiWMS0019.A1" normalised-name="sdiWMS0019.A1">
+        <pr:target-ref>layer</pr:target-ref>
+        <pr:rfc2119-keyword>MUST</pr:rfc2119-keyword>
+        <pr:assert-false>
+          <pr:xpath-expression>./@fixedWidth = "1"</pr:xpath-expression>
+        </pr:assert-false>
+      </pr:xpath-assertion>
+      <pr:xpath-assertion id="sdiWMS0019.A2" normalised-name="sdiWMS0019.A2">
+        <pr:target-ref>layer</pr:target-ref>
+        <pr:rfc2119-keyword>MUST</pr:rfc2119-keyword>
+        <pr:assert-false>
+          <pr:xpath-expression>./@fixedHeight = "1"</pr:xpath-expression>
+        </pr:assert-false>
+      </pr:xpath-assertion>
+    <urn>urn:au:gov:qld:sdi:standards:profiles:sdi-wms:requirements:sdiWMS0019</urn></pr:requirement><pr:requirement defined-in-id="sdi-wms" defined-in-name="sdi WMS" id="sdiWMS0020" inherited="true" normalised-name="sdiWMS0020">
+      <pr:normative-content><pr:comment id="id715">[MARK] - write the non-normative content for this
+          requirement and provide examples of correct and incorrect usage.</pr:comment> A
+          <pr:target-ref>capabilites</pr:target-ref>
+        <pr:rfc2119-keyword>SHOULD NOT</pr:rfc2119-keyword> contain more than 100 layers.
+          <pr:comment id="id718">May need to limit to deal with harvesting limitations in CRS or other client
+          ability to cope with large numbers.</pr:comment>
+      </pr:normative-content>
+      <pr:non-normative-content>
+        <pr:para> When a map service is created, consideration should be given to the service
+          content, and the intented purpose of the service, with a view to maximising usability in
+          client applications. This requirement aims to balance the complexity of presenting
+          numerous data layers in one service and still provide some logical client application usability
+          and interaction with the service.  In certain situations, particularly for organisations wanting to
+          offer all their custodial information as layers in a single service, it may be necessary to
+          exceed this limit. </pr:para>
+        <pr:para>Consideration should be also given to organising service layers into logical
+          groupings to aid interaction using client viewers and reduce complexity.</pr:para>
+        <ud:example name="Figure 4.23" number="4.23" type="correct">
+          <ud:xml> 
+            <Layer xmlns="">
+            <Title>Title of Parent Layer</Title>
+              
+            </Layer>  
+          </ud:xml>
+          <ud:caption>Correct format of grouping service layers for ease of use.</ud:caption>
+        </ud:example>
+        <ud:example name="Figure 4.24" number="4.24" type="incorrect">
+          <ud:xml> </ud:xml>
+          <ud:caption>Incorrect format of grouping service layers for ease of use.</ud:caption>
+        </ud:example>
+
+
+      </pr:non-normative-content>
+
+      <pr:xpath-assertion id="sdiWMS0020.A1" normalised-name="sdiWMS0020.A1">
+        <pr:target-ref>capabilites</pr:target-ref>
+        <pr:rfc2119-keyword>SHOULD NOT</pr:rfc2119-keyword>
+        <pr:assert-true>
+          <pr:xpath-expression>count(.//Layer)&gt; 100</pr:xpath-expression>
+        </pr:assert-true>
+      </pr:xpath-assertion>
+    <urn>urn:au:gov:qld:sdi:standards:profiles:sdi-wms:requirements:sdiWMS0020</urn></pr:requirement><pr:requirement defined-in-id="sdi-ows-data-services" defined-in-name="SDI OWS data services" id="sdiODS1" inherited="true" normalised-name="sdiODS1">
+            <pr:extends>SDIDS1</pr:extends>
+            <pr:normative-content>The relevant OGC service capabilities metadata is populated with
+                service custodian identifier. Different versions and type of OGC Web Services have
+                different schemas, however OGC has a proposed OWS_Common framework to standardise
+                this aspect in newer versions (WFS 1.1, WMS 1.3?). <pr:comment id="id270">[SHANE] - Need to benchmark
+                    wms/wfs versions and make a decision.</pr:comment>
+            </pr:normative-content>
+        <urn>urn:au:gov:qld:gea:standards:profiles:gea-ows-data-services:requirements:sdiODS1</urn></pr:requirement><pr:requirement defined-in-id="sdi-ows-data-services" defined-in-name="SDI OWS data services" id="sdiODS2" inherited="true" normalised-name="sdiODS2">
+            <pr:normative-content>The supported Spatial Reference System for all data will include
+                GDA94/Plate Carree (Orthogeographic) projection (known as EPSG:4283 in WMS 1.1.1
+                (Note that WMS 1.3 changed the axis-order (lat/long) for this, and is not widely
+                adopted). <pr:comment id="id273">[SHANE] - [SRS handling for WFS/GML in target environment should be
+                    benchmarked]</pr:comment>
+            </pr:normative-content>
+        <urn>urn:au:gov:qld:gea:standards:profiles:gea-ows-data-services:requirements:sdiODS2</urn></pr:requirement><pr:requirement defined-in-id="sdi-data-services" defined-in-name="sdi data services" id="SDIDS1" inherited="true" normalised-name="SDIDS1">
+      <pr:normative-content>
+        <pr:comment id="id256">[IAN] - write the non-normative content for this requirement and provide
+          examples of correct or incorrect usage.</pr:comment> Currency of data set (NB ISO19115
+        does not seem to provide a slot for this) <pr:rfc2119-keyword>MUST</pr:rfc2119-keyword> be
+        described using keyword from (CRS data currency keywords vocabulary identifier - ISO19115
+        provides these?) [The user will need to know whether the data is the most recent available
+        or a historical snapshot or a prediction - this is not currently part of the FGDC metadata
+        /CRS design, but it will need to be eventually, so we need to add it to service profiles so
+        the info will be available when needed. there is a bigger general issue that the sdi
+        architecture requires the ability to publish vocabularies and then reference
+      them.]</pr:normative-content>
+    <urn>urn:au:gov:qld:sdi:standards:profiles:sdi-data-services:requirements:SDIDS1</urn></pr:requirement></requirements-container><artefacts-container><pr:artefact defined-in-id="sdi-wms" defined-in-name="sdi WMS" id="capabilities-artefact" inherited="true" normalised-name="WMS_CAPABILITIES">
+      <pr:name>WMS_CAPABILITIES</pr:name>
+      <pr:description>WMS Capabilities document</pr:description>
+      <pr:artefact-identifier>
+        <pr:xpath-test>count(/WMT_MS_Capabilities)</pr:xpath-test>
+      </pr:artefact-identifier>
+
+      <pr:conformance-target id="capabilites" normalised-name="CAPABILITIES">
+        <pr:name>CAPABILITIES</pr:name>
+        <pr:description>This conformance target represents the root element of a WMS capabilities
+          document.</pr:description>
+        <pr:xpath-locator>/WMT_MS_Capabilities</pr:xpath-locator>
+      <urn>urn:au:gov:qld:sdi:standards:profiles:sdi-wms:conformance-target-types:capabilites</urn><urn>urn:au:gov:qld:sdi:standards:profiles:sdi-wms:conformance-target-types:capabilites</urn></pr:conformance-target>
+
+      <pr:conformance-target id="service" normalised-name="SERVICE">
+        <pr:name>SERVICE</pr:name>
+        <pr:description>WMS Service metadata container element</pr:description>
+        <pr:xpath-locator>/WMT_MS_Capabilities/Service</pr:xpath-locator>
+      <urn>urn:au:gov:qld:sdi:standards:profiles:sdi-wms:conformance-target-types:service</urn><urn>urn:au:gov:qld:sdi:standards:profiles:sdi-wms:conformance-target-types:service</urn></pr:conformance-target>
+
+      <pr:conformance-target id="identifier" normalised-name="IDENTIFIER">
+        <pr:name>IDENTIFIER</pr:name>
+        <pr:description>This is the identifier of an addressible unit within a WMS service: a Layer.</pr:description>
+        <pr:detailed-description>
+          <pr:para>Users of WMS services are interested in Layers, not the service per se, WMS 1.1.1
+            section 7.1.4.5.2.</pr:para>
+        </pr:detailed-description>
+        <pr:xpath-locator>//Layer/Name</pr:xpath-locator>
+      <urn>urn:au:gov:qld:sdi:standards:profiles:sdi-wms:conformance-target-types:identifier</urn><urn>urn:au:gov:qld:sdi:standards:profiles:sdi-wms:conformance-target-types:identifier</urn></pr:conformance-target>
+
+      <pr:conformance-target id="layer" normalised-name="LAYER">
+        <pr:name>LAYER</pr:name>
+        <pr:description>Layer</pr:description>
+        <pr:detailed-description>
+          <pr:para>This conformance target type refers to any layer in a Web Map Service. <ud:link url="http://portal.opengeospatial.org/files/?artifact_id=1081&amp;version=1&amp;format=pdf">WMS 1.1.1</ud:link> section 7.1.4.4.</pr:para>
+        </pr:detailed-description>
+        <pr:xpath-locator>//Layer</pr:xpath-locator>
+      <urn>urn:au:gov:qld:sdi:standards:profiles:sdi-wms:conformance-target-types:layer</urn><urn>urn:au:gov:qld:sdi:standards:profiles:sdi-wms:conformance-target-types:layer</urn></pr:conformance-target>
+
+      <pr:conformance-target id="invocable-layer" normalised-name="INVOCABLE_LAYER">
+        <pr:name>INVOCABLE_LAYER</pr:name>
+        <pr:description>LAYER that has no child layers.</pr:description>
+        <pr:detailed-description>
+          <pr:para>This conformance target identifies all leaf layers.</pr:para>
+        </pr:detailed-description>
+        <pr:xpath-locator>//Layer[count(./Layer) = 0]</pr:xpath-locator>
+      <urn>urn:au:gov:qld:sdi:standards:profiles:sdi-wms:conformance-target-types:invocable-layer</urn><urn>urn:au:gov:qld:sdi:standards:profiles:sdi-wms:conformance-target-types:invocable-layer</urn></pr:conformance-target>
+
+      <pr:conformance-target id="exception" normalised-name="EXCEPTION">
+        <pr:name>EXCEPTION</pr:name>
+        <pr:description>Exception formats supported</pr:description>
+        <pr:xpath-locator>/WMT_MS_Capabilities/Capability/Exception</pr:xpath-locator>
+      <urn>urn:au:gov:qld:sdi:standards:profiles:sdi-wms:conformance-target-types:exception</urn><urn>urn:au:gov:qld:sdi:standards:profiles:sdi-wms:conformance-target-types:exception</urn></pr:conformance-target>
+
+      <pr:conformance-target id="contact-person-primary" normalised-name="CONTACT_PERSON_PRIMARY">
+        <pr:name>CONTACT_PERSON_PRIMARY</pr:name>
+        <pr:xpath-locator>/WMT_MS_Capabilities/Service/ContactInformation/ContactPersonPrimary</pr:xpath-locator>
+      <urn>urn:au:gov:qld:sdi:standards:profiles:sdi-wms:conformance-target-types:contact-person-primary</urn><urn>urn:au:gov:qld:sdi:standards:profiles:sdi-wms:conformance-target-types:contact-person-primary</urn></pr:conformance-target>
+
+      <pr:conformance-target id="contact-organisation" normalised-name="CONTACT_ORGANISATION">
+        <pr:name>CONTACT_ORGANISATION</pr:name>
+        <pr:description>Contact information identifying service custodian. WMS 1.1.1 section
+          7.1.4.1.2</pr:description>
+        <pr:xpath-locator>/WMT_MS_Capabilities/Service/ContactInformation/ContactPersonPrimary/ContactOrganization</pr:xpath-locator>
+      <urn>urn:au:gov:qld:sdi:standards:profiles:sdi-wms:conformance-target-types:contact-organisation</urn><urn>urn:au:gov:qld:sdi:standards:profiles:sdi-wms:conformance-target-types:contact-organisation</urn></pr:conformance-target>
+
+      <pr:conformance-target id="layer-abstract" normalised-name="LAYER_ABSTRACT">
+        <pr:name>LAYER_ABSTRACT</pr:name>
+        <pr:description>Brief description of a data layer. WMS 1.1.1 section 7.1.4.5.3</pr:description>
+        <pr:xpath-locator>//Layer/Abstract</pr:xpath-locator>
+        <pr:comment id="id332"> Abstract is/should be defined by the ANZLIC profile, therefore this conformance
+          target will be deleted. Requirement sdiWMS2 may be rendered obsolete.</pr:comment>
+      <urn>urn:au:gov:qld:sdi:standards:profiles:sdi-wms:conformance-target-types:layer-abstract</urn><urn>urn:au:gov:qld:sdi:standards:profiles:sdi-wms:conformance-target-types:layer-abstract</urn></pr:conformance-target>
+
+      <pr:conformance-target id="currency" normalised-name="CURRENCY">
+        <pr:name>CURRENCY</pr:name>
+        <pr:description>(fixed XPath) Temporal currency of the data. There is no formal metadata
+          element for this so this profile overloads the Keyword container. WMS 1.1.1 section
+          7.1.4.5.3</pr:description>
+        <pr:xpath-locator>//Layer/KeywordList/Keyword</pr:xpath-locator>
+        <pr:comment id="id337">This needs to be removed as the conformance target cannot be
+        selected.</pr:comment>
+      <urn>urn:au:gov:qld:sdi:standards:profiles:sdi-wms:conformance-target-types:currency</urn><urn>urn:au:gov:qld:sdi:standards:profiles:sdi-wms:conformance-target-types:currency</urn></pr:conformance-target>
+
+      <pr:conformance-target id="topic" normalised-name="TOPIC">
+        <pr:name>TOPIC</pr:name>
+        <pr:description>(fixed XPath) Full path of taxonomic terms (GCMD or species used to classify
+          content). WMS 1.1.1 section 7.1.4.5.3</pr:description>
+        <pr:xpath-locator>//Layer/KeywordList/Keyword</pr:xpath-locator>
+        <pr:comment id="id342">This needs to be removed as the conformance target cannot be
+        selected.</pr:comment>
+      <urn>urn:au:gov:qld:sdi:standards:profiles:sdi-wms:conformance-target-types:topic</urn><urn>urn:au:gov:qld:sdi:standards:profiles:sdi-wms:conformance-target-types:topic</urn></pr:conformance-target>
+
+      <pr:conformance-target id="scale-hint" normalised-name="SCALE_HINT">
+        <pr:name>SCALE_HINT</pr:name>
+        <pr:description>Defines min and max scale values for a Layer.</pr:description>
+        <pr:detailed-description>
+          <pr:para> WMS 1.1.1 section 7.1.4.5.8</pr:para>
+        </pr:detailed-description>
+        <pr:xpath-locator>//Layer/ScaleHint</pr:xpath-locator>
+      <urn>urn:au:gov:qld:sdi:standards:profiles:sdi-wms:conformance-target-types:scale-hint</urn><urn>urn:au:gov:qld:sdi:standards:profiles:sdi-wms:conformance-target-types:scale-hint</urn></pr:conformance-target>
+
+      <pr:conformance-target id="spatial-extent" normalised-name="SPATIAL_EXTENT">
+        <pr:name>SPATIAL_EXTENT</pr:name>
+        <pr:description>OGC BBOX and latlongBBBOX slots to define spatial extent.</pr:description>
+        <pr:xpath-locator>//Layer/LatLonBoundingBox</pr:xpath-locator>
+      <urn>urn:au:gov:qld:sdi:standards:profiles:sdi-wms:conformance-target-types:spatial-extent</urn><urn>urn:au:gov:qld:sdi:standards:profiles:sdi-wms:conformance-target-types:spatial-extent</urn></pr:conformance-target>
+
+      <pr:conformance-target id="metadata-url" normalised-name="METADATA_URL">
+        <pr:name>METADATA_URL</pr:name>
+        <pr:description>WMS 1.1.1 section 7.1.4.5.10</pr:description>
+        <pr:xpath-locator>//Layer/MetadataURL</pr:xpath-locator>
+      <urn>urn:au:gov:qld:sdi:standards:profiles:sdi-wms:conformance-target-types:metadata-url</urn><urn>urn:au:gov:qld:sdi:standards:profiles:sdi-wms:conformance-target-types:metadata-url</urn></pr:conformance-target>
+
+      <pr:conformance-target id="data-url" normalised-name="DATA_URL">
+        <pr:name>DATA_URL</pr:name>
+        <pr:description>WMS 1.1.1 section 7.1.4.5.10</pr:description>
+        <pr:xpath-locator>//Layer/DataURL</pr:xpath-locator>
+      <urn>urn:au:gov:qld:sdi:standards:profiles:sdi-wms:conformance-target-types:data-url</urn><urn>urn:au:gov:qld:sdi:standards:profiles:sdi-wms:conformance-target-types:data-url</urn></pr:conformance-target>
+
+      <pr:conformance-target id="getmap" normalised-name="GET_MAP">
+        <pr:name>GET_MAP</pr:name>
+        <pr:description>WMS Get Map element.</pr:description>
+        <pr:xpath-locator>//Capability/Request/GetMap</pr:xpath-locator>
+      <urn>urn:au:gov:qld:sdi:standards:profiles:sdi-wms:conformance-target-types:getmap</urn><urn>urn:au:gov:qld:sdi:standards:profiles:sdi-wms:conformance-target-types:getmap</urn></pr:conformance-target>
+
+      <pr:conformance-target id="getmap-format" normalised-name="GET_MAP_FORMAT">
+        <pr:name>GET_MAP_FORMAT</pr:name>
+        <pr:description>Supported response formats for the get map operation</pr:description>
+        <pr:xpath-locator>//Capability/Request/GetMap/Format</pr:xpath-locator>
+      <urn>urn:au:gov:qld:sdi:standards:profiles:sdi-wms:conformance-target-types:getmap-format</urn><urn>urn:au:gov:qld:sdi:standards:profiles:sdi-wms:conformance-target-types:getmap-format</urn></pr:conformance-target>
+    </pr:artefact><pr:artefact defined-in-id="sdi-wms" defined-in-name="sdi WMS" id="layer-metadata" inherited="true" normalised-name="WMS_LAYER_METADATA">
+      <pr:name>WMS_LAYER_METADATA</pr:name>
+      <pr:description>External metadata document describing content exposed. This is used to inherit
+        various information to control description of the layer when ingested into a service
+        registry</pr:description>
+
+      <pr:conformance-target id="layer-currency-start-date" normalised-name="WMS_LAYER_CURRENCY_START_DATE">
+        <pr:name>WMS_LAYER_CURRENCY_START_DATE</pr:name>
+        <pr:description>Data set contains data valid from this date</pr:description>
+        <pr:xpath-locator>//gml:beginPosition</pr:xpath-locator>
+      <urn>urn:au:gov:qld:sdi:standards:profiles:sdi-wms:conformance-target-types:layer-currency-start-date</urn><urn>urn:au:gov:qld:sdi:standards:profiles:sdi-wms:conformance-target-types:layer-currency-start-date</urn></pr:conformance-target>
+
+      <pr:conformance-target id="layer-currency-end-date" normalised-name="WMS_LAYER_CURRENCY_END_DATE">
+        <pr:name>WMS_LAYER_CURRENCY_END_DATE</pr:name>
+        <pr:description>Data set contains data valid up to this date</pr:description>
+        <pr:xpath-locator>//gml:endPosition</pr:xpath-locator>
+      <urn>urn:au:gov:qld:sdi:standards:profiles:sdi-wms:conformance-target-types:layer-currency-end-date</urn><urn>urn:au:gov:qld:sdi:standards:profiles:sdi-wms:conformance-target-types:layer-currency-end-date</urn></pr:conformance-target>
+
+      <!-- delete the following 
+            <pr:conformance-target id="LAYER_2334">
+                <pr:name>LAYER</pr:name>
+                <pr:description/>
+                <pr:xpath-locator>//Layer</pr:xpath-locator>
+                <ext-artefact name="artefact1">
+                    <url>
+                        <xpath>./MetadataURL/OnlineResource/@xlink:href</xpath>
+                    </url>
+                </ext-artefact>
+            </pr:conformance-target>
+
+            <Layer>
+                <Name>dafsdf</Name>
+                <KeywordList>
+                    <Keyword>farming</Keyword>
+                </KeywordList>
+            </Layer>
+-->
+    </pr:artefact><pr:artefact defined-in-id="sdi-data-services" defined-in-name="sdi data services" id="datacurrency" inherited="true" normalised-name="DATACURRENCY">
+      <pr:name>DATACURRENCY</pr:name>
+
+      <pr:description>Controlled vocabulary of data currency keywords, encoded as an ebRIM
+        classification scheme.</pr:description>
+      <pr:artefact-instance>
+        <!-- this is the temp home of the oceans portal content - it will be published somewhere else at some stage, or accessible via the registry -->
+        <!--  -->
+        <rim:ClassificationScheme id="urn:au:gov:qld:sdi:data:currency" isInternal="true" nodeType="UniqueCode">
+          <rim:Name>
+            <rim:LocalizedString charset="UTF-8" value="Data Currency"/>
+          </rim:Name>
+          <rim:Description>
+            <rim:LocalizedString charset="UTF-8" value="Controlled vocabulary for Data Currency metadata slots."/>
+          </rim:Description>
+          <rim:ClassificationNode code="current" id="urn:asdi:marine:data:currency:current">
+            <rim:Name>
+              <rim:LocalizedString value="Current"/>
+            </rim:Name>
+          </rim:ClassificationNode>
+          <rim:ClassificationNode code="historical" id="urn:asdi:marine:data:currency:historical">
+            <rim:Name>
+              <rim:LocalizedString value="Historical"/>
+            </rim:Name>
+          </rim:ClassificationNode>
+          <rim:ClassificationNode code="predicted" id="urn:asdi:marine:data:currency:predicted">
+            <rim:Name>
+              <rim:LocalizedString value="Predicted"/>
+            </rim:Name>
+          </rim:ClassificationNode>
+          <rim:ClassificationNode code="unknown" id="urn:asdi:marine:data:currency:unknown">
+            <rim:Name>
+              <rim:LocalizedString value="Unknown"/>
+            </rim:Name>
+          </rim:ClassificationNode>
+        </rim:ClassificationScheme>
+
+      </pr:artefact-instance>
+      <pr:online-resource>http://oceans-catalog.socialchange.net.au/noocat-data/harvestconfig-testplans/community/framework/data/classificationschemes/ClassificationScheme-DataCurrency.xml</pr:online-resource>
+    </pr:artefact></artefacts-container><targets-container><pr:conformance-target defined-in-id="sdi-wms-fi" defined-in-name="sdi WMS Feature Info" id="WMS_GETFEATUREINFO_FORMAT" inherited="true" normalised-name="WMS_GETFEATUREINFO_FORMAT">
+        <pr:name>WMS_GETFEATUREINFO_FORMAT</pr:name>
+        <pr:description>Supported response formats for the get map operation</pr:description>
+        <pr:xpath-locator>//Capabilities/Request/GetFeatureInfo/Format</pr:xpath-locator>
+      <urn>urn:au:gov:qld:sdi:standards:profiles:sdi-wms-feature-info:conformance-target-types:WMS_GETFEATUREINFO_FORMAT</urn></pr:conformance-target><pr:conformance-target defined-in-id="sdi-wms" defined-in-name="sdi WMS" id="capabilites" inherited="true" normalised-name="CAPABILITIES">
+        <pr:name>CAPABILITIES</pr:name>
+        <pr:description>This conformance target represents the root element of a WMS capabilities
+          document.</pr:description>
+        <pr:xpath-locator>/WMT_MS_Capabilities</pr:xpath-locator>
+      <urn>urn:au:gov:qld:sdi:standards:profiles:sdi-wms:conformance-target-types:capabilites</urn><urn>urn:au:gov:qld:sdi:standards:profiles:sdi-wms:conformance-target-types:capabilites</urn></pr:conformance-target><pr:conformance-target defined-in-id="sdi-wms" defined-in-name="sdi WMS" id="service" inherited="true" normalised-name="SERVICE">
+        <pr:name>SERVICE</pr:name>
+        <pr:description>WMS Service metadata container element</pr:description>
+        <pr:xpath-locator>/WMT_MS_Capabilities/Service</pr:xpath-locator>
+      <urn>urn:au:gov:qld:sdi:standards:profiles:sdi-wms:conformance-target-types:service</urn><urn>urn:au:gov:qld:sdi:standards:profiles:sdi-wms:conformance-target-types:service</urn></pr:conformance-target><pr:conformance-target defined-in-id="sdi-wms" defined-in-name="sdi WMS" id="identifier" inherited="true" normalised-name="IDENTIFIER">
+        <pr:name>IDENTIFIER</pr:name>
+        <pr:description>This is the identifier of an addressible unit within a WMS service: a Layer.</pr:description>
+        <pr:detailed-description>
+          <pr:para>Users of WMS services are interested in Layers, not the service per se, WMS 1.1.1
+            section 7.1.4.5.2.</pr:para>
+        </pr:detailed-description>
+        <pr:xpath-locator>//Layer/Name</pr:xpath-locator>
+      <urn>urn:au:gov:qld:sdi:standards:profiles:sdi-wms:conformance-target-types:identifier</urn><urn>urn:au:gov:qld:sdi:standards:profiles:sdi-wms:conformance-target-types:identifier</urn></pr:conformance-target><pr:conformance-target defined-in-id="sdi-wms" defined-in-name="sdi WMS" id="layer" inherited="true" normalised-name="LAYER">
+        <pr:name>LAYER</pr:name>
+        <pr:description>Layer</pr:description>
+        <pr:detailed-description>
+          <pr:para>This conformance target type refers to any layer in a Web Map Service. <ud:link url="http://portal.opengeospatial.org/files/?artifact_id=1081&amp;version=1&amp;format=pdf">WMS 1.1.1</ud:link> section 7.1.4.4.</pr:para>
+        </pr:detailed-description>
+        <pr:xpath-locator>//Layer</pr:xpath-locator>
+      <urn>urn:au:gov:qld:sdi:standards:profiles:sdi-wms:conformance-target-types:layer</urn><urn>urn:au:gov:qld:sdi:standards:profiles:sdi-wms:conformance-target-types:layer</urn></pr:conformance-target><pr:conformance-target defined-in-id="sdi-wms" defined-in-name="sdi WMS" id="invocable-layer" inherited="true" normalised-name="INVOCABLE_LAYER">
+        <pr:name>INVOCABLE_LAYER</pr:name>
+        <pr:description>LAYER that has no child layers.</pr:description>
+        <pr:detailed-description>
+          <pr:para>This conformance target identifies all leaf layers.</pr:para>
+        </pr:detailed-description>
+        <pr:xpath-locator>//Layer[count(./Layer) = 0]</pr:xpath-locator>
+      <urn>urn:au:gov:qld:sdi:standards:profiles:sdi-wms:conformance-target-types:invocable-layer</urn><urn>urn:au:gov:qld:sdi:standards:profiles:sdi-wms:conformance-target-types:invocable-layer</urn></pr:conformance-target><pr:conformance-target defined-in-id="sdi-wms" defined-in-name="sdi WMS" id="exception" inherited="true" normalised-name="EXCEPTION">
+        <pr:name>EXCEPTION</pr:name>
+        <pr:description>Exception formats supported</pr:description>
+        <pr:xpath-locator>/WMT_MS_Capabilities/Capability/Exception</pr:xpath-locator>
+      <urn>urn:au:gov:qld:sdi:standards:profiles:sdi-wms:conformance-target-types:exception</urn><urn>urn:au:gov:qld:sdi:standards:profiles:sdi-wms:conformance-target-types:exception</urn></pr:conformance-target><pr:conformance-target defined-in-id="sdi-wms" defined-in-name="sdi WMS" id="contact-person-primary" inherited="true" normalised-name="CONTACT_PERSON_PRIMARY">
+        <pr:name>CONTACT_PERSON_PRIMARY</pr:name>
+        <pr:xpath-locator>/WMT_MS_Capabilities/Service/ContactInformation/ContactPersonPrimary</pr:xpath-locator>
+      <urn>urn:au:gov:qld:sdi:standards:profiles:sdi-wms:conformance-target-types:contact-person-primary</urn><urn>urn:au:gov:qld:sdi:standards:profiles:sdi-wms:conformance-target-types:contact-person-primary</urn></pr:conformance-target><pr:conformance-target defined-in-id="sdi-wms" defined-in-name="sdi WMS" id="contact-organisation" inherited="true" normalised-name="CONTACT_ORGANISATION">
+        <pr:name>CONTACT_ORGANISATION</pr:name>
+        <pr:description>Contact information identifying service custodian. WMS 1.1.1 section
+          7.1.4.1.2</pr:description>
+        <pr:xpath-locator>/WMT_MS_Capabilities/Service/ContactInformation/ContactPersonPrimary/ContactOrganization</pr:xpath-locator>
+      <urn>urn:au:gov:qld:sdi:standards:profiles:sdi-wms:conformance-target-types:contact-organisation</urn><urn>urn:au:gov:qld:sdi:standards:profiles:sdi-wms:conformance-target-types:contact-organisation</urn></pr:conformance-target><pr:conformance-target defined-in-id="sdi-wms" defined-in-name="sdi WMS" id="layer-abstract" inherited="true" normalised-name="LAYER_ABSTRACT">
+        <pr:name>LAYER_ABSTRACT</pr:name>
+        <pr:description>Brief description of a data layer. WMS 1.1.1 section 7.1.4.5.3</pr:description>
+        <pr:xpath-locator>//Layer/Abstract</pr:xpath-locator>
+        <pr:comment id="id332"> Abstract is/should be defined by the ANZLIC profile, therefore this conformance
+          target will be deleted. Requirement sdiWMS2 may be rendered obsolete.</pr:comment>
+      <urn>urn:au:gov:qld:sdi:standards:profiles:sdi-wms:conformance-target-types:layer-abstract</urn><urn>urn:au:gov:qld:sdi:standards:profiles:sdi-wms:conformance-target-types:layer-abstract</urn></pr:conformance-target><pr:conformance-target defined-in-id="sdi-wms" defined-in-name="sdi WMS" id="currency" inherited="true" normalised-name="CURRENCY">
+        <pr:name>CURRENCY</pr:name>
+        <pr:description>(fixed XPath) Temporal currency of the data. There is no formal metadata
+          element for this so this profile overloads the Keyword container. WMS 1.1.1 section
+          7.1.4.5.3</pr:description>
+        <pr:xpath-locator>//Layer/KeywordList/Keyword</pr:xpath-locator>
+        <pr:comment id="id337">This needs to be removed as the conformance target cannot be
+        selected.</pr:comment>
+      <urn>urn:au:gov:qld:sdi:standards:profiles:sdi-wms:conformance-target-types:currency</urn><urn>urn:au:gov:qld:sdi:standards:profiles:sdi-wms:conformance-target-types:currency</urn></pr:conformance-target><pr:conformance-target defined-in-id="sdi-wms" defined-in-name="sdi WMS" id="topic" inherited="true" normalised-name="TOPIC">
+        <pr:name>TOPIC</pr:name>
+        <pr:description>(fixed XPath) Full path of taxonomic terms (GCMD or species used to classify
+          content). WMS 1.1.1 section 7.1.4.5.3</pr:description>
+        <pr:xpath-locator>//Layer/KeywordList/Keyword</pr:xpath-locator>
+        <pr:comment id="id342">This needs to be removed as the conformance target cannot be
+        selected.</pr:comment>
+      <urn>urn:au:gov:qld:sdi:standards:profiles:sdi-wms:conformance-target-types:topic</urn><urn>urn:au:gov:qld:sdi:standards:profiles:sdi-wms:conformance-target-types:topic</urn></pr:conformance-target><pr:conformance-target defined-in-id="sdi-wms" defined-in-name="sdi WMS" id="scale-hint" inherited="true" normalised-name="SCALE_HINT">
+        <pr:name>SCALE_HINT</pr:name>
+        <pr:description>Defines min and max scale values for a Layer.</pr:description>
+        <pr:detailed-description>
+          <pr:para> WMS 1.1.1 section 7.1.4.5.8</pr:para>
+        </pr:detailed-description>
+        <pr:xpath-locator>//Layer/ScaleHint</pr:xpath-locator>
+      <urn>urn:au:gov:qld:sdi:standards:profiles:sdi-wms:conformance-target-types:scale-hint</urn><urn>urn:au:gov:qld:sdi:standards:profiles:sdi-wms:conformance-target-types:scale-hint</urn></pr:conformance-target><pr:conformance-target defined-in-id="sdi-wms" defined-in-name="sdi WMS" id="spatial-extent" inherited="true" normalised-name="SPATIAL_EXTENT">
+        <pr:name>SPATIAL_EXTENT</pr:name>
+        <pr:description>OGC BBOX and latlongBBBOX slots to define spatial extent.</pr:description>
+        <pr:xpath-locator>//Layer/LatLonBoundingBox</pr:xpath-locator>
+      <urn>urn:au:gov:qld:sdi:standards:profiles:sdi-wms:conformance-target-types:spatial-extent</urn><urn>urn:au:gov:qld:sdi:standards:profiles:sdi-wms:conformance-target-types:spatial-extent</urn></pr:conformance-target><pr:conformance-target defined-in-id="sdi-wms" defined-in-name="sdi WMS" id="metadata-url" inherited="true" normalised-name="METADATA_URL">
+        <pr:name>METADATA_URL</pr:name>
+        <pr:description>WMS 1.1.1 section 7.1.4.5.10</pr:description>
+        <pr:xpath-locator>//Layer/MetadataURL</pr:xpath-locator>
+      <urn>urn:au:gov:qld:sdi:standards:profiles:sdi-wms:conformance-target-types:metadata-url</urn><urn>urn:au:gov:qld:sdi:standards:profiles:sdi-wms:conformance-target-types:metadata-url</urn></pr:conformance-target><pr:conformance-target defined-in-id="sdi-wms" defined-in-name="sdi WMS" id="data-url" inherited="true" normalised-name="DATA_URL">
+        <pr:name>DATA_URL</pr:name>
+        <pr:description>WMS 1.1.1 section 7.1.4.5.10</pr:description>
+        <pr:xpath-locator>//Layer/DataURL</pr:xpath-locator>
+      <urn>urn:au:gov:qld:sdi:standards:profiles:sdi-wms:conformance-target-types:data-url</urn><urn>urn:au:gov:qld:sdi:standards:profiles:sdi-wms:conformance-target-types:data-url</urn></pr:conformance-target><pr:conformance-target defined-in-id="sdi-wms" defined-in-name="sdi WMS" id="getmap" inherited="true" normalised-name="GET_MAP">
+        <pr:name>GET_MAP</pr:name>
+        <pr:description>WMS Get Map element.</pr:description>
+        <pr:xpath-locator>//Capability/Request/GetMap</pr:xpath-locator>
+      <urn>urn:au:gov:qld:sdi:standards:profiles:sdi-wms:conformance-target-types:getmap</urn><urn>urn:au:gov:qld:sdi:standards:profiles:sdi-wms:conformance-target-types:getmap</urn></pr:conformance-target><pr:conformance-target defined-in-id="sdi-wms" defined-in-name="sdi WMS" id="getmap-format" inherited="true" normalised-name="GET_MAP_FORMAT">
+        <pr:name>GET_MAP_FORMAT</pr:name>
+        <pr:description>Supported response formats for the get map operation</pr:description>
+        <pr:xpath-locator>//Capability/Request/GetMap/Format</pr:xpath-locator>
+      <urn>urn:au:gov:qld:sdi:standards:profiles:sdi-wms:conformance-target-types:getmap-format</urn><urn>urn:au:gov:qld:sdi:standards:profiles:sdi-wms:conformance-target-types:getmap-format</urn></pr:conformance-target><pr:conformance-target defined-in-id="sdi-wms" defined-in-name="sdi WMS" id="layer-currency-start-date" inherited="true" normalised-name="WMS_LAYER_CURRENCY_START_DATE">
+        <pr:name>WMS_LAYER_CURRENCY_START_DATE</pr:name>
+        <pr:description>Data set contains data valid from this date</pr:description>
+        <pr:xpath-locator>//gml:beginPosition</pr:xpath-locator>
+      <urn>urn:au:gov:qld:sdi:standards:profiles:sdi-wms:conformance-target-types:layer-currency-start-date</urn><urn>urn:au:gov:qld:sdi:standards:profiles:sdi-wms:conformance-target-types:layer-currency-start-date</urn></pr:conformance-target><pr:conformance-target defined-in-id="sdi-wms" defined-in-name="sdi WMS" id="layer-currency-end-date" inherited="true" normalised-name="WMS_LAYER_CURRENCY_END_DATE">
+        <pr:name>WMS_LAYER_CURRENCY_END_DATE</pr:name>
+        <pr:description>Data set contains data valid up to this date</pr:description>
+        <pr:xpath-locator>//gml:endPosition</pr:xpath-locator>
+      <urn>urn:au:gov:qld:sdi:standards:profiles:sdi-wms:conformance-target-types:layer-currency-end-date</urn><urn>urn:au:gov:qld:sdi:standards:profiles:sdi-wms:conformance-target-types:layer-currency-end-date</urn></pr:conformance-target></targets-container></components></pr:profile>

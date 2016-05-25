@@ -1,0 +1,104 @@
+<pr:profile depth="1" id="sdi-ows-data-services" normalised-name="SDI OWS data services" xml:base="file:///C:/src/ws-profile-mgr/gea-profiles/trunk/profiles/sdi_ows_data_services/sdi_ows_data_services.xml" xmlns:gwsit="http://qld.gov.au/gea/wsi/testing/1.0" xmlns:pr="urn:ws-profile-mgr:schemas:profiles:profiles.xsd" xmlns:qg="http://qld.gov.au/wsi/1.0" xmlns:rim="urn:oasis:names:tc:ebxml-regrep:xsd:rim:3.0" xmlns:ud="http://utf-x.sourceforge.net/xsd/utfxdoc_1_0/utfxdoc.xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="urn:ws-profile-mgr:schemas:profiles:profiles.xsd http://ws-profile-mgr.sf.net/schemas/profiles.xsd">
+    <ud:version> Revision: 282  </ud:version>
+    <ud:date> 2007-06-03 20:51:50 +1000 (Sun, 03 Jun 2007)  </ud:date>
+    <ud:copyright>CGI GeoSciML </ud:copyright>
+    <!--
+    <ud:logo>
+        <ud:img src="&qgcio-logo;" width="100%"/>
+    </ud:logo>
+    -->
+    <pr:name>SDI OWS data services</pr:name>
+    <pr:description>This profile describes behaviour of data access services exposing spatial data
+        through Open Geospatial Consortium (OGC) Web Service interface sepcifications (OWS). It
+        specifies common spatial referencing expectations.</pr:description>
+    <pr:identifier>urn:au:gov:qld:gea:standards:profiles:gea-ows-data-services</pr:identifier>
+    <pr:inherits-from>sdi-data-services</pr:inherits-from>
+<!--    <pr:inherits-from>anzlic-iso-profile</pr:inherits-from> -->
+    <pr:requirements>
+        <pr:requirement id="sdiODS1" normalised-name="sdiODS1">
+            <pr:extends>SDIDS1</pr:extends>
+            <pr:normative-content>The relevant OGC service capabilities metadata is populated with
+                service custodian identifier. Different versions and type of OGC Web Services have
+                different schemas, however OGC has a proposed OWS_Common framework to standardise
+                this aspect in newer versions (WFS 1.1, WMS 1.3?). <pr:comment id="id270">[SHANE] - Need to benchmark
+                    wms/wfs versions and make a decision.</pr:comment>
+            </pr:normative-content>
+        <urn>urn:au:gov:qld:gea:standards:profiles:gea-ows-data-services:requirements:sdiODS1</urn></pr:requirement>
+        <pr:requirement id="sdiODS2" normalised-name="sdiODS2">
+            <pr:normative-content>The supported Spatial Reference System for all data will include
+                GDA94/Plate Carree (Orthogeographic) projection (known as EPSG:4283 in WMS 1.1.1
+                (Note that WMS 1.3 changed the axis-order (lat/long) for this, and is not widely
+                adopted). <pr:comment id="id273">[SHANE] - [SRS handling for WFS/GML in target environment should be
+                    benchmarked]</pr:comment>
+            </pr:normative-content>
+        <urn>urn:au:gov:qld:gea:standards:profiles:gea-ows-data-services:requirements:sdiODS2</urn></pr:requirement>
+
+    </pr:requirements>
+
+<components xmlns="urn:ws-profile-mgr:schemas:profiles:profiles.xsd"><requirements-container><pr:requirement id="sdiODS1" inherited="false" normalised-name="sdiODS1">
+            <pr:extends>SDIDS1</pr:extends>
+            <pr:normative-content>The relevant OGC service capabilities metadata is populated with
+                service custodian identifier. Different versions and type of OGC Web Services have
+                different schemas, however OGC has a proposed OWS_Common framework to standardise
+                this aspect in newer versions (WFS 1.1, WMS 1.3?). <pr:comment id="id270">[SHANE] - Need to benchmark
+                    wms/wfs versions and make a decision.</pr:comment>
+            </pr:normative-content>
+        <urn>urn:au:gov:qld:gea:standards:profiles:gea-ows-data-services:requirements:sdiODS1</urn></pr:requirement><pr:requirement id="sdiODS2" inherited="false" normalised-name="sdiODS2">
+            <pr:normative-content>The supported Spatial Reference System for all data will include
+                GDA94/Plate Carree (Orthogeographic) projection (known as EPSG:4283 in WMS 1.1.1
+                (Note that WMS 1.3 changed the axis-order (lat/long) for this, and is not widely
+                adopted). <pr:comment id="id273">[SHANE] - [SRS handling for WFS/GML in target environment should be
+                    benchmarked]</pr:comment>
+            </pr:normative-content>
+        <urn>urn:au:gov:qld:gea:standards:profiles:gea-ows-data-services:requirements:sdiODS2</urn></pr:requirement><pr:requirement defined-in-id="sdi-data-services" defined-in-name="sdi data services" id="SDIDS1" inherited="true" normalised-name="SDIDS1">
+      <pr:normative-content>
+        <pr:comment id="id256">[IAN] - write the non-normative content for this requirement and provide
+          examples of correct or incorrect usage.</pr:comment> Currency of data set (NB ISO19115
+        does not seem to provide a slot for this) <pr:rfc2119-keyword>MUST</pr:rfc2119-keyword> be
+        described using keyword from (CRS data currency keywords vocabulary identifier - ISO19115
+        provides these?) [The user will need to know whether the data is the most recent available
+        or a historical snapshot or a prediction - this is not currently part of the FGDC metadata
+        /CRS design, but it will need to be eventually, so we need to add it to service profiles so
+        the info will be available when needed. there is a bigger general issue that the sdi
+        architecture requires the ability to publish vocabularies and then reference
+      them.]</pr:normative-content>
+    <urn>urn:au:gov:qld:sdi:standards:profiles:sdi-data-services:requirements:SDIDS1</urn></pr:requirement></requirements-container><artefacts-container><pr:artefact defined-in-id="sdi-data-services" defined-in-name="sdi data services" id="datacurrency" inherited="true" normalised-name="DATACURRENCY">
+      <pr:name>DATACURRENCY</pr:name>
+
+      <pr:description>Controlled vocabulary of data currency keywords, encoded as an ebRIM
+        classification scheme.</pr:description>
+      <pr:artefact-instance>
+        <!-- this is the temp home of the oceans portal content - it will be published somewhere else at some stage, or accessible via the registry -->
+        <!--  -->
+        <rim:ClassificationScheme id="urn:au:gov:qld:sdi:data:currency" isInternal="true" nodeType="UniqueCode">
+          <rim:Name>
+            <rim:LocalizedString charset="UTF-8" value="Data Currency"/>
+          </rim:Name>
+          <rim:Description>
+            <rim:LocalizedString charset="UTF-8" value="Controlled vocabulary for Data Currency metadata slots."/>
+          </rim:Description>
+          <rim:ClassificationNode code="current" id="urn:asdi:marine:data:currency:current">
+            <rim:Name>
+              <rim:LocalizedString value="Current"/>
+            </rim:Name>
+          </rim:ClassificationNode>
+          <rim:ClassificationNode code="historical" id="urn:asdi:marine:data:currency:historical">
+            <rim:Name>
+              <rim:LocalizedString value="Historical"/>
+            </rim:Name>
+          </rim:ClassificationNode>
+          <rim:ClassificationNode code="predicted" id="urn:asdi:marine:data:currency:predicted">
+            <rim:Name>
+              <rim:LocalizedString value="Predicted"/>
+            </rim:Name>
+          </rim:ClassificationNode>
+          <rim:ClassificationNode code="unknown" id="urn:asdi:marine:data:currency:unknown">
+            <rim:Name>
+              <rim:LocalizedString value="Unknown"/>
+            </rim:Name>
+          </rim:ClassificationNode>
+        </rim:ClassificationScheme>
+
+      </pr:artefact-instance>
+      <pr:online-resource>http://oceans-catalog.socialchange.net.au/noocat-data/harvestconfig-testplans/community/framework/data/classificationschemes/ClassificationScheme-DataCurrency.xml</pr:online-resource>
+    </pr:artefact></artefacts-container></components></pr:profile>

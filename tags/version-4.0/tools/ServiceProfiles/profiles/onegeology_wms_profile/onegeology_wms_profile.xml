@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!--========================================================================-->
+<!--                                                                        -->
+<!--                          sdi Cadastre WMS Profile                      -->
+<!--                                                                        -->
+<!--========================================================================-->
+<!-- $Id$ -->
+<!--========================================================================-->
+   
+<pr:profile id="onegeology-wms" xmlns:gwsit="http://qld.gov.au/sdi/wsi/testing/1.0"
+  xmlns:pr="urn:ws-profile-mgr:schemas:profiles:profiles.xsd" xmlns:qg="http://qld.gov.au/wsi/1.0"
+  xmlns:rim="urn:oasis:names:tc:ebxml-regrep:xsd:rim:3.0"
+  xmlns:ud="http://utf-x.sourceforge.net/xsd/utfxdoc_1_0/utfxdoc.xsd"
+  xmlns:wfs="http://www.opengis.net/wfs" xmlns:xs="http://www.w3.org/2001/XMLSchema"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="urn:ws-profile-mgr:schemas:profiles:profiles.xsd http://ws-profile-mgr.sf.net/schemas/profiles.xsd">
+  <ud:version>$Revision: 282 $</ud:version>
+  <ud:date>$Date: 2007-06-03 20:51:50 +1000 (Sun, 03 Jun 2007) $</ud:date>
+  <ud:copyright year="2007">OneGeology</ud:copyright>
+  <!-- 
+    <ud:logo>
+    <ud:img src="&qgcio-logo;" width="100%"/>
+  </ud:logo>
+  -->
+  <pr:name>OneGeology WMS</pr:name>
+  <pr:description>This profile specifies the the GeoSciML data products to be delivered in the OneGeology framework via WMS</pr:description>
+  <pr:identifier>urn:au:gov:qld:sdi:standards:profiles:onegeology-wms</pr:identifier>
+  <pr:inherits-from>geosciml-wms</pr:inherits-from>
+  
+  <pr:sect1 id="sect1id">
+    <pr:title>Content</pr:title>
+    <pr:para>Do we need to specify layer naming approach here?</pr:para>
+  </pr:sect1>
+  
+  <pr:requirements>
+    <pr:requirement id="OGWMS1">
+      <pr:normative-content>
+        <pr:target-ref>LAYER</pr:target-ref> <pr:rfc2119-keyword>MUST</pr:rfc2119-keyword> provide 1:1million scale Lithostratigraphic Unit in a Layer called urn:somethingTimwilFillin
+      </pr:normative-content>
+      <pr:xpath-assertion id="OGCWMS1.A1">
+        <pr:target-ref>LAYER</pr:target-ref>
+        <pr:rfc2119-keyword>MUST</pr:rfc2119-keyword>
+        <pr:assert-true>
+          <pr:xpath-expression>count(./) = 1</pr:xpath-expression>
+        </pr:assert-true>
+      </pr:xpath-assertion>
+    </pr:requirement>
+   
+  </pr:requirements>
+  
+</pr:profile>

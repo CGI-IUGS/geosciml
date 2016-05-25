@@ -1,0 +1,363 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<schema xmlns="http://www.w3.org/2001/XMLSchema"
+	targetNamespace="http://www.auscope.org/servicetester"
+	xmlns:c="http://www.auscope.org/servicetester"
+	elementFormDefault="qualified"
+	version="$Id$">
+
+	<!-- root element -->
+
+	<element name="test-suite" type="c:test-suite-type">
+		<annotation>
+			<documentation>
+				The root element for a document describing a suite of
+				tests that should be performed to schema- and
+				content-validate an XML service. A document with this as
+				its root element is required by XmlServiceTester.
+			</documentation>
+		</annotation>
+	</element>
+
+	<!-- request substitutionGroup -->
+
+	<element name="request" type="c:request-type">
+		<annotation>
+			<documentation>
+				Abstract base element for request types.
+			</documentation>
+		</annotation>
+	</element>
+
+	<element name="http-post-request" type="c:http-post-request-type"
+		substitutionGroup="c:request">
+		<annotation>
+			<documentation>
+				HTTP POST request with body sourced from a local file.
+			</documentation>
+		</annotation>
+	</element>
+
+	<element name="file-request" type="c:file-request-type"
+		substitutionGroup="c:request">
+		<annotation>
+			<documentation>
+				"Request" which results in the contents of a local file
+				being supplied as the response. Useful for testing or
+				validating local files.
+			</documentation>
+		</annotation>
+	</element>
+
+	<!-- assertion substitutionGroup -->
+
+	<element name="assertion" type="c:assertion-type">
+		<annotation>
+			<documentation>
+				Abstract base class for assertions.
+			</documentation>
+		</annotation>
+	</element>
+
+	<element name="element-count-assertion"
+		type="c:element-count-assertion-type"
+		substitutionGroup="c:assertion">
+		<annotation>
+			<documentation>
+				Assertion that an element occurs exactly a number of
+				times.
+			</documentation>
+		</annotation>
+	</element>
+	<!-- types -->
+
+	<complexType name="test-suite-type">
+		<annotation>
+			<documentation>
+				Root element for XmlserviceTester configuration file.
+			</documentation>
+		</annotation>
+		<sequence>
+			<element name="service-url" type="token" minOccurs="0">
+				<annotation>
+					<documentation>
+						The service-url describes the URL to which
+						service requests are submitted. This element is
+						optional because it can be supplied or
+						overridden in, for example, an http-port-request
+						element. It will be ignored by file-request.
+					</documentation>
+				</annotation>
+			</element>
+			<element name="catalog-file" type="token" minOccurs="0">
+				<annotation>
+					<documentation>
+						URI of an OASIS catalog file, relative to this
+						file. Optional. If not supplied, the parser will
+						fetch schemas from locations in the document
+						schemaLocation.
+					</documentation>
+				</annotation>
+			</element>
+			<element name="schema-location"
+				type="c:schema-location-type" minOccurs="0" maxOccurs="unbounded">
+				<annotation>
+					<documentation>
+						Schema location used in validation. You can have
+						as many as you like. They are used in order
+						supplied. Schema locations specified in respone
+						elements take precedence.
+					</documentation>
+				</annotation>
+			</element>
+			<element name="test-case" type="c:test-case-type"
+				maxOccurs="unbounded">
+				<annotation>
+					<documentation>
+						Each test-case represents a request-response.
+						Every response is schema-validated. Each
+						test-case fails or succeeds by itself. You can
+						have as many as you like (but at least one).
+					</documentation>
+				</annotation>
+			</element>
+		</sequence>
+	</complexType>
+
+	<complexType name="test-case-type">
+		<annotation>
+			<documentation>
+				One request/response pair. The request contains
+				everything to do with obtaining the a stream of bytes,
+				and the response describes everything done afterwards.
+			</documentation>
+		</annotation>
+		<sequence>
+			<element ref="c:request">
+				<annotation>
+					<documentation>
+						Everything to do with obtaining the response
+						from the service or file.
+					</documentation>
+				</annotation>
+			</element>
+			<element name="response" type="c:response-type">
+				<annotation>
+					<documentation>
+						How the response document should be processed.
+						An empty element indicates that just
+						schema-validation should be performed.
+					</documentation>
+				</annotation>
+			</element>
+		</sequence>
+	</complexType>
+
+	<complexType name="request-type" abstract="true">
+		<annotation>
+			<documentation>
+				Abstract base class for request types.
+			</documentation>
+		</annotation>
+	</complexType>
+
+	<complexType name="http-post-request-type">
+		<annotation>
+			<documentation>
+				A request made via HTTP POST. The body of the request is
+				sourced from a file. Validation of the request body can
+				also be performed.
+			</documentation>
+		</annotation>
+		<complexContent>
+			<extension base="c:request-type">
+				<sequence>
+					<element name="service-url" type="token"
+						minOccurs="0">
+						<annotation>
+							<documentation>
+								(Optional) A service-url defined here
+								overrrides one defined at the top level.
+								If not present, the top-level
+								service-url is used. One must be
+								supplied either here or at the top level
+								for http-pot-request or a runtime error
+								will occur.
+							</documentation>
+						</annotation>
+					</element>
+					<element name="request-file" type="token">
+						<annotation>
+							<documentation>
+								URI relative to config file giving the
+								XML used for the body of the request.
+							</documentation>
+						</annotation>
+					</element>
+					<!-- 
+						FIXME: request file validation not yet implemented
+						Use a separate file-request to validate request file
+						until this is supported.		
+					-->
+					<element name="schema-location"
+						type="c:schema-location-type" minOccurs="0" maxOccurs="unbounded" />
+
+				</sequence>
+			</extension>
+		</complexContent>
+	</complexType>
+
+	<complexType name="file-request-type">
+		<annotation>
+			<documentation>
+				A request that results in the contents of a file being
+				received. Useful for validation of local documents.
+			</documentation>
+		</annotation>
+		<complexContent>
+			<extension base="c:request-type">
+				<sequence>
+					<element name="response-file" type="token">
+						<annotation>
+							<documentation>
+								URI relative to the configuration file
+								giving the XML document returned in
+								response to this request.
+							</documentation>
+						</annotation>
+					</element>
+				</sequence>
+			</extension>
+		</complexContent>
+	</complexType>
+
+	<complexType name="response-type">
+		<annotation>
+			<documentation>
+				Things to do with the response.
+			</documentation>
+		</annotation>
+		<sequence>
+			<element name="output-file" type="token" minOccurs="0">
+				<annotation>
+					<documentation>
+						(Optional) URI relative to this file of an
+						output file containing the response text. The
+						output may be annotated with comments indicating
+						the location of any validation diagnostics.
+					</documentation>
+				</annotation>
+			</element>
+			<element name="schema-location"
+				type="c:schema-location-type" minOccurs="0" maxOccurs="unbounded">
+				<annotation>
+					<documentation>
+						(Optional) Override document and top-level
+						schema location. This is essential if the
+						response document conforms to schemas not
+						mentioned or incorrectly mentioned in
+						schemaLocation, such as not-implemented
+						DescribeFeatureType URLs.
+					</documentation>
+				</annotation>
+			</element>
+			<element ref="c:assertion" minOccurs="0"
+				maxOccurs="unbounded">
+				<annotation>
+					<documentation>
+						Assertions made about response content. A
+						test-case fails if an enclosed assertion fails.
+					</documentation>
+				</annotation>
+			</element>
+		</sequence>
+	</complexType>
+
+	<complexType name="schema-location-type">
+		<annotation>
+			<documentation>
+				Schema location hint provided to validator, providing a
+				namespace and either a URL or file. Relative files are
+				relative to the instance document.
+			</documentation>
+		</annotation>
+		<sequence>
+			<element name="namespace-uri" type="token" minOccurs="0">
+				<annotation>
+					<documentation>
+						URI for the namespace. If this element is
+						missing, the location is taken as the namespace
+						for documents with no namespace.
+					</documentation>
+				</annotation>
+			</element>
+			<choice>
+				<element name="schema-url" type="token">
+					<annotation>
+						<documentation>
+							URL where schema can be located.
+						</documentation>
+					</annotation>
+				</element>
+				<element name="schema-file" type="token">
+					<annotation>
+						<documentation>
+							URI to schema file relative to test-suite
+							document. Examples: ../profiles/wrapper.xsd
+							/C:/profiles/wrapper.xsd
+						</documentation>
+					</annotation>
+				</element>
+			</choice>
+		</sequence>
+	</complexType>
+
+	<complexType name="assertion-type" abstract="true">
+		<annotation>
+			<documentation>
+				Abstract base class for assertions.
+			</documentation>
+		</annotation>
+	</complexType>
+
+	<complexType name="element-count-assertion-type">
+		<annotation>
+			<documentation>
+				Assertion that an element occurs exactly a number of
+				times.
+			</documentation>
+		</annotation>
+		<complexContent>
+			<extension base="c:assertion-type">
+				<sequence>
+					<element name="namespace-uri" type="token">
+						<annotation>
+							<documentation>
+								URI of the namespace in which the
+								element of named. For example,
+								http://www.opengis.net/wfs
+							</documentation>
+						</annotation>
+					</element>
+					<element name="element-name" type="token">
+						<annotation>
+							<documentation>
+								Local name of the element. For example,
+								FeatureCollection.
+							</documentation>
+						</annotation>
+					</element>
+					<element name="element-count"
+						type="nonNegativeInteger">
+						<annotation>
+							<documentation>
+								The number of occurrences of the element
+								in the document.
+							</documentation>
+						</annotation>
+					</element>
+				</sequence>
+			</extension>
+		</complexContent>
+	</complexType>
+
+</schema>
