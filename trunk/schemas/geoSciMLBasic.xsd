@@ -2,49 +2,49 @@
 <!-- edited with XMLSpy v2015 rel. 4 sp1 (x64) (http://www.altova.com) by Eric Boisvert (Natural Resources Canada) -->
 <!-- Version 4.0.0 - published at schemas.geosciml.org - 1 December 2015 -->
 <!-- Version 4.0.1 - changed GeomophologicFeature-unitDescription association from 0..1 to 0..* - 1 February 2016 -->
-<schema xmlns="http://www.w3.org/2001/XMLSchema" xmlns:gml="http://www.opengis.net/gml/3.2" xmlns:gmlexr="http://www.opengis.net/gml/3.3/exr" xmlns:gsmlb="http://xmlns.geosciml.org/GeoSciML-Basic/4.0" xmlns:sam="http://www.opengis.net/sampling/2.0" xmlns:swe="http://www.opengis.net/swe/2.0" targetNamespace="http://xmlns.geosciml.org/GeoSciML-Basic/4.0" elementFormDefault="qualified" version="4.0.0">
+<schema xmlns="http://www.w3.org/2001/XMLSchema" xmlns:gml="http://www.opengis.net/gml/3.2" xmlns:gmlexr="http://www.opengis.net/gml/3.3/exr" xmlns:gsmlb="http://xmlns.geosciml.org/GeoSciML-Basic/4.1" xmlns:sam="http://www.opengis.net/sampling/2.0" xmlns:swe="http://www.opengis.net/swe/2.0" targetNamespace="http://xmlns.geosciml.org/GeoSciML-Basic/4.1" elementFormDefault="qualified" version="4.1.0">
 	<import namespace="http://www.opengis.net/gml/3.2" schemaLocation="http://schemas.opengis.net/gml/3.2.1/gml.xsd"/>
 	<import namespace="http://www.opengis.net/gml/3.3/exr" schemaLocation="http://schemas.opengis.net/gml/3.3/extdEncRule.xsd"/>
 	<import namespace="http://www.opengis.net/sampling/2.0" schemaLocation="http://schemas.opengis.net/sampling/2.0/samplingFeature.xsd"/>
 	<import namespace="http://www.opengis.net/swe/2.0" schemaLocation="http://schemas.opengis.net/sweCommon/2.0/swe.xsd"/>
 	<!--XML Schema document created by ShapeChange - http://shapechange.net/-->
-  <element abstract="true" name="AbstractFeatureRelation" substitutionGroup="gml:AbstractGML" type="gsmlb:AbstractFeatureRelationType">
-    <annotation>
-      <documentation>Association class placeholder to implement relation between geologic features</documentation>
-    </annotation>
-  </element>
-  <complexType abstract="true" name="AbstractFeatureRelationType">
-    <complexContent>
-      <extension base="gml:AbstractGMLType">
-		<sequence>
-      <element name="relatedFeature" type="gsmlb:GeologicFeaturePropertyType">
-        <annotation>
-          <documentation>General structure used to define relationships between any feature or object within GeoSciML. Relationships are always binary and directional.  There is always a single source and a single target.  The relationship is always defined from the perspective of the Source and is generally an active verb</documentation>
-        </annotation>
-      </element>
-		</sequence>
-      </extension>
-    </complexContent>
+	<element name="AbstractFeatureRelation" type="gsmlb:AbstractFeatureRelationType" abstract="true" substitutionGroup="gml:AbstractGML">
+		<annotation>
+			<documentation>Association class placeholder to implement relation between geologic features</documentation>
+		</annotation>
+	</element>
+	<complexType name="AbstractFeatureRelationType" abstract="true">
+		<complexContent>
+			<extension base="gml:AbstractGMLType">
+				<sequence>
+					<element name="relatedFeature" type="gsmlb:GeologicFeaturePropertyType">
+						<annotation>
+							<documentation>General structure used to define relationships between any feature or object within GeoSciML. Relationships are always binary and directional.  There is always a single source and a single target.  The relationship is always defined from the perspective of the Source and is generally an active verb</documentation>
+						</annotation>
+					</element>
+				</sequence>
+			</extension>
+		</complexContent>
 	</complexType>
 	<complexType name="AbstractFeatureRelationPropertyType">
-    <sequence minOccurs="0">
+		<sequence minOccurs="0">
 			<element ref="gsmlb:AbstractFeatureRelation"/>
 		</sequence>
-    <attributeGroup ref="gml:AssociationAttributeGroup"/>
-    <attributeGroup ref="gml:OwnershipAttributeGroup"/>
+		<attributeGroup ref="gml:AssociationAttributeGroup"/>
+		<attributeGroup ref="gml:OwnershipAttributeGroup"/>
 	</complexType>
-  <element name="AnthropogenicGeomorphologicFeature" substitutionGroup="gsmlb:GeomorphologicFeature" type="gsmlb:AnthropogenicGeomorphologicFeatureType">
-    <annotation>
-      <documentation>A geomorphologic feature (ie, landform) which has been created by human activity. For example, dredged channel, midden, open pit, reclaimed land.</documentation>
-    </annotation>
-  </element>
+	<element name="AnthropogenicGeomorphologicFeature" type="gsmlb:AnthropogenicGeomorphologicFeatureType" substitutionGroup="gsmlb:GeomorphologicFeature">
+		<annotation>
+			<documentation>A geomorphologic feature (ie, landform) which has been created by human activity. For example, dredged channel, midden, open pit, reclaimed land.</documentation>
+		</annotation>
+	</element>
 	<complexType name="AnthropogenicGeomorphologicFeatureType">
 		<complexContent>
 			<extension base="gsmlb:GeomorphologicFeatureType">
 				<sequence>
-          <element minOccurs="0" name="anthropogenicGeomorphologicFeatureType" type="gml:ReferenceType">
+					<element name="anthropogenicGeomorphologicFeatureType" type="gml:ReferenceType" minOccurs="0">
 						<annotation>
-              <documentation>A byReference link to a dictionary of terms describing the type of geomorphologic feature</documentation>
+							<documentation>A byReference link to a dictionary of terms describing the type of geomorphologic feature</documentation>
 							<appinfo>
 								<targetElement xmlns="http://www.opengis.net/gml/3.2">gsmlb:AnthropogenicGeomorphologicFeatureTypeTerm</targetElement>
 								<targetCodeList xmlns="http://www.opengis.net/gml/3.3/exr">AnthropogenicGeomorphologicFeatureTypeTerm</targetCodeList>
@@ -62,14 +62,14 @@
 		<attributeGroup ref="gml:AssociationAttributeGroup"/>
 		<attributeGroup ref="gml:OwnershipAttributeGroup"/>
 	</complexType>
-  <element name="CompositionPart" substitutionGroup="gml:AbstractObject" type="gsmlb:CompositionPartType">
-    <annotation>
-      <documentation>Element to represent composition of a geologic unit in terms of earth material constituents.</documentation>
-    </annotation>
-  </element>
+	<element name="CompositionPart" type="gsmlb:CompositionPartType" substitutionGroup="gml:AbstractObject">
+		<annotation>
+			<documentation>Element to represent composition of a geologic unit in terms of earth material constituents.</documentation>
+		</annotation>
+	</element>
 	<complexType name="CompositionPartType">
 		<sequence>
-      <element minOccurs="0" name="role" type="gml:ReferenceType">
+			<element name="role" type="gml:ReferenceType" minOccurs="0">
 				<annotation>
 					<documentation>Defines the relationship of the earth material constituent in the geologic unit, e.g. vein, interbedded constituent, layers, dominant constituent. Scoped name because role is asserted by the geologist building the description.</documentation>
 					<appinfo>
@@ -78,10 +78,10 @@
 					</appinfo>
 				</annotation>
 			</element>
-      <element minOccurs="0" name="material">
-        <annotation>
-          <documentation>EarthMaterial composing the part.</documentation>
-        </annotation>
+			<element name="material" minOccurs="0">
+				<annotation>
+					<documentation>EarthMaterial composing the part.</documentation>
+				</annotation>
 				<complexType>
 					<complexContent>
 						<extension base="gml:AbstractMemberType">
@@ -93,7 +93,7 @@
 					</complexContent>
 				</complexType>
 			</element>
-      <element minOccurs="0" name="proportion">
+			<element name="proportion" minOccurs="0">
 				<annotation>
 					<documentation>Quantity that specifies the fraction of the geologic unit composed of the compound material.</documentation>
 				</annotation>
@@ -115,18 +115,18 @@
 			<element ref="gsmlb:CompositionPart"/>
 		</sequence>
 	</complexType>
-  <element abstract="true" name="CompoundMaterial" substitutionGroup="gsmlb:EarthMaterial" type="gsmlb:CompoundMaterialType">
+	<element name="CompoundMaterial" type="gsmlb:CompoundMaterialType" abstract="true" substitutionGroup="gsmlb:EarthMaterial">
 		<annotation>
 			<documentation>An EarthMaterial composed of particles composed of EarthMaterials, possibly including other CompoundMaterials. 
 
 This class is provided primarily as an extensibility point for related domain models that wish to import and build on GeoSciML, and wish to define material types that are compound but are not rock or rock-like material. For most users of GeoSciML "RockMaterial" should be used.</documentation>
 		</annotation>
 	</element>
-  <complexType abstract="true" name="CompoundMaterialType">
+	<complexType name="CompoundMaterialType" abstract="true">
 		<complexContent>
-      <extension base="gsmlb:EarthMaterialType">
-        <sequence/>
-      </extension>
+			<extension base="gsmlb:EarthMaterialType">
+				<sequence/>
+			</extension>
 		</complexContent>
 	</complexType>
 	<complexType name="CompoundMaterialPropertyType">
@@ -136,7 +136,7 @@ This class is provided primarily as an extensibility point for related domain mo
 		<attributeGroup ref="gml:AssociationAttributeGroup"/>
 		<attributeGroup ref="gml:OwnershipAttributeGroup"/>
 	</complexType>
-  <element name="Contact" substitutionGroup="gsmlb:GeologicStructure" type="gsmlb:ContactType">
+	<element name="Contact" type="gsmlb:ContactType" substitutionGroup="gsmlb:GeologicStructure">
 		<annotation>
 			<documentation>Very general concept representing any kind of surface separating two geologic units including primary boundaries such as depositional contacts, all kinds of unconformities, intrusive contacts, and gradational contacts, as well as faults that separate geologic units.
 
@@ -147,7 +147,7 @@ Bedding measured as discrete surfaces in the case that those are the feature of 
 		<complexContent>
 			<extension base="gsmlb:GeologicStructureType">
 				<sequence>
-          <element minOccurs="0" name="contactType" type="gml:ReferenceType">
+					<element name="contactType" type="gml:ReferenceType" minOccurs="0">
 						<annotation>
 							<documentation>Classifies the contact (eg intrusive, unconformity, bedding surface, lithologic boundary, phase boundary)</documentation>
 							<appinfo>
@@ -156,11 +156,11 @@ Bedding measured as discrete surfaces in the case that those are the feature of 
 							</appinfo>
 						</annotation>
 					</element>
-          <element minOccurs="0" maxOccurs="unbounded" name="stContactDescription" type="gsmlb:ContactAbstractDescriptionPropertyType">
-            <annotation>
-              <documentation>Detailed contact description.  This is a stub property in GeoSciML Basic</documentation>
-            </annotation>
-          </element>
+					<element name="stContactDescription" type="gsmlb:ContactAbstractDescriptionPropertyType" minOccurs="0" maxOccurs="unbounded">
+						<annotation>
+							<documentation>Detailed contact description.  This is a stub property in GeoSciML Basic</documentation>
+						</annotation>
+					</element>
 				</sequence>
 			</extension>
 		</complexContent>
@@ -172,12 +172,12 @@ Bedding measured as discrete surfaces in the case that those are the feature of 
 		<attributeGroup ref="gml:AssociationAttributeGroup"/>
 		<attributeGroup ref="gml:OwnershipAttributeGroup"/>
 	</complexType>
-  <element abstract="true" name="ContactAbstractDescription" substitutionGroup="gml:AbstractObject" type="gsmlb:ContactAbstractDescriptionType">
+	<element name="ContactAbstractDescription" type="gsmlb:ContactAbstractDescriptionType" abstract="true" substitutionGroup="gml:AbstractObject">
 		<annotation>
 			<documentation>An abstract class providing a link between classes in GeoSciMLBasic and GeoSciMLExtended application schemas.</documentation>
 		</annotation>
 	</element>
-  <complexType abstract="true" name="ContactAbstractDescriptionType">
+	<complexType name="ContactAbstractDescriptionType" abstract="true">
 		<sequence/>
 	</complexType>
 	<complexType name="ContactAbstractDescriptionPropertyType">
@@ -220,16 +220,16 @@ Values: instance, typicalNorm, definingNorm.</documentation>
 			<pattern value="other: \w{2,}"/>
 		</restriction>
 	</simpleType>
-  <element abstract="true" name="EarthMaterial" substitutionGroup="gml:AbstractGML" type="gsmlb:EarthMaterialType">
+	<element name="EarthMaterial" type="gsmlb:EarthMaterialType" abstract="true" substitutionGroup="gml:AbstractGML">
 		<annotation>
 			<documentation>The Earth Material class holds a description of a naturally occurring substance in the Earth.  Earth Material represents material composition or substance, and is thus independent of quantity or location. Ideally, Earth Materials are defined strictly based on physical properties, but because of standard geological usage, genetic interpretations may enter into the description as well.</documentation>
 		</annotation>
 	</element>
-  <complexType abstract="true" name="EarthMaterialType">
+	<complexType name="EarthMaterialType" abstract="true">
 		<complexContent>
 			<extension base="gml:AbstractGMLType">
 				<sequence>
-          <element maxOccurs="unbounded" minOccurs="0" name="color">
+					<element name="color" minOccurs="0" maxOccurs="unbounded">
 						<annotation>
 							<documentation>Terms to specify color of the earth material.  Color schemes such as the Munsell rock and soil color schemes could be used.</documentation>
 						</annotation>
@@ -244,17 +244,17 @@ Values: instance, typicalNorm, definingNorm.</documentation>
 							</complexContent>
 						</complexType>
 					</element>
-          <element minOccurs="0" name="purpose" type="gsmlb:DescriptionPurposeType">
+					<element name="purpose" type="gsmlb:DescriptionPurposeType" minOccurs="0">
 						<annotation>
 							<documentation>Specification of the intended purpose/level of abstraction for the given EarthMaterial. Scoped name because intention is asserted by author of the data instance. 
 Values: Instance, TypicalNorm, IdentifyingNorm.</documentation>
 						</annotation>
 					</element>
-          <element maxOccurs="unbounded" minOccurs="0" name="gbEarthMaterialDescription" type="gsmlb:EarthMaterialAbstractDescriptionPropertyType">
-            <annotation>
-              <documentation>Detailed material description.  This is a stub property in GeoSciML Basic</documentation>
-            </annotation>
-          </element>
+					<element name="gbEarthMaterialDescription" type="gsmlb:EarthMaterialAbstractDescriptionPropertyType" minOccurs="0" maxOccurs="unbounded">
+						<annotation>
+							<documentation>Detailed material description.  This is a stub property in GeoSciML Basic</documentation>
+						</annotation>
+					</element>
 				</sequence>
 			</extension>
 		</complexContent>
@@ -266,12 +266,12 @@ Values: Instance, TypicalNorm, IdentifyingNorm.</documentation>
 		<attributeGroup ref="gml:AssociationAttributeGroup"/>
 		<attributeGroup ref="gml:OwnershipAttributeGroup"/>
 	</complexType>
-  <element abstract="true" name="EarthMaterialAbstractDescription" substitutionGroup="gml:AbstractObject" type="gsmlb:EarthMaterialAbstractDescriptionType">
-    <annotation>
-      <documentation>Abstract description class for earth material.  This class is a placeholder for further extension in Extension package</documentation>
-    </annotation>
-  </element>
-  <complexType abstract="true" name="EarthMaterialAbstractDescriptionType">
+	<element name="EarthMaterialAbstractDescription" type="gsmlb:EarthMaterialAbstractDescriptionType" abstract="true" substitutionGroup="gml:AbstractObject">
+		<annotation>
+			<documentation>Abstract description class for earth material.  This class is a placeholder for further extension in Extension package</documentation>
+		</annotation>
+	</element>
+	<complexType name="EarthMaterialAbstractDescriptionType" abstract="true">
 		<sequence/>
 	</complexType>
 	<complexType name="EarthMaterialAbstractDescriptionPropertyType">
@@ -279,7 +279,7 @@ Values: Instance, TypicalNorm, IdentifyingNorm.</documentation>
 			<element ref="gsmlb:EarthMaterialAbstractDescription"/>
 		</sequence>
 	</complexType>
-  <element name="Fold" substitutionGroup="gsmlb:GeologicStructure" type="gsmlb:FoldType">
+	<element name="Fold" type="gsmlb:FoldType" substitutionGroup="gsmlb:GeologicStructure">
 		<annotation>
 			<documentation>One or more systematically curved layers, surfaces, or lines in a rock body. Fold denotes a structure formed by the deformation of a GeologicStructure to form a structure that may be described by the translation of an abstract line (the fold axis) parallel to itself along some curvilinear path (the fold profile). Folds have a hinge zone (zone of maximum curvature along the surface) and limbs (parts of the deformed surface not in the hinge zone).  Folds are described by an axial surface, hinge line , profile geometry, the solid angle between the limbs, and the relationships between adjacent folded surfaces if the folded structure is a Layering fabric (similar, parallel).</documentation>
 		</annotation>
@@ -288,7 +288,7 @@ Values: Instance, TypicalNorm, IdentifyingNorm.</documentation>
 		<complexContent>
 			<extension base="gsmlb:GeologicStructureType">
 				<sequence>
-          <element minOccurs="0" name="profileType" type="gml:ReferenceType">
+					<element name="profileType" type="gml:ReferenceType" minOccurs="0">
 						<annotation>
 							<documentation>Terminology specifying concave/convex geometry of fold relative to earth surface, and relationship to younging direction in folded strata if known. (eg; antiform, synform, neutral, anticline, syncline, monocline, ptygmatic)</documentation>
 							<appinfo>
@@ -297,11 +297,11 @@ Values: Instance, TypicalNorm, IdentifyingNorm.</documentation>
 							</appinfo>
 						</annotation>
 					</element>
-          <element minOccurs="0" maxOccurs="unbounded" name="stFoldDescription" type="gsmlb:FoldAbstractDescriptionPropertyType">
-            <annotation>
-              <documentation>Detailed fold description.  This is a stub property in GeoSciML Basic</documentation>
-            </annotation>
-          </element>
+					<element name="stFoldDescription" type="gsmlb:FoldAbstractDescriptionPropertyType" minOccurs="0" maxOccurs="unbounded">
+						<annotation>
+							<documentation>Detailed fold description.  This is a stub property in GeoSciML Basic</documentation>
+						</annotation>
+					</element>
 				</sequence>
 			</extension>
 		</complexContent>
@@ -313,12 +313,12 @@ Values: Instance, TypicalNorm, IdentifyingNorm.</documentation>
 		<attributeGroup ref="gml:AssociationAttributeGroup"/>
 		<attributeGroup ref="gml:OwnershipAttributeGroup"/>
 	</complexType>
-  <element abstract="true" name="FoldAbstractDescription" substitutionGroup="gml:AbstractObject" type="gsmlb:FoldAbstractDescriptionType">
+	<element name="FoldAbstractDescription" type="gsmlb:FoldAbstractDescriptionType" abstract="true" substitutionGroup="gml:AbstractObject">
 		<annotation>
 			<documentation>An abstract class providing a link between classes in GeoSciMLBasic and GeoSciMLExtended application schemas.</documentation>
 		</annotation>
 	</element>
-  <complexType abstract="true" name="FoldAbstractDescriptionType">
+	<complexType name="FoldAbstractDescriptionType" abstract="true">
 		<sequence/>
 	</complexType>
 	<complexType name="FoldAbstractDescriptionPropertyType">
@@ -326,7 +326,7 @@ Values: Instance, TypicalNorm, IdentifyingNorm.</documentation>
 			<element ref="gsmlb:FoldAbstractDescription"/>
 		</sequence>
 	</complexType>
-  <element name="Foliation" substitutionGroup="gsmlb:GeologicStructure" type="gsmlb:FoliationType">
+	<element name="Foliation" type="gsmlb:FoliationType" substitutionGroup="gsmlb:GeologicStructure">
 		<annotation>
 			<documentation>A planar arrangement of textural or structural features in any type of rock.  Includes any of a wide variety of penetrative planar geological structures that may be present in a rock.  Examples include schistosity, mylonitic foliation, penetrative bedding structure (lamination), and cleavage.  Following the proposed definition of gneiss by the NADM Science Language Technical Team, penetrative planar foliation defined by layers &gt; 5 mm thick is considered Layering. 
 Bedding as a fabric representing the average orientation of paleodepositional surface should be encoded through the foliationType; might apply to bedding that is layering or a foliation without layering (e.g. clast alignment in amalgamated beds).</documentation>
@@ -336,7 +336,7 @@ Bedding as a fabric representing the average orientation of paleodepositional su
 		<complexContent>
 			<extension base="gsmlb:GeologicStructureType">
 				<sequence>
-          <element minOccurs="0" name="foliationType" type="gml:ReferenceType">
+					<element name="foliationType" type="gml:ReferenceType" minOccurs="0">
 						<annotation>
 							<documentation>Specifies the type of foliation.  Examples include crenulation cleavage, slaty cleavage, schistosity</documentation>
 							<appinfo>
@@ -345,11 +345,11 @@ Bedding as a fabric representing the average orientation of paleodepositional su
 							</appinfo>
 						</annotation>
 					</element>
-          <element minOccurs="0" maxOccurs="unbounded" name="stFoliationDescription" type="gsmlb:FoliationAbstractDescriptionPropertyType">
-            <annotation>
-              <documentation>Detailed foliation description.  This is a stub property in GeoSciML Basic</documentation>
-            </annotation>
-          </element>
+					<element name="stFoliationDescription" type="gsmlb:FoliationAbstractDescriptionPropertyType" minOccurs="0" maxOccurs="unbounded">
+						<annotation>
+							<documentation>Detailed foliation description.  This is a stub property in GeoSciML Basic</documentation>
+						</annotation>
+					</element>
 				</sequence>
 			</extension>
 		</complexContent>
@@ -361,12 +361,12 @@ Bedding as a fabric representing the average orientation of paleodepositional su
 		<attributeGroup ref="gml:AssociationAttributeGroup"/>
 		<attributeGroup ref="gml:OwnershipAttributeGroup"/>
 	</complexType>
-  <element abstract="true" name="FoliationAbstractDescription" substitutionGroup="gml:AbstractObject" type="gsmlb:FoliationAbstractDescriptionType">
+	<element name="FoliationAbstractDescription" type="gsmlb:FoliationAbstractDescriptionType" abstract="true" substitutionGroup="gml:AbstractObject">
 		<annotation>
 			<documentation>An abstract class providing a link between classes in GeoSciMLBasic and GeoSciMLExtended application schemas.</documentation>
 		</annotation>
 	</element>
-  <complexType abstract="true" name="FoliationAbstractDescriptionType">
+	<complexType name="FoliationAbstractDescriptionType" abstract="true">
 		<sequence/>
 	</complexType>
 	<complexType name="FoliationAbstractDescriptionPropertyType">
@@ -374,7 +374,7 @@ Bedding as a fabric representing the average orientation of paleodepositional su
 			<element ref="gsmlb:FoliationAbstractDescription"/>
 		</sequence>
 	</complexType>
-  <element name="GSML" substitutionGroup="gml:AbstractFeature" type="gsmlb:GSMLType">
+	<element name="GSML" type="gsmlb:GSMLType" substitutionGroup="gml:AbstractFeature">
 		<annotation>
 			<documentation>A collection container for items to be bundled in WFS response documents and other applications. FeatureType stereotype allows this to be a FeatureMember in a WFS_FeatureCollection.</documentation>
 		</annotation>
@@ -383,15 +383,15 @@ Bedding as a fabric representing the average orientation of paleodepositional su
 		<complexContent>
 			<extension base="gml:AbstractFeatureType">
 				<sequence>
-          <element minOccurs="0" name="collectionType" type="gml:ReferenceType">
+					<element name="collectionType" type="gml:ReferenceType" minOccurs="0">
 						<annotation>
-              <documentation>Types of collections of geological and geophysical objects. (From INSPIRE)</documentation>
+							<documentation>Types of collections of geological and geophysical objects. (From INSPIRE)</documentation>
 							<appinfo>
 								<targetCodeList xmlns="http://www.opengis.net/gml/3.3/exr">CollectionTypeTerm</targetCodeList>
 							</appinfo>
 						</annotation>
 					</element>
-          <element maxOccurs="unbounded" name="member" type="gsmlb:GSMLitemPropertyType">
+					<element name="member" type="gsmlb:GSMLitemPropertyType" maxOccurs="unbounded">
 						<annotation>
 							<documentation>Points to a member of a GSML collection, which can be any of the GeoSciML classes that are listed in the GSMLitem union class.</documentation>
 						</annotation>
@@ -407,15 +407,15 @@ Bedding as a fabric representing the average orientation of paleodepositional su
 		<attributeGroup ref="gml:AssociationAttributeGroup"/>
 		<attributeGroup ref="gml:OwnershipAttributeGroup"/>
 	</complexType>
-  <element abstract="true" name="GSML_GeometricDescriptionValue" substitutionGroup="gml:AbstractObject" type="gsmlb:GSML_GeometricDescriptionValueType">
+	<element name="GSML_GeometricDescriptionValue" type="gsmlb:GSML_GeometricDescriptionValueType" abstract="true" substitutionGroup="gml:AbstractObject">
 		<annotation>
 			<documentation>Description of the planar or linear orientation of a geologic feature.   
 Allows specifying direction by DirectionVector (eg Dip/Dip Direction), compass point (NE),  description ("toward fold hinge", "below')</documentation>
 		</annotation>
 	</element>
-  <complexType abstract="true" name="GSML_GeometricDescriptionValueType">
+	<complexType name="GSML_GeometricDescriptionValueType" abstract="true">
 		<sequence>
-      <element minOccurs="0" name="determinationMethod" type="gml:ReferenceType">
+			<element name="determinationMethod" type="gml:ReferenceType" minOccurs="0">
 				<annotation>
 					<documentation>Describes the way the orientation value was determined (eg measured, inferred from dip slope, etc)</documentation>
 					<appinfo>
@@ -424,7 +424,7 @@ Allows specifying direction by DirectionVector (eg Dip/Dip Direction), compass p
 					</appinfo>
 				</annotation>
 			</element>
-      <element minOccurs="0" name="descriptiveOrientation" type="string">
+			<element name="descriptiveOrientation" type="string" minOccurs="0">
 				<annotation>
 					<documentation>Textual specification of orientation, possibly referencing some local geography</documentation>
 				</annotation>
@@ -436,7 +436,7 @@ Allows specifying direction by DirectionVector (eg Dip/Dip Direction), compass p
 			<element ref="gsmlb:GSML_GeometricDescriptionValue"/>
 		</sequence>
 	</complexType>
-  <element name="GSML_LinearOrientation" substitutionGroup="gsmlb:GSML_GeometricDescriptionValue" type="gsmlb:GSML_LinearOrientationType">
+	<element name="GSML_LinearOrientation" type="gsmlb:GSML_LinearOrientationType" substitutionGroup="gsmlb:GSML_GeometricDescriptionValue">
 		<annotation>
 			<documentation>Description of the measured orientation of a line.  At least one of plunge or trend should not be nil.</documentation>
 		</annotation>
@@ -445,7 +445,7 @@ Allows specifying direction by DirectionVector (eg Dip/Dip Direction), compass p
 		<complexContent>
 			<extension base="gsmlb:GSML_GeometricDescriptionValueType">
 				<sequence>
-          <element minOccurs="0" name="directed" type="gml:ReferenceType">
+					<element name="directed" type="gml:ReferenceType" minOccurs="0">
 						<annotation>
 							<documentation>To indicate if orientation represents linear feature that is directed, e.g. clast imbrication, mylonitic lineation with sense of shear, slickenlines with displacement direction, rather than undirected.  A code list to indicate which is the directed end of the linear orientation</documentation>
 							<appinfo>
@@ -454,7 +454,7 @@ Allows specifying direction by DirectionVector (eg Dip/Dip Direction), compass p
 							</appinfo>
 						</annotation>
 					</element>
-          <element minOccurs="0" name="plunge">
+					<element name="plunge" minOccurs="0">
 						<annotation>
 							<documentation>Magnitude of the plunge.</documentation>
 						</annotation>
@@ -469,7 +469,7 @@ Allows specifying direction by DirectionVector (eg Dip/Dip Direction), compass p
 							</complexContent>
 						</complexType>
 					</element>
-          <element minOccurs="0" name="trend">
+					<element name="trend" minOccurs="0">
 						<annotation>
 							<documentation>The azimuth (compass bearing) value of the linear orientation.</documentation>
 						</annotation>
@@ -493,7 +493,7 @@ Allows specifying direction by DirectionVector (eg Dip/Dip Direction), compass p
 			<element ref="gsmlb:GSML_LinearOrientation"/>
 		</sequence>
 	</complexType>
-  <element name="GSML_PlanarOrientation" substitutionGroup="gsmlb:GSML_GeometricDescriptionValue" type="gsmlb:GSML_PlanarOrientationType">
+	<element name="GSML_PlanarOrientation" type="gsmlb:GSML_PlanarOrientationType" substitutionGroup="gsmlb:GSML_GeometricDescriptionValue">
 		<annotation>
 			<documentation>Description of the geometry of a plane.</documentation>
 		</annotation>
@@ -502,7 +502,7 @@ Allows specifying direction by DirectionVector (eg Dip/Dip Direction), compass p
 		<complexContent>
 			<extension base="gsmlb:GSML_GeometricDescriptionValueType">
 				<sequence>
-          <element minOccurs="0" name="convention" type="gml:ReferenceType">
+					<element name="convention" type="gml:ReferenceType" minOccurs="0">
 						<annotation>
 							<documentation>The convention used for the measurement</documentation>
 							<appinfo>
@@ -511,7 +511,7 @@ Allows specifying direction by DirectionVector (eg Dip/Dip Direction), compass p
 							</appinfo>
 						</annotation>
 					</element>
-          <element minOccurs="0" name="azimuth">
+					<element name="azimuth" minOccurs="0">
 						<annotation>
 							<documentation>The azimuth (compass point, bearing etc) value of the orientation. Convention reports how azimuth is interpreted; if is quadrant. Allowance of different convention makes querying more difficult.</documentation>
 						</annotation>
@@ -526,7 +526,7 @@ Allows specifying direction by DirectionVector (eg Dip/Dip Direction), compass p
 							</complexContent>
 						</complexType>
 					</element>
-          <element minOccurs="0" name="dip">
+					<element name="dip" minOccurs="0">
 						<annotation>
 							<documentation>Dip is the angle that the structural surface (eg bedding, fault plane) makes with the horizontal measured perpindicular to the strike of the structure and in the vertical plane as a numeric or term</documentation>
 						</annotation>
@@ -541,7 +541,7 @@ Allows specifying direction by DirectionVector (eg Dip/Dip Direction), compass p
 							</complexContent>
 						</complexType>
 					</element>
-          <element minOccurs="0" name="polarity" type="gml:ReferenceType">
+					<element name="polarity" type="gml:ReferenceType" minOccurs="0">
 						<annotation>
 							<documentation>Indicates whether the planar orientation is associated with a directed feature that is overturned, upright, vertical etc.</documentation>
 							<appinfo>
@@ -558,25 +558,25 @@ Allows specifying direction by DirectionVector (eg Dip/Dip Direction), compass p
 			<element ref="gsmlb:GSML_PlanarOrientation"/>
 		</sequence>
 	</complexType>
-  <element name="GSML_QuantityRange" substitutionGroup="swe:QuantityRange" type="gsmlb:GSML_QuantityRangeType">
-    <annotation>
-      <documentation>GSML_QuantityRange range is a specialization of SWE Common (OGC 08-094r1, Clause 7.2.13)  QuantityRange where lower and upper values are made explicit, instead of using an array of values (RealPair, see Clause 7.2.1) where the lowest value is the first element and the highest the second.</documentation>
-    </annotation>
-  </element>
+	<element name="GSML_QuantityRange" type="gsmlb:GSML_QuantityRangeType" substitutionGroup="swe:QuantityRange">
+		<annotation>
+			<documentation>GSML_QuantityRange range is a specialization of SWE Common (OGC 08-094r1, Clause 7.2.13)  QuantityRange where lower and upper values are made explicit, instead of using an array of values (RealPair, see Clause 7.2.1) where the lowest value is the first element and the highest the second.</documentation>
+		</annotation>
+	</element>
 	<complexType name="GSML_QuantityRangeType">
 		<complexContent>
 			<extension base="swe:QuantityRangeType">
 				<sequence>
-          <element name="lowerValue" type="double">
-            <annotation>
-              <documentation>Lower bound of the range. Replaces the value that would be (and still be) encoded as value[0].</documentation>
-            </annotation>
-          </element>
-          <element name="upperValue" type="double">
-            <annotation>
-              <documentation>Upper bound of the range. Replaces the value that would be (and still be) encoded as value[1].</documentation>
-            </annotation>
-          </element>
+					<element name="lowerValue" type="double">
+						<annotation>
+							<documentation>Lower bound of the range. Replaces the value that would be (and still be) encoded as value[0].</documentation>
+						</annotation>
+					</element>
+					<element name="upperValue" type="double">
+						<annotation>
+							<documentation>Upper bound of the range. Replaces the value that would be (and still be) encoded as value[1].</documentation>
+						</annotation>
+					</element>
 				</sequence>
 			</extension>
 		</complexContent>
@@ -588,16 +588,16 @@ Allows specifying direction by DirectionVector (eg Dip/Dip Direction), compass p
 		<attributeGroup ref="gml:AssociationAttributeGroup"/>
 		<attributeGroup ref="gml:OwnershipAttributeGroup"/>
 	</complexType>
-  <element name="GSML_Vector" substitutionGroup="gsmlb:GSML_LinearOrientation" type="gsmlb:GSML_VectorType">
+	<element name="GSML_Vector" type="gsmlb:GSML_VectorType" substitutionGroup="gsmlb:GSML_LinearOrientation">
 		<annotation>
-      <documentation>data type for linear orientation with magnitude. Cardinality on magnitude is 1, if magnitude is unknown use GSML_LinearOrientation</documentation>
+			<documentation>data type for linear orientation with magnitude. Cardinality on magnitude is 1, if magnitude is unknown use GSML_LinearOrientation</documentation>
 		</annotation>
 	</element>
 	<complexType name="GSML_VectorType">
 		<complexContent>
 			<extension base="gsmlb:GSML_LinearOrientationType">
 				<sequence>
-          <element minOccurs="0" name="magnitude">
+					<element name="magnitude" minOccurs="0">
 						<annotation>
 							<documentation>The numerical length of a linear vector</documentation>
 						</annotation>
@@ -682,7 +682,7 @@ Allows specifying direction by DirectionVector (eg Dip/Dip Direction), compass p
 		<complexContent>
 			<extension base="gsmlb:GeologicFeatureType">
 				<sequence>
-          <element maxOccurs="unbounded" minOccurs="0" name="eventProcess" type="gml:ReferenceType">
+					<element name="eventProcess" type="gml:ReferenceType" minOccurs="0" maxOccurs="unbounded">
 						<annotation>
 							<documentation>The eventProcess specifies the process or processes that occurred during the event. Examples include deposition, extrusion, intrusion, cooling.</documentation>
 							<appinfo>
@@ -691,12 +691,12 @@ Allows specifying direction by DirectionVector (eg Dip/Dip Direction), compass p
 							</appinfo>
 						</annotation>
 					</element>
-          <element minOccurs="0" name="numericAge" type="gsmlb:NumericAgeRangePropertyType">
+					<element name="numericAge" type="gsmlb:NumericAgeRangePropertyType" minOccurs="0">
 						<annotation>
 							<documentation>use of GSML_QuantityRange is recommended to have explicit upper and lower values</documentation>
 						</annotation>
 					</element>
-          <element minOccurs="0" name="olderNamedAge" type="gml:ReferenceType">
+					<element name="olderNamedAge" type="gml:ReferenceType" minOccurs="0">
 						<annotation>
 							<documentation>Older boundary of age of event expressed using a geochronologic era defined according to a geologic time scale per GeologicTime schema</documentation>
 							<appinfo>
@@ -705,7 +705,7 @@ Allows specifying direction by DirectionVector (eg Dip/Dip Direction), compass p
 							</appinfo>
 						</annotation>
 					</element>
-          <element minOccurs="0" name="youngerNamedAge" type="gml:ReferenceType">
+					<element name="youngerNamedAge" type="gml:ReferenceType" minOccurs="0">
 						<annotation>
 							<documentation>Younger boundary of age of event expressed using a geochronologic era defined according to a geologic time scale per GeologicTime schema</documentation>
 							<appinfo>
@@ -714,7 +714,7 @@ Allows specifying direction by DirectionVector (eg Dip/Dip Direction), compass p
 							</appinfo>
 						</annotation>
 					</element>
-          <element maxOccurs="unbounded" minOccurs="0" name="eventEnvironment">
+					<element name="eventEnvironment" minOccurs="0" maxOccurs="unbounded">
 						<annotation>
 							<documentation>The physical setting within which a GeologicEvent takes place. GeologicEnvironment is construed broadly to include physical settings on the Earth surface specified by climate, tectonics, physiography or geography, and settings in the Earth’s interior specified by pressure, temperature, chemical environment, or tectonics.</documentation>
 						</annotation>
@@ -729,11 +729,11 @@ Allows specifying direction by DirectionVector (eg Dip/Dip Direction), compass p
 							</complexContent>
 						</complexType>
 					</element>
-          <element maxOccurs="unbounded" minOccurs="0" name="gaEventDescription" type="gsmlb:GeologicEventAbstractDescriptionPropertyType">
-            <annotation>
-              <documentation>Detailed event description.  This is a stub property in GeoSciML Basic</documentation>
-            </annotation>
-          </element>
+					<element name="gaEventDescription" type="gsmlb:GeologicEventAbstractDescriptionPropertyType" minOccurs="0" maxOccurs="unbounded">
+						<annotation>
+							<documentation>Detailed event description.  This is a stub property in GeoSciML Basic</documentation>
+						</annotation>
+					</element>
 				</sequence>
 			</extension>
 		</complexContent>
@@ -745,12 +745,12 @@ Allows specifying direction by DirectionVector (eg Dip/Dip Direction), compass p
 		<attributeGroup ref="gml:AssociationAttributeGroup"/>
 		<attributeGroup ref="gml:OwnershipAttributeGroup"/>
 	</complexType>
-  <element abstract="true" name="GeologicEventAbstractDescription" substitutionGroup="gml:AbstractObject" type="gsmlb:GeologicEventAbstractDescriptionType">
-    <annotation>
-      <documentation>Stub property class to allow extended event related properties.</documentation>
-    </annotation>
-  </element>
-  <complexType abstract="true" name="GeologicEventAbstractDescriptionType">
+	<element name="GeologicEventAbstractDescription" type="gsmlb:GeologicEventAbstractDescriptionType" abstract="true" substitutionGroup="gml:AbstractObject">
+		<annotation>
+			<documentation>Stub property class to allow extended event related properties.</documentation>
+		</annotation>
+	</element>
+	<complexType name="GeologicEventAbstractDescriptionType" abstract="true">
 		<sequence/>
 	</complexType>
 	<complexType name="GeologicEventAbstractDescriptionPropertyType">
@@ -758,7 +758,7 @@ Allows specifying direction by DirectionVector (eg Dip/Dip Direction), compass p
 			<element ref="gsmlb:GeologicEventAbstractDescription"/>
 		</sequence>
 	</complexType>
-  <element abstract="true" name="GeologicFeature" substitutionGroup="gml:AbstractFeature" type="gsmlb:GeologicFeatureType">
+	<element name="GeologicFeature" type="gsmlb:GeologicFeatureType" abstract="true" substitutionGroup="gml:AbstractFeature">
 		<annotation>
 			<documentation>The abstract GeologicFeature class represents a conceptual feature that is hypothesized to exist coherently in the world.
    * this corresponds with a "legend item" from a traditional geologic map
@@ -769,11 +769,11 @@ The implemented Geologic Feature instance acts as the "description package"
     * the description package is classified according to its purpose as an Instance, TypicalNorm, or DefiningNorm.</documentation>
 		</annotation>
 	</element>
-  <complexType abstract="true" name="GeologicFeatureType">
+	<complexType name="GeologicFeatureType" abstract="true">
 		<complexContent>
 			<extension base="gml:AbstractFeatureType">
 				<sequence>
-          <element maxOccurs="unbounded" minOccurs="0" name="observationMethod">
+					<element name="observationMethod" minOccurs="0" maxOccurs="unbounded">
 						<annotation>
 							<documentation>Feature ObservationMethod specifies the approach to acquiring the collection of attribute values that constitute an individual feature instance (e.g. point count, brunton compass on site, air photo interpretation,  field observation, hand specimen, laboratory, aerial photography, creative imagination). ObservationMethod is a convenience property that provides a quick and dirty approach to observation metadata when data are reported using a feature view (as opposed to observation view). For a borehole, the GeologicFeature observation method specifies how the geologic properties were determined (eg, visual observation, or standard AzGS logging procedure (described in detail somewhere else)).  This property corresponds (loosely) to ISO19115 Lineage.</documentation>
 						</annotation>
@@ -788,25 +788,25 @@ The implemented Geologic Feature instance acts as the "description package"
 							</complexContent>
 						</complexType>
 					</element>
-          <element maxOccurs="unbounded" minOccurs="0" name="occurrence" type="gsmlb:MappedFeaturePropertyType">
-            <annotation>
-              <documentation>A description association that links a notional geologic feature with any number of mapped features.  A geologic feature, such as a geologic unit may be linked to mapped features from a number of different maps.</documentation>
-            </annotation>
-          </element>
-          <element minOccurs="0" name="purpose" type="gsmlb:DescriptionPurposeType">
+					<element name="occurrence" type="gsmlb:MappedFeaturePropertyType" minOccurs="0" maxOccurs="unbounded">
+						<annotation>
+							<documentation>A description association that links a notional geologic feature with any number of mapped features.  A geologic feature, such as a geologic unit may be linked to mapped features from a number of different maps.</documentation>
+						</annotation>
+					</element>
+					<element name="purpose" type="gsmlb:DescriptionPurposeType" minOccurs="0">
 						<annotation>
 							<documentation>Specification of the intended purpose/level of abstraction for a given feature or object instance. Scoped name because intention is asserted by author of the data instance. Values are: instance, typicalNorm, definingNorm.</documentation>
 						</annotation>
 					</element>
-          <element maxOccurs="unbounded" minOccurs="0" name="relatedFeature" type="gsmlb:AbstractFeatureRelationPropertyType">
-            <annotation>
-              <documentation>General structure used to define relationships between any feature or object within GeoSciML. Relationships are always binary and directional.  There is always a single source and a single target.  The relationship is always defined from the perspective of the Source and is generally an active verb</documentation>
-            </annotation>
-          </element>
-          <element maxOccurs="unbounded" minOccurs="0" name="classifier">
-            <annotation>
-              <documentation>A standard description or definition of the feature type (eg; the definition of a particular Geologic Unit in a stratigraphic lexicon)</documentation>
-            </annotation>
+					<element name="relatedFeature" type="gsmlb:AbstractFeatureRelationPropertyType" minOccurs="0" maxOccurs="unbounded">
+						<annotation>
+							<documentation>General structure used to define relationships between any feature or object within GeoSciML. Relationships are always binary and directional.  There is always a single source and a single target.  The relationship is always defined from the perspective of the Source and is generally an active verb</documentation>
+						</annotation>
+					</element>
+					<element name="classifier" minOccurs="0" maxOccurs="unbounded">
+						<annotation>
+							<documentation>A standard description or definition of the feature type (eg; the definition of a particular Geologic Unit in a stratigraphic lexicon)</documentation>
+						</annotation>
 						<complexType>
 							<complexContent>
 								<extension base="gml:AbstractMemberType">
@@ -818,11 +818,11 @@ The implemented Geologic Feature instance acts as the "description package"
 							</complexContent>
 						</complexType>
 					</element>
-          <element maxOccurs="unbounded" minOccurs="0" name="geologicHistory" type="gsmlb:GeologicEventPropertyType">
-            <annotation>
-              <documentation>Relates one or more GeologicEvents to a GeologicFeature to describe their age or geologic history</documentation>
-            </annotation>
-          </element>
+					<element name="geologicHistory" type="gsmlb:GeologicEventPropertyType" minOccurs="0" maxOccurs="unbounded">
+						<annotation>
+							<documentation>Relates one or more GeologicEvents to a GeologicFeature to describe their age or geologic history</documentation>
+						</annotation>
+					</element>
 				</sequence>
 			</extension>
 		</complexContent>
@@ -834,7 +834,7 @@ The implemented Geologic Feature instance acts as the "description package"
 		<attributeGroup ref="gml:AssociationAttributeGroup"/>
 		<attributeGroup ref="gml:OwnershipAttributeGroup"/>
 	</complexType>
-  <element abstract="true" name="GeologicStructure" substitutionGroup="gsmlb:GeologicFeature" type="gsmlb:GeologicStructureType">
+	<element name="GeologicStructure" type="gsmlb:GeologicStructureType" abstract="true" substitutionGroup="gsmlb:GeologicFeature">
 		<annotation>
 			<documentation>A configuration of matter in the Earth based on describable inhomogeneity, pattern, or fracture in an EarthMaterial. 
 The identity of a GeologicStructure is independent of the material that is the substrate for the structure. 
@@ -843,7 +843,7 @@ because they depend on the configuration of parts of a rock body. Includes sedim
 The general GeologicRelation is used to associate penetrative GeologicStructures with GeologicUnits.</documentation>
 		</annotation>
 	</element>
-  <complexType abstract="true" name="GeologicStructureType">
+	<complexType name="GeologicStructureType" abstract="true">
 		<complexContent>
 			<extension base="gsmlb:GeologicFeatureType">
 				<sequence/>
@@ -857,7 +857,7 @@ The general GeologicRelation is used to associate penetrative GeologicStructures
 		<attributeGroup ref="gml:AssociationAttributeGroup"/>
 		<attributeGroup ref="gml:OwnershipAttributeGroup"/>
 	</complexType>
-  <element name="GeologicUnit" substitutionGroup="gsmlb:GeologicFeature" type="gsmlb:GeologicUnitType">
+	<element name="GeologicUnit" type="gsmlb:GeologicUnitType" substitutionGroup="gsmlb:GeologicFeature">
 		<annotation>
 			<documentation>Operationally, the GeologicUnit element is a container used to associate geologic properties with some mapped occurrence (through GeologicFeature.occurrence -&gt; MappedFeature link), or with a geologic unit ControlledConcept in a vocabulary (through the GeologicUnit.classifier -&gt;ControlledConcept link).
 
@@ -870,7 +870,7 @@ Spatial properties are only available through association with a MappedFeature. 
 		<complexContent>
 			<extension base="gsmlb:GeologicFeatureType">
 				<sequence>
-          <element minOccurs="0" name="geologicUnitType" type="gml:ReferenceType">
+					<element name="geologicUnitType" type="gml:ReferenceType" minOccurs="0">
 						<annotation>
 							<documentation>A term from a controlled vocabulary defining the type of geologic unit. Logical constraints of definition of unit and valid property cardinalities should be contained in the definition. Use of the CGI Geologic Unit Type vocabulary (eg: something like http://geosciml.org/classifierScheme/CGI/GeologicUnitType/200811) is preferred.</documentation>
 							<appinfo>
@@ -879,7 +879,7 @@ Spatial properties are only available through association with a MappedFeature. 
 							</appinfo>
 						</annotation>
 					</element>
-          <element minOccurs="0" name="rank" type="gml:ReferenceType">
+					<element name="rank" type="gml:ReferenceType" minOccurs="0">
 						<annotation>
 							<documentation>Term that classifies the geologic unit in a generalization hierarchy from most local/smallest volume to most regional. Scoped name because classification is asserted, not based on observational data.
 Examples: group, subgroup, formation, member, bed, intrusion, complex, batholith</documentation>
@@ -889,26 +889,26 @@ Examples: group, subgroup, formation, member, bed, intrusion, complex, batholith
 							</appinfo>
 						</annotation>
 					</element>
-          <element maxOccurs="unbounded" minOccurs="0" name="composition" type="gsmlb:CompositionPartPropertyType">
+					<element name="composition" type="gsmlb:CompositionPartPropertyType" minOccurs="0" maxOccurs="unbounded">
 						<annotation>
 							<documentation>Describes the composition (detailed, instance specific, lithologic description) of the GeologicUnit</documentation>
 						</annotation>
 					</element>
-          <element maxOccurs="unbounded" minOccurs="0" name="hierarchyLink" type="gsmlb:GeologicUnitHierarchyPropertyType">
+					<element name="hierarchyLink" type="gsmlb:GeologicUnitHierarchyPropertyType" minOccurs="0" maxOccurs="unbounded">
 						<annotation>
 							<documentation>indicates a subsiduary unit with its role and proportion with respect to the container unit</documentation>
 						</annotation>
 					</element>
-          <element maxOccurs="unbounded" minOccurs="0" name="gbMaterialDescription" type="gsmlb:EarthMaterialAbstractDescriptionPropertyType">
-            <annotation>
-              <documentation>Detailed material description.  This is a stub property in GeoSciML Basic</documentation>
-            </annotation>
-          </element>
-          <element maxOccurs="unbounded" minOccurs="0" name="gbUnitDescription" type="gsmlb:GeologicUnitAbstractDescriptionPropertyType">
-            <annotation>
-              <documentation>Detailed unit description.  This is a stub property in GeoSciML Basic</documentation>
-            </annotation>
-          </element>
+					<element name="gbMaterialDescription" type="gsmlb:EarthMaterialAbstractDescriptionPropertyType" minOccurs="0" maxOccurs="unbounded">
+						<annotation>
+							<documentation>Detailed material description.  This is a stub property in GeoSciML Basic</documentation>
+						</annotation>
+					</element>
+					<element name="gbUnitDescription" type="gsmlb:GeologicUnitAbstractDescriptionPropertyType" minOccurs="0" maxOccurs="unbounded">
+						<annotation>
+							<documentation>Detailed unit description.  This is a stub property in GeoSciML Basic</documentation>
+						</annotation>
+					</element>
 				</sequence>
 			</extension>
 		</complexContent>
@@ -920,12 +920,12 @@ Examples: group, subgroup, formation, member, bed, intrusion, complex, batholith
 		<attributeGroup ref="gml:AssociationAttributeGroup"/>
 		<attributeGroup ref="gml:OwnershipAttributeGroup"/>
 	</complexType>
-  <element abstract="true" name="GeologicUnitAbstractDescription" substitutionGroup="gml:AbstractObject" type="gsmlb:GeologicUnitAbstractDescriptionType">
-    <annotation>
-      <documentation>Abstract description class for geologic units.  This class is a placeholder for further extension in Extension package</documentation>
-    </annotation>
-  </element>
-  <complexType abstract="true" name="GeologicUnitAbstractDescriptionType">
+	<element name="GeologicUnitAbstractDescription" type="gsmlb:GeologicUnitAbstractDescriptionType" abstract="true" substitutionGroup="gml:AbstractObject">
+		<annotation>
+			<documentation>Abstract description class for geologic units.  This class is a placeholder for further extension in Extension package</documentation>
+		</annotation>
+	</element>
+	<complexType name="GeologicUnitAbstractDescriptionType" abstract="true">
 		<sequence/>
 	</complexType>
 	<complexType name="GeologicUnitAbstractDescriptionPropertyType">
@@ -933,14 +933,14 @@ Examples: group, subgroup, formation, member, bed, intrusion, complex, batholith
 			<element ref="gsmlb:GeologicUnitAbstractDescription"/>
 		</sequence>
 	</complexType>
-  <element name="GeologicUnitHierarchy" substitutionGroup="gml:AbstractObject" type="gsmlb:GeologicUnitHierarchyType">
+	<element name="GeologicUnitHierarchy" type="gsmlb:GeologicUnitHierarchyType" substitutionGroup="gml:AbstractObject">
 		<annotation>
-      <documentation>GeologicUnitHierarchy associates a GeologicUnit with another GeologicUnit that is a proper part of that unit. Parts may be formal or notional. Formal parts refer to a specific body of rock, as in formal stratigraphic members. Notional parts refer to assemblages of particular EarthMaterials with particular internal structure, which may be repeated in various places within a unit (e.g. 'turbidite sequence', 'point bar assemblage', 'leucosome veins')</documentation>
+			<documentation>GeologicUnitHierarchy associates a GeologicUnit with another GeologicUnit that is a proper part of that unit. Parts may be formal or notional. Formal parts refer to a specific body of rock, as in formal stratigraphic members. Notional parts refer to assemblages of particular EarthMaterials with particular internal structure, which may be repeated in various places within a unit (e.g. 'turbidite sequence', 'point bar assemblage', 'leucosome veins')</documentation>
 		</annotation>
 	</element>
 	<complexType name="GeologicUnitHierarchyType">
 		<sequence>
-      <element minOccurs="0" name="role" type="gml:ReferenceType">
+			<element name="role" type="gml:ReferenceType" minOccurs="0">
 				<annotation>
 					<documentation>Nature of the parts, e.g. facies, stratigraphic, interbeds, geographic, eastern facies,</documentation>
 					<appinfo>
@@ -949,7 +949,7 @@ Examples: group, subgroup, formation, member, bed, intrusion, complex, batholith
 					</appinfo>
 				</annotation>
 			</element>
-      <element minOccurs="0" name="proportion">
+			<element name="proportion" minOccurs="0">
 				<annotation>
 					<documentation>Quantity that specifies the fraction of the geologic unit formed by the part.</documentation>
 				</annotation>
@@ -976,24 +976,24 @@ Examples: group, subgroup, formation, member, bed, intrusion, complex, batholith
 			<element ref="gsmlb:GeologicUnitHierarchy"/>
 		</sequence>
 	</complexType>
-  <element abstract="true" name="GeomorphologicFeature" substitutionGroup="gsmlb:GeologicFeature" type="gsmlb:GeomorphologicFeatureType">
-    <annotation>
-      <documentation>A feature describing the shape and nature of the Earth's land surface (ie, a landform).  These landforms may be created by natural Earth processes (eg, river channel, beach, moraine, mountain) or through human (anthropogenic) activity (eg, dredged channel, reclaimed land, mine waste dumps).</documentation>
-    </annotation>
-  </element>
-  <complexType abstract="true" name="GeomorphologicFeatureType">
+	<element name="GeomorphologicFeature" type="gsmlb:GeomorphologicFeatureType" abstract="true" substitutionGroup="gsmlb:GeologicFeature">
+		<annotation>
+			<documentation>A feature describing the shape and nature of the Earth's land surface (ie, a landform).  These landforms may be created by natural Earth processes (eg, river channel, beach, moraine, mountain) or through human (anthropogenic) activity (eg, dredged channel, reclaimed land, mine waste dumps).</documentation>
+		</annotation>
+	</element>
+	<complexType name="GeomorphologicFeatureType" abstract="true">
 		<complexContent>
 			<extension base="gsmlb:GeologicFeatureType">
 				<sequence>
-          <element maxOccurs="unbounded" minOccurs="0"  name="unitDescription" type="gsmlb:GeologicUnitPropertyType">
-            <annotation>
-              <documentation>For geological description of a geomorphological feature (eg, related stratigraphic units and earth materials)</documentation>
-            </annotation>
-          </element>
-          <element maxOccurs="unbounded" minOccurs="0" name="gmFeatureDescription" type="gsmlb:GeomorphologicUnitAbstractDescriptionPropertyType">
-            <annotation>
-              <documentation>Detailed geomorphologic description.  This is a stub property in GeoSciML Basic</documentation>
-            </annotation>
+					<element name="unitDescription" type="gsmlb:GeologicUnitPropertyType" minOccurs="0" maxOccurs="unbounded">
+						<annotation>
+							<documentation>For geological description of a geomorphological feature (eg, related stratigraphic units and earth materials)</documentation>
+						</annotation>
+					</element>
+					<element name="gmFeatureDescription" type="gsmlb:GeomorphologicUnitAbstractDescriptionPropertyType" minOccurs="0" maxOccurs="unbounded">
+						<annotation>
+							<documentation>Detailed geomorphologic description.  This is a stub property in GeoSciML Basic</documentation>
+						</annotation>
 					</element>
 				</sequence>
 			</extension>
@@ -1006,12 +1006,12 @@ Examples: group, subgroup, formation, member, bed, intrusion, complex, batholith
 		<attributeGroup ref="gml:AssociationAttributeGroup"/>
 		<attributeGroup ref="gml:OwnershipAttributeGroup"/>
 	</complexType>
-  <element abstract="true" name="GeomorphologicUnitAbstractDescription" substitutionGroup="gml:AbstractObject" type="gsmlb:GeomorphologicUnitAbstractDescriptionType">
-    <annotation>
-      <documentation>Detailed geomorphologic unit description placeholder (stub class) for GeomorphologicUnit</documentation>
-    </annotation>
-  </element>
-  <complexType abstract="true" name="GeomorphologicUnitAbstractDescriptionType">
+	<element name="GeomorphologicUnitAbstractDescription" type="gsmlb:GeomorphologicUnitAbstractDescriptionType" abstract="true" substitutionGroup="gml:AbstractObject">
+		<annotation>
+			<documentation>Detailed geomorphologic unit description placeholder (stub class) for GeomorphologicUnit</documentation>
+		</annotation>
+	</element>
+	<complexType name="GeomorphologicUnitAbstractDescriptionType" abstract="true">
 		<sequence/>
 	</complexType>
 	<complexType name="GeomorphologicUnitAbstractDescriptionPropertyType">
@@ -1019,7 +1019,7 @@ Examples: group, subgroup, formation, member, bed, intrusion, complex, batholith
 			<element ref="gsmlb:GeomorphologicUnitAbstractDescription"/>
 		</sequence>
 	</complexType>
-  <element name="MappedFeature" substitutionGroup="gml:AbstractFeature" type="gsmlb:MappedFeatureType">
+	<element name="MappedFeature" type="gsmlb:MappedFeatureType" substitutionGroup="gml:AbstractFeature">
 		<annotation>
 			<documentation>A MappedFeature is part of a geological interpretation. 
 It provides a link between a notional feature (description package) and one spatial representation of it, or part of it. (Exposures, Surface Traces and Intercepts, etc)
@@ -1035,7 +1035,7 @@ A Mapped Feature is always associated with some sampling feature - e.g. a mappin
 		<complexContent>
 			<extension base="gml:AbstractFeatureType">
 				<sequence>
-          <element maxOccurs="unbounded" minOccurs="0" name="observationMethod">
+					<element name="observationMethod" minOccurs="0" maxOccurs="unbounded">
 						<annotation>
 							<documentation>MappedFeature ObservationMethod is a metadata snippet indicating how the spatial extent of the mapped feature was determined, and the basis for association of the geometry with some GeologicFeature specification to define a MappedFeature. For a borehole, the MappedInterval observation method indicates how the boundaries of the interval were defined (eg, linear measurement from borehole collar). ObservationMethod is a convenience property that provides a quick and dirty approach to observation metadata when data are reported using a feature view (as opposed to observation view). This property corresponds (loosely) to ISO19115 Lineage.  (eg: digitised, Global Positioning System, published map, fieldObservation, downhole survey, aerial photography, field survey)</documentation>
 						</annotation>
@@ -1050,7 +1050,7 @@ A Mapped Feature is always associated with some sampling feature - e.g. a mappin
 							</complexContent>
 						</complexType>
 					</element>
-          <element minOccurs="0" name="positionalAccuracy">
+					<element name="positionalAccuracy" minOccurs="0">
 						<annotation>
 							<documentation>Quantitative values define the radius of an uncertainty buffer around a mappedFeature (eg: a positionAccuracy of 100 m for a line feature defines a buffer polygon of total width 200 m centred on the line). Corresponds to ISO19115 DQ_PositionalAccuracy.</documentation>
 						</annotation>
@@ -1065,20 +1065,20 @@ A Mapped Feature is always associated with some sampling feature - e.g. a mappin
 							</complexContent>
 						</complexType>
 					</element>
-          <element minOccurs="0" name="resolutionRepresentativeFraction" type="integer">
+					<element name="resolutionRepresentativeFraction" type="integer" minOccurs="0">
 						<annotation>
 							<documentation>An integer representing the denominator of the representative scale of the spatial feature.  (ie, 10,000 = the spatial feature is represented at 1:10,000 scale)</documentation>
 						</annotation>
 					</element>
-          <element minOccurs="0" name="mappingFrame" type="gml:ReferenceType">
+					<element name="mappingFrame" type="gml:ReferenceType" minOccurs="0">
 						<annotation>
-              <documentation>Terms indicating the surface on which the MappedFeature is projected. (from INSPIRE)</documentation>
+							<documentation>Terms indicating the surface on which the MappedFeature is projected. (from INSPIRE)</documentation>
 							<appinfo>
 								<targetCodeList xmlns="http://www.opengis.net/gml/3.3/exr">MappingFrameTerm</targetCodeList>
 							</appinfo>
 						</annotation>
 					</element>
-          <element minOccurs="0" name="exposure" type="gml:ReferenceType">
+					<element name="exposure" type="gml:ReferenceType" minOccurs="0">
 						<annotation>
 							<documentation>Description of the nature of the expression of the mapped feature at the earth's surface (eg, exposed, concealed)</documentation>
 							<appinfo>
@@ -1086,15 +1086,15 @@ A Mapped Feature is always associated with some sampling feature - e.g. a mappin
 							</appinfo>
 						</annotation>
 					</element>
-          <element minOccurs="0" name="specification" type="gml:FeaturePropertyType">
+					<element name="specification" type="gml:FeaturePropertyType" minOccurs="0">
 						<annotation>
-              <documentation>The feature being mapped.  In a geological map, MappedFeature are used to represent GeologicFeature, but other features from other domains could be represented</documentation>
+							<documentation>The feature being mapped.  In a geological map, MappedFeature are used to represent GeologicFeature, but other features from other domains could be represented</documentation>
 							<appinfo>
 								<targetElement xmlns="http://www.opengis.net/gml/3.2">null:GFI_Feature</targetElement>
 							</appinfo>
 						</annotation>
 					</element>
-          <element minOccurs="0" name="shape" type="gml:GeometryPropertyType">
+					<element name="shape" type="gml:GeometryPropertyType" minOccurs="0">
 						<annotation>
 							<documentation>map geometry</documentation>
 						</annotation>
@@ -1110,28 +1110,28 @@ A Mapped Feature is always associated with some sampling feature - e.g. a mappin
 		<attributeGroup ref="gml:AssociationAttributeGroup"/>
 		<attributeGroup ref="gml:OwnershipAttributeGroup"/>
 	</complexType>
-  <element name="NaturalGeomorphologicFeature" substitutionGroup="gsmlb:GeomorphologicFeature" type="gsmlb:NaturalGeomorphologicFeatureType">
-    <annotation>
-      <documentation>A geomorphologic feature (ie, landform) that has been created by natural Earth processes. For example, river channel, beach ridge, caldera, canyon, moraine, mud flat.</documentation>
-    </annotation>
-  </element>
+	<element name="NaturalGeomorphologicFeature" type="gsmlb:NaturalGeomorphologicFeatureType" substitutionGroup="gsmlb:GeomorphologicFeature">
+		<annotation>
+			<documentation>A geomorphologic feature (ie, landform) that has been created by natural Earth processes. For example, river channel, beach ridge, caldera, canyon, moraine, mud flat.</documentation>
+		</annotation>
+	</element>
 	<complexType name="NaturalGeomorphologicFeatureType">
 		<complexContent>
 			<extension base="gsmlb:GeomorphologicFeatureType">
 				<sequence>
-          <element minOccurs="0" name="naturalGeomorphologicFeatureType" type="gml:ReferenceType">
+					<element name="naturalGeomorphologicFeatureType" type="gml:ReferenceType" minOccurs="0">
 						<annotation>
-              <documentation>A byReference link to a dictionary of terms describing the type of geomorphologic feature</documentation>
+							<documentation>A byReference link to a dictionary of terms describing the type of geomorphologic feature</documentation>
 							<appinfo>
 								<targetElement xmlns="http://www.opengis.net/gml/3.2">gsmlb:NaturalGeomorphologicFeatureTypeTerm</targetElement>
 								<targetCodeList xmlns="http://www.opengis.net/gml/3.3/exr">NaturalGeomorphologicFeatureTypeTerm</targetCodeList>
 							</appinfo>
 						</annotation>
 					</element>
-          <element minOccurs="0" name="activity">
-            <annotation>
-              <documentation>Describes the current activity status of the geomorphologic feature (eg, currently active, dormant, inactive, reactivated, etc)</documentation>
-            </annotation>
+					<element name="activity" minOccurs="0">
+						<annotation>
+							<documentation>Describes the current activity status of the geomorphologic feature (eg, currently active, dormant, inactive, reactivated, etc)</documentation>
+						</annotation>
 						<complexType>
 							<complexContent>
 								<extension base="gml:AbstractMemberType">
@@ -1154,14 +1154,14 @@ A Mapped Feature is always associated with some sampling feature - e.g. a mappin
 		<attributeGroup ref="gml:AssociationAttributeGroup"/>
 		<attributeGroup ref="gml:OwnershipAttributeGroup"/>
 	</complexType>
-  <element name="NumericAgeRange" substitutionGroup="gml:AbstractObject" type="gsmlb:NumericAgeRangeType">
+	<element name="NumericAgeRange" type="gsmlb:NumericAgeRangeType" substitutionGroup="gml:AbstractObject">
 		<annotation>
 			<documentation>Class to represent general age assignment using numeric measurement results. All attributes have cardinality 1; report with nilReason="missing" if a value is absent.</documentation>
 		</annotation>
 	</element>
 	<complexType name="NumericAgeRangeType">
 		<sequence>
-      <element minOccurs="0" name="reportingDate">
+			<element name="reportingDate" minOccurs="0">
 				<annotation>
 					<documentation>Single time coordinate value to report as representative for this NumericAge assignment</documentation>
 				</annotation>
@@ -1176,7 +1176,7 @@ A Mapped Feature is always associated with some sampling feature - e.g. a mappin
 					</complexContent>
 				</complexType>
 			</element>
-      <element minOccurs="0" name="olderBoundDate">
+			<element name="olderBoundDate" minOccurs="0">
 				<annotation>
 					<documentation>The older bounding time coordinate in an age range</documentation>
 				</annotation>
@@ -1191,7 +1191,7 @@ A Mapped Feature is always associated with some sampling feature - e.g. a mappin
 					</complexContent>
 				</complexType>
 			</element>
-      <element minOccurs="0" name="youngerBoundDate">
+			<element name="youngerBoundDate" minOccurs="0">
 				<annotation>
 					<documentation>The younger bounding time coordinate in an age range</documentation>
 				</annotation>
@@ -1213,7 +1213,7 @@ A Mapped Feature is always associated with some sampling feature - e.g. a mappin
 			<element ref="gsmlb:NumericAgeRange"/>
 		</sequence>
 	</complexType>
-  <element name="RockMaterial" substitutionGroup="gsmlb:CompoundMaterial" type="gsmlb:RockMaterialType">
+	<element name="RockMaterial" type="gsmlb:RockMaterialType" substitutionGroup="gsmlb:CompoundMaterial">
 		<annotation>
 			<documentation>A specialized CompoundMaterial that includes consolidated and unconsolidated materials as well as mixtures of consolidated and unconsolidated materials.</documentation>
 		</annotation>
@@ -1222,7 +1222,7 @@ A Mapped Feature is always associated with some sampling feature - e.g. a mappin
 		<complexContent>
 			<extension base="gsmlb:CompoundMaterialType">
 				<sequence>
-          <element minOccurs="0" name="lithology" type="gml:ReferenceType">
+					<element name="lithology" type="gml:ReferenceType" minOccurs="0">
 						<annotation>
 							<documentation>lithology class from a controlled vocabulary</documentation>
 							<appinfo>
@@ -1241,7 +1241,7 @@ A Mapped Feature is always associated with some sampling feature - e.g. a mappin
 		<attributeGroup ref="gml:AssociationAttributeGroup"/>
 		<attributeGroup ref="gml:OwnershipAttributeGroup"/>
 	</complexType>
-  <element name="ShearDisplacementStructure" substitutionGroup="gsmlb:GeologicStructure" type="gsmlb:ShearDisplacementStructureType">
+	<element name="ShearDisplacementStructure" type="gsmlb:ShearDisplacementStructureType" substitutionGroup="gsmlb:GeologicStructure">
 		<annotation>
 			<documentation>A shear displacement structure includes all brittle to ductile style structures along which displacement has occurred, from a simple, single 'planar' brittle or ductile surface to a fault system comprised of 10's of strands of both brittle and ductile nature. This structure may have some significant thickness (a deformation zone) and have an associated body of deformed rock that may be considered a DeformationUnit</documentation>
 		</annotation>
@@ -1250,7 +1250,7 @@ A Mapped Feature is always associated with some sampling feature - e.g. a mappin
 		<complexContent>
 			<extension base="gsmlb:GeologicStructureType">
 				<sequence>
-          <element minOccurs="0" name="faultType" type="gml:ReferenceType">
+					<element name="faultType" type="gml:ReferenceType" minOccurs="0">
 						<annotation>
 							<documentation>Refers to a vocabulary of terms describing the type of shear displacement structure (eg; thrust fault, normal fault, wrench fault).</documentation>
 							<appinfo>
@@ -1259,11 +1259,11 @@ A Mapped Feature is always associated with some sampling feature - e.g. a mappin
 							</appinfo>
 						</annotation>
 					</element>
-          <element minOccurs="0" maxOccurs="unbounded" name="stStructureDescription" type="gsmlb:ShearDisplacementStructureAbstractDescriptionPropertyType">
-            <annotation>
-              <documentation>Detailed shear displacement description.  This is a stub property in GeoSciML Basic</documentation>
-            </annotation>
-          </element>
+					<element name="stStructureDescription" type="gsmlb:ShearDisplacementStructureAbstractDescriptionPropertyType" minOccurs="0" maxOccurs="unbounded">
+						<annotation>
+							<documentation>Detailed shear displacement description.  This is a stub property in GeoSciML Basic</documentation>
+						</annotation>
+					</element>
 				</sequence>
 			</extension>
 		</complexContent>
@@ -1275,12 +1275,12 @@ A Mapped Feature is always associated with some sampling feature - e.g. a mappin
 		<attributeGroup ref="gml:AssociationAttributeGroup"/>
 		<attributeGroup ref="gml:OwnershipAttributeGroup"/>
 	</complexType>
-  <element abstract="true" name="ShearDisplacementStructureAbstractDescription" substitutionGroup="gml:AbstractObject" type="gsmlb:ShearDisplacementStructureAbstractDescriptionType">
+	<element name="ShearDisplacementStructureAbstractDescription" type="gsmlb:ShearDisplacementStructureAbstractDescriptionType" abstract="true" substitutionGroup="gml:AbstractObject">
 		<annotation>
 			<documentation>An abstract class providing a link between classes in GeoSciMLBasic and GeoSciMLExtended application schemas.</documentation>
 		</annotation>
 	</element>
-  <complexType abstract="true" name="ShearDisplacementStructureAbstractDescriptionType">
+	<complexType name="ShearDisplacementStructureAbstractDescriptionType" abstract="true">
 		<sequence/>
 	</complexType>
 	<complexType name="ShearDisplacementStructureAbstractDescriptionPropertyType">

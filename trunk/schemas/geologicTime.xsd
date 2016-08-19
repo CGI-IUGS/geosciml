@@ -1,15 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<schema xmlns="http://www.w3.org/2001/XMLSchema" xmlns:gml="http://www.opengis.net/gml/3.2" xmlns:gmlexr="http://www.opengis.net/gml/3.3/exr" xmlns:gsmlgt="http://xmlns.geosciml.org/GeologicTime/4.0" xmlns:om="http://www.opengis.net/om/2.0" xmlns:sf="http://www.opengis.net/samplingSpatial/2.0" xmlns:swe="http://www.opengis.net/swe/2.0" elementFormDefault="qualified" targetNamespace="http://xmlns.geosciml.org/GeologicTime/4.0" version="4.0.0">
+<schema xmlns="http://www.w3.org/2001/XMLSchema" xmlns:gml="http://www.opengis.net/gml/3.2" xmlns:gmlexr="http://www.opengis.net/gml/3.3/exr" xmlns:gsmlgt="http://xmlns.geosciml.org/GeologicTime/4.1" xmlns:om="http://www.opengis.net/om/2.0" xmlns:sf="http://www.opengis.net/samplingSpatial/2.0" xmlns:swe="http://www.opengis.net/swe/2.0" targetNamespace="http://xmlns.geosciml.org/GeologicTime/4.1" elementFormDefault="qualified" version="4.1.0">
 	<annotation>
 		<documentation>The Geologic Time package contains elements used to describe the classification of geologic time: time periods, time boundaries, and the relationships between them as defined by the International Commission on Stratigraphy.</documentation>
 	</annotation>
 	<import namespace="http://www.opengis.net/gml/3.2" schemaLocation="http://schemas.opengis.net/gml/3.2.1/gml.xsd"/>
 	<import namespace="http://www.opengis.net/gml/3.3/exr" schemaLocation="http://schemas.opengis.net/gml/3.3/extdEncRule.xsd"/>
 	<import namespace="http://www.opengis.net/om/2.0" schemaLocation="http://schemas.opengis.net/om/2.0/observation.xsd"/>
-  <import namespace="http://www.opengis.net/samplingSpatial/2.0" schemaLocation="http://schemas.opengis.net/samplingSpatial/2.0/spatialSamplingFeature.xsd"/>
+	<import namespace="http://www.opengis.net/samplingSpatial/2.0" schemaLocation="http://schemas.opengis.net/samplingSpatial/2.0/spatialSamplingFeature.xsd"/>
 	<import namespace="http://www.opengis.net/swe/2.0" schemaLocation="http://schemas.opengis.net/sweCommon/2.0/swe.xsd"/>
 	<!--XML Schema document created by ShapeChange - http://shapechange.net/-->
-  <element name="GeochronologicBoundary" substitutionGroup="gsmlgt:TimeOrdinalEraBoundary" type="gsmlgt:GeochronologicBoundaryType">
+	<element name="GeochronologicBoundary" type="gsmlgt:GeochronologicBoundaryType" substitutionGroup="gsmlgt:TimeOrdinalEraBoundary">
 		<annotation>
 			<documentation>A boundary between two geochronologic time periods</documentation>
 		</annotation>
@@ -18,7 +18,7 @@
 		<complexContent>
 			<extension base="gsmlgt:TimeOrdinalEraBoundaryType">
 				<sequence>
-          <element minOccurs="0" name="stratotype" type="gsmlgt:StratigraphicPointPropertyType">
+					<element name="stratotype" type="gsmlgt:StratigraphicPointPropertyType" minOccurs="0">
 						<annotation>
 							<documentation>Several StratigraphicPoints may be associated with a boundary, but only one may have GSSP ratified status. The others are proposed equivalent.</documentation>
 						</annotation>
@@ -34,7 +34,7 @@
 		<attributeGroup ref="gml:AssociationAttributeGroup"/>
 		<attributeGroup ref="gml:OwnershipAttributeGroup"/>
 	</complexType>
-  <element name="GeochronologicEra" substitutionGroup="gsmlgt:TimeOrdinalEra" type="gsmlgt:GeochronologicEraType">
+	<element name="GeochronologicEra" type="gsmlgt:GeochronologicEraType" substitutionGroup="gsmlgt:TimeOrdinalEra">
 		<annotation>
 			<documentation>The association of an era with a stratotype is optional.  In the GSSP approach recommended by ICS for the Global Geologic Timescale, Unit Stratotypes are not used. 
 
@@ -47,7 +47,7 @@ Note that the "German School" defines stratigraphic eras conceptually, without r
 		<complexContent>
 			<extension base="gsmlgt:TimeOrdinalEraType">
 				<sequence>
-          <element minOccurs="0" name="rank" type="gml:ReferenceType">
+					<element name="rank" type="gml:ReferenceType" minOccurs="0">
 						<annotation>
 							<documentation>A term from a controlled vocabulary describing the rank of the time period (eg, eon, era, period, stage)</documentation>
 							<appinfo>
@@ -56,11 +56,11 @@ Note that the "German School" defines stratigraphic eras conceptually, without r
 							</appinfo>
 						</annotation>
 					</element>
-          <element minOccurs="0" name="stratotype" type="gsmlgt:StratigraphicSectionPropertyType">
-            <annotation>
-              <documentation>Type section that names the physical location or outcrop of a particular reference exposure of a stratigraphic sequence or stratigraphic boundary. A unit stratotype is the agreed reference point for a particular stratigraphic unit and a boundary stratotype the reference for a particular boundary between strata (Wikipedia)</documentation>
-            </annotation>
-          </element>
+					<element name="stratotype" type="gsmlgt:StratigraphicSectionPropertyType" minOccurs="0">
+						<annotation>
+							<documentation>Type section that names the physical location or outcrop of a particular reference exposure of a stratigraphic sequence or stratigraphic boundary. A unit stratotype is the agreed reference point for a particular stratigraphic unit and a boundary stratotype the reference for a particular boundary between strata (Wikipedia)</documentation>
+						</annotation>
+					</element>
 				</sequence>
 			</extension>
 		</complexContent>
@@ -72,7 +72,7 @@ Note that the "German School" defines stratigraphic eras conceptually, without r
 		<attributeGroup ref="gml:AssociationAttributeGroup"/>
 		<attributeGroup ref="gml:OwnershipAttributeGroup"/>
 	</complexType>
-  <element name="GeologicTimescale" substitutionGroup="gsmlgt:TimeOrdinalReferenceSystem" type="gsmlgt:GeologicTimescaleType">
+	<element name="GeologicTimescale" type="gsmlgt:GeologicTimescaleType" substitutionGroup="gsmlgt:TimeOrdinalReferenceSystem">
 		<annotation>
 			<documentation>The classic "Geologic Timescale" comprising an ordered, hierarchical set of named "eras" is an example of an Ordinal Temporal Reference System. It may be calibrated with reference to a numeric Temporal Coordinate System, but is in principle defined independently.</documentation>
 		</annotation>
@@ -91,7 +91,7 @@ Note that the "German School" defines stratigraphic eras conceptually, without r
 		<attributeGroup ref="gml:AssociationAttributeGroup"/>
 		<attributeGroup ref="gml:OwnershipAttributeGroup"/>
 	</complexType>
-  <element name="GlobalStratotypePoint" substitutionGroup="gsmlgt:StratigraphicPoint" type="gsmlgt:GlobalStratotypePointType">
+	<element name="GlobalStratotypePoint" type="gsmlgt:GlobalStratotypePointType" substitutionGroup="gsmlgt:StratigraphicPoint">
 		<annotation>
 			<documentation>A type of stratigraphic point used to define a globally agreed point in geologic time</documentation>
 		</annotation>
@@ -110,7 +110,7 @@ Note that the "German School" defines stratigraphic eras conceptually, without r
 		<attributeGroup ref="gml:AssociationAttributeGroup"/>
 		<attributeGroup ref="gml:OwnershipAttributeGroup"/>
 	</complexType>
-  <element name="GlobalStratotypeSection" substitutionGroup="gsmlgt:StratigraphicSection" type="gsmlgt:GlobalStratotypeSectionType">
+	<element name="GlobalStratotypeSection" type="gsmlgt:GlobalStratotypeSectionType" substitutionGroup="gsmlgt:StratigraphicSection">
 		<annotation>
 			<documentation>A type of stratigraphic section used to define a globally agreed standard period of geologic time</documentation>
 		</annotation>
@@ -129,7 +129,7 @@ Note that the "German School" defines stratigraphic eras conceptually, without r
 		<attributeGroup ref="gml:AssociationAttributeGroup"/>
 		<attributeGroup ref="gml:OwnershipAttributeGroup"/>
 	</complexType>
-  <element name="NumericEraBoundary" substitutionGroup="gsmlgt:TimeOrdinalEraBoundary" type="gsmlgt:NumericEraBoundaryType">
+	<element name="NumericEraBoundary" type="gsmlgt:NumericEraBoundaryType" substitutionGroup="gsmlgt:TimeOrdinalEraBoundary">
 		<annotation>
 			<documentation>Used for pre-Ediacaran and Pleistocene / Holocene boundaries in the standard timescale</documentation>
 		</annotation>
@@ -148,7 +148,7 @@ Note that the "German School" defines stratigraphic eras conceptually, without r
 		<attributeGroup ref="gml:AssociationAttributeGroup"/>
 		<attributeGroup ref="gml:OwnershipAttributeGroup"/>
 	</complexType>
-  <element name="StandardGlobalNumericalAge" substitutionGroup="gsmlgt:NumericEraBoundary" type="gsmlgt:StandardGlobalNumericalAgeType">
+	<element name="StandardGlobalNumericalAge" type="gsmlgt:StandardGlobalNumericalAgeType" substitutionGroup="gsmlgt:NumericEraBoundary">
 		<annotation>
 			<documentation>A standard numeric age point (a numeric analogue to a 'golden spike') applicable to the formal subdivision of the Precambrian, and perhaps the Pleistocene/Holocene boundary (Walshe, Gradstein and Ogg, 2004)</documentation>
 		</annotation>
@@ -167,7 +167,7 @@ Note that the "German School" defines stratigraphic eras conceptually, without r
 		<attributeGroup ref="gml:AssociationAttributeGroup"/>
 		<attributeGroup ref="gml:OwnershipAttributeGroup"/>
 	</complexType>
-  <element name="StratigraphicPoint" substitutionGroup="sf:SF_SpatialSamplingFeature" type="gsmlgt:StratigraphicPointType">
+	<element name="StratigraphicPoint" type="gsmlgt:StratigraphicPointType" substitutionGroup="sf:SF_SpatialSamplingFeature">
 		<annotation>
 			<documentation>A point in the stratigraphic record used to define a geochronologic boundary or point in geologic time</documentation>
 		</annotation>
@@ -176,17 +176,17 @@ Note that the "German School" defines stratigraphic eras conceptually, without r
 		<complexContent>
 			<extension base="sf:SF_SpatialSamplingFeatureType">
 				<sequence>
-          <element minOccurs="0" name="primaryGuidingCriterion" type="string">
+					<element name="primaryGuidingCriterion" type="string" minOccurs="0">
 						<annotation>
 							<documentation>A description of the primary criterion used to establish this stratigraphic point</documentation>
 						</annotation>
 					</element>
-          <element maxOccurs="unbounded" minOccurs="0" name="additionalCorrelationProperty" type="string">
+					<element name="additionalCorrelationProperty" type="string" minOccurs="0" maxOccurs="unbounded">
 						<annotation>
 							<documentation>Any additional criteria used to establish this stratigraphic point</documentation>
 						</annotation>
 					</element>
-          <element minOccurs="0" name="status" type="string">
+					<element name="status" type="string" minOccurs="0">
 						<annotation>
 							<documentation>A description of the status of stratigraphic point (eg, formally accepted, etc)</documentation>
 						</annotation>
@@ -202,7 +202,7 @@ Note that the "German School" defines stratigraphic eras conceptually, without r
 		<attributeGroup ref="gml:AssociationAttributeGroup"/>
 		<attributeGroup ref="gml:OwnershipAttributeGroup"/>
 	</complexType>
-  <element name="StratigraphicSection" substitutionGroup="sf:SF_SpatialSamplingFeature" type="gsmlgt:StratigraphicSectionType">
+	<element name="StratigraphicSection" type="gsmlgt:StratigraphicSectionType" substitutionGroup="sf:SF_SpatialSamplingFeature">
 		<annotation>
 			<documentation>A sampled section of the stratigraphic record used to define a period in geologic time</documentation>
 		</annotation>
@@ -211,22 +211,22 @@ Note that the "German School" defines stratigraphic eras conceptually, without r
 		<complexContent>
 			<extension base="sf:SF_SpatialSamplingFeatureType">
 				<sequence>
-          <element minOccurs="0" name="geologicSetting" type="string">
+					<element name="geologicSetting" type="string" minOccurs="0">
 						<annotation>
 							<documentation>A description of the geologic setting of the stratigraphic section</documentation>
 						</annotation>
 					</element>
-          <element minOccurs="0" name="geologicDescription" type="string">
+					<element name="geologicDescription" type="string" minOccurs="0">
 						<annotation>
 							<documentation>A description of the geology of the stratigraphic section (eg, lithology, paleontology, paleogeography, etc)</documentation>
 						</annotation>
 					</element>
-          <element minOccurs="0" name="accessibility" type="string">
+					<element name="accessibility" type="string" minOccurs="0">
 						<annotation>
 							<documentation>A description of the ability to access the stratigraphic section</documentation>
 						</annotation>
 					</element>
-          <element minOccurs="0" name="conservation" type="string">
+					<element name="conservation" type="string" minOccurs="0">
 						<annotation>
 							<documentation>A description of measures to conserve the stratigraphic section</documentation>
 						</annotation>
@@ -242,7 +242,7 @@ Note that the "German School" defines stratigraphic eras conceptually, without r
 		<attributeGroup ref="gml:AssociationAttributeGroup"/>
 		<attributeGroup ref="gml:OwnershipAttributeGroup"/>
 	</complexType>
-  <element name="TimeOrdinalEra" substitutionGroup="gml:AbstractGML" type="gsmlgt:TimeOrdinalEraType">
+	<element name="TimeOrdinalEra" type="gsmlgt:TimeOrdinalEraType" substitutionGroup="gml:AbstractGML">
 		<annotation>
 			<documentation>The association of an era with a stratotype is optional.  In the GSSP approach recommended by ICS for the Global Geologic Timescale, Unit Stratotypes are not used.  Rather, the association of an Era with geologic units and sections is indirect, via the association of an era with Boundaries, which are in turn tied to Stratotype Points, which occur within host Stratotype Sections. 
 Note that the "German School" defines stratigraphic eras conceptually, without reference to stratotypes.</documentation>
@@ -252,7 +252,7 @@ Note that the "German School" defines stratigraphic eras conceptually, without r
 		<complexContent>
 			<extension base="gml:AbstractGMLType">
 				<sequence>
-          <element minOccurs="0" name="start" type="gsmlgt:TimeOrdinalEraBoundaryPropertyType">
+					<element name="start" type="gsmlgt:TimeOrdinalEraBoundaryPropertyType" minOccurs="0">
 						<annotation>
 							<documentation>Older time boundary of an era</documentation>
 							<appinfo>
@@ -260,7 +260,7 @@ Note that the "German School" defines stratigraphic eras conceptually, without r
 							</appinfo>
 						</annotation>
 					</element>
-          <element minOccurs="0" name="end" type="gsmlgt:TimeOrdinalEraBoundaryPropertyType">
+					<element name="end" type="gsmlgt:TimeOrdinalEraBoundaryPropertyType" minOccurs="0">
 						<annotation>
 							<documentation>Younger time boundary of an era</documentation>
 							<appinfo>
@@ -268,11 +268,11 @@ Note that the "German School" defines stratigraphic eras conceptually, without r
 							</appinfo>
 						</annotation>
 					</element>
-          <element maxOccurs="unbounded" minOccurs="0" name="member" type="gsmlgt:TimeOrdinalEraPropertyType">
-            <annotation>
-              <documentation>Subdivisions of TimeOrdinalEra</documentation>
-            </annotation>
-          </element>
+					<element name="member" type="gsmlgt:TimeOrdinalEraPropertyType" minOccurs="0" maxOccurs="unbounded">
+						<annotation>
+							<documentation>Subdivisions of TimeOrdinalEra</documentation>
+						</annotation>
+					</element>
 				</sequence>
 			</extension>
 		</complexContent>
@@ -284,7 +284,7 @@ Note that the "German School" defines stratigraphic eras conceptually, without r
 		<attributeGroup ref="gml:AssociationAttributeGroup"/>
 		<attributeGroup ref="gml:OwnershipAttributeGroup"/>
 	</complexType>
-  <element name="TimeOrdinalEraBoundary" substitutionGroup="gml:AbstractGML" type="gsmlgt:TimeOrdinalEraBoundaryType">
+	<element name="TimeOrdinalEraBoundary" type="gsmlgt:TimeOrdinalEraBoundaryType" substitutionGroup="gml:AbstractGML">
 		<annotation>
 			<documentation>A point in Earth's history which bounds a TimeOrdinalEra.</documentation>
 		</annotation>
@@ -293,17 +293,17 @@ Note that the "German School" defines stratigraphic eras conceptually, without r
 		<complexContent>
 			<extension base="gml:AbstractGMLType">
 				<sequence>
-          <element minOccurs="0" name="position" type="gml:TimeInstantPropertyType">
+					<element name="position" type="gml:TimeInstantPropertyType" minOccurs="0">
 						<annotation>
 							<documentation>A point in time corresponding to the era boundary</documentation>
 						</annotation>
 					</element>
-          <element maxOccurs="unbounded" minOccurs="0" name="observationalBasis" type="om:OM_ObservationPropertyType">
-            <annotation>
-              <documentation>Observation supporting the existence of the boundary (geochronology, paleontology, etc.)</documentation>
-            </annotation>
-          </element>
-          <element minOccurs="0" name="positionalUncertainty">
+					<element name="observationalBasis" type="om:OM_ObservationPropertyType" minOccurs="0" maxOccurs="unbounded">
+						<annotation>
+							<documentation>Observation supporting the existence of the boundary (geochronology, paleontology, etc.)</documentation>
+						</annotation>
+					</element>
+					<element name="positionalUncertainty" minOccurs="0">
 						<annotation>
 							<documentation>A measure of the uncertainty in the estimate of the point in time of the era boundary</documentation>
 						</annotation>
@@ -318,17 +318,17 @@ Note that the "German School" defines stratigraphic eras conceptually, without r
 							</complexContent>
 						</complexType>
 					</element>
-          <element maxOccurs="unbounded" minOccurs="0" name="nextEra" type="gsmlgt:TimeOrdinalEraPropertyType">
+					<element name="nextEra" type="gsmlgt:TimeOrdinalEraPropertyType" minOccurs="0" maxOccurs="unbounded">
 						<annotation>
-              <documentation>Succeeding era</documentation>
+							<documentation>Succeeding era</documentation>
 							<appinfo>
 								<reversePropertyName xmlns="http://www.opengis.net/gml/3.2">gsmlgt:start</reversePropertyName>
 							</appinfo>
 						</annotation>
 					</element>
-          <element maxOccurs="unbounded" minOccurs="0" name="previousEra" type="gsmlgt:TimeOrdinalEraPropertyType">
+					<element name="previousEra" type="gsmlgt:TimeOrdinalEraPropertyType" minOccurs="0" maxOccurs="unbounded">
 						<annotation>
-              <documentation>Preceding era</documentation>
+							<documentation>Preceding era</documentation>
 							<appinfo>
 								<reversePropertyName xmlns="http://www.opengis.net/gml/3.2">gsmlgt:end</reversePropertyName>
 							</appinfo>
@@ -345,7 +345,7 @@ Note that the "German School" defines stratigraphic eras conceptually, without r
 		<attributeGroup ref="gml:AssociationAttributeGroup"/>
 		<attributeGroup ref="gml:OwnershipAttributeGroup"/>
 	</complexType>
-  <element name="TimeOrdinalReferenceSystem" substitutionGroup="gml:TimeOrdinalReferenceSystem" type="gsmlgt:TimeOrdinalReferenceSystemType">
+	<element name="TimeOrdinalReferenceSystem" type="gsmlgt:TimeOrdinalReferenceSystemType" substitutionGroup="gml:TimeOrdinalReferenceSystem">
 		<annotation>
 			<documentation>A time reference system comprised of an ordered set of time periods (time ordinal eras).</documentation>
 		</annotation>
@@ -354,16 +354,16 @@ Note that the "German School" defines stratigraphic eras conceptually, without r
 		<complexContent>
 			<extension base="gml:TimeOrdinalReferenceSystemType">
 				<sequence>
-          <element maxOccurs="unbounded" minOccurs="0" name="component" type="gsmlgt:TimeOrdinalEraPropertyType">
-            <annotation>
-              <documentation>TimeOrdinalEra composing the TimeOrdinalReferenceSystem</documentation>
-            </annotation>
-          </element>
-          <element maxOccurs="unbounded" minOccurs="2" name="referencePoint" type="gsmlgt:TimeOrdinalEraBoundaryPropertyType">
-            <annotation>
-              <documentation>Two reference points defining the extent of the system</documentation>
-            </annotation>
-          </element>
+					<element name="component" type="gsmlgt:TimeOrdinalEraPropertyType" minOccurs="0" maxOccurs="unbounded">
+						<annotation>
+							<documentation>TimeOrdinalEra composing the TimeOrdinalReferenceSystem</documentation>
+						</annotation>
+					</element>
+					<element name="referencePoint" type="gsmlgt:TimeOrdinalEraBoundaryPropertyType" minOccurs="2" maxOccurs="unbounded">
+						<annotation>
+							<documentation>Two reference points defining the extent of the system</documentation>
+						</annotation>
+					</element>
 				</sequence>
 			</extension>
 		</complexContent>
