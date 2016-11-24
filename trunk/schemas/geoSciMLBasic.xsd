@@ -4,7 +4,7 @@
 <!-- Version 4.0.1 - changed GeomophologicFeature-unitDescription association from 0..1 to 0..* - 1 February 2016 -->
 <schema xmlns="http://www.w3.org/2001/XMLSchema" xmlns:gml="http://www.opengis.net/gml/3.2" xmlns:gmlexr="http://www.opengis.net/gml/3.3/exr" xmlns:gsmlb="http://xmlns.geosciml.org/GeoSciML-Basic/4.1" xmlns:sam="http://www.opengis.net/sampling/2.0" xmlns:swe="http://www.opengis.net/swe/2.0" targetNamespace="http://xmlns.geosciml.org/GeoSciML-Basic/4.1" elementFormDefault="qualified" version="4.1.0">
 <annotation>
-    <documentation>GeologyBasic is a package of classes representing fundamental geological map features and the relations between them.  GeoSciML describes a geologic dataset as a series of GeologicFeature occurrences, spatially represented as MappedFeature.  A map is a collection of MappedFeatures.  The term “map”, typically understood as a map sheet (a given area on the surface of the earth), is only one possible collection of MappedFeatures.  Other examples are cross-sections, block diagrams, and even borehole logs (a linear map).  MappedFeature can represent any features and GeologicFeatures are one of the kinds of features it can represent.  A MappedFeature identifies what it represents using its “specification” association.</documentation>
+    <documentation>GeologyBasic is a package of classes representing fundamental geological map features and the relations between them.  GeoSciML describes a geologic dataset as a series of GeologicFeature occurrences, spatially represented as MappedFeature.  A map is a collection of MappedFeatures.  The term 'map', typically understood as a map sheet (a given area on the surface of the earth), is only one possible collection of MappedFeatures.  Other examples are cross-sections, block diagrams, and even borehole logs (a linear map).  MappedFeature can represent any features and GeologicFeatures are one of the kinds of features it can represent.  A MappedFeature identifies what it represents using its 'specification' association.</documentation>
   </annotation>
 	<import namespace="http://www.opengis.net/gml/3.2" schemaLocation="http://schemas.opengis.net/gml/3.2.1/gml.xsd"/>
 	<import namespace="http://www.opengis.net/gml/3.3/exr" schemaLocation="http://schemas.opengis.net/gml/3.3/extdEncRule.xsd"/>
@@ -245,7 +245,7 @@ Values: instance, typicalNorm, definingNorm.</documentation>
 					</element>
 					<element name="purpose" type="gsmlb:DescriptionPurposeType" minOccurs="0">
 						<annotation>
-              <documentation>The purpose:DescriptionPurpose property provides a specification of the intended purpose or level of abstraction for the given EarthMaterial. The intent is the same a GeologicFeature’s purpose and it shares the same vocabulary (instance, typicalNorm, definingNorm).</documentation>
+              <documentation>The purpose:DescriptionPurpose property provides a specification of the intended purpose or level of abstraction for the given EarthMaterial. The intent is the same a GeologicFeature's purpose and it shares the same vocabulary (instance, typicalNorm, definingNorm).</documentation>
 						</annotation>
 					</element>
 					<element name="gbEarthMaterialDescription" type="gsmlb:EarthMaterialAbstractDescriptionPropertyType" minOccurs="0" maxOccurs="unbounded">
@@ -556,7 +556,7 @@ Values: instance, typicalNorm, definingNorm.</documentation>
 	</complexType>
 	<element name="GSML_QuantityRange" type="gsmlb:GSML_QuantityRangeType" substitutionGroup="swe:QuantityRange">
 		<annotation>
-      <documentation>GSML_QuantityRange is a specialization of SWE Common QuantiytyRange (OGC 08-094r1, Clause 7.2.13)  where lower and upper values are made explicit. SWE::QuantityRange uses an array of values (RealPair, see Clause 7.2.1) where the lowest value is the first element and the highest the second.  This convenience data type has been created as an alternative encoding for implementations that do no support encoding of arrays in a single field (e.g. DBF) or reference to elements in string encoded arrays (eg. Filter Encoding Specification 2.0 – OGC 09-029r2).
+      <documentation>GSML_QuantityRange is a specialization of SWE Common QuantiytyRange (OGC 08-094r1, Clause 7.2.13)  where lower and upper values are made explicit. SWE::QuantityRange uses an array of values (RealPair, see Clause 7.2.1) where the lowest value is the first element and the highest the second.  This convenience data type has been created as an alternative encoding for implementations that do no support encoding of arrays in a single field (e.g. DBF) or reference to elements in string encoded arrays (eg. Filter Encoding Specification 2.0 - OGC 09-029r2).
 &amp;nbsp;-------------------------
  SWE RealPair is encoded as space delimited lists (&lt;swe:value&gt;10 300&lt;/swe:value&gt; in XML) , which demands that clients parse the string to extract each token.  To build a WFS/FES query that tests the first element, it requires parsing the string either using string-before(swe:value,' ')  or tokenize(swe:value,' ').  This is cumbersome at best, or not even supported by the server at worst.  09-026r2 Clause 7.4.4 describes the minimal XPath supports and string parsing is not present.</documentation>
 		</annotation>
@@ -717,7 +717,7 @@ Values: instance, typicalNorm, definingNorm.</documentation>
 					</element>
 					<element name="eventEnvironment" minOccurs="0" maxOccurs="unbounded">
 						<annotation>
-              <documentation>The eventEnvironment property (SWE::Category) is a category from a controlled vocabulary identifying the physical setting within which a GeologicEvent takes place. Event environment is construed broadly to include physical settings on the Earth surface specified by climate, tectonics, physiography or geography, and settings in the Earth’s interior specified by pressure, temperature, chemical environment, or tectonics.</documentation>
+              <documentation>The eventEnvironment property (SWE::Category) is a category from a controlled vocabulary identifying the physical setting within which a GeologicEvent takes place. Event environment is construed broadly to include physical settings on the Earth surface specified by climate, tectonics, physiography or geography, and settings in the Earth's interior specified by pressure, temperature, chemical environment, or tectonics.</documentation>
 						</annotation>
 						<complexType>
 							<complexContent>
@@ -761,7 +761,7 @@ Values: instance, typicalNorm, definingNorm.</documentation>
 	</complexType>
 	<element name="GeologicFeature" type="gsmlb:GeologicFeatureType" abstract="true" substitutionGroup="gml:AbstractFeature">
 		<annotation>
-      <documentation>The abstract GeologicFeature class represents a conceptual feature that is hypothesized to exist coherently in the world. It corresponds with a "legend item" from a traditional geologic map and its instance acts as the "description package".  The description package is classified according to its intended purpose as a typicalNorm, definingNorm or instance.  GeologicFeature can be used outside the context of a map (it can lack a MappedFeature), for example when describing typical norms (describing expected property from a feature) or defining norms (describing properties required from a feature to be classifying in a group, such as given geologic unit).  A GeologicFeature appearing on a map is considered as an “instance”.</documentation>
+      <documentation>The abstract GeologicFeature class represents a conceptual feature that is hypothesized to exist coherently in the world. It corresponds with a "legend item" from a traditional geologic map and its instance acts as the "description package".  The description package is classified according to its intended purpose as a typicalNorm, definingNorm or instance.  GeologicFeature can be used outside the context of a map (it can lack a MappedFeature), for example when describing typical norms (describing expected property from a feature) or defining norms (describing properties required from a feature to be classifying in a group, such as given geologic unit).  A GeologicFeature appearing on a map is considered as an 'instance'.</documentation>
 		</annotation>
 	</element>
 	<complexType name="GeologicFeatureType" abstract="true">
@@ -1224,7 +1224,7 @@ Examples: group, subgroup, formation, member, bed, intrusion, complex, batholith
 	</complexType>
 	<element name="ShearDisplacementStructure" type="gsmlb:ShearDisplacementStructureType" substitutionGroup="gsmlb:GeologicStructure">
 		<annotation>
-      <documentation>A shear displacement structure includes all brittle to ductile style structures along which displacement has occurred, from a simple, single 'planar' brittle or ductile surface to a fault system comprised of tens of strands of both brittle and ductile nature. This structure may have some significant thickness (a deformation zone) and have an associated body of deformed rock that may be considered a deformation unit (which geologicUnitType is ‘DeformationUnit’) which can be associated to the ShearDisplacementStructure using GeologicFeatureRelation from the GeoSciML Extension package</documentation>
+      <documentation>A shear displacement structure includes all brittle to ductile style structures along which displacement has occurred, from a simple, single 'planar' brittle or ductile surface to a fault system comprised of tens of strands of both brittle and ductile nature. This structure may have some significant thickness (a deformation zone) and have an associated body of deformed rock that may be considered a deformation unit (which geologicUnitType is 'DeformationUnit') which can be associated to the ShearDisplacementStructure using GeologicFeatureRelation from the GeoSciML Extension package</documentation>
 		</annotation>
 	</element>
 	<complexType name="ShearDisplacementStructureType">
