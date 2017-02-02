@@ -1,9 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<schema  see="http://www.opengis.net/spec/gsml/4.1/req/gsml4xsd/code-sch" xmlns="http://purl.oclc.org/dsdl/schematron" 
+<schema  see="http://www.opengis.net/spec/gsml/4.1/req/gsml4xsd/core-sch" xmlns="http://purl.oclc.org/dsdl/schematron" 
 queryBinding="xslt2" xmlns:xsl="http://www.w3.org/1999/XSL/Transform">
+<include href="http://schemas.opengis.net/gml/3.2.1/SchematronConstraints.xml"/>
 	<!--
         This schematron schema checks the core XML encoding requirements of OGC GeoSciML 4.0, as specified
-        in the requirements class: http://www.opengis.net/spec/gsml/4.0/req/gsml4xsd/code-sch
+        in the requirements class: http://www.opengis.net/spec/gsml/4.1/req/gsml4xsd/code-sch
     -->
     <xsl:import-schema schema-location="http://schemas.opengis.net/sweCommon/2.0/simple_components.xsd" namespace="http://www.opengis.net/swe/2.0"/>
 	<title>OGC GeoSciML 4.1 XML encoding tests<br/>
