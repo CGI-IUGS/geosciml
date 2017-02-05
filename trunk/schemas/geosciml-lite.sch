@@ -6,9 +6,9 @@ queryBinding="xslt2" xmlns:xsl="http://www.w3.org/1999/XSL/Transform">
         This schematron checks theLite XML encoding requirements of OGC GeoSciML 4.1, as specified
         in the requirements class: http://www.opengis.net/spec/gsml/4.1/req/gsml4xsd-lite-31/sch
     -->
-	<title>OGC GeoSciML 4.1 XML Lite tests<br/>
-	This schematron schema checks the GeoSciML-lite XML encoding requirements of OGC GeoSciML 4.1, as specified
-        in the requirements class: http://www.opengis.net/spec/gsml/4.1/req/gsml4xsd-lite-31/sch</title>
+	<title>OGC GeoSciML 4.1 XML Lite tests</title>
+	<p>This schematron schema checks the GeoSciML-lite XML encoding requirements of OGC GeoSciML 4.1, as specified
+        in the requirements class: http://www.opengis.net/spec/gsml/4.1/req/gsml4xsd-lite-31/sch</p>
   <!-- this schematron does not provide any rule, just import statement to dependencies -->
 	
 	
