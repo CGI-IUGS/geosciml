@@ -4,8 +4,7 @@ queryBinding="xslt2" xmlns:xsl="http://www.w3.org/1999/XSL/Transform">
 <xi:include xmlns:xi="http://www.w3.org/2001/XInclude" href="geoSciMLBasic.sch" xpointer="element(/1/1)"/>
  <xi:include xmlns:xi="http://www.w3.org/2001/XInclude" href="geologicTime.sch" xpointer="element(/1/1)"/>
     
-    <!--<include href="geoSciMLBasic.sch"/>
-<include href="geologicTime.sch"/>-->
+
 	<!--
         This schematron schema extension the Extension XML encoding requirements of OGC GeoSciML 4.1, as specified
         in the requirements class: http://www.opengis.net/spec/gsml/4.1/req/gsml4xsd-geoSciMExtension/sch

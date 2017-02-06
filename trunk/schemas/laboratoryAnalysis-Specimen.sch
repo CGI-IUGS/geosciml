@@ -4,7 +4,7 @@ queryBinding="xslt2" xmlns:xsl="http://www.w3.org/1999/XSL/Transform">
 	<xi:include xmlns:xi="http://www.w3.org/2001/XInclude" href="gsml4-core.sch" xpointer="element(/1/1)"/>
 	
 	<!--
-        This schematron checks the LAboratory and Analysis XML encoding requirements of OGC GeoSciML 4.1, as specified
+        This schematron checks the Laboratory and Analysis XML encoding requirements of OGC GeoSciML 4.1, as specified
         in the requirements class: http://www.opengis.net/spec/gsml/4.1/req/gsml4xsd-lab/sch
     -->
 	<title>OGC GeoSciML 4.1 XML Borehole tests</title>
