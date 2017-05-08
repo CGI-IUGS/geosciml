@@ -1,0 +1,212 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<c:ComplexDataStore xmlns:c="http://www.geotools.org/complex"
+	xmlns:ogc="http://www.opengis.net/ogc"
+	xmlns:xs="http://www.w3.org/2001/XMLSchema"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.geotools.org/complex ComplexDataStore.xsd
+                      http://www.opengis.net/ogc http://schemas.opengis.net/filter/1.1.0/expr.xsd">
+
+	<namespaces>
+
+		<Namespace>
+			<prefix>gsml</prefix>
+			<uri>urn:cgi:xmlns:CGI:GeoSciML:2.0</uri>
+		</Namespace>
+
+		<Namespace>
+			<prefix>gml</prefix>
+			<uri>http://www.opengis.net/gml</uri>
+		</Namespace>
+
+		<Namespace>
+			<prefix>xlink</prefix>
+			<uri>http://www.w3.org/1999/xlink</uri>
+		</Namespace>
+
+		<Namespace>
+			<prefix>sa</prefix>
+			<uri>http://www.opengis.net/sampling/1.0</uri>
+		</Namespace>
+
+		<Namespace>
+			<prefix>om</prefix>
+			<uri>http://www.opengis.net/om/1.0</uri>
+		</Namespace>
+
+		<Namespace>
+			<prefix>cv</prefix>
+			<uri>http://www.opengis.net/cv/0.2.1</uri>
+		</Namespace>
+
+		<Namespace>
+			<prefix>swe</prefix>
+			<uri>http://www.opengis.net/swe/1.0.1</uri>
+		</Namespace>
+
+		<Namespace>
+			<prefix>sml</prefix>
+			<uri>http://www.opengis.net/sensorML/1.0.1</uri>
+		</Namespace>
+
+	</namespaces>
+
+	<sourceDataStores>
+		<DataStore>
+			<id>MappedFeatureGaOracle</id>
+			<parameters>
+				<Parameter>
+					<name>dbtype</name>
+					<value>oracle</value>
+				</Parameter>
+				<Parameter>
+					<name>host</name>
+					<value>PUT_YOUR_ORACLE_SERVER_NAME_HERE</value>
+				</Parameter>
+				<Parameter>
+					<name>port</name>
+					<value>1521</value>
+				</Parameter>
+				<Parameter>
+					<name>instance</name>
+					<value>PUT_YOUR_ORACLE_INSTANCE_NAME_HERE</value>
+				</Parameter>
+				<Parameter>
+					<name>user</name>
+					<value>gsmltb3</value>
+				</Parameter>
+				<Parameter>
+					<name>passwd</name>
+					<value>PUT_YOUR_ORACLE_USER_PASSWORD_HERE</value>
+				</Parameter>
+			</parameters>
+		</DataStore>
+	</sourceDataStores>
+
+	<catalog>../../schemas/catalog.xml</catalog>
+
+	<targetTypes>
+		<FeatureType>
+			<schemaUri>
+				../../profiles/MappedFeatureGaOracle.xsd
+			</schemaUri>
+		</FeatureType>
+	</targetTypes>
+
+	<typeMappings>
+
+		<FeatureTypeMapping>
+
+			<!-- this is the data store id given above -->
+			<sourceDataStore>MappedFeatureGaOracle</sourceDataStore>
+
+			<!-- the name of the table in the database -->
+			<sourceType>GSML_EASTOZ_GEOLOGY</sourceType>
+
+			<targetElement>gsml:MappedFeatureGaOracle</targetElement>
+
+			<groupBy />
+
+			<attributeMappings>
+
+				<AttributeMapping>
+					<targetAttribute>
+						gsml:MappedFeatureGaOracle
+					</targetAttribute>
+					<idExpression>
+						<OCQL>strConcat('objectid.', OBJECTID)</OCQL>
+					</idExpression>
+				</AttributeMapping>
+
+				<AttributeMapping>
+					<targetAttribute>
+						gsml:MappedFeatureGaOracle/gsml:specification
+					</targetAttribute>
+					<ClientProperty>
+						<name>xlink:href</name>
+						<value>
+							strConcat('urn:cgi:feature:GA:Stratno:',
+							STRATNO)
+						</value>
+					</ClientProperty>
+				</AttributeMapping>
+
+				<AttributeMapping>
+					<targetAttribute>
+						gsml:MappedFeatureGaOracle/gsml:observationMethod/gsml:CGI_TermValue/gsml:value
+					</targetAttribute>
+					<sourceExpression>
+						<OCQL>INT_METHOD</OCQL>
+					</sourceExpression>
+					<ClientProperty>
+						<name>codeSpace</name>
+						<value>
+							'urn:cgi:classifierScheme:GA:1MillionGeology_ObservationMethod'
+						</value>
+					</ClientProperty>
+				</AttributeMapping>
+
+				<!--
+					gsml:positionalAccuracy is abstract so need to give it a concrete type.
+					This mapping must come before the mapping for
+					gsml:positionalAccuracy/gsml:CGI_NumericValue/gsml:principalValue
+				-->
+				<AttributeMapping>
+					<targetAttribute>
+						gsml:MappedFeatureGaOracle/gsml:positionalAccuracy
+					</targetAttribute>
+					<targetAttributeNode>
+						gsml:CGI_NumericValuePropertyType
+					</targetAttributeNode>
+				</AttributeMapping>
+
+				<AttributeMapping>
+					<targetAttribute>
+						gsml:MappedFeatureGaOracle/gsml:positionalAccuracy/gsml:CGI_NumericValue/gsml:principalValue
+					</targetAttribute>
+					<sourceExpression>
+						<OCQL>LOC_ACC</OCQL>
+					</sourceExpression>
+					<ClientProperty>
+						<name>uom</name>
+						<value>'urn:ogc:def:uom:UCUM:m'</value>
+					</ClientProperty>
+				</AttributeMapping>
+
+				<AttributeMapping>
+					<targetAttribute>
+						gsml:MappedFeatureGaOracle/gsml:shape
+					</targetAttribute>
+					<sourceExpression>
+						<OCQL>GEOM</OCQL>
+					</sourceExpression>
+				</AttributeMapping>
+
+				<!--
+					
+					*********************************************************************************
+					
+					Everything below this point contains no data but is required for schema validity.
+					
+					*********************************************************************************
+					
+				-->
+
+				<AttributeMapping>
+					<targetAttribute>
+						gsml:samplingFrame
+					</targetAttribute>
+					<ClientProperty>
+						<name>xlink:href</name>
+						<value>
+							'http://example.com/get/your/sampling/frame/here'
+						</value>
+					</ClientProperty>
+				</AttributeMapping>
+
+			</attributeMappings>
+
+		</FeatureTypeMapping>
+
+	</typeMappings>
+
+</c:ComplexDataStore>

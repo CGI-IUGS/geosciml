@@ -1,0 +1,490 @@
+<html xmlns:fo="http://www.w3.org/1999/XSL/Format" xmlns:pr="urn:ws-profile-mgr:schemas:profiles:profiles.xsd" xmlns:ud="http://utf-x.sourceforge.net/xsd/utfxdoc_1_0/utfxdoc.xsd">
+   <head>
+      <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+      <title>GeoSciML Data Product</title><style type="text/css">
+
+
+body {
+  color: black;
+  font-family: Arial;
+  font-family: Arial, sans-serif;  
+}
+
+.block {
+  space-before: 2mm;
+  space-after: 2mm;
+  margin-left: 2mm;
+}
+
+.para {
+  padding-left: 2mm;
+  padding-top: 2mm;
+}    
+ 
+.h1-heading {
+  font-size: 18pt;
+  space-before: 5mm;
+  space-after: 2mm;
+  text-align: left;
+  color: black;
+}
+
+.h2-heading {
+  font-size: 16pt;
+  space-before: 5mm;
+  space-after: 2mm;
+  text-align: left;
+  color: black;
+}
+
+.h3-heading {
+  font-size: 14pt;
+  space-before: 5mm;
+  space-after: 2mm;
+  text-align: left;
+  color: black;
+}
+
+.h1-sect {
+  font-size :12pt;
+  space-after: 2mm;
+  text-align: left;
+  padding-top: 5mm;
+  padding-left: 1mm;
+  color: black;
+}
+
+.h2-sect {
+  font-size :12pt;
+  space-after: 2mm;
+  text-align: left;
+  padding-top: 5mm;
+  padding-left: 1mm;  
+  color: black;
+}
+
+.h3-sect {
+  font-size :12pt;
+  space-after: 2mm;
+  text-align: left;
+  padding-top: 5mm;
+  padding-left: 1mm;  
+  color: black;
+}
+
+.pr-req-id {
+  color: brown;
+  font-size: 12pt;
+  font-weight: bold
+}
+
+.pr-req-ref {
+  color: brown;
+  font-size: 10pt;
+  font-weight: bold
+}
+
+.pr-req-block {
+  space-after: 2mm;
+  margin-left: 5mm;
+  padding: 5mm;
+  text-align: left;
+  font-size: 9pt;
+}
+
+.pr-req-normative-block {
+  space-after: 2mm;
+  padding: 5mm;
+  text-align: left;
+  background-color: #FFFFCC;
+  font-size: 9pt;
+  border-style: solid;
+  border-color: #f5a90b;
+  border-width: 2px;
+}
+
+.pr-assertion-name {
+  color: brown;
+  font-size: 10pt;
+  font-weight: bold;
+  space-after: 1mm;  
+}
+
+.pr-assertion-block {
+  padding: 4mm;
+  text-align: left;
+  background-color: #FFFFCC;
+  font-size: 9pt;
+  border-style: solid;
+  border-color: #f5a90b;
+  border-width: 2px;
+}
+
+.pr-target-id {
+  font-weight: bold;
+  color: #118811;
+}
+
+.pr-target-ref {
+  font-size:10pt;
+  font-weight: bold;
+  color: #118811;
+}
+
+.target-name {
+  font-weight: bold;
+  color: #118811;
+}
+
+.conformance-target-block {
+  padding: 4mm;
+  text-align: left;
+  background-color: #CCFFCC;
+  font-size: 9pt;
+  border-style: solid;
+  border-color: green;
+  border-width: 2px;
+  width: 90%;    
+}
+
+.xpath {
+  font-family: Courier;
+  font-weight: bold;
+}
+
+/* coponent definied in this profile */
+.defined {
+  padding: 5mm;
+  border-width:2px;
+  border-color: black;
+  border-style:solid;
+  margin-bottom: 5mm;
+  margin-top: 5mm;
+}
+
+/* component inherited from another profile */
+.inherited {
+  padding: 5mm;
+  border-width:2px;
+  border-color: #AAAAAA;
+  border-style:solid;
+  margin-bottom: 5mm;
+  margin-top: 5mm;
+  color: #AAAAAA;
+}
+
+.error-block {
+  color: white;
+  background-color: red;
+  font-weight: bold;
+  padding: 5mm;
+  font-family: Courier;
+}
+
+/* UTF-X doc styles */
+h1 {
+    font-family: Arial, sans-serif;
+    font-size: 20pt;
+    color: #000000;
+    background-color: white;
+}
+h2 {
+    font-family: Arial, sans-serif;
+    font-size: 18pt;
+    color: #000000;
+    background-color: white;
+}
+h3 {
+    font-family: Arial, sans-serif;
+    font-size: 16pt;
+    color: #000000;
+    background-color: white;
+}
+p {
+    font-family: Helvetica, sans-serif;
+    font-size:12pt;
+}
+.ud-title {
+    font-family: Helvetica, sans-serif;
+    font-size: 50pt;
+    font-weight: bold;
+    color: #000000;
+    background-color: white;
+    text-align: center;
+}
+.ud-subtitle {
+    font-family: Helvetica, sans-serif;
+    font-size: 30pt;
+    font-weight: bold;
+    color: #000000;
+    background-color: white;
+    text-align: center;
+}
+.ud-author {
+    font-family: Helvetica, sans-serif;
+    font-size: 12pt;
+    text-align: center;
+}
+.ud-version {
+    font-family: Helvetica;
+    font-size: 12pt;
+    text-align: center;
+}
+.ud-date {
+    font-family: Helvetica;
+    font-size: 12pt;
+    text-align: center;
+}
+.ud-copyright {
+    font-family: Helvetica;
+    font-size: 12pt;
+    text-align: center;
+}
+.ud-note {
+    padding-top: 2mm;
+    padding-bottom: 2mm;
+    padding-left: 2mm;
+    padding-right: 2mm;
+    background-color: #BBFFEE;
+    border-color: #448877;
+    border-width: 2px;
+    border-style:solid;
+    font-family:Arial;
+    font-size:10pt;
+}
+.ud-figure {
+    text-align:left;
+    padding-left:10mm;
+    padding-right:10mm;
+}
+.ud-code-block {
+  padding: 5mm;
+  text-align:left;
+  background-color: #FFFFF8;
+  font-family: Courier, monospace;
+  font-size: 10pt;
+  border-style: solid;
+  border-color: #f5a90b;
+  border-width: 2px;
+  width: 90%;
+}
+.ud-code-inline {
+  background-color: #FFFFFF;
+  font-family: Courier;
+  font-size: 9pt;
+}
+/*
+a {
+    color:#000000;
+    text-decoration:none;
+}
+a:hover {
+    color:#f5a90b;
+    text-decoration:none;
+}
+*/
+.ud-caption {
+    font-family: Arial, sans-serif;
+    text-align:left;
+    padding-left:2mm;
+}
+.ud-toc {
+    padding-left:5mm;
+    color:#f5a90b;
+    text-decoration:none;
+}
+
+.ud-correct-example-code-block {
+    padding: 4mm;
+    text-align: left;
+    font-family: Courier, monospace;
+    font-size: 9pt;
+    border-style: solid;
+    background-color: #F8FFF8;
+    border-color: green;
+    border-width: 2px;
+}
+
+.ud-incorrect-example-code-block {
+    padding: 5mm;
+    text-align: left;
+    font-family: Courier, monospace;
+    font-size: 9pt;
+    border-style: solid;
+    background-color: #FFF8F8;
+    border-color: red;
+    border-width: 2px;
+}
+
+.ud-highlight {
+    font-weight: bold;
+}
+
+/* xml verbatim styles */
+.ud-xml-default {
+    color: #334455;
+    background-color:red;
+    font-family: Courier;
+     
+}
+.ud-xml-element-name {
+     color: #990000; 
+}
+.ud-xml-element-nsprefix {
+     color: #666666; 
+}
+.ud-xml-attr-name {
+     color: #660000; 
+}
+.ud-xml-attr-content {
+    color: #000099;
+}
+.ud-xml-ns-name {
+     color: #666600;
+}
+.ud-xml-ns-uri {
+     color: #330099;
+}
+.ud-xml-text {
+    color: #000000;
+}
+.ud-xml-comment {
+    color: #006600;
+     font-style: italic; 
+}
+.ud-xml-pi-name {
+    color: #006600;
+     font-style: italic;
+}
+.ud-xml-pi-content {
+    color: #006666;
+     font-style: italic ;
+}
+
+
+    </style></head>
+   <body>
+      <div></div><a target="_blank" href="profile-geosciml-data-product.pdf">PDF Version</a><div style="font-size:36pt; text-align: center;">
+         <div>GeoSciML Data Product</div>
+         <div style="font-size:24pt;">Service Profile</div>
+         <div><object align="middle" style="text-align: center; padding-left:15mm;" title="Inheritance Diagram" type="image/svg+xml" width="500px" height="250px" data="./inheritance-geosciml-data-product.svg"></object></div>
+      </div>
+      <div>
+         <div xmlns:u="http://utf-x.sourceforge.net/xsd/utfxdoc_1_0/utfxdoc.xsd" class="ud-version"> Revision: 214  </div>
+         <div xmlns:u="http://utf-x.sourceforge.net/xsd/utfxdoc_1_0/utfxdoc.xsd" class="ud-date"> 2007-03-14 11:55:40 +1100 (Wed, 14 Mar 2007)  </div>
+      </div>
+      <div xmlns:rim="urn:oasis:names:tc:ebxml-regrep:xsd:rim:3.0" class="h1-sect">
+         <div class="h1-heading">Purpose</div>
+         
+         
+         <div class="para">This is a placeholder for  any  implementation profiles of GeoSciML that we need to specify for an expectation of conformance
+            with GeoSciML
+         </div>
+         
+      </div>
+      <h2 xmlns:u="http://utf-x.sourceforge.net/xsd/utfxdoc_1_0/utfxdoc.xsd">Namespace Context</h2>
+      <table xmlns:u="http://utf-x.sourceforge.net/xsd/utfxdoc_1_0/utfxdoc.xsd" bgcolor="#DDDDCC" cellpadding="5mm">
+         <tbody>
+            <tr>
+               <th>Prefix</th>
+               <th>Namespace</th>
+            </tr>
+            <tr>
+               <td style="font-family: Courier; font-weight: bold; color: #FF0000">rim3</td>
+               <td style="font-family: Courier">urn:oasis:names:tc:ebxml-regrep:xsd:rim:3.0</td>
+            </tr>
+            <tr>
+               <td style="font-family: Courier; font-weight: bold; color: ">xlink</td>
+               <td style="font-family: Courier">http://www.w3.org/1999/xlink</td>
+            </tr>
+            <tr>
+               <td style="font-family: Courier; font-weight: bold; color: ">pr</td>
+               <td style="font-family: Courier">urn:ws-profile-mgr:schemas:profiles:profiles.xsd</td>
+            </tr>
+            <tr>
+               <td style="font-family: Courier; font-weight: bold; color: ">gwsit</td>
+               <td style="font-family: Courier">http://qld.gov.au/gea/wsi/testing/1.0</td>
+            </tr>
+            <tr>
+               <td style="font-family: Courier; font-weight: bold; color: ">qg</td>
+               <td style="font-family: Courier">http://qld.gov.au/wsi/1.0</td>
+            </tr>
+            <tr>
+               <td style="font-family: Courier; font-weight: bold; color: #550000">xsd</td>
+               <td style="font-family: Courier">http://www.w3.org/2001/XMLSchema</td>
+            </tr>
+            <tr>
+               <td style="font-family: Courier; font-weight: bold; color: ">xsi</td>
+               <td style="font-family: Courier">http://www.w3.org/1999/XMLSchema-instance</td>
+            </tr>
+            <tr>
+               <td style="font-family: Courier; font-weight: bold; color: #555500">wsdl</td>
+               <td style="font-family: Courier">http://schemas.xmlsoap.org/wsdl/</td>
+            </tr>
+            <tr>
+               <td style="font-family: Courier; font-weight: bold; color: #555555">soap</td>
+               <td style="font-family: Courier">http://schemas.xmlsoap.org/wsdl/soap/</td>
+            </tr>
+            <tr>
+               <td style="font-family: Courier; font-weight: bold; color: #005555">soap-env</td>
+               <td style="font-family: Courier">http://schemas.xmlsoap.org/soap/envelope/</td>
+            </tr>
+            <tr>
+               <td style="font-family: Courier; font-weight: bold; color: #000055">wsse</td>
+               <td style="font-family: Courier">http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-secext-1.0.xsd</td>
+            </tr>
+            <tr>
+               <td style="font-family: Courier; font-weight: bold; color: #005500">wsu</td>
+               <td style="font-family: Courier">http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd</td>
+            </tr>
+            <tr>
+               <td style="font-family: Courier; font-weight: bold; color: ">xenc</td>
+               <td style="font-family: Courier">http://www.w3.org/2001/04/xmlenc#</td>
+            </tr>
+            <tr>
+               <td style="font-family: Courier; font-weight: bold; color: ">ds</td>
+               <td style="font-family: Courier">http://www.w3.org/2000/09/xmldsig#</td>
+            </tr>
+            <tr>
+               <td style="font-family: Courier; font-weight: bold; color: ">wsa</td>
+               <td style="font-family: Courier">http://www.w3.org/2005/08/addressing</td>
+            </tr>
+            <tr>
+               <td style="font-family: Courier; font-weight: bold; color: ">wfs</td>
+               <td style="font-family: Courier">http://www.opengis.net/wfs</td>
+            </tr>
+            <tr>
+               <td style="font-family: Courier; font-weight: bold; color: ">m</td>
+               <td style="font-family: Courier">http://example.org/price</td>
+            </tr>
+            <tr>
+               <td style="font-family: Courier; font-weight: bold; color: ">myapp</td>
+               <td style="font-family: Courier">http://example.com/someJavaApp</td>
+            </tr>
+            <tr>
+               <td style="font-family: Courier; font-weight: bold; color: ">rim</td>
+               <td style="font-family: Courier">urn:oasis:names:tc:ebxml-regrep:xsd:rim:3.0</td>
+            </tr>
+            <tr>
+               <td style="font-family: Courier; font-weight: bold; color: ">gml</td>
+               <td style="font-family: Courier">http://www.opengis.net/gml</td>
+            </tr>
+         </tbody>
+      </table>
+      <div xmlns:rim="urn:oasis:names:tc:ebxml-regrep:xsd:rim:3.0">TODO Document me</div>
+      <p xmlns:rim="urn:oasis:names:tc:ebxml-regrep:xsd:rim:3.0">
+         <div class="h2-sect">
+            <div class="h2-heading">Requirements</div><a name="GEOSCIML1"></a><div class="defined">
+               <div style="color: brown; font-size: 12pt; font-weight: bold">GEOSCIML1</div>
+               <div style="color: brown; font-size: 8pt; font-family: Courier;">urn:au:gov:qld:sdi:standards:profiles:sdi-cadastre-data-product:requirements:GEOSCIML1</div>
+               <div class="pr-req-block">
+                  <div class="pr-req-normative-block">Data products will conform to the model defined in the identified version of GeoSciML, using the conformance requirements
+                     specified by the GeoSciML data product.
+                  </div>
+                  <div></div>
+               </div>
+            </div>
+         </div>
+      </p>
+   </body>
+</html>

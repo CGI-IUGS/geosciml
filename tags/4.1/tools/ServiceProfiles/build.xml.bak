@@ -1,0 +1,151 @@
+<?xml version="1.0"?>
+<!-- $Id: build.xml 411 2007-08-05 02:53:04Z jacekrad $ -->
+<project name="gea-profile" default="render" basedir=".">
+	<description>Queensland Government Enterprise Architecture Service Profiles</description>
+
+	<!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
+	<!-- Global properties -->
+	<!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
+	<property file="wipe.properties" />
+	
+	<property name="wipe.libs" location="${wipe.home}/lib" />
+	<!-- directories relative to basedir -->
+	<property name="dist-name" value="${gea.profiles.release.name}" />
+	<property name="dist-file" location="${dist-name}.zip" />
+	<property name="lib" location="lib" />
+	<property name="dist.dir" location="dist" />
+	<property name="build.dir" location="build" />
+	<property name="saxon-jar" location="${wipe.libs}/saxon8.jar"/>
+
+
+	<!-- this software will only work with the following; do not change -->
+	<property name="testrunner" value="utfx.runner.TestRunner" />
+	<property name="tarnsformer_factory_impl" value="net.sf.saxon.TransformerFactoryImpl" />
+	<property name="xpath_factory_impl" value="net.sf.saxon.xpath.XPathFactoryImpl" />
+
+	<property name="http.proxyHost" value="127.0.0.1" />
+	<property name="http.proxyPort" value="3128" />
+	<xmlcatalog id="catalog" catalogpathref="./catalog.xml" />
+
+	<!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
+	<!-- Apache FOP task -->
+	<!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
+	<property name="fop.dir" value="${wipe.libs}" />
+
+	<taskdef name="fop" classname="org.apache.fop.tools.anttasks.Fop">
+		<classpath>
+			<pathelement location="${wipe.libs}/fop.jar" />
+			<pathelement location="${wipe.libs}/avalon.jar" />
+			<pathelement location="${wipe.libs}/batik.jar" />
+			<pathelement location="${wipe.libs}/JimiProClasses.zip" />
+			<pathelement location="${wipe.libs}/resolver.jar" />
+			<pathelement location="." />
+		</classpath>
+	</taskdef>
+
+	<!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
+	<!-- CLASSPATH -->
+	<!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
+	<path id="compile.classpath">
+		<pathelement location="${wipe.libs}/junit.jar" />
+		<pathelement location="${wipe.libs}/fop.jar" />
+		<pathelement location="${wipe.libs}/log4j-1.2.13.jar" />
+		<pathelement location="${wipe.libs}/saxon8.jar" />
+		<pathelement location="${wipe.libs}/saxon8-dom.jar" />
+		<pathelement location="${wipe.libs}/saxon8-xpath.jar" />
+		<pathelement location="${wipe.libs}/xercesImpl.jar" />
+		<pathelement location="${wipe.libs}/utfx.jar" />
+		<pathelement location="${wipe.libs}/utfxdoc.jar" />
+		<pathelement location="${wipe.libs}/wipe.jar" />
+	</path>
+
+	<path id="runtime.classpath">
+		<pathelement location="." />
+		<path refid="compile.classpath" />
+	</path>
+
+
+	<!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
+	<!-- Initialisation -->
+	<!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
+	<target name="init">
+		<tstamp />
+		<mkdir dir="${build.dir}" />
+		<mkdir dir="${build.dir}/profiles" />
+		<mkdir dir="${build.dir}/profiles/images" />
+	</target>
+
+	<!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
+	<!-- clean generated files -->
+	<!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
+	<target name="clean">
+		<delete dir="${build.dir}" />
+		<delete dir="${dist-name}" />
+		<delete file="${dist-file}" />
+	</target>
+
+	<!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
+	<!-- create a distribution zip file -->
+	<!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
+	<target name="dist" depends="clean,render">
+		<delete dir="${dist-name}" />
+		<mkdir dir="${dist-name}" />
+		<copy todir="${dist-name}">
+			<fileset dir="." includes="**/*.xsd" excludes=".svn" />
+			<fileset dir="build/profiles" includes="**/*.html" excludes=".svn" />
+			<fileset dir="build/profiles" includes="**/*.pdf" excludes=".svn" />
+			<fileset dir="build/profiles" includes="**/*.css" excludes=".svn" />
+			<fileset dir="build/profiles" includes="**/*.svg" excludes=".svn" />			
+			<fileset dir="build/profiles" includes="images/*" excludes=".svn" />			
+		</copy>
+		<zip destfile="${dist-file}">
+			<fileset dir="." includes="${dist-name}/**/*" />
+		</zip>
+	</target>
+
+	<target name="assemble" depends="init">
+		<java fork="true" jar="${saxon-jar}">
+			<arg value="-o" />
+			<arg value="build/profiles/assembled-profiles.xml" />
+			<arg value="profiles/list_of_profiles.xml" />
+			<arg value="${wipe.path}/xsl/util/assemble_profiles.xsl" />
+		</java>
+	</target>
+	
+	
+	<!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
+	<!-- pre process the profiles -->
+	<!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
+	<target name="pre-process" depends="init">
+		<java fork="true" jar="${wipe.libs}/wipe.jar">
+			<jvmarg value="-Djavax.xml.transform.TransformerFactory=${tarnsformer_factory_impl}" />
+			<jvmarg value="-Djavax.xml.xpath.XPathFactory=${xpath_factory_impl}" />
+			<jvmarg value="-enableassertions" />
+			<jvmarg value="-ms100m" />
+			<jvmarg value="-mx800m" />
+			<classpath refid="runtime.classpath" />
+			<arg value="profiles/gea-profiles.xml" />
+			<arg value="build/profiles/gea-profiles.xml" />
+		</java>
+	</target>
+
+	<!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
+	<!-- render the profiles -->
+	<!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
+	<target name="render" depends="init, pre-process">
+		<!--
+		<xslt style="xsl/profile_doc_fo.xsl" basedir="build/profiles" in="build/profiles/gea-profiles.xml" out="build/profiles/gea-profiles.fo">
+		</xslt>
+		-->
+		<copy todir="build/profiles" file="${wipe.libs}/css/utfxdoc.css" />
+		<copy todir="build/profiles/images">
+			<fileset dir="profiles/images" includes="*.*" />
+		</copy>
+		<!--
+		<fop basedir="build/profiles" outdir="build/profiles">
+			<fileset includes="*.fo" dir="build/profiles"/>
+		</fop>
+		-->
+	</target>
+
+</project>

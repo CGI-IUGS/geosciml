@@ -1,0 +1,1946 @@
+<html xmlns:fo="http://www.w3.org/1999/XSL/Format" xmlns:pr="urn:ws-profile-mgr:schemas:profiles:profiles.xsd" xmlns:ud="http://utf-x.sourceforge.net/xsd/utfxdoc_1_0/utfxdoc.xsd">
+   <head>
+      <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+      <title>GeoSciML WMS</title><style type="text/css">
+
+
+body {
+  color: black;
+  font-family: Arial;
+  font-family: Arial, sans-serif;  
+}
+
+.block {
+  space-before: 2mm;
+  space-after: 2mm;
+  margin-left: 2mm;
+}
+
+.para {
+  padding-left: 2mm;
+  padding-top: 2mm;
+}    
+ 
+.h1-heading {
+  font-size: 18pt;
+  space-before: 5mm;
+  space-after: 2mm;
+  text-align: left;
+  color: black;
+}
+
+.h2-heading {
+  font-size: 16pt;
+  space-before: 5mm;
+  space-after: 2mm;
+  text-align: left;
+  color: black;
+}
+
+.h3-heading {
+  font-size: 14pt;
+  space-before: 5mm;
+  space-after: 2mm;
+  text-align: left;
+  color: black;
+}
+
+.h1-sect {
+  font-size :12pt;
+  space-after: 2mm;
+  text-align: left;
+  padding-top: 5mm;
+  padding-left: 1mm;
+  color: black;
+}
+
+.h2-sect {
+  font-size :12pt;
+  space-after: 2mm;
+  text-align: left;
+  padding-top: 5mm;
+  padding-left: 1mm;  
+  color: black;
+}
+
+.h3-sect {
+  font-size :12pt;
+  space-after: 2mm;
+  text-align: left;
+  padding-top: 5mm;
+  padding-left: 1mm;  
+  color: black;
+}
+
+.pr-req-id {
+  color: brown;
+  font-size: 12pt;
+  font-weight: bold
+}
+
+.pr-req-ref {
+  color: brown;
+  font-size: 10pt;
+  font-weight: bold
+}
+
+.pr-req-block {
+  space-after: 2mm;
+  margin-left: 5mm;
+  padding: 5mm;
+  text-align: left;
+  font-size: 9pt;
+}
+
+.pr-req-normative-block {
+  space-after: 2mm;
+  padding: 5mm;
+  text-align: left;
+  background-color: #FFFFCC;
+  font-size: 9pt;
+  border-style: solid;
+  border-color: #f5a90b;
+  border-width: 2px;
+}
+
+.pr-assertion-name {
+  color: brown;
+  font-size: 10pt;
+  font-weight: bold;
+  space-after: 1mm;  
+}
+
+.pr-assertion-block {
+  padding: 4mm;
+  text-align: left;
+  background-color: #FFFFCC;
+  font-size: 9pt;
+  border-style: solid;
+  border-color: #f5a90b;
+  border-width: 2px;
+}
+
+.pr-target-id {
+  font-weight: bold;
+  color: #118811;
+}
+
+.pr-target-ref {
+  font-size:10pt;
+  font-weight: bold;
+  color: #118811;
+}
+
+.target-name {
+  font-weight: bold;
+  color: #118811;
+}
+
+.conformance-target-block {
+  padding: 4mm;
+  text-align: left;
+  background-color: #CCFFCC;
+  font-size: 9pt;
+  border-style: solid;
+  border-color: green;
+  border-width: 2px;
+  width: 90%;    
+}
+
+.xpath {
+  font-family: Courier;
+  font-weight: bold;
+}
+
+/* coponent definied in this profile */
+.defined {
+  padding: 5mm;
+  border-width:2px;
+  border-color: black;
+  border-style:solid;
+  margin-bottom: 5mm;
+  margin-top: 5mm;
+}
+
+/* component inherited from another profile */
+.inherited {
+  padding: 5mm;
+  border-width:2px;
+  border-color: #AAAAAA;
+  border-style:solid;
+  margin-bottom: 5mm;
+  margin-top: 5mm;
+  color: #AAAAAA;
+}
+
+.error-block {
+  color: white;
+  background-color: red;
+  font-weight: bold;
+  padding: 5mm;
+  font-family: Courier;
+}
+
+/* UTF-X doc styles */
+h1 {
+    font-family: Arial, sans-serif;
+    font-size: 20pt;
+    color: #000000;
+    background-color: white;
+}
+h2 {
+    font-family: Arial, sans-serif;
+    font-size: 18pt;
+    color: #000000;
+    background-color: white;
+}
+h3 {
+    font-family: Arial, sans-serif;
+    font-size: 16pt;
+    color: #000000;
+    background-color: white;
+}
+p {
+    font-family: Helvetica, sans-serif;
+    font-size:12pt;
+}
+.ud-title {
+    font-family: Helvetica, sans-serif;
+    font-size: 50pt;
+    font-weight: bold;
+    color: #000000;
+    background-color: white;
+    text-align: center;
+}
+.ud-subtitle {
+    font-family: Helvetica, sans-serif;
+    font-size: 30pt;
+    font-weight: bold;
+    color: #000000;
+    background-color: white;
+    text-align: center;
+}
+.ud-author {
+    font-family: Helvetica, sans-serif;
+    font-size: 12pt;
+    text-align: center;
+}
+.ud-version {
+    font-family: Helvetica;
+    font-size: 12pt;
+    text-align: center;
+}
+.ud-date {
+    font-family: Helvetica;
+    font-size: 12pt;
+    text-align: center;
+}
+.ud-copyright {
+    font-family: Helvetica;
+    font-size: 12pt;
+    text-align: center;
+}
+.ud-note {
+    padding-top: 2mm;
+    padding-bottom: 2mm;
+    padding-left: 2mm;
+    padding-right: 2mm;
+    background-color: #BBFFEE;
+    border-color: #448877;
+    border-width: 2px;
+    border-style:solid;
+    font-family:Arial;
+    font-size:10pt;
+}
+.ud-figure {
+    text-align:left;
+    padding-left:10mm;
+    padding-right:10mm;
+}
+.ud-code-block {
+  padding: 5mm;
+  text-align:left;
+  background-color: #FFFFF8;
+  font-family: Courier, monospace;
+  font-size: 10pt;
+  border-style: solid;
+  border-color: #f5a90b;
+  border-width: 2px;
+  width: 90%;
+}
+.ud-code-inline {
+  background-color: #FFFFFF;
+  font-family: Courier;
+  font-size: 9pt;
+}
+/*
+a {
+    color:#000000;
+    text-decoration:none;
+}
+a:hover {
+    color:#f5a90b;
+    text-decoration:none;
+}
+*/
+.ud-caption {
+    font-family: Arial, sans-serif;
+    text-align:left;
+    padding-left:2mm;
+}
+.ud-toc {
+    padding-left:5mm;
+    color:#f5a90b;
+    text-decoration:none;
+}
+
+.ud-correct-example-code-block {
+    padding: 4mm;
+    text-align: left;
+    font-family: Courier, monospace;
+    font-size: 9pt;
+    border-style: solid;
+    background-color: #F8FFF8;
+    border-color: green;
+    border-width: 2px;
+}
+
+.ud-incorrect-example-code-block {
+    padding: 5mm;
+    text-align: left;
+    font-family: Courier, monospace;
+    font-size: 9pt;
+    border-style: solid;
+    background-color: #FFF8F8;
+    border-color: red;
+    border-width: 2px;
+}
+
+.ud-highlight {
+    font-weight: bold;
+}
+
+/* xml verbatim styles */
+.ud-xml-default {
+    color: #334455;
+    background-color:red;
+    font-family: Courier;
+     
+}
+.ud-xml-element-name {
+     color: #990000; 
+}
+.ud-xml-element-nsprefix {
+     color: #666666; 
+}
+.ud-xml-attr-name {
+     color: #660000; 
+}
+.ud-xml-attr-content {
+    color: #000099;
+}
+.ud-xml-ns-name {
+     color: #666600;
+}
+.ud-xml-ns-uri {
+     color: #330099;
+}
+.ud-xml-text {
+    color: #000000;
+}
+.ud-xml-comment {
+    color: #006600;
+     font-style: italic; 
+}
+.ud-xml-pi-name {
+    color: #006600;
+     font-style: italic;
+}
+.ud-xml-pi-content {
+    color: #006666;
+     font-style: italic ;
+}
+
+
+    </style></head>
+   <body>
+      <div></div><a target="_blank" href="profile-geosciml-wms.pdf">PDF Version</a><div style="font-size:36pt; text-align: center;">
+         <div>GeoSciML WMS</div>
+         <div style="font-size:24pt;">Service Profile</div>
+         <div><object align="middle" style="text-align: center; padding-left:15mm;" title="Inheritance Diagram" type="image/svg+xml" width="500px" height="530px" data="./inheritance-geosciml-wms.svg"></object></div>
+      </div>
+      <div>
+         <div xmlns:u="http://utf-x.sourceforge.net/xsd/utfxdoc_1_0/utfxdoc.xsd" class="ud-version"> Revision: 282  </div>
+         <div xmlns:u="http://utf-x.sourceforge.net/xsd/utfxdoc_1_0/utfxdoc.xsd" class="ud-date"> 2007-06-03 20:51:50 +1000 (Sun, 03 Jun 2007)  </div>
+         <div xmlns:u="http://utf-x.sourceforge.net/xsd/utfxdoc_1_0/utfxdoc.xsd" class="ud-copyright">Copyright © 2007 CGI GeoSciML </div>
+      </div>
+      <div xmlns:rim="urn:oasis:names:tc:ebxml-regrep:xsd:rim:3.0" class="h1-sect">
+         <div class="h1-heading">Content</div>
+         
+         
+         <div class="para">Do we need to specify layer naming approach here?</div>
+         
+      </div>
+      <h2 xmlns:u="http://utf-x.sourceforge.net/xsd/utfxdoc_1_0/utfxdoc.xsd">Namespace Context</h2>
+      <table xmlns:u="http://utf-x.sourceforge.net/xsd/utfxdoc_1_0/utfxdoc.xsd" bgcolor="#DDDDCC" cellpadding="5mm">
+         <tbody>
+            <tr>
+               <th>Prefix</th>
+               <th>Namespace</th>
+            </tr>
+            <tr>
+               <td style="font-family: Courier; font-weight: bold; color: #FF0000">rim3</td>
+               <td style="font-family: Courier">urn:oasis:names:tc:ebxml-regrep:xsd:rim:3.0</td>
+            </tr>
+            <tr>
+               <td style="font-family: Courier; font-weight: bold; color: ">xlink</td>
+               <td style="font-family: Courier">http://www.w3.org/1999/xlink</td>
+            </tr>
+            <tr>
+               <td style="font-family: Courier; font-weight: bold; color: ">pr</td>
+               <td style="font-family: Courier">urn:ws-profile-mgr:schemas:profiles:profiles.xsd</td>
+            </tr>
+            <tr>
+               <td style="font-family: Courier; font-weight: bold; color: ">gwsit</td>
+               <td style="font-family: Courier">http://qld.gov.au/gea/wsi/testing/1.0</td>
+            </tr>
+            <tr>
+               <td style="font-family: Courier; font-weight: bold; color: ">qg</td>
+               <td style="font-family: Courier">http://qld.gov.au/wsi/1.0</td>
+            </tr>
+            <tr>
+               <td style="font-family: Courier; font-weight: bold; color: #550000">xsd</td>
+               <td style="font-family: Courier">http://www.w3.org/2001/XMLSchema</td>
+            </tr>
+            <tr>
+               <td style="font-family: Courier; font-weight: bold; color: ">xsi</td>
+               <td style="font-family: Courier">http://www.w3.org/1999/XMLSchema-instance</td>
+            </tr>
+            <tr>
+               <td style="font-family: Courier; font-weight: bold; color: #555500">wsdl</td>
+               <td style="font-family: Courier">http://schemas.xmlsoap.org/wsdl/</td>
+            </tr>
+            <tr>
+               <td style="font-family: Courier; font-weight: bold; color: #555555">soap</td>
+               <td style="font-family: Courier">http://schemas.xmlsoap.org/wsdl/soap/</td>
+            </tr>
+            <tr>
+               <td style="font-family: Courier; font-weight: bold; color: #005555">soap-env</td>
+               <td style="font-family: Courier">http://schemas.xmlsoap.org/soap/envelope/</td>
+            </tr>
+            <tr>
+               <td style="font-family: Courier; font-weight: bold; color: #000055">wsse</td>
+               <td style="font-family: Courier">http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-secext-1.0.xsd</td>
+            </tr>
+            <tr>
+               <td style="font-family: Courier; font-weight: bold; color: #005500">wsu</td>
+               <td style="font-family: Courier">http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd</td>
+            </tr>
+            <tr>
+               <td style="font-family: Courier; font-weight: bold; color: ">xenc</td>
+               <td style="font-family: Courier">http://www.w3.org/2001/04/xmlenc#</td>
+            </tr>
+            <tr>
+               <td style="font-family: Courier; font-weight: bold; color: ">ds</td>
+               <td style="font-family: Courier">http://www.w3.org/2000/09/xmldsig#</td>
+            </tr>
+            <tr>
+               <td style="font-family: Courier; font-weight: bold; color: ">wsa</td>
+               <td style="font-family: Courier">http://www.w3.org/2005/08/addressing</td>
+            </tr>
+            <tr>
+               <td style="font-family: Courier; font-weight: bold; color: ">wfs</td>
+               <td style="font-family: Courier">http://www.opengis.net/wfs</td>
+            </tr>
+            <tr>
+               <td style="font-family: Courier; font-weight: bold; color: ">m</td>
+               <td style="font-family: Courier">http://example.org/price</td>
+            </tr>
+            <tr>
+               <td style="font-family: Courier; font-weight: bold; color: ">myapp</td>
+               <td style="font-family: Courier">http://example.com/someJavaApp</td>
+            </tr>
+            <tr>
+               <td style="font-family: Courier; font-weight: bold; color: ">rim</td>
+               <td style="font-family: Courier">urn:oasis:names:tc:ebxml-regrep:xsd:rim:3.0</td>
+            </tr>
+            <tr>
+               <td style="font-family: Courier; font-weight: bold; color: ">gml</td>
+               <td style="font-family: Courier">http://www.opengis.net/gml</td>
+            </tr>
+         </tbody>
+      </table>
+      <div xmlns:rim="urn:oasis:names:tc:ebxml-regrep:xsd:rim:3.0" class="h4-heading">Inherits from : <a href="profile-geosciml-data-product.html" target="geosciml-data-product">GeoSciML Data Product</a></div>
+      <div xmlns:rim="urn:oasis:names:tc:ebxml-regrep:xsd:rim:3.0" class="h4-heading">Inherits from : <a href="profile-sdi-wms-fi.html" target="sdi-wms-fi">sdi WMS Feature Info</a></div>
+      <div xmlns:rim="urn:oasis:names:tc:ebxml-regrep:xsd:rim:3.0">This profile binds the GeoSciML data products to the basic WMS profile.  </div>
+      <p xmlns:rim="urn:oasis:names:tc:ebxml-regrep:xsd:rim:3.0">
+         <div class="h2-sect">
+            <div class="h2-heading">Artefacts</div>
+            <div>
+               <p>
+                  <div class="h3-sect">
+                     
+                     <div class="h2-heading">WMS_CAPABILITIES</div>
+                     
+                     <div>WMS Capabilities document</div>
+                     
+                     count(/WMT_MS_Capabilities)
+                     
+                     
+                     
+                     
+                     
+                     
+                     
+                     
+                     
+                     
+                     
+                     
+                     
+                     
+                     
+                     
+                     
+                     
+                     
+                     
+                     
+                     
+                     
+                     
+                     
+                     
+                     
+                     
+                     
+                     
+                     
+                     
+                     
+                     
+                     
+                     
+                  </div>
+               </p>
+            </div>
+            <div>
+               <p>
+                  <div class="h3-sect">
+                     
+                     <div class="h2-heading">WMS_LAYER_METADATA</div>
+                     
+                     <div>External metadata document describing content exposed. This is used to inherit
+                        various information to control description of the layer when ingested into a service
+                        registry
+                     </div>
+                     
+                     
+                     
+                     
+                     
+                     
+                     
+                  </div>
+               </p>
+            </div>
+            <div>
+               <p>
+                  <div class="h3-sect">
+                     
+                     <div class="h2-heading">DATACURRENCY</div>
+                     
+                     
+                     <div>Controlled vocabulary of data currency keywords, encoded as an ebRIM
+                        classification scheme.
+                     </div>
+                     
+                     
+                     
+                     
+                     <div class="h3-heading">ebRIM Classification Scheme</div>
+                     <div class="ud-code-block">&lt;<span xmlns:u="http://utf-x.sourceforge.net/xsd/utfxdoc_1_0/utfxdoc.xsd" class="ud-xml-element-nsprefix" style="color: ">rim</span>:<span xmlns:u="http://utf-x.sourceforge.net/xsd/utfxdoc_1_0/utfxdoc.xsd" class="ud-xml-element-name">ClassificationScheme</span> <span xmlns:u="http://utf-x.sourceforge.net/xsd/utfxdoc_1_0/utfxdoc.xsd" class="ud-xml-attr-name">id</span>="<span xmlns:u="http://utf-x.sourceforge.net/xsd/utfxdoc_1_0/utfxdoc.xsd" class="ud-xml-attr-content">urn:au:gov:qld:sdi:data:currency</span>" <span xmlns:u="http://utf-x.sourceforge.net/xsd/utfxdoc_1_0/utfxdoc.xsd" class="ud-xml-attr-name">isInternal</span>="<span xmlns:u="http://utf-x.sourceforge.net/xsd/utfxdoc_1_0/utfxdoc.xsd" class="ud-xml-attr-content">true</span>" <span xmlns:u="http://utf-x.sourceforge.net/xsd/utfxdoc_1_0/utfxdoc.xsd" class="ud-xml-attr-name">nodeType</span>="<span xmlns:u="http://utf-x.sourceforge.net/xsd/utfxdoc_1_0/utfxdoc.xsd" class="ud-xml-attr-content">UniqueCode</span>"&gt;<span xmlns:u="http://utf-x.sourceforge.net/xsd/utfxdoc_1_0/utfxdoc.xsd" class="ud-xml-text"><br>
+                           &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>&lt;<span xmlns:u="http://utf-x.sourceforge.net/xsd/utfxdoc_1_0/utfxdoc.xsd" class="ud-xml-element-nsprefix" style="color: ">rim</span>:<span xmlns:u="http://utf-x.sourceforge.net/xsd/utfxdoc_1_0/utfxdoc.xsd" class="ud-xml-element-name">Name</span>&gt;<span xmlns:u="http://utf-x.sourceforge.net/xsd/utfxdoc_1_0/utfxdoc.xsd" class="ud-xml-text"><br>
+                           &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>&lt;<span xmlns:u="http://utf-x.sourceforge.net/xsd/utfxdoc_1_0/utfxdoc.xsd" class="ud-xml-element-nsprefix" style="color: ">rim</span>:<span xmlns:u="http://utf-x.sourceforge.net/xsd/utfxdoc_1_0/utfxdoc.xsd" class="ud-xml-element-name">LocalizedString</span> <span xmlns:u="http://utf-x.sourceforge.net/xsd/utfxdoc_1_0/utfxdoc.xsd" class="ud-xml-attr-name">charset</span>="<span xmlns:u="http://utf-x.sourceforge.net/xsd/utfxdoc_1_0/utfxdoc.xsd" class="ud-xml-attr-content">UTF-8</span>" <span xmlns:u="http://utf-x.sourceforge.net/xsd/utfxdoc_1_0/utfxdoc.xsd" class="ud-xml-attr-name">value</span>="<span xmlns:u="http://utf-x.sourceforge.net/xsd/utfxdoc_1_0/utfxdoc.xsd" class="ud-xml-attr-content">Data Currency</span>" /&gt;<span xmlns:u="http://utf-x.sourceforge.net/xsd/utfxdoc_1_0/utfxdoc.xsd" class="ud-xml-text"><br>
+                           &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>&lt;/<span xmlns:u="http://utf-x.sourceforge.net/xsd/utfxdoc_1_0/utfxdoc.xsd" class="ud-xml-element-nsprefix" style="color: ">rim</span>:<span xmlns:u="http://utf-x.sourceforge.net/xsd/utfxdoc_1_0/utfxdoc.xsd" class="ud-xml-element-name">Name</span>&gt;<span xmlns:u="http://utf-x.sourceforge.net/xsd/utfxdoc_1_0/utfxdoc.xsd" class="ud-xml-text"><br>
+                           &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>&lt;<span xmlns:u="http://utf-x.sourceforge.net/xsd/utfxdoc_1_0/utfxdoc.xsd" class="ud-xml-element-nsprefix" style="color: ">rim</span>:<span xmlns:u="http://utf-x.sourceforge.net/xsd/utfxdoc_1_0/utfxdoc.xsd" class="ud-xml-element-name">Description</span>&gt;<span xmlns:u="http://utf-x.sourceforge.net/xsd/utfxdoc_1_0/utfxdoc.xsd" class="ud-xml-text"><br>
+                           &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>&lt;<span xmlns:u="http://utf-x.sourceforge.net/xsd/utfxdoc_1_0/utfxdoc.xsd" class="ud-xml-element-nsprefix" style="color: ">rim</span>:<span xmlns:u="http://utf-x.sourceforge.net/xsd/utfxdoc_1_0/utfxdoc.xsd" class="ud-xml-element-name">LocalizedString</span> <span xmlns:u="http://utf-x.sourceforge.net/xsd/utfxdoc_1_0/utfxdoc.xsd" class="ud-xml-attr-name">charset</span>="<span xmlns:u="http://utf-x.sourceforge.net/xsd/utfxdoc_1_0/utfxdoc.xsd" class="ud-xml-attr-content">UTF-8</span>" <span xmlns:u="http://utf-x.sourceforge.net/xsd/utfxdoc_1_0/utfxdoc.xsd" class="ud-xml-attr-name">value</span>="<span xmlns:u="http://utf-x.sourceforge.net/xsd/utfxdoc_1_0/utfxdoc.xsd" class="ud-xml-attr-content">Controlled vocabulary for Data Currency metadata slots.</span>" /&gt;<span xmlns:u="http://utf-x.sourceforge.net/xsd/utfxdoc_1_0/utfxdoc.xsd" class="ud-xml-text"><br>
+                           &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>&lt;/<span xmlns:u="http://utf-x.sourceforge.net/xsd/utfxdoc_1_0/utfxdoc.xsd" class="ud-xml-element-nsprefix" style="color: ">rim</span>:<span xmlns:u="http://utf-x.sourceforge.net/xsd/utfxdoc_1_0/utfxdoc.xsd" class="ud-xml-element-name">Description</span>&gt;<span xmlns:u="http://utf-x.sourceforge.net/xsd/utfxdoc_1_0/utfxdoc.xsd" class="ud-xml-text"><br>
+                           &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>&lt;<span xmlns:u="http://utf-x.sourceforge.net/xsd/utfxdoc_1_0/utfxdoc.xsd" class="ud-xml-element-nsprefix" style="color: ">rim</span>:<span xmlns:u="http://utf-x.sourceforge.net/xsd/utfxdoc_1_0/utfxdoc.xsd" class="ud-xml-element-name">ClassificationNode</span> <span xmlns:u="http://utf-x.sourceforge.net/xsd/utfxdoc_1_0/utfxdoc.xsd" class="ud-xml-attr-name">code</span>="<span xmlns:u="http://utf-x.sourceforge.net/xsd/utfxdoc_1_0/utfxdoc.xsd" class="ud-xml-attr-content">current</span>" <span xmlns:u="http://utf-x.sourceforge.net/xsd/utfxdoc_1_0/utfxdoc.xsd" class="ud-xml-attr-name">id</span>="<span xmlns:u="http://utf-x.sourceforge.net/xsd/utfxdoc_1_0/utfxdoc.xsd" class="ud-xml-attr-content">urn:asdi:marine:data:currency:current</span>"&gt;<span xmlns:u="http://utf-x.sourceforge.net/xsd/utfxdoc_1_0/utfxdoc.xsd" class="ud-xml-text"><br>
+                           &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>&lt;<span xmlns:u="http://utf-x.sourceforge.net/xsd/utfxdoc_1_0/utfxdoc.xsd" class="ud-xml-element-nsprefix" style="color: ">rim</span>:<span xmlns:u="http://utf-x.sourceforge.net/xsd/utfxdoc_1_0/utfxdoc.xsd" class="ud-xml-element-name">Name</span>&gt;<span xmlns:u="http://utf-x.sourceforge.net/xsd/utfxdoc_1_0/utfxdoc.xsd" class="ud-xml-text"><br>
+                           &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>&lt;<span xmlns:u="http://utf-x.sourceforge.net/xsd/utfxdoc_1_0/utfxdoc.xsd" class="ud-xml-element-nsprefix" style="color: ">rim</span>:<span xmlns:u="http://utf-x.sourceforge.net/xsd/utfxdoc_1_0/utfxdoc.xsd" class="ud-xml-element-name">LocalizedString</span> <span xmlns:u="http://utf-x.sourceforge.net/xsd/utfxdoc_1_0/utfxdoc.xsd" class="ud-xml-attr-name">value</span>="<span xmlns:u="http://utf-x.sourceforge.net/xsd/utfxdoc_1_0/utfxdoc.xsd" class="ud-xml-attr-content">Current</span>" /&gt;<span xmlns:u="http://utf-x.sourceforge.net/xsd/utfxdoc_1_0/utfxdoc.xsd" class="ud-xml-text"><br>
+                           &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>&lt;/<span xmlns:u="http://utf-x.sourceforge.net/xsd/utfxdoc_1_0/utfxdoc.xsd" class="ud-xml-element-nsprefix" style="color: ">rim</span>:<span xmlns:u="http://utf-x.sourceforge.net/xsd/utfxdoc_1_0/utfxdoc.xsd" class="ud-xml-element-name">Name</span>&gt;<span xmlns:u="http://utf-x.sourceforge.net/xsd/utfxdoc_1_0/utfxdoc.xsd" class="ud-xml-text"><br>
+                           &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>&lt;/<span xmlns:u="http://utf-x.sourceforge.net/xsd/utfxdoc_1_0/utfxdoc.xsd" class="ud-xml-element-nsprefix" style="color: ">rim</span>:<span xmlns:u="http://utf-x.sourceforge.net/xsd/utfxdoc_1_0/utfxdoc.xsd" class="ud-xml-element-name">ClassificationNode</span>&gt;<span xmlns:u="http://utf-x.sourceforge.net/xsd/utfxdoc_1_0/utfxdoc.xsd" class="ud-xml-text"><br>
+                           &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>&lt;<span xmlns:u="http://utf-x.sourceforge.net/xsd/utfxdoc_1_0/utfxdoc.xsd" class="ud-xml-element-nsprefix" style="color: ">rim</span>:<span xmlns:u="http://utf-x.sourceforge.net/xsd/utfxdoc_1_0/utfxdoc.xsd" class="ud-xml-element-name">ClassificationNode</span> <span xmlns:u="http://utf-x.sourceforge.net/xsd/utfxdoc_1_0/utfxdoc.xsd" class="ud-xml-attr-name">code</span>="<span xmlns:u="http://utf-x.sourceforge.net/xsd/utfxdoc_1_0/utfxdoc.xsd" class="ud-xml-attr-content">historical</span>" <span xmlns:u="http://utf-x.sourceforge.net/xsd/utfxdoc_1_0/utfxdoc.xsd" class="ud-xml-attr-name">id</span>="<span xmlns:u="http://utf-x.sourceforge.net/xsd/utfxdoc_1_0/utfxdoc.xsd" class="ud-xml-attr-content">urn:asdi:marine:data:currency:historical</span>"&gt;<span xmlns:u="http://utf-x.sourceforge.net/xsd/utfxdoc_1_0/utfxdoc.xsd" class="ud-xml-text"><br>
+                           &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>&lt;<span xmlns:u="http://utf-x.sourceforge.net/xsd/utfxdoc_1_0/utfxdoc.xsd" class="ud-xml-element-nsprefix" style="color: ">rim</span>:<span xmlns:u="http://utf-x.sourceforge.net/xsd/utfxdoc_1_0/utfxdoc.xsd" class="ud-xml-element-name">Name</span>&gt;<span xmlns:u="http://utf-x.sourceforge.net/xsd/utfxdoc_1_0/utfxdoc.xsd" class="ud-xml-text"><br>
+                           &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>&lt;<span xmlns:u="http://utf-x.sourceforge.net/xsd/utfxdoc_1_0/utfxdoc.xsd" class="ud-xml-element-nsprefix" style="color: ">rim</span>:<span xmlns:u="http://utf-x.sourceforge.net/xsd/utfxdoc_1_0/utfxdoc.xsd" class="ud-xml-element-name">LocalizedString</span> <span xmlns:u="http://utf-x.sourceforge.net/xsd/utfxdoc_1_0/utfxdoc.xsd" class="ud-xml-attr-name">value</span>="<span xmlns:u="http://utf-x.sourceforge.net/xsd/utfxdoc_1_0/utfxdoc.xsd" class="ud-xml-attr-content">Historical</span>" /&gt;<span xmlns:u="http://utf-x.sourceforge.net/xsd/utfxdoc_1_0/utfxdoc.xsd" class="ud-xml-text"><br>
+                           &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>&lt;/<span xmlns:u="http://utf-x.sourceforge.net/xsd/utfxdoc_1_0/utfxdoc.xsd" class="ud-xml-element-nsprefix" style="color: ">rim</span>:<span xmlns:u="http://utf-x.sourceforge.net/xsd/utfxdoc_1_0/utfxdoc.xsd" class="ud-xml-element-name">Name</span>&gt;<span xmlns:u="http://utf-x.sourceforge.net/xsd/utfxdoc_1_0/utfxdoc.xsd" class="ud-xml-text"><br>
+                           &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>&lt;/<span xmlns:u="http://utf-x.sourceforge.net/xsd/utfxdoc_1_0/utfxdoc.xsd" class="ud-xml-element-nsprefix" style="color: ">rim</span>:<span xmlns:u="http://utf-x.sourceforge.net/xsd/utfxdoc_1_0/utfxdoc.xsd" class="ud-xml-element-name">ClassificationNode</span>&gt;<span xmlns:u="http://utf-x.sourceforge.net/xsd/utfxdoc_1_0/utfxdoc.xsd" class="ud-xml-text"><br>
+                           &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>&lt;<span xmlns:u="http://utf-x.sourceforge.net/xsd/utfxdoc_1_0/utfxdoc.xsd" class="ud-xml-element-nsprefix" style="color: ">rim</span>:<span xmlns:u="http://utf-x.sourceforge.net/xsd/utfxdoc_1_0/utfxdoc.xsd" class="ud-xml-element-name">ClassificationNode</span> <span xmlns:u="http://utf-x.sourceforge.net/xsd/utfxdoc_1_0/utfxdoc.xsd" class="ud-xml-attr-name">code</span>="<span xmlns:u="http://utf-x.sourceforge.net/xsd/utfxdoc_1_0/utfxdoc.xsd" class="ud-xml-attr-content">predicted</span>" <span xmlns:u="http://utf-x.sourceforge.net/xsd/utfxdoc_1_0/utfxdoc.xsd" class="ud-xml-attr-name">id</span>="<span xmlns:u="http://utf-x.sourceforge.net/xsd/utfxdoc_1_0/utfxdoc.xsd" class="ud-xml-attr-content">urn:asdi:marine:data:currency:predicted</span>"&gt;<span xmlns:u="http://utf-x.sourceforge.net/xsd/utfxdoc_1_0/utfxdoc.xsd" class="ud-xml-text"><br>
+                           &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>&lt;<span xmlns:u="http://utf-x.sourceforge.net/xsd/utfxdoc_1_0/utfxdoc.xsd" class="ud-xml-element-nsprefix" style="color: ">rim</span>:<span xmlns:u="http://utf-x.sourceforge.net/xsd/utfxdoc_1_0/utfxdoc.xsd" class="ud-xml-element-name">Name</span>&gt;<span xmlns:u="http://utf-x.sourceforge.net/xsd/utfxdoc_1_0/utfxdoc.xsd" class="ud-xml-text"><br>
+                           &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>&lt;<span xmlns:u="http://utf-x.sourceforge.net/xsd/utfxdoc_1_0/utfxdoc.xsd" class="ud-xml-element-nsprefix" style="color: ">rim</span>:<span xmlns:u="http://utf-x.sourceforge.net/xsd/utfxdoc_1_0/utfxdoc.xsd" class="ud-xml-element-name">LocalizedString</span> <span xmlns:u="http://utf-x.sourceforge.net/xsd/utfxdoc_1_0/utfxdoc.xsd" class="ud-xml-attr-name">value</span>="<span xmlns:u="http://utf-x.sourceforge.net/xsd/utfxdoc_1_0/utfxdoc.xsd" class="ud-xml-attr-content">Predicted</span>" /&gt;<span xmlns:u="http://utf-x.sourceforge.net/xsd/utfxdoc_1_0/utfxdoc.xsd" class="ud-xml-text"><br>
+                           &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>&lt;/<span xmlns:u="http://utf-x.sourceforge.net/xsd/utfxdoc_1_0/utfxdoc.xsd" class="ud-xml-element-nsprefix" style="color: ">rim</span>:<span xmlns:u="http://utf-x.sourceforge.net/xsd/utfxdoc_1_0/utfxdoc.xsd" class="ud-xml-element-name">Name</span>&gt;<span xmlns:u="http://utf-x.sourceforge.net/xsd/utfxdoc_1_0/utfxdoc.xsd" class="ud-xml-text"><br>
+                           &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>&lt;/<span xmlns:u="http://utf-x.sourceforge.net/xsd/utfxdoc_1_0/utfxdoc.xsd" class="ud-xml-element-nsprefix" style="color: ">rim</span>:<span xmlns:u="http://utf-x.sourceforge.net/xsd/utfxdoc_1_0/utfxdoc.xsd" class="ud-xml-element-name">ClassificationNode</span>&gt;<span xmlns:u="http://utf-x.sourceforge.net/xsd/utfxdoc_1_0/utfxdoc.xsd" class="ud-xml-text"><br>
+                           &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>&lt;<span xmlns:u="http://utf-x.sourceforge.net/xsd/utfxdoc_1_0/utfxdoc.xsd" class="ud-xml-element-nsprefix" style="color: ">rim</span>:<span xmlns:u="http://utf-x.sourceforge.net/xsd/utfxdoc_1_0/utfxdoc.xsd" class="ud-xml-element-name">ClassificationNode</span> <span xmlns:u="http://utf-x.sourceforge.net/xsd/utfxdoc_1_0/utfxdoc.xsd" class="ud-xml-attr-name">code</span>="<span xmlns:u="http://utf-x.sourceforge.net/xsd/utfxdoc_1_0/utfxdoc.xsd" class="ud-xml-attr-content">unknown</span>" <span xmlns:u="http://utf-x.sourceforge.net/xsd/utfxdoc_1_0/utfxdoc.xsd" class="ud-xml-attr-name">id</span>="<span xmlns:u="http://utf-x.sourceforge.net/xsd/utfxdoc_1_0/utfxdoc.xsd" class="ud-xml-attr-content">urn:asdi:marine:data:currency:unknown</span>"&gt;<span xmlns:u="http://utf-x.sourceforge.net/xsd/utfxdoc_1_0/utfxdoc.xsd" class="ud-xml-text"><br>
+                           &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>&lt;<span xmlns:u="http://utf-x.sourceforge.net/xsd/utfxdoc_1_0/utfxdoc.xsd" class="ud-xml-element-nsprefix" style="color: ">rim</span>:<span xmlns:u="http://utf-x.sourceforge.net/xsd/utfxdoc_1_0/utfxdoc.xsd" class="ud-xml-element-name">Name</span>&gt;<span xmlns:u="http://utf-x.sourceforge.net/xsd/utfxdoc_1_0/utfxdoc.xsd" class="ud-xml-text"><br>
+                           &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>&lt;<span xmlns:u="http://utf-x.sourceforge.net/xsd/utfxdoc_1_0/utfxdoc.xsd" class="ud-xml-element-nsprefix" style="color: ">rim</span>:<span xmlns:u="http://utf-x.sourceforge.net/xsd/utfxdoc_1_0/utfxdoc.xsd" class="ud-xml-element-name">LocalizedString</span> <span xmlns:u="http://utf-x.sourceforge.net/xsd/utfxdoc_1_0/utfxdoc.xsd" class="ud-xml-attr-name">value</span>="<span xmlns:u="http://utf-x.sourceforge.net/xsd/utfxdoc_1_0/utfxdoc.xsd" class="ud-xml-attr-content">Unknown</span>" /&gt;<span xmlns:u="http://utf-x.sourceforge.net/xsd/utfxdoc_1_0/utfxdoc.xsd" class="ud-xml-text"><br>
+                           &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>&lt;/<span xmlns:u="http://utf-x.sourceforge.net/xsd/utfxdoc_1_0/utfxdoc.xsd" class="ud-xml-element-nsprefix" style="color: ">rim</span>:<span xmlns:u="http://utf-x.sourceforge.net/xsd/utfxdoc_1_0/utfxdoc.xsd" class="ud-xml-element-name">Name</span>&gt;<span xmlns:u="http://utf-x.sourceforge.net/xsd/utfxdoc_1_0/utfxdoc.xsd" class="ud-xml-text"><br>
+                           &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>&lt;/<span xmlns:u="http://utf-x.sourceforge.net/xsd/utfxdoc_1_0/utfxdoc.xsd" class="ud-xml-element-nsprefix" style="color: ">rim</span>:<span xmlns:u="http://utf-x.sourceforge.net/xsd/utfxdoc_1_0/utfxdoc.xsd" class="ud-xml-element-name">ClassificationNode</span>&gt;<span xmlns:u="http://utf-x.sourceforge.net/xsd/utfxdoc_1_0/utfxdoc.xsd" class="ud-xml-text"><br>
+                           &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>&lt;/<span xmlns:u="http://utf-x.sourceforge.net/xsd/utfxdoc_1_0/utfxdoc.xsd" class="ud-xml-element-nsprefix" style="color: ">rim</span>:<span xmlns:u="http://utf-x.sourceforge.net/xsd/utfxdoc_1_0/utfxdoc.xsd" class="ud-xml-element-name">ClassificationScheme</span>&gt;
+                     </div>
+                     
+                     
+                     http://oceans-catalog.socialchange.net.au/noocat-data/harvestconfig-testplans/community/framework/data/classificationschemes/ClassificationScheme-DataCurrency.xml
+                     
+                  </div>
+               </p>
+            </div>
+         </div>
+      </p>
+      <p xmlns:rim="urn:oasis:names:tc:ebxml-regrep:xsd:rim:3.0">
+         <div class="h2-sect">
+            <div class="h2-heading">Conformance Targets Container</div><a name="WMS_GETFEATUREINFO_FORMAT"></a><p>
+               <div class="inherited">
+                  <div class="target-name">WMS_GETFEATUREINFO_FORMAT</div>
+                  <div class="target-name" style="font-family: Courier; font-size: 8pt;">urn:au:gov:qld:sdi:standards:profiles:sdi-wms-feature-info:conformance-target-types:WMS_GETFEATUREINFO_FORMAT</div><span color="#BBBBBB"> inherited from sdi WMS Feature Info</span><div class="conformance-target-block" space-before="1mm">
+                     <div>Supported response formats for the get map operation</div>
+                     <div space-before="1mm"><span>XPath locator: </span><span class="xpath">//Capabilities/Request/GetFeatureInfo/Format</span></div>
+                     <div></div>
+                  </div>
+               </div>
+            </p><a name="capabilites"></a><p>
+               <div class="inherited">
+                  <div class="target-name">CAPABILITIES</div>
+                  <div class="target-name" style="font-family: Courier; font-size: 8pt;">urn:au:gov:qld:sdi:standards:profiles:sdi-wms:conformance-target-types:capabilites</div><span color="#BBBBBB"> inherited from sdi WMS</span><div class="conformance-target-block" space-before="1mm">
+                     <div>This conformance target represents the root element of a WMS capabilities
+                        document.
+                     </div>
+                     <div space-before="1mm"><span>XPath locator: </span><span class="xpath">/WMT_MS_Capabilities</span></div>
+                     <div></div>
+                  </div>
+               </div>
+            </p><a name="service"></a><p>
+               <div class="inherited">
+                  <div class="target-name">SERVICE</div>
+                  <div class="target-name" style="font-family: Courier; font-size: 8pt;">urn:au:gov:qld:sdi:standards:profiles:sdi-wms:conformance-target-types:service</div><span color="#BBBBBB"> inherited from sdi WMS</span><div class="conformance-target-block" space-before="1mm">
+                     <div>WMS Service metadata container element</div>
+                     <div space-before="1mm"><span>XPath locator: </span><span class="xpath">/WMT_MS_Capabilities/Service</span></div>
+                     <div></div>
+                  </div>
+               </div>
+            </p><a name="identifier"></a><p>
+               <div class="inherited">
+                  <div class="target-name">IDENTIFIER</div>
+                  <div class="target-name" style="font-family: Courier; font-size: 8pt;">urn:au:gov:qld:sdi:standards:profiles:sdi-wms:conformance-target-types:identifier</div><span color="#BBBBBB"> inherited from sdi WMS</span><div class="conformance-target-block" space-before="1mm">
+                     <div>This is the identifier of an addressible unit within a WMS service: a Layer.</div>
+                     <div class="para">Users of WMS services are interested in Layers, not the service per se, WMS 1.1.1
+                        section 7.1.4.5.2.
+                     </div>
+                     <div space-before="1mm"><span>XPath locator: </span><span class="xpath">//Layer/Name</span></div>
+                     <div></div>
+                  </div>
+               </div>
+            </p><a name="layer"></a><p>
+               <div class="inherited">
+                  <div class="target-name">LAYER</div>
+                  <div class="target-name" style="font-family: Courier; font-size: 8pt;">urn:au:gov:qld:sdi:standards:profiles:sdi-wms:conformance-target-types:layer</div><span color="#BBBBBB"> inherited from sdi WMS</span><div class="conformance-target-block" space-before="1mm">
+                     <div>Layer</div>
+                     <div class="para">This conformance target type refers to any layer in a Web Map Service. <a xmlns:u="http://utf-x.sourceforge.net/xsd/utfxdoc_1_0/utfxdoc.xsd" target="_blank" href="http://portal.opengeospatial.org/files/?artifact_id=1081&amp;version=1&amp;format=pdf">WMS 1.1.1</a> section 7.1.4.4.
+                     </div>
+                     <div space-before="1mm"><span>XPath locator: </span><span class="xpath">//Layer</span></div>
+                     <div></div>
+                  </div>
+               </div>
+            </p><a name="invocable-layer"></a><p>
+               <div class="inherited">
+                  <div class="target-name">INVOCABLE_LAYER</div>
+                  <div class="target-name" style="font-family: Courier; font-size: 8pt;">urn:au:gov:qld:sdi:standards:profiles:sdi-wms:conformance-target-types:invocable-layer</div><span color="#BBBBBB"> inherited from sdi WMS</span><div class="conformance-target-block" space-before="1mm">
+                     <div>LAYER that has no child layers.</div>
+                     <div class="para">This conformance target identifies all leaf layers.</div>
+                     <div space-before="1mm"><span>XPath locator: </span><span class="xpath">//Layer[count(./Layer) = 0]</span></div>
+                     <div></div>
+                  </div>
+               </div>
+            </p><a name="exception"></a><p>
+               <div class="inherited">
+                  <div class="target-name">EXCEPTION</div>
+                  <div class="target-name" style="font-family: Courier; font-size: 8pt;">urn:au:gov:qld:sdi:standards:profiles:sdi-wms:conformance-target-types:exception</div><span color="#BBBBBB"> inherited from sdi WMS</span><div class="conformance-target-block" space-before="1mm">
+                     <div>Exception formats supported</div>
+                     <div space-before="1mm"><span>XPath locator: </span><span class="xpath">/WMT_MS_Capabilities/Capability/Exception</span></div>
+                     <div></div>
+                  </div>
+               </div>
+            </p><a name="contact-person-primary"></a><p>
+               <div class="inherited">
+                  <div class="target-name">CONTACT_PERSON_PRIMARY</div>
+                  <div class="target-name" style="font-family: Courier; font-size: 8pt;">urn:au:gov:qld:sdi:standards:profiles:sdi-wms:conformance-target-types:contact-person-primary</div><span color="#BBBBBB"> inherited from sdi WMS</span><div class="conformance-target-block" space-before="1mm">
+                     <div space-before="1mm"><span>XPath locator: </span><span class="xpath">/WMT_MS_Capabilities/Service/ContactInformation/ContactPersonPrimary</span></div>
+                     <div></div>
+                  </div>
+               </div>
+            </p><a name="contact-organisation"></a><p>
+               <div class="inherited">
+                  <div class="target-name">CONTACT_ORGANISATION</div>
+                  <div class="target-name" style="font-family: Courier; font-size: 8pt;">urn:au:gov:qld:sdi:standards:profiles:sdi-wms:conformance-target-types:contact-organisation</div><span color="#BBBBBB"> inherited from sdi WMS</span><div class="conformance-target-block" space-before="1mm">
+                     <div>Contact information identifying service custodian. WMS 1.1.1 section
+                        7.1.4.1.2
+                     </div>
+                     <div space-before="1mm"><span>XPath locator: </span><span class="xpath">/WMT_MS_Capabilities/Service/ContactInformation/ContactPersonPrimary/ContactOrganization</span></div>
+                     <div></div>
+                  </div>
+               </div>
+            </p><a name="layer-abstract"></a><p>
+               <div class="inherited">
+                  <div class="target-name">LAYER_ABSTRACT</div>
+                  <div class="target-name" style="font-family: Courier; font-size: 8pt;">urn:au:gov:qld:sdi:standards:profiles:sdi-wms:conformance-target-types:layer-abstract</div><span color="#BBBBBB"> inherited from sdi WMS</span><div class="conformance-target-block" space-before="1mm">
+                     <div>Brief description of a data layer. WMS 1.1.1 section 7.1.4.5.3</div>
+                     <div space-before="1mm"><span>XPath locator: </span><span class="xpath">//Layer/Abstract</span></div>
+                     <div><span style="color: blue; font-weight: bold; font-style: italic;"><a name="id332"></a>COMMENT: " Abstract is/should be defined by the ANZLIC profile, therefore this conformance
+                           target will be deleted. Requirement sdiWMS2 may be rendered obsolete."</span></div>
+                  </div>
+               </div>
+            </p><a name="currency"></a><p>
+               <div class="inherited">
+                  <div class="target-name">CURRENCY</div>
+                  <div class="target-name" style="font-family: Courier; font-size: 8pt;">urn:au:gov:qld:sdi:standards:profiles:sdi-wms:conformance-target-types:currency</div><span color="#BBBBBB"> inherited from sdi WMS</span><div class="conformance-target-block" space-before="1mm">
+                     <div>(fixed XPath) Temporal currency of the data. There is no formal metadata
+                        element for this so this profile overloads the Keyword container. WMS 1.1.1 section
+                        7.1.4.5.3
+                     </div>
+                     <div space-before="1mm"><span>XPath locator: </span><span class="xpath">//Layer/KeywordList/Keyword</span></div>
+                     <div><span style="color: blue; font-weight: bold; font-style: italic;"><a name="id337"></a>COMMENT: "This needs to be removed as the conformance target cannot be
+                           selected."</span></div>
+                  </div>
+               </div>
+            </p><a name="topic"></a><p>
+               <div class="inherited">
+                  <div class="target-name">TOPIC</div>
+                  <div class="target-name" style="font-family: Courier; font-size: 8pt;">urn:au:gov:qld:sdi:standards:profiles:sdi-wms:conformance-target-types:topic</div><span color="#BBBBBB"> inherited from sdi WMS</span><div class="conformance-target-block" space-before="1mm">
+                     <div>(fixed XPath) Full path of taxonomic terms (GCMD or species used to classify
+                        content). WMS 1.1.1 section 7.1.4.5.3
+                     </div>
+                     <div space-before="1mm"><span>XPath locator: </span><span class="xpath">//Layer/KeywordList/Keyword</span></div>
+                     <div><span style="color: blue; font-weight: bold; font-style: italic;"><a name="id342"></a>COMMENT: "This needs to be removed as the conformance target cannot be
+                           selected."</span></div>
+                  </div>
+               </div>
+            </p><a name="scale-hint"></a><p>
+               <div class="inherited">
+                  <div class="target-name">SCALE_HINT</div>
+                  <div class="target-name" style="font-family: Courier; font-size: 8pt;">urn:au:gov:qld:sdi:standards:profiles:sdi-wms:conformance-target-types:scale-hint</div><span color="#BBBBBB"> inherited from sdi WMS</span><div class="conformance-target-block" space-before="1mm">
+                     <div>Defines min and max scale values for a Layer.</div>
+                     <div class="para"> WMS 1.1.1 section 7.1.4.5.8</div>
+                     <div space-before="1mm"><span>XPath locator: </span><span class="xpath">//Layer/ScaleHint</span></div>
+                     <div></div>
+                  </div>
+               </div>
+            </p><a name="spatial-extent"></a><p>
+               <div class="inherited">
+                  <div class="target-name">SPATIAL_EXTENT</div>
+                  <div class="target-name" style="font-family: Courier; font-size: 8pt;">urn:au:gov:qld:sdi:standards:profiles:sdi-wms:conformance-target-types:spatial-extent</div><span color="#BBBBBB"> inherited from sdi WMS</span><div class="conformance-target-block" space-before="1mm">
+                     <div>OGC BBOX and latlongBBBOX slots to define spatial extent.</div>
+                     <div space-before="1mm"><span>XPath locator: </span><span class="xpath">//Layer/LatLonBoundingBox</span></div>
+                     <div></div>
+                  </div>
+               </div>
+            </p><a name="metadata-url"></a><p>
+               <div class="inherited">
+                  <div class="target-name">METADATA_URL</div>
+                  <div class="target-name" style="font-family: Courier; font-size: 8pt;">urn:au:gov:qld:sdi:standards:profiles:sdi-wms:conformance-target-types:metadata-url</div><span color="#BBBBBB"> inherited from sdi WMS</span><div class="conformance-target-block" space-before="1mm">
+                     <div>WMS 1.1.1 section 7.1.4.5.10</div>
+                     <div space-before="1mm"><span>XPath locator: </span><span class="xpath">//Layer/MetadataURL</span></div>
+                     <div></div>
+                  </div>
+               </div>
+            </p><a name="data-url"></a><p>
+               <div class="inherited">
+                  <div class="target-name">DATA_URL</div>
+                  <div class="target-name" style="font-family: Courier; font-size: 8pt;">urn:au:gov:qld:sdi:standards:profiles:sdi-wms:conformance-target-types:data-url</div><span color="#BBBBBB"> inherited from sdi WMS</span><div class="conformance-target-block" space-before="1mm">
+                     <div>WMS 1.1.1 section 7.1.4.5.10</div>
+                     <div space-before="1mm"><span>XPath locator: </span><span class="xpath">//Layer/DataURL</span></div>
+                     <div></div>
+                  </div>
+               </div>
+            </p><a name="getmap"></a><p>
+               <div class="inherited">
+                  <div class="target-name">GET_MAP</div>
+                  <div class="target-name" style="font-family: Courier; font-size: 8pt;">urn:au:gov:qld:sdi:standards:profiles:sdi-wms:conformance-target-types:getmap</div><span color="#BBBBBB"> inherited from sdi WMS</span><div class="conformance-target-block" space-before="1mm">
+                     <div>WMS Get Map element.</div>
+                     <div space-before="1mm"><span>XPath locator: </span><span class="xpath">//Capability/Request/GetMap</span></div>
+                     <div></div>
+                  </div>
+               </div>
+            </p><a name="getmap-format"></a><p>
+               <div class="inherited">
+                  <div class="target-name">GET_MAP_FORMAT</div>
+                  <div class="target-name" style="font-family: Courier; font-size: 8pt;">urn:au:gov:qld:sdi:standards:profiles:sdi-wms:conformance-target-types:getmap-format</div><span color="#BBBBBB"> inherited from sdi WMS</span><div class="conformance-target-block" space-before="1mm">
+                     <div>Supported response formats for the get map operation</div>
+                     <div space-before="1mm"><span>XPath locator: </span><span class="xpath">//Capability/Request/GetMap/Format</span></div>
+                     <div></div>
+                  </div>
+               </div>
+            </p><a name="layer-currency-start-date"></a><p>
+               <div class="inherited">
+                  <div class="target-name">WMS_LAYER_CURRENCY_START_DATE</div>
+                  <div class="target-name" style="font-family: Courier; font-size: 8pt;">urn:au:gov:qld:sdi:standards:profiles:sdi-wms:conformance-target-types:layer-currency-start-date</div><span color="#BBBBBB"> inherited from sdi WMS</span><div class="conformance-target-block" space-before="1mm">
+                     <div>Data set contains data valid from this date</div>
+                     <div space-before="1mm"><span>XPath locator: </span><span class="xpath">//gml:beginPosition</span></div>
+                     <div></div>
+                  </div>
+               </div>
+            </p><a name="layer-currency-end-date"></a><p>
+               <div class="inherited">
+                  <div class="target-name">WMS_LAYER_CURRENCY_END_DATE</div>
+                  <div class="target-name" style="font-family: Courier; font-size: 8pt;">urn:au:gov:qld:sdi:standards:profiles:sdi-wms:conformance-target-types:layer-currency-end-date</div><span color="#BBBBBB"> inherited from sdi WMS</span><div class="conformance-target-block" space-before="1mm">
+                     <div>Data set contains data valid up to this date</div>
+                     <div space-before="1mm"><span>XPath locator: </span><span class="xpath">//gml:endPosition</span></div>
+                     <div></div>
+                  </div>
+               </div>
+            </p>
+         </div>
+      </p>
+      <p xmlns:rim="urn:oasis:names:tc:ebxml-regrep:xsd:rim:3.0">
+         <div class="h2-sect">
+            <div class="h2-heading">Requirements</div><a name="GEOSCIML1"></a><div class="inherited">
+               <div style="color: brown; font-size: 12pt; font-weight: bold">GEOSCIML1</div>
+               <div style="color: brown; font-size: 8pt; font-family: Courier;">urn:au:gov:qld:sdi:standards:profiles:sdi-cadastre-data-product:requirements:GEOSCIML1</div><span style="color: #AAAAAA;"> inherited from <a style="color: #AAAAAA;" href="profile-geosciml-data-product.html" target="geosciml-data-product">GeoSciML Data Product</a></span><div class="pr-req-block">
+                  <div class="pr-req-normative-block">Data products will conform to the model defined in the identified version of GeoSciML, using the conformance requirements
+                     specified by the GeoSciML data product.
+                  </div>
+                  <div></div>
+               </div>
+            </div><a name="sdiWMSF1"></a><div class="inherited">
+               <div style="color: brown; font-size: 12pt; font-weight: bold">sdiWMSF1</div>
+               <div style="color: brown; font-size: 8pt; font-family: Courier;">urn:au:gov:qld:sdi:standards:profiles:sdi-wms-feature-info:requirements:sdiWMSF1</div><span style="color: #AAAAAA;"> inherited from <a style="color: #AAAAAA;" href="profile-sdi-wms-fi.html" target="sdi-wms-fi">sdi WMS Feature Info</a></span><div class="pr-req-block">
+                  <div class="pr-req-normative-block"><span><a class="pr-target-ref" href="#WMS_GETFEATUREINFO_FORMAT">WMS_GETFEATUREINFO_FORMAT</a></span>
+                     <span style="color: red; font-weight: bold;">MUST</span> support valid GML 2.1 and
+                     <span style="color: red; font-weight: bold;">SHOULD</span> support GML 3.1.1 format responses
+                     <span style="color: blue; font-weight: bold; font-style: italic;"><a name="id768"></a>COMMENT: "[SHANE] - Benchmark technology support"</span></div>
+                  <div></div>
+                  <p>
+                     <div style="space-before: 20mm;">
+                        <div class="pr-assertion-name">sdiWMSF1.A1</div>
+                        <div class="pr-assertion-block">
+                           <div><span font-weight="bold">XPath 2.0 expression: </span><span><span class="xpath">count(./Format = 'application/vnd.ogc.gml') = 1</span></span></div>
+                           <div style="space-before: 2mm"><span font-weight="bold">Applied to: </span><span><a class="pr-target-ref" href="#WMS_GETFEATUREINFO_FORMAT">WMS_GETFEATUREINFO_FORMAT</a></span></div>
+                           <div style="space-before: 2mm"><span><span style="color: red; font-weight: bold;">MUST</span></span><span> evaluate to <span font-weight="bold">TRUE</span></span></div>
+                        </div>
+                     </div>
+                  </p>
+                  <p>
+                     <div style="space-before: 20mm;">
+                        <div class="pr-assertion-name">sdiWMSF1.A2</div>
+                        <div class="pr-assertion-block">
+                           <div><span font-weight="bold">XPath 2.0 expression: </span><span><span class="xpath">count(./Format = 'application/vnd.ogc.gml; subtype=gml/3.1.1') =
+                                    1</span></span></div>
+                           <div style="space-before: 2mm"><span font-weight="bold">Applied to: </span><span><a class="pr-target-ref" href="#WMS_GETFEATUREINFO_FORMAT">WMS_GETFEATUREINFO_FORMAT</a></span></div>
+                           <div style="space-before: 2mm"><span><span style="color: red; font-weight: bold;">SHOULD</span></span><span> evaluate to <span font-weight="bold">TRUE</span></span></div>
+                        </div>
+                     </div>
+                  </p>
+               </div>
+            </div><a name="sdiWMSF2"></a><div class="inherited">
+               <div style="color: brown; font-size: 12pt; font-weight: bold">sdiWMSF2</div>
+               <div style="color: brown; font-size: 8pt; font-family: Courier;">urn:au:gov:qld:sdi:standards:profiles:sdi-wms-feature-info:requirements:sdiWMSF2</div><span style="color: #AAAAAA;"> inherited from <a style="color: #AAAAAA;" href="profile-sdi-wms-fi.html" target="sdi-wms-fi">sdi WMS Feature Info</a></span><div class="pr-req-block">
+                  <div class="pr-req-normative-block">Response from GetFeatureInfo
+                     <span style="color: red; font-weight: bold;">SHOULD</span> be identical to a response from a WFS
+                     request for the same Feature. <span style="color: blue; font-weight: bold; font-style: italic;"><a name="id782"></a>COMMENT: "[SHANE] - I think this may be a part of the
+                        benchmarking process: This is probably a key area to put pressure on vendors, and wrappers
+                        in short term - a single data source providing WMS and WFS should share a common config
+                        and common output schema"</span></div>
+                  <div></div>
+               </div>
+            </div><a name="sdiDWMS1"></a><div class="inherited">
+               <div style="color: brown; font-size: 12pt; font-weight: bold">sdiDWMS1</div>
+               <div style="color: brown; font-size: 8pt; font-family: Courier;">urn:au:gov:qld:sdi:standards:profiles:sdi-display-wms:requirements:sdiDWMS1</div><span style="color: #AAAAAA;"> inherited from <a style="color: #AAAAAA;" href="profile-sdi-display-wms.html" target="sdi-display-wms">sdi Display WMS</a></span><div class="pr-req-block">
+                  <div class="pr-req-normative-block">The response time for a getMap operation for an image less than
+                     1000 pixels by 1000 pixels <span style="color: red; font-weight: bold;">SHOULD</span> be less
+                     than 2 seconds, not including network data transfer time.
+                  </div>
+                  <div></div>
+               </div>
+            </div><a name="sdiDWMS2"></a><div class="inherited">
+               <div style="color: brown; font-size: 12pt; font-weight: bold">sdiDWMS2</div>
+               <div style="color: brown; font-size: 8pt; font-family: Courier;">urn:au:gov:qld:sdi:standards:profiles:sdi-display-wms:requirements:sdiDWMS2</div><span style="color: #AAAAAA;"> inherited from <a style="color: #AAAAAA;" href="profile-sdi-display-wms.html" target="sdi-display-wms">sdi Display WMS</a></span><div class="pr-req-block">
+                  <div class="pr-req-normative-block">The map server <span style="color: red; font-weight: bold;">MUST</span>be
+                     able to deliver images up to 1000 pixels by 1000 pixels
+                  </div>
+                  <div></div>
+               </div>
+            </div><a name="sdiWMS0000"></a><div class="inherited">
+               <div style="color: brown; font-size: 12pt; font-weight: bold">sdiWMS0000</div>
+               <div style="color: brown; font-size: 8pt; font-family: Courier;">urn:au:gov:qld:sdi:standards:profiles:sdi-wms:requirements:sdiWMS0000</div><span style="color: #AAAAAA;"> inherited from <a style="color: #AAAAAA;" href="profile-sdi-wms.html" target="sdi-wms">sdi WMS</a></span><div class="pr-req-block">
+                  <div class="pr-req-normative-block">
+                     <span><a class="pr-target-ref" href="#capabilites">CAPABILITIES</a></span>
+                     <span style="color: red; font-weight: bold;">MUST</span> have a version attribute with a value of
+                     '1.1.1'. WMS 1.1.1 section 6.1 <span style="color: blue; font-weight: bold; font-style: italic;"><a name="id386"></a>COMMENT: "This implies that the artefact binding asks for
+                        version 1.1.1"</span>
+                     
+                  </div>
+                  <div>
+                     <p>
+                        
+                        <div class="para">Currently almost all geospatial software vendors support WMS version 1.1.1 and do
+                           not yet support the emerging 1.3 WMS version. In addition the relatively small number of
+                           Queensland Government WMS services are also utilising version 1.1.1. This requirement will
+                           be periodically reviewed and when appropriate will be amended to include susequesnt
+                           version releases over time. <span style="color: blue; font-weight: bold; font-style: italic;"><a name="id389"></a>COMMENT: "[MARK] - write the non-normative
+                              content."</span>
+                           
+                        </div>
+                        
+                        
+                        <p xmlns:u="http://utf-x.sourceforge.net/xsd/utfxdoc_1_0/utfxdoc.xsd">
+                           <div class="ud-correct-example-code-block"><span class="ud-xml-text"><br>
+                                 </span>&lt;<span class="ud-xml-element-name">WMT_MS_Capabilities</span> <span class="ud-xml-attr-name">updateSequence</span>="<span class="ud-xml-attr-content">0</span>" <span class="ud-xml-attr-name">version</span>="<span class="ud-xml-attr-content">1.1.1</span>"&gt;<span class="ud-xml-text"><br>
+                                 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<br>
+                                 </span>&lt;/<span class="ud-xml-element-name">WMT_MS_Capabilities</span>&gt;<span class="ud-xml-text"><br>
+                                 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span></div>
+                           <div>Figure 4.1: Version attribute correctly states version 1.1.1</div>
+                        </p>
+                        
+                        
+                        <p xmlns:u="http://utf-x.sourceforge.net/xsd/utfxdoc_1_0/utfxdoc.xsd">
+                           <div class="ud-incorrect-example-code-block"><span class="ud-xml-text"><br>
+                                 </span>&lt;<span class="ud-xml-element-name">WMS_Capabilities</span><span class="ud-xml-ns-name"> xmlns</span>="<span class="ud-xml-ns-uri">http://www.opengis.net/wms</span>"<span class="ud-xml-ns-name"> xmlns:xlink</span>="<span class="ud-xml-ns-uri">http://www.w3.org/1999/xlink</span>" <span class="ud-xml-attr-name">version</span>="<span class="ud-xml-attr-content">1.3.0</span>" <span class="ud-xml-attr-name">xsi:schemaLocation</span>="<span class="ud-xml-attr-content">http://www.opengis.net/wms http://schemas.opengis.net/wms/1.3.0/capabilities_1_3_0.xsd</span>"&gt;<span class="ud-xml-text"><br>
+                                 &nbsp;&nbsp;<br>
+                                 </span>&lt;/<span class="ud-xml-element-name">WMS_Capabilities</span>&gt;<span class="ud-xml-text">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<br>
+                                 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span></div>
+                           <div>Figure 4.2: Incorrect version of WMS</div>
+                        </p>
+                        
+                        
+                     </p>
+                  </div>
+                  <p>
+                     <div style="space-before: 20mm;">
+                        <div class="pr-assertion-name">sdiWMS0001.A1</div>
+                        <div class="pr-assertion-block">
+                           <div><span font-weight="bold">XPath 2.0 expression: </span><span><span class="xpath">./@version = '1.1.1' </span></span></div>
+                           <div style="space-before: 2mm"><span font-weight="bold">Applied to: </span><span><a class="pr-target-ref" href="#capabilites">CAPABILITIES</a></span></div>
+                           <div style="space-before: 2mm"><span><span style="color: red; font-weight: bold;">MUST</span></span><span> evaluate to <span font-weight="bold">TRUE</span></span></div>
+                        </div>
+                     </div>
+                  </p>
+               </div>
+            </div><a name="sdiWMS0001"></a><div class="inherited">
+               <div style="color: brown; font-size: 12pt; font-weight: bold">sdiWMS0001</div>
+               <div style="color: brown; font-size: 8pt; font-family: Courier;">urn:au:gov:qld:sdi:standards:profiles:sdi-wms:requirements:sdiWMS0001</div><span style="color: #AAAAAA;"> inherited from <a style="color: #AAAAAA;" href="profile-sdi-wms.html" target="sdi-wms">sdi WMS</a></span><div class="pr-req-block">
+                  <div class="pr-req-normative-block">For each <span xmlns:u="http://utf-x.sourceforge.net/xsd/utfxdoc_1_0/utfxdoc.xsd" style="color: #781068; font-family: Courier; font-weight:bold;">&lt;MD_TopicCategoryCode&gt;</span> found in
+                     corresponding service metadata document (obtained from the
+                     <span xmlns:u="http://utf-x.sourceforge.net/xsd/utfxdoc_1_0/utfxdoc.xsd" style="color: #781068; font-family: Courier; font-weight:bold;">&lt;MetadataUrl&gt;</span> URL) there
+                     <span style="color: red; font-weight: bold;">MUST</span> be a corresponding
+                     <span xmlns:u="http://utf-x.sourceforge.net/xsd/utfxdoc_1_0/utfxdoc.xsd" style="color: #781068; font-family: Courier; font-weight:bold;">&lt;Keyword&gt;</span> element. <span style="color: blue; font-weight: bold; font-style: italic;"><a name="id408"></a>COMMENT: "Ian to write paragraph on the
+                        relationship between wfs/wms capabilities document and the metadata. 14/6 - need to create
+                        separate xml metadata docs for each of the 3 layers in the service (export from the CRS).
+                        Need to make sure that the topic category in each of the layer metadata records matches
+                        the keywords/topic categories in the service metadata and the capabilites
+                        document."</span>
+                     
+                  </div>
+                  <div>
+                     <p>
+                        
+                        <div class="para">The <span xmlns:u="http://utf-x.sourceforge.net/xsd/utfxdoc_1_0/utfxdoc.xsd" style="color: #781068; font-family: Courier; font-weight:bold;">&lt;MD_TopicCategoryCode&gt;</span> element is a controlled list of
+                           thematic classifications provided in ISO 19115. These classifications assist in
+                           categorising like data and information resources so search applications can find resources
+                           concerning particular themes. 
+                        </div>
+                        
+                        <div class="para">This requirement maps the keywords used for the layers in a service to the ISO
+                           19115 Topic Categories. The effectivness of catalogue search functions will be limited if
+                           services do not are not categorised similarly to the underlying data layers, therefore
+                           will not be allowed under this profile.
+                        </div>
+                        
+                        <div class="para">The examples need to come from the 4 metadata docs and the capabilities doc.</div>
+                        
+                        
+                        <p xmlns:u="http://utf-x.sourceforge.net/xsd/utfxdoc_1_0/utfxdoc.xsd">
+                           <div class="ud-correct-example-code-block"><span class="ud-xml-text"><br>
+                                 <br>
+                                 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span></div>
+                           <div>Figure 4.3: Topic category correctly listed in the ISO19115 metadata document. The
+                              metadata document for this example can be found at URL location
+                              http://myservice.org/metadata/infrastructure.xml
+                           </div>
+                        </p>
+                        
+                        
+                        <p xmlns:u="http://utf-x.sourceforge.net/xsd/utfxdoc_1_0/utfxdoc.xsd">
+                           <div class="ud-correct-example-code-block"><span class="ud-xml-text"><br>
+                                 <br>
+                                 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span></div>
+                           <div>Figure 4.4: Keyword list correctly listed in the WMS capabilities document and contains
+                              the keyword "infrastructure" as specified in the metadata document for the
+                              layer.
+                           </div>
+                        </p>
+                        
+                        
+                        
+                        <p xmlns:u="http://utf-x.sourceforge.net/xsd/utfxdoc_1_0/utfxdoc.xsd">
+                           <div class="ud-incorrect-example-code-block"><span class="ud-xml-text"><br>
+                                 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>&lt;<span class="ud-xml-element-name">MD_Metadata</span>&gt;<span class="ud-xml-text"><br>
+                                 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>&lt;<span class="ud-xml-element-name">topicCategory</span>&gt;<span class="ud-xml-text"><br>
+                                 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>&lt;<span class="ud-xml-element-name">MD_TopicCategoryCode</span><span class="ud-xml-ns-name"> xmlns:gmd</span>="<span class="ud-xml-ns-uri">http://www.isotc211.org/2005/gmd</span>"&gt;<span class="ud-xml-text">infrastructure<br>
+                                 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>&lt;/<span class="ud-xml-element-name">MD_TopicCategoryCode</span>&gt;<span class="ud-xml-text"><br>
+                                 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>&lt;/<span class="ud-xml-element-name">topicCategory</span>&gt;<span class="ud-xml-text"><br>
+                                 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>&lt;/<span class="ud-xml-element-name">MD_Metadata</span>&gt;<span class="ud-xml-text"><br>
+                                 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span></div>
+                           <div>Figure 4.5: Topic category correctly listed in the ISO19115 metadata
+                              document.
+                           </div>
+                        </p>
+                        
+                        
+                        <p xmlns:u="http://utf-x.sourceforge.net/xsd/utfxdoc_1_0/utfxdoc.xsd">
+                           <div class="ud-incorrect-example-code-block"><span class="ud-xml-text"><br>
+                                 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>&lt;<span class="ud-xml-element-name">Layer</span>&gt;<span class="ud-xml-text"><br>
+                                 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>&lt;<span class="ud-xml-element-name">KeywordList</span>&gt;<span class="ud-xml-text"><br>
+                                 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>&lt;<span class="ud-xml-element-name">Keyword</span>&gt;<span class="ud-xml-text">road</span>&lt;/<span class="ud-xml-element-name">Keyword</span>&gt;<span class="ud-xml-text"><br>
+                                 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>&lt;<span class="ud-xml-element-name">Keyword</span>&gt;<span class="ud-xml-text">rail</span>&lt;/<span class="ud-xml-element-name">Keyword</span>&gt;<span class="ud-xml-text"><br>
+                                 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>&lt;/<span class="ud-xml-element-name">KeywordList</span>&gt;<span class="ud-xml-text"><br>
+                                 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>&lt;/<span class="ud-xml-element-name">Layer</span>&gt;<span class="ud-xml-text"><br>
+                                 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span></div>
+                           <div>Figure 4.6: Keyword list incorrectly listed in the WMS capabilities document as it does
+                              not contain the keyword "infrastructure" as specified in the metadata document for the
+                              layer.
+                           </div>
+                        </p>
+                        
+                        
+                     </p>
+                  </div>
+               </div>
+            </div><a name="sdiWMS1"></a><div class="inherited">
+               <div style="color: brown; font-size: 12pt; font-weight: bold">sdiWMS1</div>
+               <div style="color: brown; font-size: 8pt; font-family: Courier;">urn:au:gov:qld:sdi:standards:profiles:sdi-wms:requirements:sdiWMS1</div><span style="color: #AAAAAA;"> inherited from <a style="color: #AAAAAA;" href="profile-sdi-wms.html" target="sdi-wms">sdi WMS</a></span><div class="pr-req-block">
+                  <div class="pr-req-normative-block">
+                     <span style="color: blue; font-weight: bold; font-style: italic;"><a name="id428"></a>COMMENT: "[SHANE] - Not sure about the need for this given the content below"</span>
+                     <span><a class="pr-target-ref" href="#contact-organisation">CONTACT_ORGANISATION</a></span>
+                     
+                  </div>
+                  <div></div>
+               </div>
+            </div><a name="sdiWMS0002"></a><div class="inherited">
+               <div style="color: brown; font-size: 12pt; font-weight: bold">sdiWMS0002</div>
+               <div style="color: brown; font-size: 8pt; font-family: Courier;">urn:au:gov:qld:sdi:standards:profiles:sdi-wms:requirements:sdiWMS0002</div><span style="color: #AAAAAA;"> inherited from <a style="color: #AAAAAA;" href="profile-sdi-wms.html" target="sdi-wms">sdi WMS</a></span><div class="pr-req-block">
+                  <div class="pr-req-normative-block">
+                     <span style="color: blue; font-weight: bold; font-style: italic;"><a name="id434"></a>COMMENT: "need to make sure that the correct example matches queensland goverment busines
+                        rules"</span>
+                     <span style="color: blue; font-weight: bold; font-style: italic;"><a name="id435"></a>COMMENT: "[MARK] - write the non-normative content for this requirement and provide
+                        examples of correct and incorrect usage. sdiWMS0001 -
+                        sdiWMS0001_2"</span><span><a class="pr-target-ref" href="#service">SERVICE</a></span>
+                     <span style="color: red; font-weight: bold;">MUST</span> contain exactly one
+                     <span xmlns:u="http://utf-x.sourceforge.net/xsd/utfxdoc_1_0/utfxdoc.xsd" style="color: #781068; font-family: Courier; font-weight:bold;">&lt;ContactPersonPrimary&gt;</span> element. 
+                  </div>
+                  <div>
+                     <p>
+                        
+                        <div class="para">This is to identify the name of the person currently acting in the role defined in
+                           requirement sdiWMS0003 <span><a class="pr-req-ref" href="#sdiWMS0001">sdiWMS0001</a></span>. Each service
+                           offering <span style="color: red; font-weight: bold;">MUST</span> contain reference to a designated
+                           position, responsible for the custodianship and management of the service. It is also
+                           desirable that this role is also reflected in the position description of the described
+                           position
+                        </div>
+                        
+                        
+                        <p xmlns:u="http://utf-x.sourceforge.net/xsd/utfxdoc_1_0/utfxdoc.xsd">
+                           <div class="ud-correct-example-code-block"><span class="ud-xml-text"><br>
+                                 &nbsp;&nbsp;&nbsp;&nbsp;</span>&lt;<span class="ud-xml-element-name">ContactInformation</span>&gt;<span class="ud-xml-text"><br>
+                                 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="ud-highlight">&lt;<span class="ud-xml-element-name">ContactPersonPrimary</span>&gt;<span class="ud-xml-text"><br>
+                                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>&lt;<span class="ud-xml-element-name">ContactPerson</span>&gt;<span class="ud-xml-text">Jeff&nbsp;deLaBeaujardiere</span>&lt;/<span class="ud-xml-element-name">ContactPerson</span>&gt;<span class="ud-xml-text"><br>
+                                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>&lt;<span class="ud-xml-element-name">ContactOrganization</span>&gt;<span class="ud-xml-text">NASA</span>&lt;/<span class="ud-xml-element-name">ContactOrganization</span>&gt;<span class="ud-xml-text"><br>
+                                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>&lt;/<span class="ud-xml-element-name">ContactPersonPrimary</span>&gt;</span><span class="ud-xml-text"><br>
+                                 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>&lt;<span class="ud-xml-element-name">ContactPosition</span>&gt;<span class="ud-xml-text">Computer&nbsp;Scientist</span>&lt;/<span class="ud-xml-element-name">ContactPosition</span>&gt;<span class="ud-xml-text"><br>
+                                 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>&lt;<span class="ud-xml-element-name">ContactAddress</span>&gt;<span class="ud-xml-text"><br>
+                                 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>&lt;<span class="ud-xml-element-name">AddressType</span>&gt;<span class="ud-xml-text">postal</span>&lt;/<span class="ud-xml-element-name">AddressType</span>&gt;<span class="ud-xml-text"><br>
+                                 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>&lt;<span class="ud-xml-element-name">Address</span>&gt;<span class="ud-xml-text">NASA&nbsp;Goddard&nbsp;Space&nbsp;Flight&nbsp;Center,&nbsp;Code&nbsp;933</span>&lt;/<span class="ud-xml-element-name">Address</span>&gt;<span class="ud-xml-text"><br>
+                                 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>&lt;<span class="ud-xml-element-name">City</span>&gt;<span class="ud-xml-text">Greenbelt</span>&lt;/<span class="ud-xml-element-name">City</span>&gt;<span class="ud-xml-text"><br>
+                                 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>&lt;<span class="ud-xml-element-name">StateOrProvince</span>&gt;<span class="ud-xml-text">MD</span>&lt;/<span class="ud-xml-element-name">StateOrProvince</span>&gt;<span class="ud-xml-text"><br>
+                                 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>&lt;<span class="ud-xml-element-name">PostCode</span>&gt;<span class="ud-xml-text">20771</span>&lt;/<span class="ud-xml-element-name">PostCode</span>&gt;<span class="ud-xml-text"><br>
+                                 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>&lt;<span class="ud-xml-element-name">Country</span>&gt;<span class="ud-xml-text">USA</span>&lt;/<span class="ud-xml-element-name">Country</span>&gt;<span class="ud-xml-text"><br>
+                                 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>&lt;/<span class="ud-xml-element-name">ContactAddress</span>&gt;<span class="ud-xml-text"><br>
+                                 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>&lt;<span class="ud-xml-element-name">ContactVoiceTelephone</span>&gt;<span class="ud-xml-text">+1&nbsp;301&nbsp;286-1569</span>&lt;/<span class="ud-xml-element-name">ContactVoiceTelephone</span>&gt;<span class="ud-xml-text"><br>
+                                 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>&lt;<span class="ud-xml-element-name">ContactFacsimileTelephone</span>&gt;<span class="ud-xml-text">+1&nbsp;301&nbsp;286-1777</span>&lt;/<span class="ud-xml-element-name">ContactFacsimileTelephone</span>&gt;<span class="ud-xml-text"><br>
+                                 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>&lt;<span class="ud-xml-element-name">ContactElectronicMailAddress</span>&gt;<span class="ud-xml-text">delabeau@iniki.gsfc.nasa.gov</span>&lt;/<span class="ud-xml-element-name">ContactElectronicMailAddress</span>&gt;<span class="ud-xml-text"><br>
+                                 &nbsp;&nbsp;&nbsp;&nbsp;</span>&lt;/<span class="ud-xml-element-name">ContactInformation</span>&gt;<span class="ud-xml-text"><br>
+                                 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span></div>
+                           <div>Figure 4.7: Correct example</div>
+                        </p>
+                        
+                        
+                        <p xmlns:u="http://utf-x.sourceforge.net/xsd/utfxdoc_1_0/utfxdoc.xsd">
+                           <div class="ud-incorrect-example-code-block"><span class="ud-xml-text"><br>
+                                 &nbsp;&nbsp;&nbsp;&nbsp;</span>&lt;<span class="ud-xml-element-name">ContactInformation</span>&gt;<span class="ud-xml-text"><br>
+                                 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>&lt;!--<span class="ud-xml-comment">&nbsp;ContactPersonPrimary&nbsp;is&nbsp;missing&nbsp;</span>--&gt;<span class="ud-xml-text"><br>
+                                 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>&lt;<span class="ud-xml-element-name">ContactPosition</span>&gt;<span class="ud-xml-text">Computer&nbsp;Scientist</span>&lt;/<span class="ud-xml-element-name">ContactPosition</span>&gt;<span class="ud-xml-text"><br>
+                                 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>&lt;<span class="ud-xml-element-name">ContactAddress</span>&gt;<span class="ud-xml-text"><br>
+                                 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>&lt;<span class="ud-xml-element-name">AddressType</span>&gt;<span class="ud-xml-text">postal</span>&lt;/<span class="ud-xml-element-name">AddressType</span>&gt;<span class="ud-xml-text"><br>
+                                 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>&lt;<span class="ud-xml-element-name">Address</span>&gt;<span class="ud-xml-text">NASA&nbsp;Goddard&nbsp;Space&nbsp;Flight&nbsp;Center,&nbsp;Code&nbsp;933</span>&lt;/<span class="ud-xml-element-name">Address</span>&gt;<span class="ud-xml-text"><br>
+                                 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>&lt;<span class="ud-xml-element-name">City</span>&gt;<span class="ud-xml-text">Greenbelt</span>&lt;/<span class="ud-xml-element-name">City</span>&gt;<span class="ud-xml-text"><br>
+                                 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>&lt;<span class="ud-xml-element-name">StateOrProvince</span>&gt;<span class="ud-xml-text">MD</span>&lt;/<span class="ud-xml-element-name">StateOrProvince</span>&gt;<span class="ud-xml-text"><br>
+                                 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>&lt;<span class="ud-xml-element-name">PostCode</span>&gt;<span class="ud-xml-text">20771</span>&lt;/<span class="ud-xml-element-name">PostCode</span>&gt;<span class="ud-xml-text"><br>
+                                 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>&lt;<span class="ud-xml-element-name">Country</span>&gt;<span class="ud-xml-text">USA</span>&lt;/<span class="ud-xml-element-name">Country</span>&gt;<span class="ud-xml-text"><br>
+                                 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>&lt;/<span class="ud-xml-element-name">ContactAddress</span>&gt;<span class="ud-xml-text"><br>
+                                 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>&lt;<span class="ud-xml-element-name">ContactVoiceTelephone</span>&gt;<span class="ud-xml-text">+1&nbsp;301&nbsp;286-1569</span>&lt;/<span class="ud-xml-element-name">ContactVoiceTelephone</span>&gt;<span class="ud-xml-text"><br>
+                                 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>&lt;<span class="ud-xml-element-name">ContactFacsimileTelephone</span>&gt;<span class="ud-xml-text">+1&nbsp;301&nbsp;286-1777</span>&lt;/<span class="ud-xml-element-name">ContactFacsimileTelephone</span>&gt;<span class="ud-xml-text"><br>
+                                 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>&lt;<span class="ud-xml-element-name">ContactElectronicMailAddress</span>&gt;<span class="ud-xml-text">delabeau@iniki.gsfc.nasa.gov</span>&lt;/<span class="ud-xml-element-name">ContactElectronicMailAddress</span>&gt;<span class="ud-xml-text"><br>
+                                 &nbsp;&nbsp;&nbsp;&nbsp;</span>&lt;/<span class="ud-xml-element-name">ContactInformation</span>&gt;<span class="ud-xml-text"><br>
+                                 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span></div>
+                           <div>Figure 4.8: Icorrect example</div>
+                        </p>
+                        
+                        
+                     </p>
+                  </div>
+                  <p>
+                     <div style="space-before: 20mm;">
+                        <div class="pr-assertion-name">sdiWMS0002.A1</div>
+                        <div class="pr-assertion-block">
+                           <div><span font-weight="bold">XPath 2.0 expression: </span><span><span class="xpath">count(./ContactInformation) = 1</span></span></div>
+                           <div style="space-before: 2mm"><span font-weight="bold">Applied to: </span><span><a class="pr-target-ref" href="#service">SERVICE</a></span></div>
+                           <div style="space-before: 2mm"><span><span style="color: red; font-weight: bold;">MUST</span></span><span> evaluate to <span font-weight="bold">TRUE</span></span></div>
+                        </div>
+                     </div>
+                  </p>
+               </div>
+            </div><a name="r0003"></a><div class="inherited">
+               <div style="color: brown; font-size: 12pt; font-weight: bold">r0003</div>
+               <div style="color: brown; font-size: 8pt; font-family: Courier;">urn:au:gov:qld:sdi:standards:profiles:sdi-wms:requirements:r0003</div><span style="color: #AAAAAA;"> inherited from <a style="color: #AAAAAA;" href="profile-sdi-wms.html" target="sdi-wms">sdi WMS</a></span><div class="pr-req-block">
+                  <div class="pr-req-normative-block">
+                     <span style="color: blue; font-weight: bold; font-style: italic;"><a name="id458"></a>COMMENT: "[MARK] - write the non-normative content for this requirement and provide
+                        examples of correct and incorrect usage."</span>
+                     <span><a class="pr-target-ref" href="#contact-organisation">CONTACT_ORGANISATION</a></span>
+                     <span style="color: red; font-weight: bold;">MUST</span> contain
+                     <span xmlns:u="http://utf-x.sourceforge.net/xsd/utfxdoc_1_0/utfxdoc.xsd" style="color: #781068; font-family: Courier; font-weight:bold;">&lt;ContactPersonPrimary&gt;</span> or <span xmlns:u="http://utf-x.sourceforge.net/xsd/utfxdoc_1_0/utfxdoc.xsd" style="color: #781068; font-family: Courier; font-weight:bold;">&lt;ContactPosition&gt;</span>
+                     
+                  </div>
+                  <div>
+                     <p>
+                        
+                        <div class="para">This is to identify the Queensland Government position responsible for the
+                           custodianship and management of the service. The individual filling this role
+                           <span style="color: red; font-weight: bold;">MUST</span> have detailed content (but no necessarily
+                           technical) knowledge of the service. It is also desirable that this role is also reflected
+                           in the position description of the described position.
+                        </div>
+                        
+                        <p xmlns:u="http://utf-x.sourceforge.net/xsd/utfxdoc_1_0/utfxdoc.xsd">
+                           <div class="ud-code-block"><span class="ud-xml-text"><br>
+                                 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>&lt;<span class="ud-xml-element-name">need-example</span> /&gt;<span class="ud-xml-text"><br>
+                                 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span></div>
+                           <div>Figure 4.9: Senior Project Officer - Service Implementation Senior Scientist - Water
+                              Resources 
+                           </div>
+                        </p>
+                        
+                     </p>
+                  </div>
+                  <p>
+                     <div style="space-before: 20mm;">
+                        <div class="pr-assertion-name">sdiWMS0003.A1</div>
+                        <div class="pr-assertion-block">
+                           <div><span font-weight="bold">XPath 2.0 expression: </span><span><span class="xpath">count(./ContactPersonPrimary | ./ContactPosition) &gt;
+                                    1</span></span></div>
+                           <div style="space-before: 2mm"><span font-weight="bold">Applied to: </span><span><a class="pr-target-ref" href="#contact-organisation">CONTACT_ORGANISATION</a></span></div>
+                           <div style="space-before: 2mm"><span><span style="color: red; font-weight: bold;">MUST</span></span><span> evaluate to <span font-weight="bold">TRUE</span></span></div>
+                        </div>
+                     </div>
+                  </p>
+               </div>
+            </div><a name="sdiWMS0004"></a><div class="inherited">
+               <div style="color: brown; font-size: 12pt; font-weight: bold">sdiWMS0004</div>
+               <div style="color: brown; font-size: 8pt; font-family: Courier;">urn:au:gov:qld:sdi:standards:profiles:sdi-wms:requirements:sdiWMS0004</div><span style="color: #AAAAAA;"> inherited from <a style="color: #AAAAAA;" href="profile-sdi-wms.html" target="sdi-wms">sdi WMS</a></span><div class="pr-req-block">
+                  <div class="pr-req-normative-block">
+                     <span style="color: blue; font-weight: bold; font-style: italic;"><a name="id477"></a>COMMENT: "[MARK] - write the non-normative content for this requirement and provide
+                        examples of correct and incorrect usage."</span>
+                     <span><a class="pr-target-ref" href="#contact-organisation">CONTACT_ORGANISATION</a></span>
+                     <span style="color: red; font-weight: bold;">MUST</span> contain ContactFacsimileTelephone or
+                     ContactElectronicMailAddress 
+                  </div>
+                  <div>
+                     <p>
+                        
+                        <div class="para">This describes the contact telephone numbers of the position responsible for the
+                           sercive, as described in R0003<span><a class="pr-req-ref" href="#sdiWMS0000">sdiWMS0000</a></span>.
+                        </div>
+                        
+                        <p xmlns:u="http://utf-x.sourceforge.net/xsd/utfxdoc_1_0/utfxdoc.xsd">
+                           <div class="ud-code-block"><span class="ud-xml-text"><br>
+                                 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>&lt;<span class="ud-xml-element-name">need-example</span> /&gt;<span class="ud-xml-text"><br>
+                                 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span></div>
+                           <div>Figure 4.10: +617 1234 5678</div>
+                        </p>
+                        
+                     </p>
+                  </div>
+                  <p>
+                     <div style="space-before: 20mm;">
+                        <div class="pr-assertion-name">sdiWMS0004.A1</div>
+                        <div class="pr-assertion-block">
+                           <div><span font-weight="bold">XPath 2.0 expression: </span><span><span class="xpath">count(./ContactFacsimileTelephone | ./ContactElectronicMailAddress)
+                                    &gt; 1</span></span></div>
+                           <div style="space-before: 2mm"><span font-weight="bold">Applied to: </span><span><a class="pr-target-ref" href="#contact-organisation">CONTACT_ORGANISATION</a></span></div>
+                           <div style="space-before: 2mm"><span><span style="color: red; font-weight: bold;">MUST</span></span><span> evaluate to <span font-weight="bold">TRUE</span></span></div>
+                        </div>
+                     </div>
+                  </p>
+               </div>
+            </div><a name="sdiWMS0005"></a><div class="inherited">
+               <div style="color: brown; font-size: 12pt; font-weight: bold">sdiWMS0005</div>
+               <div style="color: brown; font-size: 8pt; font-family: Courier;">urn:au:gov:qld:sdi:standards:profiles:sdi-wms:requirements:sdiWMS0005</div><span style="color: #AAAAAA;"> inherited from <a style="color: #AAAAAA;" href="profile-sdi-wms.html" target="sdi-wms">sdi WMS</a></span><div class="pr-req-block">
+                  <div class="pr-req-normative-block">
+                     <span><a class="pr-target-ref" href="#service">SERVICE</a></span>
+                     <span style="color: red; font-weight: bold;">MUST</span> contain exactly one
+                     <span xmlns:u="http://utf-x.sourceforge.net/xsd/utfxdoc_1_0/utfxdoc.xsd" style="color: #781068; font-family: Courier; font-weight:bold;">&lt;Abstract&gt;</span> element. 
+                  </div>
+                  <div>
+                     <p>
+                        
+                        <div class="para"> The Abstract is a brief narrative summary of the content of the service. Careful
+                           consideration should be given when preparing an Abstract as it is an important element for
+                           the identification and discovery of a service. Other material to be conveyed in this
+                           element may include a description of the purpose for which the service was created, and a
+                           textual description of the spatial extent of the data contained in the service. Generally,
+                           the Abstract should describe the contents of the service for a non-expert user, in plain
+                           language. It should be more than a repeat of the title. While the Abstract element is
+                           optional in the WMS 1.1.1. specficiation (see section 7.1.4.5.3), this profile stipulates
+                           that an abstract is <span style="color: red; font-weight: bold;">REQUIRED</span>.
+                        </div>
+                        
+                        <p xmlns:u="http://utf-x.sourceforge.net/xsd/utfxdoc_1_0/utfxdoc.xsd">
+                           <div class="ud-correct-example-code-block"><span class="ud-xml-text"><br>
+                                 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>&lt;<span class="ud-xml-element-name">Service</span>&gt;<span class="ud-xml-text"><br>
+                                 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>&lt;<span class="ud-xml-element-name">Name</span>&gt;<span class="ud-xml-text">OGC:WMS</span>&lt;/<span class="ud-xml-element-name">Name</span>&gt;<span class="ud-xml-text"><br>
+                                 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>&lt;<span class="ud-xml-element-name">Title</span>&gt;<span class="ud-xml-text">Acme&nbsp;Corp.&nbsp;Map&nbsp;Server</span>&lt;/<span class="ud-xml-element-name">Title</span>&gt;<span class="ud-xml-text"><br>
+                                 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="ud-highlight">&lt;<span class="ud-xml-element-name">Abstract</span>&gt;<span class="ud-xml-text">WMT&nbsp;Map&nbsp;Server&nbsp;maintained&nbsp;by&nbsp;Acme&nbsp;Corporation.&nbsp;Contact:<br>
+                                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;webmaster@wmt.acme.com.&nbsp;High-quality&nbsp;maps&nbsp;showing&nbsp;roadrunner&nbsp;nests&nbsp;and&nbsp;possible<br>
+                                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ambush&nbsp;locations.</span>&lt;/<span class="ud-xml-element-name">Abstract</span>&gt;</span><span class="ud-xml-text"><br>
+                                 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>&lt;<span class="ud-xml-element-name">KeywordList</span>&gt;<span class="ud-xml-text"><br>
+                                 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>&lt;<span class="ud-xml-element-name">Keyword</span>&gt;<span class="ud-xml-text">bird</span>&lt;/<span class="ud-xml-element-name">Keyword</span>&gt;<span class="ud-xml-text"><br>
+                                 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>&lt;<span class="ud-xml-element-name">Keyword</span>&gt;<span class="ud-xml-text">roadrunner</span>&lt;/<span class="ud-xml-element-name">Keyword</span>&gt;<span class="ud-xml-text"><br>
+                                 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>&lt;<span class="ud-xml-element-name">Keyword</span>&gt;<span class="ud-xml-text">ambush</span>&lt;/<span class="ud-xml-element-name">Keyword</span>&gt;<span class="ud-xml-text"><br>
+                                 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>&lt;/<span class="ud-xml-element-name">KeywordList</span>&gt;<span class="ud-xml-text"><br>
+                                 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>&lt;/<span class="ud-xml-element-name">Service</span>&gt;<span class="ud-xml-text"><br>
+                                 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span></div>
+                           <div>Figure 4.11: A compliant WMS Service contains an abstract element.</div>
+                        </p>
+                        
+                        
+                        <p xmlns:u="http://utf-x.sourceforge.net/xsd/utfxdoc_1_0/utfxdoc.xsd">
+                           <div class="ud-incorrect-example-code-block"><span class="ud-xml-text"><br>
+                                 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>&lt;<span class="ud-xml-element-name">Service</span>&gt;<span class="ud-xml-text"><br>
+                                 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>&lt;<span class="ud-xml-element-name">Name</span>&gt;<span class="ud-xml-text">OGC:WMS</span>&lt;/<span class="ud-xml-element-name">Name</span>&gt;<span class="ud-xml-text"><br>
+                                 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>&lt;<span class="ud-xml-element-name">Title</span>&gt;<span class="ud-xml-text">Acme&nbsp;Corp.&nbsp;Map&nbsp;Server</span>&lt;/<span class="ud-xml-element-name">Title</span>&gt;<span class="ud-xml-text"><br>
+                                 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>&lt;!--<span class="ud-xml-comment">&nbsp;Note&nbsp;the&nbsp;absence&nbsp;of&nbsp;the&nbsp;Abstract&nbsp;</span>--&gt;<span class="ud-xml-text"><br>
+                                 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>&lt;<span class="ud-xml-element-name">KeywordList</span>&gt;<span class="ud-xml-text"><br>
+                                 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>&lt;<span class="ud-xml-element-name">Keyword</span>&gt;<span class="ud-xml-text">bird</span>&lt;/<span class="ud-xml-element-name">Keyword</span>&gt;<span class="ud-xml-text"><br>
+                                 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>&lt;<span class="ud-xml-element-name">Keyword</span>&gt;<span class="ud-xml-text">roadrunner</span>&lt;/<span class="ud-xml-element-name">Keyword</span>&gt;<span class="ud-xml-text"><br>
+                                 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>&lt;<span class="ud-xml-element-name">Keyword</span>&gt;<span class="ud-xml-text">ambush</span>&lt;/<span class="ud-xml-element-name">Keyword</span>&gt;<span class="ud-xml-text"><br>
+                                 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>&lt;/<span class="ud-xml-element-name">KeywordList</span>&gt;<span class="ud-xml-text"><br>
+                                 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>&lt;/<span class="ud-xml-element-name">Service</span>&gt;<span class="ud-xml-text"><br>
+                                 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span></div>
+                           <div>Figure 4.12: An non compliant WMS Service that does not contain an abstract
+                              element.
+                           </div>
+                        </p>
+                        
+                        
+                     </p>
+                  </div>
+                  <p>
+                     <div style="space-before: 20mm;">
+                        <div class="pr-assertion-name">sdiWMS0005.A1</div>
+                        <div class="pr-assertion-block">
+                           <div><span font-weight="bold">XPath 2.0 expression: </span><span><span class="xpath">count(./Abstract) = 1</span></span></div>
+                           <div style="space-before: 2mm"><span font-weight="bold">Applied to: </span><span><a class="pr-target-ref" href="#service">SERVICE</a></span></div>
+                           <div style="space-before: 2mm"><span><span style="color: red; font-weight: bold;">MUST</span></span><span> evaluate to <span font-weight="bold">TRUE</span></span></div>
+                        </div>
+                     </div>
+                  </p>
+               </div>
+            </div><a name="sdiWMS0006"></a><div class="inherited">
+               <div style="color: brown; font-size: 12pt; font-weight: bold">sdiWMS0006</div>
+               <div style="color: brown; font-size: 8pt; font-family: Courier;">urn:au:gov:qld:sdi:standards:profiles:sdi-wms:requirements:sdiWMS0006</div><span style="color: #AAAAAA;"> inherited from <a style="color: #AAAAAA;" href="profile-sdi-wms.html" target="sdi-wms">sdi WMS</a></span><div class="pr-req-block">
+                  <div class="pr-req-normative-block">
+                     <span style="color: blue; font-weight: bold; font-style: italic;"><a name="id513"></a>COMMENT: "[IAN] - write the non-normative content for this requirement and provide
+                        examples of correct and incorrect usage."</span>
+                     <span><a class="pr-target-ref" href="#invocable-layer">INVOCABLE_LAYER</a></span>
+                     <span style="color: red; font-weight: bold;">MUST</span> contain exactly one
+                     <span><a class="pr-target-ref" href="#currency">CURRENCY</a></span> keyword containing a term from the data currency
+                     controlled vocabulary [fix xpath]] <span style="color: blue; font-weight: bold; font-style: italic;"><a name="id517"></a>COMMENT: "URN of vocabulary (example below) needs to be
+                        a published artefact resolvable with sdi architecture. ebRIM classification have been
+                        defined."</span>
+                     
+                  </div>
+                  <div>
+                     <p>
+                        
+                        <div class="para">A WMS service can depict information from a wide range of data sources and of
+                           varying temporal content. To aid catalogue searching for services depicting current or
+                           historical or predicted data content, a keyword is used to give a general indication of
+                           the currency of the data depicted within a service. Because keywords are unqualified and
+                           multi-valued, each instance must be a fully qualified (unambiguous) URN. The
+                           classification scheme used is a controlled vocabulary for "Data Currency" (whose initial
+                           content is adopted from the Australian marine SDI community, and includes the keywords
+                           "Current", "Historical", "Predicted" and "Unknown".)
+                        </div>
+                        
+                        <p xmlns:u="http://utf-x.sourceforge.net/xsd/utfxdoc_1_0/utfxdoc.xsd">
+                           <div class="ud-correct-example-code-block"><span class="ud-xml-text"><br>
+                                 </span>&lt;<span class="ud-xml-element-name">Layer</span>&gt;<span class="ud-xml-text"><br>
+                                 &nbsp;&nbsp;</span>&lt;<span class="ud-xml-element-name">KeywordList</span>&gt;<span class="ud-xml-text"><br>
+                                 &nbsp;&nbsp;&nbsp;&nbsp;</span><span class="ud-highlight">&lt;<span class="ud-xml-element-name">Keyword</span>&gt;<span class="ud-xml-text">urn:asdi:marine:data:currency:current</span>&lt;/<span class="ud-xml-element-name">Keyword</span>&gt;</span><span class="ud-xml-text"><br>
+                                 &nbsp;&nbsp;</span>&lt;/<span class="ud-xml-element-name">KeywordList</span>&gt;<span class="ud-xml-text"><br>
+                                 </span>&lt;/<span class="ud-xml-element-name">Layer</span>&gt;<span class="ud-xml-text"><br>
+                                 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span></div>
+                           <div>Figure 4.13: Correct usage</div>
+                        </p>
+                        
+                        
+                        <p xmlns:u="http://utf-x.sourceforge.net/xsd/utfxdoc_1_0/utfxdoc.xsd">
+                           <div class="ud-incorrect-example-code-block"><span class="ud-xml-text"><br>
+                                 </span>&lt;<span class="ud-xml-element-name">Layer</span>&gt;<span class="ud-xml-text"><br>
+                                 &nbsp;&nbsp;</span>&lt;<span class="ud-xml-element-name">KeywordList</span>&gt;<span class="ud-xml-text"><br>
+                                 &nbsp;&nbsp;&nbsp;&nbsp;</span><span class="ud-highlight">&lt;<span class="ud-xml-element-name">Keyword</span>&gt;<span class="ud-xml-text">Current</span>&lt;/<span class="ud-xml-element-name">Keyword</span>&gt;</span><span class="ud-xml-text"><br>
+                                 &nbsp;&nbsp;</span>&lt;/<span class="ud-xml-element-name">KeywordList</span>&gt;<span class="ud-xml-text"><br>
+                                 </span>&lt;/<span class="ud-xml-element-name">Layer</span>&gt;<span class="ud-xml-text"><br>
+                                 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span></div>
+                           <div>Figure 4.14: Incorrect usage.</div>
+                        </p>
+                        
+                     </p>
+                  </div>
+               </div>
+            </div><a name="sdiWMS0007"></a><div class="inherited">
+               <div style="color: brown; font-size: 12pt; font-weight: bold">sdiWMS0007</div>
+               <div style="color: brown; font-size: 8pt; font-family: Courier;">urn:au:gov:qld:sdi:standards:profiles:sdi-wms:requirements:sdiWMS0007</div><span style="color: #AAAAAA;"> inherited from <a style="color: #AAAAAA;" href="profile-sdi-wms.html" target="sdi-wms">sdi WMS</a></span><div class="pr-req-block">
+                  <div class="pr-req-normative-block">
+                     <span style="color: blue; font-weight: bold; font-style: italic;"><a name="id528"></a>COMMENT: "Mark to do"</span>
+                     <span><a class="pr-target-ref" href="#invocable-layer">INVOCABLE_LAYER</a></span>
+                     <span style="color: red; font-weight: bold;">MUST</span> contain exactly one topic keyword containing a
+                     term from the sdi registry topic [get ref] controlled vocabulary <span style="color: blue; font-weight: bold; font-style: italic;"><a name="id531"></a>COMMENT: "URN of
+                        vocabulary (example below) needs to be a published artefact resolvable with sdi
+                        architecture. Isn't this the same as XXXXX555 - no, refers to referencing possibly
+                        multiple thesauri e.g. SSQ Govt Categories (Land and Resources, Business and Industry
+                        etc), or the Australian Mining Handbook (what ever it's called), ANZLIC, QKey. Jacek to
+                        meet with Sam on Monday. Need to determine appropriate custodian for each of the
+                        thesauri."</span>
+                     
+                  </div>
+                  <div>
+                     <p>
+                        
+                        <div class="para">Meaningful and representitive keywords are required to ensure simple and
+                           consisitant searching for related information. Both the spelling and keywords used should
+                           be from one of the keyword lists endorsed by the custodian of keyword lists for Queensland
+                           Government. At least one keyword is required to assist in finding required services.
+                           
+                        </div>
+                        
+                     </p>
+                  </div>
+                  <p>
+                     <div style="space-before: 20mm;">
+                        <div class="pr-assertion-name">sdiWMS0007.A1</div>
+                        <div class="pr-assertion-block">
+                           <div><span font-weight="bold">XPath 2.0 expression: </span><span><span class="xpath">count(./KeywordList/Keyword[
+                                    startsWith('scheme=urn:au:gov:qld:sdi:standards:discoverysemantics:topic') =
+                                    1</span></span><div class="error-block">Could not find function: startsWith</div>
+                           </div>
+                           <div style="space-before: 2mm"><span font-weight="bold">Applied to: </span><span><a class="pr-target-ref" href="#invocable-layer">INVOCABLE_LAYER</a></span></div>
+                           <div style="space-before: 2mm"><span><span style="color: red; font-weight: bold;">MUST</span></span><span> evaluate to <span font-weight="bold">TRUE</span></span></div>
+                        </div>
+                     </div>
+                  </p>
+               </div>
+            </div><a name="sdiWMS0008"></a><div class="inherited">
+               <div style="color: brown; font-size: 12pt; font-weight: bold">sdiWMS0008</div>
+               <div style="color: brown; font-size: 8pt; font-family: Courier;">urn:au:gov:qld:sdi:standards:profiles:sdi-wms:requirements:sdiWMS0008</div><span style="color: #AAAAAA;"> inherited from <a style="color: #AAAAAA;" href="profile-sdi-wms.html" target="sdi-wms">sdi WMS</a></span><div class="pr-req-block">
+                  <div class="pr-req-normative-block">
+                     <span style="color: blue; font-weight: bold; font-style: italic;"><a name="id541"></a>COMMENT: "[MICAH] - write the non-normative content for this requirement and provide
+                        examples of correct and incorrect usage. "</span>
+                     <span><a class="pr-target-ref" href="#invocable-layer">INVOCABLE_LAYER</a></span>
+                     <span style="color: red; font-weight: bold;">SHOULD</span> contain minimum and maximum display scales
+                     supported for each layer by populating the <span><a class="pr-target-ref" href="#scale-hint">SCALE_HINT</a></span>
+                     element. See table 7 for inheritance by parent from child. 
+                  </div>
+                  <div>
+                     <p>
+                        
+                        <div class="para">The inclusion of maximum (max) and minimum (min) scale hints assist in delivering
+                           reliable performance of services and aides in limiting misuse of data by restricting the
+                           viewable scales to match the data accuracy. Each layer should have a "max" and "min" scale
+                           hint. In some cases, it may be acceptable to not include a scale hint such as a map
+                           service that provides static images of non-georeferenced data, or a service that provides
+                           sparsely populated data that is captured with sufficient accuracy e.g. a statewide GPS
+                           point dataset of species locations that contains minimal data. In this case the data is
+                           accurate at the property scale and is geographically sparse enough not to adversly effect
+                           rendering performance.
+                        </div>
+                        
+                     </p>
+                  </div>
+                  <p>
+                     <div style="space-before: 20mm;">
+                        <div class="pr-assertion-name">sdiWMS0008.A1</div>
+                        <div class="pr-assertion-block">
+                           <div><span font-weight="bold">XPath 2.0 expression: </span><span><span class="xpath">count(ancestor-or-self::Layer/ScaleHint/@min) &gt;
+                                    0</span></span></div>
+                           <div style="space-before: 2mm"><span font-weight="bold">Applied to: </span><span><a class="pr-target-ref" href="#invocable-layer">INVOCABLE_LAYER</a></span></div>
+                           <div style="space-before: 2mm"><span><span style="color: red; font-weight: bold;">SHOULD</span></span><span> evaluate to <span font-weight="bold">TRUE</span></span></div>
+                        </div>
+                     </div>
+                  </p>
+                  <p>
+                     <div style="space-before: 20mm;">
+                        <div class="pr-assertion-name">sdiWMS0008.A2</div>
+                        <div class="pr-assertion-block">
+                           <div><span font-weight="bold">XPath 2.0 expression: </span><span><span class="xpath">count(ancestor-or-self::Layer/ScaleHint/@max) &gt;
+                                    0</span></span></div>
+                           <div style="space-before: 2mm"><span font-weight="bold">Applied to: </span><span><a class="pr-target-ref" href="#invocable-layer">INVOCABLE_LAYER</a></span></div>
+                           <div style="space-before: 2mm"><span><span style="color: red; font-weight: bold;">SHOULD</span></span><span> evaluate to <span font-weight="bold">TRUE</span></span></div>
+                        </div>
+                     </div>
+                  </p>
+               </div>
+            </div><a name="sdiWMS0009"></a><div class="inherited">
+               <div style="color: brown; font-size: 12pt; font-weight: bold">sdiWMS0009</div>
+               <div style="color: brown; font-size: 8pt; font-family: Courier;">urn:au:gov:qld:sdi:standards:profiles:sdi-wms:requirements:sdiWMS0009</div><span style="color: #AAAAAA;"> inherited from <a style="color: #AAAAAA;" href="profile-sdi-wms.html" target="sdi-wms">sdi WMS</a></span><div class="pr-req-block">
+                  <div class="pr-req-normative-block">
+                     <span style="color: blue; font-weight: bold; font-style: italic;"><a name="id559"></a>COMMENT: "[IAN] - write the non-normative content for this requirement and provide
+                        examples of correct and incorrect usage. [JACEK] add a paragraph on the technical
+                        component, ie linking from the Capabilities document to the Metadata document."</span>
+                     <span><a class="pr-target-ref" href="#invocable-layer">INVOCABLE_LAYER</a></span>
+                     <span style="color: red; font-weight: bold;">MUST</span> contain exactly one
+                     <span><a class="pr-target-ref" href="#metadata-url">METADATA_URL</a></span> keyword that references a sdi standard dataset
+                     metadata profile XML document. This will be an ISO 19139 conformant implementation of the
+                     ISO 19115 metadata standard referred to by the keyword "TC211". <span style="color: blue; font-weight: bold; font-style: italic;"><a name="id563"></a>COMMENT: "Some services
+                        within the QG may already use FGDC. This requirement may need to be deleted."</span></div>
+                  <div>
+                     <p>
+                        
+                        <div class="para">Each layer that maybe depicted in a web map service should be described in the
+                           metadata document. A web map service must use one or more
+                           <span xmlns:u="http://utf-x.sourceforge.net/xsd/utfxdoc_1_0/utfxdoc.xsd" style="color: #781068; font-family: Courier; font-weight:bold;">&lt;MetadataURL&gt;</span> elements to offer detailed, standardized metadata
+                           about the data corresponding to a particular layer. The 'type' attribute indicates the
+                           standard to which the metadata complies. Two 'type' attribute values are defined by the
+                           International Standard: the value 'TC211' refers the ISO 19115 metadata standard . The
+                           target is actually ANZLIC's ISO 19139 conformant implementation profile, which should be
+                           separately validated as part of the metadata publishing regime. The enclosed
+                           &lt;Format&gt; element indicates the file format MIME type of the metadata record.
+                           This must be text/xml, indicating an XML document. MetadataURL elements are not inherited
+                           by a parent Layers. Examples in the Infolink capabilities file reflect this
+                           non-inheritance.
+                        </div>
+                        
+                        <p xmlns:u="http://utf-x.sourceforge.net/xsd/utfxdoc_1_0/utfxdoc.xsd">
+                           <div class="ud-correct-example-code-block"><span class="ud-xml-text"><br>
+                                 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="ud-highlight">&lt;<span class="ud-xml-element-name">MetadataURL</span> <span class="ud-xml-attr-name">type</span>="<span class="ud-xml-attr-content">TC211</span>"&gt;<span class="ud-xml-text"><br>
+                                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>&lt;<span class="ud-xml-element-name">Format</span>&gt;<span class="ud-xml-text">text/xml</span>&lt;/<span class="ud-xml-element-name">Format</span>&gt;<span class="ud-xml-text"><br>
+                                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>&lt;<span class="ud-xml-element-name">OnlineResource</span><span class="ud-xml-ns-name"> xmlns:xlink</span>="<span class="ud-xml-ns-uri">http://www.w3.org/1999/xlink</span>" <span class="ud-xml-attr-name">xlink:href</span>="<span class="ud-xml-attr-content">http://gis.govnet.qld.gov.au/layer_metadata/QLD_Roads.xml</span>" <span class="ud-xml-attr-name">xlink:type</span>="<span class="ud-xml-attr-content">simple</span>" /&gt;<span class="ud-xml-text"><br>
+                                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>&lt;/<span class="ud-xml-element-name">MetadataURL</span>&gt;</span><span class="ud-xml-text"><br>
+                                 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>&lt;<span class="ud-xml-element-name">MetadataURL</span> <span class="ud-xml-attr-name">type</span>="<span class="ud-xml-attr-content">FGDC</span>"&gt;<span class="ud-xml-text"><br>
+                                 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>&lt;<span class="ud-xml-element-name">Format</span>&gt;<span class="ud-xml-text">text/plain</span>&lt;/<span class="ud-xml-element-name">Format</span>&gt;<span class="ud-xml-text"><br>
+                                 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>&lt;<span class="ud-xml-element-name">OnlineResource</span><span class="ud-xml-ns-name"> xmlns:xlink</span>="<span class="ud-xml-ns-uri">http://www.w3.org/1999/xlink</span>" <span class="ud-xml-attr-name">xlink:href</span>="<span class="ud-xml-attr-content">http://gis.govnet.qld.gov.au/layer_metadata/QLD_Roads.txt</span>" <span class="ud-xml-attr-name">xlink:type</span>="<span class="ud-xml-attr-content">simple</span>" /&gt;<span class="ud-xml-text"><br>
+                                 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>&lt;/<span class="ud-xml-element-name">MetadataURL</span>&gt;<span class="ud-xml-text"><br>
+                                 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span></div>
+                           <div>Figure 4.15: Correctly formatted reference to a metadata document.</div>
+                        </p>
+                        
+                        
+                        
+                        <p xmlns:u="http://utf-x.sourceforge.net/xsd/utfxdoc_1_0/utfxdoc.xsd">
+                           <div class="ud-incorrect-example-code-block"><span class="ud-xml-text"><br>
+                                 &nbsp;&nbsp;</span>&lt;<span class="ud-xml-element-name">MetadataURL</span> <span class="ud-xml-attr-name">type</span>="<span class="ud-xml-attr-content">TC211</span>"&gt;<span class="ud-xml-text"><br>
+                                 &nbsp;&nbsp;&nbsp;&nbsp;</span><span class="ud-highlight">&lt;<span class="ud-xml-element-name">Format</span>&gt;<span class="ud-xml-text">text/plain</span>&lt;/<span class="ud-xml-element-name">Format</span>&gt;</span><span class="ud-xml-text"><br>
+                                 &nbsp;&nbsp;&nbsp;&nbsp;</span>&lt;<span class="ud-xml-element-name">OnlineResource</span><span class="ud-xml-ns-name"> xmlns:xlink</span>="<span class="ud-xml-ns-uri">http://www.w3.org/1999/xlink</span>" <span class="ud-xml-attr-name">xlink:href</span>="<span class="ud-xml-attr-content">http://gis.govnet.qld.gov.au/layer_metadata/QLD_Roads.xml</span>" <span class="ud-xml-attr-name">xlink:type</span>="<span class="ud-xml-attr-content">simple</span>" /&gt;<span class="ud-xml-text"><br>
+                                 &nbsp;&nbsp;</span>&lt;/<span class="ud-xml-element-name">MetadataURL</span>&gt;<span class="ud-xml-text"><br>
+                                 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span></div>
+                           <div>Figure 4.16: Incorrectly formatted reference to a metadata document.</div>
+                        </p>
+                        
+                        
+                        
+                     </p>
+                  </div>
+                  <p>
+                     <div style="space-before: 20mm;">
+                        <div class="pr-assertion-name">sdiWMS0009.A1</div>
+                        <div class="pr-assertion-block">
+                           <div><span font-weight="bold">XPath 2.0 expression: </span><span><span class="xpath">count(./MetadataURL[@type = 'TC211']/Format[text() = 'text/xml']) =
+                                    1</span></span></div>
+                           <div style="space-before: 2mm"><span font-weight="bold">Applied to: </span><span><a class="pr-target-ref" href="#invocable-layer">INVOCABLE_LAYER</a></span></div>
+                           <div style="space-before: 2mm"><span><span style="color: red; font-weight: bold;">MUST</span></span><span> evaluate to <span font-weight="bold">TRUE</span></span></div>
+                        </div>
+                     </div>
+                  </p>
+               </div>
+            </div><a name="sdiWMS0011"></a><div class="inherited">
+               <div style="color: brown; font-size: 12pt; font-weight: bold">sdiWMS0011</div>
+               <div style="color: brown; font-size: 8pt; font-family: Courier;">urn:au:gov:qld:sdi:standards:profiles:sdi-wms:requirements:sdiWMS0011</div><span style="color: #AAAAAA;"> inherited from <a style="color: #AAAAAA;" href="profile-sdi-wms.html" target="sdi-wms">sdi WMS</a></span><div class="pr-req-block">
+                  <div class="pr-req-normative-block">
+                     <span style="color: blue; font-weight: bold; font-style: italic;"><a name="id580"></a>COMMENT: "[SHANE] - write the non-normative content for this requirement and provide
+                        examples of correct and incorrect usage. Jacek to investigate metadata document structure
+                        and find appropriate conformance target for this requirement."</span>
+                     <span><a class="pr-target-ref" href="#layer-currency-end-date">WMS_LAYER_CURRENCY_END_DATE</a></span>
+                     <span style="color: red; font-weight: bold;">MUST</span> be present.
+                  </div>
+                  <div></div>
+               </div>
+            </div><a name="sdiWMS0010"></a><div class="inherited">
+               <div style="color: brown; font-size: 12pt; font-weight: bold">sdiWMS0010</div>
+               <div style="color: brown; font-size: 8pt; font-family: Courier;">urn:au:gov:qld:sdi:standards:profiles:sdi-wms:requirements:sdiWMS0010</div><span style="color: #AAAAAA;"> inherited from <a style="color: #AAAAAA;" href="profile-sdi-wms.html" target="sdi-wms">sdi WMS</a></span><div class="pr-req-block">
+                  <div class="pr-req-normative-block"> Both <span><a class="pr-target-ref" href="#layer-currency-start-date">WMS_LAYER_CURRENCY_START_DATE</a></span> and
+                     <span><a class="pr-target-ref" href="#layer-currency-end-date">WMS_LAYER_CURRENCY_END_DATE</a></span>
+                     <span style="color: red; font-weight: bold;">MUST</span> use YYYY-MM-DD date format. 
+                  </div>
+                  <div>
+                     <p>
+                        
+                        <div class="para"> The layer currency start date is the earliest date at which the phenomena in the
+                           layer actually occurred. The layer currency end date is the latest date at which the
+                           phenomena in the layer actually occurred. This is not necessarily the date on which a
+                           record was entered into a database. This element records the age of the data in the layer
+                           itself. It is possible that data may be recorded many years after an event eg an
+                           earthquake or a flood. It is the date that the event itself occurred which is required in
+                           this element. The date of conversion of data from one form to another form or one database
+                           to another, or the date of conversion of the dataset to a specific format or to a specific
+                           system should not be recorded. The format for the
+                           <span><a class="pr-target-ref" href="#layer-currency-start-date">WMS_LAYER_CURRENCY_START_DATE</a></span> and
+                           <span><a class="pr-target-ref" href="#layer-currency-end-date">WMS_LAYER_CURRENCY_END_DATE</a></span>
+                           <span style="color: red; font-weight: bold;">MUST</span> use the YYYY-MM-DD date format 
+                        </div>
+                        
+                        
+                        <div class="para"> relax asserton to allow timestamps.
+                           <span style="color: red; font-weight: bold;">SHOULD</span> include timezone 
+                        </div>
+                        
+                        <p xmlns:u="http://utf-x.sourceforge.net/xsd/utfxdoc_1_0/utfxdoc.xsd">
+                           <div class="ud-correct-example-code-block"><span class="ud-xml-text"><br>
+                                 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>&lt;<span class="ud-xml-element-nsprefix" style="color: ">gml</span>:<span class="ud-xml-element-name">beginPosition</span>&gt;<span class="ud-xml-text">2004-01-01</span>&lt;/<span class="ud-xml-element-nsprefix" style="color: ">gml</span>:<span class="ud-xml-element-name">beginPosition</span>&gt;<span class="ud-xml-text"><br>
+                                 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>&lt;<span class="ud-xml-element-nsprefix" style="color: ">gml</span>:<span class="ud-xml-element-name">endPosition</span>&gt;<span class="ud-xml-text">2007-01-01</span>&lt;/<span class="ud-xml-element-nsprefix" style="color: ">gml</span>:<span class="ud-xml-element-name">endPosition</span>&gt;<span class="ud-xml-text"><br>
+                                 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span></div>
+                           <div>Figure 4.17: Correctly formatted currency start and end dates.</div>
+                        </p>
+                        
+                        
+                        <p xmlns:u="http://utf-x.sourceforge.net/xsd/utfxdoc_1_0/utfxdoc.xsd">
+                           <div class="ud-incorrect-example-code-block"><span class="ud-xml-text"><br>
+                                 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>&lt;<span class="ud-xml-element-nsprefix" style="color: ">gml</span>:<span class="ud-xml-element-name">beginPosition</span>&gt;<span class="ud-xml-text">2004/01/01</span>&lt;/<span class="ud-xml-element-nsprefix" style="color: ">gml</span>:<span class="ud-xml-element-name">beginPosition</span>&gt;<span class="ud-xml-text"><br>
+                                 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>&lt;<span class="ud-xml-element-nsprefix" style="color: ">gml</span>:<span class="ud-xml-element-name">endPosition</span>&gt;<span class="ud-xml-text">2007/01/01</span>&lt;/<span class="ud-xml-element-nsprefix" style="color: ">gml</span>:<span class="ud-xml-element-name">endPosition</span>&gt;<span class="ud-xml-text"><br>
+                                 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span></div>
+                           <div>Figure 4.18: Incorrectly formatted currency end date</div>
+                        </p>
+                        
+                     </p>
+                  </div>
+                  <p>
+                     <div style="space-before: 20mm;">
+                        <div class="pr-assertion-name">sdiWMS0010.A1</div>
+                        <div class="pr-assertion-block">
+                           <div><span font-weight="bold">XPath 2.0 expression: </span><span><span class="xpath">matches(., "\d\d\d\d-\d\d-\d\d")</span></span><div class="error-block">Could not find function: matches</div>
+                           </div>
+                           <div style="space-before: 2mm"><span font-weight="bold">Applied to: </span><span><a class="pr-target-ref" href="#layer-currency-start-date">WMS_LAYER_CURRENCY_START_DATE</a></span></div>
+                           <div style="space-before: 2mm"><span><span style="color: red; font-weight: bold;">MUST</span></span><span> evaluate to <span font-weight="bold">TRUE</span></span></div>
+                        </div>
+                     </div>
+                  </p>
+                  <p>
+                     <div style="space-before: 20mm;">
+                        <div class="pr-assertion-name">sdiWMS0010.A2</div>
+                        <div class="pr-assertion-block">
+                           <div><span font-weight="bold">XPath 2.0 expression: </span><span><span class="xpath">matches(., "\d\d\d\d-\d\d-\d\d")</span></span><div class="error-block">Could not find function: matches</div>
+                           </div>
+                           <div style="space-before: 2mm"><span font-weight="bold">Applied to: </span><span><a class="pr-target-ref" href="#layer-currency-end-date">WMS_LAYER_CURRENCY_END_DATE</a></span></div>
+                           <div style="space-before: 2mm"><span><span style="color: red; font-weight: bold;">MUST</span></span><span> evaluate to <span font-weight="bold">TRUE</span></span></div>
+                        </div>
+                     </div>
+                  </p>
+               </div>
+            </div><a name="sdiWMS0013"></a><div class="inherited">
+               <div style="color: brown; font-size: 12pt; font-weight: bold">sdiWMS0013</div>
+               <div style="color: brown; font-size: 8pt; font-family: Courier;">urn:au:gov:qld:sdi:standards:profiles:sdi-wms:requirements:sdiWMS0013</div><span style="color: #AAAAAA;"> inherited from <a style="color: #AAAAAA;" href="profile-sdi-wms.html" target="sdi-wms">sdi WMS</a></span><div class="pr-req-block">
+                  <div class="pr-req-normative-block">
+                     <span style="color: blue; font-weight: bold; font-style: italic;"><a name="id613"></a>COMMENT: "[SHANE] - write the non-normative content for this requirement and provide
+                        examples of correct and incorrect usage."</span>
+                     <span><a class="pr-target-ref" href="#exception">EXCEPTION</a></span>
+                     <span style="color: red; font-weight: bold;">MUST</span> support XML and in_image format exceptions
+                     <span style="color: blue; font-weight: bold; font-style: italic;"><a name="id616"></a>COMMENT: "This requires mark to do more technology benchmarking. Probably what the word
+                        means..."</span>
+                     
+                  </div>
+                  <div>
+                     <p>
+                        
+                        <div class="para">The exception tag provides information about the exception formats a client can ask
+                           for when making requests. Examples of clients in this case may refer to custom built
+                           desktop applications or browser based applications. The decision to support xml as well as
+                           inimage was made to provide the maximum flexibility for application developers. The
+                           inimage option will provide users with an exception message embedded in an image - this is
+                           predominately useful to provide a visual message of the unavailabiliy of a service, or to
+                           relate other relevant error messages. The XML format provides functionality for developers
+                           to trap errors as they occur and implement an appropriate solution to deal with the error
+                           or exception. 
+                        </div>
+                        
+                        <p xmlns:u="http://utf-x.sourceforge.net/xsd/utfxdoc_1_0/utfxdoc.xsd">
+                           <div class="ud-correct-example-code-block"><span class="ud-xml-text"><br>
+                                 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>&lt;<span class="ud-xml-element-name">Exception</span>&gt;<span class="ud-xml-text"><br>
+                                 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>&lt;<span class="ud-xml-element-name">Format</span>&gt;<span class="ud-xml-text">application/vnd.ogc.se_xml</span>&lt;/<span class="ud-xml-element-name">Format</span>&gt;<span class="ud-xml-text"><br>
+                                 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>&lt;<span class="ud-xml-element-name">Format</span>&gt;<span class="ud-xml-text">application/vnd.ogc.se_inimage</span>&lt;/<span class="ud-xml-element-name">Format</span>&gt;<span class="ud-xml-text"><br>
+                                 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>&lt;/<span class="ud-xml-element-name">Exception</span>&gt;<span class="ud-xml-text"><br>
+                                 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span></div>
+                           <div>Figure 4.19: Correct example of defining the available exception formats in a
+                              service.
+                           </div>
+                        </p>
+                        
+                        <p xmlns:u="http://utf-x.sourceforge.net/xsd/utfxdoc_1_0/utfxdoc.xsd">
+                           <div class="ud-incorrect-example-code-block"><span class="ud-xml-text"><br>
+                                 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>&lt;<span class="ud-xml-element-name">Exception</span>&gt;<span class="ud-xml-text"><br>
+                                 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>&lt;<span class="ud-xml-element-name">Format</span>&gt;<span class="ud-xml-text">xml</span>&lt;/<span class="ud-xml-element-name">Format</span>&gt;<span class="ud-xml-text"><br>
+                                 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>&lt;<span class="ud-xml-element-name">Format</span>&gt;<span class="ud-xml-text">inimage</span>&lt;/<span class="ud-xml-element-name">Format</span>&gt;<span class="ud-xml-text"><br>
+                                 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>&lt;/<span class="ud-xml-element-name">Exception</span>&gt;<span class="ud-xml-text"><br>
+                                 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span></div>
+                           <div>Figure 4.20: Incorrect example of defining the available exception formats in a
+                              service.
+                           </div>
+                        </p>
+                        
+                        
+                        
+                     </p>
+                  </div>
+                  <p>
+                     <div style="space-before: 20mm;">
+                        <div class="pr-assertion-name">sdiWMS0013.A1</div>
+                        <div class="pr-assertion-block">
+                           <div><span font-weight="bold">XPath 2.0 expression: </span><span><span class="xpath">./Format/text() = 'application/vnd.ogc.se_xml'</span></span></div>
+                           <div style="space-before: 2mm"><span font-weight="bold">Applied to: </span><span><a class="pr-target-ref" href="#exception">EXCEPTION</a></span></div>
+                           <div style="space-before: 2mm"><span><span style="color: red; font-weight: bold;">MUST</span></span><span> evaluate to <span font-weight="bold">TRUE</span></span></div>
+                        </div>
+                     </div>
+                  </p>
+                  <p>
+                     <div style="space-before: 20mm;">
+                        <div class="pr-assertion-name">sdiWMS0013.A2</div>
+                        <div class="pr-assertion-block">
+                           <div><span font-weight="bold">XPath 2.0 expression: </span><span><span class="xpath">./Format/text() =
+                                    'application/vnd.ogc.se_inimage'</span></span></div>
+                           <div style="space-before: 2mm"><span font-weight="bold">Applied to: </span><span><a class="pr-target-ref" href="#exception">EXCEPTION</a></span></div>
+                           <div style="space-before: 2mm"><span><span style="color: red; font-weight: bold;">MUST</span></span><span> evaluate to <span font-weight="bold">TRUE</span></span></div>
+                        </div>
+                     </div>
+                  </p>
+               </div>
+            </div><a name="sdiWMS0014"></a><div class="inherited">
+               <div style="color: brown; font-size: 12pt; font-weight: bold">sdiWMS0014</div>
+               <div style="color: brown; font-size: 8pt; font-family: Courier;">urn:au:gov:qld:sdi:standards:profiles:sdi-wms:requirements:sdiWMS0014</div><span style="color: #AAAAAA;"> inherited from <a style="color: #AAAAAA;" href="profile-sdi-wms.html" target="sdi-wms">sdi WMS</a></span><div class="pr-req-block">
+                  <div class="pr-req-normative-block">
+                     <span style="color: blue; font-weight: bold; font-style: italic;"><a name="id637"></a>COMMENT: "[IAN] - write the non-normative content for this requirement and provide
+                        examples of correct and incorrect usage."</span> Services
+                     <span style="color: red; font-weight: bold;">MUST</span> be provided using a Spatial Reference System
+                     for latitude and longitude coordinates in decimal degrees on the Geocentric Datum of
+                     Australia (GDA94). <span><a class="pr-target-ref" href="#layer">LAYER</a></span>
+                     
+                  </div>
+                  <div>
+                     <p>
+                        
+                        <div class="para">Services can be offered in a range of different spatial reference systems.
+                           Generally the service SRS is defined in the parent layer but an SRS can be defined on a
+                           leaf layer as well. Any leaf layer SRS is added to the defined parent layer SRS and is
+                           available in all those stated SRS. Users should be aware that a service may not be
+                           displayed in a client viewer if the viewer SRS is not specified in the service
+                           capabilities file.
+                        </div>
+                        
+                        <div class="para">A full list of EPSG codes can be found in a Microsoft Access .mdb file at
+                           http://www.epsg.org/
+                        </div>
+                        
+                        <p xmlns:u="http://utf-x.sourceforge.net/xsd/utfxdoc_1_0/utfxdoc.xsd">
+                           <div class="ud-correct-example-code-block"><span class="ud-xml-text"><br>
+                                 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>&lt;<span class="ud-xml-element-name">Layer</span>&gt;<span class="ud-xml-text"><br>
+                                 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>&lt;<span class="ud-xml-element-name">Title</span>&gt;<span class="ud-xml-text">Parent&nbsp;layer</span>&lt;/<span class="ud-xml-element-name">Title</span>&gt;<span class="ud-xml-text"><br>
+                                 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>&lt;<span class="ud-xml-element-name">SRS</span>&gt;<span class="ud-xml-text">EPSG:4283</span>&lt;/<span class="ud-xml-element-name">SRS</span>&gt;<span class="ud-xml-text"><br>
+                                 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>&lt;<span class="ud-xml-element-name">SRS</span>&gt;<span class="ud-xml-text">EPSG:4326</span>&lt;/<span class="ud-xml-element-name">SRS</span>&gt;<span class="ud-xml-text"><br>
+                                 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>&lt;/<span class="ud-xml-element-name">Layer</span>&gt;<span class="ud-xml-text"><br>
+                                 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>&lt;<span class="ud-xml-element-name">Layer</span>&gt;<span class="ud-xml-text"><br>
+                                 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>&lt;<span class="ud-xml-element-name">Title</span>&gt;<span class="ud-xml-text">Parent&nbsp;layer</span>&lt;/<span class="ud-xml-element-name">Title</span>&gt;<span class="ud-xml-text"><br>
+                                 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>&lt;<span class="ud-xml-element-name">SRS</span>&gt;<span class="ud-xml-text">EPSG:4283</span>&lt;/<span class="ud-xml-element-name">SRS</span>&gt;<span class="ud-xml-text"><br>
+                                 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>&lt;<span class="ud-xml-element-name">SRS</span>&gt;<span class="ud-xml-text">EPSG:4326</span>&lt;/<span class="ud-xml-element-name">SRS</span>&gt;<span class="ud-xml-text"><br>
+                                 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>&lt;<span class="ud-xml-element-name">Layer</span>&gt;<span class="ud-xml-text"><br>
+                                 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>&lt;<span class="ud-xml-element-name">Title</span>&gt;<span class="ud-xml-text">Leaf&nbsp;Layer</span>&lt;/<span class="ud-xml-element-name">Title</span>&gt;<span class="ud-xml-text"><br>
+                                 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>&lt;<span class="ud-xml-element-name">SRS</span>&gt;<span class="ud-xml-text">EPSG:20855</span>&lt;/<span class="ud-xml-element-name">SRS</span>&gt;<span class="ud-xml-text"><br>
+                                 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>&lt;/<span class="ud-xml-element-name">Layer</span>&gt;<span class="ud-xml-text"><br>
+                                 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>&lt;/<span class="ud-xml-element-name">Layer</span>&gt;<span class="ud-xml-text"><br>
+                                 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span></div>
+                           <div>Figure 4.21: Correct format of service SRS definition.</div>
+                        </p>
+                        
+                        
+                        <p xmlns:u="http://utf-x.sourceforge.net/xsd/utfxdoc_1_0/utfxdoc.xsd">
+                           <div class="ud-incorrect-example-code-block"><span class="ud-xml-text"><br>
+                                 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>&lt;<span class="ud-xml-element-name">Layer</span>&gt;<span class="ud-xml-text"><br>
+                                 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>&lt;<span class="ud-xml-element-name">Title</span>&gt;<span class="ud-xml-text">Parent&nbsp;layer</span>&lt;/<span class="ud-xml-element-name">Title</span>&gt;<span class="ud-xml-text"><br>
+                                 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>&lt;<span class="ud-xml-element-name">SRS</span>&gt;<span class="ud-xml-text">EPSG:4283&nbsp;EPSG:4326</span>&lt;/<span class="ud-xml-element-name">SRS</span>&gt;<span class="ud-xml-text"><br>
+                                 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>&lt;/<span class="ud-xml-element-name">Layer</span>&gt;<span class="ud-xml-text"><br>
+                                 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span></div>
+                           <div>Figure 4.22: Incorrect format of service SRS definition.</div>
+                        </p>
+                        
+                        
+                     </p>
+                  </div>
+                  <p>
+                     <div style="space-before: 20mm;">
+                        <div class="pr-assertion-name">sdiWMS0014.A1</div>
+                        <div class="pr-assertion-block">
+                           <div><span font-weight="bold">XPath 2.0 expression: </span><span><span class="xpath">contains(./SRS,"EPSG:4283")</span></span></div>
+                           <div style="space-before: 2mm"><span font-weight="bold">Applied to: </span><span><a class="pr-target-ref" href="#layer">LAYER</a></span></div>
+                           <div style="space-before: 2mm"><span><span style="color: red; font-weight: bold;">MUST</span></span><span> evaluate to <span font-weight="bold">TRUE</span></span></div>
+                        </div>
+                     </div>
+                  </p>
+               </div>
+            </div><a name="sdiWMS0015"></a><div class="inherited">
+               <div style="color: brown; font-size: 12pt; font-weight: bold">sdiWMS0015</div>
+               <div style="color: brown; font-size: 8pt; font-family: Courier;">urn:au:gov:qld:sdi:standards:profiles:sdi-wms:requirements:sdiWMS0015</div><span style="color: #AAAAAA;"> inherited from <a style="color: #AAAAAA;" href="profile-sdi-wms.html" target="sdi-wms">sdi WMS</a></span><div class="pr-req-block">
+                  <div class="pr-req-normative-block">
+                     <span style="color: blue; font-weight: bold; font-style: italic;"><a name="id656"></a>COMMENT: "[MICAH] - write the non-normative content for this requirement and provide
+                        examples of correct and incorrect usage."</span>
+                     <span><a class="pr-target-ref" href="#getmap">GET_MAP</a></span> must include PNG (image/png). This should support
+                     transparency and image compression.
+                  </div>
+                  <div></div>
+                  <p>
+                     <div style="space-before: 20mm;">
+                        <div class="pr-assertion-name">sdiWMS0015.A1</div>
+                        <div class="pr-assertion-block">
+                           <div><span font-weight="bold">XPath 2.0 expression: </span><span><span class="xpath">count(./Format[text() = 'image/png']) = 1</span></span></div>
+                           <div style="space-before: 2mm"><span font-weight="bold">Applied to: </span><span><a class="pr-target-ref" href="#getmap">GET_MAP</a></span></div>
+                           <div style="space-before: 2mm"><span><span style="color: red; font-weight: bold;">MUST</span></span><span> evaluate to <span font-weight="bold">TRUE</span></span></div>
+                        </div>
+                     </div>
+                  </p>
+               </div>
+            </div><a name="sdiWMS0016"></a><div class="inherited">
+               <div style="color: brown; font-size: 12pt; font-weight: bold">sdiWMS0016</div>
+               <div style="color: brown; font-size: 8pt; font-family: Courier;">urn:au:gov:qld:sdi:standards:profiles:sdi-wms:requirements:sdiWMS0016</div><span style="color: #AAAAAA;"> inherited from <a style="color: #AAAAAA;" href="profile-sdi-wms.html" target="sdi-wms">sdi WMS</a></span><div class="pr-req-block">
+                  <div class="pr-req-normative-block">
+                     <span style="color: blue; font-weight: bold; font-style: italic;"><a name="id665"></a>COMMENT: "[JACEK] to move this requirement to an ancestor profile and document it"</span>
+                     <span><a class="pr-target-ref" href="#service">SERVICE</a></span> must contain one or more keywords containing the URN
+                     of the sdi profile it supports. The URNs of profiles are as defined here. <span style="color: blue; font-weight: bold; font-style: italic;"><a name="id667"></a>COMMENT: "Stick
+                        profiles into CRS."</span>
+                     
+                  </div>
+                  <div></div>
+                  <p>
+                     <div style="space-before: 20mm;">
+                        <div class="pr-assertion-name">sdiWMS0016.A1</div>
+                        <div class="pr-assertion-block">
+                           <div><span font-weight="bold">XPath 2.0 expression: </span><span><span class="xpath">./KeywordList/Keyword in { set }</span></span><div class="error-block">Extra illegal tokens: 'in', '{', 'set', '}'</div>
+                           </div>
+                           <div style="space-before: 2mm"><span font-weight="bold">Applied to: </span><span><a class="pr-target-ref" href="#service">SERVICE</a></span></div>
+                           <div style="space-before: 2mm"><span><span style="color: red; font-weight: bold;">MUST</span></span><span> evaluate to <span font-weight="bold">TRUE</span></span></div>
+                        </div>
+                     </div>
+                  </p>
+               </div>
+            </div><a name="sdiWMS0017"></a><div class="inherited">
+               <div style="color: brown; font-size: 12pt; font-weight: bold">sdiWMS0017</div>
+               <div style="color: brown; font-size: 8pt; font-family: Courier;">urn:au:gov:qld:sdi:standards:profiles:sdi-wms:requirements:sdiWMS0017</div><span style="color: #AAAAAA;"> inherited from <a style="color: #AAAAAA;" href="profile-sdi-wms.html" target="sdi-wms">sdi WMS</a></span><div class="pr-req-block">
+                  <div class="pr-req-normative-block">
+                     <span style="color: blue; font-weight: bold; font-style: italic;"><a name="id675"></a>COMMENT: "[MICAH] - write the non-normative content for this requirement and provide
+                        examples of correct and incorrect usage."</span>
+                     <span><a class="pr-target-ref" href="#invocable-layer">INVOCABLE_LAYER</a></span>
+                     <span style="color: red; font-weight: bold;">SHOULD</span>advertise it's opacity.
+                     <span style="color: blue; font-weight: bold; font-style: italic;"><a name="id678"></a>COMMENT: "Technology benchmark this too!"</span>
+                     
+                  </div>
+                  <div>
+                     <p>
+                        
+                        <div class="para">Reference table 7 : Inheritance of layer table properties, section 7.1.4.7, note
+                           child properties when defined over-ride those defined properties of the parent
+                        </div>
+                        
+                     </p>
+                  </div>
+                  <p>
+                     <div style="space-before: 20mm;">
+                        <div class="pr-assertion-name">sdiWMS0017.A1</div>
+                        <div class="pr-assertion-block">
+                           <div><span font-weight="bold">XPath 2.0 expression: </span><span><span class="xpath">./@opaque = '0'</span></span></div>
+                           <div style="space-before: 2mm"><span font-weight="bold">Applied to: </span><span><a class="pr-target-ref" href="#invocable-layer">INVOCABLE_LAYER</a></span></div>
+                           <div style="space-before: 2mm"><span><span style="color: red; font-weight: bold;">SHOULD</span></span><span> evaluate to <span font-weight="bold">TRUE</span></span></div>
+                        </div>
+                     </div>
+                  </p>
+               </div>
+            </div><a name="sdiWMS0018"></a><div class="inherited">
+               <div style="color: brown; font-size: 12pt; font-weight: bold">sdiWMS0018</div>
+               <div style="color: brown; font-size: 8pt; font-family: Courier;">urn:au:gov:qld:sdi:standards:profiles:sdi-wms:requirements:sdiWMS0018</div><span style="color: #AAAAAA;"> inherited from <a style="color: #AAAAAA;" href="profile-sdi-wms.html" target="sdi-wms">sdi WMS</a></span><div class="pr-req-block">
+                  <div class="pr-req-normative-block">
+                     <span style="color: blue; font-weight: bold; font-style: italic;"><a name="id688"></a>COMMENT: "[IAN] - write the non-normative content for this requirement and provide
+                        examples of correct and incorrect usage."</span>
+                     <span><a class="pr-target-ref" href="#layer">LAYER</a></span>
+                     <span style="color: red; font-weight: bold;">MUST</span>specify the layer is "subsettable" (nosubsets =
+                     "0" if declared) (WMS 1.1.1 section 7.1.4.6.4). <span style="color: blue; font-weight: bold; font-style: italic;"><a name="id691"></a>COMMENT: "Need to check with Rob if we
+                        really want this requirement apply to all WMS services."</span></div>
+                  <div></div>
+                  <p>
+                     <div style="space-before: 20mm;">
+                        <div class="pr-assertion-name">sdiWMS0018.A1</div>
+                        <div class="pr-assertion-block">
+                           <div><span font-weight="bold">XPath 2.0 expression: </span><span><span class="xpath">./@nosubsets = "1"</span></span></div>
+                           <div style="space-before: 2mm"><span font-weight="bold">Applied to: </span><span><a class="pr-target-ref" href="#layer">LAYER</a></span></div>
+                           <div style="space-before: 2mm"><span><span style="color: red; font-weight: bold;">MUST</span></span><span> evaluate to <span font-weight="bold">FALSE</span></span></div>
+                        </div>
+                     </div>
+                  </p>
+               </div>
+            </div><a name="sdiWMS0019"></a><div class="inherited">
+               <div style="color: brown; font-size: 12pt; font-weight: bold">sdiWMS0019</div>
+               <div style="color: brown; font-size: 8pt; font-family: Courier;">urn:au:gov:qld:sdi:standards:profiles:sdi-wms:requirements:sdiWMS0019</div><span style="color: #AAAAAA;"> inherited from <a style="color: #AAAAAA;" href="profile-sdi-wms.html" target="sdi-wms">sdi WMS</a></span><div class="pr-req-block">
+                  <div class="pr-req-normative-block">
+                     <span style="color: blue; font-weight: bold; font-style: italic;"><a name="id699"></a>COMMENT: "[IAN] - write the non-normative content for this requirement and provide
+                        examples of correct and incorrect usage."</span>
+                     <span><a class="pr-target-ref" href="#layer">LAYER</a></span>
+                     <span style="color: red; font-weight: bold;">MUST</span>specify the layer is not "fixedWidth" or
+                     "fixedHeight" (WMS 1.1.1 section 7.1.4.6.4). <span style="color: blue; font-weight: bold; font-style: italic;"><a name="id702"></a>COMMENT: "Need to check with Rob if we really
+                        want this requirement apply to all WMS services."</span>
+                     
+                  </div>
+                  <div></div>
+                  <p>
+                     <div style="space-before: 20mm;">
+                        <div class="pr-assertion-name">sdiWMS0019.A1</div>
+                        <div class="pr-assertion-block">
+                           <div><span font-weight="bold">XPath 2.0 expression: </span><span><span class="xpath">./@fixedWidth = "1"</span></span></div>
+                           <div style="space-before: 2mm"><span font-weight="bold">Applied to: </span><span><a class="pr-target-ref" href="#layer">LAYER</a></span></div>
+                           <div style="space-before: 2mm"><span><span style="color: red; font-weight: bold;">MUST</span></span><span> evaluate to <span font-weight="bold">FALSE</span></span></div>
+                        </div>
+                     </div>
+                  </p>
+                  <p>
+                     <div style="space-before: 20mm;">
+                        <div class="pr-assertion-name">sdiWMS0019.A2</div>
+                        <div class="pr-assertion-block">
+                           <div><span font-weight="bold">XPath 2.0 expression: </span><span><span class="xpath">./@fixedHeight = "1"</span></span></div>
+                           <div style="space-before: 2mm"><span font-weight="bold">Applied to: </span><span><a class="pr-target-ref" href="#layer">LAYER</a></span></div>
+                           <div style="space-before: 2mm"><span><span style="color: red; font-weight: bold;">MUST</span></span><span> evaluate to <span font-weight="bold">FALSE</span></span></div>
+                        </div>
+                     </div>
+                  </p>
+               </div>
+            </div><a name="sdiWMS0020"></a><div class="inherited">
+               <div style="color: brown; font-size: 12pt; font-weight: bold">sdiWMS0020</div>
+               <div style="color: brown; font-size: 8pt; font-family: Courier;">urn:au:gov:qld:sdi:standards:profiles:sdi-wms:requirements:sdiWMS0020</div><span style="color: #AAAAAA;"> inherited from <a style="color: #AAAAAA;" href="profile-sdi-wms.html" target="sdi-wms">sdi WMS</a></span><div class="pr-req-block">
+                  <div class="pr-req-normative-block"><span style="color: blue; font-weight: bold; font-style: italic;"><a name="id715"></a>COMMENT: "[MARK] - write the non-normative content for this
+                        requirement and provide examples of correct and incorrect usage."</span> A
+                     <span><a class="pr-target-ref" href="#capabilites">CAPABILITIES</a></span>
+                     <span style="color: red; font-weight: bold;">SHOULD NOT</span> contain more than 100 layers.
+                     <span style="color: blue; font-weight: bold; font-style: italic;"><a name="id718"></a>COMMENT: "May need to limit to deal with harvesting limitations in CRS or other client
+                        ability to cope with large numbers."</span>
+                     
+                  </div>
+                  <div>
+                     <p>
+                        
+                        <div class="para"> When a map service is created, consideration should be given to the service
+                           content, and the intented purpose of the service, with a view to maximising usability in
+                           client applications. This requirement aims to balance the complexity of presenting
+                           numerous data layers in one service and still provide some logical client application usability
+                           and interaction with the service.  In certain situations, particularly for organisations wanting to
+                           offer all their custodial information as layers in a single service, it may be necessary to
+                           exceed this limit. 
+                        </div>
+                        
+                        <div class="para">Consideration should be also given to organising service layers into logical
+                           groupings to aid interaction using client viewers and reduce complexity.
+                        </div>
+                        
+                        <p xmlns:u="http://utf-x.sourceforge.net/xsd/utfxdoc_1_0/utfxdoc.xsd">
+                           <div class="ud-correct-example-code-block"><span class="ud-xml-text">&nbsp;<br>
+                                 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>&lt;<span class="ud-xml-element-name">Layer</span>&gt;<span class="ud-xml-text"><br>
+                                 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>&lt;<span class="ud-xml-element-name">Title</span>&gt;<span class="ud-xml-text">Title&nbsp;of&nbsp;Parent&nbsp;Layer</span>&lt;/<span class="ud-xml-element-name">Title</span>&gt;<span class="ud-xml-text"><br>
+                                 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<br>
+                                 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>&lt;/<span class="ud-xml-element-name">Layer</span>&gt;<span class="ud-xml-text">&nbsp;&nbsp;<br>
+                                 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span></div>
+                           <div>Figure 4.23: Correct format of grouping service layers for ease of use.</div>
+                        </p>
+                        
+                        <p xmlns:u="http://utf-x.sourceforge.net/xsd/utfxdoc_1_0/utfxdoc.xsd">
+                           <div class="ud-incorrect-example-code-block"><span class="ud-xml-text">&nbsp;</span></div>
+                           <div>Figure 4.24: Incorrect format of grouping service layers for ease of use.</div>
+                        </p>
+                        
+                        
+                        
+                     </p>
+                  </div>
+                  <p>
+                     <div style="space-before: 20mm;">
+                        <div class="pr-assertion-name">sdiWMS0020.A1</div>
+                        <div class="pr-assertion-block">
+                           <div><span font-weight="bold">XPath 2.0 expression: </span><span><span class="xpath">count(.//Layer)&gt; 100</span></span></div>
+                           <div style="space-before: 2mm"><span font-weight="bold">Applied to: </span><span><a class="pr-target-ref" href="#capabilites">CAPABILITIES</a></span></div>
+                           <div style="space-before: 2mm"><span><span style="color: red; font-weight: bold;">SHOULD NOT</span></span><span> evaluate to <span font-weight="bold">TRUE</span></span></div>
+                        </div>
+                     </div>
+                  </p>
+               </div>
+            </div><a name="sdiODS1"></a><div class="inherited">
+               <div style="color: brown; font-size: 12pt; font-weight: bold">sdiODS1</div>
+               <div style="color: brown; font-size: 8pt; font-family: Courier;">urn:au:gov:qld:gea:standards:profiles:gea-ows-data-services:requirements:sdiODS1</div><span style="color: #AAAAAA;"> inherited from <a style="color: #AAAAAA;" href="profile-sdi-ows-data-services.html" target="sdi-ows-data-services">SDI OWS data services</a></span><div class="pr-req-block">
+                  <div class="pr-req-normative-block">The relevant OGC service capabilities metadata is populated with
+                     service custodian identifier. Different versions and type of OGC Web Services have
+                     different schemas, however OGC has a proposed OWS_Common framework to standardise
+                     this aspect in newer versions (WFS 1.1, WMS 1.3?). <span style="color: blue; font-weight: bold; font-style: italic;"><a name="id270"></a>COMMENT: "[SHANE] - Need to benchmark
+                        wms/wfs versions and make a decision."</span>
+                     
+                  </div>
+                  <div></div>
+               </div>
+            </div><a name="sdiODS2"></a><div class="inherited">
+               <div style="color: brown; font-size: 12pt; font-weight: bold">sdiODS2</div>
+               <div style="color: brown; font-size: 8pt; font-family: Courier;">urn:au:gov:qld:gea:standards:profiles:gea-ows-data-services:requirements:sdiODS2</div><span style="color: #AAAAAA;"> inherited from <a style="color: #AAAAAA;" href="profile-sdi-ows-data-services.html" target="sdi-ows-data-services">SDI OWS data services</a></span><div class="pr-req-block">
+                  <div class="pr-req-normative-block">The supported Spatial Reference System for all data will include
+                     GDA94/Plate Carree (Orthogeographic) projection (known as EPSG:4283 in WMS 1.1.1
+                     (Note that WMS 1.3 changed the axis-order (lat/long) for this, and is not widely
+                     adopted). <span style="color: blue; font-weight: bold; font-style: italic;"><a name="id273"></a>COMMENT: "[SHANE] - [SRS handling for WFS/GML in target environment should be
+                        benchmarked]"</span>
+                     
+                  </div>
+                  <div></div>
+               </div>
+            </div><a name="SDIDS1"></a><div class="inherited">
+               <div style="color: brown; font-size: 12pt; font-weight: bold">SDIDS1</div>
+               <div style="color: brown; font-size: 8pt; font-family: Courier;">urn:au:gov:qld:sdi:standards:profiles:sdi-data-services:requirements:SDIDS1</div><span style="color: #AAAAAA;"> inherited from <a style="color: #AAAAAA;" href="profile-sdi-data-services.html" target="sdi-data-services">sdi data services</a></span><div class="pr-req-block">
+                  <div class="pr-req-normative-block">
+                     <span style="color: blue; font-weight: bold; font-style: italic;"><a name="id256"></a>COMMENT: "[IAN] - write the non-normative content for this requirement and provide
+                        examples of correct or incorrect usage."</span> Currency of data set (NB ISO19115
+                     does not seem to provide a slot for this) <span style="color: red; font-weight: bold;">MUST</span> be
+                     described using keyword from (CRS data currency keywords vocabulary identifier - ISO19115
+                     provides these?) [The user will need to know whether the data is the most recent available
+                     or a historical snapshot or a prediction - this is not currently part of the FGDC metadata
+                     /CRS design, but it will need to be eventually, so we need to add it to service profiles so
+                     the info will be available when needed. there is a bigger general issue that the sdi
+                     architecture requires the ability to publish vocabularies and then reference
+                     them.]
+                  </div>
+                  <div></div>
+               </div>
+            </div>
+         </div>
+      </p>
+   </body>
+</html>

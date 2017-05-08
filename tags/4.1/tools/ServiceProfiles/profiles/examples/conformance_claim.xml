@@ -1,0 +1,22 @@
+<wsdl:binding xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/"
+    xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" name="HelloBinding"
+    type="tns:HelloPortType">
+    <wsdl:documentation>
+        <wsi:Claim conformsTo="http://ws-i.org/profiles/basic/1.1"
+            xmlns:wsi="http://ws-i.org/schemas/conformanceClaim/"/>
+        <wsi:Claim conformsTo="http://qld.gov.au/wsi/1.0"
+            xmlns:wsi="http://ws-i.org/schemas/conformanceClaim/"/>
+    </wsdl:documentation>
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http"
+        style="document"/>
+    <wsdl:operation name="HelloWorld">
+        <soap:operation soapAction="http://tempuri.org/HelloWorld"
+            style="document"/>
+        <wsdl:input>
+            <soap:body use="literal"/>
+        </wsdl:input>
+        <wsdl:output>
+            <soap:body use="literal"/>
+        </wsdl:output>
+    </wsdl:operation>
+</wsdl:binding>

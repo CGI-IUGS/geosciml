@@ -1,0 +1,576 @@
+<html xmlns:fo="http://www.w3.org/1999/XSL/Format" xmlns:pr="urn:ws-profile-mgr:schemas:profiles:profiles.xsd" xmlns:ud="http://utf-x.sourceforge.net/xsd/utfxdoc_1_0/utfxdoc.xsd">
+   <head>
+      <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+      <title>SDI OWS data services</title><style type="text/css">
+
+
+body {
+  color: black;
+  font-family: Arial;
+  font-family: Arial, sans-serif;  
+}
+
+.block {
+  space-before: 2mm;
+  space-after: 2mm;
+  margin-left: 2mm;
+}
+
+.para {
+  padding-left: 2mm;
+  padding-top: 2mm;
+}    
+ 
+.h1-heading {
+  font-size: 18pt;
+  space-before: 5mm;
+  space-after: 2mm;
+  text-align: left;
+  color: black;
+}
+
+.h2-heading {
+  font-size: 16pt;
+  space-before: 5mm;
+  space-after: 2mm;
+  text-align: left;
+  color: black;
+}
+
+.h3-heading {
+  font-size: 14pt;
+  space-before: 5mm;
+  space-after: 2mm;
+  text-align: left;
+  color: black;
+}
+
+.h1-sect {
+  font-size :12pt;
+  space-after: 2mm;
+  text-align: left;
+  padding-top: 5mm;
+  padding-left: 1mm;
+  color: black;
+}
+
+.h2-sect {
+  font-size :12pt;
+  space-after: 2mm;
+  text-align: left;
+  padding-top: 5mm;
+  padding-left: 1mm;  
+  color: black;
+}
+
+.h3-sect {
+  font-size :12pt;
+  space-after: 2mm;
+  text-align: left;
+  padding-top: 5mm;
+  padding-left: 1mm;  
+  color: black;
+}
+
+.pr-req-id {
+  color: brown;
+  font-size: 12pt;
+  font-weight: bold
+}
+
+.pr-req-ref {
+  color: brown;
+  font-size: 10pt;
+  font-weight: bold
+}
+
+.pr-req-block {
+  space-after: 2mm;
+  margin-left: 5mm;
+  padding: 5mm;
+  text-align: left;
+  font-size: 9pt;
+}
+
+.pr-req-normative-block {
+  space-after: 2mm;
+  padding: 5mm;
+  text-align: left;
+  background-color: #FFFFCC;
+  font-size: 9pt;
+  border-style: solid;
+  border-color: #f5a90b;
+  border-width: 2px;
+}
+
+.pr-assertion-name {
+  color: brown;
+  font-size: 10pt;
+  font-weight: bold;
+  space-after: 1mm;  
+}
+
+.pr-assertion-block {
+  padding: 4mm;
+  text-align: left;
+  background-color: #FFFFCC;
+  font-size: 9pt;
+  border-style: solid;
+  border-color: #f5a90b;
+  border-width: 2px;
+}
+
+.pr-target-id {
+  font-weight: bold;
+  color: #118811;
+}
+
+.pr-target-ref {
+  font-size:10pt;
+  font-weight: bold;
+  color: #118811;
+}
+
+.target-name {
+  font-weight: bold;
+  color: #118811;
+}
+
+.conformance-target-block {
+  padding: 4mm;
+  text-align: left;
+  background-color: #CCFFCC;
+  font-size: 9pt;
+  border-style: solid;
+  border-color: green;
+  border-width: 2px;
+  width: 90%;    
+}
+
+.xpath {
+  font-family: Courier;
+  font-weight: bold;
+}
+
+/* coponent definied in this profile */
+.defined {
+  padding: 5mm;
+  border-width:2px;
+  border-color: black;
+  border-style:solid;
+  margin-bottom: 5mm;
+  margin-top: 5mm;
+}
+
+/* component inherited from another profile */
+.inherited {
+  padding: 5mm;
+  border-width:2px;
+  border-color: #AAAAAA;
+  border-style:solid;
+  margin-bottom: 5mm;
+  margin-top: 5mm;
+  color: #AAAAAA;
+}
+
+.error-block {
+  color: white;
+  background-color: red;
+  font-weight: bold;
+  padding: 5mm;
+  font-family: Courier;
+}
+
+/* UTF-X doc styles */
+h1 {
+    font-family: Arial, sans-serif;
+    font-size: 20pt;
+    color: #000000;
+    background-color: white;
+}
+h2 {
+    font-family: Arial, sans-serif;
+    font-size: 18pt;
+    color: #000000;
+    background-color: white;
+}
+h3 {
+    font-family: Arial, sans-serif;
+    font-size: 16pt;
+    color: #000000;
+    background-color: white;
+}
+p {
+    font-family: Helvetica, sans-serif;
+    font-size:12pt;
+}
+.ud-title {
+    font-family: Helvetica, sans-serif;
+    font-size: 50pt;
+    font-weight: bold;
+    color: #000000;
+    background-color: white;
+    text-align: center;
+}
+.ud-subtitle {
+    font-family: Helvetica, sans-serif;
+    font-size: 30pt;
+    font-weight: bold;
+    color: #000000;
+    background-color: white;
+    text-align: center;
+}
+.ud-author {
+    font-family: Helvetica, sans-serif;
+    font-size: 12pt;
+    text-align: center;
+}
+.ud-version {
+    font-family: Helvetica;
+    font-size: 12pt;
+    text-align: center;
+}
+.ud-date {
+    font-family: Helvetica;
+    font-size: 12pt;
+    text-align: center;
+}
+.ud-copyright {
+    font-family: Helvetica;
+    font-size: 12pt;
+    text-align: center;
+}
+.ud-note {
+    padding-top: 2mm;
+    padding-bottom: 2mm;
+    padding-left: 2mm;
+    padding-right: 2mm;
+    background-color: #BBFFEE;
+    border-color: #448877;
+    border-width: 2px;
+    border-style:solid;
+    font-family:Arial;
+    font-size:10pt;
+}
+.ud-figure {
+    text-align:left;
+    padding-left:10mm;
+    padding-right:10mm;
+}
+.ud-code-block {
+  padding: 5mm;
+  text-align:left;
+  background-color: #FFFFF8;
+  font-family: Courier, monospace;
+  font-size: 10pt;
+  border-style: solid;
+  border-color: #f5a90b;
+  border-width: 2px;
+  width: 90%;
+}
+.ud-code-inline {
+  background-color: #FFFFFF;
+  font-family: Courier;
+  font-size: 9pt;
+}
+/*
+a {
+    color:#000000;
+    text-decoration:none;
+}
+a:hover {
+    color:#f5a90b;
+    text-decoration:none;
+}
+*/
+.ud-caption {
+    font-family: Arial, sans-serif;
+    text-align:left;
+    padding-left:2mm;
+}
+.ud-toc {
+    padding-left:5mm;
+    color:#f5a90b;
+    text-decoration:none;
+}
+
+.ud-correct-example-code-block {
+    padding: 4mm;
+    text-align: left;
+    font-family: Courier, monospace;
+    font-size: 9pt;
+    border-style: solid;
+    background-color: #F8FFF8;
+    border-color: green;
+    border-width: 2px;
+}
+
+.ud-incorrect-example-code-block {
+    padding: 5mm;
+    text-align: left;
+    font-family: Courier, monospace;
+    font-size: 9pt;
+    border-style: solid;
+    background-color: #FFF8F8;
+    border-color: red;
+    border-width: 2px;
+}
+
+.ud-highlight {
+    font-weight: bold;
+}
+
+/* xml verbatim styles */
+.ud-xml-default {
+    color: #334455;
+    background-color:red;
+    font-family: Courier;
+     
+}
+.ud-xml-element-name {
+     color: #990000; 
+}
+.ud-xml-element-nsprefix {
+     color: #666666; 
+}
+.ud-xml-attr-name {
+     color: #660000; 
+}
+.ud-xml-attr-content {
+    color: #000099;
+}
+.ud-xml-ns-name {
+     color: #666600;
+}
+.ud-xml-ns-uri {
+     color: #330099;
+}
+.ud-xml-text {
+    color: #000000;
+}
+.ud-xml-comment {
+    color: #006600;
+     font-style: italic; 
+}
+.ud-xml-pi-name {
+    color: #006600;
+     font-style: italic;
+}
+.ud-xml-pi-content {
+    color: #006666;
+     font-style: italic ;
+}
+
+
+    </style></head>
+   <body>
+      <div></div><a target="_blank" href="profile-sdi-ows-data-services.pdf">PDF Version</a><div style="font-size:36pt; text-align: center;">
+         <div>SDI OWS data services</div>
+         <div style="font-size:24pt;">Service Profile</div>
+         <div><object align="middle" style="text-align: center; padding-left:15mm;" title="Inheritance Diagram" type="image/svg+xml" width="500px" height="250px" data="./inheritance-sdi-ows-data-services.svg"></object></div>
+      </div>
+      <div>
+         <div xmlns:u="http://utf-x.sourceforge.net/xsd/utfxdoc_1_0/utfxdoc.xsd" class="ud-version"> Revision: 282  </div>
+         <div xmlns:u="http://utf-x.sourceforge.net/xsd/utfxdoc_1_0/utfxdoc.xsd" class="ud-date"> 2007-06-03 20:51:50 +1000 (Sun, 03 Jun 2007)  </div>
+         <div xmlns:u="http://utf-x.sourceforge.net/xsd/utfxdoc_1_0/utfxdoc.xsd" class="ud-copyright">Copyright ©  CGI GeoSciML </div>
+      </div>
+      <h2 xmlns:u="http://utf-x.sourceforge.net/xsd/utfxdoc_1_0/utfxdoc.xsd">Namespace Context</h2>
+      <table xmlns:u="http://utf-x.sourceforge.net/xsd/utfxdoc_1_0/utfxdoc.xsd" bgcolor="#DDDDCC" cellpadding="5mm">
+         <tbody>
+            <tr>
+               <th>Prefix</th>
+               <th>Namespace</th>
+            </tr>
+            <tr>
+               <td style="font-family: Courier; font-weight: bold; color: #FF0000">rim3</td>
+               <td style="font-family: Courier">urn:oasis:names:tc:ebxml-regrep:xsd:rim:3.0</td>
+            </tr>
+            <tr>
+               <td style="font-family: Courier; font-weight: bold; color: ">xlink</td>
+               <td style="font-family: Courier">http://www.w3.org/1999/xlink</td>
+            </tr>
+            <tr>
+               <td style="font-family: Courier; font-weight: bold; color: ">pr</td>
+               <td style="font-family: Courier">urn:ws-profile-mgr:schemas:profiles:profiles.xsd</td>
+            </tr>
+            <tr>
+               <td style="font-family: Courier; font-weight: bold; color: ">gwsit</td>
+               <td style="font-family: Courier">http://qld.gov.au/gea/wsi/testing/1.0</td>
+            </tr>
+            <tr>
+               <td style="font-family: Courier; font-weight: bold; color: ">qg</td>
+               <td style="font-family: Courier">http://qld.gov.au/wsi/1.0</td>
+            </tr>
+            <tr>
+               <td style="font-family: Courier; font-weight: bold; color: #550000">xsd</td>
+               <td style="font-family: Courier">http://www.w3.org/2001/XMLSchema</td>
+            </tr>
+            <tr>
+               <td style="font-family: Courier; font-weight: bold; color: ">xsi</td>
+               <td style="font-family: Courier">http://www.w3.org/1999/XMLSchema-instance</td>
+            </tr>
+            <tr>
+               <td style="font-family: Courier; font-weight: bold; color: #555500">wsdl</td>
+               <td style="font-family: Courier">http://schemas.xmlsoap.org/wsdl/</td>
+            </tr>
+            <tr>
+               <td style="font-family: Courier; font-weight: bold; color: #555555">soap</td>
+               <td style="font-family: Courier">http://schemas.xmlsoap.org/wsdl/soap/</td>
+            </tr>
+            <tr>
+               <td style="font-family: Courier; font-weight: bold; color: #005555">soap-env</td>
+               <td style="font-family: Courier">http://schemas.xmlsoap.org/soap/envelope/</td>
+            </tr>
+            <tr>
+               <td style="font-family: Courier; font-weight: bold; color: #000055">wsse</td>
+               <td style="font-family: Courier">http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-secext-1.0.xsd</td>
+            </tr>
+            <tr>
+               <td style="font-family: Courier; font-weight: bold; color: #005500">wsu</td>
+               <td style="font-family: Courier">http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd</td>
+            </tr>
+            <tr>
+               <td style="font-family: Courier; font-weight: bold; color: ">xenc</td>
+               <td style="font-family: Courier">http://www.w3.org/2001/04/xmlenc#</td>
+            </tr>
+            <tr>
+               <td style="font-family: Courier; font-weight: bold; color: ">ds</td>
+               <td style="font-family: Courier">http://www.w3.org/2000/09/xmldsig#</td>
+            </tr>
+            <tr>
+               <td style="font-family: Courier; font-weight: bold; color: ">wsa</td>
+               <td style="font-family: Courier">http://www.w3.org/2005/08/addressing</td>
+            </tr>
+            <tr>
+               <td style="font-family: Courier; font-weight: bold; color: ">wfs</td>
+               <td style="font-family: Courier">http://www.opengis.net/wfs</td>
+            </tr>
+            <tr>
+               <td style="font-family: Courier; font-weight: bold; color: ">m</td>
+               <td style="font-family: Courier">http://example.org/price</td>
+            </tr>
+            <tr>
+               <td style="font-family: Courier; font-weight: bold; color: ">myapp</td>
+               <td style="font-family: Courier">http://example.com/someJavaApp</td>
+            </tr>
+            <tr>
+               <td style="font-family: Courier; font-weight: bold; color: ">rim</td>
+               <td style="font-family: Courier">urn:oasis:names:tc:ebxml-regrep:xsd:rim:3.0</td>
+            </tr>
+            <tr>
+               <td style="font-family: Courier; font-weight: bold; color: ">gml</td>
+               <td style="font-family: Courier">http://www.opengis.net/gml</td>
+            </tr>
+         </tbody>
+      </table>
+      <div xmlns:rim="urn:oasis:names:tc:ebxml-regrep:xsd:rim:3.0" class="h4-heading">Inherits from : <a href="profile-sdi-data-services.html" target="sdi-data-services">sdi data services</a></div>
+      <div xmlns:rim="urn:oasis:names:tc:ebxml-regrep:xsd:rim:3.0">This profile describes behaviour of data access services exposing spatial data
+         through Open Geospatial Consortium (OGC) Web Service interface sepcifications (OWS). It
+         specifies common spatial referencing expectations.
+      </div>
+      <p xmlns:rim="urn:oasis:names:tc:ebxml-regrep:xsd:rim:3.0">
+         <div class="h2-sect">
+            <div class="h2-heading">Artefacts</div>
+            <div>
+               <p>
+                  <div class="h3-sect">
+                     
+                     <div class="h2-heading">DATACURRENCY</div>
+                     
+                     
+                     <div>Controlled vocabulary of data currency keywords, encoded as an ebRIM
+                        classification scheme.
+                     </div>
+                     
+                     
+                     
+                     
+                     <div class="h3-heading">ebRIM Classification Scheme</div>
+                     <div class="ud-code-block">&lt;<span xmlns:u="http://utf-x.sourceforge.net/xsd/utfxdoc_1_0/utfxdoc.xsd" class="ud-xml-element-nsprefix" style="color: ">rim</span>:<span xmlns:u="http://utf-x.sourceforge.net/xsd/utfxdoc_1_0/utfxdoc.xsd" class="ud-xml-element-name">ClassificationScheme</span> <span xmlns:u="http://utf-x.sourceforge.net/xsd/utfxdoc_1_0/utfxdoc.xsd" class="ud-xml-attr-name">id</span>="<span xmlns:u="http://utf-x.sourceforge.net/xsd/utfxdoc_1_0/utfxdoc.xsd" class="ud-xml-attr-content">urn:au:gov:qld:sdi:data:currency</span>" <span xmlns:u="http://utf-x.sourceforge.net/xsd/utfxdoc_1_0/utfxdoc.xsd" class="ud-xml-attr-name">isInternal</span>="<span xmlns:u="http://utf-x.sourceforge.net/xsd/utfxdoc_1_0/utfxdoc.xsd" class="ud-xml-attr-content">true</span>" <span xmlns:u="http://utf-x.sourceforge.net/xsd/utfxdoc_1_0/utfxdoc.xsd" class="ud-xml-attr-name">nodeType</span>="<span xmlns:u="http://utf-x.sourceforge.net/xsd/utfxdoc_1_0/utfxdoc.xsd" class="ud-xml-attr-content">UniqueCode</span>"&gt;<span xmlns:u="http://utf-x.sourceforge.net/xsd/utfxdoc_1_0/utfxdoc.xsd" class="ud-xml-text"><br>
+                           &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>&lt;<span xmlns:u="http://utf-x.sourceforge.net/xsd/utfxdoc_1_0/utfxdoc.xsd" class="ud-xml-element-nsprefix" style="color: ">rim</span>:<span xmlns:u="http://utf-x.sourceforge.net/xsd/utfxdoc_1_0/utfxdoc.xsd" class="ud-xml-element-name">Name</span>&gt;<span xmlns:u="http://utf-x.sourceforge.net/xsd/utfxdoc_1_0/utfxdoc.xsd" class="ud-xml-text"><br>
+                           &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>&lt;<span xmlns:u="http://utf-x.sourceforge.net/xsd/utfxdoc_1_0/utfxdoc.xsd" class="ud-xml-element-nsprefix" style="color: ">rim</span>:<span xmlns:u="http://utf-x.sourceforge.net/xsd/utfxdoc_1_0/utfxdoc.xsd" class="ud-xml-element-name">LocalizedString</span> <span xmlns:u="http://utf-x.sourceforge.net/xsd/utfxdoc_1_0/utfxdoc.xsd" class="ud-xml-attr-name">charset</span>="<span xmlns:u="http://utf-x.sourceforge.net/xsd/utfxdoc_1_0/utfxdoc.xsd" class="ud-xml-attr-content">UTF-8</span>" <span xmlns:u="http://utf-x.sourceforge.net/xsd/utfxdoc_1_0/utfxdoc.xsd" class="ud-xml-attr-name">value</span>="<span xmlns:u="http://utf-x.sourceforge.net/xsd/utfxdoc_1_0/utfxdoc.xsd" class="ud-xml-attr-content">Data Currency</span>" /&gt;<span xmlns:u="http://utf-x.sourceforge.net/xsd/utfxdoc_1_0/utfxdoc.xsd" class="ud-xml-text"><br>
+                           &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>&lt;/<span xmlns:u="http://utf-x.sourceforge.net/xsd/utfxdoc_1_0/utfxdoc.xsd" class="ud-xml-element-nsprefix" style="color: ">rim</span>:<span xmlns:u="http://utf-x.sourceforge.net/xsd/utfxdoc_1_0/utfxdoc.xsd" class="ud-xml-element-name">Name</span>&gt;<span xmlns:u="http://utf-x.sourceforge.net/xsd/utfxdoc_1_0/utfxdoc.xsd" class="ud-xml-text"><br>
+                           &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>&lt;<span xmlns:u="http://utf-x.sourceforge.net/xsd/utfxdoc_1_0/utfxdoc.xsd" class="ud-xml-element-nsprefix" style="color: ">rim</span>:<span xmlns:u="http://utf-x.sourceforge.net/xsd/utfxdoc_1_0/utfxdoc.xsd" class="ud-xml-element-name">Description</span>&gt;<span xmlns:u="http://utf-x.sourceforge.net/xsd/utfxdoc_1_0/utfxdoc.xsd" class="ud-xml-text"><br>
+                           &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>&lt;<span xmlns:u="http://utf-x.sourceforge.net/xsd/utfxdoc_1_0/utfxdoc.xsd" class="ud-xml-element-nsprefix" style="color: ">rim</span>:<span xmlns:u="http://utf-x.sourceforge.net/xsd/utfxdoc_1_0/utfxdoc.xsd" class="ud-xml-element-name">LocalizedString</span> <span xmlns:u="http://utf-x.sourceforge.net/xsd/utfxdoc_1_0/utfxdoc.xsd" class="ud-xml-attr-name">charset</span>="<span xmlns:u="http://utf-x.sourceforge.net/xsd/utfxdoc_1_0/utfxdoc.xsd" class="ud-xml-attr-content">UTF-8</span>" <span xmlns:u="http://utf-x.sourceforge.net/xsd/utfxdoc_1_0/utfxdoc.xsd" class="ud-xml-attr-name">value</span>="<span xmlns:u="http://utf-x.sourceforge.net/xsd/utfxdoc_1_0/utfxdoc.xsd" class="ud-xml-attr-content">Controlled vocabulary for Data Currency metadata slots.</span>" /&gt;<span xmlns:u="http://utf-x.sourceforge.net/xsd/utfxdoc_1_0/utfxdoc.xsd" class="ud-xml-text"><br>
+                           &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>&lt;/<span xmlns:u="http://utf-x.sourceforge.net/xsd/utfxdoc_1_0/utfxdoc.xsd" class="ud-xml-element-nsprefix" style="color: ">rim</span>:<span xmlns:u="http://utf-x.sourceforge.net/xsd/utfxdoc_1_0/utfxdoc.xsd" class="ud-xml-element-name">Description</span>&gt;<span xmlns:u="http://utf-x.sourceforge.net/xsd/utfxdoc_1_0/utfxdoc.xsd" class="ud-xml-text"><br>
+                           &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>&lt;<span xmlns:u="http://utf-x.sourceforge.net/xsd/utfxdoc_1_0/utfxdoc.xsd" class="ud-xml-element-nsprefix" style="color: ">rim</span>:<span xmlns:u="http://utf-x.sourceforge.net/xsd/utfxdoc_1_0/utfxdoc.xsd" class="ud-xml-element-name">ClassificationNode</span> <span xmlns:u="http://utf-x.sourceforge.net/xsd/utfxdoc_1_0/utfxdoc.xsd" class="ud-xml-attr-name">code</span>="<span xmlns:u="http://utf-x.sourceforge.net/xsd/utfxdoc_1_0/utfxdoc.xsd" class="ud-xml-attr-content">current</span>" <span xmlns:u="http://utf-x.sourceforge.net/xsd/utfxdoc_1_0/utfxdoc.xsd" class="ud-xml-attr-name">id</span>="<span xmlns:u="http://utf-x.sourceforge.net/xsd/utfxdoc_1_0/utfxdoc.xsd" class="ud-xml-attr-content">urn:asdi:marine:data:currency:current</span>"&gt;<span xmlns:u="http://utf-x.sourceforge.net/xsd/utfxdoc_1_0/utfxdoc.xsd" class="ud-xml-text"><br>
+                           &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>&lt;<span xmlns:u="http://utf-x.sourceforge.net/xsd/utfxdoc_1_0/utfxdoc.xsd" class="ud-xml-element-nsprefix" style="color: ">rim</span>:<span xmlns:u="http://utf-x.sourceforge.net/xsd/utfxdoc_1_0/utfxdoc.xsd" class="ud-xml-element-name">Name</span>&gt;<span xmlns:u="http://utf-x.sourceforge.net/xsd/utfxdoc_1_0/utfxdoc.xsd" class="ud-xml-text"><br>
+                           &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>&lt;<span xmlns:u="http://utf-x.sourceforge.net/xsd/utfxdoc_1_0/utfxdoc.xsd" class="ud-xml-element-nsprefix" style="color: ">rim</span>:<span xmlns:u="http://utf-x.sourceforge.net/xsd/utfxdoc_1_0/utfxdoc.xsd" class="ud-xml-element-name">LocalizedString</span> <span xmlns:u="http://utf-x.sourceforge.net/xsd/utfxdoc_1_0/utfxdoc.xsd" class="ud-xml-attr-name">value</span>="<span xmlns:u="http://utf-x.sourceforge.net/xsd/utfxdoc_1_0/utfxdoc.xsd" class="ud-xml-attr-content">Current</span>" /&gt;<span xmlns:u="http://utf-x.sourceforge.net/xsd/utfxdoc_1_0/utfxdoc.xsd" class="ud-xml-text"><br>
+                           &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>&lt;/<span xmlns:u="http://utf-x.sourceforge.net/xsd/utfxdoc_1_0/utfxdoc.xsd" class="ud-xml-element-nsprefix" style="color: ">rim</span>:<span xmlns:u="http://utf-x.sourceforge.net/xsd/utfxdoc_1_0/utfxdoc.xsd" class="ud-xml-element-name">Name</span>&gt;<span xmlns:u="http://utf-x.sourceforge.net/xsd/utfxdoc_1_0/utfxdoc.xsd" class="ud-xml-text"><br>
+                           &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>&lt;/<span xmlns:u="http://utf-x.sourceforge.net/xsd/utfxdoc_1_0/utfxdoc.xsd" class="ud-xml-element-nsprefix" style="color: ">rim</span>:<span xmlns:u="http://utf-x.sourceforge.net/xsd/utfxdoc_1_0/utfxdoc.xsd" class="ud-xml-element-name">ClassificationNode</span>&gt;<span xmlns:u="http://utf-x.sourceforge.net/xsd/utfxdoc_1_0/utfxdoc.xsd" class="ud-xml-text"><br>
+                           &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>&lt;<span xmlns:u="http://utf-x.sourceforge.net/xsd/utfxdoc_1_0/utfxdoc.xsd" class="ud-xml-element-nsprefix" style="color: ">rim</span>:<span xmlns:u="http://utf-x.sourceforge.net/xsd/utfxdoc_1_0/utfxdoc.xsd" class="ud-xml-element-name">ClassificationNode</span> <span xmlns:u="http://utf-x.sourceforge.net/xsd/utfxdoc_1_0/utfxdoc.xsd" class="ud-xml-attr-name">code</span>="<span xmlns:u="http://utf-x.sourceforge.net/xsd/utfxdoc_1_0/utfxdoc.xsd" class="ud-xml-attr-content">historical</span>" <span xmlns:u="http://utf-x.sourceforge.net/xsd/utfxdoc_1_0/utfxdoc.xsd" class="ud-xml-attr-name">id</span>="<span xmlns:u="http://utf-x.sourceforge.net/xsd/utfxdoc_1_0/utfxdoc.xsd" class="ud-xml-attr-content">urn:asdi:marine:data:currency:historical</span>"&gt;<span xmlns:u="http://utf-x.sourceforge.net/xsd/utfxdoc_1_0/utfxdoc.xsd" class="ud-xml-text"><br>
+                           &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>&lt;<span xmlns:u="http://utf-x.sourceforge.net/xsd/utfxdoc_1_0/utfxdoc.xsd" class="ud-xml-element-nsprefix" style="color: ">rim</span>:<span xmlns:u="http://utf-x.sourceforge.net/xsd/utfxdoc_1_0/utfxdoc.xsd" class="ud-xml-element-name">Name</span>&gt;<span xmlns:u="http://utf-x.sourceforge.net/xsd/utfxdoc_1_0/utfxdoc.xsd" class="ud-xml-text"><br>
+                           &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>&lt;<span xmlns:u="http://utf-x.sourceforge.net/xsd/utfxdoc_1_0/utfxdoc.xsd" class="ud-xml-element-nsprefix" style="color: ">rim</span>:<span xmlns:u="http://utf-x.sourceforge.net/xsd/utfxdoc_1_0/utfxdoc.xsd" class="ud-xml-element-name">LocalizedString</span> <span xmlns:u="http://utf-x.sourceforge.net/xsd/utfxdoc_1_0/utfxdoc.xsd" class="ud-xml-attr-name">value</span>="<span xmlns:u="http://utf-x.sourceforge.net/xsd/utfxdoc_1_0/utfxdoc.xsd" class="ud-xml-attr-content">Historical</span>" /&gt;<span xmlns:u="http://utf-x.sourceforge.net/xsd/utfxdoc_1_0/utfxdoc.xsd" class="ud-xml-text"><br>
+                           &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>&lt;/<span xmlns:u="http://utf-x.sourceforge.net/xsd/utfxdoc_1_0/utfxdoc.xsd" class="ud-xml-element-nsprefix" style="color: ">rim</span>:<span xmlns:u="http://utf-x.sourceforge.net/xsd/utfxdoc_1_0/utfxdoc.xsd" class="ud-xml-element-name">Name</span>&gt;<span xmlns:u="http://utf-x.sourceforge.net/xsd/utfxdoc_1_0/utfxdoc.xsd" class="ud-xml-text"><br>
+                           &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>&lt;/<span xmlns:u="http://utf-x.sourceforge.net/xsd/utfxdoc_1_0/utfxdoc.xsd" class="ud-xml-element-nsprefix" style="color: ">rim</span>:<span xmlns:u="http://utf-x.sourceforge.net/xsd/utfxdoc_1_0/utfxdoc.xsd" class="ud-xml-element-name">ClassificationNode</span>&gt;<span xmlns:u="http://utf-x.sourceforge.net/xsd/utfxdoc_1_0/utfxdoc.xsd" class="ud-xml-text"><br>
+                           &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>&lt;<span xmlns:u="http://utf-x.sourceforge.net/xsd/utfxdoc_1_0/utfxdoc.xsd" class="ud-xml-element-nsprefix" style="color: ">rim</span>:<span xmlns:u="http://utf-x.sourceforge.net/xsd/utfxdoc_1_0/utfxdoc.xsd" class="ud-xml-element-name">ClassificationNode</span> <span xmlns:u="http://utf-x.sourceforge.net/xsd/utfxdoc_1_0/utfxdoc.xsd" class="ud-xml-attr-name">code</span>="<span xmlns:u="http://utf-x.sourceforge.net/xsd/utfxdoc_1_0/utfxdoc.xsd" class="ud-xml-attr-content">predicted</span>" <span xmlns:u="http://utf-x.sourceforge.net/xsd/utfxdoc_1_0/utfxdoc.xsd" class="ud-xml-attr-name">id</span>="<span xmlns:u="http://utf-x.sourceforge.net/xsd/utfxdoc_1_0/utfxdoc.xsd" class="ud-xml-attr-content">urn:asdi:marine:data:currency:predicted</span>"&gt;<span xmlns:u="http://utf-x.sourceforge.net/xsd/utfxdoc_1_0/utfxdoc.xsd" class="ud-xml-text"><br>
+                           &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>&lt;<span xmlns:u="http://utf-x.sourceforge.net/xsd/utfxdoc_1_0/utfxdoc.xsd" class="ud-xml-element-nsprefix" style="color: ">rim</span>:<span xmlns:u="http://utf-x.sourceforge.net/xsd/utfxdoc_1_0/utfxdoc.xsd" class="ud-xml-element-name">Name</span>&gt;<span xmlns:u="http://utf-x.sourceforge.net/xsd/utfxdoc_1_0/utfxdoc.xsd" class="ud-xml-text"><br>
+                           &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>&lt;<span xmlns:u="http://utf-x.sourceforge.net/xsd/utfxdoc_1_0/utfxdoc.xsd" class="ud-xml-element-nsprefix" style="color: ">rim</span>:<span xmlns:u="http://utf-x.sourceforge.net/xsd/utfxdoc_1_0/utfxdoc.xsd" class="ud-xml-element-name">LocalizedString</span> <span xmlns:u="http://utf-x.sourceforge.net/xsd/utfxdoc_1_0/utfxdoc.xsd" class="ud-xml-attr-name">value</span>="<span xmlns:u="http://utf-x.sourceforge.net/xsd/utfxdoc_1_0/utfxdoc.xsd" class="ud-xml-attr-content">Predicted</span>" /&gt;<span xmlns:u="http://utf-x.sourceforge.net/xsd/utfxdoc_1_0/utfxdoc.xsd" class="ud-xml-text"><br>
+                           &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>&lt;/<span xmlns:u="http://utf-x.sourceforge.net/xsd/utfxdoc_1_0/utfxdoc.xsd" class="ud-xml-element-nsprefix" style="color: ">rim</span>:<span xmlns:u="http://utf-x.sourceforge.net/xsd/utfxdoc_1_0/utfxdoc.xsd" class="ud-xml-element-name">Name</span>&gt;<span xmlns:u="http://utf-x.sourceforge.net/xsd/utfxdoc_1_0/utfxdoc.xsd" class="ud-xml-text"><br>
+                           &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>&lt;/<span xmlns:u="http://utf-x.sourceforge.net/xsd/utfxdoc_1_0/utfxdoc.xsd" class="ud-xml-element-nsprefix" style="color: ">rim</span>:<span xmlns:u="http://utf-x.sourceforge.net/xsd/utfxdoc_1_0/utfxdoc.xsd" class="ud-xml-element-name">ClassificationNode</span>&gt;<span xmlns:u="http://utf-x.sourceforge.net/xsd/utfxdoc_1_0/utfxdoc.xsd" class="ud-xml-text"><br>
+                           &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>&lt;<span xmlns:u="http://utf-x.sourceforge.net/xsd/utfxdoc_1_0/utfxdoc.xsd" class="ud-xml-element-nsprefix" style="color: ">rim</span>:<span xmlns:u="http://utf-x.sourceforge.net/xsd/utfxdoc_1_0/utfxdoc.xsd" class="ud-xml-element-name">ClassificationNode</span> <span xmlns:u="http://utf-x.sourceforge.net/xsd/utfxdoc_1_0/utfxdoc.xsd" class="ud-xml-attr-name">code</span>="<span xmlns:u="http://utf-x.sourceforge.net/xsd/utfxdoc_1_0/utfxdoc.xsd" class="ud-xml-attr-content">unknown</span>" <span xmlns:u="http://utf-x.sourceforge.net/xsd/utfxdoc_1_0/utfxdoc.xsd" class="ud-xml-attr-name">id</span>="<span xmlns:u="http://utf-x.sourceforge.net/xsd/utfxdoc_1_0/utfxdoc.xsd" class="ud-xml-attr-content">urn:asdi:marine:data:currency:unknown</span>"&gt;<span xmlns:u="http://utf-x.sourceforge.net/xsd/utfxdoc_1_0/utfxdoc.xsd" class="ud-xml-text"><br>
+                           &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>&lt;<span xmlns:u="http://utf-x.sourceforge.net/xsd/utfxdoc_1_0/utfxdoc.xsd" class="ud-xml-element-nsprefix" style="color: ">rim</span>:<span xmlns:u="http://utf-x.sourceforge.net/xsd/utfxdoc_1_0/utfxdoc.xsd" class="ud-xml-element-name">Name</span>&gt;<span xmlns:u="http://utf-x.sourceforge.net/xsd/utfxdoc_1_0/utfxdoc.xsd" class="ud-xml-text"><br>
+                           &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>&lt;<span xmlns:u="http://utf-x.sourceforge.net/xsd/utfxdoc_1_0/utfxdoc.xsd" class="ud-xml-element-nsprefix" style="color: ">rim</span>:<span xmlns:u="http://utf-x.sourceforge.net/xsd/utfxdoc_1_0/utfxdoc.xsd" class="ud-xml-element-name">LocalizedString</span> <span xmlns:u="http://utf-x.sourceforge.net/xsd/utfxdoc_1_0/utfxdoc.xsd" class="ud-xml-attr-name">value</span>="<span xmlns:u="http://utf-x.sourceforge.net/xsd/utfxdoc_1_0/utfxdoc.xsd" class="ud-xml-attr-content">Unknown</span>" /&gt;<span xmlns:u="http://utf-x.sourceforge.net/xsd/utfxdoc_1_0/utfxdoc.xsd" class="ud-xml-text"><br>
+                           &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>&lt;/<span xmlns:u="http://utf-x.sourceforge.net/xsd/utfxdoc_1_0/utfxdoc.xsd" class="ud-xml-element-nsprefix" style="color: ">rim</span>:<span xmlns:u="http://utf-x.sourceforge.net/xsd/utfxdoc_1_0/utfxdoc.xsd" class="ud-xml-element-name">Name</span>&gt;<span xmlns:u="http://utf-x.sourceforge.net/xsd/utfxdoc_1_0/utfxdoc.xsd" class="ud-xml-text"><br>
+                           &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>&lt;/<span xmlns:u="http://utf-x.sourceforge.net/xsd/utfxdoc_1_0/utfxdoc.xsd" class="ud-xml-element-nsprefix" style="color: ">rim</span>:<span xmlns:u="http://utf-x.sourceforge.net/xsd/utfxdoc_1_0/utfxdoc.xsd" class="ud-xml-element-name">ClassificationNode</span>&gt;<span xmlns:u="http://utf-x.sourceforge.net/xsd/utfxdoc_1_0/utfxdoc.xsd" class="ud-xml-text"><br>
+                           &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>&lt;/<span xmlns:u="http://utf-x.sourceforge.net/xsd/utfxdoc_1_0/utfxdoc.xsd" class="ud-xml-element-nsprefix" style="color: ">rim</span>:<span xmlns:u="http://utf-x.sourceforge.net/xsd/utfxdoc_1_0/utfxdoc.xsd" class="ud-xml-element-name">ClassificationScheme</span>&gt;
+                     </div>
+                     
+                     
+                     http://oceans-catalog.socialchange.net.au/noocat-data/harvestconfig-testplans/community/framework/data/classificationschemes/ClassificationScheme-DataCurrency.xml
+                     
+                  </div>
+               </p>
+            </div>
+         </div>
+      </p>
+      <p xmlns:rim="urn:oasis:names:tc:ebxml-regrep:xsd:rim:3.0">
+         <div class="h2-sect">
+            <div class="h2-heading">Requirements</div><a name="sdiODS1"></a><div class="defined">
+               <div style="color: brown; font-size: 12pt; font-weight: bold">sdiODS1</div>
+               <div style="color: brown; font-size: 8pt; font-family: Courier;">urn:au:gov:qld:gea:standards:profiles:gea-ows-data-services:requirements:sdiODS1</div>
+               <div class="pr-req-block">
+                  <div class="pr-req-normative-block">The relevant OGC service capabilities metadata is populated with
+                     service custodian identifier. Different versions and type of OGC Web Services have
+                     different schemas, however OGC has a proposed OWS_Common framework to standardise
+                     this aspect in newer versions (WFS 1.1, WMS 1.3?). <span style="color: blue; font-weight: bold; font-style: italic;"><a name="id270"></a>COMMENT: "[SHANE] - Need to benchmark
+                        wms/wfs versions and make a decision."</span>
+                     
+                  </div>
+                  <div></div>
+               </div>
+            </div><a name="sdiODS2"></a><div class="defined">
+               <div style="color: brown; font-size: 12pt; font-weight: bold">sdiODS2</div>
+               <div style="color: brown; font-size: 8pt; font-family: Courier;">urn:au:gov:qld:gea:standards:profiles:gea-ows-data-services:requirements:sdiODS2</div>
+               <div class="pr-req-block">
+                  <div class="pr-req-normative-block">The supported Spatial Reference System for all data will include
+                     GDA94/Plate Carree (Orthogeographic) projection (known as EPSG:4283 in WMS 1.1.1
+                     (Note that WMS 1.3 changed the axis-order (lat/long) for this, and is not widely
+                     adopted). <span style="color: blue; font-weight: bold; font-style: italic;"><a name="id273"></a>COMMENT: "[SHANE] - [SRS handling for WFS/GML in target environment should be
+                        benchmarked]"</span>
+                     
+                  </div>
+                  <div></div>
+               </div>
+            </div><a name="SDIDS1"></a><div class="inherited">
+               <div style="color: brown; font-size: 12pt; font-weight: bold">SDIDS1</div>
+               <div style="color: brown; font-size: 8pt; font-family: Courier;">urn:au:gov:qld:sdi:standards:profiles:sdi-data-services:requirements:SDIDS1</div><span style="color: #AAAAAA;"> inherited from <a style="color: #AAAAAA;" href="profile-sdi-data-services.html" target="sdi-data-services">sdi data services</a></span><div class="pr-req-block">
+                  <div class="pr-req-normative-block">
+                     <span style="color: blue; font-weight: bold; font-style: italic;"><a name="id256"></a>COMMENT: "[IAN] - write the non-normative content for this requirement and provide
+                        examples of correct or incorrect usage."</span> Currency of data set (NB ISO19115
+                     does not seem to provide a slot for this) <span style="color: red; font-weight: bold;">MUST</span> be
+                     described using keyword from (CRS data currency keywords vocabulary identifier - ISO19115
+                     provides these?) [The user will need to know whether the data is the most recent available
+                     or a historical snapshot or a prediction - this is not currently part of the FGDC metadata
+                     /CRS design, but it will need to be eventually, so we need to add it to service profiles so
+                     the info will be available when needed. there is a bigger general issue that the sdi
+                     architecture requires the ability to publish vocabularies and then reference
+                     them.]
+                  </div>
+                  <div></div>
+               </div>
+            </div>
+         </div>
+      </p>
+   </body>
+</html>

@@ -1,0 +1,160 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<test-suite xmlns="http://www.auscope.org/servicetester"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.auscope.org/servicetester http://schemas.auscope.org/servicetester/test-suite-1.0.xsd">
+
+	<!--
+		This example test-suite demonstrates the abilities of XmlServiceTester.
+	-->
+
+	<!--
+		The service-url describes the URL to which service requests are submitted.
+		This element is optional because it can be supplied or overridden
+		in, for example, an http-port-request element. It will be ignored by file-request.
+	-->
+	<service-url>http://localhost:8080/geoserver/wfs</service-url>
+
+	<!--
+		URI of an OASIS catalog file, relative to this file. Optional.
+		If not supplied, the parser will fetch schemas from locations
+		in the document schemaLocation.
+	-->
+	<catalog-file>../schemas/catalog.xml</catalog-file>
+
+	<!--
+		Schema location used in validation. You can have as many
+		as you like. They are used in order supplied. Schema locations
+		specified in respone elements take precedence.
+	-->
+	<schema-location>
+		<namespace-uri>http://www.opengis.net/wfs</namespace-uri>
+		<schema-url>
+			http://schemas.opengis.net/wfs/1.1.0/wfs.xsd
+		</schema-url>
+	</schema-location>
+
+
+	<!--
+		Each test-case represents a request-response.
+		Every response is schema-validated. Each test-case
+		fails or succeeds by itself. You can have as many
+		as you like (but at least one).
+	-->
+	<test-case>
+
+		<!--
+			The most useful type of request: make an HTTP POST
+			request using a body in a file. 
+		-->
+		<http-post-request>
+
+			<!-- 
+				(Optional) A service-url defined here overrrides one
+				defined at the top level. If not present, the top-level
+				service-url is used. One must be supplied either here or
+				at the top level for http-pot-request or a runtime
+				error will occur.
+			-->
+			<service-url>
+				http://localhost:9999/geoserver/wfs
+			</service-url>
+
+			<!-- 
+				URI relative to this file specifying the file containing
+				the body of the HTTP POST request.
+			-->
+			<request-file>
+				../requests/request.MappedFeaturePostgis.xml
+			</request-file>
+
+		</http-post-request>
+
+		<response>
+
+			<!-- 
+				(Optional) URI relative to this file of an output file
+				containing the response text. The output has been parsed,
+				reserialised, and is annotated with comments indicating
+				the location of any validation diagnostics. 
+			-->
+			<output-file>
+				../../testoutput/output.online.MappedFeaturePostgis.xml
+			</output-file>
+
+			<!-- Override document and top-level schema location.
+				This is essential if the response document conforms to
+				schemas not mentioned or incorrectly mentioned in
+				schemaLocation, such as not-implemented
+				DescribeFeatureType URLs. 
+			-->
+			<schema-location>
+				<namespace-uri>
+					urn:cgi:xmlns:CGI:GeoSciML:2.0
+				</namespace-uri>
+				<!-- Schema file URI relative to this document. -->
+				<schema-file>
+					../profiles/MappedFeaturePostgis.xsd
+				</schema-file>
+			</schema-location>
+
+			<!--
+				Assertion that the response contains exactly one
+				wfs:FeatureCollection element. Without this assertion,
+				an ows:ExceptionReport would be accepted as a correct
+				response if schema-valid. This is probably not what
+				you want, so use one of these assertions in
+				every WFS test. The test-case fails if this assertion
+				fails.
+			-->
+			<element-count-assertion>
+				<namespace-uri>
+					http://www.opengis.net/wfs
+				</namespace-uri>
+				<element-name>FeatureCollection</element-name>
+				<element-count>1</element-count>
+			</element-count-assertion>
+
+			<!--
+				Assertion that the response contains exactly two 
+				gsml:MappedFeaturePostgis elements. The test-case 
+				fails if this assertion fails.
+			-->
+			<element-count-assertion>
+				<namespace-uri>
+					urn:cgi:xmlns:CGI:GeoSciML:2.0
+				</namespace-uri>
+				<element-name>MappedFeaturePostgis</element-name>
+				<element-count>2</element-count>
+			</element-count-assertion>
+
+		</response>
+
+	</test-case>
+
+	<test-case>
+
+		<!--
+			A file-request results in the contents of a local file being
+			returned as the response.
+		-->
+		<file-request>
+			<!--  
+				URI relative to this file giving the file
+				from which the response is read.
+			-->
+			<response-file>
+				../canned-responses/OneWePreparedEarlier.xml
+			</response-file>
+		</file-request>
+
+		<!--
+			An empty response element means just schema-validate.
+		-->
+		<response />
+
+	</test-case>
+
+
+</test-suite>
+
+

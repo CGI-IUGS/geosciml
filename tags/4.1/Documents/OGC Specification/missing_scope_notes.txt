@@ -1,0 +1,179 @@
+Properties or classes missing scope notes
+
+TimeOrdinalEra.member	
+	Subdivisions of TimeOrdinalEra
+
+TimeOrdinalEraBoundary.observationalBasis	
+	Observation supporting the existence of the boundary (geochronology, paleontology, etc.)
+	
+TimeOrdinalEraBoundary.nextEra	
+	Succeeding era
+
+TimeOrdinalEraBoundary.previousEra	
+	Preceding era 
+
+TimeOrdinalReferenceSystem.component	
+	TimeOrdinalEra composing the TimeOrdinalReferenceSystem 
+
+TimeOrdinalReferenceSystem.referencePoint
+	Two reference points defining the extent of the system 
+	
+GeochronologicEra.stratotype	
+	Type section that names the physical location or outcrop of a particular reference exposure of a stratigraphic sequence or stratigraphic boundary. A unit stratotype is the agreed reference point for a particular stratigraphic unit and a boundary stratotype the reference for a particular boundary between strata (Wikipedia)
+	
+# basic
+	
+GeologicFeature.occurrence
+	A description association that links a notional geologic feature with any number of mapped features.  A geologic feature, such as a geologic unit may be linked to mapped features from a number of different maps.  
+	
+GeologicFeature.relatedFeature
+	General structure used to define relationships between any feature or object within GeoSciML. Relationships are always binary and directional.  There is always a single source and a single target.  The relationship is always defined from the perspective of the Source and is generally an active verb
+
+GeologicFeature.geologicHistory
+	Relates one or more GeologicEvents to a GeologicFeature to describe their age or geologic history
+	
+
+GeologicUnit.gbUnitDescription	
+	Detailed unit description.  This is a stub property in GeoSciML Basic
+
+MappedFeature.mappingFrame
+	Terms indicating the surface on which the MappedFeature is projected. (from INSPIRE)
+
+MappedFeature.specification	
+	The feature being mapped.  In a geological map, MappedFeature are used to represent GeologicFeature, but other features from other domains could be represented
+
+EarthMaterial.gbEarthMaterialDescription
+	Detailed material description.  This is a stub property in GeoSciML Basic
+	
+AbstractFeatureRelation
+	Association class placeholder to implement relation between geologic features
+	
+CompositionPart.material
+	EarthMaterial composing the part.
+	
+EarthMaterialAbstractDescription
+	Detailed material description.  This is a stub property in GeoSciML Basic
+	
+GeologicUnitAbstractDescription
+	Detailed geologic unit description placeholder for GeologicUnit
+
+MappingFrameTerm
+ Spatial reference frame within which the MappedFeatures have been observed, such as a surface of mapping. (from INSPIRE)
+ 
+CollectionTypeTerm	
+	Types of collections of geological and geophysical objects. Examples: "borehole collection", "geological map", "geological model", "geophysical object collection" (From INSPIRE)
+
+GeologicEvent
+		An identifiable event during which one or more geological processes act to modify geological entities. A GeologicEvent may have a specified geologic age (numeric age or GeochologicEraTerm) and may have specified environments and processes. An example might be a cratonic uplift event during which erosion, sedimentation, and volcanism all take place.
+	(modified from GSML 3.2)
+	
+
+GeologicEvent.gaEventDescription
+	Detailed event description.  This is a stub property in GeoSciML Basic
+	
+GeologicEventAbstractDescription
+	Stub property class to allow extended event related properties.
+
+GeochronologicEraTerm
+	Term from a Geochronological vocabulary
+
+GeologicStructure (was already there.. added in the mean time ?)
+
+	A configuration of matter in the Earth based on describable inhomogeneity, pattern, or fracture in an EarthMaterial. 
+The identity of a GeologicStructure is independent of the material that is the substrate for the structure. 
+Properties like "clast-supported",  "matrix-supported", and "graded bed" that do not involve orientation are considered kinds of GeologicStructure 
+because they depend on the configuration of parts of a rock body. Includes sedimentary structures.
+The general GeologicRelation is used to associate penetrative GeologicStructures with GeologicUnits.
+
+	A configuration of matter in the Earth based on describable inhomogeneity, pattern, or fracture in an EarthMaterial.  The identity of a GeologicStructure is independent of the material that is the substrate for the structure.  
+(Adapted from 3.2)
+
+Contact.stContactDescription
+Detailed contact description.  This is a stub property in GeoSciML Basic
+
+Fold.stFoldDescription
+	Detailed fold description.  This is a stub property in GeoSciML Basic
+
+Foliation.stFoliationDescription
+	Detailed foliation description.  This is a stub property in GeoSciML Basic
+	
+ShearDisplacementStructure.stStructureDescription
+	Detailed shear displacement description.  This is a stub property in GeoSciML Basic
+
+GeomorphologicFeature.unitDescription
+	Geologic description of the morphologic feature (eg, related stratigraphic units and earth materials
+
+GeomorphologicFeature.gmFeatureDescription
+	Detailed geomorphologic description.  This is a stub property in GeoSciML Basic
+	
+NaturalGeomorphologicFeature.activity (was already there, edited in the meantime ?)
+	Describes the current activity status of the geomorphologic feature (eg, currently active, dormant, inactive, reactivated, etc)
+(Adapted from 3.2 ?)
+
+
+GeomorphologicUnitAbstractDescription
+	Detailed geomorphologic unit description placeholder (stub class) for GeomorphologicUnit
+
+GSML_QuantityRange
+	GSML_QuantityRange range is a specialization of SWE Common (OGC 08-094r1, Clause 7.2.13)  QuantityRange where lower and upper values are made explicit, instead of using an array of values (RealPair, see Clause 7.2.1) where the lowest value is the first element and the highest the second.  
+	
+GSML_QuantityRange.lowerValue
+	Lower bound of the range. Replaces the value that would be (and still be) encoded as value[0].
+
+GSML_QuantityRange.upperValue
+	Upper bound of the range. Replaces the value that would be (and still be) encoded as value[1].
+	
+
+# Extension
+
+	
+
+
+CompoundMaterialDescription.particleGeometry
+	Describes particles in a CompoundMaterial independent of their relationship to each other or orientation. (Adapted from 3.2)
+	
+ParticleGeometryDescription.sourceOrganism
+	Organism that are the source of the particles (sponge spicules, bivalvia shells, etc.)
+
+ConstituentPart.constituentMaterial
+	Specifies the EarthMaterial that is forming the ConstituentPart (From 3.2)
+	
+NOTE: 	GeologicEventDescription.prototype
+	Reference stratigraphic point for stratigraphic events
+	
+ContactDescription.correlatesWith
+	This associates a physical geologic contact with a geochronologic (ie, time zone) boundary that may correlate with it.
+
+ShearDisplacementStructureDescription.stPhysicalProperty
+	Arbitrary physical descriptions not covered specifically by this specification.
+	
+DisplacementEvent.incrementalDisplacement
+	Description of the parameters of the displacement 
+	
+FoldSystem.foldSystemMember
+	Fold member of the system
+
+Layering.layerComposition
+	Describes the rock material that may define compositional layering
+
+GeologicUnitDescription.bedding
+	Description of the bedding
+
+
+
+
+# BoreholeInterval
+
+BoreholeInterval.shape
+	Geometry of the interval
+	
+BoreholeInterval.parentBorehole
+	Borehole in context for the interval
+
+DrillingDetails.intervalBegin  (Weird, I had "interval" - not "intervalBegin" - which is what we find in the UML now)
+	A shape that is a 1-D interval (eg, a "from" and "to", or "top" and "base" measurement) and uses the SRS of the containing borehole (From 3.2)
+
+# Analytical
+
+AnalyticalProcess.computation
+	computational process associated with the Process.

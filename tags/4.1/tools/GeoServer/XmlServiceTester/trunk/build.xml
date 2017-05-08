@@ -1,0 +1,137 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project default="zip">
+
+	<property file="${user.home}/.ant-global.properties" />
+	<property file="build.properties" />
+
+	<property name="application.long.name" value="${application.name}-${application.release}" />
+
+	<property name="build.dir" location="build" />
+	<property name="src.dir" location="src" />
+	<property name="lib.dir" location="lib" />
+	<property name="resource.dir" location="resource" />
+	<property name="dist.dir" location="dist" />
+
+	<property name="generated.dir" location="generated" />
+	<property name="generated.jar" location="lib/generated-jaxb-bindings.jar" />
+	<property name="generated.schema" location="schemas/test-suite-1.0.xsd" />
+	<property name="generated.package" value="org.auscope.xml.servicetester.generated" />
+
+	<!-- test directory layout -->
+	<property name="testsrc.dir" location="test" />
+	<property name="testlib.dir" location="testlib" />
+	<property name="testbuild.dir" location="testbuild" />
+	<property name="testreport.dir" location="testreport" />
+
+	<path id="libraries">
+		<fileset dir="${lib.dir}" includes="*.jar" />
+	</path>
+
+	<!-- libraries for testing only (not packaged) -->
+	<path id="testlibraries">
+		<fileset dir="${testlib.dir}" includes="*.jar" />
+	</path>
+
+	<!-- relative Class-Path used in jar file MANIFEST -->
+	<pathconvert property="jar.class.path" dirsep="" pathsep=" ">
+		<map from="${lib.dir}/" to="" />
+		<path refid="libraries" />
+	</pathconvert>
+
+	<!--
+	JAXB bindings are built and stored in a jar (with source)
+	to dissuade editing. This target only needs to be run when the
+	schema is changed. The generated jar is stored in
+	lib so the software can be buit without JAXB.
+	-->
+	<target name="generate">
+		<!--
+		JAXB task to create bindings.
+		This taskdef is nested so other tasks still work
+		even if JAXB not installed. 
+		-->
+		<taskdef name="xjc" classname="com.sun.tools.xjc.XJCTask">
+			<classpath>
+				<fileset dir="${jaxb.home}/lib" includes="*.jar" />
+			</classpath>
+		</taskdef>
+		<delete file="${generated.jar}" />
+		<delete dir="${generated.dir}" />
+		<mkdir dir="${generated.dir}" />
+		<xjc schema="${generated.schema}" destdir="${generated.dir}" package="${generated.package}" />
+		<javac srcdir="${generated.dir}" destdir="${generated.dir}">
+			<classpath refid="libraries" />
+		</javac>
+		<jar basedir="${generated.dir}" destfile="${generated.jar}" />
+		<delete dir="${generated.dir}" />
+	</target>
+
+	<target name="compile">
+		<delete dir="${build.dir}" />
+		<mkdir dir="${build.dir}" />
+		<javac destdir="${build.dir}">
+			<src path="${src.dir}" />
+			<classpath refid="libraries" />
+		</javac>
+	</target>
+
+	<!-- build and run all unit tests -->
+	<target name="test" depends="compile">
+		<delete dir="${testbuild.dir}" />
+		<mkdir dir="${testbuild.dir}" />
+		<javac srcdir="${testsrc.dir}" destdir="${testbuild.dir}">
+			<classpath>
+				<pathelement location="${build.dir}" />
+				<pathelement location="${resource.dir}" />
+				<path refid="libraries" />
+				<path refid="testlibraries" />
+			</classpath>
+		</javac>
+		<mkdir dir="${testreport.dir}" />
+		<junit printsummary="true">
+			<classpath>
+				<pathelement location="${build.dir}" />
+				<pathelement location="${testbuild.dir}" />
+				<path refid="libraries" />
+				<path refid="testlibraries" />
+			</classpath>
+			<formatter type="plain" />
+			<batchtest todir="${testreport.dir}" failureproperty="test.failed">
+				<fileset dir="${testbuild.dir}">
+					<include name="**/*Test.class" />
+				</fileset>
+			</batchtest>
+		</junit>
+		<!--
+		All tests are run even if some fail, to catch all test failures.
+		Instead of halting on test failure in the junit task, we halt
+		here.
+		-->
+		<fail if="test.failed" />
+	</target>
+
+	<!-- package software into jar file -->
+	<target name="jar" depends="test">
+		<mkdir dir="${dist.dir}" />
+		<jar destfile="${dist.dir}/${application.name}.jar">
+			<fileset dir="${build.dir}" />
+			<manifest>
+				<attribute name="Main-Class" value="${application.main.class}" />
+				<attribute name="Class-Path" value=". ${jar.class.path}" />
+			</manifest>
+		</jar>
+	</target>
+
+	<target name="zip" depends="jar">
+		<zip destfile="${dist.dir}/${application.long.name}.zip">
+			<zipfileset dir="dist" includes="${application.name}.jar" prefix="lib" />
+			<zipfileset dir="lib" prefix="lib" />
+			<zipfileset dir="resource" prefix="lib" />
+			<zipfileset dir="scripts" includes="*.sh" prefix="bin" filemode="775" />
+			<zipfileset dir="scripts" includes="*.bat" prefix="bin" />
+			<zipfileset dir="doc" prefix="doc" />
+			<zipfileset dir="schemas" prefix="doc" />
+		</zip>
+	</target>
+
+</project>

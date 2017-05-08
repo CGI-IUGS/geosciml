@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!--========================================================================-->
+<!--                                                                        -->
+<!--                      sdi Data Services Profile                         -->
+<!--                                                                        -->
+<!--========================================================================-->
+<!-- $Id: sdi_data_services_profile.xml 3758 2011-02-04 03:00:03Z car605 $ -->
+<!--========================================================================--> 
+
+<pr:profile id="sdi-data-services" xmlns:gwsit="http://qld.gov.au/sdi/wsi/testing/1.0"
+  xmlns:pr="urn:ws-profile-mgr:schemas:profiles:profiles.xsd" xmlns:qg="http://qld.gov.au/wsi/1.0"
+  xmlns:rim="urn:oasis:names:tc:ebxml-regrep:xsd:rim:3.0"
+  xmlns:ud="http://utf-x.sourceforge.net/xsd/utfxdoc_1_0/utfxdoc.xsd"
+  xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="urn:ws-profile-mgr:schemas:profiles:profiles.xsd http://ws-profile-mgr.sf.net/schemas/profiles.xsd">
+  <ud:version>$Revision: 350 $</ud:version>
+  <ud:date>$Date: 2007-06-20 15:29:51 +1000 (Wed, 20 Jun 2007) $</ud:date>
+  <ud:copyright year="2007">CGI</ud:copyright>
+  <!--
+  <ud:logo>
+    <ud:img src="&qgcio-logo;" width="100%"/>
+  </ud:logo>
+  -->
+  <pr:name>sdi data services</pr:name>
+  <pr:description>This profile controls the discoverability of data access services according to
+    common concepts of data custodianship withing a general Spatial Data infrastructure.  To aid
+    discovery of services using OGC Catalogue Services, a service must also have a corresponding
+    metadata record that describes the service according to ISO 19115 element content and encoded in
+    XML to the ISO 19139 Implementation Standard.</pr:description>
+   
+  <pr:identifier>urn:au:gov:qld:sdi:standards:profiles:sdi-data-services</pr:identifier>
+  <!--<pr:inherits-from>sdi-services</pr:inherits-from>-->
+  <pr:artefacts>
+    <pr:artefact id="datacurrency">
+      <pr:name>DATACURRENCY</pr:name>
+
+      <pr:description>Controlled vocabulary of data currency keywords, encoded as an ebRIM
+        classification scheme.</pr:description>
+      <pr:artefact-instance>
+        <!-- this is the temp home of the oceans portal content - it will be published somewhere else at some stage, or accessible via the registry -->
+        <!--  -->
+        <rim:ClassificationScheme id="urn:au:gov:qld:sdi:data:currency" isInternal="true"
+          nodeType="UniqueCode">
+          <rim:Name>
+            <rim:LocalizedString charset="UTF-8" value="Data Currency"/>
+          </rim:Name>
+          <rim:Description>
+            <rim:LocalizedString charset="UTF-8"
+              value="Controlled vocabulary for Data Currency metadata slots."/>
+          </rim:Description>
+          <rim:ClassificationNode code="current" id="urn:asdi:marine:data:currency:current">
+            <rim:Name>
+              <rim:LocalizedString value="Current"/>
+            </rim:Name>
+          </rim:ClassificationNode>
+          <rim:ClassificationNode code="historical" id="urn:asdi:marine:data:currency:historical">
+            <rim:Name>
+              <rim:LocalizedString value="Historical"/>
+            </rim:Name>
+          </rim:ClassificationNode>
+          <rim:ClassificationNode code="predicted" id="urn:asdi:marine:data:currency:predicted">
+            <rim:Name>
+              <rim:LocalizedString value="Predicted"/>
+            </rim:Name>
+          </rim:ClassificationNode>
+          <rim:ClassificationNode code="unknown" id="urn:asdi:marine:data:currency:unknown">
+            <rim:Name>
+              <rim:LocalizedString value="Unknown"/>
+            </rim:Name>
+          </rim:ClassificationNode>
+        </rim:ClassificationScheme>
+
+      </pr:artefact-instance>
+      <pr:online-resource>http://oceans-catalog.socialchange.net.au/noocat-data/harvestconfig-testplans/community/framework/data/classificationschemes/ClassificationScheme-DataCurrency.xml</pr:online-resource>
+    </pr:artefact>
+  </pr:artefacts>
+
+
+  <pr:requirements>
+    <pr:requirement id="SDIDS1">
+      <pr:normative-content>
+        <pr:comment>[IAN] - write the non-normative content for this requirement and provide
+          examples of correct or incorrect usage.</pr:comment> Currency of data set (NB ISO19115
+        does not seem to provide a slot for this) <pr:rfc2119-keyword>MUST</pr:rfc2119-keyword> be
+        described using keyword from (CRS data currency keywords vocabulary identifier - ISO19115
+        provides these?) [The user will need to know whether the data is the most recent available
+        or a historical snapshot or a prediction - this is not currently part of the FGDC metadata
+        /CRS design, but it will need to be eventually, so we need to add it to service profiles so
+        the info will be available when needed. there is a bigger general issue that the sdi
+        architecture requires the ability to publish vocabularies and then reference
+      them.]</pr:normative-content>
+    </pr:requirement>
+  </pr:requirements>
+
+</pr:profile>

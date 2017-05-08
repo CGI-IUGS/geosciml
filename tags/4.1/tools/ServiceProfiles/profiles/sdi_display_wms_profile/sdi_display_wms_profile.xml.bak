@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!--========================================================================-->
+<!--                                                                        -->
+<!--                        sdi Display WMS Profile                         -->
+<!--                                                                        -->
+<!--========================================================================-->
+<!-- $Id: sdi_display_wms_profile.xml 350 2007-06-20 05:29:51Z jacekrad $ -->
+<!--========================================================================-->
+
+<pr:profile id="sdi-display-wms" xmlns:gwsit="http://qld.gov.au/sdi/wsi/testing/1.0"
+    xmlns:pr="urn:ws-profile-mgr:schemas:profiles:profiles.xsd" xmlns:qg="http://qld.gov.au/wsi/1.0"
+    xmlns:rim="urn:oasis:names:tc:ebxml-regrep:xsd:rim:3.0"
+    xmlns:ud="http://utf-x.sourceforge.net/xsd/utfxdoc_1_0/utfxdoc.xsd"
+    xmlns:xml="http://www.w3.org/XML/1998/namespace" xmlns:xs="http://www.w3.org/2001/XMLSchema"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="urn:ws-profile-mgr:schemas:profiles:profiles.xsd http://ws-profile-mgr.sf.net/schemas/profiles.xsd">
+    <ud:version>$Revision: 350 $</ud:version>
+    <ud:date>$Date: 2007-06-20 15:29:51 +1000 (Wed, 20 Jun 2007) $</ud:date>
+    <ud:copyright>Queensland Government Chief Information Office</ud:copyright>
+    <!--
+    <ud:logo>
+        <ud:img src="&qgcio-logo;" width="100%"/>
+    </ud:logo>
+    -->
+    <pr:name>sdi Display WMS</pr:name>
+    <pr:description>This profile describes the ability of a service to meet the demands of online
+        access to display data on demand within an external business application.</pr:description>
+    <pr:identifier>urn:au:gov:qld:sdi:standards:profiles:sdi-display-wms</pr:identifier>
+    <pr:inherits-from>sdi-wms</pr:inherits-from>
+    
+    <pr:requirements>
+        <pr:requirement id="sdiDWMS1">
+            <pr:normative-content>The response time for a getMap operation for an image less than
+                1000 pixels by 1000 pixels <pr:rfc2119-keyword>SHOULD</pr:rfc2119-keyword> be less
+                than 2 seconds, not including network data transfer time.</pr:normative-content>
+        </pr:requirement>
+
+        <pr:requirement id="sdiDWMS2">
+            <pr:normative-content>The map server <pr:rfc2119-keyword>MUST</pr:rfc2119-keyword>be
+                able to deliver images up to 1000 pixels by 1000 pixels</pr:normative-content>
+        </pr:requirement>
+
+<!-- 
+        <pr:requirement id="sdiDWMS3">
+            <pr:normative-content>
+                <pr:comment>Probably should reference a formal service level agreement here at some
+                    stage. There may be a series of possible SLAs: guaranteed performance against
+                    specific load profile, default (stable at low load levels), experimental etc.
+                </pr:comment>
+            </pr:normative-content>
+        </pr:requirement>
+-->    </pr:requirements>
+
+</pr:profile>

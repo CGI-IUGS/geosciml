@@ -1,0 +1,146 @@
+<pr:profile depth="1" id="sdi-wfs" normalised-name="sdi WFS" xml:base="file:///C:/src/ws-profile-mgr/gea-profiles/trunk/profiles/sdi_wfs_profile/sdi_wfs_profile.xml" xmlns:gwsit="http://qld.gov.au/sdi/wsi/testing/1.0" xmlns:pr="urn:ws-profile-mgr:schemas:profiles:profiles.xsd" xmlns:qg="http://qld.gov.au/wsi/1.0" xmlns:rim="urn:oasis:names:tc:ebxml-regrep:xsd:rim:3.0" xmlns:ud="http://utf-x.sourceforge.net/xsd/utfxdoc_1_0/utfxdoc.xsd" xmlns:wfs="http://www.opengis.net/wfs" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="urn:ws-profile-mgr:schemas:profiles:profiles.xsd http://ws-profile-mgr.sf.net/schemas/profiles.xsd">
+    <ud:version> Revision: 350  </ud:version>
+    <ud:date> 2007-06-20 15:29:51 +1000 (Wed, 20 Jun 2007)  </ud:date>
+    <ud:copyright>CGI GeoSciML </ud:copyright>
+    <!--
+    <ud:logo>
+        <ud:img src="&qgcio-logo;" width="100%"/>
+    </ud:logo>
+    -->
+    <pr:name>sdi WFS</pr:name>
+    <pr:description>This profile constrains the behaviour of a service delivers data objects
+        (Features) via the OGC Web feature Service 1.0 interface. This generic profile will be
+        implemented through binding a WFS to a specific data product, and is specialised according
+        to the usage patterns expected to be supported.</pr:description>
+    <pr:identifier>urn:au:gov:qld:sdi:standards:profiles:sdi-wfs</pr:identifier>
+    <pr:inherits-from>sdi-data-services</pr:inherits-from>
+
+    <pr:artefacts>
+        <pr:artefact id="capabilities" normalised-name="WFS_CAPABILITIES">
+            <pr:name>WFS_CAPABILITIES</pr:name>
+            <pr:description>WFS_CAPABILITIES document, accessed via a GetCapabilities operation</pr:description>
+            <pr:artefact-identifier>
+                <pr:xpath-test>count(/wfs:WFS_Capabilities)  = 1</pr:xpath-test>
+            </pr:artefact-identifier>
+            
+            <pr:conformance-target id="max-features" normalised-name="WFS_MAX_FEATURES">
+                <pr:name>WFS_MAX_FEATURES</pr:name>
+                <pr:description>Maximum number of features.</pr:description>
+                <pr:xpath-locator>//wfs:GetFeature/@maxFeatures</pr:xpath-locator>
+            <urn>urn:au:gov:qld:sdi:standards:profiles:sdi-wfs:conformance-target-types:max-features</urn><urn>urn:au:gov:qld:sdi:standards:profiles:sdi-wfs:conformance-target-types:max-features</urn></pr:conformance-target>
+
+            <pr:conformance-target id="currency" normalised-name="WFS_CURRENCY">
+                <pr:name>WFS_CURRENCY</pr:name>
+                <pr:description>(fixed XPath) Temporal currency of the data. Need a more complex
+                    mechanism to model constraints associated with this target. 3</pr:description>
+                <pr:xpath-locator>/FeatureTypeList/FeatureType/Keywords</pr:xpath-locator>
+            <urn>urn:au:gov:qld:sdi:standards:profiles:sdi-wfs:conformance-target-types:currency</urn><urn>urn:au:gov:qld:sdi:standards:profiles:sdi-wfs:conformance-target-types:currency</urn></pr:conformance-target>
+        </pr:artefact>
+
+        <pr:artefact id="WFS_FEATURETYPEMETADATA" normalised-name="WFS_FEATURETYPEMETADATA">
+            <pr:name>WFS_FEATURETYPEMETADATA</pr:name>
+            <pr:description>External metadata document describing content exposed. This is used to
+                inherit various information to control description of the FeatureType when ingested
+                into a service registry</pr:description>
+        </pr:artefact>
+
+        <pr:artefact id="WFS_REQUEST_GETFEATURE" normalised-name="WFS_REQUEST_GETFEATURE">
+            <pr:name>WFS_REQUEST_GETFEATURE</pr:name>
+            <pr:description>A template or "query model" describing the supported queries a WFS
+                service may support for a particular FeatureType. This is a seperately managed
+                document that may be referenced by future versions of WFS, but for now will need to
+                be discovered through registry services.</pr:description>
+        </pr:artefact>
+
+    </pr:artefacts>
+<components xmlns="urn:ws-profile-mgr:schemas:profiles:profiles.xsd"><requirements-container><pr:requirement defined-in-id="sdi-data-services" defined-in-name="sdi data services" id="SDIDS1" inherited="true" normalised-name="SDIDS1">
+      <pr:normative-content>
+        <pr:comment id="id256">[IAN] - write the non-normative content for this requirement and provide
+          examples of correct or incorrect usage.</pr:comment> Currency of data set (NB ISO19115
+        does not seem to provide a slot for this) <pr:rfc2119-keyword>MUST</pr:rfc2119-keyword> be
+        described using keyword from (CRS data currency keywords vocabulary identifier - ISO19115
+        provides these?) [The user will need to know whether the data is the most recent available
+        or a historical snapshot or a prediction - this is not currently part of the FGDC metadata
+        /CRS design, but it will need to be eventually, so we need to add it to service profiles so
+        the info will be available when needed. there is a bigger general issue that the sdi
+        architecture requires the ability to publish vocabularies and then reference
+      them.]</pr:normative-content>
+    <urn>urn:au:gov:qld:sdi:standards:profiles:sdi-data-services:requirements:SDIDS1</urn></pr:requirement></requirements-container><artefacts-container><pr:artefact id="capabilities" inherited="false" normalised-name="WFS_CAPABILITIES">
+            <pr:name>WFS_CAPABILITIES</pr:name>
+            <pr:description>WFS_CAPABILITIES document, accessed via a GetCapabilities operation</pr:description>
+            <pr:artefact-identifier>
+                <pr:xpath-test>count(/wfs:WFS_Capabilities)  = 1</pr:xpath-test>
+            </pr:artefact-identifier>
+            
+            <pr:conformance-target id="max-features" normalised-name="WFS_MAX_FEATURES">
+                <pr:name>WFS_MAX_FEATURES</pr:name>
+                <pr:description>Maximum number of features.</pr:description>
+                <pr:xpath-locator>//wfs:GetFeature/@maxFeatures</pr:xpath-locator>
+            <urn>urn:au:gov:qld:sdi:standards:profiles:sdi-wfs:conformance-target-types:max-features</urn><urn>urn:au:gov:qld:sdi:standards:profiles:sdi-wfs:conformance-target-types:max-features</urn></pr:conformance-target>
+
+            <pr:conformance-target id="currency" normalised-name="WFS_CURRENCY">
+                <pr:name>WFS_CURRENCY</pr:name>
+                <pr:description>(fixed XPath) Temporal currency of the data. Need a more complex
+                    mechanism to model constraints associated with this target. 3</pr:description>
+                <pr:xpath-locator>/FeatureTypeList/FeatureType/Keywords</pr:xpath-locator>
+            <urn>urn:au:gov:qld:sdi:standards:profiles:sdi-wfs:conformance-target-types:currency</urn><urn>urn:au:gov:qld:sdi:standards:profiles:sdi-wfs:conformance-target-types:currency</urn></pr:conformance-target>
+        </pr:artefact><pr:artefact id="WFS_FEATURETYPEMETADATA" inherited="false" normalised-name="WFS_FEATURETYPEMETADATA">
+            <pr:name>WFS_FEATURETYPEMETADATA</pr:name>
+            <pr:description>External metadata document describing content exposed. This is used to
+                inherit various information to control description of the FeatureType when ingested
+                into a service registry</pr:description>
+        </pr:artefact><pr:artefact id="WFS_REQUEST_GETFEATURE" inherited="false" normalised-name="WFS_REQUEST_GETFEATURE">
+            <pr:name>WFS_REQUEST_GETFEATURE</pr:name>
+            <pr:description>A template or "query model" describing the supported queries a WFS
+                service may support for a particular FeatureType. This is a seperately managed
+                document that may be referenced by future versions of WFS, but for now will need to
+                be discovered through registry services.</pr:description>
+        </pr:artefact><pr:artefact defined-in-id="sdi-data-services" defined-in-name="sdi data services" id="datacurrency" inherited="true" normalised-name="DATACURRENCY">
+      <pr:name>DATACURRENCY</pr:name>
+
+      <pr:description>Controlled vocabulary of data currency keywords, encoded as an ebRIM
+        classification scheme.</pr:description>
+      <pr:artefact-instance>
+        <!-- this is the temp home of the oceans portal content - it will be published somewhere else at some stage, or accessible via the registry -->
+        <!--  -->
+        <rim:ClassificationScheme id="urn:au:gov:qld:sdi:data:currency" isInternal="true" nodeType="UniqueCode">
+          <rim:Name>
+            <rim:LocalizedString charset="UTF-8" value="Data Currency"/>
+          </rim:Name>
+          <rim:Description>
+            <rim:LocalizedString charset="UTF-8" value="Controlled vocabulary for Data Currency metadata slots."/>
+          </rim:Description>
+          <rim:ClassificationNode code="current" id="urn:asdi:marine:data:currency:current">
+            <rim:Name>
+              <rim:LocalizedString value="Current"/>
+            </rim:Name>
+          </rim:ClassificationNode>
+          <rim:ClassificationNode code="historical" id="urn:asdi:marine:data:currency:historical">
+            <rim:Name>
+              <rim:LocalizedString value="Historical"/>
+            </rim:Name>
+          </rim:ClassificationNode>
+          <rim:ClassificationNode code="predicted" id="urn:asdi:marine:data:currency:predicted">
+            <rim:Name>
+              <rim:LocalizedString value="Predicted"/>
+            </rim:Name>
+          </rim:ClassificationNode>
+          <rim:ClassificationNode code="unknown" id="urn:asdi:marine:data:currency:unknown">
+            <rim:Name>
+              <rim:LocalizedString value="Unknown"/>
+            </rim:Name>
+          </rim:ClassificationNode>
+        </rim:ClassificationScheme>
+
+      </pr:artefact-instance>
+      <pr:online-resource>http://oceans-catalog.socialchange.net.au/noocat-data/harvestconfig-testplans/community/framework/data/classificationschemes/ClassificationScheme-DataCurrency.xml</pr:online-resource>
+    </pr:artefact></artefacts-container><targets-container><pr:conformance-target id="max-features" inherited="false" normalised-name="WFS_MAX_FEATURES">
+                <pr:name>WFS_MAX_FEATURES</pr:name>
+                <pr:description>Maximum number of features.</pr:description>
+                <pr:xpath-locator>//wfs:GetFeature/@maxFeatures</pr:xpath-locator>
+            <urn>urn:au:gov:qld:sdi:standards:profiles:sdi-wfs:conformance-target-types:max-features</urn><urn>urn:au:gov:qld:sdi:standards:profiles:sdi-wfs:conformance-target-types:max-features</urn></pr:conformance-target><pr:conformance-target id="currency" inherited="false" normalised-name="WFS_CURRENCY">
+                <pr:name>WFS_CURRENCY</pr:name>
+                <pr:description>(fixed XPath) Temporal currency of the data. Need a more complex
+                    mechanism to model constraints associated with this target. 3</pr:description>
+                <pr:xpath-locator>/FeatureTypeList/FeatureType/Keywords</pr:xpath-locator>
+            <urn>urn:au:gov:qld:sdi:standards:profiles:sdi-wfs:conformance-target-types:currency</urn><urn>urn:au:gov:qld:sdi:standards:profiles:sdi-wfs:conformance-target-types:currency</urn></pr:conformance-target></targets-container></components></pr:profile>
