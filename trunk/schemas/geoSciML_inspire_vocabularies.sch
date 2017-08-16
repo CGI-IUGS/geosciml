@@ -8,8 +8,8 @@
 
  <ns prefix="xlink" uri="http://www.w3.org/1999/xlink"/>
  <ns prefix="xsi" uri="http://www.w3.org/2001/XMLSchema-instance" />
- <ns prefix="gsmlb" uri="http://xmlns.geosciml.org/GeoSciML-Basic/4.0"/>
- <ns prefix="gsmlbh" uri="http://xmlns.geosciml.org/Borehole/4.0"/>
+ <ns prefix="gsmlb" uri="http://www.opengis.net/gsml/4.1/GeoSciML-Basic"/>
+ <ns prefix="gsmlbh" uri="http://www.opengis.net/gsml/4.1/Borehole"/>
  <ns prefix="gml" uri="http://www.opengis.net/gml/3.2"/>
  <ns prefix="swe" uri="http://www.opengis.net/swe/2.0"/>
  <ns prefix="cl" uri="http://inspire.ec.europa.eu/codelist_register/codelist"/>

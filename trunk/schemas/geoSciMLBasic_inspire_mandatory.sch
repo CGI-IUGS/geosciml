@@ -4,7 +4,7 @@
  xmlns:xsl="http://www.w3.org/1999/XSL/Transform" queryBinding="xslt2">
  <!-- Only for use with Schema aware processor
  <xsl:import-schema schema-location="geoSciMLBasic.xsd"
-  namespace="http://xmlns.geosciml.org/GeoSciML-Basic/4.0"/>
+  namespace="http://www.opengis.net/gsml/4.1/GeoSciML-Basic"/>
  -->
  <!-- To Do
   - For complex properties should ensure they have content or are nil
@@ -13,8 +13,8 @@
  <p>This Schematron enforces mandatory properties required by INSPIRE but not
   the GeoSciML Basic or Borehole XML Schemas</p>
  <ns prefix="xlink" uri="http://www.w3.org/1999/xlink"/>
- <ns prefix="gsmlb" uri="http://xmlns.geosciml.org/GeoSciML-Basic/4.0"/>
- <ns prefix="gsmlbh" uri="http://xmlns.geosciml.org/Borehole/4.0"/>
+ <ns prefix="gsmlb" uri="http://www.opengis.net/gsml/4.1/GeoSciML-Basic"/>
+ <ns prefix="gsmlbh" uri="http://www.opengis.net/gsml/4.1/Borehole"/>
  <ns prefix="gml" uri="http://www.opengis.net/gml/3.2"/>
  <ns prefix="sa" uri="http://www.opengis.net/sampling/2.0"/>
  <ns prefix="swe" uri="http://www.opengis.net/swe/2.0"/>
@@ -24,7 +24,7 @@
   <title>Testing presence of gsmlb:specification</title>
   <rule context="//gsmlb:MappedFeature">
    <assert test="gsmlb:specification">Property
-    {http://xmlns.geosciml.org/GeoSciML-Basic/4.0}specification is mandatory - use
+    {http://www.opengis.net/gsml/4.1/GeoSciML-Basic}specification is mandatory - use
     nil if a value cannot be provided</assert>
   </rule>
  </pattern>
@@ -32,7 +32,7 @@
   <title>Testing presence of gsmlb:mappingFrame</title>
   <rule context="//gsmlb:MappedFeature">
    <assert test="gsmlb:mappingFrame">Property
-    {http://xmlns.geosciml.org/GeoSciML-Basic/4.0}mappingFrame is mandatory - use
+    {http://www.opengis.net/gsml/4.1/GeoSciML-Basic}mappingFrame is mandatory - use
     nil if a value cannot be provided</assert>
   </rule>
  </pattern>
@@ -40,7 +40,7 @@
   <title>Testing presence of gsmlb:shape</title>
   <rule context="//gsmlb:MappedFeature">
    <assert test="gsmlb:shape">Property
-    {http://xmlns.geosciml.org/GeoSciML-Basic/4.0}shape is mandatory - use nil if
+    {http://www.opengis.net/gsml/4.1/GeoSciML-Basic}shape is mandatory - use nil if
     a value cannot be provided</assert>
   </rule>
  </pattern>
@@ -83,7 +83,7 @@
   <title>Testing presence of gsmlb:geologicHistory</title>
   <rule context="$feature_path">
    <assert test="gsmlb:geologicHistory">Property
-    {http://xmlns.geosciml.org/GeoSciML-Basic/4.0}geologicHistory is mandatory -
+    {http://www.opengis.net/gsml/4.1/GeoSciML-Basic}geologicHistory is mandatory -
     use nil if a value cannot be provided</assert>
   </rule>
   <!-- Need to check nil or by ref or inline and this isn't a generic GML
@@ -175,7 +175,7 @@
   <title>Testing presence of gsmlb:geologicUnitType</title>
   <rule context="//gsmlb:GeologicUnit">
    <assert test="gsmlb:geologicUnitType">Property
-    {http://xmlns.geosciml.org/GeoSciML-Basic/4.0}geologicUnitType is mandatory -
+    {http://www.opengis.net/gsml/4.1/GeoSciML-Basic}geologicUnitType is mandatory -
     use nil if a value cannot be provided</assert>
   </rule>
  </pattern>
@@ -184,7 +184,7 @@
   <title>Testing presence of gsmlb:composition</title>
   <rule context="//gsmlb:GeologicUnit">
    <assert test="gsmlb:composition">Property
-    {http://xmlns.geosciml.org/GeoSciML-Basic/4.0}composition is mandatory - use
+    {http://www.opengis.net/gsml/4.1/GeoSciML-Basic}composition is mandatory - use
     nil if a value cannot be provided</assert>
   </rule>
  </pattern>
@@ -195,7 +195,7 @@
   <title>Testing presence of gsmlb:faultType</title>
   <rule context="//gsmlb:ShearDisplacementStructure">
    <assert test="gsmlb:faultType">Property
-    {http://xmlns.geosciml.org/GeoSciML-Basic/4.0}faultType is mandatory - use nil
+    {http://www.opengis.net/gsml/4.1/GeoSciML-Basic}faultType is mandatory - use nil
     if a value cannot be provided</assert>
   </rule>
  </pattern>
@@ -206,7 +206,7 @@
   <title>Testing presence of gsmlb:profileType</title>
   <rule context="//gsmlb:Fold">
    <assert test="gsmlb:profileType">Property
-    {http://xmlns.geosciml.org/GeoSciML-Basic/4.0}profileType is mandatory - use
+    {http://www.opengis.net/gsml/4.1/GeoSciML-Basic}profileType is mandatory - use
     nil if a value cannot be provided</assert>
   </rule>
  </pattern>
@@ -217,7 +217,7 @@
   <title>Testing presence of gsmlb:naturalGeomorphologicFeatureType</title>
   <rule context="//gsmlb:NaturalGeomorphologicFeature">
    <assert test="gsmlb:naturalGeomorphologicFeatureType">Property
-    {http://xmlns.geosciml.org/GeoSciML-Basic/4.0}naturalGeomorphologicFeatureType
+    {http://www.opengis.net/gsml/4.1/GeoSciML-Basic}naturalGeomorphologicFeatureType
     is mandatory - use nil if a value cannot be provided</assert>
   </rule>
  </pattern>
@@ -225,7 +225,7 @@
   <title>Testing presence of gsmlb:activity</title>
   <rule context="//gsmlb:NaturalGeomorphologicFeature">
    <assert test="gsmlb:activity">Property
-    {http://xmlns.geosciml.org/GeoSciML-Basic/4.0}activity is mandatory - use nil
+    {http://www.opengis.net/gsml/4.1/GeoSciML-Basic}activity is mandatory - use nil
     if a value cannot be provided</assert>
   </rule>
  </pattern>
@@ -238,7 +238,7 @@
    gsmlb:anthropogenicGeomorphologicFeatureType</title>
   <rule context="//gsmlb:AnthropogenicGeomorphologicFeature">
    <assert test="gsmlb:anthropogenicGeomorphologicFeatureType">Property
-    {http://xmlns.geosciml.org/GeoSciML-Basic/4.0}anthropogenicGeomorphologicFeatureType
+    {http://www.opengis.net/gsml/4.1/GeoSciML-Basic}anthropogenicGeomorphologicFeatureType
     is mandatory - use nil if a value cannot be provided</assert>
   </rule>
  </pattern>
@@ -254,7 +254,7 @@
   <title>Testing presence of gsmlb:eventProcess</title>
   <rule context="//gsmlb:GeologicEvent">
    <assert test="gsmlb:eventProcess">Property
-    {http://xmlns.geosciml.org/GeoSciML-Basic/4.0}eventProcess is mandatory - use
+    {http://www.opengis.net/gsml/4.1/GeoSciML-Basic}eventProcess is mandatory - use
     nil if a value cannot be provided</assert>
   </rule>
  </pattern>
@@ -262,7 +262,7 @@
   <title>Testing presence of gsmlb:olderNamedAge</title>
   <rule context="//gsmlb:GeologicEvent">
    <assert test="gsmlb:olderNamedAge">Property
-    {http://xmlns.geosciml.org/GeoSciML-Basic/4.0}olderNamedAge is mandatory - use
+    {http://www.opengis.net/gsml/4.1/GeoSciML-Basic}olderNamedAge is mandatory - use
     nil if a value cannot be provided</assert>
   </rule>
  </pattern>
@@ -270,7 +270,7 @@
   <title>Testing presence of gsmlb:youngerNamedAge</title>
   <rule context="//gsmlb:GeologicEvent">
    <assert test="gsmlb:youngerNamedAge">Property
-    {http://xmlns.geosciml.org/GeoSciML-Basic/4.0}youngerNamedAge is mandatory -
+    {http://www.opengis.net/gsml/4.1/GeoSciML-Basic}youngerNamedAge is mandatory -
     use nil if a value cannot be provided</assert>
   </rule>
  </pattern>
@@ -279,7 +279,7 @@
   <title>Testing presence of gsmlb:eventEnvironment</title>
   <rule context="//gsmlb:GeologicEvent">
    <assert test="gsmlb:eventEnvironment">Property
-    {http://xmlns.geosciml.org/GeoSciML-Basic/4.0}eventEnvironment is mandatory - use nil if a
+    http://www.opengis.net/gsml/4.1/GeoSciML-Basic}eventEnvironment is mandatory - use nil if a
     value cannot be provided</assert>
   </rule>
  </pattern>
@@ -291,8 +291,8 @@
   <rule context="//gsmlb:CompositionPart">
    <assert test="gsmlb:material/gsmlb:RockMaterial/gsmlb:lithology">Mandatory to
     include
-    {http://xmlns.geosciml.org/GeoSciML-Basic/4.0}material/{http://xmlns.geosciml.org/GeoSciML-Basic/4.0}R
-    ockMaterial/{http://xmlns.geosciml.org/GeoSciML-Basic/4.0}/lithology - use nil
+    {http://www.opengis.net/gsml/4.1/GeoSciML-Basic}material/{http://www.opengis.net/gsml/4.1/GeoSciML-Basic}R
+    ockMaterial/{http://www.opengis.net/gsml/4.1/GeoSciML-Basic}/lithology - use nil
     on lithology if a value cannot be provided</assert>
   </rule>
  </pattern>
@@ -300,7 +300,7 @@
   <title>Testing presence of gsmlb:role</title>
   <rule context="//gsmlb:CompositionPart">
    <assert test="gsmlb:role">Property
-    {http://xmlns.geosciml.org/GeoSciML-Basic/4.0}role is mandatory - use nil if a
+    {http://www.opengis.net/gsml/4.1/GeoSciML-Basic}role is mandatory - use nil if a
     value cannot be provided</assert>
   </rule>
  </pattern>
@@ -308,12 +308,12 @@
   <title>Testing presence of gsmlb:proportion</title>
   <rule context="//gsmlb:CompositionPart">
    <assert test="gsmlb:proportion">Property
-    {http://xmlns.geosciml.org/GeoSciML-Basic/4.0}proportion is mandatory - use
+    {http://www.opengis.net/gsml/4.1/GeoSciML-Basic}proportion is mandatory - use
     nil if a value cannot be provided</assert>
    <assert test="gsmlb:proportion/swe:QuantityRange or
     gsmlb:proportion/gsmlb:GSML_QuantityRange">Must use
     {http://www.opengis.net/swe/2.0}QuantityRange or
-    {http://xmlns.geosciml.org/GeoSciML-Basic/4.0}GSML_QuantityRange to encode
+    {http://www.opengis.net/gsml/4.1/GeoSciML-Basic}GSML_QuantityRange to encode
     proportion.</assert>
   </rule>
  </pattern>
@@ -346,7 +346,7 @@
   <title>Testing presence of gsmlbh:referenceLocation</title>
   <rule context="//gsmlbh:Borehole">
    <assert test="gsmlbh:referenceLocation">Property
-    {http://xmlns.geosciml.org/Borehole/4.0}referenceLocation is mandatory - use
+    {http://www.opengis.net/gsml/4.1/Borehole}referenceLocation is mandatory - use
     nil if a value cannot be provided</assert>
   </rule>
  </pattern>
@@ -354,7 +354,7 @@
   <title>Testing presence of at least one gsmlbh:purpose</title>
   <rule context="//gsmlbh:Borehole">
    <assert test="gsmlbh:indexData/gsmlbh:BoreholeDetails/gsmlbh:purpose">Property
-    {http://xmlns.geosciml.org/Borehole/4.0}indexData/{http://xmlns.geosciml.org/Borehole/4.0}BoreholeDetails/{http://xmlns.geosciml.org/Borehole/4.0}purpose is mandatory - use
+    {http://www.opengis.net/gsml/4.1/Borehole}indexData/{http://www.opengis.net/gsml/4.1/Borehole}BoreholeDetails/{http://www.opengis.net/gsml/4.1/Borehole}purpose is mandatory - use
     nil if a value cannot be provided</assert>
   </rule>
  </pattern>
@@ -362,7 +362,7 @@
   <title>Testing presence of gsmlbh:boreholeLength</title>
   <rule context="//gsmlbh:Borehole">
    <assert test="gsmlbh:indexData/gsmlbh:BoreholeDetails/gsmlbh:boreholeLength">Property
-    {http://xmlns.geosciml.org/Borehole/4.0}indexData/{http://xmlns.geosciml.org/Borehole/4.0}BoreholeDetails/{http://xmlns.geosciml.org/Borehole/4.0}b
+    {http://www.opengis.net/gsml/4.1/Borehole}indexData/{http://www.opengis.net/gsml/4.1/Borehole}BoreholeDetails/{http://www.opengis.net/gsml/4.1/Borehole}b
     oreholeLength is mandatory - use
     nil if a value cannot be provided</assert>
   </rule>
@@ -371,7 +371,7 @@
   <title>Testing presence of gsmlbh:logElement</title>
   <rule context="//gsmlbh:Borehole">
    <assert test="gsmlbh:logElement">Property
-    {http://xmlns.geosciml.org/Borehole/4.0}logElement is mandatory - use nil if
+    {http://www.opengis.net/gsml/4.1/Borehole}logElement is mandatory - use nil if
    a value cannot be provided</assert>
   </rule>
  </pattern>
@@ -379,14 +379,14 @@
   <title>Make sure BoreholeInterval properties required by INSPIRE are present</title>
   <!-- Making sure logElement is encoded inline for convenience of other tests -->
   <rule context="//gsmlbh:Borehole/gsmlbh:logElement">
-   <assert test="gsmlbh:BoreholeInterval">Must encode {http://xmlns.geosciml.org/Borehole/4.0}BoreholeInterval inline
+   <assert test="gsmlbh:BoreholeInterval">Must encode {http://www.opengis.net/gsml/4.1/Borehole}BoreholeInterval inline
     to ensure other INSPIRE required properties are included</assert>
    <assert
-    test="gsmlbh:BoreholeInterval/gsmlbh:shape">{http://xmlns.geosciml.org/Borehole/4.0}shape is mandatory</assert>
-   <assert test="gsmlbh:BoreholeInterval/gsmlbh:mappedIntervalBegin">{http://xmlns.geosciml.org/Borehole/4.0}mappedIntervalBegin is mandatory</assert>
-   <assert test="gsmlbh:BoreholeInterval/gsmlbh:mappedIntervalEnd">{http://xmlns.geosciml.org/Borehole/4.0}mappedIntervalEnd is mandatory</assert>
+    test="gsmlbh:BoreholeInterval/gsmlbh:shape">{http://www.opengis.net/gsml/4.1/Borehole}shape is mandatory</assert>
+   <assert test="gsmlbh:BoreholeInterval/gsmlbh:mappedIntervalBegin">{http://www.opengis.net/gsml/4.1/Borehole}mappedIntervalBegin is mandatory</assert>
+   <assert test="gsmlbh:BoreholeInterval/gsmlbh:mappedIntervalEnd">{http://www.opengis.net/gsml/4.1/Borehole}mappedIntervalEnd is mandatory</assert>
    <assert
-    test="gsmlbh:BoreholeInterval/gsmlbh:specification">{http://xmlns.geosciml.org/Borehole/4.0}sp
+    test="gsmlbh:BoreholeInterval/gsmlbh:specification">{http://www.opengis.net/gsml/4.1/Borehole}sp
     ecification is mandatory - use nil if a value cannot be provided</assert>
   </rule>
  </pattern>
