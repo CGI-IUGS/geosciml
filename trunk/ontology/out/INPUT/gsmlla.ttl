@@ -1,22 +1,34 @@
 @prefix sf:    <http://def.seegrid.csiro.au/isotc211/iso19156/2011/sampling> .
 @prefix rdf:   <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
 @prefix owl:   <http://www.w3.org/2002/07/owl#> .
-@prefix gsmlb: <http://my.example.org/ont/gsmlb#> .
+@prefix gsmlb: <http://geosciml.org/ont#/gsmlb#> .
 @prefix meta:  <http://def.seegrid.csiro.au/isotc211/iso19115/2003/citation> .
 @prefix xsd:   <http://www.w3.org/2001/XMLSchema#> .
 @prefix skos:  <http://www.w3.org/2004/02/skos/core#> .
-@prefix gsmlla: <http://my.example.org/ont/gsmlla#> .
+@prefix gsmlla: <http://geosciml.org/ont#/gsmlla#> .
 @prefix rdfs:  <http://www.w3.org/2000/01/rdf-schema#> .
 @prefix time:  <http://www.w3.org/2006/time#> .
 
-gsmlla:referenceDescription
-        a                owl:ObjectProperty ;
-        rdfs:range       meta:Citation ;
-        skos:definition  "The property <font color=\"#4f81bd\">referenceDescription</font> is an association between a <font color=\"#4f81bd\">ReferenceSpecimen</font> and a <font color=\"#4f81bd\">CIT:CI_Citation</font> that references a citation of published analytical results for this standard reference specimen."@en .
+gsmlla:preferredInterpretation
+        a                owl:DatatypeProperty ;
+        rdfs:range       xsd:boolean ;
+        skos:definition  "The property <font color=\"#4f81bd\">preferredInterpretation:Primitive::Boolean</font> indicates whether this interpretation is the preferred interpretation (i.e., the analytical data may be reinterpreted)."@en .
 
-gsmlla:methodName  a     owl:ObjectProperty ;
-        rdfs:range       owl:Class ;
-        skos:definition  "The property <font color=\"#4f81bd\">methodName:AnalyticalMethodTerm</font> contains a term from a controlled vocabulary that describes an analytical method used in a session (e.g., XRF mass spectrometry, ICPMS, SHRIMP geochronology)."@en .
+gsmlla:AnalyticalMethod
+        a                owl:Class ;
+        skos:definition  "The <font color=\"#4f81bd\">AnalyticalMethod</font> provides the name, and published citation, of the analytical method used in an analytical session."@en .
+
+gsmlla:AnalyticalInstrument
+        a                owl:Class ;
+        skos:definition  "The analytical instrument is the category of instrument used to perform an analytical measurement or observation."@en .
+
+gsmlla:GeochronologicInterpretation
+        a                owl:Class ;
+        skos:definition  "A <font color=\"#4f81bd\">GeochronologicInterpretation</font> is an interpretation made by a geologist of the age of a specimen made by statistical analysis of a collection of observations.  A geologic specimen may have multiple geochronological interpretations made on it, each related to a different observation/result collection."@en .
+
+gsmlla:AnalyticalSession
+        a                owl:Class ;
+        skos:definition  "This feature type describes the time and operator of a particular laboratory analytical session. <font color=\"#4f81bd\">AnalyticalSession</font> also has associated links to the type of instrument and analytical method used, processing steps applied to data collected during a session, and instrument parameters unique to that session."@en .
 
 gsmlla:GeologicSpecimenPreparation.parameter
         a                owl:ObjectProperty ;
@@ -24,93 +36,19 @@ gsmlla:GeologicSpecimenPreparation.parameter
         rdfs:range       owl:Class ;
         skos:definition  "The property <font color=\"#4f81bd\">parameter</font> (<font color=\"#4f81bd\">OM::NamedValue</font>) contains name/value pair to describe arbitrary parameters used in this preparation step (e.g., mesh size in a sieving process, type of chemical additives, parameters in a mineral separation process). The \"<font color=\"#4f81bd\">name</font>\" attribute of <font color=\"#4f81bd\">NamedValue</font> shall be a term from a controlled vocabulary."@en .
 
-gsmlla:GeologicSamplingMethod.parameter
-        a                owl:ObjectProperty ;
-        rdfs:domain      gsmlla:GeologicSamplingMethod ;
-        rdfs:range       owl:Class ;
-        skos:definition  "The property <font color=\"#4f81bd\">parameter</font> (<font color=\"#4f81bd\">OM::NamedValue</font>) contains a name/value pair to describe arbitrary parameters used in the sampling process.  The \"<font color=\"#4f81bd\">name</font>\" attribute of <font color=\"#4f81bd\">NamedValue</font> shall be a term from a controlled vocabulary."@en .
-
-gsmlla:time  a           owl:ObjectProperty ;
-        rdfs:range       time:Period ;
-        skos:definition  "The property <font color=\"#4f81bd\">time</font> is an association between an <font color=\"#4f81bd\">AnalyticalSession</font> and a <font color=\"#4f81bd\">TM_Period</font> describing the time period during which the analysis was performed."@en .
-
-gsmlla:isotopicEvent  a  owl:ObjectProperty ;
-        rdfs:range       owl:Class ;
-        skos:definition  "The <font color=\"#4f81bd\">isotopicEvent:IsotopicEventType</font> contains a term from a controlled vocabulary that describes any isotopic events that are relevant to the interpretation. e.g., closure, isotopic mixing, Pb loss, etc."@en .
-
-gsmlla:type  a           owl:ObjectProperty ;
-        rdfs:range       owl:Class ;
-        skos:definition  "The property <font color=\"#4f81bd\">type:InstrumentTypeTerm</font> reports a term from a controlled vocabulary that describes the category of instrument used in an analytical session (e.g., XRF, ICPMS, SHRIMP, etc.)."@en .
-
-gsmlla:instrument  a     owl:ObjectProperty ;
-        rdfs:range       gsmlla:AnalyticalInstrument ;
-        skos:definition  "The property instrument is an association between an AnalyticalSession and an AnalyticalInstrument that describes the instrument used in the analytical session."@en .
-
-gsmlla:AnalyticalProcess.method
-        a                owl:ObjectProperty ;
-        rdfs:domain      gsmlla:AnalyticalProcess ;
-        rdfs:range       gsmlla:AnalyticalMethod ;
-        skos:definition  "The property method is an association that links an AnalyticalProcess to an AnalyticalMethod that describes the type of analytical method used to make an observation."@en .
-
 gsmlla:Image  a          owl:Class ;
         rdfs:subClassOf  sf:SF_SamplingFeature ;
         skos:definition  "The <font color=\"#4f81bd\">Image</font> feature type is used to describe images of sampling features, for example, photographs of ion microprobe grain mounts."@en .
 
-gsmlla:GeochronologicInterpretation
-        a                owl:Class ;
-        skos:definition  "A <font color=\"#4f81bd\">GeochronologicInterpretation</font> is an interpretation made by a geologist of the age of a specimen made by statistical analysis of a collection of observations.  A geologic specimen may have multiple geochronological interpretations made on it, each related to a different observation/result collection."@en .
-
-gsmlla:AnalyticalMethod
-        a                owl:Class ;
-        skos:definition  "The <font color=\"#4f81bd\">AnalyticalMethod</font> provides the name, and published citation, of the analytical method used in an analytical session."@en .
-
-gsmlla:sourceCollection
+gsmlla:ReferenceSpecimen.usedIn
         a                owl:ObjectProperty ;
-        rdfs:range       sf:SF_SamplingFeatureCollection ;
-        skos:definition  "The property sourceCollection is an association between a GeochronologicInterpretation and an OM::SF_SamplingFeatureCollection that lists a collection of OM::SF_SamplingFeature (e.g., a collection of burn spots or craters from a SHRIMP analytical session).  When legacy published data for which the SamplingFeatureCollection is unknown, it may be delivered with SamplingFeatureCollection = 'unknown'."@en .
-
-gsmlla:AnalyticalInstrument
-        a                owl:Class ;
-        skos:definition  "The analytical instrument is the category of instrument used to perform an analytical measurement or observation."@en .
-
-gsmlla:preparationMethod
-        a                owl:ObjectProperty ;
-        rdfs:range       owl:Class ;
-        skos:definition  "The <font color=\"#4f81bd\">preparationMethod:GeologicSpecimenPreparationTerm</font> contains a term from a controlled vocabulary that describes the method employed for the preparation of a geologic specimen for further analysis."@en .
+        rdfs:domain      gsmlla:ReferenceSpecimen ;
+        rdfs:range       gsmlla:AnalyticalSession ;
+        skos:definition  "The property usedIn is an association between a ReferenceSpecimen and an AnalyticalSession in which the reference specimen was used."@en .
 
 gsmlla:serialNumber  a   owl:DatatypeProperty ;
         rdfs:range       xsd:string ;
         skos:definition  "The property <font color=\"#4f81bd\">serialNumber:Primitive::CharacterString</font> contains a string that contains the serial number of the machine used in an analytical session."@en .
-
-gsmlla:AnalyticalMethod.citation
-        a                owl:ObjectProperty ;
-        rdfs:domain      gsmlla:AnalyticalMethod ;
-        rdfs:range       meta:Citation ;
-        skos:definition  "The <font color=\"#4f81bd\">citation</font> property is an association between an <font color=\"#4f81bd\">AnalyticalMethod</font> and a <font color=\"#4f81bd\">CIT:CI_Citation</font> describing a published description of a particular analytical method (e.g., a standard operating procedure document)."@en .
-
-gsmlla:referenceAnalyses
-        a                owl:ObjectProperty ;
-        rdfs:range       gsmlla:ReferenceSpecimen ;
-        skos:definition  "The property referenceAnalysis is an association between an AnalyticalSession and a ReferenceSpecimen that describes a reference specimen (i.e., standards, blanks) used in the analytical session."@en .
-
-gsmlla:interpretedBy  a  owl:ObjectProperty ;
-        rdfs:range       meta:ResponsibleParty ;
-        skos:definition  "The property <font color=\"#4f81bd\">interpretedBy</font> is an association between a <font color=\"#4f81bd\">GeochronologicInterpretation</font> and a <font color=\"#4f81bd\">CIT:CI_Responsability</font> describing the party responsible for this interpretation."@en .
-
-gsmlla:GeochronologicInterpretation.citation
-        a                owl:ObjectProperty ;
-        rdfs:domain      gsmlla:GeochronologicInterpretation ;
-        rdfs:range       meta:Citation ;
-        skos:definition  "The <font color=\"#4f81bd\">citation</font> property is an association between a <font color=\"#4f81bd\">GeochronologicInterpretation</font> and a <font color=\"#4f81bd\">CIT:CI_Citation</font> that describes authors and other reference information for an interpreted age."@en .
-
-gsmlla:AnalyticalProcess.computation
-        a            owl:ObjectProperty ;
-        rdfs:domain  gsmlla:AnalyticalProcess ;
-        rdfs:range   owl:Class .
-
-gsmlla:ReferenceSpecimen
-        a                owl:Class ;
-        skos:definition  "A reference specimen is a specimen with known or accepted values of some property.  The citation property describes the location of a published description of these values. Reference specimens include analytical blanks. <font color=\"#4f81bd\">ReferenceSpecimens</font> are used in quality control procedures to assess method reproducibility. \r\n\r\nAnalytical results from a reference specimen analysed during an <font color=\"#4f81bd\">AnalyticalSession</font> are delivered in the same way as the results of other specimens analysed in that session."@en .
 
 gsmlla:GeologicSamplingMethod.method
         a                owl:ObjectProperty ;
@@ -123,31 +61,51 @@ gsmlla:interpretedAge
         rdfs:range       gsmlb:GeologicEvent ;
         skos:definition  "The <font color=\"#4f81bd\">interpretedAge</font> property is an association between a <font color=\"#4f81bd\">GeochronologicInterpretation</font> and a <font color=\"#4f81bd\">GeologicEvent</font> that describes the dated event, process and environment."@en .
 
-gsmlla:GeologicSamplingMethod
-        a                owl:Class ;
-        rdfs:subClassOf  sf:SF_Process ;
-        skos:definition  "<font color=\"#4f81bd\">GeologicSamplingMethod</font> is an implementation of <font color=\"#4f81bd\">OM::SF_Process</font> to describe the method used to obtain a geologic specimen.\r\nExamples include: \r\n<ul>\r\n\t<li>diamond drilling</li>\r\n\t<li>percussion drilling</li>\r\n\t<li>piston core drilling</li>\r\n\t<li>vibro core drilling</li>\r\n\t<li>channel sampling</li>\r\n\t<li>sea floor dredging</li>\r\n\t<li>outcrop sampling</li>\r\n</ul>"@en .
+gsmlla:acquisition  a    owl:ObjectProperty ;
+        rdfs:range       gsmlla:AnalyticalSession ;
+        skos:definition  "The property acquisition is an association that links an AnalyticalProcess to an AnalyticalSession that describes the analytical session (e.g., laboratory session) in which an observation was made and data acquired."@en .
 
-<http://my.example.org/ont/gsmlla>
+gsmlla:time  a           owl:ObjectProperty ;
+        rdfs:range       time:Period ;
+        skos:definition  "The property <font color=\"#4f81bd\">time</font> is an association between an <font color=\"#4f81bd\">AnalyticalSession</font> and a <font color=\"#4f81bd\">TM_Period</font> describing the time period during which the analysis was performed."@en .
+
+gsmlla:isotopicEvent  a  owl:ObjectProperty ;
+        rdfs:range       owl:Class ;
+        skos:definition  "The <font color=\"#4f81bd\">isotopicEvent:IsotopicEventType</font> contains a term from a controlled vocabulary that describes any isotopic events that are relevant to the interpretation. e.g., closure, isotopic mixing, Pb loss, etc."@en .
+
+gsmlla:methodName  a     owl:ObjectProperty ;
+        rdfs:range       owl:Class ;
+        skos:definition  "The property <font color=\"#4f81bd\">methodName:AnalyticalMethodTerm</font> contains a term from a controlled vocabulary that describes an analytical method used in a session (e.g., XRF mass spectrometry, ICPMS, SHRIMP geochronology)."@en .
+
+gsmlla:type  a           owl:ObjectProperty ;
+        rdfs:range       owl:Class ;
+        skos:definition  "The property <font color=\"#4f81bd\">type:InstrumentTypeTerm</font> reports a term from a controlled vocabulary that describes the category of instrument used in an analytical session (e.g., XRF, ICPMS, SHRIMP, etc.)."@en .
+
+<http://geosciml.org/ont#/gsmlla>
         a                owl:Ontology ;
-        owl:imports      <http://eelst.cs.unibo.it/apps/LODE/source?url=http://def.seegrid.csiro.au/isotc211/iso19156/2011/sampling.ttl> , <http://my.example.org/ont/gsmlb> , <http://eelst.cs.unibo.it/apps/LODE/source?url=http://def.seegrid.csiro.au/isotc211/iso19115/2003/metadata.ttl> , <https://www.w3.org/2006/time> ;
-        owl:versionIRI   "http://my.example.org/ont/gsmlla/4.1.0" ;
+        owl:imports      <http://eelst.cs.unibo.it/apps/LODE/source?url=http://def.seegrid.csiro.au/isotc211/iso19156/2011/sampling.ttl> , <http://geosciml.org/ont#/gsmlb> , <http://eelst.cs.unibo.it/apps/LODE/source?url=http://def.seegrid.csiro.au/isotc211/iso19115/2003/metadata.ttl> , <https://www.w3.org/2006/time> ;
+        owl:versionIRI   "http://geosciml.org/ont#/gsmlla/4.1.0" ;
         owl:versionInfo  "4.1.0" ;
         skos:definition  "The LaboratoryAnalysis-Specimen application model extends the ISO19156 model for Observations, Measurements and Sampling.  It specifically describes processes and results related to the analysis of (geological) samples using instruments, commonly in a laboratory environment. The design of this package is also informed by the MOLES v3 data model."@en .
 
-gsmlla:model  a          owl:DatatypeProperty ;
-        rdfs:range       xsd:string ;
-        skos:definition  "The property <font color=\"#4f81bd\">mode:Primitive::CharacterString</font> contains a string identifying the model of instrument used. (e.g., instrument type = XRD, model = Siemens Diffraktometer D500)."@en .
-
-gsmlla:commissionDate
+gsmlla:referenceAnalyses
         a                owl:ObjectProperty ;
-        rdfs:range       time:Instant ;
-        skos:definition  "The property <font color=\"#4f81bd\">commissionDate</font> is an association between an <font color=\"#4f81bd\">AnalyticalInstrument</font> and a <font color=\"#4f81bd\">TM_Instant</font> corresponding to the date of the commissioning of an instrument."@en .
+        rdfs:range       gsmlla:ReferenceSpecimen ;
+        skos:definition  "The property referenceAnalysis is an association between an AnalyticalSession and a ReferenceSpecimen that describes a reference specimen (i.e., standards, blanks) used in the analytical session."@en .
 
 gsmlla:isotopicSystem
         a                owl:ObjectProperty ;
         rdfs:range       owl:Class ;
         skos:definition  "The property <font color=\"#4f81bd\">isotopicSystem:IsotopicSystemName</font> contains a term from a controlled vocabulary that describes the isotopic system used to calculate geochronological age. A vocabulary would contain values such as: Ar-Ar, K-Ar, Nd-Sm, Pb-Pb, Rb-Sr, Re-Os, U-Pb, etc."@en .
+
+gsmlla:interpretedBy  a  owl:ObjectProperty ;
+        rdfs:range       meta:ResponsibleParty ;
+        skos:definition  "The property <font color=\"#4f81bd\">interpretedBy</font> is an association between a <font color=\"#4f81bd\">GeochronologicInterpretation</font> and a <font color=\"#4f81bd\">CIT:CI_Responsability</font> describing the party responsible for this interpretation."@en .
+
+gsmlla:AnalyticalProcess.computation
+        a            owl:ObjectProperty ;
+        rdfs:domain  gsmlla:AnalyticalProcess ;
+        rdfs:range   owl:Class .
 
 gsmlla:AnalyticalSession.parameter
         a                owl:ObjectProperty ;
@@ -161,21 +119,69 @@ gsmlla:AnalyticalInstrument.usedIn
         rdfs:range       gsmlla:AnalyticalSession ;
         skos:definition  "The property usedIn is an association between an AnalyticalInstrument and an AnalyticalSession identifying an analytical sessions which used this instrument."@en .
 
-gsmlla:preferredInterpretation
-        a                owl:DatatypeProperty ;
-        rdfs:range       xsd:boolean ;
-        skos:definition  "The property <font color=\"#4f81bd\">preferredInterpretation:Primitive::Boolean</font> indicates whether this interpretation is the preferred interpretation (i.e., the analytical data may be reinterpreted)."@en .
+gsmlla:instrument  a     owl:ObjectProperty ;
+        rdfs:range       gsmlla:AnalyticalInstrument ;
+        skos:definition  "The property instrument is an association between an AnalyticalSession and an AnalyticalInstrument that describes the instrument used in the analytical session."@en .
+
+gsmlla:GeochronologicInterpretation.citation
+        a                owl:ObjectProperty ;
+        rdfs:domain      gsmlla:GeochronologicInterpretation ;
+        rdfs:range       meta:Citation ;
+        skos:definition  "The <font color=\"#4f81bd\">citation</font> property is an association between a <font color=\"#4f81bd\">GeochronologicInterpretation</font> and a <font color=\"#4f81bd\">CIT:CI_Citation</font> that describes authors and other reference information for an interpreted age."@en .
+
+gsmlla:GeologicSamplingMethod
+        a                owl:Class ;
+        rdfs:subClassOf  sf:SF_Process ;
+        skos:definition  "<font color=\"#4f81bd\">GeologicSamplingMethod</font> is an implementation of <font color=\"#4f81bd\">OM::SF_Process</font> to describe the method used to obtain a geologic specimen.\r\nExamples include: \r\n<ul>\r\n\t<li>diamond drilling</li>\r\n\t<li>percussion drilling</li>\r\n\t<li>piston core drilling</li>\r\n\t<li>vibro core drilling</li>\r\n\t<li>channel sampling</li>\r\n\t<li>sea floor dredging</li>\r\n\t<li>outcrop sampling</li>\r\n</ul>"@en .
+
+gsmlla:AnalyticalProcess.method
+        a                owl:ObjectProperty ;
+        rdfs:domain      gsmlla:AnalyticalProcess ;
+        rdfs:range       gsmlla:AnalyticalMethod ;
+        skos:definition  "The property method is an association that links an AnalyticalProcess to an AnalyticalMethod that describes the type of analytical method used to make an observation."@en .
+
+gsmlla:model  a          owl:DatatypeProperty ;
+        rdfs:range       xsd:string ;
+        skos:definition  "The property <font color=\"#4f81bd\">mode:Primitive::CharacterString</font> contains a string identifying the model of instrument used. (e.g., instrument type = XRD, model = Siemens Diffraktometer D500)."@en .
+
+gsmlla:preparationMethod
+        a                owl:ObjectProperty ;
+        rdfs:range       owl:Class ;
+        skos:definition  "The <font color=\"#4f81bd\">preparationMethod:GeologicSpecimenPreparationTerm</font> contains a term from a controlled vocabulary that describes the method employed for the preparation of a geologic specimen for further analysis."@en .
+
+gsmlla:GeologicSpecimenPreparation
+        a                owl:Class ;
+        skos:definition  "<font color=\"#4f81bd\">GeologicSpecimenPreparation</font> is an extension of ISO <font color=\"#4f81bd\">Specimen::preparationStep</font> to allow details of preparation steps to be delivered (e.g., filtration and mesh size, chemical additives, crushing methods, drying parameters, etc.)."@en .
+
+gsmlla:commissionDate
+        a                owl:ObjectProperty ;
+        rdfs:range       time:Instant ;
+        skos:definition  "The property <font color=\"#4f81bd\">commissionDate</font> is an association between an <font color=\"#4f81bd\">AnalyticalInstrument</font> and a <font color=\"#4f81bd\">TM_Instant</font> corresponding to the date of the commissioning of an instrument."@en .
+
+gsmlla:ReferenceSpecimen
+        a                owl:Class ;
+        rdfs:subClassOf  sf:SF_Specimen ;
+        skos:definition  "A reference specimen is a specimen with known or accepted values of some property.  The citation property describes the location of a published description of these values. Reference specimens include analytical blanks. <font color=\"#4f81bd\">ReferenceSpecimens</font> are used in quality control procedures to assess method reproducibility. \r\n\r\nAnalytical results from a reference specimen analysed during an <font color=\"#4f81bd\">AnalyticalSession</font> are delivered in the same way as the results of other specimens analysed in that session."@en .
 
 gsmlla:statisticalMethod
         a                owl:ObjectProperty ;
         rdfs:range       owl:Class ;
         skos:definition  "The property <font color=\"#4f81bd\">statisticalMethod:StatisticalMethodTerm</font> contains a term from a controlled vocabulary that describes the statistical method used to interpret the results.  (e.g., weighted mean, median, concordia, discordia, etc)"@en .
 
-gsmlla:ReferenceSpecimen.usedIn
+gsmlla:GeologicSamplingMethod.parameter
         a                owl:ObjectProperty ;
-        rdfs:domain      gsmlla:ReferenceSpecimen ;
-        rdfs:range       gsmlla:AnalyticalSession ;
-        skos:definition  "The property usedIn is an association between a ReferenceSpecimen and an AnalyticalSession in which the reference specimen was used."@en .
+        rdfs:domain      gsmlla:GeologicSamplingMethod ;
+        rdfs:range       owl:Class ;
+        skos:definition  "The property <font color=\"#4f81bd\">parameter</font> (<font color=\"#4f81bd\">OM::NamedValue</font>) contains a name/value pair to describe arbitrary parameters used in the sampling process.  The \"<font color=\"#4f81bd\">name</font>\" attribute of <font color=\"#4f81bd\">NamedValue</font> shall be a term from a controlled vocabulary."@en .
+
+gsmlla:sourceCollection
+        a                owl:ObjectProperty ;
+        rdfs:range       sf:SF_SamplingFeatureCollection ;
+        skos:definition  "The property sourceCollection is an association between a GeochronologicInterpretation and an OM::SF_SamplingFeatureCollection that lists a collection of OM::SF_SamplingFeature (e.g., a collection of burn spots or craters from a SHRIMP analytical session).  When legacy published data for which the SamplingFeatureCollection is unknown, it may be delivered with SamplingFeatureCollection = 'unknown'."@en .
+
+gsmlla:AnalyticalProcess
+        a                owl:Class ;
+        skos:definition  "An analytical process is a concrete implementation of <font color=\"#4f81bd\">OM::OM_Process</font> and describes the steps and methods used in an analytical session.  It links to an analytical session (data acquisition) or a computational process which produce analytical results."@en .
 
 gsmlla:location  a       owl:ObjectProperty ;
         rdfs:range       meta:ResponsibleParty ;
@@ -185,18 +191,13 @@ gsmlla:operator  a       owl:ObjectProperty ;
         rdfs:range       meta:ResponsibleParty ;
         skos:definition  "The property <font color=\"#4f81bd\">operator</font> is an association between an <font color=\"#4f81bd\">AnalyticalSession</font> and a <font color=\"#4f81bd\">CIT:CI_Responsability</font> describing the operator or organisation responsible for the analytical session."@en .
 
-gsmlla:AnalyticalSession
-        a                owl:Class ;
-        skos:definition  "This feature type describes the time and operator of a particular laboratory analytical session. <font color=\"#4f81bd\">AnalyticalSession</font> also has associated links to the type of instrument and analytical method used, processing steps applied to data collected during a session, and instrument parameters unique to that session."@en .
+gsmlla:AnalyticalMethod.citation
+        a                owl:ObjectProperty ;
+        rdfs:domain      gsmlla:AnalyticalMethod ;
+        rdfs:range       meta:Citation ;
+        skos:definition  "The <font color=\"#4f81bd\">citation</font> property is an association between an <font color=\"#4f81bd\">AnalyticalMethod</font> and a <font color=\"#4f81bd\">CIT:CI_Citation</font> describing a published description of a particular analytical method (e.g., a standard operating procedure document)."@en .
 
-gsmlla:GeologicSpecimenPreparation
-        a                owl:Class ;
-        skos:definition  "<font color=\"#4f81bd\">GeologicSpecimenPreparation</font> is an extension of ISO <font color=\"#4f81bd\">Specimen::preparationStep</font> to allow details of preparation steps to be delivered (e.g., filtration and mesh size, chemical additives, crushing methods, drying parameters, etc.)."@en .
-
-gsmlla:AnalyticalProcess
-        a                owl:Class ;
-        skos:definition  "An analytical process is a concrete implementation of <font color=\"#4f81bd\">OM::OM_Process</font> and describes the steps and methods used in an analytical session.  It links to an analytical session (data acquisition) or a computational process which produce analytical results."@en .
-
-gsmlla:acquisition  a    owl:ObjectProperty ;
-        rdfs:range       gsmlla:AnalyticalSession ;
-        skos:definition  "The property acquisition is an association that links an AnalyticalProcess to an AnalyticalSession that describes the analytical session (e.g., laboratory session) in which an observation was made and data acquired."@en .
+gsmlla:referenceDescription
+        a                owl:ObjectProperty ;
+        rdfs:range       meta:Citation ;
+        skos:definition  "The property <font color=\"#4f81bd\">referenceDescription</font> is an association between a <font color=\"#4f81bd\">ReferenceSpecimen</font> and a <font color=\"#4f81bd\">CIT:CI_Citation</font> that references a citation of published analytical results for this standard reference specimen."@en .

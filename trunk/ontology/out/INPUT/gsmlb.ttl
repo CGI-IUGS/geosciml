@@ -4,86 +4,14 @@
 @prefix gsp:   <http://www.opengis.net/ont/geosparql#> .
 @prefix rdf:   <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
 @prefix owl:   <http://www.w3.org/2002/07/owl#> .
-@prefix gsmlb: <http://my.example.org/ont/gsmlb#> .
+@prefix gsmlb: <http://geosciml.org/ont#/gsmlb#> .
 @prefix xsd:   <http://www.w3.org/2001/XMLSchema#> .
 @prefix skos:  <http://www.w3.org/2004/02/skos/core#> .
 @prefix rdfs:  <http://www.w3.org/2000/01/rdf-schema#> .
 
-gsmlb:resolutionRepresentativeFraction
-        a                owl:DatatypeProperty ;
-        rdfs:range       xsd:integer ;
-        skos:definition  "The property <font color=\"#4f81bd\">resolutionRepresentativeFraction:Integer</font> is an integer value representing the denominator of the representative scale of the spatial feature.  (i.e., 10000 = the spatial feature is intended to be represented at 1:10,000 scale)."@en .
-
-gsmlb:trend  a           owl:ObjectProperty ;
-        rdfs:range       swe:QuantityRange ;
-        skos:definition  "The property <font color=\"#4f81bd\">trend</font> (<font color=\"#4f81bd\">SWE::QuantityRange</font>) reports the azimuth (compass bearing) value of the linear orientation."@en .
-
-gsmlb:polarity  a        owl:ObjectProperty ;
+gsmlb:profileType  a     owl:ObjectProperty ;
         rdfs:range       owl:Class ;
-        skos:definition  "The <font color=\"#4f81bd\">polarity:PolarityCode</font> indicates whether the planar orientation is associated with a directed feature that is overturned, upright, vertical etc., using a controlled vocabulary."@en .
-
-gsmlb:FoldAbstractDescription
-        a                      owl:Class ;
-        iso19150-2:isAbstract  true ;
-        skos:definition        "An abstract class providing a link between classes in GeoSciMLBasic and GeoSciMLExtended application schemas."@en .
-
-gsmlb:youngerBoundDate
-        a                owl:ObjectProperty ;
-        rdfs:range       swe:Quantity ;
-        skos:definition  "The <font color=\"#4f81bd\">youngerBoundDate</font> (<font color=\"#4f81bd\">SWE::Quantity</font>) property reports the younger bounding time coordinate in an age range."@en .
-
-gsmlb:reportingDate  a   owl:ObjectProperty ;
-        rdfs:range       swe:Quantity ;
-        skos:definition  "The <font color=\"#4f81bd\">reportingDate</font> (<font color=\"#4f81bd\">SWE::Quantity</font>) property reports a single time coordinate value to report as representative for this <font color=\"#4f81bd\">NumericAge</font> assignment."@en .
-
-gsmlb:stFoliationDescription
-        a                owl:ObjectProperty ;
-        rdfs:range       gsmlb:FoliationAbstractDescription ;
-        skos:definition  "The foliationType:FoliationTypeTerm property specifies the type of foliation from a controlled vocabulary.  Examples include crenulation cleavage, slaty cleavage and schistosity."@en .
-
-<http://my.example.org/ont/gsmlb>
-        a                owl:Ontology ;
-        owl:imports      <http://eelst.cs.unibo.it/apps/LODE/source?url=http://def.seegrid.csiro.au/isotc211/iso19156/2011/sampling.ttl> , <http://www.opengis.net/ont/geosparql> , <http://schemas.geosciml.org/rdf/types.ttl> ;
-        owl:versionIRI   "http://my.example.org/ont/gsmlb/4.1.0" ;
-        owl:versionInfo  "4.1.0" ;
-        skos:definition  "GeologyBasic is a package of classes representing fundamental geological map features and the relations between them.  GeoSciML describes a geologic dataset as a series of <font color=\"#4f81bd\">GeologicFeature</font> occurrences, spatially represented as <font color=\"#4f81bd\">MappedFeature</font>.  A map is a collection of <font color=\"#4f81bd\">MappedFeatures</font>.  The term “map”, typically understood as a map sheet (a given area on the surface of the earth), is only one possible collection of <font color=\"#4f81bd\">MappedFeatures</font>.  Other examples are cross-sections, block diagrams, and even borehole logs (a linear map).  <font color=\"#4f81bd\">MappedFeature</font> can represent any features and <font color=\"#4f81bd\">GeologicFeatures</font> are one of the kinds of features it can represent.  A <font color=\"#4f81bd\">MappedFeature</font> identifies what it represents using its “specification” association."@en .
-
-gsmlb:specification  a   owl:ObjectProperty ;
-        rdfs:range       gsp:Feature ;
-        skos:definition  "The specification association links an instance of MappedFeature to the GFI_Feature being mapped. In a geological map, MappedFeatures are used to represent GeologicFeatures, but other features from other domains could be represented."@en .
-
-gsmlb:eventProcess  a    owl:ObjectProperty ;
-        rdfs:range       owl:Class ;
-        skos:definition  "The <font color=\"#4f81bd\">eventProcess:EventProcessTerm</font> property provides a term from a controlled vocabulary specifying the process or processes that occurred during the event. Examples include deposition, extrusion, intrusion, cooling."@en .
-
-gsmlb:GSML_Vector  a     owl:Class ;
-        rdfs:subClassOf  gsmlb:GSML_LinearOrientation ;
-        skos:definition  "A <font color=\"#4f81bd\">GSML_Vector</font> is a data type representing a linear orientation with a magnitude (a quantity assigned to this vector).   If the magnitude is unknown, a <font color=\"#4f81bd\">GSML_LinearOrientation</font> shall be used."@en .
-
-gsmlb:determinationMethod
-        a                owl:ObjectProperty ;
-        rdfs:range       owl:Class ;
-        skos:definition  "The <font color=\"#4f81bd\">determinationMethod:DeterminationMethodTerm</font> property describes the way the orientation value was determined (e.g. measured, inferred from dip slope, etc.) using a reference to a controlled vocabulary."@en .
-
-gsmlb:rank  a            owl:ObjectProperty ;
-        rdfs:range       owl:Class ;
-        skos:definition  "The property <font color=\"#4f81bd\">rank:RankTerm</font> contains a term that classifies the geologic unit in a generalization hierarchy from most local/smallest volume to most regional/largest.\r\nExamples: group, subgroup, formation, member, bed, intrusion, complex, batholith"@en .
-
-gsmlb:material  a        owl:ObjectProperty ;
-        rdfs:range       gsmlb:CompoundMaterial ;
-        skos:definition  "The material:EarthMaterial property contains the material description of the composing part."@en .
-
-gsmlb:shape  a           owl:ObjectProperty ;
-        rdfs:range       gsp:Geometry ;
-        skos:definition  "The <font color=\"#4f81bd\">shape:GM_Object</font> property contains the geometry delimiting the mapped feature.  Note that while in most cases, the geometry will be a 2D polygon, it is not restricted to any dimension.  For instance, a lithological log can be represented using of 1D geometries (expressed linearly from the borehole origin), or a geologic unit can be represented using a 3D volume."@en .
-
-gsmlb:plunge  a          owl:ObjectProperty ;
-        rdfs:range       swe:QuantityRange ;
-        skos:definition  "The property <font color=\"#4f81bd\">plunge</font> (<font color=\"#4f81bd\">SWE::QuantityRange</font>) reports the magnitude of the plunge as an angle from horizontal."@en .
-
-gsmlb:exposure  a        owl:ObjectProperty ;
-        rdfs:range       owl:Class ;
-        skos:definition  "The <font color=\"#4f81bd\">exposure:ExposureTerm</font> property provides a term for the nature of the expression of the mapped feature at the earth's surface (e.g., exposed, concealed)."@en .
+        skos:definition  "The property <font color=\"#4f81bd\">profileType:FoldProfileTypeTerm</font> contains a term from a controlled vocabulary specifying the concave/convex geometry of fold relative to earth surface, and relationship to younging direction in folded strata if known. (e.g., antiform, synform, neutral, anticline, syncline, monocline, ptygmatic)."@en .
 
 gsmlb:GeologicStructure
         a                      owl:Class ;
@@ -91,178 +19,40 @@ gsmlb:GeologicStructure
         iso19150-2:isAbstract  true ;
         skos:definition        "A geologic structure is a configuration of matter in the Earth based on describable inhomogeneity, pattern, or fracture in an earth material.  The identity of a <font color=\"#4f81bd\">GeologicStructure</font> is independent of the material that is the substrate for the structure.  The general <font color=\"#4f81bd\">GeologicFeatureRelation</font> (available in the Extension package) is used to associate penetrative <font color=\"#4f81bd\">GeologicStructures</font> with <font color=\"#4f81bd\">GeologicUnits</font>.  GeoSciML Basic only provides a limited set of core structures (<font color=\"#4f81bd\">Contact</font>, <font color=\"#4f81bd\">Fold</font>, <font color=\"#4f81bd\">ShearDisplacementStructure</font> and <font color=\"#4f81bd\">Foliation</font>) with a single property to categorise them.  Supplemental properties and geologic structure types are available from the Extension package."@en .
 
-gsmlb:geologicHistory
-        a                owl:ObjectProperty ;
-        rdfs:range       gsmlb:GeologicEvent ;
-        skos:definition  "The geologicHistory is an association that relates one or more GeologicEvents to a GeologicFeature to describe their age or geologic history.  Normally, GeoSciML uses the generic relatedFeature::GeologicRelation to associate GeologicFeature with other GeologicFeatures, including GeologicEvent.  However, this design was deemed too complex for GeoSciML Basic and is therefore only available from the GeoSciML Extension package."@en .
-
-gsmlb:composition  a     owl:ObjectProperty ;
-        rdfs:range       gsmlb:CompositionPart ;
-        skos:definition  "The property composition is an association that links a GeologicUnit with CompositionParts to describe the material composition of the GeologicUnit (e.g., a detailed, instance specific, lithologic description)"@en .
-
-gsmlb:ShearDisplacementStructureAbstractDescription
-        a                      owl:Class ;
-        iso19150-2:isAbstract  true ;
-        skos:definition        "An abstract class providing a link between classes in GeoSciMLBasic and GeoSciMLExtended application schemas."@en .
-
-gsmlb:Foliation  a       owl:Class ;
-        rdfs:subClassOf  gsmlb:GeologicStructure ;
-        skos:definition  "A foliation is a planar arrangement of textural or structural features in any type of rock.  It includes any of a wide variety of penetrative planar geological structures that may be present in a rock.  Examples include schistosity, mylonitic foliation, penetrative bedding structure (lamination), and cleavage.  Following the proposed definition of gneiss by the NADM Science Language Technical Team, penetrative planar foliation defined by layers > 5 mm thick is considered <font color=\"#4f81bd\">Layering</font>."@en .
-
-gsmlb:GeologicUnitHierarchy.proportion
-        a                owl:ObjectProperty ;
-        rdfs:domain      gsmlb:GeologicUnitHierarchy ;
-        rdfs:range       swe:QuantityRange ;
-        skos:definition  "The <font color=\"#4f81bd\">proportion</font> property (<font color=\"#4f81bd\">SWE::QuantityRange</font>) provides a quantity that represents the fraction of the geologic unit formed by the part."@en .
-
-gsmlb:hierarchyLink  a   owl:ObjectProperty ;
-        rdfs:range       gsmlb:GeologicUnitHierarchy ;
-        skos:definition  "The property hierarchyLink is an association that links a GeologicUnit with a GeologicUnitHierarchy  to represent containment of a part GeologicUnit within another GeologicUnit. It indicates a subsidiary unit with its role and proportion with respect to the container unit.  For example, members are described as part of formations, or different facies can be described as parts of a GeologicUnit."@en .
-
-gsmlb:geometryItem  a    owl:ObjectProperty ;
-        rdfs:range       gsp:Geometry ;
-        skos:definition  "The geometryItem attribute is a placeholder for the AbstractGeometry class that is included as a member of a GSML Collection."@en .
-
-gsmlb:gbUnitDescription
-        a                owl:ObjectProperty ;
-        rdfs:range       gsmlb:GeologicUnitAbstractDescription ;
-        skos:definition  "The property gbUnitDescription:GeologicUnitAbstractDescriptio is a placeholder that provides detailed material description.  This is a stub property  in GeoSciML Basic as GeologicUnitAbstractDescription is abstract with subtypes defined in GeoSciML Extension."@en .
-
-gsmlb:EarthMaterial.purpose
-        a                owl:ObjectProperty ;
-        rdfs:domain      gsmlb:EarthMaterial ;
-        rdfs:range       owl:Class ;
-        skos:definition  "The <font color=\"#4f81bd\">purpose:DescriptionPurpose</font> property provides a specification of the intended purpose or level of abstraction for the given <font color=\"#4f81bd\">EarthMaterial</font>. The intent is the same a <font color=\"#4f81bd\">GeologicFeature</font>’s purpose and it shares the same vocabulary (instance, typicalNorm, definingNorm)."@en .
-
-gsmlb:EarthMaterialAbstractDescription
-        a                      owl:Class ;
-        iso19150-2:isAbstract  true ;
-        skos:definition        "Abstract description class for earth material.  This class is a placeholder for further extension in Extension package"@en .
-
-gsmlb:EarthMaterial  a         owl:Class ;
-        iso19150-2:isAbstract  true ;
-        skos:definition        "The <font color=\"#4f81bd\">EarthMaterial</font> class holds a description of a naturally occurring substance in the Earth.  <font color=\"#4f81bd\">EarthMaterial</font> represents material composition or substance, and is thus independent of quantity or location. Ideally, <font color=\"#4f81bd\">EarthMaterials</font> are defined strictly based on physical properties, but because of standard geological usage, genetic interpretations enter into the description as well."@en .
-
-gsmlb:AbstractFeatureRelation
-        a                      owl:Class ;
-        iso19150-2:isAbstract  true ;
-        skos:definition        "Association class placeholder to implement relation between geologic features"@en .
-
-gsmlb:GeologicUnitAbstractDescription
-        a                      owl:Class ;
-        iso19150-2:isAbstract  true ;
-        skos:definition        "Abstract description class for geologic units.  This class is a placeholder for further extension in Extension package"@en .
-
-gsmlb:mappingFrame  a    owl:ObjectProperty ;
-        rdfs:range       owl:Class ;
-        skos:definition  "The <font color=\"#4f81bd\">mappingFrame:MappingFrameTerm</font> provides a term from a vocabulary indicating the geometric frame on which the <font color=\"#4f81bd\">MappedFeature</font> is projected.  In most situations, mapped features are projected on the earth surface, but there are other contexts, such as a bedrock surface beneath surficial cover materials, a mine level, or a cross section."@en .
-
-gsmlb:FoliationAbstractDescription
-        a                      owl:Class ;
-        iso19150-2:isAbstract  true ;
-        skos:definition        "An abstract class providing a link between classes in GeoSciMLBasic and GeoSciMLExtended application schemas."@en .
-
-gsmlb:GSML_PlanarOrientation
-        a                owl:Class ;
-        rdfs:subClassOf  gsmlb:GSML_GeometricDescriptionValue ;
-        skos:definition  "A planar orientation is composed of two values; the azimuth (a compass point) and a dip (the angle from the horizontal). Polarity of the plane indicates whether the planar orientation is associated with a directed feature that is overturned, upright, vertical, etc.  There are several conventions to encode a planar orientation and this specification does not impose one but provides a <font color=\"#4f81bd\">convention</font> property to report it. It must be noted that allowance for different conventions makes manipulation of the data more difficult. Therefore it is recommended that user communities adopt a single measurement convention."@en .
-
-gsmlb:MappedFeature  a   owl:Class ;
-        skos:definition  "A <font color=\"#4f81bd\">MappedFeature</font> is part of a geological interpretation. It provides a link between a notional feature (description package) and one spatial representation of it, or part of it (exposures, surface traces and intercepts, etc.).  The mapped features are the elements that compose a map, a cross-section, a borehole log, or any other representation.  The mappingFrame identifies the domain being mapped by the geometries.  For typical geological maps, the mapping frame is the surface of the earth (the 2.5D interface between the surface of the bedrock and whatever sits on it; atmosphere or overburden material for bedrock maps).  It can also be abstract frames, such as the arbitrary plane that forms a mine level or a cross-section, the 3D volume enclosing an ore body or the line that approximate the path of a borehole."@en .
-
-gsmlb:GSML  a            owl:Class ;
-        skos:definition  "<font color=\"#4f81bd\">GSML</font> is a collection class grouping a set of features or types which are members of this collection.  A <font color=\"#4f81bd\">collectionType</font> property provides context or purpose."@en .
-
-gsmlb:GeologicFeature.observationMethod
-        a                owl:ObjectProperty ;
-        rdfs:domain      gsmlb:GeologicFeature ;
-        rdfs:range       swe:Category ;
-        skos:definition  "The <font color=\"#4f81bd\">GeologicFeature</font> observationMethod (<font color=\"#4f81bd\">SWE::Category</font>) specifies the approach to acquiring the collection of attribute values that constitute an individual feature instance (e.g. point count, brunton compass on site, air photo interpretation, field observation, hand specimen, laboratory, aerial photography, creative imagination). \r\n<font color=\"#4f81bd\">ObservationMethod</font> is a convenience property that provides a simple approach to observation metadata when data are reported using a feature view (as opposed to observation view).  This property corresponds (loosely) to ISO19115 Lineage."@en .
-
 gsmlb:GeologicUnitHierarchy.role
         a                owl:ObjectProperty ;
         rdfs:domain      gsmlb:GeologicUnitHierarchy ;
         rdfs:range       owl:Class ;
         skos:definition  "The <font color=\"#4f81bd\">role:GeologicUnitHierarchyRoleTerm</font> property provides a term describing the nature of the parts, e.g. facies, stratigraphic, interbeds, geographic, eastern facies."@en .
 
-gsmlb:GeomorphologicUnitAbstractDescription
-        a                      owl:Class ;
-        iso19150-2:isAbstract  true ;
-        skos:definition        "Detailed geomorphologic unit description placeholder (stub class) for GeomorphologicUnit"@en .
-
-gsmlb:GeologicEventAbstractDescription
-        a                      owl:Class ;
-        iso19150-2:isAbstract  true ;
-        skos:definition        "Stub property class to allow extended event related properties."@en .
-
-gsmlb:GSML_LinearOrientation
-        a                owl:Class ;
-        rdfs:subClassOf  gsmlb:GSML_GeometricDescriptionValue ;
-        skos:definition  "A linear orientation is composed of a trend (the compass orientation of the line) and a plunge (the angle from the horizontal).  This vector may be oriented (pointing in a specific direction) or not."@en .
-
-gsmlb:directed  a        owl:ObjectProperty ;
-        rdfs:range       owl:Class ;
-        skos:definition  "The <font color=\"#4f81bd\">directed:LinearDirectedCode</font> property indicates if the orientation represents a linear feature that is directed, e.g. clast imbrication, mylonitic lineation with sense of shear, slickenlines with displacement direction, rather than undirected (like a fold hinge line or intersection lineations).  A code list will indicate which is the directed end of the linear orientation.  The value of the property comes from a controlled vocabulary."@en .
-
-gsmlb:collectionType  a  owl:ObjectProperty ;
-        rdfs:range       owl:Class ;
-        skos:definition  "The <font color=\"#4f81bd\">collectionType:CollectionTypeTerm</font> property contains a term from a controlled vocabulary describing the type of collection, such as Geologic Map, Boreholes, 3D models."@en .
-
-gsmlb:gaEventDescription
+gsmlb:CompositionPart.proportion
         a                owl:ObjectProperty ;
-        rdfs:range       gsmlb:GeologicEventAbstractDescription ;
-        skos:definition  "The property geEventDescription:GeologicEventAbstractDescription contains a detailed event description.  This is a stub property in GeoSciML Basic since GeologicEventAbstractDescription is abstract and with subtypes defined in GeoSciML Extension."@en .
+        rdfs:domain      gsmlb:CompositionPart ;
+        rdfs:range       swe:QuantityRange ;
+        skos:definition  "The <font color=\"#4f81bd\">proportion</font> property (<font color=\"#4f81bd\">SWE::QuantityRange</font>) specifies the fraction of the geologic unit composed of the compound material."@en .
 
-gsmlb:mappedItem  a      owl:ObjectProperty ;
-        rdfs:range       gsmlb:MappedFeature ;
-        skos:definition  "The mappedItem attribute is a placeholder for the MappedFeature class that is included as a member of a GSML Collection."@en .
-
-gsmlb:descriptiveOrientation
-        a                owl:DatatypeProperty ;
-        rdfs:range       xsd:string ;
-        skos:definition  "The <font color=\"#4f81bd\">descriptionOrientation:Primitive::CharacterString</font> contains a textual specification of orientation, possibly referencing some local geography (e.g. \"toward fold hinge\", \"below\")."@en .
-
-gsmlb:gbEarthMaterialDescription
-        a                owl:ObjectProperty ;
-        rdfs:range       gsmlb:EarthMaterialAbstractDescription ;
-        skos:definition  "The property gbEarthMaterialDescription:EarthMaterialAbstractDescription provides a detailed earth material description of the part.  This property is a stub in GeoSciML Basic as EarthMaterialAbstractDescription is abstract with subtypes defined in GeoSciML Extension."@en .
-
-gsmlb:positionalAccuracy
-        a                owl:ObjectProperty ;
-        rdfs:range       swe:Quantity ;
-        skos:definition  "The <font color=\"#4f81bd\">positionalAccuracy</font> property (<font color=\"#4f81bd\">SWE::Quantity</font>) provides a quantitative value defining the radius of an uncertainty buffer around a <font color=\"#4f81bd\">MappedFeature</font> (e.g., a positionalAccuracy of 100 m for a line feature defines a buffer polygon of total width 200 m centred on the line). The property is equivalent to ISO19115 <font color=\"#4f81bd\">DQ_PositionalAccuracy</font>."@en .
-
-gsmlb:CompoundMaterial
-        a                      owl:Class ;
-        rdfs:subClassOf        gsmlb:EarthMaterial ;
-        iso19150-2:isAbstract  true ;
-        skos:definition        "A <font color=\"#4f81bd\">CompoundMaterial</font> is an <font color=\"#4f81bd\">EarthMaterial</font> composed of particles made of <font color=\"#4f81bd\">EarthMaterials</font>, possibly including other <font color=\"#4f81bd\">CompoundMaterials</font>.  This class is provided primarily as an extensibility point for related domain models that wish to import and build on GeoSciML, and wish to define material types that are compound but are not rock or rock-like material. In the context of GeoSciML \"<font color=\"#4f81bd\">RockMaterial</font>\" should be used to describe units made of rock."@en .
-
-gsmlb:color  a           owl:ObjectProperty ;
+gsmlb:classifier  a      owl:ObjectProperty ;
         rdfs:range       swe:Category ;
-        skos:definition  "The <font color=\"#4f81bd\">color</font> property (<font color=\"#4f81bd\">SWE::Category</font>) is a term from a controlled vocabulary that specifies the colour of the earth material. Color schemes such as the Munsell rock and soil color schemes may be used."@en .
+        skos:definition  "The classifier (<font color=\"#4f81bd\">SWE::Category</font>) contains a standard description or definition of the feature type (e.g., the definition of a particular geologic unit in a stratigraphic lexicon)."@en .
 
-gsmlb:Fold  a            owl:Class ;
-        rdfs:subClassOf  gsmlb:GeologicStructure ;
-        skos:definition  "A fold is formed by one or more systematically curved layers, surfaces, or lines in a rock body. A fold denotes a structure formed by the deformation of a geologic structure, such as a contact which the original undeformed geometry is presumed, to form a structure that may be described by the translation of an abstract line (the fold axis) parallel to itself along some curvilinear path (the fold profile). Folds have a hinge zone (zone of maximum curvature along the surface) and limbs (parts of the deformed surface not in the hinge zone).  Folds are described by an axial surface, hinge line, profile geometry, the solid angle between the limbs, and the relationships between adjacent folded surfaces if the folded structure is a Layering fabric."@en .
-
-gsmlb:unitDescription
-        a                owl:ObjectProperty ;
-        rdfs:range       gsmlb:GeologicUnit ;
-        skos:definition  "The unitDescription property is an association that links the geomorphologic feature to a geologic description (e.g., related stratigraphic units and earth materials)."@en .
-
-gsmlb:occurrence  a      owl:ObjectProperty ;
-        rdfs:range       gsmlb:MappedFeature ;
-        skos:definition  "The occurrence property is an association that links a notional geologic feature with any number of mapped features (MappedFeature).  A geologic feature, such as a geologic unit may be linked to mapped features from a number of different maps."@en .
-
-gsmlb:profileType  a     owl:ObjectProperty ;
+gsmlb:polarity  a        owl:ObjectProperty ;
         rdfs:range       owl:Class ;
-        skos:definition  "The property <font color=\"#4f81bd\">profileType:FoldProfileTypeTerm</font> contains a term from a controlled vocabulary specifying the concave/convex geometry of fold relative to earth surface, and relationship to younging direction in folded strata if known. (e.g., antiform, synform, neutral, anticline, syncline, monocline, ptygmatic)."@en .
+        skos:definition  "The <font color=\"#4f81bd\">polarity:PolarityCode</font> indicates whether the planar orientation is associated with a directed feature that is overturned, upright, vertical etc., using a controlled vocabulary."@en .
 
-gsmlb:stContactDescription
+gsmlb:determinationMethod
         a                owl:ObjectProperty ;
-        rdfs:range       gsmlb:ContactAbstractDescription ;
-        skos:definition  "The property stContactDescription:ContactAbstractDescription provides a detailed contact description.  This is a stub property in GeoSciML Basic since ContactAbstractDescription is an abstract class with subtypes defined in GeoSciML Extension."@en .
+        rdfs:range       owl:Class ;
+        skos:definition  "The <font color=\"#4f81bd\">determinationMethod:DeterminationMethodTerm</font> property describes the way the orientation value was determined (e.g. measured, inferred from dip slope, etc.) using a reference to a controlled vocabulary."@en .
+
+gsmlb:gbUnitDescription
+        a                owl:ObjectProperty ;
+        rdfs:range       gsmlb:GeologicUnitAbstractDescription ;
+        skos:definition  "The property gbUnitDescription:GeologicUnitAbstractDescriptio is a placeholder that provides detailed material description.  This is a stub property  in GeoSciML Basic as GeologicUnitAbstractDescription is abstract with subtypes defined in GeoSciML Extension."@en .
+
+gsmlb:NaturalGeomorphologicFeature
+        a                owl:Class ;
+        rdfs:subClassOf  gsmlb:GeomorphologicFeature ;
+        skos:definition  "A natural geomorphologic feature is a geomorphologic feature (i.e., landform) that has been created by natural Earth processes. For example, river channel, beach ridge, caldera, canyon, moraine or mud flat."@en .
 
 gsmlb:GSMLitem  a        owl:Class ;
         rdfs:subClassOf  [ a            owl:Class ;
@@ -432,32 +222,54 @@ gsmlb:GSMLitem  a        owl:Class ;
                          ] ;
         skos:definition  "<font color=\"#4f81bd\">GSMLItem</font> constrains the collection members to instances of <font color=\"#4f81bd\">EarthMaterial</font>, <font color=\"#4f81bd\">GeologicFeature</font>, <font color=\"#4f81bd\">GM_Object</font>, <font color=\"#4f81bd\">MappedFeature</font>, <font color=\"#4f81bd\">AbstractFeatureRelation</font> and <font color=\"#4f81bd\">OM::SF_SamplingFeature</font>."@en .
 
-gsmlb:activity  a        owl:ObjectProperty ;
-        rdfs:range       swe:Category ;
-        skos:definition  "The <font color=\"#4f81bd\">activity</font> property (<font color=\"#4f81bd\">SWE::Category</font>) contains a category term from a controlled vocabulary describing the current activity status of the geomorphologic feature (e.g., currently active, dormant, inactive, reactivated, etc.)."@en .
+gsmlb:magnitude  a       owl:ObjectProperty ;
+        rdfs:range       swe:QuantityRange ;
+        skos:definition  "The magnitude <font color=\"#4f81bd\">property</font> (<font color=\"#4f81bd\">SWE::QuantityRange</font>) reports the magnitude of the vector."@en .
 
-gsmlb:GeologicEvent  a   owl:Class ;
-        rdfs:subClassOf  gsmlb:GeologicFeature ;
-        skos:definition  "A <font color=\"#4f81bd\">GeologicEvent</font> is an identifiable event during which one or more geological processes act to modify geological entities. It may have a specified geologic age (numeric age or <font color=\"#4f81bd\">GeochologicEraTerm</font>) and may have specified environments and processes. An example might be a cratonic uplift event during which erosion, sedimentation, and volcanism all take place."@en .
+gsmlb:positionalAccuracy
+        a                owl:ObjectProperty ;
+        rdfs:range       swe:Quantity ;
+        skos:definition  "The <font color=\"#4f81bd\">positionalAccuracy</font> property (<font color=\"#4f81bd\">SWE::Quantity</font>) provides a quantitative value defining the radius of an uncertainty buffer around a <font color=\"#4f81bd\">MappedFeature</font> (e.g., a positionalAccuracy of 100 m for a line feature defines a buffer polygon of total width 200 m centred on the line). The property is equivalent to ISO19115 <font color=\"#4f81bd\">DQ_PositionalAccuracy</font>."@en .
 
-gsmlb:convention  a      owl:ObjectProperty ;
+gsmlb:contactType  a     owl:ObjectProperty ;
         rdfs:range       owl:Class ;
-        skos:definition  "The property <font color=\"#4f81bd\">convention:ConventionCode</font> contains the convention used for the measurement from a controlled vocabulary."@en .
+        skos:definition  "The property <font color=\"#4f81bd\">contactType:ContactTypeTerm</font> classifies the contact (e.g. intrusive, unconformity, bedding surface, lithologic boundary, phase boundary) and is a term from a controlled vocabulary."@en .
 
-gsmlb:NaturalGeomorphologicFeature
-        a                owl:Class ;
-        rdfs:subClassOf  gsmlb:GeomorphologicFeature ;
-        skos:definition  "A natural geomorphologic feature is a geomorphologic feature (i.e., landform) that has been created by natural Earth processes. For example, river channel, beach ridge, caldera, canyon, moraine or mud flat."@en .
+gsmlb:lowerValue  a      owl:DatatypeProperty ;
+        rdfs:range       xsd:double ;
+        skos:definition  "The property <font color=\"#4f81bd\">lowerValue:Real</font> contains the lower bound of the range. It shall be a copy of inherited <font color=\"#4f81bd\">SWE::QuantityRange::value[0]</font>."@en .
+
+gsmlb:stContactDescription
+        a                owl:ObjectProperty ;
+        rdfs:range       gsmlb:ContactAbstractDescription ;
+        skos:definition  "The property stContactDescription:ContactAbstractDescription provides a detailed contact description.  This is a stub property in GeoSciML Basic since ContactAbstractDescription is an abstract class with subtypes defined in GeoSciML Extension."@en .
+
+gsmlb:eventProcess  a    owl:ObjectProperty ;
+        rdfs:range       owl:Class ;
+        skos:definition  "The <font color=\"#4f81bd\">eventProcess:EventProcessTerm</font> property provides a term from a controlled vocabulary specifying the process or processes that occurred during the event. Examples include deposition, extrusion, intrusion, cooling."@en .
+
+gsmlb:GeomorphologicUnitAbstractDescription
+        a                      owl:Class ;
+        iso19150-2:isAbstract  true ;
+        skos:definition        "Detailed geomorphologic unit description placeholder (stub class) for GeomorphologicUnit"@en .
+
+gsmlb:Foliation  a       owl:Class ;
+        rdfs:subClassOf  gsmlb:GeologicStructure ;
+        skos:definition  "A foliation is a planar arrangement of textural or structural features in any type of rock.  It includes any of a wide variety of penetrative planar geological structures that may be present in a rock.  Examples include schistosity, mylonitic foliation, penetrative bedding structure (lamination), and cleavage.  Following the proposed definition of gneiss by the NADM Science Language Technical Team, penetrative planar foliation defined by layers > 5 mm thick is considered <font color=\"#4f81bd\">Layering</font>."@en .
+
+gsmlb:FoldAbstractDescription
+        a                      owl:Class ;
+        iso19150-2:isAbstract  true ;
+        skos:definition        "An abstract class providing a link between classes in GeoSciMLBasic and GeoSciMLExtended application schemas."@en .
+
+gsmlb:dip  a             owl:ObjectProperty ;
+        rdfs:range       swe:QuantityRange ;
+        skos:definition  "The <font color=\"#4f81bd\">dip</font> (<font color=\"#4f81bd\">SWE::QuantityRange</font>) reports the angle that the structural surface (e.g. bedding, fault plane) makes with the horizontal measured perpendicular to the strike of the structure and in the vertical plane as a numeric value or term."@en .
 
 gsmlb:gmFeatureDescription
         a                owl:ObjectProperty ;
         rdfs:range       gsmlb:GeomorphologicUnitAbstractDescription ;
         skos:definition  "The property gmFeatureDescription:GeomorphologicUnitAbstractDescription provides a detailed morphologic description.  This is a stub property in GeoSciML Basic since GeomorphologicUnitAbstractDescription is an abstract class with no concrete subtype in GeoSciML Basic."@en .
-
-gsmlb:samplingFeatureItem
-        a                owl:ObjectProperty ;
-        rdfs:range       sf:SF_SamplingFeature ;
-        skos:definition  "The samplingFeatureItem attribute is a placeholder for the SamplingFeature class that is included as a member of a GSML Collection."@en .
 
 gsmlb:CompositionPart.role
         a                owl:ObjectProperty ;
@@ -465,65 +277,40 @@ gsmlb:CompositionPart.role
         rdfs:range       owl:Class ;
         skos:definition  "The property <font color=\"#4f81bd\">role:CompositionPartRoleTerm</font> defines the relationship of the <font color=\"#4f81bd\">CompoundMaterial</font> constituent in the geologic unit, e.g. vein, interbedded constituent, layers, dominant constituent."@en .
 
-gsmlb:GeologicFeature.purpose
-        a                owl:ObjectProperty ;
-        rdfs:domain      gsmlb:GeologicFeature ;
-        rdfs:range       owl:Class ;
-        skos:definition  "The property <font color=\"#4f81bd\">purpose:DescriptionPurpose</font> specifies the intended purpose/level of abstraction for a given feature or object instance.  The possible values are: <b>instance</b>, <b>typicalNorm</b>, and <b>definingNorm</b>."@en .
+gsmlb:CompositionPart
+        a                owl:Class ;
+        skos:definition  "<font color=\"#4f81bd\">CompositionPart</font> represents the composition of a geologic unit in terms of earth material constituents (<font color=\"#4f81bd\">CompoundMaterial</font>).  It decomposes the material making of the unit into parts having distinct roles and proportions."@en .
 
-gsmlb:azimuth  a         owl:ObjectProperty ;
-        rdfs:range       swe:QuantityRange ;
-        skos:definition  "The <font color=\"#4f81bd\">azimuth</font> (<font color=\"#4f81bd\">SWE::QuantityRange</font>) property (compass point, bearing etc.) contains the value of the orientation. The convention property reports how azimuth is interpreted (if it is relative to a quadrant)."@en .
-
-gsmlb:naturalGeomorphologicFeatureType
-        a                owl:ObjectProperty ;
-        rdfs:range       owl:Class ;
-        skos:definition  "The property <font color=\"#4f81bd\">naturalGeomorphologicFeatureType: NaturalGeomorphologicFeatureTypeTerm</font> is a reference from a controlled vocabulary describing the type of geomorphologic feature."@en .
-
-gsmlb:GeologicFeature
+gsmlb:ShearDisplacementStructureAbstractDescription
         a                      owl:Class ;
         iso19150-2:isAbstract  true ;
-        skos:definition        "The abstract <font color=\"#4f81bd\">GeologicFeature</font> class represents a conceptual feature that is hypothesized to exist coherently in the world. It corresponds with a \"legend item\" from a traditional geologic map and its instance acts as the \"description package\".  The description package is classified according to its intended purpose as a <i>typicalNorm</i>, <i>definingNorm or instance</i>.  <font color=\"#4f81bd\">GeologicFeature</font> can be used outside the context of a map (it can lack a <font color=\"#4f81bd\">MappedFeature</font>), for example when describing typical norms (describing expected property from a feature) or defining norms (describing properties required from a feature to be classifying in a group, such as given geologic unit).  A <font color=\"#4f81bd\">GeologicFeature</font> appearing on a map is considered as an “instance”."@en .
-
-gsmlb:contactType  a     owl:ObjectProperty ;
-        rdfs:range       owl:Class ;
-        skos:definition  "The property <font color=\"#4f81bd\">contactType:ContactTypeTerm</font> classifies the contact (e.g. intrusive, unconformity, bedding surface, lithologic boundary, phase boundary) and is a term from a controlled vocabulary."@en .
+        skos:definition        "An abstract class providing a link between classes in GeoSciMLBasic and GeoSciMLExtended application schemas."@en .
 
 gsmlb:ShearDisplacementStructure
         a                owl:Class ;
         rdfs:subClassOf  gsmlb:GeologicStructure ;
         skos:definition  "A shear displacement structure includes all brittle to ductile style structures along which displacement has occurred, from a simple, single 'planar' brittle or ductile surface to a fault system comprised of tens of strands of both brittle and ductile nature. This structure may have some significant thickness (a deformation zone) and have an associated body of deformed rock that may be considered a deformation unit (which <font color=\"#4f81bd\">geologicUnitType</font> is ‘DeformationUnit’) which can be associated to the ShearDisplacementStructure using <font color=\"#4f81bd\">GeologicFeatureRelation</font> from the GeoSciML Extension package"@en .
 
-gsmlb:foliationType  a   owl:ObjectProperty ;
-        rdfs:range       owl:Class ;
-        skos:definition  "The <font color=\"#4f81bd\">foliationType:FoliationTypeTerm</font> property specifies the type of foliation from a controlled vocabulary. Examples include crenulation cleavage, slaty cleavage and schistosity."@en .
+gsmlb:NumericAgeRange
+        a                owl:Class ;
+        skos:definition  "The <font color=\"#4f81bd\">NumericAgeRange</font> class represents an absolute age assignment using numeric measurement results."@en .
 
-gsmlb:gbMaterialDescription
-        a                owl:ObjectProperty ;
-        rdfs:range       gsmlb:EarthMaterialAbstractDescription ;
-        skos:definition  "The property gbMaterialDescription:EarthMaterialAbstractDescription is a placeholder that provides detailed material description.  This is a stub property in GeoSciML Basic as EarthMaterialAbstractDescription is abstract with subtypes defined in GeoSciML Extension."@en .
-
-gsmlb:magnitude  a       owl:ObjectProperty ;
-        rdfs:range       swe:QuantityRange ;
-        skos:definition  "The magnitude <font color=\"#4f81bd\">property</font> (<font color=\"#4f81bd\">SWE::QuantityRange</font>) reports the magnitude of the vector."@en .
-
-gsmlb:numericAge  a      owl:ObjectProperty ;
-        rdfs:range       gsmlb:NumericAgeRange ;
-        skos:definition  "The <font color=\"#4f81bd\">numericAge:NumericAgeRange</font> property provides an age in absolute year before present (BP).  Present is defined by convention to be January 1<sup>st</sup> 1950 (although van der Plitch & Hogg , suggests this convention to be restricted to radiocarbon estimations)."@en .
-
-gsmlb:ContactAbstractDescription
-        a                      owl:Class ;
+gsmlb:EarthMaterial  a         owl:Class ;
         iso19150-2:isAbstract  true ;
-        skos:definition        "An abstract class providing a link between classes in GeoSciMLBasic and GeoSciMLExtended application schemas."@en .
+        skos:definition        "The <font color=\"#4f81bd\">EarthMaterial</font> class holds a description of a naturally occurring substance in the Earth.  <font color=\"#4f81bd\">EarthMaterial</font> represents material composition or substance, and is thus independent of quantity or location. Ideally, <font color=\"#4f81bd\">EarthMaterials</font> are defined strictly based on physical properties, but because of standard geological usage, genetic interpretations enter into the description as well."@en .
 
-gsmlb:targetUnit  a      owl:ObjectProperty ;
-        rdfs:range       gsmlb:GeologicUnit ;
-        skos:definition  "The property targetUnit is an association that specifies exactly one GeologicUnit that is a proper part of another GeologicUnit."@en .
+gsmlb:GSML_PlanarOrientation
+        a                owl:Class ;
+        rdfs:subClassOf  gsmlb:GSML_GeometricDescriptionValue ;
+        skos:definition  "A planar orientation is composed of two values; the azimuth (a compass point) and a dip (the angle from the horizontal). Polarity of the plane indicates whether the planar orientation is associated with a directed feature that is overturned, upright, vertical, etc.  There are several conventions to encode a planar orientation and this specification does not impose one but provides a <font color=\"#4f81bd\">convention</font> property to report it. It must be noted that allowance for different conventions makes manipulation of the data more difficult. Therefore it is recommended that user communities adopt a single measurement convention."@en .
 
-gsmlb:anthropogenicGeomorphologicFeatureType
-        a                owl:ObjectProperty ;
-        rdfs:range       owl:Class ;
-        skos:definition  "The <font color=\"#4f81bd\">anthropogenicGeomorphologicFeatureType: AnthropogenicGeomorphologicFeatureTypeTerm</font> is a reference from a controlled vocabulary describing the type of geomorphologic feature."@en .
+gsmlb:mappedItem  a      owl:ObjectProperty ;
+        rdfs:range       gsmlb:MappedFeature ;
+        skos:definition  "The mappedItem attribute is a placeholder for the MappedFeature class that is included as a member of a GSML Collection."@en .
+
+gsmlb:trend  a           owl:ObjectProperty ;
+        rdfs:range       swe:QuantityRange ;
+        skos:definition  "The property <font color=\"#4f81bd\">trend</font> (<font color=\"#4f81bd\">SWE::QuantityRange</font>) reports the azimuth (compass bearing) value of the linear orientation."@en .
 
 gsmlb:MappedFeature.observationMethod
         a                owl:ObjectProperty ;
@@ -531,90 +318,154 @@ gsmlb:MappedFeature.observationMethod
         rdfs:range       swe:Category ;
         skos:definition  "The <font color=\"#4f81bd\">observationMethod</font> property (<font color=\"#4f81bd\">SWE::Category</font>) contains an element in a list of categories (a controlled vocabulary) describing how the spatial extent of the mapped feature was determined."@en .
 
+gsmlb:occurrence  a      owl:ObjectProperty ;
+        rdfs:range       gsmlb:MappedFeature ;
+        skos:definition  "The occurrence property is an association that links a notional geologic feature with any number of mapped features (MappedFeature).  A geologic feature, such as a geologic unit may be linked to mapped features from a number of different maps."@en .
+
+gsmlb:olderNamedAge  a   owl:ObjectProperty ;
+        rdfs:range       owl:Class ;
+        skos:definition  "The property <font color=\"#4f81bd\">olderNamedAge:GeochronologicalEraTerm</font> defines the older boundary of age of an event expressed using a geochronologic era defined according to a geologic time scale as per the <font color=\"#4f81bd\">GeologicTime</font> schema (eg, the International Commission on Stratigraphy Chronostratigraphic Chart - http://www.stratigraphy.org/index.php/ics-chart-timescale)."@en .
+
+gsmlb:GeologicEventAbstractDescription
+        a                      owl:Class ;
+        iso19150-2:isAbstract  true ;
+        skos:definition        "Stub property class to allow extended event related properties."@en .
+
 gsmlb:RockMaterial  a    owl:Class ;
         rdfs:subClassOf  gsmlb:CompoundMaterial ;
         skos:definition  "<font color=\"#4f81bd\">RockMaterial</font> is a specialized <font color=\"#4f81bd\">CompoundMaterial</font> that includes consolidated and unconsolidated materials (such as surficial sediments) as well as mixtures of consolidated and unconsolidated materials.  In GeoSciML Basic, Rock Material is essentially a link to a controlled vocabulary (lithology property) and a color (inherited from <font color=\"#4f81bd\">EarthMaterial</font>).  Specific material properties (and <font color=\"#4f81bd\">CompoundMaterial</font> nesting) are available in GeoSciML Extension."@en .
 
-gsmlb:olderBoundDate  a  owl:ObjectProperty ;
+gsmlb:GSML_LinearOrientation
+        a                owl:Class ;
+        rdfs:subClassOf  gsmlb:GSML_GeometricDescriptionValue ;
+        skos:definition  "A linear orientation is composed of a trend (the compass orientation of the line) and a plunge (the angle from the horizontal).  This vector may be oriented (pointing in a specific direction) or not."@en .
+
+gsmlb:rank  a            owl:ObjectProperty ;
+        rdfs:range       owl:Class ;
+        skos:definition  "The property <font color=\"#4f81bd\">rank:RankTerm</font> contains a term that classifies the geologic unit in a generalization hierarchy from most local/smallest volume to most regional/largest.\r\nExamples: group, subgroup, formation, member, bed, intrusion, complex, batholith"@en .
+
+gsmlb:exposure  a        owl:ObjectProperty ;
+        rdfs:range       owl:Class ;
+        skos:definition  "The <font color=\"#4f81bd\">exposure:ExposureTerm</font> property provides a term for the nature of the expression of the mapped feature at the earth's surface (e.g., exposed, concealed)."@en .
+
+gsmlb:descriptiveOrientation
+        a                owl:DatatypeProperty ;
+        rdfs:range       xsd:string ;
+        skos:definition  "The <font color=\"#4f81bd\">descriptionOrientation:Primitive::CharacterString</font> contains a textual specification of orientation, possibly referencing some local geography (e.g. \"toward fold hinge\", \"below\")."@en .
+
+gsmlb:color  a           owl:ObjectProperty ;
+        rdfs:range       swe:Category ;
+        skos:definition  "The <font color=\"#4f81bd\">color</font> property (<font color=\"#4f81bd\">SWE::Category</font>) is a term from a controlled vocabulary that specifies the colour of the earth material. Color schemes such as the Munsell rock and soil color schemes may be used."@en .
+
+gsmlb:FoliationAbstractDescription
+        a                      owl:Class ;
+        iso19150-2:isAbstract  true ;
+        skos:definition        "An abstract class providing a link between classes in GeoSciMLBasic and GeoSciMLExtended application schemas."@en .
+
+gsmlb:Contact  a         owl:Class ;
+        rdfs:subClassOf  gsmlb:GeologicStructure ;
+        skos:definition  "A contact is a general concept representing any kind of surface separating two geologic units, including primary boundaries such as depositional contacts, all kinds of unconformities, intrusive contacts, and gradational contacts, as well as faults that separate geologic units."@en .
+
+gsmlb:reportingDate  a   owl:ObjectProperty ;
         rdfs:range       swe:Quantity ;
-        skos:definition  "The <font color=\"#4f81bd\">olderBoundDate</font> (<font color=\"#4f81bd\">SWE::Quantity</font>) property reports the older bounding time coordinate in an age range."@en .
+        skos:definition  "The <font color=\"#4f81bd\">reportingDate</font> (<font color=\"#4f81bd\">SWE::Quantity</font>) property reports a single time coordinate value to report as representative for this <font color=\"#4f81bd\">NumericAge</font> assignment."@en .
+
+gsmlb:collectionType  a  owl:ObjectProperty ;
+        rdfs:range       owl:Class ;
+        skos:definition  "The <font color=\"#4f81bd\">collectionType:CollectionTypeTerm</font> property contains a term from a controlled vocabulary describing the type of collection, such as Geologic Map, Boreholes, 3D models."@en .
+
+gsmlb:specification  a   owl:ObjectProperty ;
+        rdfs:range       gsp:Feature ;
+        skos:definition  "The specification association links an instance of MappedFeature to the GFI_Feature being mapped. In a geological map, MappedFeatures are used to represent GeologicFeatures, but other features from other domains could be represented."@en .
+
+gsmlb:GeologicFeature
+        a                      owl:Class ;
+        iso19150-2:isAbstract  true ;
+        skos:definition        "The abstract <font color=\"#4f81bd\">GeologicFeature</font> class represents a conceptual feature that is hypothesized to exist coherently in the world. It corresponds with a \"legend item\" from a traditional geologic map and its instance acts as the \"description package\".  The description package is classified according to its intended purpose as a <i>typicalNorm</i>, <i>definingNorm or instance</i>.  <font color=\"#4f81bd\">GeologicFeature</font> can be used outside the context of a map (it can lack a <font color=\"#4f81bd\">MappedFeature</font>), for example when describing typical norms (describing expected property from a feature) or defining norms (describing properties required from a feature to be classifying in a group, such as given geologic unit).  A <font color=\"#4f81bd\">GeologicFeature</font> appearing on a map is considered as an “instance”."@en .
+
+gsmlb:member  a          owl:ObjectProperty ;
+        rdfs:range       gsmlb:GSMLitem ;
+        skos:definition  "The member property is an association that links a GSML instance to features and objects to be included as members of the collection.  A collection can be made of heterogeneous items."@en .
+
+gsmlb:CompoundMaterial
+        a                      owl:Class ;
+        rdfs:subClassOf        gsmlb:EarthMaterial ;
+        iso19150-2:isAbstract  true ;
+        skos:definition        "A <font color=\"#4f81bd\">CompoundMaterial</font> is an <font color=\"#4f81bd\">EarthMaterial</font> composed of particles made of <font color=\"#4f81bd\">EarthMaterials</font>, possibly including other <font color=\"#4f81bd\">CompoundMaterials</font>.  This class is provided primarily as an extensibility point for related domain models that wish to import and build on GeoSciML, and wish to define material types that are compound but are not rock or rock-like material. In the context of GeoSciML \"<font color=\"#4f81bd\">RockMaterial</font>\" should be used to describe units made of rock."@en .
+
+gsmlb:shape  a           owl:ObjectProperty ;
+        rdfs:range       gsp:Geometry ;
+        skos:definition  "The <font color=\"#4f81bd\">shape:GM_Object</font> property contains the geometry delimiting the mapped feature.  Note that while in most cases, the geometry will be a 2D polygon, it is not restricted to any dimension.  For instance, a lithological log can be represented using of 1D geometries (expressed linearly from the borehole origin), or a geologic unit can be represented using a 3D volume."@en .
+
+gsmlb:GeologicUnit  a    owl:Class ;
+        rdfs:subClassOf  gsmlb:GeologicFeature ;
+        skos:definition  "Conceptually, a <font color=\"#4f81bd\">GeologicUnit</font> may represent a body of material in the Earth whose complete and precise extent is inferred to exist (e.g., North American Data Model <font color=\"#4f81bd\">GeologicUnit</font>, Stratigraphic unit in the sense of NACSN, or International Stratigraphic Code ), or a classifier used to characterize parts of the Earth (e.g. lithologic map unit like 'granitic rock' or 'alluvial deposit', surficial units like 'till' or 'old alluvium'). It includes both formal units (i.e. formally adopted and named in an official lexicon) and informal units (i.e. named but not promoted to a lexicon) and unnamed units (i.e., recognizable, described and delineable in the field but not otherwise formalised).  In simpler terms, a geologic unit is a package of earth material (generally rock)."@en .
+
+gsmlb:EarthMaterial.purpose
+        a                owl:ObjectProperty ;
+        rdfs:domain      gsmlb:EarthMaterial ;
+        rdfs:range       owl:Class ;
+        skos:definition  "The <font color=\"#4f81bd\">purpose:DescriptionPurpose</font> property provides a specification of the intended purpose or level of abstraction for the given <font color=\"#4f81bd\">EarthMaterial</font>. The intent is the same a <font color=\"#4f81bd\">GeologicFeature</font>’s purpose and it shares the same vocabulary (instance, typicalNorm, definingNorm)."@en .
+
+gsmlb:samplingFeatureItem
+        a                owl:ObjectProperty ;
+        rdfs:range       sf:SF_SamplingFeature ;
+        skos:definition  "The samplingFeatureItem attribute is a placeholder for the SamplingFeature class that is included as a member of a GSML Collection."@en .
+
+gsmlb:AbstractFeatureRelation
+        a                      owl:Class ;
+        iso19150-2:isAbstract  true ;
+        skos:definition        "Association class placeholder to implement relation between geologic features"@en .
 
 gsmlb:earthMaterialItem
         a                owl:ObjectProperty ;
         rdfs:range       gsmlb:EarthMaterial ;
         skos:definition  "The earthMaterialItem attribute is a placeholder for the EarthMaterial class that is included as a member of a GSML Collection."@en .
 
-gsmlb:Contact  a         owl:Class ;
-        rdfs:subClassOf  gsmlb:GeologicStructure ;
-        skos:definition  "A contact is a general concept representing any kind of surface separating two geologic units, including primary boundaries such as depositional contacts, all kinds of unconformities, intrusive contacts, and gradational contacts, as well as faults that separate geologic units."@en .
-
-gsmlb:dip  a             owl:ObjectProperty ;
-        rdfs:range       swe:QuantityRange ;
-        skos:definition  "The <font color=\"#4f81bd\">dip</font> (<font color=\"#4f81bd\">SWE::QuantityRange</font>) reports the angle that the structural surface (e.g. bedding, fault plane) makes with the horizontal measured perpendicular to the strike of the structure and in the vertical plane as a numeric value or term."@en .
-
-gsmlb:GSML_QuantityRange
+gsmlb:GeologicUnitHierarchy
         a                owl:Class ;
-        rdfs:subClassOf  swe:QuantityRange ;
-        skos:definition  "<font color=\"#4f81bd\">GSML_QuantityRange</font> is a specialization of SWE Common <font color=\"#4f81bd\">QuantiytyRange </font>(OGC 08-094r1, Clause 7.2.13)  where lower and upper values are made explicit. <font color=\"#4f81bd\">SWE::QuantityRange</font> uses an array of values (RealPair, see Clause 7.2.1) where the lowest value is the first element and the highest the second.  This convenience data type has been created as an alternative encoding for implementations that do no support encoding of arrays in a single field (e.g. DBF) or reference to elements in string encoded arrays<sup>1</sup> (eg. Filter Encoding Specification 2.0 – OGC 09-029r2).\r\n&nbsp;-------------------------\r\n<sup>1</sup> <font color=\"#4f81bd\">SWE RealPair</font> is encoded as space delimited lists (<swe:value>10 300</swe:value> in XML) , which demands that clients parse the string to extract each token.  To build a WFS/FES query that tests the first element, it requires parsing the string either using string-before(swe:value,' ')  or tokenize(swe:value,' ').  This is cumbersome at best, or not even supported by the server at worst.  09-026r2 Clause 7.4.4 describes the minimal XPath supports and string parsing is not present."@en .
+        skos:definition  "<font color=\"#4f81bd\">GeologicUnitHierarchy</font> associates a <font color=\"#4f81bd\">GeologicUnit</font> with another <font color=\"#4f81bd\">GeologicUnit</font> that is a proper part of that unit. Parts may be formal or notional. Formal parts refer to a specific body of rock, as in formal stratigraphic members. Notional parts refer to assemblages of particular EarthMaterials with particular internal structure, which may be repeated in various places within a unit (e.g. 'turbidite sequence', 'point bar assemblage', 'leucosome veins')."@en .
+
+gsmlb:foliationType  a   owl:ObjectProperty ;
+        rdfs:range       owl:Class ;
+        skos:definition  "The <font color=\"#4f81bd\">foliationType:FoliationTypeTerm</font> property specifies the type of foliation from a controlled vocabulary. Examples include crenulation cleavage, slaty cleavage and schistosity."@en .
+
+gsmlb:directed  a        owl:ObjectProperty ;
+        rdfs:range       owl:Class ;
+        skos:definition  "The <font color=\"#4f81bd\">directed:LinearDirectedCode</font> property indicates if the orientation represents a linear feature that is directed, e.g. clast imbrication, mylonitic lineation with sense of shear, slickenlines with displacement direction, rather than undirected (like a fold hinge line or intersection lineations).  A code list will indicate which is the directed end of the linear orientation.  The value of the property comes from a controlled vocabulary."@en .
+
+gsmlb:geologicHistory
+        a                owl:ObjectProperty ;
+        rdfs:range       gsmlb:GeologicEvent ;
+        skos:definition  "The geologicHistory is an association that relates one or more GeologicEvents to a GeologicFeature to describe their age or geologic history.  Normally, GeoSciML uses the generic relatedFeature::GeologicRelation to associate GeologicFeature with other GeologicFeatures, including GeologicEvent.  However, this design was deemed too complex for GeoSciML Basic and is therefore only available from the GeoSciML Extension package."@en .
 
 gsmlb:youngerNamedAge
         a                owl:ObjectProperty ;
         rdfs:range       owl:Class ;
         skos:definition  "The property <font color=\"#4f81bd\">youngerNamedAge:GeochronologicalEraTerm</font> defines the younger boundary of age of event expressed using a geochronologic era defined according to a geologic time scale per the <font color=\"#4f81bd\">GeologicTime</font> schema. (eg, the International Commission on Stratigraphy Chronostratigraphic Chart - http://www.stratigraphy.org/index.php/ics-chart-timescale)."@en .
 
+gsmlb:GSML  a            owl:Class ;
+        skos:definition  "<font color=\"#4f81bd\">GSML</font> is a collection class grouping a set of features or types which are members of this collection.  A <font color=\"#4f81bd\">collectionType</font> property provides context or purpose."@en .
+
+gsmlb:GSML_Vector  a     owl:Class ;
+        rdfs:subClassOf  gsmlb:GSML_LinearOrientation ;
+        skos:definition  "A <font color=\"#4f81bd\">GSML_Vector</font> is a data type representing a linear orientation with a magnitude (a quantity assigned to this vector).   If the magnitude is unknown, a <font color=\"#4f81bd\">GSML_LinearOrientation</font> shall be used."@en .
+
+gsmlb:GeologicFeature.observationMethod
+        a                owl:ObjectProperty ;
+        rdfs:domain      gsmlb:GeologicFeature ;
+        rdfs:range       swe:Category ;
+        skos:definition  "The <font color=\"#4f81bd\">GeologicFeature</font> observationMethod (<font color=\"#4f81bd\">SWE::Category</font>) specifies the approach to acquiring the collection of attribute values that constitute an individual feature instance (e.g. point count, brunton compass on site, air photo interpretation, field observation, hand specimen, laboratory, aerial photography, creative imagination). \r\n<font color=\"#4f81bd\">ObservationMethod</font> is a convenience property that provides a simple approach to observation metadata when data are reported using a feature view (as opposed to observation view).  This property corresponds (loosely) to ISO19115 Lineage."@en .
+
+gsmlb:gbEarthMaterialDescription
+        a                owl:ObjectProperty ;
+        rdfs:range       gsmlb:EarthMaterialAbstractDescription ;
+        skos:definition  "The property gbEarthMaterialDescription:EarthMaterialAbstractDescription provides a detailed earth material description of the part.  This property is a stub in GeoSciML Basic as EarthMaterialAbstractDescription is abstract with subtypes defined in GeoSciML Extension."@en .
+
 gsmlb:stStructureDescription
         a                owl:ObjectProperty ;
         rdfs:range       gsmlb:ShearDisplacementStructureAbstractDescription ;
         skos:definition  "The property stStructureDescription:ShearDisplacementStructureAbstractDescription provides a detailed geologic structure description.  This is a stub property in GeoSciML Basic since ShearDisplacementStructureAbstractDescription is an abstract class with subtypes defined in GeoSciML Extension."@en .
-
-gsmlb:GeologicUnitHierarchy
-        a                owl:Class ;
-        skos:definition  "<font color=\"#4f81bd\">GeologicUnitHierarchy</font> associates a <font color=\"#4f81bd\">GeologicUnit</font> with another <font color=\"#4f81bd\">GeologicUnit</font> that is a proper part of that unit. Parts may be formal or notional. Formal parts refer to a specific body of rock, as in formal stratigraphic members. Notional parts refer to assemblages of particular EarthMaterials with particular internal structure, which may be repeated in various places within a unit (e.g. 'turbidite sequence', 'point bar assemblage', 'leucosome veins')."@en .
-
-gsmlb:geologicUnitType
-        a                owl:ObjectProperty ;
-        rdfs:range       owl:Class ;
-        skos:definition  "The property <font color=\"#4f81bd\">geologicUnitType:GeologicUnitTypeTerm</font> provides a term from a controlled vocabulary defining the type of geologic unit. Logical constraints of definition of unit and valid property cardinalities should be contained in the definition. Use of the CGI Geologic Unit Type vocabulary (e.g., http://resource.geosciml.org/classifierscheme/cgi/201211/geologicunittype) is recommended."@en .
-
-gsmlb:CompositionPart
-        a                owl:Class ;
-        skos:definition  "<font color=\"#4f81bd\">CompositionPart</font> represents the composition of a geologic unit in terms of earth material constituents (<font color=\"#4f81bd\">CompoundMaterial</font>).  It decomposes the material making of the unit into parts having distinct roles and proportions."@en .
-
-gsmlb:eventEnvironment
-        a                owl:ObjectProperty ;
-        rdfs:range       swe:Category ;
-        skos:definition  "The <font color=\"#4f81bd\">eventEnvironment</font> property (<font color=\"#4f81bd\">SWE::Category</font>) is a category from a controlled vocabulary identifying the physical setting within which a <font color=\"#4f81bd\">GeologicEvent</font> takes place. Event environment is construed broadly to include physical settings on the Earth surface specified by climate, tectonics, physiography or geography, and settings in the Earth’s interior specified by pressure, temperature, chemical environment, or tectonics."@en .
-
-gsmlb:classifier  a      owl:ObjectProperty ;
-        rdfs:range       swe:Category ;
-        skos:definition  "The classifier (<font color=\"#4f81bd\">SWE::Category</font>) contains a standard description or definition of the feature type (e.g., the definition of a particular geologic unit in a stratigraphic lexicon)."@en .
-
-gsmlb:NumericAgeRange
-        a                owl:Class ;
-        skos:definition  "The <font color=\"#4f81bd\">NumericAgeRange</font> class represents an absolute age assignment using numeric measurement results."@en .
-
-gsmlb:AnthropogenicGeomorphologicFeature
-        a                owl:Class ;
-        rdfs:subClassOf  gsmlb:GeomorphologicFeature ;
-        skos:definition  "An anthropogenic geomorphologic feature is a geomorphologic feature (i.e., landform) which has been created by human activity.  For example, a dredged channel, midden, open pit or reclaimed land."@en .
-
-gsmlb:lithology  a       owl:ObjectProperty ;
-        rdfs:range       owl:Class ;
-        skos:definition  "The <font color=\"#4f81bd\">lithology:LithologyTerm</font> property provides a term identifying the lithology class from a controlled vocabulary."@en .
-
-gsmlb:CompositionPart.proportion
-        a                owl:ObjectProperty ;
-        rdfs:domain      gsmlb:CompositionPart ;
-        rdfs:range       swe:QuantityRange ;
-        skos:definition  "The <font color=\"#4f81bd\">proportion</font> property (<font color=\"#4f81bd\">SWE::QuantityRange</font>) specifies the fraction of the geologic unit composed of the compound material."@en .
-
-gsmlb:faultType  a       owl:ObjectProperty ;
-        rdfs:range       owl:Class ;
-        skos:definition  "The <font color=\"#4f81bd\">faultType:FaultTypeTerm</font> property contains a term from a controlled vocabulary describing the type of shear displacement structure (e.g., thrust fault, normal fault or wrench fault)."@en .
-
-gsmlb:olderNamedAge  a   owl:ObjectProperty ;
-        rdfs:range       owl:Class ;
-        skos:definition  "The property <font color=\"#4f81bd\">olderNamedAge:GeochronologicalEraTerm</font> defines the older boundary of age of an event expressed using a geochronologic era defined according to a geologic time scale as per the <font color=\"#4f81bd\">GeologicTime</font> schema (eg, the International Commission on Stratigraphy Chronostratigraphic Chart - http://www.stratigraphy.org/index.php/ics-chart-timescale)."@en .
 
 gsmlb:GeomorphologicFeature
         a                      owl:Class ;
@@ -622,40 +473,189 @@ gsmlb:GeomorphologicFeature
         iso19150-2:isAbstract  true ;
         skos:definition        "A geomorphologic feature is a kind of <font color=\"#4f81bd\">GeologicFeature</font> describing the shape and nature of the Earth's land surface. These landforms may be created by natural Earth processes (e.g., river channel, beach, moraine or mountain) or through human (anthropogenic) activity (e.g., dredged channel, reclaimed land, mine waste dumps).  In GeoSciML, the geomorphologic feature is modelled as a feature related (through <font color=\"#4f81bd\">unitDescription</font> property) to a <font color=\"#4f81bd\">GeologicUnit</font> that composes the form."@en .
 
-gsmlb:lowerValue  a      owl:DatatypeProperty ;
-        rdfs:range       xsd:double ;
-        skos:definition  "The property <font color=\"#4f81bd\">lowerValue:Real</font> contains the lower bound of the range. It shall be a copy of inherited <font color=\"#4f81bd\">SWE::QuantityRange::value[0]</font>."@en .
+gsmlb:gaEventDescription
+        a                owl:ObjectProperty ;
+        rdfs:range       gsmlb:GeologicEventAbstractDescription ;
+        skos:definition  "The property geEventDescription:GeologicEventAbstractDescription contains a detailed event description.  This is a stub property in GeoSciML Basic since GeologicEventAbstractDescription is abstract and with subtypes defined in GeoSciML Extension."@en .
 
-gsmlb:featureItem  a     owl:ObjectProperty ;
-        rdfs:range       gsmlb:GeologicFeature ;
-        skos:definition  "The featureItem attribute is a placeholder for the GeologicFeature class that is included as a member of a GSML Collection."@en .
+gsmlb:hierarchyLink  a   owl:ObjectProperty ;
+        rdfs:range       gsmlb:GeologicUnitHierarchy ;
+        skos:definition  "The property hierarchyLink is an association that links a GeologicUnit with a GeologicUnitHierarchy  to represent containment of a part GeologicUnit within another GeologicUnit. It indicates a subsidiary unit with its role and proportion with respect to the container unit.  For example, members are described as part of formations, or different facies can be described as parts of a GeologicUnit."@en .
 
-gsmlb:GeologicUnit  a    owl:Class ;
-        rdfs:subClassOf  gsmlb:GeologicFeature ;
-        skos:definition  "Conceptually, a <font color=\"#4f81bd\">GeologicUnit</font> may represent a body of material in the Earth whose complete and precise extent is inferred to exist (e.g., North American Data Model <font color=\"#4f81bd\">GeologicUnit</font>, Stratigraphic unit in the sense of NACSN, or International Stratigraphic Code ), or a classifier used to characterize parts of the Earth (e.g. lithologic map unit like 'granitic rock' or 'alluvial deposit', surficial units like 'till' or 'old alluvium'). It includes both formal units (i.e. formally adopted and named in an official lexicon) and informal units (i.e. named but not promoted to a lexicon) and unnamed units (i.e., recognizable, described and delineable in the field but not otherwise formalised).  In simpler terms, a geologic unit is a package of earth material (generally rock)."@en .
+gsmlb:GeologicUnitHierarchy.proportion
+        a                owl:ObjectProperty ;
+        rdfs:domain      gsmlb:GeologicUnitHierarchy ;
+        rdfs:range       swe:QuantityRange ;
+        skos:definition  "The <font color=\"#4f81bd\">proportion</font> property (<font color=\"#4f81bd\">SWE::QuantityRange</font>) provides a quantity that represents the fraction of the geologic unit formed by the part."@en .
+
+gsmlb:activity  a        owl:ObjectProperty ;
+        rdfs:range       swe:Category ;
+        skos:definition  "The <font color=\"#4f81bd\">activity</font> property (<font color=\"#4f81bd\">SWE::Category</font>) contains a category term from a controlled vocabulary describing the current activity status of the geomorphologic feature (e.g., currently active, dormant, inactive, reactivated, etc.)."@en .
+
+gsmlb:olderBoundDate  a  owl:ObjectProperty ;
+        rdfs:range       swe:Quantity ;
+        skos:definition  "The <font color=\"#4f81bd\">olderBoundDate</font> (<font color=\"#4f81bd\">SWE::Quantity</font>) property reports the older bounding time coordinate in an age range."@en .
 
 gsmlb:upperValue  a      owl:DatatypeProperty ;
         rdfs:range       xsd:double ;
         skos:definition  "The property <font color=\"#4f81bd\">upperValue:Real</font> contains the upper bound of the range. It shall be a copy of inherited <font color=\"#4f81bd\">SWE::QuantityRange::value[1]</font>."@en .
 
-gsmlb:relatedFeature  a  owl:ObjectProperty ;
-        rdfs:range       gsmlb:GeologicFeature ;
-        skos:definition  "A relatedFeature is a general structure used to define relationships between any features or objects within GeoSciML. Relationships are always binary and directional.  There is always a single source and a single target for a given FeatureRelation (which is abstract in GeoSciML Basic).  The relationship is always defined from the perspective of the Source and is generally an active verb."@en .
-
-gsmlb:GSML_GeometricDescriptionValue
+gsmlb:EarthMaterialAbstractDescription
         a                      owl:Class ;
         iso19150-2:isAbstract  true ;
-        skos:definition        "<font color=\"#4f81bd\">GSML_GeometricDescriptionValue</font> is a special abstract data type for descriptions of planar or linear orientations of a geologic feature.   Different subtypes allow specifying direction by direction vector (e.g. dip/dip direction), compass point (e.g.  NE), or description (e.g. \"toward fold hinge\", \"below')."@en .
+        skos:definition        "Abstract description class for earth material.  This class is a placeholder for further extension in Extension package"@en .
 
-gsmlb:relationItem  a    owl:ObjectProperty ;
-        rdfs:range       gsmlb:AbstractFeatureRelation ;
-        skos:definition  "The relationItem attribute is a placeholder for the GeologicRelation class that is included as a member of a GSML Collection."@en .
+gsmlb:Fold  a            owl:Class ;
+        rdfs:subClassOf  gsmlb:GeologicStructure ;
+        skos:definition  "A fold is formed by one or more systematically curved layers, surfaces, or lines in a rock body. A fold denotes a structure formed by the deformation of a geologic structure, such as a contact which the original undeformed geometry is presumed, to form a structure that may be described by the translation of an abstract line (the fold axis) parallel to itself along some curvilinear path (the fold profile). Folds have a hinge zone (zone of maximum curvature along the surface) and limbs (parts of the deformed surface not in the hinge zone).  Folds are described by an axial surface, hinge line, profile geometry, the solid angle between the limbs, and the relationships between adjacent folded surfaces if the folded structure is a Layering fabric."@en .
+
+gsmlb:anthropogenicGeomorphologicFeatureType
+        a                owl:ObjectProperty ;
+        rdfs:range       owl:Class ;
+        skos:definition  "The <font color=\"#4f81bd\">anthropogenicGeomorphologicFeatureType: AnthropogenicGeomorphologicFeatureTypeTerm</font> is a reference from a controlled vocabulary describing the type of geomorphologic feature."@en .
+
+gsmlb:plunge  a          owl:ObjectProperty ;
+        rdfs:range       swe:QuantityRange ;
+        skos:definition  "The property <font color=\"#4f81bd\">plunge</font> (<font color=\"#4f81bd\">SWE::QuantityRange</font>) reports the magnitude of the plunge as an angle from horizontal."@en .
 
 gsmlb:stFoldDescription
         a                owl:ObjectProperty ;
         rdfs:range       gsmlb:FoldAbstractDescription ;
         skos:definition  "The property stFoldDescription:FoldAbstractDescription provides a detailed fold description.  This is a stub property in GeoSciML Basic since FoldAbstractDescription is an abstract class with subtypes defined in GeoSciML Extension."@en .
 
-gsmlb:member  a          owl:ObjectProperty ;
-        rdfs:range       gsmlb:GSMLitem ;
-        skos:definition  "The member property is an association that links a GSML instance to features and objects to be included as members of the collection.  A collection can be made of heterogeneous items."@en .
+gsmlb:composition  a     owl:ObjectProperty ;
+        rdfs:range       gsmlb:CompositionPart ;
+        skos:definition  "The property composition is an association that links a GeologicUnit with CompositionParts to describe the material composition of the GeologicUnit (e.g., a detailed, instance specific, lithologic description)"@en .
+
+gsmlb:material  a        owl:ObjectProperty ;
+        rdfs:range       gsmlb:CompoundMaterial ;
+        skos:definition  "The material:EarthMaterial property contains the material description of the composing part."@en .
+
+gsmlb:azimuth  a         owl:ObjectProperty ;
+        rdfs:range       swe:QuantityRange ;
+        skos:definition  "The <font color=\"#4f81bd\">azimuth</font> (<font color=\"#4f81bd\">SWE::QuantityRange</font>) property (compass point, bearing etc.) contains the value of the orientation. The convention property reports how azimuth is interpreted (if it is relative to a quadrant)."@en .
+
+gsmlb:GeologicFeature.purpose
+        a                owl:ObjectProperty ;
+        rdfs:domain      gsmlb:GeologicFeature ;
+        rdfs:range       owl:Class ;
+        skos:definition  "The property <font color=\"#4f81bd\">purpose:DescriptionPurpose</font> specifies the intended purpose/level of abstraction for a given feature or object instance.  The possible values are: <b>instance</b>, <b>typicalNorm</b>, and <b>definingNorm</b>."@en .
+
+gsmlb:convention  a      owl:ObjectProperty ;
+        rdfs:range       owl:Class ;
+        skos:definition  "The property <font color=\"#4f81bd\">convention:ConventionCode</font> contains the convention used for the measurement from a controlled vocabulary."@en .
+
+gsmlb:lithology  a       owl:ObjectProperty ;
+        rdfs:range       owl:Class ;
+        skos:definition  "The <font color=\"#4f81bd\">lithology:LithologyTerm</font> property provides a term identifying the lithology class from a controlled vocabulary."@en .
+
+gsmlb:resolutionRepresentativeFraction
+        a                owl:DatatypeProperty ;
+        rdfs:range       xsd:integer ;
+        skos:definition  "The property <font color=\"#4f81bd\">resolutionRepresentativeFraction:Integer</font> is an integer value representing the denominator of the representative scale of the spatial feature.  (i.e., 10000 = the spatial feature is intended to be represented at 1:10,000 scale)."@en .
+
+gsmlb:faultType  a       owl:ObjectProperty ;
+        rdfs:range       owl:Class ;
+        skos:definition  "The <font color=\"#4f81bd\">faultType:FaultTypeTerm</font> property contains a term from a controlled vocabulary describing the type of shear displacement structure (e.g., thrust fault, normal fault or wrench fault)."@en .
+
+gsmlb:AnthropogenicGeomorphologicFeature
+        a                owl:Class ;
+        rdfs:subClassOf  gsmlb:GeomorphologicFeature ;
+        skos:definition  "An anthropogenic geomorphologic feature is a geomorphologic feature (i.e., landform) which has been created by human activity.  For example, a dredged channel, midden, open pit or reclaimed land."@en .
+
+gsmlb:MappedFeature  a   owl:Class ;
+        skos:definition  "A <font color=\"#4f81bd\">MappedFeature</font> is part of a geological interpretation. It provides a link between a notional feature (description package) and one spatial representation of it, or part of it (exposures, surface traces and intercepts, etc.).  The mapped features are the elements that compose a map, a cross-section, a borehole log, or any other representation.  The mappingFrame identifies the domain being mapped by the geometries.  For typical geological maps, the mapping frame is the surface of the earth (the 2.5D interface between the surface of the bedrock and whatever sits on it; atmosphere or overburden material for bedrock maps).  It can also be abstract frames, such as the arbitrary plane that forms a mine level or a cross-section, the 3D volume enclosing an ore body or the line that approximate the path of a borehole."@en .
+
+gsmlb:geologicUnitType
+        a                owl:ObjectProperty ;
+        rdfs:range       owl:Class ;
+        skos:definition  "The property <font color=\"#4f81bd\">geologicUnitType:GeologicUnitTypeTerm</font> provides a term from a controlled vocabulary defining the type of geologic unit. Logical constraints of definition of unit and valid property cardinalities should be contained in the definition. Use of the CGI Geologic Unit Type vocabulary (e.g., http://resource.geosciml.org/classifierscheme/cgi/201211/geologicunittype) is recommended."@en .
+
+gsmlb:relatedFeature  a  owl:ObjectProperty ;
+        rdfs:range       gsmlb:GeologicFeature ;
+        skos:definition  "A relatedFeature is a general structure used to define relationships between any features or objects within GeoSciML. Relationships are always binary and directional.  There is always a single source and a single target for a given FeatureRelation (which is abstract in GeoSciML Basic).  The relationship is always defined from the perspective of the Source and is generally an active verb."@en .
+
+gsmlb:eventEnvironment
+        a                owl:ObjectProperty ;
+        rdfs:range       swe:Category ;
+        skos:definition  "The <font color=\"#4f81bd\">eventEnvironment</font> property (<font color=\"#4f81bd\">SWE::Category</font>) is a category from a controlled vocabulary identifying the physical setting within which a <font color=\"#4f81bd\">GeologicEvent</font> takes place. Event environment is construed broadly to include physical settings on the Earth surface specified by climate, tectonics, physiography or geography, and settings in the Earth’s interior specified by pressure, temperature, chemical environment, or tectonics."@en .
+
+gsmlb:ContactAbstractDescription
+        a                      owl:Class ;
+        iso19150-2:isAbstract  true ;
+        skos:definition        "An abstract class providing a link between classes in GeoSciMLBasic and GeoSciMLExtended application schemas."@en .
+
+gsmlb:gbMaterialDescription
+        a                owl:ObjectProperty ;
+        rdfs:range       gsmlb:EarthMaterialAbstractDescription ;
+        skos:definition  "The property gbMaterialDescription:EarthMaterialAbstractDescription is a placeholder that provides detailed material description.  This is a stub property in GeoSciML Basic as EarthMaterialAbstractDescription is abstract with subtypes defined in GeoSciML Extension."@en .
+
+gsmlb:unitDescription
+        a                owl:ObjectProperty ;
+        rdfs:range       gsmlb:GeologicUnit ;
+        skos:definition  "The unitDescription property is an association that links the geomorphologic feature to a geologic description (e.g., related stratigraphic units and earth materials)."@en .
+
+gsmlb:stFoliationDescription
+        a                owl:ObjectProperty ;
+        rdfs:range       gsmlb:FoliationAbstractDescription ;
+        skos:definition  "The foliationType:FoliationTypeTerm property specifies the type of foliation from a controlled vocabulary.  Examples include crenulation cleavage, slaty cleavage and schistosity."@en .
+
+gsmlb:geometryItem  a    owl:ObjectProperty ;
+        rdfs:range       gsp:Geometry ;
+        skos:definition  "The geometryItem attribute is a placeholder for the AbstractGeometry class that is included as a member of a GSML Collection."@en .
+
+gsmlb:numericAge  a      owl:ObjectProperty ;
+        rdfs:range       gsmlb:NumericAgeRange ;
+        skos:definition  "The <font color=\"#4f81bd\">numericAge:NumericAgeRange</font> property provides an age in absolute year before present (BP).  Present is defined by convention to be January 1<sup>st</sup> 1950 (although van der Plitch & Hogg , suggests this convention to be restricted to radiocarbon estimations)."@en .
+
+gsmlb:GSML_GeometricDescriptionValue
+        a                      owl:Class ;
+        iso19150-2:isAbstract  true ;
+        skos:definition        "<font color=\"#4f81bd\">GSML_GeometricDescriptionValue</font> is a special abstract data type for descriptions of planar or linear orientations of a geologic feature.   Different subtypes allow specifying direction by direction vector (e.g. dip/dip direction), compass point (e.g.  NE), or description (e.g. \"toward fold hinge\", \"below')."@en .
+
+<http://geosciml.org/ont#/gsmlb>
+        a                owl:Ontology ;
+        owl:imports      <http://eelst.cs.unibo.it/apps/LODE/source?url=http://def.seegrid.csiro.au/isotc211/iso19156/2011/sampling.ttl> , <http://www.opengis.net/ont/geosparql> , <http://schemas.geosciml.org/rdf/types.ttl> ;
+        owl:versionIRI   "http://geosciml.org/ont#/gsmlb/4.1.0" ;
+        owl:versionInfo  "4.1.0" ;
+        skos:definition  "GeologyBasic is a package of classes representing fundamental geological map features and the relations between them.  GeoSciML describes a geologic dataset as a series of <font color=\"#4f81bd\">GeologicFeature</font> occurrences, spatially represented as <font color=\"#4f81bd\">MappedFeature</font>.  A map is a collection of <font color=\"#4f81bd\">MappedFeatures</font>.  The term “map”, typically understood as a map sheet (a given area on the surface of the earth), is only one possible collection of <font color=\"#4f81bd\">MappedFeatures</font>.  Other examples are cross-sections, block diagrams, and even borehole logs (a linear map).  <font color=\"#4f81bd\">MappedFeature</font> can represent any features and <font color=\"#4f81bd\">GeologicFeatures</font> are one of the kinds of features it can represent.  A <font color=\"#4f81bd\">MappedFeature</font> identifies what it represents using its “specification” association."@en .
+
+gsmlb:GeologicUnitAbstractDescription
+        a                      owl:Class ;
+        iso19150-2:isAbstract  true ;
+        skos:definition        "Abstract description class for geologic units.  This class is a placeholder for further extension in Extension package"@en .
+
+gsmlb:targetUnit  a      owl:ObjectProperty ;
+        rdfs:range       gsmlb:GeologicUnit ;
+        skos:definition  "The property targetUnit is an association that specifies exactly one GeologicUnit that is a proper part of another GeologicUnit."@en .
+
+gsmlb:GeologicEvent  a   owl:Class ;
+        rdfs:subClassOf  gsmlb:GeologicFeature ;
+        skos:definition  "A <font color=\"#4f81bd\">GeologicEvent</font> is an identifiable event during which one or more geological processes act to modify geological entities. It may have a specified geologic age (numeric age or <font color=\"#4f81bd\">GeochologicEraTerm</font>) and may have specified environments and processes. An example might be a cratonic uplift event during which erosion, sedimentation, and volcanism all take place."@en .
+
+gsmlb:GSML_QuantityRange
+        a                owl:Class ;
+        rdfs:subClassOf  swe:QuantityRange ;
+        skos:definition  "<font color=\"#4f81bd\">GSML_QuantityRange</font> is a specialization of SWE Common <font color=\"#4f81bd\">QuantiytyRange </font>(OGC 08-094r1, Clause 7.2.13)  where lower and upper values are made explicit. <font color=\"#4f81bd\">SWE::QuantityRange</font> uses an array of values (RealPair, see Clause 7.2.1) where the lowest value is the first element and the highest the second.  This convenience data type has been created as an alternative encoding for implementations that do no support encoding of arrays in a single field (e.g. DBF) or reference to elements in string encoded arrays<sup>1</sup> (eg. Filter Encoding Specification 2.0 – OGC 09-029r2).\r\n&nbsp;-------------------------\r\n<sup>1</sup> <font color=\"#4f81bd\">SWE RealPair</font> is encoded as space delimited lists (<swe:value>10 300</swe:value> in XML) , which demands that clients parse the string to extract each token.  To build a WFS/FES query that tests the first element, it requires parsing the string either using string-before(swe:value,' ')  or tokenize(swe:value,' ').  This is cumbersome at best, or not even supported by the server at worst.  09-026r2 Clause 7.4.4 describes the minimal XPath supports and string parsing is not present."@en .
+
+gsmlb:featureItem  a     owl:ObjectProperty ;
+        rdfs:range       gsmlb:GeologicFeature ;
+        skos:definition  "The featureItem attribute is a placeholder for the GeologicFeature class that is included as a member of a GSML Collection."@en .
+
+gsmlb:relationItem  a    owl:ObjectProperty ;
+        rdfs:range       gsmlb:AbstractFeatureRelation ;
+        skos:definition  "The relationItem attribute is a placeholder for the GeologicRelation class that is included as a member of a GSML Collection."@en .
+
+gsmlb:mappingFrame  a    owl:ObjectProperty ;
+        rdfs:range       owl:Class ;
+        skos:definition  "The <font color=\"#4f81bd\">mappingFrame:MappingFrameTerm</font> provides a term from a vocabulary indicating the geometric frame on which the <font color=\"#4f81bd\">MappedFeature</font> is projected.  In most situations, mapped features are projected on the earth surface, but there are other contexts, such as a bedrock surface beneath surficial cover materials, a mine level, or a cross section."@en .
+
+gsmlb:naturalGeomorphologicFeatureType
+        a                owl:ObjectProperty ;
+        rdfs:range       owl:Class ;
+        skos:definition  "The property <font color=\"#4f81bd\">naturalGeomorphologicFeatureType: NaturalGeomorphologicFeatureTypeTerm</font> is a reference from a controlled vocabulary describing the type of geomorphologic feature."@en .
+
+gsmlb:youngerBoundDate
+        a                owl:ObjectProperty ;
+        rdfs:range       swe:Quantity ;
+        skos:definition  "The <font color=\"#4f81bd\">youngerBoundDate</font> (<font color=\"#4f81bd\">SWE::Quantity</font>) property reports the younger bounding time coordinate in an age range."@en .
