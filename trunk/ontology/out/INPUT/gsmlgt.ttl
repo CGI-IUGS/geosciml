@@ -7,7 +7,7 @@
 
 gsmlgt:start  a          owl:ObjectProperty ;
         rdfs:range       gsmlgt:TimeOrdinalEraBoundary ;
-        skos:definition  "The start property is an association to a TimeOrdinalEraBoundary that defines the start (the oldest) boundary of the era."@en .
+        skos:definition  "Older time boundary of an era"@en .
 
 gsmlgt:StratigraphicSection
         a                owl:Class ;
@@ -15,7 +15,7 @@ gsmlgt:StratigraphicSection
 
 gsmlgt:TimeOrdinalEra
         a                owl:Class ;
-        skos:definition  "<font color=\"#4f81bd\">TimeOrdinalEra</font> is a period of time between two time boundaries.  The association of an era with a stratotype is optional.  In the GSSP approach recommended by ICS for the Global Geologic Timescale, Unit Stratotypes are not used.  Rather, the association of an era with geologic units and sections is indirect, via the association of an era with boundaries, which are in turn tied to stratotype points, which occur within host stratotype sections.  <font color=\"#4f81bd\">TimeOrdinalEra</font> can be composed of other eras and organized into an arbitrarily nested tree."@en .
+        skos:definition  "The association of an era with a stratotype is optional.  In the GSSP approach recommended by ICS for the Global Geologic Timescale, Unit Stratotypes are not used.  Rather, the association of an Era with geologic units and sections is indirect, via the association of an era with Boundaries, which are in turn tied to Stratotype Points, which occur within host Stratotype Sections. \r\nNote that the \"German School\" defines stratigraphic eras conceptually, without reference to stratotypes."@en .
 
 gsmlgt:StandardGlobalNumericalAge
         a                owl:Class ;
@@ -63,15 +63,14 @@ gsmlgt:additionalCorrelationProperty
 
 gsmlgt:end  a            owl:ObjectProperty ;
         rdfs:range       gsmlgt:TimeOrdinalEraBoundary ;
-        skos:definition  "The end property is an association to a TimeOrdinalEraBoundary that defines the end (the youngest) boundary of the era."@en .
+        skos:definition  "Younger time boundary of an era"@en .
 
 gsmlgt:rank  a           owl:ObjectProperty ;
         rdfs:range       owl:Class ;
         skos:definition  "The property <font color=\"#4f81bd\">rank:GeochronologicEraRank</font> contains a term from a vocabulary describing the rank of the time period (e.g., eon, era, period, stage)."@en .
 
-gsmlgt:nextEra  a        owl:ObjectProperty ;
-        rdfs:range       gsmlgt:TimeOrdinalEra ;
-        skos:definition  "The property nextEra is an association between a TimeOrdinalEraBoundary and a TimeOrdinalEra to reference the succeeding era."@en .
+gsmlgt:nextEra  a   owl:ObjectProperty ;
+        rdfs:range  gsmlgt:TimeOrdinalEra .
 
 gsmlgt:GlobalStratotypeSection
         a                owl:Class ;
@@ -80,11 +79,10 @@ gsmlgt:GlobalStratotypeSection
 
 gsmlgt:TimeOrdinalReferenceSystem
         a                owl:Class ;
-        skos:definition  "<font color=\"#4f81bd\">TimeOrdinalReferenceSystem</font> is a time reference system comprised of an ordered set of time periods (time ordinal eras)."@en .
+        skos:definition  "A time reference system comprised of an ordered set of time periods (time ordinal eras)."@en .
 
-gsmlgt:member  a         owl:ObjectProperty ;
-        rdfs:range       gsmlgt:TimeOrdinalEra ;
-        skos:definition  "The property member is an association between a TimeOrdinalEra and another TimeOrdinalEra which is hierarchically below.  The referred TimeOrdinalEras are subdivision the current TimeOrdinalEra. Note that nesting shall not be cyclic.  A TimeOrdinalEra can’t be a member of itself or any intermediate member (we can consider that member is a transitive property). This is not a model issue but a data coherence issue."@en .
+gsmlgt:member  a    owl:ObjectProperty ;
+        rdfs:range  gsmlgt:TimeOrdinalEra .
 
 gsmlgt:status  a         owl:DatatypeProperty ;
         rdfs:range       xsd:string ;
@@ -120,38 +118,34 @@ gsmlgt:GeochronologicBoundary
 gsmlgt:positionalUncertainty
         a                owl:ObjectProperty ;
         rdfs:range       owl:Class ;
-        skos:definition  "The property <font color=\"#4f81bd\">positionalUncertainty</font> (<font color=\"#4f81bd\">SWE::Quantity</font>) contains a measure of the uncertainty in the estimate of the point in time of the era boundary."@en .
+        skos:definition  "A measure of the uncertainty in the estimate of the point in time of the era boundary"@en .
 
-gsmlgt:previousEra  a    owl:ObjectProperty ;
-        rdfs:range       gsmlgt:TimeOrdinalEra ;
-        skos:definition  "The property previousEra is an association between a TimeOrdinalEraBoundary and a TimeOrdinalEra to reference the preceding (oldest) era."@en .
+gsmlgt:previousEra  a  owl:ObjectProperty ;
+        rdfs:range  gsmlgt:TimeOrdinalEra .
 
 gsmlgt:GlobalStratotypePoint
         a                owl:Class ;
         rdfs:subClassOf  gsmlgt:StratigraphicPoint ;
         skos:definition  "A type of stratigraphic point used to define a globally agreed point in geologic time.  This class does not have any properties beyond those inherited from <font color=\"#4f81bd\">StratigraphicPoint</font>."@en .
 
-gsmlgt:component  a      owl:ObjectProperty ;
-        rdfs:range       gsmlgt:TimeOrdinalEra ;
-        skos:definition  "The property component is an association to a TimeOrdinalEra that is part of the TimeOrdinalReferenceSystem.  A TimeOrdinalReferenceSystem is composed of a collection of TimeOrdinalEras."@en .
+gsmlgt:component  a  owl:ObjectProperty ;
+        rdfs:range  gsmlgt:TimeOrdinalEra .
 
 gsmlgt:position  a       owl:ObjectProperty ;
         rdfs:range       owl:Class ;
-        skos:definition  "The <font color=\"#4f81bd\">position:TM_Instant</font> property describes a point in time corresponding to the era boundary."@en .
+        skos:definition  "A point in time corresponding to the era boundary"@en .
 
 gsmlgt:observationalBasis
-        a                owl:ObjectProperty ;
-        rdfs:range       owl:Class ;
-        skos:definition  "The property observationalBasis is be an association between a TimeOrdinalEraBoundary and an OM::OM_Observation in support of the existence of the boundary defined by geochronology, paleontology, or other evidence."@en .
+        a           owl:ObjectProperty ;
+        rdfs:range  owl:Class .
 
 gsmlgt:referencePoint
-        a                owl:ObjectProperty ;
-        rdfs:range       gsmlgt:TimeOrdinalEraBoundary ;
-        skos:definition  "The property referencePoint is an association between a TimeOrdinalReferenceSystem and a TimeOrdinalEraBoundary.  A TimeOrdinalReferenceSystem refers to two reference points defining the extent of the system."@en .
+        a           owl:ObjectProperty ;
+        rdfs:range  gsmlgt:TimeOrdinalEraBoundary .
 
 gsmlgt:TimeOrdinalEraBoundary
         a                owl:Class ;
-        skos:definition  "A <font color=\"#4f81bd\">TimeOrdinalEraBoundary</font> is a point in Earth's history which bounds a <font color=\"#4f81bd\">TimeOrdinalEra</font>."@en .
+        skos:definition  "A point in Earth's history which bounds a TimeOrdinalEra."@en .
 
 gsmlgt:StratigraphicPoint
         a                owl:Class ;

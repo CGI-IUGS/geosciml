@@ -58,6 +58,10 @@ gsmle:FabricDescription
         rdfs:subClassOf  gsmlb:EarthMaterialAbstractDescription ;
         skos:definition  "The <font color=\"#4f81bd\">FabricDescription</font> data type describes all types of fabrics associated with a <font color=\"#4f81bd\">CompoundMaterial</font> (i.e., tectonic, metamorphic, sedimentary, igneous fabrics or textures).  It denotes a pattern, defined by one or more <font color=\"#4f81bd\">CompoundMaterial</font> constituents, that is present throughout a rock body when considered at some scale. <font color=\"#4f81bd\">FabricDescription</font> is defined based on the average configuration of many constituents.  Penetrative fabric denotes that these constituents are distributed throughout the rock volume at the scale of observation, and are repeated at distances that are small relative to the scale of the whole, such that they can be considered to pervade the whole uniformly."@en .
 
+gsmle:shape  a           owl:DatatypeProperty ;
+        rdfs:range       g:Category ;
+        skos:definition  "The <font color=\"#4f81bd\">shape</font> property (<font color=\"#4f81bd\">SWE::Category</font>) describes, \r\n<ul>\r\n\t<li>the development of crystal faces bounding particles in crystalline compound materials, and </li>\r\n\t<li>the surface rounding of grains in sedimentary rocks.</li>\r\n</ul>\r\n\r\n Roundness is a measure of the sharpness of the edges between surfaces bounding a particle\r\n\r\nThe terms shall be a term from a controlled vocabulary and be appropriate for the kind of compound material (e.g., for crystalline rocks- euhedral, ideoblastic, subhedral, anhedral, xenoblastic; for sedimentary rocks - angular, rounded)."@en .
+
 gsmle:GeologicFeatureRelation.targetRole
         a                owl:ObjectProperty ;
         rdfs:domain      gsmle:GeologicFeatureRelation ;
@@ -266,9 +270,8 @@ gsmle:FoliationDescription.mineralElement
         rdfs:range       gsmle:Mineral ;
         skos:definition  "The <font color=\"#4f81bd\">mineralElement</font> property is an association between <font color=\"#4f81bd\">FoliationDescription</font> and a <font color=\"#4f81bd\">Mineral</font> that defines that foliation."@en .
 
-gsmle:prototype  a       owl:ObjectProperty ;
-        rdfs:range       gsmlgt:StratigraphicPoint ;
-        skos:definition  "Reference stratigraphic point for stratigraphic events"@en .
+gsmle:prototype  a  owl:ObjectProperty ;
+        rdfs:range  gsmlgt:StratigraphicPoint .
 
 gsmle:compositionCategory
         a                owl:DatatypeProperty ;
@@ -491,8 +494,8 @@ gsmle:alterationDistribution
 <http://my.example.org/ont/gsmle>
         a                owl:Ontology ;
         owl:imports      <http://my.example.org/ont/gsmlb> , <http://schemas.geosciml.org/rdf/types.ttl> , <http://my.example.org/ont/gsmlgt> ;
-        owl:versionIRI   "http://my.example.org/ont/gsmle/4.2.0" ;
-        owl:versionInfo  "4.2.0" ;
+        owl:versionIRI   "http://my.example.org/ont/gsmle/4.1.0" ;
+        owl:versionInfo  "4.1.0" ;
         skos:definition  "The extension package provides classes to further the descriptions of basic classes by adding more properties and supplemental relations.  It extends abstract description stubs declared in basic package and introduces new <font color=\"#4f81bd\">GeologicStructure</font> features."@en .
 
 gsmle:stPhysicalProperty
@@ -530,10 +533,6 @@ gsmle:throw  a           owl:ObjectProperty ;
 gsmle:structureType  a   owl:ObjectProperty ;
         rdfs:range       owl:Class ;
         skos:definition  "The type of non oriented structure.  Examples include miarolitic cavity, flame structure, load cast, shatter cone, trace fossil, fossil mold"@en .
-
-gsmle:particleShape  a   owl:DatatypeProperty ;
-        rdfs:range       g:Category ;
-        skos:definition  "The <font color=\"#4f81bd\">particleShape</font> property (<font color=\"#4f81bd\">SWE::Category</font>) describes, \r\n<ul>\r\n\t<li>the development of crystal faces bounding particles in crystalline compound materials, and</li>\r\n\t<li>the surface rounding of grains in sedimentary rocks.</li>\r\n</ul>\r\n\r\nRoundness is a measure of the sharpness of the edges between surfaces bounding a particle\r\n\r\nThe terms shall be a term from a controlled vocabulary and be appropriate for the kind of compound material (e.g., for crystalline rocks- euhedral, ideoblastic, subhedral, anhedral, xenoblastic; for sedimentary rocks - angular, rounded)."@en .
 
 gsmle:role  a            owl:ObjectProperty ;
         rdfs:range       owl:Class ;

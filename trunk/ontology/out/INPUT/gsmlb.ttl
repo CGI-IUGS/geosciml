@@ -199,6 +199,11 @@ gsmlb:GSML_LinearOrientation
         rdfs:subClassOf  gsmlb:GSML_GeometricDescriptionValue ;
         skos:definition  "A linear orientation is composed of a trend (the compass orientation of the line) and a plunge (the angle from the horizontal).  This vector may be oriented (pointing in a specific direction) or not."@en .
 
+gsmlb:descriptiveOrientation
+        a                owl:DatatypeProperty ;
+        rdfs:range       xsd:string ;
+        skos:definition  "The <font color=\"#4f81bd\">descriptionOrientation:Primitive::CharacterString</font> contains a textual specification of orientation, possibly referencing some local geography (e.g. \"toward fold hinge\", \"below\")."@en .
+
 gsmlb:directed  a        owl:ObjectProperty ;
         rdfs:range       owl:Class ;
         skos:definition  "The <font color=\"#4f81bd\">directed:LinearDirectedCode</font> property indicates if the orientation represents a linear feature that is directed, e.g. clast imbrication, mylonitic lineation with sense of shear, slickenlines with displacement direction, rather than undirected (like a fold hinge line or intersection lineations).  A code list will indicate which is the directed end of the linear orientation.  The value of the property comes from a controlled vocabulary."@en .
@@ -215,11 +220,6 @@ gsmlb:gaEventDescription
 gsmlb:mappedItem  a      owl:ObjectProperty ;
         rdfs:range       gsmlb:MappedFeature ;
         skos:definition  "The mappedItem attribute is a placeholder for the MappedFeature class that is included as a member of a GSML Collection."@en .
-
-gsmlb:descriptiveOrientation
-        a                owl:DatatypeProperty ;
-        rdfs:range       xsd:string ;
-        skos:definition  "The <font color=\"#4f81bd\">descriptionOrientation:Primitive::CharacterString</font> contains a textual specification of orientation, possibly referencing some local geography (e.g. \"toward fold hinge\", \"below\")."@en .
 
 gsmlb:gbEarthMaterialDescription
         a                owl:ObjectProperty ;
@@ -551,14 +551,14 @@ gsmlb:dip  a             owl:ObjectProperty ;
         rdfs:range       owl:Class ;
         skos:definition  "The <font color=\"#4f81bd\">dip</font> (<font color=\"#4f81bd\">SWE::QuantityRange</font>) reports the angle that the structural surface (e.g. bedding, fault plane) makes with the horizontal measured perpendicular to the strike of the structure and in the vertical plane as a numeric value or term."@en .
 
+gsmlb:GSML_QuantityRange
+        a                owl:Class ;
+        skos:definition  "<font color=\"#4f81bd\">GSML_QuantityRange</font> is a specialization of SWE Common <font color=\"#4f81bd\">QuantiytyRange </font>(OGC 08-094r1, Clause 7.2.13)  where lower and upper values are made explicit. <font color=\"#4f81bd\">SWE::QuantityRange</font> uses an array of values (RealPair, see Clause 7.2.1) where the lowest value is the first element and the highest the second.  This convenience data type has been created as an alternative encoding for implementations that do no support encoding of arrays in a single field (e.g. DBF) or reference to elements in string encoded arrays<sup>1</sup> (eg. Filter Encoding Specification 2.0 – OGC 09-029r2).\r\n&nbsp;-------------------------\r\n<sup>1</sup> <font color=\"#4f81bd\">SWE RealPair</font> is encoded as space delimited lists (<swe:value>10 300</swe:value> in XML) , which demands that clients parse the string to extract each token.  To build a WFS/FES query that tests the first element, it requires parsing the string either using string-before(swe:value,' ')  or tokenize(swe:value,' ').  This is cumbersome at best, or not even supported by the server at worst.  09-026r2 Clause 7.4.4 describes the minimal XPath supports and string parsing is not present."@en .
+
 gsmlb:youngerNamedAge
         a                owl:ObjectProperty ;
         rdfs:range       owl:Class ;
         skos:definition  "The property <font color=\"#4f81bd\">youngerNamedAge:GeochronologicalEraTerm</font> defines the younger boundary of age of event expressed using a geochronologic era defined according to a geologic time scale per the <font color=\"#4f81bd\">GeologicTime</font> schema. (eg, the International Commission on Stratigraphy Chronostratigraphic Chart - http://www.stratigraphy.org/index.php/ics-chart-timescale)."@en .
-
-gsmlb:GSML_QuantityRange
-        a                owl:Class ;
-        skos:definition  "<font color=\"#4f81bd\">GSML_QuantityRange</font> is a specialization of SWE Common <font color=\"#4f81bd\">QuantiytyRange </font>(OGC 08-094r1, Clause 7.2.13)  where lower and upper values are made explicit. <font color=\"#4f81bd\">SWE::QuantityRange</font> uses an array of values (RealPair, see Clause 7.2.1) where the lowest value is the first element and the highest the second.  This convenience data type has been created as an alternative encoding for implementations that do no support encoding of arrays in a single field (e.g. DBF) or reference to elements in string encoded arrays<sup>1</sup> (eg. Filter Encoding Specification 2.0 – OGC 09-029r2).\r\n&nbsp;-------------------------\r\n<sup>1</sup> <font color=\"#4f81bd\">SWE RealPair</font> is encoded as space delimited lists (<swe:value>10 300</swe:value> in XML) , which demands that clients parse the string to extract each token.  To build a WFS/FES query that tests the first element, it requires parsing the string either using string-before(swe:value,' ')  or tokenize(swe:value,' ').  This is cumbersome at best, or not even supported by the server at worst.  09-026r2 Clause 7.4.4 describes the minimal XPath supports and string parsing is not present."@en .
 
 gsmlb:stStructureDescription
         a                owl:ObjectProperty ;
@@ -620,13 +620,13 @@ gsmlb:GeomorphologicFeature
         iso19150-2:isAbstract  true ;
         skos:definition        "A geomorphologic feature is a kind of <font color=\"#4f81bd\">GeologicFeature</font> describing the shape and nature of the Earth's land surface. These landforms may be created by natural Earth processes (e.g., river channel, beach, moraine or mountain) or through human (anthropogenic) activity (e.g., dredged channel, reclaimed land, mine waste dumps).  In GeoSciML, the geomorphologic feature is modelled as a feature related (through <font color=\"#4f81bd\">unitDescription</font> property) to a <font color=\"#4f81bd\">GeologicUnit</font> that composes the form."@en .
 
-gsmlb:lowerValue  a      owl:DatatypeProperty ;
-        rdfs:range       xsd:double ;
-        skos:definition  "The property <font color=\"#4f81bd\">lowerValue:Real</font> contains the lower bound of the range. It shall be a copy of inherited <font color=\"#4f81bd\">SWE::QuantityRange::value[0]</font>."@en .
-
 gsmlb:featureItem  a     owl:ObjectProperty ;
         rdfs:range       gsmlb:GeologicFeature ;
         skos:definition  "The featureItem attribute is a placeholder for the GeologicFeature class that is included as a member of a GSML Collection."@en .
+
+gsmlb:lowerValue  a      owl:DatatypeProperty ;
+        rdfs:range       xsd:double ;
+        skos:definition  "The property <font color=\"#4f81bd\">lowerValue:Real</font> contains the lower bound of the range. It shall be a copy of inherited <font color=\"#4f81bd\">SWE::QuantityRange::value[0]</font>."@en .
 
 gsmlb:GeologicUnit  a    owl:Class ;
         rdfs:subClassOf  gsmlb:GeologicFeature ;

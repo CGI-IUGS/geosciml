@@ -99,6 +99,11 @@ gsmlla:GeochronologicInterpretation.citation
         rdfs:range       owl:Class ;
         skos:definition  "The <font color=\"#4f81bd\">citation</font> property is an association between a <font color=\"#4f81bd\">GeochronologicInterpretation</font> and a <font color=\"#4f81bd\">CIT:CI_Citation</font> that describes authors and other reference information for an interpreted age."@en .
 
+gsmlla:AnalyticalProcess.computation
+        a            owl:ObjectProperty ;
+        rdfs:domain  gsmlla:AnalyticalProcess ;
+        rdfs:range   owl:Class .
+
 gsmlla:ReferenceSpecimen
         a                owl:Class ;
         skos:definition  "A reference specimen is a specimen with known or accepted values of some property.  The citation property describes the location of a published description of these values. Reference specimens include analytical blanks. <font color=\"#4f81bd\">ReferenceSpecimens</font> are used in quality control procedures to assess method reproducibility. \r\n\r\nAnalytical results from a reference specimen analysed during an <font color=\"#4f81bd\">AnalyticalSession</font> are delivered in the same way as the results of other specimens analysed in that session."@en .
@@ -190,7 +195,3 @@ gsmlla:AnalyticalProcess
 gsmlla:acquisition  a    owl:ObjectProperty ;
         rdfs:range       gsmlla:AnalyticalSession ;
         skos:definition  "The property acquisition is an association that links an AnalyticalProcess to an AnalyticalSession that describes the analytical session (e.g., laboratory session) in which an observation was made and data acquired."@en .
-
-gsmlla:computation  a    owl:ObjectProperty ;
-        rdfs:range       owl:Class ;
-        skos:definition  "The computation property is an association between an AnalyticalProcess and a CIT:ProcessStep that describes the computational process associated with the process."@en .
