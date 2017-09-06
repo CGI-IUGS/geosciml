@@ -1,9 +1,9 @@
+@prefix swe:   <urn:x-gsml-rdf:types> .
 @prefix iso19150-2: <http://def.isotc211.org/iso19150-2/2012/base#> .
 @prefix gsp:   <http://www.opengis.net/ont/geosparql#> .
 @prefix rdf:   <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
 @prefix owl:   <http://www.w3.org/2002/07/owl#> .
 @prefix gsmlb: <http://my.example.org/ont/gsmlb#> .
-@prefix g:     <urn:x-gsml-rdf:types> .
 @prefix xsd:   <http://www.w3.org/2001/XMLSchema#> .
 @prefix skos:  <http://www.w3.org/2004/02/skos/core#> .
 @prefix rdfs:  <http://www.w3.org/2000/01/rdf-schema#> .
@@ -175,7 +175,7 @@ gsmlb:GSML  a            owl:Class ;
 gsmlb:GeologicFeature.observationMethod
         a                owl:DatatypeProperty ;
         rdfs:domain      gsmlb:GeologicFeature ;
-        rdfs:range       g:Category ;
+        rdfs:range       swe:Category ;
         skos:definition  "The <font color=\"#4f81bd\">GeologicFeature</font> observationMethod (<font color=\"#4f81bd\">SWE::Category</font>) specifies the approach to acquiring the collection of attribute values that constitute an individual feature instance (e.g. point count, brunton compass on site, air photo interpretation, field observation, hand specimen, laboratory, aerial photography, creative imagination). \r\n<font color=\"#4f81bd\">ObservationMethod</font> is a convenience property that provides a simple approach to observation metadata when data are reported using a feature view (as opposed to observation view).  This property corresponds (loosely) to ISO19115 Lineage."@en .
 
 gsmlb:GeologicUnitHierarchy.role
@@ -199,11 +199,6 @@ gsmlb:GSML_LinearOrientation
         rdfs:subClassOf  gsmlb:GSML_GeometricDescriptionValue ;
         skos:definition  "A linear orientation is composed of a trend (the compass orientation of the line) and a plunge (the angle from the horizontal).  This vector may be oriented (pointing in a specific direction) or not."@en .
 
-gsmlb:descriptiveOrientation
-        a                owl:DatatypeProperty ;
-        rdfs:range       xsd:string ;
-        skos:definition  "The <font color=\"#4f81bd\">descriptionOrientation:Primitive::CharacterString</font> contains a textual specification of orientation, possibly referencing some local geography (e.g. \"toward fold hinge\", \"below\")."@en .
-
 gsmlb:directed  a        owl:ObjectProperty ;
         rdfs:range       owl:Class ;
         skos:definition  "The <font color=\"#4f81bd\">directed:LinearDirectedCode</font> property indicates if the orientation represents a linear feature that is directed, e.g. clast imbrication, mylonitic lineation with sense of shear, slickenlines with displacement direction, rather than undirected (like a fold hinge line or intersection lineations).  A code list will indicate which is the directed end of the linear orientation.  The value of the property comes from a controlled vocabulary."@en .
@@ -220,6 +215,11 @@ gsmlb:gaEventDescription
 gsmlb:mappedItem  a      owl:ObjectProperty ;
         rdfs:range       gsmlb:MappedFeature ;
         skos:definition  "The mappedItem attribute is a placeholder for the MappedFeature class that is included as a member of a GSML Collection."@en .
+
+gsmlb:descriptiveOrientation
+        a                owl:DatatypeProperty ;
+        rdfs:range       xsd:string ;
+        skos:definition  "The <font color=\"#4f81bd\">descriptionOrientation:Primitive::CharacterString</font> contains a textual specification of orientation, possibly referencing some local geography (e.g. \"toward fold hinge\", \"below\")."@en .
 
 gsmlb:gbEarthMaterialDescription
         a                owl:ObjectProperty ;
@@ -238,7 +238,7 @@ gsmlb:CompoundMaterial
         skos:definition        "A <font color=\"#4f81bd\">CompoundMaterial</font> is an <font color=\"#4f81bd\">EarthMaterial</font> composed of particles made of <font color=\"#4f81bd\">EarthMaterials</font>, possibly including other <font color=\"#4f81bd\">CompoundMaterials</font>.  This class is provided primarily as an extensibility point for related domain models that wish to import and build on GeoSciML, and wish to define material types that are compound but are not rock or rock-like material. In the context of GeoSciML \"<font color=\"#4f81bd\">RockMaterial</font>\" should be used to describe units made of rock."@en .
 
 gsmlb:color  a           owl:DatatypeProperty ;
-        rdfs:range       g:Category ;
+        rdfs:range       swe:Category ;
         skos:definition  "The <font color=\"#4f81bd\">color</font> property (<font color=\"#4f81bd\">SWE::Category</font>) is a term from a controlled vocabulary that specifies the colour of the earth material. Color schemes such as the Munsell rock and soil color schemes may be used."@en .
 
 gsmlb:Fold  a            owl:Class ;
@@ -432,7 +432,7 @@ gsmlb:GSMLitem  a        owl:Class ;
         skos:definition  "<font color=\"#4f81bd\">GSMLItem</font> constrains the collection members to instances of <font color=\"#4f81bd\">EarthMaterial</font>, <font color=\"#4f81bd\">GeologicFeature</font>, <font color=\"#4f81bd\">GM_Object</font>, <font color=\"#4f81bd\">MappedFeature</font>, <font color=\"#4f81bd\">AbstractFeatureRelation</font> and <font color=\"#4f81bd\">OM::SF_SamplingFeature</font>."@en .
 
 gsmlb:activity  a        owl:DatatypeProperty ;
-        rdfs:range       g:Category ;
+        rdfs:range       swe:Category ;
         skos:definition  "The <font color=\"#4f81bd\">activity</font> property (<font color=\"#4f81bd\">SWE::Category</font>) contains a category term from a controlled vocabulary describing the current activity status of the geomorphologic feature (e.g., currently active, dormant, inactive, reactivated, etc.)."@en .
 
 gsmlb:GeologicEvent  a   owl:Class ;
@@ -527,7 +527,7 @@ gsmlb:anthropogenicGeomorphologicFeatureType
 gsmlb:MappedFeature.observationMethod
         a                owl:DatatypeProperty ;
         rdfs:domain      gsmlb:MappedFeature ;
-        rdfs:range       g:Category ;
+        rdfs:range       swe:Category ;
         skos:definition  "The <font color=\"#4f81bd\">observationMethod</font> property (<font color=\"#4f81bd\">SWE::Category</font>) contains an element in a list of categories (a controlled vocabulary) describing how the spatial extent of the mapped feature was determined."@en .
 
 gsmlb:RockMaterial  a    owl:Class ;
@@ -580,11 +580,11 @@ gsmlb:geologicUnitType
 
 gsmlb:eventEnvironment
         a                owl:DatatypeProperty ;
-        rdfs:range       g:Category ;
+        rdfs:range       swe:Category ;
         skos:definition  "The <font color=\"#4f81bd\">eventEnvironment</font> property (<font color=\"#4f81bd\">SWE::Category</font>) is a category from a controlled vocabulary identifying the physical setting within which a <font color=\"#4f81bd\">GeologicEvent</font> takes place. Event environment is construed broadly to include physical settings on the Earth surface specified by climate, tectonics, physiography or geography, and settings in the Earth’s interior specified by pressure, temperature, chemical environment, or tectonics."@en .
 
 gsmlb:classifier  a      owl:DatatypeProperty ;
-        rdfs:range       g:Category ;
+        rdfs:range       swe:Category ;
         skos:definition  "The classifier (<font color=\"#4f81bd\">SWE::Category</font>) contains a standard description or definition of the feature type (e.g., the definition of a particular geologic unit in a stratigraphic lexicon)."@en .
 
 gsmlb:NumericAgeRange
@@ -620,13 +620,13 @@ gsmlb:GeomorphologicFeature
         iso19150-2:isAbstract  true ;
         skos:definition        "A geomorphologic feature is a kind of <font color=\"#4f81bd\">GeologicFeature</font> describing the shape and nature of the Earth's land surface. These landforms may be created by natural Earth processes (e.g., river channel, beach, moraine or mountain) or through human (anthropogenic) activity (e.g., dredged channel, reclaimed land, mine waste dumps).  In GeoSciML, the geomorphologic feature is modelled as a feature related (through <font color=\"#4f81bd\">unitDescription</font> property) to a <font color=\"#4f81bd\">GeologicUnit</font> that composes the form."@en .
 
-gsmlb:featureItem  a     owl:ObjectProperty ;
-        rdfs:range       gsmlb:GeologicFeature ;
-        skos:definition  "The featureItem attribute is a placeholder for the GeologicFeature class that is included as a member of a GSML Collection."@en .
-
 gsmlb:lowerValue  a      owl:DatatypeProperty ;
         rdfs:range       xsd:double ;
         skos:definition  "The property <font color=\"#4f81bd\">lowerValue:Real</font> contains the lower bound of the range. It shall be a copy of inherited <font color=\"#4f81bd\">SWE::QuantityRange::value[0]</font>."@en .
+
+gsmlb:featureItem  a     owl:ObjectProperty ;
+        rdfs:range       gsmlb:GeologicFeature ;
+        skos:definition  "The featureItem attribute is a placeholder for the GeologicFeature class that is included as a member of a GSML Collection."@en .
 
 gsmlb:GeologicUnit  a    owl:Class ;
         rdfs:subClassOf  gsmlb:GeologicFeature ;
