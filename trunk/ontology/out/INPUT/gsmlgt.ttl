@@ -1,9 +1,13 @@
+@prefix swe:   <urn:x-gsml-rdf:types> .
 @prefix gsmlgt: <http://my.example.org/ont/gsmlgt#> .
+@prefix sf:    <http://def.seegrid.csiro.au/isotc211/iso19156/2011/sampling> .
 @prefix rdf:   <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
 @prefix owl:   <http://www.w3.org/2002/07/owl#> .
 @prefix xsd:   <http://www.w3.org/2001/XMLSchema#> .
 @prefix skos:  <http://www.w3.org/2004/02/skos/core#> .
 @prefix rdfs:  <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix time:  <http://www.w3.org/2006/time#> .
+@prefix gtrs:  <http://resource.geosciml.org/schema/cgi/trs/3.0/> .
 
 gsmlgt:start  a          owl:ObjectProperty ;
         rdfs:range       gsmlgt:TimeOrdinalEraBoundary ;
@@ -11,6 +15,7 @@ gsmlgt:start  a          owl:ObjectProperty ;
 
 gsmlgt:StratigraphicSection
         a                owl:Class ;
+        rdfs:subClassOf  sf:SF_SamplingCurve ;
         skos:definition  "A type of stratigraphic section used to define a globally agreed standard period of geologic time. This class does not have any properties beyond those inherited from <font color=\"#4f81bd\">StratigraphicSection</font>."@en .
 
 gsmlgt:TimeOrdinalEra
@@ -53,7 +58,7 @@ gsmlgt:GeochronologicEra
 
 gsmlgt:GeologicTimescale
         a                owl:Class ;
-        rdfs:subClassOf  gsmlgt:TimeOrdinalReferenceSystem ;
+        rdfs:subClassOf  gtrs:TimeOrdinalReferenceSystem ;
         skos:definition  "The classic \"Geologic Timescale\" (<a href=\"http://www.stratigraphy.org/index.php/ics-chart-timescale\"><font color=\"#0000ff\"><u>http://www.stratigraphy.org/index.php/ics-chart-timescale</u></font></a>) comprising an ordered, hierarchical set of named \"eras\" is an example of an Ordinal Temporal Reference System. It may be calibrated with reference to a numeric Temporal Coordinate System, but is, in principle, defined independently."@en .
 
 gsmlgt:additionalCorrelationProperty
@@ -65,10 +70,6 @@ gsmlgt:end  a            owl:ObjectProperty ;
         rdfs:range       gsmlgt:TimeOrdinalEraBoundary ;
         skos:definition  "Younger time boundary of an era"@en .
 
-gsmlgt:rank  a           owl:ObjectProperty ;
-        rdfs:range       owl:Class ;
-        skos:definition  "The property <font color=\"#4f81bd\">rank:GeochronologicEraRank</font> contains a term from a vocabulary describing the rank of the time period (e.g., eon, era, period, stage)."@en .
-
 gsmlgt:nextEra  a   owl:ObjectProperty ;
         rdfs:range  gsmlgt:TimeOrdinalEra .
 
@@ -77,9 +78,9 @@ gsmlgt:GlobalStratotypeSection
         rdfs:subClassOf  gsmlgt:StratigraphicSection ;
         skos:definition  "A type of stratigraphic section used to define a globally agreed standard period of geologic time"@en .
 
-gsmlgt:TimeOrdinalReferenceSystem
-        a                owl:Class ;
-        skos:definition  "A time reference system comprised of an ordered set of time periods (time ordinal eras)."@en .
+gsmlgt:rank  a           owl:ObjectProperty ;
+        rdfs:range       owl:Class ;
+        skos:definition  "The property <font color=\"#4f81bd\">rank:GeochronologicEraRank</font> contains a term from a vocabulary describing the rank of the time period (e.g., eon, era, period, stage)."@en .
 
 gsmlgt:member  a    owl:ObjectProperty ;
         rdfs:range  gsmlgt:TimeOrdinalEra .
@@ -100,6 +101,7 @@ gsmlgt:NumericEraBoundary
 
 <http://my.example.org/ont/gsmlgt>
         a                owl:Ontology ;
+        owl:imports      <http://eelst.cs.unibo.it/apps/LODE/source?url=http://def.seegrid.csiro.au/isotc211/iso19156/2011/sampling.ttl> , <http://schemas.geosciml.org/rdf/types.ttl> , <https://www.w3.org/2006/time> , <http://def.seegrid.csiro.au/static/ontology/geotime/gtrs.ttl> ;
         owl:versionIRI   "http://my.example.org/ont/gsmlgt/4.1.0" ;
         owl:versionInfo  "4.1.0" ;
         skos:definition  "The Geologic Time package, developed by Simon Cox (CSIRO) and Steve Richard (Arizona Geological Survey), contains elements used to describe the classification of geologic time: time periods, time boundaries, and the relationships between them as defined by the IUGS International Commission on Stratigraphy (ICS - http://www.stratigraphy.org/)."@en .
@@ -117,7 +119,7 @@ gsmlgt:GeochronologicBoundary
 
 gsmlgt:positionalUncertainty
         a                owl:ObjectProperty ;
-        rdfs:range       owl:Class ;
+        rdfs:range       swe:Quantity ;
         skos:definition  "A measure of the uncertainty in the estimate of the point in time of the era boundary"@en .
 
 gsmlgt:previousEra  a  owl:ObjectProperty ;
@@ -128,20 +130,13 @@ gsmlgt:GlobalStratotypePoint
         rdfs:subClassOf  gsmlgt:StratigraphicPoint ;
         skos:definition  "A type of stratigraphic point used to define a globally agreed point in geologic time.  This class does not have any properties beyond those inherited from <font color=\"#4f81bd\">StratigraphicPoint</font>."@en .
 
-gsmlgt:component  a  owl:ObjectProperty ;
-        rdfs:range  gsmlgt:TimeOrdinalEra .
-
 gsmlgt:position  a       owl:ObjectProperty ;
-        rdfs:range       owl:Class ;
+        rdfs:range       time:Instant ;
         skos:definition  "A point in time corresponding to the era boundary"@en .
 
 gsmlgt:observationalBasis
         a           owl:ObjectProperty ;
         rdfs:range  owl:Class .
-
-gsmlgt:referencePoint
-        a           owl:ObjectProperty ;
-        rdfs:range  gsmlgt:TimeOrdinalEraBoundary .
 
 gsmlgt:TimeOrdinalEraBoundary
         a                owl:Class ;
@@ -149,4 +144,5 @@ gsmlgt:TimeOrdinalEraBoundary
 
 gsmlgt:StratigraphicPoint
         a                owl:Class ;
+        rdfs:subClassOf  sf:SF_SamplingPoint ;
         skos:definition  "A point in the stratigraphic record used to define a geochronologic boundary or point in geologic time."@en .

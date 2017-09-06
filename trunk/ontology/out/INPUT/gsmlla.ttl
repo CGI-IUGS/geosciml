@@ -1,14 +1,17 @@
+@prefix sf:    <http://def.seegrid.csiro.au/isotc211/iso19156/2011/sampling> .
 @prefix rdf:   <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
 @prefix owl:   <http://www.w3.org/2002/07/owl#> .
 @prefix gsmlb: <http://my.example.org/ont/gsmlb#> .
+@prefix meta:  <http://def.seegrid.csiro.au/isotc211/iso19115/2003/citation> .
 @prefix xsd:   <http://www.w3.org/2001/XMLSchema#> .
 @prefix skos:  <http://www.w3.org/2004/02/skos/core#> .
 @prefix gsmlla: <http://my.example.org/ont/gsmlla#> .
 @prefix rdfs:  <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix time:  <http://www.w3.org/2006/time#> .
 
 gsmlla:referenceDescription
         a                owl:ObjectProperty ;
-        rdfs:range       owl:Class ;
+        rdfs:range       meta:Citation ;
         skos:definition  "The property <font color=\"#4f81bd\">referenceDescription</font> is an association between a <font color=\"#4f81bd\">ReferenceSpecimen</font> and a <font color=\"#4f81bd\">CIT:CI_Citation</font> that references a citation of published analytical results for this standard reference specimen."@en .
 
 gsmlla:methodName  a     owl:ObjectProperty ;
@@ -28,7 +31,7 @@ gsmlla:GeologicSamplingMethod.parameter
         skos:definition  "The property <font color=\"#4f81bd\">parameter</font> (<font color=\"#4f81bd\">OM::NamedValue</font>) contains a name/value pair to describe arbitrary parameters used in the sampling process.  The \"<font color=\"#4f81bd\">name</font>\" attribute of <font color=\"#4f81bd\">NamedValue</font> shall be a term from a controlled vocabulary."@en .
 
 gsmlla:time  a           owl:ObjectProperty ;
-        rdfs:range       owl:Class ;
+        rdfs:range       time:Period ;
         skos:definition  "The property <font color=\"#4f81bd\">time</font> is an association between an <font color=\"#4f81bd\">AnalyticalSession</font> and a <font color=\"#4f81bd\">TM_Period</font> describing the time period during which the analysis was performed."@en .
 
 gsmlla:isotopicEvent  a  owl:ObjectProperty ;
@@ -50,6 +53,7 @@ gsmlla:AnalyticalProcess.method
         skos:definition  "The property method is an association that links an AnalyticalProcess to an AnalyticalMethod that describes the type of analytical method used to make an observation."@en .
 
 gsmlla:Image  a          owl:Class ;
+        rdfs:subClassOf  sf:SF_SamplingFeature ;
         skos:definition  "The <font color=\"#4f81bd\">Image</font> feature type is used to describe images of sampling features, for example, photographs of ion microprobe grain mounts."@en .
 
 gsmlla:GeochronologicInterpretation
@@ -62,7 +66,7 @@ gsmlla:AnalyticalMethod
 
 gsmlla:sourceCollection
         a                owl:ObjectProperty ;
-        rdfs:range       owl:Class ;
+        rdfs:range       sf:SF_SamplingFeatureCollection ;
         skos:definition  "The property sourceCollection is an association between a GeochronologicInterpretation and an OM::SF_SamplingFeatureCollection that lists a collection of OM::SF_SamplingFeature (e.g., a collection of burn spots or craters from a SHRIMP analytical session).  When legacy published data for which the SamplingFeatureCollection is unknown, it may be delivered with SamplingFeatureCollection = 'unknown'."@en .
 
 gsmlla:AnalyticalInstrument
@@ -81,7 +85,7 @@ gsmlla:serialNumber  a   owl:DatatypeProperty ;
 gsmlla:AnalyticalMethod.citation
         a                owl:ObjectProperty ;
         rdfs:domain      gsmlla:AnalyticalMethod ;
-        rdfs:range       owl:Class ;
+        rdfs:range       meta:Citation ;
         skos:definition  "The <font color=\"#4f81bd\">citation</font> property is an association between an <font color=\"#4f81bd\">AnalyticalMethod</font> and a <font color=\"#4f81bd\">CIT:CI_Citation</font> describing a published description of a particular analytical method (e.g., a standard operating procedure document)."@en .
 
 gsmlla:referenceAnalyses
@@ -90,13 +94,13 @@ gsmlla:referenceAnalyses
         skos:definition  "The property referenceAnalysis is an association between an AnalyticalSession and a ReferenceSpecimen that describes a reference specimen (i.e., standards, blanks) used in the analytical session."@en .
 
 gsmlla:interpretedBy  a  owl:ObjectProperty ;
-        rdfs:range       owl:Class ;
+        rdfs:range       meta:ResponsibleParty ;
         skos:definition  "The property <font color=\"#4f81bd\">interpretedBy</font> is an association between a <font color=\"#4f81bd\">GeochronologicInterpretation</font> and a <font color=\"#4f81bd\">CIT:CI_Responsability</font> describing the party responsible for this interpretation."@en .
 
 gsmlla:GeochronologicInterpretation.citation
         a                owl:ObjectProperty ;
         rdfs:domain      gsmlla:GeochronologicInterpretation ;
-        rdfs:range       owl:Class ;
+        rdfs:range       meta:Citation ;
         skos:definition  "The <font color=\"#4f81bd\">citation</font> property is an association between a <font color=\"#4f81bd\">GeochronologicInterpretation</font> and a <font color=\"#4f81bd\">CIT:CI_Citation</font> that describes authors and other reference information for an interpreted age."@en .
 
 gsmlla:AnalyticalProcess.computation
@@ -121,11 +125,12 @@ gsmlla:interpretedAge
 
 gsmlla:GeologicSamplingMethod
         a                owl:Class ;
+        rdfs:subClassOf  sf:SF_Process ;
         skos:definition  "<font color=\"#4f81bd\">GeologicSamplingMethod</font> is an implementation of <font color=\"#4f81bd\">OM::SF_Process</font> to describe the method used to obtain a geologic specimen.\r\nExamples include: \r\n<ul>\r\n\t<li>diamond drilling</li>\r\n\t<li>percussion drilling</li>\r\n\t<li>piston core drilling</li>\r\n\t<li>vibro core drilling</li>\r\n\t<li>channel sampling</li>\r\n\t<li>sea floor dredging</li>\r\n\t<li>outcrop sampling</li>\r\n</ul>"@en .
 
 <http://my.example.org/ont/gsmlla>
         a                owl:Ontology ;
-        owl:imports      <http://my.example.org/ont/gsmlb> ;
+        owl:imports      <http://eelst.cs.unibo.it/apps/LODE/source?url=http://def.seegrid.csiro.au/isotc211/iso19156/2011/sampling.ttl> , <http://my.example.org/ont/gsmlb> , <http://eelst.cs.unibo.it/apps/LODE/source?url=http://def.seegrid.csiro.au/isotc211/iso19115/2003/metadata.ttl> , <https://www.w3.org/2006/time> ;
         owl:versionIRI   "http://my.example.org/ont/gsmlla/4.1.0" ;
         owl:versionInfo  "4.1.0" ;
         skos:definition  "The LaboratoryAnalysis-Specimen application model extends the ISO19156 model for Observations, Measurements and Sampling.  It specifically describes processes and results related to the analysis of (geological) samples using instruments, commonly in a laboratory environment. The design of this package is also informed by the MOLES v3 data model."@en .
@@ -136,7 +141,7 @@ gsmlla:model  a          owl:DatatypeProperty ;
 
 gsmlla:commissionDate
         a                owl:ObjectProperty ;
-        rdfs:range       owl:Class ;
+        rdfs:range       time:Instant ;
         skos:definition  "The property <font color=\"#4f81bd\">commissionDate</font> is an association between an <font color=\"#4f81bd\">AnalyticalInstrument</font> and a <font color=\"#4f81bd\">TM_Instant</font> corresponding to the date of the commissioning of an instrument."@en .
 
 gsmlla:isotopicSystem
@@ -173,11 +178,11 @@ gsmlla:ReferenceSpecimen.usedIn
         skos:definition  "The property usedIn is an association between a ReferenceSpecimen and an AnalyticalSession in which the reference specimen was used."@en .
 
 gsmlla:location  a       owl:ObjectProperty ;
-        rdfs:range       owl:Class ;
+        rdfs:range       meta:ResponsibleParty ;
         skos:definition  "The property <font color=\"#4f81bd\">location</font> is an association between an <font color=\"#4f81bd\">AnalyticalInstrument</font> and a <font color=\"#4f81bd\">CIT:Responsibility</font> describing the owner and the location of an instrument."@en .
 
 gsmlla:operator  a       owl:ObjectProperty ;
-        rdfs:range       owl:Class ;
+        rdfs:range       meta:ResponsibleParty ;
         skos:definition  "The property <font color=\"#4f81bd\">operator</font> is an association between an <font color=\"#4f81bd\">AnalyticalSession</font> and a <font color=\"#4f81bd\">CIT:CI_Responsability</font> describing the operator or organisation responsible for the analytical session."@en .
 
 gsmlla:AnalyticalSession
