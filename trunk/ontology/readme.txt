@@ -4,6 +4,11 @@ I tweaked the java command line to look into lib instead).
 The best way to work with geosciml configuration filesis to create a Ontology folder in c:\sc\ (c:\sc\Ontology) 
 and SVN checkout https://www.seegrid.csiro.au/subversion/GeoSciML/trunk/ontology 
 so config files are easily accessible from ShapeShange.
+OR
+better yet
+create a symbolic link (TIL it exists on DOS !)
+MKLINK /D Ontology <root_of_svn>\GeoSciML4\ontology 
+(you need admin privilege)
 
 The gsml4_owl.bat and gsml4.xml assumes c:\sc\Ontology, just tweak as needed.
 
