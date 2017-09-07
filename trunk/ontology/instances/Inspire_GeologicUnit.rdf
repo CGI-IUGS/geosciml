@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- reference paper from Linda van der Brink (not the persistent URI !)
+https://repository.tudelft.nl/islandora/object/uuid:8ec77e83-8406-47d3-8705-32633619ba1f?collection=research
+She proposes a XSLT to turn GML into RDF, but there is a couple of assumption from the GML
+I used the original namespaces for now
+-->
+<rdf:RDF xmlns:xlink="http://www.w3.org/1999/xlink"
+ xmlns:gml="http://www.opengis.net/gml/3.2"
+ xmlns:om="http://www.opengis.net/om/2.0"
+ xmlns:swe="http://www.opengis.net/swe/2.0"
+ xmlns:gsmlb="http://www.opengis.net/gsml/4.1/GeoSciML-Basic"
+ xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
+ <rdf:Description rdf:about="http://data.bgs.ac.uk/id/Lexicon/NamedRockUnit/INV">
+  <!-- rdf:about indicate that this description is *about* a resource, this is where one would put the Non-information Resource URI -->
+	<rdf:type rdf:resource="http://schemas.opengis.net/gsml/4.1/GeologicUnit"/> 
+	<!-- the type of the resource can be described in RDFS (RDF Schema).  It can be documented directly in this instance if needed.. it's RDF -->
+	<gml:name rdf:datatype="xs:String">INVERCLYDE GROUP</gml:name> <!-- you can use your own tag.  Order is not important -->
+	<gsmlb:classifier rdf:resource="http://data.bgs.ac.uk/ref/EngineeringGeologyTheme/strongSandstone"/>
+	<!-- the classifier property value is another resource, no label -->
+	<gsmlb:geologicHistory>
+		<rdf:Description rdf:nodeID="EVENT_1" gml:name="UNNAMED EVENT">
+		<!--literal properties can be encoded as attributes -->
+		<rdf:type rdf:resource="http://schemas.opengis.net/gsml/4.1/GeologicEvent"/>
+		<gsmlb:eventProcess rdf:resource="http://inspire.ec.europa.eu/codelist/EventProcessValue/mechanicalDeposition"/>
+		<gsmlb:olderNamedAge rdf:resource="http://inspire.ec.europa.eu/codelist/GeochronologicEraValue/tournaisian"/>
+		<gsmlb:youngerNamedAge rdf:resource="http://inspire.ec.europa.eu/codelist/GeochronologicEraValue/visean"/>
+	<!-- there are no RDF encoding for SWE.. can put in in there as XML snippet -->
+	<gsmlb:eventEnvironment rdf:parseType="Literal">
+    <swe:Category definition="http://inspire.ec.europa.eu/codelist/EventEnvironmentValue">
+     <swe:extension>
+      <swe:Category definition="http://resource.geosciml.org/classifierscheme/cgi/201211/valuequalifier">
+       <swe:identifier>http://resource.geosciml.org/classifier/cgi/valuequalifier/always</swe:identifier>
+       <swe:label>always</swe:label>
+       <swe:codeSpace xlink:href="http://resource.geosciml.org/classifierscheme/cgi/201211/valuequalifier"/>
+      </swe:Category>
+     </swe:extension>
+     <swe:identifier>http://inspire.ec.europa.eu/codelist/EventEnvironmentValue/riverPlainSystemSetting</swe:identifier>
+     <swe:label>river plain system setting</swe:label>
+     <swe:codeSpace xlink:href="http://inspire.ec.europa.eu/codelist/EventEnvironmentValue"/>
+    </swe:Category>
+   </gsmlb:eventEnvironment>
+  </rdf:Description>
+ </gsmlb:geologicHistory>
+</rdf:Description>
+</rdf:RDF>
+
