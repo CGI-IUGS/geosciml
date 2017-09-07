@@ -5,7 +5,7 @@
 @prefix owl:   <http://www.w3.org/2002/07/owl#> .
 @prefix gsmlb: <http://geosciml.org/ont/gsmlb#> .
 @prefix xsd:   <http://www.w3.org/2001/XMLSchema#> .
-@prefix skos:  <http://www.w3.org/2004/02/skos/core#> .
+@prefix skos:  < http://www.w3.org/2004/02/skos/core#> .
 @prefix rdfs:  <http://www.w3.org/2000/01/rdf-schema#> .
 @prefix gsmle: <http://geosciml.org/ont/gsmle#> .
 
@@ -29,7 +29,7 @@ gsmle:spacing  a         owl:ObjectProperty ;
         skos:definition  "The <font color=\"#4f81bd\">spacing</font> property (<font color=\"#4f81bd\">SWE::QuantityRange</font>) contains a linear dimension representing the thickness of foliation domains. It is also used for thickness of layers of a given composition."@en .
 
 gsmle:structureType  a   owl:ObjectProperty ;
-        rdfs:range       owl:Class ;
+        rdfs:range       skos:Concept ;
         skos:definition  "The type of non oriented structure.  Examples include miarolitic cavity, flame structure, load cast, shatter cone, trace fossil, fossil mold"@en .
 
 gsmle:constituentMaterial
@@ -93,7 +93,7 @@ gsmle:unitThickness  a   owl:ObjectProperty ;
 
 gsmle:deformationStyle
         a                owl:ObjectProperty ;
-        rdfs:range       owl:Class ;
+        rdfs:range       skos:Concept ;
         skos:definition  "The <font color=\"#4f81bd\">deformationStyle:DeformationStyleTerm</font> contains a term from a vocabulary to describe the style of deformation, i.e. brittle (fault, breccia), ductile (shear), brittle-ductile, unknown."@en .
 
 gsmle:FoliationDescription.intensity
@@ -135,7 +135,7 @@ gsmle:geneticModel  a    owl:ObjectProperty ;
         skos:definition  "The property <font color=\"#4f81bd\">geneticModel</font> (<font color=\"#4f81bd\">SWE::Category</font>) contains a term from a controlled vocabulary describing the specification of genetic model for fold, e.g. flexural slip, parallel."@en .
 
 gsmle:particleType  a    owl:ObjectProperty ;
-        rdfs:range       owl:Class ;
+        rdfs:range       skos:Concept ;
         skos:definition  "The <font color=\"#4f81bd\">particleType:ParticleTypeTerm</font> provides a term from a controlled vocabulary to specify the nature of individual particles of each constituent in an <font color=\"#4f81bd\">EarthMaterial</font> aggregation, based mostly on their genesis.  When applied on <font color=\"#4f81bd\">ParticleDescription</font> for <font color=\"#4f81bd\">CompoundMaterial</font>, it would characterise all particles in aggregate. Use this property on <font color=\"#4f81bd\">CompoundMaterial</font> to distinguish rocks composed of crystals (crystalline rocks) from rocks composed of granular particles (clasts, fragments). Examples include ooliths, crystals, pore space. Constituent type is determined based on the nature of the particles, and ideally is independent of the relationship between particles in a compound material aggregation."@en .
 
 gsmle:relatedMaterial
@@ -163,7 +163,7 @@ gsmle:ParticleGeometryDescription
 gsmle:MaterialRelation.relationship
         a                owl:ObjectProperty ;
         rdfs:domain      gsmle:MaterialRelation ;
-        rdfs:range       owl:Class ;
+        rdfs:range       skos:Concept ;
         skos:definition  "The property <font color=\"#4f81bd\">relationship:GeologicRelationshipTerm</font> contains a term from a controlled vocabulary to describe the geologic relationship (e.g., sedimentary relation, igneous relation)."@en .
 
 gsmle:SlipComponents  a  owl:Class ;
@@ -232,7 +232,7 @@ gsmle:correlatesWith  a  owl:ObjectProperty ;
         skos:definition  "The correlatesWith property is an association between ContactDescription and a GeochronologicBoundary describing a geochronologic (i.e., time zone) boundary that may correlate with it.  Therefore, a contact correlation with a GeochronologicBoundary SHALL ONLY be allowed when the contactType is a ChronostratigraphicBoundary."@en .
 
 gsmle:movementSense  a   owl:ObjectProperty ;
-        rdfs:range       owl:Class ;
+        rdfs:range       skos:Concept ;
         skos:definition  "The property <font color=\"#4f81bd\">movementSense:MovementSenseTerm</font> contains a term from a controlled vocabulary that describes the movement sense of displacement along a geologic structure (e.g., dextral, sinistral)."@en .
 
 gsmle:ChemicalComposition
@@ -290,13 +290,13 @@ gsmle:periodic  a        owl:DatatypeProperty ;
         skos:definition  "The property <font color=\"#4f81bd\">periodic:Primitive::Boolean</font> reports TRUE if the hinges in a train are regularly spaced, and FALSE otherwise."@en .
 
 gsmle:alterationType  a  owl:ObjectProperty ;
-        rdfs:range       owl:Class ;
+        rdfs:range       skos:Concept ;
         skos:definition  "The property <font color=\"#4f81bd\">alterationType:AlterationTypeTerm</font> contains a term from a controlled vocabulary of alteration types (e.g., potassic, argillic, advanced argillic)."@en .
 
 gsmle:MaterialRelation.sourceRole
         a                owl:ObjectProperty ;
         rdfs:domain      gsmle:MaterialRelation ;
-        rdfs:range       owl:Class ;
+        rdfs:range       skos:Concept ;
         skos:definition  "The property <font color=\"#4f81bd\">sourceRole:RelationRoleTerm</font> contains a term that describes the role played by the source earth material part (e.g., matrix, clast, overgrowth)."@en .
 
 gsmle:continuity  a      owl:ObjectProperty ;
@@ -319,7 +319,7 @@ gsmle:separation  a      owl:ObjectProperty ;
 gsmle:MaterialRelation.targetRole
         a                owl:ObjectProperty ;
         rdfs:domain      gsmle:MaterialRelation ;
-        rdfs:range       owl:Class ;
+        rdfs:range       skos:Concept ;
         skos:definition  "The property <font color=\"#4f81bd\">targetRole:RelationRoleTerm</font> contains a term describing the role played by the target earth material part (e.g., matrix, clast, overgrowth)."@en .
 
 gsmle:InorganicFluid  a  owl:Class ;
@@ -348,7 +348,7 @@ gsmle:ContactDescription
         skos:definition  "The <font color=\"#4f81bd\">ContactDescription</font> provides extended descriptive properties of a geologic contact.  If the contact type is <font color=\"#4f81bd\">ChronostratigraphicBoundary</font>, it can be associated with a geochronologic (i.e., time zone) boundary that may correlate with it."@en .
 
 gsmle:movementType  a    owl:ObjectProperty ;
-        rdfs:range       owl:Class ;
+        rdfs:range       skos:Concept ;
         skos:definition  "The property <font color=\"#4f81bd\">movementType:MovementTypeTerm</font> contains a term from a controlled vocabulary that defines the type of movement on a shear displacement structure (e.g. dip-slip, strike-slip)."@en .
 
 gsmle:AlterationDescription
@@ -357,7 +357,7 @@ gsmle:AlterationDescription
         skos:definition  "<font color=\"#4f81bd\">AlterationDescription</font> describes aspects of a geologic unit or earth material that are the result of bulk chemical, mineralogical or physical changes related to change in the physical or chemical environment. It includes weathering, supergene alteration, hydrothermal alteration and metasomatic effects not considered metamorphic. For example, a soil profile description would have to be constructed as a <font color=\"#4f81bd\">GeologicUnit</font> (<font color=\"#4f81bd\">geologicUnitType</font> = PedologicUnit) with unit parts representing the various horizons in the profile.  Thickness of a weathering profile can be delivered as <font color=\"#4f81bd\">unitThickness</font> of a <font color=\"#4f81bd\">GeologicUnit</font> of <font color=\"#4f81bd\">geologicUnitType</font> equal to \"AlterationUnit\""@en .
 
 gsmle:role  a            owl:ObjectProperty ;
-        rdfs:range       owl:Class ;
+        rdfs:range       skos:Concept ;
         skos:definition  "The <font color=\"#4f81bd\">role:ConstituentPartRoleTerm</font> property contains a term from a controlled vocabulary that describes the role a <font color=\"#4f81bd\">ConstituentPart</font> plays in a <font color=\"#4f81bd\">CompoundMaterial</font> aggregation. The same <font color=\"#4f81bd\">EarthMaterial</font> may occur as different <font color=\"#4f81bd\">ConstituentParts</font> playing different roles within one <font color=\"#4f81bd\">CompoundMaterial</font>.  For example, feldspar may be present as groundmass (“groundmass” is a <font color=\"#4f81bd\">ConstituentPart::role</font>) and as phenocrysts (“phenocryst” is another <font color=\"#4f81bd\">ConstituentPart::role</font>) within a single igneous rock."@en .
 
 gsmle:BeddingDescription
@@ -376,7 +376,7 @@ gsmle:Lineation.definingElement
         skos:definition  "Kinds of describable inhomogeneity in a rock body that may define a GeologicStructure.   Examples include Oriented Particle."@en .
 
 gsmle:mineralName  a     owl:ObjectProperty ;
-        rdfs:range       owl:Class ;
+        rdfs:range       skos:Concept ;
         skos:definition  "Name of the mineral (eg: orthoclase) or mineral family (eg: feldspar), approved by the International Mineralogical Association. (eg: http://www.mindat.org/mineralindex.php)"@en .
 
 gsmle:protolithLithology
@@ -418,7 +418,7 @@ gsmle:peakPressureValue
 gsmle:GeologicFeatureRelation.sourceRole
         a                owl:ObjectProperty ;
         rdfs:domain      gsmle:GeologicFeatureRelation ;
-        rdfs:range       owl:Class ;
+        rdfs:range       skos:Concept ;
         skos:definition  "The property <font color=\"#4f81bd\">sourceRole:RelationRoleProperty</font> contains a term from a controlled vocabulary describing the role played by the source geologic feature or object (e.g., overlying unit, underlying unit)."@en .
 
 gsmle:constituent  a     owl:ObjectProperty ;
@@ -430,7 +430,7 @@ gsmle:ConstituentPart
         skos:definition  "The <font color=\"#4f81bd\">ConstituentPart</font> class describes how Earth materials may be made up of other Earth materials, including the proportion of the constituent part in the whole (e.g., 20%, minor, dominant); and the role that the constituent plays in the whole (e.g., matrix, groundmass, framework, phenocryst, xenolith, vein)."@en .
 
 gsmle:propertyName  a    owl:ObjectProperty ;
-        rdfs:range       owl:Class ;
+        rdfs:range       skos:Concept ;
         skos:definition  "The property <font color=\"#4f81bd\">propertyName:PhysicalPropertyTerm</font> contains a term from a controlled vocabulary of physical properties of rock materials (e.g., density, porosity, magnetic susceptibility, remnant magnetism, permeability, seismic velocity)."@en .
 
 gsmle:Lineation.intensity
@@ -470,7 +470,7 @@ gsmle:hingeLineOrientation
 gsmle:GeologicFeatureRelation.targetRole
         a                owl:ObjectProperty ;
         rdfs:domain      gsmle:GeologicFeatureRelation ;
-        rdfs:range       owl:Class ;
+        rdfs:range       skos:Concept ;
         skos:definition  "The property <font color=\"#4f81bd\">targetRole:RelationRoleTerm</font> contains a term from a controlled vocabulary describing the role played by the target geologic feature or object. (e.g., overlying unit, underlying unit)"@en .
 
 gsmle:Lineation.mineralElement
@@ -522,11 +522,11 @@ gsmle:sourceOrganism  a  owl:ObjectProperty ;
         skos:definition  "The sourceOrganism property is an association between a ParticleGeometryDescription and an Organism that is the source of the fossil particles (sponge spicules, bivalve shells, etc.)."@en .
 
 gsmle:lineationType  a   owl:ObjectProperty ;
-        rdfs:range       owl:Class ;
+        rdfs:range       skos:Concept ;
         skos:definition  "Type of lineation.\r\nExamples include: flow lines, scratches, striae, slickenlines, linear arrangements of elongate components in sediments, elongate minerals, crinkles, and lines of intersection between penetrative planar structures."@en .
 
 gsmle:fabricType  a      owl:ObjectProperty ;
-        rdfs:range       owl:Class ;
+        rdfs:range       skos:Concept ;
         skos:definition  "The <font color=\"#4f81bd\">fabricType:FabricTypeTerm</font> property contains a term from a controlled vocabulary to denote the type of fabric in the <font color=\"#4f81bd\">CompoundMaterial</font> (e.g., rapikivi texture, autobrecciation, spaced cleavage, porphyroblastic, cross-bedding).  The <font color=\"#4f81bd\">fabricType</font> describes a pattern, defined by one or more <font color=\"#4f81bd\">CompoundMaterial</font> constituents, that is present throughout a rock body when considered at some scale. It is defined based on the average configuration of many constituents. Penetrative fabric denotes that these constituents are distributed throughout the rock volume at the scale of observation, and are repeated at distances that are small relative to the scale of the whole, such that they can be considered to pervade the whole uniformly."@en .
 
 gsmle:span  a            owl:ObjectProperty ;
@@ -548,10 +548,10 @@ gsmle:throw  a           owl:ObjectProperty ;
 
 <http://geosciml.org/ont/gsmle>
         a                owl:Ontology ;
+        skos:definition  "The extension package provides classes to further the descriptions of basic classes by adding more properties and supplemental relations.  It extends abstract description stubs declared in basic package and introduces new <font color=\"#4f81bd\">GeologicStructure</font> features."@en ;
         owl:imports      <http://geosciml.org/ont/gsmlb> , <http://schemas.geosciml.org/rdf/types.ttl> , <http://geosciml.org/ont/gsmlgt> ;
         owl:versionIRI   "http://geosciml.org/ont/gsmle/4.2.0" ;
-        owl:versionInfo  "4.2.0" ;
-        skos:definition  "The extension package provides classes to further the descriptions of basic classes by adding more properties and supplemental relations.  It extends abstract description stubs declared in basic package and introduces new <font color=\"#4f81bd\">GeologicStructure</font> features."@en .
+        owl:versionInfo  "4.2.0" .
 
 gsmle:MetamorphicDescription
         a                owl:Class ;
@@ -589,13 +589,13 @@ gsmle:FoliationDescription.definingElement
 
 gsmle:Fracture  a              owl:Class ;
         rdfs:subClassOf        gsmlb:GeologicStructure ;
-        iso19150-2:isAbstract  true ;
-        skos:definition        "Fractures are cracks in the earth surface. If there is no displacement it is a joint. If there is displacement and you are in the brittle zone it is a fault. In the ductile zone, a fracture with displacement with fracture is called a shear.  FaultSurface as a separate class is not considered necessary for GeoSciML 2.\r\nRecording observations on FaultSurface should be in observation and measurement. The observation needs to be able to distinguish the type of measurement made (PropertyType)"@en .
+        skos:definition        "Fractures are cracks in the earth surface. If there is no displacement it is a joint. If there is displacement and you are in the brittle zone it is a fault. In the ductile zone, a fracture with displacement with fracture is called a shear.  FaultSurface as a separate class is not considered necessary for GeoSciML 2.\r\nRecording observations on FaultSurface should be in observation and measurement. The observation needs to be able to distinguish the type of measurement made (PropertyType)"@en ;
+        iso19150-2:isAbstract  true .
 
 gsmle:GeologicFeatureRelation.relationship
         a                owl:ObjectProperty ;
         rdfs:domain      gsmle:GeologicFeatureRelation ;
-        rdfs:range       owl:Class ;
+        rdfs:range       skos:Concept ;
         skos:definition  "The <font color=\"#4f81bd\">relationship:GeologicRelationshipTerm</font> property contains a term from a controlled vocabulary to describe the geologic relationship (e.g., stratigraphic relation, structural relation, intrusive relation)."@en .
 
 gsmle:limbShape  a       owl:ObjectProperty ;

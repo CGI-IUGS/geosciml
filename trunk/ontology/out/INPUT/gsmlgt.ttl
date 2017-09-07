@@ -4,7 +4,7 @@
 @prefix rdf:   <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
 @prefix owl:   <http://www.w3.org/2002/07/owl#> .
 @prefix xsd:   <http://www.w3.org/2001/XMLSchema#> .
-@prefix skos:  <http://www.w3.org/2004/02/skos/core#> .
+@prefix skos:  < http://www.w3.org/2004/02/skos/core#> .
 @prefix rdfs:  <http://www.w3.org/2000/01/rdf-schema#> .
 @prefix time:  <http://www.w3.org/2006/time#> .
 @prefix gtrs:  <http://resource.geosciml.org/schema/cgi/trs/3.0/> .
@@ -16,10 +16,10 @@ gsmlgt:GeologicTimescale
 
 <http://geosciml.org/ont/gsmlgt>
         a                owl:Ontology ;
+        skos:definition  "The Geologic Time package, developed by Simon Cox (CSIRO) and Steve Richard (Arizona Geological Survey), contains elements used to describe the classification of geologic time: time periods, time boundaries, and the relationships between them as defined by the IUGS International Commission on Stratigraphy (ICS - http://www.stratigraphy.org/)."@en ;
         owl:imports      <http://eelst.cs.unibo.it/apps/LODE/source?url=http://def.seegrid.csiro.au/isotc211/iso19156/2011/sampling.ttl> , <http://schemas.geosciml.org/rdf/types.ttl> , <https://www.w3.org/2006/time> , <http://def.seegrid.csiro.au/static/ontology/geotime/gtrs.ttl> ;
         owl:versionIRI   "http://geosciml.org/ont/gsmlgt/4.1.0" ;
-        owl:versionInfo  "4.1.0" ;
-        skos:definition  "The Geologic Time package, developed by Simon Cox (CSIRO) and Steve Richard (Arizona Geological Survey), contains elements used to describe the classification of geologic time: time periods, time boundaries, and the relationships between them as defined by the IUGS International Commission on Stratigraphy (ICS - http://www.stratigraphy.org/)."@en .
+        owl:versionInfo  "4.1.0" .
 
 gsmlgt:StratigraphicSection
         a                owl:Class ;
@@ -81,7 +81,7 @@ gsmlgt:TimeOrdinalEraBoundary
 
 gsmlgt:observationalBasis
         a           owl:ObjectProperty ;
-        rdfs:range  owl:Class .
+        rdfs:range  skos:Concept .
 
 gsmlgt:conservation  a   owl:DatatypeProperty ;
         rdfs:range       xsd:string ;
@@ -93,7 +93,7 @@ gsmlgt:StratigraphicPoint
         skos:definition  "A point in the stratigraphic record used to define a geochronologic boundary or point in geologic time."@en .
 
 gsmlgt:rank  a           owl:ObjectProperty ;
-        rdfs:range       owl:Class ;
+        rdfs:range       skos:Concept ;
         skos:definition  "The property <font color=\"#4f81bd\">rank:GeochronologicEraRank</font> contains a term from a vocabulary describing the rank of the time period (e.g., eon, era, period, stage)."@en .
 
 gsmlgt:previousEra  a  owl:ObjectProperty ;

@@ -5,7 +5,7 @@
 @prefix owl:   <http://www.w3.org/2002/07/owl#> .
 @prefix meta:  <http://def.seegrid.csiro.au/isotc211/iso19115/2003/citation> .
 @prefix xsd:   <http://www.w3.org/2001/XMLSchema#> .
-@prefix skos:  <http://www.w3.org/2004/02/skos/core#> .
+@prefix skos:  < http://www.w3.org/2004/02/skos/core#> .
 @prefix rdfs:  <http://www.w3.org/2000/01/rdf-schema#> .
 @prefix time:  <http://www.w3.org/2006/time#> .
 @prefix gsmlbh: <http://geosciml.org/ont/gsmlbh#> .
@@ -21,11 +21,11 @@ gsmlbh:observationMethod
         skos:definition  "The <font color=\"#4f81bd\">observationMethod property</font> <font color=\"#4f81bd\">(SWE::Category</font>) contains a term from a controlled vocabulary that describes the method used to observe the properties of the borehole."@en .
 
 gsmlbh:purpose  a        owl:ObjectProperty ;
-        rdfs:range       owl:Class ;
+        rdfs:range       skos:Concept ;
         skos:definition  "The property <font color=\"#4f81bd\">purpose:BoreholePurposeCode</font> contains a term from a controlled vocabulary describing the purpose for which the borehole was drilled. e.g., site investigation, mineral exploration, hydrocarbon exploration, water resources."@en .
 
 gsmlbh:startPoint  a     owl:ObjectProperty ;
-        rdfs:range       owl:Class ;
+        rdfs:range       skos:Concept ;
         skos:definition  "The property <font color=\"#4f81bd\">startPoint:BoreholeStartPointCode</font> provides a term from a controlled vocabulary indicating the named position relative to ground surface where the borehole commenced. (e.g., natural ground surface, open pit floor, underground, offshore)"@en .
 
 gsmlbh:intervalEnd  a    owl:ObjectProperty ;
@@ -98,14 +98,14 @@ gsmlbh:location  a       owl:ObjectProperty ;
 
 <http://geosciml.org/ont/gsmlbh>
         a                owl:Ontology ;
+        skos:definition  "The GeoSciML <font color=\"#4f81bd\">Borehole</font> package contains an information model for boreholes and related artefacts. This is primarily through re-use of standard components from the Observations and Measurements (ISO19156)."@en ;
         owl:imports      <http://eelst.cs.unibo.it/apps/LODE/source?url=http://def.seegrid.csiro.au/isotc211/iso19156/2011/sampling.ttl> , <https://www.w3.org/2006/time> , <http://eelst.cs.unibo.it/apps/LODE/source?url=http://def.seegrid.csiro.au/isotc211/iso19115/2003/metadata.ttl> , <http://www.opengis.net/ont/geosparql> , <http://schemas.geosciml.org/rdf/types.ttl> ;
         owl:versionIRI   "http://geosciml.org/ont/gsmlbh/4.1" ;
-        owl:versionInfo  "4.1" ;
-        skos:definition  "The GeoSciML <font color=\"#4f81bd\">Borehole</font> package contains an information model for boreholes and related artefacts. This is primarily through re-use of standard components from the Observations and Measurements (ISO19156)."@en .
+        owl:versionInfo  "4.1" .
 
 gsmlbh:inclinationType
         a                owl:ObjectProperty ;
-        rdfs:range       owl:Class ;
+        rdfs:range       skos:Concept ;
         skos:definition  "The property <font color=\"#4f81bd\">inclinationType:BoreholeInclinationCode</font> contains a term from a controlled vocabulary indicating the inclination type of the borehole. Appropriate terms would include vertical; inclined up; inclined down, horizontal."@en .
 
 gsmlbh:mappedIntervalEnd
@@ -123,7 +123,7 @@ gsmlbh:Borehole  a       owl:Class ;
 
 gsmlbh:drillingMethod
         a                owl:ObjectProperty ;
-        rdfs:range       owl:Class ;
+        rdfs:range       skos:Concept ;
         skos:definition  "The <font color=\"#4f81bd\">drillingMethod:BoreholeDrillingMethodCode</font> property contains a term from a controlled vocabulary indicating the drilling method used. Appropriate terms would include rotary air blast, auger, diamond core, air core, etc."@en .
 
 gsmlbh:referenceLocation

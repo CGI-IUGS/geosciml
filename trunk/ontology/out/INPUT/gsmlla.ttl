@@ -4,7 +4,7 @@
 @prefix gsmlb: <http://geosciml.org/ont/gsmlb#> .
 @prefix meta:  <http://def.seegrid.csiro.au/isotc211/iso19115/2003/citation> .
 @prefix xsd:   <http://www.w3.org/2001/XMLSchema#> .
-@prefix skos:  <http://www.w3.org/2004/02/skos/core#> .
+@prefix skos:  < http://www.w3.org/2004/02/skos/core#> .
 @prefix gsmlla: <http://geosciml.org/ont/gsmlla#> .
 @prefix rdfs:  <http://www.w3.org/2000/01/rdf-schema#> .
 @prefix time:  <http://www.w3.org/2006/time#> .
@@ -17,18 +17,18 @@ gsmlla:GeochronologicInterpretation.citation
 
 <http://geosciml.org/ont/gsmlla>
         a                owl:Ontology ;
+        skos:definition  "The LaboratoryAnalysis-Specimen application model extends the ISO19156 model for Observations, Measurements and Sampling.  It specifically describes processes and results related to the analysis of (geological) samples using instruments, commonly in a laboratory environment. The design of this package is also informed by the MOLES v3 data model."@en ;
         owl:imports      <http://eelst.cs.unibo.it/apps/LODE/source?url=http://def.seegrid.csiro.au/isotc211/iso19156/2011/sampling.ttl> , <http://geosciml.org/ont/gsmlb> , <http://eelst.cs.unibo.it/apps/LODE/source?url=http://def.seegrid.csiro.au/isotc211/iso19115/2003/metadata.ttl> , <https://www.w3.org/2006/time> ;
         owl:versionIRI   "http://geosciml.org/ont/gsmlla/4.1.0" ;
-        owl:versionInfo  "4.1.0" ;
-        skos:definition  "The LaboratoryAnalysis-Specimen application model extends the ISO19156 model for Observations, Measurements and Sampling.  It specifically describes processes and results related to the analysis of (geological) samples using instruments, commonly in a laboratory environment. The design of this package is also informed by the MOLES v3 data model."@en .
+        owl:versionInfo  "4.1.0" .
 
 gsmlla:methodName  a     owl:ObjectProperty ;
-        rdfs:range       owl:Class ;
+        rdfs:range       skos:Concept ;
         skos:definition  "The property <font color=\"#4f81bd\">methodName:AnalyticalMethodTerm</font> contains a term from a controlled vocabulary that describes an analytical method used in a session (e.g., XRF mass spectrometry, ICPMS, SHRIMP geochronology)."@en .
 
 gsmlla:preparationMethod
         a                owl:ObjectProperty ;
-        rdfs:range       owl:Class ;
+        rdfs:range       skos:Concept ;
         skos:definition  "The <font color=\"#4f81bd\">preparationMethod:GeologicSpecimenPreparationTerm</font> contains a term from a controlled vocabulary that describes the method employed for the preparation of a geologic specimen for further analysis."@en .
 
 gsmlla:referenceAnalyses
@@ -41,13 +41,13 @@ gsmlla:time  a           owl:ObjectProperty ;
         skos:definition  "The property <font color=\"#4f81bd\">time</font> is an association between an <font color=\"#4f81bd\">AnalyticalSession</font> and a <font color=\"#4f81bd\">TM_Period</font> describing the time period during which the analysis was performed."@en .
 
 gsmlla:isotopicEvent  a  owl:ObjectProperty ;
-        rdfs:range       owl:Class ;
+        rdfs:range       skos:Concept ;
         skos:definition  "The <font color=\"#4f81bd\">isotopicEvent:IsotopicEventType</font> contains a term from a controlled vocabulary that describes any isotopic events that are relevant to the interpretation. e.g., closure, isotopic mixing, Pb loss, etc."@en .
 
 gsmlla:AnalyticalProcess.computation
         a            owl:ObjectProperty ;
         rdfs:domain  gsmlla:AnalyticalProcess ;
-        rdfs:range   owl:Class .
+        rdfs:range   skos:Concept .
 
 gsmlla:location  a       owl:ObjectProperty ;
         rdfs:range       meta:ResponsibleParty ;
@@ -65,17 +65,17 @@ gsmlla:GeologicSamplingMethod
 gsmlla:GeologicSamplingMethod.method
         a                owl:ObjectProperty ;
         rdfs:domain      gsmlla:GeologicSamplingMethod ;
-        rdfs:range       owl:Class ;
+        rdfs:range       skos:Concept ;
         skos:definition  "The property <font color=\"#4f81bd\">method:GeologicSamplingMethodTerm</font> is a term from a controlled vocabulary that describes the process used to obtain or create a geologic specimen. e.g., diamond drilling, percussion drilling, piston core drilling, vibro core drilling, channel sampling, sea floor dredging, crushing, mineral separation, melting, outcrop sampling."@en .
 
 gsmlla:type  a           owl:ObjectProperty ;
-        rdfs:range       owl:Class ;
+        rdfs:range       skos:Concept ;
         skos:definition  "The property <font color=\"#4f81bd\">type:InstrumentTypeTerm</font> reports a term from a controlled vocabulary that describes the category of instrument used in an analytical session (e.g., XRF, ICPMS, SHRIMP, etc.)."@en .
 
 gsmlla:GeologicSamplingMethod.parameter
         a                owl:ObjectProperty ;
         rdfs:domain      gsmlla:GeologicSamplingMethod ;
-        rdfs:range       owl:Class ;
+        rdfs:range       skos:Concept ;
         skos:definition  "The property <font color=\"#4f81bd\">parameter</font> (<font color=\"#4f81bd\">OM::NamedValue</font>) contains a name/value pair to describe arbitrary parameters used in the sampling process.  The \"<font color=\"#4f81bd\">name</font>\" attribute of <font color=\"#4f81bd\">NamedValue</font> shall be a term from a controlled vocabulary."@en .
 
 gsmlla:ReferenceSpecimen
@@ -122,13 +122,13 @@ gsmlla:AnalyticalMethod
 
 gsmlla:statisticalMethod
         a                owl:ObjectProperty ;
-        rdfs:range       owl:Class ;
+        rdfs:range       skos:Concept ;
         skos:definition  "The property <font color=\"#4f81bd\">statisticalMethod:StatisticalMethodTerm</font> contains a term from a controlled vocabulary that describes the statistical method used to interpret the results.  (e.g., weighted mean, median, concordia, discordia, etc)"@en .
 
 gsmlla:AnalyticalSession.parameter
         a                owl:ObjectProperty ;
         rdfs:domain      gsmlla:AnalyticalSession ;
-        rdfs:range       owl:Class ;
+        rdfs:range       skos:Concept ;
         skos:definition  "The property <font color=\"#4f81bd\">parameter</font> (<font color=\"#4f81bd\">OM::NamedValue</font>) contains a name/value pair to describe arbitrary environmental or instrument setting parameters that apply to an entire analytical session (e.g., voltage, current, temperature, vacuum). The \"name\" attribute of <font color=\"#4f81bd\">NamedValue</font> is a term from a controlled vocabulary."@en .
 
 gsmlla:AnalyticalInstrument.usedIn
@@ -153,13 +153,13 @@ gsmlla:AnalyticalProcess
 
 gsmlla:isotopicSystem
         a                owl:ObjectProperty ;
-        rdfs:range       owl:Class ;
+        rdfs:range       skos:Concept ;
         skos:definition  "The property <font color=\"#4f81bd\">isotopicSystem:IsotopicSystemName</font> contains a term from a controlled vocabulary that describes the isotopic system used to calculate geochronological age. A vocabulary would contain values such as: Ar-Ar, K-Ar, Nd-Sm, Pb-Pb, Rb-Sr, Re-Os, U-Pb, etc."@en .
 
 gsmlla:GeologicSpecimenPreparation.parameter
         a                owl:ObjectProperty ;
         rdfs:domain      gsmlla:GeologicSpecimenPreparation ;
-        rdfs:range       owl:Class ;
+        rdfs:range       skos:Concept ;
         skos:definition  "The property <font color=\"#4f81bd\">parameter</font> (<font color=\"#4f81bd\">OM::NamedValue</font>) contains name/value pair to describe arbitrary parameters used in this preparation step (e.g., mesh size in a sieving process, type of chemical additives, parameters in a mineral separation process). The \"<font color=\"#4f81bd\">name</font>\" attribute of <font color=\"#4f81bd\">NamedValue</font> shall be a term from a controlled vocabulary."@en .
 
 gsmlla:referenceDescription
