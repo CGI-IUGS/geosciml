@@ -3,7 +3,7 @@
 @prefix rdf:   <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
 @prefix owl:   <http://www.w3.org/2002/07/owl#> .
 @prefix xsd:   <http://www.w3.org/2001/XMLSchema#> .
-@prefix skos:  < http://www.w3.org/2004/02/skos/core#> .
+@prefix skos:  <http://www.w3.org/2004/02/skos/core#> .
 @prefix rdfs:  <http://www.w3.org/2000/01/rdf-schema#> .
 
 gsmll:GeologicUnitView.lithology
@@ -24,11 +24,6 @@ gsmll:GeomorphologicUnitView.observationMethod
         rdfs:range       xsd:string ;
         skos:definition  "If present, the property <font color=\"#4f81bd\">observationMethod:Primitive::CharacterString</font> contains a metadata snippet indicating how the spatial extent of the feature was determined. <font color=\"#4f81bd\">ObservationMethod</font> is a convenience property that provides a quick approach to observation metadata when data are reported using a feature view (as opposed to observation view)."@en .
 
-gsmll:contactType_uri
-        a                owl:DatatypeProperty ;
-        rdfs:range       xsd:string ;
-        skos:definition  "The property <font color=\"#4f81bd\">contactType_uri:Primitive::CharacterString</font> reports a URI referring to a controlled concept from a vocabulary defining the <font color=\"#4f81bd\">Contact</font> types."@en .
-
 gsmll:ContactView.specification_uri
         a                owl:DatatypeProperty ;
         rdfs:domain      gsmll:ContactView ;
@@ -41,8 +36,9 @@ gsmll:GeologicUnitView.genericSymbolizer
         rdfs:range       xsd:string ;
         skos:definition  "If present, the property <font color=\"#4f81bd\">genericSymbolizer:CharacterString</font> contains an identifier for a symbol from standard (locally or community defined) symbolization scheme for portrayal."@en .
 
-gsmll:geomorphologicFeatureType_uri
+gsmll:GeomorphologicUnitView.geomorphologicFeatureType_uri
         a                owl:DatatypeProperty ;
+        rdfs:domain      gsmll:GeomorphologicUnitView ;
         rdfs:range       xsd:string ;
         skos:definition  "If present, the property<font color=\"#4f81bd\"> geomorphologicFeatureType_uri:Primitive::CharacterString</font> reports a URI identifier of landform term drawn from a controlled vocabulary."@en .
 
@@ -64,17 +60,41 @@ gsmll:GeomorphologicUnitView.geologicHistory
         rdfs:range       xsd:string ;
         skos:definition  "If present, the property <font color=\"#4f81bd\">geologicHistory:Primitive::CharacterString</font> contains text, possibly formatted with formal syntax, for the description of the age of the <font color=\"#4f81bd\">GeomorphologicUnit</font> (where age is a sequence of events and may include process and environment information).  To report identifier from a controlled vocabulary, <font color=\"#4f81bd\">representativeAge_uri</font> shall be used."@en .
 
+gsmll:BoreholeView.inclinationType
+        a                owl:DatatypeProperty ;
+        rdfs:domain      gsmll:BoreholeView ;
+        rdfs:range       xsd:string ;
+        skos:definition  "If present, the property <font color=\"#4f81bd\">inclinationType:Primitive::CharacterString</font> indicates the type of inclination of the borehole (e.g., vertical, inclined up, inclined down, horizontal)."@en .
+
 gsmll:GeomorphologicUnitView.metadata_uri
         a                owl:DatatypeProperty ;
         rdfs:domain      gsmll:GeomorphologicUnitView ;
         rdfs:range       xsd:string ;
         skos:definition  "If present, the property <font color=\"#4f81bd\">metadata_uri:Primitive::CharacterString</font> contains a URI referring to a metadata record describing the provenance of data."@en .
 
+gsmll:ContactView.contactType
+        a                owl:DatatypeProperty ;
+        rdfs:domain      gsmll:ContactView ;
+        rdfs:range       xsd:string ;
+        skos:definition  "If present, the property <font color=\"#4f81bd\">contactType:Primitive::CharacterString</font> reports the type of <font color=\"#4f81bd\">Contact</font> (as defined in GeoSciML) as a human readable label.  To report an identifier from a controlled vocabulary, <font color=\"#4f81bd\">contactType_uri</font> shall be used."@en .
+
+gsmll:GeomorphologicUnitView.activity
+        a                owl:DatatypeProperty ;
+        rdfs:domain      gsmll:GeomorphologicUnitView ;
+        rdfs:range       xsd:string ;
+        skos:definition  "If present, the property <font color=\"#4f81bd\">activity:Primitive::CharacterString</font> contains a human readable term to specify if the feature is changing and how fast. E.g. active, dormant, stable.  To report an identifier from a controlled vocabulary, <font color=\"#4f81bd\">activity_uri</font> shall be used."@en .
+
 gsmll:BoreholeView.name
         a                owl:DatatypeProperty ;
         rdfs:domain      gsmll:BoreholeView ;
         rdfs:range       xsd:string ;
         skos:definition  "If present, the property <font color=\"#4f81bd\">name:Primitive::CharacterString</font> contains a human-readable display name for the borehole."@en .
+
+gsmll:GeologicSpecimenView.materialClass
+        a                owl:DatatypeProperty ;
+        rdfs:domain      gsmll:GeologicSpecimenView ;
+        rdfs:range       xsd:string ;
+        skos:definition  "If present, the property <font color=\"#4f81bd\">materialClass:Primitive::CharacterString</font> reports the classification of the material that comprises the specimen (e.g., rock, sediment, etc.).  To report an identifier from a controlled vocabulary, <font color=\"#4f81bd\">materialClass_uri</font> shall be used."@en .
 
 gsmll:SiteObservationView
         a                owl:Class ;
@@ -92,12 +112,6 @@ gsmll:GeologicUnitView.geologicHistory
         rdfs:range       xsd:string ;
         skos:definition  "If present, contains a human readable description in <font color=\"#4f81bd\">Primitive::CharacterString</font>, possibly formatted with formal syntax, of the age of the <font color=\"#4f81bd\">GeologicUnit</font> (where age is a sequence of events and may include process and environment information). To report an identifier from a controlled vocabulary, <font color=\"#4f81bd\">representativeAge_uri</font>, <font color=\"#4f81bd\">representativeOlderAge_uri</font>, <font color=\"#4f81bd\">representativeYoungerAge_uri</font> shall be used."@en .
 
-gsmll:GeologicSpecimenView.source
-        a                owl:DatatypeProperty ;
-        rdfs:domain      gsmll:GeologicSpecimenView ;
-        rdfs:range       xsd:string ;
-        skos:definition  "If present, the property <font color=\"#4f81bd\">source:Primitive::CharacterString</font> reports the citation of the source of the data (e.g., a publication, map, etc.)."@en .
-
 gsmll:ContactView.observationMethod
         a                owl:DatatypeProperty ;
         rdfs:domain      gsmll:ContactView ;
@@ -110,10 +124,11 @@ gsmll:SiteObservationView.shape
         rdfs:range       gsp:Geometry ;
         skos:definition  "The property <font color=\"#4f81bd\">shape:GM_Object</font> contains the geometry of the observation site."@en .
 
-gsmll:geomorphologicFeatureType
+gsmll:GeologicSpecimenView.source
         a                owl:DatatypeProperty ;
+        rdfs:domain      gsmll:GeologicSpecimenView ;
         rdfs:range       xsd:string ;
-        skos:definition  "If present, the property <font color=\"#4f81bd\">geomorphologicFeatureType:Primitive::CharacterString</font> contains a human readable term to specify a broad classification of landform. (e.g., anthropogenic, natural).  To report an identifier from a controlled vocabulary, <font color=\"#4f81bd\">geomorphologicFeatureType_uri </font>shall be used."@en .
+        skos:definition  "If present, the property <font color=\"#4f81bd\">source:Primitive::CharacterString</font> reports the citation of the source of the data (e.g., a publication, map, etc.)."@en .
 
 gsmll:SiteObservationView.metadata_uri
         a                owl:DatatypeProperty ;
@@ -137,6 +152,12 @@ gsmll:GeologicUnitView.shape
         rdfs:range       gsp:Geometry ;
         skos:definition  "The property <font color=\"#4f81bd\">shape:GEO::GM_Object</font> contains a geometry defining the extent of the feature of interest."@en .
 
+gsmll:ShearDisplacementStructureView.deformationStyle_uri
+        a                owl:DatatypeProperty ;
+        rdfs:domain      gsmll:ShearDisplacementStructureView ;
+        rdfs:range       xsd:string ;
+        skos:definition  "The property <font color=\"#4f81bd\">deformationStyle_uri:Primitive::CharacterString</font> contains a URI referring to a controlled concept from a vocabulary defining the <font color=\"#4f81bd\">ShearDisplacementStructure</font> deformation style."@en .
+
 gsmll:ContactView.source
         a                owl:DatatypeProperty ;
         rdfs:domain      gsmll:ContactView ;
@@ -149,11 +170,11 @@ gsmll:ShearDisplacementStructureView.name
         rdfs:range       xsd:string ;
         skos:definition  "If present, the property <font color=\"#4f81bd\">name:Primitive::CharacterString </font>contains a display name for the ShearDisplacementStructure."@en .
 
-gsmll:GeomorphologicUnitView.specification_uri
+gsmll:SiteObservationView.observedProperty
         a                owl:DatatypeProperty ;
-        rdfs:domain      gsmll:GeomorphologicUnitView ;
+        rdfs:domain      gsmll:SiteObservationView ;
         rdfs:range       xsd:string ;
-        skos:definition  "If present, the property <font color=\"#4f81bd\">specification_uri:Primitive::CharacterString</font> contains a URI referring the GeoSciML GeomorphologicUnit feature that describes the instance in detail."@en .
+        skos:definition  "If present, the property <font color=\"#4f81bd\">observedProperty:Primitive::CharacterString</font> contains a description of the property reported in this record. (E.g. orientation, age, density, gold content) as a human readable text. To report an identifier of the observedProperty from a controlled vocabulary, <font color=\"#4f81bd\">propertyType_uri </font>shall be used."@en .
 
 gsmll:ContactView.description
         a                owl:DatatypeProperty ;
@@ -161,10 +182,11 @@ gsmll:ContactView.description
         rdfs:range       xsd:string ;
         skos:definition  "If present, the property <font color=\"#4f81bd\">description:Primitive::CharacterString</font> reports the description of the Contact, typically taken from an entry on a geological map legend."@en .
 
-gsmll:parentBorehole_uri
+gsmll:GeomorphologicUnitView.specification_uri
         a                owl:DatatypeProperty ;
+        rdfs:domain      gsmll:GeomorphologicUnitView ;
         rdfs:range       xsd:string ;
-        skos:definition  "When present, the <font color=\"#4f81bd\">parentBorehole_uri:Primitive::CharacterString</font> contains a URI referring to one or more representations of a parent borehole (e.g., a parent well of a sidetrack wellbore).\r\n\r\nIf the borehole does not have any parent, this field shall be empty."@en .
+        skos:definition  "If present, the property <font color=\"#4f81bd\">specification_uri:Primitive::CharacterString</font> contains a URI referring the GeoSciML GeomorphologicUnit feature that describes the instance in detail."@en .
 
 gsmll:GeologicSpecimenView
         a                owl:Class ;
@@ -182,15 +204,23 @@ gsmll:GeologicUnitView.representativeYoungerAge_uri
         rdfs:range       xsd:string ;
         skos:definition  "The property <font color=\"#4f81bd\">representativeYoungerAge_uri:Primitive::CharacterString</font> shall contain a URI referring to a controlled concept specifying the most representative younger value in a range of stratigraphic age intervals for the <font color=\"#4f81bd\">GeologicUnit</font>. This will be defined entirely at the discretion of the data provider and may be a single event selected from the geologic feature's geological history or a value summarising the all or part of the feature's history."@en .
 
-gsmll:startPoint  a      owl:DatatypeProperty ;
+gsmll:BoreholeView.parentBorehole_uri
+        a                owl:DatatypeProperty ;
+        rdfs:domain      gsmll:BoreholeView ;
         rdfs:range       xsd:string ;
-        skos:definition  "If present, the property <font color=\"#4f81bd\">startPoint:Primitive::CharacterString</font> indicates the position relative to the ground surface where the borehole commenced (e.g., open pit floor or wall, underground, natural land surface, sea floor)."@en .
+        skos:definition  "When present, the <font color=\"#4f81bd\">parentBorehole_uri:Primitive::CharacterString</font> contains a URI referring to one or more representations of a parent borehole (e.g., a parent well of a sidetrack wellbore).\r\n\r\nIf the borehole does not have any parent, this field shall be empty."@en .
 
 gsmll:ShearDisplacementStructureView.identifier
         a                owl:DatatypeProperty ;
         rdfs:domain      gsmll:ShearDisplacementStructureView ;
         rdfs:range       xsd:string ;
         skos:definition  "Globally unique <font color=\"#4f81bd\">identifier:Primitive::CharacterString</font> shall uniquely identifies a tuple within the dataset. Identifiers shall be formatted as URI according to RFC 3986.  This URI could be used to access more detailed, such as a GeoSciML Basic, representation of the feature.\r\nIt should have the same value as the corresponding GeoSciML MappedFeature identifier if available."@en .
+
+gsmll:SiteObservationView.featureOfInterest
+        a                owl:DatatypeProperty ;
+        rdfs:domain      gsmll:SiteObservationView ;
+        rdfs:range       xsd:string ;
+        skos:definition  "If present, the property <font color=\"#4f81bd\">featureOfInterest:Primitive::CharacterString</font> contains a description of the geologic feature that the observation is intended to characterize, e.g. foliation (observed property= orientation), a geologic unit (observed property = age, magnetic susceptibility, density, uranium content).  The property is equivalent to O&M <font color=\"#4f81bd\">OM_Observation::featureOfInterest</font>. To report a URI of the feature of interest, <font color=\"#4f81bd\">featureOfInterest_uri</font> shall be used."@en .
 
 gsmll:ShearDisplacementStructureView.any
         a                owl:ObjectProperty ;
@@ -201,20 +231,11 @@ gsmll:ShearDisplacementStructureView.any
 gsmll:BoreholeView  a    owl:Class ;
         skos:definition  "<font color=\"#4f81bd\">BoreholeView</font> is a simplified view of a GeoSciML <font color=\"#4f81bd\">Borehole</font>. In GeoSciML terms, this will be an instance of a <font color=\"#4f81bd\">Borehole</font> feature with key property values summarised as labels (unconstrained character strings) or arbitrarily selected classifiers to be used for thematic mapping purposes. The latter are the properties suffixed with “_uri” and will contain URIs referring to controlled concepts in published vocabularies."@en .
 
-gsmll:deformationStyle_uri
-        a                owl:DatatypeProperty ;
-        rdfs:range       xsd:string ;
-        skos:definition  "The property <font color=\"#4f81bd\">deformationStyle_uri:Primitive::CharacterString</font> contains a URI referring to a controlled concept from a vocabulary defining the <font color=\"#4f81bd\">ShearDisplacementStructure</font> deformation style."@en .
-
 gsmll:SiteObservationView.source
         a                owl:DatatypeProperty ;
         rdfs:domain      gsmll:SiteObservationView ;
         rdfs:range       xsd:string ;
         skos:definition  "If present, the property <font color=\"#4f81bd\">source:Primitive::CharacterString</font> contains a text description of measurement procedure, processing, and provenance of data."@en .
-
-gsmll:elevation_srs  a   owl:DatatypeProperty ;
-        rdfs:range       xsd:string ;
-        skos:definition  "If present, the property <font color=\"#4f81bd\">elevation_srs:Primitive::CharacterString</font> is a URI of a spatial reference system of the elevation value. (e.g., mean sea level). Mandatory if elevation_m is populated. The SRS shall be a one dimensional vertical SRS (i.e., EPSG code in the range 5600-5799)."@en .
 
 gsmll:BoreholeView.genericSymbolizer
         a                owl:DatatypeProperty ;
@@ -222,26 +243,23 @@ gsmll:BoreholeView.genericSymbolizer
         rdfs:range       xsd:string ;
         skos:definition  "If present, the property <font color=\"#4f81bd\">genericSymbolizer:Primitive::CharacterString</font> contains an identifier for a symbol from standard (locally or community defined) symbolization scheme for portrayal."@en .
 
-gsmll:specimenType  a    owl:DatatypeProperty ;
-        rdfs:range       xsd:string ;
-        skos:definition  "If present, the property <font color=\"#4f81bd\">specimentType:Primitive::CharacterString</font> contains a human readable description of the specimen type (e.g., hand specimen, thin section, drill core).  To report an identifier from a controlled vocabulary, specimenType_uri shall be used."@en .
-
 gsmll:GeomorphologicUnitView.positionalAccuracy
         a                owl:DatatypeProperty ;
         rdfs:domain      gsmll:GeomorphologicUnitView ;
         rdfs:range       xsd:string ;
         skos:definition  "If present, the property <font color=\"#4f81bd\">positionAccuracy:Primitive::CharacterString</font> contains quantitative values defining the radius of an uncertainty buffer around a <font color=\"#4f81bd\">MappedFeature</font> (e.g., a <font color=\"#4f81bd\">positionalAccuracy</font> of 100 m for a line feature defines a buffer polygon of total width 200 m centred on the line)."@en .
 
-gsmll:representativeNumericAge
-        a                owl:DatatypeProperty ;
-        rdfs:range       xsd:double ;
-        skos:definition  "If present, the property <font color=\"#4f81bd\">representativeNumericAge:Primitive::Number</font> contains a numerical value of the representative age in million years (Ma)."@en .
-
 gsmll:GeomorphologicUnitView.description
         a                owl:DatatypeProperty ;
         rdfs:domain      gsmll:GeomorphologicUnitView ;
         rdfs:range       xsd:string ;
         skos:definition  "If present, the property <font color=\"#4f81bd\">description:Primitive::CharacterString</font> contains human readable text description of the GeomorphologicUnit, typically taken from an entry on a map legend."@en .
+
+gsmll:GeomorphologicUnitView.geomorphologicFeatureType
+        a                owl:DatatypeProperty ;
+        rdfs:domain      gsmll:GeomorphologicUnitView ;
+        rdfs:range       xsd:string ;
+        skos:definition  "If present, the property <font color=\"#4f81bd\">geomorphologicFeatureType:Primitive::CharacterString</font> contains a human readable term to specify a broad classification of landform. (e.g., anthropogenic, natural).  To report an identifier from a controlled vocabulary, <font color=\"#4f81bd\">geomorphologicFeatureType_uri </font>shall be used."@en .
 
 gsmll:GeologicSpecimenView.description
         a                owl:DatatypeProperty ;
@@ -255,20 +273,23 @@ gsmll:GeologicUnitView.positionalAccuracy
         rdfs:range       xsd:string ;
         skos:definition  "If present, the property <font color=\"#4f81bd\">positionalAccuracy:Primitive::CharacterString</font> is a quantitative value (a numerical value and a unit of length) defining the radius of an uncertainty buffer around a <font color=\"#4f81bd\">MappedFeature</font> (e.g., a <font color=\"#4f81bd\">positionalAccuracy</font> of 100 m for a line feature defines a buffer polygon of total width 200 m centred on the line)."@en .
 
-gsmll:observedValue  a   owl:DatatypeProperty ;
-        rdfs:range       xsd:string ;
-        skos:definition  "If present, the property <font color=\"#4f81bd\">observedValue:Primitive::CharacterString</font> contains the result of the observation. This field is implemented as a character string to allow reporting various type of values, the value may be numeric (e.g., 235) or textual (e.g., red). Units of measure shall be reported in <font color=\"#4f81bd\">observedValueUom</font>."@en .
-
-gsmll:observedProperty
+gsmll:BoreholeView.status
         a                owl:DatatypeProperty ;
+        rdfs:domain      gsmll:BoreholeView ;
         rdfs:range       xsd:string ;
-        skos:definition  "If present, the property <font color=\"#4f81bd\">observedProperty:Primitive::CharacterString</font> contains a description of the property reported in this record. (E.g. orientation, age, density, gold content) as a human readable text. To report an identifier of the observedProperty from a controlled vocabulary, <font color=\"#4f81bd\">propertyType_uri </font>shall be used."@en .
+        skos:definition  "If present, the property <font color=\"#4f81bd\">status:Primitive::CharacterString</font> reports the current status of the borehole (e.g., abandoned, completed, proposed, suspended)."@en .
 
 gsmll:SiteObservationView.label
         a                owl:DatatypeProperty ;
         rdfs:domain      gsmll:SiteObservationView ;
         rdfs:range       xsd:string ;
         skos:definition  "If present, the property <font color=\"#4f81bd\">label:Primitive::CharacterString</font> contains a short text string to associate with a symbol in a visualization/portrayal."@en .
+
+gsmll:ShearDisplacementStructureView.movementType_uri
+        a                owl:DatatypeProperty ;
+        rdfs:domain      gsmll:ShearDisplacementStructureView ;
+        rdfs:range       xsd:string ;
+        skos:definition  "The property <font color=\"#4f81bd\">movementType_uri:Primitive::CharacterString</font> contains a URI referring to a controlled concept from a vocabulary defining the ShearDisplacementStructure movement type."@en .
 
 gsmll:ContactView.metadata_uri
         a                owl:DatatypeProperty ;
@@ -292,14 +313,11 @@ gsmll:ContactView.shape
         rdfs:range       gsp:Geometry ;
         skos:definition  "The property <font color=\"#4f81bd\">shape:GM_Object</font> contains a geometry defining the extent of the contact feature."@en .
 
-gsmll:activity  a        owl:DatatypeProperty ;
-        rdfs:range       xsd:string ;
-        skos:definition  "If present, the property <font color=\"#4f81bd\">activity:Primitive::CharacterString</font> contains a human readable term to specify if the feature is changing and how fast. E.g. active, dormant, stable.  To report an identifier from a controlled vocabulary, <font color=\"#4f81bd\">activity_uri</font> shall be used."@en .
-
-gsmll:geologicUnitType
+gsmll:BoreholeView.drillStartDate
         a                owl:DatatypeProperty ;
+        rdfs:domain      gsmll:BoreholeView ;
         rdfs:range       xsd:string ;
-        skos:definition  "If present, the property <font color=\"#4f81bd\">geologicUnitType</font> (<font color=\"#4f81bd\">Primitive::CharacterString</font>) contains the type of <font color=\"#4f81bd\">GeologicUnit</font> (as defined in GeoSciML). To report an identifier from a controlled vocabulary, <font color=\"#4f81bd\">geologicUnitType_uri </font>shall be used."@en .
+        skos:definition  "If present, the property <font color=\"#4f81bd\">drillStartDate:Primitive::CharacterString</font> reports the date of the start of drilling formatted according to ISO8601 (e.g., 2012-03-17)."@en .
 
 gsmll:GeologicSpecimenView.any
         a                owl:ObjectProperty ;
@@ -307,9 +325,11 @@ gsmll:GeologicSpecimenView.any
         rdfs:range       owl:Class ;
         skos:definition  "A data provider can add an arbitrary number of extra properties, as long as the instance is conformant to GML Simple Feature Level 0."@en .
 
-gsmll:purpose  a         owl:DatatypeProperty ;
+gsmll:SiteObservationView.propertyType_uri
+        a                owl:DatatypeProperty ;
+        rdfs:domain      gsmll:SiteObservationView ;
         rdfs:range       xsd:string ;
-        skos:definition  "If present, the <font color=\"#4f81bd\">purpose:Primitive::CharacterString</font> property reports the purpose or purposes for which the borehole was drilled. (e.g., mineral exploration, hydrocarbon exploration, hydrocarbon production, groundwater monitoring, geothermal), possibly formatted with formal syntax."@en .
+        skos:definition  "The property <font color=\"#4f81bd\">propertyType_uri:Primitive:CharacterString</font> is functionally equivalent to <font color=\"#4f81bd\">OM_Observation::observedProperty</font>.  It contains a URI to a term from a controlled vocabulary of observed property types."@en .
 
 gsmll:GeologicUnitView.representativeLithology_uri
         a                owl:DatatypeProperty ;
@@ -317,11 +337,23 @@ gsmll:GeologicUnitView.representativeLithology_uri
         rdfs:range       xsd:string ;
         skos:definition  "The property <font color=\"#4f81bd\">representativeLithology_uri:Primitive::CharacterString</font> shall contain a URI referring to a controlled concept specifying the characteristic or representative lithology of the unit. This may be a concept that defines the super-type of all lithology values present within a <font color=\"#4f81bd\">GeologicUnit</font> or a concept defining the lithology of the dominant <font color=\"#4f81bd\">CompositionPart</font> (as defined in GeoSciML) of the unit."@en .
 
+gsmll:SiteObservationView.observationName
+        a                owl:DatatypeProperty ;
+        rdfs:domain      gsmll:SiteObservationView ;
+        rdfs:range       xsd:string ;
+        skos:definition  "If present, the property <font color=\"#4f81bd\">observationName:Primitive::CharacterString</font> contains a text identifying the observation."@en .
+
 gsmll:GeologicUnitView.description
         a                owl:DatatypeProperty ;
         rdfs:domain      gsmll:GeologicUnitView ;
         rdfs:range       xsd:string ;
         skos:definition  "If present, the property <font color=\"#4f81bd\">description:Primitive::CharacterString</font> is a description of the <font color=\"#4f81bd\">GeologicUnit</font>, typically taken from an entry on a geological map legend."@en .
+
+gsmll:BoreholeView.elevation_srs
+        a                owl:DatatypeProperty ;
+        rdfs:domain      gsmll:BoreholeView ;
+        rdfs:range       xsd:string ;
+        skos:definition  "If present, the property <font color=\"#4f81bd\">elevation_srs:Primitive::CharacterString</font> is a URI of a spatial reference system of the elevation value. (e.g., mean sea level). Mandatory if elevation_m is populated. The SRS shall be a one dimensional vertical SRS (i.e., EPSG code in the range 5600-5799)."@en .
 
 gsmll:SiteObservationView.identifier
         a                owl:DatatypeProperty ;
@@ -335,6 +367,12 @@ gsmll:GeomorphologicUnitView.identifier
         rdfs:range       xsd:string ;
         skos:definition  "Globally unique <font color=\"#4f81bd\">identifier:Primitive::CharacterString</font> shall uniquely identifies a tuple within the dataset. Identifiers shall be formatted as URI according to RFC 3986.  This URI could be used to access more detailed, such as a GeoSciML Basic, representation of the feature.\r\nIf present, the URI should resolve to a representation that corresponds to an instance of GeoSciML MappedFeature."@en .
 
+gsmll:ShearDisplacementStructureView.movementType
+        a                owl:DatatypeProperty ;
+        rdfs:domain      gsmll:ShearDisplacementStructureView ;
+        rdfs:range       xsd:string ;
+        skos:definition  "If present, the property <font color=\"#4f81bd\">movementType:Primitive::CharacterString</font> contains a human readable summary of the type of movement (e.g. dip-slip, strike-slip) on the <font color=\"#4f81bd\">ShearDisplacementStructure</font>. To report an identifier from a controlled vocabulary, <font color=\"#4f81bd\">movementType_uri </font>shall be used."@en .
+
 gsmll:ContactView.identifier
         a                owl:DatatypeProperty ;
         rdfs:domain      gsmll:ContactView ;
@@ -345,32 +383,17 @@ gsmll:ShearDisplacementStructureView
         a                owl:Class ;
         skos:definition  "<font color=\"#4f81bd\">ShearDisplacementStructureView</font> is a simplified view of a GeoSciML <font color=\"#4f81bd\">ShearDisplacementStructure</font>. In GeoSciML terms this will be an instance of a <font color=\"#4f81bd\">MappedFeature</font> with key property values from the associated <font color=\"#4f81bd\">ShearDisplacementStructure</font> feature summarised as labels (unconstrained character strings) or arbitrarily selected classifiers to be used for thematic mapping purposes. The latter are the properties suffixed with “_uri” and will contain URIs referring to controlled concepts in published vocabularies."@en .
 
-gsmll:featureOfInterest
-        a                owl:DatatypeProperty ;
-        rdfs:range       xsd:string ;
-        skos:definition  "If present, the property <font color=\"#4f81bd\">featureOfInterest:Primitive::CharacterString</font> contains a description of the geologic feature that the observation is intended to characterize, e.g. foliation (observed property= orientation), a geologic unit (observed property = age, magnetic susceptibility, density, uranium content).  The property is equivalent to O&M <font color=\"#4f81bd\">OM_Observation::featureOfInterest</font>. To report a URI of the feature of interest, <font color=\"#4f81bd\">featureOfInterest_uri</font> shall be used."@en .
-
-gsmll:unitType  a        owl:DatatypeProperty ;
-        rdfs:range       xsd:string ;
-        skos:definition  "If present, the property <font color=\"#4f81bd\">unitType:Primitive::CharacterString</font> contains a human readable term for the type of <font color=\"#4f81bd\">GeomorphologicUnit</font> (e.g., hill, crater, moraine, plain).  To report an identifier from a controlled vocabulary, <font color=\"#4f81bd\">unitType_uri</font> shall be used."@en .
-
-gsmll:movementType  a    owl:DatatypeProperty ;
-        rdfs:range       xsd:string ;
-        skos:definition  "If present, the property <font color=\"#4f81bd\">movementType:Primitive::CharacterString</font> contains a human readable summary of the type of movement (e.g. dip-slip, strike-slip) on the <font color=\"#4f81bd\">ShearDisplacementStructure</font>. To report an identifier from a controlled vocabulary, <font color=\"#4f81bd\">movementType_uri </font>shall be used."@en .
-
 gsmll:ContactView.any
         a                owl:ObjectProperty ;
         rdfs:domain      gsmll:ContactView ;
         rdfs:range       owl:Class ;
         skos:definition  "A data provider can add an arbitrary number of extra properties, as long as the instance is conformant to GML Simple Feature Level 0."@en .
 
-gsmll:symbolRotation  a  owl:DatatypeProperty ;
-        rdfs:range       xsd:integer ;
-        skos:definition  "If present, the <font color=\"#4f81bd\">symbolRotation:Integer</font> property contains an integer value between 0 and 359 to specify rotation of symbol at this location, e.g. rotation of a geologic strike and dip symbol to reflect the strike azimuth.  The angular convention shall be geographic angle (clockwise with 0 at geographic north pole, therefore 90 degree is east)."@en .
-
-gsmll:faultType  a       owl:DatatypeProperty ;
+gsmll:GeomorphologicUnitView.unitType
+        a                owl:DatatypeProperty ;
+        rdfs:domain      gsmll:GeomorphologicUnitView ;
         rdfs:range       xsd:string ;
-        skos:definition  "If present, the property <font color=\"#4f81bd\">faultType:Primitive::CharacterString</font> contains a human readable description of the type of <font color=\"#4f81bd\">ShearDisplacementStructure</font> (as defined in GeoSciML). To report an identifier from a controlled vocabulary, faultType_uri shall be used."@en .
+        skos:definition  "If present, the property <font color=\"#4f81bd\">unitType:Primitive::CharacterString</font> contains a human readable term for the type of <font color=\"#4f81bd\">GeomorphologicUnit</font> (e.g., hill, crater, moraine, plain).  To report an identifier from a controlled vocabulary, <font color=\"#4f81bd\">unitType_uri</font> shall be used."@en .
 
 gsmll:GeomorphologicUnitView.any
         a                owl:ObjectProperty ;
@@ -384,15 +407,17 @@ gsmll:SiteObservationView.positionalAccuracy
         rdfs:range       xsd:string ;
         skos:definition  "If present, the property <font color=\"#4f81bd\">positionalAccuracy:Primitive::CharacterString</font> provides an estimate of the position uncertainty for the site location. For numerical measurements, include a unit of measure in the description. (e.g., 50 metres, poor, good)."@en .
 
-gsmll:ShearDisplacementStructureView.positionalAccuracy
+gsmll:GeologicSpecimenView.samplingTime
         a                owl:DatatypeProperty ;
-        rdfs:domain      gsmll:ShearDisplacementStructureView ;
+        rdfs:domain      gsmll:GeologicSpecimenView ;
         rdfs:range       xsd:string ;
-        skos:definition  "If present, the property <font color=\"#4f81bd\">positionAccuracy:Primitive::CharacterString</font> contains quantitative representation defining the radius of an uncertainty buffer around a <font color=\"#4f81bd\">MappedFeature</font> (e.g., a <font color=\"#4f81bd\">positionalAccuracy</font> of 100 m for a line feature defines a buffer polygon of total width 200 m centred on the line)."@en .
+        skos:definition  "If present, the property <font color=\"#4f81bd\">samplingTime:Primitive::CharacterString</font> reports a date or a date with time of when the specimen was collected formatted according to ISO 8601.\r\n\r\nExamples:\r\n&nbsp;\r\n<ul>\r\n\t<li>2012-03-28</li>\r\n\t<li>2008-02-28T14:15:23-05</li>\r\n</ul>"@en .
 
-gsmll:operator  a        owl:DatatypeProperty ;
+gsmll:GeologicSpecimenView.specimenType_uri
+        a                owl:DatatypeProperty ;
+        rdfs:domain      gsmll:GeologicSpecimenView ;
         rdfs:range       xsd:string ;
-        skos:definition  "If present, the property <font color=\"#4f81bd\">operator:Primitive::CharacterString </font>reports the organisation or agency responsible for commissioning of the borehole (as opposed to the agency which drilled the borehole)."@en .
+        skos:definition  "The property <font color=\"#4f81bd\">specimentType_uri:Primitive::CharacterString</font> contains a URI link for a specimen type identifier from a controlled vocabulary."@en .
 
 gsmll:SiteObservationView.genericSymbolizer
         a                owl:DatatypeProperty ;
@@ -403,10 +428,11 @@ gsmll:SiteObservationView.genericSymbolizer
 gsmll:ContactView  a     owl:Class ;
         skos:definition  "<font color=\"#4f81bd\">ContactView</font> is a simplified view of a GeoSciML <font color=\"#4f81bd\">MappedFeature</font> with key property values from an associated <font color=\"#4f81bd\">Contact</font> feature.  These properties are summarised as labels (unconstrained character strings) or arbitrarily selected classifiers to be used for thematic mapping purposes. The latter are the properties suffixed with “_uri” and will contain URIs referring to controlled concepts in published vocabularies."@en .
 
-gsmll:propertyType_uri
+gsmll:ShearDisplacementStructureView.positionalAccuracy
         a                owl:DatatypeProperty ;
+        rdfs:domain      gsmll:ShearDisplacementStructureView ;
         rdfs:range       xsd:string ;
-        skos:definition  "The property <font color=\"#4f81bd\">propertyType_uri:Primitive:CharacterString</font> is functionally equivalent to <font color=\"#4f81bd\">OM_Observation::observedProperty</font>.  It contains a URI to a term from a controlled vocabulary of observed property types."@en .
+        skos:definition  "If present, the property <font color=\"#4f81bd\">positionAccuracy:Primitive::CharacterString</font> contains quantitative representation defining the radius of an uncertainty buffer around a <font color=\"#4f81bd\">MappedFeature</font> (e.g., a <font color=\"#4f81bd\">positionalAccuracy</font> of 100 m for a line feature defines a buffer polygon of total width 200 m centred on the line)."@en .
 
 gsmll:GeologicUnitView.identifier
         a                owl:DatatypeProperty ;
@@ -414,11 +440,23 @@ gsmll:GeologicUnitView.identifier
         rdfs:range       xsd:string ;
         skos:definition  "Globally unique <font color=\"#4f81bd\">identifier:Primitive::CharacterString</font> shall uniquely identifies a tuple within the dataset. Identifiers shall be formatted as URI according to RFC 3986.  This URI could be used to access more detailed, such as a GeoSciML Basic, representation of the feature\r\n\r\nThe identifier should have the same value as the corresponding GeoSciML <font color=\"#4f81bd\">MappedFeature</font> identifier, if available."@en .
 
+gsmll:ShearDisplacementStructureView.deformationStyle
+        a                owl:DatatypeProperty ;
+        rdfs:domain      gsmll:ShearDisplacementStructureView ;
+        rdfs:range       xsd:string ;
+        skos:definition  "If present, the property <font color=\"#4f81bd\">deformationStyle:Primitive::CharacterString </font>contain a human readable description of the style of deformation (e.g. brittle, ductile etc.) for the <font color=\"#4f81bd\">ShearDisplacementStructure</font>.  To report an identifier from a controlled vocabulary, <font color=\"#4f81bd\">deformationStyle_uri</font> shall be used."@en .
+
 gsmll:ContactView.name
         a                owl:DatatypeProperty ;
         rdfs:domain      gsmll:ContactView ;
         rdfs:range       xsd:string ;
         skos:definition  "If present, the property <font color=\"#4f81bd\">name:Primitive::CharacterString</font> reports the display name for the Contact."@en .
+
+gsmll:BoreholeView.driller
+        a                owl:DatatypeProperty ;
+        rdfs:domain      gsmll:BoreholeView ;
+        rdfs:range       xsd:string ;
+        skos:definition  "If present, the property <font color=\"#4f81bd\">driller:Primitive::CharacterString</font> reports the organisation responsible for drilling the borehole (as opposed to commissioning the borehole)."@en .
 
 gsmll:GeologicUnitView.source
         a                owl:DatatypeProperty ;
@@ -432,10 +470,6 @@ gsmll:ShearDisplacementStructureView.shape
         rdfs:range       gsp:Geometry ;
         skos:definition  "The property <font color=\"#4f81bd\">shape:GM_Object</font> contains a geometry defining the extent of the feature of interest."@en .
 
-gsmll:driller  a         owl:DatatypeProperty ;
-        rdfs:range       xsd:string ;
-        skos:definition  "If present, the property <font color=\"#4f81bd\">driller:Primitive::CharacterString</font> reports the organisation responsible for drilling the borehole (as opposed to commissioning the borehole)."@en .
-
 gsmll:GeologicSpecimenView.positionalAccuracy
         a                owl:DatatypeProperty ;
         rdfs:domain      gsmll:GeologicSpecimenView ;
@@ -448,23 +482,23 @@ gsmll:GeomorphologicUnitView.representativeLithology_uri
         rdfs:range       xsd:string ;
         skos:definition  "The property <font color=\"#4f81bd\">representativeLithology_uri:Primitive::CharacterString</font> contains a URI referring to a controlled concept specifying the characteristic or representative lithology of the unit. This may be a concept that defines the super-type of all lithology values present within a <font color=\"#4f81bd\">GeomorphologicUnit</font> or a concept defining the lithology of the dominant <font color=\"#4f81bd\">CompositionPart</font> (as defined in GeoSciML) of the unit."@en .
 
-gsmll:contactType  a     owl:DatatypeProperty ;
-        rdfs:range       xsd:string ;
-        skos:definition  "If present, the property <font color=\"#4f81bd\">contactType:Primitive::CharacterString</font> reports the type of <font color=\"#4f81bd\">Contact</font> (as defined in GeoSciML) as a human readable label.  To report an identifier from a controlled vocabulary, <font color=\"#4f81bd\">contactType_uri</font> shall be used."@en .
-
-gsmll:drillStartDate  a  owl:DatatypeProperty ;
-        rdfs:range       xsd:string ;
-        skos:definition  "If present, the property <font color=\"#4f81bd\">drillStartDate:Primitive::CharacterString</font> reports the date of the start of drilling formatted according to ISO8601 (e.g., 2012-03-17)."@en .
-
-gsmll:movementType_uri
+gsmll:GeologicSpecimenView.currentLocation
         a                owl:DatatypeProperty ;
+        rdfs:domain      gsmll:GeologicSpecimenView ;
         rdfs:range       xsd:string ;
-        skos:definition  "The property <font color=\"#4f81bd\">movementType_uri:Primitive::CharacterString</font> contains a URI referring to a controlled concept from a vocabulary defining the ShearDisplacementStructure movement type."@en .
+        skos:definition  "If present, the property <font color=\"#4f81bd\">currentLocation:Primitive::CharacterString</font> reports the current location of the specimen (e.g., a warehouse or other repository location)."@en .
 
-gsmll:boreholeMaterialCustodian
+gsmll:ShearDisplacementStructureView.faultType
         a                owl:DatatypeProperty ;
+        rdfs:domain      gsmll:ShearDisplacementStructureView ;
         rdfs:range       xsd:string ;
-        skos:definition  "If present, the property <font color=\"#4f81bd\">boreholeMaterialCustodian:Primitive::CharacterString</font> reports the organisation that is the custodian of the material recovered from the borehole."@en .
+        skos:definition  "If present, the property <font color=\"#4f81bd\">faultType:Primitive::CharacterString</font> contains a human readable description of the type of <font color=\"#4f81bd\">ShearDisplacementStructure</font> (as defined in GeoSciML). To report an identifier from a controlled vocabulary, faultType_uri shall be used."@en .
+
+gsmll:GeologicSpecimenView.samplingMethod
+        a                owl:DatatypeProperty ;
+        rdfs:domain      gsmll:GeologicSpecimenView ;
+        rdfs:range       xsd:string ;
+        skos:definition  "If present, the property <font color=\"#4f81bd\">samplingMethod:Primitive::CharacterString</font> reports the method used to collect the specimen (e.g., diamond drilling, field mapping survey)."@en .
 
 gsmll:ShearDisplacementStructureView.specification_uri
         a                owl:DatatypeProperty ;
@@ -478,6 +512,12 @@ gsmll:ShearDisplacementStructureView.representativeOlderAge_uri
         rdfs:range       xsd:string ;
         skos:definition  "The property <font color=\"#4f81bd\">representativeOlderAge_uri:Primitive:CharacterString</font> contains a URI referring to a controlled concept specifying the most representative lower value in a range of stratigraphic age intervals for the <font color=\"#4f81bd\">ShearDisplacementStructure</font>. This will be defined entirely at the discretion of the data provider and may be a single event selected from the geologic feature's geological history or a value summarising all or part of the feature's history."@en .
 
+gsmll:BoreholeView.operator
+        a                owl:DatatypeProperty ;
+        rdfs:domain      gsmll:BoreholeView ;
+        rdfs:range       xsd:string ;
+        skos:definition  "If present, the property <font color=\"#4f81bd\">operator:Primitive::CharacterString </font>reports the organisation or agency responsible for commissioning of the borehole (as opposed to the agency which drilled the borehole)."@en .
+
 gsmll:GeomorphologicUnitView.genericSymbolizer
         a                owl:DatatypeProperty ;
         rdfs:domain      gsmll:GeomorphologicUnitView ;
@@ -490,14 +530,17 @@ gsmll:GeologicUnitView.representativeAge_uri
         rdfs:range       xsd:string ;
         skos:definition  "The property <font color=\"#4f81bd\">representativeAge_uri:Primitive::CharacterString</font> shall  contain a URI referring to a controlled concept specifying the most representative stratigraphic age interval for the <font color=\"#4f81bd\">GeologicUnit</font>. This will be defined entirely at the discretion of the data provider and may be a single event selected from the geologic feature's geological history or a value summarising the all or part of the feature's history."@en .
 
-gsmll:inclinationType
+gsmll:BoreholeView.boreholeMaterialCustodian
         a                owl:DatatypeProperty ;
+        rdfs:domain      gsmll:BoreholeView ;
         rdfs:range       xsd:string ;
-        skos:definition  "If present, the property <font color=\"#4f81bd\">inclinationType:Primitive::CharacterString</font> indicates the type of inclination of the borehole (e.g., vertical, inclined up, inclined down, horizontal)."@en .
+        skos:definition  "If present, the property <font color=\"#4f81bd\">boreholeMaterialCustodian:Primitive::CharacterString</font> reports the organisation that is the custodian of the material recovered from the borehole."@en .
 
-gsmll:rank  a            owl:DatatypeProperty ;
+gsmll:SiteObservationView.siteName
+        a                owl:DatatypeProperty ;
+        rdfs:domain      gsmll:SiteObservationView ;
         rdfs:range       xsd:string ;
-        skos:definition  "If present, the property <font color=\"#4f81bd\">rank:Primitive::CharacterString</font> contain the rank of <font color=\"#4f81bd\">GeologicUnit</font> (as defined by ISC. e.g., group, formation, member)."@en .
+        skos:definition  "If present, the property <font color=\"#4f81bd\">siteName:Primitive::CharacterString</font> contains the name of the sampling feature at this location (e.g. a station number, a borehole)."@en .
 
 gsmll:BoreholeView.metadata_uri
         a                owl:DatatypeProperty ;
@@ -505,9 +548,23 @@ gsmll:BoreholeView.metadata_uri
         rdfs:range       xsd:string ;
         skos:definition  "If present, the property <font color=\"#4f81bd\">metadata_uri:Primitive::CharacterString</font> contains a URI referring to a metadata record describing the provenance of data."@en .
 
-gsmll:activity_uri  a    owl:DatatypeProperty ;
+gsmll:BoreholeView.drillingMethod
+        a                owl:DatatypeProperty ;
+        rdfs:domain      gsmll:BoreholeView ;
         rdfs:range       xsd:string ;
-        skos:definition  "If present, the <font color=\"#4f81bd\">activity_uri:Primitive::CharacterString</font> property reports a URI identifier of activity term drawn from a controlled vocabulary."@en .
+        skos:definition  "If present, the property <font color=\"#4f81bd\">drillingMethod:Primitive::CharacterString</font> indicates the drilling method, or methods, used for this borehole (e.g., RAB, auger, diamond core drilling, air core drilling, piston), possibly formatted with formal syntax."@en .
+
+gsmll:BoreholeView.purpose
+        a                owl:DatatypeProperty ;
+        rdfs:domain      gsmll:BoreholeView ;
+        rdfs:range       xsd:string ;
+        skos:definition  "If present, the <font color=\"#4f81bd\">purpose:Primitive::CharacterString</font> property reports the purpose or purposes for which the borehole was drilled. (e.g., mineral exploration, hydrocarbon exploration, hydrocarbon production, groundwater monitoring, geothermal), possibly formatted with formal syntax."@en .
+
+gsmll:SiteObservationView.observedValue
+        a                owl:DatatypeProperty ;
+        rdfs:domain      gsmll:SiteObservationView ;
+        rdfs:range       xsd:string ;
+        skos:definition  "If present, the property <font color=\"#4f81bd\">observedValue:Primitive::CharacterString</font> contains the result of the observation. This field is implemented as a character string to allow reporting various type of values, the value may be numeric (e.g., 235) or textual (e.g., red). Units of measure shall be reported in <font color=\"#4f81bd\">observedValueUom</font>."@en .
 
 gsmll:GeologicUnitView.any
         a                owl:ObjectProperty ;
@@ -521,14 +578,17 @@ gsmll:GeologicSpecimenView.shape
         rdfs:range       gsp:Geometry ;
         skos:definition  "The property <font color=\"#4f81bd\">shape:GM_Object </font>contains a geometry of the specimen (generally a point)."@en .
 
-gsmll:geologicUnitType_uri
+gsmll:GeomorphologicUnitView.activity_uri
         a                owl:DatatypeProperty ;
+        rdfs:domain      gsmll:GeomorphologicUnitView ;
         rdfs:range       xsd:string ;
-        skos:definition  "The property <font color=\"#4f81bd\">geologicUnitType_uri:Primitive::CharacterString</font> contains a URI referring to a controlled concept from a vocabulary defining the <font color=\"#4f81bd\">GeologicUnit</font> types."@en .
+        skos:definition  "If present, the <font color=\"#4f81bd\">activity_uri:Primitive::CharacterString</font> property reports a URI identifier of activity term drawn from a controlled vocabulary."@en .
 
-gsmll:unitType_uri  a    owl:DatatypeProperty ;
+gsmll:GeologicUnitView.specification_uri
+        a                owl:DatatypeProperty ;
+        rdfs:domain      gsmll:GeologicUnitView ;
         rdfs:range       xsd:string ;
-        skos:definition  "If present, the property <font color=\"#4f81bd\">unitType_uri:Primitive::CharacterString</font> reports a URI referring to a controlled concept from a vocabulary defining the <font color=\"#4f81bd\">GeomorphologicUnit</font> types."@en .
+        skos:definition  "If present, the property <font color=\"#4f81bd\">specification_uri:Primitive::CharacterString </font>shall contain a URI referring the GeoSciML <font color=\"#4f81bd\">GeologicUnit</font> feature that describes the instance in detail."@en .
 
 gsmll:GeologicUnitView.representativeOlderAge_uri
         a                owl:DatatypeProperty ;
@@ -542,16 +602,11 @@ gsmll:ShearDisplacementStructureView.observationMethod
         rdfs:range       xsd:string ;
         skos:definition  "If present, the property <font color=\"#4f81bd\">observationMethod:Primitive::CharacterString</font> contains a metadata snippet indicating how the spatial extent of the feature was determined. <font color=\"#4f81bd\">ObservationMethod</font> is a convenience property that provides a quick and dirty approach to observation metadata when data are reported using a feature view (as opposed to observation view)."@en .
 
-gsmll:boreholeLength_m
+gsmll:GeomorphologicUnitView.unitType_uri
         a                owl:DatatypeProperty ;
-        rdfs:range       xsd:double ;
-        skos:definition  "If present, the property <font color=\"#4f81bd\">boreholeLength_m:Primitive::Number </font>reports the length of a borehole, in metres, as determined by the data provider. Length may have different sources (e.g., driller's measurement, logger's measurement, survey measurement)."@en .
-
-gsmll:GeologicUnitView.specification_uri
-        a                owl:DatatypeProperty ;
-        rdfs:domain      gsmll:GeologicUnitView ;
+        rdfs:domain      gsmll:GeomorphologicUnitView ;
         rdfs:range       xsd:string ;
-        skos:definition  "If present, the property <font color=\"#4f81bd\">specification_uri:Primitive::CharacterString </font>shall contain a URI referring the GeoSciML <font color=\"#4f81bd\">GeologicUnit</font> feature that describes the instance in detail."@en .
+        skos:definition  "If present, the property <font color=\"#4f81bd\">unitType_uri:Primitive::CharacterString</font> reports a URI referring to a controlled concept from a vocabulary defining the <font color=\"#4f81bd\">GeomorphologicUnit</font> types."@en .
 
 gsmll:BoreholeView.identifier
         a                owl:DatatypeProperty ;
@@ -559,15 +614,17 @@ gsmll:BoreholeView.identifier
         rdfs:range       xsd:string ;
         skos:definition  "Globally unique <font color=\"#4f81bd\">identifier:Primitive::CharacterString</font> shall uniquely identifies a tuple within the dataset. Identifiers shall be formatted as URI according to RFC 3986.  This URI could be used to access more detailed, such as a GeoSciML Basic, representation of the feature.\r\n\r\nidentifier SHOULD resolve to a representation of a GeoSciML Borehole."@en .
 
+gsmll:GeologicSpecimenView.metadata_uri
+        a                owl:DatatypeProperty ;
+        rdfs:domain      gsmll:GeologicSpecimenView ;
+        rdfs:range       xsd:string ;
+        skos:definition  "If present, the property <font color=\"#4f81bd\">metadata_uri:Primitive::CharacterString</font> contains a URI link to a metadata document."@en .
+
 gsmll:ShearDisplacementStructureView.representativeAge_uri
         a                owl:DatatypeProperty ;
         rdfs:domain      gsmll:ShearDisplacementStructureView ;
         rdfs:range       xsd:string ;
         skos:definition  "The property <font color=\"#4f81bd\">representativeAge_uri:Primitive::CharacterString</font> contains a URI referring to a controlled concept specifying the most representative stratigraphic age interval for the <font color=\"#4f81bd\">ShearDisplacementStructure</font>. This will be defined entirely at the discretion of the data provider and may be a single event selected from the geologic feature's geological history or a value summarising all or part of the feature's history."@en .
-
-gsmll:siteName  a        owl:DatatypeProperty ;
-        rdfs:range       xsd:string ;
-        skos:definition  "If present, the property <font color=\"#4f81bd\">siteName:Primitive::CharacterString</font> contains the name of the sampling feature at this location (e.g. a station number, a borehole)."@en .
 
 gsmll:ContactView.genericSymbolizer
         a                owl:DatatypeProperty ;
@@ -575,34 +632,36 @@ gsmll:ContactView.genericSymbolizer
         rdfs:range       xsd:string ;
         skos:definition  "If present, the <font color=\"#4f81bd\">genericSymbolizer:Primitive::CharacterString</font> property contains an identifier for a symbol from standard (locally or community defined) symbolization scheme for portrayal."@en .
 
-gsmll:GeologicSpecimenView.metadata_uri
-        a                owl:DatatypeProperty ;
-        rdfs:domain      gsmll:GeologicSpecimenView ;
-        rdfs:range       xsd:string ;
-        skos:definition  "If present, the property <font color=\"#4f81bd\">metadata_uri:Primitive::CharacterString</font> contains a URI link to a metadata document."@en .
-
-gsmll:materialClass_uri
-        a                owl:DatatypeProperty ;
-        rdfs:range       xsd:string ;
-        skos:definition  "The property <font color=\"#4f81bd\">materialClass_uri:Primitive::CharacterString </font>contains a URI link for a class of material drawn from a controlled vocabulary."@en .
-
 gsmll:GeologicSpecimenView.identifier
         a                owl:DatatypeProperty ;
         rdfs:domain      gsmll:GeologicSpecimenView ;
         rdfs:range       xsd:string ;
         skos:definition  "Globally unique identifier (eg, an IGSN sample number).  Should have the same value as a corresponding GeoSciML GeologicSpecimen.  Globally unique <font color=\"#4f81bd\">identifier:Primitive::CharacterString</font> shall uniquely identifies a tuple within the dataset. Identifiers shall be formatted as URI according to RFC 3986.  This URI could be used to access more detailed, such as a GeoSciML Basic, representation of the feature\r\n\r\nIf present, the URI should resolve to a representation that corresponds to an instance of GeoSciML GeologicSpecimen."@en .
 
+gsmll:ShearDisplacementStructureView.displacement
+        a                owl:DatatypeProperty ;
+        rdfs:domain      gsmll:ShearDisplacementStructureView ;
+        rdfs:range       xsd:string ;
+        skos:definition  "If present, the property <font color=\"#4f81bd\">displacement:Primitive::CharacterString</font> contains a text summarising the displacement across the <font color=\"#4f81bd\">ShearDisplacementStructure</font>."@en .
+
+gsmll:BoreholeView.drillEndDate
+        a                owl:DatatypeProperty ;
+        rdfs:domain      gsmll:BoreholeView ;
+        rdfs:range       xsd:string ;
+        skos:definition  "If present, the property <font color=\"#4f81bd\">drillEndData:Primitive::CharacterString</font> reports the date of the end of drilling formatted according to ISO8601 (e.g., 2012-03-28)."@en .
+
+gsmll:ContactView.contactType_uri
+        a                owl:DatatypeProperty ;
+        rdfs:domain      gsmll:ContactView ;
+        rdfs:range       xsd:string ;
+        skos:definition  "The property <font color=\"#4f81bd\">contactType_uri:Primitive::CharacterString</font> reports a URI referring to a controlled concept from a vocabulary defining the <font color=\"#4f81bd\">Contact</font> types."@en .
+
 <http://geosciml.org/ont/gsmll>
         a                owl:Ontology ;
-        skos:definition  "The GeoSciML Lite (previously name \"Portrayal\") schema standardizes the interaction (request/response formats) with layer-based map services. It is best thought of as a view of GeoSciML and O&M data that denormalizes the data and concatenates complex property values into single, human-readable, labels and returns single, representative, values from controlled vocabularies for properties multi-valued properties that can be used when generating thematic maps, or portrayals, of the data.\r\n\r\nIt is separate to, but harmonized with, GeoSciML and O&M and conforms to the level 0 of the Simple Features Profile for GML (link). Labels, will be 'free-text' fields that will be, in robust services, well-structured summaries of complex GeoSciML data, while the representative thematic properties will be URIs of concepts in a controlled vocabulary (for example CGI Simple Lithology). There will also be links, via identifier URIs, providing hooks to full GeoSciML or O&M representations of a the geologic feature in question."@en ;
         owl:imports      <http://www.opengis.net/ont/geosparql> ;
         owl:versionIRI   "http://geosciml.org/ont/gsmll/4.1.0" ;
-        owl:versionInfo  "4.1.0" .
-
-gsmll:deformationStyle
-        a                owl:DatatypeProperty ;
-        rdfs:range       xsd:string ;
-        skos:definition  "If present, the property <font color=\"#4f81bd\">deformationStyle:Primitive::CharacterString </font>contain a human readable description of the style of deformation (e.g. brittle, ductile etc.) for the <font color=\"#4f81bd\">ShearDisplacementStructure</font>.  To report an identifier from a controlled vocabulary, <font color=\"#4f81bd\">deformationStyle_uri</font> shall be used."@en .
+        owl:versionInfo  "4.1.0" ;
+        skos:definition  "The GeoSciML Lite (previously name \"Portrayal\") schema standardizes the interaction (request/response formats) with layer-based map services. It is best thought of as a view of GeoSciML and O&M data that denormalizes the data and concatenates complex property values into single, human-readable, labels and returns single, representative, values from controlled vocabularies for properties multi-valued properties that can be used when generating thematic maps, or portrayals, of the data.\r\n\r\nIt is separate to, but harmonized with, GeoSciML and O&M and conforms to the level 0 of the Simple Features Profile for GML (link). Labels, will be 'free-text' fields that will be, in robust services, well-structured summaries of complex GeoSciML data, while the representative thematic properties will be URIs of concepts in a controlled vocabulary (for example CGI Simple Lithology). There will also be links, via identifier URIs, providing hooks to full GeoSciML or O&M representations of a the geologic feature in question."@en .
 
 gsmll:GeologicSpecimenView.genericSymbolizer
         a                owl:DatatypeProperty ;
@@ -634,13 +693,11 @@ gsmll:GeomorphologicUnitView.shape
         rdfs:range       gsp:Geometry ;
         skos:definition  "The property <font color=\"#4f81bd\">shape:GM_Object</font> contains a geometry defining the extent of the feature of interest."@en .
 
-gsmll:status  a          owl:DatatypeProperty ;
+gsmll:GeologicSpecimenView.materialClass_uri
+        a                owl:DatatypeProperty ;
+        rdfs:domain      gsmll:GeologicSpecimenView ;
         rdfs:range       xsd:string ;
-        skos:definition  "If present, the property <font color=\"#4f81bd\">status:Primitive::CharacterString</font> reports the current status of the borehole (e.g., abandoned, completed, proposed, suspended)."@en .
-
-gsmll:elevation_m  a     owl:DatatypeProperty ;
-        rdfs:range       xsd:double ;
-        skos:definition  "If present, the property <font color=\"#4f81bd\">elevation_m:Primitive::Number</font> reports the elevation data, in metres, for the borehole (i.e., wellbore) start point. This is a compromise approach to allow for delivery of legacy 2D data without elevation data, and for software that cannot process a 3D <font color=\"#4f81bd\">GM_Point</font>."@en .
+        skos:definition  "The property <font color=\"#4f81bd\">materialClass_uri:Primitive::CharacterString </font>contains a URI link for a class of material drawn from a controlled vocabulary."@en .
 
 gsmll:ContactView.positionalAccuracy
         a                owl:DatatypeProperty ;
@@ -672,17 +729,17 @@ gsmll:GeologicUnitView.numericOlderAge
         rdfs:range       xsd:double ;
         skos:definition  "If present, the property <font color=\"#4f81bd\">numericOlderAge</font> age is a numerical representation (<font color=\"#4f81bd\">Primitive::Number</font>) of the unit’s older age in million years (Ma)."@en .
 
-gsmll:materialClass  a   owl:DatatypeProperty ;
-        rdfs:range       xsd:string ;
-        skos:definition  "If present, the property <font color=\"#4f81bd\">materialClass:Primitive::CharacterString</font> reports the classification of the material that comprises the specimen (e.g., rock, sediment, etc.).  To report an identifier from a controlled vocabulary, <font color=\"#4f81bd\">materialClass_uri</font> shall be used."@en .
+gsmll:GeomorphologicUnitView.representativeNumericAge
+        a                owl:DatatypeProperty ;
+        rdfs:domain      gsmll:GeomorphologicUnitView ;
+        rdfs:range       xsd:double ;
+        skos:definition  "If present, the property <font color=\"#4f81bd\">representativeNumericAge:Primitive::Number</font> contains a numerical value of the representative age in million years (Ma)."@en .
 
-gsmll:samplingTime  a    owl:DatatypeProperty ;
-        rdfs:range       xsd:string ;
-        skos:definition  "If present, the property <font color=\"#4f81bd\">samplingTime:Primitive::CharacterString</font> reports a date or a date with time of when the specimen was collected formatted according to ISO 8601.\r\n\r\nExamples:\r\n&nbsp;\r\n<ul>\r\n\t<li>2012-03-28</li>\r\n\t<li>2008-02-28T14:15:23-05</li>\r\n</ul>"@en .
-
-gsmll:drillingMethod  a  owl:DatatypeProperty ;
-        rdfs:range       xsd:string ;
-        skos:definition  "If present, the property <font color=\"#4f81bd\">drillingMethod:Primitive::CharacterString</font> indicates the drilling method, or methods, used for this borehole (e.g., RAB, auger, diamond core drilling, air core drilling, piston), possibly formatted with formal syntax."@en .
+gsmll:BoreholeView.boreholeLength_m
+        a                owl:DatatypeProperty ;
+        rdfs:domain      gsmll:BoreholeView ;
+        rdfs:range       xsd:double ;
+        skos:definition  "If present, the property <font color=\"#4f81bd\">boreholeLength_m:Primitive::Number </font>reports the length of a borehole, in metres, as determined by the data provider. Length may have different sources (e.g., driller's measurement, logger's measurement, survey measurement)."@en .
 
 gsmll:BoreholeView.positionalAccuracy
         a                owl:DatatypeProperty ;
@@ -690,15 +747,29 @@ gsmll:BoreholeView.positionalAccuracy
         rdfs:range       xsd:string ;
         skos:definition  "If present, the property <font color=\"#4f81bd\">positionalAccuracy:Primitive::CharacterString</font> reports an estimate of the accuracy of the location of the borehole collar location.  Ideally, this would be a quantitative estimate of accuracy (e.g., 20 metres)."@en .
 
-gsmll:featureOfInterest_uri
+gsmll:GeologicUnitView.rank
         a                owl:DatatypeProperty ;
+        rdfs:domain      gsmll:GeologicUnitView ;
         rdfs:range       xsd:string ;
-        skos:definition  "The property <font color=\"#4f81bd\">featureOfInterest:Primitive::CharacterString</font> is functionally equivalent to <font color=\"#4f81bd\">OM_Observation::featureOfInterest</font> of IS19156.  It contains a URI link to a representation of the feature of interest (e.g., a GeoSciML geologic unit or structure)."@en .
+        skos:definition  "If present, the property <font color=\"#4f81bd\">rank:Primitive::CharacterString</font> contain the rank of <font color=\"#4f81bd\">GeologicUnit</font> (as defined by ISC. e.g., group, formation, member)."@en .
 
-gsmll:specimenType_uri
+gsmll:BoreholeView.elevation_m
         a                owl:DatatypeProperty ;
+        rdfs:domain      gsmll:BoreholeView ;
+        rdfs:range       xsd:double ;
+        skos:definition  "If present, the property <font color=\"#4f81bd\">elevation_m:Primitive::Number</font> reports the elevation data, in metres, for the borehole (i.e., wellbore) start point. This is a compromise approach to allow for delivery of legacy 2D data without elevation data, and for software that cannot process a 3D <font color=\"#4f81bd\">GM_Point</font>."@en .
+
+gsmll:SiteObservationView.observedValueUom
+        a                owl:DatatypeProperty ;
+        rdfs:domain      gsmll:SiteObservationView ;
         rdfs:range       xsd:string ;
-        skos:definition  "The property <font color=\"#4f81bd\">specimentType_uri:Primitive::CharacterString</font> contains a URI link for a specimen type identifier from a controlled vocabulary."@en .
+        skos:definition  "If relevant, the property <font color=\"#4f81bd\">observedValueUom:Primitive::CharacterString</font> contains the unit of measure for a numerical value of an observation or measurement, preferably from a controlled vocabulary."@en .
+
+gsmll:GeologicUnitView.geologicUnitType
+        a                owl:DatatypeProperty ;
+        rdfs:domain      gsmll:GeologicUnitView ;
+        rdfs:range       xsd:string ;
+        skos:definition  "If present, the property <font color=\"#4f81bd\">geologicUnitType</font> (<font color=\"#4f81bd\">Primitive::CharacterString</font>) contains the type of <font color=\"#4f81bd\">GeologicUnit</font> (as defined in GeoSciML). To report an identifier from a controlled vocabulary, <font color=\"#4f81bd\">geologicUnitType_uri </font>shall be used."@en .
 
 gsmll:BoreholeView.shape
         a                owl:ObjectProperty ;
@@ -718,9 +789,11 @@ gsmll:BoreholeView.any
         rdfs:range       owl:Class ;
         skos:definition  "A data provider may add an arbitrary number of extra properties, as long as the instance is conformant to GML Simple Feature Level 0."@en .
 
-gsmll:drillEndDate  a    owl:DatatypeProperty ;
+gsmll:GeologicSpecimenView.specimenType
+        a                owl:DatatypeProperty ;
+        rdfs:domain      gsmll:GeologicSpecimenView ;
         rdfs:range       xsd:string ;
-        skos:definition  "If present, the property <font color=\"#4f81bd\">drillEndData:Primitive::CharacterString</font> reports the date of the end of drilling formatted according to ISO8601 (e.g., 2012-03-28)."@en .
+        skos:definition  "If present, the property <font color=\"#4f81bd\">specimentType:Primitive::CharacterString</font> contains a human readable description of the specimen type (e.g., hand specimen, thin section, drill core).  To report an identifier from a controlled vocabulary, specimenType_uri shall be used."@en .
 
 gsmll:GeomorphologicUnitView.name
         a                owl:DatatypeProperty ;
@@ -734,11 +807,23 @@ gsmll:SiteObservationView.description
         rdfs:range       xsd:string ;
         skos:definition  "If present, the property <font color=\"#4f81bd\">description:Primitive::CharacterString</font> contains a text string providing descriptive information about the observation."@en .
 
+gsmll:BoreholeView.startPoint
+        a                owl:DatatypeProperty ;
+        rdfs:domain      gsmll:BoreholeView ;
+        rdfs:range       xsd:string ;
+        skos:definition  "If present, the property <font color=\"#4f81bd\">startPoint:Primitive::CharacterString</font> indicates the position relative to the ground surface where the borehole commenced (e.g., open pit floor or wall, underground, natural land surface, sea floor)."@en .
+
 gsmll:ShearDisplacementStructureView.numericYoungerAge
         a                owl:DatatypeProperty ;
         rdfs:domain      gsmll:ShearDisplacementStructureView ;
         rdfs:range       xsd:double ;
         skos:definition  "If present, the property <font color=\"#4f81bd\">numericYoungerAge:Primitive::Number</font> reports the younger age of the fault/shear structure, represented million years (Ma)."@en .
+
+gsmll:SiteObservationView.symbolRotation
+        a                owl:DatatypeProperty ;
+        rdfs:domain      gsmll:SiteObservationView ;
+        rdfs:range       xsd:integer ;
+        skos:definition  "If present, the <font color=\"#4f81bd\">symbolRotation:Integer</font> property contains an integer value between 0 and 359 to specify rotation of symbol at this location, e.g. rotation of a geologic strike and dip symbol to reflect the strike azimuth.  The angular convention shall be geographic angle (clockwise with 0 at geographic north pole, therefore 90 degree is east)."@en .
 
 gsmll:SiteObservationView.observationMethod
         a                owl:DatatypeProperty ;
@@ -752,28 +837,17 @@ gsmll:ShearDisplacementStructureView.genericSymbolizer
         rdfs:range       xsd:string ;
         skos:definition  "If present, the property <font color=\"#4f81bd\">genericSymbolizer:Primitive::CharacterString</font> contains an identifier for a symbol from standard (locally or community defined) symbolization scheme for portrayal."@en .
 
-gsmll:observationName
+gsmll:SiteObservationView.featureOfInterest_uri
         a                owl:DatatypeProperty ;
+        rdfs:domain      gsmll:SiteObservationView ;
         rdfs:range       xsd:string ;
-        skos:definition  "If present, the property <font color=\"#4f81bd\">observationName:Primitive::CharacterString</font> contains a text identifying the observation."@en .
+        skos:definition  "The property <font color=\"#4f81bd\">featureOfInterest:Primitive::CharacterString</font> is functionally equivalent to <font color=\"#4f81bd\">OM_Observation::featureOfInterest</font> of IS19156.  It contains a URI link to a representation of the feature of interest (e.g., a GeoSciML geologic unit or structure)."@en .
 
-gsmll:faultType_uri  a   owl:DatatypeProperty ;
+gsmll:ShearDisplacementStructureView.faultType_uri
+        a                owl:DatatypeProperty ;
+        rdfs:domain      gsmll:ShearDisplacementStructureView ;
         rdfs:range       xsd:string ;
         skos:definition  "The property <font color=\"#4f81bd\">faultType_uri:Primitive::CharacterString</font> contains a URI referring to a controlled concept from a vocabulary defining the fault (<font color=\"#4f81bd\">ShearDisplacementStructure</font>) type."@en .
-
-gsmll:observedValueUom
-        a                owl:DatatypeProperty ;
-        rdfs:range       xsd:string ;
-        skos:definition  "If relevant, the property <font color=\"#4f81bd\">observedValueUom:Primitive::CharacterString</font> contains the unit of measure for a numerical value of an observation or measurement, preferably from a controlled vocabulary."@en .
-
-gsmll:currentLocation
-        a                owl:DatatypeProperty ;
-        rdfs:range       xsd:string ;
-        skos:definition  "If present, the property <font color=\"#4f81bd\">currentLocation:Primitive::CharacterString</font> reports the current location of the specimen (e.g., a warehouse or other repository location)."@en .
-
-gsmll:displacement  a    owl:DatatypeProperty ;
-        rdfs:range       xsd:string ;
-        skos:definition  "If present, the property <font color=\"#4f81bd\">displacement:Primitive::CharacterString</font> contains a text summarising the displacement across the <font color=\"#4f81bd\">ShearDisplacementStructure</font>."@en .
 
 gsmll:BoreholeView.description
         a                owl:DatatypeProperty ;
@@ -787,9 +861,11 @@ gsmll:ShearDisplacementStructureView.representativeYoungerAge_uri
         rdfs:range       xsd:string ;
         skos:definition  "The property <font color=\"#4f81bd\">representativeYoungerAge_uri:Primitive::CharacterString</font> contains a URI referring to a controlled concept specifying the most representative upper value in a range of stratigraphic age intervals for the <font color=\"#4f81bd\">ShearDisplacementStructure</font>. This will be defined entirely at the discretion of the data provider and may be a single event selected from the geologic feature's geological history or a value summarising all or part of the feature's history."@en .
 
-gsmll:samplingMethod  a  owl:DatatypeProperty ;
+gsmll:GeologicUnitView.geologicUnitType_uri
+        a                owl:DatatypeProperty ;
+        rdfs:domain      gsmll:GeologicUnitView ;
         rdfs:range       xsd:string ;
-        skos:definition  "If present, the property <font color=\"#4f81bd\">samplingMethod:Primitive::CharacterString</font> reports the method used to collect the specimen (e.g., diamond drilling, field mapping survey)."@en .
+        skos:definition  "The property <font color=\"#4f81bd\">geologicUnitType_uri:Primitive::CharacterString</font> contains a URI referring to a controlled concept from a vocabulary defining the <font color=\"#4f81bd\">GeologicUnit</font> types."@en .
 
 gsmll:GeologicUnitView.numericYoungerAge
         a                owl:DatatypeProperty ;

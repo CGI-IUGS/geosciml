@@ -5,45 +5,50 @@
 @prefix owl:   <http://www.w3.org/2002/07/owl#> .
 @prefix meta:  <http://def.seegrid.csiro.au/isotc211/iso19115/2003/citation> .
 @prefix xsd:   <http://www.w3.org/2001/XMLSchema#> .
-@prefix skos:  < http://www.w3.org/2004/02/skos/core#> .
+@prefix skos:  <http://www.w3.org/2004/02/skos/core#> .
 @prefix rdfs:  <http://www.w3.org/2000/01/rdf-schema#> .
 @prefix time:  <http://www.w3.org/2006/time#> .
 @prefix gsmlbh: <http://geosciml.org/ont/gsmlbh#> .
 
-gsmlbh:relatedBorehole
+gsmlbh:BoreholeInterval.collectionIdentifier
         a                owl:ObjectProperty ;
-        rdfs:range       gsmlbh:Borehole ;
-        skos:definition  "The hole that has this collar for its start point"@en .
+        rdfs:domain      gsmlbh:BoreholeInterval ;
+        rdfs:range       rdfs:Resource ;
+        skos:definition  "The <font color=\"#4f81bd\">collectionIdentifier:ScopedName</font> is a string unique within a scope that identifies a collection which forms a set <font color=\"#4f81bd\">BoreholeIntervals</font>. This allows description of multiple downhole logs for a single borehole. The name should identify a particular log observation event."@en .
 
-gsmlbh:observationMethod
+gsmlbh:BoreholeDetails.driller
         a                owl:ObjectProperty ;
+        rdfs:domain      gsmlbh:BoreholeDetails ;
+        rdfs:range       meta:ResponsibleParty ;
+        skos:definition  "The <font color=\"#4f81bd\">driller</font> property is an association between a <font color=\"#4f81bd\">BoreholeDetails</font> and a <font color=\"#4f81bd\">CIT:CI_ResponsibleParty</font> describing of the organisation responsible for drilling the borehole (as opposed to commissioning the borehole)."@en .
+
+gsmlbh:Borehole.indexData
+        a                owl:ObjectProperty ;
+        rdfs:domain      gsmlbh:Borehole ;
+        rdfs:range       gsmlbh:BoreholeDetails ;
+        skos:definition  "The property indexData:BoreholeDetails describes metadata about a borehole, such as the operator, the custodian, dates of drilling, etc."@en .
+
+gsmlbh:BoreholeInterval.observationMethod
+        a                owl:ObjectProperty ;
+        rdfs:domain      gsmlbh:BoreholeInterval ;
         rdfs:range       swe:Category ;
         skos:definition  "The <font color=\"#4f81bd\">observationMethod property</font> <font color=\"#4f81bd\">(SWE::Category</font>) contains a term from a controlled vocabulary that describes the method used to observe the properties of the borehole."@en .
 
-gsmlbh:purpose  a        owl:ObjectProperty ;
-        rdfs:range       skos:Concept ;
-        skos:definition  "The property <font color=\"#4f81bd\">purpose:BoreholePurposeCode</font> contains a term from a controlled vocabulary describing the purpose for which the borehole was drilled. e.g., site investigation, mineral exploration, hydrocarbon exploration, water resources."@en .
-
-gsmlbh:startPoint  a     owl:ObjectProperty ;
-        rdfs:range       skos:Concept ;
-        skos:definition  "The property <font color=\"#4f81bd\">startPoint:BoreholeStartPointCode</font> provides a term from a controlled vocabulary indicating the named position relative to ground surface where the borehole commenced. (e.g., natural ground surface, open pit floor, underground, offshore)"@en .
-
-gsmlbh:intervalEnd  a    owl:ObjectProperty ;
-        rdfs:range       swe:Quantity ;
-        skos:definition  "The property <font color=\"#4f81bd\">intervalEnd</font> (<font color=\"#4f81bd\">SWE::Quantity</font>) contains a measurement (a value and a unit of measurement) of the measured distance of the end of the interval along the path of the borehole. The measured value must be greater than or equal to the <font color=\"#4f81bd\">intervalBegin</font> value."@en .
-
-gsmlbh:mappedIntervalBegin
+gsmlbh:Borehole.logElement
         a                owl:ObjectProperty ;
-        rdfs:range       swe:Quantity ;
-        skos:definition  "The property <font color=\"#4f81bd\">mappedIntervalBegin</font> (<font color=\"#4f81bd\">SWE::Quantity</font>) is a measurement (a value and a unit of measurement) corresponding to the measured distance of the start of the mapped interval along the path of the borehole. The measured value must be less than or equal to the <font color=\"#4f81bd\">mappedIntervalEnd</font> value."@en .
+        rdfs:domain      gsmlbh:Borehole ;
+        rdfs:range       gsmlbh:BoreholeInterval ;
+        skos:definition  "The property logElement is an association between a Borehole and a BoreholeInterval instance to describe measured downhole intervals and their observed features."@en .
+
+gsmlbh:BoreholeDetails.dateOfDrilling
+        a                owl:ObjectProperty ;
+        rdfs:domain      gsmlbh:BoreholeDetails ;
+        rdfs:range       time:Period ;
+        skos:definition  "The property <font color=\"#4f81bd\">dateOfDrilling:TM_Period</font> describes the time period during which drilling of the borehole occurred."@en .
 
 gsmlbh:OriginPosition
         a                owl:Class ;
         skos:definition  "A borehole <font color=\"#4f81bd\">OriginPosition</font> is a feature corresponding to the start point of a borehole log.  This may correspond to the borehole collar location (e.g., kelly bush)."@en .
-
-gsmlbh:operator  a       owl:ObjectProperty ;
-        rdfs:range       meta:ResponsibleParty ;
-        skos:definition  "The <font color=\"#4f81bd\">operator</font> property is an association between a <font color=\"#4f81bd\">BoreholeDetails</font> and a <font color=\"#4f81bd\">CIT:CI_ResponsibleParty</font> describing the organisation responsible for commissioning the borehole (as opposed to actually drilling the borehole)."@en .
 
 gsmlbh:DrillingDetails.intervalBegin
         a                owl:ObjectProperty ;
@@ -51,112 +56,145 @@ gsmlbh:DrillingDetails.intervalBegin
         rdfs:range       gsp:Geometry ;
         skos:definition  "The property interval:GM_Object is a shape that is a 1-D interval (e.g., a \"from\" and \"to\", or \"top\" and \"base\" measurements) that is equivalent (represents the same distance) as the one represented by intervalBegin and intervalEnd.  The geometry shall use a reference to the borehole geometry as its CRS."@en .
 
-gsmlbh:driller  a        owl:ObjectProperty ;
-        rdfs:range       meta:ResponsibleParty ;
-        skos:definition  "The <font color=\"#4f81bd\">driller</font> property is an association between a <font color=\"#4f81bd\">BoreholeDetails</font> and a <font color=\"#4f81bd\">CIT:CI_ResponsibleParty</font> describing of the organisation responsible for drilling the borehole (as opposed to commissioning the borehole)."@en .
+gsmlbh:Borehole.downholeDrillingDetails
+        a                owl:ObjectProperty ;
+        rdfs:domain      gsmlbh:Borehole ;
+        rdfs:range       gsmlbh:DrillingDetails ;
+        skos:definition  "The property downholeDrillingDetails:DrillingDetails specifies the drilling method and borehole diameter for intervals down the borehole."@en .
 
-gsmlbh:shape  a          owl:ObjectProperty ;
+gsmlbh:BoreholeDetails.operator
+        a                owl:ObjectProperty ;
+        rdfs:domain      gsmlbh:BoreholeDetails ;
+        rdfs:range       meta:ResponsibleParty ;
+        skos:definition  "The <font color=\"#4f81bd\">operator</font> property is an association between a <font color=\"#4f81bd\">BoreholeDetails</font> and a <font color=\"#4f81bd\">CIT:CI_ResponsibleParty</font> describing the organisation responsible for commissioning the borehole (as opposed to actually drilling the borehole)."@en .
+
+gsmlbh:OriginPosition.elevation
+        a                owl:ObjectProperty ;
+        rdfs:domain      gsmlbh:OriginPosition ;
+        rdfs:range       gsp:Geometry ;
+        skos:definition  "The <font color=\"#4f81bd\">elevation:DirectPosition</font> property is a compromise approach to supply elevation explicitly for location; this is to allow for software that cannot process 3-D <font color=\"#4f81bd\">GM_Point</font>. Null shall be used if elevation is unknown. A <font color=\"#4f81bd\">DirectPosition</font> shall have a dimension of 1, and CRS will be a \"vertical\" CRS (e.g. EPSG CRSs in the range 5600-5799)."@en .
+
+gsmlbh:BoreholeInterval.shape
+        a                owl:ObjectProperty ;
+        rdfs:domain      gsmlbh:BoreholeInterval ;
         rdfs:range       gsp:Geometry ;
         skos:definition  "The property shape:GM_Object is a 1-D interval (e.g., a \"from\" and \"to\", or \"top\" and \"base\" measurement) covering the same distance as mappedIntervalBegin and mappedIntervalEnd.  The geometry shall use a reference to the borehole as the CRS of the containing borehole."@en .
 
-gsmlbh:boreholeDiameter
+gsmlbh:DrillingDetails.intervalEnd
         a                owl:ObjectProperty ;
+        rdfs:domain      gsmlbh:DrillingDetails ;
         rdfs:range       swe:Quantity ;
-        skos:definition  "The <font color=\"#4f81bd\">boreholeDiameter</font> property (<font color=\"#4f81bd\">SWE::Quantity</font>) contains a measurement (a value and a unit of measure) corresponding to the diameter of the drilled hole."@en .
+        skos:definition  "The property <font color=\"#4f81bd\">intervalEnd</font> (<font color=\"#4f81bd\">SWE::Quantity</font>) contains a measurement (a value and a unit of measurement) of the measured distance of the end of the interval along the path of the borehole. The measured value must be greater than or equal to the <font color=\"#4f81bd\">intervalBegin</font> value."@en .
 
-gsmlbh:collectionIdentifier
+gsmlbh:BoreholeInterval.specification
         a                owl:ObjectProperty ;
-        rdfs:range       rdfs:Resource ;
-        skos:definition  "The <font color=\"#4f81bd\">collectionIdentifier:ScopedName</font> is a string unique within a scope that identifies a collection which forms a set <font color=\"#4f81bd\">BoreholeIntervals</font>. This allows description of multiple downhole logs for a single borehole. The name should identify a particular log observation event."@en .
+        rdfs:domain      gsmlbh:BoreholeInterval ;
+        rdfs:range       gsp:Feature ;
+        skos:definition  "The <font color=\"#4f81bd\">specification</font> property is an association between a <font color=\"#4f81bd\">BoreholeInterval</font> and a <font color=\"#4f81bd\">GFI_Feature</font>, a domain feature that is sampled by the interval (e.g., a <font color=\"#4f81bd\">GeologicUnit</font>). It is semantically equivalent to O&M ISO19156 \"<font color=\"#4f81bd\">sampledFeature</font>\"."@en .
 
-gsmlbh:boreholeLength
+gsmlbh:Borehole.referenceLocation
         a                owl:ObjectProperty ;
+        rdfs:domain      gsmlbh:Borehole ;
+        rdfs:range       gsmlbh:OriginPosition ;
+        skos:definition  "The property referenceLocation is an association between a Borehole and an OriginPosition corresponding to the start point of a borehole log.  This may correspond to the borehole collar location (e.g., kelly bush)."@en .
+
+gsmlbh:BoreholeDetails.boreholeLength
+        a                owl:ObjectProperty ;
+        rdfs:domain      gsmlbh:BoreholeDetails ;
         rdfs:range       swe:Quantity ;
         skos:definition  "The property <font color=\"#4f81bd\">boreholeLength</font> (<font color=\"#4f81bd\">SWE::Quantity</font>) contains a measurement (a value and a unit of measurement) corresponding to the \"length\" of a borehole determined by the data provider (i.e., \"length\" can have different sources, like drillers measurement, loggers measurement, survey measurement, etc.)."@en .
 
-gsmlbh:boreholeMaterialCustodian
+gsmlbh:BoreholeInterval.mappedIntervalBegin
         a                owl:ObjectProperty ;
-        rdfs:range       meta:ResponsibleParty ;
-        skos:definition  "The property <font color=\"#4f81bd\">boreholeMaterialCustodian</font> is an association between <font color=\"#4f81bd\">BoreholeDetails</font> and a <font color=\"#4f81bd\">CIT:CI_ResponsibleParty</font> describing the organisation that is custodian of the drilled material recovered from the borehole."@en .
+        rdfs:domain      gsmlbh:BoreholeInterval ;
+        rdfs:range       swe:Quantity ;
+        skos:definition  "The property <font color=\"#4f81bd\">mappedIntervalBegin</font> (<font color=\"#4f81bd\">SWE::Quantity</font>) is a measurement (a value and a unit of measurement) corresponding to the measured distance of the start of the mapped interval along the path of the borehole. The measured value must be less than or equal to the <font color=\"#4f81bd\">mappedIntervalEnd</font> value."@en .
 
-gsmlbh:dataCustodian  a  owl:ObjectProperty ;
-        rdfs:range       meta:ResponsibleParty ;
-        skos:definition  "The <font color=\"#4f81bd\">dataCustodian</font> is an association between a <font color=\"#4f81bd\">BoreholeDetails</font> and a <font color=\"#4f81bd\">CIT:CI_ResponsibleParty</font> describing the custodian (person or organisation) that is the custodian of data pertaining to this borehole."@en .
+gsmlbh:BoreholeInterval.parentBorehole
+        a                owl:ObjectProperty ;
+        rdfs:domain      gsmlbh:BoreholeInterval ;
+        rdfs:range       gsmlbh:Borehole ;
+        skos:definition  "The property parentBorehole is an association between a BoreholeInterval and a Borehole to which the interval belongs."@en .
 
 gsmlbh:DrillingDetails
         a                owl:Class ;
         skos:definition  "<font color=\"#4f81bd\">DrillingDetails</font> is a class that captures the description of drilling methods and hole diameters down the drilling path. Properties that apply to the <font color=\"#4f81bd\">Borehole</font> as a whole are managed in <font color=\"#4f81bd\">BoreholeDetails</font>."@en .
 
-gsmlbh:dateOfDrilling
-        a                owl:ObjectProperty ;
-        rdfs:range       time:Period ;
-        skos:definition  "The property <font color=\"#4f81bd\">dateOfDrilling:TM_Period</font> describes the time period during which drilling of the borehole occurred."@en .
-
-gsmlbh:location  a       owl:ObjectProperty ;
-        rdfs:range       gsp:Geometry ;
-        skos:definition  "The property location contains a geometry corresponding to the location of the borehole collar."@en .
-
 <http://geosciml.org/ont/gsmlbh>
         a                owl:Ontology ;
-        skos:definition  "The GeoSciML <font color=\"#4f81bd\">Borehole</font> package contains an information model for boreholes and related artefacts. This is primarily through re-use of standard components from the Observations and Measurements (ISO19156)."@en ;
         owl:imports      <http://eelst.cs.unibo.it/apps/LODE/source?url=http://def.seegrid.csiro.au/isotc211/iso19156/2011/sampling.ttl> , <https://www.w3.org/2006/time> , <http://eelst.cs.unibo.it/apps/LODE/source?url=http://def.seegrid.csiro.au/isotc211/iso19115/2003/metadata.ttl> , <http://www.opengis.net/ont/geosparql> , <http://schemas.geosciml.org/rdf/types.ttl> ;
         owl:versionIRI   "http://geosciml.org/ont/gsmlbh/4.1" ;
-        owl:versionInfo  "4.1" .
+        owl:versionInfo  "4.1" ;
+        skos:definition  "The GeoSciML <font color=\"#4f81bd\">Borehole</font> package contains an information model for boreholes and related artefacts. This is primarily through re-use of standard components from the Observations and Measurements (ISO19156)."@en .
 
-gsmlbh:inclinationType
+gsmlbh:BoreholeDetails.boreholeMaterialCustodian
         a                owl:ObjectProperty ;
-        rdfs:range       skos:Concept ;
-        skos:definition  "The property <font color=\"#4f81bd\">inclinationType:BoreholeInclinationCode</font> contains a term from a controlled vocabulary indicating the inclination type of the borehole. Appropriate terms would include vertical; inclined up; inclined down, horizontal."@en .
-
-gsmlbh:mappedIntervalEnd
-        a                owl:ObjectProperty ;
-        rdfs:range       swe:Quantity ;
-        skos:definition  "The <font color=\"#4f81bd\">mappedIntervalEnd</font> property (<font color=\"#4f81bd\">SWE::Quantity</font>) is a measurement (a value and a unit of measure) corresponding to the measured distance of the end of the mapped interval along the path of the borehole. The measured value must be greater than or equal to the <font color=\"#4f81bd\">mappedIntervalBegin</font> value."@en .
-
-gsmlbh:elevation  a      owl:ObjectProperty ;
-        rdfs:range       gsp:Geometry ;
-        skos:definition  "The <font color=\"#4f81bd\">elevation:DirectPosition</font> property is a compromise approach to supply elevation explicitly for location; this is to allow for software that cannot process 3-D <font color=\"#4f81bd\">GM_Point</font>. Null shall be used if elevation is unknown. A <font color=\"#4f81bd\">DirectPosition</font> shall have a dimension of 1, and CRS will be a \"vertical\" CRS (e.g. EPSG CRSs in the range 5600-5799)."@en .
+        rdfs:domain      gsmlbh:BoreholeDetails ;
+        rdfs:range       meta:ResponsibleParty ;
+        skos:definition  "The property <font color=\"#4f81bd\">boreholeMaterialCustodian</font> is an association between <font color=\"#4f81bd\">BoreholeDetails</font> and a <font color=\"#4f81bd\">CIT:CI_ResponsibleParty</font> describing the organisation that is custodian of the drilled material recovered from the borehole."@en .
 
 gsmlbh:Borehole  a       owl:Class ;
         rdfs:subClassOf  sf:SF_SamplingCurve ;
         skos:definition  "A <font color=\"#4f81bd\">Borehole</font> is the generalized term for any narrow shaft drilled in the ground, either vertically, horizontally, or inclined."@en .
 
-gsmlbh:drillingMethod
+gsmlbh:OriginPosition.location
         a                owl:ObjectProperty ;
-        rdfs:range       skos:Concept ;
-        skos:definition  "The <font color=\"#4f81bd\">drillingMethod:BoreholeDrillingMethodCode</font> property contains a term from a controlled vocabulary indicating the drilling method used. Appropriate terms would include rotary air blast, auger, diamond core, air core, etc."@en .
+        rdfs:domain      gsmlbh:OriginPosition ;
+        rdfs:range       gsp:Geometry ;
+        skos:definition  "The property location contains a geometry corresponding to the location of the borehole collar."@en .
 
-gsmlbh:referenceLocation
+gsmlbh:BoreholeDetails.inclinationType
         a                owl:ObjectProperty ;
-        rdfs:range       gsmlbh:OriginPosition ;
-        skos:definition  "The property referenceLocation is an association between a Borehole and an OriginPosition corresponding to the start point of a borehole log.  This may correspond to the borehole collar location (e.g., kelly bush)."@en .
+        rdfs:domain      gsmlbh:BoreholeDetails ;
+        rdfs:range       skos:Concept ;
+        skos:definition  "The property <font color=\"#4f81bd\">inclinationType:BoreholeInclinationCode</font> contains a term from a controlled vocabulary indicating the inclination type of the borehole. Appropriate terms would include vertical; inclined up; inclined down, horizontal."@en .
+
+gsmlbh:BoreholeInterval.mappedIntervalEnd
+        a                owl:ObjectProperty ;
+        rdfs:domain      gsmlbh:BoreholeInterval ;
+        rdfs:range       swe:Quantity ;
+        skos:definition  "The <font color=\"#4f81bd\">mappedIntervalEnd</font> property (<font color=\"#4f81bd\">SWE::Quantity</font>) is a measurement (a value and a unit of measure) corresponding to the measured distance of the end of the mapped interval along the path of the borehole. The measured value must be greater than or equal to the <font color=\"#4f81bd\">mappedIntervalBegin</font> value."@en .
 
 gsmlbh:BoreholeDetails
         a                owl:Class ;
         skos:definition  "<font color=\"#4f81bd\">BoreholeDetails</font> describes borehole-specific index data, often termed “header information”. It contains metadata about the parties involved in the drilling, the storage of drilled material and other information relevant to the borehole as a whole.  Properties that may vary along the borehole path are managed in <font color=\"#4f81bd\">DrillingDetails</font>"@en .
 
-gsmlbh:indexData  a      owl:ObjectProperty ;
-        rdfs:range       gsmlbh:BoreholeDetails ;
-        skos:definition  "The property indexData:BoreholeDetails describes metadata about a borehole, such as the operator, the custodian, dates of drilling, etc."@en .
-
-gsmlbh:parentBorehole
+gsmlbh:BoreholeDetails.dataCustodian
         a                owl:ObjectProperty ;
-        rdfs:range       gsmlbh:Borehole ;
-        skos:definition  "The property parentBorehole is an association between a BoreholeInterval and a Borehole to which the interval belongs."@en .
+        rdfs:domain      gsmlbh:BoreholeDetails ;
+        rdfs:range       meta:ResponsibleParty ;
+        skos:definition  "The <font color=\"#4f81bd\">dataCustodian</font> is an association between a <font color=\"#4f81bd\">BoreholeDetails</font> and a <font color=\"#4f81bd\">CIT:CI_ResponsibleParty</font> describing the custodian (person or organisation) that is the custodian of data pertaining to this borehole."@en .
 
-gsmlbh:logElement  a     owl:ObjectProperty ;
-        rdfs:range       gsmlbh:BoreholeInterval ;
-        skos:definition  "The property logElement is an association between a Borehole and a BoreholeInterval instance to describe measured downhole intervals and their observed features."@en .
+gsmlbh:BoreholeDetails.startPoint
+        a                owl:ObjectProperty ;
+        rdfs:domain      gsmlbh:BoreholeDetails ;
+        rdfs:range       skos:Concept ;
+        skos:definition  "The property <font color=\"#4f81bd\">startPoint:BoreholeStartPointCode</font> provides a term from a controlled vocabulary indicating the named position relative to ground surface where the borehole commenced. (e.g., natural ground surface, open pit floor, underground, offshore)"@en .
 
 gsmlbh:BoreholeInterval
         a                owl:Class ;
         skos:definition  "A <font color=\"#4f81bd\">BoreholeInterval</font> is similar to a <font color=\"#4f81bd\">MappedFeature</font>  whose shape is 1-D interval and uses the SRS of the containing borehole.  The \"<font color=\"#4f81bd\">mappedIntervalBegin</font>\" and \"<font color=\"#4f81bd\">mappedIntervalEnd</font>\" properties are alternative to the 1D geometry to overcome problems with the delivery and ease of queryability of 1D GML shapes."@en .
 
-gsmlbh:specification  a  owl:ObjectProperty ;
-        rdfs:range       gsp:Feature ;
-        skos:definition  "The <font color=\"#4f81bd\">specification</font> property is an association between a <font color=\"#4f81bd\">BoreholeInterval</font> and a <font color=\"#4f81bd\">GFI_Feature</font>, a domain feature that is sampled by the interval (e.g., a <font color=\"#4f81bd\">GeologicUnit</font>). It is semantically equivalent to O&M ISO19156 \"<font color=\"#4f81bd\">sampledFeature</font>\"."@en .
-
-gsmlbh:downholeDrillingDetails
+gsmlbh:BoreholeDetails.purpose
         a                owl:ObjectProperty ;
-        rdfs:range       gsmlbh:DrillingDetails ;
-        skos:definition  "The property downholeDrillingDetails:DrillingDetails specifies the drilling method and borehole diameter for intervals down the borehole."@en .
+        rdfs:domain      gsmlbh:BoreholeDetails ;
+        rdfs:range       skos:Concept ;
+        skos:definition  "The property <font color=\"#4f81bd\">purpose:BoreholePurposeCode</font> contains a term from a controlled vocabulary describing the purpose for which the borehole was drilled. e.g., site investigation, mineral exploration, hydrocarbon exploration, water resources."@en .
+
+gsmlbh:DrillingDetails.boreholeDiameter
+        a                owl:ObjectProperty ;
+        rdfs:domain      gsmlbh:DrillingDetails ;
+        rdfs:range       swe:Quantity ;
+        skos:definition  "The <font color=\"#4f81bd\">boreholeDiameter</font> property (<font color=\"#4f81bd\">SWE::Quantity</font>) contains a measurement (a value and a unit of measure) corresponding to the diameter of the drilled hole."@en .
+
+gsmlbh:OriginPosition.relatedBorehole
+        a                owl:ObjectProperty ;
+        rdfs:domain      gsmlbh:OriginPosition ;
+        rdfs:range       gsmlbh:Borehole ;
+        skos:definition  "The hole that has this collar for its start point"@en .
+
+gsmlbh:DrillingDetails.drillingMethod
+        a                owl:ObjectProperty ;
+        rdfs:domain      gsmlbh:DrillingDetails ;
+        rdfs:range       skos:Concept ;
+        skos:definition  "The <font color=\"#4f81bd\">drillingMethod:BoreholeDrillingMethodCode</font> property contains a term from a controlled vocabulary indicating the drilling method used. Appropriate terms would include rotary air blast, auger, diamond core, air core, etc."@en .

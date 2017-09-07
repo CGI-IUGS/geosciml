@@ -35,8 +35,8 @@ xsi:schemaLocation="http://www.interactive-instruments.de/ShapeChange/Configurat
  </descriptorTargets>
  <xi:include href="http://shapechange.net/resources/config/StandardNamespaces-owl.xml"/>
  <namespaces>
-  <Namespace nsabr="locn" ns="https://www.w3.org/ns/locn#" location="https://www.w3.org/ns/locn.ttl"/>
-  <Namespace nsabr="skos" ns="	http://www.w3.org/2004/02/skos/core#"/>
+  <!--<Namespace nsabr="locn" ns="https://www.w3.org/ns/locn#" location="https://www.w3.org/ns/locn.ttl"/>-->
+  <Namespace nsabr="skos" ns="http://www.w3.org/2004/02/skos/core#"/>
   <Namespace nsabr="swe" ns="urn:x-gsml-rdf:types" location="http://schemas.geosciml.org/rdf/types.ttl"/>
   <Namespace nsabr="sf" ns="http://def.seegrid.csiro.au/isotc211/iso19156/2011/sampling" location="http://eelst.cs.unibo.it/apps/LODE/source?url=http://def.seegrid.csiro.au/isotc211/iso19156/2011/sampling.ttl"/>
   <Namespace nsabr="om" ns="http://def.seegrid.csiro.au/isotc211/iso19156/2011/observation#" location="http://def.seegrid.csiro.au/isotc211/iso19156/2011/observation.ttl"/>
@@ -74,7 +74,7 @@ xsi:schemaLocation="http://www.interactive-instruments.de/ShapeChange/Configurat
 	<RdfTypeMapEntry type="CI_Citation" target="meta:Citation" targetType="class"/>
 	<RdfTypeMapEntry type="TimeOrdinalReferenceSystem" target="gtrs:TimeOrdinalReferenceSystem " targetType="class"/>
 	<RdfTypeMapEntry type="TM_TemporalReferenceSystem" target="gtrs:TM_TemporalReferenceSystem" targetType="class"/>
-	<RdfTypeMapEntry type="lax" target="owl:Class"/>
+	<RdfTypeMapEntry type="lax" target="owl:Class"/> <!-- RDF is already lax -->
  </rdfMapEntries>
  <!--
  <rdfConversionParameters>
@@ -96,6 +96,7 @@ xsi:schemaLocation="http://www.interactive-instruments.de/ShapeChange/Configurat
    <rule name="rule-owl-cls-encode-basictypes"/>
    <rule name="rule-owl-prop-general"/>
    <rule name="rule-owl-prop-range-global"/>
+   <!--<rule name="rule-owl-prop-localScopeAll"/>  this will turn all properties in [class].[Propert] -->
    <rule name="rule-owl-prop-globalScopeByConversionParameter"/>
    <rule name="rule-owl-prop-globalScopeByUniquePropertyName"/> <!-- assume property name is unique in this namespace, if not, prefix with class name -->
    <!--<rule name="rule-owl-prop-localScopeAll"/>  constrain the property domain to the "owner" -->
@@ -104,6 +105,7 @@ xsi:schemaLocation="http://www.interactive-instruments.de/ShapeChange/Configurat
    <rule name="rule-owl-cls-union"/>
    <rule name="rule-owl-cls-unionSets"/>
    <rule name="rule-owl-cls-enumerationAsCodelist"/>
+   <rule name="rule-owl-cls-codelist-191502-naming"/>
    <!--<rule name="rule-owl-cls-iso191502Enumeration"/>-->
    <!--<rule name="rule-owl-cls-codelist-19150-2"/> -->
   <!-- <rule name="rule-owl-cls-codelist-19150-2-skos-collection"/>  defines the xxxTerm as a subClass of skos:Concept-->
