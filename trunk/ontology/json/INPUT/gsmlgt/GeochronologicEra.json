@@ -1,6 +1,6 @@
 {
 	"$schema":"http://json-schema.org/draft-03/schema#",
-	"id":"FIXME/gsmlgt/GeochronologicEra.json",
+	"id":"http://opengis.net/geosciml/4.1/json/gsmlgt/GeochronologicEra.json",
 	"title":"GeochronologicEra",
 	"description":"A <font color=\"#4f81bd\">GeochronologicEra</font> is a period of time between two <font color=\"#4f81bd\">GeochronologicBoundaries</font>. The association of a <font color=\"#4f81bd\">GeochronologicEra</font> with a stratotype is optional.  In the GSSP approach recommended by ICS for the Global Geologic Timescale, Unit Stratotypes are not used.  Rather, the association of an era with geologic units and sections is indirect, via the association of an era with boundaries, which are in turn tied to stratotype points, which occur within host stratotype sections.",
 	"type":"object",
@@ -17,34 +17,50 @@
 				"start":{
 					"title":"start",
 					"description":"Older time boundary of an era",
-					"type":"integer"
+					"type":["string","null"],
+					"format":"uri"
+				},
+				"start_nullReason":{
+					"title":"Reason for null value in property start",
+					"type":"string"
 				},
 				"end":{
 					"title":"end",
 					"description":"Younger time boundary of an era",
-					"type":"integer"
+					"type":["string","null"],
+					"format":"uri"
 				},
-				"member-1":{
-					"title":"member",
-					"type":"integer"
+				"end_nullReason":{
+					"title":"Reason for null value in property end",
+					"type":"string"
 				},
-				"member-2":{
+				"member":{
 					"title":"member",
-					"type":"integer"
-				},
-				"member-3":{
-					"title":"member",
-					"type":"integer"
+					"type":"array",
+					"items":{
+						"type":"string",
+						"format":"uri"
+					}
 				},
 				"rank":{
 					"title":"rank",
 					"description":"The property <font color=\"#4f81bd\">rank:GeochronologicEraRank</font> contains a term from a vocabulary describing the rank of the time period (e.g., eon, era, period, stage).",
+					"type":["string","null"],
+					"format":"uri"
+				},
+				"rank_nullReason":{
+					"title":"Reason for null value in property rank",
 					"type":"string"
 				},
 				"stratotype":{
 					"title":"stratotype",
 					"description":"The property stratotype is an association between a GeochronologicEra and StratigraphicSection that describes a type section that names the physical location or outcrop of a particular reference exposure of a stratigraphic sequence or stratigraphic boundary. A unit stratotype is the agreed reference point for a particular stratigraphic unit and a boundary stratotype is the reference for a particular boundary between strata (Wikipedia).",
-					"type":"integer"
+					"type":["string","null"],
+					"format":"uri"
+				},
+				"stratotype_nullReason":{
+					"title":"Reason for null value in property stratotype",
+					"type":"string"
 				}
 			}
 		}

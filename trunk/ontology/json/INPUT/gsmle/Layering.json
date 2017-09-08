@@ -1,6 +1,6 @@
 {
 	"$schema":"http://json-schema.org/draft-03/schema#",
-	"id":"FIXME/gsmle/Layering.json",
+	"id":"http://opengis.net/geosciml/4.1/json/gsmle/Layering.json",
 	"title":"Layering",
 	"description":"A planar foliation is defined by a tabular succession of layers > 5 mm thick. This definition is based on the proposed definition of gneiss by the NADM Science Language Technical Team.  The <font color=\"#4f81bd\">GeologicStructure</font> characteristic of gneiss is layering.",
 	"type":"object",
@@ -17,12 +17,27 @@
 				"foliationType":{
 					"title":"foliationType",
 					"description":"The <font color=\"#4f81bd\">foliationType:FoliationTypeTerm</font> property specifies the type of foliation from a controlled vocabulary. Examples include crenulation cleavage, slaty cleavage and schistosity.",
+					"type":["string","null"],
+					"format":"uri"
+				},
+				"foliationType_nullReason":{
+					"title":"Reason for null value in property foliationType",
+					"type":"string"
+				},
+				"stFoliationDescription":{
+					"title":"stFoliationDescription",
+					"description":"The property stFoliationDescription:FoliationAbstractDescription provides a detailed foliation description.  This is a stub property in GeoSciML Basic since FoliationAbstractDescription is an abstract class with subtypes defined in GeoSciML Extension",
+					"$ref":"http://opengis.net/geosciml/4.1/json/gsmlb/FoliationAbstractDescription.json"
+				},
+				"stFoliationDescription_nullReason":{
+					"title":"Reason for null value in property stFoliationDescription",
 					"type":"string"
 				},
 				"layerComposition":{
 					"title":"voidable",
 					"description":"The layerComposition property is an association between a Layering and a RockMaterial that describes the rock material that may define compositional layering.",
-					"type":"integer"
+					"type":"string",
+					"format":"uri"
 				}
 			}
 		}

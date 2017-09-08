@@ -1,6 +1,6 @@
 {
 	"$schema":"http://json-schema.org/draft-03/schema#",
-	"id":"FIXME/gsmlb/GeologicFeature.json",
+	"id":"http://opengis.net/geosciml/4.1/json/gsmlb/GeologicFeature.json",
 	"title":"GeologicFeature",
 	"description":"The abstract <font color=\"#4f81bd\">GeologicFeature</font> class represents a conceptual feature that is hypothesized to exist coherently in the world. It corresponds with a \"legend item\" from a traditional geologic map and its instance acts as the \"description package\".  The description package is classified according to its intended purpose as a <i>typicalNorm</i>, <i>definingNorm or instance</i>.  <font color=\"#4f81bd\">GeologicFeature</font> can be used outside the context of a map (it can lack a <font color=\"#4f81bd\">MappedFeature</font>), for example when describing typical norms (describing expected property from a feature) or defining norms (describing properties required from a feature to be classifying in a group, such as given geologic unit).  A <font color=\"#4f81bd\">GeologicFeature</font> appearing on a map is considered as an “instance”.",
 	"type":"object",
@@ -14,85 +14,68 @@
 			"title":"feature attributes",
 			"type":"object",
 			"properties":{
-				"observationMethod-1":{
+				"observationMethod":{
 					"title":"observationMethod",
 					"description":"The <font color=\"#4f81bd\">GeologicFeature</font> observationMethod (<font color=\"#4f81bd\">SWE::Category</font>) specifies the approach to acquiring the collection of attribute values that constitute an individual feature instance (e.g. point count, brunton compass on site, air photo interpretation, field observation, hand specimen, laboratory, aerial photography, creative imagination). \u000d\u000a<font color=\"#4f81bd\">ObservationMethod</font> is a convenience property that provides a simple approach to observation metadata when data are reported using a feature view (as opposed to observation view).  This property corresponds (loosely) to ISO19115 Lineage.",
-					"type":"integer"
+					"type":["array","null"],
+					"items":{
+						"type":"string",
+						"format":"uri"
+					}
 				},
-				"observationMethod-2":{
-					"title":"observationMethod",
-					"description":"The <font color=\"#4f81bd\">GeologicFeature</font> observationMethod (<font color=\"#4f81bd\">SWE::Category</font>) specifies the approach to acquiring the collection of attribute values that constitute an individual feature instance (e.g. point count, brunton compass on site, air photo interpretation, field observation, hand specimen, laboratory, aerial photography, creative imagination). \u000d\u000a<font color=\"#4f81bd\">ObservationMethod</font> is a convenience property that provides a simple approach to observation metadata when data are reported using a feature view (as opposed to observation view).  This property corresponds (loosely) to ISO19115 Lineage.",
-					"type":"integer"
+				"observationMethod_nullReason":{
+					"title":"Reason for null value in property observationMethod",
+					"type":"string"
 				},
-				"observationMethod-3":{
-					"title":"observationMethod",
-					"description":"The <font color=\"#4f81bd\">GeologicFeature</font> observationMethod (<font color=\"#4f81bd\">SWE::Category</font>) specifies the approach to acquiring the collection of attribute values that constitute an individual feature instance (e.g. point count, brunton compass on site, air photo interpretation, field observation, hand specimen, laboratory, aerial photography, creative imagination). \u000d\u000a<font color=\"#4f81bd\">ObservationMethod</font> is a convenience property that provides a simple approach to observation metadata when data are reported using a feature view (as opposed to observation view).  This property corresponds (loosely) to ISO19115 Lineage.",
-					"type":"integer"
-				},
-				"occurrence-1":{
+				"occurrence":{
 					"title":"occurrence",
 					"description":"The occurrence property is an association that links a notional geologic feature with any number of mapped features (MappedFeature).  A geologic feature, such as a geologic unit may be linked to mapped features from a number of different maps.",
-					"type":"integer"
-				},
-				"occurrence-2":{
-					"title":"occurrence",
-					"description":"The occurrence property is an association that links a notional geologic feature with any number of mapped features (MappedFeature).  A geologic feature, such as a geologic unit may be linked to mapped features from a number of different maps.",
-					"type":"integer"
-				},
-				"occurrence-3":{
-					"title":"occurrence",
-					"description":"The occurrence property is an association that links a notional geologic feature with any number of mapped features (MappedFeature).  A geologic feature, such as a geologic unit may be linked to mapped features from a number of different maps.",
-					"type":"integer"
+					"type":"array",
+					"items":{
+						"type":"string",
+						"format":"uri"
+					}
 				},
 				"purpose":{
 					"title":"purpose",
 					"description":"The property <font color=\"#4f81bd\">purpose:DescriptionPurpose</font> specifies the intended purpose/level of abstraction for a given feature or object instance.  The possible values are: <b>instance</b>, <b>typicalNorm</b>, and <b>definingNorm</b>.",
+					"type":["string","null"],
+					"format":"uri"
+				},
+				"purpose_nullReason":{
+					"title":"Reason for null value in property purpose",
 					"type":"string"
 				},
-				"relatedFeature-1":{
+				"relatedFeature":{
 					"title":"relatedFeature",
 					"description":"A relatedFeature is a general structure used to define relationships between any features or objects within GeoSciML. Relationships are always binary and directional.  There is always a single source and a single target for a given FeatureRelation (which is abstract in GeoSciML Basic).  The relationship is always defined from the perspective of the Source and is generally an active verb.",
-					"type":"integer"
+					"type":"array",
+					"items":{
+						"type":"string",
+						"format":"uri"
+					}
 				},
-				"relatedFeature-2":{
-					"title":"relatedFeature",
-					"description":"A relatedFeature is a general structure used to define relationships between any features or objects within GeoSciML. Relationships are always binary and directional.  There is always a single source and a single target for a given FeatureRelation (which is abstract in GeoSciML Basic).  The relationship is always defined from the perspective of the Source and is generally an active verb.",
-					"type":"integer"
-				},
-				"relatedFeature-3":{
-					"title":"relatedFeature",
-					"description":"A relatedFeature is a general structure used to define relationships between any features or objects within GeoSciML. Relationships are always binary and directional.  There is always a single source and a single target for a given FeatureRelation (which is abstract in GeoSciML Basic).  The relationship is always defined from the perspective of the Source and is generally an active verb.",
-					"type":"integer"
-				},
-				"classifier-1":{
+				"classifier":{
 					"title":"classifier",
 					"description":"The classifier (<font color=\"#4f81bd\">SWE::Category</font>) contains a standard description or definition of the feature type (e.g., the definition of a particular geologic unit in a stratigraphic lexicon).",
-					"type":"integer"
+					"type":["array","null"],
+					"items":{
+						"type":"string",
+						"format":"uri"
+					}
 				},
-				"classifier-2":{
-					"title":"classifier",
-					"description":"The classifier (<font color=\"#4f81bd\">SWE::Category</font>) contains a standard description or definition of the feature type (e.g., the definition of a particular geologic unit in a stratigraphic lexicon).",
-					"type":"integer"
+				"classifier_nullReason":{
+					"title":"Reason for null value in property classifier",
+					"type":"string"
 				},
-				"classifier-3":{
-					"title":"classifier",
-					"description":"The classifier (<font color=\"#4f81bd\">SWE::Category</font>) contains a standard description or definition of the feature type (e.g., the definition of a particular geologic unit in a stratigraphic lexicon).",
-					"type":"integer"
-				},
-				"geologicHistory-1":{
+				"geologicHistory":{
 					"title":"geologicHistory",
 					"description":"The geologicHistory is an association that relates one or more GeologicEvents to a GeologicFeature to describe their age or geologic history.  Normally, GeoSciML uses the generic relatedFeature::GeologicRelation to associate GeologicFeature with other GeologicFeatures, including GeologicEvent.  However, this design was deemed too complex for GeoSciML Basic and is therefore only available from the GeoSciML Extension package.",
-					"type":"integer"
-				},
-				"geologicHistory-2":{
-					"title":"geologicHistory",
-					"description":"The geologicHistory is an association that relates one or more GeologicEvents to a GeologicFeature to describe their age or geologic history.  Normally, GeoSciML uses the generic relatedFeature::GeologicRelation to associate GeologicFeature with other GeologicFeatures, including GeologicEvent.  However, this design was deemed too complex for GeoSciML Basic and is therefore only available from the GeoSciML Extension package.",
-					"type":"integer"
-				},
-				"geologicHistory-3":{
-					"title":"geologicHistory",
-					"description":"The geologicHistory is an association that relates one or more GeologicEvents to a GeologicFeature to describe their age or geologic history.  Normally, GeoSciML uses the generic relatedFeature::GeologicRelation to associate GeologicFeature with other GeologicFeatures, including GeologicEvent.  However, this design was deemed too complex for GeoSciML Basic and is therefore only available from the GeoSciML Extension package.",
-					"type":"integer"
+					"type":"array",
+					"items":{
+						"type":"string",
+						"format":"uri"
+					}
 				}
 			}
 		}

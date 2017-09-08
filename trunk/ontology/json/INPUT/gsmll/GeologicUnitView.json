@@ -1,6 +1,6 @@
 {
 	"$schema":"http://json-schema.org/draft-03/schema#",
-	"id":"FIXME/gsmll/GeologicUnitView.json",
+	"id":"http://opengis.net/geosciml/4.1/json/gsmll/GeologicUnitView.json",
 	"title":"GeologicUnitView",
 	"description":"<font color=\"#4f81bd\">GeologicUnitView</font> is a simplified view of a GeoSciML <font color=\"#4f81bd\">MappedFeature</font> feature with key property values from an associated <font color=\"#4f81bd\">GeologicUnit</font>.   The <font color=\"#4f81bd\">GeologicUnitView</font> property values are summarised as labels (unconstrained character strings) or arbitrarily selected classifiers to be used for thematic mapping purposes. The latter are the properties suffixed with “_uri” and will contain URIs referring to controlled concepts in published vocabularies.",
 	"type":"object",
@@ -118,20 +118,13 @@
 					"description":"If present, the property <font color=\"#4f81bd\">genericSymbolizer:CharacterString</font> contains an identifier for a symbol from standard (locally or community defined) symbolization scheme for portrayal.",
 					"type":"string"
 				},
-				"any-1":{
+				"any":{
 					"title":"any",
 					"description":"A data provider may add an arbitrary number of extra properties, as long as the instance is conformant to GML Simple Feature Level 0.",
-					"type":"string"
-				},
-				"any-2":{
-					"title":"any",
-					"description":"A data provider may add an arbitrary number of extra properties, as long as the instance is conformant to GML Simple Feature Level 0.",
-					"type":"string"
-				},
-				"any-3":{
-					"title":"any",
-					"description":"A data provider may add an arbitrary number of extra properties, as long as the instance is conformant to GML Simple Feature Level 0.",
-					"type":"string"
+					"type":"array",
+					"items":{
+						"type":"any"
+					}
 				}
 			}
 		}

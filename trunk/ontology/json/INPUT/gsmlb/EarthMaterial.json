@@ -1,6 +1,6 @@
 {
 	"$schema":"http://json-schema.org/draft-03/schema#",
-	"id":"FIXME/gsmlb/EarthMaterial.json",
+	"id":"http://opengis.net/geosciml/4.1/json/gsmlb/EarthMaterial.json",
 	"title":"EarthMaterial",
 	"description":"The <font color=\"#4f81bd\">EarthMaterial</font> class holds a description of a naturally occurring substance in the Earth.  <font color=\"#4f81bd\">EarthMaterial</font> represents material composition or substance, and is thus independent of quantity or location. Ideally, <font color=\"#4f81bd\">EarthMaterials</font> are defined strictly based on physical properties, but because of standard geological usage, genetic interpretations enter into the description as well.",
 	"type":"object",
@@ -14,25 +14,33 @@
 			"title":"feature attributes",
 			"type":"object",
 			"properties":{
-				"color-1":{
+				"color":{
 					"title":"color",
 					"description":"The <font color=\"#4f81bd\">color</font> property (<font color=\"#4f81bd\">SWE::Category</font>) is a term from a controlled vocabulary that specifies the colour of the earth material. Color schemes such as the Munsell rock and soil color schemes may be used.",
-					"type":"integer"
+					"type":["array","null"],
+					"items":{
+						"type":"string",
+						"format":"uri"
+					}
 				},
-				"color-2":{
-					"title":"color",
-					"description":"The <font color=\"#4f81bd\">color</font> property (<font color=\"#4f81bd\">SWE::Category</font>) is a term from a controlled vocabulary that specifies the colour of the earth material. Color schemes such as the Munsell rock and soil color schemes may be used.",
-					"type":"integer"
-				},
-				"color-3":{
-					"title":"color",
-					"description":"The <font color=\"#4f81bd\">color</font> property (<font color=\"#4f81bd\">SWE::Category</font>) is a term from a controlled vocabulary that specifies the colour of the earth material. Color schemes such as the Munsell rock and soil color schemes may be used.",
-					"type":"integer"
+				"color_nullReason":{
+					"title":"Reason for null value in property color",
+					"type":"string"
 				},
 				"purpose":{
 					"title":"purpose",
 					"description":"The <font color=\"#4f81bd\">purpose:DescriptionPurpose</font> property provides a specification of the intended purpose or level of abstraction for the given <font color=\"#4f81bd\">EarthMaterial</font>. The intent is the same a <font color=\"#4f81bd\">GeologicFeature</font>’s purpose and it shares the same vocabulary (instance, typicalNorm, definingNorm).",
-					"type":"string"
+					"type":"string",
+					"format":"uri"
+				},
+				"gbEarthMaterialDescription":{
+					"title":"gbEarthMaterialDescription",
+					"description":"The property gbEarthMaterialDescription:EarthMaterialAbstractDescription provides a detailed earth material description of the part.  This property is a stub in GeoSciML Basic as EarthMaterialAbstractDescription is abstract with subtypes defined in GeoSciML Extension.",
+					"type":"array",
+					"items":{
+						"$ref":"http://opengis.net/geosciml/4.1/json/gsmlb/EarthMaterialAbstractDescription.json"
+
+					}
 				}
 			}
 		}

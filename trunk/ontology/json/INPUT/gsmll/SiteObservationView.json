@@ -1,6 +1,6 @@
 {
 	"$schema":"http://json-schema.org/draft-03/schema#",
-	"id":"FIXME/gsmll/SiteObservationView.json",
+	"id":"http://opengis.net/geosciml/4.1/json/gsmll/SiteObservationView.json",
 	"title":"SiteObservationView",
 	"description":"<font color=\"#4f81bd\">SiteObservationView</font> is a simplified view of a generally point-located geological observation, like a structural measurement. This is a simplified instance of a sampling geometry from Observations & Measurements (ISO19156) with an associated geological observation. Each tuple should represent a single observation. Key property values are summarised as labels (unconstrained character strings) or arbitrarily selected classifiers to be used for thematic mapping purposes. The latter are the properties suffixed with “_uri” and will contain URIs referring to controlled concepts in published vocabularies.",
 	"type":"object",
@@ -103,20 +103,13 @@
 					"description":"If present, the <font color=\"#4f81bd\">symbolRotation:Integer</font> property contains an integer value between 0 and 359 to specify rotation of symbol at this location, e.g. rotation of a geologic strike and dip symbol to reflect the strike azimuth.  The angular convention shall be geographic angle (clockwise with 0 at geographic north pole, therefore 90 degree is east).",
 					"type":"integer"
 				},
-				"any-1":{
+				"any":{
 					"title":"any",
 					"description":"A data provider can add an arbitrary number of extra properties, as long as the instance is conformant to GML Simple Feature Level 0.",
-					"type":"string"
-				},
-				"any-2":{
-					"title":"any",
-					"description":"A data provider can add an arbitrary number of extra properties, as long as the instance is conformant to GML Simple Feature Level 0.",
-					"type":"string"
-				},
-				"any-3":{
-					"title":"any",
-					"description":"A data provider can add an arbitrary number of extra properties, as long as the instance is conformant to GML Simple Feature Level 0.",
-					"type":"string"
+					"type":"array",
+					"items":{
+						"type":"any"
+					}
 				}
 			}
 		}

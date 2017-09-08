@@ -1,6 +1,6 @@
 {
 	"$schema":"http://json-schema.org/draft-03/schema#",
-	"id":"FIXME/gsmlb/GSML_QuantityRange.json",
+	"id":"http://opengis.net/geosciml/4.1/json/gsmlb/GSML_QuantityRange.json",
 	"title":"GSML_QuantityRange",
 	"description":"<font color=\"#4f81bd\">GSML_QuantityRange</font> is a specialization of SWE Common <font color=\"#4f81bd\">QuantiytyRange </font>(OGC 08-094r1, Clause 7.2.13)  where lower and upper values are made explicit. <font color=\"#4f81bd\">SWE::QuantityRange</font> uses an array of values (RealPair, see Clause 7.2.1) where the lowest value is the first element and the highest the second.  This convenience data type has been created as an alternative encoding for implementations that do no support encoding of arrays in a single field (e.g. DBF) or reference to elements in string encoded arrays<sup>1</sup> (eg. Filter Encoding Specification 2.0 – OGC 09-029r2).\u000d\u000a&nbsp;-------------------------\u000d\u000a<sup>1</sup> <font color=\"#4f81bd\">SWE RealPair</font> is encoded as space delimited lists (<swe:value>10 300</swe:value> in XML) , which demands that clients parse the string to extract each token.  To build a WFS/FES query that tests the first element, it requires parsing the string either using string-before(swe:value,' ')  or tokenize(swe:value,' ').  This is cumbersome at best, or not even supported by the server at worst.  09-026r2 Clause 7.4.4 describes the minimal XPath supports and string parsing is not present.",
 	"type":"object",
@@ -17,24 +17,19 @@
 				"uom":{
 					"title":"uom",
 					"description":"Unit of measure used to express the value of this data component",
-					"type":"integer",
+					"type":"string",
+					"format":"uri",
 					"required":true
 				},
 				"constraint":{
 					"title":"constraint",
-					"type":"integer"
+					"type":"string",
+					"format":"uri"
 				},
-				"value.item-1":{
-					"title":"item",
-					"type":"number"
-				},
-				"value.item-2":{
-					"title":"item",
-					"type":"number"
-				},
-				"value.item-3":{
-					"title":"item",
-					"type":"number"
+				"value":{
+					"title":"value",
+					"description":"Value is a pair of double numbers separated by a space. It is optional, to enable structure to act as a schema for values provided using other encodings",
+					"$ref":"http://opengis.net/geosciml/4.1/json/swe/RealPair.json"
 				},
 				"lowerValue":{
 					"title":"lowerValue",

@@ -1,6 +1,6 @@
 {
 	"$schema":"http://json-schema.org/draft-03/schema#",
-	"id":"FIXME/gsmle/FoldSystem.json",
+	"id":"http://opengis.net/geosciml/4.1/json/gsmle/FoldSystem.json",
 	"title":"FoldSystem",
 	"description":"A <font color=\"#4f81bd\">FoldSystem</font> is a collection of congruent folds (axis and axial surface are parallel) produced by the same tectonic event. It is sometimes referred to as a \"fold train\".",
 	"type":"object",
@@ -17,27 +17,34 @@
 				"periodic":{
 					"title":"periodic",
 					"description":"The property <font color=\"#4f81bd\">periodic:Primitive::Boolean</font> reports TRUE if the hinges in a train are regularly spaced, and FALSE otherwise.",
-					"type":"boolean"
+					"type":["boolean","null"]
+				},
+				"periodic_nullReason":{
+					"title":"Reason for null value in property periodic",
+					"type":"string"
 				},
 				"wavelength":{
 					"title":"wavelength",
 					"description":"The property <font color=\"#4f81bd\">wavelength</font> (<font color=\"#4f81bd\">SWE::QuantityRange</font>) contains a quantitative description of the length between adjacent antiforms (or synforms) in a fold train.",
-					"type":"integer"
+					"type":["string","null"],
+					"format":"uri"
 				},
-				"foldSystemMember-1":{
+				"wavelength_nullReason":{
+					"title":"Reason for null value in property wavelength",
+					"type":"string"
+				},
+				"foldSystemMember":{
 					"title":"foldSystemMember",
 					"description":"The foldSystemMember is an association between a FoldSystem and the Folds that are members of that system.",
-					"type":"integer"
+					"type":["array","null"],
+					"items":{
+						"type":"string",
+						"format":"uri"
+					}
 				},
-				"foldSystemMember-2":{
-					"title":"foldSystemMember",
-					"description":"The foldSystemMember is an association between a FoldSystem and the Folds that are members of that system.",
-					"type":"integer"
-				},
-				"foldSystemMember-3":{
-					"title":"foldSystemMember",
-					"description":"The foldSystemMember is an association between a FoldSystem and the Folds that are members of that system.",
-					"type":"integer"
+				"foldSystemMember_nullReason":{
+					"title":"Reason for null value in property foldSystemMember",
+					"type":"string"
 				}
 			}
 		}

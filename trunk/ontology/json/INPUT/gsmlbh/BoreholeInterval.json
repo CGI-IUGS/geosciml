@@ -1,6 +1,6 @@
 {
 	"$schema":"http://json-schema.org/draft-03/schema#",
-	"id":"FIXME/gsmlbh/BoreholeInterval.json",
+	"id":"http://opengis.net/geosciml/4.1/json/gsmlbh/BoreholeInterval.json",
 	"title":"BoreholeInterval",
 	"description":"A <font color=\"#4f81bd\">BoreholeInterval</font> is similar to a <font color=\"#4f81bd\">MappedFeature</font>  whose shape is 1-D interval and uses the SRS of the containing borehole.  The \"<font color=\"#4f81bd\">mappedIntervalBegin</font>\" and \"<font color=\"#4f81bd\">mappedIntervalEnd</font>\" properties are alternative to the 1D geometry to overcome problems with the delivery and ease of queryability of 1D GML shapes.",
 	"type":"object",
@@ -17,45 +17,67 @@
 			"title":"feature attributes",
 			"type":"object",
 			"properties":{
-				"observationMethod-1":{
+				"observationMethod":{
 					"title":"observationMethod",
 					"description":"The <font color=\"#4f81bd\">observationMethod property</font> <font color=\"#4f81bd\">(SWE::Category</font>) contains a term from a controlled vocabulary that describes the method used to observe the properties of the borehole.",
-					"type":"integer"
+					"type":["array","null"],
+					"items":{
+						"type":"string",
+						"format":"uri"
+					}
 				},
-				"observationMethod-2":{
-					"title":"observationMethod",
-					"description":"The <font color=\"#4f81bd\">observationMethod property</font> <font color=\"#4f81bd\">(SWE::Category</font>) contains a term from a controlled vocabulary that describes the method used to observe the properties of the borehole.",
-					"type":"integer"
-				},
-				"observationMethod-3":{
-					"title":"observationMethod",
-					"description":"The <font color=\"#4f81bd\">observationMethod property</font> <font color=\"#4f81bd\">(SWE::Category</font>) contains a term from a controlled vocabulary that describes the method used to observe the properties of the borehole.",
-					"type":"integer"
+				"observationMethod_nullReason":{
+					"title":"Reason for null value in property observationMethod",
+					"type":"string"
 				},
 				"specification":{
 					"title":"specification",
 					"description":"The <font color=\"#4f81bd\">specification</font> property is an association between a <font color=\"#4f81bd\">BoreholeInterval</font> and a <font color=\"#4f81bd\">GFI_Feature</font>, a domain feature that is sampled by the interval (e.g., a <font color=\"#4f81bd\">GeologicUnit</font>). It is semantically equivalent to O&M ISO19156 \"<font color=\"#4f81bd\">sampledFeature</font>\".",
-					"type":"integer"
+					"type":["string","null"],
+					"format":"uri"
+				},
+				"specification_nullReason":{
+					"title":"Reason for null value in property specification",
+					"type":"string"
 				},
 				"mappedIntervalBegin":{
 					"title":"mappedIntervalBegin",
 					"description":"The property <font color=\"#4f81bd\">mappedIntervalBegin</font> (<font color=\"#4f81bd\">SWE::Quantity</font>) is a measurement (a value and a unit of measurement) corresponding to the measured distance of the start of the mapped interval along the path of the borehole. The measured value must be less than or equal to the <font color=\"#4f81bd\">mappedIntervalEnd</font> value.",
-					"type":"integer"
+					"type":["string","null"],
+					"format":"uri"
+				},
+				"mappedIntervalBegin_nullReason":{
+					"title":"Reason for null value in property mappedIntervalBegin",
+					"type":"string"
 				},
 				"mappedIntervalEnd":{
 					"title":"mappedIntervalEnd",
 					"description":"The <font color=\"#4f81bd\">mappedIntervalEnd</font> property (<font color=\"#4f81bd\">SWE::Quantity</font>) is a measurement (a value and a unit of measure) corresponding to the measured distance of the end of the mapped interval along the path of the borehole. The measured value must be greater than or equal to the <font color=\"#4f81bd\">mappedIntervalBegin</font> value.",
-					"type":"integer"
+					"type":["string","null"],
+					"format":"uri"
+				},
+				"mappedIntervalEnd_nullReason":{
+					"title":"Reason for null value in property mappedIntervalEnd",
+					"type":"string"
 				},
 				"collectionIdentifier":{
 					"title":"collectionIdentifier",
 					"description":"The <font color=\"#4f81bd\">collectionIdentifier:ScopedName</font> is a string unique within a scope that identifies a collection which forms a set <font color=\"#4f81bd\">BoreholeIntervals</font>. This allows description of multiple downhole logs for a single borehole. The name should identify a particular log observation event.",
+					"type":["string","null"]
+				},
+				"collectionIdentifier_nullReason":{
+					"title":"Reason for null value in property collectionIdentifier",
 					"type":"string"
 				},
 				"parentBorehole":{
 					"title":"parentBorehole",
 					"description":"The property parentBorehole is an association between a BoreholeInterval and a Borehole to which the interval belongs.",
-					"type":"integer"
+					"type":["string","null"],
+					"format":"uri"
+				},
+				"parentBorehole_nullReason":{
+					"title":"Reason for null value in property parentBorehole",
+					"type":"string"
 				}
 			}
 		}

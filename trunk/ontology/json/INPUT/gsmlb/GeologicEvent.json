@@ -1,6 +1,6 @@
 {
 	"$schema":"http://json-schema.org/draft-03/schema#",
-	"id":"FIXME/gsmlb/GeologicEvent.json",
+	"id":"http://opengis.net/geosciml/4.1/json/gsmlb/GeologicEvent.json",
 	"title":"GeologicEvent",
 	"description":"A <font color=\"#4f81bd\">GeologicEvent</font> is an identifiable event during which one or more geological processes act to modify geological entities. It may have a specified geologic age (numeric age or <font color=\"#4f81bd\">GeochologicEraTerm</font>) and may have specified environments and processes. An example might be a cratonic uplift event during which erosion, sedimentation, and volcanism all take place.",
 	"type":"object",
@@ -14,139 +14,135 @@
 			"title":"feature attributes",
 			"type":"object",
 			"properties":{
-				"observationMethod-1":{
+				"observationMethod":{
 					"title":"observationMethod",
 					"description":"The <font color=\"#4f81bd\">GeologicFeature</font> observationMethod (<font color=\"#4f81bd\">SWE::Category</font>) specifies the approach to acquiring the collection of attribute values that constitute an individual feature instance (e.g. point count, brunton compass on site, air photo interpretation, field observation, hand specimen, laboratory, aerial photography, creative imagination). \u000d\u000a<font color=\"#4f81bd\">ObservationMethod</font> is a convenience property that provides a simple approach to observation metadata when data are reported using a feature view (as opposed to observation view).  This property corresponds (loosely) to ISO19115 Lineage.",
-					"type":"integer"
+					"type":["array","null"],
+					"items":{
+						"type":"string",
+						"format":"uri"
+					}
 				},
-				"observationMethod-2":{
-					"title":"observationMethod",
-					"description":"The <font color=\"#4f81bd\">GeologicFeature</font> observationMethod (<font color=\"#4f81bd\">SWE::Category</font>) specifies the approach to acquiring the collection of attribute values that constitute an individual feature instance (e.g. point count, brunton compass on site, air photo interpretation, field observation, hand specimen, laboratory, aerial photography, creative imagination). \u000d\u000a<font color=\"#4f81bd\">ObservationMethod</font> is a convenience property that provides a simple approach to observation metadata when data are reported using a feature view (as opposed to observation view).  This property corresponds (loosely) to ISO19115 Lineage.",
-					"type":"integer"
+				"observationMethod_nullReason":{
+					"title":"Reason for null value in property observationMethod",
+					"type":"string"
 				},
-				"observationMethod-3":{
-					"title":"observationMethod",
-					"description":"The <font color=\"#4f81bd\">GeologicFeature</font> observationMethod (<font color=\"#4f81bd\">SWE::Category</font>) specifies the approach to acquiring the collection of attribute values that constitute an individual feature instance (e.g. point count, brunton compass on site, air photo interpretation, field observation, hand specimen, laboratory, aerial photography, creative imagination). \u000d\u000a<font color=\"#4f81bd\">ObservationMethod</font> is a convenience property that provides a simple approach to observation metadata when data are reported using a feature view (as opposed to observation view).  This property corresponds (loosely) to ISO19115 Lineage.",
-					"type":"integer"
-				},
-				"occurrence-1":{
+				"occurrence":{
 					"title":"occurrence",
 					"description":"The occurrence property is an association that links a notional geologic feature with any number of mapped features (MappedFeature).  A geologic feature, such as a geologic unit may be linked to mapped features from a number of different maps.",
-					"type":"integer"
-				},
-				"occurrence-2":{
-					"title":"occurrence",
-					"description":"The occurrence property is an association that links a notional geologic feature with any number of mapped features (MappedFeature).  A geologic feature, such as a geologic unit may be linked to mapped features from a number of different maps.",
-					"type":"integer"
-				},
-				"occurrence-3":{
-					"title":"occurrence",
-					"description":"The occurrence property is an association that links a notional geologic feature with any number of mapped features (MappedFeature).  A geologic feature, such as a geologic unit may be linked to mapped features from a number of different maps.",
-					"type":"integer"
+					"type":"array",
+					"items":{
+						"type":"string",
+						"format":"uri"
+					}
 				},
 				"purpose":{
 					"title":"purpose",
 					"description":"The property <font color=\"#4f81bd\">purpose:DescriptionPurpose</font> specifies the intended purpose/level of abstraction for a given feature or object instance.  The possible values are: <b>instance</b>, <b>typicalNorm</b>, and <b>definingNorm</b>.",
+					"type":["string","null"],
+					"format":"uri"
+				},
+				"purpose_nullReason":{
+					"title":"Reason for null value in property purpose",
 					"type":"string"
 				},
-				"relatedFeature-1":{
+				"relatedFeature":{
 					"title":"relatedFeature",
 					"description":"A relatedFeature is a general structure used to define relationships between any features or objects within GeoSciML. Relationships are always binary and directional.  There is always a single source and a single target for a given FeatureRelation (which is abstract in GeoSciML Basic).  The relationship is always defined from the perspective of the Source and is generally an active verb.",
-					"type":"integer"
+					"type":"array",
+					"items":{
+						"type":"string",
+						"format":"uri"
+					}
 				},
-				"relatedFeature-2":{
-					"title":"relatedFeature",
-					"description":"A relatedFeature is a general structure used to define relationships between any features or objects within GeoSciML. Relationships are always binary and directional.  There is always a single source and a single target for a given FeatureRelation (which is abstract in GeoSciML Basic).  The relationship is always defined from the perspective of the Source and is generally an active verb.",
-					"type":"integer"
-				},
-				"relatedFeature-3":{
-					"title":"relatedFeature",
-					"description":"A relatedFeature is a general structure used to define relationships between any features or objects within GeoSciML. Relationships are always binary and directional.  There is always a single source and a single target for a given FeatureRelation (which is abstract in GeoSciML Basic).  The relationship is always defined from the perspective of the Source and is generally an active verb.",
-					"type":"integer"
-				},
-				"classifier-1":{
+				"classifier":{
 					"title":"classifier",
 					"description":"The classifier (<font color=\"#4f81bd\">SWE::Category</font>) contains a standard description or definition of the feature type (e.g., the definition of a particular geologic unit in a stratigraphic lexicon).",
-					"type":"integer"
+					"type":["array","null"],
+					"items":{
+						"type":"string",
+						"format":"uri"
+					}
 				},
-				"classifier-2":{
-					"title":"classifier",
-					"description":"The classifier (<font color=\"#4f81bd\">SWE::Category</font>) contains a standard description or definition of the feature type (e.g., the definition of a particular geologic unit in a stratigraphic lexicon).",
-					"type":"integer"
-				},
-				"classifier-3":{
-					"title":"classifier",
-					"description":"The classifier (<font color=\"#4f81bd\">SWE::Category</font>) contains a standard description or definition of the feature type (e.g., the definition of a particular geologic unit in a stratigraphic lexicon).",
-					"type":"integer"
-				},
-				"geologicHistory-1":{
-					"title":"geologicHistory",
-					"description":"The geologicHistory is an association that relates one or more GeologicEvents to a GeologicFeature to describe their age or geologic history.  Normally, GeoSciML uses the generic relatedFeature::GeologicRelation to associate GeologicFeature with other GeologicFeatures, including GeologicEvent.  However, this design was deemed too complex for GeoSciML Basic and is therefore only available from the GeoSciML Extension package.",
-					"type":"integer"
-				},
-				"geologicHistory-2":{
-					"title":"geologicHistory",
-					"description":"The geologicHistory is an association that relates one or more GeologicEvents to a GeologicFeature to describe their age or geologic history.  Normally, GeoSciML uses the generic relatedFeature::GeologicRelation to associate GeologicFeature with other GeologicFeatures, including GeologicEvent.  However, this design was deemed too complex for GeoSciML Basic and is therefore only available from the GeoSciML Extension package.",
-					"type":"integer"
-				},
-				"geologicHistory-3":{
-					"title":"geologicHistory",
-					"description":"The geologicHistory is an association that relates one or more GeologicEvents to a GeologicFeature to describe their age or geologic history.  Normally, GeoSciML uses the generic relatedFeature::GeologicRelation to associate GeologicFeature with other GeologicFeatures, including GeologicEvent.  However, this design was deemed too complex for GeoSciML Basic and is therefore only available from the GeoSciML Extension package.",
-					"type":"integer"
-				},
-				"eventEnvironment-1":{
-					"title":"eventEnvironment",
-					"description":"The <font color=\"#4f81bd\">eventEnvironment</font> property (<font color=\"#4f81bd\">SWE::Category</font>) is a category from a controlled vocabulary identifying the physical setting within which a <font color=\"#4f81bd\">GeologicEvent</font> takes place. Event environment is construed broadly to include physical settings on the Earth surface specified by climate, tectonics, physiography or geography, and settings in the Earth’s interior specified by pressure, temperature, chemical environment, or tectonics.",
-					"type":"integer"
-				},
-				"eventEnvironment-2":{
-					"title":"eventEnvironment",
-					"description":"The <font color=\"#4f81bd\">eventEnvironment</font> property (<font color=\"#4f81bd\">SWE::Category</font>) is a category from a controlled vocabulary identifying the physical setting within which a <font color=\"#4f81bd\">GeologicEvent</font> takes place. Event environment is construed broadly to include physical settings on the Earth surface specified by climate, tectonics, physiography or geography, and settings in the Earth’s interior specified by pressure, temperature, chemical environment, or tectonics.",
-					"type":"integer"
-				},
-				"eventEnvironment-3":{
-					"title":"eventEnvironment",
-					"description":"The <font color=\"#4f81bd\">eventEnvironment</font> property (<font color=\"#4f81bd\">SWE::Category</font>) is a category from a controlled vocabulary identifying the physical setting within which a <font color=\"#4f81bd\">GeologicEvent</font> takes place. Event environment is construed broadly to include physical settings on the Earth surface specified by climate, tectonics, physiography or geography, and settings in the Earth’s interior specified by pressure, temperature, chemical environment, or tectonics.",
-					"type":"integer"
-				},
-				"eventProcess-1":{
-					"title":"eventProcess",
-					"description":"The <font color=\"#4f81bd\">eventProcess:EventProcessTerm</font> property provides a term from a controlled vocabulary specifying the process or processes that occurred during the event. Examples include deposition, extrusion, intrusion, cooling.",
+				"classifier_nullReason":{
+					"title":"Reason for null value in property classifier",
 					"type":"string"
 				},
-				"eventProcess-2":{
-					"title":"eventProcess",
-					"description":"The <font color=\"#4f81bd\">eventProcess:EventProcessTerm</font> property provides a term from a controlled vocabulary specifying the process or processes that occurred during the event. Examples include deposition, extrusion, intrusion, cooling.",
+				"geologicHistory":{
+					"title":"geologicHistory",
+					"description":"The geologicHistory is an association that relates one or more GeologicEvents to a GeologicFeature to describe their age or geologic history.  Normally, GeoSciML uses the generic relatedFeature::GeologicRelation to associate GeologicFeature with other GeologicFeatures, including GeologicEvent.  However, this design was deemed too complex for GeoSciML Basic and is therefore only available from the GeoSciML Extension package.",
+					"type":"array",
+					"items":{
+						"type":"string",
+						"format":"uri"
+					}
+				},
+				"eventEnvironment":{
+					"title":"eventEnvironment",
+					"description":"The <font color=\"#4f81bd\">eventEnvironment</font> property (<font color=\"#4f81bd\">SWE::Category</font>) is a category from a controlled vocabulary identifying the physical setting within which a <font color=\"#4f81bd\">GeologicEvent</font> takes place. Event environment is construed broadly to include physical settings on the Earth surface specified by climate, tectonics, physiography or geography, and settings in the Earth’s interior specified by pressure, temperature, chemical environment, or tectonics.",
+					"type":["array","null"],
+					"items":{
+						"type":"string",
+						"format":"uri"
+					}
+				},
+				"eventEnvironment_nullReason":{
+					"title":"Reason for null value in property eventEnvironment",
 					"type":"string"
 				},
-				"eventProcess-3":{
+				"eventProcess":{
 					"title":"eventProcess",
 					"description":"The <font color=\"#4f81bd\">eventProcess:EventProcessTerm</font> property provides a term from a controlled vocabulary specifying the process or processes that occurred during the event. Examples include deposition, extrusion, intrusion, cooling.",
+					"type":["array","null"],
+					"items":{
+						"type":"string",
+						"format":"uri"
+					}
+				},
+				"eventProcess_nullReason":{
+					"title":"Reason for null value in property eventProcess",
 					"type":"string"
 				},
-				"numericAge.reportingDate":{
-					"title":"reportingDate",
-					"description":"The <font color=\"#4f81bd\">reportingDate</font> (<font color=\"#4f81bd\">SWE::Quantity</font>) property reports a single time coordinate value to report as representative for this <font color=\"#4f81bd\">NumericAge</font> assignment.",
-					"type":"integer"
+				"numericAge":{
+					"title":"numericAge",
+					"description":"The <font color=\"#4f81bd\">numericAge:NumericAgeRange</font> property provides an age in absolute year before present (BP).  Present is defined by convention to be January 1<sup>st</sup> 1950 (although van der Plitch & Hogg , suggests this convention to be restricted to radiocarbon estimations).",
+					"$ref":"http://opengis.net/geosciml/4.1/json/gsmlb/NumericAgeRange.json"
 				},
-				"numericAge.olderBoundDate":{
-					"title":"olderBoundDate",
-					"description":"The <font color=\"#4f81bd\">olderBoundDate</font> (<font color=\"#4f81bd\">SWE::Quantity</font>) property reports the older bounding time coordinate in an age range.",
-					"type":"integer"
-				},
-				"numericAge.youngerBoundDate":{
-					"title":"youngerBoundDate",
-					"description":"The <font color=\"#4f81bd\">youngerBoundDate</font> (<font color=\"#4f81bd\">SWE::Quantity</font>) property reports the younger bounding time coordinate in an age range.",
-					"type":"integer"
+				"numericAge_nullReason":{
+					"title":"Reason for null value in property numericAge",
+					"type":"string"
 				},
 				"olderNamedAge":{
 					"title":"olderNamedAge",
 					"description":"The property <font color=\"#4f81bd\">olderNamedAge:GeochronologicalEraTerm</font> defines the older boundary of age of an event expressed using a geochronologic era defined according to a geologic time scale as per the <font color=\"#4f81bd\">GeologicTime</font> schema (eg, the International Commission on Stratigraphy Chronostratigraphic Chart - http://www.stratigraphy.org/index.php/ics-chart-timescale).",
+					"type":["string","null"],
+					"format":"uri"
+				},
+				"olderNamedAge_nullReason":{
+					"title":"Reason for null value in property olderNamedAge",
 					"type":"string"
 				},
 				"youngerNamedAge":{
 					"title":"youngerNamedAge",
 					"description":"The property <font color=\"#4f81bd\">youngerNamedAge:GeochronologicalEraTerm</font> defines the younger boundary of age of event expressed using a geochronologic era defined according to a geologic time scale per the <font color=\"#4f81bd\">GeologicTime</font> schema. (eg, the International Commission on Stratigraphy Chronostratigraphic Chart - http://www.stratigraphy.org/index.php/ics-chart-timescale).",
+					"type":["string","null"],
+					"format":"uri"
+				},
+				"youngerNamedAge_nullReason":{
+					"title":"Reason for null value in property youngerNamedAge",
+					"type":"string"
+				},
+				"gaEventDescription":{
+					"title":"gaEventDescription",
+					"description":"The property geEventDescription:GeologicEventAbstractDescription contains a detailed event description.  This is a stub property in GeoSciML Basic since GeologicEventAbstractDescription is abstract and with subtypes defined in GeoSciML Extension.",
+					"type":["array","null"],
+					"items":{
+						"$ref":"http://opengis.net/geosciml/4.1/json/gsmlb/GeologicEventAbstractDescription.json"
+
+					}
+				},
+				"gaEventDescription_nullReason":{
+					"title":"Reason for null value in property gaEventDescription",
 					"type":"string"
 				}
 			}

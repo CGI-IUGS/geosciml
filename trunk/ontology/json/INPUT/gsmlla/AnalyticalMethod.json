@@ -1,6 +1,6 @@
 {
 	"$schema":"http://json-schema.org/draft-03/schema#",
-	"id":"FIXME/gsmlla/AnalyticalMethod.json",
+	"id":"http://opengis.net/geosciml/4.1/json/gsmlla/AnalyticalMethod.json",
 	"title":"AnalyticalMethod",
 	"description":"The <font color=\"#4f81bd\">AnalyticalMethod</font> provides the name, and published citation, of the analytical method used in an analytical session.",
 	"type":"object",
@@ -17,12 +17,22 @@
 				"methodName":{
 					"title":"methodName",
 					"description":"The property <font color=\"#4f81bd\">methodName:AnalyticalMethodTerm</font> contains a term from a controlled vocabulary that describes an analytical method used in a session (e.g., XRF mass spectrometry, ICPMS, SHRIMP geochronology).",
+					"type":["string","null"],
+					"format":"uri"
+				},
+				"methodName_nullReason":{
+					"title":"Reason for null value in property methodName",
 					"type":"string"
 				},
 				"citation":{
 					"title":"citation",
 					"description":"The <font color=\"#4f81bd\">citation</font> property is an association between an <font color=\"#4f81bd\">AnalyticalMethod</font> and a <font color=\"#4f81bd\">CIT:CI_Citation</font> describing a published description of a particular analytical method (e.g., a standard operating procedure document).",
-					"type":"integer"
+					"type":["string","null"],
+					"format":"uri"
+				},
+				"citation_nullReason":{
+					"title":"Reason for null value in property citation",
+					"type":"string"
 				}
 			}
 		}

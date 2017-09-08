@@ -1,6 +1,6 @@
 {
 	"$schema":"http://json-schema.org/draft-03/schema#",
-	"id":"FIXME/gsmle/DisplacementEvent.json",
+	"id":"http://opengis.net/geosciml/4.1/json/gsmle/DisplacementEvent.json",
 	"title":"DisplacementEvent",
 	"description":"A displacement event is a description of the age, environment and process of a shear displacement event.",
 	"type":"object",
@@ -14,100 +14,82 @@
 			"title":"feature attributes",
 			"type":"object",
 			"properties":{
-				"eventEnvironment-1":{
+				"eventEnvironment":{
 					"title":"eventEnvironment",
 					"description":"The <font color=\"#4f81bd\">eventEnvironment</font> property (<font color=\"#4f81bd\">SWE::Category</font>) is a category from a controlled vocabulary identifying the physical setting within which a <font color=\"#4f81bd\">GeologicEvent</font> takes place. Event environment is construed broadly to include physical settings on the Earth surface specified by climate, tectonics, physiography or geography, and settings in the Earth’s interior specified by pressure, temperature, chemical environment, or tectonics.",
-					"type":"integer"
+					"type":["array","null"],
+					"items":{
+						"type":"string",
+						"format":"uri"
+					}
 				},
-				"eventEnvironment-2":{
-					"title":"eventEnvironment",
-					"description":"The <font color=\"#4f81bd\">eventEnvironment</font> property (<font color=\"#4f81bd\">SWE::Category</font>) is a category from a controlled vocabulary identifying the physical setting within which a <font color=\"#4f81bd\">GeologicEvent</font> takes place. Event environment is construed broadly to include physical settings on the Earth surface specified by climate, tectonics, physiography or geography, and settings in the Earth’s interior specified by pressure, temperature, chemical environment, or tectonics.",
-					"type":"integer"
-				},
-				"eventEnvironment-3":{
-					"title":"eventEnvironment",
-					"description":"The <font color=\"#4f81bd\">eventEnvironment</font> property (<font color=\"#4f81bd\">SWE::Category</font>) is a category from a controlled vocabulary identifying the physical setting within which a <font color=\"#4f81bd\">GeologicEvent</font> takes place. Event environment is construed broadly to include physical settings on the Earth surface specified by climate, tectonics, physiography or geography, and settings in the Earth’s interior specified by pressure, temperature, chemical environment, or tectonics.",
-					"type":"integer"
-				},
-				"eventProcess-1":{
-					"title":"eventProcess",
-					"description":"The <font color=\"#4f81bd\">eventProcess:EventProcessTerm</font> property provides a term from a controlled vocabulary specifying the process or processes that occurred during the event. Examples include deposition, extrusion, intrusion, cooling.",
+				"eventEnvironment_nullReason":{
+					"title":"Reason for null value in property eventEnvironment",
 					"type":"string"
 				},
-				"eventProcess-2":{
+				"eventProcess":{
 					"title":"eventProcess",
 					"description":"The <font color=\"#4f81bd\">eventProcess:EventProcessTerm</font> property provides a term from a controlled vocabulary specifying the process or processes that occurred during the event. Examples include deposition, extrusion, intrusion, cooling.",
+					"type":["array","null"],
+					"items":{
+						"type":"string",
+						"format":"uri"
+					}
+				},
+				"eventProcess_nullReason":{
+					"title":"Reason for null value in property eventProcess",
 					"type":"string"
 				},
-				"eventProcess-3":{
-					"title":"eventProcess",
-					"description":"The <font color=\"#4f81bd\">eventProcess:EventProcessTerm</font> property provides a term from a controlled vocabulary specifying the process or processes that occurred during the event. Examples include deposition, extrusion, intrusion, cooling.",
+				"numericAge":{
+					"title":"numericAge",
+					"description":"The <font color=\"#4f81bd\">numericAge:NumericAgeRange</font> property provides an age in absolute year before present (BP).  Present is defined by convention to be January 1<sup>st</sup> 1950 (although van der Plitch & Hogg , suggests this convention to be restricted to radiocarbon estimations).",
+					"$ref":"http://opengis.net/geosciml/4.1/json/gsmlb/NumericAgeRange.json"
+				},
+				"numericAge_nullReason":{
+					"title":"Reason for null value in property numericAge",
 					"type":"string"
-				},
-				"numericAge.reportingDate":{
-					"title":"reportingDate",
-					"description":"The <font color=\"#4f81bd\">reportingDate</font> (<font color=\"#4f81bd\">SWE::Quantity</font>) property reports a single time coordinate value to report as representative for this <font color=\"#4f81bd\">NumericAge</font> assignment.",
-					"type":"integer"
-				},
-				"numericAge.olderBoundDate":{
-					"title":"olderBoundDate",
-					"description":"The <font color=\"#4f81bd\">olderBoundDate</font> (<font color=\"#4f81bd\">SWE::Quantity</font>) property reports the older bounding time coordinate in an age range.",
-					"type":"integer"
-				},
-				"numericAge.youngerBoundDate":{
-					"title":"youngerBoundDate",
-					"description":"The <font color=\"#4f81bd\">youngerBoundDate</font> (<font color=\"#4f81bd\">SWE::Quantity</font>) property reports the younger bounding time coordinate in an age range.",
-					"type":"integer"
 				},
 				"olderNamedAge":{
 					"title":"olderNamedAge",
 					"description":"The property <font color=\"#4f81bd\">olderNamedAge:GeochronologicalEraTerm</font> defines the older boundary of age of an event expressed using a geochronologic era defined according to a geologic time scale as per the <font color=\"#4f81bd\">GeologicTime</font> schema (eg, the International Commission on Stratigraphy Chronostratigraphic Chart - http://www.stratigraphy.org/index.php/ics-chart-timescale).",
+					"type":["string","null"],
+					"format":"uri"
+				},
+				"olderNamedAge_nullReason":{
+					"title":"Reason for null value in property olderNamedAge",
 					"type":"string"
 				},
 				"youngerNamedAge":{
 					"title":"youngerNamedAge",
 					"description":"The property <font color=\"#4f81bd\">youngerNamedAge:GeochronologicalEraTerm</font> defines the younger boundary of age of event expressed using a geochronologic era defined according to a geologic time scale per the <font color=\"#4f81bd\">GeologicTime</font> schema. (eg, the International Commission on Stratigraphy Chronostratigraphic Chart - http://www.stratigraphy.org/index.php/ics-chart-timescale).",
+					"type":["string","null"],
+					"format":"uri"
+				},
+				"youngerNamedAge_nullReason":{
+					"title":"Reason for null value in property youngerNamedAge",
 					"type":"string"
 				},
-				"incrementalDisplacement.hangingWallDirection.directed":{
-					"title":"directed",
-					"description":"The <font color=\"#4f81bd\">directed:LinearDirectedCode</font> property indicates if the orientation represents a linear feature that is directed, e.g. clast imbrication, mylonitic lineation with sense of shear, slickenlines with displacement direction, rather than undirected (like a fold hinge line or intersection lineations).  A code list will indicate which is the directed end of the linear orientation.  The value of the property comes from a controlled vocabulary.",
+				"gaEventDescription":{
+					"title":"gaEventDescription",
+					"description":"The property geEventDescription:GeologicEventAbstractDescription contains a detailed event description.  This is a stub property in GeoSciML Basic since GeologicEventAbstractDescription is abstract and with subtypes defined in GeoSciML Extension.",
+					"type":["array","null"],
+					"items":{
+						"$ref":"http://opengis.net/geosciml/4.1/json/gsmlb/GeologicEventAbstractDescription.json"
+
+					}
+				},
+				"gaEventDescription_nullReason":{
+					"title":"Reason for null value in property gaEventDescription",
 					"type":"string"
 				},
-				"incrementalDisplacement.hangingWallDirection.plunge":{
-					"title":"plunge",
-					"description":"The property <font color=\"#4f81bd\">plunge</font> (<font color=\"#4f81bd\">SWE::QuantityRange</font>) reports the magnitude of the plunge as an angle from horizontal.",
-					"type":"integer"
+				"incrementalDisplacement":{
+					"title":"incrementalDisplacement",
+					"description":"The incrementalDisplacement:DisplacementValue property contains a DisplacementValue reporting the parameters of the displacement.",
+					"$ref":"http://opengis.net/geosciml/4.1/json/gsmle/DisplacementValue.json"
 				},
-				"incrementalDisplacement.hangingWallDirection.trend":{
-					"title":"trend",
-					"description":"The property <font color=\"#4f81bd\">trend</font> (<font color=\"#4f81bd\">SWE::QuantityRange</font>) reports the azimuth (compass bearing) value of the linear orientation.",
-					"type":"integer"
-				},
-				"incrementalDisplacement.movementSense":{
-					"title":"movementSense",
-					"description":"The property <font color=\"#4f81bd\">movementSense:MovementSenseTerm</font> contains a term from a controlled vocabulary that describes the movement sense of displacement along a geologic structure (e.g., dextral, sinistral).",
+				"incrementalDisplacement_nullReason":{
+					"title":"Reason for null value in property incrementalDisplacement",
 					"type":"string"
-				},
-				"incrementalDisplacement.movementType":{
-					"title":"movementType",
-					"description":"The property <font color=\"#4f81bd\">movementType:MovementTypeTerm</font> contains a term from a controlled vocabulary that defines the type of movement on a shear displacement structure (e.g. dip-slip, strike-slip).",
-					"type":"string"
-				},
-				"incrementalDisplacement.displacementEvent-1":{
-					"title":"displacementEvent",
-					"description":"The property displacementEvent is an association between a Displacement and a GeologicEvent that contains a description of the age, environment and process of a shear displacement event.",
-					"type":"integer"
-				},
-				"incrementalDisplacement.displacementEvent-2":{
-					"title":"displacementEvent",
-					"description":"The property displacementEvent is an association between a Displacement and a GeologicEvent that contains a description of the age, environment and process of a shear displacement event.",
-					"type":"integer"
-				},
-				"incrementalDisplacement.displacementEvent-3":{
-					"title":"displacementEvent",
-					"description":"The property displacementEvent is an association between a Displacement and a GeologicEvent that contains a description of the age, environment and process of a shear displacement event.",
-					"type":"integer"
 				}
 			}
 		}

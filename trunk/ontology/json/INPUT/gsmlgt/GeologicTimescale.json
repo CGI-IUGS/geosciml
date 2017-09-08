@@ -1,6 +1,6 @@
 {
 	"$schema":"http://json-schema.org/draft-03/schema#",
-	"id":"FIXME/gsmlgt/GeologicTimescale.json",
+	"id":"http://opengis.net/geosciml/4.1/json/gsmlgt/GeologicTimescale.json",
 	"title":"GeologicTimescale",
 	"description":"The classic \"Geologic Timescale\" (<a href=\"http://www.stratigraphy.org/index.php/ics-chart-timescale\"><font color=\"#0000ff\"><u>http://www.stratigraphy.org/index.php/ics-chart-timescale</u></font></a>) comprising an ordered, hierarchical set of named \"eras\" is an example of an Ordinal Temporal Reference System. It may be calibrated with reference to a numeric Temporal Coordinate System, but is, in principle, defined independently.",
 	"type":"object",
@@ -14,30 +14,30 @@
 			"title":"feature attributes",
 			"type":"object",
 			"properties":{
-				"component-1":{
+				"component":{
 					"title":"component",
-					"type":"integer"
+					"type":["array","null"],
+					"items":{
+						"type":"string",
+						"format":"uri"
+					}
 				},
-				"component-2":{
-					"title":"component",
-					"type":"integer"
+				"component_nullReason":{
+					"title":"Reason for null value in property component",
+					"type":"string"
 				},
-				"component-3":{
-					"title":"component",
-					"type":"integer"
-				},
-				"referencePoint-1":{
+				"referencePoint":{
 					"title":"referencePoint",
-					"type":"integer",
-					"required":true
+					"type":["array","null"],
+					"items":{
+						"type":"string",
+						"format":"uri"
+					},
+					"minItems":2
 				},
-				"referencePoint-2":{
-					"title":"referencePoint",
-					"type":"integer"
-				},
-				"referencePoint-3":{
-					"title":"referencePoint",
-					"type":"integer"
+				"referencePoint_nullReason":{
+					"title":"Reason for null value in property referencePoint",
+					"type":"string"
 				}
 			}
 		}

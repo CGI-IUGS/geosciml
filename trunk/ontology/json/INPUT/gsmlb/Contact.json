@@ -1,6 +1,6 @@
 {
 	"$schema":"http://json-schema.org/draft-03/schema#",
-	"id":"FIXME/gsmlb/Contact.json",
+	"id":"http://opengis.net/geosciml/4.1/json/gsmlb/Contact.json",
 	"title":"Contact",
 	"description":"A contact is a general concept representing any kind of surface separating two geologic units, including primary boundaries such as depositional contacts, all kinds of unconformities, intrusive contacts, and gradational contacts, as well as faults that separate geologic units.",
 	"type":"object",
@@ -17,6 +17,20 @@
 				"contactType":{
 					"title":"contactType",
 					"description":"The property <font color=\"#4f81bd\">contactType:ContactTypeTerm</font> classifies the contact (e.g. intrusive, unconformity, bedding surface, lithologic boundary, phase boundary) and is a term from a controlled vocabulary.",
+					"type":["string","null"],
+					"format":"uri"
+				},
+				"contactType_nullReason":{
+					"title":"Reason for null value in property contactType",
+					"type":"string"
+				},
+				"stContactDescription":{
+					"title":"stContactDescription",
+					"description":"The property stContactDescription:ContactAbstractDescription provides a detailed contact description.  This is a stub property in GeoSciML Basic since ContactAbstractDescription is an abstract class with subtypes defined in GeoSciML Extension.",
+					"$ref":"http://opengis.net/geosciml/4.1/json/gsmlb/ContactAbstractDescription.json"
+				},
+				"stContactDescription_nullReason":{
+					"title":"Reason for null value in property stContactDescription",
 					"type":"string"
 				}
 			}

@@ -1,6 +1,6 @@
 {
 	"$schema":"http://json-schema.org/draft-03/schema#",
-	"id":"FIXME/gsmlb/RockMaterial.json",
+	"id":"http://opengis.net/geosciml/4.1/json/gsmlb/RockMaterial.json",
 	"title":"RockMaterial",
 	"description":"<font color=\"#4f81bd\">RockMaterial</font> is a specialized <font color=\"#4f81bd\">CompoundMaterial</font> that includes consolidated and unconsolidated materials (such as surficial sediments) as well as mixtures of consolidated and unconsolidated materials.  In GeoSciML Basic, Rock Material is essentially a link to a controlled vocabulary (lithology property) and a color (inherited from <font color=\"#4f81bd\">EarthMaterial</font>).  Specific material properties (and <font color=\"#4f81bd\">CompoundMaterial</font> nesting) are available in GeoSciML Extension.",
 	"type":"object",
@@ -17,6 +17,11 @@
 				"lithology":{
 					"title":"lithology",
 					"description":"The <font color=\"#4f81bd\">lithology:LithologyTerm</font> property provides a term identifying the lithology class from a controlled vocabulary.",
+					"type":["string","null"],
+					"format":"uri"
+				},
+				"lithology_nullReason":{
+					"title":"Reason for null value in property lithology",
 					"type":"string"
 				}
 			}

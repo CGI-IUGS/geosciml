@@ -1,6 +1,6 @@
 {
 	"$schema":"http://json-schema.org/draft-03/schema#",
-	"id":"FIXME/gsmlb/AnthropogenicGeomorphologicFeature.json",
+	"id":"http://opengis.net/geosciml/4.1/json/gsmlb/AnthropogenicGeomorphologicFeature.json",
 	"title":"AnthropogenicGeomorphologicFeature",
 	"description":"An anthropogenic geomorphologic feature is a geomorphologic feature (i.e., landform) which has been created by human activity.  For example, a dredged channel, midden, open pit or reclaimed land.",
 	"type":"object",
@@ -14,24 +14,40 @@
 			"title":"feature attributes",
 			"type":"object",
 			"properties":{
-				"unitDescription-1":{
+				"unitDescription":{
 					"title":"unitDescription",
 					"description":"The unitDescription property is an association that links the geomorphologic feature to a geologic description (e.g., related stratigraphic units and earth materials).",
-					"type":"integer"
+					"type":["array","null"],
+					"items":{
+						"type":"string",
+						"format":"uri"
+					}
 				},
-				"unitDescription-2":{
-					"title":"unitDescription",
-					"description":"The unitDescription property is an association that links the geomorphologic feature to a geologic description (e.g., related stratigraphic units and earth materials).",
-					"type":"integer"
+				"unitDescription_nullReason":{
+					"title":"Reason for null value in property unitDescription",
+					"type":"string"
 				},
-				"unitDescription-3":{
-					"title":"unitDescription",
-					"description":"The unitDescription property is an association that links the geomorphologic feature to a geologic description (e.g., related stratigraphic units and earth materials).",
-					"type":"integer"
+				"gmFeatureDescription":{
+					"title":"gmFeatureDescription",
+					"description":"The property gmFeatureDescription:GeomorphologicUnitAbstractDescription provides a detailed morphologic description.  This is a stub property in GeoSciML Basic since GeomorphologicUnitAbstractDescription is an abstract class with no concrete subtype in GeoSciML Basic.",
+					"type":["array","null"],
+					"items":{
+						"$ref":"http://opengis.net/geosciml/4.1/json/gsmlb/GeomorphologicUnitAbstractDescription.json"
+
+					}
+				},
+				"gmFeatureDescription_nullReason":{
+					"title":"Reason for null value in property gmFeatureDescription",
+					"type":"string"
 				},
 				"anthropogenicGeomorphologicFeatureType":{
 					"title":"anthropogenicGeomorphologicFeatureType",
 					"description":"The <font color=\"#4f81bd\">anthropogenicGeomorphologicFeatureType: AnthropogenicGeomorphologicFeatureTypeTerm</font> is a reference from a controlled vocabulary describing the type of geomorphologic feature.",
+					"type":["string","null"],
+					"format":"uri"
+				},
+				"anthropogenicGeomorphologicFeatureType_nullReason":{
+					"title":"Reason for null value in property anthropogenicGeomorphologicFeatureType",
 					"type":"string"
 				}
 			}

@@ -1,6 +1,6 @@
 {
 	"$schema":"http://json-schema.org/draft-03/schema#",
-	"id":"FIXME/gsmlla/ReferenceSpecimen.json",
+	"id":"http://opengis.net/geosciml/4.1/json/gsmlla/ReferenceSpecimen.json",
 	"title":"ReferenceSpecimen",
 	"description":"A reference specimen is a specimen with known or accepted values of some property.  The citation property describes the location of a published description of these values. Reference specimens include analytical blanks. <font color=\"#4f81bd\">ReferenceSpecimens</font> are used in quality control procedures to assess method reproducibility. \u000d\u000a\u000d\u000aAnalytical results from a reference specimen analysed during an <font color=\"#4f81bd\">AnalyticalSession</font> are delivered in the same way as the results of other specimens analysed in that session.",
 	"type":"object",
@@ -17,22 +17,25 @@
 				"referenceDescription":{
 					"title":"referenceDescription",
 					"description":"The property <font color=\"#4f81bd\">referenceDescription</font> is an association between a <font color=\"#4f81bd\">ReferenceSpecimen</font> and a <font color=\"#4f81bd\">CIT:CI_Citation</font> that references a citation of published analytical results for this standard reference specimen.",
-					"type":"integer"
+					"type":["string","null"],
+					"format":"uri"
 				},
-				"usedIn-1":{
+				"referenceDescription_nullReason":{
+					"title":"Reason for null value in property referenceDescription",
+					"type":"string"
+				},
+				"usedIn":{
 					"title":"usedIn",
 					"description":"The property usedIn is an association between a ReferenceSpecimen and an AnalyticalSession in which the reference specimen was used.",
-					"type":"integer"
+					"type":["array","null"],
+					"items":{
+						"type":"string",
+						"format":"uri"
+					}
 				},
-				"usedIn-2":{
-					"title":"usedIn",
-					"description":"The property usedIn is an association between a ReferenceSpecimen and an AnalyticalSession in which the reference specimen was used.",
-					"type":"integer"
-				},
-				"usedIn-3":{
-					"title":"usedIn",
-					"description":"The property usedIn is an association between a ReferenceSpecimen and an AnalyticalSession in which the reference specimen was used.",
-					"type":"integer"
+				"usedIn_nullReason":{
+					"title":"Reason for null value in property usedIn",
+					"type":"string"
 				}
 			}
 		}

@@ -1,6 +1,6 @@
 {
 	"$schema":"http://json-schema.org/draft-03/schema#",
-	"id":"FIXME/gsmlla/AnalyticalInstrument.json",
+	"id":"http://opengis.net/geosciml/4.1/json/gsmlla/AnalyticalInstrument.json",
 	"title":"AnalyticalInstrument",
 	"description":"The analytical instrument is the category of instrument used to perform an analytical measurement or observation.",
 	"type":"object",
@@ -17,42 +17,63 @@
 				"type":{
 					"title":"type",
 					"description":"The property <font color=\"#4f81bd\">type:InstrumentTypeTerm</font> reports a term from a controlled vocabulary that describes the category of instrument used in an analytical session (e.g., XRF, ICPMS, SHRIMP, etc.).",
+					"type":["string","null"],
+					"format":"uri"
+				},
+				"type_nullReason":{
+					"title":"Reason for null value in property type",
 					"type":"string"
 				},
 				"model":{
 					"title":"model",
 					"description":"The property <font color=\"#4f81bd\">mode:Primitive::CharacterString</font> contains a string identifying the model of instrument used. (e.g., instrument type = XRD, model = Siemens Diffraktometer D500).",
+					"type":["string","null"]
+				},
+				"model_nullReason":{
+					"title":"Reason for null value in property model",
 					"type":"string"
 				},
 				"serialNumber":{
 					"title":"serialNumber",
 					"description":"The property <font color=\"#4f81bd\">serialNumber:Primitive::CharacterString</font> contains a string that contains the serial number of the machine used in an analytical session.",
+					"type":["string","null"]
+				},
+				"serialNumber_nullReason":{
+					"title":"Reason for null value in property serialNumber",
 					"type":"string"
 				},
 				"commissionDate":{
 					"title":"commissionDate",
 					"description":"The property <font color=\"#4f81bd\">commissionDate</font> is an association between an <font color=\"#4f81bd\">AnalyticalInstrument</font> and a <font color=\"#4f81bd\">TM_Instant</font> corresponding to the date of the commissioning of an instrument.",
-					"type":"integer"
+					"type":["string","null"],
+					"format":"uri"
+				},
+				"commissionDate_nullReason":{
+					"title":"Reason for null value in property commissionDate",
+					"type":"string"
 				},
 				"location":{
 					"title":"location",
 					"description":"The property <font color=\"#4f81bd\">location</font> is an association between an <font color=\"#4f81bd\">AnalyticalInstrument</font> and a <font color=\"#4f81bd\">CIT:Responsibility</font> describing the owner and the location of an instrument.",
-					"type":"integer"
+					"type":["string","null"],
+					"format":"uri"
 				},
-				"usedIn-1":{
+				"location_nullReason":{
+					"title":"Reason for null value in property location",
+					"type":"string"
+				},
+				"usedIn":{
 					"title":"usedIn",
 					"description":"The property usedIn is an association between an AnalyticalInstrument and an AnalyticalSession identifying an analytical sessions which used this instrument.",
-					"type":"integer"
+					"type":["array","null"],
+					"items":{
+						"type":"string",
+						"format":"uri"
+					}
 				},
-				"usedIn-2":{
-					"title":"usedIn",
-					"description":"The property usedIn is an association between an AnalyticalInstrument and an AnalyticalSession identifying an analytical sessions which used this instrument.",
-					"type":"integer"
-				},
-				"usedIn-3":{
-					"title":"usedIn",
-					"description":"The property usedIn is an association between an AnalyticalInstrument and an AnalyticalSession identifying an analytical sessions which used this instrument.",
-					"type":"integer"
+				"usedIn_nullReason":{
+					"title":"Reason for null value in property usedIn",
+					"type":"string"
 				}
 			}
 		}

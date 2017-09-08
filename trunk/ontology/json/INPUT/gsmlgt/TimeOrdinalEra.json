@@ -1,6 +1,6 @@
 {
 	"$schema":"http://json-schema.org/draft-03/schema#",
-	"id":"FIXME/gsmlgt/TimeOrdinalEra.json",
+	"id":"http://opengis.net/geosciml/4.1/json/gsmlgt/TimeOrdinalEra.json",
 	"title":"TimeOrdinalEra",
 	"description":"The association of an era with a stratotype is optional.  In the GSSP approach recommended by ICS for the Global Geologic Timescale, Unit Stratotypes are not used.  Rather, the association of an Era with geologic units and sections is indirect, via the association of an era with Boundaries, which are in turn tied to Stratotype Points, which occur within host Stratotype Sections. \u000d\u000aNote that the \"German School\" defines stratigraphic eras conceptually, without reference to stratotypes.",
 	"type":"object",
@@ -17,24 +17,30 @@
 				"start":{
 					"title":"start",
 					"description":"Older time boundary of an era",
-					"type":"integer"
+					"type":["string","null"],
+					"format":"uri"
+				},
+				"start_nullReason":{
+					"title":"Reason for null value in property start",
+					"type":"string"
 				},
 				"end":{
 					"title":"end",
 					"description":"Younger time boundary of an era",
-					"type":"integer"
+					"type":["string","null"],
+					"format":"uri"
 				},
-				"member-1":{
-					"title":"member",
-					"type":"integer"
+				"end_nullReason":{
+					"title":"Reason for null value in property end",
+					"type":"string"
 				},
-				"member-2":{
+				"member":{
 					"title":"member",
-					"type":"integer"
-				},
-				"member-3":{
-					"title":"member",
-					"type":"integer"
+					"type":"array",
+					"items":{
+						"type":"string",
+						"format":"uri"
+					}
 				}
 			}
 		}

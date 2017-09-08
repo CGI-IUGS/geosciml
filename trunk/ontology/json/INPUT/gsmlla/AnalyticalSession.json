@@ -1,6 +1,6 @@
 {
 	"$schema":"http://json-schema.org/draft-03/schema#",
-	"id":"FIXME/gsmlla/AnalyticalSession.json",
+	"id":"http://opengis.net/geosciml/4.1/json/gsmlla/AnalyticalSession.json",
 	"title":"AnalyticalSession",
 	"description":"This feature type describes the time and operator of a particular laboratory analytical session. <font color=\"#4f81bd\">AnalyticalSession</font> also has associated links to the type of instrument and analytical method used, processing steps applied to data collected during a session, and instrument parameters unique to that session.",
 	"type":"object",
@@ -17,62 +17,58 @@
 				"time":{
 					"title":"time",
 					"description":"The property <font color=\"#4f81bd\">time</font> is an association between an <font color=\"#4f81bd\">AnalyticalSession</font> and a <font color=\"#4f81bd\">TM_Period</font> describing the time period during which the analysis was performed.",
-					"type":"integer"
+					"type":["string","null"],
+					"format":"uri"
+				},
+				"time_nullReason":{
+					"title":"Reason for null value in property time",
+					"type":"string"
 				},
 				"operator":{
 					"title":"operator",
 					"description":"The property <font color=\"#4f81bd\">operator</font> is an association between an <font color=\"#4f81bd\">AnalyticalSession</font> and a <font color=\"#4f81bd\">CIT:CI_Responsability</font> describing the operator or organisation responsible for the analytical session.",
-					"type":"integer"
+					"type":["string","null"],
+					"format":"uri"
 				},
-				"parameter-1.name":{
-					"title":"name",
-					"description":"The attribute name:GenericName shall indicate the meaning of the named value. Its value should be taken from a well-governed source if possible. \u000d\u000a\u000d\u000aEXAMPLES\u0009When used as the value of an Observation:;parameter, the name might take values like &lsquo;procedureOperator&rsquo;, &lsquo;detectionLimit&rsquo;, &lsquo;amplifierGain&rsquo;, &lsquo;samplingDepth&rsquo;.",
+				"operator_nullReason":{
+					"title":"Reason for null value in property operator",
 					"type":"string"
 				},
-				"parameter-1.value":{
-					"title":"value",
-					"description":"The attribute value:Any shall provide the value. The type Any should be substituted by a suitable concrete type, such as CI_ResponsibleParty or Measure.",
-					"type":"integer"
+				"parameter":{
+					"title":"parameter",
+					"description":"The property <font color=\"#4f81bd\">parameter</font> (<font color=\"#4f81bd\">OM::NamedValue</font>) contains a name/value pair to describe arbitrary environmental or instrument setting parameters that apply to an entire analytical session (e.g., voltage, current, temperature, vacuum). The \"name\" attribute of <font color=\"#4f81bd\">NamedValue</font> is a term from a controlled vocabulary.",
+					"type":["array","null"],
+					"items":{
+						"$ref":"http://opengis.net/geosciml/4.1/json//NamedValue.json"
+
+					}
 				},
-				"parameter-2.name":{
-					"title":"name",
-					"description":"The attribute name:GenericName shall indicate the meaning of the named value. Its value should be taken from a well-governed source if possible. \u000d\u000a\u000d\u000aEXAMPLES\u0009When used as the value of an Observation:;parameter, the name might take values like &lsquo;procedureOperator&rsquo;, &lsquo;detectionLimit&rsquo;, &lsquo;amplifierGain&rsquo;, &lsquo;samplingDepth&rsquo;.",
+				"parameter_nullReason":{
+					"title":"Reason for null value in property parameter",
 					"type":"string"
-				},
-				"parameter-2.value":{
-					"title":"value",
-					"description":"The attribute value:Any shall provide the value. The type Any should be substituted by a suitable concrete type, such as CI_ResponsibleParty or Measure.",
-					"type":"integer"
-				},
-				"parameter-3.name":{
-					"title":"name",
-					"description":"The attribute name:GenericName shall indicate the meaning of the named value. Its value should be taken from a well-governed source if possible. \u000d\u000a\u000d\u000aEXAMPLES\u0009When used as the value of an Observation:;parameter, the name might take values like &lsquo;procedureOperator&rsquo;, &lsquo;detectionLimit&rsquo;, &lsquo;amplifierGain&rsquo;, &lsquo;samplingDepth&rsquo;.",
-					"type":"string"
-				},
-				"parameter-3.value":{
-					"title":"value",
-					"description":"The attribute value:Any shall provide the value. The type Any should be substituted by a suitable concrete type, such as CI_ResponsibleParty or Measure.",
-					"type":"integer"
 				},
 				"instrument":{
 					"title":"instrument",
 					"description":"The property instrument is an association between an AnalyticalSession and an AnalyticalInstrument that describes the instrument used in the analytical session.",
-					"type":"integer"
+					"type":["string","null"],
+					"format":"uri"
 				},
-				"referenceAnalyses-1":{
+				"instrument_nullReason":{
+					"title":"Reason for null value in property instrument",
+					"type":"string"
+				},
+				"referenceAnalyses":{
 					"title":"referenceAnalyses",
 					"description":"The property referenceAnalysis is an association between an AnalyticalSession and a ReferenceSpecimen that describes a reference specimen (i.e., standards, blanks) used in the analytical session.",
-					"type":"integer"
+					"type":["array","null"],
+					"items":{
+						"type":"string",
+						"format":"uri"
+					}
 				},
-				"referenceAnalyses-2":{
-					"title":"referenceAnalyses",
-					"description":"The property referenceAnalysis is an association between an AnalyticalSession and a ReferenceSpecimen that describes a reference specimen (i.e., standards, blanks) used in the analytical session.",
-					"type":"integer"
-				},
-				"referenceAnalyses-3":{
-					"title":"referenceAnalyses",
-					"description":"The property referenceAnalysis is an association between an AnalyticalSession and a ReferenceSpecimen that describes a reference specimen (i.e., standards, blanks) used in the analytical session.",
-					"type":"integer"
+				"referenceAnalyses_nullReason":{
+					"title":"Reason for null value in property referenceAnalyses",
+					"type":"string"
 				}
 			}
 		}

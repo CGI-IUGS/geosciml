@@ -1,6 +1,6 @@
 {
 	"$schema":"http://json-schema.org/draft-03/schema#",
-	"id":"FIXME/gsmll/GeologicSpecimenView.json",
+	"id":"http://opengis.net/geosciml/4.1/json/gsmll/GeologicSpecimenView.json",
 	"title":"GeologicSpecimenView",
 	"description":"<font color=\"#4f81bd\">GeologicSpecimenView</font> is a simplified view of a point-located specimen from GeoSciML <font color=\"#4f81bd\">GeologicSpecimen</font> (an extension of Observations & Measurements - ISO19156) with key property values summarised as labels (unconstrained character strings) or arbitrarily selected classifiers to be used for thematic mapping purposes. The latter are the properties suffixed with “_uri” and will contain URIs referring to controlled concepts in published vocabularies.",
 	"type":"object",
@@ -88,20 +88,13 @@
 					"description":"If present, the <font color=\"#4f81bd\">genericSymbolizer:Primitive::CharacterString</font> property contains an identifier for a symbol from standard (locally or community defined) symbolization scheme for portrayal.",
 					"type":"string"
 				},
-				"any-1":{
+				"any":{
 					"title":"any",
 					"description":"A data provider can add an arbitrary number of extra properties, as long as the instance is conformant to GML Simple Feature Level 0.",
-					"type":"string"
-				},
-				"any-2":{
-					"title":"any",
-					"description":"A data provider can add an arbitrary number of extra properties, as long as the instance is conformant to GML Simple Feature Level 0.",
-					"type":"string"
-				},
-				"any-3":{
-					"title":"any",
-					"description":"A data provider can add an arbitrary number of extra properties, as long as the instance is conformant to GML Simple Feature Level 0.",
-					"type":"string"
+					"type":"array",
+					"items":{
+						"type":"any"
+					}
 				}
 			}
 		}

@@ -1,6 +1,6 @@
 {
 	"$schema":"http://json-schema.org/draft-03/schema#",
-	"id":"FIXME/gsmlla/GeologicSamplingMethod.json",
+	"id":"http://opengis.net/geosciml/4.1/json/gsmlla/GeologicSamplingMethod.json",
 	"title":"GeologicSamplingMethod",
 	"description":"<font color=\"#4f81bd\">GeologicSamplingMethod</font> is an implementation of <font color=\"#4f81bd\">OM::SF_Process</font> to describe the method used to obtain a geologic specimen.\u000d\u000aExamples include: \u000d\u000a<ul>\u000d\u000a\u0009<li>diamond drilling</li>\u000d\u000a\u0009<li>percussion drilling</li>\u000d\u000a\u0009<li>piston core drilling</li>\u000d\u000a\u0009<li>vibro core drilling</li>\u000d\u000a\u0009<li>channel sampling</li>\u000d\u000a\u0009<li>sea floor dredging</li>\u000d\u000a\u0009<li>outcrop sampling</li>\u000d\u000a</ul>",
 	"type":"object",
@@ -17,37 +17,21 @@
 				"method":{
 					"title":"method",
 					"description":"The property <font color=\"#4f81bd\">method:GeologicSamplingMethodTerm</font> is a term from a controlled vocabulary that describes the process used to obtain or create a geologic specimen. e.g., diamond drilling, percussion drilling, piston core drilling, vibro core drilling, channel sampling, sea floor dredging, crushing, mineral separation, melting, outcrop sampling.",
+					"type":"string",
+					"format":"uri"
+				},
+				"parameter":{
+					"title":"parameter",
+					"description":"The property <font color=\"#4f81bd\">parameter</font> (<font color=\"#4f81bd\">OM::NamedValue</font>) contains a name/value pair to describe arbitrary parameters used in the sampling process.  The \"<font color=\"#4f81bd\">name</font>\" attribute of <font color=\"#4f81bd\">NamedValue</font> shall be a term from a controlled vocabulary.",
+					"type":["array","null"],
+					"items":{
+						"$ref":"http://opengis.net/geosciml/4.1/json//NamedValue.json"
+
+					}
+				},
+				"parameter_nullReason":{
+					"title":"Reason for null value in property parameter",
 					"type":"string"
-				},
-				"parameter-1.name":{
-					"title":"name",
-					"description":"The attribute name:GenericName shall indicate the meaning of the named value. Its value should be taken from a well-governed source if possible. \u000d\u000a\u000d\u000aEXAMPLES\u0009When used as the value of an Observation:;parameter, the name might take values like &lsquo;procedureOperator&rsquo;, &lsquo;detectionLimit&rsquo;, &lsquo;amplifierGain&rsquo;, &lsquo;samplingDepth&rsquo;.",
-					"type":"string"
-				},
-				"parameter-1.value":{
-					"title":"value",
-					"description":"The attribute value:Any shall provide the value. The type Any should be substituted by a suitable concrete type, such as CI_ResponsibleParty or Measure.",
-					"type":"integer"
-				},
-				"parameter-2.name":{
-					"title":"name",
-					"description":"The attribute name:GenericName shall indicate the meaning of the named value. Its value should be taken from a well-governed source if possible. \u000d\u000a\u000d\u000aEXAMPLES\u0009When used as the value of an Observation:;parameter, the name might take values like &lsquo;procedureOperator&rsquo;, &lsquo;detectionLimit&rsquo;, &lsquo;amplifierGain&rsquo;, &lsquo;samplingDepth&rsquo;.",
-					"type":"string"
-				},
-				"parameter-2.value":{
-					"title":"value",
-					"description":"The attribute value:Any shall provide the value. The type Any should be substituted by a suitable concrete type, such as CI_ResponsibleParty or Measure.",
-					"type":"integer"
-				},
-				"parameter-3.name":{
-					"title":"name",
-					"description":"The attribute name:GenericName shall indicate the meaning of the named value. Its value should be taken from a well-governed source if possible. \u000d\u000a\u000d\u000aEXAMPLES\u0009When used as the value of an Observation:;parameter, the name might take values like &lsquo;procedureOperator&rsquo;, &lsquo;detectionLimit&rsquo;, &lsquo;amplifierGain&rsquo;, &lsquo;samplingDepth&rsquo;.",
-					"type":"string"
-				},
-				"parameter-3.value":{
-					"title":"value",
-					"description":"The attribute value:Any shall provide the value. The type Any should be substituted by a suitable concrete type, such as CI_ResponsibleParty or Measure.",
-					"type":"integer"
 				}
 			}
 		}

@@ -1,6 +1,6 @@
 {
 	"$schema":"http://json-schema.org/draft-03/schema#",
-	"id":"FIXME/gsmle/ConstituentPart.json",
+	"id":"http://opengis.net/geosciml/4.1/json/gsmle/ConstituentPart.json",
 	"title":"ConstituentPart",
 	"description":"The <font color=\"#4f81bd\">ConstituentPart</font> class describes how Earth materials may be made up of other Earth materials, including the proportion of the constituent part in the whole (e.g., 20%, minor, dominant); and the role that the constituent plays in the whole (e.g., matrix, groundmass, framework, phenocryst, xenolith, vein).",
 	"type":"object",
@@ -17,87 +17,50 @@
 				"proportion":{
 					"title":"proportion",
 					"description":"The <font color=\"#4f81bd\">proportion</font> property (<font color=\"#4f81bd\">SWE::QuantityRange</font>) reports the fraction of the whole that is formed by a ConstituentPart in a part/whole relationship.  It is used for the <font color=\"#4f81bd\">ConstituentPart</font> portion in a <font color=\"#4f81bd\">CompoundMaterial</font>.  It specifies the fraction of the <font color=\"#4f81bd\">EarthMaterial</font> formed by the part (e.g., 20%, minor, dominant).",
-					"type":"integer"
+					"type":["string","null"],
+					"format":"uri"
+				},
+				"proportion_nullReason":{
+					"title":"Reason for null value in property proportion",
+					"type":"string"
 				},
 				"role":{
 					"title":"role",
 					"description":"The <font color=\"#4f81bd\">role:ConstituentPartRoleTerm</font> property contains a term from a controlled vocabulary that describes the role a <font color=\"#4f81bd\">ConstituentPart</font> plays in a <font color=\"#4f81bd\">CompoundMaterial</font> aggregation. The same <font color=\"#4f81bd\">EarthMaterial</font> may occur as different <font color=\"#4f81bd\">ConstituentParts</font> playing different roles within one <font color=\"#4f81bd\">CompoundMaterial</font>.  For example, feldspar may be present as groundmass (“groundmass” is a <font color=\"#4f81bd\">ConstituentPart::role</font>) and as phenocrysts (“phenocryst” is another <font color=\"#4f81bd\">ConstituentPart::role</font>) within a single igneous rock.",
+					"type":["string","null"],
+					"format":"uri"
+				},
+				"role_nullReason":{
+					"title":"Reason for null value in property role",
 					"type":"string"
 				},
-				"constituentParticleGeometry.particleType":{
-					"title":"particleType",
-					"description":"The <font color=\"#4f81bd\">particleType:ParticleTypeTerm</font> provides a term from a controlled vocabulary to specify the nature of individual particles of each constituent in an <font color=\"#4f81bd\">EarthMaterial</font> aggregation, based mostly on their genesis.  When applied on <font color=\"#4f81bd\">ParticleDescription</font> for <font color=\"#4f81bd\">CompoundMaterial</font>, it would characterise all particles in aggregate. Use this property on <font color=\"#4f81bd\">CompoundMaterial</font> to distinguish rocks composed of crystals (crystalline rocks) from rocks composed of granular particles (clasts, fragments). Examples include ooliths, crystals, pore space. Constituent type is determined based on the nature of the particles, and ideally is independent of the relationship between particles in a compound material aggregation.",
+				"constituentParticleGeometry":{
+					"title":"constituentParticleGeometry",
+					"description":"Description of geometry of individual subset of particles",
+					"$ref":"http://opengis.net/geosciml/4.1/json/gsmle/ParticleGeometryDescription.json"
+				},
+				"constituentParticleGeometry_nullReason":{
+					"title":"Reason for null value in property constituentParticleGeometry",
 					"type":"string"
 				},
-				"constituentParticleGeometry.aspectRatio-1":{
-					"title":"aspectRatio",
-					"description":"The <font color=\"#4f81bd\">aspectRatio</font> property (<font color=\"#4f81bd\">SWE::Category</font>) contains a term from a controlled vocabulary describing the geometry of particles based on the ratios of lengths of long, intermediate and short axes of grains. It equates to sphericity in sedimentary rocks (i.e., the degree to which the shape of a particle approximates a sphere).  The formal definition is “<i>A quantitative specification based on the ratio of lengths of long, intermediate and short axes of grain shape</i>”. (e.g., prolate, slightly flattened, very bladed, equant, acicular, tabular).",
-					"type":"integer"
-				},
-				"constituentParticleGeometry.aspectRatio-2":{
-					"title":"aspectRatio",
-					"description":"The <font color=\"#4f81bd\">aspectRatio</font> property (<font color=\"#4f81bd\">SWE::Category</font>) contains a term from a controlled vocabulary describing the geometry of particles based on the ratios of lengths of long, intermediate and short axes of grains. It equates to sphericity in sedimentary rocks (i.e., the degree to which the shape of a particle approximates a sphere).  The formal definition is “<i>A quantitative specification based on the ratio of lengths of long, intermediate and short axes of grain shape</i>”. (e.g., prolate, slightly flattened, very bladed, equant, acicular, tabular).",
-					"type":"integer"
-				},
-				"constituentParticleGeometry.aspectRatio-3":{
-					"title":"aspectRatio",
-					"description":"The <font color=\"#4f81bd\">aspectRatio</font> property (<font color=\"#4f81bd\">SWE::Category</font>) contains a term from a controlled vocabulary describing the geometry of particles based on the ratios of lengths of long, intermediate and short axes of grains. It equates to sphericity in sedimentary rocks (i.e., the degree to which the shape of a particle approximates a sphere).  The formal definition is “<i>A quantitative specification based on the ratio of lengths of long, intermediate and short axes of grain shape</i>”. (e.g., prolate, slightly flattened, very bladed, equant, acicular, tabular).",
-					"type":"integer"
-				},
-				"constituentParticleGeometry.particleShape-1":{
-					"title":"particleShape",
-					"description":"The <font color=\"#4f81bd\">particleShape</font> property (<font color=\"#4f81bd\">SWE::Category</font>) describes, \u000d\u000a<ul>\u000d\u000a\u0009<li>the development of crystal faces bounding particles in crystalline compound materials, and</li>\u000d\u000a\u0009<li>the surface rounding of grains in sedimentary rocks.</li>\u000d\u000a</ul>\u000d\u000a\u000d\u000aRoundness is a measure of the sharpness of the edges between surfaces bounding a particle\u000d\u000a\u000d\u000aThe terms shall be a term from a controlled vocabulary and be appropriate for the kind of compound material (e.g., for crystalline rocks- euhedral, ideoblastic, subhedral, anhedral, xenoblastic; for sedimentary rocks - angular, rounded).",
-					"type":"integer"
-				},
-				"constituentParticleGeometry.particleShape-2":{
-					"title":"particleShape",
-					"description":"The <font color=\"#4f81bd\">particleShape</font> property (<font color=\"#4f81bd\">SWE::Category</font>) describes, \u000d\u000a<ul>\u000d\u000a\u0009<li>the development of crystal faces bounding particles in crystalline compound materials, and</li>\u000d\u000a\u0009<li>the surface rounding of grains in sedimentary rocks.</li>\u000d\u000a</ul>\u000d\u000a\u000d\u000aRoundness is a measure of the sharpness of the edges between surfaces bounding a particle\u000d\u000a\u000d\u000aThe terms shall be a term from a controlled vocabulary and be appropriate for the kind of compound material (e.g., for crystalline rocks- euhedral, ideoblastic, subhedral, anhedral, xenoblastic; for sedimentary rocks - angular, rounded).",
-					"type":"integer"
-				},
-				"constituentParticleGeometry.particleShape-3":{
-					"title":"particleShape",
-					"description":"The <font color=\"#4f81bd\">particleShape</font> property (<font color=\"#4f81bd\">SWE::Category</font>) describes, \u000d\u000a<ul>\u000d\u000a\u0009<li>the development of crystal faces bounding particles in crystalline compound materials, and</li>\u000d\u000a\u0009<li>the surface rounding of grains in sedimentary rocks.</li>\u000d\u000a</ul>\u000d\u000a\u000d\u000aRoundness is a measure of the sharpness of the edges between surfaces bounding a particle\u000d\u000a\u000d\u000aThe terms shall be a term from a controlled vocabulary and be appropriate for the kind of compound material (e.g., for crystalline rocks- euhedral, ideoblastic, subhedral, anhedral, xenoblastic; for sedimentary rocks - angular, rounded).",
-					"type":"integer"
-				},
-				"constituentParticleGeometry.size":{
-					"title":"size",
-					"description":"The property <font color=\"#4f81bd\">size</font> (<font color=\"#4f81bd\">SWE::QuantityRange</font>) reports the size that specifies particle grainsize.  Values may be reported using absolute measurements (e.g., range, mean, median, mode, maximum).",
-					"type":"integer"
-				},
-				"constituentParticleGeometry.sorting-1":{
-					"title":"sorting",
-					"description":"The <font color=\"#4f81bd\">sorting</font> property (<font color=\"#4f81bd\">SWE::Category</font>) contains a term from a vocabulary that specifies the size distribution of particles in a <font color=\"#4f81bd\">CompoundMaterial</font>. Terminology for sorting in sedimentary rocks is based on the quantitative Graphic Standard Deviation (IGSD) scheme proposed by Folk.  Example for this attribute may include sedimentary terms such as well sorted and poorly sorted, or igneous terms such as porphyritic, equigranular, seriate.",
-					"type":"integer"
-				},
-				"constituentParticleGeometry.sorting-2":{
-					"title":"sorting",
-					"description":"The <font color=\"#4f81bd\">sorting</font> property (<font color=\"#4f81bd\">SWE::Category</font>) contains a term from a vocabulary that specifies the size distribution of particles in a <font color=\"#4f81bd\">CompoundMaterial</font>. Terminology for sorting in sedimentary rocks is based on the quantitative Graphic Standard Deviation (IGSD) scheme proposed by Folk.  Example for this attribute may include sedimentary terms such as well sorted and poorly sorted, or igneous terms such as porphyritic, equigranular, seriate.",
-					"type":"integer"
-				},
-				"constituentParticleGeometry.sorting-3":{
-					"title":"sorting",
-					"description":"The <font color=\"#4f81bd\">sorting</font> property (<font color=\"#4f81bd\">SWE::Category</font>) contains a term from a vocabulary that specifies the size distribution of particles in a <font color=\"#4f81bd\">CompoundMaterial</font>. Terminology for sorting in sedimentary rocks is based on the quantitative Graphic Standard Deviation (IGSD) scheme proposed by Folk.  Example for this attribute may include sedimentary terms such as well sorted and poorly sorted, or igneous terms such as porphyritic, equigranular, seriate.",
-					"type":"integer"
-				},
-				"relatedMaterial-1":{
+				"relatedMaterial":{
 					"title":"relatedMaterial",
 					"description":"Specifies the ConstituentPart that is playing the target role in the MaterialRelation",
-					"type":"integer"
-				},
-				"relatedMaterial-2":{
-					"title":"relatedMaterial",
-					"description":"Specifies the ConstituentPart that is playing the target role in the MaterialRelation",
-					"type":"integer"
-				},
-				"relatedMaterial-3":{
-					"title":"relatedMaterial",
-					"description":"Specifies the ConstituentPart that is playing the target role in the MaterialRelation",
-					"type":"integer"
+					"type":"array",
+					"items":{
+						"type":"string",
+						"format":"uri"
+					}
 				},
 				"constituentMaterial":{
 					"title":"constituentMaterial",
 					"description":"The constituentMaterial property is an association between a ConstituentPart and an EarthMaterial that specifies the EarthMaterial that is forming the ConstituentPart.",
-					"type":"integer"
+					"type":["string","null"],
+					"format":"uri"
+				},
+				"constituentMaterial_nullReason":{
+					"title":"Reason for null value in property constituentMaterial",
+					"type":"string"
 				}
 			}
 		}
