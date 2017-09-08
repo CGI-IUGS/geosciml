@@ -14,66 +14,94 @@ gsmlgt:GeologicTimescale
         rdfs:subClassOf  gtrs:TimeOrdinalReferenceSystem ;
         skos:definition  "The classic \"Geologic Timescale\" (<a href=\"http://www.stratigraphy.org/index.php/ics-chart-timescale\"><font color=\"#0000ff\"><u>http://www.stratigraphy.org/index.php/ics-chart-timescale</u></font></a>) comprising an ordered, hierarchical set of named \"eras\" is an example of an Ordinal Temporal Reference System. It may be calibrated with reference to a numeric Temporal Coordinate System, but is, in principle, defined independently."@en .
 
-<http://geosciml.org/ont/gsmlgt>
-        a                owl:Ontology ;
-        owl:imports      <http://eelst.cs.unibo.it/apps/LODE/source?url=http://def.seegrid.csiro.au/isotc211/iso19156/2011/sampling.ttl> , <http://schemas.geosciml.org/rdf/types.ttl> , <https://www.w3.org/2006/time> , <http://def.seegrid.csiro.au/static/ontology/geotime/gtrs.ttl> ;
-        owl:versionIRI   "http://geosciml.org/ont/gsmlgt/4.1.0" ;
-        owl:versionInfo  "4.1.0" ;
-        skos:definition  "The Geologic Time package, developed by Simon Cox (CSIRO) and Steve Richard (Arizona Geological Survey), contains elements used to describe the classification of geologic time: time periods, time boundaries, and the relationships between them as defined by the IUGS International Commission on Stratigraphy (ICS - http://www.stratigraphy.org/)."@en .
-
-gsmlgt:StratigraphicSection
-        a                owl:Class ;
-        rdfs:subClassOf  sf:SF_SamplingCurve ;
-        skos:definition  "A type of stratigraphic section used to define a globally agreed standard period of geologic time. This class does not have any properties beyond those inherited from <font color=\"#4f81bd\">StratigraphicSection</font>."@en .
-
-gsmlgt:TimeOrdinalEraBoundary.positionalUncertainty
-        a                owl:ObjectProperty ;
-        rdfs:domain      gsmlgt:TimeOrdinalEraBoundary ;
-        rdfs:range       swe:Quantity ;
-        skos:definition  "A measure of the uncertainty in the estimate of the point in time of the era boundary"@en .
-
-gsmlgt:StratigraphicPoint.primaryGuidingCriterion
-        a                owl:DatatypeProperty ;
-        rdfs:domain      gsmlgt:StratigraphicPoint ;
+gsmlgt:status  a         owl:DatatypeProperty ;
         rdfs:range       xsd:string ;
-        skos:definition  "The property <font color=\"#4f81bd\">primaryGuidingCriterion:Primitive::CharacterString</font> contains a description of the primary criterion used to establish the stratigraphic point."@en .
+        skos:definition  "The property <font color=\"#4f81bd\">status:Primitive::CharacterString</font> contains a description of the status of stratigraphic point (e.g., formally accepted, etc.)."@en .
 
-gsmlgt:TimeOrdinalEraBoundary.position
-        a                owl:ObjectProperty ;
-        rdfs:domain      gsmlgt:TimeOrdinalEraBoundary ;
-        rdfs:range       time:Instant ;
-        skos:definition  "A point in time corresponding to the era boundary"@en .
-
-gsmlgt:TimeOrdinalEraBoundary.nextEra
-        a            owl:ObjectProperty ;
-        rdfs:domain  gsmlgt:TimeOrdinalEraBoundary ;
-        rdfs:range   gsmlgt:TimeOrdinalEra .
-
-gsmlgt:TimeOrdinalEra.member
-        a            owl:ObjectProperty ;
-        rdfs:domain  gsmlgt:TimeOrdinalEra ;
-        rdfs:range   gsmlgt:TimeOrdinalEra .
+gsmlgt:GlobalStratotypePoint
+        a                owl:Class ;
+        rdfs:subClassOf  gsmlgt:StratigraphicPoint ;
+        skos:definition  "A type of stratigraphic point used to define a globally agreed point in geologic time.  This class does not have any properties beyond those inherited from <font color=\"#4f81bd\">StratigraphicPoint</font>."@en .
 
 gsmlgt:TimeOrdinalEra
         a                owl:Class ;
+        rdfs:subClassOf  [ a                  owl:Restriction ;
+                           owl:allValuesFrom  gsmlgt:TimeOrdinalEra ;
+                           owl:onProperty     gsmlgt:member
+                         ] ;
+        rdfs:subClassOf  [ a                  owl:Restriction ;
+                           owl:allValuesFrom  gsmlgt:TimeOrdinalEraBoundary ;
+                           owl:onProperty     gsmlgt:end
+                         ] ;
+        rdfs:subClassOf  [ a                  owl:Restriction ;
+                           owl:allValuesFrom  gsmlgt:TimeOrdinalEraBoundary ;
+                           owl:onProperty     gsmlgt:start
+                         ] ;
         skos:definition  "The association of an era with a stratotype is optional.  In the GSSP approach recommended by ICS for the Global Geologic Timescale, Unit Stratotypes are not used.  Rather, the association of an Era with geologic units and sections is indirect, via the association of an era with Boundaries, which are in turn tied to Stratotype Points, which occur within host Stratotype Sections. \r\nNote that the \"German School\" defines stratigraphic eras conceptually, without reference to stratotypes."@en .
 
-gsmlgt:StratigraphicSection.conservation
-        a                owl:DatatypeProperty ;
-        rdfs:domain      gsmlgt:StratigraphicSection ;
-        rdfs:range       xsd:string ;
-        skos:definition  "The property <font color=\"#4f81bd\">conservation:Primitive::CharacterString</font> contains a description of measures to conserve the stratigraphic section."@en .
-
-gsmlgt:TimeOrdinalEraBoundary.previousEra
-        a            owl:ObjectProperty ;
-        rdfs:domain  gsmlgt:TimeOrdinalEraBoundary ;
-        rdfs:range   gsmlgt:TimeOrdinalEra .
-
-gsmlgt:TimeOrdinalEra.end
-        a                owl:ObjectProperty ;
-        rdfs:domain      gsmlgt:TimeOrdinalEra ;
+gsmlgt:end  a            owl:ObjectProperty ;
         rdfs:range       gsmlgt:TimeOrdinalEraBoundary ;
         skos:definition  "Younger time boundary of an era"@en .
+
+gsmlgt:StandardGlobalNumericalAge
+        a                owl:Class ;
+        rdfs:subClassOf  gsmlgt:NumericEraBoundary ;
+        skos:definition  "A standard numeric age point (a numeric analogue to a 'golden spike') is applicable to the formal subdivision of the Precambrian, and perhaps the Pleistocene/Holocene boundary ( <a href=\"http://www.stratigraphy.org/index.php/ics-chart-timescale\"><font color=\"#0000ff\"><u>http://www.stratigraphy.org/index.php/ics-chart-timescale</u></font></a>). The boundary is not defined from a physical stratotype, although it can be influence by some, but placed at a convenient numerical value."@en .
+
+gsmlgt:NumericEraBoundary
+        a                owl:Class ;
+        rdfs:subClassOf  gsmlgt:TimeOrdinalEraBoundary ;
+        skos:definition  "<font color=\"#4f81bd\">NumericEraBoundary</font> is used for pre-Ediacaran and Pleistocene / Holocene boundaries in the standard timescale where boundaries are not defined by a material reference but as numerical values."@en .
+
+gsmlgt:observationalBasis
+        a           owl:ObjectProperty ;
+        rdfs:range  skos:Concept .
+
+gsmlgt:positionalUncertainty
+        a                owl:ObjectProperty ;
+        rdfs:range       swe:Quantity ;
+        skos:definition  "A measure of the uncertainty in the estimate of the point in time of the era boundary"@en .
+
+gsmlgt:additionalCorrelationProperty
+        a                owl:DatatypeProperty ;
+        rdfs:range       xsd:string ;
+        skos:definition  "The property <font color=\"#4f81bd\">additionnalCorrelationProperty:Primitive::CharacterString</font> contains any additional criteria used to establish the stratigraphic point."@en .
+
+gsmlgt:TimeOrdinalEraBoundary
+        a                owl:Class ;
+        rdfs:subClassOf  [ a                  owl:Restriction ;
+                           owl:allValuesFrom  gsmlgt:TimeOrdinalEra ;
+                           owl:onProperty     gsmlgt:previousEra
+                         ] ;
+        rdfs:subClassOf  [ a                  owl:Restriction ;
+                           owl:allValuesFrom  gsmlgt:TimeOrdinalEra ;
+                           owl:onProperty     gsmlgt:nextEra
+                         ] ;
+        rdfs:subClassOf  [ a                  owl:Restriction ;
+                           owl:allValuesFrom  swe:Quantity ;
+                           owl:onProperty     gsmlgt:positionalUncertainty
+                         ] ;
+        rdfs:subClassOf  [ a                  owl:Restriction ;
+                           owl:allValuesFrom  skos:Concept ;
+                           owl:onProperty     gsmlgt:observationalBasis
+                         ] ;
+        rdfs:subClassOf  [ a                  owl:Restriction ;
+                           owl:allValuesFrom  time:Instant ;
+                           owl:onProperty     gsmlgt:position
+                         ] ;
+        skos:definition  "A point in Earth's history which bounds a TimeOrdinalEra."@en .
+
+gsmlgt:member  a    owl:ObjectProperty ;
+        rdfs:range  gsmlgt:TimeOrdinalEra .
+
+gsmlgt:GeochronologicBoundary
+        a                owl:Class ;
+        rdfs:subClassOf  gsmlgt:TimeOrdinalEraBoundary ;
+        rdfs:subClassOf  [ a                  owl:Restriction ;
+                           owl:allValuesFrom  gsmlgt:StratigraphicPoint ;
+                           owl:onProperty     gsmlgt:GeochronologicBoundary.stratotype
+                         ] ;
+        skos:definition  "A <font color=\"#4f81bd\">GeochronologicBoundary</font> is a boundary between two geochronologic time periods."@en .
 
 gsmlgt:GeochronologicEra.stratotype
         a                owl:ObjectProperty ;
@@ -81,64 +109,38 @@ gsmlgt:GeochronologicEra.stratotype
         rdfs:range       gsmlgt:StratigraphicSection ;
         skos:definition  "The property stratotype is an association between a GeochronologicEra and StratigraphicSection that describes a type section that names the physical location or outcrop of a particular reference exposure of a stratigraphic sequence or stratigraphic boundary. A unit stratotype is the agreed reference point for a particular stratigraphic unit and a boundary stratotype is the reference for a particular boundary between strata (Wikipedia)."@en .
 
-gsmlgt:StratigraphicPoint.additionalCorrelationProperty
-        a                owl:DatatypeProperty ;
-        rdfs:domain      gsmlgt:StratigraphicPoint ;
-        rdfs:range       xsd:string ;
-        skos:definition  "The property <font color=\"#4f81bd\">additionnalCorrelationProperty:Primitive::CharacterString</font> contains any additional criteria used to establish the stratigraphic point."@en .
-
-gsmlgt:StratigraphicPoint.status
-        a                owl:DatatypeProperty ;
-        rdfs:domain      gsmlgt:StratigraphicPoint ;
-        rdfs:range       xsd:string ;
-        skos:definition  "The property <font color=\"#4f81bd\">status:Primitive::CharacterString</font> contains a description of the status of stratigraphic point (e.g., formally accepted, etc.)."@en .
-
-gsmlgt:StandardGlobalNumericalAge
-        a                owl:Class ;
-        rdfs:subClassOf  gsmlgt:NumericEraBoundary ;
-        skos:definition  "A standard numeric age point (a numeric analogue to a 'golden spike') is applicable to the formal subdivision of the Precambrian, and perhaps the Pleistocene/Holocene boundary ( <a href=\"http://www.stratigraphy.org/index.php/ics-chart-timescale\"><font color=\"#0000ff\"><u>http://www.stratigraphy.org/index.php/ics-chart-timescale</u></font></a>). The boundary is not defined from a physical stratotype, although it can be influence by some, but placed at a convenient numerical value."@en .
-
-gsmlgt:GlobalStratotypePoint
-        a                owl:Class ;
-        rdfs:subClassOf  gsmlgt:StratigraphicPoint ;
-        skos:definition  "A type of stratigraphic point used to define a globally agreed point in geologic time.  This class does not have any properties beyond those inherited from <font color=\"#4f81bd\">StratigraphicPoint</font>."@en .
-
-gsmlgt:TimeOrdinalEraBoundary
-        a                owl:Class ;
-        skos:definition  "A point in Earth's history which bounds a TimeOrdinalEra."@en .
-
 gsmlgt:StratigraphicPoint
         a                owl:Class ;
         rdfs:subClassOf  sf:SF_SamplingPoint ;
+        rdfs:subClassOf  [ a                  owl:Restriction ;
+                           owl:allValuesFrom  xsd:string ;
+                           owl:onProperty     gsmlgt:status
+                         ] ;
+        rdfs:subClassOf  [ a                  owl:Restriction ;
+                           owl:allValuesFrom  xsd:string ;
+                           owl:onProperty     gsmlgt:additionalCorrelationProperty
+                         ] ;
+        rdfs:subClassOf  [ a                  owl:Restriction ;
+                           owl:allValuesFrom  xsd:string ;
+                           owl:onProperty     gsmlgt:primaryGuidingCriterion
+                         ] ;
         skos:definition  "A point in the stratigraphic record used to define a geochronologic boundary or point in geologic time."@en .
 
-gsmlgt:GlobalStratotypeSection
-        a                owl:Class ;
-        rdfs:subClassOf  gsmlgt:StratigraphicSection ;
-        skos:definition  "A type of stratigraphic section used to define a globally agreed standard period of geologic time"@en .
+gsmlgt:nextEra  a   owl:ObjectProperty ;
+        rdfs:range  gsmlgt:TimeOrdinalEra .
 
-gsmlgt:StratigraphicSection.geologicSetting
+gsmlgt:geologicSetting
         a                owl:DatatypeProperty ;
-        rdfs:domain      gsmlgt:StratigraphicSection ;
         rdfs:range       xsd:string ;
         skos:definition  "The property <font color=\"#4f81bd\">geologicSetting:Primitive::CharacterString</font> contains a description of the geologic setting of the stratigraphic section."@en .
 
-gsmlgt:TimeOrdinalEra.start
-        a                owl:ObjectProperty ;
-        rdfs:domain      gsmlgt:TimeOrdinalEra ;
-        rdfs:range       gsmlgt:TimeOrdinalEraBoundary ;
-        skos:definition  "Older time boundary of an era"@en .
+gsmlgt:primaryGuidingCriterion
+        a                owl:DatatypeProperty ;
+        rdfs:range       xsd:string ;
+        skos:definition  "The property <font color=\"#4f81bd\">primaryGuidingCriterion:Primitive::CharacterString</font> contains a description of the primary criterion used to establish the stratigraphic point."@en .
 
-gsmlgt:TimeOrdinalEraBoundary.observationalBasis
-        a            owl:ObjectProperty ;
-        rdfs:domain  gsmlgt:TimeOrdinalEraBoundary ;
-        rdfs:range   skos:Concept .
-
-gsmlgt:GeochronologicEra.rank
-        a                owl:ObjectProperty ;
-        rdfs:domain      gsmlgt:GeochronologicEra ;
-        rdfs:range       skos:Concept ;
-        skos:definition  "The property <font color=\"#4f81bd\">rank:GeochronologicEraRank</font> contains a term from a vocabulary describing the rank of the time period (e.g., eon, era, period, stage)."@en .
+gsmlgt:previousEra  a  owl:ObjectProperty ;
+        rdfs:range  gsmlgt:TimeOrdinalEra .
 
 gsmlgt:GeochronologicBoundary.stratotype
         a                owl:ObjectProperty ;
@@ -146,29 +148,73 @@ gsmlgt:GeochronologicBoundary.stratotype
         rdfs:range       gsmlgt:StratigraphicPoint ;
         skos:definition  "The property stratotype is an association between a GeochronologicBoundary and a StratigraphicPoint that are associated with the boundary. A GeochronologicBoundary can be associated with more than one StratigraphicPoints, but only one may have GSSP ratified status. The others are proposed equivalents."@en .
 
-gsmlgt:StratigraphicSection.accessibility
-        a                owl:DatatypeProperty ;
-        rdfs:domain      gsmlgt:StratigraphicSection ;
+gsmlgt:StratigraphicSection
+        a                owl:Class ;
+        rdfs:subClassOf  sf:SF_SamplingCurve ;
+        rdfs:subClassOf  [ a                  owl:Restriction ;
+                           owl:allValuesFrom  xsd:string ;
+                           owl:onProperty     gsmlgt:conservation
+                         ] ;
+        rdfs:subClassOf  [ a                  owl:Restriction ;
+                           owl:allValuesFrom  xsd:string ;
+                           owl:onProperty     gsmlgt:accessibility
+                         ] ;
+        rdfs:subClassOf  [ a                  owl:Restriction ;
+                           owl:allValuesFrom  xsd:string ;
+                           owl:onProperty     gsmlgt:geologicDescription
+                         ] ;
+        rdfs:subClassOf  [ a                  owl:Restriction ;
+                           owl:allValuesFrom  xsd:string ;
+                           owl:onProperty     gsmlgt:geologicSetting
+                         ] ;
+        skos:definition  "A type of stratigraphic section used to define a globally agreed standard period of geologic time. This class does not have any properties beyond those inherited from <font color=\"#4f81bd\">StratigraphicSection</font>."@en .
+
+gsmlgt:start  a          owl:ObjectProperty ;
+        rdfs:range       gsmlgt:TimeOrdinalEraBoundary ;
+        skos:definition  "Older time boundary of an era"@en .
+
+gsmlgt:GlobalStratotypeSection
+        a                owl:Class ;
+        rdfs:subClassOf  gsmlgt:StratigraphicSection ;
+        skos:definition  "A type of stratigraphic section used to define a globally agreed standard period of geologic time"@en .
+
+gsmlgt:conservation  a   owl:DatatypeProperty ;
+        rdfs:range       xsd:string ;
+        skos:definition  "The property <font color=\"#4f81bd\">conservation:Primitive::CharacterString</font> contains a description of measures to conserve the stratigraphic section."@en .
+
+gsmlgt:rank  a           owl:ObjectProperty ;
+        rdfs:range       skos:Concept ;
+        skos:definition  "The property <font color=\"#4f81bd\">rank:GeochronologicEraRank</font> contains a term from a vocabulary describing the rank of the time period (e.g., eon, era, period, stage)."@en .
+
+gsmlgt:position  a       owl:ObjectProperty ;
+        rdfs:range       time:Instant ;
+        skos:definition  "A point in time corresponding to the era boundary"@en .
+
+gsmlgt:accessibility  a  owl:DatatypeProperty ;
         rdfs:range       xsd:string ;
         skos:definition  "The property <font color=\"#4f81bd\">accessibility:Primitive::CharacterString</font> contains a description of the ability to access the stratigraphic section."@en .
 
-gsmlgt:NumericEraBoundary
-        a                owl:Class ;
-        rdfs:subClassOf  gsmlgt:TimeOrdinalEraBoundary ;
-        skos:definition  "<font color=\"#4f81bd\">NumericEraBoundary</font> is used for pre-Ediacaran and Pleistocene / Holocene boundaries in the standard timescale where boundaries are not defined by a material reference but as numerical values."@en .
-
-gsmlgt:StratigraphicSection.geologicDescription
+gsmlgt:geologicDescription
         a                owl:DatatypeProperty ;
-        rdfs:domain      gsmlgt:StratigraphicSection ;
         rdfs:range       xsd:string ;
         skos:definition  "The <font color=\"#4f81bd\">geologicDescription:Primitive::CharacterString</font> contains a description of the geology of the stratigraphic section (e.g., lithology, paleontology, paleogeography, etc.)."@en .
 
-gsmlgt:GeochronologicBoundary
-        a                owl:Class ;
-        rdfs:subClassOf  gsmlgt:TimeOrdinalEraBoundary ;
-        skos:definition  "A <font color=\"#4f81bd\">GeochronologicBoundary</font> is a boundary between two geochronologic time periods."@en .
+<http://geosciml.org/ont/gsmlgt>
+        a                owl:Ontology ;
+        owl:imports      <http://eelst.cs.unibo.it/apps/LODE/source?url=http://def.seegrid.csiro.au/isotc211/iso19156/2011/sampling.ttl> , <http://schemas.geosciml.org/rdf/types.ttl> , <https://www.w3.org/2006/time> , <http://def.seegrid.csiro.au/static/ontology/geotime/gtrs.ttl> ;
+        owl:versionIRI   "http://geosciml.org/ont/gsmlgt/4.1.0" ;
+        owl:versionInfo  "4.1.0" ;
+        skos:definition  "The Geologic Time package, developed by Simon Cox (CSIRO) and Steve Richard (Arizona Geological Survey), contains elements used to describe the classification of geologic time: time periods, time boundaries, and the relationships between them as defined by the IUGS International Commission on Stratigraphy (ICS - http://www.stratigraphy.org/)."@en .
 
 gsmlgt:GeochronologicEra
         a                owl:Class ;
         rdfs:subClassOf  gsmlgt:TimeOrdinalEra ;
+        rdfs:subClassOf  [ a                  owl:Restriction ;
+                           owl:allValuesFrom  gsmlgt:StratigraphicSection ;
+                           owl:onProperty     gsmlgt:GeochronologicEra.stratotype
+                         ] ;
+        rdfs:subClassOf  [ a                  owl:Restriction ;
+                           owl:allValuesFrom  skos:Concept ;
+                           owl:onProperty     gsmlgt:rank
+                         ] ;
         skos:definition  "A <font color=\"#4f81bd\">GeochronologicEra</font> is a period of time between two <font color=\"#4f81bd\">GeochronologicBoundaries</font>. The association of a <font color=\"#4f81bd\">GeochronologicEra</font> with a stratotype is optional.  In the GSSP approach recommended by ICS for the Global Geologic Timescale, Unit Stratotypes are not used.  Rather, the association of an era with geologic units and sections is indirect, via the association of an era with boundaries, which are in turn tied to stratotype points, which occur within host stratotype sections."@en .
