@@ -1,0 +1,52 @@
+{
+	"$schema":"http://json-schema.org/draft-03/schema#",
+	"id":"FIXME/gsmlgt/GeochronologicEra.json",
+	"title":"GeochronologicEra",
+	"description":"A <font color=\"#4f81bd\">GeochronologicEra</font> is a period of time between two <font color=\"#4f81bd\">GeochronologicBoundaries</font>. The association of a <font color=\"#4f81bd\">GeochronologicEra</font> with a stratotype is optional.  In the GSSP approach recommended by ICS for the Global Geologic Timescale, Unit Stratotypes are not used.  Rather, the association of an era with geologic units and sections is indirect, via the association of an era with boundaries, which are in turn tied to stratotype points, which occur within host stratotype sections.",
+	"type":"object",
+	"properties":{
+		"entityType":{
+			"title":"feature/object type",
+			"type":"string",
+			"default":"GeochronologicEra"
+		},
+		"attributes":{
+			"title":"feature attributes",
+			"type":"object",
+			"properties":{
+				"start":{
+					"title":"start",
+					"description":"Older time boundary of an era",
+					"type":"integer"
+				},
+				"end":{
+					"title":"end",
+					"description":"Younger time boundary of an era",
+					"type":"integer"
+				},
+				"member-1":{
+					"title":"member",
+					"type":"integer"
+				},
+				"member-2":{
+					"title":"member",
+					"type":"integer"
+				},
+				"member-3":{
+					"title":"member",
+					"type":"integer"
+				},
+				"rank":{
+					"title":"rank",
+					"description":"The property <font color=\"#4f81bd\">rank:GeochronologicEraRank</font> contains a term from a vocabulary describing the rank of the time period (e.g., eon, era, period, stage).",
+					"type":"string"
+				},
+				"stratotype":{
+					"title":"stratotype",
+					"description":"The property stratotype is an association between a GeochronologicEra and StratigraphicSection that describes a type section that names the physical location or outcrop of a particular reference exposure of a stratigraphic sequence or stratigraphic boundary. A unit stratotype is the agreed reference point for a particular stratigraphic unit and a boundary stratotype is the reference for a particular boundary between strata (Wikipedia).",
+					"type":"integer"
+				}
+			}
+		}
+	}
+}

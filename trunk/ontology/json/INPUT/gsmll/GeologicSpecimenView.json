@@ -1,0 +1,109 @@
+{
+	"$schema":"http://json-schema.org/draft-03/schema#",
+	"id":"FIXME/gsmll/GeologicSpecimenView.json",
+	"title":"GeologicSpecimenView",
+	"description":"<font color=\"#4f81bd\">GeologicSpecimenView</font> is a simplified view of a point-located specimen from GeoSciML <font color=\"#4f81bd\">GeologicSpecimen</font> (an extension of Observations & Measurements - ISO19156) with key property values summarised as labels (unconstrained character strings) or arbitrarily selected classifiers to be used for thematic mapping purposes. The latter are the properties suffixed with “_uri” and will contain URIs referring to controlled concepts in published vocabularies.",
+	"type":"object",
+	"properties":{
+		"entityType":{
+			"title":"feature/object type",
+			"type":"string",
+			"default":"GeologicSpecimenView"
+		},
+		"geometry":{
+			"$ref":"http://schemas.opengis.net/gsr/1.0/geometry.json"
+		},
+		"attributes":{
+			"title":"feature attributes",
+			"type":"object",
+			"properties":{
+				"identifier":{
+					"title":"identifier",
+					"description":"Globally unique identifier (eg, an IGSN sample number).  Should have the same value as a corresponding GeoSciML GeologicSpecimen.  Globally unique <font color=\"#4f81bd\">identifier:Primitive::CharacterString</font> shall uniquely identifies a tuple within the dataset. Identifiers shall be formatted as URI according to RFC 3986.  This URI could be used to access more detailed, such as a GeoSciML Basic, representation of the feature\u000d\u000a\u000d\u000aIf present, the URI should resolve to a representation that corresponds to an instance of GeoSciML GeologicSpecimen.",
+					"type":"string",
+					"required":true
+				},
+				"label":{
+					"title":"label",
+					"description":"If present, the property <font color=\"#4f81bd\">label:Primitive::CharacterString</font> contains a short label for map display. (e.g., a sample number).",
+					"type":"string"
+				},
+				"description":{
+					"title":"description",
+					"description":"If present, the property <font color=\"#4f81bd\">description:Primitive::CharacterString</font> contains a detailed description of the specimen.",
+					"type":"string"
+				},
+				"specimenType":{
+					"title":"specimenType",
+					"description":"If present, the property <font color=\"#4f81bd\">specimentType:Primitive::CharacterString</font> contains a human readable description of the specimen type (e.g., hand specimen, thin section, drill core).  To report an identifier from a controlled vocabulary, specimenType_uri shall be used.",
+					"type":"string"
+				},
+				"materialClass":{
+					"title":"materialClass",
+					"description":"If present, the property <font color=\"#4f81bd\">materialClass:Primitive::CharacterString</font> reports the classification of the material that comprises the specimen (e.g., rock, sediment, etc.).  To report an identifier from a controlled vocabulary, <font color=\"#4f81bd\">materialClass_uri</font> shall be used.",
+					"type":"string"
+				},
+				"positionalAccuracy":{
+					"title":"positionalAccuracy",
+					"description":"If present, the property <font color=\"#4f81bd\">positionalAccuracy:Primitive::CharacterString</font> contains a description of the positional accuracy of the sampling location. (e.g., 50 metres).",
+					"type":"string"
+				},
+				"samplingTime":{
+					"title":"samplingTime",
+					"description":"If present, the property <font color=\"#4f81bd\">samplingTime:Primitive::CharacterString</font> reports a date or a date with time of when the specimen was collected formatted according to ISO 8601.\u000d\u000a\u000d\u000aExamples:\u000d\u000a&nbsp;\u000d\u000a<ul>\u000d\u000a\u0009<li>2012-03-28</li>\u000d\u000a\u0009<li>2008-02-28T14:15:23-05</li>\u000d\u000a</ul>",
+					"type":"string"
+				},
+				"samplingMethod":{
+					"title":"samplingMethod",
+					"description":"If present, the property <font color=\"#4f81bd\">samplingMethod:Primitive::CharacterString</font> reports the method used to collect the specimen (e.g., diamond drilling, field mapping survey).",
+					"type":"string"
+				},
+				"currentLocation":{
+					"title":"currentLocation",
+					"description":"If present, the property <font color=\"#4f81bd\">currentLocation:Primitive::CharacterString</font> reports the current location of the specimen (e.g., a warehouse or other repository location).",
+					"type":"string"
+				},
+				"source":{
+					"title":"source",
+					"description":"If present, the property <font color=\"#4f81bd\">source:Primitive::CharacterString</font> reports the citation of the source of the data (e.g., a publication, map, etc.).",
+					"type":"string"
+				},
+				"specimenType_uri":{
+					"title":"specimenType_uri",
+					"description":"The property <font color=\"#4f81bd\">specimentType_uri:Primitive::CharacterString</font> contains a URI link for a specimen type identifier from a controlled vocabulary.",
+					"type":"string"
+				},
+				"materialClass_uri":{
+					"title":"materialClass_uri",
+					"description":"The property <font color=\"#4f81bd\">materialClass_uri:Primitive::CharacterString </font>contains a URI link for a class of material drawn from a controlled vocabulary.",
+					"type":"string"
+				},
+				"metadata_uri":{
+					"title":"metadata_uri",
+					"description":"If present, the property <font color=\"#4f81bd\">metadata_uri:Primitive::CharacterString</font> contains a URI link to a metadata document.",
+					"type":"string"
+				},
+				"genericSymbolizer":{
+					"title":"genericSymbolizer",
+					"description":"If present, the <font color=\"#4f81bd\">genericSymbolizer:Primitive::CharacterString</font> property contains an identifier for a symbol from standard (locally or community defined) symbolization scheme for portrayal.",
+					"type":"string"
+				},
+				"any-1":{
+					"title":"any",
+					"description":"A data provider can add an arbitrary number of extra properties, as long as the instance is conformant to GML Simple Feature Level 0.",
+					"type":"string"
+				},
+				"any-2":{
+					"title":"any",
+					"description":"A data provider can add an arbitrary number of extra properties, as long as the instance is conformant to GML Simple Feature Level 0.",
+					"type":"string"
+				},
+				"any-3":{
+					"title":"any",
+					"description":"A data provider can add an arbitrary number of extra properties, as long as the instance is conformant to GML Simple Feature Level 0.",
+					"type":"string"
+				}
+			}
+		}
+	}
+}

@@ -1,0 +1,144 @@
+{
+	"$schema":"http://json-schema.org/draft-03/schema#",
+	"id":"FIXME/gsmll/BoreholeView.json",
+	"title":"BoreholeView",
+	"description":"<font color=\"#4f81bd\">BoreholeView</font> is a simplified view of a GeoSciML <font color=\"#4f81bd\">Borehole</font>. In GeoSciML terms, this will be an instance of a <font color=\"#4f81bd\">Borehole</font> feature with key property values summarised as labels (unconstrained character strings) or arbitrarily selected classifiers to be used for thematic mapping purposes. The latter are the properties suffixed with “_uri” and will contain URIs referring to controlled concepts in published vocabularies.",
+	"type":"object",
+	"properties":{
+		"entityType":{
+			"title":"feature/object type",
+			"type":"string",
+			"default":"BoreholeView"
+		},
+		"geometry":{
+			"$ref":"http://schemas.opengis.net/gsr/1.0/geometry.json"
+		},
+		"attributes":{
+			"title":"feature attributes",
+			"type":"object",
+			"properties":{
+				"identifier":{
+					"title":"identifier",
+					"description":"Globally unique <font color=\"#4f81bd\">identifier:Primitive::CharacterString</font> shall uniquely identifies a tuple within the dataset. Identifiers shall be formatted as URI according to RFC 3986.  This URI could be used to access more detailed, such as a GeoSciML Basic, representation of the feature.\u000d\u000a\u000d\u000aidentifier SHOULD resolve to a representation of a GeoSciML Borehole.",
+					"type":"string",
+					"required":true
+				},
+				"name":{
+					"title":"name",
+					"description":"If present, the property <font color=\"#4f81bd\">name:Primitive::CharacterString</font> contains a human-readable display name for the borehole.",
+					"type":"string"
+				},
+				"description":{
+					"title":"description",
+					"description":"If present, the property <font color=\"#4f81bd\">description:Primitive::CharacterString</font> contains a human-readable description for the borehole.",
+					"type":"string"
+				},
+				"purpose":{
+					"title":"purpose",
+					"description":"If present, the <font color=\"#4f81bd\">purpose:Primitive::CharacterString</font> property reports the purpose or purposes for which the borehole was drilled. (e.g., mineral exploration, hydrocarbon exploration, hydrocarbon production, groundwater monitoring, geothermal), possibly formatted with formal syntax.",
+					"type":"string"
+				},
+				"status":{
+					"title":"status",
+					"description":"If present, the property <font color=\"#4f81bd\">status:Primitive::CharacterString</font> reports the current status of the borehole (e.g., abandoned, completed, proposed, suspended).",
+					"type":"string"
+				},
+				"drillingMethod":{
+					"title":"drillingMethod",
+					"description":"If present, the property <font color=\"#4f81bd\">drillingMethod:Primitive::CharacterString</font> indicates the drilling method, or methods, used for this borehole (e.g., RAB, auger, diamond core drilling, air core drilling, piston), possibly formatted with formal syntax.",
+					"type":"string"
+				},
+				"operator":{
+					"title":"operator",
+					"description":"If present, the property <font color=\"#4f81bd\">operator:Primitive::CharacterString </font>reports the organisation or agency responsible for commissioning of the borehole (as opposed to the agency which drilled the borehole).",
+					"type":"string"
+				},
+				"driller":{
+					"title":"driller",
+					"description":"If present, the property <font color=\"#4f81bd\">driller:Primitive::CharacterString</font> reports the organisation responsible for drilling the borehole (as opposed to commissioning the borehole).",
+					"type":"string"
+				},
+				"drillStartDate":{
+					"title":"drillStartDate",
+					"description":"If present, the property <font color=\"#4f81bd\">drillStartDate:Primitive::CharacterString</font> reports the date of the start of drilling formatted according to ISO8601 (e.g., 2012-03-17).",
+					"type":"string"
+				},
+				"drillEndDate":{
+					"title":"drillEndDate",
+					"description":"If present, the property <font color=\"#4f81bd\">drillEndData:Primitive::CharacterString</font> reports the date of the end of drilling formatted according to ISO8601 (e.g., 2012-03-28).",
+					"type":"string"
+				},
+				"startPoint":{
+					"title":"startPoint",
+					"description":"If present, the property <font color=\"#4f81bd\">startPoint:Primitive::CharacterString</font> indicates the position relative to the ground surface where the borehole commenced (e.g., open pit floor or wall, underground, natural land surface, sea floor).",
+					"type":"string"
+				},
+				"inclinationType":{
+					"title":"inclinationType",
+					"description":"If present, the property <font color=\"#4f81bd\">inclinationType:Primitive::CharacterString</font> indicates the type of inclination of the borehole (e.g., vertical, inclined up, inclined down, horizontal).",
+					"type":"string"
+				},
+				"boreholeMaterialCustodian":{
+					"title":"boreholeMaterialCustodian",
+					"description":"If present, the property <font color=\"#4f81bd\">boreholeMaterialCustodian:Primitive::CharacterString</font> reports the organisation that is the custodian of the material recovered from the borehole.",
+					"type":"string"
+				},
+				"boreholeLength_m":{
+					"title":"boreholeLength_m",
+					"description":"If present, the property <font color=\"#4f81bd\">boreholeLength_m:Primitive::Number </font>reports the length of a borehole, in metres, as determined by the data provider. Length may have different sources (e.g., driller's measurement, logger's measurement, survey measurement).",
+					"type":"number"
+				},
+				"elevation_m":{
+					"title":"elevation_m",
+					"description":"If present, the property <font color=\"#4f81bd\">elevation_m:Primitive::Number</font> reports the elevation data, in metres, for the borehole (i.e., wellbore) start point. This is a compromise approach to allow for delivery of legacy 2D data without elevation data, and for software that cannot process a 3D <font color=\"#4f81bd\">GM_Point</font>.",
+					"type":"number"
+				},
+				"elevation_srs":{
+					"title":"elevation_srs",
+					"description":"If present, the property <font color=\"#4f81bd\">elevation_srs:Primitive::CharacterString</font> is a URI of a spatial reference system of the elevation value. (e.g., mean sea level). Mandatory if elevation_m is populated. The SRS shall be a one dimensional vertical SRS (i.e., EPSG code in the range 5600-5799).",
+					"type":"string"
+				},
+				"positionalAccuracy":{
+					"title":"positionalAccuracy",
+					"description":"If present, the property <font color=\"#4f81bd\">positionalAccuracy:Primitive::CharacterString</font> reports an estimate of the accuracy of the location of the borehole collar location.  Ideally, this would be a quantitative estimate of accuracy (e.g., 20 metres).",
+					"type":"string"
+				},
+				"source":{
+					"title":"source",
+					"description":"If present, the <font color=\"#4f81bd\">source:Primitive::CharacterString</font> property describes details and citations to source materials for the borehole and, if available, providing URLs to reference material and publications describing the borehole. This could be a short text synopsis of key information that would also be in the metadata record referenced by <font color=\"#4f81bd\">metadata_uri</font>.",
+					"type":"string"
+				},
+				"parentBorehole_uri":{
+					"title":"parentBorehole_uri",
+					"description":"When present, the <font color=\"#4f81bd\">parentBorehole_uri:Primitive::CharacterString</font> contains a URI referring to one or more representations of a parent borehole (e.g., a parent well of a sidetrack wellbore).\u000d\u000a\u000d\u000aIf the borehole does not have any parent, this field shall be empty.",
+					"type":"string"
+				},
+				"metadata_uri":{
+					"title":"metadata_uri",
+					"description":"If present, the property <font color=\"#4f81bd\">metadata_uri:Primitive::CharacterString</font> contains a URI referring to a metadata record describing the provenance of data.",
+					"type":"string"
+				},
+				"genericSymbolizer":{
+					"title":"genericSymbolizer",
+					"description":"If present, the property <font color=\"#4f81bd\">genericSymbolizer:Primitive::CharacterString</font> contains an identifier for a symbol from standard (locally or community defined) symbolization scheme for portrayal.",
+					"type":"string"
+				},
+				"any-1":{
+					"title":"any",
+					"description":"A data provider may add an arbitrary number of extra properties, as long as the instance is conformant to GML Simple Feature Level 0.",
+					"type":"string"
+				},
+				"any-2":{
+					"title":"any",
+					"description":"A data provider may add an arbitrary number of extra properties, as long as the instance is conformant to GML Simple Feature Level 0.",
+					"type":"string"
+				},
+				"any-3":{
+					"title":"any",
+					"description":"A data provider may add an arbitrary number of extra properties, as long as the instance is conformant to GML Simple Feature Level 0.",
+					"type":"string"
+				}
+			}
+		}
+	}
+}

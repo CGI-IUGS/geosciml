@@ -1,0 +1,70 @@
+{
+	"$schema":"http://json-schema.org/draft-03/schema#",
+	"id":"FIXME/gsmlla/GeochronologicInterpretation.json",
+	"title":"GeochronologicInterpretation",
+	"description":"A <font color=\"#4f81bd\">GeochronologicInterpretation</font> is an interpretation made by a geologist of the age of a specimen made by statistical analysis of a collection of observations.  A geologic specimen may have multiple geochronological interpretations made on it, each related to a different observation/result collection.",
+	"type":"object",
+	"properties":{
+		"entityType":{
+			"title":"feature/object type",
+			"type":"string",
+			"default":"GeochronologicInterpretation"
+		},
+		"attributes":{
+			"title":"feature attributes",
+			"type":"object",
+			"properties":{
+				"interpretedAge":{
+					"title":"interpretedAge",
+					"description":"The <font color=\"#4f81bd\">interpretedAge</font> property is an association between a <font color=\"#4f81bd\">GeochronologicInterpretation</font> and a <font color=\"#4f81bd\">GeologicEvent</font> that describes the dated event, process and environment.",
+					"type":"integer"
+				},
+				"isotopicEvent-1":{
+					"title":"isotopicEvent",
+					"description":"The <font color=\"#4f81bd\">isotopicEvent:IsotopicEventType</font> contains a term from a controlled vocabulary that describes any isotopic events that are relevant to the interpretation. e.g., closure, isotopic mixing, Pb loss, etc.",
+					"type":"string"
+				},
+				"isotopicEvent-2":{
+					"title":"isotopicEvent",
+					"description":"The <font color=\"#4f81bd\">isotopicEvent:IsotopicEventType</font> contains a term from a controlled vocabulary that describes any isotopic events that are relevant to the interpretation. e.g., closure, isotopic mixing, Pb loss, etc.",
+					"type":"string"
+				},
+				"isotopicEvent-3":{
+					"title":"isotopicEvent",
+					"description":"The <font color=\"#4f81bd\">isotopicEvent:IsotopicEventType</font> contains a term from a controlled vocabulary that describes any isotopic events that are relevant to the interpretation. e.g., closure, isotopic mixing, Pb loss, etc.",
+					"type":"string"
+				},
+				"isotopicSystem":{
+					"title":"isotopicSystem",
+					"description":"The property <font color=\"#4f81bd\">isotopicSystem:IsotopicSystemName</font> contains a term from a controlled vocabulary that describes the isotopic system used to calculate geochronological age. A vocabulary would contain values such as: Ar-Ar, K-Ar, Nd-Sm, Pb-Pb, Rb-Sr, Re-Os, U-Pb, etc.",
+					"type":"string"
+				},
+				"statisticalMethod":{
+					"title":"statisticalMethod",
+					"description":"The property <font color=\"#4f81bd\">statisticalMethod:StatisticalMethodTerm</font> contains a term from a controlled vocabulary that describes the statistical method used to interpret the results.  (e.g., weighted mean, median, concordia, discordia, etc)",
+					"type":"string"
+				},
+				"interpretedBy":{
+					"title":"interpretedBy",
+					"description":"The property <font color=\"#4f81bd\">interpretedBy</font> is an association between a <font color=\"#4f81bd\">GeochronologicInterpretation</font> and a <font color=\"#4f81bd\">CIT:CI_Responsability</font> describing the party responsible for this interpretation.",
+					"type":"integer"
+				},
+				"citation":{
+					"title":"citation",
+					"description":"The <font color=\"#4f81bd\">citation</font> property is an association between a <font color=\"#4f81bd\">GeochronologicInterpretation</font> and a <font color=\"#4f81bd\">CIT:CI_Citation</font> that describes authors and other reference information for an interpreted age.",
+					"type":"integer"
+				},
+				"preferredInterpretation":{
+					"title":"preferredInterpretation",
+					"description":"The property <font color=\"#4f81bd\">preferredInterpretation:Primitive::Boolean</font> indicates whether this interpretation is the preferred interpretation (i.e., the analytical data may be reinterpreted).",
+					"type":"boolean"
+				},
+				"sourceCollection":{
+					"title":"sourceCollection",
+					"description":"The property sourceCollection is an association between a GeochronologicInterpretation and an OM::SF_SamplingFeatureCollection that lists a collection of OM::SF_SamplingFeature (e.g., a collection of burn spots or craters from a SHRIMP analytical session).  When legacy published data for which the SamplingFeatureCollection is unknown, it may be delivered with SamplingFeatureCollection = 'unknown'.",
+					"type":"integer"
+				}
+			}
+		}
+	}
+}

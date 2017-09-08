@@ -1,0 +1,63 @@
+{
+	"$schema":"http://json-schema.org/draft-03/schema#",
+	"id":"FIXME/gsmlb/MappedFeature.json",
+	"title":"MappedFeature",
+	"description":"A <font color=\"#4f81bd\">MappedFeature</font> is part of a geological interpretation. It provides a link between a notional feature (description package) and one spatial representation of it, or part of it (exposures, surface traces and intercepts, etc.).  The mapped features are the elements that compose a map, a cross-section, a borehole log, or any other representation.  The mappingFrame identifies the domain being mapped by the geometries.  For typical geological maps, the mapping frame is the surface of the earth (the 2.5D interface between the surface of the bedrock and whatever sits on it; atmosphere or overburden material for bedrock maps).  It can also be abstract frames, such as the arbitrary plane that forms a mine level or a cross-section, the 3D volume enclosing an ore body or the line that approximate the path of a borehole.",
+	"type":"object",
+	"properties":{
+		"entityType":{
+			"title":"feature/object type",
+			"type":"string",
+			"default":"MappedFeature"
+		},
+		"geometry":{
+			"$ref":"http://schemas.opengis.net/gsr/1.0/geometry.json"
+		},
+		"attributes":{
+			"title":"feature attributes",
+			"type":"object",
+			"properties":{
+				"observationMethod-1":{
+					"title":"observationMethod",
+					"description":"The <font color=\"#4f81bd\">observationMethod</font> property (<font color=\"#4f81bd\">SWE::Category</font>) contains an element in a list of categories (a controlled vocabulary) describing how the spatial extent of the mapped feature was determined.",
+					"type":"integer"
+				},
+				"observationMethod-2":{
+					"title":"observationMethod",
+					"description":"The <font color=\"#4f81bd\">observationMethod</font> property (<font color=\"#4f81bd\">SWE::Category</font>) contains an element in a list of categories (a controlled vocabulary) describing how the spatial extent of the mapped feature was determined.",
+					"type":"integer"
+				},
+				"observationMethod-3":{
+					"title":"observationMethod",
+					"description":"The <font color=\"#4f81bd\">observationMethod</font> property (<font color=\"#4f81bd\">SWE::Category</font>) contains an element in a list of categories (a controlled vocabulary) describing how the spatial extent of the mapped feature was determined.",
+					"type":"integer"
+				},
+				"positionalAccuracy":{
+					"title":"positionalAccuracy",
+					"description":"The <font color=\"#4f81bd\">positionalAccuracy</font> property (<font color=\"#4f81bd\">SWE::Quantity</font>) provides a quantitative value defining the radius of an uncertainty buffer around a <font color=\"#4f81bd\">MappedFeature</font> (e.g., a positionalAccuracy of 100 m for a line feature defines a buffer polygon of total width 200 m centred on the line). The property is equivalent to ISO19115 <font color=\"#4f81bd\">DQ_PositionalAccuracy</font>.",
+					"type":"integer"
+				},
+				"resolutionRepresentativeFraction":{
+					"title":"resolutionRepresentativeFraction",
+					"description":"The property <font color=\"#4f81bd\">resolutionRepresentativeFraction:Integer</font> is an integer value representing the denominator of the representative scale of the spatial feature.  (i.e., 10000 = the spatial feature is intended to be represented at 1:10,000 scale).",
+					"type":"integer"
+				},
+				"mappingFrame":{
+					"title":"mappingFrame",
+					"description":"The <font color=\"#4f81bd\">mappingFrame:MappingFrameTerm</font> provides a term from a vocabulary indicating the geometric frame on which the <font color=\"#4f81bd\">MappedFeature</font> is projected.  In most situations, mapped features are projected on the earth surface, but there are other contexts, such as a bedrock surface beneath surficial cover materials, a mine level, or a cross section.",
+					"type":"string"
+				},
+				"exposure":{
+					"title":"exposure",
+					"description":"The <font color=\"#4f81bd\">exposure:ExposureTerm</font> property provides a term for the nature of the expression of the mapped feature at the earth's surface (e.g., exposed, concealed).",
+					"type":"string"
+				},
+				"specification":{
+					"title":"specification",
+					"description":"The specification association links an instance of MappedFeature to the GFI_Feature being mapped. In a geological map, MappedFeatures are used to represent GeologicFeatures, but other features from other domains could be represented.",
+					"type":"integer"
+				}
+			}
+		}
+	}
+}

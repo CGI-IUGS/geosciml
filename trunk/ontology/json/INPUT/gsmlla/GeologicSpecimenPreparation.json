@@ -1,0 +1,201 @@
+{
+	"$schema":"http://json-schema.org/draft-03/schema#",
+	"id":"FIXME/gsmlla/GeologicSpecimenPreparation.json",
+	"title":"GeologicSpecimenPreparation",
+	"description":"<font color=\"#4f81bd\">GeologicSpecimenPreparation</font> is an extension of ISO <font color=\"#4f81bd\">Specimen::preparationStep</font> to allow details of preparation steps to be delivered (e.g., filtration and mesh size, chemical additives, crushing methods, drying parameters, etc.).",
+	"type":"object",
+	"properties":{
+		"entityType":{
+			"title":"feature/object type",
+			"type":"string",
+			"default":"GeologicSpecimenPreparation"
+		},
+		"attributes":{
+			"title":"feature attributes",
+			"type":"object",
+			"properties":{
+				"time":{
+					"title":"time",
+					"description":"The attribute <i>time:TM_Object </i>shall describe the time that the OM_Process was applied to the SP_Specimen. It supports ordering of preparation steps.",
+					"type":"integer",
+					"required":true
+				},
+				"processOperator.individualName":{
+					"title":"individualName",
+					"description":"Name of the responsible person-  SURNAME, given name, title separated by a delimiter",
+					"type":"string"
+				},
+				"processOperator.organisationName":{
+					"title":"organisationName",
+					"description":"Name of the responsible organisation",
+					"type":"string"
+				},
+				"processOperator.positionName":{
+					"title":"positionName",
+					"description":"Role or position of the responsible person",
+					"type":"string"
+				},
+				"processOperator.contactInfo.phone.voice-1":{
+					"title":"voice",
+					"description":"Telephone number by which individuals can speak to the responsible organisation or individual",
+					"type":"string"
+				},
+				"processOperator.contactInfo.phone.voice-2":{
+					"title":"voice",
+					"description":"Telephone number by which individuals can speak to the responsible organisation or individual",
+					"type":"string"
+				},
+				"processOperator.contactInfo.phone.voice-3":{
+					"title":"voice",
+					"description":"Telephone number by which individuals can speak to the responsible organisation or individual",
+					"type":"string"
+				},
+				"processOperator.contactInfo.phone.facsimile-1":{
+					"title":"facsimile",
+					"description":"Telephone number of a facsimile machine for the responsible organisation or individual",
+					"type":"string"
+				},
+				"processOperator.contactInfo.phone.facsimile-2":{
+					"title":"facsimile",
+					"description":"Telephone number of a facsimile machine for the responsible organisation or individual",
+					"type":"string"
+				},
+				"processOperator.contactInfo.phone.facsimile-3":{
+					"title":"facsimile",
+					"description":"Telephone number of a facsimile machine for the responsible organisation or individual",
+					"type":"string"
+				},
+				"processOperator.contactInfo.address.deliveryPoint-1":{
+					"title":"deliveryPoint",
+					"description":"Address line for the physical address (Street name, box number, suite)",
+					"type":"string"
+				},
+				"processOperator.contactInfo.address.deliveryPoint-2":{
+					"title":"deliveryPoint",
+					"description":"Address line for the physical address (Street name, box number, suite)",
+					"type":"string"
+				},
+				"processOperator.contactInfo.address.deliveryPoint-3":{
+					"title":"deliveryPoint",
+					"description":"Address line for the physical address (Street name, box number, suite)",
+					"type":"string"
+				},
+				"processOperator.contactInfo.address.city":{
+					"title":"city",
+					"description":"City of the physical address",
+					"type":"string"
+				},
+				"processOperator.contactInfo.address.administrativeArea":{
+					"title":"administrativeArea",
+					"description":"State, province of the physical address",
+					"type":"string"
+				},
+				"processOperator.contactInfo.address.postalCode":{
+					"title":"postalCode",
+					"description":"ZIP or other postal code",
+					"type":"string"
+				},
+				"processOperator.contactInfo.address.country":{
+					"title":"country",
+					"description":"Country of the physical address",
+					"type":"string"
+				},
+				"processOperator.contactInfo.address.electronicMailAddress-1":{
+					"title":"electronicMailAddress",
+					"description":"Address of the electronic mailbox of the responsible organisation or individual",
+					"type":"string"
+				},
+				"processOperator.contactInfo.address.electronicMailAddress-2":{
+					"title":"electronicMailAddress",
+					"description":"Address of the electronic mailbox of the responsible organisation or individual",
+					"type":"string"
+				},
+				"processOperator.contactInfo.address.electronicMailAddress-3":{
+					"title":"electronicMailAddress",
+					"description":"Address of the electronic mailbox of the responsible organisation or individual",
+					"type":"string"
+				},
+				"processOperator.contactInfo.onlineResource.linkage":{
+					"title":"linkage",
+					"description":"Method, source, or location for online access.\u000d\u000aExample: a Uniform Resource Locator (URL) such as http://www,gii.getty.edu/tgn_browser/",
+					"type":"integer"
+				},
+				"processOperator.contactInfo.onlineResource.protocol":{
+					"title":"protocol",
+					"description":"Connection protocol to be used",
+					"type":"string"
+				},
+				"processOperator.contactInfo.onlineResource.applicationProfile":{
+					"title":"applicationProfile",
+					"description":"Name of an application profile that can be used with the resource",
+					"type":"string"
+				},
+				"processOperator.contactInfo.onlineResource.name":{
+					"title":"name",
+					"description":"Name of the resource",
+					"type":"string"
+				},
+				"processOperator.contactInfo.onlineResource.description":{
+					"title":"description",
+					"description":"Description of what the resource is/does",
+					"type":"string"
+				},
+				"processOperator.contactInfo.onlineResource.function":{
+					"title":"function",
+					"description":"Function performed by the resource",
+					"type":"string"
+				},
+				"processOperator.contactInfo.hoursOfService":{
+					"title":"hoursOfService",
+					"description":"Time period (including time zone) when individuals can contact the organisation or individual",
+					"type":"string"
+				},
+				"processOperator.contactInfo.contactInstructions":{
+					"title":"contactInstructions",
+					"description":"Supplemental instructions on how or when to contact the individual or organisation",
+					"type":"string"
+				},
+				"processOperator.role":{
+					"title":"role",
+					"description":"Function performed by the responsible party",
+					"type":"string"
+				},
+				"preparationMethod":{
+					"title":"preparationMethod",
+					"description":"The <font color=\"#4f81bd\">preparationMethod:GeologicSpecimenPreparationTerm</font> contains a term from a controlled vocabulary that describes the method employed for the preparation of a geologic specimen for further analysis.",
+					"type":"string"
+				},
+				"parameter-1.name":{
+					"title":"name",
+					"description":"The attribute name:GenericName shall indicate the meaning of the named value. Its value should be taken from a well-governed source if possible. \u000d\u000a\u000d\u000aEXAMPLES\u0009When used as the value of an Observation:;parameter, the name might take values like &lsquo;procedureOperator&rsquo;, &lsquo;detectionLimit&rsquo;, &lsquo;amplifierGain&rsquo;, &lsquo;samplingDepth&rsquo;.",
+					"type":"string"
+				},
+				"parameter-1.value":{
+					"title":"value",
+					"description":"The attribute value:Any shall provide the value. The type Any should be substituted by a suitable concrete type, such as CI_ResponsibleParty or Measure.",
+					"type":"integer"
+				},
+				"parameter-2.name":{
+					"title":"name",
+					"description":"The attribute name:GenericName shall indicate the meaning of the named value. Its value should be taken from a well-governed source if possible. \u000d\u000a\u000d\u000aEXAMPLES\u0009When used as the value of an Observation:;parameter, the name might take values like &lsquo;procedureOperator&rsquo;, &lsquo;detectionLimit&rsquo;, &lsquo;amplifierGain&rsquo;, &lsquo;samplingDepth&rsquo;.",
+					"type":"string"
+				},
+				"parameter-2.value":{
+					"title":"value",
+					"description":"The attribute value:Any shall provide the value. The type Any should be substituted by a suitable concrete type, such as CI_ResponsibleParty or Measure.",
+					"type":"integer"
+				},
+				"parameter-3.name":{
+					"title":"name",
+					"description":"The attribute name:GenericName shall indicate the meaning of the named value. Its value should be taken from a well-governed source if possible. \u000d\u000a\u000d\u000aEXAMPLES\u0009When used as the value of an Observation:;parameter, the name might take values like &lsquo;procedureOperator&rsquo;, &lsquo;detectionLimit&rsquo;, &lsquo;amplifierGain&rsquo;, &lsquo;samplingDepth&rsquo;.",
+					"type":"string"
+				},
+				"parameter-3.value":{
+					"title":"value",
+					"description":"The attribute value:Any shall provide the value. The type Any should be substituted by a suitable concrete type, such as CI_ResponsibleParty or Measure.",
+					"type":"integer"
+				}
+			}
+		}
+	}
+}

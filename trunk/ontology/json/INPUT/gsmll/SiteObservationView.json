@@ -1,0 +1,124 @@
+{
+	"$schema":"http://json-schema.org/draft-03/schema#",
+	"id":"FIXME/gsmll/SiteObservationView.json",
+	"title":"SiteObservationView",
+	"description":"<font color=\"#4f81bd\">SiteObservationView</font> is a simplified view of a generally point-located geological observation, like a structural measurement. This is a simplified instance of a sampling geometry from Observations & Measurements (ISO19156) with an associated geological observation. Each tuple should represent a single observation. Key property values are summarised as labels (unconstrained character strings) or arbitrarily selected classifiers to be used for thematic mapping purposes. The latter are the properties suffixed with “_uri” and will contain URIs referring to controlled concepts in published vocabularies.",
+	"type":"object",
+	"properties":{
+		"entityType":{
+			"title":"feature/object type",
+			"type":"string",
+			"default":"SiteObservationView"
+		},
+		"geometry":{
+			"$ref":"http://schemas.opengis.net/gsr/1.0/geometry.json"
+		},
+		"attributes":{
+			"title":"feature attributes",
+			"type":"object",
+			"properties":{
+				"identifier":{
+					"title":"identifier",
+					"description":"Globally unique <font color=\"#4f81bd\">identifier:Primitive::CharacterString</font> shall uniquely identifies a tuple within the dataset. Identifiers shall be formatted as URI according to RFC 3986.  This URI could be used to access more detailed, such as a GeoSciML Basic, representation of the feature.\u000d\u000a\u000d\u000aThe URI should resolve to an instance of OM_Observation.",
+					"type":"string",
+					"required":true
+				},
+				"siteName":{
+					"title":"siteName",
+					"description":"If present, the property <font color=\"#4f81bd\">siteName:Primitive::CharacterString</font> contains the name of the sampling feature at this location (e.g. a station number, a borehole).",
+					"type":"string"
+				},
+				"observationName":{
+					"title":"observationName",
+					"description":"If present, the property <font color=\"#4f81bd\">observationName:Primitive::CharacterString</font> contains a text identifying the observation.",
+					"type":"string"
+				},
+				"label":{
+					"title":"label",
+					"description":"If present, the property <font color=\"#4f81bd\">label:Primitive::CharacterString</font> contains a short text string to associate with a symbol in a visualization/portrayal.",
+					"type":"string"
+				},
+				"description":{
+					"title":"description",
+					"description":"If present, the property <font color=\"#4f81bd\">description:Primitive::CharacterString</font> contains a text string providing descriptive information about the observation.",
+					"type":"string"
+				},
+				"featureOfInterest":{
+					"title":"featureOfInterest",
+					"description":"If present, the property <font color=\"#4f81bd\">featureOfInterest:Primitive::CharacterString</font> contains a description of the geologic feature that the observation is intended to characterize, e.g. foliation (observed property= orientation), a geologic unit (observed property = age, magnetic susceptibility, density, uranium content).  The property is equivalent to O&M <font color=\"#4f81bd\">OM_Observation::featureOfInterest</font>. To report a URI of the feature of interest, <font color=\"#4f81bd\">featureOfInterest_uri</font> shall be used.",
+					"type":"string"
+				},
+				"observedProperty":{
+					"title":"observedProperty",
+					"description":"If present, the property <font color=\"#4f81bd\">observedProperty:Primitive::CharacterString</font> contains a description of the property reported in this record. (E.g. orientation, age, density, gold content) as a human readable text. To report an identifier of the observedProperty from a controlled vocabulary, <font color=\"#4f81bd\">propertyType_uri </font>shall be used.",
+					"type":"string"
+				},
+				"observedValue":{
+					"title":"observedValue",
+					"description":"If present, the property <font color=\"#4f81bd\">observedValue:Primitive::CharacterString</font> contains the result of the observation. This field is implemented as a character string to allow reporting various type of values, the value may be numeric (e.g., 235) or textual (e.g., red). Units of measure shall be reported in <font color=\"#4f81bd\">observedValueUom</font>.",
+					"type":"string"
+				},
+				"observedValueUom":{
+					"title":"observedValueUom",
+					"description":"If relevant, the property <font color=\"#4f81bd\">observedValueUom:Primitive::CharacterString</font> contains the unit of measure for a numerical value of an observation or measurement, preferably from a controlled vocabulary.",
+					"type":"string"
+				},
+				"observationMethod":{
+					"title":"observationMethod",
+					"description":"If present, the <font color=\"#4f81bd\">observationMethod:Primitive::CharacterString</font> property contains a method description, preferably a term from a controlled vocabulary, to categorize the observation method. Further details on procedure can be put in the source field.",
+					"type":"string"
+				},
+				"positionalAccuracy":{
+					"title":"positionalAccuracy",
+					"description":"If present, the property <font color=\"#4f81bd\">positionalAccuracy:Primitive::CharacterString</font> provides an estimate of the position uncertainty for the site location. For numerical measurements, include a unit of measure in the description. (e.g., 50 metres, poor, good).",
+					"type":"string"
+				},
+				"source":{
+					"title":"source",
+					"description":"If present, the property <font color=\"#4f81bd\">source:Primitive::CharacterString</font> contains a text description of measurement procedure, processing, and provenance of data.",
+					"type":"string"
+				},
+				"featureOfInterest_uri":{
+					"title":"featureOfInterest_uri",
+					"description":"The property <font color=\"#4f81bd\">featureOfInterest:Primitive::CharacterString</font> is functionally equivalent to <font color=\"#4f81bd\">OM_Observation::featureOfInterest</font> of IS19156.  It contains a URI link to a representation of the feature of interest (e.g., a GeoSciML geologic unit or structure).",
+					"type":"string"
+				},
+				"propertyType_uri":{
+					"title":"propertyType_uri",
+					"description":"The property <font color=\"#4f81bd\">propertyType_uri:Primitive:CharacterString</font> is functionally equivalent to <font color=\"#4f81bd\">OM_Observation::observedProperty</font>.  It contains a URI to a term from a controlled vocabulary of observed property types.",
+					"type":"string"
+				},
+				"metadata_uri":{
+					"title":"metadata_uri",
+					"description":"If present, the property <font color=\"#4f81bd\">metadata_uri:Primitive::CharacterString</font> contains a URI link to metadata document.",
+					"type":"string"
+				},
+				"genericSymbolizer":{
+					"title":"genericSymbolizer",
+					"description":"If present, the property <font color=\"#4f81bd\">genericSymbolizer:Primitive::CharacterString</font> contains an identifier for a symbol to portray this observation. Conventions for symbol identifiers can be adopted within information exchange communities.",
+					"type":"string"
+				},
+				"symbolRotation":{
+					"title":"symbolRotation",
+					"description":"If present, the <font color=\"#4f81bd\">symbolRotation:Integer</font> property contains an integer value between 0 and 359 to specify rotation of symbol at this location, e.g. rotation of a geologic strike and dip symbol to reflect the strike azimuth.  The angular convention shall be geographic angle (clockwise with 0 at geographic north pole, therefore 90 degree is east).",
+					"type":"integer"
+				},
+				"any-1":{
+					"title":"any",
+					"description":"A data provider can add an arbitrary number of extra properties, as long as the instance is conformant to GML Simple Feature Level 0.",
+					"type":"string"
+				},
+				"any-2":{
+					"title":"any",
+					"description":"A data provider can add an arbitrary number of extra properties, as long as the instance is conformant to GML Simple Feature Level 0.",
+					"type":"string"
+				},
+				"any-3":{
+					"title":"any",
+					"description":"A data provider can add an arbitrary number of extra properties, as long as the instance is conformant to GML Simple Feature Level 0.",
+					"type":"string"
+				}
+			}
+		}
+	}
+}

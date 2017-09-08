@@ -1,0 +1,25 @@
+{
+	"$schema":"http://json-schema.org/draft-03/schema#",
+	"id":"FIXME/gsmlb/RockMaterial.json",
+	"title":"RockMaterial",
+	"description":"<font color=\"#4f81bd\">RockMaterial</font> is a specialized <font color=\"#4f81bd\">CompoundMaterial</font> that includes consolidated and unconsolidated materials (such as surficial sediments) as well as mixtures of consolidated and unconsolidated materials.  In GeoSciML Basic, Rock Material is essentially a link to a controlled vocabulary (lithology property) and a color (inherited from <font color=\"#4f81bd\">EarthMaterial</font>).  Specific material properties (and <font color=\"#4f81bd\">CompoundMaterial</font> nesting) are available in GeoSciML Extension.",
+	"type":"object",
+	"properties":{
+		"entityType":{
+			"title":"feature/object type",
+			"type":"string",
+			"default":"RockMaterial"
+		},
+		"attributes":{
+			"title":"feature attributes",
+			"type":"object",
+			"properties":{
+				"lithology":{
+					"title":"lithology",
+					"description":"The <font color=\"#4f81bd\">lithology:LithologyTerm</font> property provides a term identifying the lithology class from a controlled vocabulary.",
+					"type":"string"
+				}
+			}
+		}
+	}
+}

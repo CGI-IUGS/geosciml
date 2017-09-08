@@ -1,0 +1,139 @@
+{
+	"$schema":"http://json-schema.org/draft-03/schema#",
+	"id":"FIXME/gsmll/GeomorphologicUnitView.json",
+	"title":"GeomorphologicUnitView",
+	"description":"<font color=\"#4f81bd\">GeomorphologicUnitView</font> is a simplified view of a GeoSciML <font color=\"#4f81bd\">GeomorphologicUnit</font>. In GeoSciML terms this will be in instance of a <font color=\"#4f81bd\">MappedFeature</font> with key property values from the associated GeomorphologicUnit feature summarised as labels (unconstrained character strings) or arbitrarily selected classifiers to be used for thematic mapping purposes. The latter are the properties suffixed with “_uri” and will contain URIs referring to controlled concepts in published vocabularies.",
+	"type":"object",
+	"properties":{
+		"entityType":{
+			"title":"feature/object type",
+			"type":"string",
+			"default":"GeomorphologicUnitView"
+		},
+		"geometry":{
+			"$ref":"http://schemas.opengis.net/gsr/1.0/geometry.json"
+		},
+		"attributes":{
+			"title":"feature attributes",
+			"type":"object",
+			"properties":{
+				"identifier":{
+					"title":"identifier",
+					"description":"Globally unique <font color=\"#4f81bd\">identifier:Primitive::CharacterString</font> shall uniquely identifies a tuple within the dataset. Identifiers shall be formatted as URI according to RFC 3986.  This URI could be used to access more detailed, such as a GeoSciML Basic, representation of the feature.\u000d\u000aIf present, the URI should resolve to a representation that corresponds to an instance of GeoSciML MappedFeature.",
+					"type":"string",
+					"required":true
+				},
+				"name":{
+					"title":"name",
+					"description":"If present, the property <font color=\"#4f81bd\">name:Primitive::CharacterString</font> contains a display name for the GeomorphologicUnit.",
+					"type":"string"
+				},
+				"description":{
+					"title":"description",
+					"description":"If present, the property <font color=\"#4f81bd\">description:Primitive::CharacterString</font> contains human readable text description of the GeomorphologicUnit, typically taken from an entry on a map legend.",
+					"type":"string"
+				},
+				"activity":{
+					"title":"activity",
+					"description":"If present, the property <font color=\"#4f81bd\">activity:Primitive::CharacterString</font> contains a human readable term to specify if the feature is changing and how fast. E.g. active, dormant, stable.  To report an identifier from a controlled vocabulary, <font color=\"#4f81bd\">activity_uri</font> shall be used.",
+					"type":"string"
+				},
+				"geomorphologicFeatureType":{
+					"title":"geomorphologicFeatureType",
+					"description":"If present, the property <font color=\"#4f81bd\">geomorphologicFeatureType:Primitive::CharacterString</font> contains a human readable term to specify a broad classification of landform. (e.g., anthropogenic, natural).  To report an identifier from a controlled vocabulary, <font color=\"#4f81bd\">geomorphologicFeatureType_uri </font>shall be used.",
+					"type":"string"
+				},
+				"unitType":{
+					"title":"unitType",
+					"description":"If present, the property <font color=\"#4f81bd\">unitType:Primitive::CharacterString</font> contains a human readable term for the type of <font color=\"#4f81bd\">GeomorphologicUnit</font> (e.g., hill, crater, moraine, plain).  To report an identifier from a controlled vocabulary, <font color=\"#4f81bd\">unitType_uri</font> shall be used.",
+					"type":"string"
+				},
+				"lithology":{
+					"title":"lithology",
+					"description":"If present, the property <font color=\"#4f81bd\">lithology:Primitive::CharacterString</font> contains a text, possibly formatted with formal syntax (see ??????), for the description of the <font color=\"#4f81bd\">GeomorphologicUnit</font>'s lithological composition.  To report an identifier from a controlled vocabulary, <font color=\"#4f81bd\">representativeLithology_uri </font>shall be used.",
+					"type":"string"
+				},
+				"geologicHistory":{
+					"title":"geologicHistory",
+					"description":"If present, the property <font color=\"#4f81bd\">geologicHistory:Primitive::CharacterString</font> contains text, possibly formatted with formal syntax, for the description of the age of the <font color=\"#4f81bd\">GeomorphologicUnit</font> (where age is a sequence of events and may include process and environment information).  To report identifier from a controlled vocabulary, <font color=\"#4f81bd\">representativeAge_uri</font> shall be used.",
+					"type":"string"
+				},
+				"observationMethod":{
+					"title":"observationMethod",
+					"description":"If present, the property <font color=\"#4f81bd\">observationMethod:Primitive::CharacterString</font> contains a metadata snippet indicating how the spatial extent of the feature was determined. <font color=\"#4f81bd\">ObservationMethod</font> is a convenience property that provides a quick approach to observation metadata when data are reported using a feature view (as opposed to observation view).",
+					"type":"string"
+				},
+				"positionalAccuracy":{
+					"title":"positionalAccuracy",
+					"description":"If present, the property <font color=\"#4f81bd\">positionAccuracy:Primitive::CharacterString</font> contains quantitative values defining the radius of an uncertainty buffer around a <font color=\"#4f81bd\">MappedFeature</font> (e.g., a <font color=\"#4f81bd\">positionalAccuracy</font> of 100 m for a line feature defines a buffer polygon of total width 200 m centred on the line).",
+					"type":"string"
+				},
+				"source":{
+					"title":"source",
+					"description":"If present, the <font color=\"#4f81bd\">source:Primitive::CharacterString</font> property contains text describing feature-specific details and citations to source materials, and if available providing URLs to reference material and publications describing the geologic feature. This could be a short text synopsis of key information that would also be in the metadata record referenced by metadata_uri.",
+					"type":"string"
+				},
+				"activity_uri":{
+					"title":"activity_uri",
+					"description":"If present, the <font color=\"#4f81bd\">activity_uri:Primitive::CharacterString</font> property reports a URI identifier of activity term drawn from a controlled vocabulary.",
+					"type":"string"
+				},
+				"geomorphologicFeatureType_uri":{
+					"title":"geomorphologicFeatureType_uri",
+					"description":"If present, the property<font color=\"#4f81bd\"> geomorphologicFeatureType_uri:Primitive::CharacterString</font> reports a URI identifier of landform term drawn from a controlled vocabulary.",
+					"type":"string"
+				},
+				"unitType_uri":{
+					"title":"unitType_uri",
+					"description":"If present, the property <font color=\"#4f81bd\">unitType_uri:Primitive::CharacterString</font> reports a URI referring to a controlled concept from a vocabulary defining the <font color=\"#4f81bd\">GeomorphologicUnit</font> types.",
+					"type":"string"
+				},
+				"representativeLithology_uri":{
+					"title":"representativeLithology_uri",
+					"description":"The property <font color=\"#4f81bd\">representativeLithology_uri:Primitive::CharacterString</font> contains a URI referring to a controlled concept specifying the characteristic or representative lithology of the unit. This may be a concept that defines the super-type of all lithology values present within a <font color=\"#4f81bd\">GeomorphologicUnit</font> or a concept defining the lithology of the dominant <font color=\"#4f81bd\">CompositionPart</font> (as defined in GeoSciML) of the unit.",
+					"type":"string"
+				},
+				"representativeAge_uri":{
+					"title":"representativeAge_uri",
+					"description":"The property <font color=\"#4f81bd\">representativeAge_uri:Primitive::CharacterString</font> contains a URI referring to a controlled concept specifying the most representative stratigraphic age interval for the GeomorphologicUnit. This will be defined entirely at the discretion of the data provider. Typically geomorphic units are not assigned age ranges.",
+					"type":"string"
+				},
+				"representativeNumericAge":{
+					"title":"representativeNumericAge",
+					"description":"If present, the property <font color=\"#4f81bd\">representativeNumericAge:Primitive::Number</font> contains a numerical value of the representative age in million years (Ma).",
+					"type":"number"
+				},
+				"specification_uri":{
+					"title":"specification_uri",
+					"description":"If present, the property <font color=\"#4f81bd\">specification_uri:Primitive::CharacterString</font> contains a URI referring the GeoSciML GeomorphologicUnit feature that describes the instance in detail.",
+					"type":"string"
+				},
+				"metadata_uri":{
+					"title":"metadata_uri",
+					"description":"If present, the property <font color=\"#4f81bd\">metadata_uri:Primitive::CharacterString</font> contains a URI referring to a metadata record describing the provenance of data.",
+					"type":"string"
+				},
+				"genericSymbolizer":{
+					"title":"genericSymbolizer",
+					"description":"If present, the property <font color=\"#4f81bd\">genericSymbolizer:Primitive::CharacterString</font> contains an identifier for a symbol from standard (locally or community defined) symbolization scheme for portrayal.",
+					"type":"string"
+				},
+				"any-1":{
+					"title":"any",
+					"description":"A data provider can add an arbitrary number of extra properties, as long as the instance is conformant to GML Simple Feature Level 0.",
+					"type":"string"
+				},
+				"any-2":{
+					"title":"any",
+					"description":"A data provider can add an arbitrary number of extra properties, as long as the instance is conformant to GML Simple Feature Level 0.",
+					"type":"string"
+				},
+				"any-3":{
+					"title":"any",
+					"description":"A data provider can add an arbitrary number of extra properties, as long as the instance is conformant to GML Simple Feature Level 0.",
+					"type":"string"
+				}
+			}
+		}
+	}
+}

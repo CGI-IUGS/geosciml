@@ -1,0 +1,149 @@
+{
+	"$schema":"http://json-schema.org/draft-03/schema#",
+	"id":"FIXME/gsmll/ShearDisplacementStructureView.json",
+	"title":"ShearDisplacementStructureView",
+	"description":"<font color=\"#4f81bd\">ShearDisplacementStructureView</font> is a simplified view of a GeoSciML <font color=\"#4f81bd\">ShearDisplacementStructure</font>. In GeoSciML terms this will be an instance of a <font color=\"#4f81bd\">MappedFeature</font> with key property values from the associated <font color=\"#4f81bd\">ShearDisplacementStructure</font> feature summarised as labels (unconstrained character strings) or arbitrarily selected classifiers to be used for thematic mapping purposes. The latter are the properties suffixed with “_uri” and will contain URIs referring to controlled concepts in published vocabularies.",
+	"type":"object",
+	"properties":{
+		"entityType":{
+			"title":"feature/object type",
+			"type":"string",
+			"default":"ShearDisplacementStructureView"
+		},
+		"geometry":{
+			"$ref":"http://schemas.opengis.net/gsr/1.0/geometry.json"
+		},
+		"attributes":{
+			"title":"feature attributes",
+			"type":"object",
+			"properties":{
+				"identifier":{
+					"title":"identifier",
+					"description":"Globally unique <font color=\"#4f81bd\">identifier:Primitive::CharacterString</font> shall uniquely identifies a tuple within the dataset. Identifiers shall be formatted as URI according to RFC 3986.  This URI could be used to access more detailed, such as a GeoSciML Basic, representation of the feature.\u000d\u000aIt should have the same value as the corresponding GeoSciML MappedFeature identifier if available.",
+					"type":"string",
+					"required":true
+				},
+				"name":{
+					"title":"name",
+					"description":"If present, the property <font color=\"#4f81bd\">name:Primitive::CharacterString </font>contains a display name for the ShearDisplacementStructure.",
+					"type":"string"
+				},
+				"description":{
+					"title":"description",
+					"description":"If present, the property <font color=\"#4f81bd\">description:Primitive::CharacterString</font> contains a human readable text description of the ShearDisplacementStructure, typically taken from an entry on a geological map legend.",
+					"type":"string"
+				},
+				"faultType":{
+					"title":"faultType",
+					"description":"If present, the property <font color=\"#4f81bd\">faultType:Primitive::CharacterString</font> contains a human readable description of the type of <font color=\"#4f81bd\">ShearDisplacementStructure</font> (as defined in GeoSciML). To report an identifier from a controlled vocabulary, faultType_uri shall be used.",
+					"type":"string"
+				},
+				"movementType":{
+					"title":"movementType",
+					"description":"If present, the property <font color=\"#4f81bd\">movementType:Primitive::CharacterString</font> contains a human readable summary of the type of movement (e.g. dip-slip, strike-slip) on the <font color=\"#4f81bd\">ShearDisplacementStructure</font>. To report an identifier from a controlled vocabulary, <font color=\"#4f81bd\">movementType_uri </font>shall be used.",
+					"type":"string"
+				},
+				"deformationStyle":{
+					"title":"deformationStyle",
+					"description":"If present, the property <font color=\"#4f81bd\">deformationStyle:Primitive::CharacterString </font>contain a human readable description of the style of deformation (e.g. brittle, ductile etc.) for the <font color=\"#4f81bd\">ShearDisplacementStructure</font>.  To report an identifier from a controlled vocabulary, <font color=\"#4f81bd\">deformationStyle_uri</font> shall be used.",
+					"type":"string"
+				},
+				"displacement":{
+					"title":"displacement",
+					"description":"If present, the property <font color=\"#4f81bd\">displacement:Primitive::CharacterString</font> contains a text summarising the displacement across the <font color=\"#4f81bd\">ShearDisplacementStructure</font>.",
+					"type":"string"
+				},
+				"geologicHistory":{
+					"title":"geologicHistory",
+					"description":"If present, the property <font color=\"#4f81bd\">geologicHistory:Primitive::CharacterString</font> contains a text, possibly formatted with formal syntax, describing the age of the ShearDisplacementStructure (where age is a sequence of events and may include process and environment information).  To report identifiers from a controlled vocabulary, <font color=\"#4f81bd\">representativeAge_uri, representativeOlderAge_uri and representativeYoungerAge_uri</font> shall be used.",
+					"type":"string"
+				},
+				"observationMethod":{
+					"title":"observationMethod",
+					"description":"If present, the property <font color=\"#4f81bd\">observationMethod:Primitive::CharacterString</font> contains a metadata snippet indicating how the spatial extent of the feature was determined. <font color=\"#4f81bd\">ObservationMethod</font> is a convenience property that provides a quick and dirty approach to observation metadata when data are reported using a feature view (as opposed to observation view).",
+					"type":"string"
+				},
+				"positionalAccuracy":{
+					"title":"positionalAccuracy",
+					"description":"If present, the property <font color=\"#4f81bd\">positionAccuracy:Primitive::CharacterString</font> contains quantitative representation defining the radius of an uncertainty buffer around a <font color=\"#4f81bd\">MappedFeature</font> (e.g., a <font color=\"#4f81bd\">positionalAccuracy</font> of 100 m for a line feature defines a buffer polygon of total width 200 m centred on the line).",
+					"type":"string"
+				},
+				"source":{
+					"title":"source",
+					"description":"If present, the property <font color=\"#4f81bd\">source:Primitive::CharacterString</font> contains a text describing feature-specific details and citations to source materials, and if available providing URLs to reference material and publications describing the geologic feature. This could be a short text synopsis of key information that would also be in the metadata record referenced by <font color=\"#4f81bd\">metadata_uri</font>.",
+					"type":"string"
+				},
+				"faultType_uri":{
+					"title":"faultType_uri",
+					"description":"The property <font color=\"#4f81bd\">faultType_uri:Primitive::CharacterString</font> contains a URI referring to a controlled concept from a vocabulary defining the fault (<font color=\"#4f81bd\">ShearDisplacementStructure</font>) type.",
+					"type":"string"
+				},
+				"movementType_uri":{
+					"title":"movementType_uri",
+					"description":"The property <font color=\"#4f81bd\">movementType_uri:Primitive::CharacterString</font> contains a URI referring to a controlled concept from a vocabulary defining the ShearDisplacementStructure movement type.",
+					"type":"string"
+				},
+				"deformationStyle_uri":{
+					"title":"deformationStyle_uri",
+					"description":"The property <font color=\"#4f81bd\">deformationStyle_uri:Primitive::CharacterString</font> contains a URI referring to a controlled concept from a vocabulary defining the <font color=\"#4f81bd\">ShearDisplacementStructure</font> deformation style.",
+					"type":"string"
+				},
+				"representativeAge_uri":{
+					"title":"representativeAge_uri",
+					"description":"The property <font color=\"#4f81bd\">representativeAge_uri:Primitive::CharacterString</font> contains a URI referring to a controlled concept specifying the most representative stratigraphic age interval for the <font color=\"#4f81bd\">ShearDisplacementStructure</font>. This will be defined entirely at the discretion of the data provider and may be a single event selected from the geologic feature's geological history or a value summarising all or part of the feature's history.",
+					"type":"string"
+				},
+				"representativeOlderAge_uri":{
+					"title":"representativeOlderAge_uri",
+					"description":"The property <font color=\"#4f81bd\">representativeOlderAge_uri:Primitive:CharacterString</font> contains a URI referring to a controlled concept specifying the most representative lower value in a range of stratigraphic age intervals for the <font color=\"#4f81bd\">ShearDisplacementStructure</font>. This will be defined entirely at the discretion of the data provider and may be a single event selected from the geologic feature's geological history or a value summarising all or part of the feature's history.",
+					"type":"string"
+				},
+				"representativeYoungerAge_uri":{
+					"title":"representativeYoungerAge_uri",
+					"description":"The property <font color=\"#4f81bd\">representativeYoungerAge_uri:Primitive::CharacterString</font> contains a URI referring to a controlled concept specifying the most representative upper value in a range of stratigraphic age intervals for the <font color=\"#4f81bd\">ShearDisplacementStructure</font>. This will be defined entirely at the discretion of the data provider and may be a single event selected from the geologic feature's geological history or a value summarising all or part of the feature's history.",
+					"type":"string"
+				},
+				"numericOlderAge":{
+					"title":"numericOlderAge",
+					"description":"If present, the property <font color=\"#4f81bd\">numericOlderAge:Primitive::Number</font> reports the older age of the fault/shear structure, represented million years (Ma).",
+					"type":"number"
+				},
+				"numericYoungerAge":{
+					"title":"numericYoungerAge",
+					"description":"If present, the property <font color=\"#4f81bd\">numericYoungerAge:Primitive::Number</font> reports the younger age of the fault/shear structure, represented million years (Ma).",
+					"type":"number"
+				},
+				"specification_uri":{
+					"title":"specification_uri",
+					"description":"If present, the property <font color=\"#4f81bd\">specification_uri:Primitive::CharacterString</font> contains a URI referring the GeoSciML <font color=\"#4f81bd\">ShearDisplacementStructure</font> feature that describes the instance in detail.",
+					"type":"string"
+				},
+				"metadata_uri":{
+					"title":"metadata_uri",
+					"description":"If present, the property <font color=\"#4f81bd\">metadata_uri:Primitive::CharacterString</font> contains a URI referring to a metadata record describing the provenance of data.",
+					"type":"string"
+				},
+				"genericSymbolizer":{
+					"title":"genericSymbolizer",
+					"description":"If present, the property <font color=\"#4f81bd\">genericSymbolizer:Primitive::CharacterString</font> contains an identifier for a symbol from standard (locally or community defined) symbolization scheme for portrayal.",
+					"type":"string"
+				},
+				"any-1":{
+					"title":"any",
+					"description":"A data provider can add an arbitrary number of extra properties, as long as the instance is conformant to GML Simple Feature Level 0.",
+					"type":"string"
+				},
+				"any-2":{
+					"title":"any",
+					"description":"A data provider can add an arbitrary number of extra properties, as long as the instance is conformant to GML Simple Feature Level 0.",
+					"type":"string"
+				},
+				"any-3":{
+					"title":"any",
+					"description":"A data provider can add an arbitrary number of extra properties, as long as the instance is conformant to GML Simple Feature Level 0.",
+					"type":"string"
+				}
+			}
+		}
+	}
+}

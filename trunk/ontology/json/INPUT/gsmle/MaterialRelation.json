@@ -1,0 +1,35 @@
+{
+	"$schema":"http://json-schema.org/draft-03/schema#",
+	"id":"FIXME/gsmle/MaterialRelation.json",
+	"title":"MaterialRelation",
+	"description":"The <font color=\"#4f81bd\">MaterialRelation</font> class describes the relationships between constituent parts in an <font color=\"#4f81bd\">EarthMaterial</font> (e.g. A mineral overgrowth on a phenocryst within a granite).  \u000d\u000aExample:  Consider an overgrowth of albite on plagioclase in a granite. The Source would originate with the albite constituentPart description.  In this case, the Target would point to the plagioclase <font color=\"#4f81bd\">constituentPart</font> description and the relationship attribute would be 'overgrowth' and the <font color=\"#4f81bd\">sourceRole</font> is 'overgrows'.  Other appropriate role attributes might include: crosscuts, replaces, etc. for crosscutting and replacement relationships.  Inverse relationships must be explicitly recorded.",
+	"type":"object",
+	"properties":{
+		"entityType":{
+			"title":"feature/object type",
+			"type":"string",
+			"default":"MaterialRelation"
+		},
+		"attributes":{
+			"title":"feature attributes",
+			"type":"object",
+			"properties":{
+				"relationship":{
+					"title":"relationship",
+					"description":"The property <font color=\"#4f81bd\">relationship:GeologicRelationshipTerm</font> contains a term from a controlled vocabulary to describe the geologic relationship (e.g., sedimentary relation, igneous relation).",
+					"type":"string"
+				},
+				"sourceRole":{
+					"title":"sourceRole",
+					"description":"The property <font color=\"#4f81bd\">sourceRole:RelationRoleTerm</font> contains a term that describes the role played by the source earth material part (e.g., matrix, clast, overgrowth).",
+					"type":"string"
+				},
+				"targetRole":{
+					"title":"targetRole",
+					"description":"The property <font color=\"#4f81bd\">targetRole:RelationRoleTerm</font> contains a term describing the role played by the target earth material part (e.g., matrix, clast, overgrowth).",
+					"type":"string"
+				}
+			}
+		}
+	}
+}

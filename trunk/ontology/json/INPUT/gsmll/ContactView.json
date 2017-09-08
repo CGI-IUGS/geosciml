@@ -1,0 +1,94 @@
+{
+	"$schema":"http://json-schema.org/draft-03/schema#",
+	"id":"FIXME/gsmll/ContactView.json",
+	"title":"ContactView",
+	"description":"<font color=\"#4f81bd\">ContactView</font> is a simplified view of a GeoSciML <font color=\"#4f81bd\">MappedFeature</font> with key property values from an associated <font color=\"#4f81bd\">Contact</font> feature.  These properties are summarised as labels (unconstrained character strings) or arbitrarily selected classifiers to be used for thematic mapping purposes. The latter are the properties suffixed with “_uri” and will contain URIs referring to controlled concepts in published vocabularies.",
+	"type":"object",
+	"properties":{
+		"entityType":{
+			"title":"feature/object type",
+			"type":"string",
+			"default":"ContactView"
+		},
+		"geometry":{
+			"$ref":"http://schemas.opengis.net/gsr/1.0/geometry.json"
+		},
+		"attributes":{
+			"title":"feature attributes",
+			"type":"object",
+			"properties":{
+				"identifier":{
+					"title":"identifier",
+					"description":"Globally unique <font color=\"#4f81bd\">identifier:Primitive::CharacterString</font> shall uniquely identifies a tuple within the dataset. Identifiers shall be formatted as URI according to RFC 3986.  This URI could be used to access more detailed, such as a GeoSciML Basic, representation of the feature.\u000d\u000aIt should have the same value as the corresponding GeoSciML MappedFeature identifier if available.",
+					"type":"string",
+					"required":true
+				},
+				"name":{
+					"title":"name",
+					"description":"If present, the property <font color=\"#4f81bd\">name:Primitive::CharacterString</font> reports the display name for the Contact.",
+					"type":"string"
+				},
+				"description":{
+					"title":"description",
+					"description":"If present, the property <font color=\"#4f81bd\">description:Primitive::CharacterString</font> reports the description of the Contact, typically taken from an entry on a geological map legend.",
+					"type":"string"
+				},
+				"contactType":{
+					"title":"contactType",
+					"description":"If present, the property <font color=\"#4f81bd\">contactType:Primitive::CharacterString</font> reports the type of <font color=\"#4f81bd\">Contact</font> (as defined in GeoSciML) as a human readable label.  To report an identifier from a controlled vocabulary, <font color=\"#4f81bd\">contactType_uri</font> shall be used.",
+					"type":"string"
+				},
+				"observationMethod":{
+					"title":"observationMethod",
+					"description":"If present, the property <font color=\"#4f81bd\">observationMethod:Primitive::CharacterString</font> reports a metadata snippet indicating how the spatial extent of the feature was determined. <font color=\"#4f81bd\">ObservationMethod</font> is a convenience property that provides a quick and simple approach to observation metadata when data are reported using a feature view (as opposed to observation view).",
+					"type":"string"
+				},
+				"positionalAccuracy":{
+					"title":"positionalAccuracy",
+					"description":"If present, the property <font color=\"#4f81bd\">positionalAccuracy:Primitive::CharacterString </font>reports quantitative values defining the radius of an uncertainty buffer around a <font color=\"#4f81bd\">MappedFeature</font> (e.g., a <font color=\"#4f81bd\">positionalAccuracy</font> of 100 m for a line feature defines a buffer polygon of total width 200 m centred on the line).",
+					"type":"string"
+				},
+				"source":{
+					"title":"source",
+					"description":"If present, the property <font color=\"#4f81bd\">source:Primitive::CharacterString</font> contains a text describing feature-specific details and citations to source materials, and if available providing URLs to reference material and publications describing the contact feature. This could be a short text synopsis of key information that would also be in the metadata record referenced by <font color=\"#4f81bd\">metadata_uri</font>.",
+					"type":"string"
+				},
+				"contactType_uri":{
+					"title":"contactType_uri",
+					"description":"The property <font color=\"#4f81bd\">contactType_uri:Primitive::CharacterString</font> reports a URI referring to a controlled concept from a vocabulary defining the <font color=\"#4f81bd\">Contact</font> types.",
+					"type":"string"
+				},
+				"specification_uri":{
+					"title":"specification_uri",
+					"description":"If present, the property <font color=\"#4f81bd\">specification_uri:Primitive::CharacterString</font> reports a URI referring the GeoSciML <font color=\"#4f81bd\">Contact</font> feature that describes the instance in detail.",
+					"type":"string"
+				},
+				"metadata_uri":{
+					"title":"metadata_uri",
+					"description":"If present, the property <font color=\"#4f81bd\">metadata_uri:Primitive::CharacterString</font> reports a URI referring to a metadata record describing the provenance of data.",
+					"type":"string"
+				},
+				"genericSymbolizer":{
+					"title":"genericSymbolizer",
+					"description":"If present, the <font color=\"#4f81bd\">genericSymbolizer:Primitive::CharacterString</font> property contains an identifier for a symbol from standard (locally or community defined) symbolization scheme for portrayal.",
+					"type":"string"
+				},
+				"any-1":{
+					"title":"any",
+					"description":"A data provider can add an arbitrary number of extra properties, as long as the instance is conformant to GML Simple Feature Level 0.",
+					"type":"string"
+				},
+				"any-2":{
+					"title":"any",
+					"description":"A data provider can add an arbitrary number of extra properties, as long as the instance is conformant to GML Simple Feature Level 0.",
+					"type":"string"
+				},
+				"any-3":{
+					"title":"any",
+					"description":"A data provider can add an arbitrary number of extra properties, as long as the instance is conformant to GML Simple Feature Level 0.",
+					"type":"string"
+				}
+			}
+		}
+	}
+}

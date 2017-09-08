@@ -1,0 +1,40 @@
+{
+	"$schema":"http://json-schema.org/draft-03/schema#",
+	"id":"FIXME/gsmlla/AnalyticalProcess.json",
+	"title":"AnalyticalProcess",
+	"description":"An analytical process is a concrete implementation of <font color=\"#4f81bd\">OM::OM_Process</font> and describes the steps and methods used in an analytical session.  It links to an analytical session (data acquisition) or a computational process which produce analytical results.",
+	"type":"object",
+	"properties":{
+		"entityType":{
+			"title":"feature/object type",
+			"type":"string",
+			"default":"AnalyticalProcess"
+		},
+		"attributes":{
+			"title":"feature attributes",
+			"type":"object",
+			"properties":{
+				"method":{
+					"title":"method",
+					"description":"The property method is an association that links an AnalyticalProcess to an AnalyticalMethod that describes the type of analytical method used to make an observation.",
+					"type":"integer"
+				},
+				"acquisition":{
+					"title":"acquisition",
+					"description":"The property acquisition is an association that links an AnalyticalProcess to an AnalyticalSession that describes the analytical session (e.g., laboratory session) in which an observation was made and data acquired.",
+					"type":"integer"
+				},
+				"computation":{
+					"title":"computation",
+					"type":"integer",
+					"required":true
+				},
+				"computation":{
+					"title":"computation",
+					"description":"The computation property is an association between an AnalyticalProcess and a CIT:ProcessStep that describes the computational process associated with the process.",
+					"type":"integer"
+				}
+			}
+		}
+	}
+}

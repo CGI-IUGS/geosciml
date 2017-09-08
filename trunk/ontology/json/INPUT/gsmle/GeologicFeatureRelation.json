@@ -1,0 +1,35 @@
+{
+	"$schema":"http://json-schema.org/draft-03/schema#",
+	"id":"FIXME/gsmle/GeologicFeatureRelation.json",
+	"title":"GeologicFeatureRelation",
+	"description":"The <font color=\"#4f81bd\">GeologicFeatureRelation</font> class defines the general structure used to define relationships between any GeoSciML feature types.  Relationships are always binary and directional.  There is always a single source and a single target.  The relationship is always defined from the perspective of the Source and is generally an active verb.  \u000d\u000aExample:  a Source may point to an intrusive igneous rock unit.  In this case, the Target would point to the appropriate host rock body and the relationship attribute would be 'intrudes'.  Other appropriate relationship attributes might include: overlies, offsets, crosscuts, folds, etc.\u000d\u000aMany other types of relationships can also be accommodated via GeologicRelation, for example, topological relations could be described where they are geologically significant.",
+	"type":"object",
+	"properties":{
+		"entityType":{
+			"title":"feature/object type",
+			"type":"string",
+			"default":"GeologicFeatureRelation"
+		},
+		"attributes":{
+			"title":"feature attributes",
+			"type":"object",
+			"properties":{
+				"relationship":{
+					"title":"relationship",
+					"description":"The <font color=\"#4f81bd\">relationship:GeologicRelationshipTerm</font> property contains a term from a controlled vocabulary to describe the geologic relationship (e.g., stratigraphic relation, structural relation, intrusive relation).",
+					"type":"string"
+				},
+				"sourceRole":{
+					"title":"sourceRole",
+					"description":"The property <font color=\"#4f81bd\">sourceRole:RelationRoleProperty</font> contains a term from a controlled vocabulary describing the role played by the source geologic feature or object (e.g., overlying unit, underlying unit).",
+					"type":"string"
+				},
+				"targetRole":{
+					"title":"targetRole",
+					"description":"The property <font color=\"#4f81bd\">targetRole:RelationRoleTerm</font> contains a term from a controlled vocabulary describing the role played by the target geologic feature or object. (e.g., overlying unit, underlying unit)",
+					"type":"string"
+				}
+			}
+		}
+	}
+}

@@ -1,0 +1,40 @@
+{
+	"$schema":"http://json-schema.org/draft-03/schema#",
+	"id":"FIXME/gsmlb/CompoundMaterial.json",
+	"title":"CompoundMaterial",
+	"description":"A <font color=\"#4f81bd\">CompoundMaterial</font> is an <font color=\"#4f81bd\">EarthMaterial</font> composed of particles made of <font color=\"#4f81bd\">EarthMaterials</font>, possibly including other <font color=\"#4f81bd\">CompoundMaterials</font>.  This class is provided primarily as an extensibility point for related domain models that wish to import and build on GeoSciML, and wish to define material types that are compound but are not rock or rock-like material. In the context of GeoSciML \"<font color=\"#4f81bd\">RockMaterial</font>\" should be used to describe units made of rock.",
+	"type":"object",
+	"properties":{
+		"entityType":{
+			"title":"feature/object type",
+			"type":"string",
+			"default":"CompoundMaterial"
+		},
+		"attributes":{
+			"title":"feature attributes",
+			"type":"object",
+			"properties":{
+				"color-1":{
+					"title":"color",
+					"description":"The <font color=\"#4f81bd\">color</font> property (<font color=\"#4f81bd\">SWE::Category</font>) is a term from a controlled vocabulary that specifies the colour of the earth material. Color schemes such as the Munsell rock and soil color schemes may be used.",
+					"type":"integer"
+				},
+				"color-2":{
+					"title":"color",
+					"description":"The <font color=\"#4f81bd\">color</font> property (<font color=\"#4f81bd\">SWE::Category</font>) is a term from a controlled vocabulary that specifies the colour of the earth material. Color schemes such as the Munsell rock and soil color schemes may be used.",
+					"type":"integer"
+				},
+				"color-3":{
+					"title":"color",
+					"description":"The <font color=\"#4f81bd\">color</font> property (<font color=\"#4f81bd\">SWE::Category</font>) is a term from a controlled vocabulary that specifies the colour of the earth material. Color schemes such as the Munsell rock and soil color schemes may be used.",
+					"type":"integer"
+				},
+				"purpose":{
+					"title":"purpose",
+					"description":"The <font color=\"#4f81bd\">purpose:DescriptionPurpose</font> property provides a specification of the intended purpose or level of abstraction for the given <font color=\"#4f81bd\">EarthMaterial</font>. The intent is the same a <font color=\"#4f81bd\">GeologicFeature</font>’s purpose and it shares the same vocabulary (instance, typicalNorm, definingNorm).",
+					"type":"string"
+				}
+			}
+		}
+	}
+}
