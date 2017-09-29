@@ -2,8 +2,8 @@
 <schema  see="http://www.opengis.net/spec/gsml/4.1/req/gsml4xsd-borehole/sch" xmlns="http://purl.oclc.org/dsdl/schematron" 
 queryBinding="xslt2" xmlns:xsl="http://www.w3.org/1999/XSL/Transform">
 <!--
-        This schematron schema checks the core XML encoding requirements of OGC GeoSciML 4.0, as specified
-        in the requirements class: http://www.opengis.net/spec/gsml/4.0/req/gsml4xsd/sch
+        This schematron schema checks the core XML encoding requirements of OGC GeoSciML 4.1, as specified
+        in the requirements class: http://www.opengis.net/spec/gsml/4.1/req/gsml4xsd/sch
 
         OGC GeoSciML 4.1 is an OGC Standard.
         Copyright (c) 2016-2017 Open Geospatial Consortium.
