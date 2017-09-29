@@ -6,8 +6,10 @@ queryBinding="xslt2" xmlns:xsl="http://www.w3.org/1999/XSL/Transform">
         in the requirements class: http://www.opengis.net/spec/gsml/4.0/req/gsml4xsd/sch
 
         OGC GeoSciML 4.1 is an OGC Standard.
-        Copyright (c) 2016 Open Geospatial Consortium.
+        Copyright (c) 2016-2017 Open Geospatial Consortium.
         To obtain additional rights of use, visit http://www.opengeospatial.org/legal/ .
+
+        Copyright (c) 2016-2017 IUGS Commission for the Management and Application of Geoscience Information, All rights reserved.
 
         version="4.1.0"
 
