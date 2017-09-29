@@ -11,7 +11,7 @@ queryBinding="xslt2" xmlns:xsl="http://www.w3.org/1999/XSL/Transform">
 
         Copyright (c) 2016-2017 IUGS Commission for the Management and Application of Geoscience Information, All rights reserved.
 
-        version="4.1.0"
+        version="4.1.1"
     -->
 
 <xi:include xmlns:xi="http://www.w3.org/2001/XInclude" href="http://schemas.opengis.net/samplingSpatial/2.0/shapeTypeConsistent.sch" xpointer="element(/1/1)"/>
