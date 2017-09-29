@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<schema  see="http://www.opengis.net/spec/gsml/4.1/req/gsml4xsd-lab/sch" xmlns="http://purl.oclc.org/dsdl/schematron" 
+<schema  see="http://www.opengis.net/spec/geosciml/4.1/req/gsml4xsd-lab/sch" xmlns="http://purl.oclc.org/dsdl/schematron" 
 queryBinding="xslt2" xmlns:xsl="http://www.w3.org/1999/XSL/Transform">
 	<!--
         This schematron schema checks the core XML encoding requirements of OGC GeoSciML 4.1, as specified
-        in the requirements class: http://www.opengis.net/spec/gsml/4.1/req/gsml4xsd/sch
+        in the requirements class: http://www.opengis.net/spec/geosciml/4.1/req/gsml4xsd/sch
 
         OGC GeoSciML 4.1 is an OGC Standard.
         Copyright (c) 2016-2017 Open Geospatial Consortium.
@@ -19,11 +19,11 @@ queryBinding="xslt2" xmlns:xsl="http://www.w3.org/1999/XSL/Transform">
 	
 	<!--
         This schematron checks the Laboratory and Analysis XML encoding requirements of OGC GeoSciML 4.1, as specified
-        in the requirements class: http://www.opengis.net/spec/gsml/4.1/req/gsml4xsd-lab/sch
+        in the requirements class: http://www.opengis.net/spec/geosciml/4.1/req/gsml4xsd-lab/sch
     -->
 	<title>OGC GeoSciML 4.1 XML Borehole tests</title>
 	<p>This schematron schema checks the laboratory and analysis XML encoding requirements of OGC GeoSciML 4.1, as specified
-	    in the requirements class: http://www.opengis.net/spec/gsml/4.1/req/gsml4xsd-lab/sch</p>
+	    in the requirements class: http://www.opengis.net/spec/geosciml/4.1/req/gsml4xsd-lab/sch</p>
   <!-- this schematron does not provide any rule, just import statement to dependencies -->
 	
 	
