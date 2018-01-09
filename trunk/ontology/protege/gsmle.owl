@@ -7,26 +7,28 @@
      xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
      ontologyIRI="http://def.isotc211.org/geosciml/gsmle"
      versionIRI="http://def.isotc211.org/geosciml/2018/gsmle">
+    <Prefix name="" IRI="http://def.isotc211.org/geosciml/gsmle"/>
     <Prefix name="owl" IRI="http://www.w3.org/2002/07/owl#"/>
     <Prefix name="rdf" IRI="http://www.w3.org/1999/02/22-rdf-syntax-ns#"/>
     <Prefix name="xml" IRI="http://www.w3.org/XML/1998/namespace"/>
     <Prefix name="xsd" IRI="http://www.w3.org/2001/XMLSchema#"/>
     <Prefix name="rdfs" IRI="http://www.w3.org/2000/01/rdf-schema#"/>
     <Import>http://def.isotc211.org/geosciml/2018/gsmlb</Import>
+    <Import>https://github.com/GeoscienceAustralia/geosciml.org/commit/24d302bf3f0fa315c1dddc2c734b84f52299cd02#diff-73b17e22072459ab7e06e9ab664a9d48</Import>
     <Declaration>
         <Class IRI="#FoldAbstractDescription"/>
-    </Declaration>
-    <Declaration>
-        <Class IRI="#MaterialRelation"/>
     </Declaration>
     <Declaration>
         <Class IRI="#ChemicalDescription"/>
     </Declaration>
     <Declaration>
-        <Class IRI="#ContactAbstractDescription"/>
+        <Class IRI="#MaterialRelation"/>
     </Declaration>
     <Declaration>
         <Class IRI="#EarthMaterialAbstractDescription"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#ContactAbstractDescription"/>
     </Declaration>
     <Declaration>
         <Class IRI="#InorganicFluid"/>
@@ -35,10 +37,13 @@
         <Class IRI="#GeologicEventAbstractDescription"/>
     </Declaration>
     <Declaration>
-        <Class IRI="#DisplacementValue"/>
+        <Class IRI="#GeologicUnitAbstractDescription"/>
     </Declaration>
     <Declaration>
         <Class IRI="#PhysicalDescription"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#DisplacementValue"/>
     </Declaration>
     <Declaration>
         <Class IRI="#ShearDisplacementStructureAbstractDescription"/>
@@ -77,6 +82,9 @@
         <Class IRI="#FoldSystem"/>
     </Declaration>
     <Declaration>
+        <Class IRI="#GeologicUnitDescription"/>
+    </Declaration>
+    <Declaration>
         <Class IRI="#FoliationAbstractDescription"/>
     </Declaration>
     <Declaration>
@@ -86,22 +94,25 @@
         <Class IRI="#Layering"/>
     </Declaration>
     <Declaration>
+        <Class IRI="#BeddingDescription"/>
+    </Declaration>
+    <Declaration>
         <Class IRI="#ContactDescription"/>
     </Declaration>
     <Declaration>
         <Class IRI="#Organism"/>
     </Declaration>
     <Declaration>
-        <Class IRI="#MetamorphicDescription"/>
-    </Declaration>
-    <Declaration>
         <Class IRI="#FabricDescription"/>
     </Declaration>
     <Declaration>
-        <Class IRI="#DisplacementEvent"/>
+        <Class IRI="#MetamorphicDescription"/>
     </Declaration>
     <Declaration>
         <Class IRI="#Mineral"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#DisplacementEvent"/>
     </Declaration>
     <Declaration>
         <Class IRI="#AlterationDescription"/>
@@ -152,6 +163,10 @@
     <SubClassOf>
         <Class IRI="#GeologicFeatureRelation"/>
         <Class IRI="#AbstractFeatureRelation"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#GeologicUnitDescription"/>
+        <Class IRI="#GeologicUnitAbstractDescription"/>
     </SubClassOf>
     <SubClassOf>
         <Class IRI="#InorganicFluid"/>
@@ -212,6 +227,16 @@
         <AnnotationProperty IRI="http://www.w3.org/2004/02/skos/core#definition"/>
         <IRI>#AlterationDescription</IRI>
         <Literal xml:lang="en" datatypeIRI="http://www.w3.org/1999/02/22-rdf-syntax-ns#PlainLiteral">AlterationDescription describes aspects of a geologic unit or earth material that are the result of bulk chemical, mineralogical or physical changes related to change in the physical or chemical environment. It includes weathering, supergene alteration, hydrothermal alteration and metasomatic effects not considered metamorphic. For example, a soil profile description would have to be constructed as a GeologicUnit (geologicUnitType = PedologicUnit) with unit parts representing the various horizons in the profile.  Thickness of a weathering profile can be delivered as unitThickness of a GeologicUnit of geologicUnitType equal to “AlterationUnit”</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
+        <IRI>#BeddingDescription</IRI>
+        <Literal xml:lang="en" datatypeIRI="http://www.w3.org/1999/02/22-rdf-syntax-ns#PlainLiteral">Bedding Description</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty IRI="http://www.w3.org/2004/02/skos/core#definition"/>
+        <IRI>#BeddingDescription</IRI>
+        <Literal xml:lang="en" datatypeIRI="http://www.w3.org/1999/02/22-rdf-syntax-ns#PlainLiteral">BeddingDescription provides a detailed description of the bedding characteristics of a geologic unit.</Literal>
     </AnnotationAssertion>
     <AnnotationAssertion>
         <AnnotationProperty abbreviatedIRI="rdfs:label"/>
@@ -362,6 +387,21 @@
         <AnnotationProperty IRI="http://www.w3.org/2004/02/skos/core#definition"/>
         <IRI>#GeologicFeatureRelation</IRI>
         <Literal xml:lang="en" datatypeIRI="http://www.w3.org/1999/02/22-rdf-syntax-ns#PlainLiteral">The GeologicFeatureRelation class defines the general structure used to define relationships between any GeoSciML feature types.  Relationships are always binary and directional.  There is always a single source and a single target.  The relationship is always defined from the perspective of the Source and is generally an active verb.</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
+        <IRI>#GeologicUnitAbstractDescription</IRI>
+        <Literal xml:lang="en" datatypeIRI="http://www.w3.org/1999/02/22-rdf-syntax-ns#PlainLiteral">Geologic Unit Abstract Description</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
+        <IRI>#GeologicUnitDescription</IRI>
+        <Literal xml:lang="en" datatypeIRI="http://www.w3.org/1999/02/22-rdf-syntax-ns#PlainLiteral">Geologic Unit Description</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty IRI="http://www.w3.org/2004/02/skos/core#definition"/>
+        <IRI>#GeologicUnitDescription</IRI>
+        <Literal xml:lang="en" datatypeIRI="http://www.w3.org/1999/02/22-rdf-syntax-ns#PlainLiteral">GeologicUnitDescription provides for extended description of the characteristics of a geologic unit</Literal>
     </AnnotationAssertion>
     <AnnotationAssertion>
         <AnnotationProperty abbreviatedIRI="rdfs:label"/>
