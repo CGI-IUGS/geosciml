@@ -1,0 +1,44 @@
+Did not model Geologic Time since it has been done by Simon already
+Did not model "collection".  RDF already has classes for this (bag, list, etc..)
+Borehole on hold
+Analysis is O&M heavy - need a good O&M encoding (or SOSA ?)
+
+Properties.
+For now, all properties that refers to "vocabularies" are just routed to "owl:Thing" instead of SKOS.  To be discussed
+linked to "skos:Concept" implies that all vocabularies are references to resources that are "rdf:type skos:Concept" - maybe 
+this is the intent ?
+
+== Association Class ==
+AssociationClass , such as relatedFeature.  3 ways to model this.
+
+Model it as it is in UML (with a middle class)
+
+a:Unit1 gsml:relatedFeature a:GeologicRelation1.
+a:GeologicRelation1 gsml:relatedFeature a:Unit2.
+a:GeologicRelation1 a gsml:GeologicRelation; gsml:role <http://foo.com/def/roles/member>.
+
+bit of an issue that gsml:relatedFeature is actually two properties (GeologicFeature->GeologicRelation and GeologicRelation->GeologicFeature) but I guess
+we can live with relatedFeature to be a single owl:SymmetricProperty (GeologicFeature <-> GeologicRelation).  We can also constrain blah blah
+
+One way to model complex Association Class (such as AbstractFeatureRelation) is to reify the relatedFeature property.
+
+a:Unit1 gsml:relatedFeature a:Unit2.
+
+_:b a rdf:Statement;
+  rdf:subject a:Unit1;
+  rdf:predicate gsml:relatedFeature;
+  rdf:object a:Unit2;
+  gsml:role <http://foo.com/def/roles/member>. 
+
+Some people consider this too complex.  
+
+There is another pattern, such as Singleton  - you create an "instance" of the property.
+
+a:Unit1 a:myRelatedFeature1 a:Unit2.
+
+a:myRelatedFeature singletonPropertyOf  gsml:GeologicRelation;
+	gsml:role <http://foo.com/def/roles/member>.
+	
+
+
+

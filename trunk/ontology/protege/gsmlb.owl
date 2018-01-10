@@ -7,11 +7,15 @@
      xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
      ontologyIRI="http://def.isotc211.org/geosciml/gsmlb"
      versionIRI="http://def.isotc211.org/geosciml/2018/gsmlb">
+    <Prefix name="" IRI="http://def.isotc211.org/geosciml/gsmlb"/>
     <Prefix name="owl" IRI="http://www.w3.org/2002/07/owl#"/>
     <Prefix name="rdf" IRI="http://www.w3.org/1999/02/22-rdf-syntax-ns#"/>
     <Prefix name="xml" IRI="http://www.w3.org/XML/1998/namespace"/>
     <Prefix name="xsd" IRI="http://www.w3.org/2001/XMLSchema#"/>
     <Prefix name="rdfs" IRI="http://www.w3.org/2000/01/rdf-schema#"/>
+    <Declaration>
+        <ObjectProperty IRI="#classifier"/>
+    </Declaration>
     <Declaration>
         <Class IRI="#NaturalGeomorphologicFeature"/>
     </Declaration>
@@ -22,13 +26,19 @@
         <Class IRI="#Contact"/>
     </Declaration>
     <Declaration>
+        <DataProperty IRI="#purpose"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#GeologicFeature"/>
+    </Declaration>
+    <Declaration>
+        <AnnotationProperty IRI="http://www.w3.org/2004/02/skos/core#definition"/>
+    </Declaration>
+    <Declaration>
         <Class IRI="#ShearDisplacementStructure"/>
     </Declaration>
     <Declaration>
         <Class IRI="#GeologicUnit"/>
-    </Declaration>
-    <Declaration>
-        <Class IRI="#GeologicFeature"/>
     </Declaration>
     <Declaration>
         <Class IRI="#GeologicStructure"/>
@@ -41,6 +51,9 @@
     </Declaration>
     <Declaration>
         <Class IRI="#Fold"/>
+    </Declaration>
+    <Declaration>
+        <ObjectProperty IRI="#observationMethod"/>
     </Declaration>
     <Declaration>
         <Class IRI="#CompoundMaterial"/>
@@ -49,10 +62,10 @@
         <Class IRI="#GeologicUnitHierarchy"/>
     </Declaration>
     <Declaration>
-        <Class IRI="#RockMaterial"/>
+        <Class IRI="#EarthMaterial"/>
     </Declaration>
     <Declaration>
-        <Class IRI="#EarthMaterial"/>
+        <Class IRI="#RockMaterial"/>
     </Declaration>
     <Declaration>
         <Class IRI="#Foliation"/>
@@ -68,9 +81,6 @@
     </Declaration>
     <Declaration>
         <Class IRI="http://def.isotc211.org/iso19109/2015/GeneralFeatureModel#AnyFeature"/>
-    </Declaration>
-    <Declaration>
-        <AnnotationProperty IRI="http://www.w3.org/2004/02/skos/core#definition"/>
     </Declaration>
     <SubClassOf>
         <Class IRI="#AnthropogenicGeomorphologicFeature"/>
@@ -132,6 +142,26 @@
         <Class IRI="#ShearDisplacementStructure"/>
         <Class IRI="#GeologicStructure"/>
     </SubClassOf>
+    <ObjectPropertyDomain>
+        <ObjectProperty IRI="#classifier"/>
+        <Class IRI="#GeologicFeature"/>
+    </ObjectPropertyDomain>
+    <ObjectPropertyDomain>
+        <ObjectProperty IRI="#observationMethod"/>
+        <Class IRI="#GeologicFeature"/>
+    </ObjectPropertyDomain>
+    <DataPropertyDomain>
+        <DataProperty IRI="#purpose"/>
+        <Class IRI="#GeologicFeature"/>
+    </DataPropertyDomain>
+    <DataPropertyRange>
+        <DataProperty IRI="#purpose"/>
+        <DataOneOf>
+            <Literal datatypeIRI="http://www.w3.org/1999/02/22-rdf-syntax-ns#PlainLiteral">definingNorm</Literal>
+            <Literal datatypeIRI="http://www.w3.org/1999/02/22-rdf-syntax-ns#PlainLiteral">instance</Literal>
+            <Literal datatypeIRI="http://www.w3.org/1999/02/22-rdf-syntax-ns#PlainLiteral">typicalNorm</Literal>
+        </DataOneOf>
+    </DataPropertyRange>
     <AnnotationAssertion>
         <AnnotationProperty abbreviatedIRI="rdfs:label"/>
         <IRI>#AnthropogenicGeomorphologicFeature</IRI>
@@ -320,6 +350,31 @@ Because associated processes are incompatible, a single event cannot be shared b
         <AnnotationProperty IRI="http://www.w3.org/2004/02/skos/core#definition"/>
         <IRI>#ShearDisplacementStructure</IRI>
         <Literal xml:lang="en" datatypeIRI="http://www.w3.org/1999/02/22-rdf-syntax-ns#PlainLiteral">A shear displacement structure includes all brittle to ductile style structures along which displacement has occurred, from a simple, single ‘planar’ brittle or ductile surface to a fault system comprised of tens of strands of both brittle and ductile nature. This structure may have some significant thickness (a deformation zone) and have an associated body of deformed rock that may be considered a deformation unit (which geologicUnitType is ‘DeformationUnit’) which can be associated to the ShearDisplacementStructure using GeologicFeatureRelation from the GeoSciML Extension</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
+        <IRI>#observationMethod</IRI>
+        <Literal xml:lang="fr" datatypeIRI="http://www.w3.org/1999/02/22-rdf-syntax-ns#PlainLiteral">méthode d&apos;observation</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
+        <IRI>#observationMethod</IRI>
+        <Literal xml:lang="en" datatypeIRI="http://www.w3.org/1999/02/22-rdf-syntax-ns#PlainLiteral">observation method</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty IRI="http://www.w3.org/2004/02/skos/core#definition"/>
+        <IRI>#observationMethod</IRI>
+        <Literal xml:lang="en" datatypeIRI="http://www.w3.org/1999/02/22-rdf-syntax-ns#PlainLiteral">The GeologicFeature observationMethod (SWE::Category) specifies the approach to acquiring the collection of attribute values that constitute an individual feature instance (e.g. point count, brunton compass on site, air photo interpretation, field observation, hand specimen, laboratory, aerial photography, creative imagination).</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
+        <IRI>#purpose</IRI>
+        <Literal xml:lang="en" datatypeIRI="http://www.w3.org/1999/02/22-rdf-syntax-ns#PlainLiteral">purpose</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty IRI="http://www.w3.org/2004/02/skos/core#definition"/>
+        <IRI>#purpose</IRI>
+        <Literal xml:lang="en" datatypeIRI="http://www.w3.org/1999/02/22-rdf-syntax-ns#PlainLiteral">The property purpose specifies the intended purpose/level of abstraction for a given feature or object instance.  The possible values are: instance, typicalNorm, and definingNorm.</Literal>
     </AnnotationAssertion>
     <AnnotationAssertion>
         <AnnotationProperty IRI="http://www.w3.org/2004/02/skos/core#definition"/>
