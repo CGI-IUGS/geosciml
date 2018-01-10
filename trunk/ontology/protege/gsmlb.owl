@@ -14,25 +14,10 @@
     <Prefix name="xsd" IRI="http://www.w3.org/2001/XMLSchema#"/>
     <Prefix name="rdfs" IRI="http://www.w3.org/2000/01/rdf-schema#"/>
     <Declaration>
-        <ObjectProperty IRI="#classifier"/>
-    </Declaration>
-    <Declaration>
-        <Class IRI="#NaturalGeomorphologicFeature"/>
-    </Declaration>
-    <Declaration>
         <Class IRI="#MappedFeature"/>
     </Declaration>
     <Declaration>
-        <Class IRI="#Contact"/>
-    </Declaration>
-    <Declaration>
         <DataProperty IRI="#purpose"/>
-    </Declaration>
-    <Declaration>
-        <Class IRI="#GeologicFeature"/>
-    </Declaration>
-    <Declaration>
-        <AnnotationProperty IRI="http://www.w3.org/2004/02/skos/core#definition"/>
     </Declaration>
     <Declaration>
         <Class IRI="#ShearDisplacementStructure"/>
@@ -41,22 +26,10 @@
         <Class IRI="#GeologicUnit"/>
     </Declaration>
     <Declaration>
-        <Class IRI="#GeologicStructure"/>
-    </Declaration>
-    <Declaration>
-        <Class IRI="#GSML_PlanarOrientation"/>
-    </Declaration>
-    <Declaration>
-        <Class IRI="#AnthropogenicGeomorphologicFeature"/>
-    </Declaration>
-    <Declaration>
-        <Class IRI="#Fold"/>
+        <Class IRI="#GeologicFeature"/>
     </Declaration>
     <Declaration>
         <ObjectProperty IRI="#observationMethod"/>
-    </Declaration>
-    <Declaration>
-        <Class IRI="#CompoundMaterial"/>
     </Declaration>
     <Declaration>
         <Class IRI="#GeologicUnitHierarchy"/>
@@ -65,22 +38,55 @@
         <Class IRI="#EarthMaterial"/>
     </Declaration>
     <Declaration>
-        <Class IRI="#RockMaterial"/>
-    </Declaration>
-    <Declaration>
-        <Class IRI="#Foliation"/>
-    </Declaration>
-    <Declaration>
         <Class IRI="#GSML_LinearOrientation"/>
     </Declaration>
     <Declaration>
         <Class IRI="#GeologicEvent"/>
     </Declaration>
     <Declaration>
-        <Class IRI="#GSML_GeometricDescriptionValue"/>
+        <Class IRI="http://def.isotc211.org/iso19109/2015/GeneralFeatureModel#AnyFeature"/>
     </Declaration>
     <Declaration>
-        <Class IRI="http://def.isotc211.org/iso19109/2015/GeneralFeatureModel#AnyFeature"/>
+        <Class IRI="#NaturalGeomorphologicFeature"/>
+    </Declaration>
+    <Declaration>
+        <ObjectProperty IRI="#classifier"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#Contact"/>
+    </Declaration>
+    <Declaration>
+        <AnnotationProperty IRI="http://www.w3.org/2004/02/skos/core#definition"/>
+    </Declaration>
+    <Declaration>
+        <ObjectProperty IRI="#occurrence"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#GeologicStructure"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#GSML_PlanarOrientation"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#AnthropogenicGeomorphologicFeature"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#Fold"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#CompoundMaterial"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#RockMaterial"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#Foliation"/>
+    </Declaration>
+    <Declaration>
+        <ObjectProperty IRI="#relatedFeature"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#GSML_GeometricDescriptionValue"/>
     </Declaration>
     <SubClassOf>
         <Class IRI="#AnthropogenicGeomorphologicFeature"/>
@@ -142,6 +148,9 @@
         <Class IRI="#ShearDisplacementStructure"/>
         <Class IRI="#GeologicStructure"/>
     </SubClassOf>
+    <SymmetricObjectProperty>
+        <ObjectProperty IRI="#relatedFeature"/>
+    </SymmetricObjectProperty>
     <ObjectPropertyDomain>
         <ObjectProperty IRI="#classifier"/>
         <Class IRI="#GeologicFeature"/>
@@ -150,6 +159,22 @@
         <ObjectProperty IRI="#observationMethod"/>
         <Class IRI="#GeologicFeature"/>
     </ObjectPropertyDomain>
+    <ObjectPropertyDomain>
+        <ObjectProperty IRI="#occurrence"/>
+        <Class IRI="#GeologicFeature"/>
+    </ObjectPropertyDomain>
+    <ObjectPropertyDomain>
+        <ObjectProperty IRI="#relatedFeature"/>
+        <Class IRI="#GeologicFeature"/>
+    </ObjectPropertyDomain>
+    <ObjectPropertyRange>
+        <ObjectProperty IRI="#occurrence"/>
+        <Class IRI="#MappedFeature"/>
+    </ObjectPropertyRange>
+    <ObjectPropertyRange>
+        <ObjectProperty IRI="#relatedFeature"/>
+        <Class IRI="#GeologicFeature"/>
+    </ObjectPropertyRange>
     <DataPropertyDomain>
         <DataProperty IRI="#purpose"/>
         <Class IRI="#GeologicFeature"/>
@@ -368,6 +393,16 @@ Because associated processes are incompatible, a single event cannot be shared b
     </AnnotationAssertion>
     <AnnotationAssertion>
         <AnnotationProperty abbreviatedIRI="rdfs:label"/>
+        <IRI>#occurrence</IRI>
+        <Literal xml:lang="en" datatypeIRI="http://www.w3.org/1999/02/22-rdf-syntax-ns#PlainLiteral">occurrence</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty IRI="http://www.w3.org/2004/02/skos/core#definition"/>
+        <IRI>#occurrence</IRI>
+        <Literal xml:lang="en" datatypeIRI="http://www.w3.org/1999/02/22-rdf-syntax-ns#PlainLiteral">The occurrence property is an association that links a notional geologic feature with any number of mapped features (MappedFeature).  A geologic feature, such as a geologic unit may be linked to mapped features from a number of different maps.</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
         <IRI>#purpose</IRI>
         <Literal xml:lang="en" datatypeIRI="http://www.w3.org/1999/02/22-rdf-syntax-ns#PlainLiteral">purpose</Literal>
     </AnnotationAssertion>
@@ -375,6 +410,16 @@ Because associated processes are incompatible, a single event cannot be shared b
         <AnnotationProperty IRI="http://www.w3.org/2004/02/skos/core#definition"/>
         <IRI>#purpose</IRI>
         <Literal xml:lang="en" datatypeIRI="http://www.w3.org/1999/02/22-rdf-syntax-ns#PlainLiteral">The property purpose specifies the intended purpose/level of abstraction for a given feature or object instance.  The possible values are: instance, typicalNorm, and definingNorm.</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
+        <IRI>#relatedFeature</IRI>
+        <Literal xml:lang="en" datatypeIRI="http://www.w3.org/1999/02/22-rdf-syntax-ns#PlainLiteral">related feature</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty IRI="http://www.w3.org/2004/02/skos/core#definition"/>
+        <IRI>#relatedFeature</IRI>
+        <Literal xml:lang="en" datatypeIRI="http://www.w3.org/1999/02/22-rdf-syntax-ns#PlainLiteral">A relatedFeature is a general structure used to define relationships between any features or objects within GeoSciML. Relationships are always binary and directional.  There is always a single source and a single target for a given FeatureRelation (which is abstract in GeoSciML Basic).  The relationship is always defined from the perspective of the Source and is generally an active verb.</Literal>
     </AnnotationAssertion>
     <AnnotationAssertion>
         <AnnotationProperty IRI="http://www.w3.org/2004/02/skos/core#definition"/>
