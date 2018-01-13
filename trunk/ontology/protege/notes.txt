@@ -42,6 +42,28 @@ a:myRelatedFeature singletonPropertyOf  gsml:GeologicRelation;
 GeologicFeature::classifier is a potential "soft-type" for any GeologicFeature.  For example, for GeologicUnit, one could create sub types for specific units 
 from a lexicon (ie, "Trenton Group") instead of treating it as a instance (what IGS has done for RockMaterial...)
 	
+GeologicUnit:geologicUnitType is definitively a soft type.
+
+role: we have several "role".  Are they the same property with different constrains, or different properties.  I choose to use the 
+constrain routed
+proportion: idem. But in this case we can argue it's the same property
+
+EarthMaterial::color what's the benefit of SWE::Category over regular vocabulary again ? (proportion ? dominant grey, some black ?)
+
+Contact::contactType : soft typing
+Foliation::foliationType : soft typing
+ShearDisplacementStructure::faultType soft typing
+NaturalGeomorphologicFeature::naturalGeomorphologicFeatureType soft type
+AnthropogenicGeomorphologicFeature::anthropogenicGeomorphologicFeatureType soft type
+
+
+Did not model GSML_QuantityRange as it's just an artefact to deal with FES limitations.
+In fact, in should not be in the conceptual model at all, this should be resolved using WFS stored procedure because
+it's a WFS/FES issue.
+
+CORRECTION TO SPEC 
+- 8.4.1.5.3    Material 
+	Material should be lower case (it's a property)
 
 
 
